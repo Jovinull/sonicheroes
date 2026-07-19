@@ -13,6 +13,9 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:8
 
+Runtime.PPCEABI.H/__va_arg.c:
+	.text       start:0x801B8E08 end:0x801B8ED0
+
 Runtime.PPCEABI.H/global_destructor_chain.c:
 	.text       start:0x801B8ED0 end:0x801B8F30
 	.dtors      start:0x80239928 end:0x8023992C
