@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# Refuses any commit that stages original game data.
+#
+# The .gitignore already keeps orig/ and build/ out, but a stray `git add -f`,
+# a new extension nobody thought about, or a moment of inattention would slip
+# past it. This check runs on every commit and does not depend on anyone
+# remembering to look.
+#
+# Enabled by `git config core.hooksPath .githooks`, which the README asks
+# contributors to run once after cloning.
+
+blocked=$(git diff --cached --name-only --diff-filter=AM \
+    | grep -Ei '\.(dol|rel|rvz|iso|gcm|wbfs|ciso|gcz|nfs|tgc|arc|szs|szp|thp|gvr|adx|dsp|ast|bin|o|elf|plf|map)$')
+
+if [ -n "$blocked" ]; then
+    echo "pre-commit: refusing to commit original game data." >&2
+    echo "" >&2
+    echo "These staged files look like game data or build output:" >&2
+    echo "$blocked" | sed 's/^/  /' >&2
+    echo "" >&2
+    echo "This repository must never contain game code, assets or build" >&2
+    echo "artifacts. See LEGAL.md. Unstage them with:" >&2
+    echo "  git restore --staged <file>" >&2
+    exit 1
+fi
+
+# orig/ holds the user's own copy of the game. Only the .gitkeep belongs in git.
+stray_orig=$(git diff --cached --name-only --diff-filter=AM \
+    | grep -E '^orig/' | grep -v '\.gitkeep$')
+
+if [ -n "$stray_orig" ]; then
+    echo "pre-commit: refusing to commit files under orig/." >&2
+    echo "$stray_orig" | sed 's/^/  /' >&2
+    exit 1
+fi
+
+exit 0

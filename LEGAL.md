@@ -23,7 +23,9 @@ A pull request that breaks any of these is rejected.
    issues, not in Discord. Anyone asking where to get the game gets told to dump
    their own copy.
 3. No original binary code or assembly committed. Generated assembly lives in
-   `build/`, which is ignored by git.
+   `build/`, which is ignored by git. A pre-commit hook in `.githooks` refuses
+   any commit that stages game data or build output, so this does not rely on
+   anyone remembering. Enable it with `git config core.hooksPath .githooks`.
 4. No leaked material. No leaked SEGA or Sonic Team source, no leaked SDK
    source, nothing from any breach.
 5. No compiler binaries in the repository. The CodeWarrior compilers are

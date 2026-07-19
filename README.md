@@ -82,6 +82,13 @@ Clone the repository:
 git clone https://github.com/Jovinull/sonicheroes.git
 ```
 
+Turn on the repository hooks once, so a commit that stages game data or build
+output is refused before it happens:
+
+```sh
+git config core.hooksPath .githooks
+```
+
 Put your copy of the game in `orig/G9SE8P/`. Either drop the disc image there
 (ISO, RVZ, GCM, WBFS, CISO, GCZ, NFS or TGC), or extract the disc with Dolphin
 into that folder. If you use a disc image, it can be deleted after the first
