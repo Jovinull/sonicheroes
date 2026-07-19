@@ -1,5 +1,22 @@
 # Sonic Heroes
 
+[![Build Status]][actions]
+
+[Build Status]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml/badge.svg
+[actions]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml
+
+<!--
+Progress badges go here once the project is registered on decomp.dev.
+Do not enable them before real splits exist: with no translation units the
+report divides by zero and reports 100 percent, which is worse than no badge.
+
+[![Code Progress]][progress] [![Data Progress]][progress]
+
+[Code Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&label=Code
+[Data Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=data&label=Data
+[progress]: https://decomp.dev/Jovinull/sonicheroes
+-->
+
 A work in progress decompilation of Sonic Heroes for the Nintendo GameCube.
 
 This is a non-commercial study and preservation project. It is not affiliated
