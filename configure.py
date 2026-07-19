@@ -303,6 +303,7 @@ config.libs = [
         "progress_category": "sdk",
         "objects": [
             Object(Matching, "dolphin/os/__start.c"),
+            Object(Matching, "dolphin/os/OSArena.c"),
         ],
     },
     {
