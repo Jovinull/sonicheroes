@@ -42,6 +42,13 @@ by hand.
 18 REL modules ship alongside `main.dol`. 17 of them are configured. `stage00D`
 is excluded for now, see the note at the end of `config/G9SE8P/config.yml`.
 
+## AI assistance
+
+I use LLMs to help write this decompilation. Nothing goes in unverified: every
+function has to match the original byte for byte in objdiff, and CI checks the
+SHA-1 of the built DOL on every push. A function either reproduces the original
+binary exactly or it does not get marked as matching.
+
 ## Dependencies
 
 You need Python and ninja on your `PATH`.

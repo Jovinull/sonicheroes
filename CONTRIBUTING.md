@@ -73,3 +73,11 @@ Review is about correctness and matching, not personal style preferences.
 
 Every function has to be verified in objdiff before it goes in. Progress numbers
 are only worth something if they can be trusted.
+
+## AI assistance
+
+Using an LLM to help write a function is fine, and this project does it. Say so
+in the pull request and verify the result byte for byte like anything else.
+
+What is not fine is bulk output nobody checked. That is the thing that makes
+progress numbers meaningless, not the tool used to produce the code.
