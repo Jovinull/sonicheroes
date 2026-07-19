@@ -11,15 +11,18 @@ splits: config/G9SE8P/splits.txt
 
 # The disc ships no .map file, so symbols come from analysis only.
 
-# TODO: confirm the CodeWarrior linker version.
+# Linker generation confirmed as GC 1.0 to 2.6, from the exception runtime:
+#
+#   GetR2__Fv             .text:0x801B9C94  size 0x8   (absent on GC 2.7+)
+#   __fini_cpp_exceptions .text:0x801B9C9C  size 0x34
+#   __init_cpp_exceptions .text:0x801B9CD0  size 0x40  (0x3C on GC 2.7+)
+#
+# That rules out 11 and 14. configure.py assumes a GC/1.3.2 linker, so 10.
 #   8  = CW for GameCube 1.0+
 #   10 = CW for GameCube 1.3.2+
 #   11 = CW for GameCube 2.7+
 #   14 = CW for GameCube 3.0a3+
-# The DOL has extab and extabindex sections, so C++ exceptions are in use and a
-# __init_cpp_exceptions.cpp split is required. The shape of that split shows
-# which linker generation this is. See docs/getting_started.md.
-mw_comment_version: 11
+mw_comment_version: 10
 
 # 18 REL modules ship with main.dol. One per stage, plus advertise (attract
 # mode), autosave and movie.
