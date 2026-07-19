@@ -33,6 +33,9 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 MSL_C/mem.c:
 	.text       start:0x801C01EC end:0x801C063C
 
+dolphin/base/PPCArch.c:
+	.text       start:0x801D0518 end:0x801D062C
+
 dolphin/os/OSArena.c:
 	.text       start:0x801D1C70 end:0x801D1C90
 	.sdata      start:0x8042BF30 end:0x8042BF34

@@ -304,6 +304,7 @@ config.libs = [
         "objects": [
             Object(Matching, "dolphin/os/__start.c"),
             Object(Matching, "dolphin/os/OSArena.c"),
+            Object(Matching, "dolphin/base/PPCArch.c"),
         ],
     },
     {
