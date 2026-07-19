@@ -297,6 +297,15 @@ config.libs = [
         ],
     },
     {
+        "lib": "dolphin",
+        "mw_version": "GC/1.2.5n",
+        "cflags": cflags_base,
+        "progress_category": "sdk",
+        "objects": [
+            Object(Matching, "dolphin/os/__start.c"),
+        ],
+    },
+    {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,

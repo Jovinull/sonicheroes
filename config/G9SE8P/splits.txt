@@ -35,3 +35,7 @@ MSL_C/mem.c:
 
 Runtime.PPCEABI.H/__mem.c:
 	.init       start:0x80003100 end:0x80003238
+
+dolphin/os/__start.c:
+	.init       start:0x800052C4 end:0x8000561C
+	.sbss       start:0x8042CBA8 end:0x8042CBAC

@@ -7,6 +7,26 @@
 extern "C" {
 #endif
 
+DECL_SECT(".init") extern char _stack_addr[];
+DECL_SECT(".init") extern char _stack_end[];
+DECL_SECT(".init") extern char _SDA_BASE_[];
+DECL_SECT(".init") extern char _SDA2_BASE_[];
+
+typedef struct __rom_copy_info {
+	char* rom;
+	char* addr;
+	u32 size;
+} __rom_copy_info;
+
+DECL_SECT(".init") extern __rom_copy_info _rom_copy_info[];
+
+typedef struct __bss_init_info {
+	char* addr;
+	u32 size;
+} __bss_init_info;
+
+DECL_SECT(".init") extern __bss_init_info _bss_init_info[];
+
 typedef struct __eti_init_info {
 	void* eti_start;
 	void* eti_end;
