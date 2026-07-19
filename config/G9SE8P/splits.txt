@@ -30,5 +30,8 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.dtors      start:0x80239920 end:0x80239928
 	.sdata      start:0x8042BEB8 end:0x8042BEC0
 
+MSL_C/mem.c:
+	.text       start:0x801C01EC end:0x801C063C
+
 Runtime.PPCEABI.H/__mem.c:
 	.init       start:0x80003100 end:0x80003238
