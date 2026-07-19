@@ -348,7 +348,9 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 # Optional extra categories for progress tracking
 # Adjust as desired for your project
 config.progress_categories = [
-    ProgressCategory("game", "Game Code"),
+    # "game" is deliberately absent until game code is actually split. With no
+    # objects in a category the report divides 0 by 0 and prints 100 percent,
+    # which would publish a false number. Add it back with the first game TU.
     ProgressCategory("sdk", "SDK Code"),
 ]
 config.progress_each_module = args.verbose
