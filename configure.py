@@ -288,6 +288,15 @@ config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
     {
+        "lib": "MSL_C",
+        "mw_version": config.linker_version,
+        "cflags": cflags_runtime,
+        "progress_category": "sdk",
+        "objects": [
+            Object(Matching, "MSL_C/mem.c"),
+        ],
+    },
+    {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
