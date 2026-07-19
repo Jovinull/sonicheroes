@@ -29,3 +29,6 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.ctors      start:0x802398C0 end:0x802398C4
 	.dtors      start:0x80239920 end:0x80239928
 	.sdata      start:0x8042BEB8 end:0x8042BEC0
+
+Runtime.PPCEABI.H/__mem.c:
+	.init       start:0x80003100 end:0x80003238
