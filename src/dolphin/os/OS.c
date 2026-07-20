@@ -245,8 +245,11 @@ u32 OSGetConsoleType(void)
 {
 	u32 type;
 
+	// Two returns, not one assignment and a fallthrough. The original branches
+	// out of the first one to a shared trailing blr, which is what a second
+	// return statement produces and an assignment does not.
 	if (BootInfo == NULL || (type = BootInfo->consoleType) == 0) {
-		type = OS_CONSOLE_ARTHUR;
+		return OS_CONSOLE_ARTHUR;
 	}
 	return type;
 }
