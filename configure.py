@@ -307,7 +307,11 @@ config.libs = [
             Object(Matching, "dolphin/base/PPCArch.c"),
             Object(Matching, "dolphin/db/db.c"),
             Object(Matching, "dolphin/os/OSFpu.c"),
-            Object(NonMatching, "dolphin/os/OS.c"),
+            # Built without the peephole pass, like the original. With it on,
+            # register copies come out as addi rD,rS,0 instead of mr and single
+            # exit returns collapse into bnelr, neither of which the original
+            # has.
+            Object(NonMatching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
             Object(Matching, "dolphin/amcstubs.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
             Object(Matching, "dolphin/os/OSTime.c"),

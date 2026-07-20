@@ -13687,6 +13687,7 @@ lbl_803F0A40 = .bss:0x803F0A40; // type:object size:0x73C
 lbl_803F117C = .bss:0x803F117C; // type:object size:0x110C
 lbl_803F2288 = .bss:0x803F2288; // type:object size:0x18 data:byte
 DriveInfo = .bss:0x803F22A0; // type:object size:0x20 scope:local
+DriveBlock = .bss:0x803F22C0; // type:object size:0x30 scope:local
 __OSErrorTable = .bss:0x803F22F0; // type:object size:0x44 scope:global data:4byte
 lbl_803F2340 = .bss:0x803F2340; // type:object size:0x20
 Scb = .bss:0x803F2360; // type:object size:0x54 scope:local data:4byte
