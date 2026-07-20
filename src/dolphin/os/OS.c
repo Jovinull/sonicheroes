@@ -11,15 +11,17 @@
 // unit, and the Dolphin SDK does keep OSInit and __OSExceptionInit together in
 // OS.c. The split now covers 0x801D0840..0x801D1170.
 //
-// Still to write:
-//   fn_801D0840        0x801D0840  0x28
+// State: 6 of 11 functions match.
+//
+// Close but not there:
+//   OSGetConsoleType   84%  single exit through a named local did not help
+//   InquiryCallback    96%  real struct size fixed the sda21 vs absolute access
+//
+// Not started:
 //   ClearArena         0x801D0868  0x128
-//   InquiryCallback    0x801D0990  0x3C
-//   OSInit             0x801D09CC  0x3D8
-//   OSExceptionInit    0x801D0DA4  0x280   dtk calls it OSExceptionInit_801D0DA4,
-//                                          rename in symbols.txt when written
-//   OSExceptionVector  0x801D107C  0x9C    asm, must emit __OSEVStart,
-//                                          __DBVECTOR, __OSEVSetNumber, __OSEVEnd
+//   OSInit             0x801D09CC  0x3D8  uses pool offsets 0x0 to 0x11F
+//   OSExceptionInit    0x801D0DA4  0x280  dtk calls it OSExceptionInit_801D0DA4,
+//                                         rename in symbols.txt when written
 //
 // Pool offsets used by the exception half: 0x160, 0x17C, 0x1AC, 0x1DC.
 
@@ -39,25 +41,56 @@ extern void __OSUnhandledException(void);
 // here: giving OS.c both 0x8042CAE0..0x8042CAF0 and 0x8042CB00..0x8042CB08 puts
 // OSFpu.c's ZeroF and ZeroPS in the middle and dtk reports a cyclic link order.
 // So they belong to some other unit and are referenced from here.
-extern void* BootInfo;
+typedef struct OSBootInfo {
+	u8 pad[0x2C];
+	u32 consoleType;
+} OSBootInfo;
+
+extern OSBootInfo* BootInfo;
 extern void* BI2DebugFlag;
 
+// Declared at its real size. A small struct here makes the compiler reach it
+// through sda21, while the original uses an absolute lis/addi pair.
 typedef struct DVDDriveInfo {
-	u16 pad;
+	u16 revisionLevel;
 	u16 deviceCode;
+	u32 releaseDate;
+	u8 pad[24];
 } DVDDriveInfo;
 
+typedef struct DVDCommandBlock {
+	u8 pad[0xC];
+	s32 state;
+} DVDCommandBlock;
+
 extern DVDDriveInfo DriveInfo;
+
+// Set by the drive inquiry, read by the boot path out of the OS globals.
+#define OS_DEVICE_CODE (*(u16*)0x800030E6)
 
 static int AreWeInitialized;
 static __OSExceptionHandler* OSExceptionTable;
 
 u32 OSGetConsoleType(void)
 {
-	if (BootInfo == 0 || *(u32*)((u8*)&BootInfo + 0x2C) == 0) {
-		return 0x10000002;
+	u32 type;
+
+	if (BootInfo == 0 || (type = BootInfo->consoleType) == 0) {
+		type = 0x10000002;
 	}
-	return *(u32*)((u8*)&BootInfo + 0x2C);
+	return type;
+}
+
+static void InquiryCallback(s32 result, DVDCommandBlock* block)
+{
+	switch (block->state) {
+	case 0:
+		OS_DEVICE_CODE = DriveInfo.deviceCode | 0x8000;
+		break;
+	default:
+		OS_DEVICE_CODE = 1;
+		break;
+	}
 }
 
 // Copied over the exception vector area at boot, so it runs from a fixed
