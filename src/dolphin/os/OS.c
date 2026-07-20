@@ -35,7 +35,30 @@ typedef void (*__OSExceptionHandler)(u8 exception, void* context);
 
 extern void __OSUnhandledException(void);
 
+// These four live in .sbss between db.c and OSFpu.c. They cannot be declared
+// here: giving OS.c both 0x8042CAE0..0x8042CAF0 and 0x8042CB00..0x8042CB08 puts
+// OSFpu.c's ZeroF and ZeroPS in the middle and dtk reports a cyclic link order.
+// So they belong to some other unit and are referenced from here.
+extern void* BootInfo;
+extern void* BI2DebugFlag;
+
+typedef struct DVDDriveInfo {
+	u16 pad;
+	u16 deviceCode;
+} DVDDriveInfo;
+
+extern DVDDriveInfo DriveInfo;
+
+static int AreWeInitialized;
 static __OSExceptionHandler* OSExceptionTable;
+
+u32 OSGetConsoleType(void)
+{
+	if (BootInfo == 0 || *(u32*)((u8*)&BootInfo + 0x2C) == 0) {
+		return 0x10000002;
+	}
+	return *(u32*)((u8*)&BootInfo + 0x2C);
+}
 
 // Copied over the exception vector area at boot, so it runs from a fixed
 // address rather than from wherever the linker put it.
@@ -92,5 +115,64 @@ asm void OSDefaultExceptionHandler(register u8 exception, register void* context
 	mfdar   r6
 	stwu    r1,-8(r1)
 	b       __OSUnhandledException
+#endif // clang-format on
+}
+
+// Reached by a branch from __OSDBIntegrator's end label.
+asm void __OSDBJump(void) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	bla     0x60
+__OSDBJUMPEND:
+#endif // clang-format on
+}
+
+asm void OSExceptionVector(void) {
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+__OSEVStart:
+	mtsprg  0,r4
+	lwz     r4,0xC0(r0)
+	stw     r3,0xC(r4)
+	mfsprg  r3,0
+	stw     r3,0x10(r4)
+	stw     r5,0x14(r4)
+	lhz     r3,0x1A2(r4)
+	ori     r3,r3,2
+	sth     r3,0x1A2(r4)
+	mfcr    r3
+	stw     r3,0x80(r4)
+	mflr    r3
+	stw     r3,0x84(r4)
+	mfctr   r3
+	stw     r3,0x88(r4)
+	mfxer   r3
+	stw     r3,0x8C(r4)
+	mfsrr0  r3
+	stw     r3,0x198(r4)
+	mfsrr1  r3
+	stw     r3,0x19C(r4)
+	mr      r5,r3
+__DBVECTOR:
+	nop
+	mfmsr   r3
+	ori     r3,r3,0x30
+	mtsrr1  r3
+__OSEVSetNumber:
+	li      r3,0
+	lwz     r4,0xD4(r0)
+	rlwinm. r5,r5,0,30,30
+	bne     dbvector
+	lis     r5,OSDefaultExceptionHandler@ha
+	addi    r5,r5,OSDefaultExceptionHandler@l
+	mtsrr0  r5
+	rfi
+dbvector:
+	clrlslwi r5,r3,24,2
+	lwz     r5,0x3000(r5)
+	mtsrr0  r5
+	rfi
+__OSEVEnd:
+	nop
 #endif // clang-format on
 }
