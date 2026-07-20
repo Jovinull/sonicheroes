@@ -56,6 +56,9 @@ dolphin/os/OSTime.c:
 Runtime.PPCEABI.H/__ppc_eabi_init.c:
 	.text       start:0x801D7630 end:0x801D76C4
 
+dolphin/amcstubs.c:
+	.text       start:0x801F8168 end:0x801F81A8
+
 Runtime.PPCEABI.H/__mem.c:
 	.init       start:0x80003100 end:0x80003238
 
