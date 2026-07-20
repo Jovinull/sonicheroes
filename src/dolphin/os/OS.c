@@ -19,21 +19,27 @@
 // return collapses into bnelr where the original branches to one trailing blr.
 // Turning it off moved every function here at once.
 //
-// Still assembly, not yet written:
-//   OSExceptionInit  0x801D0DA4  0x280  uses pool offsets 0x124 (the vector
-//                                       table), 0x160, 0x17C, 0x1AC, 0x1DC
+// Every function is written. What is left is register allocation:
+//   OSInit            98.7%  frame is 0x20 against 0x18, and the inlined
+//                            OSGetConsoleType is missing its branch to the
+//                            join.
+//   OSExceptionInit   95.4%  the word count for the nop fill is hoisted out of
+//                            the loop, so one more callee saved register is
+//                            live than the original needs and every register
+//                            number shifts by one. Tried: counted loop,
+//                            do while, signed count, and a separate NopFill
+//                            helper, which is what got it this far.
+//   ClearArena        95.3%  start lands in r4 instead of r3, and the second
+//                            read of __OSSavedRegionEnd is not held across the
+//                            OSGetArenaHi call the way the original holds it.
+//   OSGetConsoleType  90.0%  one instruction: the original branches to the
+//                            trailing blr, we fall through to it.
 //
-// Written and close, differing only in register allocation:
-//   OSInit             98.7%  frame is 0x20 against 0x18, and the inlined
-//                             OSGetConsoleType is missing its branch to the
-//                             join. Six of the remaining lines are only the
-//                             names of the .sbss externs below.
-//   ClearArena         95.3%  start lands in r4 instead of r3, and the second
-//                             read of __OSSavedRegionEnd is not held across
-//                             the OSGetArenaHi call the way the original holds
-//                             it in r31.
-//   OSGetConsoleType   90.0%  one instruction: the original branches to the
-//                             trailing blr, we fall through to it.
+// .data is 503 of 504 bytes. The strings and the vector table all land in the
+// right order; the original pads the section to eight bytes and ours does not.
+//
+// Six of the remaining lines in OSInit and OSExceptionInit are nothing but the
+// names of the .sbss externs below, which cannot be fixed from here.
 
 #define NULL 0
 
@@ -65,6 +71,10 @@ typedef s64 OSTime;
 #define OS_CONSOLE_MINNOW      0x10000003
 
 #define OS_INTERRUPT_PI_RSW 0x16
+
+#define __OS_EXCEPTION_MAX 15
+
+typedef u8 __OSException;
 
 typedef void (*__OSExceptionHandler)(u8 exception, void* context);
 typedef void (*__OSInterruptHandler)(s16 interrupt, void* context);
@@ -142,7 +152,7 @@ extern void PPCSetFpNonIEEEMode(void);
 extern u32  PPCMfhid2(void);
 extern void PPCMthid2(u32 value);
 
-extern void OSExceptionInit(void);
+static void OSExceptionInit(void);
 extern void __OSInitSystemCall(void);
 extern void __OSModuleInit(void);
 extern void __OSInterruptInit(void);
@@ -162,6 +172,16 @@ extern void DCInvalidateRange(void* addr, u32 nBytes);
 extern void DVDInquiryAsync(DVDCommandBlock* block, DVDDriveInfo* info,
                             void (*callback)(s32, DVDCommandBlock*));
 extern void EnableMetroTRKInterrupts(void);
+// Forward declared: OSExceptionInit installs it and OSExceptionVector names it,
+// but the original emits the handler last, so it cannot be moved up.
+void OSDefaultExceptionHandler(register u8 exception, register void* context);
+
+extern void DBPrintf(const char* msg, ...);
+extern int  __DBIsExceptionMarked(u8 exception);
+extern void DCFlushRangeNoSync(void* addr, u32 nBytes);
+extern void ICInvalidateRange(void* addr, u32 nBytes);
+extern void* memcpy(void* dst, const void* src, u32 n);
+extern __OSExceptionHandler __OSSetExceptionHandler(u8 exception, __OSExceptionHandler handler);
 
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;
@@ -195,6 +215,18 @@ extern int    __DVDLongFileNameFlag;
 extern char _stack_addr[];
 extern char __ArenaLo[];
 extern char __ArenaHi[];
+
+// Points inside the assembly functions further down. OSExceptionInit copies
+// those bodies over the hardware vectors and patches one instruction in the
+// middle of the template, so it needs the addresses of the pieces. They are
+// declared here and defined by `entry` directives inside the asm blocks.
+extern void __OSDBINTSTART(void);
+extern void __OSDBINTEND(void);
+extern void __OSDBJUMPEND(void);
+extern void __OSEVStart(void);
+extern void __OSEVEnd(void);
+extern void __OSEVSetNumber(void);
+extern void __DBVECTOR(void);
 
 const char* __OSVersion = "<< Dolphin SDK - OS\trelease build: Jul 23 2003 11:27:16 (0x2301) >>";
 
@@ -414,12 +446,97 @@ void OSInit(void)
 	}
 }
 
+// Fills a code region with nop words. Written as a helper so the word count is
+// a local of the inlined body rather than a variable of the caller's loop,
+// which is what keeps the compiler from hoisting it out of that loop.
+static void NopFill(void* dst, u32 nBytes)
+{
+	u32* p = (u32*)dst;
+	u32  n = (nBytes + 3) / 4;
+
+	while (n--) {
+		*p++ = 0x60000000;
+	}
+}
+
+// Copies OSExceptionVector's body over each hardware vector, patching the
+// exception number into the template on the way. The debugger gets a say: an
+// exception it has marked is either left to it entirely or routed through the
+// integrator, and the branch slot in the middle of the template is filled with
+// either that jump or with nops.
+static void OSExceptionInit(void)
+{
+	// Not contiguous, which is why this is a table and not 0x100 + (n << 8).
+	static u32 ExceptionVectorTable[] = {
+		0x100, 0x200, 0x300, 0x400, 0x500, 0x600, 0x700, 0x800,
+		0x900, 0xC00, 0xD00, 0xF00, 0x1300, 0x1400, 0x1700,
+	};
+
+	__OSException exception;
+	u32*  opCodeAddr;
+	u32   oldOpCode;
+	void* destAddr;
+	void* dbIntDest;
+	void* evStart;
+	u32   dbIntSize;
+	u32   dbJumpSize;
+	u32   evSize;
+
+	opCodeAddr = (u32*)__OSEVSetNumber;
+	oldOpCode  = *opCodeAddr;
+	evStart    = __OSEVStart;
+	evSize     = (u32)__OSEVEnd - (u32)evStart;
+
+	dbIntDest = OSPhysicalToCached(0x60);
+	if (*(u32*)dbIntDest == 0) {
+		DBPrintf("Installing OSDBIntegrator\n");
+		dbIntSize = (u32)__OSDBINTEND - (u32)__OSDBINTSTART;
+		memcpy(dbIntDest, __OSDBINTSTART, dbIntSize);
+		DCFlushRangeNoSync(dbIntDest, dbIntSize);
+		__sync();
+		ICInvalidateRange(dbIntDest, dbIntSize);
+	}
+
+	dbJumpSize = (u32)__OSDBJUMPEND - (u32)__OSDBINTEND;
+
+	for (exception = 0; exception < __OS_EXCEPTION_MAX; exception++) {
+		// Leave it alone entirely if the debugger has claimed it.
+		if (BI2DebugFlag && (*BI2DebugFlag >= 2) && __DBIsExceptionMarked(exception)) {
+			DBPrintf(">>> OSINIT: exception %d commandeered by TRK\n", exception);
+			continue;
+		}
+
+		*opCodeAddr = oldOpCode | exception;
+
+		if (__DBIsExceptionMarked(exception)) {
+			DBPrintf(">>> OSINIT: exception %d vectored to debugger\n", exception);
+			memcpy(__DBVECTOR, __OSDBINTEND, dbJumpSize);
+		} else {
+			NopFill(__DBVECTOR, dbJumpSize);
+		}
+
+		destAddr = OSPhysicalToCached(ExceptionVectorTable[exception]);
+		memcpy(destAddr, evStart, evSize);
+		DCFlushRangeNoSync(destAddr, evSize);
+		__sync();
+		ICInvalidateRange(destAddr, evSize);
+	}
+
+	OSExceptionTable = OSPhysicalToCached(0x3000);
+	for (exception = 0; exception < __OS_EXCEPTION_MAX; exception++) {
+		__OSSetExceptionHandler(exception, OSDefaultExceptionHandler);
+	}
+
+	*opCodeAddr = oldOpCode;
+	DBPrintf("Exceptions initialized...\n");
+}
+
 // Copied over the exception vector area at boot, so it runs from a fixed
 // address rather than from wherever the linker put it.
 asm void __OSDBIntegrator(void) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
-__OSDBINTSTART:
+entry __OSDBINTSTART
 	li      r5,0x40
 	mflr    r3
 	stw     r3,0xC(r5)
@@ -429,7 +546,7 @@ __OSDBINTSTART:
 	li      r3,0x30
 	mtmsr   r3
 	blr
-__OSDBINTEND:
+entry __OSDBINTEND
 #endif // clang-format on
 }
 
@@ -438,7 +555,7 @@ asm void __OSDBJump(void) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
 	bla     0x60
-__OSDBJUMPEND:
+entry __OSDBJUMPEND
 #endif // clang-format on
 }
 
@@ -453,14 +570,10 @@ __OSExceptionHandler __OSSetExceptionHandler(u8 exception, __OSExceptionHandler 
 
 __OSExceptionHandler __OSGetExceptionHandler(u8 exception) { return OSExceptionTable[exception]; }
 
-// Forward declared so the vector below can name it. The original emits the
-// handler after the vector, so it cannot simply be moved up.
-void OSDefaultExceptionHandler(register u8 exception, register void* context);
-
 asm void OSExceptionVector(void) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
-__OSEVStart:
+entry __OSEVStart
 	mtsprg  0,r4
 	lwz     r4,0xC0(r0)
 	stw     r3,0xC(r4)
@@ -483,12 +596,12 @@ __OSEVStart:
 	mfsrr1  r3
 	stw     r3,0x19C(r4)
 	mr      r5,r3
-__DBVECTOR:
+entry __DBVECTOR
 	nop
 	mfmsr   r3
 	ori     r3,r3,0x30
 	mtsrr1  r3
-__OSEVSetNumber:
+entry __OSEVSetNumber
 	li      r3,0
 	lwz     r4,0xD4(r0)
 	rlwinm. r5,r5,0,30,30
@@ -502,7 +615,7 @@ dbvector:
 	lwz     r5,0x3000(r5)
 	mtsrr0  r5
 	rfi
-__OSEVEnd:
+entry __OSEVEnd
 	nop
 #endif // clang-format on
 }
