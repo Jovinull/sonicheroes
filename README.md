@@ -109,7 +109,7 @@ point `Project directory` at this repository. It picks up the config on its own.
 Pick an object in the sidebar to start diffing. It rebuilds automatically when
 you edit source, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 
-![objdiff showing dolphin/base/PPCArch fully matching](docs/objdiff.png)
+![objdiff showing dolphin/base/PPCArch fully matching](docs/objdiff.webp)
 
 ## Contributing
 

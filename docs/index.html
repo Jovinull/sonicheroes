@@ -15,11 +15,11 @@
 <meta property="og:title" content="Sonic Heroes: GameCube Decompilation">
 <meta property="og:description" content="Work-in-progress, non-commercial decompilation of Sonic Heroes (GameCube). Byte-matching source, live progress, no game assets.">
 <meta property="og:url" content="https://jovinull.github.io/sonicheroes/">
-<meta property="og:image" content="https://jovinull.github.io/sonicheroes/objdiff.png">
+<meta property="og:image" content="https://jovinull.github.io/sonicheroes/objdiff.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sonic Heroes: GameCube Decompilation">
 <meta name="twitter:description" content="Work-in-progress, non-commercial decompilation of Sonic Heroes (GameCube).">
-<meta name="twitter:image" content="https://jovinull.github.io/sonicheroes/objdiff.png">
+<meta name="twitter:image" content="https://jovinull.github.io/sonicheroes/objdiff.webp">
 
 <!-- Structured data: this is a source-code project, not a game download -->
 <script type="application/ld+json">
@@ -40,7 +40,7 @@
 :root{
   --bg:#0b0f17; --bg2:#111827; --card:#151c2b; --card2:#1b2438;
   --line:#25304a; --line2:#334063;
-  --txt:#e7ecf5; --mut:#9aa7c2; --dim:#6b7896;
+  --txt:#e7ecf5; --mut:#9aa7c2; --dim:#7d8ba8;
   --acc:#4f8cff; --acc2:#38bdf8; --gold:#f5c518;
   --done:#37d67a; --part:#f5c518; --void:#2a3450;
   --radius:16px; --maxw:1080px;
@@ -56,6 +56,8 @@ body{
 }
 a{color:var(--acc2); text-decoration:none}
 a:hover{text-decoration:underline}
+/* links inside running text must not rely on colour alone */
+p a, .legal a{text-decoration:underline; text-underline-offset:2px}
 .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
 section{padding:64px 0; border-top:1px solid var(--line)}
 h2{font-size:clamp(1.4rem,3vw,2rem); margin:0 0 8px; letter-spacing:-.02em}
@@ -185,6 +187,8 @@ footer{border-top:1px solid var(--line); padding:48px 0; background:#080b12}
   </div>
 </header>
 
+<main>
+
 <!-- LIVE PROGRESS -->
 <section id="progress">
   <div class="wrap">
@@ -198,25 +202,25 @@ footer{border-top:1px solid var(--line); padding:48px 0; background:#080b12}
         <div class="k">Code matched</div>
         <div class="v"><span data-num="code">0.05</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="code">...</span> of total code bytes</div>
-        <div class="bar"><i data-bar="code"></i></div>
+        <div class="bar" role="progressbar" aria-label="Code matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="code"></i></div>
       </div>
       <div class="stat">
         <div class="k">Data matched</div>
         <div class="v"><span data-num="data">0.00</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="data">...</span> of total data bytes</div>
-        <div class="bar"><i data-bar="data"></i></div>
+        <div class="bar" role="progressbar" aria-label="Data matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="data"></i></div>
       </div>
       <div class="stat fn">
         <div class="k">Functions</div>
         <div class="v"><span data-num="fn">0.27</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="fn">...</span> functions matched</div>
-        <div class="bar"><i data-bar="fn"></i></div>
+        <div class="bar" role="progressbar" aria-label="Functions matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="fn"></i></div>
       </div>
       <div class="stat units">
         <div class="k">Complete units</div>
         <div class="v"><span data-num="units">0</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="units">...</span> translation units done</div>
-        <div class="bar"><i data-bar="units"></i></div>
+        <div class="bar" role="progressbar" aria-label="Complete translation units" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="units"></i></div>
       </div>
     </div>
 
@@ -289,7 +293,7 @@ footer{border-top:1px solid var(--line); padding:48px 0; background:#080b12}
     </div>
 
     <figure>
-      <img src="objdiff.png" alt="objdiff showing a matched object: original and recompiled disassembly side by side, fully green" loading="lazy">
+      <img src="objdiff.webp" width="1003" height="802" alt="objdiff showing a matched object: original and recompiled disassembly side by side, fully green" loading="lazy">
       <figcaption>objdiff: dolphin/base/PPCArch matching the original, instruction for instruction.</figcaption>
     </figure>
   </div>
@@ -316,6 +320,8 @@ ninja</pre>
     · Contributing: <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a></p>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap">
@@ -363,10 +369,9 @@ ninja</pre>
     var w = ratio*100;
     if(ratio>0 && w<1) w = 1;          // keep a visible sliver for tiny values
     i.style.width = Math.min(w,100)+"%";
-    var stat = i.closest('.stat');
-    if(stat){ stat.setAttribute('role','progressbar');
-      stat.setAttribute('aria-valuemin','0'); stat.setAttribute('aria-valuemax','100');
-      stat.setAttribute('aria-valuenow', (ratio*100).toFixed(2)); }
+    // the track carries the progressbar role and its accessible name
+    var track = i.parentNode;
+    if(track) track.setAttribute('aria-valuenow', (ratio*100).toFixed(2));
   }
   function num(key,val){ animateNum(document.querySelector('[data-num="'+key+'"]'), val); }
   function abs(key,txt){ var e=document.querySelector('[data-abs="'+key+'"]'); if(e) e.textContent=txt; }
