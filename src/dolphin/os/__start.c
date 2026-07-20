@@ -185,6 +185,13 @@ DECL_SECT(".init") asm void __init_registers(void) {
 #endif // clang-format on
 }
 
+// Written as asm rather than as the obvious loop over the BSS init table. Same
+// reason as __init_cpp over in Runtime.PPCEABI.H/__ppc_eabi_init.c: the
+// original carries chained branches through empty basic blocks between the loop
+// setup and the condition test, and no plain C formulation reproduced them.
+// Unlike most of the asm in this project, this one is a transcription rather
+// than a function that is assembly in its own right. Worth another attempt, and
+// solving it here would very likely solve __init_cpp too.
 DECL_SECT(".init") asm void __init_data(void) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc
