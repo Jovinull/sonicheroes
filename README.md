@@ -18,9 +18,10 @@ Project page: <https://jovinull.github.io/sonicheroes/>
 This is a non-commercial study and preservation project. It is not affiliated
 with SEGA.
 
-This repository contains no game code, no game assets and no assembly. You need
-your own legally obtained copy of the game to build it. The project does not
-produce a playable game and is not a port.
+This repository contains no game code, no game assets and no extracted
+assembly. Some functions are written as inline assembly in the source, which is
+explained under Status. You need your own legally obtained copy of the game to
+build it. The project does not produce a playable game and is not a port.
 
 Supported version:
 
@@ -37,6 +38,17 @@ anything written here.
 
 The disc ships no `.map` file, so symbols and translation unit boundaries have
 to be worked out by hand.
+
+A good share of what is written so far is inline assembly rather than C, and
+that is not a shortcut. Most of it is code that is assembly in the original
+source too: there is no C for reading a special purpose register, invalidating a
+cache line, or saving the register file on the way into an exception, so
+`PPCArch.c`, `OSCache.c` and the EABI runtime helpers are asm in the Dolphin SDK
+as well. Writing those as C would be wrong, not better. A small number are
+transcriptions where C should have reproduced the original and did not; each one
+says so in a comment above it, so they are easy to find and worth revisiting.
+The generated assembly for everything not yet written stays in `build/`, which
+git ignores.
 
 18 REL modules ship alongside `main.dol`. 17 of them are configured, and none of
 them reproduce yet: the original has a zero sized placeholder section that the

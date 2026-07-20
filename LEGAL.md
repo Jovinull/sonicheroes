@@ -22,10 +22,17 @@ A pull request that breaks any of these is rejected.
 2. No disc images, no ROMs, no download links. Not in the repository, not in
    issues, not in Discord. Anyone asking where to get the game gets told to dump
    their own copy.
-3. No original binary code or assembly committed. Generated assembly lives in
-   `build/`, which is ignored by git. A pre-commit hook in `.githooks` refuses
-   any commit that stages game data or build output, so this does not rely on
-   anyone remembering. Enable it with `git config core.hooksPath .githooks`.
+3. No original binary code, and no extracted assembly committed. Assembly dumped
+   out of the disc lives in `build/`, which is ignored by git. A pre-commit hook
+   in `.githooks` refuses any commit that stages game data or build output, so
+   this does not rely on anyone remembering. Enable it with
+   `git config core.hooksPath .githooks`.
+
+   Hand written inline assembly inside a source file is source, not a dump, and
+   is allowed. Much of the SDK is assembly in its own original source, because
+   special purpose registers and cache instructions have no C form. Where a
+   function is asm only because C failed to reproduce it, say so in a comment
+   above it.
 4. No leaked material. No leaked SEGA or Sonic Team source, no leaked SDK
    source, nothing from any breach.
 5. No compiler binaries in the repository. The CodeWarrior compilers are
