@@ -1,16 +1,27 @@
 #include "types.h"
 
-// WORK IN PROGRESS. Marked NonMatching in configure.py until the two remaining
-// functions are written. Everything below is transcribed and believed correct,
-// but the unit does not link yet.
+// WORK IN PROGRESS, NonMatching in configure.py. Four of eleven functions are
+// written; the rest are still assembly in the build.
 //
-// Still to do:
-//   OSExceptionInit    0x801D0DA4  0x280 bytes
-//   OSExceptionVector  0x801D107C  0x9C bytes, asm with the global labels
-//                      __OSEVStart, __DBVECTOR, __OSEVSetNumber, __OSEVEnd
+// This was first split as OSException.c covering 0x801D0DA4..0x801D1170. That
+// was wrong. The string pool at 0x80291EA8 holds both the OSInit banner
+// ("<< Dolphin SDK - OS release build ... >>", "Console Type", "Arena : 0x%x")
+// and the exception strings ("Installing OSDBIntegrator", "Exceptions
+// initialized"), in one pooled object. A shared pool means one translation
+// unit, and the Dolphin SDK does keep OSInit and __OSExceptionInit together in
+// OS.c. The split now covers 0x801D0840..0x801D1170.
 //
-// Note dtk named the first one OSExceptionInit_801D0DA4, so symbols.txt will
-// need renaming to plain OSExceptionInit once it is written.
+// Still to write:
+//   fn_801D0840        0x801D0840  0x28
+//   ClearArena         0x801D0868  0x128
+//   InquiryCallback    0x801D0990  0x3C
+//   OSInit             0x801D09CC  0x3D8
+//   OSExceptionInit    0x801D0DA4  0x280   dtk calls it OSExceptionInit_801D0DA4,
+//                                          rename in symbols.txt when written
+//   OSExceptionVector  0x801D107C  0x9C    asm, must emit __OSEVStart,
+//                                          __DBVECTOR, __OSEVSetNumber, __OSEVEnd
+//
+// Pool offsets used by the exception half: 0x160, 0x17C, 0x1AC, 0x1DC.
 
 #define SPR_GQR1 913
 #define SPR_GQR2 914
