@@ -19,27 +19,26 @@
 // return collapses into bnelr where the original branches to one trailing blr.
 // Turning it off moved every function here at once.
 //
-// Every function is written. What is left is register allocation:
-//   OSInit            98.7%  frame is 0x20 against 0x18, and the inlined
-//                            OSGetConsoleType is missing its branch to the
-//                            join.
+// Every function is written. Eight of eleven match; what is left is register
+// allocation:
+//   ClearArena        99.6%  start lands in r4 and the base in r3, the original
+//                            has them the other way round. Declaration and
+//                            assignment order do not move it.
+//   OSInit            99.1%  the arena ternary loads through r0 and copies to
+//                            r3 instead of loading straight into r3. Four forms
+//                            tried, this is the best of them.
 //   OSExceptionInit   95.4%  the word count for the nop fill is hoisted out of
-//                            the loop, so one more callee saved register is
-//                            live than the original needs and every register
-//                            number shifts by one. Tried: counted loop,
-//                            do while, signed count, and a separate NopFill
-//                            helper, which is what got it this far.
-//   ClearArena        95.3%  start lands in r4 instead of r3, and the second
-//                            read of __OSSavedRegionEnd is not held across the
-//                            OSGetArenaHi call the way the original holds it.
-//   OSGetConsoleType  90.0%  one instruction: the original branches to the
-//                            trailing blr, we fall through to it.
+//                            the exception loop, so one more callee saved
+//                            register is live than the original needs, the
+//                            frame is 0x40 instead of 0x38, and every register
+//                            number below r23 shifts by one. Almost the whole
+//                            remaining diff is that shift.
 //
-// .data is 503 of 504 bytes. The strings and the vector table all land in the
-// right order; the original pads the section to eight bytes and ours does not.
+// .data is 503 of 504 bytes. The strings and the vector table land in the right
+// order; the original pads the section to eight and ours does not.
 //
-// Six of the remaining lines in OSInit and OSExceptionInit are nothing but the
-// names of the .sbss externs below, which cannot be fixed from here.
+// Several of the remaining lines in OSInit and OSExceptionInit are nothing but
+// the names of the .sbss externs below, which cannot be fixed from here.
 
 #define NULL 0
 
