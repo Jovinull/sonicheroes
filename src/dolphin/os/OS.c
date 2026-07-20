@@ -290,9 +290,14 @@ static void ClearArena(void)
 		size = (u32)__OSSavedRegionStart - (u32)OSGetArenaLo();
 		memset(OSGetArenaLo(), 0, size);
 
+		// The local has to be assigned inside the if, not before it. Reading
+		// the global into it beforehand loads too early; reading it here is
+		// what makes the compiler hold the value in r31 across the
+		// OSGetArenaHi call instead of loading it twice.
 		if (OSGetArenaHi() > __OSSavedRegionEnd) {
-			size = (u32)OSGetArenaHi() - (u32)__OSSavedRegionEnd;
-			memset(__OSSavedRegionEnd, 0, size);
+			end  = __OSSavedRegionEnd;
+			size = (u32)OSGetArenaHi() - (u32)end;
+			memset(end, 0, size);
 		}
 	}
 }
