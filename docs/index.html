@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sonic Heroes: GameCube Decompilation</title>
+<meta name="description" content="A work-in-progress, non-commercial decompilation of Sonic Heroes for the Nintendo GameCube. Byte-matching source, live progress, no game assets. Not affiliated with SEGA.">
+<meta name="author" content="Jovinull">
+<link rel="canonical" href="https://jovinull.github.io/sonicheroes/">
+<meta name="theme-color" content="#0b0f17">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sonic Heroes: GameCube Decompilation">
+<meta property="og:description" content="Work-in-progress, non-commercial decompilation of Sonic Heroes (GameCube). Byte-matching source, live progress, no game assets.">
+<meta property="og:url" content="https://jovinull.github.io/sonicheroes/">
+<meta property="og:image" content="https://jovinull.github.io/sonicheroes/objdiff.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sonic Heroes: GameCube Decompilation">
+<meta name="twitter:description" content="Work-in-progress, non-commercial decompilation of Sonic Heroes (GameCube).">
+<meta name="twitter:image" content="https://jovinull.github.io/sonicheroes/objdiff.png">
+
+<!-- Structured data: this is a source-code project, not a game download -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "Sonic Heroes GameCube Decompilation",
+  "description": "A work-in-progress, non-commercial study and preservation decompilation of Sonic Heroes for the Nintendo GameCube. Contains no game code, assets or assembly.",
+  "codeRepository": "https://github.com/Jovinull/sonicheroes",
+  "programmingLanguage": ["C", "C++"],
+  "author": { "@type": "Person", "name": "Jovinull" },
+  "license": "https://github.com/Jovinull/sonicheroes/blob/main/LICENSE",
+  "keywords": "decompilation, matching decompilation, GameCube, Sonic Heroes, reverse engineering, game preservation, objdiff, CodeWarrior"
+}
+</script>
+
+<style>
+:root{
+  --bg:#0b0f17; --bg2:#111827; --card:#151c2b; --card2:#1b2438;
+  --line:#25304a; --line2:#334063;
+  --txt:#e7ecf5; --mut:#9aa7c2; --dim:#6b7896;
+  --acc:#4f8cff; --acc2:#38bdf8; --gold:#f5c518;
+  --done:#37d67a; --part:#f5c518; --void:#2a3450;
+  --radius:16px; --maxw:1080px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--txt);
+  font-family:var(--sans); line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--acc2); text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+section{padding:64px 0; border-top:1px solid var(--line)}
+h2{font-size:clamp(1.4rem,3vw,2rem); margin:0 0 8px; letter-spacing:-.02em}
+h2 + .lead{color:var(--mut); margin:0 0 32px; max-width:60ch}
+.eyebrow{font:600 .8rem/1 var(--mono); letter-spacing:.18em; text-transform:uppercase; color:var(--acc2)}
+
+/* ---- HERO ---- */
+header.hero{
+  position:relative; overflow:hidden; border:0;
+  padding:88px 0 72px;
+  background:
+    radial-gradient(1200px 500px at 15% -10%, rgba(79,140,255,.22), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(56,189,248,.16), transparent 55%),
+    linear-gradient(180deg,#0a0e18,#0b0f17);
+}
+.hero .eyebrow{margin-bottom:18px}
+.hero h1{
+  font-size:clamp(2.6rem,8vw,5rem); line-height:.98; margin:0;
+  letter-spacing:-.04em; font-weight:800;
+  background:linear-gradient(90deg,#eaf1ff 0%,#8fb6ff 55%,#38bdf8 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero .sub{font-size:clamp(1rem,2.4vw,1.3rem); color:var(--mut); margin:18px 0 0; max-width:56ch}
+.hero .plat{display:inline-block; margin-top:14px; font:600 .8rem/1 var(--mono);
+  color:var(--dim); border:1px solid var(--line2); border-radius:999px; padding:7px 12px}
+.cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:30px}
+.btn{
+  display:inline-flex; align-items:center; gap:9px; font-weight:600; font-size:.95rem;
+  padding:12px 20px; border-radius:12px; border:1px solid var(--line2);
+  background:var(--card2); color:var(--txt); transition:.15s;
+}
+.btn:hover{border-color:var(--acc); background:#20304f; text-decoration:none; transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(90deg,var(--acc),#3d6fe0); border-color:transparent; color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px; align-items:center}
+.badges img{height:20px; border-radius:4px}
+
+/* ---- STAT DASHBOARD ---- */
+.grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.stat{
+  background:linear-gradient(180deg,var(--card),var(--bg2));
+  border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+  position:relative;
+}
+.stat .k{font:600 .72rem/1 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--dim)}
+.stat .v{font-size:2.5rem; font-weight:800; letter-spacing:-.03em; margin:10px 0 4px; font-variant-numeric:tabular-nums}
+.stat .v .pct{font-size:1.1rem; color:var(--mut); font-weight:600}
+.stat .d{font-size:.85rem; color:var(--mut)}
+.bar{height:9px; border-radius:999px; background:var(--void); overflow:hidden; margin-top:16px}
+.bar > i{display:block; height:100%; width:0; border-radius:999px;
+  background:linear-gradient(90deg,var(--acc2),var(--acc)); transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.stat.fn .bar > i{background:linear-gradient(90deg,#a78bfa,#7c5cff)}
+.stat.units .bar > i{background:linear-gradient(90deg,var(--done),#12b76a)}
+
+.meta{display:flex; flex-wrap:wrap; gap:18px 26px; margin-top:26px; align-items:center;
+  font-size:.88rem; color:var(--mut)}
+.dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--done); margin-right:7px;
+  box-shadow:0 0 0 0 rgba(55,214,122,.6); animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(55,214,122,.55)}70%{box-shadow:0 0 0 8px rgba(55,214,122,0)}100%{box-shadow:0 0 0 0 rgba(55,214,122,0)}}
+code{font-family:var(--mono); background:#0e1524; border:1px solid var(--line); border-radius:6px; padding:2px 6px; font-size:.85em}
+.commit{font-family:var(--mono); color:var(--txt)}
+
+/* ---- TWO COLUMNS ---- */
+.cols{display:grid; gap:16px; grid-template-columns:1fr 1fr}
+.panel{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px}
+.panel h3{margin:0 0 14px; font-size:1.1rem; display:flex; align-items:center; gap:9px}
+.panel ul{margin:0; padding:0; list-style:none}
+.panel li{padding:7px 0 7px 26px; position:relative; color:var(--mut); font-size:.95rem}
+.panel.yes li::before{content:"✓"; position:absolute; left:0; color:var(--done); font-weight:700}
+.panel.no li::before{content:"✕"; position:absolute; left:0; color:#ff6b6b; font-weight:700}
+
+/* ---- HOW IT WORKS ---- */
+.how{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-bottom:28px}
+.how .panel h3{font-size:1rem}
+.how .panel p{margin:0; color:var(--mut); font-size:.92rem}
+figure{margin:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:#0a0e18}
+figure img{display:block; width:100%; height:auto}
+figcaption{padding:12px 16px; font-size:.82rem; color:var(--dim); border-top:1px solid var(--line); font-family:var(--mono)}
+
+/* ---- BUILD ---- */
+pre{background:#0a0e18; border:1px solid var(--line); border-radius:12px; padding:18px;
+  overflow-x:auto; font-family:var(--mono); font-size:.85rem; color:#cdd7ee; line-height:1.7}
+pre .c{color:var(--dim)}
+.note{font-size:.9rem; color:var(--mut); margin-top:14px}
+
+/* ---- FOOTER / LEGAL ---- */
+footer{border-top:1px solid var(--line); padding:48px 0; background:#080b12}
+.legal{background:#0d1220; border:1px solid var(--line); border-left:3px solid var(--gold);
+  border-radius:12px; padding:20px 22px; color:var(--mut); font-size:.88rem; max-width:80ch}
+.legal strong{color:var(--txt)}
+.flinks{display:flex; flex-wrap:wrap; gap:18px; margin-top:26px; font-size:.9rem}
+.copy{margin-top:22px; color:var(--dim); font-size:.82rem}
+
+@media (max-width:720px){
+  .cols{grid-template-columns:1fr}
+  section{padding:52px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Nintendo GameCube · Matching Decompilation</div>
+    <h1>Sonic&nbsp;Heroes</h1>
+    <p class="sub">A work-in-progress, non-commercial <strong>study and preservation</strong>
+    decompilation. Hand-written C and C++ that rebuilds the retail binary
+    <em>byte for byte</em>. No game code, no assets, no assembly.</p>
+    <span class="plat">Target: <code>G9SE8P</code> · NTSC-U · rev 0</span>
+
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/Jovinull/sonicheroes" rel="noopener">
+        View on GitHub</a>
+      <a class="btn" href="https://decomp.dev/Jovinull/sonicheroes" rel="noopener">
+        Live progress on decomp.dev</a>
+      <a class="btn" href="#build">Build it yourself</a>
+    </div>
+
+    <div class="badges">
+      <img src="https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml/badge.svg" alt="Build status" loading="lazy">
+      <img src="https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&label=Code" alt="Code progress" loading="lazy">
+      <img src="https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=data&label=Data" alt="Data progress" loading="lazy">
+    </div>
+  </div>
+</header>
+
+<!-- LIVE PROGRESS -->
+<section id="progress">
+  <div class="wrap">
+    <div class="eyebrow">Live status</div>
+    <h2>Decompilation progress</h2>
+    <p class="lead">Pulled live from decomp.dev on every visit. Nothing is marked as
+    matching unless it reproduces the original binary exactly.</p>
+
+    <div class="grid">
+      <div class="stat">
+        <div class="k">Code matched</div>
+        <div class="v"><span data-num="code">0.05</span><span class="pct">%</span></div>
+        <div class="d"><span data-abs="code">...</span> of total code bytes</div>
+        <div class="bar"><i data-bar="code"></i></div>
+      </div>
+      <div class="stat">
+        <div class="k">Data matched</div>
+        <div class="v"><span data-num="data">0.00</span><span class="pct">%</span></div>
+        <div class="d"><span data-abs="data">...</span> of total data bytes</div>
+        <div class="bar"><i data-bar="data"></i></div>
+      </div>
+      <div class="stat fn">
+        <div class="k">Functions</div>
+        <div class="v"><span data-num="fn">0.27</span><span class="pct">%</span></div>
+        <div class="d"><span data-abs="fn">...</span> functions matched</div>
+        <div class="bar"><i data-bar="fn"></i></div>
+      </div>
+      <div class="stat units">
+        <div class="k">Complete units</div>
+        <div class="v"><span data-num="units">0</span><span class="pct">%</span></div>
+        <div class="d"><span data-abs="units">...</span> translation units done</div>
+        <div class="bar"><i data-bar="units"></i></div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <span><span class="dot"></span><span id="live-label">Fetching live data...</span></span>
+      <span>Latest commit: <span class="commit" id="commit">...</span></span>
+      <span id="updated"></span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT IS / ISN'T -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Scope</div>
+    <h2>What this project is, and what it is not</h2>
+    <div class="cols">
+      <div class="panel yes">
+        <h3>It is</h3>
+        <ul>
+          <li>Original, hand-written C / C++ source</li>
+          <li>Verified byte-for-byte against the retail <code>main.dol</code></li>
+          <li>A non-commercial study &amp; preservation effort</li>
+          <li>CI-checked: every push verifies the built DOL's SHA-1</li>
+          <li>Free and open, under its repository license</li>
+        </ul>
+      </div>
+      <div class="panel no">
+        <h3>It is not</h3>
+        <ul>
+          <li>A playable game, a port, or a download of the game</li>
+          <li>Shipping any ROM, disc image, or game asset</li>
+          <li>Shipping original binary code or assembly</li>
+          <li>Affiliated with or endorsed by SEGA</li>
+          <li>Monetized. No ads, donations, or paid builds</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">You need your own <strong>legally obtained</strong> copy of the game to build
+    anything. A build is only useful to somebody who already owns it.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Method</div>
+    <h2>How a matching decompilation works</h2>
+    <p class="lead">The goal is not "code that runs like the game". The goal is source that,
+    compiled with the original toolchain, produces the <em>exact same bytes</em> as the disc.</p>
+
+    <div class="how">
+      <div class="panel">
+        <h3>Byte-for-byte</h3>
+        <p>Each function is rewritten until its compiled output is identical to the original,
+        checked in <a href="https://github.com/encounter/objdiff" rel="noopener">objdiff</a>.
+        Anything less does not count as matched.</p>
+      </div>
+      <div class="panel">
+        <h3>Original toolchain</h3>
+        <p>The retail CodeWarrior compilers are downloaded at build time and run via
+        <a href="https://github.com/decompals/wibo" rel="noopener">wibo</a> on Linux/macOS.
+        No compiler binaries live in the repo.</p>
+      </div>
+      <div class="panel">
+        <h3>CI-verified</h3>
+        <p>The disc ships no <code>.map</code>, so symbols and unit boundaries are worked out by
+        hand. Every push rebuilds and checks the DOL's SHA-1.</p>
+      </div>
+    </div>
+
+    <figure>
+      <img src="objdiff.png" alt="objdiff showing a matched object: original and recompiled disassembly side by side, fully green" loading="lazy">
+      <figcaption>objdiff: dolphin/base/PPCArch matching the original, instruction for instruction.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BUILD -->
+<section id="build">
+  <div class="wrap">
+    <div class="eyebrow">Reproduce it</div>
+    <h2>Build it yourself</h2>
+    <p class="lead">You supply the game. The toolchain and configuration are in the repo.</p>
+<pre><span class="c"># 1. clone</span>
+git clone https://github.com/Jovinull/sonicheroes.git
+cd sonicheroes
+
+<span class="c"># 2. enable the safety hook (refuses commits that stage game data)</span>
+git config core.hooksPath .githooks
+
+<span class="c"># 3. drop YOUR dumped copy in orig/G9SE8P/ , then</span>
+python configure.py
+ninja</pre>
+    <p class="note">Need Python and ninja on your <code>PATH</code>. Full guide:
+    <a href="https://github.com/Jovinull/sonicheroes/blob/main/docs/getting_started.md" rel="noopener">docs/getting_started.md</a>
+    · Contributing: <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="legal">
+      <strong>Legal.</strong> This is not legal advice. <strong>Sonic Heroes</strong> and all related
+      trademarks are the property of <strong>SEGA</strong>. This project is not affiliated with,
+      sponsored by, or endorsed by SEGA. It is a non-commercial study and preservation project and
+      contains <strong>no game code, no game assets, and no assembly</strong>. It distributes no ROM,
+      disc image, or playable build, and requires a legally obtained copy of the game to build.
+      See <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">LEGAL.md</a>.
+    </div>
+    <div class="flinks">
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub repository</a>
+      <a href="https://decomp.dev/Jovinull/sonicheroes" rel="noopener">decomp.dev</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">Legal</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a>
+    </div>
+    <div class="copy">Built and maintained by Jovinull · Progress data © decomp.dev · Fan project, no commercial use.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var API = "https://decomp.dev/Jovinull/sonicheroes.json";
+  var fmtInt = function(n){ return (n||0).toLocaleString("en-US"); };
+  var pct = function(x){ // x is 0..1
+    var v = (x||0)*100;
+    return v < 1 ? v.toFixed(2) : v.toFixed(1);
+  };
+  function animateNum(el, target){
+    if(!el) return;
+    var start = parseFloat(el.textContent)||0, t0=null, dur=900;
+    function step(t){
+      if(!t0) t0=t; var k=Math.min((t-t0)/dur,1);
+      var e = 1-Math.pow(1-k,3);
+      var val = start + (target-start)*e;
+      el.textContent = target<1 ? val.toFixed(2) : val.toFixed(1);
+      if(k<1) requestAnimationFrame(step); else el.textContent = target<1?target.toFixed(2):target.toFixed(1);
+    }
+    requestAnimationFrame(step);
+  }
+  function setBar(key, ratio){
+    var i = document.querySelector('[data-bar="'+key+'"]');
+    if(!i) return;
+    var w = ratio*100;
+    if(ratio>0 && w<1) w = 1;          // keep a visible sliver for tiny values
+    i.style.width = Math.min(w,100)+"%";
+    var stat = i.closest('.stat');
+    if(stat){ stat.setAttribute('role','progressbar');
+      stat.setAttribute('aria-valuemin','0'); stat.setAttribute('aria-valuemax','100');
+      stat.setAttribute('aria-valuenow', (ratio*100).toFixed(2)); }
+  }
+  function num(key,val){ animateNum(document.querySelector('[data-num="'+key+'"]'), val); }
+  function abs(key,txt){ var e=document.querySelector('[data-abs="'+key+'"]'); if(e) e.textContent=txt; }
+
+  function load(){
+    fetch(API, {cache:"no-store"}).then(function(r){
+      if(!r.ok) throw new Error(r.status); return r.json();
+    }).then(function(j){
+      var m = j.measures || {};
+      // decomp.dev *_percent fields are already percentages (0.05 == 0.05%), 0..100.
+      var codeP  = m.matched_code_percent || 0;
+      var dataP  = m.matched_data_percent || 0;
+      var fnP    = m.matched_functions_percent || 0;
+      // no units_percent field, so derive a 0..1 ratio ourselves.
+      var unitsR = (m.total_units ? (m.complete_units||0)/m.total_units : 0);
+
+      num("code", codeP);       setBar("code", codeP/100);
+      num("data", dataP);       setBar("data", dataP/100);
+      num("fn",   fnP);         setBar("fn",   fnP/100);
+      num("units",unitsR*100);  setBar("units",unitsR);
+
+      abs("code", fmtInt(m.matched_code)+" / "+fmtInt(m.total_code)+" bytes");
+      abs("data", fmtInt(m.matched_data)+" / "+fmtInt(m.total_data)+" bytes");
+      abs("fn",   fmtInt(m.matched_functions)+" / "+fmtInt(m.total_functions));
+      abs("units",fmtInt(m.complete_units)+" / "+fmtInt(m.total_units));
+
+      document.getElementById("live-label").textContent = "Live from decomp.dev";
+      if(j.commit){
+        var msg = (j.commit.message||"").split("\n")[0];
+        document.getElementById("commit").textContent =
+          j.commit.sha.slice(0,7) + " · " + msg.slice(0,54);
+        if(j.commit.timestamp){
+          var d = new Date(j.commit.timestamp);
+          document.getElementById("updated").textContent =
+            "Updated " + d.toISOString().slice(0,10);
+        }
+      }
+    }).catch(function(){
+      document.getElementById("live-label").textContent =
+        "Live data unavailable, see decomp.dev";
+    });
+  }
+  load();
+  setInterval(load, 90000); // refresh while the tab stays open
+})();
+</script>
+</body>
+</html>
