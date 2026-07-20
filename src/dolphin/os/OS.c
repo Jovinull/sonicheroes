@@ -11,14 +11,19 @@
 // unit, and the Dolphin SDK does keep OSInit and __OSExceptionInit together in
 // OS.c. The split now covers 0x801D0840..0x801D1170.
 //
-// State: 6 of 11 functions match.
+// State: 6 of 11 functions match, 3 more written and close.
 //
-// Close but not there:
-//   OSGetConsoleType   84%  single exit through a named local did not help
-//   InquiryCallback    96%  real struct size fixed the sda21 vs absolute access
+// Written, logic believed correct, differing only in register allocation:
+//   ClearArena         81%  structure matches, the original uses mr where we
+//                           emit addi and assigns r3/r0 where we assign r0/r3.
+//                           Tried: named locals for size and for the two saved
+//                           region reads, reordered declarations, s32 vs u32,
+//                           pointer difference instead of integer casts. None
+//                           moved it off 81%.
+//   OSGetConsoleType   84%  return shape, original converges to one trailing blr
+//   InquiryCallback    96%
 //
 // Not started:
-//   ClearArena         0x801D0868  0x128
 //   OSInit             0x801D09CC  0x3D8  uses pool offsets 0x0 to 0x11F
 //   OSExceptionInit    0x801D0DA4  0x280  dtk calls it OSExceptionInit_801D0DA4,
 //                                         rename in symbols.txt when written
@@ -36,6 +41,20 @@
 typedef void (*__OSExceptionHandler)(u8 exception, void* context);
 
 extern void __OSUnhandledException(void);
+extern u32 OSGetResetCode(void);
+extern void* OSGetArenaHi(void);
+extern void* OSGetArenaLo(void);
+extern void* memset(void* dst, int val, u32 n);
+
+extern void* __OSSavedRegionStart;
+extern void* __OSSavedRegionEnd;
+
+// The previous run leaves the region it wants preserved recorded just under the
+// top of MEM1.
+#define OS_SAVED_REGION_START (*(void**)0x812FDFF0)
+#define OS_SAVED_REGION_END   (*(void**)0x812FDFEC)
+
+#define OS_RESET_RESTART 0x80000000
 
 // These four live in .sbss between db.c and OSFpu.c. They cannot be declared
 // here: giving OS.c both 0x8042CAE0..0x8042CAF0 and 0x8042CB00..0x8042CB08 puts
@@ -70,6 +89,49 @@ extern DVDDriveInfo DriveInfo;
 
 static int AreWeInitialized;
 static __OSExceptionHandler* OSExceptionTable;
+
+static void ClearArena(void)
+{
+	void* start;
+	void* end;
+	u32 size;
+
+	if (OSGetResetCode() != OS_RESET_RESTART) {
+		__OSSavedRegionStart = 0;
+		__OSSavedRegionEnd   = 0;
+		size                 = (u32)OSGetArenaHi() - (u32)OSGetArenaLo();
+		memset(OSGetArenaLo(), 0, size);
+		return;
+	}
+
+	start = OS_SAVED_REGION_START;
+	end   = OS_SAVED_REGION_END;
+
+	__OSSavedRegionStart = start;
+	__OSSavedRegionEnd   = end;
+
+	if (start == 0) {
+		size = (u32)OSGetArenaHi() - (u32)OSGetArenaLo();
+		memset(OSGetArenaLo(), 0, size);
+		return;
+	}
+
+	if (OSGetArenaLo() < __OSSavedRegionStart) {
+		if (OSGetArenaHi() <= __OSSavedRegionStart) {
+			size = (u32)OSGetArenaHi() - (u32)OSGetArenaLo();
+			memset(OSGetArenaLo(), 0, size);
+			return;
+		}
+
+		size = (u32)__OSSavedRegionStart - (u32)OSGetArenaLo();
+		memset(OSGetArenaLo(), 0, size);
+
+		if (OSGetArenaHi() > __OSSavedRegionEnd) {
+			size = (u32)OSGetArenaHi() - (u32)__OSSavedRegionEnd;
+			memset(__OSSavedRegionEnd, 0, size);
+		}
+	}
+}
 
 u32 OSGetConsoleType(void)
 {
