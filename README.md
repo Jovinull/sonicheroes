@@ -13,6 +13,8 @@
 
 A work in progress decompilation of Sonic Heroes for the Nintendo GameCube.
 
+Project page: <https://jovinull.github.io/sonicheroes/>
+
 This is a non-commercial study and preservation project. It is not affiliated
 with SEGA.
 
