@@ -1,38 +1,58 @@
 #!/bin/sh
 #
-# Refuses any commit that stages original game data.
+# Refuses any commit that stages original game data or anything derived from it.
 #
-# The .gitignore already keeps orig/ and build/ out, but a stray `git add -f`,
-# a new extension nobody thought about, or a moment of inattention would slip
-# past it. This check runs on every commit and does not depend on anyone
-# remembering to look.
+# The .gitignore already keeps orig/ and build/ out, but a stray `git add -f`, a
+# new extension nobody thought about, or a moment of inattention would slip past
+# it. This check runs on every commit and does not depend on anyone remembering
+# to look.
 #
 # Enabled by `git config core.hooksPath .githooks`, which the README asks
 # contributors to run once after cloning.
+#
+# Four layers, because any one of them has a hole:
+#   1. extensions of game data and of build output
+#   2. anything under orig/, which holds the contributor's own copy
+#   3. anything under build/, where the disassembly of the disc lives
+#   4. a size ceiling, to catch formats this list has never heard of
 
-blocked=$(git diff --cached --name-only --diff-filter=AM \
-    | grep -Ei '\.(dol|rel|rvz|iso|gcm|wbfs|ciso|gcz|nfs|tgc|arc|szs|szp|thp|gvr|adx|dsp|ast|bin|o|elf|plf|map)$')
+staged=$(git diff --cached --name-only --diff-filter=AM)
+[ -z "$staged" ] && exit 0
 
-if [ -n "$blocked" ]; then
-    echo "pre-commit: refusing to commit original game data." >&2
+fail() {
+    echo "pre-commit: refusing to commit. $1" >&2
     echo "" >&2
-    echo "These staged files look like game data or build output:" >&2
-    echo "$blocked" | sed 's/^/  /' >&2
+    printf '%s\n' "$2" | sed 's/^/  /' >&2
     echo "" >&2
-    echo "This repository must never contain game code, assets or build" >&2
-    echo "artifacts. See LEGAL.md. Unstage them with:" >&2
+    echo "This repository must never contain game code, game assets, or" >&2
+    echo "assembly extracted from the disc. See LEGAL.md. Unstage with:" >&2
     echo "  git restore --staged <file>" >&2
     exit 1
-fi
+}
 
-# orig/ holds the user's own copy of the game. Only the .gitkeep belongs in git.
-stray_orig=$(git diff --cached --name-only --diff-filter=AM \
-    | grep -E '^orig/' | grep -v '\.gitkeep$')
+# 1. Disc images, executables, archives, common GameCube asset containers, and
+#    build output. Assembly is on this list on purpose: build/ holds tens of
+#    megabytes of disassembly split out of the DOL, and committing any of it
+#    would break rule 3 in LEGAL.md. Hand written asm belongs inline in a .c.
+blocked=$(printf '%s\n' "$staged" | grep -Ei '\.(dol|rel|rvz|iso|gcm|wbfs|ciso|gcz|nfs|tgc|arc|szs|szp|thp|gvr|adx|dsp|ast|bin|o|a|elf|plf|map|s|inc|lcf|one|txd|dff|tpl|bnr|brres|rarc|u8|bmg|bti)$')
+[ -n "$blocked" ] && fail "These staged files look like game data or build output:" "$blocked"
 
-if [ -n "$stray_orig" ]; then
-    echo "pre-commit: refusing to commit files under orig/." >&2
-    echo "$stray_orig" | sed 's/^/  /' >&2
-    exit 1
-fi
+# 2. orig/ holds the contributor's own copy of the game. Only .gitkeep belongs.
+stray_orig=$(printf '%s\n' "$staged" | grep -E '^orig/' | grep -v '\.gitkeep$')
+[ -n "$stray_orig" ] && fail "These staged files are under orig/:" "$stray_orig"
+
+# 3. Everything under build/ is derived from the disc, whatever it is called.
+stray_build=$(printf '%s\n' "$staged" | grep -E '^build/')
+[ -n "$stray_build" ] && fail "These staged files are under build/:" "$stray_build"
+
+# 4. Nothing legitimate in this repository is large. The biggest tracked file is
+#    a social preview image well under 100 KB. Anything past half a megabyte is
+#    far more likely to be game data in a format this hook has never seen.
+big=$(git diff --cached --name-only --diff-filter=AM -z \
+    | while IFS= read -r -d '' f; do
+          size=$(git cat-file -s "$(git rev-parse ":$f" 2>/dev/null)" 2>/dev/null)
+          [ -n "$size" ] && [ "$size" -gt 524288 ] && echo "$f ($size bytes)"
+      done)
+[ -n "$big" ] && fail "These staged files are over 512 KB:" "$big"
 
 exit 0
