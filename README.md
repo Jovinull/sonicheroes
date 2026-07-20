@@ -30,13 +30,20 @@ Planned later: `G9SP8P` (PAL) and `G9SJ8P` (NTSC-J).
 
 ## Status
 
-`main.dol` currently rebuilds byte for byte identical to the original disc.
-That only means the toolchain works. Nothing is decompiled yet. The disc ships
-no `.map` file, so symbols and translation unit boundaries have to be worked out
-by hand.
+`main.dol` rebuilds byte for byte identical to the original disc. Work is under
+way on the Dolphin SDK libraries linked into it. The progress badges above are
+live and move on every commit, so they are the number to trust rather than
+anything written here.
 
-18 REL modules ship alongside `main.dol`. 17 of them are configured. `stage00D`
-is excluded for now, see the note at the end of `config/G9SE8P/config.yml`.
+The disc ships no `.map` file, so symbols and translation unit boundaries have
+to be worked out by hand.
+
+18 REL modules ship alongside `main.dol`. 17 of them are configured, and none of
+them reproduce yet: the original has a zero sized placeholder section that the
+rebuild does not emit, which shifts every later section index. So
+`config/G9SE8P/build.sha1` carries the hash of `main.dol` only, and that is all
+CI verifies. `stage00D` is excluded for now, see the note at the end of
+`config/G9SE8P/config.yml`.
 
 ## AI assistance
 
@@ -97,8 +104,7 @@ python configure.py
 ninja
 ```
 
-The build currently stops at the checksum step, because the RELs do not match
-yet. `main.dol` does.
+The checksum step verifies `main.dol` only, for the reason given under Status.
 
 ## Diffing
 
