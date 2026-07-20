@@ -1,5 +1,8 @@
 #include "types.h"
 
+// Speculative access disable, bit 22 of HID0.
+#define HID0_SPD 0x0200
+
 // Special purpose register numbers, spelled out so the asm blocks below do not
 // depend on the assembler knowing the mnemonic names.
 #define SPR_HID0  1008
@@ -191,21 +194,9 @@ asm void PPCMtwpar(register u32 newWPAR) {
 #endif // clang-format on
 }
 
-asm void PPCDisableSpeculation(void) {
-#ifdef __MWERKS__ // clang-format off
-	nofralloc
-	mflr    r0
-	stw     r0,4(r1)
-	stwu    r1,-8(r1)
-	bl      PPCMfhid0
-	ori     r3,r3,0x0200
-	bl      PPCMthid0
-	lwz     r0,12(r1)
-	addi    r1,r1,8
-	mtlr    r0
-	blr
-#endif // clang-format on
-}
+// Plain C, unlike its neighbours. It touches no special purpose register
+// directly, so there was never a reason for it to be assembly.
+void PPCDisableSpeculation(void) { PPCMthid0(PPCMfhid0() | HID0_SPD); }
 
 asm void PPCSetFpNonIEEEMode(void) {
 #ifdef __MWERKS__ // clang-format off
