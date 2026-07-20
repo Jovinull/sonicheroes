@@ -307,6 +307,7 @@ config.libs = [
             Object(Matching, "dolphin/base/PPCArch.c"),
             Object(Matching, "dolphin/db/db.c"),
             Object(Matching, "dolphin/os/OSFpu.c"),
+            Object(NonMatching, "dolphin/os/OSException.c"),
             Object(Matching, "dolphin/amcstubs.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
             Object(Matching, "dolphin/os/OSTime.c"),
