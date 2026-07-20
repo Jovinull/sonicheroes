@@ -1,0 +1,66 @@
+name: Build or toolchain problem
+description: configure.py or ninja fails, or the build does not reproduce.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Only for reproducible problems with the build. Questions belong in
+        Discussions.
+
+  - type: checkboxes
+    id: legal
+    attributes:
+      label: Before you post
+      options:
+        - label: >-
+            I am not attaching game data, assembly, a disc image, a ROM, or any
+            asset from the disc. This includes logs that dump their contents.
+          required: true
+        - label: I own a legal copy of the game and dumped it myself.
+          required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11, Ubuntu 24.04, macOS 15
+    validations:
+      required: true
+
+  - type: input
+    id: versions
+    attributes:
+      label: Python and ninja versions
+      description: Output of `python --version` and `ninja --version`.
+      placeholder: Python 3.12.3, ninja 1.11.1
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Commit
+      description: Output of `git rev-parse --short HEAD`.
+      placeholder: 99249d2
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What you ran and what happened
+      description: The exact command, and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: >-
+        Paste the failing output. Trim it to the relevant part, and do not
+        include disassembly of the original binary.
+      render: shell
+    validations:
+      required: true

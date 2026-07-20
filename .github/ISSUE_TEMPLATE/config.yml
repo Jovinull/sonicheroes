@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question about building or decompiling
+    url: https://github.com/Jovinull/sonicheroes/discussions
+    about: Anything that is not a reproducible problem with the build goes here.
+  - name: Progress and matching status
+    url: https://decomp.dev/Jovinull/sonicheroes
+    about: Live code, data and function match percentages.
+  - name: What this project will not accept
+    url: https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md
+    about: No game data, no assets, no ROMs, no leaked source. Read before posting.
