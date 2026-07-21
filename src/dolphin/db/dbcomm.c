@@ -59,12 +59,70 @@ extern __OSInterruptHandler __OSSetInterruptHandler(s16 interrupt, __OSInterrupt
 static void EXIHandler(int interrupt, void* context);
 static void DBGHandler(s16 interrupt, void* context);
 
+// The rest of the file, still unwritten. They belong here and are static in the
+// original, but a static that is called and never defined does not link, so
+// they stay external declarations until each one is written.
+extern void fn_801F8678(u32* out);
+extern void fn_801F8800(u32 addr, void* buffer, u32 length);
+extern void fn_801F88DC(u32* out);
+
 static __OSInterruptHandler BBAInterruptHandler; // 0x8042CF00
 static __OSInterruptHandler DBCommHandler;       // 0x8042CF04
 static u32                  lbl_8042CF08;
-static u32                  lbl_8042CF0C;
+static int                  lbl_8042CF0C;
 static u8*                  BufferPtr;           // 0x8042CF10
 static u8                   Buffer;              // 0x8042CF14
+
+// Drains the payload the last query announced. The header bit picks which of
+// the two windows the data comes out of, and the length is rounded up to a
+// whole number of words because the transfer moves words.
+s32 DBRead(void* buffer, u32 length)
+{
+	BOOL enabled;
+
+	enabled = OSDisableInterrupts();
+
+	fn_801F8800(((lbl_8042CF08 & 0x00010000) ? 0x1000 : 0) + 0x1E000, buffer,
+	            (length + 3) & ~3);
+
+	lbl_8042CF0C = 0;
+	Buffer       = 0;
+
+	OSRestoreInterrupts(enabled);
+
+	return 0;
+}
+
+// Polls for a header and reports how many payload bytes are waiting. A header
+// only counts if the low bit says one arrived and the tag field is all ones;
+// anything else is left alone and the previous answer stands.
+int DBQueryData(void)
+{
+	BOOL enabled;
+	u32  data;
+
+	Buffer = 0;
+
+	if (lbl_8042CF0C == 0) {
+		enabled = OSDisableInterrupts();
+
+		fn_801F8678(&data);
+		if (data & 1) {
+			fn_801F88DC(&data);
+			data &= 0x1FFFFFFF;
+
+			if ((data & 0x1F000000) == 0x1F000000) {
+				lbl_8042CF08 = data;
+				lbl_8042CF0C = data & 0x7FFF;
+				Buffer       = 1;
+			}
+		}
+
+		OSRestoreInterrupts(enabled);
+	}
+
+	return lbl_8042CF0C;
+}
 
 void DBInitInterrupts(void)
 {
