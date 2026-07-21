@@ -313,7 +313,7 @@ config.libs = [
             # has.
             Object(NonMatching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
             Object(Matching, "dolphin/dvd/dvdqueue.c"),
-            Object(NonMatching, "dolphin/dvd/dvderror.c"),
+            Object(Matching, "dolphin/dvd/dvderror.c"),
             Object(Matching, "dolphin/amcstubs.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
             Object(Matching, "dolphin/os/OSTime.c"),

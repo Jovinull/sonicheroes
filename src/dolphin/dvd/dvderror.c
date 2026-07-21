@@ -24,16 +24,20 @@ static u32 ErrorTable[] = {
 	0x00056300, 0x00020401, 0x00020400, 0x00040800, 0x00100007, 0x00000000,
 };
 
+// Returns u8, and the narrowing has to come from the return type rather than a
+// cast on the returned value. An explicit (u8) inside the return suppresses the
+// loop unrolling the original has, which costs sixty points on this function.
+//
 // The original calls this rather than folding it in, so it has to stay a
 // function.
 #pragma dont_inline on
-static u32 ErrorCode2Num(u32 errorCode)
+static u8 ErrorCode2Num(u32 errorCode)
 {
 	u32 i;
 
 	for (i = 0; i < 18; i++) {
 		if (errorCode == ErrorTable[i]) {
-			return (u8)i;
+			return i;
 		}
 	}
 
@@ -49,7 +53,7 @@ static u32 ErrorCode2Num(u32 errorCode)
 
 void __DVDStoreErrorCode(u32 errorCode)
 {
-	u32 num;
+	u8  num;
 	u32 status;
 
 	if (errorCode == 0x01234567) {
@@ -62,7 +66,7 @@ void __DVDStoreErrorCode(u32 errorCode)
 		if (status >= 6) {
 			status = 6;
 		}
-		num = (u8)num + status * 30;
+		num = num + status * 30;
 	}
 
 	__OSLockSramEx()->dvdErrorCode = (u8)num;
