@@ -1,8 +1,7 @@
 #include "types.h"
 
-// Serial link to the debugger, over EXI channel 2. WORK IN PROGRESS: everything
-// is written except DBWrite and three of the static helpers. What is left in
-// assembly is DBWrite, fn_801F8724, fn_801F8800 and fn_801F8988.
+// Serial link to the debugger, over EXI channel 2. WORK IN PROGRESS: what is
+// left in assembly is DBWrite, fn_801F8724 and fn_801F8800.
 //
 // The translation unit boundary was settled by looking at who calls what.
 // Everything from DBWrite at 0x801F81A8 through the helper at 0x801F8988 is
@@ -35,8 +34,21 @@
 //                      folded, which is worth nine points on its own, and
 //                      holding the two registers in locals is worth three
 //                      more. Neither gets the last two registers live.
+//   fn_801F8988 87.6%  the right 173 instructions in the right order, and only
+//                      seventeen lines are structural: the rest is the register
+//                      renaming that follows from them. Two causes. The
+//                      original compares the loop counter against the length
+//                      and ours folds that to a test of the length on its own,
+//                      in both loops; and the original holds the register block
+//                      base so the control register write comes out as stwu and
+//                      the spin reads through the same pointer. Writing the
+//                      loops as while did not move the first, and holding the
+//                      base in a local made the whole function worse, 85.4%.
 
 #define NULL 0
+
+#define FALSE 0
+#define TRUE  1
 
 typedef int BOOL;
 
@@ -47,9 +59,10 @@ typedef int BOOL;
 // EXI registers. The block starts at 0xCC006800 and gives each channel five
 // words, so channel 2 starts at 0x28: status at 0x28, control at 0x34. The
 // debugger link is that channel.
-#define EXI_REGS         ((volatile u32*)0xCC006800)
-#define EXI_CHANNEL2_CSR (EXI_REGS[10])
-#define EXI_CHANNEL2_CR  (EXI_REGS[13])
+#define EXI_REGS          ((volatile u32*)0xCC006800)
+#define EXI_CHANNEL2_CSR  (EXI_REGS[10])
+#define EXI_CHANNEL2_CR   (EXI_REGS[13])
+#define EXI_CHANNEL2_DATA (EXI_REGS[14])
 
 // The bits of the status register that survive a device select, and the select
 // itself. Everything else is cleared on the way in and on the way out.
@@ -85,11 +98,14 @@ static void DBGHandler(s16 interrupt, void* context);
 static BOOL fn_801F8678(u32* out);
 static BOOL fn_801F88DC(u32* out);
 
-// The rest of the file, still unwritten. They belong here and are static in the
-// original, but a static that is called and never defined does not link, so
-// they stay external declarations until each one is written.
+// The shared transfer primitive, written at the end of the file. Everything
+// that touches the link goes through it.
+static BOOL fn_801F8988(void* buffer, s32 length, u32 write);
+
+// Still unwritten. It belongs here and is static in the original, but a static
+// that is called and never defined does not link, so it stays an external
+// declaration until it is written.
 extern void fn_801F8800(u32 addr, void* buffer, u32 length);
-extern BOOL fn_801F8988(void* buffer, u32 length, u32 write);
 
 static __OSInterruptHandler BBAInterruptHandler; // 0x8042CF00
 static __OSInterruptHandler DBCommHandler;       // 0x8042CF04
@@ -260,4 +276,34 @@ static BOOL fn_801F88DC(u32* out)
 	return !err;
 }
 
-// fn_801F8988 belongs here, still unwritten.
+// One EXI immediate transfer, up to four bytes, in whichever direction the
+// flag asks for. The data register holds the bytes packed big end first, so
+// each byte sits at (3 - i) * 8. That expression goes negative once i passes
+// three, which is only safe because nothing here ever asks for more than four
+// bytes, and it is what the original computes.
+static BOOL fn_801F8988(void* buffer, s32 length, u32 write)
+{
+	s32 i;
+	u32 word;
+
+	if (write) {
+		word = 0;
+		for (i = 0; i < length; i++) {
+			word |= ((u8*)buffer)[i] << ((3 - i) * 8);
+		}
+		EXI_CHANNEL2_DATA = word;
+	}
+
+	EXI_CHANNEL2_CR = ((length - 1) << 4) | (write << 2) | EXI_CR_TSTART;
+	while (EXI_CHANNEL2_CR & EXI_CR_TSTART) {
+	}
+
+	if (!write) {
+		word = EXI_CHANNEL2_DATA;
+		for (i = 0; i < length; i++) {
+			((u8*)buffer)[i] = word >> ((3 - i) * 8);
+		}
+	}
+
+	return TRUE;
+}
