@@ -1,9 +1,8 @@
 #include "types.h"
 
-// Serial link to the debugger, over EXI channel 1. WORK IN PROGRESS: the two
-// init functions and the two interrupt handlers are written. DBWrite, DBRead,
-// DBQueryData and the five static helpers below them are still assembly in the
-// build.
+// Serial link to the debugger, over EXI channel 2. WORK IN PROGRESS: everything
+// is written except DBWrite and three of the static helpers. What is left in
+// assembly is DBWrite, fn_801F8724, fn_801F8800 and fn_801F8988.
 //
 // The translation unit boundary was settled by looking at who calls what.
 // Everything from DBWrite at 0x801F81A8 through the helper at 0x801F8988 is
@@ -27,6 +26,15 @@
 //                      the handler load and ours emits before it. Reordering
 //                      the statements moves it past the null test instead, and
 //                      volatile does not pin it.
+//   the two read helpers 72.7%  the right fifty instructions in the right
+//                      order. The original keeps the addresses of both EXI
+//                      registers in callee saved registers for the whole body,
+//                      so it saves five of them with stmw and takes a 0x38
+//                      frame; ours holds three and rebuilds the addresses. The
+//                      register block has to be volatile or the reads get
+//                      folded, which is worth nine points on its own, and
+//                      holding the two registers in locals is worth three
+//                      more. Neither gets the last two registers live.
 
 #define NULL 0
 
@@ -36,7 +44,20 @@ typedef int BOOL;
 #define DB_INTERRUPT_MASK 0x00018000
 #define EXI_INTERRUPT_MASK 0x40
 
-#define EXI_CHANNEL1_CR (*(u32*)0xCC006828)
+// EXI registers. The block starts at 0xCC006800 and gives each channel five
+// words, so channel 2 starts at 0x28: status at 0x28, control at 0x34. The
+// debugger link is that channel.
+#define EXI_REGS         ((volatile u32*)0xCC006800)
+#define EXI_CHANNEL2_CSR (EXI_REGS[10])
+#define EXI_CHANNEL2_CR  (EXI_REGS[13])
+
+// The bits of the status register that survive a device select, and the select
+// itself. Everything else is cleared on the way in and on the way out.
+#define EXI_CSR_KEEP   0x405
+#define EXI_CSR_SELECT 0xC0
+
+// Set while a transfer is running.
+#define EXI_CR_TSTART 1
 
 // Interrupt cause at the processor interface. Writing the bit back is how the
 // EXI interrupt gets acknowledged before it is handed on.
@@ -59,12 +80,16 @@ extern __OSInterruptHandler __OSSetInterruptHandler(s16 interrupt, __OSInterrupt
 static void EXIHandler(int interrupt, void* context);
 static void DBGHandler(s16 interrupt, void* context);
 
+// Both read one word out of the debugger, and differ only in the command they
+// send first. Written below, called from DBQueryData above.
+static BOOL fn_801F8678(u32* out);
+static BOOL fn_801F88DC(u32* out);
+
 // The rest of the file, still unwritten. They belong here and are static in the
 // original, but a static that is called and never defined does not link, so
 // they stay external declarations until each one is written.
-extern void fn_801F8678(u32* out);
 extern void fn_801F8800(u32 addr, void* buffer, u32 length);
-extern void fn_801F88DC(u32* out);
+extern BOOL fn_801F8988(void* buffer, u32 length, u32 write);
 
 static __OSInterruptHandler BBAInterruptHandler; // 0x8042CF00
 static __OSInterruptHandler DBCommHandler;       // 0x8042CF04
@@ -146,7 +171,7 @@ void DBInitComm(u8** mailbox, __OSInterruptHandler handler)
 	BBAInterruptHandler = handler;
 
 	__OSMaskInterrupts(DB_INTERRUPT_MASK);
-	EXI_CHANNEL1_CR = 0;
+	EXI_CHANNEL2_CSR = 0;
 
 	OSRestoreInterrupts(enabled);
 }
@@ -173,3 +198,66 @@ static void DBGHandler(s16 interrupt, void* context)
 		BBAInterruptHandler(0, context);
 	}
 }
+
+// Selects the device, sends one command word, then clocks four bytes back into
+// out and lets go again. Each transfer is started and then waited out on the
+// control register, and a failure on either half is what the result reports.
+static BOOL fn_801F8678(u32* out)
+{
+	volatile u32* csr;
+	volatile u32* cr;
+	BOOL          err;
+	u32           cmd;
+
+	csr = &EXI_CHANNEL2_CSR;
+	cr  = &EXI_CHANNEL2_CR;
+
+	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+
+	cmd = 0x40000000;
+	err = !fn_801F8988(&cmd, 2, 1);
+	while (*cr & EXI_CR_TSTART) {
+	}
+
+	err |= !fn_801F8988(out, 4, 0);
+	while (*cr & EXI_CR_TSTART) {
+	}
+
+	*csr &= EXI_CSR_KEEP;
+
+	return !err;
+}
+
+// fn_801F8724 belongs here, still unwritten.
+
+// fn_801F8800 belongs here, still unwritten.
+
+// Same shape as fn_801F8678 down to the instruction, with the other command
+// word. The original spells both out rather than sharing one body.
+static BOOL fn_801F88DC(u32* out)
+{
+	volatile u32* csr;
+	volatile u32* cr;
+	BOOL          err;
+	u32           cmd;
+
+	csr = &EXI_CHANNEL2_CSR;
+	cr  = &EXI_CHANNEL2_CR;
+
+	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+
+	cmd = 0x60000000;
+	err = !fn_801F8988(&cmd, 2, 1);
+	while (*cr & EXI_CR_TSTART) {
+	}
+
+	err |= !fn_801F8988(out, 4, 0);
+	while (*cr & EXI_CR_TSTART) {
+	}
+
+	*csr &= EXI_CSR_KEEP;
+
+	return !err;
+}
+
+// fn_801F8988 belongs here, still unwritten.
