@@ -31,11 +31,30 @@ fail() {
 }
 
 # 1. Disc images, executables, archives, common GameCube asset containers, and
-#    build output. Assembly is on this list on purpose: build/ holds tens of
-#    megabytes of disassembly split out of the DOL, and committing any of it
-#    would break rule 3 in LEGAL.md. Hand written asm belongs inline in a .c.
-blocked=$(printf '%s\n' "$staged" | grep -Ei '\.(dol|rel|rvz|iso|gcm|wbfs|ciso|gcz|nfs|tgc|arc|szs|szp|thp|gvr|adx|dsp|ast|bin|o|a|elf|plf|map|s|inc|lcf|one|txd|dff|tpl|bnr|brres|rarc|u8|bmg|bti)$')
+#    build output.
+blocked=$(printf '%s\n' "$staged" | grep -Ei '\.(dol|rel|rvz|iso|gcm|wbfs|ciso|gcz|nfs|tgc|arc|szs|szp|thp|gvr|adx|dsp|ast|bin|o|a|elf|plf|map|lcf|one|txd|dff|tpl|bnr|brres|rarc|u8|bmg|bti)$')
 [ -n "$blocked" ] && fail "These staged files look like game data or build output:" "$blocked"
+
+# 1b. Assembly source files, with their own message. A .s here is far more
+#     likely to be a chunk of build/ that got copied into the tree than
+#     something a person wrote, and the two are indistinguishable to a hook.
+#     The convention is that hand written assembly goes inline in a .c file, so
+#     nothing legitimate needs a .s and there are none in the repository.
+asmsrc=$(printf '%s\n' "$staged" | grep -Ei '\.(s|inc)$')
+if [ -n "$asmsrc" ]; then
+    echo "pre-commit: refusing to commit assembly source files." >&2
+    echo "" >&2
+    printf '%s\n' "$asmsrc" | sed 's/^/  /' >&2
+    echo "" >&2
+    echo "This project keeps hand written assembly inline in .c files, as asm" >&2
+    echo "blocks, so a .s in the tree is almost always disassembly copied out" >&2
+    echo "of build/, which must never be committed. See LEGAL.md." >&2
+    echo "" >&2
+    echo "If you genuinely need a standalone assembly file, raise it first." >&2
+    echo "git commit --no-verify exists, but using it here is a decision about" >&2
+    echo "the project, not a formality." >&2
+    exit 1
+fi
 
 # 2. orig/ holds the contributor's own copy of the game. Only .gitkeep belongs.
 stray_orig=$(printf '%s\n' "$staged" | grep -E '^orig/' | grep -v '\.gitkeep$')
