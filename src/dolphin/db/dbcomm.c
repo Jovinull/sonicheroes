@@ -1,7 +1,7 @@
 #include "types.h"
 
 // Serial link to the debugger, over EXI channel 2. WORK IN PROGRESS: what is
-// left in assembly is DBWrite, fn_801F8724 and fn_801F8800.
+// left in assembly is DBWrite and fn_801F8724.
 //
 // The translation unit boundary was settled by looking at who calls what.
 // Everything from DBWrite at 0x801F81A8 through the helper at 0x801F8988 is
@@ -15,35 +15,38 @@
 // before DBInitComm, and both handlers come after the pair, which is why they
 // need the forward declarations below.
 //
-// What is left here:
-//   DBInitComm  93.3%  the zero and the address of the EXI register are
-//                      materialized in the opposite order. Twenty forms of the
-//                      store and of the statements around it were tried and
-//                      none of them move it.
-//   EXIHandler  87.5%  right instructions in the right order except for the
-//                      acknowledge write, which the original schedules after
-//                      the handler load and ours emits before it. Reordering
-//                      the statements moves it past the null test instead, and
-//                      volatile does not pin it.
-//   the two read helpers 72.7%  the right fifty instructions in the right
-//                      order. The original keeps the addresses of both EXI
-//                      registers in callee saved registers for the whole body,
-//                      so it saves five of them with stmw and takes a 0x38
-//                      frame; ours holds three and rebuilds the addresses. The
-//                      register block has to be volatile or the reads get
-//                      folded, which is worth nine points on its own, and
-//                      holding the two registers in locals is worth three
-//                      more. Neither gets the last two registers live.
-//   fn_801F8988 87.6%  the right 173 instructions in the right order, and only
-//                      seventeen lines are structural: the rest is the register
-//                      renaming that follows from them. Two causes. The
-//                      original compares the loop counter against the length
-//                      and ours folds that to a test of the length on its own,
-//                      in both loops; and the original holds the register block
-//                      base so the control register write comes out as stwu and
-//                      the spin reads through the same pointer. Writing the
-//                      loops as while did not move the first, and holding the
-//                      base in a local made the whole function worse, 85.4%.
+// What is left here. Every one of these emits the right instructions in the
+// right order and the right count; what separates them from the original is
+// where values live, not what the code does.
+//
+// Four of the five share one cause. The original keeps the addresses of the EXI
+// registers in callee saved registers for the whole body, which is why it saves
+// six of them with stmw and forms the addresses with stwu and lwzu. Ours holds
+// fewer and rebuilds each address from the constant, because a constant address
+// is cheap to rematerialize and the compiler would rather do that than spend a
+// register. Nothing tried so far changes that decision: absolute macros, an
+// indexed macro off a base, a file scope const pointer, locals holding the two
+// registers, and a local holding the base were all measured. Two findings did
+// come out of it. The register block has to be volatile or the reads get folded
+// away, worth nine points on the read helpers. And holding the registers in
+// locals helps some functions and hurts others, worth three points on the read
+// helpers and minus two on fn_801F8988, so it is not a general answer.
+//
+//   fn_801F8800 64.1%  66 instructions, the shared cause above.
+//   the two read helpers 72.7%  50 instructions, the shared cause above.
+//   fn_801F8988 87.6%  173 instructions, only seventeen lines structural. The
+//                      shared cause, plus the original compares the loop
+//                      counter against the length where ours folds that to a
+//                      test of the length alone, in both loops. Writing the
+//                      loops as while did not move it.
+//   EXIHandler  87.5%  one instruction. The original schedules the acknowledge
+//                      write after the handler load and ours emits it before.
+//                      Reordering the statements moves it past the null test
+//                      instead, and volatile does not pin it.
+//   DBInitComm  93.3%  one instruction. The zero and the address of the EXI
+//                      register are materialized in the opposite order. Twenty
+//                      forms of the store and of the statements around it were
+//                      tried and none of them move it.
 
 #define NULL 0
 
@@ -105,7 +108,7 @@ static BOOL fn_801F8988(void* buffer, s32 length, u32 write);
 // Still unwritten. It belongs here and is static in the original, but a static
 // that is called and never defined does not link, so it stays an external
 // declaration until it is written.
-extern void fn_801F8800(u32 addr, void* buffer, u32 length);
+static BOOL fn_801F8800(u32 addr, void* buffer, s32 length);
 
 static __OSInterruptHandler BBAInterruptHandler; // 0x8042CF00
 static __OSInterruptHandler DBCommHandler;       // 0x8042CF04
@@ -246,7 +249,47 @@ static BOOL fn_801F8678(u32* out)
 
 // fn_801F8724 belongs here, still unwritten.
 
-// fn_801F8800 belongs here, still unwritten.
+// Drains a whole payload out of one device address. Sends the address as a
+// command word, then clocks the answer back four bytes at a time until the
+// length runs out. The length is clamped rather than allowed to go negative,
+// so a tail shorter than a word still costs one transfer and stops.
+static BOOL fn_801F8800(u32 addr, void* buffer, s32 length)
+{
+	volatile u32* csr;
+	volatile u32* cr;
+	u32*          dst;
+	BOOL          err;
+	u32           cmd;
+	u32           word;
+
+	csr = &EXI_CHANNEL2_CSR;
+	cr  = &EXI_CHANNEL2_CR;
+	dst = (u32*)buffer;
+
+	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+
+	cmd = ((addr << 8) & 0x01FFFC00) | 0x20000000;
+	err = !fn_801F8988(&cmd, 4, 1);
+	while (*cr & EXI_CR_TSTART) {
+	}
+
+	while (length != 0) {
+		err |= !fn_801F8988(&word, 4, 0);
+		while (*cr & EXI_CR_TSTART) {
+		}
+
+		*dst++ = word;
+
+		length -= 4;
+		if (length < 0) {
+			length = 0;
+		}
+	}
+
+	*csr &= EXI_CSR_KEEP;
+
+	return !err;
+}
 
 // Same shape as fn_801F8678 down to the instruction, with the other command
 // word. The original spells both out rather than sharing one body.
