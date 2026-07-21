@@ -316,6 +316,7 @@ config.libs = [
             Object(Matching, "dolphin/dvd/dvderror.c"),
             Object(Matching, "dolphin/amcstubs.c"),
             Object(NonMatching, "dolphin/db/dbcomm.c"),
+            Object(NonMatching, "dolphin/exi/EXIBios.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
             Object(Matching, "dolphin/os/OSTime.c"),
             Object(Matching, "Runtime.PPCEABI.H/__ppc_eabi_init.c"),
