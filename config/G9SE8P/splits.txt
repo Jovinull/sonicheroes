@@ -60,6 +60,10 @@ dolphin/os/OSCache.c:
 	.text       start:0x801D1F24 end:0x801D235C
 	.data       start:0x80292130 end:0x80292360
 
+dolphin/os/OSInterrupt.c:
+	.text       start:0x801D3278 end:0x801D3B3C
+	.sbss       start:0x8042CB40 end:0x8042CB44
+
 dolphin/os/OSTime.c:
 	.text       start:0x801D75A8 end:0x801D762C
 
