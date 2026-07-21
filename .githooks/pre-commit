@@ -45,14 +45,19 @@ stray_orig=$(printf '%s\n' "$staged" | grep -E '^orig/' | grep -v '\.gitkeep$')
 stray_build=$(printf '%s\n' "$staged" | grep -E '^build/')
 [ -n "$stray_build" ] && fail "These staged files are under build/:" "$stray_build"
 
-# 4. Nothing legitimate in this repository is large. The biggest tracked file is
-#    a social preview image well under 100 KB. Anything past half a megabyte is
-#    far more likely to be game data in a format this hook has never seen.
-big=$(git diff --cached --name-only --diff-filter=AM -z \
-    | while IFS= read -r -d '' f; do
+# 4. A large binary is the shape game data arrives in, whatever its extension.
+#    Only binaries are checked: `config/G9SE8P/symbols.txt` is well over a
+#    megabyte and entirely legitimate, so a size ceiling on text would fire on
+#    every commit that touches it. git reports binary files as "-" in numstat,
+#    which is how they are told apart here.
+big=$(git diff --cached --numstat --diff-filter=AM -z \
+    | tr '\0' '\n' \
+    | awk -F'\t' '$1 == "-" && $2 == "-" { print $3 }' \
+    | while IFS= read -r f; do
+          [ -z "$f" ] && continue
           size=$(git cat-file -s "$(git rev-parse ":$f" 2>/dev/null)" 2>/dev/null)
           [ -n "$size" ] && [ "$size" -gt 524288 ] && echo "$f ($size bytes)"
       done)
-[ -n "$big" ] && fail "These staged files are over 512 KB:" "$big"
+[ -n "$big" ] && fail "These staged binaries are over 512 KB:" "$big"
 
 exit 0
