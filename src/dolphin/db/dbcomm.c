@@ -1,7 +1,7 @@
 #include "types.h"
 
-// Serial link to the debugger, over EXI channel 2. WORK IN PROGRESS: what is
-// left in assembly is DBWrite and fn_801F8724.
+// Serial link to the debugger, over EXI channel 2. WORK IN PROGRESS: DBWrite is
+// the only one left in assembly.
 //
 // The translation unit boundary was settled by looking at who calls what.
 // Everything from DBWrite at 0x801F81A8 through the helper at 0x801F8988 is
@@ -32,6 +32,11 @@
 // locals helps some functions and hurts others, worth three points on the read
 // helpers and minus two on fn_801F8988, so it is not a general answer.
 //
+//   fn_801F8724 64.1%  66 instructions, the shared cause above. It is the same
+//                      function as fn_801F8800 with the other command byte and
+//                      the payload loop the other way round, and it lands on
+//                      the same number, which is a good sign that the cause is
+//                      the allocator and not either body.
 //   fn_801F8800 64.1%  66 instructions, the shared cause above.
 //   the two read helpers 72.7%  50 instructions, the shared cause above.
 //   fn_801F8988 87.6%  173 instructions, only seventeen lines structural. The
@@ -247,7 +252,46 @@ static BOOL fn_801F8678(u32* out)
 	return !err;
 }
 
-// fn_801F8724 belongs here, still unwritten.
+// The write side of fn_801F8800, instruction for instruction: same command
+// word layout with a different top byte, and the payload loop pushes a word out
+// of the buffer instead of pulling one in. The length is clamped the same way.
+static BOOL fn_801F8724(u32 addr, void* buffer, s32 length)
+{
+	volatile u32* csr;
+	volatile u32* cr;
+	u32*          src;
+	BOOL          err;
+	u32           cmd;
+	u32           word;
+
+	csr = &EXI_CHANNEL2_CSR;
+	cr  = &EXI_CHANNEL2_CR;
+	src = (u32*)buffer;
+
+	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+
+	cmd = ((addr << 8) & 0x01FFFC00) | 0xA0000000;
+	err = !fn_801F8988(&cmd, 4, 1);
+	while (*cr & EXI_CR_TSTART) {
+	}
+
+	while (length != 0) {
+		word = *src++;
+
+		err |= !fn_801F8988(&word, 4, 1);
+		while (*cr & EXI_CR_TSTART) {
+		}
+
+		length -= 4;
+		if (length < 0) {
+			length = 0;
+		}
+	}
+
+	*csr &= EXI_CSR_KEEP;
+
+	return !err;
+}
 
 // Drains a whole payload out of one device address. Sends the address as a
 // command word, then clocks the answer back four bytes at a time until the
