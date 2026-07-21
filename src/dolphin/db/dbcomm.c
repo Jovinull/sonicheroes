@@ -1,7 +1,7 @@
 #include "types.h"
 
-// Serial link to the debugger, over EXI channel 2. WORK IN PROGRESS: DBWrite is
-// the only one left in assembly.
+// Serial link to the debugger, over EXI channel 2. Every function in the file
+// is written. Four match; the rest are listed at the bottom of this comment.
 //
 // The translation unit boundary was settled by looking at who calls what.
 // Everything from DBWrite at 0x801F81A8 through the helper at 0x801F8988 is
@@ -32,6 +32,21 @@
 // locals helps some functions and hurts others, worth three points on the read
 // helpers and minus two on fn_801F8988, so it is not a general answer.
 //
+//   DBWrite     86.5%  158 instructions, 19 lines structural. Mostly the shared
+//                      cause. Worth recording how it got here: the poll block
+//                      appears three times inside DBWrite as a copy of
+//                      fn_801F8678 rather than a call, and calling the helper
+//                      normally leaves the function at 42.5%. The inline
+//                      keyword does nothing, and the helper is defined after
+//                      DBWrite so the compiler has no body to inline anyway.
+//                      Writing the block out at each of the three sites, each
+//                      with its own local for the command word, takes it to
+//                      85.2%. The original also computes the negated result of
+//                      the first transfer in each block and never reads it,
+//                      which only makes sense as an expansion whose return
+//                      value was discarded; reproducing that is the last point
+//                      and a half. So the original almost certainly spelled
+//                      this as a macro shared with fn_801F8678, not as a call.
 //   fn_801F8724 64.1%  66 instructions, the shared cause above. It is the same
 //                      function as fn_801F8800 with the other command byte and
 //                      the payload loop the other way round, and it lands on
@@ -110,10 +125,15 @@ static BOOL fn_801F88DC(u32* out);
 // that touches the link goes through it.
 static BOOL fn_801F8988(void* buffer, s32 length, u32 write);
 
-// Still unwritten. It belongs here and is static in the original, but a static
-// that is called and never defined does not link, so it stays an external
-// declaration until it is written.
+// The two block halves, written below. DBWrite drives the write one and DBRead
+// the read one.
+static BOOL fn_801F8724(u32 addr, void* buffer, s32 length);
 static BOOL fn_801F8800(u32 addr, void* buffer, s32 length);
+
+// Sequence counter for the link, one byte of a pair living in another unit's
+// .sdata. Its low bit picks the window a transfer goes through, and its value
+// rides along in the trailer word so the other end can follow the order.
+extern u8 lbl_8042C068;
 
 static __OSInterruptHandler BBAInterruptHandler; // 0x8042CF00
 static __OSInterruptHandler DBCommHandler;       // 0x8042CF04
@@ -121,6 +141,91 @@ static u32                  lbl_8042CF08;
 static int                  lbl_8042CF0C;
 static u8*                  BufferPtr;           // 0x8042CF10
 static u8                   Buffer;              // 0x8042CF14
+
+// Hands a payload to the debugger. Waits for the link to go quiet, bumps the
+// sequence counter and pushes the payload through the window its low bit
+// selects, then follows it with a trailer word carrying the counter and the
+// real length, and waits for the link to go quiet again. Every step retries
+// until it succeeds, so the only way out is success.
+s32 DBWrite(void* buffer, u32 length)
+{
+	volatile u32* csr;
+	volatile u32* cr;
+	BOOL          enabled;
+	BOOL          err;
+	u32           status;
+	u32           trailer;
+	u32           addr;
+
+	enabled = OSDisableInterrupts();
+
+	csr = &EXI_CHANNEL2_CSR;
+	cr  = &EXI_CHANNEL2_CR;
+
+	do {
+		u32 cmd;
+
+		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+		cmd  = 0x40000000;
+		err  = !fn_801F8988(&cmd, 2, 1);
+		while (*cr & EXI_CR_TSTART) {
+		}
+		fn_801F8988(&status, 4, 0);
+		while (*cr & EXI_CR_TSTART) {
+		}
+		*csr &= EXI_CSR_KEEP;
+	} while (status & 2);
+
+	lbl_8042C068++;
+	addr = ((lbl_8042C068 & 1) ? 0x1000 : 0) | 0x1C000;
+
+	while (!fn_801F8724(addr, buffer, (length + 3) & ~3)) {
+	}
+
+	do {
+		u32 cmd;
+
+		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+		cmd  = 0x40000000;
+		err  = !fn_801F8988(&cmd, 2, 1);
+		while (*cr & EXI_CR_TSTART) {
+		}
+		fn_801F8988(&status, 4, 0);
+		while (*cr & EXI_CR_TSTART) {
+		}
+		*csr &= EXI_CSR_KEEP;
+	} while (status & 2);
+
+	trailer = (((lbl_8042C068 << 16) | 0x1F000000 | length) & 0x1FFFFFFF) | 0xC0000000;
+
+	do {
+		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+
+		err = !fn_801F8988(&trailer, 4, 1);
+		while (*cr & EXI_CR_TSTART) {
+		}
+
+		*csr &= EXI_CSR_KEEP;
+	} while (err);
+
+	do {
+		u32 cmd;
+
+		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+		cmd  = 0x40000000;
+		err  = !fn_801F8988(&cmd, 2, 1);
+		while (*cr & EXI_CR_TSTART) {
+		}
+		err |= !fn_801F8988(&status, 4, 0);
+		while (*cr & EXI_CR_TSTART) {
+		}
+		*csr &= EXI_CSR_KEEP;
+	} while (err || (status & 2));
+
+	OSRestoreInterrupts(enabled);
+
+	return 0;
+}
 
 // Drains the payload the last query announced. The header bit picks which of
 // the two windows the data comes out of, and the length is rounded up to a
