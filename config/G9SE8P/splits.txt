@@ -51,6 +51,11 @@ dolphin/os/OS.c:
 	.bss        start:0x803F22A0 end:0x803F22F0
 	.sbss       start:0x8042CB00 end:0x8042CB08
 
+dolphin/os/OSAlarm.c:
+	.text       start:0x801D1204 end:0x801D1960
+	.data       start:0x802920A0 end:0x802920B0
+	.sbss       start:0x8042CB20 end:0x8042CB28
+
 dolphin/os/OSArena.c:
 	.text       start:0x801D1C70 end:0x801D1C90
 	.sdata      start:0x8042BF30 end:0x8042BF34
