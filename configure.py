@@ -326,6 +326,21 @@ config.libs = [
         ],
     },
     {
+        # The debugger nub is Metrowerks' own library, not part of the Dolphin
+        # SDK, and it was built with a different compiler: every function here
+        # is wrong under 1.2.5n and exact under 1.3.2. The tell is the prologue,
+        # which pushes the frame before saving the link register, and the
+        # indirect call, which goes through the count register rather than the
+        # link register.
+        "lib": "TRK",
+        "mw_version": "GC/1.3.2",
+        "cflags": cflags_base,
+        "progress_category": "sdk",
+        "objects": [
+            Object(NonMatching, "dolphin/trk/dolphin_trk.c"),
+        ],
+    },
+    {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
         "cflags": cflags_runtime,
