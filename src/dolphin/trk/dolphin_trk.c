@@ -69,7 +69,9 @@ static int fn_801CFC6C(u8 c)
 
 // fn_801CFC94 belongs here, still unwritten.
 
-static void fn_801CFD74(void) { gDBCommTable.start(); }
+// Not static: EnableMetroTRKInterrupts in targimpl.c calls it, and the symbol
+// carries no scope:local marker in symbols.txt.
+void fn_801CFD74(void) { gDBCommTable.start(); }
 
 // Hands the nub's own mailbox and callback to the comm layer. The UART in the
 // name is vestigial, there is no serial port involved.
