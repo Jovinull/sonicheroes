@@ -33,3 +33,7 @@ compile_commands.json
 # Miscellaneous
 /*.txt
 *.exe
+
+# Working notes: drafts, audits, anything written to be read rather than built.
+# Kept out of the repository on purpose, so nothing here is load bearing.
+/notes/
