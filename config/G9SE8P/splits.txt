@@ -33,6 +33,10 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 MSL_C/mem.c:
 	.text       start:0x801C01EC end:0x801C063C
 
+dolphin/trk/nubinit.c:
+	.text       start:0x801C9738 end:0x801C98B8
+	.rodata     start:0x8023D340 end:0x8023D360
+
 dolphin/trk/dolphin_trk.c:
 	.text       start:0x801CFAF4 end:0x801CFF18
 
