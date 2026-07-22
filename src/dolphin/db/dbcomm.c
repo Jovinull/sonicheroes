@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 
 // Serial link to the debugger, over EXI channel 2. Every function in the file
 // is written. Four match; the rest are listed at the bottom of this comment.
@@ -92,14 +93,6 @@
 // EXI interrupt gets acknowledged before it is handed on.
 #define PI_INTERRUPT_CAUSE (*(u32*)0xCC003000)
 #define PI_DEBUG_INTERRUPT 0x1000
-
-typedef void (*__OSInterruptHandler)(s16 interrupt, void* context);
-
-extern BOOL OSDisableInterrupts(void);
-extern BOOL OSRestoreInterrupts(BOOL level);
-extern u32  __OSMaskInterrupts(u32 mask);
-extern u32  __OSUnmaskInterrupts(u32 mask);
-extern __OSInterruptHandler __OSSetInterruptHandler(s16 interrupt, __OSInterruptHandler handler);
 
 // Both live in this file. DBInitInterrupts installs them and the original emits
 // them after it, so they have to be declared up here.

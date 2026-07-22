@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 
 // The drive serves one command at a time, so anything arriving while it is busy
 // waits here. Four queues, one per priority, each a circular doubly linked list
@@ -12,9 +13,6 @@ typedef struct DVDCommandBlock {
 	struct DVDCommandBlock* next; // 0x00
 	struct DVDCommandBlock* prev; // 0x04
 } DVDCommandBlock;
-
-extern BOOL OSDisableInterrupts(void);
-extern BOOL OSRestoreInterrupts(BOOL level);
 
 // Eight bytes per entry, not a whole command block. The head only ever needs
 // its two links, and the original reserves exactly 0x20 for the four of them.

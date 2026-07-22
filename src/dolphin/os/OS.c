@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 #include "dolphin/ppc.h"
 
 // WORK IN PROGRESS, NonMatching in configure.py.
@@ -41,8 +42,6 @@
 // Several of the remaining lines in OSInit and OSExceptionInit are nothing but
 // the names of the .sbss externs below, which cannot be fixed from here.
 
-typedef s64 OSTime;
-
 // Physical address zero is mirrored at 0x80000000 through the cache. Writing
 // the OS globals this way rather than as bare constants keeps the compiler
 // reusing one base register across the whole run of accesses, which is what
@@ -65,9 +64,6 @@ typedef s64 OSTime;
 #define __OS_EXCEPTION_MAX 15
 
 typedef u8 __OSException;
-
-typedef void (*__OSExceptionHandler)(u8 exception, void* context);
-typedef void (*__OSInterruptHandler)(s16 interrupt, void* context);
 
 typedef struct OSBootInfo {
 	u8    diskID[0x20]; // 0x00
@@ -118,15 +114,12 @@ typedef struct DVDCommandBlock {
 
 extern void __OSUnhandledException(void);
 
-extern int    OSDisableInterrupts(void);
-extern void   OSEnableInterrupts(void);
 extern OSTime __OSGetSystemTime(void);
 extern u32    OSGetResetCode(void);
 extern void*  OSGetArenaHi(void);
 extern void*  OSGetArenaLo(void);
 extern void   OSSetArenaHi(void* newHi);
 extern void   OSSetArenaLo(void* newLo);
-extern void   OSReport(const char* msg, ...);
 extern void   OSRegisterVersion(const char* version);
 extern void   OSInitAlarm(void);
 extern void*  memset(void* dst, int val, u32 n);
@@ -147,18 +140,15 @@ extern void __OSInitSystemCall(void);
 extern void __OSModuleInit(void);
 extern void __OSInterruptInit(void);
 extern void __OSContextInit(void);
-extern void __OSCacheInit(void);
 extern void __OSInitSram(void);
 extern void __OSThreadInit(void);
 extern void __OSInitAudioSystem(void);
 extern void __OSInitMemoryProtection(void);
 extern void __OSResetSWInterruptHandler(s16 interrupt, void* context);
-extern __OSInterruptHandler __OSSetInterruptHandler(s16 interrupt, __OSInterruptHandler handler);
 
 extern void EXIInit(void);
 extern void SIInit(void);
 extern void DVDInit(void);
-extern void DCInvalidateRange(void* addr, u32 nBytes);
 extern void DVDInquiryAsync(DVDCommandBlock* block, DVDDriveInfo* info,
                             void (*callback)(s32, DVDCommandBlock*));
 extern void EnableMetroTRKInterrupts(void);
@@ -166,12 +156,8 @@ extern void EnableMetroTRKInterrupts(void);
 // but the original emits the handler last, so it cannot be moved up.
 void OSDefaultExceptionHandler(register u8 exception, register void* context);
 
-extern void DBPrintf(const char* msg, ...);
 extern int  __DBIsExceptionMarked(u8 exception);
-extern void DCFlushRangeNoSync(void* addr, u32 nBytes);
-extern void ICInvalidateRange(void* addr, u32 nBytes);
 extern void* memcpy(void* dst, const void* src, u32 n);
-extern __OSExceptionHandler __OSSetExceptionHandler(u8 exception, __OSExceptionHandler handler);
 
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;

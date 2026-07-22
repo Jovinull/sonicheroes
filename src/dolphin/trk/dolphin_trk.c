@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 
 // Board support for the Metrowerks debugger nub. WORK IN PROGRESS: eight
 // functions are written, three are still assembly in the build.
@@ -31,8 +32,6 @@ typedef struct DBCommTable {
 	void (*unreserve)(void);                    // 0x18
 } DBCommTable;                                  // 0x1C
 
-typedef struct OSContext OSContext;
-
 extern DBCommTable gDBCommTable;
 
 // The trace buffer and the structure holding its index, both in .bss. dtk has
@@ -40,7 +39,6 @@ extern DBCommTable gDBCommTable;
 extern u32 lbl_803F0060[];
 extern u8  lbl_803F117C[];
 
-extern void OSReport(const char* msg, ...);
 extern void OSEnableScheduler(void);
 extern void TRKLoadContext(OSContext* context, u32 flags);
 

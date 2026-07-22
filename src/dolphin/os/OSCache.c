@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 #include "dolphin/ppc.h"
 
 #define HID2_DCHERR 0x00800000
@@ -13,19 +14,6 @@
 // purpose. Writing both as context->srr1 makes the compiler hoist the address
 // into a spare register and the function stops matching. This mix is what
 // reproduces the original's two direct lwz 0x19C(rN) loads.
-typedef struct OSContext {
-	u32 gpr[32];
-	u32 cr;
-	u32 lr;
-	u32 ctr;
-	u32 xer;
-	f64 fpr[32];
-	u32 fpscr_pad;
-	u32 fpscr;
-	u32 srr0;
-	u32 srr1;
-} OSContext;
-
 extern u32 PPCMfhid2(void);
 extern void PPCMthid2(u32 newHID2);
 extern u32 PPCMfl2cr(void);
@@ -34,9 +22,6 @@ extern u32 PPCMfmsr(void);
 extern void PPCMtmsr(u32 newMSR);
 extern u32 PPCMfhid0(void);
 extern void PPCHalt(void);
-extern void DBPrintf(const char* msg, ...);
-extern void OSReport(const char* msg, ...);
-extern void OSDumpContext(OSContext* context);
 extern void* OSSetErrorHandler(u16 error, void* handler);
 
 void DCEnable(void);

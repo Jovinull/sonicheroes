@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 #include "dolphin/ppc.h"
 
 // Interrupt dispatch. WORK IN PROGRESS: five functions are written, seven are
@@ -14,8 +15,6 @@
 // does the same.
 //
 // Functions are in the order the original emits them.
-
-typedef void (*__OSInterruptHandler)(s16 interrupt, void* context);
 
 // A pointer to the table, not the table itself: the symbol is one word in
 // .sbss and every access loads it and then indexes through it.

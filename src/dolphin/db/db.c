@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 
 // The interface block and the saved context pointer both live in the OS globals
 // area, and the addresses are converted between cached and physical by adding
@@ -7,8 +8,6 @@
 #define DB_HANDLER_SLOT   (*(void**)0x80000048)
 #define DB_CONTEXT_SLOT   (*(u32*)0xC0)
 
-extern void OSReport(const char* msg, ...);
-extern void OSDumpContext(void* context);
 extern void PPCHalt(void);
 
 // Declared in this order because the compiler lays small bss out in reverse,

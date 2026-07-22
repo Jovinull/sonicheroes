@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 #include "dolphin/ppc.h"
 
 // Alarms, driven by the decrementer exception. WORK IN PROGRESS: three
@@ -36,10 +37,6 @@ typedef struct OSAlarmQueue {
 	OSAlarm* tail; // 0x04
 } OSAlarmQueue;
 
-typedef void (*__OSExceptionHandler)(u8 exception, void* context);
-
-extern __OSExceptionHandler __OSGetExceptionHandler(u8 exception);
-extern __OSExceptionHandler __OSSetExceptionHandler(u8 exception, __OSExceptionHandler handler);
 extern void                 OSRegisterResetFunction(void* info);
 
 // Written below, installed by OSInitAlarm above it.

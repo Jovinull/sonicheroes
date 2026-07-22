@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 #include "Runtime.PPCEABI.H/__ppc_eabi_linker.h"
 
 // Order follows the original binary, which for this compiler is source order.
@@ -17,7 +18,6 @@ extern int main(int argc, char** argv);
 
 extern void __OSPSInit(void);
 extern void __OSFPRInit(void);
-extern void __OSCacheInit(void);
 
 DECL_SECT(".init") void __check_pad3(void);
 DECL_SECT(".init") void __set_debug_bba(void);

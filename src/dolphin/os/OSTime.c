@@ -1,13 +1,10 @@
 #include "types.h"
+#include "dolphin/os.h"
 
-typedef s64 OSTime;
 typedef u32 OSTick;
 
 // Boot time, kept in the OS globals area at 0x800030D8.
 #define OS_SYSTEM_TIME (*(OSTime*)0x800030D8)
-
-extern int OSDisableInterrupts(void);
-extern int OSRestoreInterrupts(int level);
 
 asm OSTime OSGetTime(void) {
 #ifdef __MWERKS__ // clang-format off

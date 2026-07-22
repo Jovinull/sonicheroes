@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/os.h"
 
 // The external interface bus driver. WORK IN PROGRESS: six functions are
 // written, the other sixteen are still assembly in the build.
@@ -77,17 +78,7 @@ typedef struct EXIControl {
 
 // The context saved across a callback. Its size is why the external handler
 // takes a 0x2E8 byte frame.
-typedef struct OSContext {
-	u8 pad[0x2C8];
-} OSContext;
-
 extern EXIControl Ecb[3];
-
-extern BOOL OSDisableInterrupts(void);
-extern BOOL OSRestoreInterrupts(BOOL level);
-extern u32  __OSMaskInterrupts(u32 mask);
-extern void OSClearContext(OSContext* context);
-extern void OSSetCurrentContext(OSContext* context);
 
 extern void SetExiInterruptMask(s32 chan, EXIControl* exi);
 extern BOOL __EXIProbe(s32 chan);
