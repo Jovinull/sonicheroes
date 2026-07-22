@@ -2,10 +2,19 @@
 
 // Order follows the original binary, which for this compiler is source order.
 
-void* __copy_longs_rev_unaligned(void* dst, const void* src, u32 n);
-void* __copy_longs_unaligned(void* dst, const void* src, u32 n);
-void* __copy_longs_rev_aligned(void* dst, const void* src, u32 n);
-void* __copy_longs_aligned(void* dst, const void* src, u32 n);
+void __copy_longs_rev_unaligned(void* dst, const void* src, u32 n);
+void __copy_longs_unaligned(void* dst, const void* src, u32 n);
+void __copy_longs_rev_aligned(void* dst, const void* src, u32 n);
+void __copy_longs_aligned(void* dst, const void* src, u32 n);
+
+// How the Metrowerks source spells the walking pointers. The code generation
+// depends on the parameters themselves being advanced rather than copied into
+// named locals, so these are macros over the parameters rather than variables.
+#define cps               ((u8*)src)
+#define cpd               ((u8*)dst)
+#define lps               ((u32*)src)
+#define lpd               ((u32*)dst)
+#define deref_auto_inc(p) *++(p)
 
 int memcmp(const void* s1, const void* s2, u32 n)
 {
@@ -107,243 +116,213 @@ epilogue:
 #endif
 }
 // clang-format on
-// clang-format off
+// The unaligned copy walking backwards.
+void __copy_longs_rev_unaligned(void* dst, const void* src, u32 n)
+{
+	u32 i, v1, v2;
+	uint src_offset, left_shift, right_shift;
 
-asm void* __copy_longs_rev_unaligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__
-	nofralloc
-	add     r11,r3,r5
-	add     r10,r4,r5
-	rlwinm. r3,r11,0,30,31
-	beq     head_done
-	subf    r5,r3,r5
-head_loop:
-	lbzu    r0,-1(r10)
-	subic.  r3,r3,1
-	stbu    r0,-1(r11)
-	bne     head_loop
-head_done:
-	rlwinm  r8,r10,3,27,28
-	rlwinm  r7,r10,0,30,31
-	subfic  r9,r8,32
-	srwi    r6,r5,3
-	subfic  r0,r7,4
-	add     r10,r10,r0
-	lwzu    r4,-4(r10)
-main_loop:
-	lwz     r0,-4(r10)
-	srw     r3,r4,r9
-	subic.  r6,r6,1
-	slw     r4,r0,r8
-	srw     r0,r0,r9
-	or      r3,r4,r3
-	stw     r3,-4(r11)
-	lwzu    r4,-8(r10)
-	slw     r3,r4,r8
-	or      r0,r3,r0
-	stwu    r0,-8(r11)
-	bne     main_loop
-	rlwinm. r0,r5,0,29,29
-	beq     tail_check
-	lwzu    r3,-4(r10)
-	srw     r0,r4,r9
-	slw     r3,r3,r8
-	or      r0,r3,r0
-	stwu    r0,-4(r11)
-tail_check:
-	li      r0,3
-	and.    r5,r5,r0
-	beqlr
-	add     r10,r10,r7
-tail_loop:
-	lbzu    r0,-1(r10)
-	subic.  r5,r5,1
-	stbu    r0,-1(r11)
-	bne     tail_loop
-	blr
-#endif
-}
-// clang-format on
-// clang-format off
+	cps = ((u8*)src) + n;
+	cpd = ((u8*)dst) + n;
 
-asm void* __copy_longs_unaligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__
-	nofralloc
-	neg     r0,r3
-	subi    r8,r4,1
-	rlwinm. r6,r0,0,30,31
-	subi    r3,r3,1
-	beq     head_done
-	subf    r5,r6,r5
-head_loop:
-	lbzu    r0,1(r8)
-	subic.  r6,r6,1
-	stbu    r0,1(r3)
-	bne     head_loop
-head_done:
-	addi    r0,r8,1
-	subi    r6,r3,3
-	rlwinm  r9,r0,0,30,31
-	srwi    r7,r5,3
-	subf    r8,r9,r8
-	rlwinm  r10,r0,3,27,28
-	lwzu    r4,1(r8)
-	subfic  r11,r10,32
-main_loop:
-	lwz     r3,4(r8)
-	slw     r4,r4,r10
-	subic.  r7,r7,1
-	srw     r0,r3,r11
-	slw     r3,r3,r10
-	or      r0,r4,r0
-	stw     r0,4(r6)
-	lwzu    r4,8(r8)
-	srw     r0,r4,r11
-	or      r0,r3,r0
-	stwu    r0,8(r6)
-	bne     main_loop
-	rlwinm. r0,r5,0,29,29
-	beq     tail_check
-	lwzu    r0,4(r8)
-	slw     r3,r4,r10
-	srw     r0,r0,r11
-	or      r0,r3,r0
-	stwu    r0,4(r6)
-tail_check:
-	li      r0,3
-	addi    r4,r8,3
-	and.    r5,r5,r0
-	addi    r3,r6,3
-	beqlr
-	subfic  r0,r9,4
-	subf    r4,r0,r4
-tail_loop:
-	lbzu    r0,1(r4)
-	subic.  r5,r5,1
-	stbu    r0,1(r3)
-	bne     tail_loop
-	blr
-#endif
-}
-// clang-format on
-// clang-format off
+	i = ((u32)cpd) & 3;
 
-asm void* __copy_longs_rev_aligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__
-	nofralloc
-	add     r6,r3,r5
-	add     r4,r4,r5
-	rlwinm. r3,r6,0,30,31
-	beq     head_done
-	subf    r5,r3,r5
-head_loop:
-	lbzu    r0,-1(r4)
-	subic.  r3,r3,1
-	stbu    r0,-1(r6)
-	bne     head_loop
-head_done:
-	srwi.   r3,r5,5
-	beq     words_check
-block_loop:
-	lwz     r0,-4(r4)
-	subic.  r3,r3,1
-	stw     r0,-4(r6)
-	lwz     r0,-8(r4)
-	stw     r0,-8(r6)
-	lwz     r0,-12(r4)
-	stw     r0,-12(r6)
-	lwz     r0,-16(r4)
-	stw     r0,-16(r6)
-	lwz     r0,-20(r4)
-	stw     r0,-20(r6)
-	lwz     r0,-24(r4)
-	stw     r0,-24(r6)
-	lwz     r0,-28(r4)
-	stw     r0,-28(r6)
-	lwzu    r0,-32(r4)
-	stwu    r0,-32(r6)
-	bne     block_loop
-words_check:
-	rlwinm. r3,r5,30,29,31
-	beq     bytes_check
-word_loop:
-	lwzu    r0,-4(r4)
-	subic.  r3,r3,1
-	stwu    r0,-4(r6)
-	bne     word_loop
-bytes_check:
-	li      r0,3
-	and.    r5,r5,r0
-	beqlr
-byte_loop:
-	lbzu    r0,-1(r4)
-	subic.  r5,r5,1
-	stbu    r0,-1(r6)
-	bne     byte_loop
-	blr
-#endif
-}
-// clang-format on
-// clang-format off
+	if (i) {
+		n -= i;
 
-asm void* __copy_longs_aligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__
-	nofralloc
-	neg     r0,r3
-	subi    r7,r4,1
-	rlwinm. r6,r0,0,30,31
-	subi    r3,r3,1
-	beq     head_done
-	subf    r5,r6,r5
-head_loop:
-	lbzu    r0,1(r7)
-	subic.  r6,r6,1
-	stbu    r0,1(r3)
-	bne     head_loop
-head_done:
-	srwi.   r4,r5,5
-	subi    r6,r7,3
-	subi    r3,r3,3
-	beq     words_check
-block_loop:
-	lwz     r0,4(r6)
-	subic.  r4,r4,1
-	stw     r0,4(r3)
-	lwz     r0,8(r6)
-	stw     r0,8(r3)
-	lwz     r0,12(r6)
-	stw     r0,12(r3)
-	lwz     r0,16(r6)
-	stw     r0,16(r3)
-	lwz     r0,20(r6)
-	stw     r0,20(r3)
-	lwz     r0,24(r6)
-	stw     r0,24(r3)
-	lwz     r0,28(r6)
-	stw     r0,28(r3)
-	lwzu    r0,32(r6)
-	stwu    r0,32(r3)
-	bne     block_loop
-words_check:
-	rlwinm. r4,r5,30,29,31
-	beq     bytes_check
-word_loop:
-	lwzu    r0,4(r6)
-	subic.  r4,r4,1
-	stwu    r0,4(r3)
-	bne     word_loop
-bytes_check:
-	li      r0,3
-	addi    r4,r6,3
-	and.    r5,r5,r0
-	addi    r3,r3,3
-	beqlr
-byte_loop:
-	lbzu    r0,1(r4)
-	subic.  r5,r5,1
-	stbu    r0,1(r3)
-	bne     byte_loop
-	blr
-#endif
+		do
+			*--cpd = *--cps;
+		while (--i);
+	}
+
+	src_offset = ((uint)cps) & 3;
+
+	left_shift  = src_offset << 3;
+	right_shift = 32 - left_shift;
+
+	cps += 4 - src_offset;
+
+	i = n >> 3;
+
+	v1 = *--lps;
+
+	do {
+		v2     = *--lps;
+		*--lpd = (v2 << left_shift) | (v1 >> right_shift);
+		v1     = *--lps;
+		*--lpd = (v1 << left_shift) | (v2 >> right_shift);
+	} while (--i);
+
+	if (n & 4) {
+		v2     = *--lps;
+		*--lpd = (v2 << left_shift) | (v1 >> right_shift);
+	}
+
+	n &= 3;
+
+	if (n) {
+		cps += src_offset;
+		do
+			*--cpd = *--cps;
+		while (--n);
+	}
 }
-// clang-format on
+// Source and destination disagree about word alignment, so every output word is
+// stitched from two input words with a shift each way. The loop is unrolled by
+// two because the halves alternate which temporary carries the remainder.
+void __copy_longs_unaligned(void* dst, const void* src, u32 n)
+{
+	u32 i, v1, v2;
+	uint src_offset, left_shift, right_shift;
+
+	i = (-(u32)dst) & 3;
+
+	cps = ((u8*)src) - 1;
+	cpd = ((u8*)dst) - 1;
+
+	if (i) {
+		n -= i;
+
+		do
+			deref_auto_inc(cpd) = deref_auto_inc(cps);
+		while (--i);
+	}
+
+	src_offset = ((uint)(cps + 1)) & 3;
+
+	left_shift  = src_offset << 3;
+	right_shift = 32 - left_shift;
+
+	cps -= src_offset;
+
+	lps = ((u32*)(cps + 1)) - 1;
+	lpd = ((u32*)(cpd + 1)) - 1;
+
+	i = n >> 3;
+
+	v1 = deref_auto_inc(lps);
+
+	do {
+		v2                  = deref_auto_inc(lps);
+		deref_auto_inc(lpd) = (v1 << left_shift) | (v2 >> right_shift);
+		v1                  = deref_auto_inc(lps);
+		deref_auto_inc(lpd) = (v2 << left_shift) | (v1 >> right_shift);
+	} while (--i);
+
+	if (n & 4) {
+		v2                  = deref_auto_inc(lps);
+		deref_auto_inc(lpd) = (v1 << left_shift) | (v2 >> right_shift);
+	}
+
+	cps = ((u8*)(lps + 1)) - 1;
+	cpd = ((u8*)(lpd + 1)) - 1;
+
+	n &= 3;
+
+	if (n) {
+		cps -= 4 - src_offset;
+		do
+			deref_auto_inc(cpd) = deref_auto_inc(cps);
+		while (--n);
+	}
+}
+// The same copy walking backwards, for an overlap where the destination sits
+// above the source.
+void __copy_longs_rev_aligned(void* dst, const void* src, u32 n)
+{
+	u32 i;
+
+	cps = ((u8*)src) + n;
+	cpd = ((u8*)dst) + n;
+
+	i = ((u32)cpd) & 3;
+
+	if (i) {
+		n -= i;
+
+		do
+			*--cpd = *--cps;
+		while (--i);
+	}
+
+	i = n >> 5;
+
+	if (i)
+		do {
+			*--lpd = *--lps;
+			*--lpd = *--lps;
+			*--lpd = *--lps;
+			*--lpd = *--lps;
+			*--lpd = *--lps;
+			*--lpd = *--lps;
+			*--lpd = *--lps;
+			*--lpd = *--lps;
+		} while (--i);
+
+	i = (n & 31) >> 2;
+
+	if (i)
+		do
+			*--lpd = *--lps;
+		while (--i);
+
+	n &= 3;
+
+	if (n)
+		do
+			*--cpd = *--cps;
+		while (--n);
+}
+// Both ends word aligned. A byte run to reach alignment, an unrolled run of
+// eight words, the remaining words, then a byte tail.
+void __copy_longs_aligned(void* dst, const void* src, u32 n)
+{
+	u32 i;
+
+	i = (-(u32)dst) & 3;
+
+	cps = ((u8*)src) - 1;
+	cpd = ((u8*)dst) - 1;
+
+	if (i) {
+		n -= i;
+
+		do
+			deref_auto_inc(cpd) = deref_auto_inc(cps);
+		while (--i);
+	}
+
+	lps = ((u32*)(cps + 1)) - 1;
+	lpd = ((u32*)(cpd + 1)) - 1;
+
+	i = n >> 5;
+
+	if (i)
+		do {
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+		} while (--i);
+
+	i = (n & 31) >> 2;
+
+	if (i)
+		do
+			deref_auto_inc(lpd) = deref_auto_inc(lps);
+		while (--i);
+
+	cps = ((u8*)(lps + 1)) - 1;
+	cpd = ((u8*)(lpd + 1)) - 1;
+
+	n &= 3;
+
+	if (n)
+		do
+			deref_auto_inc(cpd) = deref_auto_inc(cps);
+		while (--n);
+}

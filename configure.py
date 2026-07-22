@@ -288,8 +288,14 @@ config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
     {
+        # The Metrowerks standard library, like TRK, was not built with the
+        # compiler the rest of the tree uses. __copy_longs_aligned written as C
+        # is two instructions out under 1.3.2 and exact under 1.3: the later
+        # compiler folds the tail mask into clrlwi where 1.3 materializes the
+        # constant and uses and. The four functions that already matched are
+        # unaffected either way, so they act as the control.
         "lib": "MSL_C",
-        "mw_version": config.linker_version,
+        "mw_version": "GC/1.3",
         "cflags": cflags_runtime,
         "progress_category": "sdk",
         "objects": [
