@@ -7,8 +7,6 @@
 // Before it is game code, after it is __OSInitSystemCall, which belongs
 // elsewhere. Functions are in the order the original emits them.
 
-typedef int BOOL;
-
 // The control block, 0x54 bytes in .bss at 0x803F2360. Only the field the
 // written functions touch is named; the rest is padding until something proves
 // what it holds.

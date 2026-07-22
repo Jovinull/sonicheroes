@@ -68,13 +68,6 @@
 //                      forms of the store and of the statements around it were
 //                      tried and none of them move it.
 
-#define NULL 0
-
-#define FALSE 0
-#define TRUE  1
-
-typedef int BOOL;
-
 // Debugger interrupt, and the EXI channel the link runs on.
 #define DB_INTERRUPT_MASK 0x00018000
 #define EXI_INTERRUPT_MASK 0x40

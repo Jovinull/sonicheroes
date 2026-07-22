@@ -14,8 +14,6 @@
 //
 // Functions are in the order the original emits them.
 
-typedef int BOOL;
-
 // One queued event. Only the fields the written functions touch are named.
 typedef struct TRKEvent {
 	u8  type;    // 0x00

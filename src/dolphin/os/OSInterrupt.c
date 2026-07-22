@@ -14,8 +14,6 @@
 //
 // Functions are in the order the original emits them.
 
-typedef int BOOL;
-
 typedef void (*__OSInterruptHandler)(s16 interrupt, void* context);
 
 // The external interrupt enable bit of the machine state register.

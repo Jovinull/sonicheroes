@@ -4,13 +4,7 @@
 // waits here. Four queues, one per priority, each a circular doubly linked list
 // whose head is a sentinel that points at itself when empty.
 
-#define NULL 0
-#define TRUE 1
-#define FALSE 0
-
 #define DVD_MAX_QUEUE 4
-
-typedef int BOOL;
 
 // Only the first two fields matter to this file; the rest of the block belongs
 // to whoever owns the command.

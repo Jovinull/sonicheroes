@@ -54,12 +54,6 @@
 #define EXI_CSR_TC   0x0008
 #define EXI_CSR_EXT  0x0800
 
-#define NULL 0
-#define FALSE 0
-#define TRUE  1
-
-typedef int BOOL;
-
 typedef void (*EXICallback)(s32 chan, void* context);
 
 // One control block per channel, 0x40 bytes each, in .bss at 0x8040EA90. Only

@@ -26,8 +26,6 @@
 //
 // Functions are in the order the original emits them.
 
-typedef int BOOL;
-
 // The instruction and data breakpoint address registers, cleared on entry so a
 // breakpoint left over from the last stop cannot fire inside the nub.
 #define SPR_IABR 1010

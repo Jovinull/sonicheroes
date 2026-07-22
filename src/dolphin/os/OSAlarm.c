@@ -18,8 +18,6 @@
 //
 // Functions are in the order the original emits them.
 
-#define NULL 0
-
 // The decrementer is exception 8.
 #define __OS_EXCEPTION_DECREMENTER 8
 

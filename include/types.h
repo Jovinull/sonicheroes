@@ -16,6 +16,15 @@ typedef double f64;
 
 typedef unsigned int uint;
 
+// The SDK spells its boolean as a plain int. Kept here rather than repeated per
+// file so two translation units cannot end up disagreeing about it silently.
+typedef int BOOL;
+
+#define FALSE 0
+#define TRUE  1
+
+#define NULL 0
+
 #ifdef __MWERKS__
 #define ASM asm
 #define DECL_SECT(sect) __declspec(section sect)

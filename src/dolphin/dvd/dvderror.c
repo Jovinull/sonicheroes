@@ -4,11 +4,6 @@
 // last error, so the code gets folded down: the low 24 bits are looked up in a
 // table to get a position, and the high byte scales it.
 
-#define TRUE  1
-#define FALSE 0
-
-typedef int BOOL;
-
 // Only the byte at 0x24 matters here.
 typedef struct OSSramEx {
 	u8 pad[0x24];  // 0x00

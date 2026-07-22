@@ -40,8 +40,6 @@
 // Several of the remaining lines in OSInit and OSExceptionInit are nothing but
 // the names of the .sbss externs below, which cannot be fixed from here.
 
-#define NULL 0
-
 typedef s64 OSTime;
 
 #define SPR_GQR1 913
