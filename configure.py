@@ -338,6 +338,7 @@ config.libs = [
         "progress_category": "sdk",
         "objects": [
             Object(NonMatching, "dolphin/trk/dolphin_trk.c"),
+            Object(NonMatching, "dolphin/trk/nubevent.c"),
             Object(NonMatching, "dolphin/trk/nubinit.c"),
         ],
     },
