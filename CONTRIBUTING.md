@@ -35,13 +35,21 @@ and explain what is left.
 
 ## Conventions
 
-Assembly goes inline, in a `.c` file, as an `asm` block. There are no `.s` files
-in this repository and the pre-commit hook refuses them, because a `.s` in the
-tree is far more likely to be disassembly copied out of `build/` than something
-a person wrote, and a hook cannot tell those apart. Reach for it only where C
-genuinely cannot express the instruction, such as a special purpose register or
-a cache operation. If a function is asm because C failed to reproduce it rather
-than because assembly was the right answer, say so in a comment above it.
+Assembly normally goes inline, in a `.c` file, as an `asm` block. A standalone
+`.s` is allowed if you wrote it, and the pre-commit hook only refuses assembly
+that came out of a disassembler, which it spots by the original addresses and
+bytes on every line.
+
+Reach for assembly only when the original source was assembly too, which in
+practice means an instruction with no C form: a special purpose register, a
+cache operation, a multi-word move, the machine state register. `PPCArch.c` and
+`OSCache.c` are almost entirely asm for that reason, and so are the equivalent
+files in every other GameCube decompilation.
+
+Do not use assembly because the C form refused to match. Transcribing a listing
+always works and teaches nothing, so it is the easy way to move the counter
+without doing the work. If a function ends up as asm for that reason, say so in
+a comment above it so it can be revisited.
 
 Aim for a perfect match, not something close. A non matching function is fine as
 a temporary step, but the pull request has to say that clearly.

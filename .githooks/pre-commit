@@ -40,21 +40,35 @@ blocked=$(printf '%s\n' "$staged" | grep -Ei '\.(dol|rel|rvz|iso|gcm|wbfs|ciso|g
 #     something a person wrote, and the two are indistinguishable to a hook.
 #     The convention is that hand written assembly goes inline in a .c file, so
 #     nothing legitimate needs a .s and there are none in the repository.
+#     Hand written assembly is source and is allowed, in a .c file as an asm
+#     block or in a standalone .s. What is refused is assembly that came out of
+#     the disc, which is the original binary in another notation.
+#
+#     The two are told apart by what a disassembler leaves behind and a person
+#     does not: the original address and the original bytes, in a comment on
+#     every line. That is the shape dtk and every other extractor emits, for
+#     example
+#
+#       /* 00001348 0000137C  7C 08 02 A6 */  mflr r0
+#
+#     A handful of such lines is enough to be sure, so the threshold is low but
+#     not one, to leave room for someone quoting a single line in a comment.
 asmsrc=$(printf '%s\n' "$staged" | grep -Ei '\.(s|inc)$')
-if [ -n "$asmsrc" ]; then
-    echo "pre-commit: refusing to commit assembly source files." >&2
+for f in $asmsrc; do
+    [ -f "$f" ] || continue
+    dumped=$(grep -cE '^\s*/\*\s*[0-9A-Fa-f]{6,8}\s+[0-9A-Fa-f]{6,8}\s+([0-9A-Fa-f]{2}\s+){3}' "$f" 2>/dev/null)
+    [ "${dumped:-0}" -lt 4 ] && continue
+    echo "pre-commit: refusing to commit extracted assembly." >&2
     echo "" >&2
-    printf '%s\n' "$asmsrc" | sed 's/^/  /' >&2
+    echo "  $f ($dumped lines carry original addresses and bytes)" >&2
     echo "" >&2
-    echo "This project keeps hand written assembly inline in .c files, as asm" >&2
-    echo "blocks, so a .s in the tree is almost always disassembly copied out" >&2
-    echo "of build/, which must never be committed. See LEGAL.md." >&2
+    echo "This is the game's own code disassembled, not something a person" >&2
+    echo "wrote, and it must never be committed. See LEGAL.md rule 3." >&2
     echo "" >&2
-    echo "If you genuinely need a standalone assembly file, raise it first." >&2
-    echo "git commit --no-verify exists, but using it here is a decision about" >&2
-    echo "the project, not a formality." >&2
+    echo "Hand written assembly is fine, inline in a .c file or as a .s. What" >&2
+    echo "is refused is a dump out of build/." >&2
     exit 1
-fi
+done
 
 # 2. orig/ holds the contributor's own copy of the game. Only .gitkeep belongs.
 stray_orig=$(printf '%s\n' "$staged" | grep -E '^orig/' | grep -v '\.gitkeep$')

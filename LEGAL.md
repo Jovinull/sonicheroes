@@ -28,11 +28,21 @@ A pull request that breaks any of these is rejected.
    this does not rely on anyone remembering. Enable it with
    `git config core.hooksPath .githooks`.
 
-   Hand written inline assembly inside a source file is source, not a dump, and
-   is allowed. Much of the SDK is assembly in its own original source, because
-   special purpose registers and cache instructions have no C form. Where a
-   function is asm only because C failed to reproduce it, say so in a comment
-   above it.
+   The line is between assembly a person wrote and assembly a disassembler
+   produced, not between file extensions. Hand written assembly is source and is
+   allowed, inline in a `.c` file or as a standalone `.s`. Much of the SDK is
+   assembly in its own original source, because special purpose registers and
+   cache instructions have no C form; writing those as C would be wrong, not
+   better.
+
+   What is refused is a dump out of `build/`. It is recognisable because a
+   disassembler leaves the original address and the original bytes on every
+   line, like `/* 00001348 0000137C  7C 08 02 A6 */ mflr r0`, and the hook looks
+   for exactly that. Some decompilation projects do commit those files; this one
+   does not, because they are the game's own code in another notation.
+
+   Where a function is asm only because C failed to reproduce it, say so in a
+   comment above it, so it can be revisited rather than quietly kept.
 4. No leaked material. No leaked SEGA or Sonic Team source, no leaked SDK
    source, nothing from any breach.
 5. No compiler binaries in the repository. The CodeWarrior compilers are
