@@ -2,8 +2,7 @@
 
 // The GameCube side of the debugger nub: bringing the target up, saving and
 // restoring the register file across a break, and the nub's entry point.
-// WORK IN PROGRESS: twelve of thirteen functions are written and all twelve
-// match. Only TRKLoadContext is left.
+// Every function in this file is written and every one matches.
 //
 // The two 440 byte register save blocks were transcribed from the listing by a
 // script rather than typed, and every special purpose register is written by
@@ -43,6 +42,7 @@ void TRKSaveExtended1Block(void);
 
 extern int  InitMetroTRKCommTable(u32 which);
 extern void TRK_main(void);
+extern void TRKInterruptHandler(void);
 
 // State the nub keeps about the target, 0xA4 bytes in .bss. Only the fields the
 // written functions touch are named.
@@ -466,4 +466,51 @@ void TRK_main(void)
 	TRK_mainError = TRKTerminateNub();
 }
 
-// TRKLoadContext belongs here, still unwritten.
+// Puts a saved context back and jumps straight into the interrupt handler
+// rather than returning: the caller is not coming back. The half word at 0x1A2
+// says whether the whole register file was saved or only the callee saved half,
+// and the bit is cleared as it is consumed. Assembly in the original source
+// too, since restoring the condition register, link register, count register
+// and the SPRGs has no C form.
+ASM void TRKLoadContext(void)
+{
+#ifdef __MWERKS__ // clang-format off
+	nofralloc
+	lwz     r0, 0x0(r3)
+	lwz     r1, 0x4(r3)
+	lwz     r2, 0x8(r3)
+	lhz     r5, 0x1A2(r3)
+	rlwinm. r6, r5, 0, 30, 30
+	beq     _ctx1
+	rlwinm  r5, r5, 0, 31, 29
+	sth     r5, 0x1A2(r3)
+	lmw     r5, 0x14(r3)
+	b       _ctx2
+_ctx1:
+	lmw     r13, 0x34(r3)
+_ctx2:
+	mr      r31, r3
+	mr      r3, r4
+	lwz     r4, 0x80(r31)
+	mtcrf   255, r4
+	lwz     r4, 0x84(r31)
+	mtspr   8, r4
+	lwz     r4, 0x88(r31)
+	mtspr   9, r4
+	lwz     r4, 0x8C(r31)
+	mtspr   1, r4
+	mfmsr   r4
+	rlwinm  r4, r4, 0, 17, 15
+	rlwinm  r4, r4, 0, 31, 29
+	mtmsr   r4
+	mtspr   273, r2
+	lwz     r4, 0xC(r31)
+	mtspr   274, r4
+	lwz     r4, 0x10(r31)
+	mtspr   275, r4
+	lwz     r2, 0x198(r31)
+	lwz     r4, 0x19C(r31)
+	lwz     r31, 0x7C(r31)
+	b       TRKInterruptHandler
+#endif // clang-format on
+}
