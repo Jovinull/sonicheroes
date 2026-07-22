@@ -53,10 +53,13 @@ typedef struct OSResetFunctionInfo {
 	struct OSResetFunctionInfo* prev; // 0x0C
 } OSResetFunctionInfo;                // 0x10
 
-// OnReset is this file's reset callback, at 0x801D18C0. It walks the queue and
-// cancels what is still pending. It is not written yet, so it is reached as an
-// external declaration; in the original it is static like everything else here.
-extern void OnReset(void);
+// This file's reset callback, at 0x801D18C0. It walks the queue and cancels
+// what is still pending. Not written yet, but declared with its real name and
+// signature: the Dolphin SDK calls it OnReset and hands it a flag saying
+// whether this is the final pass, which is how zeldaret/tww has it too.
+// symbols.txt carries the same name, so the relocation in the record below
+// resolves rather than dangling.
+static BOOL OnReset(BOOL final);
 
 // Read from the disc rather than guessed: 801d18c0 ffffffff 00000000 00000000.
 // The priority is the lowest there is, so alarms are torn down last.
