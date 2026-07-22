@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/ppc.h"
 
 // Interrupt dispatch. WORK IN PROGRESS: five functions are written, seven are
 // still assembly in the build.
@@ -15,9 +16,6 @@
 // Functions are in the order the original emits them.
 
 typedef void (*__OSInterruptHandler)(s16 interrupt, void* context);
-
-// The external interrupt enable bit of the machine state register.
-#define MSR_EE 0x8000
 
 // A pointer to the table, not the table itself: the symbol is one word in
 // .sbss and every access loads it and then indexes through it.

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/ppc.h"
 
 // Alarms, driven by the decrementer exception. WORK IN PROGRESS: three
 // functions are written, five are still assembly in the build.
@@ -20,16 +21,6 @@
 
 // The decrementer is exception 8.
 #define __OS_EXCEPTION_DECREMENTER 8
-
-// Paired single graphics quantization registers. The handler saves them by
-// number because there is no C for reading a special purpose register.
-#define GQR1 913
-#define GQR2 914
-#define GQR3 915
-#define GQR4 916
-#define GQR5 917
-#define GQR6 918
-#define GQR7 919
 
 typedef struct OSAlarm OSAlarm;
 
@@ -112,19 +103,19 @@ ASM static void DecrementerExceptionHandler(void)
 	stw     r1, 0x4(r4)
 	stw     r2, 0x8(r4)
 	stmw    r6, 0x18(r4)
-	mfspr   r0, GQR1
+	mfspr   r0, SPR_GQR1
 	stw     r0, 0x1a8(r4)
-	mfspr   r0, GQR2
+	mfspr   r0, SPR_GQR2
 	stw     r0, 0x1ac(r4)
-	mfspr   r0, GQR3
+	mfspr   r0, SPR_GQR3
 	stw     r0, 0x1b0(r4)
-	mfspr   r0, GQR4
+	mfspr   r0, SPR_GQR4
 	stw     r0, 0x1b4(r4)
-	mfspr   r0, GQR5
+	mfspr   r0, SPR_GQR5
 	stw     r0, 0x1b8(r4)
-	mfspr   r0, GQR6
+	mfspr   r0, SPR_GQR6
 	stw     r0, 0x1bc(r4)
-	mfspr   r0, GQR7
+	mfspr   r0, SPR_GQR7
 	stw     r0, 0x1c0(r4)
 	stwu    r1, -0x8(r1)
 	b       DecrementerExceptionCallback

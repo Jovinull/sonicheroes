@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/ppc.h"
 
 // WORK IN PROGRESS, NonMatching in configure.py.
 //
@@ -41,14 +42,6 @@
 // the names of the .sbss externs below, which cannot be fixed from here.
 
 typedef s64 OSTime;
-
-#define SPR_GQR1 913
-#define SPR_GQR2 914
-#define SPR_GQR3 915
-#define SPR_GQR4 916
-#define SPR_GQR5 917
-#define SPR_GQR6 918
-#define SPR_GQR7 919
 
 // Physical address zero is mirrored at 0x80000000 through the cache. Writing
 // the OS globals this way rather than as bare constants keeps the compiler

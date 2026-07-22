@@ -1,20 +1,11 @@
 #include "types.h"
+#include "dolphin/ppc.h"
 
 // Speculative access disable, bit 22 of HID0.
 #define HID0_SPD 0x0200
 
 // Special purpose register numbers, spelled out so the asm blocks below do not
 // depend on the assembler knowing the mnemonic names.
-#define SPR_HID0  1008
-#define SPR_HID2  920
-#define SPR_WPAR  921
-#define SPR_L2CR  1017
-#define SPR_MMCR0 952
-#define SPR_MMCR1 956
-#define SPR_PMC1  953
-#define SPR_PMC2  954
-#define SPR_PMC3  957
-#define SPR_PMC4  958
 
 asm u32 PPCMfmsr(void) {
 #ifdef __MWERKS__ // clang-format off

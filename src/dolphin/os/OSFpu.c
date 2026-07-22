@@ -1,6 +1,5 @@
 #include "types.h"
-
-#define SPR_HID2 920
+#include "dolphin/ppc.h"
 
 // Zero sources for the two register files. Both live in .sbss, so they are
 // already zero by the time this runs.

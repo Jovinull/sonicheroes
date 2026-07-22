@@ -1,7 +1,5 @@
 #include "types.h"
-
-#define SPR_HID0 1008
-#define SPR_HID2 920
+#include "dolphin/ppc.h"
 
 #define HID2_DCHERR 0x00800000
 #define HID2_DNCERR 0x00400000

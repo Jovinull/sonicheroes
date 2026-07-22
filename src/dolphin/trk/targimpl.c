@@ -1,4 +1,5 @@
 #include "types.h"
+#include "dolphin/ppc.h"
 
 // The GameCube side of the debugger nub: bringing the target up, saving and
 // restoring the register file across a break, and the nub's entry point.
@@ -28,8 +29,6 @@
 
 // The instruction and data breakpoint address registers, cleared on entry so a
 // breakpoint left over from the last stop cannot fire inside the nub.
-#define SPR_IABR 1010
-#define SPR_DABR 1013
 
 // Linker defined, see ldscript.lcf. Declared as an unsized array so the
 // compiler cannot decide it is small enough to reach through r13.
