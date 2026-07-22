@@ -13,8 +13,15 @@ need a working `ninja` build and objdiff before anything else is useful.
 
 ## How the work goes
 
-Claim a function first, in the tracking issue for that file, so two people do not
-spend a weekend on the same one.
+Say what you are taking before you start, in `#decomp` on
+[Discord](https://discord.gg/VGCHZMXUWN), so two people do not spend a weekend
+on the same function. There is no formal claim system and there does not need to
+be one at this size.
+
+Pick from what is already carved. Every file under `src/` has a header comment
+listing the functions still written as assembly, and each one names the
+translation unit it covers and where its boundary came from. Anything marked
+`NonMatching` in `configure.py` has work left in it.
 
 Then open it in objdiff. Your compiled output is on one side, the original is on
 the other. The job is to make them identical.
@@ -48,6 +55,21 @@ names. If a name is a guess, add a comment saying it is a guess.
 
 For unknown struct fields keep the offsets explicit, for example
 `u8 unk_0x14[0x4];`.
+
+Shared types and prototypes belong in `include/`, not repeated per file.
+`include/types.h` has the primitives, `BOOL`, `TRUE`, `FALSE` and `NULL`;
+`include/dolphin/os.h` has `OSContext`, the handler typedefs and the OS calls
+more than one unit needs; `include/dolphin/ppc.h` has every special purpose
+register number. Anything genuinely private to one translation unit stays in
+that file. This is not tidiness: `OSContext` once had three different shapes in
+three files and nothing in the build noticed.
+
+Run `clang-format -i` over anything you touch under `src/` and `include/`
+before committing. The pre-commit hook checks it and will refuse the commit
+otherwise. Assembly blocks sit between `// clang-format off` and
+`// clang-format on` markers, which wrap the whole function including its
+signature, because the assembler's column layout is meaningful. Leave those
+markers where they are.
 
 ## Commits
 
