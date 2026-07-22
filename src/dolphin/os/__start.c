@@ -36,12 +36,19 @@ DECL_SECT(".init") void __check_pad3(void)
 	}
 }
 
-DECL_SECT(".init") void __set_debug_bba(void) { Debug_BBA = 1; }
+DECL_SECT(".init") void __set_debug_bba(void)
+{
+	Debug_BBA = 1;
+}
 
-DECL_SECT(".init") u8 __get_debug_bba(void) { return Debug_BBA; }
+DECL_SECT(".init") u8 __get_debug_bba(void)
+{
+	return Debug_BBA;
+}
+// clang-format off
 
 DECL_SECT(".init") asm void __start(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	bl      __init_registers
 	bl      __init_hardware
@@ -140,11 +147,13 @@ to_user:
 	mr      r4,r15
 	bl      main
 	b       exit
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 DECL_SECT(".init") asm void __init_registers(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	li      r0,0
 	li      r3,0
@@ -182,8 +191,9 @@ DECL_SECT(".init") asm void __init_registers(void) {
 	lis     r13,_SDA_BASE_@h
 	ori     r13,r13,_SDA_BASE_@l
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
 // Written as asm rather than as the obvious loop over the BSS init table. Same
 // reason as __init_cpp over in Runtime.PPCEABI.H/__ppc_eabi_init.c: the
@@ -191,9 +201,10 @@ DECL_SECT(".init") asm void __init_registers(void) {
 // setup and the condition test, and no plain C formulation reproduced them.
 // Unlike most of the asm in this project, this one is a transcription rather
 // than a function that is assembly in its own right. Worth another attempt, and
+// clang-format off
 // solving it here would very likely solve __init_cpp too.
 DECL_SECT(".init") asm void __init_data(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mflr    r0
 	stw     r0,4(r1)
@@ -251,11 +262,13 @@ epilogue:
 	addi    r1,r1,24
 	mtlr    r0
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 DECL_SECT(".init") asm void __init_hardware(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mfmsr   r0
 	ori     r0,r0,0x2000
@@ -266,11 +279,12 @@ DECL_SECT(".init") asm void __init_hardware(void) {
 	bl      __OSCacheInit
 	mtlr    r31
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
+// clang-format off
 
 DECL_SECT(".init") asm void __flush_cache(void* dst, u32 n) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	lis     r5,0xFFFF
 	ori     r5,r5,0xFFF1
@@ -286,5 +300,6 @@ flush_loop:
 	bge     flush_loop
 	isync
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on

@@ -37,19 +37,19 @@ extern char _db_stack_addr[];
 // Defined below InitMetroTRK, which calls it, so it needs a declaration here.
 void TRKSaveExtended1Block(void);
 
-extern int  InitMetroTRKCommTable(u32 which);
+extern int InitMetroTRKCommTable(u32 which);
 extern void TRK_main(void);
 extern void TRKInterruptHandler(void);
 
 // State the nub keeps about the target, 0xA4 bytes in .bss. Only the fields the
 // written functions touch are named.
 typedef struct TRKState {
-	u8  unk00[0x8C]; // 0x00
-	u32 unk8C;       // 0x8C, whatever fn_801CDCB8 reports
-	u8  unk90[0x8];  // 0x90
-	u32 unk98;       // 0x98, set to one on initialize
-	u8  unk9C[0x8];  // 0x9C
-} TRKState;          // 0xA4
+	u8 unk00[0x8C]; // 0x00
+	u32 unk8C;      // 0x8C, whatever fn_801CDCB8 reports
+	u8 unk90[0x8];  // 0x90
+	u32 unk98;      // 0x98, set to one on initialize
+	u8 unk9C[0x8];  // 0x9C
+} TRKState;         // 0xA4
 
 extern TRKState gTRKState;
 
@@ -65,13 +65,13 @@ extern u8 gTRKRestoreFlags[];
 // this file, so it is defined here rather than reached as an external.
 static u32 lbl_803F0050[2];
 
-extern u32  fn_801CDCB8(void);
+extern u32 fn_801CDCB8(void);
 extern void fn_801CFD74(void);
 
-extern int  TRKInitializeNub(void);
+extern int TRKInitializeNub(void);
 extern void TRKNubWelcome(void);
-extern int  TRKNubMainLoop(void);
-extern int  TRKTerminateNub(void);
+extern int TRKNubMainLoop(void);
+extern int TRKTerminateNub(void);
 
 // Last result from TRK_main, kept so the host can read it back.
 static int TRK_mainError;
@@ -81,41 +81,45 @@ static int TRK_mainError;
 // and traps rather than returning something wrong. Each one is a single
 // unconditional twi followed by blr, which has no C form.
 
+// clang-format off
 ASM void fn_801CF550(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	twi     31, r0, 0
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
+// clang-format off
 ASM void fn_801CF558(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	twi     31, r0, 0
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
+// clang-format off
 ASM void fn_801CF560(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	twi     31, r0, 0
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
+// clang-format off
 ASM void fn_801CF568(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	twi     31, r0, 0
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
 // Entered from whatever the game does to hand control to the debugger. It has
 // to save the register file before touching anything, so it is assembly in the
@@ -126,9 +130,10 @@ ASM void fn_801CF568(void)
 // everything else, then the whole file goes out with one stmw. External
 // interrupts are turned off in the copy of the MSR that is installed, while the
 // original value is stashed in SRR1 for the return path.
+// clang-format off
 ASM void InitMetroTRK(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	subi    r1, r1, 4
 	stw     r3, 0(r1)
@@ -168,8 +173,9 @@ ASM void InitMetroTRK(void)
 	blr
 _run:
 	b       TRK_main
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
 int TRKInitializeTarget(void)
 {
@@ -195,7 +201,10 @@ static u32 fn_801CF650(u32 addr)
 	return (addr & 0x3FFFFFFF) | 0x80000000;
 }
 
-void EnableMetroTRKInterrupts(void) { fn_801CFD74(); }
+void EnableMetroTRKInterrupts(void)
+{
+	fn_801CFD74();
+}
 
 // Saves the parts of the machine the general purpose registers do not cover:
 // the segment registers, the BAT pairs, the time base, the performance monitor
@@ -204,9 +213,10 @@ void EnableMetroTRKInterrupts(void) { fn_801CFD74(); }
 // instruction for instruction rather than reconstructed, with every special
 // purpose register written by number so nothing depends on the assembler
 // knowing a name for it.
+// clang-format off
 ASM void TRKSaveExtended1Block(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	lis     r2, gTRKCPUState@h
 	ori     r2, r2, gTRKCPUState@l
@@ -319,15 +329,17 @@ _sav1:
 	mfspr   r31, 22
 	stw     r31, 0x278(r2)
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
 // The other direction. The two flag bytes at the front of gTRKRestoreFlags say
 // which optional blocks were saved, and they are cleared as they are read so a
 // second restore cannot put back stale state.
+// clang-format off
 ASM void TRKRestoreExtended1Block(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	lis     r2, gTRKCPUState@h
 	ori     r2, r2, gTRKCPUState@l
@@ -443,10 +455,14 @@ _res3:
 	mtspr   1010, r30
 	mtspr   282, r31
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
-static int fn_801CFA20(void) { return 0x54; }
+static int fn_801CFA20(void)
+{
+	return 0x54;
+}
 
 // The nub's whole life. Bring it up, greet the host, run until it is told to
 // stop, then tear it down. Both results are stored where the host can read
@@ -469,9 +485,10 @@ void TRK_main(void)
 // and the bit is cleared as it is consumed. Assembly in the original source
 // too, since restoring the condition register, link register, count register
 // and the SPRGs has no C form.
+// clang-format off
 ASM void TRKLoadContext(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	lwz     r0, 0x0(r3)
 	lwz     r1, 0x4(r3)
@@ -509,5 +526,6 @@ _ctx2:
 	lwz     r4, 0x19C(r31)
 	lwz     r31, 0x7C(r31)
 	b       TRKInterruptHandler
-#endif // clang-format on
+#endif
 }
+// clang-format on

@@ -32,7 +32,7 @@ void __DVDClearWaitingQueue(void)
 
 BOOL __DVDPushWaitingQueue(s32 prio, DVDCommandBlock* block)
 {
-	BOOL enabled = OSDisableInterrupts();
+	BOOL enabled          = OSDisableInterrupts();
 	DVDCommandBlock* head = &WaitingQueue[prio];
 
 	head->prev->next = block;
@@ -47,7 +47,7 @@ BOOL __DVDPushWaitingQueue(s32 prio, DVDCommandBlock* block)
 DVDCommandBlock* __DVDPopWaitingQueue(void)
 {
 	BOOL enabled;
-	int  i;
+	int i;
 	DVDCommandBlock* tmp;
 
 	// Disabled once around the whole scan, not once per queue. The restore
@@ -79,7 +79,7 @@ DVDCommandBlock* __DVDPopWaitingQueue(void)
 BOOL __DVDCheckWaitingQueue(void)
 {
 	BOOL enabled = OSDisableInterrupts();
-	int  i;
+	int i;
 
 	for (i = 0; i < DVD_MAX_QUEUE; i++) {
 		if (WaitingQueue[i].next != &WaitingQueue[i]) {
@@ -94,7 +94,7 @@ BOOL __DVDCheckWaitingQueue(void)
 
 BOOL __DVDDequeueWaitingQueue(DVDCommandBlock* block)
 {
-	BOOL enabled = OSDisableInterrupts();
+	BOOL enabled          = OSDisableInterrupts();
 	DVDCommandBlock* prev = block->prev;
 	DVDCommandBlock* next = block->next;
 

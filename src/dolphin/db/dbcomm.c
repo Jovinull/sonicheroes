@@ -70,7 +70,7 @@
 //                      tried and none of them move it.
 
 // Debugger interrupt, and the EXI channel the link runs on.
-#define DB_INTERRUPT_MASK 0x00018000
+#define DB_INTERRUPT_MASK  0x00018000
 #define EXI_INTERRUPT_MASK 0x40
 
 // EXI registers. The block starts at 0xCC006800 and gives each channel five
@@ -123,10 +123,10 @@ extern u8 lbl_8042C068;
 
 static __OSInterruptHandler BBAInterruptHandler; // 0x8042CF00
 static __OSInterruptHandler DBCommHandler;       // 0x8042CF04
-static u32                  lbl_8042CF08;
-static int                  lbl_8042CF0C;
-static u8*                  BufferPtr;           // 0x8042CF10
-static u8                   Buffer;              // 0x8042CF14
+static u32 lbl_8042CF08;
+static int lbl_8042CF0C;
+static u8* BufferPtr; // 0x8042CF10
+static u8 Buffer;     // 0x8042CF14
 
 // Hands a payload to the debugger. Waits for the link to go quiet, bumps the
 // sequence counter and pushes the payload through the window its low bit
@@ -137,11 +137,11 @@ s32 DBWrite(void* buffer, u32 length)
 {
 	volatile u32* csr;
 	volatile u32* cr;
-	BOOL          enabled;
-	BOOL          err;
-	u32           status;
-	u32           trailer;
-	u32           addr;
+	BOOL enabled;
+	BOOL err;
+	u32 status;
+	u32 trailer;
+	u32 addr;
 
 	enabled = OSDisableInterrupts();
 
@@ -222,8 +222,7 @@ s32 DBRead(void* buffer, u32 length)
 
 	enabled = OSDisableInterrupts();
 
-	fn_801F8800(((lbl_8042CF08 & 0x00010000) ? 0x1000 : 0) + 0x1E000, buffer,
-	            (length + 3) & ~3);
+	fn_801F8800(((lbl_8042CF08 & 0x00010000) ? 0x1000 : 0) + 0x1E000, buffer, (length + 3) & ~3);
 
 	lbl_8042CF0C = 0;
 	Buffer       = 0;
@@ -239,7 +238,7 @@ s32 DBRead(void* buffer, u32 length)
 int DBQueryData(void)
 {
 	BOOL enabled;
-	u32  data;
+	u32 data;
 
 	Buffer = 0;
 
@@ -321,8 +320,8 @@ static BOOL fn_801F8678(u32* out)
 {
 	volatile u32* csr;
 	volatile u32* cr;
-	BOOL          err;
-	u32           cmd;
+	BOOL err;
+	u32 cmd;
 
 	csr = &EXI_CHANNEL2_CSR;
 	cr  = &EXI_CHANNEL2_CR;
@@ -350,10 +349,10 @@ static BOOL fn_801F8724(u32 addr, void* buffer, s32 length)
 {
 	volatile u32* csr;
 	volatile u32* cr;
-	u32*          src;
-	BOOL          err;
-	u32           cmd;
-	u32           word;
+	u32* src;
+	BOOL err;
+	u32 cmd;
+	u32 word;
 
 	csr = &EXI_CHANNEL2_CSR;
 	cr  = &EXI_CHANNEL2_CR;
@@ -392,10 +391,10 @@ static BOOL fn_801F8800(u32 addr, void* buffer, s32 length)
 {
 	volatile u32* csr;
 	volatile u32* cr;
-	u32*          dst;
-	BOOL          err;
-	u32           cmd;
-	u32           word;
+	u32* dst;
+	BOOL err;
+	u32 cmd;
+	u32 word;
 
 	csr = &EXI_CHANNEL2_CSR;
 	cr  = &EXI_CHANNEL2_CR;
@@ -432,8 +431,8 @@ static BOOL fn_801F88DC(u32* out)
 {
 	volatile u32* csr;
 	volatile u32* cr;
-	BOOL          err;
-	u32           cmd;
+	BOOL err;
+	u32 cmd;
 
 	csr = &EXI_CHANNEL2_CSR;
 	cr  = &EXI_CHANNEL2_CR;

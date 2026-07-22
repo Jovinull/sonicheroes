@@ -37,7 +37,7 @@ extern DBCommTable gDBCommTable;
 // The trace buffer and the structure holding its index, both in .bss. dtk has
 // them as one object each because nothing has split them yet.
 extern u32 lbl_803F0060[];
-extern u8  lbl_803F117C[];
+extern u8 lbl_803F117C[];
 
 extern void OSEnableScheduler(void);
 extern void TRKLoadContext(OSContext* context, u32 flags);
@@ -49,11 +49,20 @@ void TRKEXICallBack(s32 chan, OSContext* context);
 // hook the nub expects for a UART has nothing to do.
 void TRKUARTInterruptHandler(void) { }
 
-void TRK_board_display(const char* msg) { OSReport(msg); }
+void TRK_board_display(const char* msg)
+{
+	OSReport(msg);
+}
 
-void UnreserveEXI2Port(void) { gDBCommTable.unreserve(); }
+void UnreserveEXI2Port(void)
+{
+	gDBCommTable.unreserve();
+}
 
-void ReserveEXI2Port(void) { gDBCommTable.reserve(); }
+void ReserveEXI2Port(void)
+{
+	gDBCommTable.reserve();
+}
 
 // fn_801CFB7C belongs here, still unwritten.
 
@@ -69,7 +78,10 @@ static int fn_801CFC6C(u8 c)
 
 // Not static: EnableMetroTRKInterrupts in targimpl.c calls it, and the symbol
 // carries no scope:local marker in symbols.txt.
-void fn_801CFD74(void) { gDBCommTable.start(); }
+void fn_801CFD74(void)
+{
+	gDBCommTable.start();
+}
 
 // Hands the nub's own mailbox and callback to the comm layer. The UART in the
 // name is vestigial, there is no serial port involved.

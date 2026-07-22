@@ -29,7 +29,7 @@ typedef void (*OSAlarmHandler)(OSAlarm* alarm, void* context);
 
 struct OSAlarm {
 	OSAlarmHandler handler; // 0x00
-	u32            tag;     // 0x04
+	u32 tag;                // 0x04
 };
 
 typedef struct OSAlarmQueue {
@@ -37,7 +37,7 @@ typedef struct OSAlarmQueue {
 	OSAlarm* tail; // 0x04
 } OSAlarmQueue;
 
-extern void                 OSRegisterResetFunction(void* info);
+extern void OSRegisterResetFunction(void* info);
 
 // Written below, installed by OSInitAlarm above it.
 static void DecrementerExceptionHandler(void);
@@ -47,11 +47,11 @@ static void DecrementerExceptionHandler(void);
 // declared with its real type: as a bare pointer it is small enough for the
 // small data area and the address comes out through r13 instead of as a pair.
 typedef struct OSResetFunctionInfo {
-	void*                       func;     // 0x00
-	u32                         priority; // 0x04
-	struct OSResetFunctionInfo* next;     // 0x08
-	struct OSResetFunctionInfo* prev;     // 0x0C
-} OSResetFunctionInfo;                    // 0x10
+	void* func;                       // 0x00
+	u32 priority;                     // 0x04
+	struct OSResetFunctionInfo* next; // 0x08
+	struct OSResetFunctionInfo* prev; // 0x0C
+} OSResetFunctionInfo;                // 0x10
 
 // OnReset is this file's reset callback, at 0x801D18C0. It walks the queue and
 // cancels what is still pending. It is not written yet, so it is reached as an
@@ -72,8 +72,8 @@ void OSInitAlarm(void)
 	if (__OSGetExceptionHandler(__OS_EXCEPTION_DECREMENTER)
 	    != (__OSExceptionHandler)DecrementerExceptionHandler) {
 		AlarmQueue.head = AlarmQueue.tail = NULL;
-		__OSSetExceptionHandler(__OS_EXCEPTION_DECREMENTER,
-		                        (__OSExceptionHandler)DecrementerExceptionHandler);
+		__OSSetExceptionHandler(
+		    __OS_EXCEPTION_DECREMENTER, (__OSExceptionHandler)DecrementerExceptionHandler);
 		OSRegisterResetFunction(&ResetFunctionInfo);
 	}
 }
@@ -92,9 +92,10 @@ extern void DecrementerExceptionCallback(void);
 // Saves the part of the register file the callback is allowed to disturb, then
 // tail branches into it. There is no prologue and no return: the callback runs
 // on the frame this leaves behind and unwinds the exception itself.
+// clang-format off
 ASM static void DecrementerExceptionHandler(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	stw     r0, 0x0(r4)
 	stw     r1, 0x4(r4)
@@ -116,5 +117,6 @@ ASM static void DecrementerExceptionHandler(void)
 	stw     r0, 0x1c0(r4)
 	stwu    r1, -0x8(r1)
 	b       DecrementerExceptionCallback
-#endif // clang-format on
+#endif
 }
+// clang-format on

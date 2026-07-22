@@ -45,7 +45,7 @@
 // then the DMA address, the length, the control word and the immediate data.
 // Indexing a base pointer rather than naming absolute addresses is what makes
 // the compiler compute one channel offset and reuse it.
-#define EXI_REGS ((volatile u32*)0xCC006800)
+#define EXI_REGS       ((volatile u32*)0xCC006800)
 #define EXI_CHAN_WORDS 5
 
 // Status register bits. The mask is everything that has to survive a write,
@@ -65,12 +65,12 @@ typedef void (*EXICallback)(s32 chan, void* context);
 // clears one bit and writes it back.
 typedef struct EXIControl {
 	EXICallback exiCallback; // 0x00
-	u8          unk04[0x4];  // 0x04
+	u8 unk04[0x4];           // 0x04
 	EXICallback extCallback; // 0x08
-	u32         state;       // 0x0C
-	u8          unk10[0x10]; // 0x10
-	u32         id;          // 0x20
-	u8          unk24[0x1C]; // 0x24
+	u32 state;               // 0x0C
+	u8 unk10[0x10];          // 0x10
+	u32 id;                  // 0x20
+	u8 unk24[0x1C];          // 0x24
 } EXIControl;                // 0x40
 
 // Cleared by the external interrupt once it has been taken.
@@ -82,7 +82,7 @@ extern EXIControl Ecb[3];
 
 extern void SetExiInterruptMask(s32 chan, EXIControl* exi);
 extern BOOL __EXIProbe(s32 chan);
-extern s32  EXIGetID(s32 chan, u32 dev, u32* id);
+extern s32 EXIGetID(s32 chan, u32 dev, u32* id);
 
 // EXIImm, fn_801FA768, EXIDma and EXISync belong here, still unwritten.
 
@@ -119,7 +119,7 @@ static u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext)
 static EXICallback fn_801FAB88(s32 chan, EXICallback exiCallback)
 {
 	EXIControl* exi = &Ecb[chan];
-	BOOL        enabled;
+	BOOL enabled;
 	EXICallback prev;
 
 	enabled = OSDisableInterrupts();
@@ -146,7 +146,7 @@ static EXICallback fn_801FAB88(s32 chan, EXICallback exiCallback)
 static BOOL fn_801FAD78(s32 chan)
 {
 	EXIControl* exi = &Ecb[chan];
-	u32         id;
+	u32 id;
 
 	if (!__EXIProbe(chan)) {
 		return FALSE;
@@ -172,10 +172,10 @@ static BOOL fn_801FAD78(s32 chan)
 // that whatever it does cannot disturb the one that was interrupted.
 static void EXTIntrruptHandler(s16 interrupt, OSContext* context)
 {
-	s32         chan;
+	s32 chan;
 	EXIControl* exi;
 	EXICallback callback;
-	OSContext   exiContext;
+	OSContext exiContext;
 
 	chan = (interrupt - 0xB) / 3;
 	__OSMaskInterrupts(0x500000 >> (chan * 3));

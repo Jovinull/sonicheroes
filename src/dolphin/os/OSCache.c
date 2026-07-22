@@ -28,20 +28,23 @@ void DCEnable(void);
 void ICEnable(void);
 void L2GlobalInvalidate(void);
 static void DMAErrorHandler(u16 error, OSContext* context, ...);
+// clang-format off
 
 asm void DCEnable(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	sync
 	mfspr   r3,SPR_HID0
 	ori     r3,r3,0x4000
 	mtspr   SPR_HID0,r3
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void DCInvalidateRange(register void* addr, register u32 nBytes) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmplwi  r4,0
 	blelr
@@ -55,11 +58,13 @@ inv_loop:
 	addi    r3,r3,32
 	bdnz    inv_loop
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void DCFlushRange(register void* addr, register u32 nBytes) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmplwi  r4,0
 	blelr
@@ -74,11 +79,13 @@ flush_loop:
 	bdnz    flush_loop
 	sc
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void DCStoreRange(register void* addr, register u32 nBytes) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmplwi  r4,0
 	blelr
@@ -93,11 +100,13 @@ store_loop:
 	bdnz    store_loop
 	sc
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void DCFlushRangeNoSync(register void* addr, register u32 nBytes) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmplwi  r4,0
 	blelr
@@ -111,11 +120,13 @@ flushns_loop:
 	addi    r3,r3,32
 	bdnz    flushns_loop
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void ICInvalidateRange(register void* addr, register u32 nBytes) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmplwi  r4,0
 	blelr
@@ -131,32 +142,38 @@ icinv_loop:
 	sync
 	isync
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void ICFlashInvalidate(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mfspr   r3,SPR_HID0
 	ori     r3,r3,0x0800
 	mtspr   SPR_HID0,r3
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void ICEnable(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	isync
 	mfspr   r3,SPR_HID0
 	ori     r3,r3,0x8000
 	mtspr   SPR_HID0,r3
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void LCDisable(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	lis     r3,0xE000
 	li      r4,512
@@ -169,8 +186,9 @@ lc_loop:
 	rlwinm  r4,r4,0,4,2
 	mtspr   SPR_HID2,r4
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
 // The original calls this rather than inlining it, so keep the compiler from
 // folding it into __OSCacheInit.

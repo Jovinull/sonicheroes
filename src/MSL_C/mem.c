@@ -36,9 +36,10 @@ void* memchr(const void* ptr, int value, u32 num)
 			return (void*)str;
 	return 0;
 }
+// clang-format off
 
 asm void* memmove(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	stwu    r1,-16(r1)
 	mflr    r0
@@ -103,11 +104,13 @@ epilogue:
 	mtlr    r0
 	addi    r1,r1,16
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void* __copy_longs_rev_unaligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	add     r11,r3,r5
 	add     r10,r4,r5
@@ -158,11 +161,13 @@ tail_loop:
 	stbu    r0,-1(r11)
 	bne     tail_loop
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void* __copy_longs_unaligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	neg     r0,r3
 	subi    r8,r4,1
@@ -218,11 +223,13 @@ tail_loop:
 	stbu    r0,1(r3)
 	bne     tail_loop
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void* __copy_longs_rev_aligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	add     r6,r3,r5
 	add     r4,r4,r5
@@ -274,11 +281,13 @@ byte_loop:
 	stbu    r0,-1(r6)
 	bne     byte_loop
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void* __copy_longs_aligned(void* dst, const void* src, u32 n) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	neg     r0,r3
 	subi    r7,r4,1
@@ -335,5 +344,6 @@ byte_loop:
 	stbu    r0,1(r3)
 	bne     byte_loop
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on

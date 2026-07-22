@@ -5,9 +5,10 @@ typedef u32 OSTick;
 
 // Boot time, kept in the OS globals area at 0x800030D8.
 #define OS_SYSTEM_TIME (*(OSTime*)0x800030D8)
+// clang-format off
 
 asm OSTime OSGetTime(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 retry:
 	mftb    r3,269
@@ -16,24 +17,28 @@ retry:
 	cmpw    r3,r5
 	bne     retry
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm OSTick OSGetTick(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mftb    r3,268
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
 // The obvious C body reproduces every instruction of this function but comes
 // out with a 0x18 frame instead of 0x20. The original reserves a stack slot for
 // the OSTime local that no tested C formulation produces: declaring the local
 // separately, dropping volatile from the global, and marking the local volatile
+// clang-format off
 // all scored worse, not better. Transcribed instead so the file matches.
 asm OSTime __OSGetSystemTime(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mflr    r0
 	stw     r0,4(r1)
@@ -60,5 +65,6 @@ asm OSTime __OSGetSystemTime(void) {
 	addi    r1,r1,0x20
 	mtlr    r0
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on

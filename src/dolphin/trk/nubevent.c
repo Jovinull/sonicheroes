@@ -16,10 +16,10 @@
 
 // One queued event. Only the fields the written functions touch are named.
 typedef struct TRKEvent {
-	u8  type;    // 0x00
-	u8  pad[3];  // 0x01
-	u32 unk04;   // 0x04
-	s32 buffer;  // 0x08, a buffer handle, minus one when there is none
+	u8 type;    // 0x00
+	u8 pad[3];  // 0x01
+	u32 unk04;  // 0x04
+	s32 buffer; // 0x08, a buffer handle, minus one when there is none
 } TRKEvent;
 
 // The queue itself, 0x28 bytes in .bss. The three helpers below take its
@@ -35,7 +35,10 @@ extern void fn_801CA2F4(s32 buffer);
 
 // Hands the event's buffer back. The event itself is not freed: it belongs to
 // the queue and gets reused.
-void TRKDestructEvent(TRKEvent* event) { fn_801CA2F4(event->buffer); }
+void TRKDestructEvent(TRKEvent* event)
+{
+	fn_801CA2F4(event->buffer);
+}
 
 // Puts an event back into its empty state, with no buffer attached.
 static void fn_801C9534(TRKEvent* event, u8 type)

@@ -23,7 +23,10 @@ extern void TRK_board_display(const char* msg);
 extern void fn_801CA4C0(void);
 
 // Printed once, over whatever link the board support brought up.
-void TRKNubWelcome(void) { TRK_board_display("MetroTRK for GAMECUBE v0.10"); }
+void TRKNubWelcome(void)
+{
+	TRK_board_display("MetroTRK for GAMECUBE v0.10");
+}
 
 int TRKTerminateNub(void)
 {

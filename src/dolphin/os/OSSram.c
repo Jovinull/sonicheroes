@@ -11,10 +11,10 @@
 // written functions touch is named; the rest is padding until something proves
 // what it holds.
 typedef struct SramControl {
-	u8   unk00[0x4C]; // 0x00
-	BOOL sync;        // 0x4C
-	u8   unk50[0x4];  // 0x50
-} SramControl;        // 0x54
+	u8 unk00[0x4C]; // 0x00
+	BOOL sync;      // 0x4C
+	u8 unk50[0x4];  // 0x50
+} SramControl;      // 0x54
 
 static SramControl Scb;
 

@@ -41,18 +41,22 @@ static void DBExceptionDestinationAux(void)
 	PPCHalt();
 }
 #pragma dont_inline off
+// clang-format off
 
 asm void __DBExceptionDestination(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mfmsr   r3
 	ori     r3,r3,0x30
 	mtmsr   r3
 	b       DBExceptionDestinationAux
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
-u32 __DBIsExceptionMarked(u8 exception) { return ((u32*)__DBInterface)[1] & (1 << exception); }
+u32 __DBIsExceptionMarked(u8 exception)
+{
+	return ((u32*)__DBInterface)[1] & (1 << exception);
+}
 
 // Release build stub. It still has to accept the varargs so the caller side
 // matches, but the body is empty.

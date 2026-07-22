@@ -19,33 +19,34 @@ extern "C" {
 
 // The entry points below are declared up front so the `entry` directives inside
 // the asm blocks can reference them.
-#define DECL_REG_RANGE(MACRO)                                                  \
-	void MACRO(14)(void);                                                      \
-	void MACRO(15)(void);                                                      \
-	void MACRO(16)(void);                                                      \
-	void MACRO(17)(void);                                                      \
-	void MACRO(18)(void);                                                      \
-	void MACRO(19)(void);                                                      \
-	void MACRO(20)(void);                                                      \
-	void MACRO(21)(void);                                                      \
-	void MACRO(22)(void);                                                      \
-	void MACRO(23)(void);                                                      \
-	void MACRO(24)(void);                                                      \
-	void MACRO(25)(void);                                                      \
-	void MACRO(26)(void);                                                      \
-	void MACRO(27)(void);                                                      \
-	void MACRO(28)(void);                                                      \
-	void MACRO(29)(void);                                                      \
-	void MACRO(30)(void);                                                      \
+#define DECL_REG_RANGE(MACRO)                                                                      \
+	void MACRO(14)(void);                                                                          \
+	void MACRO(15)(void);                                                                          \
+	void MACRO(16)(void);                                                                          \
+	void MACRO(17)(void);                                                                          \
+	void MACRO(18)(void);                                                                          \
+	void MACRO(19)(void);                                                                          \
+	void MACRO(20)(void);                                                                          \
+	void MACRO(21)(void);                                                                          \
+	void MACRO(22)(void);                                                                          \
+	void MACRO(23)(void);                                                                          \
+	void MACRO(24)(void);                                                                          \
+	void MACRO(25)(void);                                                                          \
+	void MACRO(26)(void);                                                                          \
+	void MACRO(27)(void);                                                                          \
+	void MACRO(28)(void);                                                                          \
+	void MACRO(29)(void);                                                                          \
+	void MACRO(30)(void);                                                                          \
 	void MACRO(31)(void);
 
 DECL_REG_RANGE(SAVE_FPR)
 DECL_REG_RANGE(RESTORE_FPR)
 DECL_REG_RANGE(SAVE_GPR)
 DECL_REG_RANGE(RESTORE_GPR)
+// clang-format off
 
 asm void __save_fpr(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	ENTRY_SAVE_FPR(14)
 		stfd    fp14,-144(save_restore_reg)
@@ -84,11 +85,13 @@ asm void __save_fpr(void) {
 	ENTRY_SAVE_FPR(31)
 		stfd    fp31,-8(save_restore_reg)
 		blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __restore_fpr(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	ENTRY_RESTORE_FPR(14)
 		lfd     fp14,-144(save_restore_reg)
@@ -127,11 +130,13 @@ asm void __restore_fpr(void) {
 	ENTRY_RESTORE_FPR(31)
 		lfd     fp31,-8(save_restore_reg)
 		blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __save_gpr(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	ENTRY_SAVE_GPR(14)
 		stw     r14,-72(save_restore_reg)
@@ -170,11 +175,13 @@ asm void __save_gpr(void) {
 	ENTRY_SAVE_GPR(31)
 		stw     r31,-4(save_restore_reg)
 		blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __restore_gpr(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	ENTRY_RESTORE_GPR(14)
 		lwz     r14,-72(save_restore_reg)
@@ -213,11 +220,13 @@ asm void __restore_gpr(void) {
 	ENTRY_RESTORE_GPR(31)
 		lwz     r31,-4(save_restore_reg)
 		blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __div2u(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmpwi   cr0,r3,0
 	cntlzw  r0,r3
@@ -287,11 +296,13 @@ lab9:
 	li      r4,0
 	li      r3,0
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __div2i(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	stwu    r1,-16(r1)
 	rlwinm. r9,r3,0,0,0
@@ -383,11 +394,13 @@ lab9:
 func_end:
 	addi    r1,r1,16
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __mod2u(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmpwi   cr0,r3,0
 	cntlzw  r0,r3
@@ -455,11 +468,13 @@ lab8:
 	blr
 lab9:
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __shl2i(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	subfic  r8,r5,32
 	subic   r9,r5,32
@@ -470,11 +485,13 @@ asm void __shl2i(void) {
 	or      r3,r3,r10
 	slw     r4,r4,r5
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __shr2u(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	subfic  r8,r5,32
 	subic   r9,r5,32
@@ -485,11 +502,13 @@ asm void __shr2u(void) {
 	or      r4,r4,r10
 	srw     r3,r3,r5
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __shr2i(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	subfic  r8,r5,32
 	subic.  r9,r5,32
@@ -502,11 +521,13 @@ asm void __shr2i(void) {
 around:
 	sraw    r3,r3,r5
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __cvt_sll_dbl(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	stwu    r1,-16(r1)
 	rlwinm. r5,r3,0,0,0
@@ -556,11 +577,13 @@ lab5:
 	lfd     fp1,8(r1)
 	addi    r1,r1,16
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void __cvt_dbl_usll(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	stwu    r1,-16(r1)
 	stfd    fp1,8(r1)
@@ -620,8 +643,9 @@ positive:
 func_end:
 	addi    r1,r1,16
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
 #ifdef __cplusplus
 }

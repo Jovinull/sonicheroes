@@ -26,7 +26,7 @@ typedef int BOOL;
 #define NULL 0
 
 #ifdef __MWERKS__
-#define ASM asm
+#define ASM             asm
 #define DECL_SECT(sect) __declspec(section sect)
 #else
 #define ASM

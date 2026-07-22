@@ -79,4 +79,29 @@ big=$(git diff --cached --numstat --diff-filter=AM -z \
       done)
 [ -n "$big" ] && fail "These staged binaries are over 512 KB:" "$big"
 
+# 5. Formatting. Only runs if clang-format is installed, so a contributor
+#    without it is warned rather than blocked, and only looks at staged sources.
+#    Assembly blocks are wrapped in clang-format off markers and are left alone.
+if command -v clang-format >/dev/null 2>&1; then
+    unformatted=$(printf '%s\n' "$staged" \
+        | grep -E '^(src|include)/.*\.(c|cpp|h)$' \
+        | while IFS= read -r f; do
+              [ -f "$f" ] || continue
+              clang-format "$f" | diff -q - "$f" >/dev/null 2>&1 || echo "$f"
+          done)
+    if [ -n "$unformatted" ]; then
+        echo "pre-commit: these staged sources are not formatted:" >&2
+        echo "" >&2
+        printf '%s\n' "$unformatted" | sed 's/^/  /' >&2
+        echo "" >&2
+        echo "Run:  clang-format -i $(printf '%s' "$unformatted" | tr '\n' ' ')" >&2
+        exit 1
+    fi
+else
+    printf '%s\n' "$staged" | grep -qE '^(src|include)/.*\.(c|cpp|h)$' && {
+        echo "pre-commit: clang-format not found, skipping the format check." >&2
+        echo "Install it before opening a pull request." >&2
+    }
+fi
+
 exit 0

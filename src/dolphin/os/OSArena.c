@@ -3,10 +3,22 @@
 static void* __OSArenaHi;
 static void* __OSArenaLo = (void*)0xFFFFFFFF;
 
-void* OSGetArenaHi(void) { return __OSArenaHi; }
+void* OSGetArenaHi(void)
+{
+	return __OSArenaHi;
+}
 
-void* OSGetArenaLo(void) { return __OSArenaLo; }
+void* OSGetArenaLo(void)
+{
+	return __OSArenaLo;
+}
 
-void OSSetArenaHi(void* newHi) { __OSArenaHi = newHi; }
+void OSSetArenaHi(void* newHi)
+{
+	__OSArenaHi = newHi;
+}
 
-void OSSetArenaLo(void* newLo) { __OSArenaLo = newLo; }
+void OSSetArenaLo(void* newLo)
+{
+	__OSArenaLo = newLo;
+}

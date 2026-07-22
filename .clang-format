@@ -1,0 +1,54 @@
+# Formatting for the whole tree. Run `clang-format -i` over src and include
+# before opening a pull request.
+#
+# Tabs for indentation, matching projectPiki/pikmin2 and the rest of the GC
+# decomp ecosystem. The column limit is wider than the code usually needs so
+# that SDK prototypes with two long typedef'd parameters stay on one line.
+#
+# Every inline assembly block is wrapped in clang-format off and on markers.
+# That is deliberate and must stay: the assembler's column layout is meaningful
+# and reflowing it would corrupt the listing.
+
+Language: Cpp
+BasedOnStyle: WebKit
+
+UseTab: ForIndentation
+IndentWidth: 4
+TabWidth: 4
+ColumnLimit: 100
+
+PointerAlignment: Left
+DerivePointerAlignment: false
+SpaceAfterCStyleCast: false
+
+# ASM expands to the compiler's asm keyword. Without this clang-format reads it
+# as part of the return type and collapses the function brace onto the same
+# line, which is not how the tree is written.
+AttributeMacros:
+  - ASM
+
+# A function definition puts its brace on the next line; everything else keeps
+# the brace on the same line. This is what the tree already does.
+BreakBeforeBraces: Linux
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+
+# Runs of related #defines and struct fields are aligned by hand throughout the
+# tree, and the alignment carries meaning: register offsets, bit masks, address
+# constants. Keep it. Declarations are NOT aligned, because padding a variable
+# list out to the longest type name hurts more than it helps.
+AlignConsecutiveMacros: Consecutive
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: false
+AlignTrailingComments: true
+
+# types.h comes first, then the shared dolphin headers. Sorting would break it.
+SortIncludes: false
+
+# The header comments carry measurements, listings and addresses. Reflowing them
+# would destroy alignment that means something.
+ReflowComments: false
+
+IndentCaseLabels: true

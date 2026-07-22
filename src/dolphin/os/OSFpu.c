@@ -7,9 +7,10 @@ static f64 ZeroF;
 static f32 ZeroPS[2];
 
 // Clears every floating point register, and the paired single halves too when
+// clang-format off
 // the paired single unit is enabled in HID2.
 asm void __OSFPRInit(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mfmsr   r3
 	ori     r3,r3,0x2000
@@ -89,5 +90,6 @@ no_paired_single:
 	fmr     fp31,fp0
 	mtfsf   255,fp0
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on

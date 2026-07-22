@@ -25,35 +25,38 @@ static __OSInterruptHandler* InterruptHandlerTable;
 // Turns external interrupts off and reports whether they had been on. The
 // caller is expected to hand that answer back to OSRestoreInterrupts rather
 // than assume it can just enable them again.
+// clang-format off
 ASM BOOL OSDisableInterrupts(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mfmsr   r3
 	rlwinm  r4, r3, 0, 17, 15
 	mtmsr   r4
 	extrwi  r3, r3, 1, 16
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
+// clang-format off
 ASM BOOL OSEnableInterrupts(void)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mfmsr   r3
 	ori     r4, r3, MSR_EE
 	mtmsr   r4
 	extrwi  r3, r3, 1, 16
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
 // Puts the enable bit back the way the caller found it and reports what it was
 // immediately before this call, so restores can nest.
+// clang-format off
 ASM BOOL OSRestoreInterrupts(register BOOL level)
 {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	cmpwi   r3, 0
 	mfmsr   r4
@@ -66,8 +69,8 @@ done:
 	mtmsr   r5
 	extrwi  r3, r4, 1, 16
 	blr
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
 __OSInterruptHandler __OSSetInterruptHandler(s16 interrupt, __OSInterruptHandler handler)
 {

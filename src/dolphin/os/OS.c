@@ -66,15 +66,15 @@
 typedef u8 __OSException;
 
 typedef struct OSBootInfo {
-	u8    diskID[0x20]; // 0x00
-	u32   magic;        // 0x20
-	u32   version;      // 0x24
-	u32   memorySize;   // 0x28
-	u32   consoleType;  // 0x2C
-	void* arenaLo;      // 0x30
-	void* arenaHi;      // 0x34
-	void* FSTLocation;  // 0x38
-	u32   FSTMaxLength; // 0x3C
+	u8 diskID[0x20];   // 0x00
+	u32 magic;         // 0x20
+	u32 version;       // 0x24
+	u32 memorySize;    // 0x28
+	u32 consoleType;   // 0x2C
+	void* arenaLo;     // 0x30
+	void* arenaHi;     // 0x34
+	void* FSTLocation; // 0x38
+	u32 FSTMaxLength;  // 0x3C
 } OSBootInfo;
 
 // Pointed at by the word at physical 0xF4. Only debugFlag and padSpec are
@@ -94,19 +94,19 @@ typedef struct DVDDriveInfo {
 	u16 revisionLevel; // 0x00
 	u16 deviceCode;    // 0x02
 	u32 releaseDate;   // 0x04
-	u8  pad[24];       // 0x08
+	u8 pad[24];        // 0x08
 } DVDDriveInfo;
 
 typedef struct DVDCommandBlock {
 	struct DVDCommandBlock* next;                   // 0x00
 	struct DVDCommandBlock* prev;                   // 0x04
-	u32   command;                                  // 0x08
-	s32   state;                                    // 0x0C
-	u32   offset;                                   // 0x10
-	u32   length;                                   // 0x14
+	u32 command;                                    // 0x08
+	s32 state;                                      // 0x0C
+	u32 offset;                                     // 0x10
+	u32 length;                                     // 0x14
 	void* addr;                                     // 0x18
-	u32   currTransferSize;                         // 0x1C
-	u32   transferredSize;                          // 0x20
+	u32 currTransferSize;                           // 0x1C
+	u32 transferredSize;                            // 0x20
 	void* id;                                       // 0x24
 	void (*callback)(s32, struct DVDCommandBlock*); // 0x28
 	void* userData;                                 // 0x2C
@@ -115,14 +115,14 @@ typedef struct DVDCommandBlock {
 extern void __OSUnhandledException(void);
 
 extern OSTime __OSGetSystemTime(void);
-extern u32    OSGetResetCode(void);
-extern void*  OSGetArenaHi(void);
-extern void*  OSGetArenaLo(void);
-extern void   OSSetArenaHi(void* newHi);
-extern void   OSSetArenaLo(void* newLo);
-extern void   OSRegisterVersion(const char* version);
-extern void   OSInitAlarm(void);
-extern void*  memset(void* dst, int val, u32 n);
+extern u32 OSGetResetCode(void);
+extern void* OSGetArenaHi(void);
+extern void* OSGetArenaLo(void);
+extern void OSSetArenaHi(void* newHi);
+extern void OSSetArenaLo(void* newLo);
+extern void OSRegisterVersion(const char* version);
+extern void OSInitAlarm(void);
+extern void* memset(void* dst, int val, u32 n);
 
 extern void PPCMtmmcr0(u32 value);
 extern void PPCMtmmcr1(u32 value);
@@ -132,7 +132,7 @@ extern void PPCMtpmc3(u32 value);
 extern void PPCMtpmc4(u32 value);
 extern void PPCDisableSpeculation(void);
 extern void PPCSetFpNonIEEEMode(void);
-extern u32  PPCMfhid2(void);
+extern u32 PPCMfhid2(void);
 extern void PPCMthid2(u32 value);
 
 static void OSExceptionInit(void);
@@ -149,14 +149,14 @@ extern void __OSResetSWInterruptHandler(s16 interrupt, void* context);
 extern void EXIInit(void);
 extern void SIInit(void);
 extern void DVDInit(void);
-extern void DVDInquiryAsync(DVDCommandBlock* block, DVDDriveInfo* info,
-                            void (*callback)(s32, DVDCommandBlock*));
+extern void DVDInquiryAsync(
+    DVDCommandBlock* block, DVDDriveInfo* info, void (*callback)(s32, DVDCommandBlock*));
 extern void EnableMetroTRKInterrupts(void);
 // Forward declared: OSExceptionInit installs it and OSExceptionVector names it,
 // but the original emits the handler last, so it cannot be moved up.
 void OSDefaultExceptionHandler(register u8 exception, register void* context);
 
-extern int  __DBIsExceptionMarked(u8 exception);
+extern int __DBIsExceptionMarked(u8 exception);
 extern void* memcpy(void* dst, const void* src, u32 n);
 
 extern void* __OSSavedRegionStart;
@@ -174,14 +174,14 @@ extern void* __OSSavedRegionEnd;
 // OSFpu.c's ZeroF and ZeroPS in the middle and dtk reports a cyclic link order.
 // So they belong to some other unit and are referenced from here.
 extern OSBootInfo* BootInfo;
-extern u32*        BI2DebugFlag;
-extern u32         BI2DebugFlagHolder;
-extern int         __OSIsGcam;
+extern u32* BI2DebugFlag;
+extern u32 BI2DebugFlagHolder;
+extern int __OSIsGcam;
 
 extern OSTime __OSStartTime;
-extern int    __OSInIPL;
-extern u32    __PADSpec;
-extern int    __DVDLongFileNameFlag;
+extern int __OSInIPL;
+extern u32 __PADSpec;
+extern int __DVDLongFileNameFlag;
 
 // Set by the drive inquiry, read by the boot path out of the OS globals.
 #define OS_DEVICE_CODE (*(u16*)0x800030E6)
@@ -214,7 +214,7 @@ static __OSExceptionHandler* OSExceptionTable;
 // original reaches the command block as base+0x20 off the same register it
 // used for the drive info, and the compiler only knows that offset for objects
 // whose .bss layout it decides itself.
-static DVDDriveInfo    DriveInfo;
+static DVDDriveInfo DriveInfo;
 static DVDCommandBlock DriveBlock;
 
 u32 OSGetConsoleType(void)
@@ -234,7 +234,7 @@ static void ClearArena(void)
 {
 	void* end;
 	void* start;
-	u32   size;
+	u32 size;
 
 	if (OSGetResetCode() != OS_RESET_RESTART) {
 		__OSSavedRegionStart = NULL;
@@ -281,21 +281,21 @@ static void ClearArena(void)
 static void InquiryCallback(s32 result, DVDCommandBlock* block)
 {
 	switch (block->state) {
-	case 0:
-		OS_DEVICE_CODE = DriveInfo.deviceCode | 0x8000;
-		break;
-	default:
-		OS_DEVICE_CODE = 1;
-		break;
+		case 0:
+			OS_DEVICE_CODE = DriveInfo.deviceCode | 0x8000;
+			break;
+		default:
+			OS_DEVICE_CODE = 1;
+			break;
 	}
 }
 
 void OSInit(void)
 {
 	BI2Debug* DebugInfo;
-	u32       consoleType;
-	void*     arenaLo;
-	void*     arenaHi;
+	u32 consoleType;
+	void* arenaLo;
+	void* arenaHi;
 
 	if (AreWeInitialized != 0) {
 		return;
@@ -321,8 +321,8 @@ void OSInit(void)
 
 	DebugInfo = (BI2Debug*)*(u32*)OSPhysicalToCached(0x00F4);
 	if (DebugInfo != NULL) {
-		BI2DebugFlag                       = &DebugInfo->debugFlag;
-		__PADSpec                          = (u32)DebugInfo->padSpec;
+		BI2DebugFlag                     = &DebugInfo->debugFlag;
+		__PADSpec                        = (u32)DebugInfo->padSpec;
 		*(u8*)OSPhysicalToCached(0x30E8) = (u8)*BI2DebugFlag;
 		*(u8*)OSPhysicalToCached(0x30E9) = (u8)__PADSpec;
 	} else if (BootInfo->arenaHi) {
@@ -371,37 +371,38 @@ void OSInit(void)
 
 	consoleType = OSGetConsoleType();
 	switch ((u32)(consoleType & 0xF0000000)) {
-	case OS_CONSOLE_RETAIL:
-		OSReport("Retail %d\n", consoleType);
-		break;
+		case OS_CONSOLE_RETAIL:
+			OSReport("Retail %d\n", consoleType);
+			break;
 
-	case OS_CONSOLE_DEVELOPMENT:
-	case OS_CONSOLE_TDEV:
-		// The switch value has its top nibble stripped but the case labels do
-		// not, so nothing here can ever be selected and every development
-		// board falls through to the default. That is what the original does.
-		switch ((u32)(consoleType & 0x0FFFFFFF)) {
-		case OS_CONSOLE_EMULATOR:
-			OSReport("Mac Emulator\n");
+		case OS_CONSOLE_DEVELOPMENT:
+		case OS_CONSOLE_TDEV:
+			// The switch value has its top nibble stripped but the case labels do
+			// not, so nothing here can ever be selected and every development
+			// board falls through to the default. That is what the original does.
+			switch ((u32)(consoleType & 0x0FFFFFFF)) {
+				case OS_CONSOLE_EMULATOR:
+					OSReport("Mac Emulator\n");
+					break;
+				case OS_CONSOLE_PC_EMULATOR:
+					OSReport("PC Emulator\n");
+					break;
+				case OS_CONSOLE_ARTHUR:
+					OSReport("EPPC Arthur\n");
+					break;
+				case OS_CONSOLE_MINNOW:
+					OSReport("EPPC Minnow\n");
+					break;
+				default:
+					OSReport(
+					    "Development HW%d (%08x)\n", (consoleType & 0x0FFFFFFF) - 3, consoleType);
+					break;
+			}
 			break;
-		case OS_CONSOLE_PC_EMULATOR:
-			OSReport("PC Emulator\n");
-			break;
-		case OS_CONSOLE_ARTHUR:
-			OSReport("EPPC Arthur\n");
-			break;
-		case OS_CONSOLE_MINNOW:
-			OSReport("EPPC Minnow\n");
-			break;
+
 		default:
-			OSReport("Development HW%d (%08x)\n", (consoleType & 0x0FFFFFFF) - 3, consoleType);
+			OSReport("%08x\n", consoleType);
 			break;
-		}
-		break;
-
-	default:
-		OSReport("%08x\n", consoleType);
-		break;
 	}
 
 	OSReport("Memory %d MB\n", BootInfo->memorySize >> 20);
@@ -436,7 +437,7 @@ void OSInit(void)
 static void NopFill(void* dst, u32 nBytes)
 {
 	u32* p = (u32*)dst;
-	u32  n = (nBytes + 3) / 4;
+	u32 n  = (nBytes + 3) / 4;
 
 	while (n--) {
 		*p++ = 0x60000000;
@@ -452,19 +453,32 @@ static void OSExceptionInit(void)
 {
 	// Not contiguous, which is why this is a table and not 0x100 + (n << 8).
 	static u32 ExceptionVectorTable[] = {
-		0x100, 0x200, 0x300, 0x400, 0x500, 0x600, 0x700, 0x800,
-		0x900, 0xC00, 0xD00, 0xF00, 0x1300, 0x1400, 0x1700,
+		0x100,
+		0x200,
+		0x300,
+		0x400,
+		0x500,
+		0x600,
+		0x700,
+		0x800,
+		0x900,
+		0xC00,
+		0xD00,
+		0xF00,
+		0x1300,
+		0x1400,
+		0x1700,
 	};
 
 	__OSException exception;
-	u32*  opCodeAddr;
-	u32   oldOpCode;
+	u32* opCodeAddr;
+	u32 oldOpCode;
 	void* destAddr;
 	void* dbIntDest;
 	void* evStart;
-	u32   dbIntSize;
-	u32   dbJumpSize;
-	u32   evSize;
+	u32 dbIntSize;
+	u32 dbJumpSize;
+	u32 evSize;
 
 	opCodeAddr = (u32*)__OSEVSetNumber;
 	oldOpCode  = *opCodeAddr;
@@ -516,9 +530,10 @@ static void OSExceptionInit(void)
 }
 
 // Copied over the exception vector area at boot, so it runs from a fixed
+// clang-format off
 // address rather than from wherever the linker put it.
 asm void __OSDBIntegrator(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 entry __OSDBINTSTART
 	li      r5,0x40
@@ -531,17 +546,19 @@ entry __OSDBINTSTART
 	mtmsr   r3
 	blr
 entry __OSDBINTEND
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
+// clang-format off
 // Reached by a branch from __OSDBIntegrator's end label.
 asm void __OSDBJump(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	bla     0x60
 entry __OSDBJUMPEND
-#endif // clang-format on
-}
+#endif
+} // clang-format on
 
 __OSExceptionHandler __OSSetExceptionHandler(u8 exception, __OSExceptionHandler handler)
 {
@@ -552,10 +569,14 @@ __OSExceptionHandler __OSSetExceptionHandler(u8 exception, __OSExceptionHandler 
 	return oldHandler;
 }
 
-__OSExceptionHandler __OSGetExceptionHandler(u8 exception) { return OSExceptionTable[exception]; }
+__OSExceptionHandler __OSGetExceptionHandler(u8 exception)
+{
+	return OSExceptionTable[exception];
+}
+// clang-format off
 
 asm void OSExceptionVector(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 entry __OSEVStart
 	mtsprg  0,r4
@@ -601,11 +622,13 @@ dbvector:
 	rfi
 entry __OSEVEnd
 	nop
-#endif // clang-format on
+#endif
 }
+// clang-format on
+// clang-format off
 
 asm void OSDefaultExceptionHandler(register u8 exception, register void* context) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	stw     r0,0(r4)
 	stw     r1,4(r4)
@@ -629,5 +652,6 @@ asm void OSDefaultExceptionHandler(register u8 exception, register void* context
 	mfdar   r6
 	stwu    r1,-8(r1)
 	b       __OSUnhandledException
-#endif // clang-format on
+#endif
 }
+// clang-format on

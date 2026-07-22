@@ -10,14 +10,18 @@ void __init_user(void);
 static void __init_cpp(void);
 void _ExitProcess(void);
 
-void __init_user(void) { __init_cpp(); }
+void __init_user(void)
+{
+	__init_cpp();
+}
 
 // Written as asm rather than as the obvious for loop over _ctors. The original
 // carries three chained branches through empty basic blocks between the loop
 // setup and the condition test, and no plain C formulation reproduces them.
+// clang-format off
 // The same pattern shows up in __init_data over in dolphin/os/__start.c.
 static asm void __init_cpp(void) {
-#ifdef __MWERKS__ // clang-format off
+#ifdef __MWERKS__
 	nofralloc
 	mflr    r0
 	stw     r0,4(r1)
@@ -44,7 +48,11 @@ cond:
 	addi    r1,r1,16
 	mtlr    r0
 	blr
-#endif // clang-format on
+#endif
 }
+// clang-format on
 
-void _ExitProcess(void) { PPCHalt(); }
+void _ExitProcess(void)
+{
+	PPCHalt();
+}
