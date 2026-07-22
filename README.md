@@ -41,11 +41,11 @@ that is not a shortcut. Most of it is code that is assembly in the original
 source too: there is no C for reading a special purpose register, invalidating a
 cache line, or saving the register file on the way into an exception, so
 `PPCArch.c`, `OSCache.c` and the EABI runtime helpers are asm in the Dolphin SDK
-as well. Writing those as C would be wrong, not better. A small number are
-transcriptions where C should have reproduced the original and did not; each one
-says so in a comment above it, so they are easy to find and worth revisiting.
-The generated assembly for everything not yet written stays in `build/`, which
-git ignores.
+as well. Writing those as C would be wrong, not better. Nothing is currently asm
+merely because the C form refused to match; where that happens it gets a comment
+saying so, so it can be found and revisited rather than quietly kept. The
+generated assembly for everything not yet written stays in `build/`, which git
+ignores.
 
 18 REL modules ship alongside `main.dol`. 17 of them are configured, and none of
 them reproduce yet: the original has a zero sized placeholder section that the
