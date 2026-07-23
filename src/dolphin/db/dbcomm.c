@@ -20,46 +20,81 @@
 // right order and the right count; what separates them from the original is
 // where values live, not what the code does.
 //
-// Four of the five share one cause. The original keeps the addresses of the EXI
-// registers in callee saved registers for the whole body, which is why it saves
-// six of them with stmw and forms the addresses with stwu and lwzu. Ours holds
-// fewer and rebuilds each address from the constant, because a constant address
-// is cheap to rematerialize and the compiler would rather do that than spend a
-// register. Nothing tried so far changes that decision: absolute macros, an
-// indexed macro off a base, a file scope const pointer, locals holding the two
-// registers, and a local holding the base were all measured. Two findings did
-// come out of it. The register block has to be volatile or the reads get folded
-// away, worth nine points on the read helpers. And holding the registers in
-// locals helps some functions and hurts others, worth three points on the read
-// helpers and minus two on fn_801F8988, so it is not a general answer.
+// The cause that used to be shared by five of them is solved. The original
+// reaches the two channel 2 registers by bumping a pointer, not by indexing:
+// stwu and lwzu only come out of *(p += n), while EXI_REGS[n] folds the offset
+// into a displacement and rebuilds the address at every use. Writing the bump
+// took fn_801F8724 and fn_801F8800 from 64.1% to 93.9%, both read helpers from
+// 72.7% to 90.6% and DBWrite from 86.5% to 92.5%. Two details go with it. The
+// register block still has to be volatile or the reads fold away. And the bump
+// belongs only where the original put it: DBWrite derives csr and cr inside its
+// first poll block and the three later blocks reuse what that block left
+// bumped, so bumping in every block costs 1.7%, and giving fn_801F8988 its own
+// pointer local for the control register costs 1.2% because the extra live
+// value pushes the two payload loops off their registers.
 //
-//   DBWrite     86.5%  158 instructions, 19 lines structural. Mostly the shared
-//                      cause. Worth recording how it got here: the poll block
-//                      appears three times inside DBWrite as a copy of
-//                      fn_801F8678 rather than a call, and calling the helper
-//                      normally leaves the function at 42.5%. The inline
-//                      keyword does nothing, and the helper is defined after
-//                      DBWrite so the compiler has no body to inline anyway.
-//                      Writing the block out at each of the three sites, each
-//                      with its own local for the command word, takes it to
-//                      85.2%. The original also computes the negated result of
-//                      the first transfer in each block and never reads it,
-//                      which only makes sense as an expansion whose return
-//                      value was discarded; reproducing that is the last point
-//                      and a half. So the original almost certainly spelled
-//                      this as a macro shared with fn_801F8678, not as a call.
-//   fn_801F8724 64.1%  66 instructions, the shared cause above. It is the same
-//                      function as fn_801F8800 with the other command byte and
-//                      the payload loop the other way round, and it lands on
-//                      the same number, which is a good sign that the cause is
-//                      the allocator and not either body.
-//   fn_801F8800 64.1%  66 instructions, the shared cause above.
-//   the two read helpers 72.7%  50 instructions, the shared cause above.
-//   fn_801F8988 87.6%  173 instructions, only seventeen lines structural. The
-//                      shared cause, plus the original compares the loop
-//                      counter against the length where ours folds that to a
-//                      test of the length alone, in both loops. Writing the
-//                      loops as while did not move it.
+// Declaration order is the other lever that works. Which callee saved register
+// a local lands in follows the order the locals are declared, so declaring word
+// before i in fn_801F8988, and err before the buffer pointer in the two block
+// helpers, puts them where the original has them.
+//
+// What is left is one thing, and it is the same thing in every function: the
+// original reserves more stack below its locals than we do. Frames run 0x08
+// over on the two block helpers, 0x10 on the two read helpers and 0x30 on
+// DBWrite, and every remaining difference is that offset showing up in the
+// prologue, the epilogue and each stack reference. Registers, instruction order
+// and instruction count already agree. Part of DBWrite's share is visible: the
+// original keeps five distinct slots for the command and trailer words at 0x3c,
+// 0x44, 0x4c, 0x50 and 0x54, where ours collapses the three command words onto
+// one slot because their live ranges do not overlap. Declaring them separately
+// at function scope does not split them back apart.
+//
+// Measured and rejected, so they do not get tried again.
+//
+// Compiler options, none of which move the frame: -use_lmw_stmw on (the
+// original's stmw comes from how many registers it allocates, not from the
+// option), -inline off, -inline noauto, -O3,p, -O4, -O4,s (this one breaks a
+// function that already matches), -opt nopeephole, -opt nostrength, -opt
+// noschedule, -opt nolifetimes, -common on, -str reuse,pool,readonly, and
+// -sdata 0 -sdata2 0.
+//
+// Compiler version. 1.2.5n is right and the file is not part of the debugger
+// library despite what it talks to: averaged over the twelve functions, 1.2.5n
+// gives 94.4% with four exact, 1.2.5 gives 91.6% with two, and both 1.3 and
+// 1.3.2 collapse to about 52% with none.
+//
+// The parameter save area is not the cause. Giving fn_801F8988 three more
+// parameters leaves every caller's frame exactly where it was, so this compiler
+// does not size that area by argument count while the arguments still fit in
+// registers. The extra stack has to be locals.
+//
+// Source shapes: dropping static off the helpers changes nothing, though
+// symbols.txt carries no scope:local marker for any of them; splitting i = 0
+// out of the for init in fn_801F8988 costs 0.06%; declaring the three command
+// words separately at function scope does not split their stack slots apart;
+// and reading DBCommHandler into a local in EXIHandler does not move the
+// acknowledge store after the handler load.
+//
+// Worth noting for whoever picks this up. The helpers save the same registers
+// the original saves, r27 through r31 in fn_801F8678 and r26 through r31 in the
+// block helpers, and every r1 relative access in the original is accounted for:
+// fn_801F8678 touches one word at 0x18 and fn_801F8724 two at 0x20 and 0x24.
+// Each still reserves twenty four bytes it never reads or writes. DBRead settles
+// what that space is not. It matches exactly, it makes a three argument call
+// like the block helpers do, and it reserves twelve bytes, so the parameter save
+// area we emit is already the right size. The surplus is locals the original
+// declared and never used, which leave no trace in the instruction stream to
+// recover them from. Short of the original source or a reference decompilation
+// of this file, that is where this stops.
+//
+//   DBWrite     92.5%  the frame, and the three command words sharing a slot.
+//   fn_801F8724 94.7%  the frame only.
+//   fn_801F8800 94.7%  the frame only.
+//   the two read helpers 90.6%  the frame only.
+//   fn_801F8988 88.6%  the frame, plus the original compares the loop counter
+//                      against the length on the way into the first payload
+//                      loop where ours folds that to a test of the length
+//                      alone. Writing the loop as while did not move it.
 //   EXIHandler  87.5%  one instruction. The original schedules the acknowledge
 //                      write after the handler load and ours emits it before.
 //                      Reordering the statements moves it past the null test
@@ -80,6 +115,14 @@
 #define EXI_CHANNEL2_CSR  (EXI_REGS[10])
 #define EXI_CHANNEL2_CR   (EXI_REGS[13])
 #define EXI_CHANNEL2_DATA (EXI_REGS[14])
+
+// Word offsets of the two channel 2 registers from the start of the block. The
+// helpers below reach them by bumping a pointer rather than by indexing, which
+// is what the original does: the update forms (stwu, lwzu) only appear for
+// *(p += n), while a plain EXI_REGS[n] folds the offset into a displacement and
+// rebuilds the address at every use.
+#define EXI_CSR_WORD 10
+#define EXI_CR_WORD  13
 
 // The bits of the status register that survive a device select, and the select
 // itself. Everything else is cleared on the way in and on the way out.
@@ -145,16 +188,14 @@ s32 DBWrite(void* buffer, u32 length)
 
 	enabled = OSDisableInterrupts();
 
-	csr = &EXI_CHANNEL2_CSR;
-	cr  = &EXI_CHANNEL2_CR;
-
 	do {
 		u32 cmd;
 
-		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-		cmd  = 0x40000000;
-		err  = !fn_801F8988(&cmd, 2, 1);
-		while (*cr & EXI_CR_TSTART) {
+		csr                    = EXI_REGS;
+		*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+		cmd                    = 0x40000000;
+		err                    = !fn_801F8988(&cmd, 2, 1);
+		while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
 		}
 		fn_801F8988(&status, 4, 0);
 		while (*cr & EXI_CR_TSTART) {
@@ -323,14 +364,12 @@ static BOOL fn_801F8678(u32* out)
 	BOOL err;
 	u32 cmd;
 
-	csr = &EXI_CHANNEL2_CSR;
-	cr  = &EXI_CHANNEL2_CR;
-
-	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+	csr                    = EXI_REGS;
+	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
 
 	cmd = 0x40000000;
 	err = !fn_801F8988(&cmd, 2, 1);
-	while (*cr & EXI_CR_TSTART) {
+	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
 	}
 
 	err |= !fn_801F8988(out, 4, 0);
@@ -349,20 +388,18 @@ static BOOL fn_801F8724(u32 addr, void* buffer, s32 length)
 {
 	volatile u32* csr;
 	volatile u32* cr;
-	u32* src;
 	BOOL err;
+	u32* src;
 	u32 cmd;
 	u32 word;
 
-	csr = &EXI_CHANNEL2_CSR;
-	cr  = &EXI_CHANNEL2_CR;
-	src = (u32*)buffer;
-
-	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+	csr                    = EXI_REGS;
+	src                    = (u32*)buffer;
+	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
 
 	cmd = ((addr << 8) & 0x01FFFC00) | 0xA0000000;
 	err = !fn_801F8988(&cmd, 4, 1);
-	while (*cr & EXI_CR_TSTART) {
+	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
 	}
 
 	while (length != 0) {
@@ -391,20 +428,18 @@ static BOOL fn_801F8800(u32 addr, void* buffer, s32 length)
 {
 	volatile u32* csr;
 	volatile u32* cr;
-	u32* dst;
 	BOOL err;
+	u32* dst;
 	u32 cmd;
 	u32 word;
 
-	csr = &EXI_CHANNEL2_CSR;
-	cr  = &EXI_CHANNEL2_CR;
-	dst = (u32*)buffer;
-
-	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+	csr                    = EXI_REGS;
+	dst                    = (u32*)buffer;
+	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
 
 	cmd = ((addr << 8) & 0x01FFFC00) | 0x20000000;
 	err = !fn_801F8988(&cmd, 4, 1);
-	while (*cr & EXI_CR_TSTART) {
+	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
 	}
 
 	while (length != 0) {
@@ -434,14 +469,12 @@ static BOOL fn_801F88DC(u32* out)
 	BOOL err;
 	u32 cmd;
 
-	csr = &EXI_CHANNEL2_CSR;
-	cr  = &EXI_CHANNEL2_CR;
-
-	*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
+	csr                    = EXI_REGS;
+	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
 
 	cmd = 0x60000000;
 	err = !fn_801F8988(&cmd, 2, 1);
-	while (*cr & EXI_CR_TSTART) {
+	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
 	}
 
 	err |= !fn_801F8988(out, 4, 0);
@@ -460,8 +493,8 @@ static BOOL fn_801F88DC(u32* out)
 // bytes, and it is what the original computes.
 static BOOL fn_801F8988(void* buffer, s32 length, u32 write)
 {
-	s32 i;
 	u32 word;
+	s32 i;
 
 	if (write) {
 		word = 0;
@@ -471,6 +504,9 @@ static BOOL fn_801F8988(void* buffer, s32 length, u32 write)
 		EXI_CHANNEL2_DATA = word;
 	}
 
+	// Unlike the helpers above, this one is better off indexing: giving the
+	// control register its own pointer local costs 1.2% here, because the extra
+	// live value pushes the two payload loops off their registers.
 	EXI_CHANNEL2_CR = ((length - 1) << 4) | (write << 2) | EXI_CR_TSTART;
 	while (EXI_CHANNEL2_CR & EXI_CR_TSTART) {
 	}
