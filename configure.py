@@ -329,6 +329,7 @@ config.libs = [
             # every function's size comes out exactly as the original's.
             Object(Matching, "dolphin/pad/Pad.c", extra_cflags=["-inline noauto"]),
             Object(Matching, "dolphin/amcstubs.c"),
+            Object(Matching, "dolphin/ar/ar.c"),
             Object(Matching, "dolphin/ar/arq.c"),
             Object(NonMatching, "dolphin/db/dbcomm.c"),
             Object(NonMatching, "dolphin/exi/EXIBios.c"),
