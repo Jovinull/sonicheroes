@@ -35,6 +35,7 @@ MSL_C/mem.c:
 
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
+	.bss        start:0x803EE0C8 end:0x803EE0F0
 
 dolphin/trk/nubinit.c:
 	.text       start:0x801C9738 end:0x801C98B8

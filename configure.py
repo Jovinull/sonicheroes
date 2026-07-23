@@ -368,7 +368,7 @@ config.libs = [
                 extra_cflags=["-str reuse,readonly"],
             ),
             Object(Matching, "dolphin/trk/targimpl.c", extra_cflags=["-sdata 0", "-sdata2 0", "-common off"]),
-            Object(NonMatching, "dolphin/trk/nubevent.c"),
+            Object(Matching, "dolphin/trk/nubevent.c"),
             Object(NonMatching, "dolphin/trk/nubinit.c"),
         ],
     },
