@@ -106,28 +106,23 @@ modules:
   symbols: config/G9SE8P/stage40D/symbols.txt
   splits: config/G9SE8P/stage40D/splits.txt
 
-# Known issue: the RELs do not reproduce yet, so build.sha1 only verifies
-# main.dol.
+# Resolved: the RELs reproduce. build.sha1 verifies all 17 alongside main.dol.
 #
-# The rebuilt RELs come out the same size as the originals and differ in well
-# under 1 percent of their bytes. The cause is a section table shift. Taking
-# autosaveD as the example, the original has 20 sections with a zero sized
-# section at index 1, sitting at offset 0xEC right before .text at index 2:
+# These RELs reserve an empty section slot before .text. Taking autosaveD as the
+# example, the original has 20 sections with a zero sized one at index 1, at
+# offset 0xEC right before .text at index 2. mwld drops it during the partial
+# link because nothing lands in it, and dtk wrote its section table straight
+# from the object's section indices, so every section came out one index low and
+# prologSection, epilogSection and unresolvedSection moved from 2 to 1. That is
+# why dtk could not re-read its own output.
 #
-#   original            rebuilt
-#   [1] off 0xEC size 0  (empty placeholder)   [1] .text
-#   [2] .text                                  [2] .ctors
-#   [3] .ctors                                 [3] .dtors
-#
-# The rebuild omits that placeholder, so every later section shifts down one
-# index. That also moves prologSection, epilogSection and unresolvedSection from
-# 2 to 1 in the header, which is why dtk cannot even re-read its own output.
-#
-# Fixing it means a custom partial ldscript per module that emits the extra
-# empty section before .text. See the ldscript_template option in
-# config.example.yml. Nothing else depends on this, since all the decompilation
-# work is in main.dol, so it is left for later. Put the REL hashes back in
-# build.sha1 once they reproduce.
+# The earlier guess here was that it needed a custom partial ldscript per module
+# to emit the empty section. It does not: five ways of forcing the section to
+# survive the link were measured and none of them keep it, because mwld will not
+# emit a section nothing lands in. The fix belongs in dtk, which now maps object
+# section indices onto the original REL's, and is pinned as the v1.8.3-sh1 fork
+# in tools/download_tool.py. Upstream issue:
+# https://github.com/encounter/decomp-toolkit/issues/144
 #
 # Known issue: stage00D.rel is excluded.
 #

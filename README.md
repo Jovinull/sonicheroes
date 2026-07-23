@@ -61,16 +61,23 @@ saying so, so it can be found and revisited rather than quietly kept. The
 generated assembly for everything not yet written stays in `build/`, which git
 ignores.
 
-18 REL modules ship alongside `main.dol`. 17 of them are configured, and none of
-them reproduce yet: the original has a zero sized placeholder section that the
-rebuild does not emit, which shifts every later section index. So
-`config/G9SE8P/build.sha1` carries the hash of `main.dol` only, and that is all
-CI verifies. `stage00D` is excluded for now, see the note at the end of
-`config/G9SE8P/config.yml`.
+18 REL modules ship alongside `main.dol`. 17 of them are configured, and all 17
+now rebuild byte for byte, so `config/G9SE8P/build.sha1` carries their hashes
+alongside the DOL's and CI verifies all eighteen artifacts. `stage00D` is
+excluded, see the note at the end of `config/G9SE8P/config.yml`.
 
-There is no badge for the modules, and there will not be one until they
-reproduce. Nothing in them is written yet, and a number that moved before the
-build could be verified would not mean anything.
+Reproducing them needed a fix to decomp-toolkit. These RELs reserve an empty
+section slot before `.text` which mwld drops during the partial link, because
+nothing lands in it; dtk wrote its section table straight from the object's
+indices, so every section came out one index low and the header's section
+fields shifted with them. The project therefore pins a
+[fork](https://github.com/Jovinull/decomp-toolkit) carrying that one change,
+tagged `v1.8.3-sh1`. It is reported upstream as
+[encounter/decomp-toolkit#144](https://github.com/encounter/decomp-toolkit/issues/144);
+point `tools/download_tool.py` back at upstream once it lands there.
+
+There is no badge for the modules. They reproduce, but nothing inside them is
+written yet, so the number would be zero either way.
 
 ## AI assistance
 

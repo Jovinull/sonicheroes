@@ -52,7 +52,13 @@ def dtk_url(tag: str) -> str:
     if arch == "amd64":
         arch = "x86_64"
 
-    repo = "https://github.com/encounter/decomp-toolkit"
+    # A fork, not upstream. dtk writes a REL section table straight from the
+    # object's section indices, and this game's RELs reserve an empty slot that
+    # mwld drops during the partial link, so every section lands one index low
+    # and none of the 17 modules reproduce. The fork carries the fix and nothing
+    # else. Point this back at encounter/decomp-toolkit once it is upstream:
+    # https://github.com/encounter/decomp-toolkit/issues/144
+    repo = "https://github.com/Jovinull/decomp-toolkit"
     return f"{repo}/releases/download/{tag}/dtk-{system}-{arch}{suffix}"
 
 

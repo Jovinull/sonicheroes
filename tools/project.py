@@ -402,7 +402,8 @@ def load_build_config(
         return None
 
     def versiontuple(v: str) -> Tuple[int, ...]:
-        return tuple(map(int, (v.split("."))))
+        # Drop any prerelease suffix, so a tag like 1.8.3-sh1 compares as 1.8.3.
+        return tuple(map(int, (v.split("-")[0].split("."))))
 
     f = open(build_config_path, "r", encoding="utf-8")
     build_config: BuildConfig = json.load(f)
