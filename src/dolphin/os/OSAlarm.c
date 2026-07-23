@@ -2,21 +2,22 @@
 #include "dolphin/os.h"
 #include "dolphin/ppc.h"
 
-// Alarms, driven by the decrementer exception. WORK IN PROGRESS: three
-// functions are written, five are still assembly in the build.
+// Alarms, driven by the decrementer exception.
 //
-// The translation unit runs from OSInitAlarm at 0x801D1204 to 0x801D18C0. The
-// boundary is not a guess: OS.c owns .data up to 0x802920A0 and the next word
-// there is this file's ResetFunctionInfo, while DSPInitCode at 0x802920B0
-// starts another unit again. In .sbss this file owns AlarmQueue and nothing
-// else, since the next word belongs to a unit that sits between here and
-// OSArena.c.
+// The translation unit runs from OSInitAlarm at 0x801D1204 to the end of
+// OnReset at 0x801D1960, with the queue heads in .sbss and its reset
+// registration in .data. The boundary is not a guess: OS.c owns .data up to
+// 0x802920A0 and the next word there is this file's ResetFunctionInfo, while
+// DSPInitCode at 0x802920B0 starts another unit again. ResetFunctionInfo
+// holds the address of the reset callback, and reading those sixteen bytes
+// off the disc gave 0x801D18C0, which is OnReset. The Dolphin SDK calls it
+// OnReset and hands it a flag saying whether this is the final pass, which is
+// how zeldaret/tww has it too.
 //
-// The end of the range came from the same evidence. ResetFunctionInfo at
-// 0x802920A0 holds the address of the reset callback, and reading those sixteen
-// bytes off the disc gave 0x801D18C0, which is the function immediately after
-// the decrementer handler. So that function belongs here too and the unit runs
-// one function further than the first guess.
+// OnReset consults __DVDTestAlarm before it cancels an alarm, as in the
+// corresponding Dolphin SDK source. SetTimer exists in the source but not in
+// the binary: a small
+// static defined before every caller, inlined at all five sites.
 //
 // Functions are in the order the original emits them.
 
@@ -24,12 +25,16 @@
 #define __OS_EXCEPTION_DECREMENTER 8
 
 typedef struct OSAlarm OSAlarm;
-
-typedef void (*OSAlarmHandler)(OSAlarm* alarm, void* context);
+typedef void (*OSAlarmHandler)(OSAlarm* alarm, OSContext* context);
 
 struct OSAlarm {
 	OSAlarmHandler handler; // 0x00
 	u32 tag;                // 0x04
+	OSTime fire;            // 0x08
+	OSAlarm* prev;          // 0x10
+	OSAlarm* next;          // 0x14
+	OSTime period;          // 0x18
+	OSTime start;           // 0x20
 };
 
 typedef struct OSAlarmQueue {
@@ -37,36 +42,58 @@ typedef struct OSAlarmQueue {
 	OSAlarm* tail; // 0x04
 } OSAlarmQueue;
 
-extern void OSRegisterResetFunction(void* info);
-
-// Written below, installed by OSInitAlarm above it.
-static void DecrementerExceptionHandler(void);
-
-// The reset callback and its registration record live in this file but are not
-// written yet, so the record is reached as an external for now. It has to be
-// declared with its real type: as a bare pointer it is small enough for the
-// small data area and the address comes out through r13 instead of as a pair.
 typedef struct OSResetFunctionInfo {
-	void* func;                       // 0x00
+	BOOL (*func)(BOOL final);         // 0x00
 	u32 priority;                     // 0x04
 	struct OSResetFunctionInfo* next; // 0x08
 	struct OSResetFunctionInfo* prev; // 0x0C
 } OSResetFunctionInfo;                // 0x10
 
-// This file's reset callback, at 0x801D18C0. It walks the queue and cancels
-// what is still pending. Not written yet, but declared with its real name and
-// signature: the Dolphin SDK calls it OnReset and hands it a flag saying
-// whether this is the final pass, which is how zeldaret/tww has it too.
-// symbols.txt carries the same name, so the relocation in the record below
-// resolves rather than dangling.
+typedef u8 __OSException;
+
+extern void OSDisableScheduler(void);
+extern void OSEnableScheduler(void);
+extern void __OSReschedule(void);
+extern void OSLoadContext(OSContext* context);
+extern OSTime __OSGetSystemTime(void);
+extern void PPCMtdec(u32 value);
+extern void OSRegisterResetFunction(OSResetFunctionInfo* info);
+
+extern BOOL __DVDTestAlarm(OSAlarm* alarm);
+
+void OSCancelAlarm(OSAlarm* alarm);
 static BOOL OnReset(BOOL final);
+static void DecrementerExceptionCallback(__OSException exception, OSContext* context);
+static void DecrementerExceptionHandler(
+    register __OSException exception, register OSContext* context);
+
+// The pending alarms, soonest first. File local, in the unit's .sbss.
+static OSAlarmQueue AlarmQueue;
 
 // Read from the disc rather than guessed: 801d18c0 ffffffff 00000000 00000000.
 // The priority is the lowest there is, so alarms are torn down last.
-static OSResetFunctionInfo ResetFunctionInfo = { (void*)OnReset, 0xFFFFFFFF, NULL, NULL };
+static OSResetFunctionInfo ResetFunctionInfo = {
+	OnReset,
+	0xFFFFFFFF,
+};
 
-// The queue is empty until OSInitAlarm clears it.
-static OSAlarmQueue AlarmQueue;
+// Arms the decrementer for the alarm at the head of the queue. Inlined into
+// every caller, so it has no body in the binary — which requires the
+// `inline` keyword: MWCC emits an out-of-line body for a plain static even
+// when every call site is inlined, and that body is 152 stray .text bytes.
+static inline void SetTimer(OSAlarm* alarm)
+{
+	OSTime delta;
+
+	delta = alarm->fire - __OSGetSystemTime();
+	if (delta < 0) {
+		PPCMtdec(0);
+	} else if (delta < 0x80000000) {
+		PPCMtdec((u32)delta);
+	} else {
+		PPCMtdec(0x7FFFFFFF);
+	}
+}
 
 // Installs the decrementer handler once. Calling it twice is harmless: the
 // handler already being in place is what the test at the top is for.
@@ -83,43 +110,202 @@ void OSInitAlarm(void)
 
 void OSCreateAlarm(OSAlarm* alarm)
 {
-	alarm->handler = NULL;
+	alarm->handler = 0;
 	alarm->tag     = 0;
 }
 
-// InsertAlarm, OSSetAlarm, fn_801D1524 and DecrementerExceptionCallback belong
-// here, still unwritten.
+static void InsertAlarm(OSAlarm* alarm, OSTime fire, OSAlarmHandler handler)
+{
+	OSAlarm* next;
+	OSAlarm* prev;
 
-extern void DecrementerExceptionCallback(void);
+	if (0 < alarm->period) {
+		OSTime time = __OSGetSystemTime();
 
-// Saves the part of the register file the callback is allowed to disturb, then
-// tail branches into it. There is no prologue and no return: the callback runs
-// on the frame this leaves behind and unwinds the exception itself.
+		fire = alarm->start;
+		if (alarm->start < time) {
+			fire += alarm->period * ((time - alarm->start) / alarm->period + 1);
+		}
+	}
+
+	alarm->handler = handler;
+	alarm->fire    = fire;
+
+	for (next = AlarmQueue.head; next; next = next->next) {
+		if (next->fire <= fire) {
+			continue;
+		}
+
+		alarm->prev = next->prev;
+		next->prev  = alarm;
+		alarm->next = next;
+		prev        = alarm->prev;
+		if (prev) {
+			prev->next = alarm;
+		} else {
+			AlarmQueue.head = alarm;
+			SetTimer(alarm);
+		}
+		return;
+	}
+
+	alarm->next     = NULL;
+	prev            = AlarmQueue.tail;
+	AlarmQueue.tail = alarm;
+	alarm->prev     = prev;
+	if (prev) {
+		prev->next = alarm;
+	} else {
+		AlarmQueue.head = AlarmQueue.tail = alarm;
+		SetTimer(alarm);
+	}
+}
+
+void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler)
+{
+	BOOL enabled;
+
+	enabled = OSDisableInterrupts();
+
+	alarm->period = 0;
+	InsertAlarm(alarm, __OSGetSystemTime() + tick, handler);
+
+	OSRestoreInterrupts(enabled);
+}
+
+// OSCancelAlarm in the SDK.
+void OSCancelAlarm(OSAlarm* alarm)
+{
+	BOOL enabled;
+	OSAlarm* next;
+
+	enabled = OSDisableInterrupts();
+
+	if (alarm->handler == 0) {
+		OSRestoreInterrupts(enabled);
+		return;
+	}
+
+	next = alarm->next;
+	if (next == NULL) {
+		AlarmQueue.tail = alarm->prev;
+	} else {
+		next->prev = alarm->prev;
+	}
+	if (alarm->prev) {
+		alarm->prev->next = next;
+	} else {
+		AlarmQueue.head = next;
+		if (next) {
+			SetTimer(next);
+		}
+	}
+
+	alarm->handler = 0;
+
+	OSRestoreInterrupts(enabled);
+}
+
+static void DecrementerExceptionCallback(__OSException exception, OSContext* context)
+{
+	OSAlarm* alarm;
+	OSAlarm* next;
+	OSAlarmHandler handler;
+	OSTime time;
+	OSContext exceptionContext;
+
+	time  = __OSGetSystemTime();
+	alarm = AlarmQueue.head;
+	if (alarm == NULL) {
+		OSLoadContext(context);
+	}
+
+	if (time < alarm->fire) {
+		SetTimer(alarm);
+		OSLoadContext(context);
+	}
+
+	next            = alarm->next;
+	AlarmQueue.head = next;
+	if (next == NULL) {
+		AlarmQueue.tail = NULL;
+	} else {
+		next->prev = NULL;
+	}
+
+	handler        = alarm->handler;
+	alarm->handler = 0;
+
+	if (0 < alarm->period) {
+		InsertAlarm(alarm, 0, handler);
+	}
+
+	if (AlarmQueue.head) {
+		SetTimer(AlarmQueue.head);
+	}
+
+	OSDisableScheduler();
+	OSClearContext(&exceptionContext);
+	OSSetCurrentContext(&exceptionContext);
+
+	handler(alarm, context);
+
+	OSClearContext(&exceptionContext);
+	OSSetCurrentContext(context);
+
+	OSEnableScheduler();
+	__OSReschedule();
+	OSLoadContext(context);
+}
+
+// Saves the caller-saved half of the register file into the context the
+// exception glue picked, then falls through into the callback. Assembly in
+// the original source too.
 // clang-format off
-ASM static void DecrementerExceptionHandler(void)
+static ASM void DecrementerExceptionHandler(register __OSException exception, register OSContext* context)
 {
 #ifdef __MWERKS__
 	nofralloc
-	stw     r0, 0x0(r4)
-	stw     r1, 0x4(r4)
-	stw     r2, 0x8(r4)
-	stmw    r6, 0x18(r4)
+	stw     r0, 0x0(context)
+	stw     r1, 0x4(context)
+	stw     r2, 0x8(context)
+	stmw    r6, 0x18(context)
 	mfspr   r0, SPR_GQR1
-	stw     r0, 0x1a8(r4)
+	stw     r0, 0x1A8(context)
 	mfspr   r0, SPR_GQR2
-	stw     r0, 0x1ac(r4)
+	stw     r0, 0x1AC(context)
 	mfspr   r0, SPR_GQR3
-	stw     r0, 0x1b0(r4)
+	stw     r0, 0x1B0(context)
 	mfspr   r0, SPR_GQR4
-	stw     r0, 0x1b4(r4)
+	stw     r0, 0x1B4(context)
 	mfspr   r0, SPR_GQR5
-	stw     r0, 0x1b8(r4)
+	stw     r0, 0x1B8(context)
 	mfspr   r0, SPR_GQR6
-	stw     r0, 0x1bc(r4)
+	stw     r0, 0x1BC(context)
 	mfspr   r0, SPR_GQR7
-	stw     r0, 0x1c0(r4)
+	stw     r0, 0x1C0(context)
 	stwu    r1, -0x8(r1)
 	b       DecrementerExceptionCallback
 #endif
+} // clang-format on
+
+// Cancels every alarm the DVD code does not claim on the final pass of a
+// reset.
+static BOOL OnReset(BOOL final)
+{
+	OSAlarm* alarm;
+	OSAlarm* next;
+
+	if (final != FALSE) {
+		alarm = AlarmQueue.head;
+		next  = alarm ? alarm->next : NULL;
+		while (alarm != NULL) {
+			if (!__DVDTestAlarm(alarm)) {
+				OSCancelAlarm(alarm);
+			}
+			alarm = next;
+			next  = alarm ? alarm->next : NULL;
+		}
+	}
+	return TRUE;
 }
-// clang-format on
