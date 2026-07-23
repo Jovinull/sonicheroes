@@ -80,6 +80,10 @@ dolphin/os/OSArena.c:
 	.sdata      start:0x8042BF30 end:0x8042BF34
 	.sbss       start:0x8042CB38 end:0x8042CB3C
 
+dolphin/os/OSAudioSystem.c:
+	.text       start:0x801D1C90 end:0x801D1F24
+	.data       start:0x802920B0 end:0x80292130
+
 dolphin/os/OSCache.c:
 	.text       start:0x801D1F24 end:0x801D235C
 	.data       start:0x80292130 end:0x80292360
