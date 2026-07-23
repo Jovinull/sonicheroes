@@ -334,7 +334,7 @@ config.libs = [
             Object(Matching, "dolphin/si/SISamplingRate.c"),
             Object(NonMatching, "dolphin/os/OSInterrupt.c"),
             Object(Matching, "dolphin/os/OSSram.c"),
-            Object(NonMatching, "dolphin/os/OSAlarm.c"),
+            Object(Matching, "dolphin/os/OSAlarm.c"),
             Object(Matching, "dolphin/os/OSStopwatch.c"),
             Object(Matching, "dolphin/os/OSSync.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
