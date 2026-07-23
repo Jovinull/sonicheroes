@@ -40,6 +40,7 @@ dolphin/trk/nubevent.c:
 dolphin/trk/nubinit.c:
 	.text       start:0x801C9738 end:0x801C98B8
 	.rodata     start:0x8023D340 end:0x8023D360
+	.bss        start:0x803EE0F0 end:0x803EE0F8
 
 dolphin/trk/targimpl.c:
 	.text       start:0x801CF550 end:0x801CFAF4

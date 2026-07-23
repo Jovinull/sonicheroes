@@ -21,6 +21,38 @@
 
 extern void TRK_board_display(const char* msg);
 extern void fn_801CA4C0(void);
+extern void usr_put_initialize(void);
+extern int TRKInitializeEventQueue(void);
+extern int TRKInitializeMessageBuffers(void);
+extern int TRKInitializeDispatcher(void);
+extern int TRKInitializeIntDrivenUART(u32, u32, u32, volatile u8**);
+extern void TRKTargetSetInputPendingPtr(volatile u8*);
+extern int TRKInitializeSerialHandler(void);
+extern int TRKInitializeTarget(void);
+
+u32 gTRKBigEndian[1];
+extern volatile u8* gTRKInputPendingPtr[];
+
+static inline int TRKInitializeEndian(void)
+{
+	u8 endian[4];
+	int result = 0;
+
+	gTRKBigEndian[0] = 1;
+	endian[0]        = 0x12;
+	endian[1]        = 0x34;
+	endian[2]        = 0x56;
+	endian[3]        = 0x78;
+
+	if (*(u32*)endian == 0x12345678) {
+		gTRKBigEndian[0] = 1;
+	} else if (*(u32*)endian == 0x78563412) {
+		gTRKBigEndian[0] = 0;
+	} else {
+		result = 1;
+	}
+	return result;
+}
 
 // Printed once, over whatever link the board support brought up.
 void TRKNubWelcome(void)
@@ -34,4 +66,37 @@ int TRKTerminateNub(void)
 	return 0;
 }
 
-// TRKInitializeNub belongs here, still unwritten.
+int TRKInitializeNub(void)
+{
+	int result;
+	int uartResult;
+
+	result = TRKInitializeEndian();
+
+	if (result == 0) {
+		usr_put_initialize();
+	}
+	if (result == 0) {
+		result = TRKInitializeEventQueue();
+	}
+	if (result == 0) {
+		result = TRKInitializeMessageBuffers();
+	}
+	if (result == 0) {
+		result = TRKInitializeDispatcher();
+	}
+	if (result == 0) {
+		uartResult = TRKInitializeIntDrivenUART(0xE100, 1, 0, gTRKInputPendingPtr);
+		TRKTargetSetInputPendingPtr(gTRKInputPendingPtr[0]);
+		if (uartResult != 0) {
+			result = uartResult;
+		}
+	}
+	if (result == 0) {
+		result = TRKInitializeSerialHandler();
+	}
+	if (result == 0) {
+		result = TRKInitializeTarget();
+	}
+	return result;
+}
