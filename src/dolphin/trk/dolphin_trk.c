@@ -78,7 +78,7 @@ static int fn_801CFC6C(u8 c)
 
 // Not static: EnableMetroTRKInterrupts in targimpl.c calls it, and the symbol
 // carries no scope:local marker in symbols.txt.
-void fn_801CFD74(void)
+void EnableEXI2Interrupts(void)
 {
 	gDBCommTable.start();
 }
