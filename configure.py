@@ -334,7 +334,7 @@ config.libs = [
             Object(Matching, "dolphin/ar/ar.c"),
             Object(Matching, "dolphin/ar/arq.c"),
             Object(NonMatching, "dolphin/db/dbcomm.c"),
-            Object(NonMatching, "dolphin/exi/EXIBios.c"),
+            Object(Matching, "dolphin/exi/EXIBios.c", extra_cflags=["-opt noschedule"]),
             Object(Matching, "dolphin/si/SISamplingRate.c"),
             Object(Matching, "dolphin/os/OSInterrupt.c"),
             Object(Matching, "dolphin/os/OSSram.c"),
