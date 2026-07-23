@@ -105,6 +105,10 @@ dolphin/os/OSReset.c:
 	.text       start:0x801D4BD8 end:0x801D4FFC
 	.sbss       start:0x8042CB68 end:0x8042CB78
 
+dolphin/os/OSResetSW.c:
+	.text       start:0x801D4FFC end:0x801D541C
+	.sbss       start:0x8042CB78 end:0x8042CB98
+
 dolphin/os/OSSram.c:
 	.text       start:0x801D541C end:0x801D60C0
 	.bss        start:0x803F2360 end:0x803F23B4
