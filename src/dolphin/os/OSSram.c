@@ -344,8 +344,7 @@ void fn_801D5DC4(u32 mode)
 	__OSUnlockSram(TRUE);
 }
 
-// OSGetWirelessID in the SDK.
-u16 fn_801D5E68(s32 chan)
+u16 OSGetWirelessID(s32 chan)
 {
 	OSSramEx* sram;
 	u16 id;
@@ -356,13 +355,12 @@ u16 fn_801D5E68(s32 chan)
 	return id;
 }
 
-// OSSetWirelessID in the SDK.
 // OSSetWirelessID in the SDK. The wirelessPadID slot address must form
 // through a pointer bump fused into the dereference: the update-form load
 // (lhzu) only appears for *(p += n), while the plain field access folds the
 // offset into two displacements and never matches. 0xE halfwords is
 // offsetof(OSSramEx, wirelessPadID).
-void fn_801D5EEC(s32 chan, u16 id)
+void OSSetWirelessID(s32 chan, u16 id)
 {
 	OSSramEx* sram;
 	u16* p;
