@@ -65,9 +65,10 @@ dolphin/os/OSFpu.c:
 	.sbss       start:0x8042CAF0 end:0x8042CB00
 
 dolphin/os/OS.c:
-	.text       start:0x801D0840 end:0x801D1170
+	.text       start:0x801D0840 end:0x801D1204
 	.data       start:0x80291EA8 end:0x802920A0
 	.bss        start:0x803F22A0 end:0x803F22F0
+	.sdata      start:0x8042BF18 end:0x8042BF28
 	.sbss       start:0x8042CB00 end:0x8042CB08
 
 dolphin/os/OSAlarm.c:

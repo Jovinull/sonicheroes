@@ -2,8 +2,6 @@
 #include "dolphin/os.h"
 #include "dolphin/ppc.h"
 
-// WORK IN PROGRESS, NonMatching in configure.py.
-//
 // This was first split as OSException.c covering 0x801D0DA4..0x801D1170. That
 // was wrong. The string pool at 0x80291EA8 holds both the OSInit banner
 // ("<< Dolphin SDK - OS release build ... >>", "Console Type", "Arena : 0x%x")
@@ -21,26 +19,9 @@
 // return collapses into bnelr where the original branches to one trailing blr.
 // Turning it off moved every function here at once.
 //
-// Every function is written. Eight of eleven match; what is left is register
-// allocation:
-//   ClearArena        99.6%  start lands in r4 and the base in r3, the original
-//                            has them the other way round. Declaration and
-//                            assignment order do not move it.
-//   OSInit            99.1%  the arena ternary loads through r0 and copies to
-//                            r3 instead of loading straight into r3. Four forms
-//                            tried, this is the best of them.
-//   OSExceptionInit   95.4%  the word count for the nop fill is hoisted out of
-//                            the exception loop, so one more callee saved
-//                            register is live than the original needs, the
-//                            frame is 0x40 instead of 0x38, and every register
-//                            number below r23 shifts by one. Almost the whole
-//                            remaining diff is that shift.
-//
-// .data is 503 of 504 bytes. The strings and the vector table land in the right
-// order; the original pads the section to eight and ours does not.
-//
-// Several of the remaining lines in OSInit and OSExceptionInit are nothing but
-// the names of the .sbss externs below, which cannot be fixed from here.
+// The exception-vector templates and default exception handler remain assembly
+// because they are assembly in the Dolphin SDK source and directly manipulate
+// CPU exception state. The ordinary OS routines, including ClearArena, are C.
 
 // Physical address zero is mirrored at 0x80000000 through the cache. Writing
 // the OS globals this way rather than as bare constants keeps the compiler
@@ -162,10 +143,13 @@ extern void* memcpy(void* dst, const void* src, u32 n);
 extern void* __OSSavedRegionStart;
 extern void* __OSSavedRegionEnd;
 
-// The previous run leaves the region it wants preserved recorded just under the
-// top of MEM1.
-#define OS_SAVED_REGION_START (*(void**)0x812FDFF0)
-#define OS_SAVED_REGION_END   (*(void**)0x812FDFEC)
+#ifdef __MWERKS__
+extern u32 OS_SAVED_REGION_START : 0x812FDFF0;
+extern u32 OS_SAVED_REGION_END : 0x812FDFEC;
+#else
+extern u32 OS_SAVED_REGION_START;
+extern u32 OS_SAVED_REGION_END;
+#endif
 
 #define OS_RESET_RESTART 0x80000000
 
@@ -233,7 +217,6 @@ u32 OSGetConsoleType(void)
 static void ClearArena(void)
 {
 	void* end;
-	void* start;
 	u32 size;
 
 	if (OSGetResetCode() != OS_RESET_RESTART) {
@@ -244,13 +227,10 @@ static void ClearArena(void)
 		return;
 	}
 
-	start = OS_SAVED_REGION_START;
-	end   = OS_SAVED_REGION_END;
+	__OSSavedRegionStart = (void*)OS_SAVED_REGION_START;
+	__OSSavedRegionEnd   = (void*)OS_SAVED_REGION_END;
 
-	__OSSavedRegionStart = start;
-	__OSSavedRegionEnd   = end;
-
-	if (start == NULL) {
+	if (OS_SAVED_REGION_START == 0) {
 		size = (u32)OSGetArenaHi() - (u32)OSGetArenaLo();
 		memset(OSGetArenaLo(), 0, size);
 		return;
@@ -266,10 +246,6 @@ static void ClearArena(void)
 		size = (u32)__OSSavedRegionStart - (u32)OSGetArenaLo();
 		memset(OSGetArenaLo(), 0, size);
 
-		// The local has to be assigned inside the if, not before it. Reading
-		// the global into it beforehand loads too early; reading it here is
-		// what makes the compiler hold the value in r31 across the
-		// OSGetArenaHi call instead of loading it twice.
 		if (OSGetArenaHi() > __OSSavedRegionEnd) {
 			end  = __OSSavedRegionEnd;
 			size = (u32)OSGetArenaHi() - (u32)end;
@@ -294,8 +270,6 @@ void OSInit(void)
 {
 	BI2Debug* DebugInfo;
 	u32 consoleType;
-	void* arenaLo;
-	void* arenaHi;
 
 	if (AreWeInitialized != 0) {
 		return;
@@ -333,16 +307,14 @@ void OSInit(void)
 
 	__DVDLongFileNameFlag = 1;
 
-	arenaLo = BootInfo->arenaLo;
-	OSSetArenaLo((arenaLo == NULL) ? (void*)__ArenaLo : arenaLo);
+	OSSetArenaLo((BootInfo->arenaLo == NULL) ? (void*)__ArenaLo : BootInfo->arenaLo);
 
 	// The debugger keeps its stack just above the arena, so give it room.
 	if (BootInfo->arenaLo == NULL && BI2DebugFlag != NULL && (*BI2DebugFlag < 2)) {
 		OSSetArenaLo((void*)OSRoundUp32B(_stack_addr));
 	}
 
-	arenaHi = BootInfo->arenaHi;
-	OSSetArenaHi((arenaHi == NULL) ? (void*)__ArenaHi : arenaHi);
+	OSSetArenaHi((BootInfo->arenaHi == NULL) ? (void*)__ArenaHi : BootInfo->arenaHi);
 
 	OSExceptionInit();
 	__OSInitSystemCall();
@@ -431,27 +403,8 @@ void OSInit(void)
 	}
 }
 
-// Fills a code region with nop words. Written as a helper so the word count is
-// a local of the inlined body rather than a variable of the caller's loop,
-// which is what keeps the compiler from hoisting it out of that loop.
-static void NopFill(void* dst, u32 nBytes)
-{
-	u32* p = (u32*)dst;
-	u32 n  = (nBytes + 3) / 4;
-
-	while (n--) {
-		*p++ = 0x60000000;
-	}
-}
-
-// Copies OSExceptionVector's body over each hardware vector, patching the
-// exception number into the template on the way. The debugger gets a say: an
-// exception it has marked is either left to it entirely or routed through the
-// integrator, and the branch slot in the middle of the template is filled with
-// either that jump or with nops.
 static void OSExceptionInit(void)
 {
-	// Not contiguous, which is why this is a table and not 0x100 + (n << 8).
 	static u32 ExceptionVectorTable[] = {
 		0x100,
 		0x200,
@@ -471,34 +424,27 @@ static void OSExceptionInit(void)
 	};
 
 	__OSException exception;
+	void* destAddr;
 	u32* opCodeAddr;
 	u32 oldOpCode;
-	void* destAddr;
-	void* dbIntDest;
-	void* evStart;
-	u32 dbIntSize;
-	u32 dbJumpSize;
-	u32 evSize;
+	u8* handlerStart;
+	u32 handlerSize;
 
-	opCodeAddr = (u32*)__OSEVSetNumber;
-	oldOpCode  = *opCodeAddr;
-	evStart    = __OSEVStart;
-	evSize     = (u32)__OSEVEnd - (u32)evStart;
+	opCodeAddr   = (u32*)__OSEVSetNumber;
+	oldOpCode    = *opCodeAddr;
+	handlerStart = (u8*)__OSEVStart;
+	handlerSize  = (u32)((u8*)__OSEVEnd - (u8*)__OSEVStart);
 
-	dbIntDest = OSPhysicalToCached(0x60);
-	if (*(u32*)dbIntDest == 0) {
+	destAddr = OSPhysicalToCached(0x60);
+	if (*(u32*)destAddr == 0) {
 		DBPrintf("Installing OSDBIntegrator\n");
-		dbIntSize = (u32)__OSDBINTEND - (u32)__OSDBINTSTART;
-		memcpy(dbIntDest, __OSDBINTSTART, dbIntSize);
-		DCFlushRangeNoSync(dbIntDest, dbIntSize);
+		memcpy(destAddr, __OSDBINTSTART, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
+		DCFlushRangeNoSync(destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
 		__sync();
-		ICInvalidateRange(dbIntDest, dbIntSize);
+		ICInvalidateRange(destAddr, (u32)__OSDBINTEND - (u32)__OSDBINTSTART);
 	}
 
-	dbJumpSize = (u32)__OSDBJUMPEND - (u32)__OSDBINTEND;
-
 	for (exception = 0; exception < __OS_EXCEPTION_MAX; exception++) {
-		// Leave it alone entirely if the debugger has claimed it.
 		if (BI2DebugFlag && (*BI2DebugFlag >= 2) && __DBIsExceptionMarked(exception)) {
 			DBPrintf(">>> OSINIT: exception %d commandeered by TRK\n", exception);
 			continue;
@@ -508,16 +454,21 @@ static void OSExceptionInit(void)
 
 		if (__DBIsExceptionMarked(exception)) {
 			DBPrintf(">>> OSINIT: exception %d vectored to debugger\n", exception);
-			memcpy(__DBVECTOR, __OSDBINTEND, dbJumpSize);
+			memcpy(__DBVECTOR, __OSDBINTEND, (u32)__OSDBJUMPEND - (u32)__OSDBINTEND);
 		} else {
-			NopFill(__DBVECTOR, dbJumpSize);
+			u32* ops = (u32*)__DBVECTOR;
+			int cb;
+
+			for (cb = 0; cb < (u32)__OSDBJUMPEND - (u32)__OSDBINTEND; cb += sizeof(u32)) {
+				*ops++ = 0x60000000;
+			}
 		}
 
 		destAddr = OSPhysicalToCached(ExceptionVectorTable[exception]);
-		memcpy(destAddr, evStart, evSize);
-		DCFlushRangeNoSync(destAddr, evSize);
+		memcpy(destAddr, handlerStart, handlerSize);
+		DCFlushRangeNoSync(destAddr, handlerSize);
 		__sync();
-		ICInvalidateRange(destAddr, evSize);
+		ICInvalidateRange(destAddr, handlerSize);
 	}
 
 	OSExceptionTable = OSPhysicalToCached(0x3000);
@@ -526,7 +477,7 @@ static void OSExceptionInit(void)
 	}
 
 	*opCodeAddr = oldOpCode;
-	DBPrintf("Exceptions initialized...\n");
+	DBPrintf("Exceptions initialized...\n\0");
 }
 
 // Copied over the exception vector area at boot, so it runs from a fixed
@@ -655,3 +606,41 @@ asm void OSDefaultExceptionHandler(register u8 exception, register void* context
 #endif
 }
 // clang-format on
+
+#ifdef __MWERKS__
+volatile u32 __DIRegs[] : 0xCC006000;
+#else
+extern volatile u32 __DIRegs[];
+#endif
+
+void __OSPSInit(void)
+{
+	PPCMthid2(PPCMfhid2() | 0xA0000000);
+	ICFlashInvalidate();
+	__sync();
+#ifdef __MWERKS__ // clang-format off
+	asm {
+		li      r3, 0x0
+		mtspr   SPR_GQR0, r3
+		mtspr   SPR_GQR1, r3
+		mtspr   SPR_GQR2, r3
+		mtspr   SPR_GQR3, r3
+		mtspr   SPR_GQR4, r3
+		mtspr   SPR_GQR5, r3
+		mtspr   SPR_GQR6, r3
+		mtspr   SPR_GQR7, r3
+	}
+#endif // clang-format on
+}
+
+u32 __OSGetDIConfig(void)
+{
+	return __DIRegs[9] & 0xFF;
+}
+
+static char VersionFormat[] = "%s\n";
+
+void OSRegisterVersion(const char* version)
+{
+	OSReport(VersionFormat, version);
+}
