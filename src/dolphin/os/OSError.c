@@ -48,7 +48,6 @@ extern u32 PPCMfmsr(void);
 extern void PPCMtmsr(u32 msr);
 extern u32 PPCMffpscr(void);
 extern void PPCMtfpscr(u32 fpscr);
-extern u32 fn_801D2770(void);
 extern void OSSaveFPUContext(OSContext* context);
 extern void OSLoadContext(OSContext* context);
 extern s32 OSDisableScheduler(void);
@@ -88,7 +87,7 @@ void OSPanic(const char* file, int line, const char* msg, ...)
 	vprintf(msg, args);
 	OSReport(" in \"%s\" on line %d.\n", file, line);
 	OSReport("\nAddress:      Back Chain    LR Save\n");
-	for (i = 0, p = (u32*)fn_801D2770(); p != NULL && (u32)p != 0xFFFFFFFF && i++ < 16;
+	for (i = 0, p = (u32*)OSGetStackPointer(); p != NULL && (u32)p != 0xFFFFFFFF && i++ < 16;
 	    p = (u32*)*p) {
 		OSReport("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
 	}
