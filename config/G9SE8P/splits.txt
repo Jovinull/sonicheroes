@@ -142,6 +142,12 @@ dolphin/pad/Pad.c:
 	.sdata      start:0x8042BFA0 end:0x8042BFC0
 	.sbss       start:0x8042CCD8 end:0x8042CD00
 
+dolphin/ai/ai.c:
+	.text       start:0x801DF6E4 end:0x801DFFC8
+	.data       start:0x802930B0 end:0x802930F8
+	.sdata      start:0x8042BFC0 end:0x8042BFC8
+	.sbss       start:0x8042CD08 end:0x8042CD48
+
 dolphin/ar/ar.c:
 	.text       start:0x801DFFC8 end:0x801E1B08
 	.data       start:0x802930F8 end:0x80293140
