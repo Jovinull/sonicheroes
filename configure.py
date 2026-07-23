@@ -324,7 +324,7 @@ config.libs = [
             Object(NonMatching, "dolphin/db/dbcomm.c"),
             Object(NonMatching, "dolphin/exi/EXIBios.c"),
             Object(NonMatching, "dolphin/os/OSInterrupt.c"),
-            Object(NonMatching, "dolphin/os/OSSram.c"),
+            Object(Matching, "dolphin/os/OSSram.c"),
             Object(NonMatching, "dolphin/os/OSAlarm.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
             Object(Matching, "dolphin/os/OSTime.c"),

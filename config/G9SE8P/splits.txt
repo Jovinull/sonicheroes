@@ -84,7 +84,7 @@ dolphin/os/OSInterrupt.c:
 	.sbss       start:0x8042CB40 end:0x8042CB44
 
 dolphin/os/OSSram.c:
-	.text       start:0x801D5594 end:0x801D6264
+	.text       start:0x801D541C end:0x801D60C0
 	.bss        start:0x803F2360 end:0x803F23B4
 
 dolphin/os/OSTime.c:
