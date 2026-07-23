@@ -320,6 +320,7 @@ config.libs = [
             Object(Matching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
             Object(Matching, "dolphin/dvd/dvdqueue.c"),
             Object(Matching, "dolphin/dvd/dvderror.c"),
+            Object(Matching, "dolphin/dvd/dvdidutils.c"),
             Object(Matching, "dolphin/pad/Padclamp.c"),
             # -inline noauto (leaving the default -inline on): with auto the compiler folds
             # PADReset/PADRecalibrate bodily into PADInit/PADRead/OnReset where
