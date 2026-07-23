@@ -13,6 +13,12 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:8
 
+game/heap.c:
+	extab       start:0x80005710 end:0x80005748
+	extabindex  start:0x8000BC98 end:0x8000BCEC
+	.text       start:0x8001234C end:0x80012C08
+	.sbss       start:0x8042C0A0 end:0x8042C0C0
+
 game/main.c:
 	extab       start:0x80005748 end:0x80005768
 	extabindex  start:0x8000BCEC end:0x8000BD1C

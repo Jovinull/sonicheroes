@@ -387,6 +387,7 @@ config.libs = [
         "cflags": cflags_base,
         "progress_category": "game",
         "objects": [
+            Object(NonMatching, "game/heap.c", extra_cflags=["-opt noschedule"]),
             Object(NonMatching, "game/main.c", extra_cflags=["-opt noschedule"]),
         ],
     },
