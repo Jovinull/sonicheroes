@@ -317,7 +317,7 @@ config.libs = [
             # register copies come out as addi rD,rS,0 instead of mr and single
             # exit returns collapse into bnelr, neither of which the original
             # has.
-            Object(NonMatching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
+            Object(Matching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
             Object(Matching, "dolphin/dvd/dvdqueue.c"),
             Object(Matching, "dolphin/dvd/dvderror.c"),
             Object(Matching, "dolphin/pad/Padclamp.c"),
