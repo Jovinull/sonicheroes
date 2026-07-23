@@ -160,6 +160,13 @@ dolphin/os/__start.c:
 	.init       start:0x800052C4 end:0x8000561C
 	.sbss       start:0x8042CBA8 end:0x8042CBAC
 
+dolphin/dvd/fstload.c:
+	.text       start:0x801DBACC end:0x801DBD0C
+	.data       start:0x80292C18 end:0x80292C88
+	.bss        start:0x803F2F38 end:0x803F2FA8
+	.sdata      start:0x8042BF80 end:0x8042BF90
+	.sbss       start:0x8042CC68 end:0x8042CC74
+
 dolphin/vi/vi.c:
 	.text       start:0x801DBD0C end:0x801DDB58
 	.data       start:0x80292C88 end:0x80293058
