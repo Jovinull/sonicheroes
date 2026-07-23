@@ -1,11 +1,13 @@
 # Sonic Heroes
 
-[![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![Discord]][discord]
+[![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![SDK Progress]][progress] [![Game Progress]][progress] [![Discord]][discord]
 
 [Build Status]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml
 [Code Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&label=Code
 [Data Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=data&label=Data
+[SDK Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&category=sdk&label=SDK
+[Game Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&category=game&label=Game
 [progress]: https://jovinull.github.io/sonicheroes/
 [Discord]: https://img.shields.io/discord/1529475492200059032?label=chat&logo=discord&logoColor=white&color=7289da
 [discord]: https://discord.gg/VGCHZMXUWN
@@ -28,13 +30,25 @@ Planned later: `G9SP8P` (PAL) and `G9SJ8P` (NTSC-J).
 
 ## Status
 
-`main.dol` rebuilds byte for byte identical to the original disc. Work is under
-way on the Dolphin SDK libraries linked into it. The progress badges above are
-live and move on every commit, so they are the number to trust rather than
-anything written here.
+`main.dol` rebuilds byte for byte identical to the original disc. The progress
+badges above are live and move on every commit, so they are the number to trust
+rather than anything written here.
+
+The Dolphin SDK libraries linked into the game are nearly finished: 41 of the 42
+translation units reproduce exactly. The one left is `dbcomm.c`, the debugger's
+serial link, where four of twelve functions match and the rest sit between 88%
+and 95%. Every remaining difference there is the same one, and it is written up
+at the top of that file.
+
+Work on the game's own code has started, under `src/game`. The first translation
+unit is carved and six of its seven functions match. That is a very small share
+of the game, which is what the Game badge says.
 
 The disc ships no `.map` file, so symbols and translation unit boundaries have
-to be worked out by hand.
+to be worked out by hand. Boundaries are argued from cross references rather
+than guessed: which functions share private data, which call only each other,
+where the neighbouring clusters end. Each file records the argument for its own
+bounds in its header comment, so the reasoning can be checked and overturned.
 
 A good share of what is written so far is inline assembly rather than C, and
 that is not a shortcut. Most of it is code that is assembly in the original
@@ -53,6 +67,10 @@ rebuild does not emit, which shifts every later section index. So
 `config/G9SE8P/build.sha1` carries the hash of `main.dol` only, and that is all
 CI verifies. `stage00D` is excluded for now, see the note at the end of
 `config/G9SE8P/config.yml`.
+
+There is no badge for the modules, and there will not be one until they
+reproduce. Nothing in them is written yet, and a number that moved before the
+build could be verified would not mean anything.
 
 ## AI assistance
 
