@@ -354,7 +354,7 @@ config.libs = [
         "progress_category": "sdk",
         "objects": [
             Object(NonMatching, "dolphin/trk/dolphin_trk.c"),
-            Object(NonMatching, "dolphin/trk/targimpl.c", extra_cflags=["-sdata 0", "-sdata2 0"]),
+            Object(Matching, "dolphin/trk/targimpl.c", extra_cflags=["-sdata 0", "-sdata2 0", "-common off"]),
             Object(NonMatching, "dolphin/trk/nubevent.c"),
             Object(NonMatching, "dolphin/trk/nubinit.c"),
         ],
