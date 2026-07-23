@@ -14,9 +14,10 @@ Sections:
 	.sbss2      type:bss align:8
 
 game/main.c:
-	extab       start:0x80005758 end:0x80005760
-	extabindex  start:0x8000BD04 end:0x8000BD10
-	.text       start:0x80012C9C end:0x80012E24
+	extab       start:0x80005748 end:0x80005768
+	extabindex  start:0x8000BCEC end:0x8000BD1C
+	.text       start:0x80012C08 end:0x80012E5C
+	.bss        start:0x8029BBC0 end:0x8029BBD0
 
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0

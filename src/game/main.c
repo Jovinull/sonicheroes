@@ -1,15 +1,34 @@
 #include "types.h"
 
-// The game's entry point, and the first of Sonic Heroes' own code to be
-// written. Everything under src/game is the game rather than the SDK linked
-// into it.
+// System startup and shutdown, and the game's entry point. The first of Sonic
+// Heroes' own code to be written: everything under src/game is the game rather
+// than the SDK linked into it.
 //
-// The translation unit boundary here is provisional and covers main alone.
-// That is almost certainly too narrow: main is 0x188 bytes at 0x80012C9C with
-// unnamed functions immediately on both sides, and nothing yet establishes
-// where its file starts or ends. The disc ships no map, so the boundary has to
-// come from cross references, and none have been worked out for this range.
-// Widen the split once neighbours are shown to share data with this file.
+// The translation unit runs from fn_80012C08 at 0x80012C08 to the end of
+// fn_80012E50 at 0x80012E5C, and owns the sixteen bytes of .bss at 0x8029BBC0.
+// The disc ships no map, so that boundary is argued rather than read:
+//
+//   lbl_8029BBC0 is touched by exactly two functions in the whole binary,
+//   fn_80012C50 and fn_80012E50, which sit on opposite sides of main. A
+//   translation unit owns a contiguous run of .text, so everything between
+//   them is in this file too. fn_80012E50 does nothing but hand back that
+//   block's address, which is what a file's accessor for its own state looks
+//   like. The .bss neighbours settle the data bound: lbl_8029BB80 before it
+//   has seventeen referencing units and lbl_8029BBD0 after it has thirty nine,
+//   so the private block is exactly these sixteen bytes.
+//
+//   The unit before ends at 0x80012C08. Its members are tied together by
+//   lbl_8042C0A8, lbl_8042C0AC and lbl_8042C0B0, shared by the run from
+//   fn_8001234C through fn_80012A94, and fn_80012BE0 closes it: the only
+//   function in the binary that names fn_80012BE0 is fn_8001234C, which is
+//   itself one of that run.
+//
+//   The unit after starts at 0x80012E5C. fn_80012E5C and fn_80012EA0 are the
+//   only two functions that call fn_801971A4, and neither shares data with
+//   anything here.
+//
+// Names are still the dtk ones. Nothing in the binary spells them, and the
+// evidence above fixes where the file is, not what it was called.
 //
 // Almost everything main does goes through one dispatcher at 0x80011FA8, which
 // takes a small integer and a pointer. The codes it is called with here are
@@ -17,40 +36,62 @@
 // select is not established, so they are left as the numbers the original
 // passes rather than guessed at with names.
 //
-// The unit is built with -opt noschedule, which is worth 30 points here on its
-// own: without it every instruction is right and the order is not. The same
-// setting is what matched EXIBios, so it is worth trying first on the next
-// game unit rather than last.
+// The unit is built with -opt noschedule, which is worth thirty points on main
+// on its own: without it every instruction is right and the order is not. The
+// same setting is what matched EXIBios, so it is worth trying first on the
+// next game unit rather than last.
 //
-// main stands at 98.7%. Everything still different is one cause: the original
-// reserves a 0x50 frame where ours is 0x40, and the sixteen bytes it carries
-// beyond what it uses push each local up by eight. Its three blocks sit at
-// 0x08, 0x18 and 0x24; ours land at 0x08, 0x10 and 0x18 and are otherwise
-// identical. Registers, instruction order and instruction count already agree.
+// Six of the seven functions match. main stands at 98.7% and everything still
+// different is one cause: the original reserves a 0x50 frame where ours is
+// 0x40, and those sixteen bytes push each local up by eight. Its three blocks
+// sit at 0x08, 0x18 and 0x24; ours land lower and are otherwise identical.
+// Registers, instruction order and instruction count already agree, and the
+// twenty bytes between the last local and the saved registers are never read
+// or written by the original either.
 //
-// Measured and rejected against that: GC/1.2.5n and GC/1.3 for the unit (1.3.2
-// and 1.3 tie at the top, 1.2.5n is twelve points worse), building it as C++
-// rather than C, and every ordering of the four locals. The gap is locals the
-// original declared and did not use, which leave no trace to recover them
-// from. The same wall stands in dbcomm, and it is the one thing worth solving
-// for both.
+// Unused locals do not reach it here, which is worth recording because they do
+// elsewhere: in dbcomm an unused u32 pad[4] moves the frame to the original's
+// size exactly, while here pad[4], pad[5] and pad[6] all leave main byte for
+// byte where it was. Whatever this unit is built with discards them. Also
+// rejected: GC/1.2.5n and GC/1.3 for the unit (1.3.2 and 1.3 tie at the top,
+// 1.2.5n is twelve points worse), building the file as C++ rather than C, and
+// every ordering of the four locals.
+
+// Video, disc and graphics entry points this file calls. None of them are in
+// include/ yet because no other unit written so far needs them; move them
+// there when a second one does.
+extern void OSInit(void);
+extern void OSResetSystem(u32 reset, u32 resetCode, BOOL forceMenu);
+extern void DVDInit(void);
+extern void VIInit(void);
+extern void VIFlush(void);
+extern void VISetBlack(BOOL black);
+extern void VIWaitForRetrace(void);
+extern void GXSetMisc(u32 token, u32 value);
+extern void PADInit(void);
 
 // The dispatcher. Returns zero on failure for the two codes main checks.
 extern int fn_80011FA8(int code, void* arg);
 
-extern void PADInit(void);
+// Handed this file's own block on the way up, and reports whether it took.
+extern int fn_8001234C(void* state);
 
 // Called as a pair on the way in. The first hands back a value the second
 // turns into the two words main copies into lbl_8029BB80 and passes on.
 extern u32 fn_8019D4D4(void);
 extern void fn_8019D448(u32* out, u32 arg);
 
+// Run before the machine is reset, and by fn_80012E2C on the way down.
+extern void fn_801F37CC(void);
+extern void fn_80013130(void);
+
 // Passed to the dispatcher under code 0x0D as the first word of a three word
 // block. In another unit's .data.
 extern u8 lbl_80298720[0x3C];
 
-// The block main runs its loop against. Only three words are touched here: two
-// written before the loop and one polled by it.
+// The block main runs its loop against. Widely shared: seventeen units name
+// it, so it belongs to none of them in particular. Only three words are
+// touched here, two written before the loop and one polled by it.
 typedef struct Unk8029BB80 {
 	u8 unk_0x0[0x4];
 	u32 unk_0x4;
@@ -64,6 +105,38 @@ extern Unk8029BB80 lbl_8029BB80;
 
 // One byte of a pair in another unit's .sbss, set once on the way in.
 extern u8 lbl_8042C0C0;
+
+// This file's own state, and the only data it owns. Handed to fn_8001234C at
+// startup and to anyone who asks through fn_80012E50. Nothing here reads its
+// contents, so it stays opaque.
+u8 lbl_8029BBC0[0x10];
+
+int fn_80012C08(void)
+{
+	return 1;
+}
+
+// Blanks the screen, waits for the field to finish and resets the machine.
+void fn_80012C10(void)
+{
+	fn_801F37CC();
+	VISetBlack(TRUE);
+	VIFlush();
+	VIWaitForRetrace();
+	OSResetSystem(0, 0, FALSE);
+}
+
+// Brings up the console: graphics, OS, disc and video, then hands this file's
+// block to fn_8001234C and reports whether that took.
+int fn_80012C50(void)
+{
+	GXSetMisc(1, 8);
+	OSInit();
+	DVDInit();
+	VIInit();
+
+	return fn_8001234C(lbl_8029BBC0) != 0;
+}
 
 int main(int argc, char** argv)
 {
@@ -116,4 +189,22 @@ int main(int argc, char** argv)
 	fn_80011FA8(0x11, NULL);
 
 	return 0;
+}
+
+int fn_80012E24(void)
+{
+	return 1;
+}
+
+int fn_80012E2C(void)
+{
+	fn_80013130();
+
+	return 1;
+}
+
+// Hands back this file's block.
+void* fn_80012E50(void)
+{
+	return lbl_8029BBC0;
 }
