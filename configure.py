@@ -331,6 +331,7 @@ config.libs = [
             Object(Matching, "dolphin/amcstubs.c"),
             Object(NonMatching, "dolphin/db/dbcomm.c"),
             Object(NonMatching, "dolphin/exi/EXIBios.c"),
+            Object(Matching, "dolphin/si/SISamplingRate.c"),
             Object(NonMatching, "dolphin/os/OSInterrupt.c"),
             Object(Matching, "dolphin/os/OSSram.c"),
             Object(NonMatching, "dolphin/os/OSAlarm.c"),
