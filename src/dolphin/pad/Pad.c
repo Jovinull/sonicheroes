@@ -1,4 +1,9 @@
 #include "types.h"
+// Functions below marked static inline without being helpers: they are real
+// SDK API this game never calls, and the original linker stripped them from
+// the DOL. The inline marking keeps their bodies out of the object so the
+// section sizes match the original exactly; the code stays for SDK fidelity.
+
 #include "dolphin/os.h"
 
 // The GameCube controller driver, the Dolphin SDK's pad library. WORK IN
@@ -199,8 +204,8 @@ static inline s8 ClampS8(s8 var, s8 org);
 static inline u8 ClampU8(u8 var, u8 org);
 static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2]);
 static BOOL OnReset(BOOL final);
-void __PADDisableXPatch(void);
-BOOL __PADDisableRumble(BOOL disable);
+static inline void __PADDisableXPatch(void);
+static inline BOOL __PADDisableRumble(BOOL disable);
 
 static void (*MakeStatus)(s32 chan, PADStatus* status, u32 data[2]) = SPEC2_MakeStatus;
 
@@ -604,13 +609,13 @@ u32 PADRead(PADStatus* status)
 }
 
 // Not in the binary: nothing references it, so the original linker dropped it.
-void PADSetSamplingRate(u32 msec)
+static inline void PADSetSamplingRate(u32 msec)
 {
 	SISetSamplingRate(msec);
 }
 
 // Not in the binary: nothing references it, so the original linker dropped it.
-void PADControlAllMotors(const u32* commandArray)
+static inline void PADControlAllMotors(const u32* commandArray)
 {
 	BOOL enabled;
 	int chan;
@@ -846,7 +851,7 @@ static void SPEC2_MakeStatus(s32 chan, PADStatus* status, u32 data[2])
 }
 
 // Not in the binary: nothing references it, so the original linker dropped it.
-int PADGetType(s32 chan, u32* type)
+static inline int PADGetType(s32 chan, u32* type)
 {
 	u32 chanBit;
 
@@ -866,7 +871,7 @@ inline BOOL PADSync(void)
 }
 
 // Not in the binary: nothing references it, so the original linker dropped it.
-void PADSetAnalogMode(u32 mode)
+static inline void PADSetAnalogMode(u32 mode)
 {
 	BOOL enabled;
 	u32 mask;
@@ -911,7 +916,7 @@ static BOOL OnReset(BOOL final)
 }
 
 // Not in the binary: nothing references it, so the original linker dropped it.
-void __PADDisableXPatch(void)
+static inline void __PADDisableXPatch(void)
 {
 	XPatchBits = 0;
 }
@@ -963,7 +968,7 @@ BOOL __PADDisableRecalibration(BOOL disable)
 }
 
 // Not in the binary: nothing references it, so the original linker dropped it.
-BOOL __PADDisableRumble(BOOL disable)
+static inline BOOL __PADDisableRumble(BOOL disable)
 {
 	BOOL enabled;
 	BOOL prev;
@@ -981,7 +986,7 @@ BOOL __PADDisableRumble(BOOL disable)
 }
 
 // Not in the binary: nothing references it, so the original linker dropped it.
-BOOL PADIsBarrel(s32 chan)
+static inline BOOL PADIsBarrel(s32 chan)
 {
 	if (chan < 0 || chan >= PAD_MAX_CONTROLLERS) {
 		return FALSE;

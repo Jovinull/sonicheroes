@@ -1,4 +1,8 @@
 #include "types.h"
+// Functions below marked static inline without being helpers: they are real
+// SDK API this game never calls, and the original linker stripped them from
+// the DOL. The inline marking keeps their bodies out of the object so the
+// section sizes match the original exactly; the code stays for SDK fidelity.
 
 // The pad library's clamping helpers, the SDK's Padclamp.c. WORK IN PROGRESS.
 //
@@ -124,7 +128,7 @@ static void ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min)
 }
 
 // Dropped by the original linker along with PADClampCircle, its only caller.
-static void ClampCircle(s8* px, s8* py, s8 radius, s8 min)
+static inline void ClampCircle(s8* px, s8* py, s8 radius, s8 min)
 {
 	int x = *px;
 	int y = *py;
@@ -158,7 +162,7 @@ static void ClampCircle(s8* px, s8* py, s8 radius, s8 min)
 	*py = y;
 }
 
-static void ClampTrigger(u8* trigger, u8 min, u8 max)
+static inline void ClampTrigger(u8* trigger, u8 min, u8 max)
 {
 	if (*trigger <= min) {
 		*trigger = 0;
@@ -190,7 +194,7 @@ void PADClamp(PADStatus* status)
 
 // Not in the binary: nothing references it, so the original linker dropped it.
 // The radStick/radSubstick fields of ClampRegion exist only for this pair.
-void PADClampCircle(PADStatus* status)
+static inline void PADClampCircle(PADStatus* status)
 {
 	s32 i;
 
