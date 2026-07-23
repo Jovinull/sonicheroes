@@ -107,8 +107,9 @@ dolphin/dvd/dvderror.c:
 	.text       start:0x801DB80C end:0x801DB9A4
 	.data       start:0x80292BD0 end:0x80292C18
 
-dolphin/amcstubs.c:
-	.text       start:0x801F8168 end:0x801F81A8
+dolphin/pad/Padclamp.c:
+	.text       start:0x801DDB58 end:0x801DDD9C
+	.rodata     start:0x8023D450 end:0x8023D460
 
 Runtime.PPCEABI.H/__mem.c:
 	.init       start:0x80003100 end:0x80003238
@@ -116,6 +117,16 @@ Runtime.PPCEABI.H/__mem.c:
 dolphin/os/__start.c:
 	.init       start:0x800052C4 end:0x8000561C
 	.sbss       start:0x8042CBA8 end:0x8042CBAC
+
+dolphin/pad/Pad.c:
+	.text       start:0x801DDD9C end:0x801DF6E4
+	.data       start:0x80293058 end:0x802930B0
+	.bss        start:0x803F30F0 end:0x803F3140
+	.sdata      start:0x8042BFA0 end:0x8042BFC0
+	.sbss       start:0x8042CCD8 end:0x8042CD00
+
+dolphin/amcstubs.c:
+	.text       start:0x801F8168 end:0x801F81A8
 
 dolphin/db/dbcomm.c:
 	.text       start:0x801F81A8 end:0x801F8C20

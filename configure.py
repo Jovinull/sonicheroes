@@ -320,6 +320,14 @@ config.libs = [
             Object(NonMatching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
             Object(Matching, "dolphin/dvd/dvdqueue.c"),
             Object(Matching, "dolphin/dvd/dvderror.c"),
+            Object(Matching, "dolphin/pad/Padclamp.c"),
+            # -inline noauto (leaving the default -inline on): with auto the compiler folds
+            # PADReset/PADRecalibrate bodily into PADInit/PADRead/OnReset where
+            # the original emits bl, and no source shape stops it. With
+            # -inline on plus the inline keyword on the small helpers
+            # (DoReset, PADEnable, PADDisable, ClampS8, ClampU8, PADSync)
+            # every function's size comes out exactly as the original's.
+            Object(Matching, "dolphin/pad/Pad.c", extra_cflags=["-inline noauto"]),
             Object(Matching, "dolphin/amcstubs.c"),
             Object(NonMatching, "dolphin/db/dbcomm.c"),
             Object(NonMatching, "dolphin/exi/EXIBios.c"),
