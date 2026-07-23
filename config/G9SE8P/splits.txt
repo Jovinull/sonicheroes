@@ -132,5 +132,10 @@ dolphin/db/dbcomm.c:
 	.text       start:0x801F81A8 end:0x801F8C20
 	.sbss       start:0x8042CF00 end:0x8042CF18
 
+dolphin/si/SISamplingRate.c:
+	.text       start:0x801FA310 end:0x801FA418
+	.data       start:0x80298C40 end:0x80298CD8
+	.sbss       start:0x8042CF28 end:0x8042CF2C
+
 dolphin/exi/EXIBios.c:
 	.text       start:0x801FA50C end:0x801FBDF4
