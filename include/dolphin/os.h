@@ -59,6 +59,9 @@ void OSDumpContext(OSContext* context);
 
 // Reporting, and the debugger's variant of it.
 void OSReport(const char* msg, ...);
+
+// Defined as assembly in OSTime.c; the timebase read has no C spelling.
+OSTime OSGetTime(void);
 void DBPrintf(const char* msg, ...);
 
 // Cache maintenance, called from more than one unit.
