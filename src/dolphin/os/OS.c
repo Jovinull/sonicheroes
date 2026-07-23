@@ -2,8 +2,6 @@
 #include "dolphin/os.h"
 #include "dolphin/ppc.h"
 
-// WORK IN PROGRESS, NonMatching in configure.py.
-//
 // This was first split as OSException.c covering 0x801D0DA4..0x801D1170. That
 // was wrong. The string pool at 0x80291EA8 holds both the OSInit banner
 // ("<< Dolphin SDK - OS release build ... >>", "Console Type", "Arena : 0x%x")
@@ -21,26 +19,9 @@
 // return collapses into bnelr where the original branches to one trailing blr.
 // Turning it off moved every function here at once.
 //
-// Every function is written. Eight of eleven match; what is left is register
-// allocation:
-//   ClearArena        99.6%  start lands in r4 and the base in r3, the original
-//                            has them the other way round. Declaration and
-//                            assignment order do not move it.
-//   OSInit            99.1%  the arena ternary loads through r0 and copies to
-//                            r3 instead of loading straight into r3. Four forms
-//                            tried, this is the best of them.
-//   OSExceptionInit   95.4%  the word count for the nop fill is hoisted out of
-//                            the exception loop, so one more callee saved
-//                            register is live than the original needs, the
-//                            frame is 0x40 instead of 0x38, and every register
-//                            number below r23 shifts by one. Almost the whole
-//                            remaining diff is that shift.
-//
-// .data is 503 of 504 bytes. The strings and the vector table land in the right
-// order; the original pads the section to eight and ours does not.
-//
-// Several of the remaining lines in OSInit and OSExceptionInit are nothing but
-// the names of the .sbss externs below, which cannot be fixed from here.
+// The exception-vector templates and default exception handler remain assembly
+// because they are assembly in the Dolphin SDK source and directly manipulate
+// CPU exception state. The ordinary OS routines, including ClearArena, are C.
 
 // Physical address zero is mirrored at 0x80000000 through the cache. Writing
 // the OS globals this way rather than as bare constants keeps the compiler
@@ -233,94 +214,45 @@ u32 OSGetConsoleType(void)
 	return type;
 }
 
-// The SDK C is equivalent, but this compiler colors the low-memory base and
-// saved-region value in the opposite registers. Keep the original instruction
-// sequence until that source-level register-allocation difference is resolved.
-// clang-format off
-static ASM void ClearArena(void)
+static void ClearArena(void)
 {
-#ifdef __MWERKS__
-	nofralloc
-	mflr    r0
-	stw     r0, 4(r1)
-	stwu    r1, -0x10(r1)
-	stw     r31, 0xC(r1)
-	bl      OSGetResetCode
-	addis   r0, r3, 0x8000
-	cmplwi  r0, 0
-	beq     saved
-	li      r0, 0
-	stw     r0, __OSSavedRegionStart(r13)
-	stw     r0, __OSSavedRegionEnd(r13)
-	bl      OSGetArenaHi
-	mr      r31, r3
-	bl      OSGetArenaLo
-	subf    r31, r3, r31
-	bl      OSGetArenaLo
-	mr      r5, r31
-	li      r4, 0
-	bl      memset
-	b       done
-saved:
-	lis     r4, 0x8130
-	lwz     r3, -0x2010(r4)
-	lwz     r0, -0x2014(r4)
-	cmplwi  r3, 0
-	stw     r3, __OSSavedRegionStart(r13)
-	stw     r0, __OSSavedRegionEnd(r13)
-	bne     have_saved
-	bl      OSGetArenaHi
-	mr      r31, r3
-	bl      OSGetArenaLo
-	subf    r31, r3, r31
-	bl      OSGetArenaLo
-	mr      r5, r31
-	li      r4, 0
-	bl      memset
-	b       done
-have_saved:
-	bl      OSGetArenaLo
-	lwz     r0, __OSSavedRegionStart(r13)
-	cmplw   r3, r0
-	bge     done
-	bl      OSGetArenaHi
-	lwz     r0, __OSSavedRegionStart(r13)
-	cmplw   r3, r0
-	bgt     clear_low
-	bl      OSGetArenaHi
-	mr      r31, r3
-	bl      OSGetArenaLo
-	subf    r31, r3, r31
-	bl      OSGetArenaLo
-	mr      r5, r31
-	li      r4, 0
-	bl      memset
-	b       done
-clear_low:
-	bl      OSGetArenaLo
-	lwz     r0, __OSSavedRegionStart(r13)
-	subf    r31, r3, r0
-	bl      OSGetArenaLo
-	mr      r5, r31
-	li      r4, 0
-	bl      memset
-	bl      OSGetArenaHi
-	lwz     r31, __OSSavedRegionEnd(r13)
-	cmplw   r3, r31
-	ble     done
-	bl      OSGetArenaHi
-	subf    r5, r31, r3
-	mr      r3, r31
-	li      r4, 0
-	bl      memset
-done:
-	lwz     r0, 0x14(r1)
-	lwz     r31, 0xC(r1)
-	addi    r1, r1, 0x10
-	mtlr    r0
-	blr
-#endif
-} // clang-format on
+	void* end;
+	u32 size;
+
+	if (OSGetResetCode() != OS_RESET_RESTART) {
+		__OSSavedRegionStart = NULL;
+		__OSSavedRegionEnd   = NULL;
+		size                 = (u32)OSGetArenaHi() - (u32)OSGetArenaLo();
+		memset(OSGetArenaLo(), 0, size);
+		return;
+	}
+
+	__OSSavedRegionStart = (void*)OS_SAVED_REGION_START;
+	__OSSavedRegionEnd   = (void*)OS_SAVED_REGION_END;
+
+	if (OS_SAVED_REGION_START == 0) {
+		size = (u32)OSGetArenaHi() - (u32)OSGetArenaLo();
+		memset(OSGetArenaLo(), 0, size);
+		return;
+	}
+
+	if (OSGetArenaLo() < __OSSavedRegionStart) {
+		if (OSGetArenaHi() <= __OSSavedRegionStart) {
+			size = (u32)OSGetArenaHi() - (u32)OSGetArenaLo();
+			memset(OSGetArenaLo(), 0, size);
+			return;
+		}
+
+		size = (u32)__OSSavedRegionStart - (u32)OSGetArenaLo();
+		memset(OSGetArenaLo(), 0, size);
+
+		if (OSGetArenaHi() > __OSSavedRegionEnd) {
+			end  = __OSSavedRegionEnd;
+			size = (u32)OSGetArenaHi() - (u32)end;
+			memset(end, 0, size);
+		}
+	}
+}
 
 static void InquiryCallback(s32 result, DVDCommandBlock* block)
 {
