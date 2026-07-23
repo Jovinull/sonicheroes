@@ -38,33 +38,58 @@
 // before i in fn_801F8988, and err before the buffer pointer in the two block
 // helpers, puts them where the original has them.
 //
-// What is left is one thing, and it is the same thing in every function: the
-// original reserves more stack below its locals than we do. Frames run 0x08
-// over on the two block helpers, 0x10 on the two read helpers and 0x30 on
-// DBWrite, and every remaining difference is that offset showing up in the
-// prologue, the epilogue and each stack reference. Registers, instruction order
-// and instruction count already agree. Part of DBWrite's share is visible: the
-// original keeps five distinct slots for the command and trailer words at 0x3c,
-// 0x44, 0x4c, 0x50 and 0x54, where ours collapses the three command words onto
-// one slot because their live ranges do not overlap. Declaring them separately
-// at function scope does not split them back apart.
+// Two things are left, and the smaller one is the frame. The original reserves
+// more stack than we do: 0x08 more on the two block helpers, 0x10 on the two
+// read helpers and 0x30 on DBWrite, while DBRead and fn_801F8988 already agree
+// to the byte. The two that agree are the two that do not call fn_801F8988, so
+// the extra space belongs to the call sites.
+//
+// That space is reachable, and it is worth almost nothing. An unused u32 pad[4]
+// declared after cmd in fn_801F8678 takes its frame from 0x28 to the original's
+// 0x38 exactly, which settles that this compiler keeps locals it never reads:
+// the original really did declare more than it used. But with the frame exact
+// the function only moves from 90.56% to 90.67%, and the local still lands at
+// 0x1c where the original has it at 0x18. Do not spend time here expecting the
+// frame to be the answer, and do not fabricate a pad to buy the tenth of a
+// point: it forces the prologue without explaining it.
+//
+// The larger one is which callee saved register each value gets. Both sides
+// save the same registers and compute the same things in the same order; they
+// disagree only on the numbering. In fn_801F8678 the original holds err in r31,
+// the 0xcc00 base in r30, csr in r29, cr in r28 and out in r27, where we hold
+// csr in r31, err in r30 and the base in r29. That is most of the residual in
+// every unmatched function here, and declaration order does not reach it:
+// putting err first, err and cmd first, and cmd first all produce byte for byte
+// the same allocation. Whatever picks it is upstream of the order the locals
+// are written in.
 //
 // Measured and rejected, so they do not get tried again: -use_lmw_stmw on
 // changes nothing here (the original's stmw comes from how many registers it
 // allocates, not from the option); dropping static off the helpers changes
 // nothing, though symbols.txt carries no scope:local marker for any of them;
-// splitting i = 0 out of the for init in fn_801F8988 costs 0.06%; and reading
+// splitting i = 0 out of the for init in fn_801F8988 costs 0.06%; declaring the
+// command word as u32 cmd[2] does not widen its slot, because the frame is
+// sized from what is used and only element zero ever is; and reading
 // DBCommHandler into a local in EXIHandler does not move the acknowledge store
 // after the handler load.
 //
-//   DBWrite     92.5%  the frame, and the three command words sharing a slot.
-//   fn_801F8724 94.7%  the frame only.
-//   fn_801F8800 94.7%  the frame only.
-//   the two read helpers 90.6%  the frame only.
-//   fn_801F8988 88.6%  the frame, plus the original compares the loop counter
-//                      against the length on the way into the first payload
-//                      loop where ours folds that to a test of the length
-//                      alone. Writing the loop as while did not move it.
+// One earlier note here was wrong and is worth correcting rather than deleting.
+// Giving fn_801F8988 three extra parameters left every caller's frame where it
+// was, and that was recorded as proof that the parameter save area is not the
+// cause. It proves nothing: six arguments still arrive in r3 through r10, so
+// nothing spilled and no stack was needed. The parameter area remains untested.
+//
+//   DBWrite     92.5%  register numbering, the frame, and the three command
+//                      words sharing a slot where the original keeps five at
+//                      0x3c, 0x44, 0x4c, 0x50 and 0x54. Declaring them
+//                      separately at function scope does not split them apart.
+//   fn_801F8724 94.7%  register numbering and the frame.
+//   fn_801F8800 94.7%  register numbering and the frame.
+//   the two read helpers 90.6%  register numbering and the frame.
+//   fn_801F8988 88.6%  the original compares the loop counter against the
+//                      length on the way into the first payload loop where ours
+//                      folds that to a test of the length alone. Writing the
+//                      loop as while did not move it. Its frame already agrees.
 //   EXIHandler  87.5%  one instruction. The original schedules the acknowledge
 //                      write after the handler load and ours emits it before.
 //                      Reordering the statements moves it past the null test
