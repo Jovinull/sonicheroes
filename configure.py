@@ -362,7 +362,11 @@ config.libs = [
         "cflags": cflags_base,
         "progress_category": "sdk",
         "objects": [
-            Object(NonMatching, "dolphin/trk/dolphin_trk.c"),
+            Object(
+                Matching,
+                "dolphin/trk/dolphin_trk.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
             Object(Matching, "dolphin/trk/targimpl.c", extra_cflags=["-sdata 0", "-sdata2 0", "-common off"]),
             Object(NonMatching, "dolphin/trk/nubevent.c"),
             Object(NonMatching, "dolphin/trk/nubinit.c"),

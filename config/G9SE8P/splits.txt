@@ -46,6 +46,9 @@ dolphin/trk/targimpl.c:
 
 dolphin/trk/dolphin_trk.c:
 	.text       start:0x801CFAF4 end:0x801CFF18
+	.rodata     start:0x8023D408 end:0x8023D450
+	.data       start:0x80291E70 end:0x80291E90
+	.bss        start:0x803F0060 end:0x803F2288
 
 dolphin/base/PPCArch.c:
 	.text       start:0x801D0518 end:0x801D062C
