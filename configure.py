@@ -355,9 +355,9 @@ config.libs = [
             Object(Matching, "dolphin/os/OSSync.c"),
             # -inline noauto, like Pad.c: with auto the compiler folds
             # __OSGetEffectivePriority, OSWakeupThread and UnsetRun into their
-            # callers where the original emits bl. SetRun and AddPrio carry the
-            # inline keyword instead, which is what the original expands.
-            Object(NonMatching, "dolphin/os/OSThread.c", extra_cflags=["-inline noauto"]),
+            # callers where the original emits bl. The helpers the original does
+            # expand carry the inline keyword instead.
+            Object(Matching, "dolphin/os/OSThread.c", extra_cflags=["-inline noauto"]),
             Object(Matching, "dolphin/os/OSReset.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
             Object(Matching, "dolphin/os/OSContext.c"),
