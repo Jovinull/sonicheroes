@@ -517,7 +517,12 @@ config.libs = [
             Object(Matching, "Runtime.PPCEABI.H/__va_arg.c"),
             Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
             Object(Matching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
-            Object(Matching, "Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp"),
+            Object(
+                Matching,
+                "Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp",
+                extra_cflags=["-str reuse,nopool,readonly"],
+                extab_padding=[0x25, 0x00],
+            ),
         ],
     },
 ]
