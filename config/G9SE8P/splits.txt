@@ -156,6 +156,12 @@ dolphin/os/OSStopwatch.c:
 dolphin/os/OSSync.c:
 	.text       start:0x801D628C end:0x801D6310
 
+dolphin/os/OSThread.c:
+	.text       start:0x801D6310 end:0x801D75A8
+	.bss        start:0x803F23B8 end:0x803F24B8
+	.sdata      start:0x8042BF48 end:0x8042BF50
+	.sbss       start:0x8042CB98 end:0x8042CBA4
+
 dolphin/os/OSTime.c:
 	.text       start:0x801D75A8 end:0x801D762C
 
