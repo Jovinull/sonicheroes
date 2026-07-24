@@ -6,5 +6,8 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
+autosaveD/task_create.c:
+	.text       start:0x00002294 end:0x000022FC
+
 autosaveD/table.c:
 	.text       start:0x0000476C end:0x000047F0
