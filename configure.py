@@ -440,6 +440,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "autosaveD/state_selector.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/menu_selectors.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
