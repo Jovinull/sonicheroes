@@ -399,7 +399,11 @@ config.libs = [
         "progress_category": "game",
         "objects": [
             Object(NonMatching, "game/heap.c", extra_cflags=["-opt noschedule"]),
-            Object(NonMatching, "game/main.c", extra_cflags=["-opt noschedule"]),
+            Object(
+                Matching,
+                "game/main.c",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule"],
+            ),
         ],
     },
     {
