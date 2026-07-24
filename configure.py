@@ -430,6 +430,11 @@ config.libs = [
         [
             Object(
                 Matching,
+                "autosaveD/variable_grid_selector.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/table.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
