@@ -435,6 +435,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "autosaveD/task_runtime.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/task_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
