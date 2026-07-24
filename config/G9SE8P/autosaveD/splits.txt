@@ -6,6 +6,9 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
+autosaveD/line_count.c:
+	.text       start:0x00000000 end:0x00000038
+
 autosaveD/task_object.c:
 	.text       start:0x00001FB4 end:0x00002294
 
