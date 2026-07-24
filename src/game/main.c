@@ -41,23 +41,16 @@
 // same setting is what matched EXIBios, so it is worth trying first on the
 // next game unit rather than last.
 //
-// Six of the seven functions match. main stands at 99.5%: every stack offset,
-// the frame size, the instruction order and the instruction count now agree,
-// and the six instructions still different differ only in which registers they
-// name. The original loads tick[0] into r5, builds the lbl_8029BB80 address in
-// r4 and reuses r3 for tick[1]; ours puts the address in r3 and the two values
-// in r4 and r5. Nothing about the shape of the source moved it: the block was
-// tried through a pointer local, with the two words held in named temporaries,
-// with the assignments chained, and with the stores reordered, and the plain
-// form scores highest of those.
+// Two matching-sensitive details are that unk_0x10 is signed, which makes the
+// poll at the bottom cmpwi rather than cmplwi, and the two tick words copied
+// into args form a single eight-byte structure assignment. Two independent
+// assignments are semantically equivalent but change volatile register
+// allocation in GC/1.3.2.
 //
-// Two things got it here from 98.7%. unk_0x10 is signed, which is what makes
-// the poll at the bottom cmpwi rather than cmplwi. And tick is declared wider
-// than the two words main reads: the original's locals run to 0x40 where three
-// tightly sized blocks reach only 0x34, and widening the topmost one is what
-// reserves the 0x50 frame. Its exact width is not pinned down, because the
-// locals area rounds to sixteen bytes and u32[4] through u32[7] all produce
-// the same frame; u32[4] is the smallest that does, so it is what stands here.
+// tick is declared wider than the two words main reads: the original's locals
+// run to 0x40 where three tightly sized blocks reach only 0x34, and widening
+// the topmost one reserves the original 0x50-byte frame. u32[4] is the smallest
+// width that does so.
 //
 // The locals are declared tick, cfg, args because the compiler lays them out
 // in the reverse of that, which is the order the original uses: args at 0x08,
@@ -116,6 +109,11 @@ typedef struct Unk8029BB80 {
 	s32 unk_0x10;
 	u8 unk_0x14[0x2C];
 } Unk8029BB80; // 0x40
+
+typedef struct Pair {
+	u32 first;
+	u32 second;
+} Pair;
 
 extern Unk8029BB80 lbl_8029BB80;
 
@@ -194,10 +192,9 @@ int main(int argc, char** argv)
 	lbl_8029BB80.unk_0x4 = tick[0];
 	lbl_8029BB80.unk_0x8 = tick[1];
 
-	args[0] = 0;
-	args[1] = 0;
-	args[2] = tick[0];
-	args[3] = tick[1];
+	args[0]          = 0;
+	args[1]          = 0;
+	*(Pair*)&args[2] = *(Pair*)tick;
 	fn_80011FA8(0x0, args);
 
 	while (lbl_8029BB80.unk_0x10 == 0) {

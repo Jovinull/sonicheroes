@@ -407,7 +407,11 @@ config.libs = [
                 "game/heap.c",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
             ),
-            Object(NonMatching, "game/main.c", extra_cflags=["-opt noschedule"]),
+            Object(
+                Matching,
+                "game/main.c",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule"],
+            ),
         ],
     },
     {
