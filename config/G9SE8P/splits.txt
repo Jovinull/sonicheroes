@@ -45,6 +45,9 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 MSL_C/mem.c:
 	.text       start:0x801C01EC end:0x801C063C
 
+MSL_C/string.c:
+	.text       start:0x801C3EA0 end:0x801C3EBC
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
