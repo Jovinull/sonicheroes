@@ -26,8 +26,14 @@
 // means editing those two units, so it is left for a change that does only
 // that.
 //
-// Nine of the twenty one functions match. The other twelve are not written yet
-// rather than written and failing, and nothing here is a transcription.
+// Ten of the twenty one functions match. Three more are written and close but
+// not there: SetEffectivePriority at 60%, OSSleepThread at 93% and
+// OSWakeupThread at 97%. The remaining eight are not written yet.
+//
+// SetRun and AddPrio carry the inline keyword because the original expands
+// both at every call site and -inline auto alone does not. UnsetRun must not
+// be expanded, and currently is, because it still has only the one caller
+// here; the functions that will share it are the ones still to be written.
 //
 // UnsetRun and __OSGetEffectivePriority are named from what they do, and the
 // second of them is where the OSMutex layout above comes from: it walks a
@@ -96,6 +102,8 @@ extern OSThread* __OSCurrentThread : 0x800000E4;
 #else
 extern OSThread* __OSCurrentThread;
 #endif
+
+static void SelectThread(BOOL yield);
 
 // Replaced by OSSetSwitchThreadCallback and called on every context switch.
 // Does nothing until the debugger nub installs its own.
@@ -212,4 +220,167 @@ void OSClearStack(u8 val)
 	while (stackEnd < p) {
 		*stackEnd++ = pattern;
 	}
+}
+
+// Thread states, read off the switch in SetEffectivePriority.
+#define OS_THREAD_STATE_READY   1
+#define OS_THREAD_STATE_RUNNING 2
+#define OS_THREAD_STATE_WAITING 4
+
+// Puts a thread on its priority's run queue and marks that priority ready.
+// Written through thread->queue rather than a local, which is what makes the
+// compiler read the queue back between the field stores.
+static inline void SetRun(OSThread* thread)
+{
+	OSThread* tail;
+
+	thread->queue = &RunQueue[thread->priority];
+
+	tail = thread->queue->tail;
+	if (tail == NULL) {
+		thread->queue->head = thread;
+	} else {
+		tail->link.next = thread;
+	}
+	thread->link.prev   = tail;
+	thread->link.next   = NULL;
+	thread->queue->tail = thread;
+
+	RunQueueBits |= 1 << (31 - thread->priority);
+	RunQueueHint = TRUE;
+}
+
+// Inserts a thread into a queue kept in priority order, ahead of the first
+// entry that is strictly lower priority.
+static inline void AddPrio(OSThreadQueue* queue, OSThread* thread)
+{
+	OSThread* after;
+	OSThread* prev;
+
+	after = queue->head;
+	while (after != NULL && after->priority <= thread->priority) {
+		after = after->link.next;
+	}
+
+	if (after == NULL) {
+		prev = queue->tail;
+		if (prev == NULL) {
+			queue->head = thread;
+		} else {
+			prev->link.next = thread;
+		}
+		thread->link.prev = prev;
+		thread->link.next = NULL;
+		queue->tail       = thread;
+	} else {
+		thread->link.next = after;
+		prev              = after->link.prev;
+		after->link.prev  = thread;
+		thread->link.prev = prev;
+		if (prev == NULL) {
+			queue->head = thread;
+		} else {
+			prev->link.next = thread;
+		}
+	}
+}
+
+// Moves a thread to a new priority. A ready thread changes run queue, a
+// waiting one is re-sorted where it waits, and a running one only sets the
+// hint so the next reschedule picks it up. Returns the thread holding the
+// mutex this one is blocked on, so the caller can walk the chain.
+static OSThread* SetEffectivePriority(OSThread* thread, OSPriority priority)
+{
+	switch (thread->state) {
+		case OS_THREAD_STATE_READY:
+			UnsetRun(thread);
+			thread->priority = priority;
+			SetRun(thread);
+			break;
+
+		case OS_THREAD_STATE_WAITING: {
+			OSThread* next = thread->link.next;
+			OSThread* prev = thread->link.prev;
+
+			if (next == NULL) {
+				thread->queue->tail = prev;
+			} else {
+				next->link.prev = prev;
+			}
+			if (prev == NULL) {
+				thread->queue->head = next;
+			} else {
+				prev->link.next = next;
+			}
+
+			thread->priority = priority;
+			AddPrio(thread->queue, thread);
+			if (thread->mutex != NULL) {
+				return thread->mutex->thread;
+			}
+			break;
+		}
+
+		case OS_THREAD_STATE_RUNNING:
+			RunQueueHint     = TRUE;
+			thread->priority = priority;
+			break;
+	}
+
+	return NULL;
+}
+
+void __OSReschedule(void)
+{
+	if (RunQueueHint) {
+		SelectThread(FALSE);
+	}
+}
+
+// Blocks the current thread on a queue until someone wakes it.
+void OSSleepThread(OSThreadQueue* queue)
+{
+	BOOL enabled;
+	OSThread* thread;
+
+	enabled = OSDisableInterrupts();
+
+	thread        = __OSCurrentThread;
+	thread->state = OS_THREAD_STATE_WAITING;
+	thread->queue = queue;
+	AddPrio(queue, thread);
+
+	RunQueueHint = TRUE;
+	__OSReschedule();
+
+	OSRestoreInterrupts(enabled);
+}
+
+// Wakes every thread on a queue, not just the head. A suspended one becomes
+// ready without being put back on the run queue.
+void OSWakeupThread(OSThreadQueue* queue)
+{
+	BOOL enabled;
+	OSThread* thread;
+
+	enabled = OSDisableInterrupts();
+
+	while ((thread = queue->head) != NULL) {
+		OSThread* next = thread->link.next;
+		if (next == NULL) {
+			queue->tail = NULL;
+		} else {
+			next->link.prev = NULL;
+		}
+		queue->head = next;
+
+		thread->state = OS_THREAD_STATE_READY;
+		if (thread->suspend <= 0) {
+			SetRun(thread);
+		}
+	}
+
+	__OSReschedule();
+
+	OSRestoreInterrupts(enabled);
 }
