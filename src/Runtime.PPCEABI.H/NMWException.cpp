@@ -8,7 +8,7 @@ typedef void (*Constructor)(void*, int);
 typedef void (*Destructor)(void*, int);
 
 extern "C" void fn_80057578(void*);
-extern "C" void fn_801BB384(void);
+extern "C" void abort(void);
 extern "C" void __dl__FPv(void*);
 
 struct exception_object {
@@ -205,62 +205,62 @@ extern "C" char __throw_catch_compare(
 	}
 
 	switch (*throwtype) {
-	case '*':
-	case '!':
-		if (*throwtype++ != *current++)
-			return 0;
+		case '*':
+		case '!':
+			if (*throwtype++ != *current++)
+				return 0;
 
-	compare_names:
-		{
+		compare_names: {
 			do {
 				if (*throwtype != *current++)
 					goto skip_name;
 			} while (*throwtype++ != '!');
 		}
 
-		{
-			long offset = 0;
+			{
+				long offset = 0;
 
-			while (*throwtype != '!')
-				offset = offset * 10 + *throwtype++ - '0';
-			*offset_result = offset;
-			return 1;
-		}
+				while (*throwtype != '!')
+					offset = offset * 10 + *throwtype++ - '0';
+				*offset_result = offset;
+				return 1;
+			}
 
-	skip_name:
-		while (*throwtype++ != '!') { }
-		while (*throwtype++ != '!') { }
-		if (*throwtype == 0)
-			return 0;
-		current = catchtype + 1;
-		goto compare_names;
-	default:
-		break;
+		skip_name:
+			while (*throwtype++ != '!') {
+			}
+			while (*throwtype++ != '!') {
+			}
+			if (*throwtype == 0)
+				return 0;
+			current = catchtype + 1;
+			goto compare_names;
+		default:
+			break;
 	}
 
 	goto qualifier_test;
 
 qualifier_body:
-		throwtype++;
-		current++;
-		if (*current == 'C') {
-			if (*throwtype == 'C')
-				throwtype++;
-			current++;
-		}
+	throwtype++;
+	current++;
+	if (*current == 'C') {
 		if (*throwtype == 'C')
-			return 0;
-		if (*current == 'V') {
-			if (*throwtype == 'V')
-				throwtype++;
-			current++;
-		}
+			throwtype++;
+		current++;
+	}
+	if (*throwtype == 'C')
+		return 0;
+	if (*current == 'V') {
 		if (*throwtype == 'V')
-			return 0;
+			throwtype++;
+		current++;
+	}
+	if (*throwtype == 'V')
+		return 0;
 
 qualifier_test:
-	if ((*throwtype == 'P' || *throwtype == 'R')
-	    && *throwtype == *current)
+	if ((*throwtype == 'P' || *throwtype == 'R') && *throwtype == *current)
 		goto qualifier_body;
 
 	while (*throwtype == *current) {
@@ -292,6 +292,6 @@ void duhandler()
 
 void dthandler()
 {
-	fn_801BB384();
+	abort();
 }
 }
