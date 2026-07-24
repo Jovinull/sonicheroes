@@ -319,8 +319,12 @@ config.libs = [
             # has.
             Object(Matching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
             Object(Matching, "dolphin/dvd/dvdlow.c"),
+            Object(Matching, "dolphin/dvd/dvdfs.c"),
             Object(Matching, "dolphin/dvd/dvdqueue.c"),
             Object(Matching, "dolphin/dvd/dvderror.c"),
+            Object(Matching, "dolphin/dvd/dvdFatal.c"),
+            Object(Matching, "dolphin/dvd/dvdidutils.c"),
+            Object(Matching, "dolphin/dvd/fstload.c"),
             Object(Matching, "dolphin/pad/Padclamp.c"),
             # -inline noauto (leaving the default -inline on): with auto the compiler folds
             # PADReset/PADRecalibrate bodily into PADInit/PADRead/OnReset where
@@ -342,6 +346,7 @@ config.libs = [
             Object(Matching, "dolphin/os/OSAlarm.c"),
             Object(Matching, "dolphin/os/OSAlloc.c"),
             Object(Matching, "dolphin/os/OSMemory.c"),
+            Object(Matching, "dolphin/os/OSMutex.c"),
             Object(Matching, "dolphin/os/OSAudioSystem.c"),
             Object(Matching, "dolphin/os/OSReboot.c"),
             Object(Matching, "dolphin/os/OSResetSW.c"),
@@ -349,6 +354,9 @@ config.libs = [
             Object(Matching, "dolphin/os/OSSync.c"),
             Object(Matching, "dolphin/os/OSReset.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
+            Object(Matching, "dolphin/os/OSContext.c"),
+            Object(Matching, "dolphin/os/OSError.c"),
+            Object(Matching, "dolphin/os/OSLink.c"),
             Object(Matching, "dolphin/os/OSTime.c"),
             Object(Matching, "Runtime.PPCEABI.H/__ppc_eabi_init.c"),
         ],

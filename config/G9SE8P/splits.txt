@@ -106,15 +106,32 @@ dolphin/os/OSCache.c:
 	.text       start:0x801D1F24 end:0x801D235C
 	.data       start:0x80292130 end:0x80292360
 
+dolphin/os/OSContext.c:
+	.text       start:0x801D235C end:0x801D2BCC
+	.data       start:0x80292360 end:0x80292538
+
+dolphin/os/OSError.c:
+	.text       start:0x801D2BCC end:0x801D3278
+	.data       start:0x80292538 end:0x80292858
+	.bss        start:0x803F22F0 end:0x803F2334
+	.sdata      start:0x8042BF38 end:0x8042BF40
+
 dolphin/os/OSInterrupt.c:
 	.text       start:0x801D3278 end:0x801D3B3C
 	.data       start:0x80292858 end:0x80292888
 	.sdata      start:0x8042BF40 end:0x8042BF48
 	.sbss       start:0x8042CB40 end:0x8042CB58
 
+dolphin/os/OSLink.c:
+	.text       start:0x801D3B3C end:0x801D4534
+	.data       start:0x80292888 end:0x802928D8
+
 dolphin/os/OSMemory.c:
 	.text       start:0x801D4534 end:0x801D480C
 	.data       start:0x802928D8 end:0x802928E8
+
+dolphin/os/OSMutex.c:
+	.text       start:0x801D480C end:0x801D487C
 
 dolphin/os/OSReboot.c:
 	.text       start:0x801D487C end:0x801D4BD8
@@ -158,6 +175,12 @@ dolphin/dvd/dvdlow.c:
 	.sdata      start:0x8042BF58 end:0x8042BF60
 	.sbss       start:0x8042CBB0 end:0x8042CBF8
 
+dolphin/dvd/dvdfs.c:
+	.text       start:0x801D860C end:0x801D8EE4
+	.data       start:0x802928E8 end:0x80292A50
+	.sdata      start:0x8042BF60 end:0x8042BF68
+	.sbss       start:0x8042CBF8 end:0x8042CC18
+
 dolphin/dvd/dvdqueue.c:
 	.text       start:0x801DB614 end:0x801DB80C
 	.bss        start:0x803F2F18 end:0x803F2F38
@@ -165,6 +188,20 @@ dolphin/dvd/dvdqueue.c:
 dolphin/dvd/dvderror.c:
 	.text       start:0x801DB80C end:0x801DB9A4
 	.data       start:0x80292BD0 end:0x80292C18
+
+dolphin/dvd/dvdidutils.c:
+	.text       start:0x801DB9A4 end:0x801DBA9C
+
+dolphin/dvd/dvdFatal.c:
+	.text       start:0x801DBA9C end:0x801DBACC
+	.sbss       start:0x8042CC60 end:0x8042CC64
+
+dolphin/dvd/fstload.c:
+	.text       start:0x801DBACC end:0x801DBD0C
+	.data       start:0x80292C18 end:0x80292C88
+	.bss        start:0x803F2F38 end:0x803F2FA8
+	.sdata      start:0x8042BF80 end:0x8042BF90
+	.sbss       start:0x8042CC68 end:0x8042CC74
 
 dolphin/vi/vi.c:
 	.text       start:0x801DBD0C end:0x801DDB58

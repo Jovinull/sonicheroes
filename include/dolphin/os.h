@@ -56,9 +56,11 @@ __OSExceptionHandler __OSSetExceptionHandler(u8 exception, __OSExceptionHandler 
 void OSClearContext(OSContext* context);
 void OSSetCurrentContext(OSContext* context);
 void OSDumpContext(OSContext* context);
+u8* OSGetStackPointer(void);
 
 // Reporting, and the debugger's variant of it.
 void OSReport(const char* msg, ...);
+void OSPanic(const char* file, int line, const char* msg, ...);
 
 // Defined as assembly in OSTime.c; the timebase read has no C spelling.
 OSTime OSGetTime(void);
