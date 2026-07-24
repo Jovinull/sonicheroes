@@ -74,12 +74,11 @@ volatile u32 __DIRegs[16] : 0xCC006000;
 extern s32 fn_801BEFE8(s32 character);
 extern void OSSleepThread(OSThreadQueue* queue);
 extern void OSWakeupThread(OSThreadQueue* queue);
-extern s32 fn_801DB2F0(DVDCommandBlock* block);
+extern s32 DVDCancel(DVDCommandBlock* block);
 extern BOOL DVDReadAbsAsyncPrio(DVDCommandBlock* block, void* address, s32 length, s32 offset,
     DVDCBCallback callback, s32 priority);
 
-#define tolower   fn_801BEFE8
-#define DVDCancel fn_801DB2F0
+#define tolower fn_801BEFE8
 
 struct FSTEntry {
 	/* 0x00 */ u32 isDirAndStringOff;
@@ -477,5 +476,3 @@ s32 DVDGetTransferredSize(DVDFileInfo* fileinfo)
 	}
 	return bytes;
 }
-
-void fn_801D8EE0(void) { }
