@@ -8,11 +8,12 @@
 // a separate address computation each. The zero it compares against is a
 // literal, so it lands in .sdata2 and stays small data addressed.
 //
-// Not linked yet. atof matches instruction for instruction, but the pooled
-// zero it compares against is shared with the rest of the original translation
-// unit, which is still uncarved: claiming that constant here leaves the
-// siblings with an undefined symbol. This becomes Matching once fn_801C3F48
-// and the scanner land and the unit owns its own pool.
+// Not linked yet. Both functions match instruction for instruction, but the
+// pooled zero they compare against is shared with the rest of the original
+// translation unit, which is still uncarved: five references to it remain in
+// the scanner and beyond, so claiming the constant here leaves them with an
+// undefined symbol. This becomes Matching once the scanner lands and the unit
+// owns its own pool.
 extern double __double_min;
 extern double __double_max;
 extern s32 errno;
@@ -42,6 +43,30 @@ double atof(const char* s)
 	magnitude = __fabs(value);
 
 	if (error != 0 || (value != 0.0 && (magnitude < __double_min || magnitude > __double_max)))
+		errno = 0x22;
+
+	return value;
+}
+
+double strtod(const char* s, char** end)
+{
+	__StringRead state;
+	s32 consumed;
+	s32 error;
+	double value;
+	double magnitude;
+
+	state.str = s;
+	state.pos = 0;
+
+	value = fn_801C4004(0x7FFFFFFF, fn_801C29BC, &state, &consumed, &error);
+
+	if (end)
+		*end = (char*)s + consumed;
+
+	magnitude = __fabs(value);
+
+	if (error != 0 || (0.0 != value && (magnitude < __double_min || magnitude > __double_max)))
 		errno = 0x22;
 
 	return value;
