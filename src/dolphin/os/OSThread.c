@@ -192,7 +192,7 @@ extern OSErrorHandler __OSErrorTable[];
 extern u32 __OSFpscrEnableBits;
 void OSInitThreadQueue(OSThreadQueue* queue);
 void OSClearStack(u8 val);
-void fn_801D6BAC(void* val);
+void OSExitThread(void* val);
 void OSWakeupThread(OSThreadQueue* queue);
 
 void __OSThreadInit(void)
@@ -337,7 +337,7 @@ static inline OSPriority GetEffectivePriorityInline(OSThread* thread)
 	return priority;
 }
 
-OSThread* fn_801D65AC(OSThread* thread, OSPriority priority)
+static OSThread* SetEffectivePriority(OSThread* thread, OSPriority priority)
 {
 	switch (thread->state) {
 		case 1:
@@ -455,11 +455,11 @@ static inline void UpdatePriority(OSThread* thread)
 		if (thread->priority == priority) {
 			break;
 		}
-		thread = fn_801D65AC(thread, priority);
+		thread = SetEffectivePriority(thread, priority);
 	} while (thread != NULL);
 }
 
-BOOL fn_801D69C4(OSThread* thread_, void* func, void* param, void* stackBase, u32 stackSize,
+BOOL OSCreateThread(OSThread* thread_, void* func, void* param, void* stackBase, u32 stackSize,
     OSPriority priority, u16 attr)
 {
 	BOOL enabled;
@@ -489,7 +489,7 @@ BOOL fn_801D69C4(OSThread* thread_, void* func, void* param, void* stackBase, u3
 	stack[-2]               = 0;
 	stack[-1]               = 0;
 	OSInitContext(&thread->context, func, stack - 2);
-	thread->context.lr     = (u32)fn_801D6BAC;
+	thread->context.lr     = (u32)OSExitThread;
 	thread->context.gpr[3] = (u32)param;
 	thread->stackBase      = stackBase;
 	thread->stackEnd       = (u32*)((u32)stackBase - stackSize);
@@ -527,7 +527,7 @@ BOOL fn_801D69C4(OSThread* thread_, void* func, void* param, void* stackBase, u3
 	return TRUE;
 }
 
-void fn_801D6BAC(void* val)
+void OSExitThread(void* val)
 {
 	OSThread* thread;
 	BOOL enabled;
@@ -591,7 +591,7 @@ void OSCancelThread(OSThread* thread)
 	OSRestoreInterrupts(enabled);
 }
 
-s32 fn_801D6E4C(OSThread* thread)
+s32 OSResumeThread(OSThread* thread)
 {
 	BOOL enabled;
 	s32 suspend;
@@ -621,7 +621,7 @@ s32 fn_801D6E4C(OSThread* thread)
 	return suspend;
 }
 
-s32 fn_801D70D4(OSThread* thread)
+s32 OSSuspendThread(OSThread* thread)
 {
 	BOOL enabled;
 	s32 suspend;
@@ -685,7 +685,7 @@ void OSWakeupThread(OSThreadQueue* queue)
 	OSRestoreInterrupts(enabled);
 }
 
-s32 fn_801D7434(OSThread* thread, OSPriority priority)
+s32 OSSetThreadPriority(OSThread* thread, OSPriority priority)
 {
 	BOOL enabled;
 
