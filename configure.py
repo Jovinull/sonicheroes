@@ -465,6 +465,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "autosaveD/window_input.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/window_lifecycle.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
