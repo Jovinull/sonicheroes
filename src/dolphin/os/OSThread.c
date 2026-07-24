@@ -26,14 +26,24 @@
 // means editing those two units, so it is left for a change that does only
 // that.
 //
-// Ten of the twenty one functions match. Three more are written and close but
-// not there: SetEffectivePriority at 60%, OSSleepThread at 93% and
-// OSWakeupThread at 97%. The remaining eight are not written yet.
+// Ten of the twenty one functions match. Five more are written and close:
+// OSWakeupThread at 97%, SetEffectivePriority at 96%, OSExitThread at 94%,
+// OSSleepThread at 93% and OSSetThreadPriority at 91%. Six are not written.
 //
-// SetRun and AddPrio carry the inline keyword because the original expands
-// both at every call site and -inline auto alone does not. UnsetRun must not
-// be expanded, and currently is, because it still has only the one caller
-// here; the functions that will share it are the ones still to be written.
+// The unit is built with -inline noauto, like Pad.c. Under -inline auto the
+// compiler folds __OSGetEffectivePriority, OSWakeupThread and UnsetRun into
+// their callers where the original emits bl, and that alone cost forty points
+// on SetEffectivePriority and fifty on OSExitThread. What the original does
+// expand is SetRun, AddPrio and the reschedule test, so those carry the inline
+// keyword instead. The reschedule test is spelled as DoReschedule because the
+// original expands it at every call site inside the unit while still emitting
+// __OSReschedule for the units that call it from outside; making the exported
+// function the helper's out of line body is what produces both.
+//
+// AddPrio's walk has to be a while loop with the test in its condition. Written
+// as a for loop with a break the compiler hoists thread->priority out, and the
+// original reloads it every iteration.
+//
 //
 // UnsetRun and __OSGetEffectivePriority are named from what they do, and the
 // second of them is where the OSMutex layout above comes from: it walks a
@@ -99,9 +109,13 @@ typedef void (*OSSwitchThreadCallback)(OSThread* from, OSThread* to);
 
 #ifdef __MWERKS__
 extern OSThread* __OSCurrentThread : 0x800000E4;
+extern OSThreadQueue __OSActiveThreadQueue : 0x800000DC;
 #else
 extern OSThread* __OSCurrentThread;
+extern OSThreadQueue __OSActiveThreadQueue;
 #endif
+
+extern void __OSUnlockAllMutex(OSThread* thread);
 
 static void SelectThread(BOOL yield);
 
@@ -216,16 +230,20 @@ void OSClearStack(u8 val)
 
 	pattern  = (val << 24) | (val << 16) | (val << 8) | val;
 	p        = (u32*)OSGetStackPointer();
-	stackEnd = OSGetCurrentThread()->stackEnd + 1;
+	stackEnd = __OSCurrentThread->stackEnd + 1;
 	while (stackEnd < p) {
 		*stackEnd++ = pattern;
 	}
 }
 
 // Thread states, read off the switch in SetEffectivePriority.
-#define OS_THREAD_STATE_READY   1
-#define OS_THREAD_STATE_RUNNING 2
-#define OS_THREAD_STATE_WAITING 4
+#define OS_THREAD_STATE_READY    1
+#define OS_THREAD_STATE_RUNNING  2
+#define OS_THREAD_STATE_WAITING  4
+#define OS_THREAD_STATE_MORIBUND 8
+
+// Bit 0 of attr, read off the test in OSExitThread.
+#define OS_THREAD_ATTR_DETACHED 1
 
 // Puts a thread on its priority's run queue and marks that priority ready.
 // Written through thread->queue rather than a local, which is what makes the
@@ -330,11 +348,19 @@ static OSThread* SetEffectivePriority(OSThread* thread, OSPriority priority)
 	return NULL;
 }
 
-void __OSReschedule(void)
+// The original expands this test at every call site inside the unit while
+// still emitting the copy other units call, so it is spelled once as an inline
+// helper and __OSReschedule is that helper's out of line body.
+static inline void DoReschedule(void)
 {
 	if (RunQueueHint) {
 		SelectThread(FALSE);
 	}
+}
+
+void __OSReschedule(void)
+{
+	DoReschedule();
 }
 
 // Blocks the current thread on a queue until someone wakes it.
@@ -351,7 +377,7 @@ void OSSleepThread(OSThreadQueue* queue)
 	AddPrio(queue, thread);
 
 	RunQueueHint = TRUE;
-	__OSReschedule();
+	DoReschedule();
 
 	OSRestoreInterrupts(enabled);
 }
@@ -380,7 +406,80 @@ void OSWakeupThread(OSThreadQueue* queue)
 		}
 	}
 
-	__OSReschedule();
+	DoReschedule();
 
 	OSRestoreInterrupts(enabled);
+}
+
+// Ends the current thread. A detached thread leaves the active list and its
+// state goes to zero; an attached one stays there as moribund so whoever joins
+// it can still read the value it exited with.
+void OSExitThread(void* val)
+{
+	BOOL enabled;
+	OSThread* thread;
+
+	enabled = OSDisableInterrupts();
+	thread  = __OSCurrentThread;
+	OSClearContext(&thread->context);
+
+	if (thread->attr & OS_THREAD_ATTR_DETACHED) {
+		OSThread* next = thread->linkActive.next;
+		OSThread* prev = thread->linkActive.prev;
+
+		if (next == NULL) {
+			__OSActiveThreadQueue.tail = prev;
+		} else {
+			next->linkActive.prev = prev;
+		}
+		if (prev == NULL) {
+			__OSActiveThreadQueue.head = next;
+		} else {
+			prev->linkActive.next = next;
+		}
+		thread->state = 0;
+	} else {
+		thread->state = OS_THREAD_STATE_MORIBUND;
+	}
+
+	thread->val = val;
+	__OSUnlockAllMutex(thread);
+	OSWakeupThread(&thread->queueJoin);
+
+	RunQueueHint = TRUE;
+	DoReschedule();
+
+	OSRestoreInterrupts(enabled);
+}
+
+// Changes a thread's base priority. Raising it can unblock the thread holding
+// a mutex this one waits on, so the walk follows that chain until it runs out.
+BOOL OSSetThreadPriority(OSThread* thread, OSPriority priority)
+{
+	BOOL enabled;
+
+	if (priority < 0 || priority > 31) {
+		return FALSE;
+	}
+
+	enabled = OSDisableInterrupts();
+	if (thread->base != priority) {
+		thread->base = priority;
+		while (thread != NULL) {
+			OSPriority effective;
+
+			if (thread->suspend > 0) {
+				break;
+			}
+			effective = __OSGetEffectivePriority(thread);
+			if (thread->priority == effective) {
+				break;
+			}
+			thread = SetEffectivePriority(thread, effective);
+		}
+		DoReschedule();
+	}
+	OSRestoreInterrupts(enabled);
+
+	return TRUE;
 }
