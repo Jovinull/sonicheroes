@@ -261,8 +261,8 @@ dolphin/db/dbcomm.c:
 
 dolphin/si/SIBios.c:
 	.text       start:0x801F8C20 end:0x801FA310
-	.data       start:0x80298B6C end:0x80298C40
-	.bss        start:0x8040E890 end:0x8040E9D0
+	.data       start:0x80298B28 end:0x80298C40
+	.bss        start:0x8040E890 end:0x8040EA90
 	.sbss       start:0x8042CF18 end:0x8042CF28
 
 dolphin/si/SISamplingRate.c:
