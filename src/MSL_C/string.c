@@ -14,6 +14,19 @@
 #define ONES  0x01010101
 #define HIGHS 0x80808080
 
+char* strcat(char* dst, const char* src)
+{
+	const char* s = src - 1;
+	u8* p         = (u8*)dst - 1;
+
+	while (*++p)
+		;
+	--p;
+	while ((*++p = *++s) != 0)
+		;
+	return dst;
+}
+
 char* strncpy(char* dst, const char* src, u32 n)
 {
 	const char* s = src - 1;
