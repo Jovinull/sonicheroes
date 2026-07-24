@@ -45,12 +45,12 @@ modules:
   hash: 120e89d6ca861f63ecf9c8f2d282bab5b500ab17
   symbols: config/G9SE8P/autosaveD/symbols.txt
   splits: config/G9SE8P/autosaveD/splits.txt
-  # Nothing inside the module references fn_2_476C, so mwld drops it once the
-  # translation unit that holds it is compiled rather than emitted by dtk: dtk
+  # Nothing inside the module references these entry points, so mwld drops them
+  # once their translation units are compiled rather than emitted by dtk: dtk
   # exports every symbol in the objects it writes, a hand written one has to say
-  # so here. Without this the module comes out 0x10 short and every relative
-  # branch past 0x476C shifts with it.
+  # so here. Without this the module is shortened and later code shifts with it.
   force_active:
+    - fn_2_4500
     - fn_2_476C
 - object: files/movieD.rel
   hash: 6e2773a99ec5b05d5634d09521246e3e28bd6de9
