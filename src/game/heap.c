@@ -30,20 +30,30 @@
 // Built with -opt noschedule, like main and EXIBios: without it the
 // instructions are right and their order is not.
 //
-// Five of the eleven functions match. The rest are written and produce the
+// Six of the eleven functions match. The rest are written and produce the
 // right instructions in the right count; what still differs is register
 // numbering inside the free-list splice and coalesce paths, where the compiler
 // reads a cell's links back from memory in a different order than the original.
-// Declaration order fixes some of it and is worth trying first on the rest.
+//
+// fn_80012654 is the one that has been taken all the way, and what it took is
+// worth repeating on the rest. Three things had to hold at once, and no two of
+// them were enough: the locals are declared largest before total, which is what
+// decides that largest lives in r0 and the loaded size in r7 rather than the
+// other way round; the walk pointer is set before the two counters are zeroed,
+// which is what puts the gHighHead load first; and each loop reads c->size into
+// a named local rather than naming the field twice, which the original does as
+// one load feeding both the compare and the add. Writing the first loop's three
+// initialisers in its for clause and setting them in three statements ahead of
+// a bare for are indistinguishable here; the for clause is what stands.
 //
 //   fn_800125F0  100%   alloc
 //   fn_80012560  100%   calloc
 //   fn_80012994  100%   the find-block wrapper
 //   fn_800126C8  100%   free and trim
 //   fn_80012BE0  100%   free if non-null
+//   fn_80012654  100%   heap info
 //   fn_80012A94   94%   the core allocator; the split path holds the cell's two
 //                       links in different registers than the original
-//   fn_80012654   91%   heap info; the second pool's loop still swaps two
 //   fn_80012740   87%   free; the coalesce arms re-read links out of order
 //   fn_8001234C   83%   init
 //   fn_8001247C   77%   realloc
@@ -224,22 +234,22 @@ void* fn_800125F0(u32 size)
 void fn_80012654(u32* totalOut, u32* largestOut)
 {
 	Cell* c;
-	u32 total;
 	u32 largest;
+	u32 total;
 
-	largest = 0;
-	total   = 0;
-	for (c = gHighHead; c != NULL; c = c->next) {
-		if (largest < c->size) {
-			largest = c->size;
+	for (c = gHighHead, largest = 0, total = 0; c != NULL; c = c->next) {
+		u32 size = c->size;
+		if (largest < size) {
+			largest = size;
 		}
-		total += c->size;
+		total += size;
 	}
 	for (c = gLowHead; c != NULL; c = c->next) {
-		if (largest < c->size) {
-			largest = c->size;
+		u32 size = c->size;
+		if (largest < size) {
+			largest = size;
 		}
-		total += c->size;
+		total += size;
 	}
 	if (totalOut != NULL) {
 		*totalOut = total;
