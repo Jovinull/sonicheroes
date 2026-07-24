@@ -301,6 +301,7 @@ config.libs = [
         "objects": [
             Object(Matching, "MSL_C/mem.c"),
             Object(Matching, "MSL_C/file_io.c"),
+            Object(Matching, "MSL_C/printf.c"),
             Object(Matching, "MSL_C/string.c", extra_cflags=["-O3,p", "-opt schedule"]),
         ],
     },
