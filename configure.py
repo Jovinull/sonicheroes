@@ -430,6 +430,11 @@ config.libs = [
         [
             Object(
                 Matching,
+                "autosaveD/widget_overlay.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/table.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
