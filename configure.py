@@ -339,7 +339,17 @@ config.libs = [
             Object(Matching, "dolphin/ai/ai.c"),
             Object(Matching, "dolphin/ar/ar.c"),
             Object(Matching, "dolphin/ar/arq.c"),
-            Object(NonMatching, "dolphin/db/dbcomm.c"),
+            Object(
+                Matching,
+                "dolphin/db/dbcomm.c",
+                extra_cflags=[
+                    "-use_lmw_stmw on",
+                    "-str reuse,pool,readonly",
+                    "-common off",
+                    "-inline deferred,auto",
+                    "-char signed",
+                ],
+            ),
             Object(Matching, "dolphin/exi/EXIBios.c", extra_cflags=["-opt noschedule"]),
             Object(Matching, "dolphin/si/SISamplingRate.c"),
             Object(Matching, "dolphin/os/OSInterrupt.c"),
