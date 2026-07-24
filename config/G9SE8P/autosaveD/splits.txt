@@ -12,6 +12,9 @@ autosaveD/line_count.c:
 autosaveD/task_runtime.c:
 	.text       start:0x0000136C end:0x00001454
 
+autosaveD/task_callback_setters.c:
+	.text       start:0x00001ED4 end:0x00001EF0
+
 autosaveD/task_object.c:
 	.text       start:0x00001FB4 end:0x00002294
 
