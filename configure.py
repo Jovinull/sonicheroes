@@ -353,7 +353,7 @@ config.libs = [
             Object(Matching, "dolphin/os/OSResetSW.c"),
             Object(Matching, "dolphin/os/OSStopwatch.c"),
             Object(Matching, "dolphin/os/OSSync.c"),
-            Object(NonMatching, "dolphin/os/OSThread.c"),
+            Object(Matching, "dolphin/os/OSThread.c", extra_cflags=["-inline noauto"]),
             Object(Matching, "dolphin/os/OSReset.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
             Object(Matching, "dolphin/os/OSContext.c"),
