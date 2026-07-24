@@ -145,6 +145,19 @@ dolphin/os/OSTime.c:
 Runtime.PPCEABI.H/__ppc_eabi_init.c:
 	.text       start:0x801D7630 end:0x801D76C4
 
+Runtime.PPCEABI.H/__mem.c:
+	.init       start:0x80003100 end:0x80003238
+
+dolphin/os/__start.c:
+	.init       start:0x800052C4 end:0x8000561C
+	.sbss       start:0x8042CBA8 end:0x8042CBAC
+
+dolphin/dvd/dvdlow.c:
+	.text       start:0x801D7790 end:0x801D860C
+	.bss        start:0x803F2DB0 end:0x803F2E80
+	.sdata      start:0x8042BF58 end:0x8042BF60
+	.sbss       start:0x8042CBB0 end:0x8042CBF8
+
 dolphin/dvd/dvdqueue.c:
 	.text       start:0x801DB614 end:0x801DB80C
 	.bss        start:0x803F2F18 end:0x803F2F38
@@ -152,13 +165,6 @@ dolphin/dvd/dvdqueue.c:
 dolphin/dvd/dvderror.c:
 	.text       start:0x801DB80C end:0x801DB9A4
 	.data       start:0x80292BD0 end:0x80292C18
-
-Runtime.PPCEABI.H/__mem.c:
-	.init       start:0x80003100 end:0x80003238
-
-dolphin/os/__start.c:
-	.init       start:0x800052C4 end:0x8000561C
-	.sbss       start:0x8042CBA8 end:0x8042CBAC
 
 dolphin/vi/vi.c:
 	.text       start:0x801DBD0C end:0x801DDB58
