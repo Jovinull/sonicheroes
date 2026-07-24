@@ -252,6 +252,70 @@ dolphin/ar/arq.c:
 	.sdata      start:0x8042BFD0 end:0x8042BFD8
 	.sbss       start:0x8042CD68 end:0x8042CD90
 
+dolphin/gx/GXInit.c:
+	.text       start:0x801F0BE0 end:0x801F1F60
+	.data       start:0x80298380 end:0x802985C0
+	.bss        start:0x8040E260 end:0x8040E890
+	.sdata      start:0x8042C010 end:0x8042C018
+	.sbss       start:0x8042CEA0 end:0x8042CEC8
+	.sdata2     start:0x8042FE20 end:0x8042FE48
+
+dolphin/gx/GXFifo.c:
+	.text       start:0x801F1F60 end:0x801F275C
+	.sbss       start:0x8042CEC8 end:0x8042CEE8
+
+dolphin/gx/GXAttr.c:
+	.text       start:0x801F275C end:0x801F34B0
+	.data       start:0x802985C0 end:0x80298720
+	.sdata      start:0x8042C018 end:0x8042C028
+
+dolphin/gx/GXMisc.c:
+	.text       start:0x801F34B0 end:0x801F3B98
+	.sbss       start:0x8042CEE8 end:0x8042CF00
+
+dolphin/gx/GXGeometry.c:
+	.text       start:0x801F3B98 end:0x801F3ED4
+
+dolphin/gx/GXFrameBuf.c:
+	.text       start:0x801F3ED4 end:0x801F4A70
+	.data       start:0x80298720 end:0x80298850
+	.sdata2     start:0x8042FE48 end:0x8042FE58
+
+dolphin/gx/GXLight.c:
+	.text       start:0x801F4A9C end:0x801F5084
+	.data       start:0x80298850 end:0x8029886C
+	.sdata2     start:0x8042FE58 end:0x8042FE88
+
+dolphin/gx/GXTexture.c:
+	.text       start:0x801F5084 end:0x801F612C
+	.data       start:0x80298870 end:0x802989A0
+	.sdata      start:0x8042C028 end:0x8042C068
+	.sdata2     start:0x8042FE88 end:0x8042FEC0
+
+dolphin/gx/GXBump.c:
+	.text       start:0x801F612C end:0x801F6604
+	.sdata2     start:0x8042FEC0 end:0x8042FEC8
+
+dolphin/gx/GXTev.c:
+	.text       start:0x801F6604 end:0x801F6D68
+	.data       start:0x802989A0 end:0x80298A18
+
+dolphin/gx/GXPixel.c:
+	.text       start:0x801F6D68 end:0x801F73B0
+	.data       start:0x80298A18 end:0x80298A38
+	.sdata2     start:0x8042FEC8 end:0x8042FF00
+
+dolphin/gx/GXDisplayList.c:
+	.text       start:0x801F73B0 end:0x801F7420
+
+dolphin/gx/GXTransform.c:
+	.text       start:0x801F7420 end:0x801F7910
+	.sdata2     start:0x8042FF00 end:0x8042FF10
+
+dolphin/gx/GXPerf.c:
+	.text       start:0x801F7910 end:0x801F8168
+	.data       start:0x80298A38 end:0x80298B24
+
 dolphin/amcstubs.c:
 	.text       start:0x801F8168 end:0x801F81A8
 
