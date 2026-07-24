@@ -51,6 +51,8 @@ modules:
   # so here. Without this the module comes out 0x10 short and every relative
   # branch past 0x476C shifts with it.
   force_active:
+    - fn_2_408C
+    - fn_2_4098
     - fn_2_476C
 - object: files/movieD.rel
   hash: 6e2773a99ec5b05d5634d09521246e3e28bd6de9
