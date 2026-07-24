@@ -6,5 +6,8 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
+autosaveD/state_init.c:
+	.text       start:0x00004004 end:0x00004070
+
 autosaveD/table.c:
 	.text       start:0x0000476C end:0x000047F0
