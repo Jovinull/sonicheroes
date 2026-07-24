@@ -26,8 +26,13 @@
 // means editing those two units, so it is left for a change that does only
 // that.
 //
-// Six of the twenty one functions match. The other fifteen are not written yet
+// Nine of the twenty one functions match. The other twelve are not written yet
 // rather than written and failing, and nothing here is a transcription.
+//
+// UnsetRun and __OSGetEffectivePriority are named from what they do, and the
+// second of them is where the OSMutex layout above comes from: it walks a
+// thread's held mutexes through a link at 0x10 and reads each one's waiting
+// queue at 0x0.
 
 typedef s32 OSPriority;
 
@@ -43,10 +48,26 @@ typedef struct OSThreadLink {
 	OSThread* prev; // 0x4
 } OSThreadLink;     // 0x8
 
+typedef struct OSMutex OSMutex;
+
 typedef struct OSMutexQueue {
-	void* head; // 0x0
-	void* tail; // 0x4
-} OSMutexQueue; // 0x8
+	OSMutex* head; // 0x0
+	OSMutex* tail; // 0x4
+} OSMutexQueue;    // 0x8
+
+typedef struct OSMutexLink {
+	OSMutex* next; // 0x0
+	OSMutex* prev; // 0x4
+} OSMutexLink;     // 0x8
+
+// Read out of __OSGetEffectivePriority, which walks a thread's held mutexes
+// through 0x10 and reads each one's waiting queue at 0x0.
+struct OSMutex {
+	OSThreadQueue queue; // 0x00
+	OSThread* thread;    // 0x08
+	s32 count;           // 0x0C
+	OSMutexLink link;    // 0x10
+}; // 0x18
 
 struct OSThread {
 	OSContext context;       // 0x000
@@ -59,7 +80,7 @@ struct OSThread {
 	OSThreadQueue* queue;    // 0x2DC
 	OSThreadLink link;       // 0x2E0
 	OSThreadQueue queueJoin; // 0x2E8
-	void* mutex;             // 0x2F0
+	OSMutex* mutex;          // 0x2F0
 	OSMutexQueue queueMutex; // 0x2F4
 	OSThreadLink linkActive; // 0x2FC
 	u8* stackBase;           // 0x304
@@ -130,4 +151,65 @@ s32 OSEnableScheduler(void)
 OSPriority OSGetThreadPriority(OSThread* thread)
 {
 	return thread->base;
+}
+
+// Takes a thread off whichever queue it is on. Clearing the last thread at a
+// priority also clears that priority's bit in the run queue bitmap.
+static void UnsetRun(OSThread* thread)
+{
+	OSThreadQueue* queue;
+	OSThread* next;
+	OSThread* prev;
+
+	queue = thread->queue;
+	next  = thread->link.next;
+	prev  = thread->link.prev;
+
+	if (next == NULL) {
+		queue->tail = prev;
+	} else {
+		next->link.prev = prev;
+	}
+	if (prev == NULL) {
+		queue->head = next;
+	} else {
+		prev->link.next = next;
+	}
+	if (queue->head == NULL) {
+		RunQueueBits &= ~(1 << (31 - thread->priority));
+	}
+	thread->queue = NULL;
+}
+
+// A thread runs at the highest priority among its own and those of the threads
+// waiting on the mutexes it holds, which is what stops priority inversion.
+static OSPriority __OSGetEffectivePriority(OSThread* thread)
+{
+	OSPriority priority;
+	OSMutex* mutex;
+
+	priority = thread->base;
+	for (mutex = thread->queueMutex.head; mutex != NULL; mutex = mutex->link.next) {
+		OSThread* blocked = mutex->queue.head;
+		if (blocked != NULL && blocked->priority < priority) {
+			priority = blocked->priority;
+		}
+	}
+	return priority;
+}
+
+// Paints the unused part of the current thread's stack with a byte, from the
+// stack's end up to wherever the stack pointer is now.
+void OSClearStack(u8 val)
+{
+	u32 pattern;
+	u32* p;
+	u32* stackEnd;
+
+	pattern  = (val << 24) | (val << 16) | (val << 8) | val;
+	p        = (u32*)OSGetStackPointer();
+	stackEnd = OSGetCurrentThread()->stackEnd + 1;
+	while (stackEnd < p) {
+		*stackEnd++ = pattern;
+	}
 }
