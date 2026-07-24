@@ -12,6 +12,10 @@ autosaveD/task_object.c:
 autosaveD/task_system.c:
 	.text       start:0x00002294 end:0x000026C0
 
+autosaveD/window_lifecycle.c:
+	.text       start:0x00003A70 end:0x00003FAC
+	.rodata     start:0x00000350 end:0x00000358
+
 autosaveD/state_selector.c:
 	.text       start:0x00003FAC end:0x00004344
 
