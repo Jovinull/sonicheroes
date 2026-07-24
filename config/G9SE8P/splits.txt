@@ -54,6 +54,9 @@ MSL_C/printf.c:
 MSL_C/string.c:
 	.text       start:0x801C3D2C end:0x801C3EBC
 
+MSL_C/strtold.c:
+	.text       start:0x801C3EBC end:0x801C3F48
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
