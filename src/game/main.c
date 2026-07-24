@@ -41,21 +41,36 @@
 // same setting is what matched EXIBios, so it is worth trying first on the
 // next game unit rather than last.
 //
-// Six of the seven functions match. main stands at 98.7% and everything still
-// different is one cause: the original reserves a 0x50 frame where ours is
-// 0x40, and those sixteen bytes push each local up by eight. Its three blocks
-// sit at 0x08, 0x18 and 0x24; ours land lower and are otherwise identical.
-// Registers, instruction order and instruction count already agree, and the
-// twenty bytes between the last local and the saved registers are never read
-// or written by the original either.
+// Six of the seven functions match. main stands at 99.5%: every stack offset,
+// the frame size, the instruction order and the instruction count now agree,
+// and the six instructions still different differ only in which registers they
+// name. The original loads tick[0] into r5, builds the lbl_8029BB80 address in
+// r4 and reuses r3 for tick[1]; ours puts the address in r3 and the two values
+// in r4 and r5. Nothing about the shape of the source moved it: the block was
+// tried through a pointer local, with the two words held in named temporaries,
+// with the assignments chained, and with the stores reordered, and the plain
+// form scores highest of those.
+//
+// Two things got it here from 98.7%. unk_0x10 is signed, which is what makes
+// the poll at the bottom cmpwi rather than cmplwi. And tick is declared wider
+// than the two words main reads: the original's locals run to 0x40 where three
+// tightly sized blocks reach only 0x34, and widening the topmost one is what
+// reserves the 0x50 frame. Its exact width is not pinned down, because the
+// locals area rounds to sixteen bytes and u32[4] through u32[7] all produce
+// the same frame; u32[4] is the smallest that does, so it is what stands here.
+//
+// The locals are declared tick, cfg, args because the compiler lays them out
+// in the reverse of that, which is the order the original uses: args at 0x08,
+// cfg at 0x18, tick at 0x24.
 //
 // Unused locals do not reach it here, which is worth recording because they do
 // elsewhere: in dbcomm an unused u32 pad[4] moves the frame to the original's
-// size exactly, while here pad[4], pad[5] and pad[6] all leave main byte for
-// byte where it was. Whatever this unit is built with discards them. Also
-// rejected: GC/1.2.5n and GC/1.3 for the unit (1.3.2 and 1.3 tie at the top,
-// 1.2.5n is twelve points worse), building the file as C++ rather than C, and
-// every ordering of the four locals.
+// size exactly, while here every width from pad[1] to pad[6] leaves main byte
+// for byte where it was, at either end of the block and with or without
+// volatile. Whatever this unit is built with discards them, so the frame had
+// to come from a local that is actually read. Also rejected: GC/1.2.5n and
+// GC/1.3 for the unit (1.3.2 and 1.3 tie at the top, 1.2.5n is twelve points
+// worse), and building the file as C++ rather than C.
 
 // Video, disc and graphics entry points this file calls. None of them are in
 // include/ yet because no other unit written so far needs them; move them
@@ -97,7 +112,8 @@ typedef struct Unk8029BB80 {
 	u32 unk_0x4;
 	u32 unk_0x8;
 	u8 unk_0xC[0x4];
-	u32 unk_0x10;
+	// Signed: main polls this with cmpwi, not cmplwi.
+	s32 unk_0x10;
 	u8 unk_0x14[0x2C];
 } Unk8029BB80; // 0x40
 
@@ -140,9 +156,12 @@ int fn_80012C50(void)
 
 int main(int argc, char** argv)
 {
-	u32 args[4];
+	// Laid out in reverse of declaration order, which puts args at 0x08, cfg at
+	// 0x18 and tick at 0x24. tick is wider than the two words read below; see
+	// the note at the top of the file.
+	u32 tick[4];
 	void* cfg[3];
-	u32 tick[2];
+	u32 args[4];
 	int i;
 
 	cfg[0] = lbl_80298720;
