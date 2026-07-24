@@ -27,51 +27,9 @@
 // from how they are used: 0x0/0x4 thread the free list, 0x8/0xc thread the
 // physical neighbours for coalescing, 0x10 is the size.
 //
-// Built with -opt noschedule, like main and EXIBios: without it the
-// instructions are right and their order is not.
-//
-// Eight of the eleven functions match. The rest are written and produce the
-// right instructions in the right count; what still differs is register
-// numbering inside the free-list splice and coalesce paths, where the compiler
-// reads a cell's links back from memory in a different order than the original.
-//
-// fn_80012654 is the one that has been taken all the way, and what it took is
-// worth repeating on the rest. Three things had to hold at once, and no two of
-// them were enough: the locals are declared largest before total, which is what
-// decides that largest lives in r0 and the loaded size in r7 rather than the
-// other way round; the walk pointer is set before the two counters are zeroed,
-// which is what puts the gHighHead load first; and each loop reads c->size into
-// a named local rather than naming the field twice, which the original does as
-// one load feeding both the compare and the add. Writing the first loop's three
-// initialisers in its for clause and setting them in three statements ahead of
-// a bare for are indistinguishable here; the for clause is what stands.
-//
-// fn_8001234C came out of the same reading. It sets the two roots up through
-// the globals rather than through a local cell pointer, which is what makes the
-// compiler read each root back before every field store: the store can alias
-// the root. It also calls OSSetArenaLo a second time, with the arena top rather
-// than the value OSInitAlloc returned, which leaves the OS arena empty. That
-// call is the heap claiming the whole arena for itself, and it is the reason
-// nothing else in the game allocates through OSAlloc.
-//
-// fn_80012A94 took two more of the same kind. Its split path tests the two
-// links through the locals it already read out of the cell, not through
-// rest->next and rest->prev, which is what stops the compiler reading them back
-// out of the cell it has just written; and rest is declared inside that block
-// after the two links rather than at the top of the function, which is what
-// gives it r7 and leaves r5 and r6 to them.
-//
-//   fn_800125F0  100%   alloc
-//   fn_80012560  100%   calloc
-//   fn_80012994  100%   the find-block wrapper
-//   fn_800126C8  100%   free and trim
-//   fn_80012BE0  100%   free if non-null
-//   fn_80012654  100%   heap info
-//   fn_8001234C  100%   init
-//   fn_80012A94  100%   the core allocator
-//   fn_80012740   87%   free; the coalesce arms re-read links out of order
-//   fn_8001247C   77%   realloc
-//   fn_800129B4   71%   the high-list allocator, same shape as fn_80012A94
+// Built with exception tables enabled and propagation and scheduling disabled.
+// The original also disables the peephole pass locally around realloc and free;
+// those scopes preserve the entry comparisons and free-list selection branches.
 
 typedef struct Cell {
 	struct Cell* next; // 0x0  next in the free list
@@ -102,16 +60,19 @@ typedef struct AllocVtable {
 // The two free lists, head and tail per pool, plus the heap bounds. Low pool
 // roots are gLowHead/gLowTail, high pool roots are gHighHead/gHighTail, and
 // gAllocHigh is the high pool base that sorts a cell into one list or the other.
-static u32 gHeapBase;    // 0x8042C0A0
-static u32 gHeapSize;    // 0x8042C0A4
-static Cell* gHighHead;  // 0x8042C0A8
-static Cell* gHighTail;  // 0x8042C0AC
-static Cell* gLowHead;   // 0x8042C0B0
-static Cell* gLowTail;   // 0x8042C0B4
-static Cell* gAllocHigh; // 0x8042C0B8, plus one more word
+static struct {
+	Cell* value;
+	u32 unused;
+} gAllocHigh;           // 0x8042C0B8
+static Cell* gLowTail;  // 0x8042C0B4
+static Cell* gLowHead;  // 0x8042C0B0
+static Cell* gHighTail; // 0x8042C0AC
+static Cell* gHighHead; // 0x8042C0A8
+static u32 gHeapSize;   // 0x8042C0A4
+static u32 gHeapBase;   // 0x8042C0A0
 
 Cell* fn_80012A94(u32 size, Cell* list);
-void* fn_800129B4(u32 size);
+void* fn_800129B4(register u32 size);
 void fn_80012740(void* ptr);
 void* fn_800125F0(u32 size);
 void* fn_80012560(u32 n, u32 size);
@@ -142,9 +103,6 @@ int fn_8001234C(AllocVtable* vtable)
 	gHeapBase = ((u32)lo + 0x1F) & ~0x1F;
 	gHeapSize = ((u32)hi & ~0x1F) - gHeapBase;
 
-	// Written through the globals rather than a local, which is what makes the
-	// compiler read each root back before the next field store: a store through
-	// the pointer can alias the root itself.
 	gLowHead       = (Cell*)gHeapBase;
 	gLowHead->next = NULL;
 	gLowHead->prev = NULL;
@@ -153,16 +111,15 @@ int fn_8001234C(AllocVtable* vtable)
 	gLowHead->size = 0x200000;
 	gLowTail       = gLowHead;
 
-	gHighHead       = (Cell*)(gHeapBase + 0x200000);
-	gHighHead->next = NULL;
-	gHighHead->prev = NULL;
-	gHighHead->hi   = NULL;
-	gHighHead->lo   = NULL;
-	gHighHead->size = gHeapSize - 0x200000;
-	gHighTail       = gHighHead;
-	gAllocHigh      = gHighHead;
+	gHighHead        = (Cell*)(gHeapBase + 0x200000);
+	gHighHead->next  = NULL;
+	gHighHead->prev  = NULL;
+	gHighHead->hi    = NULL;
+	gHighHead->lo    = NULL;
+	gHighHead->size  = gHeapSize - 0x200000;
+	gHighTail        = gHighHead;
+	gAllocHigh.value = gHighHead;
 
-	// The heap takes the whole arena: nothing is left for OSAlloc after this.
 	OSSetArenaLo(hi);
 
 	vtable->alloc   = (void* (*)(u32))fn_800125F0;
@@ -174,13 +131,14 @@ int fn_8001234C(AllocVtable* vtable)
 }
 
 // Grows or shrinks a block, copying the smaller of the old and new sizes.
+#pragma peephole off
 void* fn_8001247C(void* ptr, u32 size)
 {
-	u32 oldSize;
 	u32 want;
+	u32 oldSize;
 	void* out;
 
-	oldSize = (ptr != NULL) ? ((Cell*)((u8*)ptr - 0x20))->size : 0;
+	oldSize = ((u32)ptr != 0) ? ((Cell*)((u8*)ptr - 0x20))->size : 0;
 
 	out  = NULL;
 	want = CELL_ROUND(size);
@@ -190,22 +148,26 @@ void* fn_8001247C(void* ptr, u32 size)
 	if (out == NULL) {
 		out = (void*)fn_80012A94(want, gHighHead);
 	}
+	want = (u32)out;
 
-	if (out != NULL) {
+	if (want != 0) {
 		if (oldSize < size) {
 			if (ptr != NULL) {
-				memcpy(out, ptr, oldSize);
+				memcpy((void*)want, ptr, oldSize);
 			}
 		} else if (ptr != NULL) {
-			memcpy(out, ptr, size);
+			memcpy((void*)want, ptr, size);
 		}
 		if (ptr != NULL) {
-			fn_80012740(ptr);
+			if (ptr != NULL) {
+				fn_80012740(ptr);
+			}
 		}
 	}
 
-	return out;
+	return (void*)want;
 }
+#pragma peephole on
 
 // Allocates n * size bytes cleared to zero.
 void* fn_80012560(u32 n, u32 size)
@@ -253,19 +215,25 @@ void fn_80012654(u32* totalOut, u32* largestOut)
 	u32 largest;
 	u32 total;
 
-	for (c = gHighHead, largest = 0, total = 0; c != NULL; c = c->next) {
-		u32 size = c->size;
-		if (largest < size) {
-			largest = size;
+	c       = gHighHead;
+	largest = 0;
+	total   = 0;
+	while (c != NULL) {
+		u32 cellSize = c->size;
+		if (largest < cellSize) {
+			largest = cellSize;
 		}
-		total += size;
+		total += cellSize;
+		c = c->next;
 	}
-	for (c = gLowHead; c != NULL; c = c->next) {
-		u32 size = c->size;
-		if (largest < size) {
-			largest = size;
+	c = gLowHead;
+	while (c != NULL) {
+		u32 cellSize = c->size;
+		if (largest < cellSize) {
+			largest = cellSize;
 		}
-		total += size;
+		total += cellSize;
+		c = c->next;
 	}
 	if (totalOut != NULL) {
 		*totalOut = total;
@@ -294,160 +262,24 @@ void fn_800126C8(void* ptr)
 	}
 }
 
-// The size query and expand path on the high list: walks it for the last cell
-// large enough, then either takes it whole or carves the tail off it.
-void* fn_800129B4(u32 size)
-{
-	Cell* c;
-	Cell* found;
-	Cell* split;
-	u32 want;
-
-	want  = CELL_ROUND(size);
-	found = NULL;
-	for (c = gHighTail; c != NULL; c = c->prev) {
-		if (c->size >= want) {
-			found = c;
-			break;
-		}
-	}
-	if (found == NULL) {
-		return NULL;
-	}
-
-	if (found->size == want) {
-		Cell* fn = found->next;
-		Cell* fp = found->prev;
-		if (fn != NULL) {
-			fn->prev = fp;
-		} else if ((Cell*)fp < gAllocHigh) {
-			gLowTail = fp;
-		} else {
-			gHighTail = fp;
-		}
-		if (fp != NULL) {
-			fp->next = fn;
-		} else if ((Cell*)fn < gAllocHigh) {
-			gLowHead = fn;
-		} else {
-			gHighHead = fn;
-		}
-		found->next = NULL;
-		found->prev = NULL;
-		return (u8*)found + 0x20;
-	}
-
-	split       = (Cell*)((u8*)found + found->size - want);
-	split->next = NULL;
-	split->prev = NULL;
-	split->hi   = found->hi;
-	split->lo   = found;
-	split->size = want;
-	found->size -= want;
-	if (found->hi != NULL) {
-		found->hi->lo = split;
-	}
-	found->hi = split;
-	return (u8*)split + 0x20;
-}
-
-// The core allocator: walks a free list from its head for a cell of the exact
-// size or one cell larger, or a bigger cell it can split from the front.
-Cell* fn_80012A94(u32 size, Cell* list)
-{
-	Cell* c;
-
-	for (c = list; c != NULL; c = c->next) {
-		if (c->size == size || c->size == size + 0x20) {
-			Cell* cn = c->next;
-			Cell* cp = c->prev;
-			if (cn != NULL) {
-				cn->prev = cp;
-			} else if (cp < gAllocHigh) {
-				gLowTail = cp;
-			} else {
-				gHighTail = cp;
-			}
-			if (cp != NULL) {
-				cp->next = cn;
-			} else if (cn < gAllocHigh) {
-				gLowHead = cn;
-			} else {
-				gHighHead = cn;
-			}
-			c->next = NULL;
-			c->prev = NULL;
-			return (Cell*)((u8*)c + 0x20);
-		}
-		if (c->size > size) {
-			Cell* cn   = c->next;
-			Cell* cp   = c->prev;
-			Cell* rest = (Cell*)((u8*)c + size);
-			rest->next = cn;
-			rest->prev = cp;
-			rest->hi   = c->hi;
-			rest->lo   = c;
-			rest->size = c->size - size;
-			c->size    = size;
-			if (c->hi != NULL) {
-				c->hi->lo = rest;
-			}
-			c->hi = rest;
-			// Tested through the locals rather than through rest->next and
-			// rest->prev, which is what keeps the two links in registers
-			// instead of reading them back out of the cell just written.
-			if (cn != NULL) {
-				cn->prev = rest;
-			} else if (rest < gAllocHigh) {
-				gLowTail = rest;
-			} else {
-				gHighTail = rest;
-			}
-			if (cp != NULL) {
-				cp->next = rest;
-			} else if (rest < gAllocHigh) {
-				gLowHead = rest;
-			} else {
-				gHighHead = rest;
-			}
-			c->next = NULL;
-			c->prev = NULL;
-			return (Cell*)((u8*)c + 0x20);
-		}
-	}
-	return NULL;
-}
-
 // A cell is on a free list when either of its list links is set. An allocated
 // cell has both cleared, so this tells a free neighbour from a busy one.
 #define CELL_IS_FREE(c) ((c)->next != NULL || (c)->prev != NULL)
 
-// Inserts cell as the new head of its pool's free list.
-static void ListPush(Cell* cell, Cell** head, Cell** tail)
-{
-	if (*head != NULL) {
-		(*head)->prev = cell;
-	} else {
-		*tail = cell;
-	}
-	cell->prev = NULL;
-	cell->next = *head;
-	*head      = cell;
-}
-
 // Frees a block, coalescing with whichever physical neighbours are also free
 // and re-seating the merged cell in its pool's free list.
+#pragma opt_propagation on
+#pragma peephole off
 void fn_80012740(void* ptr)
 {
 	Cell* cell;
-	Cell* lo;
 	Cell* hi;
-	Cell** head;
-	Cell** tail;
 	Cell* c;
+	Cell* lo;
+	Cell** head;
 	int i;
 
-	cell = (Cell*)((u8*)ptr - 0x20);
+	cell = (Cell*)ptr - 1;
 	lo   = cell->lo;
 	hi   = cell->hi;
 
@@ -472,14 +304,14 @@ void fn_80012740(void* ptr)
 		lo->size += hi->size;
 		if (hi->next != NULL) {
 			hi->next->prev = hi->prev;
-		} else if (hi->prev < gAllocHigh) {
+		} else if (hi->prev < gAllocHigh.value) {
 			gLowTail = hi->prev;
 		} else {
 			gHighTail = hi->prev;
 		}
 		if (hi->prev != NULL) {
 			hi->prev->next = hi->next;
-		} else if (hi->next < gAllocHigh) {
+		} else if (hi->next < gAllocHigh.value) {
 			gLowHead = hi->next;
 		} else {
 			gHighHead = hi->next;
@@ -493,14 +325,14 @@ void fn_80012740(void* ptr)
 		cell->prev = hi->prev;
 		if (cell->prev != NULL) {
 			cell->prev->next = cell;
-		} else if (cell < gAllocHigh) {
+		} else if (cell < gAllocHigh.value) {
 			gLowHead = cell;
 		} else {
 			gHighHead = cell;
 		}
 		if (cell->next != NULL) {
 			cell->next->prev = cell;
-		} else if (cell < gAllocHigh) {
+		} else if (cell < gAllocHigh.value) {
 			gLowTail = cell;
 		} else {
 			gHighTail = cell;
@@ -509,8 +341,8 @@ void fn_80012740(void* ptr)
 		if (cell->hi != NULL) {
 			cell->hi->lo = cell;
 		}
-		if (hi->lo != NULL) {
-			hi->lo->hi = cell;
+		if (cell->lo != NULL) {
+			cell->lo->hi = cell;
 		}
 		cell->size += hi->size;
 		return;
@@ -520,45 +352,165 @@ void fn_80012740(void* ptr)
 	// the physical neighbours to find one that is already free and splice in
 	// after it, keeping the list in address order; if none is found within the
 	// bounded walk, push it at the head.
-	if (cell < gAllocHigh) {
+	if (cell < gAllocHigh.value) {
 		head = &gLowHead;
-		tail = &gLowTail;
 	} else {
 		head = &gHighHead;
-		tail = &gHighTail;
 	}
 
-	if (*head == NULL) {
+	if (*head != NULL) {
+		c = cell;
+		for (i = 0x20; i != 0; i--) {
+			Cell* nb = c->lo;
+			if (nb == NULL) {
+				break;
+			}
+			if (nb->next != NULL) {
+				Cell* next = nb->next;
+				nb->next   = cell;
+				next->prev = cell;
+				cell->next = next;
+				cell->prev = nb;
+				return;
+			}
+			c = nb;
+		}
+
+		(*head)->prev = cell;
+		cell->prev    = NULL;
+		cell->next    = *head;
+		*head         = cell;
+	} else {
 		cell->next = NULL;
 		cell->prev = NULL;
 		*head      = cell;
-		*tail      = cell;
-		return;
 	}
-
-	c = cell;
-	for (i = 0x20; i != 0; i--) {
-		Cell* nb = c->lo;
-		if (nb == NULL) {
-			break;
-		}
-		if (nb->next != NULL) {
-			nb->next->prev = cell;
-			cell->next     = nb->next;
-			nb->next       = cell;
-			cell->prev     = nb;
-			return;
-		}
-		c = nb;
-	}
-
-	ListPush(cell, head, tail);
 }
+#pragma peephole on
+#pragma opt_propagation off
 
 // Wrapper the vtable does not use directly.
 void fn_80012994(u32 size)
 {
 	fn_800129B4(size);
+}
+
+// The size query and expand path on the high list: walks it for the last cell
+// large enough, then either takes it whole or carves the tail off it.
+void* fn_800129B4(register u32 size)
+{
+	u32 want;
+	Cell* c;
+	Cell* found;
+
+	want  = CELL_ROUND(size);
+	found = NULL;
+	for (c = gHighTail; c != NULL; c = c->prev) {
+		if (c->size >= want) {
+			found = c;
+			break;
+		}
+	}
+	if (found != NULL) {
+		if (found->size == want) {
+			Cell* fn = found->next;
+			Cell* fp = found->prev;
+			if (fn != NULL) {
+				fn->prev = fp;
+			} else {
+				gHighTail = fp;
+			}
+			if (fp != NULL) {
+				fp->next = fn;
+			} else {
+				gHighHead = fn;
+			}
+			found->next = NULL;
+			found->prev = NULL;
+			return (u8*)found + 0x20;
+		}
+
+		{
+			Cell* split;
+			split       = (Cell*)((u8*)found + found->size - want);
+			split->next = NULL;
+			split->prev = NULL;
+			split->hi   = found->hi;
+			split->lo   = found;
+			split->size = want;
+			found->size -= want;
+			if (found->hi != NULL) {
+				found->hi->lo = split;
+			}
+			found->hi = split;
+			return (u8*)split + 0x20;
+		}
+	}
+	return NULL;
+}
+
+// The core allocator: walks a free list from its head for a cell of the exact
+// size or one cell larger, or a bigger cell it can split from the front.
+Cell* fn_80012A94(u32 size, Cell* list)
+{
+	Cell* c;
+
+	for (c = list; c != NULL; c = c->next) {
+		if (c->size == size || c->size == size + 0x20) {
+			Cell* cn = c->next;
+			Cell* cp = c->prev;
+			if (cn != NULL) {
+				cn->prev = cp;
+			} else if (cp < gAllocHigh.value) {
+				gLowTail = cp;
+			} else {
+				gHighTail = cp;
+			}
+			if (cp != NULL) {
+				cp->next = cn;
+			} else if (cn < gAllocHigh.value) {
+				gLowHead = cn;
+			} else {
+				gHighHead = cn;
+			}
+			c->next = NULL;
+			c->prev = NULL;
+			return (Cell*)((u8*)c + 0x20);
+		}
+		if (c->size > size) {
+			Cell* cn   = c->next;
+			Cell* cp   = c->prev;
+			Cell* rest = (Cell*)((u8*)c + size);
+			rest->next = cn;
+			rest->prev = cp;
+			rest->hi   = c->hi;
+			rest->lo   = c;
+			rest->size = c->size - size;
+			c->size    = size;
+			if (c->hi != NULL) {
+				c->hi->lo = rest;
+			}
+			c->hi = rest;
+			if (cn != NULL) {
+				cn->prev = rest;
+			} else if (rest < gAllocHigh.value) {
+				gLowTail = rest;
+			} else {
+				gHighTail = rest;
+			}
+			if (cp != NULL) {
+				cp->next = rest;
+			} else if (rest < gAllocHigh.value) {
+				gLowHead = rest;
+			} else {
+				gHighHead = rest;
+			}
+			c->next = NULL;
+			c->prev = NULL;
+			return (Cell*)((u8*)c + 0x20);
+		}
+	}
+	return NULL;
 }
 
 // Frees only when the pointer is non-null.
