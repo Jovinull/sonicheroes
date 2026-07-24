@@ -310,6 +310,7 @@ config.libs = [
                 "MSL_C/strtold.c",
                 extra_cflags=["-sdata 4", "-char signed", "-inline deferred,auto"],
             ),
+            Object(Matching, "MSL_C/strtoul.c"),
         ],
     },
     {
