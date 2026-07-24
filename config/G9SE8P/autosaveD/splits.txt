@@ -9,5 +9,8 @@ Sections:
 autosaveD/task_object.c:
 	.text       start:0x00001FB4 end:0x00002294
 
+autosaveD/task_system.c:
+	.text       start:0x00002294 end:0x000026C0
+
 autosaveD/table.c:
 	.text       start:0x0000476C end:0x000047F0
