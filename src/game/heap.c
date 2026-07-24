@@ -30,7 +30,7 @@
 // Built with -opt noschedule, like main and EXIBios: without it the
 // instructions are right and their order is not.
 //
-// Seven of the eleven functions match. The rest are written and produce the
+// Eight of the eleven functions match. The rest are written and produce the
 // right instructions in the right count; what still differs is register
 // numbering inside the free-list splice and coalesce paths, where the compiler
 // reads a cell's links back from memory in a different order than the original.
@@ -54,6 +54,13 @@
 // call is the heap claiming the whole arena for itself, and it is the reason
 // nothing else in the game allocates through OSAlloc.
 //
+// fn_80012A94 took two more of the same kind. Its split path tests the two
+// links through the locals it already read out of the cell, not through
+// rest->next and rest->prev, which is what stops the compiler reading them back
+// out of the cell it has just written; and rest is declared inside that block
+// after the two links rather than at the top of the function, which is what
+// gives it r7 and leaves r5 and r6 to them.
+//
 //   fn_800125F0  100%   alloc
 //   fn_80012560  100%   calloc
 //   fn_80012994  100%   the find-block wrapper
@@ -61,8 +68,7 @@
 //   fn_80012BE0  100%   free if non-null
 //   fn_80012654  100%   heap info
 //   fn_8001234C  100%   init
-//   fn_80012A94   94%   the core allocator; the split path holds the cell's two
-//                       links in different registers than the original
+//   fn_80012A94  100%   the core allocator
 //   fn_80012740   87%   free; the coalesce arms re-read links out of order
 //   fn_8001247C   77%   realloc
 //   fn_800129B4   71%   the high-list allocator, same shape as fn_80012A94
@@ -350,7 +356,6 @@ void* fn_800129B4(u32 size)
 Cell* fn_80012A94(u32 size, Cell* list)
 {
 	Cell* c;
-	Cell* rest;
 
 	for (c = list; c != NULL; c = c->next) {
 		if (c->size == size || c->size == size + 0x20) {
@@ -377,7 +382,7 @@ Cell* fn_80012A94(u32 size, Cell* list)
 		if (c->size > size) {
 			Cell* cn   = c->next;
 			Cell* cp   = c->prev;
-			rest       = (Cell*)((u8*)c + size);
+			Cell* rest = (Cell*)((u8*)c + size);
 			rest->next = cn;
 			rest->prev = cp;
 			rest->hi   = c->hi;
@@ -388,15 +393,18 @@ Cell* fn_80012A94(u32 size, Cell* list)
 				c->hi->lo = rest;
 			}
 			c->hi = rest;
-			if (rest->next != NULL) {
-				rest->next->prev = rest;
+			// Tested through the locals rather than through rest->next and
+			// rest->prev, which is what keeps the two links in registers
+			// instead of reading them back out of the cell just written.
+			if (cn != NULL) {
+				cn->prev = rest;
 			} else if (rest < gAllocHigh) {
 				gLowTail = rest;
 			} else {
 				gHighTail = rest;
 			}
-			if (rest->prev != NULL) {
-				rest->prev->next = rest;
+			if (cp != NULL) {
+				cp->next = rest;
 			} else if (rest < gAllocHigh) {
 				gLowHead = rest;
 			} else {
