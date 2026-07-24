@@ -6,5 +6,8 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
+autosaveD/parameter_sync.c:
+	.text       start:0x000024FC end:0x000025A8
+
 autosaveD/table.c:
 	.text       start:0x0000476C end:0x000047F0
