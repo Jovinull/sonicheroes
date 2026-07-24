@@ -32,7 +32,7 @@ typedef struct Table {
 } Table; // 0x8C
 
 // In the DOL, at 0x800575F4.
-extern void __dl__FPv(Table* table);
+extern void __dl__FPv(void* ptr);
 
 void fn_2_476C(Table* table)
 {

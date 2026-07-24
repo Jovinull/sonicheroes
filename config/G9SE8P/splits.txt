@@ -51,8 +51,13 @@ Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.dtors      start:0x80239920 end:0x80239928
 	.sdata      start:0x8042BEB8 end:0x8042BEC0
 
-Runtime.PPCEABI.H/fragment.c:
-	.text       start:0x801BB0D4 end:0x801BB13C
+Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp:
+	extab       start:0x8000BB90 end:0x8000BC04
+	extabindex  start:0x80011B9C end:0x80011BF0
+	.text       start:0x801B9D10 end:0x801BB13C
+	.rodata     start:0x8023CA00 end:0x8023CA54
+	.data       start:0x802912F0 end:0x802913BC
+	.bss        start:0x803EDC68 end:0x803EDC78
 
 MSL_C/GCN_Mem_Alloc.c:
 	.text       start:0x801BB148 end:0x801BB2B8

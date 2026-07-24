@@ -521,7 +521,6 @@ config.libs = [
         "cflags": cflags_runtime,
         "progress_category": "sdk",
         "objects": [
-            Object(NonMatching, "Runtime.PPCEABI.H/fragment.c"),
             Object(Matching, "Runtime.PPCEABI.H/__mem.c"),
             Object(Matching, "Runtime.PPCEABI.H/runtime.c"),
             Object(Matching, "Runtime.PPCEABI.H/__va_arg.c"),
@@ -531,6 +530,12 @@ config.libs = [
                 "Runtime.PPCEABI.H/NMWException.cpp",
             ),
             Object(Matching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+            Object(
+                Matching,
+                "Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp",
+                extra_cflags=["-str reuse,nopool,readonly"],
+                extab_padding=[0x25, 0x00],
+            ),
         ],
     },
 ]
