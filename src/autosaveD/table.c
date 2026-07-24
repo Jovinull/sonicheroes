@@ -18,7 +18,7 @@
 // fn_2_4798 is the shape Metrowerks emits for a C++ destructor that may also
 // free: it takes the object and a short flag, calls the real destructor only
 // when the flag is positive, and hands the object back. The destructor it
-// calls, dtor_800575F4, lives in the DOL, so this is also the first written
+// calls, __dl__FPv, lives in the DOL, so this is also the first written
 // call from a module out to the main binary. That shape is worth recording
 // because it means the module code is C++ rather than C, even though writing
 // it as C reproduces it exactly: this arrives in r3 either way, and the
@@ -32,7 +32,7 @@ typedef struct Table {
 } Table; // 0x8C
 
 // In the DOL, at 0x800575F4.
-extern void dtor_800575F4(Table* table);
+extern void __dl__FPv(Table* table);
 
 void fn_2_476C(Table* table)
 {
@@ -49,7 +49,7 @@ Table* fn_2_4798(Table* table, s16 free)
 {
 	if (table != NULL) {
 		if (free > 0) {
-			dtor_800575F4(table);
+			__dl__FPv(table);
 		}
 	}
 

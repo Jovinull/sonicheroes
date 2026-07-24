@@ -525,6 +525,10 @@ config.libs = [
             Object(Matching, "Runtime.PPCEABI.H/runtime.c"),
             Object(Matching, "Runtime.PPCEABI.H/__va_arg.c"),
             Object(Matching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
+            Object(
+                Matching,
+                "Runtime.PPCEABI.H/NMWException.cpp",
+            ),
             Object(Matching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
