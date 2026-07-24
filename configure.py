@@ -430,7 +430,7 @@ config.libs = [
         [
             Object(
                 Matching,
-                "autosaveD/task_unregister.c",
+                "autosaveD/heap_alloc.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(

@@ -6,7 +6,7 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-autosaveD/task_unregister.c:
+autosaveD/heap_alloc.c:
 	.text       start:0x00001424 end:0x00001454
 
 autosaveD/table.c:
