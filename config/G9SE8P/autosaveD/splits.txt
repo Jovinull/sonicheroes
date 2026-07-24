@@ -6,7 +6,7 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-autosaveD/task_register.c:
+autosaveD/heap_free.c:
 	.text       start:0x000013F4 end:0x00001424
 
 autosaveD/table.c:
