@@ -30,7 +30,7 @@
 // Built with -opt noschedule, like main and EXIBios: without it the
 // instructions are right and their order is not.
 //
-// Six of the eleven functions match. The rest are written and produce the
+// Seven of the eleven functions match. The rest are written and produce the
 // right instructions in the right count; what still differs is register
 // numbering inside the free-list splice and coalesce paths, where the compiler
 // reads a cell's links back from memory in a different order than the original.
@@ -46,16 +46,24 @@
 // initialisers in its for clause and setting them in three statements ahead of
 // a bare for are indistinguishable here; the for clause is what stands.
 //
+// fn_8001234C came out of the same reading. It sets the two roots up through
+// the globals rather than through a local cell pointer, which is what makes the
+// compiler read each root back before every field store: the store can alias
+// the root. It also calls OSSetArenaLo a second time, with the arena top rather
+// than the value OSInitAlloc returned, which leaves the OS arena empty. That
+// call is the heap claiming the whole arena for itself, and it is the reason
+// nothing else in the game allocates through OSAlloc.
+//
 //   fn_800125F0  100%   alloc
 //   fn_80012560  100%   calloc
 //   fn_80012994  100%   the find-block wrapper
 //   fn_800126C8  100%   free and trim
 //   fn_80012BE0  100%   free if non-null
 //   fn_80012654  100%   heap info
+//   fn_8001234C  100%   init
 //   fn_80012A94   94%   the core allocator; the split path holds the cell's two
 //                       links in different registers than the original
 //   fn_80012740   87%   free; the coalesce arms re-read links out of order
-//   fn_8001234C   83%   init
 //   fn_8001247C   77%   realloc
 //   fn_800129B4   71%   the high-list allocator, same shape as fn_80012A94
 
@@ -119,8 +127,6 @@ int fn_8001234C(AllocVtable* vtable)
 {
 	u8* lo;
 	u8* hi;
-	Cell* low;
-	Cell* high;
 
 	lo = OSGetArenaLo();
 	hi = OSGetArenaHi();
@@ -130,24 +136,28 @@ int fn_8001234C(AllocVtable* vtable)
 	gHeapBase = ((u32)lo + 0x1F) & ~0x1F;
 	gHeapSize = ((u32)hi & ~0x1F) - gHeapBase;
 
-	low       = (Cell*)gHeapBase;
-	gLowHead  = low;
-	low->next = NULL;
-	low->prev = NULL;
-	low->hi   = NULL;
-	low->lo   = NULL;
-	low->size = 0x200000;
-	gLowTail  = low;
+	// Written through the globals rather than a local, which is what makes the
+	// compiler read each root back before the next field store: a store through
+	// the pointer can alias the root itself.
+	gLowHead       = (Cell*)gHeapBase;
+	gLowHead->next = NULL;
+	gLowHead->prev = NULL;
+	gLowHead->hi   = NULL;
+	gLowHead->lo   = NULL;
+	gLowHead->size = 0x200000;
+	gLowTail       = gLowHead;
 
-	high       = (Cell*)(gHeapBase + 0x200000);
-	gHighHead  = high;
-	high->next = NULL;
-	high->prev = NULL;
-	high->hi   = NULL;
-	high->lo   = NULL;
-	high->size = gHeapSize - 0x200000;
-	gHighTail  = high;
-	gAllocHigh = high;
+	gHighHead       = (Cell*)(gHeapBase + 0x200000);
+	gHighHead->next = NULL;
+	gHighHead->prev = NULL;
+	gHighHead->hi   = NULL;
+	gHighHead->lo   = NULL;
+	gHighHead->size = gHeapSize - 0x200000;
+	gHighTail       = gHighHead;
+	gAllocHigh      = gHighHead;
+
+	// The heap takes the whole arena: nothing is left for OSAlloc after this.
+	OSSetArenaLo(hi);
 
 	vtable->alloc   = (void* (*)(u32))fn_800125F0;
 	vtable->calloc  = (void* (*)(u32, u32))fn_80012560;
