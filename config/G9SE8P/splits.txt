@@ -49,7 +49,7 @@ MSL_C/file_io.c:
 	.text       start:0x801C063C end:0x801C0664
 
 MSL_C/printf.c:
-	.text       start:0x801C0664 end:0x801C0744
+	.text       start:0x801C0664 end:0x801C0A9C
 
 MSL_C/string.c:
 	.text       start:0x801C3D2C end:0x801C3EBC
