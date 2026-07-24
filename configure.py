@@ -300,6 +300,7 @@ config.libs = [
         "progress_category": "sdk",
         "objects": [
             Object(Matching, "MSL_C/mem.c"),
+            Object(Matching, "MSL_C/GCN_Mem_Alloc.c", extra_cflags=["-str nopool"]),
             Object(Matching, "MSL_C/file_io.c"),
             Object(Matching, "MSL_C/printf.c"),
             Object(Matching, "MSL_C/string.c", extra_cflags=["-O3,p", "-opt schedule"]),
