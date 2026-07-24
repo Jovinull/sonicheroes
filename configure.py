@@ -300,7 +300,7 @@ config.libs = [
         "progress_category": "sdk",
         "objects": [
             Object(Matching, "MSL_C/mem.c"),
-            Object(Matching, "MSL_C/string.c", extra_cflags=["-O3,p"]),
+            Object(Matching, "MSL_C/string.c", extra_cflags=["-O3,p", "-opt schedule"]),
         ],
     },
     {

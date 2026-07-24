@@ -4,14 +4,31 @@
 // The Metrowerks source walks a pointer decremented by one and pre-incremented
 // in the loop, the same idiom as mem.c, so the length counter starts at -1.
 
-// This unit is built at -O3. At -O4 the copy that seeds strcpy's walking
-// pointer is propagated away and the first byte store comes out through the
-// parameter register rather than the walking one.
+// The walking destination pointer is u8* rather than char*. Keeping it the
+// same type as the parameter lets the compiler propagate the copy away, and
+// the byte stores then come out through the parameter register instead of the
+// walking one.
 
 // The word at a time copy is only taken when both pointers share the low two
 // bits. The zero byte test is the usual (w - 0x01010101) & 0x80808080.
 #define ONES  0x01010101
 #define HIGHS 0x80808080
+
+char* strncpy(char* dst, const char* src, u32 n)
+{
+	const char* s = src - 1;
+	u8* p         = (u8*)dst - 1;
+
+	n++;
+	while (--n) {
+		if ((*++p = *++s) == 0) {
+			while (--n)
+				*++p = 0;
+			return dst;
+		}
+	}
+	return dst;
+}
 
 char* strcpy(char* dst, const char* src)
 {
