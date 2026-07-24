@@ -325,8 +325,3 @@ u32 __strtoul(s32 base, s32 max_width, ReadProc read_proc, void* read_arg, s32* 
 	UNFETCH(c);
 	return value;
 }
-
-s32 fn_801C5900(void)
-{
-	return 0;
-}

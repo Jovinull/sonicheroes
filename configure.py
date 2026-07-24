@@ -311,6 +311,7 @@ config.libs = [
                 extra_cflags=["-sdata 4", "-char signed", "-inline deferred,auto"],
             ),
             Object(Matching, "MSL_C/strtoul.c"),
+            Object(Matching, "MSL_C/uart_console_io.c"),
         ],
     },
     {

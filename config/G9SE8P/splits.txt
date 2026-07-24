@@ -86,8 +86,12 @@ MSL_C/strtold.c:
 	.sdata2     start:0x8042F860 end:0x8042F878
 
 MSL_C/strtoul.c:
-	.text       start:0x801C5010 end:0x801C5908
+	.text       start:0x801C5010 end:0x801C5900
 	.data       start:0x80291CB8 end:0x80291D40
+
+MSL_C/uart_console_io.c:
+	.text       start:0x801C5900 end:0x801C59CC
+	.sbss       start:0x8042CAC0 end:0x8042CAC4
 
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
