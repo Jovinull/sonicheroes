@@ -49,6 +49,11 @@ MSL_C/GCN_Mem_Alloc.c:
 	.text       start:0x801BB148 end:0x801BB2B8
 	.rodata     start:0x8023CA98 end:0x8023CB10
 
+MSL_C/abort_exit.c:
+	.text       start:0x801BB2B8 end:0x801BB40C
+	.bss        start:0x803EDC78 end:0x803EDD78
+	.sbss       start:0x8042CAA0 end:0x8042CAA8
+
 MSL_C/mem.c:
 	.text       start:0x801C01EC end:0x801C063C
 
