@@ -514,6 +514,7 @@ config.libs = [
         "cflags": cflags_runtime,
         "progress_category": "sdk",
         "objects": [
+            Object(NonMatching, "Runtime.PPCEABI.H/fragment.c"),
             Object(Matching, "Runtime.PPCEABI.H/__mem.c"),
             Object(Matching, "Runtime.PPCEABI.H/runtime.c"),
             Object(Matching, "Runtime.PPCEABI.H/__va_arg.c"),
