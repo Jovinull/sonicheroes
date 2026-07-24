@@ -6,5 +6,8 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
+autosaveD/quad_submit.c:
+	.text       start:0x000031F0 end:0x000032F8
+
 autosaveD/table.c:
 	.text       start:0x0000476C end:0x000047F0
