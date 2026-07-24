@@ -318,6 +318,7 @@ config.libs = [
             # exit returns collapse into bnelr, neither of which the original
             # has.
             Object(Matching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
+            Object(Matching, "dolphin/dvd/dvdlow.c"),
             Object(Matching, "dolphin/dvd/dvdfs.c"),
             Object(Matching, "dolphin/dvd/dvdqueue.c"),
             Object(Matching, "dolphin/dvd/dvderror.c"),

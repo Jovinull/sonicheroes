@@ -169,6 +169,12 @@ dolphin/os/__start.c:
 	.init       start:0x800052C4 end:0x8000561C
 	.sbss       start:0x8042CBA8 end:0x8042CBAC
 
+dolphin/dvd/dvdlow.c:
+	.text       start:0x801D7790 end:0x801D860C
+	.bss        start:0x803F2DB0 end:0x803F2E80
+	.sdata      start:0x8042BF58 end:0x8042BF60
+	.sbss       start:0x8042CBB0 end:0x8042CBF8
+
 dolphin/dvd/dvdfs.c:
 	.text       start:0x801D860C end:0x801D8EE4
 	.data       start:0x802928E8 end:0x80292A50
