@@ -90,12 +90,12 @@ extern u32 fn_8019D4D4(void);
 extern void fn_8019D448(u32* out, u32 arg);
 
 // Run before the machine is reset, and by fn_80012E2C on the way down.
-extern void fn_801F37CC(void);
+extern void GXDrawDone(void);
 extern void fn_80013130(void);
 
 // Passed to the dispatcher under code 0x0D as the first word of a three word
 // block. In another unit's .data.
-extern u8 lbl_80298720[0x3C];
+extern u8 GXNtsc480IntDf[0x3C];
 
 // The block main runs its loop against. Widely shared: seventeen units name
 // it, so it belongs to none of them in particular. Only three words are
@@ -133,7 +133,7 @@ int fn_80012C08(void)
 // Blanks the screen, waits for the field to finish and resets the machine.
 void fn_80012C10(void)
 {
-	fn_801F37CC();
+	GXDrawDone();
 	VISetBlack(TRUE);
 	VIFlush();
 	VIWaitForRetrace();
@@ -162,7 +162,7 @@ int main(int argc, char** argv)
 	u32 args[4];
 	int i;
 
-	cfg[0] = lbl_80298720;
+	cfg[0] = GXNtsc480IntDf;
 	cfg[1] = 0;
 	cfg[2] = (void*)0x40000;
 
