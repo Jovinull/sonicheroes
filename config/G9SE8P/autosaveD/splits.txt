@@ -6,5 +6,9 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
+autosaveD/window_lifecycle.c:
+	.text       start:0x00003A70 end:0x00003FAC
+	.rodata     start:0x00000350 end:0x00000358
+
 autosaveD/table.c:
 	.text       start:0x0000476C end:0x000047F0
