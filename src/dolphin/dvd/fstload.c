@@ -45,7 +45,7 @@ typedef void (*DVDCallback)(long result, DVDCommandBlock* block);
 #define DVD_STATE_COVER_OPEN    5
 #define DVD_STATE_MOTOR_STOPPED 6
 
-extern BOOL fn_801DABA8(
+extern BOOL DVDReadAbsAsyncForBS(
     DVDCommandBlock* block, void* addr, u32 length, u32 offset, DVDCallback callback);
 extern BOOL DVDReadDiskID(DVDCommandBlock* block, DVDDiskID* id, DVDCallback callback);
 extern long DVDGetDriveStatus(void);
@@ -53,8 +53,6 @@ extern void DVDReset(void);
 extern void* OSGetArenaHi(void);
 extern void OSSetArenaHi(void* arenaHi);
 extern void* memcpy(void* dst, const void* src, u32 size);
-
-#define DVDReadAbsAsyncForBS fn_801DABA8
 
 // .bss
 static unsigned char bb2Buf[63]; // size: 0x3F, address: 0x0
