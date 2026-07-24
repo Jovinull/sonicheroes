@@ -414,6 +414,16 @@ config.libs = [
             ),
         ],
     },
+    Rel(
+        "autosaveD",
+        [
+            Object(
+                Matching,
+                "autosaveD/table.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
