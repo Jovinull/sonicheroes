@@ -21,6 +21,9 @@ autosaveD/task_object.c:
 autosaveD/task_system.c:
 	.text       start:0x00002294 end:0x000026C0
 
+autosaveD/quad_submit.c:
+	.text       start:0x000031F0 end:0x000032F8
+
 autosaveD/widget_rendering.c:
 	.text       start:0x000032F8 end:0x0000346C
 
