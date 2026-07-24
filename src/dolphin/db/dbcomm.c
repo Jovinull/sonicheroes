@@ -1,103 +1,20 @@
 #include "types.h"
 #include "dolphin/os.h"
 
-// Serial link to the debugger, over EXI channel 2. Every function in the file
-// is written. Four match; the rest are listed at the bottom of this comment.
+// Serial link to the debugger over EXI channel 2.
 //
 // The translation unit boundary was settled by looking at who calls what.
 // Everything from DBWrite at 0x801F81A8 through the helper at 0x801F8988 is
-// private to this file: the five anonymous helpers are only ever called from
-// DBWrite, DBRead and DBQueryData, and EXIHandler and DBGHandler are never
-// called at all, they are installed as interrupt handlers by DBInitInterrupts.
+// private to this file. The helpers are called only by DBWrite, DBRead and
+// DBQueryData; DBGHandler and MWCallback are installed by DBInitInterrupts.
 // The first function past the end, at 0x801F8C20, is called from outside, which
 // is where the file stops.
 //
-// Functions are in the order the original emits them. DBInitInterrupts comes
-// before DBInitComm, and both handlers come after the pair, which is why they
-// need the forward declarations below.
-//
-// What is left here. Every one of these emits the right instructions in the
-// right order and the right count; what separates them from the original is
-// where values live, not what the code does.
-//
-// The cause that used to be shared by five of them is solved. The original
-// reaches the two channel 2 registers by bumping a pointer, not by indexing:
-// stwu and lwzu only come out of *(p += n), while EXI_REGS[n] folds the offset
-// into a displacement and rebuilds the address at every use. Writing the bump
-// took fn_801F8724 and fn_801F8800 from 64.1% to 93.9%, both read helpers from
-// 72.7% to 90.6% and DBWrite from 86.5% to 92.5%. Two details go with it. The
-// register block still has to be volatile or the reads fold away. And the bump
-// belongs only where the original put it: DBWrite derives csr and cr inside its
-// first poll block and the three later blocks reuse what that block left
-// bumped, so bumping in every block costs 1.7%, and giving fn_801F8988 its own
-// pointer local for the control register costs 1.2% because the extra live
-// value pushes the two payload loops off their registers.
-//
-// Declaration order is the other lever that works. Which callee saved register
-// a local lands in follows the order the locals are declared, so declaring word
-// before i in fn_801F8988, and err before the buffer pointer in the two block
-// helpers, puts them where the original has them.
-//
-// Two things are left, and the smaller one is the frame. The original reserves
-// more stack than we do: 0x08 more on the two block helpers, 0x10 on the two
-// read helpers and 0x30 on DBWrite, while DBRead and fn_801F8988 already agree
-// to the byte. The two that agree are the two that do not call fn_801F8988, so
-// the extra space belongs to the call sites.
-//
-// That space is reachable, and it is worth almost nothing. An unused u32 pad[4]
-// declared after cmd in fn_801F8678 takes its frame from 0x28 to the original's
-// 0x38 exactly, which settles that this compiler keeps locals it never reads:
-// the original really did declare more than it used. But with the frame exact
-// the function only moves from 90.56% to 90.67%, and the local still lands at
-// 0x1c where the original has it at 0x18. Do not spend time here expecting the
-// frame to be the answer, and do not fabricate a pad to buy the tenth of a
-// point: it forces the prologue without explaining it.
-//
-// The larger one is which callee saved register each value gets. Both sides
-// save the same registers and compute the same things in the same order; they
-// disagree only on the numbering. In fn_801F8678 the original holds err in r31,
-// the 0xcc00 base in r30, csr in r29, cr in r28 and out in r27, where we hold
-// csr in r31, err in r30 and the base in r29. That is most of the residual in
-// every unmatched function here, and declaration order does not reach it:
-// putting err first, err and cmd first, and cmd first all produce byte for byte
-// the same allocation. Whatever picks it is upstream of the order the locals
-// are written in.
-//
-// Measured and rejected, so they do not get tried again: -use_lmw_stmw on
-// changes nothing here (the original's stmw comes from how many registers it
-// allocates, not from the option); dropping static off the helpers changes
-// nothing, though symbols.txt carries no scope:local marker for any of them;
-// splitting i = 0 out of the for init in fn_801F8988 costs 0.06%; declaring the
-// command word as u32 cmd[2] does not widen its slot, because the frame is
-// sized from what is used and only element zero ever is; and reading
-// DBCommHandler into a local in EXIHandler does not move the acknowledge store
-// after the handler load.
-//
-// One earlier note here was wrong and is worth correcting rather than deleting.
-// Giving fn_801F8988 three extra parameters left every caller's frame where it
-// was, and that was recorded as proof that the parameter save area is not the
-// cause. It proves nothing: six arguments still arrive in r3 through r10, so
-// nothing spilled and no stack was needed. The parameter area remains untested.
-//
-//   DBWrite     92.5%  register numbering, the frame, and the three command
-//                      words sharing a slot where the original keeps five at
-//                      0x3c, 0x44, 0x4c, 0x50 and 0x54. Declaring them
-//                      separately at function scope does not split them apart.
-//   fn_801F8724 94.7%  register numbering and the frame.
-//   fn_801F8800 94.7%  register numbering and the frame.
-//   the two read helpers 90.6%  register numbering and the frame.
-//   fn_801F8988 88.6%  the original compares the loop counter against the
-//                      length on the way into the first payload loop where ours
-//                      folds that to a test of the length alone. Writing the
-//                      loop as while did not move it. Its frame already agrees.
-//   EXIHandler  87.5%  one instruction. The original schedules the acknowledge
-//                      write after the handler load and ours emits it before.
-//                      Reordering the statements moves it past the null test
-//                      instead, and volatile does not pin it.
-//   DBInitComm  93.3%  one instruction. The zero and the address of the EXI
-//                      register are materialized in the opposite order. Twenty
-//                      forms of the store and of the statements around it were
-//                      tried and none of them move it.
+// This is Nintendo's OdemuExi2 runtime object. Its deferred-inline source order
+// is significant: helpers are defined first, then emitted where their exported
+// callers first require them. The transfer primitive keeps C long parameters
+// because this SDK defined s32/u32 with long; changing them to the project's
+// int-based aliases changes MetroWerks' loop optimization despite equal width.
 
 // Debugger interrupt, and the EXI channel the link runs on.
 #define DB_INTERRUPT_MASK  0x00018000
@@ -106,7 +23,15 @@
 // EXI registers. The block starts at 0xCC006800 and gives each channel five
 // words, so channel 2 starts at 0x28: status at 0x28, control at 0x34. The
 // debugger link is that channel.
-#define EXI_REGS          ((volatile u32*)0xCC006800)
+#ifdef __MWERKS__
+extern volatile u32 __EXIRegs[] : 0xCC006800;
+extern volatile u32 __PIRegs[] : 0xCC003000;
+#else
+extern volatile u32 __EXIRegs[];
+extern volatile u32 __PIRegs[];
+#endif
+
+#define EXI_REGS          __EXIRegs
 #define EXI_CHANNEL2_CSR  (EXI_REGS[10])
 #define EXI_CHANNEL2_CR   (EXI_REGS[13])
 #define EXI_CHANNEL2_DATA (EXI_REGS[14])
@@ -129,7 +54,7 @@
 
 // Interrupt cause at the processor interface. Writing the bit back is how the
 // EXI interrupt gets acknowledged before it is handed on.
-#define PI_INTERRUPT_CAUSE (*(u32*)0xCC003000)
+#define PI_INTERRUPT_CAUSE (__PIRegs[0])
 #define PI_DEBUG_INTERRUPT 0x1000
 
 // Both live in this file. DBInitInterrupts installs them and the original emits
@@ -137,22 +62,44 @@
 // EXIHandler takes the interrupt as a full word, not as the s16 the handler
 // type uses: the original narrows it with extsh on the way into the call, which
 // only happens if the parameter is wider than what it is being passed to.
-static void EXIHandler(int interrupt, void* context);
-static void DBGHandler(s16 interrupt, void* context);
+static void DBGHandler(int interrupt, void* context);
+static void MWCallback(s16 interrupt, void* context);
 
 // Both read one word out of the debugger, and differ only in the command they
 // send first. Written below, called from DBQueryData above.
-static BOOL fn_801F8678(u32* out);
-static BOOL fn_801F88DC(u32* out);
+static BOOL DBGReadStatus(u32* out);
+static BOOL DBGReadMailbox(u32* out);
 
 // The shared transfer primitive, written at the end of the file. Everything
 // that touches the link goes through it.
-static BOOL fn_801F8988(void* buffer, s32 length, u32 write);
+static BOOL DBGEXIImm(void* buffer, signed long length, unsigned long write);
+
+static inline u32 DBGEXISelect(u32 value)
+{
+	u32 regs = EXI_CHANNEL2_CSR;
+	regs &= EXI_CSR_KEEP;
+	regs |= 0x80 | (value << 4);
+	EXI_CHANNEL2_CSR = regs;
+	return TRUE;
+}
+
+static inline BOOL DBGEXIDeselect(void)
+{
+	EXI_CHANNEL2_CSR &= EXI_CSR_KEEP;
+	return TRUE;
+}
+
+static inline BOOL DBGEXISync(void)
+{
+	while (EXI_CHANNEL2_CR & EXI_CR_TSTART) {
+	}
+	return TRUE;
+}
 
 // The two block halves, written below. DBWrite drives the write one and DBRead
 // the read one.
-static BOOL fn_801F8724(u32 addr, void* buffer, s32 length);
-static BOOL fn_801F8800(u32 addr, void* buffer, s32 length);
+static BOOL DBGWrite(u32 addr, void* buffer, s32 length);
+static BOOL DBGRead(u32 addr, void* buffer, s32 length);
 
 // Sequence counter for the link, one byte of a pair living in another unit's
 // .sdata. Its low bit picks the window a transfer goes through, and its value
@@ -171,347 +118,242 @@ static u8 Buffer;     // 0x8042CF14
 // selects, then follows it with a trailer word carrying the counter and the
 // real length, and waits for the link to go quiet again. Every step retries
 // until it succeeds, so the only way out is success.
-s32 DBWrite(void* buffer, u32 length)
+static BOOL DBGEXIImm(void* buffer, signed long length, unsigned long write)
 {
-	volatile u32* csr;
-	volatile u32* cr;
-	BOOL enabled;
-	BOOL err;
-	u32 status;
-	u32 trailer;
-	u32 addr;
+	u8* tempPointer;
+	unsigned long word;
+	int i;
 
-	enabled = OSDisableInterrupts();
-
-	do {
-		u32 cmd;
-
-		csr                    = EXI_REGS;
-		*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-		cmd                    = 0x40000000;
-		err                    = !fn_801F8988(&cmd, 2, 1);
-		while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
+	if (write) {
+		tempPointer = buffer;
+		word        = 0;
+		for (i = 0; i < length; i++) {
+			u8* temp = (u8*)buffer + i;
+			word |= *temp << ((3 - i) << 3);
 		}
-		fn_801F8988(&status, 4, 0);
-		while (*cr & EXI_CR_TSTART) {
-		}
-		*csr &= EXI_CSR_KEEP;
-	} while (status & 2);
-
-	lbl_8042C068++;
-	addr = ((lbl_8042C068 & 1) ? 0x1000 : 0) | 0x1C000;
-
-	while (!fn_801F8724(addr, buffer, (length + 3) & ~3)) {
+		EXI_CHANNEL2_DATA = word;
 	}
 
-	do {
-		u32 cmd;
+	EXI_CHANNEL2_CR = EXI_CR_TSTART | (write << 2) | ((length - 1) << 4);
+	DBGEXISync();
 
-		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-		cmd  = 0x40000000;
-		err  = !fn_801F8988(&cmd, 2, 1);
-		while (*cr & EXI_CR_TSTART) {
+	if (!write) {
+		word        = EXI_CHANNEL2_DATA;
+		tempPointer = buffer;
+		for (i = 0; i < length; i++) {
+			*tempPointer++ = word >> ((3 - i) << 3);
 		}
-		fn_801F8988(&status, 4, 0);
-		while (*cr & EXI_CR_TSTART) {
-		}
-		*csr &= EXI_CSR_KEEP;
-	} while (status & 2);
-
-	trailer = (((lbl_8042C068 << 16) | 0x1F000000 | length) & 0x1FFFFFFF) | 0xC0000000;
-
-	do {
-		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-
-		err = !fn_801F8988(&trailer, 4, 1);
-		while (*cr & EXI_CR_TSTART) {
-		}
-
-		*csr &= EXI_CSR_KEEP;
-	} while (err);
-
-	do {
-		u32 cmd;
-
-		*csr = (*csr & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-		cmd  = 0x40000000;
-		err  = !fn_801F8988(&cmd, 2, 1);
-		while (*cr & EXI_CR_TSTART) {
-		}
-		err |= !fn_801F8988(&status, 4, 0);
-		while (*cr & EXI_CR_TSTART) {
-		}
-		*csr &= EXI_CSR_KEEP;
-	} while (err || (status & 2));
-
-	OSRestoreInterrupts(enabled);
-
-	return 0;
+	}
+	return TRUE;
 }
 
-// Drains the payload the last query announced. The header bit picks which of
-// the two windows the data comes out of, and the length is rounded up to a
-// whole number of words because the transfer moves words.
-s32 DBRead(void* buffer, u32 length)
+static inline BOOL DBGWriteMailbox(u32 value)
 {
-	BOOL enabled;
-
-	enabled = OSDisableInterrupts();
-
-	fn_801F8800(((lbl_8042CF08 & 0x00010000) ? 0x1000 : 0) + 0x1E000, buffer, (length + 3) & ~3);
-
-	lbl_8042CF0C = 0;
-	Buffer       = 0;
-
-	OSRestoreInterrupts(enabled);
-
-	return 0;
-}
-
-// Polls for a header and reports how many payload bytes are waiting. A header
-// only counts if the low bit says one arrived and the tag field is all ones;
-// anything else is left alone and the previous answer stands.
-int DBQueryData(void)
-{
-	BOOL enabled;
+	u32 cmd = 0xC0000000;
 	u32 data;
+	u32 base   = value;
+	BOOL total = FALSE;
 
-	Buffer = 0;
+	DBGEXISelect(4);
+	data = (base & 0x1FFFFFFF) | cmd;
+	total |= !DBGEXIImm(&data, 4, 1);
+	total |= !DBGEXISync();
+	total |= !DBGEXIDeselect();
+	return !total;
+}
 
-	if (lbl_8042CF0C == 0) {
-		enabled = OSDisableInterrupts();
+#pragma dont_inline on
+static BOOL DBGReadMailbox(u32* out)
+{
+	BOOL total = FALSE;
+	u32 cmd;
 
-		fn_801F8678(&data);
-		if (data & 1) {
-			fn_801F88DC(&data);
-			data &= 0x1FFFFFFF;
+	DBGEXISelect(4);
+	cmd = 0x60000000;
+	total |= !DBGEXIImm(&cmd, 2, 1);
+	total |= !DBGEXISync();
+	total |= !DBGEXIImm(out, 4, 0);
+	total |= !DBGEXISync();
+	total |= !DBGEXIDeselect();
+	return !total;
+}
+#pragma dont_inline reset
 
-			if ((data & 0x1F000000) == 0x1F000000) {
-				lbl_8042CF08 = data;
-				lbl_8042CF0C = data & 0x7FFF;
-				Buffer       = 1;
-			}
+static BOOL DBGRead(u32 addr, void* buffer, s32 length)
+{
+	BOOL total = FALSE;
+	u32* dst   = buffer;
+	u32 cmd;
+	u32 word;
+
+	DBGEXISelect(4);
+	cmd = ((addr & 0x1FFFC) << 8) | 0x20000000;
+	total |= !DBGEXIImm(&cmd, 4, 1);
+	total |= !DBGEXISync();
+	while (length) {
+		total |= !DBGEXIImm(&word, 4, 0);
+		total |= !DBGEXISync();
+		*dst++ = word;
+		length -= 4;
+		if (length < 0) {
+			length = 0;
 		}
-
-		OSRestoreInterrupts(enabled);
 	}
+	total |= !DBGEXIDeselect();
+	return !total;
+}
 
-	return lbl_8042CF0C;
+static BOOL DBGWrite(u32 addr, void* buffer, s32 length)
+{
+	BOOL total = FALSE;
+	u32* src   = buffer;
+	u32 cmd;
+	u32 word;
+
+	DBGEXISelect(4);
+	cmd = ((addr & 0x1FFFC) << 8) | 0xA0000000;
+	total |= !DBGEXIImm(&cmd, 4, 1);
+	total |= !DBGEXISync();
+	while (length != 0) {
+		word = *src++;
+		total |= !DBGEXIImm(&word, 4, 1);
+		total |= !DBGEXISync();
+		length -= 4;
+		if (length < 0) {
+			length = 0;
+		}
+	}
+	total |= !DBGEXIDeselect();
+	return !total;
+}
+
+static inline BOOL ReadStatus(u32* out)
+{
+	BOOL total = FALSE;
+	u32 cmd;
+
+	DBGEXISelect(4);
+	cmd = 0x40000000;
+	total |= !DBGEXIImm(&cmd, 2, 1);
+	total |= !DBGEXISync();
+	total |= !DBGEXIImm(out, 4, 0);
+	total |= !DBGEXISync();
+	total |= !DBGEXIDeselect();
+	return !total;
+}
+
+#pragma dont_inline on
+static BOOL DBGReadStatus(u32* out)
+{
+	return ReadStatus(out);
+}
+#pragma dont_inline reset
+
+static void MWCallback(s16 interrupt, void* context)
+{
+	Buffer = 1;
+	if (BBAInterruptHandler != NULL) {
+		BBAInterruptHandler(0, context);
+	}
+}
+
+static void DBGHandler(int interrupt, void* context)
+{
+	PI_INTERRUPT_CAUSE = PI_DEBUG_INTERRUPT;
+	if (DBCommHandler != NULL) {
+		DBCommHandler(interrupt, context);
+	}
+}
+
+void DBInitComm(u8** mailbox, __OSInterruptHandler handler)
+{
+	BOOL enabled = OSDisableInterrupts();
+
+	BufferPtr           = (u8*)Buffer;
+	BufferPtr           = &Buffer;
+	*mailbox            = BufferPtr;
+	BBAInterruptHandler = handler;
+	__OSMaskInterrupts(DB_INTERRUPT_MASK);
+	EXI_CHANNEL2_CSR = 0;
+	OSRestoreInterrupts(enabled);
 }
 
 void DBInitInterrupts(void)
 {
 	__OSMaskInterrupts(DB_INTERRUPT_MASK);
 	__OSMaskInterrupts(EXI_INTERRUPT_MASK);
-
-	DBCommHandler = DBGHandler;
-	__OSSetInterruptHandler(0x19, (__OSInterruptHandler)EXIHandler);
-
+	DBCommHandler = MWCallback;
+	__OSSetInterruptHandler(0x19, (__OSInterruptHandler)DBGHandler);
 	__OSUnmaskInterrupts(EXI_INTERRUPT_MASK);
 }
 
-void DBInitComm(u8** mailbox, __OSInterruptHandler handler)
+static inline void CheckMailBox(void)
 {
-	BOOL enabled;
+	u32 data;
 
-	enabled   = OSDisableInterrupts();
-	BufferPtr = &Buffer;
-	*mailbox  = BufferPtr;
+	DBGReadStatus(&data);
+	if (data & 1) {
+		DBGReadMailbox(&data);
+		data &= 0x1FFFFFFF;
+		if ((data & 0x1F000000) == 0x1F000000) {
+			lbl_8042CF08 = data;
+			lbl_8042CF0C = data & 0x7FFF;
+			Buffer       = 1;
+		}
+	}
+}
 
-	BBAInterruptHandler = handler;
+int DBQueryData(void)
+{
+	Buffer = 0;
+	if (!lbl_8042CF0C) {
+		BOOL enabled = OSDisableInterrupts();
+		CheckMailBox();
+		OSRestoreInterrupts(enabled);
+	}
+	return lbl_8042CF0C;
+}
 
-	__OSMaskInterrupts(DB_INTERRUPT_MASK);
-	EXI_CHANNEL2_CSR = 0;
+s32 DBRead(void* buffer, u32 length)
+{
+	u32 enabled = OSDisableInterrupts();
+	u32 offset  = (lbl_8042CF08 & 0x10000) ? 0x1000 : 0;
+
+	DBGRead(offset + 0x1E000, buffer, (length + 3) & ~3);
+	lbl_8042CF0C = 0;
+	Buffer       = 0;
+	OSRestoreInterrupts(enabled);
+	return 0;
+}
+
+s32 DBWrite(void* buffer, u32 length)
+{
+	u32 value;
+	u32 status;
+	BOOL enabled = OSDisableInterrupts();
+
+	do {
+		ReadStatus(&status);
+	} while (status & 2);
+
+	lbl_8042C068++;
+	value = (lbl_8042C068 & 1) ? 0x1000 : 0;
+	while (!DBGWrite(value | 0x1C000, buffer, (length + 3) & ~3)) {
+	}
+
+	do {
+		ReadStatus(&status);
+	} while (status & 2);
+
+	value = lbl_8042C068;
+	while (!DBGWriteMailbox(0x1F000000 | (value << 16) | length)) {
+	}
+
+	do {
+		while (!ReadStatus(&status)) {
+		}
+	} while (status & 2);
 
 	OSRestoreInterrupts(enabled);
-}
-
-// Front of the debugger link: acknowledge the interrupt at the processor
-// interface, then pass it to whatever DBInitInterrupts installed.
-static void EXIHandler(int interrupt, void* context)
-{
-	PI_INTERRUPT_CAUSE = PI_DEBUG_INTERRUPT;
-
-	if (DBCommHandler != NULL) {
-		DBCommHandler(interrupt, context);
-	}
-}
-
-// The debugger side. Flags the mailbox byte the other end polls, then forwards
-// to the handler DBInitComm was given. The interrupt number is not passed on,
-// the caller gets zero.
-static void DBGHandler(s16 interrupt, void* context)
-{
-	Buffer = 1;
-
-	if (BBAInterruptHandler != NULL) {
-		BBAInterruptHandler(0, context);
-	}
-}
-
-// Selects the device, sends one command word, then clocks four bytes back into
-// out and lets go again. Each transfer is started and then waited out on the
-// control register, and a failure on either half is what the result reports.
-static BOOL fn_801F8678(u32* out)
-{
-	volatile u32* csr;
-	volatile u32* cr;
-	BOOL err;
-	u32 cmd;
-
-	csr                    = EXI_REGS;
-	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-
-	cmd = 0x40000000;
-	err = !fn_801F8988(&cmd, 2, 1);
-	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
-	}
-
-	err |= !fn_801F8988(out, 4, 0);
-	while (*cr & EXI_CR_TSTART) {
-	}
-
-	*csr &= EXI_CSR_KEEP;
-
-	return !err;
-}
-
-// The write side of fn_801F8800, instruction for instruction: same command
-// word layout with a different top byte, and the payload loop pushes a word out
-// of the buffer instead of pulling one in. The length is clamped the same way.
-static BOOL fn_801F8724(u32 addr, void* buffer, s32 length)
-{
-	volatile u32* csr;
-	volatile u32* cr;
-	BOOL err;
-	u32* src;
-	u32 cmd;
-	u32 word;
-
-	csr                    = EXI_REGS;
-	src                    = (u32*)buffer;
-	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-
-	cmd = ((addr << 8) & 0x01FFFC00) | 0xA0000000;
-	err = !fn_801F8988(&cmd, 4, 1);
-	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
-	}
-
-	while (length != 0) {
-		word = *src++;
-
-		err |= !fn_801F8988(&word, 4, 1);
-		while (*cr & EXI_CR_TSTART) {
-		}
-
-		length -= 4;
-		if (length < 0) {
-			length = 0;
-		}
-	}
-
-	*csr &= EXI_CSR_KEEP;
-
-	return !err;
-}
-
-// Drains a whole payload out of one device address. Sends the address as a
-// command word, then clocks the answer back four bytes at a time until the
-// length runs out. The length is clamped rather than allowed to go negative,
-// so a tail shorter than a word still costs one transfer and stops.
-static BOOL fn_801F8800(u32 addr, void* buffer, s32 length)
-{
-	volatile u32* csr;
-	volatile u32* cr;
-	BOOL err;
-	u32* dst;
-	u32 cmd;
-	u32 word;
-
-	csr                    = EXI_REGS;
-	dst                    = (u32*)buffer;
-	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-
-	cmd = ((addr << 8) & 0x01FFFC00) | 0x20000000;
-	err = !fn_801F8988(&cmd, 4, 1);
-	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
-	}
-
-	while (length != 0) {
-		err |= !fn_801F8988(&word, 4, 0);
-		while (*cr & EXI_CR_TSTART) {
-		}
-
-		*dst++ = word;
-
-		length -= 4;
-		if (length < 0) {
-			length = 0;
-		}
-	}
-
-	*csr &= EXI_CSR_KEEP;
-
-	return !err;
-}
-
-// Same shape as fn_801F8678 down to the instruction, with the other command
-// word. The original spells both out rather than sharing one body.
-static BOOL fn_801F88DC(u32* out)
-{
-	volatile u32* csr;
-	volatile u32* cr;
-	BOOL err;
-	u32 cmd;
-
-	csr                    = EXI_REGS;
-	*(csr += EXI_CSR_WORD) = (EXI_CHANNEL2_CSR & EXI_CSR_KEEP) | EXI_CSR_SELECT;
-
-	cmd = 0x60000000;
-	err = !fn_801F8988(&cmd, 2, 1);
-	while (cr = EXI_REGS, *(cr += EXI_CR_WORD) & EXI_CR_TSTART) {
-	}
-
-	err |= !fn_801F8988(out, 4, 0);
-	while (*cr & EXI_CR_TSTART) {
-	}
-
-	*csr &= EXI_CSR_KEEP;
-
-	return !err;
-}
-
-// One EXI immediate transfer, up to four bytes, in whichever direction the
-// flag asks for. The data register holds the bytes packed big end first, so
-// each byte sits at (3 - i) * 8. That expression goes negative once i passes
-// three, which is only safe because nothing here ever asks for more than four
-// bytes, and it is what the original computes.
-static BOOL fn_801F8988(void* buffer, s32 length, u32 write)
-{
-	u32 word;
-	s32 i;
-
-	if (write) {
-		word = 0;
-		for (i = 0; i < length; i++) {
-			word |= ((u8*)buffer)[i] << ((3 - i) * 8);
-		}
-		EXI_CHANNEL2_DATA = word;
-	}
-
-	// Unlike the helpers above, this one is better off indexing: giving the
-	// control register its own pointer local costs 1.2% here, because the extra
-	// live value pushes the two payload loops off their registers.
-	EXI_CHANNEL2_CR = ((length - 1) << 4) | (write << 2) | EXI_CR_TSTART;
-	while (EXI_CHANNEL2_CR & EXI_CR_TSTART) {
-	}
-
-	if (!write) {
-		word = EXI_CHANNEL2_DATA;
-		for (i = 0; i < length; i++) {
-			((u8*)buffer)[i] = word >> ((3 - i) * 8);
-		}
-	}
-
-	return TRUE;
+	return 0;
 }
