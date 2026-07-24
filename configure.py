@@ -318,8 +318,14 @@ config.libs = [
             # exit returns collapse into bnelr, neither of which the original
             # has.
             Object(Matching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
+            Object(Matching, "dolphin/dvd/dvdlow.c"),
+            Object(Matching, "dolphin/dvd/dvdfs.c"),
+            Object(Matching, "dolphin/dvd/dvd.c"),
             Object(Matching, "dolphin/dvd/dvdqueue.c"),
             Object(Matching, "dolphin/dvd/dvderror.c"),
+            Object(Matching, "dolphin/dvd/dvdFatal.c"),
+            Object(Matching, "dolphin/dvd/dvdidutils.c"),
+            Object(Matching, "dolphin/dvd/fstload.c"),
             Object(Matching, "dolphin/pad/Padclamp.c"),
             # -inline noauto (leaving the default -inline on): with auto the compiler folds
             # PADReset/PADRecalibrate bodily into PADInit/PADRead/OnReset where
@@ -333,21 +339,41 @@ config.libs = [
             Object(Matching, "dolphin/ai/ai.c"),
             Object(Matching, "dolphin/ar/ar.c"),
             Object(Matching, "dolphin/ar/arq.c"),
-            Object(NonMatching, "dolphin/db/dbcomm.c"),
+            Object(
+                Matching,
+                "dolphin/db/dbcomm.c",
+                extra_cflags=[
+                    "-use_lmw_stmw on",
+                    "-str reuse,pool,readonly",
+                    "-common off",
+                    "-inline deferred,auto",
+                    "-char signed",
+                ],
+            ),
             Object(Matching, "dolphin/exi/EXIBios.c", extra_cflags=["-opt noschedule"]),
+            Object(NonMatching, "dolphin/si/SIBios.c"),
             Object(Matching, "dolphin/si/SISamplingRate.c"),
             Object(Matching, "dolphin/os/OSInterrupt.c"),
             Object(Matching, "dolphin/os/OSSram.c"),
             Object(Matching, "dolphin/os/OSAlarm.c"),
             Object(Matching, "dolphin/os/OSAlloc.c"),
             Object(Matching, "dolphin/os/OSMemory.c"),
+            Object(Matching, "dolphin/os/OSMutex.c"),
             Object(Matching, "dolphin/os/OSAudioSystem.c"),
             Object(Matching, "dolphin/os/OSReboot.c"),
             Object(Matching, "dolphin/os/OSResetSW.c"),
             Object(Matching, "dolphin/os/OSStopwatch.c"),
             Object(Matching, "dolphin/os/OSSync.c"),
+            # -inline noauto, like Pad.c: with auto the compiler folds
+            # __OSGetEffectivePriority, OSWakeupThread and UnsetRun into their
+            # callers where the original emits bl. The helpers the original does
+            # expand carry the inline keyword instead.
+            Object(Matching, "dolphin/os/OSThread.c", extra_cflags=["-inline noauto"]),
             Object(Matching, "dolphin/os/OSReset.c"),
             Object(Matching, "dolphin/os/OSCache.c"),
+            Object(Matching, "dolphin/os/OSContext.c"),
+            Object(Matching, "dolphin/os/OSError.c"),
+            Object(Matching, "dolphin/os/OSLink.c"),
             Object(Matching, "dolphin/os/OSTime.c"),
             Object(Matching, "Runtime.PPCEABI.H/__ppc_eabi_init.c"),
         ],
@@ -387,10 +413,33 @@ config.libs = [
         "cflags": cflags_base,
         "progress_category": "game",
         "objects": [
-            Object(NonMatching, "game/heap.c", extra_cflags=["-opt noschedule"]),
-            Object(NonMatching, "game/main.c", extra_cflags=["-opt noschedule"]),
+            Object(
+                Matching,
+                "game/heap.c",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
+            ),
+            Object(
+                Matching,
+                "game/main.c",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule"],
+            ),
         ],
     },
+    Rel(
+        "autosaveD",
+        [
+            Object(
+                Matching,
+                "autosaveD/task_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "autosaveD/table.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,

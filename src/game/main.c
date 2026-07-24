@@ -41,21 +41,29 @@
 // same setting is what matched EXIBios, so it is worth trying first on the
 // next game unit rather than last.
 //
-// Six of the seven functions match. main stands at 98.7% and everything still
-// different is one cause: the original reserves a 0x50 frame where ours is
-// 0x40, and those sixteen bytes push each local up by eight. Its three blocks
-// sit at 0x08, 0x18 and 0x24; ours land lower and are otherwise identical.
-// Registers, instruction order and instruction count already agree, and the
-// twenty bytes between the last local and the saved registers are never read
-// or written by the original either.
+// Two matching-sensitive details are that unk_0x10 is signed, which makes the
+// poll at the bottom cmpwi rather than cmplwi, and the two tick words copied
+// into args form a single eight-byte structure assignment. Two independent
+// assignments are semantically equivalent but change volatile register
+// allocation in GC/1.3.2.
+//
+// tick is declared wider than the two words main reads: the original's locals
+// run to 0x40 where three tightly sized blocks reach only 0x34, and widening
+// the topmost one reserves the original 0x50-byte frame. u32[4] is the smallest
+// width that does so.
+//
+// The locals are declared tick, cfg, args because the compiler lays them out
+// in the reverse of that, which is the order the original uses: args at 0x08,
+// cfg at 0x18, tick at 0x24.
 //
 // Unused locals do not reach it here, which is worth recording because they do
 // elsewhere: in dbcomm an unused u32 pad[4] moves the frame to the original's
-// size exactly, while here pad[4], pad[5] and pad[6] all leave main byte for
-// byte where it was. Whatever this unit is built with discards them. Also
-// rejected: GC/1.2.5n and GC/1.3 for the unit (1.3.2 and 1.3 tie at the top,
-// 1.2.5n is twelve points worse), building the file as C++ rather than C, and
-// every ordering of the four locals.
+// size exactly, while here every width from pad[1] to pad[6] leaves main byte
+// for byte where it was, at either end of the block and with or without
+// volatile. Whatever this unit is built with discards them, so the frame had
+// to come from a local that is actually read. Also rejected: GC/1.2.5n and
+// GC/1.3 for the unit (1.3.2 and 1.3 tie at the top, 1.2.5n is twelve points
+// worse), and building the file as C++ rather than C.
 
 // Video, disc and graphics entry points this file calls. None of them are in
 // include/ yet because no other unit written so far needs them; move them
@@ -97,9 +105,15 @@ typedef struct Unk8029BB80 {
 	u32 unk_0x4;
 	u32 unk_0x8;
 	u8 unk_0xC[0x4];
-	u32 unk_0x10;
+	// Signed: main polls this with cmpwi, not cmplwi.
+	s32 unk_0x10;
 	u8 unk_0x14[0x2C];
 } Unk8029BB80; // 0x40
+
+typedef struct Pair {
+	u32 first;
+	u32 second;
+} Pair;
 
 extern Unk8029BB80 lbl_8029BB80;
 
@@ -140,9 +154,12 @@ int fn_80012C50(void)
 
 int main(int argc, char** argv)
 {
-	u32 args[4];
+	// Laid out in reverse of declaration order, which puts args at 0x08, cfg at
+	// 0x18 and tick at 0x24. tick is wider than the two words read below; see
+	// the note at the top of the file.
+	u32 tick[4];
 	void* cfg[3];
-	u32 tick[2];
+	u32 args[4];
 	int i;
 
 	cfg[0] = lbl_80298720;
@@ -175,10 +192,9 @@ int main(int argc, char** argv)
 	lbl_8029BB80.unk_0x4 = tick[0];
 	lbl_8029BB80.unk_0x8 = tick[1];
 
-	args[0] = 0;
-	args[1] = 0;
-	args[2] = tick[0];
-	args[3] = tick[1];
+	args[0]          = 0;
+	args[1]          = 0;
+	*(Pair*)&args[2] = *(Pair*)tick;
 	fn_80011FA8(0x0, args);
 
 	while (lbl_8029BB80.unk_0x10 == 0) {

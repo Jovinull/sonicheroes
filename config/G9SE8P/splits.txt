@@ -106,15 +106,32 @@ dolphin/os/OSCache.c:
 	.text       start:0x801D1F24 end:0x801D235C
 	.data       start:0x80292130 end:0x80292360
 
+dolphin/os/OSContext.c:
+	.text       start:0x801D235C end:0x801D2BCC
+	.data       start:0x80292360 end:0x80292538
+
+dolphin/os/OSError.c:
+	.text       start:0x801D2BCC end:0x801D3278
+	.data       start:0x80292538 end:0x80292858
+	.bss        start:0x803F22F0 end:0x803F2334
+	.sdata      start:0x8042BF38 end:0x8042BF40
+
 dolphin/os/OSInterrupt.c:
 	.text       start:0x801D3278 end:0x801D3B3C
 	.data       start:0x80292858 end:0x80292888
 	.sdata      start:0x8042BF40 end:0x8042BF48
 	.sbss       start:0x8042CB40 end:0x8042CB58
 
+dolphin/os/OSLink.c:
+	.text       start:0x801D3B3C end:0x801D4534
+	.data       start:0x80292888 end:0x802928D8
+
 dolphin/os/OSMemory.c:
 	.text       start:0x801D4534 end:0x801D480C
 	.data       start:0x802928D8 end:0x802928E8
+
+dolphin/os/OSMutex.c:
+	.text       start:0x801D480C end:0x801D487C
 
 dolphin/os/OSReboot.c:
 	.text       start:0x801D487C end:0x801D4BD8
@@ -139,11 +156,43 @@ dolphin/os/OSStopwatch.c:
 dolphin/os/OSSync.c:
 	.text       start:0x801D628C end:0x801D6310
 
+dolphin/os/OSThread.c:
+	.text       start:0x801D6310 end:0x801D75A8
+	.bss        start:0x803F23B8 end:0x803F2DB0
+	.sdata      start:0x8042BF48 end:0x8042BF50
+	.sbss       start:0x8042CB98 end:0x8042CBA4
+
 dolphin/os/OSTime.c:
 	.text       start:0x801D75A8 end:0x801D762C
 
 Runtime.PPCEABI.H/__ppc_eabi_init.c:
 	.text       start:0x801D7630 end:0x801D76C4
+
+Runtime.PPCEABI.H/__mem.c:
+	.init       start:0x80003100 end:0x80003238
+
+dolphin/os/__start.c:
+	.init       start:0x800052C4 end:0x8000561C
+	.sbss       start:0x8042CBA8 end:0x8042CBAC
+
+dolphin/dvd/dvdlow.c:
+	.text       start:0x801D7790 end:0x801D860C
+	.bss        start:0x803F2DB0 end:0x803F2E80
+	.sdata      start:0x8042BF58 end:0x8042BF60
+	.sbss       start:0x8042CBB0 end:0x8042CBF8
+
+dolphin/dvd/dvdfs.c:
+	.text       start:0x801D860C end:0x801D8EE0
+	.data       start:0x802928E8 end:0x80292A50
+	.sdata      start:0x8042BF60 end:0x8042BF68
+	.sbss       start:0x8042CBF8 end:0x8042CC18
+
+dolphin/dvd/dvd.c:
+	.text       start:0x801D8EE0 end:0x801DB614
+	.data       start:0x80292A50 end:0x80292BD0
+	.bss        start:0x803F2E80 end:0x803F2F18
+	.sdata      start:0x8042BF68 end:0x8042BF80
+	.sbss       start:0x8042CC18 end:0x8042CC60
 
 dolphin/dvd/dvdqueue.c:
 	.text       start:0x801DB614 end:0x801DB80C
@@ -153,12 +202,19 @@ dolphin/dvd/dvderror.c:
 	.text       start:0x801DB80C end:0x801DB9A4
 	.data       start:0x80292BD0 end:0x80292C18
 
-Runtime.PPCEABI.H/__mem.c:
-	.init       start:0x80003100 end:0x80003238
+dolphin/dvd/dvdidutils.c:
+	.text       start:0x801DB9A4 end:0x801DBA9C
 
-dolphin/os/__start.c:
-	.init       start:0x800052C4 end:0x8000561C
-	.sbss       start:0x8042CBA8 end:0x8042CBAC
+dolphin/dvd/dvdFatal.c:
+	.text       start:0x801DBA9C end:0x801DBACC
+	.sbss       start:0x8042CC60 end:0x8042CC64
+
+dolphin/dvd/fstload.c:
+	.text       start:0x801DBACC end:0x801DBD0C
+	.data       start:0x80292C18 end:0x80292C88
+	.bss        start:0x803F2F38 end:0x803F2FA8
+	.sdata      start:0x8042BF80 end:0x8042BF90
+	.sbss       start:0x8042CC68 end:0x8042CC74
 
 dolphin/vi/vi.c:
 	.text       start:0x801DBD0C end:0x801DDB58
@@ -202,6 +258,12 @@ dolphin/amcstubs.c:
 dolphin/db/dbcomm.c:
 	.text       start:0x801F81A8 end:0x801F8C20
 	.sbss       start:0x8042CF00 end:0x8042CF18
+
+dolphin/si/SIBios.c:
+	.text       start:0x801F8C20 end:0x801FA310
+	.data       start:0x80298B6C end:0x80298C40
+	.bss        start:0x8040E890 end:0x8040E9D0
+	.sbss       start:0x8042CF18 end:0x8042CF28
 
 dolphin/si/SISamplingRate.c:
 	.text       start:0x801FA310 end:0x801FA418

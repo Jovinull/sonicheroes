@@ -40,9 +40,7 @@ extern void OSInitThreadQueue(OSThreadQueue* queue);
 extern void OSSleepThread(OSThreadQueue* queue);
 extern void OSWakeupThread(OSThreadQueue* queue);
 extern void OSReport(const char* msg, ...);
-// OSPanic by signature (file, line, fmt, ...); keeps the DOL address name
-// because the OS error unit is not decompiled yet.
-extern void fn_801D2C4C(const char* file, int line, const char* msg, ...);
+extern void OSPanic(const char* file, int line, const char* msg, ...);
 extern void SIRefreshSamplingRate(void);
 
 // SRAM control: only the display offset byte is wanted here.
@@ -916,7 +914,7 @@ void VIConfigure(GXRenderModeObj* rm)
 			// fallthrough
 		default:
 		panic:
-			fn_801D2C4C("vi.c", 0x774,
+			OSPanic("vi.c", 0x774,
 			    "VIConfigure(): Tried to change mode from (%d) to (%d), which is forbidden\n",
 			    tvInBootrom, tvInGame);
 			break;
