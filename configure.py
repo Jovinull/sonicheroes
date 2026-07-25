@@ -304,6 +304,7 @@ config.libs = [
             Object(Matching, "MSL_C/abort_exit.c"),
             Object(Matching, "MSL_C/file_io.c"),
             Object(Matching, "MSL_C/buffer_io.c"),
+            Object(Matching, "MSL_C/direct_io.c"),
             Object(Matching, "MSL_C/printf.c"),
             Object(Matching, "MSL_C/string.c", extra_cflags=["-O3,p", "-opt schedule"]),
             Object(
