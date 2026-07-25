@@ -1,6 +1,6 @@
 # Sonic Heroes
 
-[![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![SDK Progress]][progress] [![Game Progress]][progress] [![Discord]][discord]
+[![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![SDK Progress]][progress] [![Game Progress]][progress] [![Discord]][chat]
 
 [Build Status]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml
@@ -10,7 +10,7 @@
 [Game Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&category=game&label=Game
 [progress]: https://jovinull.github.io/sonicheroes/
 [Discord]: https://img.shields.io/discord/1529475492200059032?label=chat&logo=discord&logoColor=white&color=7289da
-[discord]: https://discord.gg/VGCHZMXUWN
+[chat]: https://discord.gg/VGCHZMXUWN
 
 A work in progress decompilation of Sonic Heroes for the Nintendo GameCube.
 
