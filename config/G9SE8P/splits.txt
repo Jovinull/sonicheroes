@@ -35,6 +35,11 @@ game/path.c:
 	extabindex  start:0x8000BD28 end:0x8000BD34
 	.text       start:0x80012EA0 end:0x80012FC8
 
+game/time.c:
+	extab       start:0x80005778 end:0x80005780
+	extabindex  start:0x8000BD34 end:0x8000BD40
+	.text       start:0x80012FC8 end:0x80013010
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
