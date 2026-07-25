@@ -80,6 +80,9 @@ MSL_C/direct_io.c:
 MSL_C/file_io.c:
 	.text       start:0x801BF6A8 end:0x801BFBB0
 
+MSL_C/FILE_POS.c:
+	.text       start:0x801BFBB0 end:0x801BFE7C
+
 MSL_C/mem.c:
 	.text       start:0x801C01EC end:0x801C063C
 
