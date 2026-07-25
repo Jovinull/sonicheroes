@@ -29,6 +29,9 @@ autosaveD/quad_fill.c:
 	.text       start:0x000026C0 end:0x00002868
 	.rodata     start:0x00000320 end:0x00000328
 
+autosaveD/widget_slices.c:
+	.text       start:0x00002868 end:0x000031F0
+
 autosaveD/quad_submit.c:
 	.text       start:0x000031F0 end:0x000032F8
 

@@ -535,6 +535,11 @@ config.libs = [
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "autosaveD/widget_slices.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "autosaveD/quad_submit.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
