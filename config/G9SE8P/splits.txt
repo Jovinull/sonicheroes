@@ -40,6 +40,11 @@ game/time.c:
 	extabindex  start:0x8000BD34 end:0x8000BD40
 	.text       start:0x80012FC8 end:0x80013010
 
+game/task_create.c:
+	extab       start:0x80005780 end:0x80005788
+	extabindex  start:0x8000BD40 end:0x8000BD4C
+	.text       start:0x80013010 end:0x80013038
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
