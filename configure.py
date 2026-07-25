@@ -516,6 +516,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "autosaveD/emblem_task.c",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-lang=c++", "-pool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/task_callback_setters.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
