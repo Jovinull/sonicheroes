@@ -62,6 +62,45 @@ modules:
   hash: 6e2773a99ec5b05d5634d09521246e3e28bd6de9
   symbols: config/G9SE8P/movieD/symbols.txt
   splits: config/G9SE8P/movieD/splits.txt
+  force_active:
+    - fn_17_87CC
+    - fn_17_8838
+    - fn_17_89B8
+    - fn_17_8A54
+    - fn_17_8B5C
+    - fn_17_8BC4
+    - fn_17_8E3C
+    - fn_17_8E44
+    - fn_17_8EA4
+    - fn_17_8EA8
+    - fn_17_9228
+    - fn_17_93F0
+    - fn_17_9414
+    - fn_17_9438
+    - fn_17_9468
+    - fn_17_9498
+    - sfxcnv_MakeTable
+    - fn_17_9A10
+    - fn_17_9A40
+    - fn_17_9A70
+    - fn_17_9B24
+    - fn_17_9F94
+    - fn_17_A48C
+    - fn_17_A4DC
+    - fn_17_A62C
+    - fn_17_B0F8
+    - fn_17_B1A8
+    - fn_17_B2F8
+    - fn_17_BEC0
+    - fn_17_BF0C
+    - fn_17_BFC8
+    - fn_17_C0B8
+    - fn_17_CF88
+    - fn_17_CFBC
+    - fn_17_D058
+    - fn_17_D0F8
+    - fn_17_E158
+    - fn_17_E228
 - object: files/stage01D.rel
   hash: 7c61a97a347c714cd72bdf6cab204b0749e946f2
   symbols: config/G9SE8P/stage01D/symbols.txt

@@ -521,6 +521,26 @@ config.libs = [
             ),
         ],
     ),
+    Rel(
+        "movieD",
+        [
+            Object(
+                Matching,
+                "movieD/cri/sud.c",
+                extra_cflags=["-str readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "movieD/cri/sfxset.c",
+                extra_cflags=["-str readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "movieD/cri/sfxcnv.c",
+                extra_cflags=["-str readonly", "-use_lmw_stmw on"],
+            ),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
@@ -578,6 +598,32 @@ config.progress_report_args = [
     # Default is "functionRelocDiffs=none", which is most lenient
     # "--config functionRelocDiffs=data_value",
 ]
+
+# GNU objcopy, from the same binutils package used for GNU as (config.binutils_tag
+# above): config.binutils_path if given on the command line, otherwise wherever
+# project.py downloads config.binutils_tag to. Needed for --redefine-sym, which
+# mwcc has no way to spell in C.
+binutils_dir = config.binutils_path or (config.build_dir / "binutils")
+objcopy_exe = "powerpc-eabi-objcopy.exe" if is_windows() else "powerpc-eabi-objcopy"
+objcopy_path = binutils_dir / objcopy_exe
+
+config.custom_build_rules = [
+    {
+        "name": "fix_sud_symbols",
+        "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX SUD symbols",
+    },
+]
+config.custom_build_steps = {
+    "post-compile": [
+        {
+            "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
+            "rule": "fix_sud_symbols",
+            "inputs": "build/G9SE8P/src/movieD/cri/sud.o",
+            "implicit": ["tools/fix_sud_symbols.py", str(binutils_dir)],
+        },
+    ],
+}
 
 if args.mode == "configure":
     # Write build.ninja and objdiff.json
