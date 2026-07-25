@@ -30,6 +30,11 @@ game/object_dispatch.c:
 	extabindex  start:0x8000BD1C end:0x8000BD28
 	.text       start:0x80012E5C end:0x80012EA0
 
+game/path.c:
+	extab       start:0x80005770 end:0x80005778
+	extabindex  start:0x8000BD28 end:0x8000BD34
+	.text       start:0x80012EA0 end:0x80012FC8
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
