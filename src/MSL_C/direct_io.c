@@ -15,10 +15,17 @@ enum {
 	__disk_file,
 };
 
+enum {
+	__no_io_error,
+	__io_error,
+	__io_EOF,
+};
+
 extern void __stdio_atexit(void);
 extern void* memcpy(void* dst, const void* src, u32 count);
 extern void* __memrchr(const void* buffer, s32 value, u32 count);
 extern s32 fseek(FILE* file, s32 offset, s32 mode);
+extern s32 fn_801BC864(void);
 
 u32 __fwrite(const void* buffer, u32 memb_size, u32 num_memb, FILE* file)
 {
@@ -126,4 +133,127 @@ u32 __fwrite(const void* buffer, u32 memb_size, u32 num_memb, FILE* file)
 u32 fwrite(const void* buffer, u32 memb_size, u32 num_memb, FILE* file)
 {
 	return __fwrite(buffer, memb_size, num_memb, file);
+}
+
+u32 __fread(void* buffer, u32 memb_size, u32 num_memb, FILE* file)
+{
+	u8* cur_ptr;
+	u32 num_bytes;
+	u32 rem_bytes;
+	u32 bytes_read;
+	s32 result;
+	s32 buffered;
+
+	if (fwide(file, 0) == 0)
+		fwide(file, -1);
+
+	rem_bytes = memb_size * num_memb;
+	if (rem_bytes == 0 || file->state.error || file->mode.file_kind == __closed_file)
+		return 0;
+
+	buffered = !file->mode.binary_io || file->mode.buffer_mode == 2;
+
+	if (file->state.io_state == __neutral && (file->mode.io_mode & 1)) {
+		file->state.io_state = __reading;
+		file->buffer_length  = 0;
+	}
+
+	if (file->state.io_state < __reading) {
+		file->state.error   = 1;
+		file->buffer_length = 0;
+		return 0;
+	}
+
+	if ((file->mode.buffer_mode & 1) && fn_801BC864() != 0) {
+		file->state.error   = 1;
+		file->buffer_length = 0;
+		return 0;
+	}
+
+	cur_ptr    = buffer;
+	bytes_read = 0;
+
+	if (rem_bytes != 0 && file->state.io_state >= __rereading) {
+		do {
+			if (fwide(file, 0) == 1) {
+				bytes_read += 2;
+				rem_bytes -= 2;
+				*(u16*)cur_ptr = *(u16*)((u8*)file + (file->state.io_state << 1) + 12);
+				cur_ptr += 2;
+			} else {
+				bytes_read++;
+				rem_bytes--;
+				*cur_ptr++ = (&file->char_buffer)[file->state.io_state];
+			}
+
+			file->state.io_state--;
+		} while (rem_bytes != 0 && file->state.io_state >= __rereading);
+
+		if (file->state.io_state == __reading)
+			file->buffer_length = file->saved_buffer_length;
+	}
+
+	if (rem_bytes != 0 && (file->buffer_length != 0 || buffered)) {
+		do {
+			if (file->buffer_length == 0) {
+				result = __load_buffer(file, 0, 0);
+				if (result != 0) {
+					if (result == __io_error) {
+						file->state.error   = 1;
+						file->buffer_length = 0;
+					} else {
+						file->state.io_state = __neutral;
+						file->state.eof      = 1;
+						file->buffer_length  = 0;
+					}
+					rem_bytes = 0;
+					break;
+				}
+			}
+
+			num_bytes = file->buffer_length;
+			if (num_bytes > rem_bytes)
+				num_bytes = rem_bytes;
+
+			memcpy(cur_ptr, file->buffer_ptr, num_bytes);
+			rem_bytes -= num_bytes;
+			cur_ptr += num_bytes;
+			bytes_read += num_bytes;
+			file->buffer_ptr += num_bytes;
+			file->buffer_length -= num_bytes;
+		} while (rem_bytes != 0 && buffered);
+	}
+
+	if (rem_bytes != 0 && !buffered) {
+		u8* saved_buffer = file->buffer;
+		u32 saved_size   = file->buffer_size;
+
+		file->buffer      = cur_ptr;
+		file->buffer_size = rem_bytes;
+
+		result = __load_buffer(file, &num_bytes, 1);
+		if (result != 0) {
+			if (result == __io_error) {
+				file->state.error   = 1;
+				file->buffer_length = 0;
+			} else {
+				file->state.io_state = __neutral;
+				file->state.eof      = 1;
+				file->buffer_length  = 0;
+			}
+		}
+
+		bytes_read += num_bytes;
+		file->buffer      = saved_buffer;
+		file->buffer_size = saved_size;
+		__prep_buffer(file);
+		file->buffer_length = 0;
+	}
+
+	return bytes_read / memb_size;
+}
+
+u32 fread(void* buffer, u32 memb_size, u32 num_memb, FILE* file)
+{
+	return __fread(buffer, memb_size, num_memb, file);
 }
