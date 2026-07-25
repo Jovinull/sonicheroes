@@ -494,6 +494,11 @@ config.libs = [
                 "advertiseD/prolog.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "advertiseD/anim_handle.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
         ],
     ),
     Rel(
