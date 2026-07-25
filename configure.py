@@ -531,6 +531,11 @@ config.libs = [
         [
             Object(
                 Matching,
+                "movieD/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "movieD/cri/sud.c",
                 extra_cflags=["-str readonly", "-use_lmw_stmw on"],
             ),

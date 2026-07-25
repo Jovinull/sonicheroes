@@ -6,6 +6,9 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:32
 
+movieD/prolog.c:
+	.text       start:0x00000000 end:0x000000B4
+
 movieD/cri/sud.c:
 	.text       start:0x000087CC end:0x00008B98
 	.rodata     start:0x00000390 end:0x00000408
