@@ -71,6 +71,9 @@ MSL_C/abort_exit.c:
 MSL_C/buffer_io.c:
 	.text       start:0x801BE838 end:0x801BEB44
 
+MSL_C/char_io.c:
+	.text       start:0x801BEB44 end:0x801BEFE8
+
 MSL_C/direct_io.c:
 	.text       start:0x801BF00C end:0x801BF6A8
 
