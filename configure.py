@@ -531,6 +531,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "autosaveD/quad_fill.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/quad_submit.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
