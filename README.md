@@ -155,6 +155,10 @@ you edit source, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+External resources that help with naming functions and structs (community
+disassemblies, SDK headers, format documentation) are tracked in
+[REFERENCES.md](REFERENCES.md).
+
 ## Legal
 
 See [LEGAL.md](LEGAL.md).
