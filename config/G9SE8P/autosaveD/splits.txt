@@ -15,6 +15,10 @@ autosaveD/task_runtime.c:
 autosaveD/task_callback_setters.c:
 	.text       start:0x00001ED4 end:0x00001EF0
 
+autosaveD/prolog.c:
+	.text       start:0x00001EF0 end:0x00001FB4
+	.data       start:0x000002A8 end:0x000002F0
+
 autosaveD/task_object.c:
 	.text       start:0x00001FB4 end:0x00002294
 

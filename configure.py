@@ -476,6 +476,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "autosaveD/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "autosaveD/task_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

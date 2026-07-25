@@ -58,6 +58,9 @@ modules:
     - fn_2_4500
     - fn_2_45B8
     - fn_2_476C
+    - _unresolved
+    - _epilog
+    - _prolog
 - object: files/movieD.rel
   hash: 6e2773a99ec5b05d5634d09521246e3e28bd6de9
   symbols: config/G9SE8P/movieD/symbols.txt
