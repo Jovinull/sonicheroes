@@ -249,6 +249,16 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
+# The same without fused multiply-add, for units whose original was built that
+# way. The flag is replaced rather than appended, which is how tww, pikmin2 and
+# ogws carry the same override.
+cflags_rel_nofma = [
+    *[flag for flag in cflags_base if flag != "-fp_contract on"],
+    "-fp_contract off",
+    "-sdata 0",
+    "-sdata2 0",
+]
+
 config.linker_version = "GC/1.3.2"
 
 
@@ -528,6 +538,12 @@ config.libs = [
                 Matching,
                 "autosaveD/widget_rendering.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "autosaveD/window_frame.c",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,

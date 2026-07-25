@@ -31,6 +31,9 @@ autosaveD/quad_submit.c:
 autosaveD/widget_rendering.c:
 	.text       start:0x000032F8 end:0x0000346C
 
+autosaveD/window_frame.c:
+	.text       start:0x0000346C end:0x000038F4
+
 autosaveD/window_input.c:
 	.text       start:0x000038F4 end:0x00003A70
 
