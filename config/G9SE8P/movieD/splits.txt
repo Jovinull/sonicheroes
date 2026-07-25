@@ -17,3 +17,8 @@ movieD/cri/sfxset.c:
 movieD/cri/sfxcnv.c:
 	.text       start:0x00008EA8 end:0x0000E2F4
 	.rodata     start:0x00000418 end:0x00000800
+
+movieD/cri/sfx.c:
+	.text       start:0x0000E2F4 end:0x0000E89C
+	.rodata     start:0x00000800 end:0x000008A0
+	.bss        start:0x000000D0 end:0x00000588

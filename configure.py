@@ -539,6 +539,11 @@ config.libs = [
                 "movieD/cri/sfxcnv.c",
                 extra_cflags=["-str readonly", "-use_lmw_stmw on"],
             ),
+            Object(
+                NonMatching,
+                "movieD/cri/sfx.c",
+                extra_cflags=["-str readonly", "-use_lmw_stmw on", "-common off"],
+            ),
         ],
     ),
     {
