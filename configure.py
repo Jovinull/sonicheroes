@@ -594,10 +594,15 @@ config.progress_report_args = [
     # "--config functionRelocDiffs=data_value",
 ]
 
+# GNU objcopy, from the binutils package downloaded for GNU as (config.binutils_tag
+# above). Needed for --redefine-sym, which mwcc has no way to spell in C.
+objcopy_exe = "powerpc-eabi-objcopy.exe" if is_windows() else "powerpc-eabi-objcopy"
+objcopy_path = config.build_dir / "binutils" / objcopy_exe
+
 config.custom_build_rules = [
     {
         "name": "fix_sud_symbols",
-        "command": "bash tools/fix_sud_symbols.sh $in $out",
+        "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
     },
 ]
@@ -607,7 +612,7 @@ config.custom_build_steps = {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
             "rule": "fix_sud_symbols",
             "inputs": "build/G9SE8P/src/movieD/cri/sud.o",
-            "implicit": ["tools/fix_sud_symbols.sh"],
+            "implicit": ["tools/fix_sud_symbols.py", str(config.build_dir / "binutils")],
         },
     ],
 }
