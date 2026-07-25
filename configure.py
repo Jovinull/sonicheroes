@@ -536,6 +536,24 @@ config.libs = [
             ),
         ],
     ),
+    {
+        # One source, linked into every stage module. Each module's splits.txt
+        # names it and its own symbols.txt renames that module's table, blocks
+        # and init entry to the shared names below, so the same object resolves
+        # per module at link time. The Wind Waker does this with
+        # REL/executor.c, which its rels list the same way.
+        "lib": "rel",
+        "mw_version": "GC/1.3.2",
+        "cflags": cflags_rel,
+        "progress_category": "game",
+        "objects": [
+            Object(
+                Matching,
+                "rel/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    },
     Rel(
         "movieD",
         [
@@ -568,136 +586,6 @@ config.libs = [
                 Matching,
                 "movieD/cri/sfxahn.c",
                 extra_cflags=["-str readonly", "-use_lmw_stmw on"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage01D",
-        [
-            Object(
-                Matching,
-                "stage01D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage03D",
-        [
-            Object(
-                Matching,
-                "stage03D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage05D",
-        [
-            Object(
-                Matching,
-                "stage05D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage07D",
-        [
-            Object(
-                Matching,
-                "stage07D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage09D",
-        [
-            Object(
-                Matching,
-                "stage09D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage11D",
-        [
-            Object(
-                Matching,
-                "stage11D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage13D",
-        [
-            Object(
-                Matching,
-                "stage13D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage26D",
-        [
-            Object(
-                Matching,
-                "stage26D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage27D",
-        [
-            Object(
-                Matching,
-                "stage27D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage28D",
-        [
-            Object(
-                Matching,
-                "stage28D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage31D",
-        [
-            Object(
-                Matching,
-                "stage31D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage32D",
-        [
-            Object(
-                Matching,
-                "stage32D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-        ],
-    ),
-    Rel(
-        "stage33D",
-        [
-            Object(
-                Matching,
-                "stage33D/prolog.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
             ),
         ],
     ),

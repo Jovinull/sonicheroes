@@ -6,5 +6,5 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:32
 
-stage32D/prolog.c:
+rel/prolog.c:
 	.text       start:0x00000000 end:0x000000D8
