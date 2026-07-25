@@ -68,6 +68,9 @@ MSL_C/abort_exit.c:
 	.bss        start:0x803EDC78 end:0x803EDD78
 	.sbss       start:0x8042CAA0 end:0x8042CAA8
 
+MSL_C/buffer_io.c:
+	.text       start:0x801BE838 end:0x801BEB44
+
 MSL_C/mem.c:
 	.text       start:0x801C01EC end:0x801C063C
 
