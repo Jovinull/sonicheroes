@@ -457,6 +457,16 @@ config.libs = [
         ],
     },
     Rel(
+        "advertiseD",
+        [
+            Object(
+                Matching,
+                "advertiseD/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
         "autosaveD",
         [
             Object(
