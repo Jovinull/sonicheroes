@@ -2,11 +2,11 @@
 
 // CRI SFX for GameCube: module init/teardown and the handle table.
 //
-// NonMatching. Fourteen of the sixteen functions reproduce exactly; fn_17_E810
-// and fn_17_E4E4 do not, and the reason for both is the same and is written up
-// above the .bss below. The unit is carved and configured so the boundary
-// argument and the fourteen that do match are not lost, and so objdiff has
-// something to sit on, but it is not linked until the last two come in.
+// NonMatching. Fifteen of the sixteen functions reproduce exactly; fn_17_E810
+// does not because of the .bss ordering issue written up below. The unit is
+// carved and configured so the boundary argument and the functions that do
+// match are not lost, and so objdiff has something to sit on, but it is not
+// linked until the last function comes in.
 //
 // The translation unit runs from fn_17_E2F4 at 0xE2F4 to the end of
 // fn_17_E810 at 0xE89C, owns .rodata 0x800 to 0x8A0 and .bss 0xD0 to 0x588.
@@ -87,7 +87,7 @@ const char sfx_version[] = "\nCRI SFX/GC Ver.1.24 Build:May  9 2003 15:19:50\n";
 extern void* memset(void* dst, int fill, u32 len);
 
 extern void fn_17_10980(void*);
-extern void* fn_17_109F0(u32);
+extern void* fn_17_109F0();
 extern void fn_17_10A60(void);
 extern void fn_17_10AAC(void);
 extern void fn_17_10B6C(void);
@@ -102,8 +102,8 @@ extern void fn_17_EA80(void);
 // -sdata 0 this compiler emits .bss in order of first reference instead, which
 // puts lbl_17_bss_D4 first because fn_17_E2FC reaches it before anything
 // touches the table. Declaration order has no effect here, unlike game/heap.c,
-// where small data is on and .sbss comes out reversed. Only fn_17_E810 and
-// fn_17_E4E4 still differ, and only in the offsets this causes.
+// where small data is on and .sbss comes out reversed. Only fn_17_E810 still
+// differs, and only in the offsets this causes.
 static s32 lbl_17_bss_D0;        // 0xD0
 static s32 lbl_17_bss_D4;        // 0xD4
 static SfxGlobals lbl_17_bss_D8; // 0xD8
@@ -195,37 +195,45 @@ SfxHn* fn_17_E4AC(void)
 	return NULL;
 }
 
+#pragma opt_propagation off
 SfxHn* fn_17_E4E4(void* work, s32 worksize)
 {
 	SfxHn* hn = fn_17_E4AC();
+	void* zhn;
+	void* ahn;
+	s32 valid;
 
 	if (hn == NULL) {
 		return hn;
 	}
-	if (fn_17_E3E4(worksize) != 1) {
+	valid = fn_17_E3E4(worksize);
+	if (valid != 1) {
 		fn_17_E338(NULL, NULL, SFX_ERR_WORKSIZE);
 		return NULL;
 	}
 
 	fn_17_E3FC(hn, work, worksize);
 
-	hn->zhn = fn_17_109F0(hn->buf3);
-	if (hn->zhn == NULL) {
+	zhn = fn_17_109F0();
+	if (zhn == NULL) {
 		fn_17_E338(NULL, NULL, SFX_ERR_ZHN);
 		fn_17_E384(hn);
 		return NULL;
 	}
 
-	hn->ahn = fn_17_E9C0(hn->zhn);
-	if (hn->ahn == NULL) {
+	hn->zhn = zhn;
+	ahn     = fn_17_E9C0(zhn);
+	if (ahn == NULL) {
 		fn_17_E338(NULL, NULL, SFX_ERR_AHN);
 		fn_17_E384(hn);
 		return NULL;
 	}
 
+	hn->ahn = ahn;
 	lbl_17_bss_D8.numHn++;
 	return hn;
 }
+#pragma opt_propagation on
 
 void fn_17_E758(void (*errFunc)(void*, const char*), void* errObj)
 {
