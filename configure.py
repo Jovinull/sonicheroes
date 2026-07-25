@@ -614,9 +614,15 @@ config.libs = [
                 extra_cflags=["-str readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "movieD/cri/sfx.c",
-                extra_cflags=["-str readonly", "-use_lmw_stmw on", "-common off"],
+                extra_cflags=[
+                    "-lang=c++",
+                    "-bool off",
+                    "-str readonly",
+                    "-use_lmw_stmw on",
+                    "-common off",
+                ],
             ),
             Object(
                 Matching,
