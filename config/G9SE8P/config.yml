@@ -101,6 +101,9 @@ modules:
     - fn_17_D0F8
     - fn_17_E158
     - fn_17_E228
+    - fn_17_E964
+    - fn_17_E988
+    - fn_17_EA40
 - object: files/stage01D.rel
   hash: 7c61a97a347c714cd72bdf6cab204b0749e946f2
   symbols: config/G9SE8P/stage01D/symbols.txt
