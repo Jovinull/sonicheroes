@@ -27,16 +27,16 @@
 // function twice.
 
 typedef struct SfxAHn {
-	s32 used; // 0x00
-	s32 unk4; // 0x04
-	s32 unk8; // 0x08
-	s32 unkC; // 0x0C
+	s32 used;  // 0x00
+	s32 unk4;  // 0x04
+	s32 unk8;  // 0x08
+	s32 unkC;  // 0x0C
 	s32 unk10; // 0x10
 } SfxAHn;
 
 typedef struct SfxAGlobals {
-	s32 numHn; // 0x00
-	s32 maxHn; // 0x04
+	s32 numHn;    // 0x00
+	s32 maxHn;    // 0x04
 	SfxAHn hn[8]; // 0x08
 } SfxAGlobals;
 
@@ -56,10 +56,10 @@ void fn_17_E89C(SfxAHn* hn, s32* arg1, s32* arg2, s32* arg3)
 
 void fn_17_E8B8(SfxAHn* hn, s32 arg1, s32 arg2, s32 arg3)
 {
-	hn->unk8 = arg3;
-	hn->unkC = arg1;
+	hn->unk8  = arg3;
+	hn->unkC  = arg1;
 	hn->unk10 = arg2;
-	hn->unk4 = 1;
+	hn->unk4  = 1;
 }
 
 s32 fn_17_E8D0(SfxAHn* hn)
@@ -88,10 +88,10 @@ void fn_17_E940(SfxAHn* hn)
 
 void fn_17_E964(SfxAHn* hn)
 {
-	hn->unk8 = 0;
-	hn->unkC = 0x1F;
+	hn->unk8  = 0;
+	hn->unkC  = 0x1F;
 	hn->unk10 = 0x64;
-	hn->unk4 = 1;
+	hn->unk4  = 1;
 }
 
 SfxAHn* fn_17_E988(void)
@@ -121,9 +121,7 @@ SfxAHn* fn_17_E9C0(void)
 	return hn;
 }
 
-void fn_17_EA3C(void)
-{
-}
+void fn_17_EA3C(void) { }
 
 void fn_17_EA40(void)
 {

@@ -27,9 +27,9 @@ typedef struct ModuleEntry {
 // The block in the DOL the prolog hangs this module's two tables off.
 typedef struct StageSlots {
 	u8 unk0[0x30]; // 0x00
-	void* unk30; // 0x30
+	void* unk30;   // 0x30
 	u8 unk34[0x4]; // 0x34
-	void* unk38; // 0x38
+	void* unk38;   // 0x38
 } StageSlots;
 
 extern u8 lbl_8042C1C0[];
@@ -40,13 +40,9 @@ extern u8 lbl_8_data_11B8[];
 extern void fn_800421B4(void* arg0, ModuleEntry* arg1);
 extern void fn_8_D29EC(void);
 
-void fn_8_0(void)
-{
-}
+void fn_8_0(void) { }
 
-void _unresolved(void)
-{
-}
+void _unresolved(void) { }
 
 void _epilog(void)
 {

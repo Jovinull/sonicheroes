@@ -58,9 +58,7 @@ TaskEntry lbl_2_data_2B0[] = {
 	{ -1, NULL, NULL, NULL },
 };
 
-void _unresolved(void)
-{
-}
+void _unresolved(void) { }
 
 void _epilog(void)
 {

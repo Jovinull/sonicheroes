@@ -32,13 +32,9 @@ extern void fn_800421B4(void* arg0, ModuleEntry* arg1);
 extern void fn_1_86C8(void);
 extern void fn_1_8740(void);
 
-void fn_1_8808(void)
-{
-}
+void fn_1_8808(void) { }
 
-void _unresolved(void)
-{
-}
+void _unresolved(void) { }
 
 void _epilog(void)
 {

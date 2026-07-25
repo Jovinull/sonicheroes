@@ -30,13 +30,9 @@ extern u8 lbl_8042C1C0[];
 extern ModuleEntry lbl_17_data_10[];
 extern void fn_800421B4(void* arg0, ModuleEntry* arg1);
 
-void fn_17_0(void)
-{
-}
+void fn_17_0(void) { }
 
-void _unresolved(void)
-{
-}
+void _unresolved(void) { }
 
 void _epilog(void)
 {

@@ -41,48 +41,48 @@
 // and a second copy inside fn_17_E4E4.
 
 typedef struct SfxHn {
-	s32 used; // 0x00
-	s32 unk4; // 0x04
-	s32 unk8; // 0x08
-	s32 unkC; // 0x0C
+	s32 used;       // 0x00
+	s32 unk4;       // 0x04
+	s32 unk8;       // 0x08
+	s32 unkC;       // 0x0C
 	u8 unk10[0x10]; // 0x10
-	void* zhn; // 0x20
-	s32 unk24; // 0x24
-	s32 unk28; // 0x28
-	void* ahn; // 0x2C
-	u8 unk30[0x4]; // 0x30
-	s32 unk34; // 0x34
-	u32 work; // 0x38
-	u32 buf1; // 0x3C
-	u32 buf2; // 0x40
-	u32 buf3; // 0x44
-	u8 unk48[0x8]; // 0x48
-	void* workptr; // 0x50
-	s32 worksize; // 0x54
-	u8 unk58[0x8]; // 0x58
-	s32 unk60; // 0x60
+	void* zhn;      // 0x20
+	s32 unk24;      // 0x24
+	s32 unk28;      // 0x28
+	void* ahn;      // 0x2C
+	u8 unk30[0x4];  // 0x30
+	s32 unk34;      // 0x34
+	u32 work;       // 0x38
+	u32 buf1;       // 0x3C
+	u32 buf2;       // 0x40
+	u32 buf3;       // 0x44
+	u8 unk48[0x8];  // 0x48
+	void* workptr;  // 0x50
+	s32 worksize;   // 0x54
+	u8 unk58[0x8];  // 0x58
+	s32 unk60;      // 0x60
 	u8 unk64[0x2C]; // 0x64
 } SfxHn;
 
 typedef struct SfxGlobals {
-	s32 numHn; // 0x00
-	s32 maxHn; // 0x04
+	s32 numHn;                           // 0x00
+	s32 maxHn;                           // 0x04
 	void (*errFunc)(void*, const char*); // 0x08
-	void* errObj; // 0x0C
-	s32 errCount; // 0x10
-	s32 unk14; // 0x14
-	SfxHn hn[8]; // 0x18
-	u8 unk498[0x10]; // 0x498
-	const char* version; // 0x4A8
-	u8 unk4AC[0x4]; // 0x4AC
+	void* errObj;                        // 0x0C
+	s32 errCount;                        // 0x10
+	s32 unk14;                           // 0x14
+	SfxHn hn[8];                         // 0x18
+	u8 unk498[0x10];                     // 0x498
+	const char* version;                 // 0x4A8
+	u8 unk4AC[0x4];                      // 0x4AC
 } SfxGlobals;
 
 // The whole .rodata block is one pooled string object: the banner at 0x00 and
 // the three errors at 0x34, 0x60 and 0x80, addressed off a single base.
 const char sfx_version[] = "\nCRI SFX/GC Ver.1.24 Build:May  9 2003 15:19:50\n";
 #define SFX_ERR_WORKSIZE "E201194: sfx_InitHn: work size is short."
-#define SFX_ERR_ZHN "E201281: SfxZHn: can't create."
-#define SFX_ERR_AHN "E202011: SfxAHn: can't create."
+#define SFX_ERR_ZHN      "E201281: SfxZHn: can't create."
+#define SFX_ERR_AHN      "E202011: SfxAHn: can't create."
 
 extern void* memset(void* dst, int fill, u32 len);
 
@@ -104,8 +104,8 @@ extern void fn_17_EA80(void);
 // touches the table. Declaration order has no effect here, unlike game/heap.c,
 // where small data is on and .sbss comes out reversed. Only fn_17_E810 and
 // fn_17_E4E4 still differ, and only in the offsets this causes.
-static s32 lbl_17_bss_D0; // 0xD0
-static s32 lbl_17_bss_D4; // 0xD4
+static s32 lbl_17_bss_D0;        // 0xD0
+static s32 lbl_17_bss_D4;        // 0xD4
 static SfxGlobals lbl_17_bss_D8; // 0xD8
 
 s32 fn_17_E2F4(void)
@@ -136,7 +136,7 @@ void fn_17_E328(s32 arg0)
 void fn_17_E338(void* arg0, void* arg1, const char* msg)
 {
 	void (*errFunc)(void*, const char*) = lbl_17_bss_D8.errFunc;
-	void* errObj = lbl_17_bss_D8.errObj;
+	void* errObj                        = lbl_17_bss_D8.errObj;
 
 	lbl_17_bss_D8.errCount++;
 	if (errFunc != NULL) {
@@ -165,20 +165,20 @@ s32 fn_17_E3E4(s32 worksize)
 void fn_17_E3FC(SfxHn* hn, void* work, s32 worksize)
 {
 	memset(hn, 0, sizeof(SfxHn));
-	hn->unk4 = 0;
-	hn->unk8 = 0;
-	hn->unkC = 0;
-	hn->unk24 = 1;
-	hn->unk28 = 0;
-	hn->unk34 = 0;
-	hn->work = ((u32)work + 0x1F) & ~0x1F;
-	hn->buf1 = hn->work + 0x400;
-	hn->buf2 = hn->buf1 + 0x400;
-	hn->buf3 = hn->buf2 + 0x400;
-	hn->workptr = work;
+	hn->unk4     = 0;
+	hn->unk8     = 0;
+	hn->unkC     = 0;
+	hn->unk24    = 1;
+	hn->unk28    = 0;
+	hn->unk34    = 0;
+	hn->work     = ((u32)work + 0x1F) & ~0x1F;
+	hn->buf1     = hn->work + 0x400;
+	hn->buf2     = hn->buf1 + 0x400;
+	hn->buf3     = hn->buf2 + 0x400;
+	hn->workptr  = work;
 	hn->worksize = worksize;
-	hn->unk60 = -1;
-	hn->used = 1;
+	hn->unk60    = -1;
+	hn->used     = 1;
 }
 
 SfxHn* fn_17_E4AC(void)
@@ -230,7 +230,7 @@ SfxHn* fn_17_E4E4(void* work, s32 worksize)
 void fn_17_E758(void (*errFunc)(void*, const char*), void* errObj)
 {
 	lbl_17_bss_D8.errFunc = errFunc;
-	lbl_17_bss_D8.errObj = errObj;
+	lbl_17_bss_D8.errObj  = errObj;
 }
 
 void fn_17_E76C(void)
