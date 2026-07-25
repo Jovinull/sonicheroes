@@ -25,6 +25,11 @@ game/main.c:
 	.text       start:0x80012C08 end:0x80012E5C
 	.bss        start:0x8029BBC0 end:0x8029BBD0
 
+game/object_dispatch.c:
+	extab       start:0x80005768 end:0x80005770
+	extabindex  start:0x8000BD1C end:0x8000BD28
+	.text       start:0x80012E5C end:0x80012EA0
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

@@ -454,6 +454,11 @@ config.libs = [
                 "game/main.c",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule"],
             ),
+            Object(
+                Matching,
+                "game/object_dispatch.c",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
