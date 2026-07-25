@@ -5,3 +5,15 @@ Sections:
 	.rodata     type:rodata align:8
 	.data       type:data align:8
 	.bss        type:bss align:32
+
+movieD/cri/sud.c:
+	.text       start:0x000087CC end:0x00008B98
+	.rodata     start:0x00000390 end:0x00000408
+
+movieD/cri/sfxset.c:
+	.text       start:0x00008B98 end:0x00008EA8
+	.rodata     start:0x00000408 end:0x00000418
+
+movieD/cri/sfxcnv.c:
+	.text       start:0x00008EA8 end:0x0000E2F4
+	.rodata     start:0x00000418 end:0x00000800

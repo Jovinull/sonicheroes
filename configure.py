@@ -516,6 +516,26 @@ config.libs = [
             ),
         ],
     ),
+    Rel(
+        "movieD",
+        [
+            Object(
+                Matching,
+                "movieD/cri/sud.c",
+                extra_cflags=["-str readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "movieD/cri/sfxset.c",
+                extra_cflags=["-str readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "movieD/cri/sfxcnv.c",
+                extra_cflags=["-str readonly", "-use_lmw_stmw on"],
+            ),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
@@ -573,6 +593,24 @@ config.progress_report_args = [
     # Default is "functionRelocDiffs=none", which is most lenient
     # "--config functionRelocDiffs=data_value",
 ]
+
+config.custom_build_rules = [
+    {
+        "name": "fix_sud_symbols",
+        "command": "bash tools/fix_sud_symbols.sh $in $out",
+        "description": "FIX SUD symbols",
+    },
+]
+config.custom_build_steps = {
+    "post-compile": [
+        {
+            "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
+            "rule": "fix_sud_symbols",
+            "inputs": "build/G9SE8P/src/movieD/cri/sud.o",
+            "implicit": ["tools/fix_sud_symbols.sh"],
+        },
+    ],
+}
 
 if args.mode == "configure":
     # Write build.ninja and objdiff.json
