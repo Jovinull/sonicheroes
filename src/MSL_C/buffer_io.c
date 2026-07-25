@@ -27,7 +27,7 @@ enum {
 
 extern void fn_801BB540(void*);
 extern void* fn_801BB674(u32);
-extern s32 fn_801BF9B8(FILE*);
+extern s32 fflush(FILE*);
 
 static inline void prep_buffer(FILE* file)
 {
@@ -42,7 +42,7 @@ s32 setvbuf(FILE* file, char* buffer, s32 mode, u32 size)
 	s32 file_kind = file->mode.file_kind;
 
 	if (mode == _IOFBF)
-		fn_801BF9B8(file);
+		fflush(file);
 
 	if (file->state.io_state != __neutral || file_kind == 0)
 		return -1;
