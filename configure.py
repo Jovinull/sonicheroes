@@ -561,6 +561,136 @@ config.libs = [
             ),
         ],
     ),
+    Rel(
+        "stage01D",
+        [
+            Object(
+                Matching,
+                "stage01D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage03D",
+        [
+            Object(
+                Matching,
+                "stage03D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage05D",
+        [
+            Object(
+                Matching,
+                "stage05D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage07D",
+        [
+            Object(
+                Matching,
+                "stage07D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage09D",
+        [
+            Object(
+                Matching,
+                "stage09D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage11D",
+        [
+            Object(
+                Matching,
+                "stage11D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage13D",
+        [
+            Object(
+                Matching,
+                "stage13D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage26D",
+        [
+            Object(
+                Matching,
+                "stage26D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage27D",
+        [
+            Object(
+                Matching,
+                "stage27D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage28D",
+        [
+            Object(
+                Matching,
+                "stage28D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage31D",
+        [
+            Object(
+                Matching,
+                "stage31D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage32D",
+        [
+            Object(
+                Matching,
+                "stage32D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
+    Rel(
+        "stage33D",
+        [
+            Object(
+                Matching,
+                "stage33D/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
