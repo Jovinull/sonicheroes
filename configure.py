@@ -562,6 +562,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "advertiseD/slot_refresh.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/stage_start.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
