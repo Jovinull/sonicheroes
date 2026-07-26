@@ -50,6 +50,10 @@ rel/set_collision_object.c:
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000E8 end:0x000000F0
 
-rel/dashpanel_clamp.c:
-	.text       start:0x000081C0 end:0x00008228
+rel/dashpanel_object.c:
+	.text       start:0x000081C0 end:0x00008314
 	.rodata     start:0x00000160 end:0x00000168
+
+rel/dashpanel_assets.c:
+	.text       start:0x00008578 end:0x00008620
+	.ctors      start:0x0000001C end:0x00000020

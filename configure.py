@@ -783,7 +783,12 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/dashpanel_clamp.c",
+                "rel/dashpanel_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/dashpanel_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
