@@ -145,6 +145,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -166,6 +167,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -187,6 +189,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -208,6 +211,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -229,6 +233,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -250,6 +255,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -271,6 +277,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -292,6 +299,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -313,6 +321,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -334,6 +343,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -355,6 +365,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -376,6 +387,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -397,6 +409,7 @@ modules:
     - switchTransform
     - switchRegisterNoop
     - setCollisionRegisterNoop
+    - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor

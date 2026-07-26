@@ -818,6 +818,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dashpanel_hooks.c",
+                extra_cflags=["-lang=c++"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_group_query.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

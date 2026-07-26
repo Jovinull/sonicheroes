@@ -114,5 +114,8 @@ rel/dashpanel_assets.c:
 	.text       start:0x00008578 end:0x00008620
 	.ctors      start:0x0000001C end:0x00000020
 
+rel/dashpanel_hooks.c:
+	.text       start:0x00008628 end:0x0000862C
+
 rel/scroll_ring_disp.c:
 	.text       start:0x00008F98 end:0x00008FF0
