@@ -54,6 +54,9 @@ advertiseD/fade_step.c:
 	.text       start:0x0000EC18 end:0x0000ECAC
 	.rodata     start:0x000019A0 end:0x000019A4
 
+advertiseD/fade_object.c:
+	.text       start:0x0000ECD0 end:0x0000EF8C
+
 advertiseD/emblem_gate.c:
 	.text       start:0x0000EF8C end:0x0000F06C
 
