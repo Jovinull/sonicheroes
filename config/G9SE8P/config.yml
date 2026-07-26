@@ -41,6 +41,10 @@ modules:
   hash: 0b28051533603c5f330b1af7e1959be8e73856ea
   symbols: config/G9SE8P/advertiseD/symbols.txt
   splits: config/G9SE8P/advertiseD/splits.txt
+  # Nothing in the module reaches this one, so mwld drops it once its
+  # translation unit is compiled instead of emitted by dtk.
+  force_active:
+    - fn_1_F298
 - object: files/autosaveD.rel
   hash: 120e89d6ca861f63ecf9c8f2d282bab5b500ab17
   symbols: config/G9SE8P/autosaveD/symbols.txt

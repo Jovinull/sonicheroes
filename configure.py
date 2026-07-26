@@ -500,6 +500,11 @@ config.libs = [
                 "advertiseD/anim_handle.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "advertiseD/choice_widget.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
         ],
     ),
     Rel(
