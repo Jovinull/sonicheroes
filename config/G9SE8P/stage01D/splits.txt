@@ -47,6 +47,9 @@ rel/tri_spring_assets.c:
 	.text       start:0x00002ED4 end:0x00002FC8
 	.ctors      start:0x0000000C end:0x00000010
 
+rel/obj_group_query.c:
+	.text       start:0x00002FD0 end:0x00003170
+
 rel/obj_set_mode.c:
 	.text       start:0x00003170 end:0x0000321C
 
