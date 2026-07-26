@@ -793,6 +793,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/switch_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

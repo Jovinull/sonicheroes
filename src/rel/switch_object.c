@@ -78,9 +78,9 @@ extern "C" void switchClamp(void* object, Frame* frame)
 	switchLabels[3] = switchSoundNames[params->sound];
 }
 
-// The unload hook the module's registration record points at. It clears the
+// The fourth hook the module's registration record points at. It clears the
 // block the switch keeps its wiring in, if there is one.
-extern "C" void switchUnload(Switch* object)
+extern "C" void switchReset(Switch* object)
 {
 	void* state = object->state;
 

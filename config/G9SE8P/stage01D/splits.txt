@@ -38,6 +38,10 @@ rel/obj_set_mode.c:
 rel/switch_object.c:
 	.text       start:0x00004B44 end:0x00004C4C
 
+rel/switch_assets.c:
+	.text       start:0x00004E50 end:0x00004F48
+	.ctors      start:0x00000010 end:0x00000014
+
 rel/obj_transform.c:
 	.text       start:0x00005984 end:0x00005A34
 
