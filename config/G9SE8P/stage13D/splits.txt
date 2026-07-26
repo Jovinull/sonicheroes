@@ -9,5 +9,9 @@ Sections:
 rel/prolog.c:
 	.text       start:0x00000000 end:0x000000D8
 
+rel/sample1_object.c:
+	.text       start:0x000000D8 end:0x000003E0
+	.rodata     start:0x00000010 end:0x00000028
+
 rel/sample2_object.c:
 	.text       start:0x00000564 end:0x00000740

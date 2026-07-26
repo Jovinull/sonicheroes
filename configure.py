@@ -762,6 +762,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sample1_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sample2_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
