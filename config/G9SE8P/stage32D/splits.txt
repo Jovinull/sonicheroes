@@ -89,3 +89,27 @@ rel/target_assets.c:
 rel/fan_assets.c:
 	.text       start:0x00025810 end:0x00025900
 	.ctors      start:0x00000054 end:0x00000058
+
+rel/pawn_assets.c:
+	.text       start:0x00033C98 end:0x00033D88
+	.ctors      start:0x00000060 end:0x00000064
+
+rel/item_box_assets.c:
+	.text       start:0x0003B2CC end:0x0003B3BC
+	.ctors      start:0x00000064 end:0x00000068
+
+rel/pole_assets.c:
+	.text       start:0x0003FF74 end:0x00040064
+	.ctors      start:0x0000006C end:0x00000070
+
+rel/case_assets.c:
+	.text       start:0x000415B0 end:0x000416A0
+	.ctors      start:0x00000074 end:0x00000078
+
+rel/roll_door_assets.c:
+	.text       start:0x00044118 end:0x00044208
+	.ctors      start:0x00000078 end:0x0000007C
+
+rel/signal_assets.c:
+	.text       start:0x00046B24 end:0x00046C14
+	.ctors      start:0x00000080 end:0x00000084
