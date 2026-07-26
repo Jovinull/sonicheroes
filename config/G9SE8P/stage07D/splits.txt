@@ -162,6 +162,10 @@ rel/signal_assets.c:
 	.text       start:0x00046B24 end:0x00046C14
 	.ctors      start:0x00000080 end:0x00000084
 
+rel/propeller_register.c:
+	.text       start:0x00049590 end:0x00049630
+	.ctors      start:0x00000084 end:0x00000088
+
 rel/goal_ring_register.c:
 	.text       start:0x0004D584 end:0x0004D62C
 	.ctors      start:0x0000008C end:0x00000090
@@ -181,3 +185,15 @@ rel/system_object3_register.c:
 rel/system_object4_register.c:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
+
+rel/light_collision_register.c:
+	.text       start:0x0004F2E4 end:0x0004F37C
+	.ctors      start:0x000000A0 end:0x000000A4
+
+rel/invoke_collision_register.c:
+	.text       start:0x0004FBFC end:0x0004FC90
+	.ctors      start:0x000000A4 end:0x000000A8
+
+rel/push_pull_switch_register.c:
+	.text       start:0x0005191C end:0x000519CC
+	.ctors      start:0x000000A8 end:0x000000AC

@@ -783,6 +783,26 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/propeller_register.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/push_pull_switch_register.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/light_collision_register.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/invoke_collision_register.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/system_object1_register.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
