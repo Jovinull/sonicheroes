@@ -572,6 +572,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "advertiseD/panel_setters.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/anim_stubs.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/stage_start.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

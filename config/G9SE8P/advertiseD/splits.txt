@@ -28,6 +28,12 @@ advertiseD/stage_start.c:
 advertiseD/panel_callbacks.c:
 	.text       start:0x00009AC0 end:0x00009BB0
 
+advertiseD/panel_setters.c:
+	.text       start:0x00009BB0 end:0x00009CA4
+
+advertiseD/anim_stubs.c:
+	.text       start:0x0000A6C4 end:0x0000A6D8
+
 advertiseD/line_count.c:
 	.text       start:0x0000A6D8 end:0x0000A72C
 
