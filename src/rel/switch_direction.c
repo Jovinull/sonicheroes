@@ -4,7 +4,7 @@
 // collision contact. The horizontal components are scaled and tiny results are
 // snapped to zero before the vector is transformed back into world space.
 //
-// The claim is .text 0x3940 to 0x3A40. The code is shared by the same thirteen
+// The claim is .text 0x3940 to 0x3A44. The code is shared by the same thirteen
 // stage modules as the rest of TObjSwitch.
 
 typedef struct Vec3 {
@@ -61,3 +61,5 @@ extern "C" void switchDirection(Switch* object)
 
 	fn_8019941C(&object->direction, &local, 1, contact->matrix);
 }
+
+extern "C" void switchNoop(void) { }

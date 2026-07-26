@@ -57,7 +57,7 @@ rel/switch_update.c:
 	.text       start:0x0000321C end:0x00003940
 
 rel/switch_direction.c:
-	.text       start:0x00003940 end:0x00003A40
+	.text       start:0x00003940 end:0x00003A44
 
 rel/obj_reset_draw.c:
 	.text       start:0x00004398 end:0x000043D8
