@@ -75,6 +75,10 @@ rel/ironball_register.c:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
 
+rel/obj_box_trigger.c:
+	.text       start:0x00007770 end:0x00007AF0
+	.rodata     start:0x00000140 end:0x0000015C
+
 rel/obj_apply_transform.c:
 	.text       start:0x00007E20 end:0x00007EB0
 

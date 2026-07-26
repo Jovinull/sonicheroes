@@ -783,6 +783,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_box_trigger.c",
+                extra_cflags=["-lang=c++", "-pool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_base_stubs.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
