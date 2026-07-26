@@ -44,6 +44,8 @@ modules:
   # Nothing in the module reaches this one, so mwld drops it once its
   # translation unit is compiled instead of emitted by dtk.
   force_active:
+    - fn_1_A6C
+    - fn_1_A94
     - fn_1_A6C4
     - fn_1_A6C8
     - fn_1_A6D8

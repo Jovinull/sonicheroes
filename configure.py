@@ -497,7 +497,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "advertiseD/resource_hooks.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/task_runtime.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/delayed_trigger.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
