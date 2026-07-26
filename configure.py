@@ -783,6 +783,41 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dash_ring_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reel_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/laser_fence_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/big_rings_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/cage_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/fan_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tri_spring_assets.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

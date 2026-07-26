@@ -61,3 +61,31 @@ rel/dashpanel_object.c:
 rel/dashpanel_assets.c:
 	.text       start:0x00008578 end:0x00008620
 	.ctors      start:0x0000001C end:0x00000020
+
+rel/dash_ring_assets.c:
+	.text       start:0x0000E32C end:0x0000E41C
+	.ctors      start:0x00000028 end:0x0000002C
+
+rel/reel_assets.c:
+	.text       start:0x00012128 end:0x00012218
+	.ctors      start:0x00000030 end:0x00000034
+
+rel/laser_fence_assets.c:
+	.text       start:0x0001C394 end:0x0001C484
+	.ctors      start:0x00000044 end:0x00000048
+
+rel/big_rings_assets.c:
+	.text       start:0x0001F090 end:0x0001F180
+	.ctors      start:0x00000048 end:0x0000004C
+
+rel/cage_assets.c:
+	.text       start:0x00021C44 end:0x00021D34
+	.ctors      start:0x0000004C end:0x00000050
+
+rel/target_assets.c:
+	.text       start:0x000240DC end:0x000241CC
+	.ctors      start:0x00000050 end:0x00000054
+
+rel/fan_assets.c:
+	.text       start:0x00025810 end:0x00025900
+	.ctors      start:0x00000054 end:0x00000058
