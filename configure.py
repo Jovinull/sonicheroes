@@ -762,6 +762,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/spring_launch.c",
+                extra_cflags=["-lang=c++", "-pool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/spring_clamp.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
