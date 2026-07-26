@@ -783,6 +783,26 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_apply_transform.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/obj_release_models.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scroll_ring_disp.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/obj_reset_draw.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/propeller_register.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

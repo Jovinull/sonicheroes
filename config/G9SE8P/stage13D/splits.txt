@@ -47,6 +47,9 @@ rel/tri_spring_assets.c:
 rel/obj_set_mode.c:
 	.text       start:0x00003170 end:0x0000321C
 
+rel/obj_reset_draw.c:
+	.text       start:0x00004398 end:0x000043D8
+
 rel/switch_object.c:
 	.text       start:0x00004B44 end:0x00004C4C
 
@@ -62,9 +65,15 @@ rel/set_collision_object.c:
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000F8 end:0x00000100
 
+rel/obj_release_models.c:
+	.text       start:0x00006E78 end:0x00006EFC
+
 rel/ironball_register.c:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
+
+rel/obj_apply_transform.c:
+	.text       start:0x00007E20 end:0x00007EB0
 
 rel/dashpanel_object.c:
 	.text       start:0x000081C0 end:0x00008314
@@ -73,3 +82,6 @@ rel/dashpanel_object.c:
 rel/dashpanel_assets.c:
 	.text       start:0x00008578 end:0x00008620
 	.ctors      start:0x0000001C end:0x00000020
+
+rel/scroll_ring_disp.c:
+	.text       start:0x00008F98 end:0x00008FF0
