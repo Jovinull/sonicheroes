@@ -42,7 +42,8 @@ rel/obj_transform.c:
 	.text       start:0x00005984 end:0x00005A34
 
 rel/set_collision_object.c:
-	.text       start:0x00005F4C end:0x000060C4
+	.text       start:0x00005F4C end:0x0000616C
+	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000F8 end:0x00000100
 
 rel/dashpanel_clamp.c:
