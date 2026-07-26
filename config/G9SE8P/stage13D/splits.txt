@@ -78,6 +78,9 @@ rel/switch_assets.c:
 	.text       start:0x00004E50 end:0x00004F48
 	.ctors      start:0x00000010 end:0x00000014
 
+rel/switch_hooks.c:
+	.text       start:0x00004F50 end:0x00004F54
+
 rel/obj_transform.c:
 	.text       start:0x00005984 end:0x00005A34
 

@@ -143,6 +143,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -162,6 +163,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -181,6 +183,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -200,6 +203,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -219,6 +223,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -238,6 +243,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -257,6 +263,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -276,6 +283,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -295,6 +303,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -314,6 +323,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -333,6 +343,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -352,6 +363,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -371,6 +383,7 @@ modules:
     - switchActivateNearby
     - switchDtor
     - switchTransform
+    - switchRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
