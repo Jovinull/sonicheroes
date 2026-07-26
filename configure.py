@@ -768,6 +768,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_set_mode.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dashpanel_clamp.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

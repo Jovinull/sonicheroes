@@ -132,6 +132,7 @@ modules:
   # Only the module's own factory reaches the constructor, and that one is
   # still assembly, so mwld drops it once its translation unit is compiled.
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage03D.rel
@@ -139,6 +140,7 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage05D.rel
@@ -146,6 +148,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage07D.rel
@@ -153,6 +156,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage09D.rel
@@ -160,6 +164,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage11D.rel
@@ -167,6 +172,7 @@ modules:
   symbols: config/G9SE8P/stage11D/symbols.txt
   splits: config/G9SE8P/stage11D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage13D.rel
@@ -174,6 +180,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage26D.rel
@@ -181,6 +188,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage27D.rel
@@ -188,6 +196,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage28D.rel
@@ -195,6 +204,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage31D.rel
@@ -202,6 +212,7 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage32D.rel
@@ -209,6 +220,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage33D.rel
@@ -216,6 +228,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - objSetMode
     - sample1Ctor
     - sample2Ctor
 - object: files/stage40D.rel
