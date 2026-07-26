@@ -760,6 +760,11 @@ config.libs = [
                 "rel/prolog.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "rel/sample2_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
