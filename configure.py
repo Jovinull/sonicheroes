@@ -788,6 +788,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/switch_direction.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_group_query.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
