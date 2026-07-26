@@ -141,6 +141,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -158,6 +159,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -175,6 +177,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -192,6 +195,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -209,6 +213,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -226,6 +231,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -243,6 +249,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -260,6 +267,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -277,6 +285,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -294,6 +303,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -311,6 +321,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -328,6 +339,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
@@ -345,6 +357,7 @@ modules:
     - switchDirection
     - switchNoop
     - switchActivateNearby
+    - switchDtor
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor

@@ -65,6 +65,9 @@ rel/switch_nearby.c:
 rel/obj_reset_draw.c:
 	.text       start:0x00004398 end:0x000043D8
 
+rel/switch_dtor.c:
+	.text       start:0x00004580 end:0x00004650
+
 rel/switch_object.c:
 	.text       start:0x00004B44 end:0x00004C4C
 
