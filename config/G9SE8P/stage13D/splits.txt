@@ -24,3 +24,6 @@ rel/spring_object.c:
 rel/spring_clamp.c:
 	.text       start:0x000016CC end:0x00001734
 	.rodata     start:0x00000058 end:0x00000060
+
+rel/spring_assets.c:
+	.text       start:0x00001734 end:0x000017F4
