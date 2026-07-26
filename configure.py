@@ -768,6 +768,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/switch_clamp.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/spring_assets.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
