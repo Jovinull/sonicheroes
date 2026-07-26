@@ -19,6 +19,9 @@ advertiseD/slot_refresh.c:
 advertiseD/marker_emitters.c:
 	.text       start:0x0000922C end:0x000092D0
 
+advertiseD/slot_query.c:
+	.text       start:0x000092D0 end:0x00009954
+
 advertiseD/stage_start.c:
 	.text       start:0x00009954 end:0x00009AC0
 
