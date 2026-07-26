@@ -31,6 +31,9 @@ advertiseD/panel_callbacks.c:
 advertiseD/panel_setters.c:
 	.text       start:0x00009BB0 end:0x00009CA4
 
+advertiseD/select_object.c:
+	.text       start:0x0000A098 end:0x0000A460
+
 advertiseD/anim_stubs.c:
 	.text       start:0x0000A6C4 end:0x0000A6D8
 
