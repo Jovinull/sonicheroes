@@ -16,3 +16,7 @@ advertiseD/anim_handle.c:
 advertiseD/choice_widget.c:
 	.text       start:0x0000F06C end:0x0000F454
 	.data       start:0x00007838 end:0x00007880
+
+advertiseD/quad_fill.c:
+	.text       start:0x000137B8 end:0x00013B24
+	.rodata     start:0x00001CD0 end:0x00001CD8
