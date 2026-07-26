@@ -54,6 +54,10 @@ rel/set_collision_object.c:
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000E8 end:0x000000F0
 
+rel/ironball_register.c:
+	.text       start:0x000076C0 end:0x00007768
+	.ctors      start:0x00000018 end:0x0000001C
+
 rel/dashpanel_object.c:
 	.text       start:0x000081C0 end:0x00008314
 	.rodata     start:0x00000160 end:0x00000168
@@ -62,13 +66,33 @@ rel/dashpanel_assets.c:
 	.text       start:0x00008578 end:0x00008620
 	.ctors      start:0x0000001C end:0x00000020
 
+rel/jump_panel_register.c:
+	.text       start:0x0000CFB4 end:0x0000D05C
+	.ctors      start:0x00000024 end:0x00000028
+
 rel/dash_ring_assets.c:
 	.text       start:0x0000E32C end:0x0000E41C
 	.ctors      start:0x00000028 end:0x0000002C
 
+rel/checkpoint_register.c:
+	.text       start:0x00010ACC end:0x00010B74
+	.ctors      start:0x0000002C end:0x00000030
+
 rel/reel_assets.c:
 	.text       start:0x00012128 end:0x00012218
 	.ctors      start:0x00000030 end:0x00000034
+
+rel/wood_container_register.c:
+	.text       start:0x000140F0 end:0x00014198
+	.ctors      start:0x00000034 end:0x00000038
+
+rel/iron_container_register.c:
+	.text       start:0x000146DC end:0x00014784
+	.ctors      start:0x00000038 end:0x0000003C
+
+rel/unbreakable_container_register.c:
+	.text       start:0x00014C9C end:0x00014D44
+	.ctors      start:0x0000003C end:0x00000040
 
 rel/laser_fence_assets.c:
 	.text       start:0x0001C394 end:0x0001C484
@@ -90,6 +114,14 @@ rel/fan_assets.c:
 	.text       start:0x00025810 end:0x00025900
 	.ctors      start:0x00000054 end:0x00000058
 
+rel/weight_register.c:
+	.text       start:0x00028C34 end:0x00028CDC
+	.ctors      start:0x00000058 end:0x0000005C
+
+rel/breakable_weight_register.c:
+	.text       start:0x0002C958 end:0x0002CA00
+	.ctors      start:0x0000005C end:0x00000060
+
 rel/pawn_assets.c:
 	.text       start:0x00033C98 end:0x00033D88
 	.ctors      start:0x00000060 end:0x00000064
@@ -110,6 +142,14 @@ rel/roll_door_assets.c:
 	.text       start:0x00044118 end:0x00044208
 	.ctors      start:0x00000078 end:0x0000007C
 
+rel/lens_flare_register.c:
+	.text       start:0x00045A10 end:0x00045AB8
+	.ctors      start:0x0000007C end:0x00000080
+
 rel/signal_assets.c:
 	.text       start:0x00046B24 end:0x00046C14
 	.ctors      start:0x00000080 end:0x00000084
+
+rel/goal_ring_register.c:
+	.text       start:0x0004D584 end:0x0004D62C
+	.ctors      start:0x0000008C end:0x00000090

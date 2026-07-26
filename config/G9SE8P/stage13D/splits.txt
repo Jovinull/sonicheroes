@@ -54,6 +54,10 @@ rel/set_collision_object.c:
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000F8 end:0x00000100
 
+rel/ironball_register.c:
+	.text       start:0x000076C0 end:0x00007768
+	.ctors      start:0x00000018 end:0x0000001C
+
 rel/dashpanel_object.c:
 	.text       start:0x000081C0 end:0x00008314
 	.rodata     start:0x00000170 end:0x00000178
