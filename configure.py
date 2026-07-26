@@ -783,6 +783,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_base_stubs.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_apply_transform.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
