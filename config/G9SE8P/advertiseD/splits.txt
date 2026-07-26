@@ -22,6 +22,9 @@ advertiseD/line_count.c:
 advertiseD/resource_pair.c:
 	.text       start:0x0000C8D0 end:0x0000C978
 
+advertiseD/logo_spawn.c:
+	.text       start:0x0000EB80 end:0x0000EC18
+
 advertiseD/fade_step.c:
 	.text       start:0x0000EC18 end:0x0000ECAC
 	.rodata     start:0x000019A0 end:0x000019A4
@@ -32,6 +35,9 @@ advertiseD/choice_widget.c:
 
 advertiseD/adv_bar.c:
 	.text       start:0x00010D1C end:0x00010E44
+
+advertiseD/adv_help.c:
+	.text       start:0x00010ED8 end:0x00011000
 
 advertiseD/quad_fill.c:
 	.text       start:0x000137B8 end:0x00013B24
