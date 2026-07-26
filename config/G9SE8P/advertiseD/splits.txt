@@ -51,6 +51,9 @@ advertiseD/fade_step.c:
 	.text       start:0x0000EC18 end:0x0000ECAC
 	.rodata     start:0x000019A0 end:0x000019A4
 
+advertiseD/emblem_gate.c:
+	.text       start:0x0000EF8C end:0x0000F06C
+
 advertiseD/choice_widget.c:
 	.text       start:0x0000F06C end:0x0000F454
 	.data       start:0x00007838 end:0x00007880
