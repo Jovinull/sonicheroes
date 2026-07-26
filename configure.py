@@ -545,6 +545,16 @@ config.libs = [
                 "advertiseD/logo_spawn.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "advertiseD/attract_dispatch.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/quad_submit.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
         ],
     ),
     Rel(

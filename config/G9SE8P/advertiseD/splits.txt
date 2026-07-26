@@ -19,6 +19,10 @@ advertiseD/panel_callbacks.c:
 advertiseD/line_count.c:
 	.text       start:0x0000A6D8 end:0x0000A72C
 
+advertiseD/attract_dispatch.c:
+	.text       start:0x0000C450 end:0x0000C54C
+	.data       start:0x00003D60 end:0x00003D94
+
 advertiseD/resource_pair.c:
 	.text       start:0x0000C8D0 end:0x0000C978
 
@@ -42,3 +46,6 @@ advertiseD/adv_help.c:
 advertiseD/quad_fill.c:
 	.text       start:0x000137B8 end:0x00013B24
 	.rodata     start:0x00001CD0 end:0x00001CD8
+
+advertiseD/quad_submit.c:
+	.text       start:0x000144AC end:0x000145B4
