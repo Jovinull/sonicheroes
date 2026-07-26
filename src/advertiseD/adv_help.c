@@ -12,6 +12,10 @@
 // fn_1_10FB0 and fn_1_10FD8 open and close the resource the panel needs, named
 // by the descriptor at .data 0x7C9C ("./advertise/adv_help.one").
 //
+// The constructor ignores its second argument. It is there because the caller
+// in attract_object.c passes one, the same shape the emblem task has in
+// autosaveD.
+//
 // It is the same four functions as adv_bar.c against a different set of
 // descriptors, which is how the original has them: two separate units rather
 // than one shared one.
@@ -62,7 +66,7 @@ extern "C" AdvHelp* fn_1_10ED8(AdvHelp* help, s16 free)
 	return help;
 }
 
-extern "C" AdvHelp* fn_1_10F40(AdvHelp* help)
+extern "C" AdvHelp* fn_1_10F40(AdvHelp* help, void* owner)
 {
 	fn_80018818(help);
 	help->vtable = lbl_1_data_7D98;
