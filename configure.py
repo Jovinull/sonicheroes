@@ -762,7 +762,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/spring_launch.c",
+                "rel/spring_object.c",
+                cflags=cflags_rel_nofma,
                 extra_cflags=["-lang=c++", "-pool off", "-opt noschedule,nopeephole"],
             ),
             Object(

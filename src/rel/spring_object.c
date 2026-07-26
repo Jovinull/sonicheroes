@@ -1,15 +1,23 @@
 #include "types.h"
 
-// TObjSpring's contact pass: walk everything touching the spring this frame and
-// launch it, then play the note for whoever was launched.
+// TObjSpring, as far as it has been carved: the contact pass that launches
+// whatever is touching the spring, the two display hooks after it, and the
+// class's vtable.
 //
-// The claim is .text 0x88C to 0xBC4, the three constants in .rodata, and the
+// The claim is .text 0x88C to 0xC70, the five constants in .rodata, and the
 // class's vtable together with the jump table in .data. That is an island
 // inside TObjSpring's translation unit rather than the whole of it: the
 // constants and the table are read here and nowhere else in the module, which
-// is what makes the single function cuttable on its own. The rest of the class
-// is still assembly, as is the clamp at 0x16CC, which is its own island in
-// rel/spring_clamp.c.
+// is what makes the run cuttable on its own. Exec, the constructor and the
+// destructor are still assembly, and so is the clamp at 0x16CC, which sits far
+// enough away to be its own island in rel/spring_clamp.c.
+//
+// Disp tints the spring: it recomputes a colour once per tick and writes it
+// into the material the module keeps a pointer to, 192 plus 63 times a wave, so
+// the ring pulses between 129 and 255. The tick it last ran on is cached beside
+// that pointer, which is what the compare at the top is. Both of those live in
+// the module's .bss and are reached as externals rather than claimed: they are
+// not next to each other, so no single range covers them.
 //
 // The code is the same in thirteen of the fourteen stage modules; stage40D is a
 // different revision of the source and is left out, as everywhere else. The
@@ -74,6 +82,12 @@ typedef struct Spring {
 	Node* unkF8;    // 0xF8
 } Spring;
 
+typedef struct Clock {
+	u8 unk0[0x30]; // 0x00
+	s32 tick;      // 0x30
+} Clock;
+
+extern "C" Clock* lbl_8042C180;
 extern "C" u8 lbl_8042C1A4[];
 extern "C" void* lbl_8042C388;
 extern "C" void* lbl_802AD070[];
@@ -91,8 +105,13 @@ extern "C" s32 fn_800927D0(Character* team, s32 slot);
 extern "C" s32 fn_800AB35C(void* actor);
 extern "C" void fn_800B52E8(void* handle, s32 sound, s32 a, s32 b);
 extern "C" void fn_800E0CC8(s32 player, f32 height, u8* a, s16 b);
+extern "C" f32 fn_800D7B00(s32 angle);
 extern "C" void* fn_8019E8EC(void* a);
 extern "C" void fn_8019941C(Vec3* out, const Vec3* in, s32 count, void* matrix);
+
+// Defined by each module, renamed to these names in its own symbols.txt.
+extern "C" u8* springMaterial;
+extern "C" s32 springTick;
 
 // TObjSpring's vtable. It is claimed here rather than left to the module for a
 // mechanical reason: a compiled object's .data is always eight byte aligned, so
@@ -105,8 +124,8 @@ extern "C" void fn_8019941C(Vec3* out, const Vec3* in, s32 count, void* matrix);
 // and Render, are the base class defaults both sample objects point at as well.
 extern "C" void springDtor(void);
 extern "C" void springExec(void);
-extern "C" void springDisp(void);
-extern "C" void springTDisp(void);
+extern "C" void springDisp(Spring* object);
+extern "C" void springTDisp(Spring* object);
 extern "C" void objDefaultPDisp(void);
 extern "C" void objDefaultImmAftSetRaster(void);
 extern "C" void objDefaultDebug(void);
@@ -223,4 +242,29 @@ extern "C" void springLaunch(Spring* object)
 				break;
 		}
 	}
+}
+
+extern "C" void springTDisp(Spring* object) { }
+
+extern "C" void springDisp(Spring* object)
+{
+	s32 tick = lbl_8042C180->tick;
+	u8* material;
+	u8 level;
+	f32 wave;
+
+	if (springTick == tick) {
+		return;
+	}
+
+	wave     = fn_800D7B00(tick << 9);
+	level    = (u8)(192.0f + 63.0f * wave);
+	material = springMaterial;
+
+	material[4] = level;
+	material[5] = level;
+	material[6] = level;
+	material[7] = 0xFF;
+
+	springTick = tick;
 }
