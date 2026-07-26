@@ -783,6 +783,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tri_spring_assets.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dashpanel_assets.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
