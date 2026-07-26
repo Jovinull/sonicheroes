@@ -783,6 +783,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sample1_register.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/sample2_register.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ironball_register.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

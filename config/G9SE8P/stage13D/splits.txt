@@ -13,8 +13,16 @@ rel/sample1_object.c:
 	.text       start:0x000000D8 end:0x000003E0
 	.rodata     start:0x00000010 end:0x00000028
 
+rel/sample1_register.c:
+	.text       start:0x00000494 end:0x00000548
+	.ctors      start:0x00000000 end:0x00000004
+
 rel/sample2_object.c:
 	.text       start:0x00000564 end:0x00000740
+
+rel/sample2_register.c:
+	.text       start:0x00000804 end:0x0000088C
+	.ctors      start:0x00000004 end:0x00000008
 
 rel/spring_object.c:
 	.text       start:0x0000088C end:0x00000C70
