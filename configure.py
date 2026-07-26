@@ -525,6 +525,16 @@ config.libs = [
                 "advertiseD/resource_pair.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "advertiseD/panel_callbacks.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/adv_bar.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
         ],
     ),
     Rel(

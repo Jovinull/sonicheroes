@@ -46,6 +46,9 @@ modules:
   force_active:
     - fn_1_A6D8
     - fn_1_F298
+    - fn_1_10D84
+    - fn_1_10DF4
+    - fn_1_10E1C
 - object: files/autosaveD.rel
   hash: 120e89d6ca861f63ecf9c8f2d282bab5b500ab17
   symbols: config/G9SE8P/autosaveD/symbols.txt
