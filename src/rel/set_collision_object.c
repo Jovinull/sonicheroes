@@ -1,11 +1,14 @@
 #include "types.h"
 
-// TObjSetCollision's parameter guard, the last slot of its second base's
+// TObjSetCollision, as far as it has been carved: the parameter guard, the two
+// hooks the module's registration record points at, and the factory.
+//
+// The guard is the last slot of the class's second base's
 // vtable, the same slot switchClamp and springClamp fill for their classes.
 // Like the switch it also refreshes the four labels the editor shows, one per
 // field, all four picked by the shape the volume is set to.
 //
-// The claim is .text 0x5F4C to 0x6074 and .rodata 0xE8 to 0xF0. The four name
+// The claim is .text 0x5F4C to 0x60C4 and .rodata 0xE8 to 0xF0. The four name
 // tables and the label block stay with the module and are reached as
 // externals: the block is written by another function that is still assembly,
 // and the strings the tables point at sit between them, so no single range
@@ -33,7 +36,13 @@ typedef struct Frame {
 	SetCollisionParams* params; // 0x2C
 } Frame;
 
+extern "C" void* lbl_8042C110;
+extern "C" void* lbl_8042C148;
+
+extern "C" void* fn_80018A34(void* heap, u32 size);
+
 // Defined by each module, renamed to these names in its own symbols.txt.
+extern "C" void* setCollisionCtor(void* object, void* owner);
 extern "C" const char* setCollisionLabels[];
 extern "C" const char* setCollisionShapeNames[];
 extern "C" const char* setCollisionSizeXNames[];
@@ -78,4 +87,20 @@ extern "C" void setCollisionClamp(void* object, Frame* frame)
 	setCollisionLabels[1] = setCollisionSizeXNames[params->shape];
 	setCollisionLabels[2] = setCollisionSizeYNames[params->shape];
 	setCollisionLabels[3] = setCollisionSizeZNames[params->shape];
+}
+
+extern "C" void setCollisionStub1(void) { }
+
+extern "C" void setCollisionStub2(void) { }
+
+// Allocates one volume. The constructor is a real call rather than something
+// inlined, which is what keeps this down to four lines: the factories that have
+// it inlined spend an extra register copy no source form reproduces.
+extern "C" void setCollisionCreate(void)
+{
+	void* memory = fn_80018A34(lbl_8042C148, 0xE8);
+
+	if (memory != NULL) {
+		setCollisionCtor(memory, lbl_8042C110);
+	}
 }

@@ -788,12 +788,12 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/set_collision_clamp.c",
+                "rel/set_collision_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_clamp.c",
+                "rel/switch_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(

@@ -1,11 +1,14 @@
 #include "types.h"
 
-// TObjSwitch's parameter guard, the last slot of its second base's vtable, the
+// TObjSwitch, as far as it has been carved: the parameter guard and the unload
+// hook that follows it.
+//
+// The guard is the last slot of the class's second base's vtable, the
 // same slot springClamp and sample1Clamp fill for their classes. This one does
 // a second job: after bounding the three editor fields it writes the label each
 // one currently reads as back into the block the editor displays.
 //
-// The claim is .text 0x4B44 to 0x4C18 and nothing else. The three name tables
+// The claim is .text 0x4B44 to 0x4C4C and nothing else. The three name tables
 // and the label block stay with the module and are reached as externals: the
 // tables are only read here, but the block is written by another function that
 // is still assembly, and the strings the tables point at sit between them, so
@@ -32,6 +35,13 @@ typedef struct Frame {
 	u8 unk0[0x2C];        // 0x00
 	SwitchParams* params; // 0x2C
 } Frame;
+
+typedef struct Switch {
+	u8 unk0[0x30]; // 0x00
+	void* state;   // 0x30
+} Switch;
+
+extern "C" void* memset(void* dst, s32 value, u32 size);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* switchLabels[];
@@ -66,4 +76,15 @@ extern "C" void switchClamp(void* object, Frame* frame)
 	switchLabels[0] = switchTypeNames[params->type];
 	switchLabels[2] = switchRefNames[params->ref];
 	switchLabels[3] = switchSoundNames[params->sound];
+}
+
+// The unload hook the module's registration record points at. It clears the
+// block the switch keeps its wiring in, if there is one.
+extern "C" void switchUnload(Switch* object)
+{
+	void* state = object->state;
+
+	if (state != NULL) {
+		memset(state, 0, 0x14);
+	}
 }
