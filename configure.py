@@ -497,6 +497,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "advertiseD/task_runtime.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/timed_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/anim_handle.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
