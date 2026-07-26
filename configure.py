@@ -768,6 +768,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/set_collision_clamp.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_clamp.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
