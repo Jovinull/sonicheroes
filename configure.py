@@ -522,6 +522,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "advertiseD/marker_spawn.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "advertiseD/demo_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/timed_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
