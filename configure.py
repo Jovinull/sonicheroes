@@ -813,6 +813,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/set_collision_hooks.c",
+                extra_cflags=["-lang=c++"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_group_query.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

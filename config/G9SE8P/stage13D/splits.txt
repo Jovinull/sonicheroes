@@ -89,6 +89,9 @@ rel/set_collision_object.c:
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000F8 end:0x00000100
 
+rel/set_collision_hooks.c:
+	.text       start:0x00006174 end:0x00006178
+
 rel/obj_release_models.c:
 	.text       start:0x00006E78 end:0x00006EFC
 
