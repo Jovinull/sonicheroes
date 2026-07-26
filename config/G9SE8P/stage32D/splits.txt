@@ -102,6 +102,10 @@ rel/unbreakable_container_register.c:
 	.text       start:0x00014C9C end:0x00014D44
 	.ctors      start:0x0000003C end:0x00000040
 
+rel/cannon_register.c:
+	.text       start:0x0001A9B4 end:0x0001AA64
+	.ctors      start:0x00000040 end:0x00000044
+
 rel/laser_fence_assets.c:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
@@ -161,3 +165,19 @@ rel/signal_assets.c:
 rel/goal_ring_register.c:
 	.text       start:0x0004D584 end:0x0004D62C
 	.ctors      start:0x0000008C end:0x00000090
+
+rel/system_object1_register.c:
+	.text       start:0x0004D818 end:0x0004D8BC
+	.ctors      start:0x00000090 end:0x00000094
+
+rel/system_object2_register.c:
+	.text       start:0x0004DAC8 end:0x0004DB6C
+	.ctors      start:0x00000094 end:0x00000098
+
+rel/system_object3_register.c:
+	.text       start:0x0004DD78 end:0x0004DE1C
+	.ctors      start:0x00000098 end:0x0000009C
+
+rel/system_object4_register.c:
+	.text       start:0x0004E000 end:0x0004E0A4
+	.ctors      start:0x0000009C end:0x000000A0

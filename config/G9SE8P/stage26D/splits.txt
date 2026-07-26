@@ -102,6 +102,10 @@ rel/unbreakable_container_register.c:
 	.text       start:0x00014C9C end:0x00014D44
 	.ctors      start:0x0000003C end:0x00000040
 
+rel/cannon_register.c:
+	.text       start:0x0001A9B4 end:0x0001AA64
+	.ctors      start:0x00000040 end:0x00000044
+
 rel/laser_fence_assets.c:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
