@@ -532,17 +532,12 @@ config.libs = [
             ),
             Object(
                 NonMatching,
-                "autosaveD/window_input.c",
+                "autosaveD/ADV_WINDOW_DISP.cpp",
                 extra_cflags=["-inline noauto, deferred", "-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
                 NonMatching,
-                "autosaveD/window_lifecycle.c",
-                extra_cflags=["-inline noauto, deferred", "-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                NonMatching,
-                "autosaveD/state_selector.c",
+                "autosaveD/ADV_WINDOW.cpp",
                 extra_cflags=["-inline noauto, deferred", "-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(

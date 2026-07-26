@@ -1,4 +1,4 @@
-#include "types.h"
+#include "game/heap.h"
 
 // The game's heap. Sits right before main in the DOL and is the block main
 // hands to fn_8001234C: that function fills a four-word vtable at 0x8029BBC0
@@ -78,7 +78,6 @@ void* fn_800125F0(u32 size);
 void* fn_80012560(u32 n, u32 size);
 void* fn_8001247C(void* ptr, u32 size);
 void fn_80012BE0(void* ptr);
-void fn_80012994(u32 size);
 
 // Rounds a byte count up to a whole number of 0x20 cells, with one cell of
 // header on top, which is the +0x3f before the mask.
@@ -245,7 +244,7 @@ void fn_80012654(u32* totalOut, u32* largestOut)
 
 // Frees a block, then if the high pool's head and tail are the one cell that
 // now sits right after the arena boundary, splices it to the tail of the list.
-void fn_800126C8(void* ptr)
+void Free_BW(void* ptr)
 {
 	Cell* head;
 
@@ -390,9 +389,9 @@ void fn_80012740(void* ptr)
 #pragma opt_propagation off
 
 // Wrapper the vtable does not use directly.
-void fn_80012994(u32 size)
+void* MAlloc_BW(u32 size)
 {
-	fn_800129B4(size);
+	return fn_800129B4(size);
 }
 
 // The size query and expand path on the high list: walks it for the last cell

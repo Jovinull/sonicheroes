@@ -696,6 +696,15 @@ typedef RwCamera* (*RwCameraCallBack)(RwCamera* camera, void* data);
 
 #define RwCameraGetFrame(_camera) ((RwFrame*)rwObjectGetParent((_camera)))
 
+// guess
+struct RWRenderSettings {
+	int unk_0x0;
+	int unk_0x4;
+	int unk_0x8;
+};
+
+extern RWRenderSettings RsGlobal;
+
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -53,4 +53,7 @@ public:
 };
 
 #define TOBJECT_CLASS_NAME_DEF(class) const char* CL_##class = #class;
+#define TOBJECT_SET_CLASS_DATA(class) mClassName = CL_##class; \
+    mSize = sizeof(class);
+
 #endif

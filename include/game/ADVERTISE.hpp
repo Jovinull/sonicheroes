@@ -12,6 +12,8 @@ public:
     /* 0x10 */ virtual void End();
 
     int GetKey(int button, int port);
+    int GetButton(int port) const;
+
 public:
     /* 0x00 */ u8 unk_0x0[0x68];
 };

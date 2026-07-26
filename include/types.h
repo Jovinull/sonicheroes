@@ -33,4 +33,6 @@ typedef int BOOL;
 #define DECL_SECT(sect)
 #endif
 
+#define ARRAY_SIZE(x) (sizeof((x)) / sizeof((x)[0]))
+
 #endif

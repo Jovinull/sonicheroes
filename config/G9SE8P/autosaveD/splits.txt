@@ -24,24 +24,17 @@ autosaveD/task_object.c:
 	.text       start:0x00001FB4 end:0x00002294
 
 autosaveD/task_system.c:
-	.text       start:0x00002294 end:0x000026C0
+	.text       start:0x00002294 end:0x00002488
 
-autosaveD/quad_submit.c:
-	.text       start:0x000031F0 end:0x000032F8
+autosaveD/ADV_WINDOW_DISP.cpp:
+	.text       start:0x00002488 end:0x000038F4
+	.rodata     start:0x000000A0 end:0x00000348
 
-autosaveD/widget_rendering.c:
-	.text       start:0x000032F8 end:0x0000346C
-
-autosaveD/window_input.c:
-	.text       start:0x000038F4 end:0x00003A70
-
-autosaveD/window_lifecycle.c:
-	.text       start:0x00003A70 end:0x00003FAC
-	.rodata     start:0x00000350 end:0x00000358
+autosaveD/ADV_WINDOW.cpp:
+	.text       start:0x000038F4 end:0x00004074
+	.rodata     start:0x00000348 end:0x00000358
 	.data       start:0x000003F0 end:0x00000483
-
-autosaveD/state_selector.c:
-	.text       start:0x00003FAC end:0x00004074
+	.bss        start:0x00000050 end:0x00000078
 
 autosaveD/ADV_MENU.cpp:
 	.text       start:0x00004074 end:0x000047F0

@@ -8,6 +8,8 @@
 class ONEFILE {
 public:
     ONEFILE(char* pFileName, int flags);
+    ~ONEFILE();
+
     RwTexDictionary* OneFileLoadTextureDictionay(size_t, void*);
 
 public:
