@@ -1,4 +1,4 @@
-#include "types.h"
+#include "autosaveD/ADV_WINDOW.hpp"
 
 typedef struct AutosaveWindow {
 	u8 unk_0x0[0x38];

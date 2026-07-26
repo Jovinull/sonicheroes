@@ -25,10 +25,10 @@ typedef struct MainState {
 	u32 tick_1;
 } MainState;
 
-extern void* lbl_2_bss_54[5];
+extern void* g_TEX[5];
 extern MainState lbl_8029BB80;
 
-extern void fn_2_25A8();
+extern void fn_2_25A8(void* context, const void* position, const void* size);
 extern void fn_80194234(s32 channel, void* resource);
 extern void fn_2_2F94(void* context, const void* position, const void* size);
 extern void fn_2_2868(void* context, const void* position, const void* size);
@@ -38,19 +38,19 @@ extern void fn_2_26C0(void* window, const WindowConfig* config, const Color* col
 void fn_2_32F8(void* context, const void* position, const void* size)
 {
 	fn_2_25A8(context, position, size);
-	fn_80194234(1, lbl_2_bss_54[4]);
+	fn_80194234(1, g_TEX[4]);
 	fn_2_2F94(context, position, size);
 	fn_2_24FC(context);
 }
 
 void fn_2_3368(void* context, const void* position, const void* size, s32 selected)
 {
-	fn_2_25A8(context, position, size, selected);
+	fn_2_25A8(context, position, size);
 
 	if (selected != 0) {
-		fn_80194234(1, lbl_2_bss_54[0]);
+		fn_80194234(1, g_TEX[0]);
 	} else {
-		fn_80194234(1, lbl_2_bss_54[1]);
+		fn_80194234(1, g_TEX[1]);
 	}
 
 	fn_2_2868(context, position, size);

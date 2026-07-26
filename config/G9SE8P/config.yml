@@ -53,11 +53,11 @@ modules:
     - fn_2_340C
     - fn_2_408C
     - fn_2_4098
-    - fn_2_4160
-    - fn_2_4344
-    - fn_2_4500
-    - fn_2_45B8
-    - fn_2_476C
+    - UpdateQUAD2__8ADV_MENUFiii
+    - UpdateQUAD__8ADV_MENUFi
+    - UpdateLR__8ADV_MENUFi
+    - UpdateUD2__8ADV_MENUFv
+    - Clr__8ADV_MENUFv
     - _unresolved
     - _epilog
     - _prolog

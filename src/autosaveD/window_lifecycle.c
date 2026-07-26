@@ -1,15 +1,13 @@
-#include "types.h"
-
-struct Pair {
-	u32 first;
-	u32 second;
-};
+#include "autosaveD/ADV_WINDOW.hpp"
+#include "game/TNECFont.hpp"
+#include "game/ONEFILE.hpp"
+#include "game/ADV_LANGUAGE.hpp"
 
 struct AutosaveState {
-	u32 unk_0x0;
-	u32 resource_1;
-	u32 resource_2;
-	u32 resource_3;
+	u16* unk_0x0;
+	u16* resource_1;
+	u16* resource_2;
+	u16* resource_3;
 	s32 mode;
 	Pair unk_0x14;
 	u32 unk_0x1C;
@@ -26,7 +24,8 @@ struct Selector {
 };
 
 struct AutosaveWindow {
-	u8 base[0x18];
+	const char* className;
+	u8 base[0x14];
 	void* methods;
 	u8 unk_0x1C[2];
 	u16 size;
@@ -39,32 +38,38 @@ struct AutosaveWindow {
 	f32 resource_value_1;
 	f32 resource_value_2;
 	f32 resource_value_3;
-	u8 widgets[0x728];
+	u16 unk_0x110[0x200];
+	u16 unk_0x510[0x80];
+	u16 unk_0x560[0x80];
+	u16 unk_0x610[0x94];
 };
 
 struct Resource;
 struct Archive;
 
+const char* WINDOW_FN[5] = {
+	"sel_on",
+	"sel_of",
+	"sel_ok",
+	"win_in",
+	"corner",
+};
+
+TOBJECT_CLASS_NAME_DEF(ADV_WINDOW);
+
 extern void* lbl_2_data_43C[];
-extern void* lbl_2_data_438;
-extern char lbl_2_data_468[];
-extern char* lbl_2_data_418[5];
-extern u8 lbl_803E8150[];
-extern Archive* lbl_2_bss_50;
-extern u32 lbl_2_bss_54[5];
+
+extern Archive* g_TEXDICT;
+extern u32 g_TEX[5];
 
 extern "C" const f32 lbl_2_rodata_348;
 
-extern "C" void fn_2_4798(void* selector, s32 flags);
 extern "C" void dtor_800186D0(void* window, s32 flags);
 extern "C" void fn_2_13F4(void* allocation);
 extern "C" void fn_80018818(AutosaveWindow* window, void* parent);
 extern "C" void fn_2_4004(AutosaveState* state);
 extern "C" void fn_2_47DC(Selector* selector);
-extern "C" void fn_8012EBD4(void* widget, u32 resource);
 extern "C" void fn_2_477C(Selector* selector, s32 value);
-extern "C" u32 fn_8012EF3C(void* manager, u32 resource);
-extern "C" u32 fn_8012ECA8(s32 group, s32 id);
 extern "C" void fn_2_4074(Selector* selector, s32 index);
 extern "C" AutosaveWindow* fn_2_1424(u32 size);
 extern "C" void fn_2_3D64(AutosaveState* destination, const AutosaveState* source);
@@ -91,61 +96,54 @@ static inline f32 resource_to_float(u32 value)
 	return (f32)value;
 }
 
+//dt
+
+ADV_WINDOW::~ADV_WINDOW() {}
+
 static inline Resource* create_resource(void)
 {
 	Resource* resource = fn_80057644(0x58);
 	if (resource != NULL) {
-		resource = fn_800BCC84(resource, lbl_2_data_468, 0);
+		resource = fn_800BCC84(resource, "./advertise/adv_window.one", 0);
 	}
 	return resource;
 }
 
-extern "C" AutosaveWindow* fn_2_3A70(AutosaveWindow* window, s32 flags)
-{
-	if (window != NULL) {
-		window->methods = lbl_2_data_43C;
-		fn_2_4798(&window->selector, -1);
-		dtor_800186D0(window, 0);
-		if ((s16)flags > 0) {
-			fn_2_13F4(window);
-		}
-	}
-	return window;
-}
 
+//ct
 extern "C" AutosaveWindow* fn_2_3AE8(AutosaveWindow* window, void* parent, AutosaveState* state)
 {
 	fn_80018818(window, parent);
 	window->methods = lbl_2_data_43C;
 	fn_2_4004(&window->state);
 	fn_2_47DC(&window->selector);
-	*(void**)&window->base[0] = lbl_2_data_438;
+	window->className = CL_ADV_WINDOW;
 	window->size              = 0x838;
 	fn_2_3D64(&window->state, state);
 	window->unk_0x6C        = 0;
 	window->selection_state = 1;
 
-	fn_8012EBD4(&window->widgets[0x0], state->unk_0x0);
-	fn_8012EBD4(&window->widgets[0x400], state->resource_1);
+	ADV_LANGUAGE::strcpy(window->unk_0x110, state->unk_0x0);
+	ADV_LANGUAGE::strcpy(window->unk_0x510, state->resource_1);
 	if (state->resource_1 != 0) {
 		fn_2_477C(&window->selector, 1);
-		window->resource_value_1 = resource_to_float(fn_8012EF3C(lbl_803E8150, state->resource_1));
+		window->resource_value_1 = NECFont.GetWidth(state->resource_1);
 	} else {
 		window->resource_value_1 = lbl_2_rodata_348;
 	}
 
-	fn_8012EBD4(&window->widgets[0x500], state->resource_2);
+	ADV_LANGUAGE::strcpy(window->unk_0x560, state->resource_2);
 	if (state->resource_2 != 0) {
 		fn_2_477C(&window->selector, 2);
-		window->resource_value_2 = resource_to_float(fn_8012EF3C(lbl_803E8150, state->resource_2));
+		window->resource_value_2 = NECFont.GetWidth(state->resource_2);
 	} else {
 		window->resource_value_2 = lbl_2_rodata_348;
 	}
 
-	fn_8012EBD4(&window->widgets[0x600], state->resource_3);
+	ADV_LANGUAGE::strcpy(window->unk_0x610, state->resource_3);
 	if (state->resource_3 != 0) {
 		fn_2_477C(&window->selector, 3);
-		window->resource_value_3 = resource_to_float(fn_8012EF3C(lbl_803E8150, state->resource_3));
+		window->resource_value_3 = NECFont.GetWidth(state->resource_3);
 	} else {
 		window->resource_value_3 = lbl_2_rodata_348;
 	}
@@ -160,8 +158,8 @@ extern "C" AutosaveWindow* fn_2_3AE8(AutosaveWindow* window, void* parent, Autos
 			break;
 	}
 
-	if (window->state.resource_1 == fn_8012ECA8(0, 0x54)
-	    || window->state.resource_1 == fn_8012ECA8(0, 0x56)) {
+	if (window->state.resource_1 == ADV_LANGUAGE::GetText(ADV_WINDOW_GROUP_TEXT_ID, ADV_WINDOW_FORMAT_TEXT_ID)
+	    || window->state.resource_1 == ADV_LANGUAGE::GetText(ADV_WINDOW_GROUP_TEXT_ID, ADV_WINDOW_DELETE_TEXT_ID)) {
 		if (window->state.resource_3 != 0) {
 			window->selection_state = 3;
 			fn_2_4074(&window->selector, 2);
@@ -202,22 +200,22 @@ extern "C" AutosaveWindow* fn_2_3DF0(void* parent, AutosaveState* state)
 	return window;
 }
 
-extern "C" void fn_2_3E4C(void)
+void ADV_WINDOW::FinalizeCore()
 {
-	u32* asset = lbl_2_bss_54;
+	u32* asset = g_TEX;
 	s32 i;
 
 	for (i = 0; i != 5; i++) {
 		*asset++ = 0;
 	}
 
-	if (lbl_2_bss_50 != NULL) {
-		fn_801A46D0(lbl_2_bss_50);
-		lbl_2_bss_50 = NULL;
+	if (g_TEXDICT != NULL) {
+		fn_801A46D0(g_TEXDICT);
+		g_TEXDICT = NULL;
 	}
 }
 
-extern "C" void fn_2_3EC0(void)
+void ADV_WINDOW::InitializeCore(void)
 {
 	Resource* resource;
 	void* buffer;
@@ -228,12 +226,12 @@ extern "C" void fn_2_3EC0(void)
 	if (resource != NULL) {
 		buffer = fn_80012994(0x300000);
 		if (buffer != NULL) {
-			lbl_2_bss_50 = fn_800BC580(resource, 2, buffer);
-			if (lbl_2_bss_50 != NULL) {
+			g_TEXDICT = fn_800BC580(resource, 2, buffer);
+			if (g_TEXDICT != NULL) {
 				for (i = 0; i != 5; i++) {
-					void* entry = fn_801A4BBC(lbl_2_bss_50, lbl_2_data_418[i]);
+					void* entry = fn_801A4BBC(g_TEXDICT, WINDOW_FN[i]);
 					if (entry != NULL) {
-						lbl_2_bss_54[i] = *(u32*)entry;
+						g_TEX[i] = *(u32*)entry;
 					}
 				}
 			}
