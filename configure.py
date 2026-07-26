@@ -555,6 +555,16 @@ config.libs = [
                 "advertiseD/quad_submit.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "advertiseD/marker_emitters.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/stage_start.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
         ],
     ),
     Rel(
