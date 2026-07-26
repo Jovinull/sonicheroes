@@ -512,6 +512,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "advertiseD/stage_values.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/motion_reset.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/timed_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
