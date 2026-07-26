@@ -768,6 +768,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/spring_dtor.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/obj_transform.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_set_mode.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
