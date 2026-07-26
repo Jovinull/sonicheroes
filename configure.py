@@ -515,6 +515,16 @@ config.libs = [
                 "advertiseD/fade_step.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "advertiseD/line_count.c",
+                extra_cflags=["-lang=c++", "-bool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/resource_pair.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
         ],
     ),
     Rel(
