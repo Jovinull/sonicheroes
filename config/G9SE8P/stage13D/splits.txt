@@ -43,6 +43,9 @@ rel/spring_assets.c:
 	.text       start:0x00001734 end:0x0000189C
 	.ctors      start:0x00000008 end:0x0000000C
 
+rel/tri_spring_reset.c:
+	.text       start:0x00002C9C end:0x00002CD0
+
 rel/tri_spring_assets.c:
 	.text       start:0x00002ED4 end:0x00002FC8
 	.ctors      start:0x0000000C end:0x00000010
@@ -116,6 +119,9 @@ rel/dashpanel_assets.c:
 
 rel/dashpanel_hooks.c:
 	.text       start:0x00008628 end:0x0000862C
+
+rel/scroll_ring_create.c:
+	.text       start:0x00008D68 end:0x00008DB0
 
 rel/scroll_ring_disp.c:
 	.text       start:0x00008F98 end:0x00008FF0

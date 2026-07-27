@@ -783,6 +783,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scroll_ring_create.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/tri_spring_reset.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_update.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
