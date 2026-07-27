@@ -11,27 +11,11 @@
 // identical once the per module label names are set aside; stage40D is a
 // different revision of the source and is left out, as everywhere else.
 //
-// NOT MATCHING. 115 of the 115 instructions are the right ones and 112 are in
-// the right place; the three that are not are an argument evaluation order:
-//
-//   target                    ours
-//   lwz r3, 0x28(r31)         lwz r3, 0xf8(r31)
-//   lwz r0, 0x18(r3)          lwz r4, 0x28(r31)
-//   lwz r3, 0xf8(r31)         lwz r0, 0x18(r4)
-//
-// The original starts the second argument, reads the keyframe and its flags,
-// and only then loads the model into the first argument register, reusing r3
-// for both. Ours fills the first argument first and uses r4 as the scratch.
-// Every source form tried collapses to ours: the flags in a local, the whole
-// slot expression in a local, the model in a local, the keyframe in a local,
-// `4 + expr` instead of `expr + 4`, and u32/s16 second parameters. The compiler
-// folds all of them to the same tree, so this is not a statement ordering
-// problem and shuffling the C further will not fix it. A static inline accessor
-// for the model does change the shape, but for the worse: it stops being
-// inlined cleanly and the function grows.
-//
-// It is left NonMatching rather than written as an asm block, because the
-// original of this function was C. See the note in CONTRIBUTING.md.
+// The frame flags are read through a one-field inline accessor. Their volatile
+// qualifier makes the compiler commit that load while starting the second call
+// argument; leaving the mask outside the accessor then lets it fill the first
+// argument between the load and the bit operations. That is the source shape
+// behind the original three-instruction evaluation order.
 //
 // The 1.0f written into the three scale components is reached as an external
 // rather than written as a literal, which is not a stylistic choice. It is one
@@ -73,7 +57,7 @@ typedef struct PathParams {
 typedef struct Frame {
 	Vec3 position;      // 0x00
 	Rot3 rotation;      // 0x0C
-	u32 flags;          // 0x18
+	volatile u32 flags; // 0x18
 	u8 unk1C[0xE];      // 0x1C
 	u8 unk2A;           // 0x2A
 	u8 unk2B;           // 0x2B
@@ -120,6 +104,11 @@ typedef struct Spring {
 	u8 unkF4[0x4];  // 0x0F4
 	void* model;    // 0x0F8
 } Spring;           // 0x0FC
+
+static inline u32 springFlags(Spring* object)
+{
+	return object->motion.frame->flags;
+}
 
 extern "C" World* lbl_8042C1D0;
 
@@ -195,7 +184,7 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 
 	object->model = fn_80150588(springModel);
 
-	fn_8005D5C8(object->model, ((object->motion.frame->flags & 0x001C0000) >> 18) + 4);
+	fn_8005D5C8(object->model, ((springFlags(object) & 0x001C0000) >> 18) + 4);
 	fn_8005E1DC(object->model, 0, springTextureName);
 
 	handle  = fn_8005F490();
