@@ -833,13 +833,13 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/set_collision_hooks.c",
-                extra_cflags=["-lang=c++"],
+                "rel/set_collision_hooks.cpp",
+                extra_cflags=[],
             ),
             Object(
                 Matching,
-                "rel/dashpanel_hooks.c",
-                extra_cflags=["-lang=c++"],
+                "rel/dashpanel_hooks.cpp",
+                extra_cflags=[],
             ),
             Object(
                 Matching,
@@ -1073,18 +1073,18 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/dashpanel_assets.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/dashpanel_assets.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/dashpanel_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/dashpanel_object.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/set_collision_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/set_collision_object.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,

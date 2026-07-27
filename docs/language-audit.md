@@ -74,12 +74,33 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### Dashpanel and set-collision fragments
+
+Migrated five `rel/dashpanel_*` and `rel/set_collision_*` paths.
+
+Language evidence:
+
+- the corresponding PS2 metadata retains `o_dashpanel.cpp` and
+  `o_set_collision.cpp` source markers;
+- it identifies `TObjDashpanel` and `TObjSetCollision` constructors,
+  destructors, methods and vtables;
+- the GameCube fragments implement those object/vtable families and were
+  already compiled with `-lang=c++`.
+
+Validation:
+
+- all five configured commands remained C++ with the object-level language
+  overrides removed;
+- the complete build relinked the affected stage modules;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the tri-spring and switch batch:
+After the dashpanel and set-collision batch:
 
-- 97 legacy `.c` paths still compile as C++;
-- 55 of them are outside the protected areas;
+- 92 legacy `.c` paths still compile as C++;
+- 50 of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 9 C-compiled sources still require an evidence decision;
 - no source is approved for `-inline deferred`.

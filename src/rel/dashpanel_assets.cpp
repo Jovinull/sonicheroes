@@ -12,7 +12,7 @@
 // else.
 //
 // "fs" is the field type string: a float and a halfword, which is the power and
-// the no control time the guard in rel/dashpanel_object.c bounds.
+// the no control time the guard in rel/dashpanel_object.cpp bounds.
 
 typedef struct ObjectEntry {
 	const char* name;        // 0x00

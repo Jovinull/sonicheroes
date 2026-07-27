@@ -96,12 +96,12 @@ rel/switch_hooks.cpp:
 rel/obj_transform.c:
 	.text       start:0x00005984 end:0x00005A34
 
-rel/set_collision_object.c:
+rel/set_collision_object.cpp:
 	.text       start:0x00005F4C end:0x0000616C
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000E8 end:0x000000F0
 
-rel/set_collision_hooks.c:
+rel/set_collision_hooks.cpp:
 	.text       start:0x00006174 end:0x00006178
 
 rel/obj_release_models.c:
@@ -118,15 +118,15 @@ rel/obj_box_trigger.c:
 rel/obj_apply_transform.c:
 	.text       start:0x00007E20 end:0x00007EB0
 
-rel/dashpanel_object.c:
+rel/dashpanel_object.cpp:
 	.text       start:0x000081C0 end:0x00008314
 	.rodata     start:0x00000160 end:0x00000168
 
-rel/dashpanel_assets.c:
+rel/dashpanel_assets.cpp:
 	.text       start:0x00008578 end:0x00008620
 	.ctors      start:0x0000001C end:0x00000020
 
-rel/dashpanel_hooks.c:
+rel/dashpanel_hooks.cpp:
 	.text       start:0x00008628 end:0x0000862C
 
 rel/scroll_ring_create.c:
