@@ -52,6 +52,9 @@ rel/tri_spring_reset.c:
 rel/tri_spring_unload.c:
 	.text       start:0x00002CD0 end:0x00002D20
 
+rel/tri_spring_load.c:
+	.text       start:0x00002D20 end:0x00002ED4
+
 rel/tri_spring_assets.c:
 	.text       start:0x00002ED4 end:0x00002FC8
 	.ctors      start:0x0000000C end:0x00000010

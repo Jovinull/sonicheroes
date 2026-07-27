@@ -798,6 +798,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tri_spring_load.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_update.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
