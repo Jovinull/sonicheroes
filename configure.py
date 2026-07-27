@@ -762,14 +762,14 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/spring_object.c",
+                "rel/spring_object.cpp",
                 cflags=cflags_rel_nofma,
-                extra_cflags=["-lang=c++", "-pool off", "-opt noschedule,nopeephole"],
+                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/spring_dtor.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/spring_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -1098,18 +1098,18 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/spring_assets.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/spring_assets.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/spring_ctor.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/spring_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/spring_clamp.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/spring_clamp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,

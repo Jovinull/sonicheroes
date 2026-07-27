@@ -1,7 +1,7 @@
 #include "types.h"
 
 // TObjSpring's destructor. It sits apart from the rest of the class in
-// rel/spring_object.c because the constructor between them is not carvable on
+// rel/spring_object.cpp because the constructor between them is not carvable on
 // its own: it shares the asset name strings with the loader.
 //
 // The claim is .text 0x1430 to 0x1500 and nothing else. Everything it touches
