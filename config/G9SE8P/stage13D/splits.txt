@@ -17,7 +17,7 @@ rel/sample1_register.cpp:
 	.text       start:0x00000494 end:0x00000548
 	.ctors      start:0x00000000 end:0x00000004
 
-rel/obj_base_stubs.c:
+rel/obj_base_stubs.cpp:
 	.text       start:0x00000550 end:0x00000564
 
 rel/sample2_object.cpp:
@@ -59,10 +59,10 @@ rel/tri_spring_assets.cpp:
 	.text       start:0x00002ED4 end:0x00002FC8
 	.ctors      start:0x0000000C end:0x00000010
 
-rel/obj_group_query.c:
+rel/obj_group_query.cpp:
 	.text       start:0x00002FD0 end:0x00003170
 
-rel/obj_set_mode.c:
+rel/obj_set_mode.cpp:
 	.text       start:0x00003170 end:0x0000321C
 
 rel/switch_update.cpp:
@@ -74,7 +74,7 @@ rel/switch_direction.cpp:
 rel/switch_nearby.cpp:
 	.text       start:0x000042B8 end:0x00004398
 
-rel/obj_reset_draw.c:
+rel/obj_reset_draw.cpp:
 	.text       start:0x00004398 end:0x000043D8
 
 rel/switch_transform.cpp:
@@ -93,7 +93,7 @@ rel/switch_assets.cpp:
 rel/switch_hooks.cpp:
 	.text       start:0x00004F50 end:0x00004F54
 
-rel/obj_transform.c:
+rel/obj_transform.cpp:
 	.text       start:0x00005984 end:0x00005A34
 
 rel/set_collision_object.cpp:
@@ -104,18 +104,18 @@ rel/set_collision_object.cpp:
 rel/set_collision_hooks.cpp:
 	.text       start:0x00006174 end:0x00006178
 
-rel/obj_release_models.c:
+rel/obj_release_models.cpp:
 	.text       start:0x00006E78 end:0x00006EFC
 
 rel/ironball_register.cpp:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
 
-rel/obj_box_trigger.c:
+rel/obj_box_trigger.cpp:
 	.text       start:0x00007770 end:0x00007AF0
 	.rodata     start:0x00000140 end:0x0000015C
 
-rel/obj_apply_transform.c:
+rel/obj_apply_transform.cpp:
 	.text       start:0x00007E20 end:0x00007EB0
 
 rel/dashpanel_object.cpp:
@@ -129,8 +129,8 @@ rel/dashpanel_assets.cpp:
 rel/dashpanel_hooks.cpp:
 	.text       start:0x00008628 end:0x0000862C
 
-rel/scroll_ring_create.c:
+rel/scroll_ring_create.cpp:
 	.text       start:0x00008D68 end:0x00008DB0
 
-rel/scroll_ring_disp.c:
+rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0

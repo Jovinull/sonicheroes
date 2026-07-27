@@ -72,17 +72,7 @@
     "autosaveD/widget_slices.c",
     "autosaveD/window_frame.c",
     "autosaveD/window_lifecycle.c",
-    "movieD/cri/sfx.c",
-    "rel/obj_apply_transform.c",
-    "rel/obj_base_stubs.c",
-    "rel/obj_box_trigger.c",
-    "rel/obj_group_query.c",
-    "rel/obj_release_models.c",
-    "rel/obj_reset_draw.c",
-    "rel/obj_set_mode.c",
-    "rel/obj_transform.c",
-    "rel/scroll_ring_create.c",
-    "rel/scroll_ring_disp.c"
+    "movieD/cri/sfx.c"
   ],
   "deferred_sources": []
 }

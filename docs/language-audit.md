@@ -166,12 +166,36 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### Shared object-family fragments
+
+Migrated ten small `rel/obj_*` and `rel/scroll_ring_*` fragments.
+
+Language evidence:
+
+- these are artificial GameCube split fragments located inside already
+  identified C++ object-family runs, not standalone C translation units;
+- their neighboring runs correspond to local PS2 C++ markers such as
+  `o_sample.cpp`, `o_switch.cpp`, `o_set_collision.cpp`, `o_ironball.cpp`,
+  `o_dashpanel.cpp` and `o_ring.cpp`;
+- the PS2 metadata also retains the matching `TObject` and `TObjScrollRing`
+  class/vtable families;
+- the GameCube fragments require C++ linkage or language features (including
+  inheritance and a virtual call) and were already compiled with `-lang=c++`.
+
+Validation:
+
+- all ten configured commands remained C++ without per-object language
+  overrides;
+- the complete build relinked every affected stage module;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the system/sample batch:
+After the shared-object batch:
 
-- 53 legacy `.c` paths still compile as C++;
-- 11 of them are outside the protected areas;
+- 43 legacy `.c` paths still compile as C++;
+- 1 of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 9 C-compiled sources still require an evidence decision;
 - no source is approved for `-inline deferred`.
