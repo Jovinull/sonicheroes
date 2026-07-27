@@ -453,7 +453,7 @@ config.libs = [
             Object(
                 Matching,
                 "game/main.c",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule"],
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule, nopeephole"],
             ),
             Object(
                 Matching,

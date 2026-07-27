@@ -364,8 +364,8 @@ sADV_WINDOW_PARAM::sADV_WINDOW_PARAM() {
 
 	unk_0x28 = 0;
 	unk_0x2C  = 0;
-	unk_0x30 = RsGlobal.unk_0x4;
-	unk_0x34  = RsGlobal.unk_0x8;
+	unk_0x30 = RsGlobal.windowWidth;
+	unk_0x34  = RsGlobal.windowHeight;
 	unk_0x38  = 0;
 	unk_0x3C = unk_0x40 = 1;
 }

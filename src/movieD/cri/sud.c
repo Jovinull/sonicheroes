@@ -1,4 +1,5 @@
 #include "types.h"
+#include <rwsdk/rsglobal.h>
 
 /*
  * CRI Sofdec user-data helpers.
@@ -128,8 +129,8 @@ void fn_17_87CC(SudPicture* picture)
 	picture->unk24 = value;
 	picture->unk28 = 0;
 	picture->unk2C = 0;
-	picture->unk30 = lbl_8029BB80[1];
-	picture->unk34 = lbl_8029BB80[2];
+	picture->unk30 = RsGlobal.windowWidth;
+	picture->unk34 = RsGlobal.windowHeight;
 	picture->unk38 = 0;
 	picture->unk40 = 1;
 	picture->unk3C = 1;

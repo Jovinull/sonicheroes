@@ -1,4 +1,7 @@
 #include "types.h"
+#include <rwsdk/rsglobal.h>
+
+// TODO: Figure out how to include rwsdk without breaking main
 
 // System startup and shutdown, and the game's entry point. The first of Sonic
 // Heroes' own code to be written: everything under src/game is the game rather
@@ -97,25 +100,10 @@ extern void fn_80013130(void);
 // block. In another unit's .data.
 extern u8 GXNtsc480IntDf[0x3C];
 
-// The block main runs its loop against. Widely shared: seventeen units name
-// it, so it belongs to none of them in particular. Only three words are
-// touched here, two written before the loop and one polled by it.
-typedef struct Unk8029BB80 {
-	u8 unk_0x0[0x4];
-	u32 unk_0x4;
-	u32 unk_0x8;
-	u8 unk_0xC[0x4];
-	// Signed: main polls this with cmpwi, not cmplwi.
-	s32 unk_0x10;
-	u8 unk_0x14[0x2C];
-} Unk8029BB80; // 0x40
-
 typedef struct Pair {
 	u32 first;
 	u32 second;
 } Pair;
-
-extern Unk8029BB80 lbl_8029BB80;
 
 // One byte of a pair in another unit's .sbss, set once on the way in.
 extern u8 lbl_8042C0C0;
@@ -189,15 +177,15 @@ int main(int argc, char** argv)
 
 	fn_8019D448(tick, fn_8019D4D4());
 
-	lbl_8029BB80.unk_0x4 = tick[0];
-	lbl_8029BB80.unk_0x8 = tick[1];
+	RsGlobal.windowWidth = tick[0];
+	RsGlobal.windowHeight = tick[1];
 
 	args[0]          = 0;
 	args[1]          = 0;
 	*(Pair*)&args[2] = *(Pair*)tick;
 	fn_80011FA8(0x0, args);
 
-	while (lbl_8029BB80.unk_0x10 == 0) {
+	while (RsGlobal.hasConfirmedExit == 0) {
 		fn_80011FA8(0x12, NULL);
 	}
 
