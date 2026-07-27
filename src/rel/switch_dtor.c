@@ -43,7 +43,7 @@ extern "C" Switch* switchDtor(Switch* object, s16 flags)
 {
 	if (object != NULL) {
 		object->base.vtable = switchVtable;
-		object->vtable2 = switchVtable + 0xB;
+		object->vtable2     = switchVtable + 0xB;
 
 		if (fn_8015BD78(object->model) != NULL) {
 			fn_8015BBF8(lbl_8042C1D0->scene, object->model);

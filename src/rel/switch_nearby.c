@@ -48,15 +48,15 @@ extern "C" void switchActivateNearby(Switch* object)
 {
 	if (object->entry->target != NULL) {
 		SetEntry* candidate = lbl_8042C298->groups[object->entry->group];
-		f32 range = switchNearbyRange;
+		f32 range           = switchNearbyRange;
 
 		while (candidate != NULL) {
 			if (candidate->kind == 0x24 && fn_800D71DC(object->entry, candidate) < range) {
 				object->entry->target->sentinel = 0x12345678;
 				Target* target;
 				SetEntry* entry;
-				entry = object->entry;
-				target = entry->target;
+				entry              = object->entry;
+				target             = entry->target;
 				target->position.x = entry->position.x;
 				target->position.y = entry->position.y;
 				target->position.z = entry->position.z;

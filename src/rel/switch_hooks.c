@@ -2,6 +2,4 @@
 
 // Intentionally empty slot used by the switch registration interface.
 
-extern "C" void switchRegisterNoop()
-{
-}
+extern "C" void switchRegisterNoop() { }
