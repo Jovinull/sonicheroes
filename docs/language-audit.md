@@ -52,12 +52,34 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### Tri-spring and switch fragments
+
+Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and
+`rel/push_pull_switch_register.cpp` paths.
+
+Language evidence:
+
+- the corresponding PS2 metadata retains `o_3spring.cpp` and `o_switch.cpp`
+  source markers;
+- it identifies `TObj3Spring`, `TObjTriSpring`, `TObjSwitch` and
+  `TObjSwitchPushPull` constructors, destructors, methods and vtables;
+- the GameCube fragments implement those object/vtable families and were
+  already compiled with `-lang=c++`.
+
+Validation:
+
+- all 13 configured commands remained C++ with the object-level language
+  overrides removed;
+- the complete build relinked the affected stage modules;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the spring batch:
+After the tri-spring and switch batch:
 
-- 110 legacy `.c` paths still compile as C++;
-- 68 of them are outside the protected areas;
+- 97 legacy `.c` paths still compile as C++;
+- 55 of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 9 C-compiled sources still require an evidence decision;
 - no source is approved for `-inline deferred`.

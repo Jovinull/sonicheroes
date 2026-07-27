@@ -788,48 +788,48 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/tri_spring_reset.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/tri_spring_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/tri_spring_unload.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/tri_spring_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/tri_spring_load.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/tri_spring_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_update.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/switch_update.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_direction.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/switch_direction.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_nearby.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/switch_nearby.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_dtor.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/switch_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_transform.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/switch_transform.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_hooks.c",
-                extra_cflags=["-lang=c++"],
+                "rel/switch_hooks.cpp",
+                extra_cflags=[],
             ),
             Object(
                 Matching,
@@ -883,8 +883,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/push_pull_switch_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/push_pull_switch_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -1068,8 +1068,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/tri_spring_assets.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/tri_spring_assets.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -1088,13 +1088,13 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/switch_assets.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/switch_assets.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/switch_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/switch_object.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,

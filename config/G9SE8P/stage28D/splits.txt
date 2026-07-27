@@ -46,16 +46,16 @@ rel/spring_assets.cpp:
 	.text       start:0x00001734 end:0x0000189C
 	.ctors      start:0x00000008 end:0x0000000C
 
-rel/tri_spring_reset.c:
+rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
 
-rel/tri_spring_unload.c:
+rel/tri_spring_unload.cpp:
 	.text       start:0x00002CD0 end:0x00002D20
 
-rel/tri_spring_load.c:
+rel/tri_spring_load.cpp:
 	.text       start:0x00002D20 end:0x00002ED4
 
-rel/tri_spring_assets.c:
+rel/tri_spring_assets.cpp:
 	.text       start:0x00002ED4 end:0x00002FC8
 	.ctors      start:0x0000000C end:0x00000010
 
@@ -65,32 +65,32 @@ rel/obj_group_query.c:
 rel/obj_set_mode.c:
 	.text       start:0x00003170 end:0x0000321C
 
-rel/switch_update.c:
+rel/switch_update.cpp:
 	.text       start:0x0000321C end:0x00003940
 
-rel/switch_direction.c:
+rel/switch_direction.cpp:
 	.text       start:0x00003940 end:0x00003A44
 
-rel/switch_nearby.c:
+rel/switch_nearby.cpp:
 	.text       start:0x000042B8 end:0x00004398
 
 rel/obj_reset_draw.c:
 	.text       start:0x00004398 end:0x000043D8
 
-rel/switch_transform.c:
+rel/switch_transform.cpp:
 	.text       start:0x000043D8 end:0x00004580
 
-rel/switch_dtor.c:
+rel/switch_dtor.cpp:
 	.text       start:0x00004580 end:0x00004650
 
-rel/switch_object.c:
+rel/switch_object.cpp:
 	.text       start:0x00004B44 end:0x00004C4C
 
-rel/switch_assets.c:
+rel/switch_assets.cpp:
 	.text       start:0x00004E50 end:0x00004F48
 	.ctors      start:0x00000010 end:0x00000014
 
-rel/switch_hooks.c:
+rel/switch_hooks.cpp:
 	.text       start:0x00004F50 end:0x00004F54
 
 rel/obj_transform.c:
