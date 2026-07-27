@@ -242,9 +242,27 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### GameCube platform main
+
+`game/main.c` remains a confirmed C source. This is a platform-specific
+decision based on the matching target, not an inference from its unmangled
+entry points.
+
+Evidence and validation:
+
+- the natural C reconstruction matches all seven functions, exception records,
+  relocations and the unit-owned 16-byte `.bss`;
+- a direct C++ compile makes `main` eight bytes larger;
+- C++ with the public C ABI and equivalent typed structures restores the exact
+  size but changes six instructions through register allocation;
+- the PS2 platform startup run is C++-compiled, demonstrating why its language
+  cannot be copied blindly to a platform-specific GameCube unit;
+- the reviewed C form keeps all 18 configured artifact hashes exact without a
+  deferred-inline override or register-forcing workaround.
+
 ## Remaining queue
 
-After the GameCube platform-heap batch:
+After the GameCube platform-main decision:
 
 - 42 legacy `.c` paths still compile as C++;
 - none of them are outside the protected areas;

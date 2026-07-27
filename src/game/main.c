@@ -62,8 +62,15 @@
 // for byte where it was, at either end of the block and with or without
 // volatile. Whatever this unit is built with discards them, so the frame had
 // to come from a local that is actually read. Also rejected: GC/1.2.5n and
-// GC/1.3 for the unit (1.3.2 and 1.3 tie at the top, 1.2.5n is twelve points
-// worse), and building the file as C++ rather than C.
+// GC/1.3 for the unit (1.3.2 and 1.3 tie at the top, while 1.2.5n is twelve
+// points worse).
+//
+// C is a reviewed target-specific decision here. A direct C++ compile grows
+// main by eight bytes. Adding the public C ABI and replacing the C-shaped array
+// type-pun with equivalent typed structures restores the size but still changes
+// six instructions through register allocation. The corresponding PS2 startup
+// run is C++-compiled, but this platform-specific difference cannot override the
+// exact GameCube compiler evidence.
 
 // Video, disc and graphics entry points this file calls. None of them are in
 // include/ yet because no other unit written so far needs them; move them
