@@ -29,6 +29,9 @@
     "game/task_create.c",
     "game/time.c"
   ],
+  "c_sources_compiled_as_cpp": [
+    "movieD/cri/sfx.c"
+  ],
   "legacy_cpp_c_sources": [
     "advertiseD/adv_bar.c",
     "advertiseD/adv_help.c",
@@ -71,8 +74,7 @@
     "autosaveD/task_system.c",
     "autosaveD/widget_slices.c",
     "autosaveD/window_frame.c",
-    "autosaveD/window_lifecycle.c",
-    "movieD/cri/sfx.c"
+    "autosaveD/window_lifecycle.c"
   ],
   "deferred_sources": []
 }

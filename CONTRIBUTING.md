@@ -44,8 +44,9 @@ game-code translation unit.
 Sonic Heroes' own game code is C++ by default. New game-owned translation units
 use `.cpp` and compile as C++. A new `.c` file is accepted only for a reviewed C
 boundary or known C library and must be added to the explicit policy allowlist.
-The current `.c` files that receive `-lang=c++` are matching legacy paths, not a
-pattern for new work.
+The `.c` files that receive `-lang=c++` are either matching legacy paths or an
+explicitly reviewed vendor compatibility exception, not a pattern for new
+work.
 
 A byte match does not prove the source language: a C function and a C++ method
 can produce the same instructions after names are resolved by the linker. Use
@@ -61,7 +62,10 @@ Run `python tools/check_language_policy.py` after `python configure.py`. The
 commit hook also refuses newly added game-owned `.c` files that have no reviewed
 C classification.
 
-Legacy `.c` paths that already compile with `-lang=c++` are a migration queue.
+Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
+migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
+boundary whose C++ compiler mode is required for matching; do not rename it
+unless stronger source evidence changes that classification.
 Before renaming one, record the translation-unit classification. Use correlated
 PS2 symbol metadata when a counterpart exists, then rename it to `.cpp`, update
 the build and split paths, remove only the redundant language override, and

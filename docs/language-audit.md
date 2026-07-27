@@ -194,11 +194,30 @@ Validation:
 
 After the shared-object batch:
 
-- 43 legacy `.c` paths still compile as C++;
-- 1 of them are outside the protected areas;
+- 42 legacy `.c` paths still compile as C++;
+- none of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 9 C-compiled sources still require an evidence decision;
+- `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
+  migration candidate;
 - no source is approved for `-inline deferred`.
+
+### CRI SFX compiler-mode exception
+
+`movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.
+
+Evidence and rationale:
+
+- it is part of the CRI SFX vendor middleware boundary and sits beside the
+  C-compiled `sfxahn.c`, `sfxcnv.c` and `sfxset.c` units;
+- its externally visible API retains C linkage;
+- the matching GameCube object requires CodeWarrior C++ declaration-order
+  `.bss` emission; C mode emits those declarations in first-reference order;
+- renaming a vendor C-path source without positive C++ source evidence would
+  overstate what the binary match proves.
+
+The policy therefore tracks it in `c_sources_compiled_as_cpp`. New game-owned
+sources may not use this exception as an escape hatch.
 
 Update this file after every migration batch. A path leaves the queue only
 after its configured command, GameCube objdiff and final artifact hashes pass.

@@ -27,6 +27,7 @@ def load_policy(path: Path) -> dict[str, Any]:
         "managed_prefixes",
         "confirmed_c_sources",
         "pending_c_evidence",
+        "c_sources_compiled_as_cpp",
         "legacy_cpp_c_sources",
         "deferred_sources",
     )
@@ -40,9 +41,10 @@ def load_policy(path: Path) -> dict[str, Any]:
     groups = (
         set(policy["confirmed_c_sources"]),
         set(policy["pending_c_evidence"]),
+        set(policy["c_sources_compiled_as_cpp"]),
         set(policy["legacy_cpp_c_sources"]),
     )
-    labels = ("confirmed C", "pending C", "legacy C++")
+    labels = ("confirmed C", "pending C", "reviewed C/C++ mode", "legacy C++")
     for index, group in enumerate(groups):
         for other_index in range(index + 1, len(groups)):
             overlap = group & groups[other_index]
@@ -146,6 +148,7 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     confirmed_c = set(policy["confirmed_c_sources"])
     pending_c = set(policy["pending_c_evidence"])
     allowed_c = confirmed_c | pending_c
+    cpp_mode_c = set(policy["c_sources_compiled_as_cpp"])
     legacy_cpp = set(policy["legacy_cpp_c_sources"])
     deferred = set(policy["deferred_sources"])
 
@@ -165,7 +168,7 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
         elif language == "c++":
             if source.endswith(".c"):
                 actual_legacy.add(source)
-                if source not in legacy_cpp:
+                if source not in legacy_cpp and source not in cpp_mode_c:
                     errors.append(f"{source}: new C++ source uses .c; new game code must use .cpp")
         else:
             errors.append(f"{source}: unknown effective language {language!r}")
@@ -189,6 +192,12 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     for source in sorted(missing_legacy):
         errors.append(f"{source}: legacy C++/.c entry no longer exists; remove or update the policy entry")
 
+    missing_cpp_mode_c = cpp_mode_c - actual_legacy
+    for source in sorted(missing_cpp_mode_c):
+        errors.append(
+            f"{source}: reviewed C/C++-mode entry is not a configured .c source compiled as C++"
+        )
+
     missing_deferred = deferred - actual_deferred
     for source in sorted(missing_deferred):
         errors.append(f"{source}: approved deferred entry is not effectively compiled with deferred")
@@ -202,7 +211,9 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
             "language policy OK: "
             f"{len(managed)} managed sources "
             f"({cpp_count} C++, {c_count} C, "
-            f"{len(pending_c)} pending evidence, {len(actual_deferred)} deferred)"
+            f"{len(pending_c)} pending evidence, "
+            f"{len(cpp_mode_c)} reviewed C/C++-mode, "
+            f"{len(actual_deferred)} deferred)"
         )
     return errors
 
@@ -218,6 +229,7 @@ def audit_staged_additions(policy: dict[str, Any]) -> list[str]:
     )
     prefixes = policy["managed_prefixes"]
     allowed_c = set(policy["confirmed_c_sources"]) | set(policy["pending_c_evidence"])
+    cpp_mode_c = set(policy["c_sources_compiled_as_cpp"])
     legacy_cpp = set(policy["legacy_cpp_c_sources"])
 
     for path in result.stdout.splitlines():
@@ -226,7 +238,7 @@ def audit_staged_additions(policy: dict[str, Any]) -> list[str]:
         source = path.removeprefix("src/")
         if not is_managed(source, prefixes) or not source.endswith(".c"):
             continue
-        if source not in allowed_c and source not in legacy_cpp:
+        if source not in allowed_c and source not in legacy_cpp and source not in cpp_mode_c:
             errors.append(
                 f"{source}: new game-owned .c source is forbidden; use .cpp or add reviewed C evidence"
             )

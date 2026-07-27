@@ -45,10 +45,19 @@ This audit does not make proprietary PS2 material part of the project:
 - Shared declarations belong in `include/`; private declarations stay in their
   translation unit.
 
-The repository still contains `.c` files that are explicitly compiled with
-`-lang=c++`. They are listed as legacy paths in the policy file. The compiler
-already treats these files as C++; migration aligns the extension and build
-configuration with the effective language rather than rewriting working code.
+Most repository `.c` files explicitly compiled with `-lang=c++` are listed as
+legacy paths in the policy file. The compiler already treats those files as
+C++; migration aligns the extension and build configuration with the effective
+language rather than rewriting working code.
+
+There is one reviewed exception: `movieD/cri/sfx.c` remains a C-path vendor
+source while compiling in C++ mode. This CRI middleware unit exposes a C
+boundary and belongs beside the other `sfx*.c` sources, but the matching
+GameCube build requires CodeWarrior's C++ declaration-order `.bss` emission
+instead of its C first-reference order. It remains in
+`c_sources_compiled_as_cpp`, retains the explicit `-lang=c++` and is not part
+of the extension-migration queue. This narrow compatibility exception is not a
+precedent for game-owned code.
 
 Migrate them in reviewable, module-sized batches:
 
@@ -64,6 +73,7 @@ Migrate them in reviewable, module-sized batches:
 Do not combine that mechanical rename with class reconstruction or other
 semantic changes. A mass rename would touch hundreds of split entries, obscure
 regressions and collide with active work. Coordinate ownership before touching
+an area with active work, especially `advertiseD` or `autosaveD`.
 
 ## Evidence levels
 
