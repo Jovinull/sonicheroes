@@ -45,6 +45,19 @@ game/task_create.c:
 	extabindex  start:0x8000BD40 end:0x8000BD4C
 	.text       start:0x80013010 end:0x80013038
 
+game/state_set.cpp:
+	.text       start:0x80013038 end:0x80013044
+	.sbss       start:0x8042C0D8 end:0x8042C0DC
+
+game/dvd_status.cpp:
+	extab       start:0x80005788 end:0x80005790
+	extabindex  start:0x8000BD4C end:0x8000BD58
+	.text       start:0x80013044 end:0x80013128
+	.data       start:0x802406F0 end:0x80240758
+
+game/state_accessor.cpp:
+	.text       start:0x80013398 end:0x800133D0
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
