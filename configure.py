@@ -888,6 +888,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/system_object1_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/system_object1_register.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

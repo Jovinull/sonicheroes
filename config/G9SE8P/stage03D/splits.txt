@@ -222,6 +222,9 @@ rel/goal_ring_register.c:
 	.text       start:0x0004D584 end:0x0004D62C
 	.ctors      start:0x0000008C end:0x00000090
 
+rel/system_object1_object.c:
+	.text       start:0x0004D634 end:0x0004D78C
+
 rel/system_object1_register.c:
 	.text       start:0x0004D818 end:0x0004D8BC
 	.ctors      start:0x00000090 end:0x00000094
