@@ -898,12 +898,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/system_object2_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/system_object2_register.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/system_object3_object.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/system_object3_register.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/system_object4_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
