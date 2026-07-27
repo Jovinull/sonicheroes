@@ -3,14 +3,14 @@
 // TObjSystem2, the second of the four system objects every stage module ships.
 // The class name is spelled in the module's own data, at the word the
 // constructor reads: "TObjSystem2". Its registration record is already carved,
-// in rel/system_object2_register.c.
+// in rel/system_object2_register.cpp.
 //
 // The claim is .text 0x4D8BC to 0x4DA3C, the same code at the same address in
-// the same nine stage modules rel/system_object1_object.c claims, and all 96
+// the same nine stage modules rel/system_object1_object.cpp claims, and all 96
 // instructions are identical across those nine once the per module label names
 // are set aside.
 //
-// The shape is rel/system_object1_object.c's, and the argument for the bounds
+// The shape is rel/system_object1_object.cpp's, and the argument for the bounds
 // is written there: the run opens with the empty hook that fills vtable slot
 // four and stops before the factory, whose register use no source form
 // reproduces. Two things differ from the first system object. There is no

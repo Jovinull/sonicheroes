@@ -144,12 +144,34 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### System and sample fragments
+
+Migrated the 12 object/registration fragments for system objects 1-4 and
+sample objects 1-2.
+
+Language evidence:
+
+- local PS2 metadata retains `o_system1.cpp` through `o_system4.cpp`,
+  `o_sample.cpp` and `o_sample2.cpp` unit markers;
+- it identifies the matching `TObjSystem1` through `TObjSystem4`,
+  `TObjSample` and `TObjSample2` class-record/vtable families;
+- the GameCube fragments split those same six units into object and
+  registration portions, all already compiled with `-lang=c++`.
+
+Validation:
+
+- all 12 configured commands remained C++ without per-object language
+  overrides;
+- the complete build relinked every affected stage module;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the object-assets batch:
+After the system/sample batch:
 
-- 65 legacy `.c` paths still compile as C++;
-- 23 of them are outside the protected areas;
+- 53 legacy `.c` paths still compile as C++;
+- 11 of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 9 C-compiled sources still require an evidence decision;
 - no source is approved for `-inline deferred`.

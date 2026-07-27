@@ -3,14 +3,14 @@
 // TObjSystem4, the last of the four system objects every stage module ships.
 // The class name is spelled in the module's own data, at the word the
 // constructor reads: "TObjSystem4". Its registration record is already carved,
-// in rel/system_object4_register.c.
+// in rel/system_object4_register.cpp.
 //
 // The claim is .text 0x4DE1C to 0x4DF74, the same code at the same address in
-// the same nine stage modules rel/system_object1_object.c claims, and all 86
+// the same nine stage modules rel/system_object1_object.cpp claims, and all 86
 // instructions are identical across those nine once the per module label names
 // are set aside.
 //
-// This is rel/system_object1_object.c function for function, and the argument
+// This is rel/system_object1_object.cpp function for function, and the argument
 // for the bounds is written there. Like the first system object and unlike the
 // second and third, all three of Reset, Unload and Load are empty, so the run
 // is 86 instructions rather than 96. It has no adjustor thunk in front of it

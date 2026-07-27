@@ -1,14 +1,14 @@
 #include "types.h"
 
 // TObjSample, the first of the two sample objects every stage module ships.
-// The second one is rel/sample2_object.c, and the two share a base: the four
+// The second one is rel/sample2_object.cpp, and the two share a base: the four
 // stubs at 0x550 to 0x560 that both vtables point at belong to this run.
 //
 // The claim is .text 0xD8 to 0x3E0 and .rodata 0x0 to 0x18, the same code at
 // the same addresses in thirteen of the fourteen stage modules, so it is one
 // source that each module's splits.txt names and each module's symbols.txt
 // renames into. stage40D is a different revision of the source and is left out,
-// as it is for rel/prolog.c and rel/sample2_object.c.
+// as it is for rel/prolog.c and rel/sample2_object.cpp.
 //
 // stage13D is the one module where the addresses move: two doubles from another
 // unit land first, so its copy of the five constants sits at .rodata 0x10 to
@@ -24,7 +24,7 @@
 //
 // Both the constructor and Exec read the keyframe through a local rather than
 // assigning the position across whole, for the reason written up in
-// rel/sample2_object.c: a struct assignment makes the compiler hold the
+// rel/sample2_object.cpp: a struct assignment makes the compiler hold the
 // function back and emit it after the rest of the file, which would put the
 // constructor last instead of fourth. The spelling below compiles to the same
 // one load and three moves.

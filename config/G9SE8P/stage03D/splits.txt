@@ -9,21 +9,21 @@ Sections:
 rel/prolog.c:
 	.text       start:0x00000000 end:0x000000D8
 
-rel/sample1_object.c:
+rel/sample1_object.cpp:
 	.text       start:0x000000D8 end:0x000003E0
 	.rodata     start:0x00000000 end:0x00000018
 
-rel/sample1_register.c:
+rel/sample1_register.cpp:
 	.text       start:0x00000494 end:0x00000548
 	.ctors      start:0x00000000 end:0x00000004
 
 rel/obj_base_stubs.c:
 	.text       start:0x00000550 end:0x00000564
 
-rel/sample2_object.c:
+rel/sample2_object.cpp:
 	.text       start:0x00000564 end:0x00000740
 
-rel/sample2_register.c:
+rel/sample2_register.cpp:
 	.text       start:0x00000804 end:0x0000088C
 	.ctors      start:0x00000004 end:0x00000008
 
@@ -231,31 +231,31 @@ rel/goal_ring_register.cpp:
 	.text       start:0x0004D584 end:0x0004D62C
 	.ctors      start:0x0000008C end:0x00000090
 
-rel/system_object1_object.c:
+rel/system_object1_object.cpp:
 	.text       start:0x0004D634 end:0x0004D78C
 
-rel/system_object1_register.c:
+rel/system_object1_register.cpp:
 	.text       start:0x0004D818 end:0x0004D8BC
 	.ctors      start:0x00000090 end:0x00000094
 
-rel/system_object2_object.c:
+rel/system_object2_object.cpp:
 	.text       start:0x0004D8BC end:0x0004DA3C
 
-rel/system_object2_register.c:
+rel/system_object2_register.cpp:
 	.text       start:0x0004DAC8 end:0x0004DB6C
 	.ctors      start:0x00000094 end:0x00000098
 
-rel/system_object3_object.c:
+rel/system_object3_object.cpp:
 	.text       start:0x0004DB6C end:0x0004DCEC
 
-rel/system_object3_register.c:
+rel/system_object3_register.cpp:
 	.text       start:0x0004DD78 end:0x0004DE1C
 	.ctors      start:0x00000098 end:0x0000009C
 
-rel/system_object4_object.c:
+rel/system_object4_object.cpp:
 	.text       start:0x0004DE1C end:0x0004DF74
 
-rel/system_object4_register.c:
+rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 

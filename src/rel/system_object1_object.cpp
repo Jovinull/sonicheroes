@@ -3,7 +3,7 @@
 // TObjSystem1, the first of the four system objects every stage module ships.
 // The class name is spelled in the module's own data, at the word the
 // constructor reads: "TObjSystem1". Its registration record is already carved,
-// in rel/system_object1_register.c.
+// in rel/system_object1_register.cpp.
 //
 // The claim is .text 0x4D634 to 0x4D78C, the same code at the same address in
 // nine of the fourteen stage modules: stage01D, 03D, 05D, 07D, 09D, 11D, 31D,
@@ -22,7 +22,7 @@
 // first function of an object's own run, and this one starts at 0x4D634.
 //
 // The upper bound stops short of the factory at 0x4D78C for the reason
-// rel/sample1_object.c already records: the original keeps the allocator's
+// rel/sample1_object.cpp already records: the original keeps the allocator's
 // result and the pointer the construction runs on in separate registers, `mr
 // r0, r3` and then `mr r31, r0`, and no source form reproduces the extra copy.
 // It stays assembly here as it does there.

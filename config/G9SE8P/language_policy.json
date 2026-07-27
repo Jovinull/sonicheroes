@@ -81,20 +81,8 @@
     "rel/obj_reset_draw.c",
     "rel/obj_set_mode.c",
     "rel/obj_transform.c",
-    "rel/sample1_object.c",
-    "rel/sample1_register.c",
-    "rel/sample2_object.c",
-    "rel/sample2_register.c",
     "rel/scroll_ring_create.c",
-    "rel/scroll_ring_disp.c",
-    "rel/system_object1_object.c",
-    "rel/system_object1_register.c",
-    "rel/system_object2_object.c",
-    "rel/system_object2_register.c",
-    "rel/system_object3_object.c",
-    "rel/system_object3_register.c",
-    "rel/system_object4_object.c",
-    "rel/system_object4_register.c"
+    "rel/scroll_ring_disp.c"
   ],
   "deferred_sources": []
 }
