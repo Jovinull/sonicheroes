@@ -90,7 +90,10 @@ A language decision should record the strongest available evidence:
 4. Cross-platform PS2 or PC symbols can establish names, signatures and class
    membership after the function is independently correlated with the
    GameCube build.
-5. A byte match alone does not establish C versus C++.
+5. Compiler-specific data emission can distinguish modes when the target order
+   is reproduced directly: record the declarations, relocations and full
+   artifact result, not only the raw `.text`.
+6. A byte match alone does not establish C versus C++.
 
 Exception metadata also has a narrow meaning: one `extab`/`extabindex` record
 can establish a function range, but it does not establish an original

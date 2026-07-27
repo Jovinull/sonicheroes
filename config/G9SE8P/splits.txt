@@ -13,7 +13,7 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:8
 
-game/heap.c:
+game/heap.cpp:
 	extab       start:0x80005710 end:0x80005748
 	extabindex  start:0x8000BC98 end:0x8000BCEC
 	.text       start:0x8001234C end:0x80012C08

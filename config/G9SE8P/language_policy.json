@@ -9,7 +9,6 @@
   "confirmed_c_sources": [
     "advertiseD/prolog.c",
     "autosaveD/prolog.c",
-    "game/heap.c",
     "game/main.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",

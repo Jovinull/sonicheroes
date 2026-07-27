@@ -27,6 +27,12 @@
 // from how they are used: 0x0/0x4 thread the free list, 0x8/0xc thread the
 // physical neighbours for coalescing, 0x10 is the size.
 //
+// Cross-platform language evidence separates linkage from compiler mode. The PS2
+// memory-function provider and its public allocation wrappers retain C linkage,
+// while the neighboring private allocator helpers are C++-mangled. A controlled
+// GameCube C++ compile preserves this unit's complete `.text`. Public entry
+// points below therefore keep an explicit C ABI; private helpers use C++ linkage.
+//
 // Built with exception tables enabled and propagation and scheduling disabled.
 // The original also disables the peephole pass locally around realloc and free;
 // those scopes preserve the entry comparisons and free-list selection branches.
@@ -41,6 +47,7 @@ typedef struct Cell {
 } Cell;                // 0x20
 
 // OS arena calls the init borrows the heap from.
+extern "C" {
 extern u8* OSGetArenaLo(void);
 extern u8* OSGetArenaHi(void);
 extern u8* OSInitAlloc(void* lo, void* hi, int maxHeaps);
@@ -48,6 +55,7 @@ extern void OSSetArenaLo(void* lo);
 
 extern void* memcpy(void* dst, const void* src, u32 n);
 extern void* memset(void* dst, int c, u32 n);
+}
 
 // The vtable slots this file writes into the block main passes to the init.
 typedef struct AllocVtable {
@@ -60,16 +68,24 @@ typedef struct AllocVtable {
 // The two free lists, head and tail per pool, plus the heap bounds. Low pool
 // roots are gLowHead/gLowTail, high pool roots are gHighHead/gHighTail, and
 // gAllocHigh is the high pool base that sorts a cell into one list or the other.
+// CodeWarrior C++ emits these in declaration order, matching the target `.sbss`.
+static u32 gHeapBase;   // 0x8042C0A0
+static u32 gHeapSize;   // 0x8042C0A4
+static Cell* gHighHead; // 0x8042C0A8
+static Cell* gHighTail; // 0x8042C0AC
+static Cell* gLowHead;  // 0x8042C0B0
+static Cell* gLowTail;  // 0x8042C0B4
 static struct {
 	Cell* value;
 	u32 unused;
-} gAllocHigh;           // 0x8042C0B8
-static Cell* gLowTail;  // 0x8042C0B4
-static Cell* gLowHead;  // 0x8042C0B0
-static Cell* gHighTail; // 0x8042C0AC
-static Cell* gHighHead; // 0x8042C0A8
-static u32 gHeapSize;   // 0x8042C0A4
-static u32 gHeapBase;   // 0x8042C0A0
+} gAllocHigh; // 0x8042C0B8
+
+extern "C" {
+int fn_8001234C(AllocVtable* vtable);
+void fn_80012654(u32* totalOut, u32* largestOut);
+void fn_800126C8(void* ptr);
+void fn_80012994(u32 size);
+}
 
 Cell* fn_80012A94(u32 size, Cell* list);
 void* fn_800129B4(register u32 size);
@@ -78,7 +94,6 @@ void* fn_800125F0(u32 size);
 void* fn_80012560(u32 n, u32 size);
 void* fn_8001247C(void* ptr, u32 size);
 void fn_80012BE0(void* ptr);
-void fn_80012994(u32 size);
 
 // Rounds a byte count up to a whole number of 0x20 cells, with one cell of
 // header on top, which is the +0x3f before the mask.

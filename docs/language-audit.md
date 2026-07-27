@@ -218,9 +218,33 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### GameCube platform heap
+
+Migrated `game/heap.cpp` while preserving explicit C linkage for the public
+memory boundary and C++ linkage for its private helpers.
+
+Language evidence:
+
+- the GameCube unit provides the same memory-function boundary represented on
+  PS2 by `psGetMemoryFunctions`, `Free_BW` and `MAlloc_BW`;
+- those PS2 public entries retain C linkage, while their neighboring private
+  allocator helpers are C++-mangled;
+- a controlled GameCube C++ compile preserved all function code;
+- CodeWarrior C++ declaration-order `.sbss` emission reproduces the target
+  variable order directly. The former C reconstruction declared the variables
+  in reverse to compensate for C first-reference emission.
+
+Validation:
+
+- all eleven functions, exception records, relocations and 32 bytes of `.sbss`
+  match the GameCube target;
+- the complete build relinked `main.dol` and all modules;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the RenderWare platform-callback batch:
+After the GameCube platform-heap batch:
 
 - 42 legacy `.c` paths still compile as C++;
 - none of them are outside the protected areas;

@@ -457,7 +457,7 @@ config.libs = [
         "objects": [
             Object(
                 Matching,
-                "game/heap.c",
+                "game/heap.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
             ),
             Object(
