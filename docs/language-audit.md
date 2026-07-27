@@ -120,12 +120,36 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### Object asset fragments
+
+Migrated 13 `rel/*_assets` paths for pawn, item box, pole, case, roll door,
+signal, dash ring, reel, laser fence, big rings, cage, target and fan
+families.
+
+Language evidence:
+
+- local PS2 metadata retains the corresponding C++ unit markers
+  (`e_pawn.cpp` and the relevant `o_*.cpp` units);
+- it also identifies the associated constructors, methods, class records and
+  vtables, including `TObjEnemyPawn`, `TObjItembox`, `TObjDashring`,
+  `TObjLaserfence`, `TObjBigrings` and the remaining object families;
+- the GameCube fragments provide data/factory portions of those same families
+  and were already compiled with `-lang=c++`.
+
+Validation:
+
+- all 13 configured commands remained C++ without per-object language
+  overrides;
+- the complete build relinked every affected stage module;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the object-registration batch:
+After the object-assets batch:
 
-- 78 legacy `.c` paths still compile as C++;
-- 36 of them are outside the protected areas;
+- 65 legacy `.c` paths still compile as C++;
+- 23 of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 9 C-compiled sources still require an evidence decision;
 - no source is approved for `-inline deferred`.
