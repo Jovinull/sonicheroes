@@ -149,6 +149,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -175,6 +176,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -201,6 +203,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -227,6 +230,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -253,6 +257,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -279,6 +284,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -305,6 +311,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
 - object: files/stage26D.rel
   hash: e5585aec40ebb843bbd5c9a2d947abeda4acc048
   symbols: config/G9SE8P/stage26D/symbols.txt
@@ -327,6 +334,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
 - object: files/stage27D.rel
   hash: 06e4b2926228a64dd7ae81007c75fd9194c402c2
   symbols: config/G9SE8P/stage27D/symbols.txt
@@ -349,6 +357,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
 - object: files/stage28D.rel
   hash: 93b0dd05156fa2dee32a64930d354c9e985d7e4a
   symbols: config/G9SE8P/stage28D/symbols.txt
@@ -371,6 +380,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
 - object: files/stage31D.rel
   hash: 4c052149e2df1c88c29038dd20e7a53c863c1d09
   symbols: config/G9SE8P/stage31D/symbols.txt
@@ -393,6 +403,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -419,6 +430,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -445,6 +457,7 @@ modules:
     - objGroupNoneActive
     - sample1Ctor
     - sample2Ctor
+    - springCtor
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor

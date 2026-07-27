@@ -1092,6 +1092,11 @@ config.libs = [
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/spring_ctor.c",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/spring_clamp.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
