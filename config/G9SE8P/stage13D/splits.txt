@@ -107,7 +107,7 @@ rel/set_collision_hooks.cpp:
 rel/obj_release_models.c:
 	.text       start:0x00006E78 end:0x00006EFC
 
-rel/ironball_register.c:
+rel/ironball_register.cpp:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
 

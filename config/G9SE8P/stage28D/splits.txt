@@ -107,7 +107,7 @@ rel/set_collision_hooks.cpp:
 rel/obj_release_models.c:
 	.text       start:0x00006E78 end:0x00006EFC
 
-rel/ironball_register.c:
+rel/ironball_register.cpp:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
 
@@ -135,7 +135,7 @@ rel/scroll_ring_create.c:
 rel/scroll_ring_disp.c:
 	.text       start:0x00008F98 end:0x00008FF0
 
-rel/jump_panel_register.c:
+rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
 
@@ -143,7 +143,7 @@ rel/dash_ring_assets.c:
 	.text       start:0x0000E32C end:0x0000E41C
 	.ctors      start:0x00000028 end:0x0000002C
 
-rel/checkpoint_register.c:
+rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
 
@@ -151,19 +151,19 @@ rel/reel_assets.c:
 	.text       start:0x00012128 end:0x00012218
 	.ctors      start:0x00000030 end:0x00000034
 
-rel/wood_container_register.c:
+rel/wood_container_register.cpp:
 	.text       start:0x000140F0 end:0x00014198
 	.ctors      start:0x00000034 end:0x00000038
 
-rel/iron_container_register.c:
+rel/iron_container_register.cpp:
 	.text       start:0x000146DC end:0x00014784
 	.ctors      start:0x00000038 end:0x0000003C
 
-rel/unbreakable_container_register.c:
+rel/unbreakable_container_register.cpp:
 	.text       start:0x00014C9C end:0x00014D44
 	.ctors      start:0x0000003C end:0x00000040
 
-rel/cannon_register.c:
+rel/cannon_register.cpp:
 	.text       start:0x0001A9B4 end:0x0001AA64
 	.ctors      start:0x00000040 end:0x00000044
 
@@ -187,10 +187,10 @@ rel/fan_assets.c:
 	.text       start:0x00025810 end:0x00025900
 	.ctors      start:0x00000054 end:0x00000058
 
-rel/weight_register.c:
+rel/weight_register.cpp:
 	.text       start:0x00028C34 end:0x00028CDC
 	.ctors      start:0x00000058 end:0x0000005C
 
-rel/breakable_weight_register.c:
+rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060

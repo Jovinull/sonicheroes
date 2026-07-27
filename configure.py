@@ -878,8 +878,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/propeller_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/propeller_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -888,13 +888,13 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/light_collision_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/light_collision_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/invoke_collision_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/invoke_collision_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -938,8 +938,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/cannon_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/cannon_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -953,53 +953,53 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/ironball_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/ironball_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/jump_panel_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/jump_panel_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/checkpoint_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/checkpoint_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/wood_container_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/wood_container_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/iron_container_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/iron_container_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/unbreakable_container_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/unbreakable_container_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/weight_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/weight_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/breakable_weight_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/breakable_weight_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/lens_flare_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/lens_flare_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "rel/goal_ring_register.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "rel/goal_ring_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,

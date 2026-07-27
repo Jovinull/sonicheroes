@@ -95,12 +95,37 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### Object registration fragments
+
+Migrated 14 `rel/*_register` paths for propeller, light/invoke collision,
+cannon, ironball, jump panel, checkpoint, container, weight, lens-flare and
+goal-ring families.
+
+Language evidence:
+
+- the local PS2 metadata retains the corresponding C++ unit markers,
+  including `o_propeller.cpp`, `o_light_colli.cpp`, `o_invoke_colli.cpp`,
+  `o_weight.cpp`, `o_weight_ext.cpp`, `ef_lensflare.cpp` and
+  `o_goalring.cpp`;
+- the same metadata identifies the associated `TObj*` class, constructor,
+  method, class-record and vtable families;
+- the GameCube fragments register those same object families, contain C++
+  linkage declarations and were already compiled with `-lang=c++`.
+
+Validation:
+
+- all 14 configured commands remained C++ with the object-level language
+  overrides removed;
+- the complete build relinked every affected stage module;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the dashpanel and set-collision batch:
+After the object-registration batch:
 
-- 92 legacy `.c` paths still compile as C++;
-- 50 of them are outside the protected areas;
+- 78 legacy `.c` paths still compile as C++;
+- 36 of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 9 C-compiled sources still require an evidence decision;
 - no source is approved for `-inline deferred`.
