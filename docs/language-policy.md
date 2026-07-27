@@ -22,7 +22,9 @@ game code was predominantly C++, and it can help classify corresponding units.
 The PS2 build is not the matching target. Platform-specific files, source
 boundaries, compiler options and implementations can differ. A PS2 name or
 `.cpp` marker is accepted only after the symbol or unit is correlated with the
-GameCube build; the resulting GameCube object must still pass objdiff.
+GameCube build; the resulting GameCube object must still pass objdiff. An
+unmangled callback may still live in a C++-compiled unit through `extern "C"`;
+linkage and compiler language must be recorded as separate conclusions.
 
 This audit does not make proprietary PS2 material part of the project:
 
@@ -89,6 +91,12 @@ A language decision should record the strongest available evidence:
    membership after the function is independently correlated with the
    GameCube build.
 5. A byte match alone does not establish C versus C++.
+
+Exception metadata also has a narrow meaning: one `extab`/`extabindex` record
+can establish a function range, but it does not establish an original
+translation-unit boundary. A one-function source may remain a reconstruction
+fragment until cross-references, private data, alignment, map/debug metadata or
+correlated platform evidence establishes the enclosing unit.
 
 Guesses stay marked as guesses. The policy file separates confirmed C sources
 from sources that are temporarily allowed to remain C while evidence is being

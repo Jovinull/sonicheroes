@@ -49,7 +49,8 @@ explicitly reviewed vendor compatibility exception, not a pattern for new
 work.
 
 A byte match does not prove the source language: a C function and a C++ method
-can produce the same instructions after names are resolved by the linker. Use
+can produce the same instructions after names are resolved by the linker. An
+unmangled function can also be an `extern "C"` entry point in a C++ unit. Use
 mangled symbols, vtables, constructors/destructors, known library source and
 correlated cross-platform symbols as language evidence. Mark uncertainty rather
 than silently choosing C.
@@ -71,7 +72,9 @@ PS2 symbol metadata when a counterpart exists, then rename it to `.cpp`, update
 the build and split paths, remove only the redundant language override, and
 prove that the GameCube object is unchanged. If the PS2 build has no
 corresponding unit, use other direct C++ evidence and say why. Do not infer C
-merely because a PS2 counterpart was not found.
+merely because a PS2 counterpart was not found. Likewise, do not treat a
+per-function `extab` entry as proof of an original file boundary; it proves the
+function range only.
 
 Assembly normally goes inline, in a `.c` file, as an `asm` block. A standalone
 `.s` is allowed if you wrote it, and the pre-commit hook only refuses assembly

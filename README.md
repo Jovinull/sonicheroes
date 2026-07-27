@@ -44,7 +44,8 @@ The repository does not contain or distribute PS2 disc images, executables,
 extracted code or complete symbol dumps, and contributors do not need a PS2 copy
 to work here. Reviewed classifications and the minimum useful evidence are
 recorded in the repository. See the
-[source-language policy](docs/language-policy.md) for the workflow and
+[source-language policy](docs/language-policy.md) for the workflow, the
+[current migration audit](docs/language-audit.md) for reviewed decisions, and
 [LEGAL.md](LEGAL.md) for the artifact rules.
 
 ## Status
@@ -63,11 +64,12 @@ Work on the game's own code has started, under `src/game`. The first translation
 unit is carved and six of its seven functions match. That is a very small share
 of the game, which is what the Game badge says.
 
-The disc ships no `.map` file, so symbols and translation unit boundaries have
-to be worked out by hand. Boundaries are argued from cross references rather
-than guessed: which functions share private data, which call only each other,
-where the neighbouring clusters end. Each file records the argument for its own
-bounds in its header comment, so the reasoning can be checked and overturned.
+The disc ships no `.map` file, so symbols and translation-unit boundaries have
+to be worked out by hand. Boundaries are argued from cross references, private
+data, alignment and correlated metadata rather than guessed. An exception-table
+entry establishes a function range, not a source-file boundary. Where only the
+function range is known, the file is explicitly called a reconstruction
+fragment so the grouping can be checked and overturned later.
 
 A good share of what is written so far is inline assembly rather than C, and
 that is not a shortcut. Most of it is code that is assembly in the original
@@ -158,7 +160,7 @@ python tools/check_language_policy.py
 ninja
 ```
 
-The checksum step verifies `main.dol` only, for the reason given under Status.
+The checksum step verifies `main.dol` and all 17 configured REL modules.
 
 ## Diffing
 

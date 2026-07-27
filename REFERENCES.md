@@ -28,11 +28,11 @@ https://github.com/igorseabra4/HeroesPowerPlant
 Supports PC, GC, Xbox, PS2. Uses:
 https://github.com/igorseabra4/RenderWareFile (RenderWare binary chunk format)
 
-**The real, complete RenderWare 3.5 SDK (PS2)**
-https://github.com/sigmaco/rwsdk-v3.5-ps2
-Full core headers (`rwcore.h`, `rpworld.h`), tools, examples, API reference.
-The core `Rw*`/`Rp*` API is platform-agnostic; only the low-level PS2 driver
-isn't. No GameCube driver in this particular package.
+**RenderWare API research**
+Use public documentation and clean-room implementations for API and file-format
+context. Do not add or link unauthorized proprietary SDK archives. If you are
+legally entitled to inspect non-public documentation, keep it local and record
+only the minimum independently verified symbolic fact needed for review.
 
 **RenderWare clean-room reimplementation (file format reference only)**
 https://github.com/aap/librw

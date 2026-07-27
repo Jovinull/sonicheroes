@@ -467,22 +467,22 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "game/object_dispatch.c",
+                "game/object_dispatch.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "game/path.c",
+                "game/path.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "game/time.c",
+                "game/time.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "game/task_create.c",
+                "game/task_create.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
         ],

@@ -23,11 +23,7 @@
     "autosaveD/menu_selectors.c",
     "autosaveD/table.c",
     "autosaveD/widget_rendering.c",
-    "autosaveD/window_input.c",
-    "game/object_dispatch.c",
-    "game/path.c",
-    "game/task_create.c",
-    "game/time.c"
+    "autosaveD/window_input.c"
   ],
   "c_sources_compiled_as_cpp": [
     "movieD/cri/sfx.c"

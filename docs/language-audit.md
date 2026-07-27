@@ -190,14 +190,43 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### RenderWare platform callback fragments
+
+Migrated `game/object_dispatch.cpp`, `game/path.cpp`, `game/time.cpp` and
+`game/task_create.cpp`. These remain separate reconstruction fragments because
+the GameCube evidence establishes each function range but not the original
+translation-unit boundaries.
+
+Language evidence:
+
+- their implementations correlate with the RenderWare platform callbacks
+  `psPathnameDestroy`, `psPathnameCreate`, `psTimer` and
+  `psCameraShowRaster`;
+- the corresponding PS2 callbacks retain C linkage in the same platform-code
+  run as the private C++-mangled `TimerHandler__Fi`, establishing C++ compiler
+  mode with a C ABI for that counterpart;
+- the GameCube fragments now express that distinction with `.cpp` paths and
+  explicit `extern "C"` boundaries rather than treating an unmangled symbol as
+  proof of C source.
+
+Validation:
+
+- controlled C and C++ compiles produced identical `.text` for three fragments;
+- the pathname-create fragment required only the explicit `void *` conversion
+  that C++ requires;
+- the complete build relinked `main.dol` and all modules;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
+- progress totals remained unchanged.
+
 ## Remaining queue
 
-After the shared-object batch:
+After the RenderWare platform-callback batch:
 
 - 42 legacy `.c` paths still compile as C++;
 - none of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
-- 9 C-compiled sources still require an evidence decision;
+- 5 C-compiled sources still require an evidence decision, all inside the
+  protected areas;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
 - no source is approved for `-inline deferred`.
