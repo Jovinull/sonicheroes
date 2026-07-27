@@ -526,7 +526,7 @@ config.libs = [
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "advertiseD/demo_object.c",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),

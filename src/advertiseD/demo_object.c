@@ -12,24 +12,18 @@
 // child's own vtable rather than by name: slot two, which is where every class
 // in this module keeps its destructor.
 //
-// NonMatching by one instruction. That call loads the vtable into r12 in the
-// original and into a scratch argument register here, and the slot load then
-// differs with it; everything else in the unit reproduces. Three source forms
-// were measured against it - the chained access below, an array index through
-// void**, and pulling either the child or the vtable into a local first - and
-// none of them moves it.
+// The child is a polymorphic class derived from a non-polymorphic 0x18-byte
+// base. CodeWarrior consequently places its vptr at 0x18; the vtable starts
+// with two ABI words, so the first virtual function is the destructor at 0x08.
+// Expressing the call as virtual dispatch also selects r12 for both loads, as
+// in the original.
 
-struct VObject;
+typedef struct ObjectBase {
+	u8 unk0[0x18];
+} ObjectBase;
 
-typedef struct VTable {
-	void* unk0;                            // 0x00
-	void* unk4;                            // 0x04
-	void (*destroy)(struct VObject*, s32); // 0x08
-} VTable;
-
-typedef struct VObject {
-	u8 unk0[0x18];  // 0x00
-	VTable* vtable; // 0x18
+typedef struct VObject : ObjectBase {
+	virtual void destroy(s32);
 } VObject;
 
 typedef struct Demo {
@@ -106,7 +100,7 @@ extern "C" Demo* fn_1_6EDC(Demo* demo)
 	fn_1_11750(0);
 
 	if (demo->child != NULL) {
-		demo->child->vtable->destroy(demo->child, 1);
+		demo->child->destroy(1);
 	}
 	demo->child = NULL;
 	return demo;
