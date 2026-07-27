@@ -47,6 +47,7 @@ jobs:
       run: |
         python configure.py --map --version ${{ matrix.version }} \
             --binutils /binutils --compilers /compilers
+        python tools/check_language_policy.py
         ninja all_source progress build/${{ matrix.version }}/report.json
 
     - name: Upload map

@@ -28,6 +28,25 @@ Supported version:
 
 Planned later: `G9SP8P` (PAL) and `G9SJ8P` (NTSC-J).
 
+## GameCube target and cross-platform evidence
+
+This is a GameCube decompilation. The `G9SE8P` GameCube machine code, object
+layout and artifact hashes are authoritative for every match.
+
+Some corresponding PS2 builds preserve useful symbol metadata. Maintainers may
+inspect a legally obtained PS2 copy locally to help classify a translation unit
+as C or C++, recover a symbol name or signature, and understand class or source
+structure. That evidence is only a cross-platform lead: it must be correlated
+with the GameCube unit and verified by GameCube objdiff. It cannot establish a
+GameCube byte match on its own.
+
+The repository does not contain or distribute PS2 disc images, executables,
+extracted code or complete symbol dumps, and contributors do not need a PS2 copy
+to work here. Reviewed classifications and the minimum useful evidence are
+recorded in the repository. See the
+[source-language policy](docs/language-policy.md) for the workflow and
+[LEGAL.md](LEGAL.md) for the artifact rules.
+
 ## Status
 
 `main.dol` rebuilds byte for byte identical to the original disc. The progress
@@ -135,6 +154,7 @@ Then:
 
 ```sh
 python configure.py
+python tools/check_language_policy.py
 ninja
 ```
 
@@ -154,6 +174,13 @@ you edit source, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Game-owned code is C++ by default, while reviewed C boundaries and known C
+libraries remain C. Legacy `.c` paths that already compile with `-lang=c++` are
+migrated to `.cpp` in verified batches, not rewritten all at once. Each batch
+records its language evidence and must preserve the GameCube object before it is
+accepted. The exact policy and migration checklist are in
+[docs/language-policy.md](docs/language-policy.md).
 
 External resources that help with naming functions and structs (community
 disassemblies, SDK headers, format documentation) are tracked in

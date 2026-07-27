@@ -10,11 +10,13 @@
 # Enabled by `git config core.hooksPath .githooks`, which the README asks
 # contributors to run once after cloning.
 #
-# Four layers, because any one of them has a hole:
+# Six layers, because any one of them has a hole:
 #   1. extensions of game data and of build output
 #   2. anything under orig/, which holds the contributor's own copy
 #   3. anything under build/, where the disassembly of the disc lives
 #   4. a size ceiling, to catch formats this list has never heard of
+#   5. the reviewed C/C++ and inline policy
+#   6. source formatting
 
 staged=$(git diff --cached --name-only --diff-filter=AM)
 [ -z "$staged" ] && exit 0
@@ -93,7 +95,12 @@ big=$(git diff --cached --numstat --diff-filter=AM -z \
       done)
 [ -n "$big" ] && fail "These staged binaries are over 512 KB:" "$big"
 
-# 5. Formatting. Only runs if clang-format is installed, so a contributor
+# 5. Language policy. The staged form does not need a configured build tree and
+#    catches newly added game-owned C files plus unreviewed deferred-inline
+#    overrides. CI performs the complete configured-command audit.
+python3 tools/check_language_policy.py --staged || exit 1
+
+# 6. Formatting. Only runs if clang-format is installed, so a contributor
 #    without it is warned rather than blocked, and only looks at staged sources.
 #    Assembly blocks are wrapped in clang-format off markers and are left alone.
 if command -v clang-format >/dev/null 2>&1; then
