@@ -1,0 +1,184 @@
+CONTINUACAO DA MIGRACAO C/C++ - SONIC HEROES
+============================================================
+
+Use este documento quando os PRs de advertiseD e autosaveD estiverem
+abertos. Ele registra o contexto e a rotina necessaria para retomar a
+auditoria iniciada no PR #119 sem depender da memoria de uma conversa.
+
+DISCUSSOES QUE ORIGINARAM O TRABALHO
+------------------------------------
+
+- PS2 symbols:
+  https://github.com/Jovinull/sonicheroes/discussions/107
+- autoSaveD rework:
+  https://github.com/Jovinull/sonicheroes/discussions/113
+- Main game needs to be C++:
+  https://github.com/Jovinull/sonicheroes/discussions/117
+
+ESTADO CONHECIDO
+----------------
+
+- O PR #119 foi mesclado na main pelo merge commit
+  ceb38e17683294d5de814460cbdfa6ef1ce1c7bb.
+- A Fase 1 migrou 77 arquivos comprovadamente C++ fora das areas
+  protegidas.
+- Resultado anterior do verificador:
+  - 137 fontes gerenciadas;
+  - 123 classificadas como C++;
+  - 14 classificadas como C;
+  - 0 sem evidencia;
+  - 5 dividas protegidas C++ compiladas em modo C;
+  - 1 excecao revisada;
+  - 1 item adiado.
+- Contagem fisica anterior: 80 arquivos .cpp e 57 arquivos .c.
+- advertiseD e autosaveD nao foram alterados na Fase 1 porque havia
+  trabalho ativo de outros contribuidores.
+- O PR #116 nao deve ser acusado de conter codigo proprietario. Trate
+  qualquer analise de proveniencia de forma factual, neutra e baseada
+  em evidencias.
+- A main exige PR, build (G9SE8P) e conversas resolvidas, mas nao exige
+  que a branch esteja atualizada.
+- Use merge commit para preservar os commits. Nao faca squash ou rebase.
+- Nao apague as branches depois do merge.
+
+OBJETIVO
+--------
+
+Revisar integralmente os PRs de advertiseD e autosaveD, integrar o
+trabalho sem perder alteracoes dos contribuidores e finalizar a
+classificacao/migracao C/C++ dessas duas areas com evidencia, build
+reproduzivel e matching preservado.
+
+ROTINA OBRIGATORIA
+------------------
+
+1. Nao altere imediatamente as branches dos contribuidores.
+
+2. Inspecione os dois PRs:
+   - estado draft/ready;
+   - commits e autores;
+   - arquivos alterados;
+   - conflitos;
+   - dependencias entre os PRs;
+   - checks;
+   - alteracoes em src, headers, config e splits.
+
+3. Nao exija que as branches estejam atualizadas com main apenas por
+   politica. Atualize ou faca integracao somente se houver conflito real
+   ou necessidade tecnica.
+
+4. Compare os dois PRs entre si e determine a ordem segura de
+   integracao:
+   - se nao houver sobreposicao, valide separadamente;
+   - se houver sobreposicao, escolha a ordem que preserve o trabalho dos
+     contribuidores;
+   - nao reescreva nem force-push o historico deles;
+   - resolva conflitos em uma branch de integracao propria, criada a
+     partir da main atual.
+
+5. Para cada translation unit de advertiseD e autosaveD, classifique
+   como:
+   - C comprovado;
+   - C++ comprovado;
+   - excecao C-path/C++ revisada;
+   - evidencia insuficiente.
+
+6. Nao considere "byte a byte" sozinho como prova de que a linguagem
+   historica esta correta. Verifique tambem:
+   - simbolos C++ mangled;
+   - metodos, construtores e destrutores;
+   - vtables/RTTI quando aplicavel;
+   - inicializacao estatica;
+   - chamadas e ABI;
+   - configuracao do compilador;
+   - organizacao provavel da translation unit;
+   - comportamento do objeto GameCube.
+
+7. O GameCube continua sendo a autoridade para codigo, assembly, layout
+   e matching. Os simbolos da versao PS2 sao somente evidencia auxiliar
+   para nomes, classes, linkage e provavel linguagem da unidade.
+
+8. Se usar material local da versao PS2:
+   - use somente uma copia obtida legalmente pelo usuario;
+   - nao publique executaveis, dumps, assembly, ISO ou material
+     proprietario;
+   - nao adicione caminhos pessoais ao repositorio;
+   - registre apenas fatos simbolicos minimos e reproduziveis;
+   - nao copie implementacao do PS2 para o codigo GameCube.
+
+9. Para arquivos comprovadamente C++:
+   - use extensao .cpp;
+   - use a configuracao C++ apropriada;
+   - atualize splits/configs/referencias sem alterar enderecos ou limites
+     incorretamente;
+   - preserve o matching existente.
+
+10. Nao migre bibliotecas ou arquivos comprovadamente C apenas por
+    padronizacao. main, heap, partes da CRI/MSL e outras excecoes
+    continuam em C quando houver evidencia.
+
+11. Atualize o inventario usado por tools/check_language_policy.py:
+    - remova protecoes temporarias de advertiseD/autosaveD quando forem
+      resolvidas;
+    - registre justificativas;
+    - nao esconda divida como excecao;
+    - deixe zero itens sem evidencia dentro dessas duas areas ao
+      finalizar.
+
+12. Valide cada PR/integracao:
+    - python3 tools/check_language_policy.py;
+    - configure/build completo de G9SE8P;
+    - build/tools/dtk shasum;
+    - todos os 18 arquivos devem continuar OK;
+    - objdiff/matching dos objetos tocados;
+    - ausencia de caminhos locais, ISO, dumps ou artefatos proprietarios;
+    - git diff e status limpos.
+
+13. Recalcule e documente, antes e depois:
+    - quantidade fisica de .c e .cpp;
+    - quantidade efetiva compilada como C e C++;
+    - arquivos migrados;
+    - arquivos C mantidos e suas justificativas;
+    - dividas restantes fora de advertiseD/autosaveD.
+
+14. Atualize CONTRIBUTING.md e docs/language-policy.md somente se o
+    fluxo ou as evidencias revelarem algo que ainda nao esteja
+    documentado.
+
+15. Antes de mesclar:
+    - PR nao pode estar draft;
+    - conflitos resolvidos;
+    - CI verde;
+    - conversas resolvidas;
+    - matching nao pode regredir sem justificativa explicita;
+    - nenhuma alteracao do outro contribuidor pode ter sido descartada
+      silenciosamente.
+
+16. Mescle usando merge commit e preserve todos os commits.
+
+17. Depois de cada merge:
+    - atualize origin/main;
+    - confirme o merge commit e seus pais;
+    - acompanhe o CI da main ate SUCCESS;
+    - reavalie o segundo PR contra a nova main;
+    - confirme que o ruleset Protect Main continua ativo.
+
+18. Nao declare a migracao global 100% concluida apenas porque esses
+    dois PRs foram mesclados. Primeiro execute novamente a auditoria de
+    todas as fontes e apresente a lista exata de qualquer divida
+    restante.
+
+ENTREGA FINAL
+-------------
+
+Apresente:
+
+- links dos PRs;
+- ordem e motivo dos merges;
+- commits de merge;
+- resultados de CI/build/shasum/objdiff;
+- contagens antes/depois;
+- arquivos mantidos em C e justificativas;
+- dividas restantes;
+- confirmacao de que nenhum material proprietario foi publicado;
+- confirmacao de que o trabalho dos contribuidores foi preservado.
