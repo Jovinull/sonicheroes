@@ -59,6 +59,53 @@ match.
    translation-unit boundary as a hypothesis unless direct metadata supports
    it.
 
+The useful PS2 input is metadata in the executable, not its program code. For
+the North American retail build used in the audit, the local executable is
+commonly named `SLUS_207.18`. A contributor who owns that build may keep it at
+an ignored path such as `orig/ps2/SLUS_207.18`; this name is an identifier, not
+a download instruction.
+
+With the public MIT-licensed
+[Chaos Compiler Collection](https://github.com/chaoticgd/ccc) installed, inspect
+only the view needed for the current question:
+
+```sh
+stdump identify orig/ps2/SLUS_207.18
+stdump files --sort-by-address orig/ps2/SLUS_207.18
+stdump functions --sort-by-address orig/ps2/SLUS_207.18
+stdump globals --sort-by-address orig/ps2/SLUS_207.18
+stdump sections orig/ps2/SLUS_207.18
+```
+
+`identify` establishes which symbol formats are actually present. `files`
+provides source markers; `functions` and `globals` provide names and typed facts
+only when the table contains them; `sections` supplies context. Empty or
+incomplete output is not evidence for C. Raw ELF sections and symbol spellings
+can be checked locally with `readelf -SW` and `readelf -Ws`; retain the raw name
+if a demangler does not recognize it.
+
+PS2Recomp and MIPS code analyzers are not required for a source-language
+decision. They may generate code or disassembly that cannot be published here,
+while the symbol table already supplies the allowed evidence. Prefer symbol
+metadata and do not generate extra proprietary output without a separate,
+necessary research purpose.
+
+Use this minimal record in a pull request:
+
+```text
+GameCube unit:
+GameCube symbol or behavior:
+PS2 region/build:
+PS2 symbolic fact:
+Independent correlation:
+Inference (language/linkage/name/TU):
+Confidence:
+GameCube objdiff and relocation result:
+```
+
+Do not include a PS2 address unless it is indispensable to explain the local
+correlation, and never include a listing, dump, personal path or code excerpt.
+
 Do not attach tool dumps, extracted assembly, executables or complete symbol
 lists. Public analysis tools are reproducibility aids; their output is not a
 substitute for reviewing the evidence or matching the GameCube object.
