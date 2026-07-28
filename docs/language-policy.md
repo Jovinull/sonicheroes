@@ -35,6 +35,34 @@ This audit does not make proprietary PS2 material part of the project:
 - anyone doing their own cross-platform check must use a copy they are legally
   entitled to inspect and keep it in an ignored local location such as `orig/`.
 
+### Optional PS2 symbol workflow
+
+Cross-platform symbol analysis is optional. It classifies source language,
+linkage, names and class relationships; it does not establish a GameCube code
+match.
+
+1. Keep a legally obtained PS2 executable only in an ignored local path. Never
+   upload it or add a download link.
+2. Inspect it locally with a public symbol-analysis tool such as
+   [ccc](https://github.com/chaoticgd/ccc), and record the tool version and game
+   region used for the check.
+3. Look for C++-mangled methods, constructors, destructors, vtables, source-name
+   markers and neighboring class symbols. Treat an unmangled name as linkage
+   evidence only.
+4. Correlate the PS2 fact with the GameCube target through behavior, call or
+   data relationships, strings, class context or other independent evidence.
+   Addresses are platform-specific and do not correlate a function by
+   themselves.
+5. Record only the minimum symbolic facts in the pull request: the GameCube
+   unit, the corresponding PS2 symbol or source marker, the inference, its
+   confidence and the GameCube objdiff/relocation result. Mark any proposed
+   translation-unit boundary as a hypothesis unless direct metadata supports
+   it.
+
+Do not attach tool dumps, extracted assembly, executables or complete symbol
+lists. Public analysis tools are reproducibility aids; their output is not a
+substitute for reviewing the evidence or matching the GameCube object.
+
 ## New source
 
 - New game-owned translation units use `.cpp` and compile as C++.

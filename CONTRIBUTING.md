@@ -53,7 +53,9 @@ can produce the same instructions after names are resolved by the linker. An
 unmangled function can also be an `extern "C"` entry point in a C++ unit. Use
 mangled symbols, vtables, constructors/destructors, known library source and
 correlated cross-platform symbols as language evidence. Mark uncertainty rather
-than silently choosing C.
+than silently choosing C. The optional local PS2-symbol procedure and its
+publication limits are documented in
+[the source-language policy](docs/language-policy.md#optional-ps2-symbol-workflow).
 
 Do not apply `-inline deferred` globally. It changes inlining and function
 emission order. A deferred override needs the source-order evidence and
