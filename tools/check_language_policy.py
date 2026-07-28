@@ -17,6 +17,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_POLICY = ROOT / "config/G9SE8P/language_policy.json"
 CONFIGURE = ROOT / "configure.py"
+PROTECTED_PREFIXES = ("advertiseD/", "autosaveD/")
 
 
 def load_policy(path: Path) -> dict[str, Any]:
@@ -27,6 +28,7 @@ def load_policy(path: Path) -> dict[str, Any]:
         "managed_prefixes",
         "confirmed_c_sources",
         "pending_c_evidence",
+        "protected_cpp_c_sources",
         "c_sources_compiled_as_cpp",
         "legacy_cpp_c_sources",
         "deferred_sources",
@@ -41,16 +43,29 @@ def load_policy(path: Path) -> dict[str, Any]:
     groups = (
         set(policy["confirmed_c_sources"]),
         set(policy["pending_c_evidence"]),
+        set(policy["protected_cpp_c_sources"]),
         set(policy["c_sources_compiled_as_cpp"]),
         set(policy["legacy_cpp_c_sources"]),
     )
-    labels = ("confirmed C", "pending C", "reviewed C/C++ mode", "legacy C++")
+    labels = (
+        "confirmed C",
+        "pending C",
+        "protected C++/C-mode debt",
+        "reviewed C/C++ mode",
+        "legacy C++",
+    )
     for index, group in enumerate(groups):
         for other_index in range(index + 1, len(groups)):
             overlap = group & groups[other_index]
             if overlap:
                 joined = ", ".join(sorted(overlap))
                 raise ValueError(f"{path}: {labels[index]} and {labels[other_index]} overlap: {joined}")
+
+    for source in policy["protected_cpp_c_sources"]:
+        if not source.startswith(PROTECTED_PREFIXES):
+            raise ValueError(
+                f"{path}: protected C++/C-mode debt is outside a protected area: {source}"
+            )
 
     return policy
 
@@ -147,7 +162,8 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     prefixes = policy["managed_prefixes"]
     confirmed_c = set(policy["confirmed_c_sources"])
     pending_c = set(policy["pending_c_evidence"])
-    allowed_c = confirmed_c | pending_c
+    protected_cpp_c = set(policy["protected_cpp_c_sources"])
+    allowed_c = confirmed_c | pending_c | protected_cpp_c
     cpp_mode_c = set(policy["c_sources_compiled_as_cpp"])
     legacy_cpp = set(policy["legacy_cpp_c_sources"])
     deferred = set(policy["deferred_sources"])
@@ -212,6 +228,7 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
             f"{len(managed)} managed sources "
             f"({cpp_count} C++, {c_count} C, "
             f"{len(pending_c)} pending evidence, "
+            f"{len(protected_cpp_c)} protected C++/C-mode debt, "
             f"{len(cpp_mode_c)} reviewed C/C++-mode, "
             f"{len(actual_deferred)} deferred)"
         )
@@ -228,7 +245,9 @@ def audit_staged_additions(policy: dict[str, Any]) -> list[str]:
         text=True,
     )
     prefixes = policy["managed_prefixes"]
-    allowed_c = set(policy["confirmed_c_sources"]) | set(policy["pending_c_evidence"])
+    confirmed_c = set(policy["confirmed_c_sources"])
+    pending_c = set(policy["pending_c_evidence"])
+    protected_cpp_c = set(policy["protected_cpp_c_sources"])
     cpp_mode_c = set(policy["c_sources_compiled_as_cpp"])
     legacy_cpp = set(policy["legacy_cpp_c_sources"])
 
@@ -238,7 +257,13 @@ def audit_staged_additions(policy: dict[str, Any]) -> list[str]:
         source = path.removeprefix("src/")
         if not is_managed(source, prefixes) or not source.endswith(".c"):
             continue
-        if source not in allowed_c and source not in legacy_cpp and source not in cpp_mode_c:
+        if source in pending_c:
+            errors.append(f"{source}: a new source cannot enter as pending C evidence; use .cpp")
+        elif source in protected_cpp_c:
+            errors.append(f"{source}: a new source cannot enter as protected migration debt; use .cpp")
+        elif source in legacy_cpp:
+            errors.append(f"{source}: a new C++ source cannot enter with a .c extension; use .cpp")
+        elif source not in confirmed_c and source not in cpp_mode_c:
             errors.append(
                 f"{source}: new game-owned .c source is forbidden; use .cpp or add reviewed C evidence"
             )

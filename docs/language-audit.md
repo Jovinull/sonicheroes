@@ -267,11 +267,41 @@ After the GameCube platform-main decision:
 - 42 legacy `.c` paths still compile as C++;
 - none of them are outside the protected areas;
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
-- 5 C-compiled sources still require an evidence decision, all inside the
-  protected areas;
+- 4 protected AutoSaveD sources have direct C++ evidence but remain in C mode
+  until the active draft is integrated;
+- 1 C-compiled source, `advertiseD/anim_handle.c`, still requires an evidence
+  decision;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
 - no source is approved for `-inline deferred`.
+
+### Protected AutoSaveD C++ migration debt
+
+The following sources are classified in `protected_cpp_c_sources` without
+changing their source, split or object configuration:
+
+- `autosaveD/menu_selectors.c`
+- `autosaveD/table.c`
+- `autosaveD/widget_rendering.c`
+- `autosaveD/window_input.c`
+
+Language evidence:
+
+- the correlated PS2 metadata retains C++-mangled constructors, destructors and
+  methods for `ADV_MENU`, `ADV_WINDOW` and `sADV_WINDOW_PARAM`;
+- it retains the `ADV_WINDOW` vtable and class record;
+- the methods cover the selection, lifecycle, update and rendering behavior
+  reconstructed by these four GameCube fragments;
+- `table.c` already identifies its deleting-destructor-shaped function and its
+  call to CodeWarrior C++ `operator delete`.
+
+These facts prove that the corresponding code belongs to C++ class
+implementations; the current matching C fragments do not prove original C
+source. PR #116 is an active draft reconstructing the same AutoSaveD classes,
+so this audit deliberately makes no protected-area source, split or
+configuration change. Migration must be coordinated with that owner, reviewed
+against the final class layout and accepted only after the GameCube object
+diffs and all 18 artifact hashes remain exact.
 
 ### CRI SFX compiler-mode exception
 

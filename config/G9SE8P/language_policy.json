@@ -18,7 +18,9 @@
     "rel/prolog.c"
   ],
   "pending_c_evidence": [
-    "advertiseD/anim_handle.c",
+    "advertiseD/anim_handle.c"
+  ],
+  "protected_cpp_c_sources": [
     "autosaveD/menu_selectors.c",
     "autosaveD/table.c",
     "autosaveD/widget_rendering.c",

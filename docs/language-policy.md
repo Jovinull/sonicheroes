@@ -103,7 +103,18 @@ correlated platform evidence establishes the enclosing unit.
 
 Guesses stay marked as guesses. The policy file separates confirmed C sources
 from sources that are temporarily allowed to remain C while evidence is being
-collected. No new path may be added to the pending list merely to make CI pass.
+collected. It separately records `protected_cpp_c_sources`: sources with direct
+C++ evidence that still compile as C only because an active protected-area
+change must be integrated first. This is migration debt, not a C allowlist and
+not permission to edit another contributor's work. No new path may be added to
+either temporary list merely to make CI pass.
+
+A protected C++/C-mode source must be migrated after coordinating with the
+active owner. The integration change reconstructs the C++ class or method
+shape, uses `.cpp`, updates build and split paths, and must preserve the
+GameCube objdiff and all configured artifact hashes. Until that coordinated
+change is ready, central policy and documentation may record the evidence but
+the protected source, split and object configuration stay untouched.
 
 Public symbol indexes, community disassemblies and small necessary textual
 symbol-name excerpts are acceptable references. A contributor may inspect a

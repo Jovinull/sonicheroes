@@ -66,7 +66,11 @@ C classification.
 Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
 migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
 boundary whose C++ compiler mode is required for matching; do not rename it
-unless stronger source evidence changes that classification.
+unless stronger source evidence changes that classification. A path in
+`protected_cpp_c_sources` has direct C++ evidence but temporarily remains C
+because another contributor owns an active change in that area. It is
+migration debt, not permission to edit the path and not an exception for new
+C files. Coordinate with the active owner before moving it to `.cpp`.
 Before renaming one, record the translation-unit classification. Use correlated
 PS2 symbol metadata when a counterpart exists, then rename it to `.cpp`, update
 the build and split paths, remove only the redundant language override, and
