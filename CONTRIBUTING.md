@@ -63,6 +63,12 @@ Run `python tools/check_language_policy.py` after `python configure.py`. The
 commit hook also refuses newly added game-owned `.c` files that have no reviewed
 C classification.
 
+The hook protects only clones where `core.hooksPath` is enabled, and a failing
+GitHub Actions job blocks merging only when the repository requires that check.
+Maintainers must protect `main` with pull requests and the `build (G9SE8P)`
+status check; otherwise a direct push can bypass both review and CI policy.
+Do not push game-code changes directly to `main`.
+
 Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
 migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
 boundary whose C++ compiler mode is required for matching; do not rename it
