@@ -13,8 +13,8 @@ jobs:
     if: >-
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
-    # Private build container holding the original game files. Keep the digest pinned.
-    container: ghcr.io/jovinull/sonicheroes-build@sha256:d1ca546cfc9d40cb967b5bb2e43b495a5c96ab817d9e57938ae6306a98afff32
+    # Private build container holding the original game files. Fork code is blocked below.
+    container: ghcr.io/jovinull/sonicheroes-build:main
 
     runs-on: ubuntu-latest
     strategy:
