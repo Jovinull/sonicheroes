@@ -17,10 +17,9 @@
     "movieD/prolog.c",
     "rel/prolog.c"
   ],
-  "pending_c_evidence": [
-    "advertiseD/anim_handle.c"
-  ],
+  "pending_c_evidence": [],
   "protected_cpp_c_sources": [
+    "advertiseD/anim_handle.c",
     "autosaveD/menu_selectors.c",
     "autosaveD/table.c",
     "autosaveD/widget_rendering.c",
