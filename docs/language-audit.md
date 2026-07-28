@@ -365,6 +365,28 @@ No AutoSaveD path is added to `deferred_sources` until the draft removes its
 blanket and duplicate overrides, completes the proposed logical units, records
 their final boundaries and relocation results, and preserves all artifacts.
 
+### Protected C++ dry run
+
+The five C-mode paths with direct C++ evidence were also compiled in C++ mode
+in an isolated temporary output directory. No protected source, split or
+configuration was changed.
+
+| current fragment | C++-mode result | integration consequence |
+| --- | --- | --- |
+| `advertiseD/anim_handle.c` | raw `.text` is identical; all 4 relocation types and offsets are retained | coordinate the final class and external ABI names with the active AdvertiseD reconstruction |
+| `autosaveD/menu_selectors.c` | raw `.text` is identical; all 53 relocation types and offsets are retained | absorb into the reconstructed `ADV_MENU` logical unit rather than preserve C-shaped free functions |
+| `autosaveD/table.c` | raw `.text` is identical; its one relocation is retained | absorb into `ADV_MENU`; the current pre-mangled `__dl__FPv` placeholder is double-mangled by a naive C++ compile |
+| `autosaveD/window_input.c` | raw `.text` is identical; all 11 relocation types and offsets are retained | absorb into the reconstructed `ADV_WINDOW` logical unit and resolve its member/external ABI names together |
+| `autosaveD/widget_rendering.c` | does not compile as C++ because the C-only `fn_2_25A8()` non-prototype is called with both three and four arguments | reconstruct the typed member/overload interface in `ADV_WINDOW_DISP`, then repeat the object and relocation comparison |
+
+The matching raw instructions show that four bodies do not need semantic
+rewrites merely to enter C++ mode. They do not make a mechanical flag switch
+safe: C++ changes the free-function and external symbol names, and wrapping
+everything in `extern "C"` would preserve the current C-shaped reconstruction
+instead of expressing the evidenced classes. The protected logical-unit
+reconstruction must establish the final member names, boundaries and C ABI
+edges before the paths are renamed.
+
 ### Protected integration plan
 
 The 42 remaining `legacy_cpp_c_sources` already compile as C++. Cross-platform
