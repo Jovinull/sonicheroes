@@ -54,6 +54,20 @@ game/skyfs_adx.c:
 	.sdata      start:0x8042AD7E end:0x8042AD80 skip
 	.sbss       start:0x8042C0C8 end:0x8042C0E0
 
+game/Peripheral.cpp:
+	extab       start:0x800057D8 end:0x80005828
+	extabindex  start:0x8000BDC4 end:0x8000BE3C
+	.text       start:0x80014154 end:0x80015AC0
+	.rodata     start:0x80239940 end:0x80239978
+	.data       start:0x802408F8 end:0x802409C4
+	.data       start:0x802409C4 end:0x802409C8 skip
+	.bss        start:0x8029BBD0 end:0x8029C5A8
+	.sdata      start:0x8042AD80 end:0x8042AD8F
+	.sdata      start:0x8042AD8F end:0x8042AD90 skip
+	.sbss       start:0x8042C0E0 end:0x8042C0E9
+	.sbss       start:0x8042C0E9 end:0x8042C0F0 skip
+	.sdata2     start:0x8042CFD0 end:0x8042CFD8
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

@@ -495,6 +495,11 @@ config.libs = [
                     "-inline deferred",
                 ],
             ),
+            Object(
+                Matching,
+                "game/Peripheral.cpp",
+                extra_cflags=["-lang=c++", "-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
