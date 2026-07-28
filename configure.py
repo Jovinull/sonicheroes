@@ -487,18 +487,13 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "game/state_set.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "game/state_accessor.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline deferred"],
-            ),
-            Object(
-                Matching,
-                "game/dvd_status.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+                "game/skyfs_adx.c",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-Cpp_exceptions on",
+                    "-opt noschedule,nopeephole",
+                    "-inline deferred",
+                ],
             ),
         ],
     },
