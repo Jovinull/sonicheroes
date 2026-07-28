@@ -365,6 +365,26 @@ No AutoSaveD path is added to `deferred_sources` until the draft removes its
 blanket and duplicate overrides, completes the proposed logical units, records
 their final boundaries and relocation results, and preserves all artifacts.
 
+### AutoSaveD draft header provenance
+
+The public-header comparison for PR #116 commit `e78d889` resolved the
+provenance question with reproducible CC0 sources:
+
+- 15 RenderWare headers are exact blobs from BFBB commit
+  `ea82f4f521ab87b035728d64ab60c08a40aac2e6`; `rwcore.h` adds the local
+  `rsglobal.h` include, and `rsglobal.h` is a small project-specific
+  declaration;
+- the MSL headers correlate with SMS commit
+  `b1cfdf687911c5bcc51a5e3715f132600ab32272`; `stdarg.h`, `stddef.h` and
+  `fdlibm.h` add only source comments, while `float.h` and `math.h` also adapt
+  include or declaration scope;
+- BFBB, SMS and the lm-decomp repository named by the `fdlibm.h` comment all
+  declare CC0-1.0.
+
+Before the draft leaves draft status, replace the informal `rwsdk/README.md`
+wording with a pinned attribution table and identify those local adaptations.
+No binary, SDK archive or extracted proprietary source is needed.
+
 ### Protected C++ dry run
 
 The five C-mode paths with direct C++ evidence were also compiled in C++ mode
