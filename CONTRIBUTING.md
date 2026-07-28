@@ -66,13 +66,14 @@ commit hook also refuses newly added game-owned `.c` files that have no reviewed
 C classification.
 
 The hook protects only clones where `core.hooksPath` is enabled. The repository
-therefore also protects `main`: changes require a pull request, one approval,
-resolved review conversations and the `build (G9SE8P)` status check. New
-commits dismiss stale approvals, the rules include administrators, and force
-pushes and branch deletion are disabled. A pull-request branch does not need to
-be updated with the latest `main` before merging, so frequent parallel commits
-do not create a mandatory rebase loop. Do not push game-code changes directly
-to `main`.
+therefore also protects `main`: changes require a pull request, resolved review
+conversations and the `build (G9SE8P)` status check. While the repository has
+only one maintainer, it requires zero approving reviews so that the pull-request
+author can merge after CI; raise this to one when another trusted collaborator
+can review. The rules include administrators, and force pushes and branch
+deletion are disabled. A pull-request branch does not need to be updated with
+the latest `main` before merging, so frequent parallel commits do not create a
+mandatory rebase loop. Do not push game-code changes directly to `main`.
 
 Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
 migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
