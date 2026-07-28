@@ -137,10 +137,11 @@ Before enabling a deferred mode for a game-owned translation unit, document:
 - at least one concrete reason the deferred result represents the original
   build rather than a convenient permutation.
 
-The approved deferred list starts empty. A source must be added to
+The approved deferred list is deliberately narrow. At present,
+`game/state_accessor.cpp` is the only reviewed entry. A source must be added to
 `deferred_sources` in the policy file in the same reviewed change that records
-the evidence. Multiple object-level `-inline` overrides are rejected as
-ambiguous.
+the evidence, and stale entries must be removed with the flag they approved.
+Multiple object-level `-inline` overrides are rejected as ambiguous.
 
 ## Pull-request requirements
 
