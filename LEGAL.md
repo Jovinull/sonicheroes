@@ -1,7 +1,9 @@
 # Legal
 
-This is not legal advice. It is how this project operates, based on how the
-long running decompilation projects have worked for years without trouble.
+This is not legal advice and does not claim that decompilation is risk-free.
+It is the operational policy used to keep copyrighted artifacts and leaked
+material out of this repository. Contributors who need a legal conclusion
+must obtain advice for their jurisdiction.
 
 Sonic Heroes and all related trademarks are property of SEGA. This project is
 not affiliated with or endorsed by SEGA. It is a non-commercial study and
@@ -19,9 +21,12 @@ A pull request that breaks any of these is rejected.
 
 1. No game assets. No models, textures, audio, level data or text taken from the
    disc.
-2. No disc images, no ROMs, no download links. Not in the repository, not in
-   issues, not in Discord. Anyone asking where to get the game gets told to dump
-   their own copy.
+2. No GameCube or PS2 disc images, ROMs, executables, complete symbol dumps or
+   download links. Not in the repository, issues or project chat. This also
+   excludes links to prototypes, extracted executables and proprietary SDK
+   archives. Public analysis tools and public documentation may be linked.
+   Anyone asking where to get the game gets told to use their own legally
+   obtained copy.
 3. No original binary code, and no extracted assembly committed. Assembly dumped
    out of the disc lives in `build/`, which is ignored by git. A pre-commit hook
    in `.githooks` refuses any commit that stages game data or build output, so
@@ -44,16 +49,30 @@ A pull request that breaks any of these is rejected.
    Where a function is asm only because C failed to reproduce it, say so in a
    comment above it, so it can be revisited rather than quietly kept.
 4. No leaked material. No leaked SEGA or Sonic Team source, no leaked SDK
-   source, nothing from any breach.
-5. No compiler binaries in the repository. The CodeWarrior compilers are
-   downloaded at build time.
+   source, nothing from any breach. A third-party header needs a verified public
+   license, a pinned source and attribution; being downloadable does not make a
+   proprietary SDK acceptable.
+5. No compiler binaries in the repository. Contributors are responsible for
+   using toolchains they are entitled to use.
 6. No money. No donations, no Patreon, no ads, no paid builds, no sponsorships.
-   SEGA has said publicly that it tolerates fan work as long as no profit is
-   involved.
 7. No official looking branding. No SEGA logos, no store pages, nothing that
    could be mistaken for a product.
 8. This repository is not a port. If porting work ever happens it goes in a
    separate repository.
+
+## Cross-platform symbols
+
+A maintainer may inspect a corresponding build locally when they are legally
+entitled to possess it. The repository records only the minimum symbolic fact
+needed for a review: a name, source marker, class/type fact, the independent
+GameCube correlation and the conclusion.
+
+Do not publish the analyzed executable, tool dumps, complete symbol lists,
+addresses without a necessary review purpose, extracted code, assembly or
+pseudocode. Cross-platform metadata is a lead; the GameCube binary and objdiff
+remain authoritative. See
+[`docs/language-policy.md`](docs/language-policy.md#optional-ps2-symbol-workflow)
+for the approved procedure.
 
 ## If SEGA gets in touch
 
@@ -70,16 +89,12 @@ Tell contributors what happened.
 
 ## Risk
 
-The likely outcome if a rightsholder is unhappy is a DMCA takedown to GitHub.
-The repository goes down and that is the end of it.
+No repository policy eliminates legal risk or guarantees how a rightsholder
+will respond. A host may receive a takedown request, and other outcomes depend
+on the facts and jurisdiction.
 
-A damages lawsuit against a non-commercial decompilation with no assets and no
-distributed build is rare enough that there is no well known example of one. The
-cases that escalated involved distributing the game itself, distributing assets,
-or selling something.
-
-Risk goes up with distributing assets, distributing playable builds, using
-leaked source, taking money, and being loud in public. The rules above exist to
-keep all of that out of the project.
+Distributing assets, playable builds, original code, leaked material or paid
+access creates avoidable exposure. The rules above keep those materials out of
+the project; they are risk controls, not a legal guarantee.
 
 Keep offline backups. A takedown should cost you a host, not the work.

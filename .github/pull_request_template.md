@@ -8,6 +8,9 @@ Describe the one logical unit changed by this pull request.
       current file extension or a byte match alone.
 - [ ] I recorded whether names/types came from GameCube, PS2, PC or a known
       library reference, and marked guesses as guesses.
+- [ ] If I used PS2 metadata, I kept the executable and tool output local and
+      included only the minimum symbolic fact and independent GameCube
+      correlation.
 - [ ] If I changed inline flags, I documented the source/emission order and
       compared each candidate in objdiff.
 - [ ] I did not add game binaries, assets, extracted assembly, leaked source or
@@ -19,6 +22,9 @@ Evidence and references:
      compiler experiments. Do not attach proprietary artifacts. -->
 
 ## Verification
+
+<!-- Full artifact CI for a fork runs only after a maintainer reviews the
+     commits and tests them from a repository-owned integration branch. -->
 
 - [ ] `python tools/check_language_policy.py`
 - [ ] `clang-format -i` on changed files under `src/` and `include/`

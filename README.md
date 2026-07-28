@@ -50,55 +50,40 @@ recorded in the repository. See the
 
 ## Status
 
-`main.dol` rebuilds byte for byte identical to the original disc. The progress
-badges above are live and move on every commit, so they are the number to trust
-rather than anything written here.
+The progress badges and generated objdiff report are authoritative; avoid
+copying percentages into prose because they become stale.
 
-The Dolphin SDK libraries linked into the game are nearly finished: 41 of the 42
-translation units reproduce exactly. The one left is `dbcomm.c`, the debugger's
-serial link, where four of twelve functions match and the rest sit between 88%
-and 95%. Every remaining difference there is the same one, and it is written up
-at the top of that file.
+`main.dol` and all 17 configured REL modules rebuild byte for byte. Their hashes
+are stored in `config/G9SE8P/build.sha1`, and CI verifies all eighteen artifacts
+on every change. `stage00D` is not configured; see the note at the end of
+`config/G9SE8P/config.yml`.
 
-Work on the game's own code has started, under `src/game`. The first translation
-unit is carved and six of its seven functions match. That is a very small share
-of the game, which is what the Game badge says.
+Exact linked artifacts do not mean that every function has been reconstructed
+as source. Unwritten regions can still be carried through the decompilation
+build, so source progress must be read from objdiff rather than from the final
+SHA-1 result alone.
 
-The disc ships no `.map` file, so symbols and translation-unit boundaries have
-to be worked out by hand. Boundaries are argued from cross references, private
-data, alignment and correlated metadata rather than guessed. An exception-table
-entry establishes a function range, not a source-file boundary. Where only the
-function range is known, the file is explicitly called a reconstruction
-fragment so the grouping can be checked and overturned later.
+The disc ships no `.map` file. Names and translation-unit boundaries are argued
+from GameCube cross references, private data, alignment and correlated metadata.
+PS2 symbols can supply cross-platform names and class evidence, but every
+conclusion is checked against the GameCube object. See the
+[source-language policy](docs/language-policy.md) and
+[current audit](docs/language-audit.md).
 
-A good share of what is written so far is inline assembly rather than C, and
-that is not a shortcut. Most of it is code that is assembly in the original
-source too: there is no C for reading a special purpose register, invalidating a
-cache line, or saving the register file on the way into an exception, so
-`PPCArch.c`, `OSCache.c` and the EABI runtime helpers are asm in the Dolphin SDK
-as well. Writing those as C would be wrong, not better. Nothing is currently asm
-merely because the C form refused to match; where that happens it gets a comment
-saying so, so it can be found and revisited rather than quietly kept. The
-generated assembly for everything not yet written stays in `build/`, which git
-ignores.
+Some SDK units legitimately require inline assembly for instructions with no C
+form, such as special-purpose-register and cache operations. Generated assembly
+and all other extracted binary material remain under ignored build/original
+directories and are never committed.
 
-18 REL modules ship alongside `main.dol`. 17 of them are configured, and all 17
-now rebuild byte for byte, so `config/G9SE8P/build.sha1` carries their hashes
-alongside the DOL's and CI verifies all eighteen artifacts. `stage00D` is
-excluded, see the note at the end of `config/G9SE8P/config.yml`.
-
-Reproducing them needed a fix to decomp-toolkit. These RELs reserve an empty
+Reproducing the RELs needed a fix to decomp-toolkit. These RELs reserve an empty
 section slot before `.text` which mwld drops during the partial link, because
-nothing lands in it; dtk wrote its section table straight from the object's
-indices, so every section came out one index low and the header's section
-fields shifted with them. The project therefore pins a
-[fork](https://github.com/Jovinull/decomp-toolkit) carrying that one change,
-tagged `v1.8.3-sh1`. It is reported upstream as
+nothing lands in it; dtk wrote its section table straight from the object
+indices, so every section came out one index low and the header fields shifted
+with them. The project therefore pins a
+[fork](https://github.com/Jovinull/decomp-toolkit) carrying that change, tagged
+`v1.8.3-sh1`. It is reported upstream as
 [encounter/decomp-toolkit#144](https://github.com/encounter/decomp-toolkit/issues/144);
 point `tools/download_tool.py` back at upstream once it lands there.
-
-There is no badge for the modules. They reproduce, but nothing inside them is
-written yet, so the number would be zero either way.
 
 ## AI assistance
 

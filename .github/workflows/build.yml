@@ -4,9 +4,17 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+  packages: read
+
 jobs:
-  build:
-    # Private build container holding the original game files.
+  private_build:
+    name: private build (${{ matrix.version }})
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    # Private build container holding the original game files. Fork code is blocked below.
     container: ghcr.io/jovinull/sonicheroes-build:main
 
     runs-on: ubuntu-latest
@@ -17,7 +25,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         fetch-depth: 0
         submodules: recursive
@@ -27,14 +35,14 @@ jobs:
 
     - name: Restore timestamps
       run: |
-        uv run https://raw.githubusercontent.com/MestreLion/git-tools/refs/tags/v2022.12/git-restore-mtime \
+        uv run https://raw.githubusercontent.com/MestreLion/git-tools/a42a069bc755f0fa81316965335cb33dbf22a968/git-restore-mtime \
             --merge --commit-time
 
     - name: Prepare
       run: cp -a /orig .
 
     - name: Cache build
-      uses: actions/cache@v4
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: |
           build
@@ -57,13 +65,38 @@ jobs:
         ninja all_source progress build/${{ matrix.version }}/report.json
 
     - name: Upload map
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: ${{ matrix.version }}_maps
         path: build/${{ matrix.version }}/**/*.MAP
 
     - name: Upload report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: ${{ matrix.version }}_report
         path: build/${{ matrix.version }}/report.json
+
+  build_gate:
+    name: build (G9SE8P)
+    if: always()
+    needs: private_build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Reject untrusted private-input build
+      if: >-
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.full_name != github.repository
+      run: |
+        echo "::error::Fork pull requests cannot run with the private original-game build inputs."
+        echo "::error::A maintainer must review the commits and test them from a repository-owned integration branch."
+        exit 1
+
+    - name: Require successful private build
+      if: needs.private_build.result != 'success'
+      run: |
+        echo "::error::The private G9SE8P build did not complete successfully."
+        exit 1
+
+    - name: Confirm private build
+      if: needs.private_build.result == 'success'
+      run: echo "The private G9SE8P build completed successfully."
