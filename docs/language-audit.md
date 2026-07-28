@@ -336,6 +336,35 @@ Migration must be coordinated with each owner, reviewed against the final
 class layout and accepted only after the GameCube object diffs and all 18
 artifact hashes remain exact.
 
+### AutoSaveD draft inline audit
+
+PR #116 commit `e78d889` was compiled in an isolated temporary tree against
+the proposed GameCube splits. This is evidence for revising the draft, not
+approval to edit or integrate the protected area:
+
+- `ADV_MENU.cpp` needs both halves of one `-inline noauto,deferred` override.
+  `noauto` preserves the out-of-line `Commit` calls and matching function
+  bodies; `deferred` emits the 13 functions in the target order. Twelve
+  functions match exactly, while `UpdateQUAD2` remains four bytes short and
+  97.273% matching.
+- `ADV_WINDOW.cpp` needs `deferred` to reproduce its 147-byte `.data` and put
+  the vtable at offset `0x4C`; `noauto` independently preserves the matching
+  call structure. The draft still duplicates six functions owned by
+  `ADV_WINDOW_DISP.cpp`, omits the 140-byte parameter assignment operator,
+  emits 24 rather than 40 bytes of `.bss`, and has incomplete rodata and
+  `InitializeCore`.
+- The six implemented `ADV_WINDOW_DISP.cpp` functions need `noauto` for their
+  bodies and `deferred` for target order. The proposed unit remains incomplete:
+  it supplies 1,260 of 5,228 text bytes and 8 of 680 rodata bytes.
+- `autosaveD/prolog.c` needs no override. Inherited auto reproduces all 196
+  text bytes and all 72 data bytes exactly. Deferred reverses `_prolog`,
+  `_epilog` and `_unresolved`, producing a different raw text section even
+  though a per-symbol diff can still report each body as matching.
+
+No AutoSaveD path is added to `deferred_sources` until the draft removes its
+blanket and duplicate overrides, completes the proposed logical units, records
+their final boundaries and relocation results, and preserves all artifacts.
+
 ### Protected integration plan
 
 The 42 remaining `legacy_cpp_c_sources` already compile as C++. Cross-platform
