@@ -1,7 +1,7 @@
 #include "types.h"
 
 // TObjSpring's constructor. It sits on its own for the same reason the
-// destructor in rel/spring_dtor.c does: rel/spring_object.c carved an island
+// destructor in rel/spring_dtor.cpp does: rel/spring_object.cpp carved an island
 // out of the middle of TObjSpring's translation unit, and this is the next
 // piece of that unit that can be cut without dragging the loader's asset names
 // in with it.
@@ -24,7 +24,7 @@
 // they resolve against and the REL link fails outright. Spelling it 1.0f would
 // have the compiler emit a second copy into this object, which is the same
 // problem from the other side. The module keeps the word, this file names it,
-// exactly as rel/spring_object.c reaches its two .bss neighbours.
+// exactly as rel/spring_object.cpp reaches its two .bss neighbours.
 //
 // The object is built inner first, one call per base: the TObject, the motion
 // at 0x28 and the part at 0x30, and only then are the two vtables restored out
@@ -83,7 +83,7 @@ typedef struct World {
 	void* scene;     // 0x7274
 } World;
 
-// The same object rel/spring_object.c describes, cut finer where this file
+// The same object rel/spring_object.cpp describes, cut finer where this file
 // writes through fields that one only steps over. The offsets agree; the names
 // there are the ones to keep if the two are ever merged.
 typedef struct Spring {

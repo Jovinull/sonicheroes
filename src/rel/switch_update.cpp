@@ -20,7 +20,7 @@
 //   2  a latch: presses set it, nothing clears it
 //
 // The tail publishes the state on the placement record's target, so that the
-// group queries in rel/obj_group_query.c see it, and plays a sound when the
+// group queries in rel/obj_group_query.cpp see it, and plays a sound when the
 // state actually changed. Type 3 and the flagged variant get their own sound.
 //
 // The three helpers are inline because the original had them earlier in the

@@ -26,14 +26,71 @@ translation unit it covers and where its boundary came from. Anything marked
 Then open it in objdiff. Your compiled output is on one side, the original is on
 the other. The job is to make them identical.
 
-Write C that produces that assembly. Not C that behaves the same way, but C that
-the 2003 CodeWarrior compiler turns into those exact instructions. Save, look at
-the diff, adjust, repeat. Green means matching.
+Write source in the original language that produces that assembly. Not source
+that merely behaves the same way, but C or C++ that the 2003 CodeWarrior
+compiler turns into those exact instructions. Save, look at the diff, adjust,
+repeat. Green means matching.
 
 Open a pull request once the function matches. If it does not match yet, say so
 and explain what is left.
 
 ## Conventions
+
+### Source language
+
+Read [the source-language policy](docs/language-policy.md) before creating a
+game-code translation unit.
+
+Sonic Heroes' own game code is C++ by default. New game-owned translation units
+use `.cpp` and compile as C++. A new `.c` file is accepted only for a reviewed C
+boundary or known C library and must be added to the explicit policy allowlist.
+The `.c` files that receive `-lang=c++` are either matching legacy paths or an
+explicitly reviewed vendor compatibility exception, not a pattern for new
+work.
+
+A byte match does not prove the source language: a C function and a C++ method
+can produce the same instructions after names are resolved by the linker. An
+unmangled function can also be an `extern "C"` entry point in a C++ unit. Use
+mangled symbols, vtables, constructors/destructors, known library source and
+correlated cross-platform symbols as language evidence. Mark uncertainty rather
+than silently choosing C. The optional local PS2-symbol procedure and its
+publication limits are documented in
+[the source-language policy](docs/language-policy.md#optional-ps2-symbol-workflow).
+
+Do not apply `-inline deferred` globally. It changes inlining and function
+emission order. A deferred override needs the source-order evidence and
+before/after objdiff required by the language policy.
+
+Run `python tools/check_language_policy.py` after `python configure.py`. The
+commit hook also refuses newly added game-owned `.c` files that have no reviewed
+C classification.
+
+The hook protects only clones where `core.hooksPath` is enabled. The repository
+therefore also protects `main`: changes require a pull request, resolved review
+conversations and the `build (G9SE8P)` status check. While the repository has
+only one maintainer, it requires zero approving reviews so that the pull-request
+author can merge after CI; raise this to one when another trusted collaborator
+can review. The rules include administrators, and force pushes and branch
+deletion are disabled. A pull-request branch does not need to be updated with
+the latest `main` before merging, so frequent parallel commits do not create a
+mandatory rebase loop. Do not push game-code changes directly to `main`.
+
+Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
+migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
+boundary whose C++ compiler mode is required for matching; do not rename it
+unless stronger source evidence changes that classification. A path in
+`protected_cpp_c_sources` has direct C++ evidence but temporarily remains C
+because another contributor owns an active change in that area. It is
+migration debt, not permission to edit the path and not an exception for new
+C files. Coordinate with the active owner before moving it to `.cpp`.
+Before renaming one, record the translation-unit classification. Use correlated
+PS2 symbol metadata when a counterpart exists, then rename it to `.cpp`, update
+the build and split paths, remove only the redundant language override, and
+prove that the GameCube object is unchanged. If the PS2 build has no
+corresponding unit, use other direct C++ evidence and say why. Do not infer C
+merely because a PS2 counterpart was not found. Likewise, do not treat a
+per-function `extab` entry as proof of an original file boundary; it proves the
+function range only.
 
 Assembly normally goes inline, in a `.c` file, as an `asm` block. A standalone
 `.s` is allowed if you wrote it, and the pre-commit hook only refuses assembly
@@ -111,6 +168,11 @@ Review is about correctness and matching, not personal style preferences.
 
 Every function has to be verified in objdiff before it goes in. Progress numbers
 are only worth something if they can be trusted.
+
+For a language, linkage or inline change, fill in the evidence section of the
+pull-request template. State which platform or known library supplied the names
+and types, show the before/after objdiff, and keep a mechanical language change
+separate from a semantic class reconstruction whenever practical.
 
 ## AI assistance
 

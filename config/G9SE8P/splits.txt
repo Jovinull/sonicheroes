@@ -13,7 +13,7 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:8
 
-game/heap.c:
+game/heap.cpp:
 	extab       start:0x80005710 end:0x80005748
 	extabindex  start:0x8000BC98 end:0x8000BCEC
 	.text       start:0x8001234C end:0x80012C08
@@ -25,22 +25,22 @@ game/main.c:
 	.text       start:0x80012C08 end:0x80012E5C
 	.bss        start:0x8029BBC0 end:0x8029BBD0
 
-game/object_dispatch.c:
+game/object_dispatch.cpp:
 	extab       start:0x80005768 end:0x80005770
 	extabindex  start:0x8000BD1C end:0x8000BD28
 	.text       start:0x80012E5C end:0x80012EA0
 
-game/path.c:
+game/path.cpp:
 	extab       start:0x80005770 end:0x80005778
 	extabindex  start:0x8000BD28 end:0x8000BD34
 	.text       start:0x80012EA0 end:0x80012FC8
 
-game/time.c:
+game/time.cpp:
 	extab       start:0x80005778 end:0x80005780
 	extabindex  start:0x8000BD34 end:0x8000BD40
 	.text       start:0x80012FC8 end:0x80013010
 
-game/task_create.c:
+game/task_create.cpp:
 	extab       start:0x80005780 end:0x80005788
 	extabindex  start:0x8000BD40 end:0x8000BD4C
 	.text       start:0x80013010 end:0x80013038

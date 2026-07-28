@@ -15,7 +15,10 @@
 //
 //   The functions are declared in reverse address order under
 //   `#pragma force_active on`. Written in address order the compiler emits
-//   them in the other order and nothing lines up.
+//   them in the other order and nothing lines up. This unit's reviewed
+//   `-inline deferred` override is also required: without it CodeWarrior emits
+//   this reverse declaration order; with it, emission matches the original
+//   address order at 0x80013398, 0x800133A0, 0x800133A8 and 0x800133C8.
 //
 //   fn_800133A8 is written as `>=`, not `<`. CodeWarrior turns the unsigned
 //   compare into the branchless Hacker's Delight sequence, and the operands

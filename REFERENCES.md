@@ -28,23 +28,30 @@ https://github.com/igorseabra4/HeroesPowerPlant
 Supports PC, GC, Xbox, PS2. Uses:
 https://github.com/igorseabra4/RenderWareFile (RenderWare binary chunk format)
 
-**The real, complete RenderWare 3.5 SDK (PS2)**
-https://github.com/sigmaco/rwsdk-v3.5-ps2
-Full core headers (`rwcore.h`, `rpworld.h`), tools, examples, API reference.
-The core `Rw*`/`Rp*` API is platform-agnostic; only the low-level PS2 driver
-isn't. No GameCube driver in this particular package.
+**RenderWare API research**
+Use public documentation and clean-room implementations for API and file-format
+context. Do not add or link unauthorized proprietary SDK archives. If you are
+legally entitled to inspect non-public documentation, keep it local and record
+only the minimum independently verified symbolic fact needed for review.
 
 **RenderWare clean-room reimplementation (file format reference only)**
 https://github.com/aap/librw
 No GameCube backend. Useful for DFF/TXD file format reference, not a GC
 shortcut.
 
-**PS2 prototype background (debug symbols reportedly present)**
+**PS2 symbol research background**
 https://sewer56.dev/games/sonic-heroes.html
-https://hiddenpalace.org/Sonic_Heroes_(Sep_28,_2003_prototype)
-Disc serial: "SONIC PS2 1544, 2 OCT 2003, EXPORT" (PAL). Download was dead as
-of the last check. Sewer56's site independently confirms this build has
-debug symbols useful for modding.
+https://github.com/Jovinull/sonicheroes/discussions/107
+These are background references for the existence and usefulness of
+cross-platform symbols. They are not download instructions. Use only material
+you are legally entitled to inspect, locally; never add a PS2 executable or a
+complete proprietary symbol dump to this repository.
+
+**PS2 static-analysis tooling (local inputs only)**
+https://github.com/ran-j/PS2Recomp
+Can parse a locally supplied PS2 ELF and export function/symbol metadata. Its
+generated C++ is a literal MIPS recompilation, not evidence that the original
+source was C++, and it does not replace GameCube objdiff.
 
 **Asset formats (not code, but useful context)**
 https://github.com/Heroes-Hacking-Central/HeroesONE-R (`.ONE` archives)

@@ -4,7 +4,7 @@
 //
 // The claim is .text 0x494 to 0x548 and the .ctors word that names it. Only the
 // record is taken: the factory it points at is still assembly, for the reason
-// written up in rel/sample2_object.c.
+// written up in rel/sample2_object.cpp.
 //
 // The run is the same in all thirteen stage modules that share the engine core.
 // stage40D is a different revision of the source and is left out.
@@ -14,7 +14,7 @@
 // costs one of those two instructions, so the field is unsigned.
 //
 // "fc" is the field type string, a float and a byte. The three hooks are the
-// empty ones from rel/sample1_object.c: this class loads nothing.
+// empty ones from rel/sample1_object.cpp: this class loads nothing.
 
 typedef struct ObjectEntry {
 	const char* name;        // 0x00

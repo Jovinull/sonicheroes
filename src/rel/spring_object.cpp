@@ -10,7 +10,7 @@
 // constants and the table are read here and nowhere else in the module, which
 // is what makes the run cuttable on its own. Exec, the constructor and the
 // destructor are still assembly, and so is the clamp at 0x16CC, which sits far
-// enough away to be its own island in rel/spring_clamp.c.
+// enough away to be its own island in rel/spring_clamp.cpp.
 //
 // Disp tints the spring: it recomputes a colour once per tick and writes it
 // into the material the module keeps a pointer to, 192 plus 63 times a wave, so

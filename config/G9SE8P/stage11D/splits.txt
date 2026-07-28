@@ -9,264 +9,264 @@ Sections:
 rel/prolog.c:
 	.text       start:0x00000000 end:0x000000D8
 
-rel/sample1_object.c:
+rel/sample1_object.cpp:
 	.text       start:0x000000D8 end:0x000003E0
 	.rodata     start:0x00000000 end:0x00000018
 
-rel/sample1_register.c:
+rel/sample1_register.cpp:
 	.text       start:0x00000494 end:0x00000548
 	.ctors      start:0x00000000 end:0x00000004
 
-rel/obj_base_stubs.c:
+rel/obj_base_stubs.cpp:
 	.text       start:0x00000550 end:0x00000564
 
-rel/sample2_object.c:
+rel/sample2_object.cpp:
 	.text       start:0x00000564 end:0x00000740
 
-rel/sample2_register.c:
+rel/sample2_register.cpp:
 	.text       start:0x00000804 end:0x0000088C
 	.ctors      start:0x00000004 end:0x00000008
 
-rel/spring_object.c:
+rel/spring_object.cpp:
 	.text       start:0x0000088C end:0x00000C70
 	.rodata     start:0x00000028 end:0x0000003C
 	.data       start:0x00000300 end:0x0000036C
 
-rel/spring_dtor.c:
+rel/spring_dtor.cpp:
 	.text       start:0x00001430 end:0x00001500
 
-rel/spring_ctor.c:
+rel/spring_ctor.cpp:
 	.text       start:0x00001500 end:0x000016CC
 
-rel/spring_clamp.c:
+rel/spring_clamp.cpp:
 	.text       start:0x000016CC end:0x00001734
 	.rodata     start:0x00000048 end:0x00000050
 
-rel/spring_assets.c:
+rel/spring_assets.cpp:
 	.text       start:0x00001734 end:0x0000189C
 	.ctors      start:0x00000008 end:0x0000000C
 
-rel/tri_spring_reset.c:
+rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
 
-rel/tri_spring_unload.c:
+rel/tri_spring_unload.cpp:
 	.text       start:0x00002CD0 end:0x00002D20
 
-rel/tri_spring_load.c:
+rel/tri_spring_load.cpp:
 	.text       start:0x00002D20 end:0x00002ED4
 
-rel/tri_spring_assets.c:
+rel/tri_spring_assets.cpp:
 	.text       start:0x00002ED4 end:0x00002FC8
 	.ctors      start:0x0000000C end:0x00000010
 
-rel/obj_group_query.c:
+rel/obj_group_query.cpp:
 	.text       start:0x00002FD0 end:0x00003170
 
-rel/obj_set_mode.c:
+rel/obj_set_mode.cpp:
 	.text       start:0x00003170 end:0x0000321C
 
-rel/switch_update.c:
+rel/switch_update.cpp:
 	.text       start:0x0000321C end:0x00003940
 
-rel/switch_direction.c:
+rel/switch_direction.cpp:
 	.text       start:0x00003940 end:0x00003A44
 
-rel/switch_nearby.c:
+rel/switch_nearby.cpp:
 	.text       start:0x000042B8 end:0x00004398
 
-rel/obj_reset_draw.c:
+rel/obj_reset_draw.cpp:
 	.text       start:0x00004398 end:0x000043D8
 
-rel/switch_transform.c:
+rel/switch_transform.cpp:
 	.text       start:0x000043D8 end:0x00004580
 
-rel/switch_dtor.c:
+rel/switch_dtor.cpp:
 	.text       start:0x00004580 end:0x00004650
 
-rel/switch_object.c:
+rel/switch_object.cpp:
 	.text       start:0x00004B44 end:0x00004C4C
 
-rel/switch_assets.c:
+rel/switch_assets.cpp:
 	.text       start:0x00004E50 end:0x00004F48
 	.ctors      start:0x00000010 end:0x00000014
 
-rel/switch_hooks.c:
+rel/switch_hooks.cpp:
 	.text       start:0x00004F50 end:0x00004F54
 
-rel/obj_transform.c:
+rel/obj_transform.cpp:
 	.text       start:0x00005984 end:0x00005A34
 
-rel/set_collision_object.c:
+rel/set_collision_object.cpp:
 	.text       start:0x00005F4C end:0x0000616C
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000E8 end:0x000000F0
 
-rel/set_collision_hooks.c:
+rel/set_collision_hooks.cpp:
 	.text       start:0x00006174 end:0x00006178
 
-rel/obj_release_models.c:
+rel/obj_release_models.cpp:
 	.text       start:0x00006E78 end:0x00006EFC
 
-rel/ironball_register.c:
+rel/ironball_register.cpp:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
 
-rel/obj_box_trigger.c:
+rel/obj_box_trigger.cpp:
 	.text       start:0x00007770 end:0x00007AF0
 	.rodata     start:0x00000130 end:0x0000014C
 
-rel/obj_apply_transform.c:
+rel/obj_apply_transform.cpp:
 	.text       start:0x00007E20 end:0x00007EB0
 
-rel/dashpanel_object.c:
+rel/dashpanel_object.cpp:
 	.text       start:0x000081C0 end:0x00008314
 	.rodata     start:0x00000160 end:0x00000168
 
-rel/dashpanel_assets.c:
+rel/dashpanel_assets.cpp:
 	.text       start:0x00008578 end:0x00008620
 	.ctors      start:0x0000001C end:0x00000020
 
-rel/dashpanel_hooks.c:
+rel/dashpanel_hooks.cpp:
 	.text       start:0x00008628 end:0x0000862C
 
-rel/scroll_ring_create.c:
+rel/scroll_ring_create.cpp:
 	.text       start:0x00008D68 end:0x00008DB0
 
-rel/scroll_ring_disp.c:
+rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
 
-rel/jump_panel_register.c:
+rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
 
-rel/dash_ring_assets.c:
+rel/dash_ring_assets.cpp:
 	.text       start:0x0000E32C end:0x0000E41C
 	.ctors      start:0x00000028 end:0x0000002C
 
-rel/checkpoint_register.c:
+rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
 
-rel/reel_assets.c:
+rel/reel_assets.cpp:
 	.text       start:0x00012128 end:0x00012218
 	.ctors      start:0x00000030 end:0x00000034
 
-rel/wood_container_register.c:
+rel/wood_container_register.cpp:
 	.text       start:0x000140F0 end:0x00014198
 	.ctors      start:0x00000034 end:0x00000038
 
-rel/iron_container_register.c:
+rel/iron_container_register.cpp:
 	.text       start:0x000146DC end:0x00014784
 	.ctors      start:0x00000038 end:0x0000003C
 
-rel/unbreakable_container_register.c:
+rel/unbreakable_container_register.cpp:
 	.text       start:0x00014C9C end:0x00014D44
 	.ctors      start:0x0000003C end:0x00000040
 
-rel/cannon_register.c:
+rel/cannon_register.cpp:
 	.text       start:0x0001A9B4 end:0x0001AA64
 	.ctors      start:0x00000040 end:0x00000044
 
-rel/laser_fence_assets.c:
+rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
-rel/big_rings_assets.c:
+rel/big_rings_assets.cpp:
 	.text       start:0x0001F090 end:0x0001F180
 	.ctors      start:0x00000048 end:0x0000004C
 
-rel/cage_assets.c:
+rel/cage_assets.cpp:
 	.text       start:0x00021C44 end:0x00021D34
 	.ctors      start:0x0000004C end:0x00000050
 
-rel/target_assets.c:
+rel/target_assets.cpp:
 	.text       start:0x000240DC end:0x000241CC
 	.ctors      start:0x00000050 end:0x00000054
 
-rel/fan_assets.c:
+rel/fan_assets.cpp:
 	.text       start:0x00025810 end:0x00025900
 	.ctors      start:0x00000054 end:0x00000058
 
-rel/weight_register.c:
+rel/weight_register.cpp:
 	.text       start:0x00028C34 end:0x00028CDC
 	.ctors      start:0x00000058 end:0x0000005C
 
-rel/breakable_weight_register.c:
+rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
-rel/pawn_assets.c:
+rel/pawn_assets.cpp:
 	.text       start:0x00033C98 end:0x00033D88
 	.ctors      start:0x00000060 end:0x00000064
 
-rel/item_box_assets.c:
+rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
 
-rel/pole_assets.c:
+rel/pole_assets.cpp:
 	.text       start:0x0003FF74 end:0x00040064
 	.ctors      start:0x0000006C end:0x00000070
 
-rel/case_assets.c:
+rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0
 	.ctors      start:0x00000074 end:0x00000078
 
-rel/roll_door_assets.c:
+rel/roll_door_assets.cpp:
 	.text       start:0x00044118 end:0x00044208
 	.ctors      start:0x00000078 end:0x0000007C
 
-rel/lens_flare_register.c:
+rel/lens_flare_register.cpp:
 	.text       start:0x00045A10 end:0x00045AB8
 	.ctors      start:0x0000007C end:0x00000080
 
-rel/signal_assets.c:
+rel/signal_assets.cpp:
 	.text       start:0x00046B24 end:0x00046C14
 	.ctors      start:0x00000080 end:0x00000084
 
-rel/propeller_register.c:
+rel/propeller_register.cpp:
 	.text       start:0x00049590 end:0x00049630
 	.ctors      start:0x00000084 end:0x00000088
 
-rel/goal_ring_register.c:
+rel/goal_ring_register.cpp:
 	.text       start:0x0004D584 end:0x0004D62C
 	.ctors      start:0x0000008C end:0x00000090
 
-rel/system_object1_object.c:
+rel/system_object1_object.cpp:
 	.text       start:0x0004D634 end:0x0004D78C
 
-rel/system_object1_register.c:
+rel/system_object1_register.cpp:
 	.text       start:0x0004D818 end:0x0004D8BC
 	.ctors      start:0x00000090 end:0x00000094
 
-rel/system_object2_object.c:
+rel/system_object2_object.cpp:
 	.text       start:0x0004D8BC end:0x0004DA3C
 
-rel/system_object2_register.c:
+rel/system_object2_register.cpp:
 	.text       start:0x0004DAC8 end:0x0004DB6C
 	.ctors      start:0x00000094 end:0x00000098
 
-rel/system_object3_object.c:
+rel/system_object3_object.cpp:
 	.text       start:0x0004DB6C end:0x0004DCEC
 
-rel/system_object3_register.c:
+rel/system_object3_register.cpp:
 	.text       start:0x0004DD78 end:0x0004DE1C
 	.ctors      start:0x00000098 end:0x0000009C
 
-rel/system_object4_object.c:
+rel/system_object4_object.cpp:
 	.text       start:0x0004DE1C end:0x0004DF74
 
-rel/system_object4_register.c:
+rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
-rel/light_collision_register.c:
+rel/light_collision_register.cpp:
 	.text       start:0x0004F2E4 end:0x0004F37C
 	.ctors      start:0x000000A0 end:0x000000A4
 
-rel/invoke_collision_register.c:
+rel/invoke_collision_register.cpp:
 	.text       start:0x0004FBFC end:0x0004FC90
 	.ctors      start:0x000000A4 end:0x000000A8
 
-rel/push_pull_switch_register.c:
+rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC

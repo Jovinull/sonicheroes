@@ -9,128 +9,128 @@ Sections:
 rel/prolog.c:
 	.text       start:0x00000000 end:0x000000D8
 
-rel/sample1_object.c:
+rel/sample1_object.cpp:
 	.text       start:0x000000D8 end:0x000003E0
 	.rodata     start:0x00000010 end:0x00000028
 
-rel/sample1_register.c:
+rel/sample1_register.cpp:
 	.text       start:0x00000494 end:0x00000548
 	.ctors      start:0x00000000 end:0x00000004
 
-rel/obj_base_stubs.c:
+rel/obj_base_stubs.cpp:
 	.text       start:0x00000550 end:0x00000564
 
-rel/sample2_object.c:
+rel/sample2_object.cpp:
 	.text       start:0x00000564 end:0x00000740
 
-rel/sample2_register.c:
+rel/sample2_register.cpp:
 	.text       start:0x00000804 end:0x0000088C
 	.ctors      start:0x00000004 end:0x00000008
 
-rel/spring_object.c:
+rel/spring_object.cpp:
 	.text       start:0x0000088C end:0x00000C70
 	.rodata     start:0x00000038 end:0x0000004C
 	.data       start:0x00000390 end:0x000003FC
 
-rel/spring_dtor.c:
+rel/spring_dtor.cpp:
 	.text       start:0x00001430 end:0x00001500
 
-rel/spring_ctor.c:
+rel/spring_ctor.cpp:
 	.text       start:0x00001500 end:0x000016CC
 
-rel/spring_clamp.c:
+rel/spring_clamp.cpp:
 	.text       start:0x000016CC end:0x00001734
 	.rodata     start:0x00000058 end:0x00000060
 
-rel/spring_assets.c:
+rel/spring_assets.cpp:
 	.text       start:0x00001734 end:0x0000189C
 	.ctors      start:0x00000008 end:0x0000000C
 
-rel/tri_spring_reset.c:
+rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
 
-rel/tri_spring_unload.c:
+rel/tri_spring_unload.cpp:
 	.text       start:0x00002CD0 end:0x00002D20
 
-rel/tri_spring_load.c:
+rel/tri_spring_load.cpp:
 	.text       start:0x00002D20 end:0x00002ED4
 
-rel/tri_spring_assets.c:
+rel/tri_spring_assets.cpp:
 	.text       start:0x00002ED4 end:0x00002FC8
 	.ctors      start:0x0000000C end:0x00000010
 
-rel/obj_group_query.c:
+rel/obj_group_query.cpp:
 	.text       start:0x00002FD0 end:0x00003170
 
-rel/obj_set_mode.c:
+rel/obj_set_mode.cpp:
 	.text       start:0x00003170 end:0x0000321C
 
-rel/switch_update.c:
+rel/switch_update.cpp:
 	.text       start:0x0000321C end:0x00003940
 
-rel/switch_direction.c:
+rel/switch_direction.cpp:
 	.text       start:0x00003940 end:0x00003A44
 
-rel/switch_nearby.c:
+rel/switch_nearby.cpp:
 	.text       start:0x000042B8 end:0x00004398
 
-rel/obj_reset_draw.c:
+rel/obj_reset_draw.cpp:
 	.text       start:0x00004398 end:0x000043D8
 
-rel/switch_transform.c:
+rel/switch_transform.cpp:
 	.text       start:0x000043D8 end:0x00004580
 
-rel/switch_dtor.c:
+rel/switch_dtor.cpp:
 	.text       start:0x00004580 end:0x00004650
 
-rel/switch_object.c:
+rel/switch_object.cpp:
 	.text       start:0x00004B44 end:0x00004C4C
 
-rel/switch_assets.c:
+rel/switch_assets.cpp:
 	.text       start:0x00004E50 end:0x00004F48
 	.ctors      start:0x00000010 end:0x00000014
 
-rel/switch_hooks.c:
+rel/switch_hooks.cpp:
 	.text       start:0x00004F50 end:0x00004F54
 
-rel/obj_transform.c:
+rel/obj_transform.cpp:
 	.text       start:0x00005984 end:0x00005A34
 
-rel/set_collision_object.c:
+rel/set_collision_object.cpp:
 	.text       start:0x00005F4C end:0x0000616C
 	.ctors      start:0x00000014 end:0x00000018
 	.rodata     start:0x000000F8 end:0x00000100
 
-rel/set_collision_hooks.c:
+rel/set_collision_hooks.cpp:
 	.text       start:0x00006174 end:0x00006178
 
-rel/obj_release_models.c:
+rel/obj_release_models.cpp:
 	.text       start:0x00006E78 end:0x00006EFC
 
-rel/ironball_register.c:
+rel/ironball_register.cpp:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
 
-rel/obj_box_trigger.c:
+rel/obj_box_trigger.cpp:
 	.text       start:0x00007770 end:0x00007AF0
 	.rodata     start:0x00000140 end:0x0000015C
 
-rel/obj_apply_transform.c:
+rel/obj_apply_transform.cpp:
 	.text       start:0x00007E20 end:0x00007EB0
 
-rel/dashpanel_object.c:
+rel/dashpanel_object.cpp:
 	.text       start:0x000081C0 end:0x00008314
 	.rodata     start:0x00000170 end:0x00000178
 
-rel/dashpanel_assets.c:
+rel/dashpanel_assets.cpp:
 	.text       start:0x00008578 end:0x00008620
 	.ctors      start:0x0000001C end:0x00000020
 
-rel/dashpanel_hooks.c:
+rel/dashpanel_hooks.cpp:
 	.text       start:0x00008628 end:0x0000862C
 
-rel/scroll_ring_create.c:
+rel/scroll_ring_create.cpp:
 	.text       start:0x00008D68 end:0x00008DB0
 
-rel/scroll_ring_disp.c:
+rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0

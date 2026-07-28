@@ -18,7 +18,7 @@
 // value, and the depth is tested as a range rather than an absolute value.
 //
 // The matrix is built once and kept on the object: three rotations off the same
-// unit axes rel/obj_apply_transform.c uses, then the position, then inverted, so
+// unit axes rel/obj_apply_transform.cpp uses, then the position, then inverted, so
 // that a world position transformed through it lands in the box's own space.
 
 typedef struct Vec3 {

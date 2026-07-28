@@ -3,15 +3,15 @@
 // TObjSystem3, the third of the four system objects every stage module ships.
 // The class name is spelled in the module's own data, at the word the
 // constructor reads: "TObjSystem3". Its registration record is already carved,
-// in rel/system_object3_register.c.
+// in rel/system_object3_register.cpp.
 //
 // The claim is .text 0x4DB6C to 0x4DCEC, the same code at the same address in
-// the same nine stage modules rel/system_object1_object.c claims, and all 96
+// the same nine stage modules rel/system_object1_object.cpp claims, and all 96
 // instructions are identical across those nine once the per module label names
 // are set aside.
 //
-// This is rel/system_object2_object.c function for function, and the argument
-// for the bounds is in rel/system_object1_object.c. The single difference from
+// This is rel/system_object2_object.cpp function for function, and the argument
+// for the bounds is in rel/system_object1_object.cpp. The single difference from
 // the second system object is the engine entry point Load hands the scene
 // pointer to: fn_8005B268 here against fn_8005B2C4 there. Normalising the label
 // names, the two runs are 96 instructions that differ in exactly that one

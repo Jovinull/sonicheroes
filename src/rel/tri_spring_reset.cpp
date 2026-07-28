@@ -1,6 +1,6 @@
 #include "types.h"
 
-// The reset hook of the triple spring, installed by rel/tri_spring_assets.c.
+// The reset hook of the triple spring, installed by rel/tri_spring_assets.cpp.
 // The claim is .text 0x2C9C to 0x2CD0, the same in all thirteen stage modules
 // that share the engine core.
 //

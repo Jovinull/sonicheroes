@@ -1,8 +1,12 @@
 #include "types.h"
 
-// A one-function translation unit from fn_80012EA0 through 0x80012FC8.
-// Its boundary is exact: the function has its own extab entry at 0x80005770
-// and extabindex entry at 0x8000BD28.
+// Reconstruction fragment for fn_80012EA0, whose exact code range ends at
+// 0x80012FC8. Its extab/extabindex entries prove the function range, not an
+// original translation-unit boundary.
+//
+// This is the GameCube counterpart of the RenderWare platform pathname-create
+// callback. The PS2 counterpart retains C linkage inside a C++-compiled
+// platform unit, so this fragment uses C++ with an explicit C ABI.
 
 typedef struct ObjectDispatch {
 	void* (*allocate)(u32);
@@ -18,13 +22,13 @@ typedef struct StringFunctions {
 	u32 (*length)(const s8*);
 } StringFunctions;
 
-extern StringFunctions* lbl_8042C9A4;
-extern ObjectDispatch* fn_801971A4(void);
+extern "C" StringFunctions* lbl_8042C9A4;
+extern "C" ObjectDispatch* fn_801971A4(void);
 
-s8* fn_80012EA0(const s8* path)
+extern "C" s8* fn_80012EA0(const s8* path)
 {
 	s8* normalized = (s8*)(lbl_8042C9A4->length(path) + 1);
-	normalized     = fn_801971A4()->allocate((u32)normalized);
+	normalized     = (s8*)fn_801971A4()->allocate((u32)normalized);
 
 	if (normalized != NULL) {
 		s8* separator;
