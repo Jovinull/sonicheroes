@@ -314,6 +314,37 @@ Migration must be coordinated with each owner, reviewed against the final
 class layout and accepted only after the GameCube object diffs and all 18
 artifact hashes remain exact.
 
+### Protected integration plan
+
+The 42 remaining `legacy_cpp_c_sources` already compile as C++. Cross-platform
+metadata additionally retains the C++ unit markers `adv_overlay.cpp` and
+`as_overlay.cpp`, plus the `TAutoSave`, `ADV_WINDOW`, `ADV_MENU`, `TAS_EMBLEM`,
+`TAS_CONG` and `TAS_SAVE` class families. This establishes the module language,
+but not every original GameCube translation-unit boundary: many current paths
+are artificial matching fragments.
+
+Complete the protected migration in this order:
+
+1. Integrate the reconstructed logical AutoSaveD units from PR #116 after its
+   language flags, target diffs and header provenance pass review. Remove every
+   absorbed path from the two debt lists in the same change.
+2. Re-audit the remaining AutoSaveD list after that integration. Rename only
+   fragments that remain independent; merge fragments only where class, data
+   and ordering evidence establishes one logical unit.
+3. Repeat the same process for `advertiseD` after its active local branch is
+   published and coordinated. Do not pre-rename paths that the owner may have
+   merged or reconstructed.
+
+Each completed batch must leave no stale policy entry, no `.c` path compiled as
+C++ outside a reviewed vendor exception, and no newly introduced C-mode game
+source. The final checkpoint is an empty `legacy_cpp_c_sources`,
+`protected_cpp_c_sources` and `pending_c_evidence`, together with a clean
+language-policy check and all 18 artifact hashes exact.
+
+Until those owners coordinate integration, the checker permits this debt only
+under `advertiseD/` and `autosaveD/`. A legacy C++/`.c` entry anywhere else is
+a policy error.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.

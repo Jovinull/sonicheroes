@@ -67,6 +67,10 @@ def load_policy(path: Path) -> dict[str, Any]:
                 f"{path}: protected C++/C-mode debt is outside a protected area: {source}"
             )
 
+    for source in policy["legacy_cpp_c_sources"]:
+        if not source.startswith(PROTECTED_PREFIXES):
+            raise ValueError(f"{path}: legacy C++/.c debt is outside a protected area: {source}")
+
     return policy
 
 
