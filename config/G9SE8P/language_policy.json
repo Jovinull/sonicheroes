@@ -72,5 +72,7 @@
     "autosaveD/window_frame.c",
     "autosaveD/window_lifecycle.c"
   ],
-  "deferred_sources": []
+  "deferred_sources": [
+    "game/state_accessor.cpp"
+  ]
 }

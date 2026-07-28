@@ -272,7 +272,29 @@ After the GameCube platform-main decision:
 - no C-compiled game source still awaits a language decision;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- no source is approved for `-inline deferred`.
+- one source, `game/state_accessor.cpp`, has a reviewed `-inline deferred`
+  override.
+
+### Reviewed inline exception
+
+`game/state_accessor.cpp` keeps its object-level `-inline deferred` override.
+The disc supplies no map, DWARF or named symbols that establish a natural
+source order for these anonymous accessors; that absence is recorded rather
+than inferred away. The controlled source permutation declares the four
+forced-active functions in reverse address order.
+With ordinary `-inline auto`, CodeWarrior emits that declaration order:
+`fn_800133C8`, `fn_800133A8`, `fn_800133A0`, `fn_80013398`. With the deferred
+override, it emits the original GameCube address order:
+`fn_80013398`, `fn_800133A0`, `fn_800133A8`, `fn_800133C8`. The latter matches
+the target `.text` exactly, including the branchless comparison in
+`fn_800133A8`; the ordinary mode does not. The target and both candidates have
+no relocations, so there is no hidden relocation tradeoff.
+
+The same controlled comparison was performed for `game/dvd_status.cpp`.
+Removing its deferred override preserved the function instructions, jump-table
+contents and relocation targets. Only compiler-generated local symbol numbers
+changed, which do not affect the linked result. The redundant override was
+therefore removed rather than allowlisted.
 
 ### Protected C++ migration debt
 
