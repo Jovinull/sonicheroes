@@ -45,8 +45,14 @@ jobs:
 
     - name: Build
       run: |
+        # Cached DTK output is timestamp-based. Force the split inputs newer so
+        # new or renamed translation units cannot be omitted by a stale
+        # build/${{ matrix.version }}/config.json restored from another SHA.
+        touch config/${{ matrix.version }}/config.yml \
+            config/${{ matrix.version }}/splits.txt
         python configure.py --map --version ${{ matrix.version }} \
             --binutils /binutils --compilers /compilers
+        ninja build/${{ matrix.version }}/config.json
         python tools/check_language_policy.py
         ninja all_source progress build/${{ matrix.version }}/report.json
 
