@@ -260,6 +260,33 @@ Evidence and validation:
 - the reviewed C form keeps all 18 configured artifact hashes exact without a
   deferred-inline override or register-forcing workaround.
 
+### Game-owned main loop
+
+Added `game/main/main.cpp`, corresponding to the original game-owned
+`main.cpp` rather than the unrelated GameCube platform entry point above.
+The extra directory prevents the two basenames from resolving to the same
+build object.
+
+Language evidence:
+
+- local PS2 beta DWARF identifies the correlated unit as `main.cpp`;
+- the same metadata identifies `MAIN::Init()` and signed
+  `MAIN::Loop()` methods and the local `MOBJECT_RETURN` enum;
+- the GameCube functions reproduce those method relationships and call the
+  neighboring `TMainTask` class constructor.
+
+Validation:
+
+- all three functions, exception records, relocations, strings, jump table,
+  small data and small BSS match the GameCube target;
+- CodeWarrior's four writable-string definitions use staging names so their
+  declaration order remains original without triggering a local-address-base
+  optimization absent from the target; a post-compile symbol-only rename
+  restores the retail labels;
+- the complete build relinked the DOL and all modules;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts and the DOL
+  retained SHA-1 `9214426b8a3fb1d6fe3dcff09bcc1a959e1e04a8`.
+
 ## Remaining queue
 
 After the GameCube platform-main decision:

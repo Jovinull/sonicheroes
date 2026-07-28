@@ -7,6 +7,8 @@ This file records active ownership so parallel decompilation work does not overl
 | Claude Code | GX graphics library | Active; reserved |
 | Codex | `game/skyfs_adx.c` (`0x80013038`–`0x80014154`) | Complete; `pr-skyfs-adx` |
 | Codex | `game/Peripheral.cpp` (`0x80014154`–`0x80015AC0`) | Complete; `pr-peripheral` (stacked on `pr-skyfs-adx`) |
+| Codex | `game/main.cpp` (`0x80015AC0`–`0x80016514`) | Complete; `pr-game-main-cpp` |
+| Codex agents | `game/Task.cpp` (`0x80016514`–`0x80018AB0`) | Active in scratch; branch after `main.cpp` |
 
 The unified `advertiseD` reconstruction is complete on `pr-advertised`; do not
 open the superseded per-function or per-file advertise branches.
@@ -20,3 +22,15 @@ and `dlfs.c` splits.  The PS2 beta DWARF proves those ranges are one original
 `Peripheral.cpp` boundary and evidence-backed controller/demo names. It is
 temporarily based on `pr-skyfs-adx` because the preceding TU owns the
 `lbl_8042C0DC` small-data symbol required by the retail link.
+
+`pr-game-main-cpp` reconstructs all three functions and every owned section.
+The PS2 beta DWARF positively identifies the original source as C++, and the
+following `Task.cpp` method order fixes the end of `main.cpp` at
+`TMainTask::Reset` (`0x80016514`). The complete object and all 18 linked
+artifacts are exact.
+
+The complete `Task.cpp` end is independently fixed at `0x80018AB0`: its
+`TObject` vtable references functions through `0x80018A34`, while the next
+retail functions correlate by PS2 order and size with the following texture
+translation unit. Ten `Task.cpp` methods are already byte-perfect in isolated
+C++ scratch and are being held for that file's branch.

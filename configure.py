@@ -500,6 +500,11 @@ config.libs = [
                 "game/Peripheral.cpp",
                 extra_cflags=["-lang=c++", "-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/main/main.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
@@ -1251,6 +1256,11 @@ config.custom_build_rules = [
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
     },
+    {
+        "name": "fix_game_main_symbols",
+        "command": f"$python tools/fix_game_main_symbols.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX main.cpp symbols",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -1259,6 +1269,12 @@ config.custom_build_steps = {
             "rule": "fix_sud_symbols",
             "inputs": "build/G9SE8P/src/movieD/cri/sud.o",
             "implicit": ["tools/fix_sud_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-main-symbols.stamp",
+            "rule": "fix_game_main_symbols",
+            "inputs": "build/G9SE8P/src/game/main/main.o",
+            "implicit": ["tools/fix_game_main_symbols.py", str(binutils_dir)],
         },
     ],
 }
