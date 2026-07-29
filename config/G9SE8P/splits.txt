@@ -76,6 +76,15 @@ game/main/main.cpp:
 	.sdata      start:0x8042AD90 end:0x8042AD98
 	.sbss       start:0x8042C0F0 end:0x8042C0F8
 
+game/Task.cpp:
+	extab       start:0x80005850 end:0x80005908
+	extabindex  start:0x8000BE60 end:0x8000BF5C
+	.text       start:0x80016514 end:0x800189A4
+	.ctors      start:0x802398C4 end:0x802398C8
+	.data       start:0x80240A90 end:0x80240B10
+	.sdata      start:0x8042AD98 end:0x8042AE20
+	.sbss       start:0x8042C0F8 end:0x8042C150
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

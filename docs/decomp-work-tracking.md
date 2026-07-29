@@ -8,7 +8,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex | `game/skyfs_adx.c` (`0x80013038`–`0x80014154`) | Complete; `pr-skyfs-adx` |
 | Codex | `game/Peripheral.cpp` (`0x80014154`–`0x80015AC0`) | Complete; `pr-peripheral` (stacked on `pr-skyfs-adx`) |
 | Codex | `game/main.cpp` (`0x80015AC0`–`0x80016514`) | Complete; `pr-game-main-cpp` |
-| Codex agents | `game/Task.cpp` (`0x80016514`–`0x80018AB0`) | Active in scratch; branch after `main.cpp` |
+| Codex agents | `game/Task.cpp` (`0x80016514`–`0x800189A4`) | Complete; `pr-game-task-cpp` |
 
 The unified `advertiseD` reconstruction is complete on `pr-advertised`; do not
 open the superseded per-function or per-file advertise branches.
@@ -29,8 +29,9 @@ following `Task.cpp` method order fixes the end of `main.cpp` at
 `TMainTask::Reset` (`0x80016514`). The complete object and all 18 linked
 artifacts are exact.
 
-The complete `Task.cpp` end is independently fixed at `0x80018AB0`: its
-`TObject` vtable references functions through `0x80018A34`, while the next
-retail functions correlate by PS2 order and size with the following texture
-translation unit. Ten `Task.cpp` methods are already byte-perfect in isolated
-C++ scratch and are being held for that file's branch.
+The complete `Task.cpp` end is fixed at `0x800189A4`: PS2 beta DWARF places
+`THeapCtrl::Free` and every following heap method in `Memory.cpp`. All 34
+`Task.cpp` functions and every owned section are byte-perfect.
+The source retains the C++ classes, virtual tables, global constructor, and
+exception metadata identified by the PS2 beta DWARF and independently
+correlated against the GameCube object.

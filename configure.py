@@ -505,6 +505,11 @@ config.libs = [
                 "game/main/main.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/Task.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
@@ -1261,6 +1266,11 @@ config.custom_build_rules = [
         "command": f"$python tools/fix_game_main_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX main.cpp symbols",
     },
+    {
+        "name": "fix_game_task_object",
+        "command": f"$python tools/fix_game_task_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX Task.cpp object layout",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -1275,6 +1285,12 @@ config.custom_build_steps = {
             "rule": "fix_game_main_symbols",
             "inputs": "build/G9SE8P/src/game/main/main.o",
             "implicit": ["tools/fix_game_main_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-task-object.stamp",
+            "rule": "fix_game_task_object",
+            "inputs": "build/G9SE8P/src/game/Task.o",
+            "implicit": ["tools/fix_game_task_object.py", str(binutils_dir)],
         },
     ],
 }

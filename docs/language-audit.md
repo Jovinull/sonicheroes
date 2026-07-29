@@ -484,3 +484,24 @@ sources may not use this exception as an escape hatch.
 
 Update this file after every migration batch. A path leaves the queue only
 after its configured command, GameCube objdiff and final artifact hashes pass.
+
+### Game Task translation unit
+
+`game/Task.cpp` is reconstructed as C++.
+
+Evidence and rationale:
+
+- PS2 beta DWARF positively identifies the original translation unit as
+  `Task.cpp` and supplies the `TMainTask`, `TObject`, heap, task-list, and sleep
+  flag names;
+- the GameCube virtual-table order, constructor record, exception tables, and
+  mangled member symbols independently establish C++ classes and linkage;
+- the retail GameCube object and the following PS2 `Memory.cpp` method order fix
+  the boundary at `0x80016514`–`0x800189A4`;
+- all 34 functions and every owned section match byte-for-byte in objdiff.
+
+CodeWarrior must see mutually recursive inline and destructor bodies before
+their retail call sites, but then emits their out-of-line copies in dependency
+order. The post-compile normalizer moves those already-matching function and
+exception-record units into the retail order and restores split symbol names;
+it does not synthesize or alter instructions.
