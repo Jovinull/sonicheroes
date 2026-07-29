@@ -100,7 +100,7 @@ typedef struct SaveState {
 
 typedef void (*VtEntry)(void);
 
-extern "C" Screen lbl_8029BB80;
+extern "C" Screen RsGlobal;
 extern "C" void* lbl_8042C388;
 extern "C" void** lbl_8042C9A4;
 extern "C" u8 lbl_80303EC8[];
@@ -220,8 +220,8 @@ extern "C" void fn_2_1454(Emblem* emblem)
 	half  = 0.5f;
 	width = scale * width;
 
-	emblem->x = lbl_8029BB80.width * half - width * half;
-	emblem->y = 5.0f * lbl_8029BB80.height / 6.0f - 24.0f * scale * half;
+	emblem->x = RsGlobal.width * half - width * half;
+	emblem->y = 5.0f * RsGlobal.height / 6.0f - 24.0f * scale * half;
 }
 
 extern "C" void fn_2_16C0(Emblem* emblem)
