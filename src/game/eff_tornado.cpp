@@ -665,8 +665,9 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
-			f32 sine   = fn_800D7B00(angle + angleOffsets[tableIndex]);
-			f32 cosine = one - fn_800D7AE4(angle + angleOffsets[tableIndex]);
+			s32 angleByteOffset = tableIndex * sizeof(s32);
+			f32 sine            = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
+			f32 cosine = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
 			fn_8019E880(frame);
 			RwV3d position = effect->position;
@@ -702,8 +703,9 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
-			f32 sine   = fn_800D7B00(angle + angleOffsets[tableIndex]);
-			f32 cosine = one - fn_800D7AE4(angle + angleOffsets[tableIndex]);
+			s32 angleByteOffset = tableIndex * sizeof(s32);
+			f32 sine            = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
+			f32 cosine = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
 			RwV3d position = effect->position;
 			position.y += height;
@@ -737,8 +739,9 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
-			f32 sine   = fn_800D7B00(angle + angleOffsets[tableIndex]);
-			f32 cosine = one - fn_800D7AE4(angle + angleOffsets[tableIndex]);
+			s32 angleByteOffset = tableIndex * sizeof(s32);
+			f32 sine            = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
+			f32 cosine = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
 			RwV3d position = effect->position;
 			position.y += height;
