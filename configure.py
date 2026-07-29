@@ -664,6 +664,11 @@ config.libs = [
                 "game/voice_sequence.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/obj_set_damage_collision.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(

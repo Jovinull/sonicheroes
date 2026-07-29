@@ -239,6 +239,12 @@ game/voice_sequence.cpp:
 	.text       start:0x80138664 end:0x80138ECC
 	.data       start:0x8028C964 end:0x8028CA70
 
+game/obj_set_damage_collision.cpp:
+	extab       start:0x8000A794 end:0x8000A79C
+	extabindex  start:0x80010870 end:0x8001087C
+	.text       start:0x80113038 end:0x80113090
+	.sbss       start:0x8042C640 end:0x8042C648
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
