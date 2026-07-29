@@ -35,7 +35,7 @@ struct Selector {
 
 extern u8 lbl_803E8150[];
 extern u8 lbl_80303EC8[];
-extern GlobalState lbl_8029BB80;
+extern GlobalState RsGlobal;
 extern const f32 lbl_2_rodata_348;
 
 extern "C" void fn_8012FF6C(void* resource);
@@ -71,8 +71,8 @@ extern "C" void fn_2_4004(AutosaveState* state)
 	state->unk_0x24  = lbl_2_rodata_348;
 	state->unk_0x28  = 0;
 	state->unk_0x2C  = 0;
-	state->tick_high = lbl_8029BB80.tick_high;
-	state->tick_low  = lbl_8029BB80.tick_low;
+	state->tick_high = RsGlobal.tick_high;
+	state->tick_low  = RsGlobal.tick_low;
 	state->unk_0x38  = 0;
 	state->unk_0x3C = state->unk_0x40 = 1;
 }

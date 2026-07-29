@@ -13,6 +13,14 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:8
 
+game/skeleton.cpp:
+	extab       start:0x800056C0 end:0x80005710
+	extabindex  start:0x8000BC20 end:0x8000BC98
+	.text       start:0x80011C20 end:0x8001234C
+	.data       start:0x80240660 end:0x802406EC
+	.bss        start:0x8029BB80 end:0x8029BBC0
+	.sdata      start:0x8042AD60 end:0x8042AD74
+
 game/heap.cpp:
 	extab       start:0x80005710 end:0x80005748
 	extabindex  start:0x8000BC98 end:0x8000BCEC
@@ -45,18 +53,197 @@ game/task_create.cpp:
 	extabindex  start:0x8000BD40 end:0x8000BD4C
 	.text       start:0x80013010 end:0x80013038
 
-game/state_set.cpp:
-	.text       start:0x80013038 end:0x80013044
-	.sbss       start:0x8042C0D8 end:0x8042C0DC
+game/skyfs_adx.c:
+	extab       start:0x80005788 end:0x800057D8
+	extabindex  start:0x8000BD4C end:0x8000BDC4
+	.text       start:0x80013038 end:0x80014154
+	.data       start:0x802406F0 end:0x802408F8
+	.sdata      start:0x8042AD78 end:0x8042AD7E
+	.sdata      start:0x8042AD7E end:0x8042AD80 skip
+	.sbss       start:0x8042C0C8 end:0x8042C0E0
 
-game/dvd_status.cpp:
-	extab       start:0x80005788 end:0x80005790
-	extabindex  start:0x8000BD4C end:0x8000BD58
-	.text       start:0x80013044 end:0x80013128
-	.data       start:0x802406F0 end:0x80240758
+game/Peripheral.cpp:
+	extab       start:0x800057D8 end:0x80005828
+	extabindex  start:0x8000BDC4 end:0x8000BE3C
+	.text       start:0x80014154 end:0x80015AC0
+	.rodata     start:0x80239940 end:0x80239978
+	.data       start:0x802408F8 end:0x802409C4
+	.data       start:0x802409C4 end:0x802409C8 skip
+	.bss        start:0x8029BBD0 end:0x8029C5A8
+	.sdata      start:0x8042AD80 end:0x8042AD8F
+	.sdata      start:0x8042AD8F end:0x8042AD90 skip
+	.sbss       start:0x8042C0E0 end:0x8042C0E9
+	.sbss       start:0x8042C0E9 end:0x8042C0F0 skip
+	.sdata2     start:0x8042CFD0 end:0x8042CFD8
 
-game/state_accessor.cpp:
-	.text       start:0x80013398 end:0x800133D0
+game/main/main.cpp:
+	extab       start:0x80005828 end:0x80005850
+	extabindex  start:0x8000BE3C end:0x8000BE60
+	.text       start:0x80015AC0 end:0x80016514
+	.data       start:0x802409C8 end:0x80240A90
+	.sdata      start:0x8042AD90 end:0x8042AD98
+	.sbss       start:0x8042C0F0 end:0x8042C0F8
+
+game/Task.cpp:
+	extab       start:0x80005850 end:0x80005908
+	extabindex  start:0x8000BE60 end:0x8000BF5C
+	.text       start:0x80016514 end:0x800189A4
+	.ctors      start:0x802398C4 end:0x802398C8
+	.data       start:0x80240A90 end:0x80240B10
+	.sdata      start:0x8042AD98 end:0x8042AE20
+	.sbss       start:0x8042C0F8 end:0x8042C150
+
+game/Memory.cpp:
+	extab       start:0x80005908 end:0x80005928
+	extabindex  start:0x8000BF5C end:0x8000BF8C
+	.text       start:0x800189A4 end:0x80018C0C
+
+game/action.cpp:
+	extab       start:0x80005928 end:0x80005940
+	extabindex  start:0x8000BF8C end:0x8000BFB0
+	.text       start:0x80018C0C end:0x80019034
+
+game/action_cont1.cpp:
+	extab       start:0x80005940 end:0x80005A90
+	extabindex  start:0x8000BFB0 end:0x8000C118
+	.text       start:0x80019034 end:0x8001D70C
+	.ctors      start:0x802398C8 end:0x802398CC
+
+game/action_cont2.cpp:
+	.text       start:0x8001D70C end:0x8001D718
+
+game/action_cont3.cpp:
+	extab       start:0x80005A90 end:0x80005A98
+	extabindex  start:0x8000C118 end:0x8000C124
+	.text       start:0x8001D718 end:0x8001D754
+
+game/action_cont4.cpp:
+	.text       start:0x8001D754 end:0x8001D764
+
+game/modeswitch.cpp:
+	extab       start:0x80005BA8 end:0x80005BC0
+	extabindex  start:0x8000C2A4 end:0x8000C2C8
+	.text       start:0x8001F4E8 end:0x8001F600
+	.data       start:0x802412C0 end:0x80241308
+	.sbss       start:0x8042C180 end:0x8042C188
+
+game/vibration.cpp:
+	extab       start:0x80005BC0 end:0x80005BF0
+	extabindex  start:0x8000C2C8 end:0x8000C2F8
+	.text       start:0x8001F600 end:0x8001F9F8
+	.data       start:0x80241308 end:0x80241358
+	.sdata2     start:0x8042D038 end:0x8042D048
+
+game/Endian.cpp:
+	.text       start:0x8004BECC end:0x8004C160
+	.ctors      start:0x802398D0 end:0x802398D4
+
+game/dAnim.cpp:
+	extab       start:0x80007B40 end:0x80007B70
+	extabindex  start:0x8000E1AC end:0x8000E1F4
+	.text       start:0x800A7AE0 end:0x800A80DC
+	.ctors      start:0x802398E4 end:0x802398E8
+	.bss        start:0x80303EB8 end:0x80303EC8
+	.sbss       start:0x8042C340 end:0x8042C348
+	.sdata2     start:0x8042DB30 end:0x8042DB44
+
+game/SpAdvStgFailed_bss.cpp:
+	.bss        start:0x80303EC8 end:0x80303F38
+
+game/dAnim_ctor.cpp:
+	.text       start:0x800A80DC end:0x800A80E0
+
+game/hAnim.cpp:
+	extab       start:0x80008300 end:0x80008348
+	extabindex  start:0x8000EA10 end:0x8000EA7C
+	.text       start:0x800BCE78 end:0x800BD1E8
+	.ctors      start:0x802398EC end:0x802398F0
+	.bss        start:0x803041D0 end:0x803041DC
+	.bss        start:0x803041DC end:0x803041E0 skip
+	.sbss       start:0x8042C3D0 end:0x8042C3D8
+	.sdata2     start:0x8042DDB0 end:0x8042DDC8
+
+game/perf.cpp:
+	extab       start:0x800089A0 end:0x800089C8
+	extabindex  start:0x8000EFEC end:0x8000F028
+	.text       start:0x800CD6A0 end:0x800CE010
+	.ctors      start:0x802398F8 end:0x802398FC
+	.data       start:0x80255098 end:0x80255738
+	.bss        start:0x803A6690 end:0x803A6FE0
+	.sdata      start:0x8042B648 end:0x8042B650
+
+game/expasm.cpp:
+	.text       start:0x800D52AC end:0x800D5488
+
+game/obj_set_damage_collision.cpp:
+	extab       start:0x8000A794 end:0x8000A79C
+	extabindex  start:0x80010870 end:0x8001087C
+	.text       start:0x80113038 end:0x80113090
+	.sbss       start:0x8042C640 end:0x8042C648
+
+game/e_paralysis.cpp:
+	extab       start:0x8000A79C end:0x8000A7F0
+	extabindex  start:0x8001087C end:0x800108DC
+	.text       start:0x80113090 end:0x801137AC
+	.ctors      start:0x802398FC end:0x80239900
+	.data       start:0x80288C90 end:0x80288CF0
+	.bss        start:0x803E7538 end:0x803E75A0
+	.sdata      start:0x8042B810 end:0x8042B818
+	.sbss       start:0x8042C648 end:0x8042C658
+	.sdata2     start:0x8042E980 end:0x8042E9B4
+
+game/SeqFlagCtrl.cpp:
+	.text       start:0x801143E0 end:0x801144E0
+	.bss        start:0x803E75E8 end:0x803E7668
+
+game/eventCore.cpp:
+	.text       start:0x8011E5A4 end:0x8011E5F0
+	.rodata     start:0x8023AAB0 end:0x8023ACB0
+
+game/GetSpParam.cpp:
+	extab       start:0x8000B698 end:0x8000B6A8
+	extabindex  start:0x8001165C end:0x80011674
+	.text       start:0x80130BC0 end:0x80130DF0
+	.ctors      start:0x80239904 end:0x80239908
+	.bss        start:0x803EA488 end:0x803EA4B8
+	.sdata2     start:0x8042EE88 end:0x8042EEA8
+
+game/voice_sequence.cpp:
+	extab       start:0x8000B908 end:0x8000B940
+	extabindex  start:0x80011974 end:0x800119C8
+	.text       start:0x80138664 end:0x80138ECC
+	.data       start:0x8028C964 end:0x8028CA70
+
+game/moviePlay.cpp:
+	extab       start:0x8000B97C end:0x8000B994
+	extabindex  start:0x800119EC end:0x80011A10
+	.text       start:0x801390A4 end:0x801391D0
+	.data       start:0x8028CAB0 end:0x8028CF04
+
+game/moviePlaySub.cpp:
+	extab       start:0x8000B994 end:0x8000B9CC
+	extabindex  start:0x80011A10 end:0x80011A34
+	.text       start:0x801391D0 end:0x80139738
+	.ctors      start:0x80239908 end:0x8023990C
+	.data       start:0x8028CF04 end:0x8028CFB0
+	.bss        start:0x803EC340 end:0x803EC350
+	.sdata      start:0x8042BC88 end:0x8042BCAC
+	.sbss       start:0x8042C7F0 end:0x8042C800
+	.sdata2     start:0x8042F158 end:0x8042F168
+
+game/enemy_voice.cpp:
+	extab       start:0x8000B9CC end:0x8000BA80
+	extabindex  start:0x80011A34 end:0x80011AA0
+	.text       start:0x80139738 end:0x80139FC4
+	.data       start:0x8028CFB0 end:0x8028D068
+
+game/SpAdvStgFailed.cpp:
+	extab       start:0x8000BAA8 end:0x8000BB08
+	extabindex  start:0x80011ADC end:0x80011B18
+	.text       start:0x8013B76C end:0x8013BC78
+	.data       start:0x8028D0F0 end:0x8028D1CC
+	.sbss       start:0x8042C810 end:0x8042C818
+	.sdata2     start:0x8042F198 end:0x8042F19C
 
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0

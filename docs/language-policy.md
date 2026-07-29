@@ -112,10 +112,26 @@ substitute for reviewing the evidence or matching the GameCube object.
 
 ## New source
 
-- New game-owned translation units use `.cpp` and compile as C++.
+- New game-owned translation units use the canonical `.cpp` extension and
+  compile as C++. Alternative C++ extensions such as `.cc` and `.cxx` are
+  rejected to keep the convention machine-checkable.
+- Every configured source must belong to a reviewed game-code prefix or a
+  known-library prefix in `language_policy.json`. A new top-level directory is
+  not an escape hatch from the language rule.
+- Source paths must be canonical relative paths. The checker also requires an
+  exact inventory match between C/C++ files under `src/` and configured
+  Metrowerks compiler commands, so dormant and path-traversing units cannot sit
+  outside the audit.
 - A new `.c` file under `game`, `rel`, `advertiseD`, `autosaveD` or `movieD`
-  must be added to the reviewed C allowlist in
-  `config/G9SE8P/language_policy.json`.
+  must be added to the appropriate reviewed C list in
+  `config/G9SE8P/language_policy.json`. Use `confirmed_c_sources` only when
+  positive evidence establishes C source. Use `reviewed_c_boundary_sources`
+  for a matching C ABI or middleware boundary whose historical source
+  language remains indistinguishable; that category records uncertainty
+  rather than converting it into a false C claim.
+- `pending_c_evidence` must remain empty. If classification is uncertain, leave
+  the existing source untouched and resolve the evidence before changing its
+  language-policy category.
 - Do not use `extern "C"` merely to keep a C-shaped reconstruction when the
   evidence identifies a C++ method. C linkage remains appropriate for real C
   boundaries and for temporary unknown symbols, but the reason must be clear.
@@ -127,14 +143,18 @@ legacy paths in the policy file. The compiler already treats those files as
 C++; migration aligns the extension and build configuration with the effective
 language rather than rewriting working code.
 
-There is one reviewed exception: `movieD/cri/sfx.c` remains a C-path vendor
+There are two reviewed exceptions. `movieD/cri/sfx.c` remains a C-path vendor
 source while compiling in C++ mode. This CRI middleware unit exposes a C
 boundary and belongs beside the other `sfx*.c` sources, but the matching
 GameCube build requires CodeWarrior's C++ declaration-order `.bss` emission
-instead of its C first-reference order. It remains in
-`c_sources_compiled_as_cpp`, retains the explicit `-lang=c++` and is not part
-of the extension-migration queue. This narrow compatibility exception is not a
-precedent for game-owned code.
+instead of its C first-reference order.
+
+`game/skyfs_adx.c` is positively identified as C by the PS2 beta DWARF
+filename and language metadata, while its GameCube object requires
+CodeWarrior's C++ compilation path. The same evidence establishes that the
+previous state, DVD-status, accessor and file-system fragments are one source
+file. Both exceptions remain in `c_sources_compiled_as_cpp`, retain explicit
+`-lang=c++`, and are not part of the extension-migration queue.
 
 Migrate them in reviewable, module-sized batches:
 
@@ -176,13 +196,19 @@ translation-unit boundary. A one-function source may remain a reconstruction
 fragment until cross-references, private data, alignment, map/debug metadata or
 correlated platform evidence establishes the enclosing unit.
 
-Guesses stay marked as guesses. The policy file separates confirmed C sources
-from sources that are temporarily allowed to remain C while evidence is being
-collected. It separately records `protected_cpp_c_sources`: sources with direct
-C++ evidence that still compile as C only because an active protected-area
-change must be integrated first. This is migration debt, not a C allowlist and
-not permission to edit another contributor's work. No new path may be added to
-either temporary list merely to make CI pass.
+Guesses stay marked as guesses, but they do not enter the build policy as new C
+debt: `pending_c_evidence` must stay empty, and uncertainty is resolved before
+changing a source classification. The policy separately records
+`protected_cpp_c_sources`: sources with direct C++ evidence that still compile
+as C only because an active protected-area change must be integrated first.
+This is migration debt, not a C allowlist and not permission to edit another
+contributor's work. No new path may be added merely to make CI pass.
+
+An existing reviewed C ABI boundary is not migration debt by itself. Its
+allowlist entry says that the present C mode and linkage are reviewed and
+matching; it does not claim that the unavailable original file necessarily had
+a `.c` extension. Rename such a boundary only when stronger source evidence
+establishes C++ and the GameCube object and final artifacts remain exact.
 
 A protected C++/C-mode source must be migrated after coordinating with the
 active owner. The integration change reconstructs the C++ class or method
@@ -212,11 +238,23 @@ Before enabling a deferred mode for a game-owned translation unit, document:
 - at least one concrete reason the deferred result represents the original
   build rather than a convenient permutation.
 
-The approved deferred list is deliberately narrow. At present,
-`game/state_accessor.cpp` is the only reviewed entry. A source must be added to
-`deferred_sources` in the policy file in the same reviewed change that records
-the evidence, and stale entries must be removed with the flag they approved.
-Multiple object-level `-inline` overrides are rejected as ambiguous.
+The approved deferred list is deliberately narrow. At present it contains
+`game/skyfs_adx.c`, `game/modeswitch.cpp`, `advertiseD/adv_2p.cpp` and
+`advertiseD/adv_draw.cpp`. Natural PS2 symbol order and GameCube section
+adjacency establish the unified `skyfs_adx.c` unit order; `-inline auto`
+changes its accessor emission and call sites, while `-inline deferred`
+reproduces all 19 functions, relocations and owned sections byte-for-byte.
+`game/modeswitch.cpp` needs deferred emission to reverse its source order and
+reproduce the target exception-record order. The two reconstructed AdvertiseD
+units require deferred/noauto emission to reproduce their reviewed object
+order and linked data layout. Each entry is justified in
+`docs/language-audit.md`.
+
+A source must be added to `deferred_sources` in the policy file in the same
+reviewed change that records the evidence, and stale entries must be removed
+with the flag they approved. Multiple object-level `-inline` overrides are
+rejected as ambiguous. Inline modes are compared as exact comma-separated
+tokens: `nodeferred` is not a deferred override.
 
 ## Pull-request requirements
 
@@ -225,11 +263,13 @@ For language, linkage or inline changes:
 - keep the change to one logical translation unit or one mechanical module;
 - state the evidence and whether it is GameCube, PS2, PC or known-library
   evidence;
+- for a C path, distinguish positive C source evidence from a reviewed C ABI
+  boundary whose historical file language remains unresolved;
 - show the before/after objdiff result;
 - do not turn matching objects into non-matching objects in a mechanical
   language-only change;
-- run `python tools/check_language_policy.py`, `ninja` and the artifact SHA-1
-  check.
+- run `python -m unittest tools.test_check_language_policy`,
+  `python tools/check_language_policy.py`, `ninja` and the artifact SHA-1 check.
 
 Existing matching work is a test oracle, not disposable work. Refactor it
 incrementally when evidence improves the source reconstruction, preserving the

@@ -26,7 +26,7 @@ typedef struct MainState {
 } MainState;
 
 extern void* lbl_2_bss_54[5];
-extern MainState lbl_8029BB80;
+extern MainState RsGlobal;
 
 extern void fn_2_25A8();
 extern void fn_80194234(s32 channel, void* resource);
@@ -69,8 +69,8 @@ void fn_2_340C(void* window)
 
 	config.unk_0x0 = 0;
 	config.unk_0x4 = 0;
-	config.tick_0  = lbl_8029BB80.tick_0;
-	config.tick_1  = lbl_8029BB80.tick_1;
+	config.tick_0  = RsGlobal.tick_0;
+	config.tick_1  = RsGlobal.tick_1;
 
 	color.red   = 0;
 	color.green = 0;

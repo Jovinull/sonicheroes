@@ -56,9 +56,9 @@ extern u32 lbl_2_bss_54[5];
 extern "C" const f32 lbl_2_rodata_348;
 
 extern "C" void fn_2_4798(void* selector, s32 flags);
-extern "C" void dtor_800186D0(void* window, s32 flags);
+extern "C" void __dt__7TObjectFv(void* window, s32 flags);
 extern "C" void fn_2_13F4(void* allocation);
-extern "C" void fn_80018818(AutosaveWindow* window, void* parent);
+extern "C" void __ct__7TObjectFP7TObject(AutosaveWindow* window, void* parent);
 extern "C" void fn_2_4004(AutosaveState* state);
 extern "C" void fn_2_47DC(Selector* selector);
 extern "C" void fn_8012EBD4(void* widget, u32 resource);
@@ -105,7 +105,7 @@ extern "C" AutosaveWindow* fn_2_3A70(AutosaveWindow* window, s32 flags)
 	if (window != NULL) {
 		window->methods = lbl_2_data_43C;
 		fn_2_4798(&window->selector, -1);
-		dtor_800186D0(window, 0);
+		__dt__7TObjectFv(window, 0);
 		if ((s16)flags > 0) {
 			fn_2_13F4(window);
 		}
@@ -115,7 +115,7 @@ extern "C" AutosaveWindow* fn_2_3A70(AutosaveWindow* window, s32 flags)
 
 extern "C" AutosaveWindow* fn_2_3AE8(AutosaveWindow* window, void* parent, AutosaveState* state)
 {
-	fn_80018818(window, parent);
+	__ct__7TObjectFP7TObject(window, parent);
 	window->methods = lbl_2_data_43C;
 	fn_2_4004(&window->state);
 	fn_2_47DC(&window->selector);

@@ -141,6 +141,7 @@ Then:
 
 ```sh
 python configure.py
+python -m unittest tools.test_check_language_policy
 python tools/check_language_policy.py
 ninja
 ```

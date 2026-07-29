@@ -6,10 +6,17 @@
     "movieD/",
     "rel/"
   ],
+  "library_prefixes": [
+    "MSL_C/",
+    "Runtime.PPCEABI.H/",
+    "dolphin/"
+  ],
   "confirmed_c_sources": [
+    "game/main.c"
+  ],
+  "reviewed_c_boundary_sources": [
     "advertiseD/prolog.c",
     "autosaveD/prolog.c",
-    "game/main.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
     "movieD/cri/sfxset.c",
@@ -17,50 +24,20 @@
     "movieD/prolog.c",
     "rel/prolog.c"
   ],
-  "pending_c_evidence": [],
-  "protected_cpp_c_sources": [
-    "advertiseD/anim_handle.c",
-    "autosaveD/menu_selectors.c",
-    "autosaveD/table.c",
-    "autosaveD/widget_rendering.c",
+    "pending_c_evidence": [],
+    "protected_cpp_c_sources": [
+        "autosaveD/menu_selectors.c",
+        "autosaveD/table.c",
+        "autosaveD/widget_rendering.c",
     "autosaveD/window_input.c"
   ],
   "c_sources_compiled_as_cpp": [
-    "movieD/cri/sfx.c"
-  ],
-  "legacy_cpp_c_sources": [
-    "advertiseD/adv_bar.c",
-    "advertiseD/adv_help.c",
-    "advertiseD/anim_stubs.c",
-    "advertiseD/attract_dispatch.c",
-    "advertiseD/attract_object.c",
-    "advertiseD/choice_widget.c",
-    "advertiseD/delayed_trigger.c",
-    "advertiseD/demo_object.c",
-    "advertiseD/emblem_gate.c",
-    "advertiseD/fade_object.c",
-    "advertiseD/fade_step.c",
-    "advertiseD/line_count.c",
-    "advertiseD/logo_spawn.c",
-    "advertiseD/marker_emitters.c",
-    "advertiseD/marker_spawn.c",
-    "advertiseD/motion_reset.c",
-    "advertiseD/panel_callbacks.c",
-    "advertiseD/panel_setters.c",
-    "advertiseD/quad_fill.c",
-    "advertiseD/quad_submit.c",
-    "advertiseD/resource_hooks.c",
-    "advertiseD/resource_pair.c",
-    "advertiseD/scene_tick.c",
-    "advertiseD/select_object.c",
-    "advertiseD/slot_query.c",
-    "advertiseD/slot_refresh.c",
-    "advertiseD/stage_start.c",
-    "advertiseD/stage_values.c",
-    "advertiseD/task_runtime.c",
-    "advertiseD/timed_object.c",
-    "autosaveD/emblem_task.c",
-    "autosaveD/line_count.c",
+    "game/skyfs_adx.c",
+        "movieD/cri/sfx.c"
+    ],
+    "legacy_cpp_c_sources": [
+        "autosaveD/emblem_task.c",
+        "autosaveD/line_count.c",
     "autosaveD/quad_fill.c",
     "autosaveD/quad_submit.c",
     "autosaveD/state_selector.c",
@@ -68,11 +45,14 @@
     "autosaveD/task_object.c",
     "autosaveD/task_runtime.c",
     "autosaveD/task_system.c",
-    "autosaveD/widget_slices.c",
     "autosaveD/window_frame.c",
     "autosaveD/window_lifecycle.c"
-  ],
-  "deferred_sources": [
-    "game/state_accessor.cpp"
-  ]
+    ],
+    "deferred_sources": [
+        "advertiseD/adv_2p.cpp",
+        "advertiseD/adv_draw.cpp",
+        "game/e_paralysis.cpp",
+        "game/modeswitch.cpp",
+        "game/skyfs_adx.c"
+    ]
 }
