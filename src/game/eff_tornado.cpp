@@ -70,6 +70,21 @@ struct TObjEffTornado2 : TObjEffTornado {
 	TObjEffTornado2(TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 };
 
+struct TObjEffTornadoSpin : TObject {
+	s32 state;
+	s16 timer;
+	s16 angle;
+	RwV3d position;
+	RwV3d direction;
+	void* model;
+	f32 alpha;
+};
+
+struct CollisionSearchResult {
+	u32 unknown;
+	void* object;
+};
+
 extern "C" {
 void TDisp__14TObjEffTornadoFv(TObjEffTornado*);
 void Exec__14TObjEffTornadoFv(TObjEffTornado*);
@@ -117,6 +132,41 @@ extern void* lbl_8025361C[];
 extern f32 lbl_8042DBB0;
 extern f32 lbl_8042DBB4;
 extern f32 lbl_8042DBB8;
+extern f32 lbl_8042DBC0;
+extern f32 lbl_8042DBE0;
+extern f32 lbl_8042DBE8;
+extern f32 lbl_8042DC14;
+extern f32 lbl_8042DC18;
+
+extern u8 lbl_8029C310[];
+extern u8 lbl_802D5E80[];
+extern void* lbl_802AD070[];
+extern u8 lbl_8042C1A4;
+extern u8 lbl_80239984[];
+extern void* lbl_802535F0[];
+
+void fn_80194294(s32, u32*);
+void fn_80194234(s32, u32);
+void fn_80053660(void*, s32);
+void fn_8005349C(void*, u8);
+void fn_8014FF2C(void*);
+int fn_8005BB20(RwV3d*, f32);
+f32 fn_800D7328(f32, f32, f32);
+void fn_80021824(void*);
+CollisionSearchResult* fn_80020BD8(void*, s32);
+void fn_80150958(void*);
+void fn_8019EC30(void*, RwV3d*, s32);
+f32 fn_800D7B00(s16);
+f32 fn_800D7AE4(s16);
+void fn_80195790(void*, void*, f32, f32, s32);
+void fn_8019E880(void*);
+void fn_8019EB94(void*, RwV3d*, s32);
+
+void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
+void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
+TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*, s32);
+int SetPosition__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
+int CheckTornado__FP7C_COLLI(C_COLLI*);
 
 void TDisp__14TObjEffTyphoonFv(TObjEffTyphoon*);
 void Exec__14TObjEffTyphoonFv(TObjEffTyphoon*);
@@ -192,6 +242,173 @@ char lbl_80253578[] = "EF_TORNADO_RING.DFF";
 char lbl_8025358C[] = "EF_TORNADO_RINGB.DFF";
 char lbl_802535A4[] = "EF_TORNADO.ANM";
 char lbl_802535B4[] = "EF_TORNADO.UVB";
+
+extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
+{
+	u32 state10;
+	u32 state11;
+	u32 state20;
+	u32 state14;
+	fn_80194294(10, &state10);
+	fn_80194294(11, &state11);
+	fn_80194294(20, &state20);
+	fn_80194294(14, &state14);
+	fn_80194234(10, 5);
+	fn_80194234(11, 2);
+	fn_80194234(20, 1);
+	fn_80194234(14, 0);
+
+	u8* material     = *(u8**)((u8*)lbl_802532F4 + 4);
+	u32 saved        = *(u32*)(material + 4);
+	((u8*)&saved)[3] = (u8)(effect->alpha * lbl_8042DC14);
+	material[4]      = ((u8*)&saved)[0];
+	material[5]      = ((u8*)&saved)[1];
+	material[6]      = ((u8*)&saved)[2];
+	material[7]      = ((u8*)&saved)[3];
+
+	fn_80053660(lbl_802D5E80, 16);
+	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	fn_8014FF2C(effect->model);
+
+	fn_80194234(14, state14);
+	fn_80194234(20, state20);
+	fn_80194234(10, state10);
+	fn_80194234(11, state11);
+}
+
+extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
+{
+	if (fn_8005BB20(&effect->direction, lbl_8042DBE0) != 0 || *(s32*)(lbl_8029C310 + 0x18) != 0) {
+		effect->flags |= 1;
+		return;
+	}
+
+	switch (effect->state) {
+		case 1:
+			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			if (effect->alpha >= lbl_8042DBC0) {
+				effect->state = 2;
+				effect->timer = 0;
+			}
+			break;
+		case 2: {
+			s16 timer = effect->timer;
+			effect->timer++;
+			if ((f32)timer >= lbl_8042DC18) {
+				effect->state = 3;
+			}
+			break;
+		}
+		case 3:
+			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			if (effect->alpha <= lbl_8042DBB4) {
+				effect->state = 4;
+			}
+			break;
+		case 4:
+			effect->flags |= 1;
+			return;
+	}
+
+	effect->angle += 0x1000;
+	void* frame = *(void**)((u8*)effect->model + 4);
+	fn_8019EC30(frame, &effect->position, 0);
+	f32 sine   = fn_800D7B00(effect->angle);
+	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(effect->angle);
+	fn_80195790((u8*)frame + 0x10, lbl_80239984, cosine, sine, 2);
+	fn_8019E880(frame);
+	fn_8019EB94(frame, &effect->direction, 2);
+}
+
+extern "C" TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(
+    TObjEffTornadoSpin* effect, s32 shouldDelete)
+{
+	if (effect != 0) {
+		effect->vtable = lbl_802535F0;
+		if (effect->model != 0) {
+			fn_80150958(effect->model);
+			effect->model = 0;
+		}
+		__dt__7TObjectFv(effect, 0);
+		if ((s16)shouldDelete > 0) {
+			fn_800189A4(lbl_8042C148, effect);
+		}
+	}
+	return effect;
+}
+
+static inline s32 tornadoTeamFromObject(void* collision)
+{
+	u32 type = *(u32*)((u8*)collision + 0x78);
+	void* team;
+	s32 teamNumber;
+	team = 0;
+	switch (type) {
+		case 0:
+			teamNumber = 0;
+			break;
+		case 1:
+			teamNumber = 1;
+			break;
+		case 2:
+			teamNumber = 2;
+			break;
+		case 3:
+			teamNumber = 3;
+			break;
+		case 4:
+			team = lbl_802AD070[0];
+			break;
+		case 5:
+			team = lbl_802AD070[1];
+			break;
+		case 6:
+			team = lbl_802AD070[2];
+			break;
+		case 7:
+			team = lbl_802AD070[3];
+			break;
+		case 8:
+			team = lbl_802AD070[4];
+			break;
+		case 9:
+			team = lbl_802AD070[5];
+			break;
+		case 10:
+		default:
+			teamNumber = -1;
+			break;
+	}
+	if (team != 0) {
+		teamNumber = *(s8*)((u8*)team + 0x9bc);
+	}
+	return teamNumber;
+}
+
+extern "C" int SetPosition__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
+{
+	fn_80021824(&lbl_8042C1A4);
+	CollisionSearchResult* result = fn_80020BD8(effect, 10);
+	void* object                  = result != 0 ? result->object : 0;
+	if (object != 0) {
+		return tornadoTeamFromObject(object);
+	}
+	result = fn_80020BD8(effect, 16);
+	object = result != 0 ? result->object : 0;
+	if (object != 0) {
+		return tornadoTeamFromObject(object);
+	}
+	return -1;
+}
+
+extern "C" int CheckTornado__FP7C_COLLI(C_COLLI* collision)
+{
+	fn_80021824(&lbl_8042C1A4);
+	if (fn_80020BD8(collision, 10) != 0) {
+		return 1;
+	}
+	return fn_80020BD8(collision, 16) != 0;
+}
 u32 lbl_802534C0[5] = {
 	0xffffffff,
 	0x005aaaff,
