@@ -42,6 +42,13 @@ struct ActionDispEntry {
 	BitFlag option;
 };
 
+struct ExecTable {
+	s32 team;
+	s32 value;
+	s32 stage;
+	s32 enabled;
+};
+
 struct EventManagerBase {
 	u8 pad[0x18];
 };
@@ -79,7 +86,7 @@ struct ACTION {
 	u8 pad10[4];
 	s32 transition;
 	s32 processState;
-	u8 pad1C[4];
+	s32 pauseMode;
 	s32 pauseDisabled;
 	s32 playerCount;
 	s32 stageCount;
@@ -98,7 +105,14 @@ struct ACTION {
 	s32 stageConnectOriginal[64];
 	s32 teams[4];
 	s32 pauseChoice;
-	u8 pad250[0x24];
+	u8 pad250[8];
+	s32 execPending;
+	s32 execStarted;
+	s32 execPhase;
+	s32 execFrames;
+	s32 execFramesLeft;
+	u32 palFrame;
+	void (*execCallback)();
 	void (*pauseCallback)();
 	s32 goalActive;
 	s32 goalState;
@@ -136,6 +150,8 @@ struct ACTION {
 	static void dispAlpha(void* world, BitFlag option);
 	static void dispPunch(void* world, BitFlag option);
 	static void dispOpeq(void* world, BitFlag option);
+	inline s32 CheckPauseOn();
+	s32 Exec();
 };
 
 extern ACTION Action;
@@ -243,6 +259,12 @@ extern "C" void fn_80016AD8(void* task);
 extern "C" void fn_800B6DC8();
 extern u8 lbl_802D5E80[];
 extern u8 lbl_803EDBD0[];
+extern s8 lbl_80240D00[];
+extern ExecTable lbl_802895B8[];
+extern void* lbl_803E7F88[];
+extern "C" void fn_80066474(void* object, s32 mode);
+extern "C" void fn_80066454(s8* a, s8* b, s8* c);
+extern "C" s32 fn_8012DA08();
 extern "C" void* memcpy(void* destination, const void* source, unsigned long size);
 
 s32 GetTheLastLeader()
@@ -701,6 +723,24 @@ static inline void* GetPauseInput(s32 player)
 	return lbl_8029BBD0 + lbl_802408F8[player] * 76 + 72;
 }
 
+struct PauseControllerRecord {
+	u8 padding[72];
+	u32 buttons;
+};
+
+static inline ExecTable& GetExecTable()
+{
+	return *lbl_802895B8;
+}
+
+struct ActionExecCursor {
+	ExecTable* entry;
+};
+
+static inline u32 GetPauseButtons(s32 player)
+{
+	return *(u32*)(lbl_8029BBD0 + 80 + lbl_802408F8[player] * 76);
+}
 void ACTION::EnterPauseMode()
 {
 	if ((playerCount == 1
@@ -1034,4 +1074,170 @@ void ACTION::dispOpeq(void* world, BitFlag option)
 	}
 
 	fn_8015B93C(world, *(void**)((u8*)lbl_8042C1F8 + 40));
+}
+
+inline s32 ACTION::CheckPauseOn()
+{
+	if ((pauseDisabled == 1 && *(s32*)((u8*)lbl_8042C180 + 64) < 0
+	        && ((GetPauseButtons(0) & 0x1000) != 0
+	            || (lbl_8042C180->field1E != 0 && (GetPauseButtons(1) & 0x1000) != 0)))
+	    || pauseMode == 1) {
+		if ((GetPauseButtons(0) & 0x1000) != 0 || pauseMode == 1)
+			return 1;
+		return 2;
+	}
+	return 0;
+}
+
+s32 ACTION::Exec()
+{
+	void** execMethods;
+	s8* resultCPtr;
+	s8* resultBPtr;
+	s32 pauseStatus;
+	pauseStatus = 0;
+
+	if (*(s8*)((u8*)lbl_8042C180 + 17) == 2) {
+		++palFrame;
+		s32 displayCount = lbl_8042C224 - lbl_8042C21C;
+		if (palFrame >= 5)
+			palFrame = 0;
+		s8* frameTable = lbl_80240D00 + displayCount * 5;
+		execFrames     = frameTable[palFrame];
+		if (lbl_8042C180->field1E != 0) {
+			if (execFrames > 1)
+				fn_801AD5E0(2);
+			else
+				fn_801AD5E0(1);
+		} else {
+			fn_801AD5E0(1);
+		}
+	} else if (lbl_8042C180->field1E != 0) {
+		execFrames = lbl_8042C224 - lbl_8042C21C + 1;
+		if (execFrames > 1)
+			fn_801AD5E0(2);
+		else
+			fn_801AD5E0(1);
+	} else {
+		execFrames = 1;
+		fn_801AD5E0(1);
+	}
+	execFramesLeft = execFrames;
+
+	s8 resultC;
+	s8 resultB;
+	s8 resultA;
+	execMethods = lbl_803E7F88;
+	resultCPtr  = &resultC;
+	resultBPtr  = &resultB;
+
+exec_frame:
+	s32 i;
+	for (i = lbl_8042C21C; i <= lbl_8042C224; ++i)
+		fn_8004E6F0(lbl_8042C1F8, i);
+
+	if (execPending != 0 && execStarted == 0) {
+		if (execPhase == 2) {
+			ActionExecCursor cursor = { &GetExecTable() };
+			s32 value               = -1;
+			execStarted             = 1;
+			while (cursor.entry->value >= 0) {
+				if (cursor.entry->stage == stageNumber && cursor.entry->team == teams[0]) {
+					value = cursor.entry->value;
+					break;
+				}
+				++cursor.entry;
+			}
+			if (value >= 0) {
+				s32 object = ((s32 (*)(s32))execMethods[2])(value);
+				if (object != 0 && cursor.entry->enabled != 0) {
+					object = ((s32 (*)(s32))execMethods[4])(object);
+					((void (*)(s32))execMethods[3])(object);
+				}
+			} else
+				goto exec_start_done;
+		}
+		++execPhase;
+	}
+exec_start_done:
+
+	fn_800422C4(&lbl_8042C1C0);
+	fn_80016BBC(lbl_8029C2E4);
+	if (*(s8*)((u8*)lbl_8042C180 + 31) != 0)
+		++*(s32*)((u8*)lbl_8042C180 + 52);
+	else
+		++*(s32*)((u8*)lbl_8042C180 + 48);
+	++*(s32*)((u8*)lbl_8042C180 + 44);
+
+#pragma opt_common_subs off
+	if (mode == 5 && *(s32*)((u8*)lbl_8042C180 + 64) < 0 && *(s8*)((u8*)lbl_8042C180 + 32) == 0
+	    && *(s8*)((u8*)lbl_8042C180 + 31) == 0 && *(s8*)((u8*)lbl_8042C180 + 33) == 0
+	    && challengeState == 0) {
+		if (execCallback != 0) {
+			fn_80066474(&object, -1);
+			fn_80066454(&resultA, resultBPtr, resultCPtr);
+			if (resultA == 0 && resultB == 0 && resultC == 0)
+				execCallback();
+		} else {
+			fn_80066474(&object, 1);
+		}
+	}
+#pragma opt_common_subs reset
+
+	--execFramesLeft;
+	fn_800215A8(&lbl_8042C1A4);
+	if (execFramesLeft <= 0)
+		goto final_pause_check;
+	if (execFramesLeft != execFrames - 1)
+		goto exec_frame;
+
+	lbl_8042C15C = GetMilliseconds();
+	ChkController();
+	s32 returnedStatus = CheckPauseOn();
+	if (returnedStatus != 0)
+		pauseStatus = returnedStatus;
+	MakeGameKeyData();
+	fn_8004A05C();
+	SetAndGetDemoData();
+	fn_8004AF4C(lbl_8042C1D0);
+	if (currentStage->pause != 0)
+		currentStage->pause();
+	goto exec_frame;
+
+final_pause_check:
+	if (pauseDisabled != 1)
+		goto check_for_forced_pause;
+	if (*(s32*)((u8*)lbl_8042C180 + 64) >= 0)
+		goto check_for_forced_pause;
+	u8* pauseButtonBase = lbl_8029BBD0 + 80;
+	if ((*(u32*)(pauseButtonBase + lbl_802408F8[0] * 76) & 0x1000) != 0)
+		goto pause_requested;
+	if (lbl_8042C180->field1E != 0
+	    && (*(u32*)(pauseButtonBase + lbl_802408F8[1] * 76) & 0x1000) != 0)
+		goto pause_requested;
+
+check_for_forced_pause:
+	if (pauseMode != 1)
+		goto no_pause_requested;
+
+pause_requested:
+	PauseControllerRecord* pauseInput
+	    = &((PauseControllerRecord*)(lbl_8029BBD0 + 8))[lbl_802408F8[0]];
+	if ((pauseInput->buttons & 0x1000) != 0 || pauseMode == 1)
+		returnedStatus = 1;
+	else
+		returnedStatus = 2;
+	goto pause_status_ready;
+
+no_pause_requested:
+	returnedStatus = 0;
+pause_status_ready:
+	if (returnedStatus != 0)
+		pauseStatus = returnedStatus;
+	u32 now      = GetMilliseconds();
+	lbl_8042C164 = now - lbl_8042C15C;
+	lbl_8042C15C = now;
+	if (fn_8012DA08() == 0)
+		pauseStatus = 0;
+	return pauseStatus;
 }
