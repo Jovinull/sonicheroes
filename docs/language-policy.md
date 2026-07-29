@@ -118,6 +118,10 @@ substitute for reviewing the evidence or matching the GameCube object.
 - Every configured source must belong to a reviewed game-code prefix or a
   known-library prefix in `language_policy.json`. A new top-level directory is
   not an escape hatch from the language rule.
+- Source paths must be canonical relative paths. The checker also requires an
+  exact inventory match between C/C++ files under `src/` and configured
+  Metrowerks compiler commands, so dormant and path-traversing units cannot sit
+  outside the audit.
 - A new `.c` file under `game`, `rel`, `advertiseD`, `autosaveD` or `movieD`
   must be added to the reviewed C allowlist in
   `config/G9SE8P/language_policy.json`.
@@ -184,13 +188,13 @@ translation-unit boundary. A one-function source may remain a reconstruction
 fragment until cross-references, private data, alignment, map/debug metadata or
 correlated platform evidence establishes the enclosing unit.
 
-Guesses stay marked as guesses. The policy file separates confirmed C sources
-from sources that are temporarily allowed to remain C while evidence is being
-collected. It separately records `protected_cpp_c_sources`: sources with direct
-C++ evidence that still compile as C only because an active protected-area
-change must be integrated first. This is migration debt, not a C allowlist and
-not permission to edit another contributor's work. No new path may be added to
-either temporary list merely to make CI pass.
+Guesses stay marked as guesses, but they do not enter the build policy as new C
+debt: `pending_c_evidence` must stay empty, and uncertainty is resolved before
+changing a source classification. The policy separately records
+`protected_cpp_c_sources`: sources with direct C++ evidence that still compile
+as C only because an active protected-area change must be integrated first.
+This is migration debt, not a C allowlist and not permission to edit another
+contributor's work. No new path may be added merely to make CI pass.
 
 A protected C++/C-mode source must be migrated after coordinating with the
 active owner. The integration change reconstructs the C++ class or method

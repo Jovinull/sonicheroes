@@ -50,6 +50,8 @@ Every configured source must be under a reviewed game-code or known-library
 prefix; do not create a new top-level source area to bypass the language policy.
 Uncertain C classifications stay unchanged and under review rather than being
 added to the policy as new pending debt.
+Source paths must be canonical, and every C/C++ file under `src/` must have one
+configured compiler command; dormant or path-traversing units are rejected.
 The `.c` files that receive `-lang=c++` are either matching legacy paths or an
 explicitly reviewed vendor compatibility exception, not a pattern for new
 work.

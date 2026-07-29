@@ -58,6 +58,16 @@ class PolicyValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "managed and library prefixes overlap"):
             self.load_policy(policy)
 
+    def test_policy_source_paths_must_be_canonical(self) -> None:
+        policy = make_policy(confirmed_c_sources=["game/../escape.c"])
+        with self.assertRaisesRegex(ValueError, "contains a non-canonical path"):
+            self.load_policy(policy)
+
+    def test_policy_sources_must_be_managed_game_code(self) -> None:
+        policy = make_policy(confirmed_c_sources=["dolphin/unit.c"])
+        with self.assertRaisesRegex(ValueError, "outside managed game code"):
+            self.load_policy(policy)
+
 
 class StagedPolicyTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -207,9 +217,17 @@ class ConfiguredPolicyTests(unittest.TestCase):
         self,
         commands: dict[str, dict[str, object]],
         policy: dict[str, list[str]] | None = None,
+        physical_sources: set[str] | None = None,
     ) -> list[str]:
+        if physical_sources is None:
+            physical_sources = set(commands)
         with (
             patch.object(checker, "parse_source_commands", return_value=commands),
+            patch.object(
+                checker,
+                "physical_source_paths",
+                return_value=physical_sources,
+            ),
             contextlib.redirect_stdout(io.StringIO()),
         ):
             return checker.audit_configured_build(policy or make_policy())
@@ -240,6 +258,37 @@ class ConfiguredPolicyTests(unittest.TestCase):
             {"dolphin/unit.c": {"language": "c", "inline_modes": ["auto"]}}
         )
         self.assertEqual(errors, [])
+
+    def test_physical_source_without_compiler_command_is_rejected(self) -> None:
+        errors = self.configured_errors(
+            {"game/unit.cpp": {"language": "c++", "inline_modes": ["auto"]}},
+            physical_sources={"game/dormant.cpp", "game/unit.cpp"},
+        )
+        self.assertEqual(
+            errors,
+            ["game/dormant.cpp: source file has no configured compiler command"],
+        )
+
+    def test_compiler_command_without_source_file_is_rejected(self) -> None:
+        errors = self.configured_errors(
+            {"game/missing.cpp": {"language": "c++", "inline_modes": ["auto"]}},
+            physical_sources=set(),
+        )
+        self.assertEqual(
+            errors,
+            ["game/missing.cpp: compiler command does not reference a source file"],
+        )
+
+    def test_noncanonical_configured_path_is_rejected(self) -> None:
+        source = "dolphin/../new_module/unit.cpp"
+        errors = self.configured_errors(
+            {source: {"language": "c++", "inline_modes": ["auto"]}},
+            physical_sources={source},
+        )
+        self.assertEqual(
+            errors,
+            [f"{source}: configured source path is not canonical"],
+        )
 
     def test_effective_nodeferred_does_not_require_allowlist(self) -> None:
         errors = self.configured_errors(

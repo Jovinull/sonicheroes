@@ -10,7 +10,7 @@ import json
 import re
 import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 
@@ -44,12 +44,10 @@ def load_policy(path: Path) -> dict[str, Any]:
 
     for key in ("managed_prefixes", "library_prefixes"):
         for prefix in policy[key]:
-            parts = Path(prefix).parts
             if (
                 not prefix
                 or not prefix.endswith("/")
-                or prefix.startswith("/")
-                or ".." in parts
+                or not is_canonical_relative_path(prefix.removesuffix("/"))
             ):
                 raise ValueError(
                     f"{path}: {key} entries must be relative directory prefixes: {prefix!r}"
@@ -73,6 +71,21 @@ def load_policy(path: Path) -> dict[str, Any]:
             f"{path}: pending C evidence is not permitted; resolve the classification "
             "before changing the source policy"
         )
+
+    source_keys = (
+        "confirmed_c_sources",
+        "pending_c_evidence",
+        "protected_cpp_c_sources",
+        "c_sources_compiled_as_cpp",
+        "legacy_cpp_c_sources",
+        "deferred_sources",
+    )
+    for key in source_keys:
+        for source in policy[key]:
+            if not is_canonical_relative_path(source):
+                raise ValueError(f"{path}: {key} contains a non-canonical path: {source!r}")
+            if not is_managed(source, managed_prefixes):
+                raise ValueError(f"{path}: {key} entry is outside managed game code: {source}")
 
     groups = (
         set(policy["confirmed_c_sources"]),
@@ -110,6 +123,17 @@ def load_policy(path: Path) -> dict[str, Any]:
 
 def is_managed(source: str, prefixes: list[str]) -> bool:
     return any(source.startswith(prefix) for prefix in prefixes)
+
+
+def is_canonical_relative_path(value: str) -> bool:
+    path = PurePosixPath(value)
+    return (
+        bool(value)
+        and "\\" not in value
+        and not path.is_absolute()
+        and ".." not in path.parts
+        and path.as_posix() == value
+    )
 
 
 def is_cpp_style_suffix(suffix: str) -> bool:
@@ -171,6 +195,16 @@ def parse_source_commands() -> dict[str, dict[str, Any]]:
     return commands
 
 
+def physical_source_paths() -> set[str]:
+    source_root = ROOT / "src"
+    return {
+        path.relative_to(source_root).as_posix()
+        for path in source_root.rglob("*")
+        if path.is_file()
+        and (path.suffix == ".c" or is_cpp_style_suffix(path.suffix))
+    }
+
+
 def static_inline_overrides(errors: list[str], policy: dict[str, Any]) -> None:
     tree = ast.parse(CONFIGURE.read_text(encoding="utf-8"), filename=str(CONFIGURE))
     prefixes = policy["managed_prefixes"]
@@ -221,7 +255,16 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     deferred = set(policy["deferred_sources"])
 
     managed = {source: record for source, record in commands.items() if is_managed(source, prefixes)}
+    physical_sources = physical_source_paths()
+    for source in sorted(physical_sources - commands.keys()):
+        errors.append(f"{source}: source file has no configured compiler command")
+    for source in sorted(commands.keys() - physical_sources):
+        errors.append(f"{source}: compiler command does not reference a source file")
+
     for source in sorted(commands):
+        if not is_canonical_relative_path(source):
+            errors.append(f"{source}: configured source path is not canonical")
+            continue
         if not is_managed(source, prefixes) and not is_managed(source, library_prefixes):
             errors.append(
                 f"{source}: configured source is outside reviewed game/library prefixes"
