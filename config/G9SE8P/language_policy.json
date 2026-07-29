@@ -68,7 +68,6 @@
     "autosaveD/task_object.c",
     "autosaveD/task_runtime.c",
     "autosaveD/task_system.c",
-    "autosaveD/widget_slices.c",
     "autosaveD/window_frame.c",
     "autosaveD/window_lifecycle.c"
   ],

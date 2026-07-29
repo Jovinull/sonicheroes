@@ -712,9 +712,9 @@ config.libs = [
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
-                "autosaveD/widget_slices.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                Matching,
+                "autosaveD/widget_slices.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
