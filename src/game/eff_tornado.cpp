@@ -414,7 +414,7 @@ TObjEffTornadoSpin::TObjEffTornadoSpin(
 	fn_8019EC30(frame, &result->position, 0);
 	f32 sine   = fn_800D7B00(result->angle);
 	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(result->angle);
-	fn_80195790((u8*)frame + 0x10, lbl_80239984, cosine, sine, 2);
+	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
 	fn_8019E880(frame);
 	fn_8019EB94(frame, &result->direction, 2);
 }
