@@ -570,7 +570,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	f32 height       = lbl_8042DBB4;
 	s8 index         = 0;
 	void** resources = lbl_802532F4;
-	u8* material     = *(u8**)((u8*)resources[0] + 4);
+	u8* material     = (u8*)resources[0];
 	Color color      = *(Color*)(material + 4);
 	f32 multiplier   = lbl_8042DBF4;
 	color.alpha      = (u8)(effect->alpha * multiplier);
@@ -579,7 +579,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	material[6]      = color.blue;
 	material[7]      = color.alpha;
 
-	material    = *(u8**)((u8*)resources[1] + 4);
+	material    = (u8*)resources[1];
 	color.red   = material[4];
 	color.green = material[5];
 	color.blue  = material[6];
@@ -590,7 +590,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	material[6] = color.blue;
 	material[7] = color.alpha;
 
-	material    = *(u8**)((u8*)resources[2] + 4);
+	material    = (u8*)resources[2];
 	color.red   = material[4];
 	color.green = material[5];
 	color.blue  = material[6];
@@ -604,7 +604,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	fn_80053660(lbl_802D5E80, 16);
 	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
 
-	s32 angle = (s32)(effect->scale * lbl_8042DBC4);
+	s32 angle = (s32)(lbl_8042DBC4 * effect->scale);
 	{
 		void** models           = lbl_802532E8;
 		RwV3d* positions        = lbl_8025337C;
