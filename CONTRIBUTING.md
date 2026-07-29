@@ -83,20 +83,43 @@ hook also refuses added or renamed game-owned `.c` files that have no reviewed
 C classification.
 
 The hook protects only clones where `core.hooksPath` is enabled. The repository
-therefore also protects `main`: changes require a pull request, one approval
-from someone other than the author, resolved review conversations and the
-`build (G9SE8P)` status check. A new commit dismisses an earlier approval, so
-request review only after the tested head is final. The rules include
-administrators, and force pushes and branch deletion are disabled. A
-pull-request branch does not need to be updated with the latest `main` before
-merging, so frequent parallel commits do not create a mandatory rebase loop.
-Do not push game-code changes directly to `main`.
+therefore also protects `main`: changes require a pull request, resolved review
+conversations, one approving review and the `build (G9SE8P)` status check.
+Pushing new commits dismisses stale approvals, and the person who pushed the
+most recent change cannot supply the required approval. These rules include
+administrators; force pushes and branch deletion are disabled. A pull-request
+branch does not need to be updated with the latest `main` before merging, so
+frequent parallel commits do not create a mandatory rebase loop. Do not push
+game-code changes directly to `main`.
 
-The full build uses private original-game inputs. Code from a fork never runs in
-that container: its required build gate intentionally fails until a maintainer
-reviews the commits and tests them from a repository-owned integration branch.
-This security handoff does not require the contributor to rebase or keep the
-fork branch synchronized with `main`.
+`.github/CODEOWNERS` names a maintainer for the paths that execute during a
+private build: the workflows, the build post-processors under `tools/` and
+`configure.py`. A pull request touching those needs that maintainer's review,
+because code on those paths runs in the container holding the original game
+files and could copy them somewhere. Decompilation work is deliberately not
+covered: `src/` and `config/` are reviewed like any other change, so a
+contributor with write access can review and merge unit reconstructions without
+waiting on the package owner.
+
+The full build uses private original-game inputs. A same-repository pull request
+waits for approval from a reviewer on the protected `private-build` environment
+before its code can receive the container credentials. Code from a fork never
+runs in that container: its required build gate intentionally fails until a
+maintainer reviews the exact commits and tests them from a repository-owned
+integration branch. This security handoff does not require the contributor to
+rebase or keep the fork branch synchronized with `main`.
+
+The private GHCR package must not inherit repository access or grant this
+repository automatic Actions access. The workflow authenticates with an
+environment-scoped package credential limited to `read:packages`. Repository
+collaborator access must never imply access to the package, original-game
+inputs, environment secrets or an owner's personal credentials.
+
+Before approving the first `private-build` deployment, a maintainer must first
+disable both package permission inheritance and automatic Actions access, then
+confirm that `GHCR_USERNAME` and the read-only `GHCR_TOKEN` exist as environment
+secrets. Do not approve or bypass a waiting job while either secret is missing,
+and never move the token to a repository-level secret.
 
 Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
 migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
