@@ -65,9 +65,20 @@ struct TObjEffTyphoon : TObjEffTornado {
 };
 
 struct TObjEffTornado2 : TObjEffTornado {
-	u8 extra[0x10];
+	u8 opacity;
+	s8 direction;
+	u8 padDE[2];
+	f32 swirlScale;
+	f32 verticalScale;
+	u8 color[4];
 
 	TObjEffTornado2(TObject*, s32, RwV3d*, sAngle*, RwV3d*);
+	~TObjEffTornado2();
+};
+
+struct PlayerColorSource {
+	u8 pad0[0x34];
+	s32 team;
 };
 
 struct TObjEffTornadoSpin : TObject {
@@ -185,6 +196,14 @@ extern f32 lbl_8042DBE8;
 extern f32 lbl_8042DBF0;
 extern f32 lbl_8042DBF4;
 extern f32 lbl_8042DBC4;
+extern f32 lbl_8042DC08;
+extern f32 lbl_8042DBE4;
+extern f32 lbl_8042DBEC;
+extern f32 lbl_8042DBF8;
+extern f32 lbl_8042DBFC;
+extern f32 lbl_8042DC00;
+extern f32 lbl_8042DC04;
+extern f32 lbl_8042DC0C;
 extern f32 lbl_8042DC10;
 extern f32 lbl_8042DC14;
 extern f32 lbl_8042DC18;
@@ -203,6 +222,8 @@ extern RwV3d lbl_8025337C[];
 extern RwV3d lbl_802533DC[];
 extern RotationPair lbl_8025343C[];
 extern s32 lbl_8025347C[];
+extern void* lbl_802535C4[];
+extern PlayerColorSource* lbl_80303DC8[];
 
 void fn_80194294(s32, u32*);
 void fn_80194234(s32, u32);
@@ -469,6 +490,14 @@ static inline void copyVec(RwV3d* destination, const RwV3d* source)
 	}
 }
 
+static inline void copyColor(u8* destination, const u8* source)
+{
+	destination[0] = source[0];
+	destination[1] = source[1];
+	destination[2] = source[2];
+	destination[3] = source[3];
+}
+
 static inline void copyAngle(sAngle* destination, const sAngle* source)
 {
 	if (source != 0) {
@@ -682,6 +711,112 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 }
 #pragma opt_common_subs reset
 
+extern "C" void Exec__15TObjEffTornado2Fv(TObjEffTornado2* effect)
+{
+	if (fn_8005BB20(&effect->position, lbl_8042DBE0) != 0) {
+		effect->flags |= 1;
+		return;
+	}
+
+	switch (effect->active) {
+		case 1:
+			if (effect->direction != 0) {
+				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE4);
+			} else {
+				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			}
+			if (effect->alpha >= lbl_8042DBC0) {
+				effect->active = 2;
+				effect->state  = 0;
+			}
+			break;
+
+		case 2: {
+			if (effect->direction != 0) {
+				s16 timer = effect->state++;
+				if ((f32)timer >= lbl_8042DBEC) {
+					effect->active = 3;
+				}
+			} else {
+				s16 timer = effect->state++;
+				if ((f32)timer >= lbl_8042DBF0) {
+					effect->active = 3;
+				}
+			}
+
+			CollisionSearchResult* collision = fn_80020BD8(&effect->effectModel, 11);
+			void* hit                        = collision != 0 ? collision->object : 0;
+			if (hit != 0) {
+				effect->active = 3;
+			}
+			break;
+		}
+
+		case 3:
+			if (effect->direction != 0) {
+				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE4);
+			} else {
+				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			}
+			if (effect->alpha <= lbl_8042DBB4) {
+				effect->active = 4;
+			}
+			break;
+
+		case 4: {
+			TObject* parent = *(TObject**)((u8*)effect + 0x10);
+			if (parent != lbl_8042C110 && parent != lbl_8042C2A0) {
+				return;
+			}
+			effect->flags |= 1;
+			return;
+		}
+	}
+
+	effect->scale += lbl_8042DBF4;
+	effect->swirlScale    = fn_800D7328(effect->swirlScale, lbl_8042DBC0, lbl_8042DBF8);
+	effect->verticalScale = fn_800D7328(effect->verticalScale, lbl_8042DBFC, lbl_8042DC00);
+
+	if (effect->swirlScale >= lbl_8042DC04) {
+		s32 opacity = effect->opacity;
+		if ((opacity -= 0x7f) < 0) {
+			effect->opacity       = 0xff;
+			effect->swirlScale    = lbl_8042DC08;
+			effect->verticalScale = lbl_8042DBC0;
+		} else {
+			effect->opacity = opacity;
+		}
+	}
+
+	effect->color[3] = (u8)(lbl_8042DC0C * effect->alpha);
+	if (effect->alpha > lbl_8042DC10) {
+		if (*(s32*)(lbl_8029C310 + 0x18) == 0) {
+			*(RwV3d*)&effect->effectModel.data[0x7c]  = *(RwV3d*)&effect->effectModel.data[0x60];
+			*(RwV3d*)&effect->effectModel.data[0x60]  = effect->position;
+			*(sAngle*)&effect->effectModel.data[0x6c] = effect->rotation;
+			fn_8003BC38(&effect->effectModel);
+		} else {
+			fn_8003BE78(&effect->effectModel);
+		}
+	}
+}
+
+extern "C" TObjEffTornado2* __dt__15TObjEffTornado2Fv(TObjEffTornado2* effect, s32 shouldDelete)
+{
+	if (effect != 0) {
+		effect->vtable = lbl_802535C4;
+		if (effect != 0) {
+			effect->vtable = lbl_8025361C;
+			__dt__7C_COLLIFv(&effect->effectModel, 0);
+			__dt__7TObjectFv(effect, 0);
+		}
+		if ((s16)shouldDelete > 0) {
+			fn_800189A4(lbl_8042C148, effect);
+		}
+	}
+	return effect;
+}
+
 extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 {
 	if (fn_8005BB20(&effect->position, lbl_8042DBE0) != 0) {
@@ -825,6 +960,43 @@ TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngl
 }
 
 #pragma opt_common_subs reset
+#pragma opt_common_subs off
+TObjEffTornado2::TObjEffTornado2(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+    : TObjEffTornado(parent, kind, position, rotation)
+{
+	TObjEffTornado2* result = this;
+
+	result->vtable              = lbl_802535C4;
+	result->className           = lbl_8042B358;
+	*(u16*)((u8*)result + 0x1e) = 0xec;
+
+	if (kind < 0) {
+		copyColor(result->color, (u8*)lbl_802534C0);
+	} else {
+		switch (lbl_80303DC8[kind]->team) {
+			case 0:
+				copyColor(result->color, (u8*)lbl_802534C0 + 4);
+				break;
+			case 1:
+				copyColor(result->color, (u8*)lbl_802534C0 + 8);
+				break;
+			case 3:
+				copyColor(result->color, (u8*)lbl_802534C0 + 12);
+				break;
+			case 2:
+				copyColor(result->color, (u8*)lbl_802534C0 + 16);
+				break;
+		}
+	}
+
+	result->swirlScale    = lbl_8042DC08;
+	result->verticalScale = lbl_8042DBC0;
+	result->opacity       = 0xff;
+	result->direction     = (s8)(u32)velocity;
+}
+#pragma opt_common_subs reset
+
 TObjEffTyphoon::TObjEffTyphoon(
     TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
     : TObjEffTornado(parent, kind, position, rotation)
