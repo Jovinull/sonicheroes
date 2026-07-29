@@ -500,6 +500,16 @@ config.libs = [
                 "game/dvd_status.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/demo.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-opt noschedule,nopeephole",
+                    "-str nopool",
+                    '-pragma "explicit_zero_data on"',
+                ],
+            ),
         ],
     },
     Rel(
