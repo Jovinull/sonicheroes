@@ -730,16 +730,16 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	}
 
 	{
-		s32 count               = 0;
-		void** models           = lbl_802532E8;
-		RwV3d* positions        = lbl_8025337C;
-		RwV3d* directions       = lbl_802533DC;
-		RotationPair* rotations = lbl_8025343C;
-		RwV3d* firstAxis        = &lbl_80239978;
+		s32 count  = 0;
+		models     = lbl_802532E8;
+		positions  = lbl_8025337C;
+		directions = lbl_802533DC;
+		rotations  = lbl_8025343C;
+		firstAxis  = &lbl_80239978;
 		f32 sine;
-		f32 one           = lbl_8042DBC0;
-		s32* angleOffsets = lbl_8025347C;
-		RwV3d* secondAxis = &lbl_80239984;
+		f32 one      = lbl_8042DBC0;
+		angleOffsets = lbl_8025347C;
+		secondAxis   = &lbl_80239984;
 		do {
 			void* model = tornadoModel(models, 2);
 			void* frame = tornadoFrame(model);
