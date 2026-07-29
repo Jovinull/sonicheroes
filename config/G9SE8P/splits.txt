@@ -158,6 +158,10 @@ game/eventCore.cpp:
 	.text       start:0x8011E5A4 end:0x8011E5F0
 	.rodata     start:0x8023AAB0 end:0x8023ACB0
 
+game/SeqFlagCtrl.cpp:
+	.text       start:0x801143E0 end:0x801144E0
+	.bss        start:0x803E75E8 end:0x803E7668
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

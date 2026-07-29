@@ -594,6 +594,21 @@ Evidence and rationale:
 - the configured C++ object matches its complete text and read-only-data ranges
   byte-for-byte.
 
+### `game/SeqFlagCtrl.cpp`
+
+`game/SeqFlagCtrl.cpp` is C++.
+
+Evidence and rationale:
+
+- the PS2 beta metadata retains the `SeqFlagCtrl.cpp` source marker, the
+  `TQuestSeqCtrl::CheckSequenceVars(int)` and
+  `TQuestSeqCtrl::SetSequenceVars(int)` methods, and the class-owned `seqVars`
+  array;
+- the GameCube pair performs the same bounded bit lookup and update against the
+  corresponding 128-byte array;
+- the configured C++ object matches its complete text and uninitialized-data
+  ranges byte-for-byte.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.
