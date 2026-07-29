@@ -739,7 +739,6 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 sine;
 		f32 one      = lbl_8042DBC0;
 		angleOffsets = lbl_8025347C;
-		secondAxis   = &lbl_80239984;
 		do {
 			void* model = tornadoModel(models, 2);
 			void* frame = tornadoFrame(model);
@@ -755,7 +754,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			vectorOffset = tableIndex * sizeof(s32);
 			sine         = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
 			f32 cosine   = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
-			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
+			fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
 			RwV3d position = effect->position;
 			position.y += height;
 			fn_8019EB94(frame, &position, 2);
