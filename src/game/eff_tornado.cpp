@@ -77,13 +77,39 @@ int fn_80017800(void*);
 void fn_8003C200(void*, void*, s32, s32);
 void fn_80021384(void*);
 void* fn_8006298C(s32, RwV3d*, sAngle*);
+void* fn_8005EA04(const char*);
+void* fn_8005E410(void*, s32, void*);
+void* fn_8005E1DC(void*, s32, void*);
+void fn_8005DA34(void*);
+void fn_8005D9F4(void*);
+void fn_8005D6DC(void*);
+void fn_8005C014(void*);
+void fn_800BD02C(void*, void*, void*);
+void* fn_800BD0AC(void*, void*);
+void fn_8020C72C(void*, void*);
+void fn_8013F3A4(void*);
+void fn_801491A8(void*);
 void __dt__7C_COLLIFv(C_COLLI*, s32);
 void __dt__7TObjectFv(TObject*, s32);
-void __dt__14TObjEffTornadoFv(TObjEffTornado*, s32);
+TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado*, s32);
 void fn_800189A4(void*, void*);
 
 extern TObject* lbl_8042C2A0;
 extern TObject* lbl_8042C110;
+extern void* lbl_8042C350;
+extern void* lbl_8042C354;
+extern void* lbl_8042C358;
+extern void* lbl_8042C35C;
+extern void* lbl_8042C368;
+extern void* lbl_8042C36C;
+extern void* lbl_8042C370;
+extern void* lbl_8042C374;
+extern void* lbl_8042C360;
+extern void* lbl_8042C364;
+extern u8 lbl_8042C3D0[];
+extern u8 lbl_8042B364[];
+extern u8 lbl_8042B36C[];
+extern void* lbl_80303F98;
 extern const char* lbl_8042B350;
 extern const char* lbl_8042B360;
 extern u8 lbl_8025333C[];
@@ -105,6 +131,67 @@ void __ct__15TObjEffTornado2FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObjEffTornado2*, TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 }
 
+void* lbl_802532E8[3] = { 0, 0, 0 };
+void* lbl_802532F4[3] = { 0, 0, 0 };
+char lbl_80253300[]   = "EF_TORNADE.DFF";
+char lbl_80253310[]   = "EF_TORNADEB.DFF";
+char lbl_80253320[]   = "EF_TORNADEC.DFF";
+char* lbl_80253330[3] = { lbl_80253300, lbl_80253310, lbl_80253320 };
+u8 lbl_8025333C[0x30] = {
+	0x0a,
+	0x0a,
+	0xf0,
+	0xe2,
+	0x00,
+	0x20,
+	0x20,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x42,
+	0x70,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x41,
+	0xa0,
+	0x00,
+	0x00,
+	0x42,
+	0x70,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+};
+char lbl_80253568[] = "EF_TORNADO.DFF";
+char lbl_80253578[] = "EF_TORNADO_RING.DFF";
+char lbl_8025358C[] = "EF_TORNADO_RINGB.DFF";
+char lbl_802535A4[] = "EF_TORNADO.ANM";
+char lbl_802535B4[] = "EF_TORNADO.UVB";
 u32 lbl_802534C0[5] = {
 	0xffffffff,
 	0x005aaaff,
@@ -189,54 +276,17 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 	return effect;
 }
 
-#pragma opt_common_subs off
-TObjEffTyphoon::TObjEffTyphoon(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
-    : TObjEffTornado(parent, kind, position, rotation)
+extern "C" TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado* effect, s32 shouldDelete)
 {
-	TObjEffTyphoon* result = this;
-
-	result->vtable              = lbl_802534E4;
-	result->className           = lbl_8042B360;
-	*(u16*)((u8*)result + 0x1e) = 0xec;
-	if (velocity != 0) {
-		result->velocity.x = velocity->x;
-		result->velocity.y = velocity->y;
-		result->velocity.z = velocity->z;
-	} else {
-		f32 zeroVelocity   = lbl_8042DBB4;
-		result->velocity.z = zeroVelocity;
-		result->velocity.y = zeroVelocity;
-		result->velocity.x = zeroVelocity;
-	}
-	result->particle = fn_8006298C(14, &result->position, &result->rotation);
-}
-#pragma opt_common_subs reset
-
-extern "C" void SetEffectTyphoon__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
-{
-	if (parent == 0) {
-		parent = lbl_8042C2A0;
-		if (parent == 0) {
-			parent = lbl_8042C110;
+	if (effect != 0) {
+		effect->vtable = lbl_8025361C;
+		__dt__7C_COLLIFv(&effect->effectModel, 0);
+		__dt__7TObjectFv(effect, 0);
+		if ((s16)shouldDelete > 0) {
+			fn_800189A4(lbl_8042C148, effect);
 		}
 	}
-
-	new TObjEffTyphoon(parent, kind, position, rotation, velocity);
-}
-
-extern "C" void SetEffectTornado2__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
-{
-	if (parent == 0) {
-		parent = lbl_8042C2A0;
-		if (parent == 0) {
-			parent = lbl_8042C110;
-		}
-	}
-
-	new TObjEffTornado2(parent, kind, position, rotation, velocity);
+	return effect;
 }
 
 TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngle* rotation)
@@ -301,5 +351,139 @@ TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngl
 		model                         = *(void**)&base->effectModel.data[0x10];
 		((RwV3d*)((u8*)model + 8))->y += lbl_8042DBB8;
 		fn_80021384(&base->effectModel);
+	}
+}
+
+#pragma opt_common_subs off
+TObjEffTyphoon::TObjEffTyphoon(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+    : TObjEffTornado(parent, kind, position, rotation)
+{
+	TObjEffTyphoon* result = this;
+
+	result->vtable              = lbl_802534E4;
+	result->className           = lbl_8042B360;
+	*(u16*)((u8*)result + 0x1e) = 0xec;
+	if (velocity != 0) {
+		result->velocity.x = velocity->x;
+		result->velocity.y = velocity->y;
+		result->velocity.z = velocity->z;
+	} else {
+		f32 zeroVelocity   = lbl_8042DBB4;
+		result->velocity.z = zeroVelocity;
+		result->velocity.y = zeroVelocity;
+		result->velocity.x = zeroVelocity;
+	}
+	result->particle = fn_8006298C(14, &result->position, &result->rotation);
+}
+#pragma opt_common_subs reset
+
+extern "C" void SetEffectTyphoon__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+{
+	if (parent == 0) {
+		parent = lbl_8042C2A0;
+		if (parent == 0) {
+			parent = lbl_8042C110;
+		}
+	}
+
+	new TObjEffTyphoon(parent, kind, position, rotation, velocity);
+}
+
+extern "C" void SetEffectTornado2__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+{
+	if (parent == 0) {
+		parent = lbl_8042C2A0;
+		if (parent == 0) {
+			parent = lbl_8042C110;
+		}
+	}
+
+	new TObjEffTornado2(parent, kind, position, rotation, velocity);
+}
+
+extern "C" void SetEffectTornado__FP7TObjectiP5RwV3dP6sAngle(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation)
+{
+	if (parent == 0) {
+		parent = lbl_8042C2A0;
+		if (parent == 0) {
+			parent = lbl_8042C110;
+		}
+	}
+
+	new TObjEffTornado(parent, kind, position, rotation);
+}
+
+extern "C" void EndEffTornado__Fv()
+{
+	lbl_802532E8[0] = 0;
+	lbl_802532F4[0] = 0;
+	lbl_802532E8[1] = 0;
+	lbl_802532F4[1] = 0;
+	lbl_802532E8[2] = 0;
+	lbl_802532F4[2] = 0;
+	lbl_8042C350    = 0;
+	lbl_8042C354    = 0;
+	lbl_8042C358    = 0;
+	lbl_8042C35C    = 0;
+	lbl_8042C36C    = 0;
+	lbl_8042C368    = 0;
+	lbl_8042C370    = 0;
+	lbl_8042C374    = 0;
+}
+
+extern "C" void InitEffTornado__Fv()
+{
+	for (s32 i = 0; i < 3; ++i) {
+		if (lbl_802532E8[i] == 0) {
+			lbl_802532E8[i] = fn_8005EA04(lbl_80253330[i]);
+			if (lbl_802532E8[i] != 0) {
+				lbl_802532F4[i] = fn_8005E410(lbl_802532E8[i], 0, lbl_8042B364);
+			}
+		}
+	}
+
+	lbl_8042C350 = fn_8005EA04(lbl_80253568);
+	if (lbl_8042C350 != 0) {
+		lbl_8042C354 = fn_8005E410(lbl_8042C350, 0, lbl_8042B36C);
+		lbl_8042C370 = lbl_8042C354;
+		lbl_8042C368 = fn_800BD0AC(lbl_8042C3D0, lbl_8042C350);
+		fn_8005D9F4(lbl_8042C350);
+		fn_8005D6DC(lbl_8042C350);
+	}
+
+	lbl_8042C358 = fn_8005EA04(lbl_80253578);
+	if (lbl_8042C358 != 0) {
+		lbl_8042C35C = fn_8005E410(lbl_8042C358, 0, lbl_8042B36C);
+		fn_8005DA34(lbl_8042C358);
+		fn_8005D9F4(lbl_8042C358);
+		fn_8005D6DC(lbl_8042C358);
+	}
+
+	lbl_8042C360 = fn_8005EA04(lbl_8025358C);
+	if (lbl_8042C360 != 0) {
+		lbl_8042C364 = fn_8005E410(lbl_8042C360, 0, lbl_8042B36C);
+		fn_8005DA34(lbl_8042C360);
+		fn_8005D9F4(lbl_8042C360);
+		fn_8005D6DC(lbl_8042C360);
+	}
+
+	lbl_8042C36C = fn_8005EA04(lbl_802535A4);
+	if (lbl_8042C36C != 0 && lbl_8042C368 != 0) {
+		fn_800BD02C(lbl_8042C3D0, lbl_8042C350, lbl_8042C368);
+		*(u32*)lbl_8042C368 |= 0x3000;
+		fn_8020C72C(*(void**)((u8*)lbl_8042C368 + 0x20), lbl_8042C36C);
+		fn_8013F3A4(lbl_8042C368);
+	}
+
+	lbl_8042C374 = fn_8005EA04(lbl_802535B4);
+	if (lbl_8042C374 != 0 && lbl_8042C370 != 0) {
+		void* material = fn_8005E1DC(lbl_8042C350, 0, lbl_8042B36C);
+		lbl_80303F98   = lbl_8042C374;
+		fn_8005C014(material);
+		fn_801491A8(material);
 	}
 }
