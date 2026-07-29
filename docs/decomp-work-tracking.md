@@ -10,6 +10,9 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex | `game/main.cpp` (`0x80015AC0`–`0x80016514`) | Complete; `pr-game-main-cpp` |
 | Codex agents | `game/Task.cpp` (`0x80016514`–`0x800189A4`) | Complete; `pr-game-task-cpp` |
 | Codex | `game/Memory.cpp` (`0x800189A4`–`0x80018C0C`) | Complete; `pr-game-memory-cpp` |
+| Codex | `game/action.cpp` (begins `0x80018C0C`) | Active; taking over stale empty `ares/wip-action` placeholder |
+| Ares | `main/game/ares_800421b4.cpp` | Active; `ares/tu-main-game-ares_800421b4` |
+| Ares | `actionstage`, `debug`, `e_pawn`, `e_spboss`, `eff_firedunk`, `newcamera`, `particlecore` onboarding workspaces | Active; reserved |
 
 The unified `advertiseD` reconstruction is complete on `pr-advertised`; do not
 open the superseded per-function or per-file advertise branches.

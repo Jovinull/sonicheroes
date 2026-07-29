@@ -515,6 +515,15 @@ config.libs = [
                 "game/Memory.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/action.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
         ],
     },
     Rel(
@@ -1281,6 +1290,11 @@ config.custom_build_rules = [
         "command": f"$python tools/fix_game_memory_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX Memory.cpp object layout",
     },
+    {
+        "name": "fix_game_action_object",
+        "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX action.cpp split symbols",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -1307,6 +1321,12 @@ config.custom_build_steps = {
             "rule": "fix_game_memory_object",
             "inputs": "build/G9SE8P/src/game/Memory.o",
             "implicit": ["tools/fix_game_memory_object.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-action-object.stamp",
+            "rule": "fix_game_action_object",
+            "inputs": "build/G9SE8P/src/game/action.o",
+            "implicit": ["tools/fix_game_action_object.py", str(binutils_dir)],
         },
     ],
 }

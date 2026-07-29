@@ -90,6 +90,11 @@ game/Memory.cpp:
 	extabindex  start:0x8000BF5C end:0x8000BF8C
 	.text       start:0x800189A4 end:0x80018C0C
 
+game/action.cpp:
+	extab       start:0x80005928 end:0x80005940
+	extabindex  start:0x8000BF8C end:0x8000BFB0
+	.text       start:0x80018C0C end:0x80019034
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
