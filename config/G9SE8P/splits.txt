@@ -112,6 +112,10 @@ game/action_cont3.cpp:
 game/action_cont4.cpp:
 	.text       start:0x8001D754 end:0x8001D764
 
+game/Endian.cpp:
+	.text       start:0x8004BECC end:0x8004C160
+	.ctors      start:0x802398D0 end:0x802398D4
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
