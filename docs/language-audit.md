@@ -438,6 +438,25 @@ Until those owners coordinate integration, the checker permits this debt only
 under `advertiseD/` and `autosaveD/`. A legacy C++/`.c` entry anywhere else is
 a policy error.
 
+### GetSpParam
+
+Added `game/GetSpParam.cpp` as a C++ translation unit.
+
+Language and boundary evidence:
+
+- local PS2 debug metadata retains the `GetSpParam.cpp` source marker and the
+  `GetSpParam` constructor, destructor and method family;
+- the correlated GameCube range has the same ordered 11-method family,
+  destructor and static initializer;
+- the GameCube object requires C++ exception metadata and global construction.
+
+Validation:
+
+- all 13 functions and the complete `.text`, exception, constructor, BSS and
+  floating-constant sections match the GameCube target byte-for-byte;
+- the complete build relinked and verified all 18 configured artifacts;
+- the language-policy check passes without an exception.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.
