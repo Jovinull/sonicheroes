@@ -224,6 +224,10 @@ def main() -> None:
         output = Path(temporary.name)
     try:
         command = [str(args.objcopy)]
+        # The removed compiler-only delete atom leaves these unused undefined
+        # table labels behind. They have no relocation users and must not enter
+        # the final linker's unresolved-symbol closure.
+        command.extend(["--strip-symbol", "@92", "--strip-symbol", "@93"])
         for source, target in SYMBOL_RENAMES.items():
             command.extend(["--redefine-sym", f"{source}={target}"])
         command.extend([str(args.object), str(output)])

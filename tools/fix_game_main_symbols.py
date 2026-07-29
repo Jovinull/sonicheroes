@@ -27,7 +27,9 @@ RENAMES = (
     ("lbl_8029BB80", "RsGlobal"),
     ("fn_80011D64", "RsInitialize"),
     ("fn_80011DD8", "RsRwInitialize"),
+    ("fn_80011EFC", "RsRwTerminate"),
     ("fn_800122E8", "RsErrorMessage"),
+    ("lbl_803EC340", "MoviePlaySub"),
 )
 
 
