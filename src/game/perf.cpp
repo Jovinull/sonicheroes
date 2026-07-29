@@ -13,8 +13,8 @@ void* memset(void*, int, u32);
 int sprintf(char*, const char*, ...);
 void OSInitStopwatch(void*, const char*);
 void fn_80012654(u32*, u32*);
-void fn_80011C20(void*, const char*, int, int, int);
-int fn_800159EC(void*, int, int, int);
+void RsCameraSize(void*, const char*, int, int, int);
+int repCheck_D(void*, int, int, int);
 void fn_80051D44(void*, void*, void*);
 
 extern void* lbl_8042C0F0;
@@ -53,7 +53,11 @@ struct Controller {
 
 extern Controller lbl_8029BBD0[];
 
-struct Performance {
+enum P_PERFORMANCE_ELE {
+	P_PERFORMANCE_ELE_FIRST = 0,
+};
+
+struct PERF {
 	s32 page;
 	s32 mode;
 	OSStopwatch temporary;
@@ -80,6 +84,10 @@ struct Performance {
 		addParameter2(dest, second);
 	}
 
+	void DisplayInfo();
+	void InitPerfomanceMember(P_PERFORMANCE_ELE);
+	void InitPerfomance();
+
 	u32 CheckRestHeap()
 	{
 		u32 result;
@@ -99,8 +107,6 @@ struct Performance {
 		}
 		return 0;
 	}
-
-	void InitPerformanceMember(s32 index);
 };
 
 extern "C" {
@@ -122,30 +128,24 @@ extern char lbl_80255728[];
 extern char lbl_8042B64C[4];
 extern u32 lbl_8042B648;
 extern PerfInfo lbl_802553F0[36];
-extern Performance lbl_803A6690;
+extern PERF lbl_803A6690;
 }
 
-inline void Performance::InitPerformanceMember(s32 index)
+void PERF::DisplayInfo()
 {
-	OSStopwatch* stopwatch = (OSStopwatch*)&elements[index];
-	memset(stopwatch, 0, sizeof(OSStopwatch));
-	OSInitStopwatch(stopwatch, lbl_802553F0[index].name);
-}
-
-extern "C" void DisplayInfo__4PERFFv(Performance* perf)
-{
+	PERF* perf = this;
 	switch (perf->mode) {
 		case 1:
-			fn_80011C20(lbl_8042C0F0, lbl_802555B0, 35, 0, 5);
+			RsCameraSize(lbl_8042C0F0, lbl_802555B0, 35, 0, 5);
 			break;
 		case 2:
-			fn_80011C20(lbl_8042C0F0, lbl_802555CC, 35, 0, 5);
+			RsCameraSize(lbl_8042C0F0, lbl_802555CC, 35, 0, 5);
 			break;
 		case 0:
-			fn_80011C20(lbl_8042C0F0, lbl_802555EC, 35, 0, 5);
+			RsCameraSize(lbl_8042C0F0, lbl_802555EC, 35, 0, 5);
 			break;
 	}
-	fn_80011C20(lbl_8042C0F0, lbl_80255604, 35, 1, 5);
+	RsCameraSize(lbl_8042C0F0, lbl_80255604, 35, 1, 5);
 
 	u8* controller = (u8*)lbl_8029BBD0;
 	controller += *(u32*)lbl_802408F8 * sizeof(Controller);
@@ -165,14 +165,14 @@ extern "C" void DisplayInfo__4PERFFv(Performance* perf)
 	}
 	controllerIndex = *(u32*)lbl_802408F8;
 	controller      = (u8*)&lbl_8029BBD0[controllerIndex];
-	if (fn_800159EC(controller + 0x48, 8, 12, 1)) {
+	if (repCheck_D(controller + 0x48, 8, 12, 1)) {
 		perf->page--;
 		if (perf->page < 0)
 			perf->page = 0;
 	}
 	controllerIndex = *(u32*)lbl_802408F8;
 	controller      = (u8*)&lbl_8029BBD0[controllerIndex];
-	if (fn_800159EC(controller + 0x48, 4, 12, 1))
+	if (repCheck_D(controller + 0x48, 4, 12, 1))
 		perf->page++;
 
 	fn_80051D44(lbl_8042B088, lbl_802555A0, &lbl_8042B648);
@@ -207,12 +207,12 @@ extern "C" void DisplayInfo__4PERFFv(Performance* perf)
 		sprintf(text, lbl_80255624, 0x3000000);
 	else
 		sprintf(text, lbl_80255640, 0x1800000);
-	fn_80011C20(lbl_8042C0F0, text, 0, 0, 5);
+	RsCameraSize(lbl_8042C0F0, text, 0, 0, 5);
 	sprintf(text, lbl_8025565C, perf->heapSize);
-	fn_80011C20(lbl_8042C0F0, text, 0, 1, 5);
+	RsCameraSize(lbl_8042C0F0, text, 0, 1, 5);
 	sprintf(text, lbl_80255678, perf->continuousHeapSize);
-	fn_80011C20(lbl_8042C0F0, text, 0, 2, 5);
-	fn_80011C20(lbl_8042C0F0, lbl_80255694, 0, 3, 5);
+	RsCameraSize(lbl_8042C0F0, text, 0, 2, 5);
+	RsCameraSize(lbl_8042C0F0, lbl_80255694, 0, 3, 5);
 
 	u8* element;
 	int i;
@@ -231,33 +231,40 @@ extern "C" void DisplayInfo__4PERFFv(Performance* perf)
 				sprintf(text, lbl_802556EC, name, *(u32*)(element + 0x80), *(u32*)(element + 0x88));
 			else
 				sprintf(text, lbl_802556FC, name, *(u32*)(element + 0x80), *(u32*)(element + 0x88));
-			fn_80011C20(lbl_8042C0F0, text, 0, i + 4 - perf->page, 5);
+			RsCameraSize(lbl_8042C0F0, text, 0, i + 4 - perf->page, 5);
 		}
 	}
 
 	u32 rest       = perf->CheckRestHeap();
 	u32 continuous = perf->CheckRestContinuousHeap();
 	sprintf(text, lbl_80255708, rest, continuous);
-	fn_80011C20(lbl_8042C0F0, text, 0, 28, 5);
+	RsCameraSize(lbl_8042C0F0, text, 0, 28, 5);
 }
 
-extern "C" u32 CheckRestHeap__4PERFFv(Performance* perf)
+// MWCC inlines the class method above into DisplayInfo. This out-of-line
+// emission surrogate preserves the independently addressable retail method
+// without disabling that original inline decision.
+extern "C" u32 CheckRestHeap__4PERFFv(PERF* perf)
 {
 	return perf->CheckRestHeap();
 }
 
-extern "C" void InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(Performance* perf, s32 index)
+void PERF::InitPerfomanceMember(P_PERFORMANCE_ELE element)
 {
-	perf->InitPerformanceMember(index);
+	s32 index              = element;
+	OSStopwatch* stopwatch = (OSStopwatch*)&elements[index];
+	memset(stopwatch, 0, sizeof(OSStopwatch));
+	OSInitStopwatch(stopwatch, lbl_802553F0[index].name);
 }
 
 #pragma opt_strength_reduction off
-extern "C" void InitPerfomance__4PERFFv(Performance* perf)
+void PERF::InitPerfomance()
 {
+	PERF* perf = this;
 	perf->page = 0;
 	OSInitStopwatch(&perf->temporary, lbl_80255728);
 	for (s32 index = 7; index < 36; ++index)
-		lbl_803A6690.InitPerformanceMember(index);
+		lbl_803A6690.InitPerfomanceMember((P_PERFORMANCE_ELE)index);
 }
 
 extern "C" void __sinit_perf_cpp()
@@ -368,5 +375,5 @@ char lbl_80255728[0x10] = "tmpStopWatch";
 
 u32 lbl_8042B648     = 0xb480;
 char lbl_8042B64C[4] = "%s";
-Performance lbl_803A6690;
+PERF lbl_803A6690;
 }

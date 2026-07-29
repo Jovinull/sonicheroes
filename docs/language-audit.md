@@ -472,9 +472,9 @@ After the GameCube platform-main decision:
   claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- four sources have reviewed deferred-inline modes:
-  `game/skyfs_adx.c`, `game/modeswitch.cpp`, `advertiseD/adv_2p.cpp` and
-  `advertiseD/adv_draw.cpp`.
+- five sources have reviewed deferred-inline modes:
+  `game/skyfs_adx.c`, `game/modeswitch.cpp`, `game/e_paralysis.cpp`,
+  `advertiseD/adv_2p.cpp` and `advertiseD/adv_draw.cpp`.
 
 ### Reviewed inline exceptions
 
@@ -501,7 +501,14 @@ initializer arrays must remain writable at the same time: const qualification
 under deferred emission moves them to `.rodata`, whereas the writable
 declarations reproduce the target `.data` byte-for-byte.
 
-### Protected C++ migration debt
+`game/e_paralysis.cpp` keeps an object-level `-inline deferred` override for the
+same reason. The PS2 beta debug symbols name the original translation unit and
+its `TEnemyParalysis` and `sParalysisParam` methods, and the GameCube vtable,
+constructor/destructor cleanup records, `TEnemyParalysis` string, private
+resource data and static initializer establish the retail unit boundary
+independently. Deferred emission reproduces the PS2 method order in the
+GameCube object and preserves the retail constructor and destructor exception
+metadata. All ten functions and every owned section match byte for byte.
 
 The following sources are classified in `protected_cpp_c_sources` without
 changing their source, split or object configuration:

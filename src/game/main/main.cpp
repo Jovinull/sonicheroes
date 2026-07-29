@@ -78,13 +78,13 @@ void fn_80116D30(void*);
 void fn_80040198(void*);
 void fn_80066ED8(void*, int);
 void fn_800D0AA8();
-void fn_8001F4E8(TMainTask*, int, int);
+void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(TMainTask*, int, int);
 void fn_800A7614();
 void fn_80112F10();
 int fn_80011D64();
 int fn_80011DD8(void*);
 void fn_800122E8(const char*);
-int fn_800CDE18(void*);
+int CheckRestHeap__4PERFFv(void*);
 void fn_800B6C64();
 void* fn_801784C8(void*, void*);
 void fn_8022CEB0();
@@ -92,7 +92,7 @@ void fn_80016E88(void*);
 void fn_800CE010();
 void fn_800D09C4();
 void fn_8004014C(void*);
-void fn_8001F544(void*, int);
+void __dt__10MODESWITCHFv(void*, int);
 void fn_800B6418();
 void fn_80112D98();
 void fn_80016CA0(void*);
@@ -204,7 +204,7 @@ static inline int InitializeApp()
 
 static inline int Initialize3D(void* param)
 {
-	int memory        = fn_800CDE18(lbl_803A6690);
+	int memory        = CheckRestHeap__4PERFFv(lbl_803A6690);
 	int* globals      = (int*)lbl_803A6690;
 	globals[0x48 / 4] = memory;
 	if (memory > 0x1800000)
@@ -243,7 +243,7 @@ extern "C" RsEventStatus AppEventHandler(unsigned event, void* param)
 			fn_800D09C4();
 			fn_8004014C(&lbl_8042C1BC);
 			while (lbl_8042C180) {
-				fn_8001F544(lbl_8042C180, 1);
+				__dt__10MODESWITCHFv(lbl_8042C180, 1);
 			}
 			fn_800B6418();
 			fn_80112D98();
@@ -308,7 +308,7 @@ void MAIN::Init()
 	fn_80040198(&lbl_8042C1BC);
 	fn_80066ED8(&lbl_8042C308, 0);
 	fn_800D0AA8();
-	fn_8001F4E8(lbl_8042C180, 0x13, ((s8*)lbl_8042C180)[0x13]);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x13, ((s8*)lbl_8042C180)[0x13]);
 	fn_800A7614();
 	fn_8011253C();
 	fn_80112F10();
@@ -334,21 +334,21 @@ static inline void setSpecialMode()
 {
 	switch (fn_801386C4(&lbl_8042C7E0)) {
 		case 0:
-			fn_8001F4E8(lbl_8042C180, 0x30, 2);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 			break;
 		case 1:
 			if (lbl_8042C180->field26 == 0) {
-				fn_8001F4E8(lbl_8042C180, 0x30, 2);
-				fn_8001F4E8(lbl_8042C180, 0x26, 1);
+				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
+				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x26, 1);
 			} else {
 				*(int*)(lbl_803EC340 + 4) = fn_80138664(&lbl_8042C7E0);
-				fn_8001F4E8(lbl_8042C180, 0x30, 5);
+				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 5);
 			}
 			break;
 		case 2:
 			break;
 		default:
-			fn_8001F4E8(lbl_8042C180, 0x30, 1);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 1);
 			break;
 	}
 }
@@ -356,8 +356,8 @@ static inline void setSpecialMode()
 int MAIN::Loop()
 {
 	field0                       = 0;
-	*(int*)(lbl_803A6690 + 0x4C) = fn_800CDE18(lbl_803A6690);
-	fn_8001F4E8(lbl_8042C180, 0x30, 0);
+	*(int*)(lbl_803A6690 + 0x4C) = CheckRestHeap__4PERFFv(lbl_803A6690);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 0);
 	fn_800A7A44();
 	fn_8011253C();
 	fn_80112F74();
@@ -393,23 +393,23 @@ int MAIN::Loop()
 					if (result == 1)
 						setSpecialMode();
 					else
-						fn_8001F4E8(lbl_8042C180, 0x30, 1);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 1);
 				} else if (result == 1) {
 					int playerMode = lbl_8042C180->field28;
 					if ((playerMode == 2 || lbl_8042C180->field1E == 2)
 					    && *(int*)(lbl_8029C310 + 0x3C) > 0) {
-						fn_8001F4E8(lbl_8042C180, 0x30, 2);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 					} else if (playerMode == 2 && *(int*)(lbl_8029C310 + 0x3C) <= 0) {
-						fn_8001F4E8(lbl_8042C180, 0x30, 5);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 5);
 					} else if (lbl_8042C180->field26 == 0) {
-						fn_8001F4E8(lbl_8042C180, 0x30, 2);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 					} else if (*(int*)(lbl_8029C310 + 0x3C) == 0x18) {
-						fn_8001F4E8(lbl_8042C180, 0x30, 2);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 					} else {
-						fn_8001F4E8(lbl_8042C180, 0x30, 1);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 1);
 					}
 				} else {
-					fn_8001F4E8(lbl_8042C180, 0x30, 1);
+					SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 1);
 				}
 				if (result == 3)
 					fn_800A74BC(0);
@@ -420,7 +420,8 @@ int MAIN::Loop()
 				lbl_8042B320 = moduleIndex;
 				runModule(lbl_80253068[moduleIndex], result, true);
 				lbl_8042C338->End();
-				fn_8001F4E8(lbl_8042C180, 0x30, lbl_8042C180->nextMode);
+				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+				    lbl_8042C180, 0x30, lbl_8042C180->nextMode);
 				break;
 
 			case 5:
@@ -431,7 +432,8 @@ int MAIN::Loop()
 				if (lbl_8042C180->field27 != 0)
 					setSpecialMode();
 				else
-					fn_8001F4E8(lbl_8042C180, 0x30, lbl_8042C180->nextMode);
+					SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+					    lbl_8042C180, 0x30, lbl_8042C180->nextMode);
 				if (result == 3)
 					fn_800A74BC(0);
 				break;

@@ -303,10 +303,11 @@ extern u8 lbl_8042AE98;
 extern "C" s32 CheckSoftReset(s32 mode);
 extern "C" void fn_800A74BC(s32 mode);
 extern "C" void fn_800CB6EC();
-extern "C" void fn_8001F4E8(MainState* state, s32 field, s32 value);
+extern "C" void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+    MainState* state, s32 field, s32 value);
 inline void fn_8001F4E8(u32 state, s32 field, s32 value)
 {
-	fn_8001F4E8((MainState*)state, field, value);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi((MainState*)state, field, value);
 }
 extern "C" void fn_80016778(void* task);
 extern "C" void fn_80016BBC(void* task);
@@ -414,8 +415,8 @@ extern "C" void* fn_8019CC28_noarg();
 extern "C" void fn_8019CC00_noarg();
 extern "C" void fn_800122B4_noarg();
 extern "C" void fn_80177C50_noarg();
-extern "C" void fn_800CD6A0(void* object);
-extern "C" void fn_800CDE58(void* object, s32 index);
+extern "C" void DisplayInfo__4PERFFv(void* object);
+extern "C" void InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(void* object, s32 index);
 extern "C" void fn_8004DC80(void* object, s32 mode);
 extern "C" void RsCameraShowRaster(void* world);
 extern "C" void fn_800B7BDC();
@@ -505,7 +506,7 @@ extern "C" s32 fn_800B7B30();
 extern "C" s32 fn_800BF5D8();
 extern "C" s32 fn_800C59C4();
 extern "C" s32 fn_800C6F28();
-extern "C" void fn_800CDE58(void*, s32);
+extern "C" void InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(void*, s32);
 extern "C" void VIWaitForRetrace();
 extern "C" void ChkController();
 extern "C" s32 fn_800CB750();
@@ -663,7 +664,7 @@ void ACTION::eventChecker()
 		Action.mode                  = 8;
 		*(s32*)((u8*)&Action + 0x14) = 3;
 		fn_800CB6EC();
-		fn_8001F4E8(lbl_8042C180, 38, 1);
+		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 38, 1);
 	}
 }
 
@@ -687,12 +688,12 @@ s32 ACTION::restartStage()
 		currentStage->restart();
 
 	processState = 0;
-	fn_8001F4E8(lbl_8042C180, 26, 1);
-	fn_8001F4E8(lbl_8042C180, 27, 1);
-	fn_8001F4E8(lbl_8042C180, 33, 0);
-	fn_8001F4E8(lbl_8042C180, 34, 0);
-	fn_8001F4E8(lbl_8042C180, 35, 0);
-	fn_8001F4E8(lbl_8042C180, 38, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 26, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 27, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 33, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 34, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 35, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 38, 1);
 	*(s32*)((u8*)lbl_8042C180 + 0x30) = 0;
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
 
@@ -713,43 +714,43 @@ void ACTION::SetPlayMode(s32 playMode, s32 gameRule)
 {
 	switch (playMode) {
 		case 0:
-			fn_8001F4E8(lbl_8042C180, 30, 0);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 30, 0);
 			break;
 		case 1:
-			fn_8001F4E8(lbl_8042C180, 30, 1);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 30, 1);
 			break;
 		case 2:
-			fn_8001F4E8(lbl_8042C180, 30, 2);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 30, 2);
 			break;
 	}
 
 	switch (gameRule) {
 		case 0:
-			fn_8001F4E8(lbl_8042C180, 36, 0);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 			break;
 		case 1:
-			fn_8001F4E8(lbl_8042C180, 36, 1);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 1);
 			break;
 		case 2:
-			fn_8001F4E8(lbl_8042C180, 36, 2);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 2);
 			break;
 		case 3:
-			fn_8001F4E8(lbl_8042C180, 36, 3);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 3);
 			break;
 		case 4:
-			fn_8001F4E8(lbl_8042C180, 36, 4);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 4);
 			break;
 		case 5:
-			fn_8001F4E8(lbl_8042C180, 36, 5);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 5);
 			break;
 		case 6:
-			fn_8001F4E8(lbl_8042C180, 36, 6);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 6);
 			break;
 		case 7:
-			fn_8001F4E8(lbl_8042C180, 36, 7);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 7);
 			break;
 		case 8:
-			fn_8001F4E8(lbl_8042C180, 36, 8);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 8);
 			break;
 	}
 }
@@ -816,8 +817,8 @@ void ACTION::FreezeStage()
 	fn_800B4684(lbl_8042C388, 1);
 	fn_800CB84C();
 	fn_8001F600();
-	fn_8001F4E8(lbl_8042C180, 26, 0);
-	fn_8001F4E8(lbl_8042C180, 27, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 26, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 27, 0);
 }
 
 void ACTION::GiveUpStage()
@@ -834,7 +835,7 @@ void ACTION::GiveUpStage()
 		mode       = 8;
 		transition = 3;
 		fn_800CB6EC();
-		fn_8001F4E8(lbl_8042C180, 38, 1);
+		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 38, 1);
 	}
 }
 
@@ -870,17 +871,17 @@ void ACTION::RestartStage()
 
 void ACTION::ContinueStage()
 {
-	fn_8001F4E8(lbl_8042C180, 27, 1);
-	fn_8001F4E8(lbl_8042C180, 26, 1);
-	fn_8001F4E8(lbl_8042C180, 33, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 27, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 26, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 33, 0);
 	Action.pauseDisabled = 1;
 }
 
 void ACTION::EndPose()
 {
-	fn_8001F4E8(lbl_8042C180, 27, 0);
-	fn_8001F4E8(lbl_8042C180, 26, 0);
-	fn_8001F4E8(lbl_8042C180, 33, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 27, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 26, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 33, 1);
 	Action.pauseDisabled = 0;
 }
 
@@ -918,10 +919,10 @@ void ACTION::SetGoalAction(s32 teamNo)
 		fn_800A0A4C(teamNo);
 	}
 
-	fn_8001F4E8(lbl_8042C180, 27, 0);
-	fn_8001F4E8(lbl_8042C180, 26, 0);
-	fn_8001F4E8(lbl_8042C180, 33, 1);
-	fn_8001F4E8(lbl_8042C180, 34, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 27, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 26, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 33, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 34, 1);
 	Action.pauseDisabled = 0;
 	fn_800CB6EC();
 
@@ -1075,8 +1076,8 @@ void ACTION::CheckPauseOff()
 			if (pauseCallback != 0)
 				pauseCallback();
 		}
-		fn_800CD6A0(lbl_803A6690);
-		fn_800CDE58(lbl_803A6690, 35);
+		DisplayInfo__4PERFFv(lbl_803A6690);
+		InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(lbl_803A6690, 35);
 		if (*(void**)((u8*)lbl_8042C1D0 + 29264) != 0) {
 			fn_80194234(8, 1);
 			if (*lbl_8042C9A4 != 0)
@@ -1084,11 +1085,11 @@ void ACTION::CheckPauseOff()
 			fn_8019CC00(*(void**)((u8*)lbl_8042C1F8 + 40));
 			fn_8015B93C(*(void**)((u8*)lbl_8042C1D0 + 29264), *(void**)((u8*)lbl_8042C1F8 + 40));
 		}
-		fn_800CDE58(lbl_803A6690, 28);
-		fn_800CDE58(lbl_803A6690, 29);
-		fn_800CDE58(lbl_803A6690, 30);
-		fn_800CDE58(lbl_803A6690, 31);
-		fn_800CDE58(lbl_803A6690, 33);
+		InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(lbl_803A6690, 28);
+		InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(lbl_803A6690, 29);
+		InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(lbl_803A6690, 30);
+		InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(lbl_803A6690, 31);
+		InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(lbl_803A6690, 33);
 	}
 
 	fn_8004DC80(lbl_8042C1F8, 1);
@@ -2248,7 +2249,7 @@ void ACTION::subEnd()
 		case 59:
 		case 60:
 		case 61: {
-			fn_8001F4E8(lbl_8042C180, 36, 0);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 			EventManager* fade        = lbl_8042C170;
 			*(u32*)((u8*)fade + 0x2C) = 0xFFFFFFFF;
 			*(u32*)((u8*)fade + 0x30) = 0xFFFFFFFF;
@@ -2261,7 +2262,7 @@ void ACTION::subEnd()
 		case 40:
 		case 41:
 		case 42:
-			fn_8001F4E8(lbl_8042C180, 36, 6);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 6);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(u32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2272,7 +2273,7 @@ void ACTION::subEnd()
 		case 43:
 		case 44:
 		case 45:
-			fn_8001F4E8(lbl_8042C180, 36, 3);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 3);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(u32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2283,7 +2284,7 @@ void ACTION::subEnd()
 		case 46:
 		case 47:
 		case 48:
-			fn_8001F4E8(lbl_8042C180, 36, 1);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 1);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(u32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2310,7 +2311,7 @@ void ACTION::subEnd()
 		case 50:
 		case 51:
 		default:
-			fn_8001F4E8(lbl_8042C180, 36, 0);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(u32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2320,7 +2321,7 @@ void ACTION::subEnd()
 			break;
 	}
 
-	fn_8001F4E8(lbl_8042C180, 37, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 	if (stageNumber == 23) {
 		lbl_8042C304[0]            = 0;
 		lbl_8042C304[1]            = 0;
@@ -2400,7 +2401,7 @@ void ACTION::subEnd()
 	if (*(s8*)((u8*)lbl_8042C180 + 0x24) == 6)
 		activeTeams = 1;
 	if (activeTeams == 2)
-		fn_8001F4E8(lbl_8042C180, 41, 0);
+		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 41, 0);
 	fn_8004F0F8(activeTeams);
 	fn_80066ED8(&lbl_8042C308, 2);
 	*(s32*)((u8*)lbl_8042C180 + 0x30) = 0;
@@ -2432,8 +2433,8 @@ void ACTION::End()
 	fn_800A76E4(this);
 	fn_80196D00();
 	processState = 0;
-	fn_8001F4E8(lbl_8042C180, 31, 0);
-	fn_8001F4E8(lbl_8042C180, 32, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 31, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 32, 0);
 }
 
 void ACTION::Init()
@@ -2537,7 +2538,7 @@ void syncInitSync()
 
 void syncWaitVSync()
 {
-	fn_800CDE58(lbl_803A6690, 32);
+	InitPerfomanceMember__4PERFF17P_PERFORMANCE_ELE(lbl_803A6690, 32);
 	VIWaitForRetrace();
 	ChkController();
 	lbl_8042C168 = lbl_8042AEA0;
@@ -2582,7 +2583,7 @@ static inline void RunLoadedDemoFrames(ACTION* action)
 	s32 frame;
 	if (*(s8*)((u8*)lbl_8042C180 + 0x18) != 0) {
 		saved = *(s8*)((u8*)lbl_8042C180 + 0x17);
-		fn_8001F4E8(lbl_8042C180, 23, 0);
+		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 23, 0);
 		if (*(s8*)((u8*)lbl_8042C180 + 0x18) == 1 || *(s8*)((u8*)lbl_8042C180 + 0x18) == 2) {
 			for (flame = 0; flame < GetStartFlame(); ++flame) {
 				SetAndGetDemoData();
@@ -2597,7 +2598,7 @@ static inline void RunLoadedDemoFrames(ACTION* action)
 				}
 			}
 		}
-		fn_8001F4E8(lbl_8042C180, 23, saved);
+		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 23, saved);
 	}
 }
 #pragma opt_propagation reset
@@ -2622,10 +2623,10 @@ void ACTION::subInit()
 	*(s32*)((u8*)this + 0x26C) = 0;
 	*(s32*)((u8*)this + 0x25C) = 0;
 	*(s32*)((u8*)this + 0x260) = 0;
-	fn_8001F4E8(lbl_8042C180, 33, 0);
-	fn_8001F4E8(lbl_8042C180, 34, 0);
-	fn_8001F4E8(lbl_8042C180, 35, 0);
-	fn_8001F4E8(lbl_8042C180, 38, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 33, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 34, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 35, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 38, 1);
 
 	switch (stageNumber) {
 		case 29:
@@ -2645,7 +2646,7 @@ void ACTION::subInit()
 		case 59:
 		case 60:
 		case 61: {
-			fn_8001F4E8(lbl_8042C180, 36, 0);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 			EventManager* fade        = lbl_8042C170;
 			*(s32*)((u8*)fade + 0x2C) = -1;
 			*(s32*)((u8*)fade + 0x30) = -1;
@@ -2658,7 +2659,7 @@ void ACTION::subInit()
 		case 40:
 		case 41:
 		case 42:
-			fn_8001F4E8(lbl_8042C180, 36, 6);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 6);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(s32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2669,7 +2670,7 @@ void ACTION::subInit()
 		case 43:
 		case 44:
 		case 45:
-			fn_8001F4E8(lbl_8042C180, 36, 3);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 3);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(s32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2680,7 +2681,7 @@ void ACTION::subInit()
 		case 46:
 		case 47:
 		case 48:
-			fn_8001F4E8(lbl_8042C180, 36, 1);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 1);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(s32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2707,7 +2708,7 @@ void ACTION::subInit()
 		case 50:
 		case 51:
 		default:
-			fn_8001F4E8(lbl_8042C180, 36, 0);
+			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 			{
 				EventManager* fade        = lbl_8042C170;
 				*(s32*)((u8*)fade + 0x2C) = 0xFF000000;
@@ -2716,7 +2717,7 @@ void ACTION::subInit()
 			fn_8001D540();
 			break;
 	}
-	fn_8001F4E8(lbl_8042C180, 37, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 
 	s32 stage = stageNumber;
 	switch (stage) {
@@ -2739,23 +2740,23 @@ void ACTION::subInit()
 				switch (teams[0]) {
 					case 0:
 						if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-							fn_8001F4E8(lbl_8042C180, 37, 3);
+							SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 3);
 						else
-							fn_8001F4E8(lbl_8042C180, 37, 0);
+							SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 						break;
 					case 1:
 						if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-							fn_8001F4E8(lbl_8042C180, 36, 5);
+							SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 5);
 						else
-							fn_8001F4E8(lbl_8042C180, 36, 0);
-						fn_8001F4E8(lbl_8042C180, 37, 0);
+							SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 						break;
 					case 2:
 						if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-							fn_8001F4E8(lbl_8042C180, 36, 3);
+							SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 3);
 						else
-							fn_8001F4E8(lbl_8042C180, 36, 0);
-						fn_8001F4E8(lbl_8042C180, 37, 0);
+							SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
+						SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 						break;
 					case 3:
 						switch (stageNumber) {
@@ -2766,53 +2767,63 @@ void ACTION::subInit()
 							case 11:
 							case 13:
 							case 15:
-								fn_8001F4E8(lbl_8042C180, 36, 8);
-								fn_8001F4E8(lbl_8042C180, 37, 0);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 8);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 								break;
 							case 6:
-								fn_8001F4E8(lbl_8042C180, 36, 3);
-								fn_8001F4E8(lbl_8042C180, 37, 0);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 3);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 								break;
 							case 8:
 							case 36:
-								fn_8001F4E8(lbl_8042C180, 36, 0);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 								if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-									fn_8001F4E8(lbl_8042C180, 37, 3);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 3);
 								else
-									fn_8001F4E8(lbl_8042C180, 37, 0);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 0);
 								break;
 							case 10:
-								fn_8001F4E8(lbl_8042C180, 36, 0);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 								if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-									fn_8001F4E8(lbl_8042C180, 37, 5);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 5);
 								else
-									fn_8001F4E8(lbl_8042C180, 37, 2);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 2);
 								break;
 							case 3:
 							case 12:
-								fn_8001F4E8(lbl_8042C180, 36, 8);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 8);
 								if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-									fn_8001F4E8(lbl_8042C180, 37, 1);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 1);
 								else
-									fn_8001F4E8(lbl_8042C180, 37, 0);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 0);
 								break;
 							case 14:
-								fn_8001F4E8(lbl_8042C180, 36, 0);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
 								if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-									fn_8001F4E8(lbl_8042C180, 37, 4);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 4);
 								else
-									fn_8001F4E8(lbl_8042C180, 37, 1);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 1);
 								break;
 							case 4:
-								fn_8001F4E8(lbl_8042C180, 36, 4);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 4);
 								if (*(s8*)((u8*)lbl_8042C180 + 0x28) == 1)
-									fn_8001F4E8(lbl_8042C180, 37, 3);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 3);
 								else
-									fn_8001F4E8(lbl_8042C180, 37, 0);
+									SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
+									    lbl_8042C180, 37, 0);
 								break;
 							default:
-								fn_8001F4E8(lbl_8042C180, 36, 0);
-								fn_8001F4E8(lbl_8042C180, 37, 0);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 36, 0);
+								SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 37, 0);
 								break;
 						}
 						break;
@@ -2833,8 +2844,8 @@ void ACTION::subInit()
 	*(s32*)(lbl_8029BBD0 + 0x24) = 0;
 	*(s32*)(lbl_8029BBD0 + 0x28) = 0;
 	*(s32*)(lbl_8029BBD0 + 0x2C) = 0;
-	fn_8001F4E8(lbl_8042C180, 26, 1);
-	fn_8001F4E8(lbl_8042C180, 27, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 26, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 27, 1);
 	fn_800C5BDC();
 	fn_800CCEB0();
 	fn_80066320();
@@ -2926,9 +2937,9 @@ void ACTION::subInit()
 subInitHighDemo:
 	if (demo >= 5)
 		goto subInitDemoDone;
-	fn_8001F4E8(lbl_8042C180, 24, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 24, 1);
 subInitActiveDemo:
-	fn_8001F4E8(lbl_8042C180, 0, 0);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0, 0);
 	stageObject = currentStage != 0 ? *(u32*)currentStage : 0;
 	if (LoadDemoData(stageObject) != 0) {
 		i = 0;

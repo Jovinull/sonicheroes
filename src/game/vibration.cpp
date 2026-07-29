@@ -41,8 +41,8 @@ struct VibrationTask : TObject {
 
 extern "C" {
 void PADControlMotor(s32, u32);
-void fn_80018818(void*, void*);
-void dtor_800186D0(void*, s32);
+void __ct__7TObjectFP7TObject(void*, void*);
+void __dt__7TObjectFv(void*, s32);
 void fn_800189A4(void*, void*);
 
 extern s32 lbl_8029BBD0[0x100];
@@ -68,7 +68,7 @@ extern void* lbl_80241328[12];
 
 inline TObject::TObject(TObject* parent)
 {
-	fn_80018818(this, parent);
+	__ct__7TObjectFP7TObject(this, parent);
 }
 
 inline VibrationTask::VibrationTask(TObject* parent)
@@ -221,7 +221,7 @@ extern "C" VibrationTask* fn_8001F92C(VibrationTask* task, s32 shouldDelete)
 				PADControlMotor(task->controller, 2);
 			}
 		}
-		dtor_800186D0(task, 0);
+		__dt__7TObjectFv(task, 0);
 		if ((s16)shouldDelete > 0) {
 			fn_800189A4(lbl_8042C148, task);
 		}

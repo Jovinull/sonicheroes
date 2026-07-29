@@ -19,9 +19,9 @@ struct VoiceCursor {
 extern "C" {
 extern void* lbl_8042C180;
 extern u8 lbl_8029C310[];
-extern u8 lbl_803EC340[];
+extern u8 MoviePlaySub[];
 extern u8 lbl_803E774C[];
-extern u8 lbl_803E75E8[];
+extern u8 seqVars__13TQuestSeqCtrl[];
 extern VoiceEntry lbl_8028C448[];
 extern VoiceEntry lbl_8028C58C[];
 extern VoiceEntry lbl_8028C6D0[];
@@ -78,17 +78,17 @@ VoiceTable lbl_8028CA48[5] = {
 	{ lbl_8028C964, 8 },
 };
 
-void fn_8001F4E8(void*, s32, s32);
+void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(void*, s32, s32);
 void fn_8001938C(void*);
 void fn_8001934C(void*, s32, s32);
 void fn_800191F8(void*, s32, s32);
 void fn_8001936C(void*, s32, s32);
-s32 fn_801143E0(s32);
-void fn_8011445C(s32);
+s32 CheckSequenceVars__13TQuestSeqCtrlFi(s32);
+void SetSequenceVars__13TQuestSeqCtrlFi(s32);
 void* fn_80116D2C(void*);
 void fn_801380B8(VoiceCursor*);
-s32 fn_801390A4(void*, s32);
-s32 fn_801390D8(void*);
+s32 EventNumber2MovieNumber__10MOVIE_PLAYFi(void*, s32);
+s32 MovieNumber2EventNumber__10MOVIE_PLAYFi(void*);
 void* memcpy(void*, const void*, unsigned long);
 }
 
@@ -97,7 +97,7 @@ extern "C" s32 fn_80138664(VoiceCursor* cursor)
 {
 	VoiceEntry* entry = &lbl_8028CA48[cursor->team].entries[cursor->index];
 	if (entry->type == 1)
-		return fn_801390A4(lbl_803EC340, entry->value);
+		return EventNumber2MovieNumber__10MOVIE_PLAYFi(MoviePlaySub, entry->value);
 	return -1;
 }
 
@@ -113,8 +113,8 @@ extern "C" s32 fn_80138704(VoiceCursor* cursor)
 	VoiceEntry* entries = lbl_8028CA48[cursor->team].entries;
 	s32 index           = cursor->index;
 	if (entries[index].type == 2) {
-		fn_8011445C(entries[index].id);
-		memcpy((u8*)fn_80116D2C(lbl_803E774C) + 1441, lbl_803E75E8, 128);
+		SetSequenceVars__13TQuestSeqCtrlFi(entries[index].id);
+		memcpy((u8*)fn_80116D2C(lbl_803E774C) + 1441, seqVars__13TQuestSeqCtrl, 128);
 		cursor->index++;
 		fn_801380B8(cursor);
 #pragma cplusplus off
@@ -131,14 +131,14 @@ extern "C" s32 fn_801387C8(VoiceCursor* cursor)
 	VoiceEntry* entries = (*(VoiceTable*)((u8*)tables + teamOffset)).entries;
 	s32 index           = cursor->index;
 	if (entries[index].type == 1) {
-		if (fn_801390D8(lbl_803EC340)
+		if (MovieNumber2EventNumber__10MOVIE_PLAYFi(MoviePlaySub)
 		    != (*(VoiceTable*)((u8*)tables + teamOffset)).entries[cursor->index].value)
 			goto not_matching;
 		{
 			VoiceEntry* entries = (*(VoiceTable*)((u8*)tables + teamOffset)).entries;
 			s32 index           = cursor->index;
-			fn_8011445C(entries[index].id);
-			memcpy((u8*)fn_80116D2C(lbl_803E774C) + 1441, lbl_803E75E8, 128);
+			SetSequenceVars__13TQuestSeqCtrlFi(entries[index].id);
+			memcpy((u8*)fn_80116D2C(lbl_803E774C) + 1441, seqVars__13TQuestSeqCtrl, 128);
 			cursor->index++;
 			fn_801380B8(cursor);
 #pragma cplusplus off
@@ -155,8 +155,8 @@ extern "C" s32 fn_801388C4(VoiceCursor* cursor, s32 value)
 	VoiceEntry* entries = lbl_8028CA48[cursor->team].entries;
 	s32 index           = cursor->index;
 	if (entries[index].type == 0 && value == entries[index].value) {
-		fn_8011445C(entries[index].id);
-		memcpy((u8*)fn_80116D2C(lbl_803E774C) + 1441, lbl_803E75E8, 128);
+		SetSequenceVars__13TQuestSeqCtrlFi(entries[index].id);
+		memcpy((u8*)fn_80116D2C(lbl_803E774C) + 1441, seqVars__13TQuestSeqCtrl, 128);
 		cursor->index++;
 		fn_801380B8(cursor);
 #pragma cplusplus off
@@ -172,7 +172,7 @@ inline int FindAvailableVoice(int team)
 	int i;
 	VoiceTable* table = &lbl_8028CA48[team];
 	for (i = 0; i < table->count; i++) {
-		if (fn_801143E0(table->entries[i].id) == 0)
+		if (CheckSequenceVars__13TQuestSeqCtrlFi(table->entries[i].id) == 0)
 			return i;
 	}
 	return -1;
@@ -211,8 +211,8 @@ extern "C" void fn_80138A9C(VoiceCursor* cursor)
 	s32 channel;
 
 	cursor->index = 0;
-	fn_8001F4E8(lbl_8042C180, 39, 1);
-	fn_8001F4E8(lbl_8042C180, 38, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 39, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 38, 1);
 	fn_8001938C(lbl_8029C310);
 	switch (cursor->team) {
 		case 0:
@@ -298,8 +298,8 @@ extern "C" s32 fn_80138C78(VoiceCursor* cursor, int team)
 	if (cursor->index < 0)
 		return 0;
 
-	fn_8001F4E8(lbl_8042C180, 39, 1);
-	fn_8001F4E8(lbl_8042C180, 38, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 39, 1);
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 38, 1);
 	for (team = 1; team < 4; team++)
 		fn_8001934C(lbl_8029C310, team, -1);
 	fn_800191F8(lbl_8029C310, 0, 0);

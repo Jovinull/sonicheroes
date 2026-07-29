@@ -158,12 +158,16 @@ static const f32 lbl_8042E9A0 = 0.0054931640625f;
 static const f64 lbl_8042E9A8 = 4503601774854144.0;
 static const f32 lbl_8042E9B0 = 8.0f;
 
-static void __sinit_e_paralysis_cpp()
+void __sinit_e_paralysis_cpp()
 {
 	void* object = fn_80113C7C(lbl_803E7588);
 	__register_global_object(object, (void*)fn_80113C2C, lbl_803E757C);
 }
-#pragma startup __sinit_e_paralysis_cpp
+// An explicit .ctors entry rather than #pragma startup: the pragma leaves the
+// static initializer out of the section, which drops the 4-byte slot the retail
+// .ctors reserves at 0x802398FC and shifts every later entry down. perf.cpp
+// carries the same explicit entry for the same reason.
+__declspec(section ".ctors") void (*const eParalysisCtorEntry)(void) = __sinit_e_paralysis_cpp;
 
 sParalysisParam::sParalysisParam()
 {
