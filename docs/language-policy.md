@@ -115,9 +115,15 @@ substitute for reviewing the evidence or matching the GameCube object.
 - New game-owned translation units use the canonical `.cpp` extension and
   compile as C++. Alternative C++ extensions such as `.cc` and `.cxx` are
   rejected to keep the convention machine-checkable.
+- Every configured source must belong to a reviewed game-code prefix or a
+  known-library prefix in `language_policy.json`. A new top-level directory is
+  not an escape hatch from the language rule.
 - A new `.c` file under `game`, `rel`, `advertiseD`, `autosaveD` or `movieD`
   must be added to the reviewed C allowlist in
   `config/G9SE8P/language_policy.json`.
+- `pending_c_evidence` must remain empty. If classification is uncertain, leave
+  the existing source untouched and resolve the evidence before changing its
+  language-policy category.
 - Do not use `extern "C"` merely to keep a C-shaped reconstruction when the
   evidence identifies a C++ method. C linkage remains appropriate for real C
   boundaries and for temporary unknown symbols, but the reason must be clear.

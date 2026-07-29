@@ -6,6 +6,11 @@
     "movieD/",
     "rel/"
   ],
+  "library_prefixes": [
+    "MSL_C/",
+    "Runtime.PPCEABI.H/",
+    "dolphin/"
+  ],
   "confirmed_c_sources": [
     "advertiseD/prolog.c",
     "autosaveD/prolog.c",

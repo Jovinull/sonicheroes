@@ -46,6 +46,10 @@ use the canonical `.cpp` extension and compile as C++; `.cc`, `.cxx` and
 case variants are rejected so the policy has one unambiguous convention. A new
 `.c` file is accepted only for a reviewed C boundary or known C library and
 must be added to the explicit policy allowlist.
+Every configured source must be under a reviewed game-code or known-library
+prefix; do not create a new top-level source area to bypass the language policy.
+Uncertain C classifications stay unchanged and under review rather than being
+added to the policy as new pending debt.
 The `.c` files that receive `-lang=c++` are either matching legacy paths or an
 explicitly reviewed vendor compatibility exception, not a pattern for new
 work.

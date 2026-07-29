@@ -27,6 +27,7 @@ def load_policy(path: Path) -> dict[str, Any]:
 
     list_keys = (
         "managed_prefixes",
+        "library_prefixes",
         "confirmed_c_sources",
         "pending_c_evidence",
         "protected_cpp_c_sources",
@@ -40,6 +41,38 @@ def load_policy(path: Path) -> dict[str, Any]:
             raise ValueError(f"{path}: {key} must be a list of strings")
         if values != sorted(set(values)):
             raise ValueError(f"{path}: {key} must be sorted and contain no duplicates")
+
+    for key in ("managed_prefixes", "library_prefixes"):
+        for prefix in policy[key]:
+            parts = Path(prefix).parts
+            if (
+                not prefix
+                or not prefix.endswith("/")
+                or prefix.startswith("/")
+                or ".." in parts
+            ):
+                raise ValueError(
+                    f"{path}: {key} entries must be relative directory prefixes: {prefix!r}"
+                )
+
+    managed_prefixes = policy["managed_prefixes"]
+    library_prefixes = policy["library_prefixes"]
+    for managed_prefix in managed_prefixes:
+        for library_prefix in library_prefixes:
+            if (
+                managed_prefix.startswith(library_prefix)
+                or library_prefix.startswith(managed_prefix)
+            ):
+                raise ValueError(
+                    f"{path}: managed and library prefixes overlap: "
+                    f"{managed_prefix}, {library_prefix}"
+                )
+
+    if policy["pending_c_evidence"]:
+        raise ValueError(
+            f"{path}: pending C evidence is not permitted; resolve the classification "
+            "before changing the source policy"
+        )
 
     groups = (
         set(policy["confirmed_c_sources"]),
@@ -79,6 +112,10 @@ def is_managed(source: str, prefixes: list[str]) -> bool:
     return any(source.startswith(prefix) for prefix in prefixes)
 
 
+def is_cpp_style_suffix(suffix: str) -> bool:
+    return suffix == ".C" or suffix.lower() in CPP_STYLE_SUFFIXES
+
+
 def inline_mode_enabled(value: str, mode: str) -> bool:
     """Return whether an exact comma-separated inline mode is enabled."""
     modes = {part for part in re.sub(r"\s+", "", value).split(",") if part}
@@ -114,7 +151,7 @@ def parse_source_commands() -> dict[str, dict[str, Any]]:
         languages = language_pattern.findall(line)
         if languages:
             language = languages[-1]
-        elif source.endswith((".cpp", ".cc", ".cxx")):
+        elif is_cpp_style_suffix(Path(source).suffix):
             language = "c++"
         else:
             language = "c"
@@ -174,6 +211,7 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     commands = parse_source_commands()
     prefixes = policy["managed_prefixes"]
+    library_prefixes = policy["library_prefixes"]
     confirmed_c = set(policy["confirmed_c_sources"])
     pending_c = set(policy["pending_c_evidence"])
     protected_cpp_c = set(policy["protected_cpp_c_sources"])
@@ -183,6 +221,11 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     deferred = set(policy["deferred_sources"])
 
     managed = {source: record for source, record in commands.items() if is_managed(source, prefixes)}
+    for source in sorted(commands):
+        if not is_managed(source, prefixes) and not is_managed(source, library_prefixes):
+            errors.append(
+                f"{source}: configured source is outside reviewed game/library prefixes"
+            )
     actual_legacy: set[str] = set()
     actual_deferred: set[str] = set()
 
@@ -261,6 +304,7 @@ def audit_staged_sources(policy: dict[str, Any]) -> list[str]:
         text=True,
     )
     prefixes = policy["managed_prefixes"]
+    library_prefixes = policy["library_prefixes"]
     confirmed_c = set(policy["confirmed_c_sources"])
     pending_c = set(policy["pending_c_evidence"])
     protected_cpp_c = set(policy["protected_cpp_c_sources"])
@@ -271,12 +315,17 @@ def audit_staged_sources(policy: dict[str, Any]) -> list[str]:
         if not path.startswith("src/"):
             continue
         source = path.removeprefix("src/")
-        if not is_managed(source, prefixes):
-            continue
         suffix = Path(source).suffix
-        if suffix != ".cpp" and (
-            suffix == ".C" or suffix.lower() in CPP_STYLE_SUFFIXES
-        ):
+        if not is_managed(source, prefixes):
+            if (
+                not is_managed(source, library_prefixes)
+                and (suffix == ".c" or is_cpp_style_suffix(suffix))
+            ):
+                errors.append(
+                    f"{source}: source path is outside reviewed game/library prefixes"
+                )
+            continue
+        if suffix != ".cpp" and is_cpp_style_suffix(suffix):
             errors.append(f"{source}: game-owned C++ source must use the .cpp extension")
             continue
         if suffix != ".c":

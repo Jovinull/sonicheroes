@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import contextlib
 import io
+import json
 import os
 import subprocess
 import tempfile
@@ -17,6 +18,7 @@ import tools.check_language_policy as checker
 def make_policy(**overrides: list[str]) -> dict[str, list[str]]:
     policy = {
         "managed_prefixes": ["game/"],
+        "library_prefixes": ["dolphin/"],
         "confirmed_c_sources": [],
         "pending_c_evidence": [],
         "protected_cpp_c_sources": [],
@@ -33,6 +35,28 @@ def clean_git_environment() -> dict[str, str]:
     return {
         key: value for key, value in os.environ.items() if not key.startswith("GIT_")
     }
+
+
+class PolicyValidationTests(unittest.TestCase):
+    def load_policy(self, policy: dict[str, list[str]]) -> dict[str, list[str]]:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "language_policy.json"
+            path.write_text(json.dumps(policy), encoding="utf-8")
+            return checker.load_policy(path)
+
+    def test_empty_pending_evidence_is_allowed(self) -> None:
+        policy = make_policy()
+        self.assertEqual(self.load_policy(policy), policy)
+
+    def test_pending_evidence_is_rejected(self) -> None:
+        policy = make_policy(pending_c_evidence=["game/unit.c"])
+        with self.assertRaisesRegex(ValueError, "pending C evidence is not permitted"):
+            self.load_policy(policy)
+
+    def test_managed_and_library_prefixes_cannot_overlap(self) -> None:
+        policy = make_policy(library_prefixes=["game/vendor/"])
+        with self.assertRaisesRegex(ValueError, "managed and library prefixes overlap"):
+            self.load_policy(policy)
 
 
 class StagedPolicyTests(unittest.TestCase):
@@ -112,6 +136,23 @@ class StagedPolicyTests(unittest.TestCase):
         self.run_git("add", ".")
         self.assertEqual(self.staged_errors(make_policy()), [])
 
+    def test_source_outside_reviewed_prefixes_is_rejected(self) -> None:
+        self.write_source("new_module/unit.cpp")
+        self.run_git("add", ".")
+
+        self.assertEqual(
+            self.staged_errors(make_policy()),
+            [
+                "new_module/unit.cpp: source path is outside reviewed "
+                "game/library prefixes"
+            ],
+        )
+
+    def test_known_library_source_is_outside_game_policy(self) -> None:
+        self.write_source("dolphin/unit.c")
+        self.run_git("add", ".")
+        self.assertEqual(self.staged_errors(make_policy()), [])
+
     def test_reviewed_c_rename_is_allowed(self) -> None:
         source = self.write_source("game/unit.cpp")
         self.run_git("add", ".")
@@ -181,6 +222,24 @@ class ConfiguredPolicyTests(unittest.TestCase):
             errors,
             ["game/unit.cc: game-owned C++ source must use the .cpp extension"],
         )
+
+    def test_configured_source_outside_reviewed_prefixes_is_rejected(self) -> None:
+        errors = self.configured_errors(
+            {"new_module/unit.cpp": {"language": "c++", "inline_modes": ["auto"]}}
+        )
+        self.assertEqual(
+            errors,
+            [
+                "new_module/unit.cpp: configured source is outside reviewed "
+                "game/library prefixes"
+            ],
+        )
+
+    def test_configured_known_library_is_outside_game_policy(self) -> None:
+        errors = self.configured_errors(
+            {"dolphin/unit.c": {"language": "c", "inline_modes": ["auto"]}}
+        )
+        self.assertEqual(errors, [])
 
     def test_effective_nodeferred_does_not_require_allowlist(self) -> None:
         errors = self.configured_errors(
