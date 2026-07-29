@@ -41,16 +41,16 @@ public:
 	virtual void End();
 };
 
-extern "C" u8 MoviePlay[16];
+extern "C" u8 MoviePlaySub[16];
 
 extern "C" void* MovieSubBuffer;
 extern "C" int MovieSubEvent;
 extern "C" void* MovieSubRaster;
 extern "C" void* MovieSubResource;
 extern "C" FunctionHeap* lbl_8042C9A4;
-extern "C" void fn_80139188();
-extern "C" void fn_801390F0();
-extern "C" void fn_80139120();
+extern "C" void Init__10MOVIE_PLAYFv();
+extern "C" void Loop__10MOVIE_PLAYFv();
+extern "C" void End__10MOVIE_PLAYFv();
 extern "C" void* __vt__8SEQUENCE[6];
 extern "C" void* __vt__10MOVIE_PLAY[5];
 struct GameSettings {
@@ -81,8 +81,8 @@ extern "C" const float lbl_8042F15C;
 extern "C" const float lbl_8042F160;
 extern "C" const float lbl_8042F164;
 
-extern "C" __declspec(align(4)) __declspec(section ".data") void* moviePlaySubVtableData[5]
-    = { 0, 0, (void*)fn_80139188, (void*)fn_801390F0, (void*)fn_80139120 };
+extern "C" __declspec(section ".data") void* moviePlaySubVtableData[5] = { 0, 0,
+	(void*)Init__10MOVIE_PLAYFv, (void*)Loop__10MOVIE_PLAYFv, (void*)End__10MOVIE_PLAYFv };
 extern "C" const __declspec(section ".data") u8 moviePlaySubScaleData[16]
     = { 0x3d, 0xf1, 0xa9, 0xfc, 0, 0, 0, 0, 0x3d, 0xf1, 0xa9, 0xfc, 0x3e, 0x23, 0xd7, 0x0a };
 extern "C" const __declspec(section ".data") char* const moviePlaySubLanguageData[7] = {
@@ -180,8 +180,8 @@ extern "C" const SubtitleScale lbl_8028CF18[2];
 
 extern "C" void __sinit_moviePlaySub_cpp()
 {
-	*(void**)MoviePlay = __vt__8SEQUENCE;
-	*(void**)MoviePlay = __vt__10MOVIE_PLAY;
+	*(void**)MoviePlaySub = __vt__8SEQUENCE;
+	*(void**)MoviePlaySub = __vt__10MOVIE_PLAY;
 }
 extern "C" __declspec(section ".ctors") void (*const moviePlaySubCtor)() = __sinit_moviePlaySub_cpp;
 
@@ -348,7 +348,7 @@ extern "C" int movieSubEventData      = 0;
 extern "C" void* movieSubRasterData   = 0;
 extern "C" void* movieSubResourceData = 0;
 extern "C" {
-u8 MoviePlay[16];
+u8 MoviePlaySub[16];
 }
 extern "C" const __declspec(section ".sdata2") float lbl_8042F158 = 0.0f;
 extern "C" const __declspec(section ".sdata2") float lbl_8042F15C = 0.005f;

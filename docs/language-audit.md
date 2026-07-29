@@ -438,6 +438,26 @@ Until those owners coordinate integration, the checker permits this debt only
 under `advertiseD/` and `autosaveD/`. A legacy C++/`.c` entry anywhere else is
 a policy error.
 
+### Movie playback controller
+
+Added `game/moviePlay.cpp` as a C++ translation unit.
+
+Language and boundary evidence:
+
+- local PS2 debug metadata retains the `moviePlay.cpp` marker, the
+  `MOVIE_PLAY` method family, `MovieLists` static member and `MoviePlay`
+  instance;
+- the correlated GameCube range has the same ordered conversion, loop, end and
+  initialization methods and the same 29-entry movie table;
+- the mangled member functions and static member require C++ linkage.
+
+Validation:
+
+- all five GameCube-emitted functions and every owned code, exception and data
+  section match byte-for-byte;
+- the complete build relinked and verified all 18 configured artifacts;
+- the language-policy check passes without an exception.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.
