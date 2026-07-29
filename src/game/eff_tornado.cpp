@@ -651,8 +651,9 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 one                 = lbl_8042DBC0;
 		s32* angleOffsets       = lbl_8025347C;
 		RwV3d* secondAxis       = &lbl_80239984;
-		f32 increment           = lbl_8042DC24;
-		f32 limit               = lbl_8042DBB8;
+		f32 sine;
+		f32 increment = lbl_8042DC24;
+		f32 limit     = lbl_8042DBB8;
 		while (height <= limit) {
 			void* model = tornadoModel(models, 0);
 			void* frame = tornadoFrame(model);
@@ -666,7 +667,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
 			s32 angleByteOffset = tableIndex * sizeof(s32);
-			f32 sine            = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
+			sine                = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			f32 cosine = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
 			fn_8019E880(frame);
@@ -689,8 +690,10 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 one                 = lbl_8042DBC0;
 		s32* angleOffsets       = lbl_8025347C;
 		RwV3d* secondAxis       = &lbl_80239984;
-		f32 increment           = lbl_8042DC24;
-		f32 limit               = lbl_8042DBF0;
+		f32 sine;
+		f32 limit;
+		f32 increment = lbl_8042DC24;
+		limit         = lbl_8042DBF0;
 		while (height <= limit) {
 			void* model = tornadoModel(models, 1);
 			void* frame = tornadoFrame(model);
@@ -704,7 +707,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
 			s32 angleByteOffset = tableIndex * sizeof(s32);
-			f32 sine            = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
+			sine                = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			f32 cosine = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
 			RwV3d position = effect->position;
@@ -724,9 +727,10 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		RwV3d* directions       = lbl_802533DC;
 		RotationPair* rotations = lbl_8025343C;
 		RwV3d* firstAxis        = &lbl_80239978;
-		f32 one                 = lbl_8042DBC0;
-		s32* angleOffsets       = lbl_8025347C;
-		RwV3d* secondAxis       = &lbl_80239984;
+		f32 sine;
+		f32 one           = lbl_8042DBC0;
+		s32* angleOffsets = lbl_8025347C;
+		RwV3d* secondAxis = &lbl_80239984;
 		do {
 			void* model = tornadoModel(models, 2);
 			void* frame = tornadoFrame(model);
@@ -740,7 +744,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
 			s32 angleByteOffset = tableIndex * sizeof(s32);
-			f32 sine            = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
+			sine                = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			f32 cosine = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + angleByteOffset));
 			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
 			RwV3d position = effect->position;
