@@ -41,20 +41,22 @@ struct TObject : public TObjectBase {
 	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
 };
 
-class MOVIESCRIPT : public TObject
+class MovieTask : public TObject
 {
 public:
-	MOVIESCRIPT(TObject* parent);
-	virtual ~MOVIESCRIPT();
+	MovieTask(TObject* parent);
+	virtual ~MovieTask();
 	virtual void StartFadeOut();
 	virtual void Virtual1();
 
 	s32 counter;
 };
 
-// The PS2 beta places a MOVIESCRIPT class in movie.cpp, but its method bodies
-// differ substantially from retail GameCube.  The two overrides below are
-// identified independently by their slots in the retail TObject vtable.
+// The PS2 beta has no counterpart for this GameCube-only task: its movie.cpp
+// contains overlay glue, while its unrelated MOVIESCRIPT lives in
+// movieScript.cpp.  MovieTask and Virtual1 are therefore neutral descriptive
+// guesses.  StartFadeOut is independently established by its retail TObject
+// vtable slot.
 
 struct GameSettings {
 	u8 pad00[0x1E];
@@ -95,14 +97,14 @@ extern u8 lbl_8029C310[];
 extern char* lbl_8042BC78;
 }
 
-extern MOVIESCRIPT* lbl_8042C7E8;
+extern MovieTask* lbl_8042C7E8;
 // This task-list label is referenced through lbl_8042BC78.  The retail atom is
 // 16 bytes: the string terminator is followed by one zero alignment byte.
 char CL_SpAdvStgFailed[16] = "SpAdvStgFailed";
 
-void MOVIESCRIPT::Virtual1() { }
+void MovieTask::Virtual1() { }
 
-void MOVIESCRIPT::StartFadeOut()
+void MovieTask::StartFadeOut()
 {
 	if (counter++ >= 180) {
 		if (lbl_8042C180->field1E == 0)
@@ -111,16 +113,16 @@ void MOVIESCRIPT::StartFadeOut()
 	}
 }
 
-MOVIESCRIPT::~MOVIESCRIPT()
+MovieTask::~MovieTask()
 {
 	lbl_8042C7E8 = 0;
 }
 
-inline MOVIESCRIPT::MOVIESCRIPT(TObject* parent)
+inline MovieTask::MovieTask(TObject* parent)
     : TObject(parent)
 {
 	*(char**)&kind = lbl_8042BC78;
-	field1E        = sizeof(MOVIESCRIPT);
+	field1E        = sizeof(MovieTask);
 	fn_800194E0(lbl_8029C310);
 	if (fn_80018E6C(lbl_8029C310))
 		lbl_8042C170->E4C();
@@ -133,8 +135,8 @@ inline MOVIESCRIPT::MOVIESCRIPT(TObject* parent)
 
 // Descriptive name inferred from the sole GC caller and the constructed type;
 // the PS2 beta does not contain an equivalent task factory.
-void InitMovieScript()
+void InitMovieTask()
 {
 	if (lbl_8042C7E8 == 0)
-		lbl_8042C7E8 = new MOVIESCRIPT(lbl_8042C104);
+		lbl_8042C7E8 = new MovieTask(lbl_8042C104);
 }
