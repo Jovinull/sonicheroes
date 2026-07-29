@@ -836,9 +836,9 @@ void TObjEffTornado2::TDisp()
 	fn_8019EB94(primaryFrame, &position, 0);
 	fn_8014FF2C(model);
 
-	model       = lbl_8042C358;
-	u32 opacity = this->opacity;
-	if (model != 0 && opacity != 0) {
+	model = lbl_8042C358;
+	u32 opacity;
+	if (model != 0 && (opacity = this->opacity) != 0) {
 		material        = (Material*)lbl_8042C35C;
 		material->red   = red;
 		material->green = green;
@@ -861,9 +861,8 @@ void TObjEffTornado2::TDisp()
 		fn_8014FF2C(model);
 	}
 
-	model   = lbl_8042C360;
-	opacity = this->opacity;
-	if (model != 0 && opacity != 0) {
+	model = lbl_8042C360;
+	if (model != 0 && (opacity = this->opacity) != 0) {
 		material        = (Material*)lbl_8042C364;
 		material->red   = red;
 		material->green = green;
