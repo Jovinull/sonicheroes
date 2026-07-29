@@ -60,7 +60,7 @@ extern "C" u8 lbl_1_data_3060[];
 extern "C" void* lbl_1_data_36DC;
 extern "C" u8 lbl_1_data_3818[0x2C];
 
-extern "C" void fn_800A80DC(Select* select, s32 value);
+extern "C" void __ct__10DAnimClassFv(Select* select, s32 value);
 extern "C" void fn_800A8620(Select* select, s32 flag);
 extern "C" void fn_800A8828(Select* select);
 extern "C" void* fn_80018818(void* object, Select* parent);
@@ -213,6 +213,6 @@ extern "C" Select* fn_1_A208(Select* select, void* context)
 	select->unk60 = 5;
 	select->unk64 = 0;
 	select->unk68 = 1;
-	fn_800A80DC(select, 4);
+	__ct__10DAnimClassFv(select, 4);
 	return select;
 }

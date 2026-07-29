@@ -64,7 +64,7 @@ extern "C" u8 lbl_80303EC8[];
 
 extern "C" void __construct_array(void* base, void* ctor, void* dtor, s32 size, s32 count);
 extern "C" void __destroy_arr(void* base, void* dtor, s32 size, s32 count);
-extern "C" void fn_800A80DC(Attract* attract, s32 value);
+extern "C" void __ct__10DAnimClassFv(Attract* attract, s32 value);
 extern "C" void fn_800A8620(Attract* attract, s32 flag);
 extern "C" void fn_800A8828(Attract* attract);
 extern "C" Settings* fn_800A8BF0(void* settings);
@@ -184,6 +184,6 @@ extern "C" Attract* fn_1_C608(Attract* attract, void* context)
 	}
 
 	fn_1_11750(5);
-	fn_800A80DC(attract, 4);
+	__ct__10DAnimClassFv(attract, 4);
 	return attract;
 }

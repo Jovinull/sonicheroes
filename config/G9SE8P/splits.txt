@@ -142,6 +142,18 @@ game/hAnim.cpp:
 	.sbss       start:0x8042C3D0 end:0x8042C3D8
 	.sdata2     start:0x8042DDB0 end:0x8042DDC8
 
+game/dAnim.cpp:
+	extab       start:0x80007B40 end:0x80007B70
+	extabindex  start:0x8000E1AC end:0x8000E1F4
+	.text       start:0x800A7AE0 end:0x800A80DC
+	.ctors      start:0x802398E4 end:0x802398E8
+	.bss        start:0x80303EB8 end:0x80303EC8
+	.sbss       start:0x8042C340 end:0x8042C348
+	.sdata2     start:0x8042DB30 end:0x8042DB44
+
+game/dAnim_ctor.cpp:
+	.text       start:0x800A80DC end:0x800A80E0
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
