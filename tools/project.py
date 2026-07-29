@@ -57,6 +57,7 @@ class Object:
             "asflags": None,
             "asm_dir": None,
             "cflags": None,
+            "data_section_alignment": None,
             "extab_padding": None,
             "extra_asflags": [],
             "extra_cflags": [],
@@ -689,6 +690,7 @@ def generate_build_ninja(
     mwcc_extab_implicit: List[Optional[Path]] = [*mwcc_implicit, dtk]
     mwcc_sjis_extab_cmd = f'{CHAIN}{mwcc_sjis_cmd} && {dtk} extab clean --padding "$extab_padding" $out $out'
     mwcc_sjis_extab_implicit: List[Optional[Path]] = [*mwcc_sjis_implicit, dtk]
+    section_align_tool = config.tools_dir / "set_elf_section_alignment.py"
 
     # MWLD
     mwld = compiler_path / "mwldeppc.exe"
@@ -719,6 +721,15 @@ def generate_build_ninja(
         mwcc_pch_sjis_implicit.append(transform_dep)
         mwcc_extab_implicit.append(transform_dep)
         mwcc_sjis_extab_implicit.append(transform_dep)
+
+    mwcc_align_cmd = (
+        f"{mwcc_cmd} && $python {section_align_tool} $out .data $data_section_alignment"
+    )
+    mwcc_sjis_align_cmd = (
+        f"{mwcc_sjis_cmd} && $python {section_align_tool} $out .data $data_section_alignment"
+    )
+    mwcc_align_implicit = [*mwcc_implicit, section_align_tool]
+    mwcc_sjis_align_implicit = [*mwcc_sjis_implicit, section_align_tool]
 
     n.comment("Link ELF file")
     n.rule(
@@ -752,6 +763,26 @@ def generate_build_ninja(
     n.rule(
         name="mwcc_sjis",
         command=mwcc_sjis_cmd,
+        description="MWCC $out",
+        depfile="$basefile.d",
+        deps="gcc",
+    )
+    n.newline()
+
+    n.comment("MWCC build (with corrected .data section alignment)")
+    n.rule(
+        name="mwcc_align",
+        command=mwcc_align_cmd,
+        description="MWCC $out",
+        depfile="$basefile.d",
+        deps="gcc",
+    )
+    n.newline()
+
+    n.comment("MWCC build (with UTF-8 wrapper and corrected .data section alignment)")
+    n.rule(
+        name="mwcc_sjis_align",
+        command=mwcc_sjis_align_cmd,
         description="MWCC $out",
         depfile="$basefile.d",
         deps="gcc",
@@ -1051,6 +1082,21 @@ def generate_build_ninja(
                 variables["extab_padding"] = "".join(
                     f"{i:02x}" for i in obj.options["extab_padding"]
                 )
+            if obj.options["data_section_alignment"] is not None:
+                if obj.options["extab_padding"] is not None:
+                    sys.exit(
+                        f"{obj.name}: data_section_alignment cannot be combined "
+                        "with extab_padding"
+                    )
+                variables["data_section_alignment"] = str(
+                    obj.options["data_section_alignment"]
+                )
+                if obj.options["shift_jis"]:
+                    build_rule = "mwcc_sjis_align"
+                    build_implcit = mwcc_sjis_align_implicit
+                else:
+                    build_rule = "mwcc_align"
+                    build_implcit = mwcc_align_implicit
             n.comment(f"{obj.name}: {lib_name} (linked {obj.completed})")
             n.build(
                 outputs=obj.src_obj_path,

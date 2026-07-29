@@ -6,104 +6,85 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-advertiseD/resource_hooks.c:
-	.text       start:0x00000A6C end:0x00000ABC
+advertiseD/adv_e3rom.cpp:
+	.text       start:0x00000000 end:0x0000101C
+	.data       start:0x00000260 end:0x00000284
 
-advertiseD/task_runtime.c:
-	.text       start:0x00000AD0 end:0x00000B4C
+advertiseD/adv_title.cpp:
+	.text       start:0x0000101C end:0x00003130
+	.rodata     start:0x00000090 end:0x00000098
+	.data       start:0x000008D4 end:0x000009A4
 
-advertiseD/timed_object.c:
-	.text       start:0x00001074 end:0x000012A0
+advertiseD/adv_fileselect.cpp:
+	.text       start:0x00003130 end:0x00004A84
+	.data       start:0x000009A4 end:0x00000A24
 
-advertiseD/scene_tick.c:
-	.text       start:0x0000354C end:0x0000368C
-	.data       start:0x000009E8 end:0x00000A24
+advertiseD/adv_mainmenu.cpp:
+	.text       start:0x00004A84 end:0x00005CBC
+	.data       start:0x00001108 end:0x0000118C
 
-advertiseD/stage_values.c:
-	.text       start:0x00004294 end:0x000042D8
+advertiseD/adv_player.cpp:
+	.text       start:0x00005CBC end:0x00006D08
+	.data       start:0x00001C10 end:0x00001C40
 
-advertiseD/delayed_trigger.c:
-	.text       start:0x0000550C end:0x000055A4
+advertiseD/adv_progressive.cpp:
+	.text       start:0x00006D08 end:0x000070B0
+	.data       start:0x00001DA8 end:0x00001DD4
 
-advertiseD/motion_reset.c:
-	.text       start:0x00005B08 end:0x00005B9C
-
-advertiseD/marker_spawn.c:
-	.text       start:0x000063A8 end:0x000064E0
-
-advertiseD/demo_object.c:
-	.text       start:0x00006DF0 end:0x00006F70
+advertiseD/adv_story.cpp:
+	.text       start:0x000070B0 end:0x00008808
 
 advertiseD/prolog.c:
 	.text       start:0x00008808 end:0x000088C4
 
-advertiseD/anim_handle.c:
-	.text       start:0x000088C4 end:0x0000897C
+advertiseD/adv_story_tail.cpp:
+	.text       start:0x000088C4 end:0x0000890C
 	.rodata     start:0x00000F38 end:0x00000F40
 
-advertiseD/slot_refresh.c:
-	.text       start:0x0000901C end:0x0000922C
+advertiseD/adv_challenge.cpp:
+	.text       start:0x0000890C end:0x0000C1F0
+	.rodata     start:0x00001048 end:0x00001050
+	.data       start:0x00003CDC end:0x00003D2C
 
-advertiseD/marker_emitters.c:
-	.text       start:0x0000922C end:0x000092D0
+advertiseD/adv_staffroll_data.cpp:
+	.rodata     start:0x000019F8 end:0x00001A28
 
-advertiseD/slot_query.c:
-	.text       start:0x000092D0 end:0x00009954
+advertiseD/adv_option.cpp:
+	.text       start:0x0000C1F0 end:0x0000D090
+	.data       start:0x00003D2C end:0x00003D94
 
-advertiseD/stage_start.c:
-	.text       start:0x00009954 end:0x00009AC0
+advertiseD/adv_audio.cpp:
+	.text       start:0x0000D090 end:0x0000DAB0
+	.data       start:0x00005998 end:0x000059B4
 
-advertiseD/panel_callbacks.c:
-	.text       start:0x00009AC0 end:0x00009BB0
+advertiseD/adv_cg.cpp:
+	.text       start:0x0000DAB0 end:0x0000EDB8
 
-advertiseD/panel_setters.c:
-	.text       start:0x00009BB0 end:0x00009CA4
+advertiseD/adv_2p.cpp:
+	.text       start:0x0000EDB8 end:0x0001086C
 
-advertiseD/select_object.c:
-	.text       start:0x0000A098 end:0x0000A460
+advertiseD/adv_pal.cpp:
+	.text       start:0x0001086C end:0x00010C88
+	.data       start:0x00007BC0 end:0x00007BE8
 
-advertiseD/anim_stubs.c:
-	.text       start:0x0000A6C4 end:0x0000A6D8
+advertiseD/adv_bar.cpp:
+	.text       start:0x00010C88 end:0x000112CC
+	.data       start:0x000081F8 end:0x00008220
 
-advertiseD/line_count.c:
-	.text       start:0x0000A6D8 end:0x0000A72C
+advertiseD/adv_bg.cpp:
+	.text       start:0x000112CC end:0x000122CC
 
-advertiseD/attract_dispatch.c:
-	.text       start:0x0000C450 end:0x0000C54C
-	.data       start:0x00003D60 end:0x00003D94
+advertiseD/adv_staffroll.cpp:
+	.text       start:0x000122CC end:0x00013744
+	.rodata     start:0x00001A28 end:0x00001A50
 
-advertiseD/attract_object.c:
-	.text       start:0x0000C54C end:0x0000C8D0
+advertiseD/adv_draw.cpp:
+	.text       start:0x00013744 end:0x00014728
+	.rodata     start:0x00001A50 end:0x00001CD8
 
-advertiseD/resource_pair.c:
-	.text       start:0x0000C8D0 end:0x0000C978
+advertiseD/adv_draw_constants.cpp:
+	.rodata     start:0x00001CD8 end:0x00001D00
 
-advertiseD/logo_spawn.c:
-	.text       start:0x0000EB80 end:0x0000EC18
-
-advertiseD/fade_step.c:
-	.text       start:0x0000EC18 end:0x0000ECAC
-	.rodata     start:0x000019A0 end:0x000019A4
-
-advertiseD/fade_object.c:
-	.text       start:0x0000ECD0 end:0x0000EF8C
-
-advertiseD/emblem_gate.c:
-	.text       start:0x0000EF8C end:0x0000F06C
-
-advertiseD/choice_widget.c:
-	.text       start:0x0000F06C end:0x0000F454
-	.data       start:0x00007838 end:0x00007880
-
-advertiseD/adv_bar.c:
-	.text       start:0x00010D1C end:0x00010E44
-
-advertiseD/adv_help.c:
-	.text       start:0x00010ED8 end:0x00011000
-
-advertiseD/quad_fill.c:
-	.text       start:0x000137B8 end:0x00013B24
-	.rodata     start:0x00001CD0 end:0x00001CD8
-
-advertiseD/quad_submit.c:
-	.text       start:0x000144AC end:0x000145B4
+advertiseD/adv_window.cpp:
+	.text       start:0x00014728 end:0x0001532C
+	.rodata     start:0x00001D00 end:0x00001D08

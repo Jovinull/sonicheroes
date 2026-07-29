@@ -26,6 +26,18 @@ This file records active ownership so parallel decompilation work does not overl
 The unified `advertiseD` reconstruction is complete on `pr-advertised`; do not
 open the superseded per-function or per-file advertise branches.
 
+## Completed on `pr-advertised`
+
+| Scope | Verification |
+|---|---|
+| Complete `advertiseD` overlay | 434/434 source functions; all 21 source objects `Matching`; exact REL and DOL hashes |
+| Linked sections and relocations | Exact retail section sizes and byte-identical `.text`, `.rodata`, and `.data` layout |
+| `adv_title.cpp` | 30/30 functions; exact source order, code, owned data, and linked ranges |
+| `adv_player.cpp` | 21/21 functions; exact code, data, symbol order, and relocation targets |
+| `adv_story.cpp`, `adv_story_tail.cpp` | 33/33 functions; exact object split, code, data, and symbol addresses |
+| `adv_challenge.cpp` | 78/78 functions and exact owned sections |
+| Remaining code and data objects | All functions and owned sections report 100% |
+
 `pr-skyfs-adx` supersedes `pr-module-loader` and the artificial
 `state_set.cpp`, `dvd_status.cpp`, `module_loader.cpp`, `state_accessor.cpp`,
 and `dlfs.c` splits.  The PS2 beta DWARF proves those ranges are one original
@@ -61,3 +73,10 @@ bytes of any of the 61 retail functions. Four one-line continuation wrappers
 compile the same source into the five original retail object fragments; this
 preserves the original linker inputs while keeping one authoritative
 `action.cpp` implementation.
+
+## Coordination rules
+
+- Use C++ for game-owned code unless positive evidence establishes C.
+- A file is complete only when all code and owned data report 100% in objdiff.
+- Do not add assembly implementations.
+- Do not run overlapping work without reserving the exact scope in this file.
