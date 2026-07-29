@@ -23,6 +23,7 @@ def make_policy(**overrides: list[str]) -> dict[str, list[str]]:
         "managed_prefixes": ["game/"],
         "library_prefixes": ["dolphin/"],
         "confirmed_c_sources": [],
+        "reviewed_c_boundary_sources": [],
         "pending_c_evidence": [],
         "protected_cpp_c_sources": [],
         "c_sources_compiled_as_cpp": [],
@@ -84,6 +85,16 @@ class PolicyValidationTests(unittest.TestCase):
             c_sources_compiled_as_cpp=["game/unit.c"],
         )
         with self.assertRaisesRegex(ValueError, "confirmed C and reviewed C/C\\+\\+ mode overlap"):
+            self.load_policy(policy)
+
+    def test_confirmed_and_boundary_classifications_cannot_overlap(self) -> None:
+        policy = make_policy(
+            confirmed_c_sources=["game/unit.c"],
+            reviewed_c_boundary_sources=["game/unit.c"],
+        )
+        with self.assertRaisesRegex(
+            ValueError, "confirmed C and reviewed C ABI boundary overlap"
+        ):
             self.load_policy(policy)
 
     def test_protected_debt_must_stay_in_protected_areas(self) -> None:
@@ -208,6 +219,16 @@ class StagedPolicyTests(unittest.TestCase):
         self.run_git("add", "-A")
 
         policy = make_policy(confirmed_c_sources=["game/unit.c"])
+        self.assertEqual(self.staged_errors(policy), [])
+
+    def test_reviewed_c_boundary_rename_is_allowed(self) -> None:
+        source = self.write_source("game/unit.cpp")
+        self.run_git("add", ".")
+        self.run_git("commit", "-q", "-m", "baseline")
+        source.rename(source.with_suffix(".c"))
+        self.run_git("add", "-A")
+
+        policy = make_policy(reviewed_c_boundary_sources=["game/unit.c"])
         self.assertEqual(self.staged_errors(policy), [])
 
     def test_nodeferred_is_not_treated_as_deferred(self) -> None:
@@ -401,6 +422,13 @@ class ConfiguredPolicyTests(unittest.TestCase):
             errors,
             ["game/unit.c: game-owned C source is not in the reviewed allowlist"],
         )
+
+    def test_reviewed_configured_c_boundary_is_allowed(self) -> None:
+        errors = self.configured_errors(
+            {"game/unit.c": {"language": "c", "inline_modes": ["auto"]}},
+            policy=make_policy(reviewed_c_boundary_sources=["game/unit.c"]),
+        )
+        self.assertEqual(errors, [])
 
     def test_stale_confirmed_c_entry_is_rejected(self) -> None:
         errors = self.configured_errors(

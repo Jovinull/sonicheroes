@@ -123,8 +123,12 @@ substitute for reviewing the evidence or matching the GameCube object.
   Metrowerks compiler commands, so dormant and path-traversing units cannot sit
   outside the audit.
 - A new `.c` file under `game`, `rel`, `advertiseD`, `autosaveD` or `movieD`
-  must be added to the reviewed C allowlist in
-  `config/G9SE8P/language_policy.json`.
+  must be added to the appropriate reviewed C list in
+  `config/G9SE8P/language_policy.json`. Use `confirmed_c_sources` only when
+  positive evidence establishes C source. Use `reviewed_c_boundary_sources`
+  for a matching C ABI or middleware boundary whose historical source
+  language remains indistinguishable; that category records uncertainty
+  rather than converting it into a false C claim.
 - `pending_c_evidence` must remain empty. If classification is uncertain, leave
   the existing source untouched and resolve the evidence before changing its
   language-policy category.
@@ -196,6 +200,12 @@ as C only because an active protected-area change must be integrated first.
 This is migration debt, not a C allowlist and not permission to edit another
 contributor's work. No new path may be added merely to make CI pass.
 
+An existing reviewed C ABI boundary is not migration debt by itself. Its
+allowlist entry says that the present C mode and linkage are reviewed and
+matching; it does not claim that the unavailable original file necessarily had
+a `.c` extension. Rename such a boundary only when stronger source evidence
+establishes C++ and the GameCube object and final artifacts remain exact.
+
 A protected C++/C-mode source must be migrated after coordinating with the
 active owner. The integration change reconstructs the C++ class or method
 shape, uses `.cpp`, updates build and split paths, and must preserve the
@@ -239,6 +249,8 @@ For language, linkage or inline changes:
 - keep the change to one logical translation unit or one mechanical module;
 - state the evidence and whether it is GameCube, PS2, PC or known-library
   evidence;
+- for a C path, distinguish positive C source evidence from a reviewed C ABI
+  boundary whose historical file language remains unresolved;
 - show the before/after objdiff result;
 - do not turn matching objects into non-matching objects in a mechanical
   language-only change;

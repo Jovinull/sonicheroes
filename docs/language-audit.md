@@ -260,6 +260,52 @@ Evidence and validation:
 - the reviewed C form keeps all 18 configured artifact hashes exact without a
   deferred-inline override or register-forcing workaround.
 
+### Reviewed C ABI and middleware boundaries
+
+The policy distinguishes positive C source evidence from an existing boundary
+that is reviewed in C mode but cannot be assigned a historical file language
+honestly. `game/main.c` is the sole `confirmed_c_sources` entry. The following
+eight paths are instead `reviewed_c_boundary_sources`:
+
+- `advertiseD/prolog.c`
+- `autosaveD/prolog.c`
+- `movieD/prolog.c`
+- `rel/prolog.c`
+- `movieD/cri/sfxahn.c`
+- `movieD/cri/sfxcnv.c`
+- `movieD/cri/sfxset.c`
+- `movieD/cri/sud.c`
+
+GameCube validation:
+
+- all eight compile in the configured C mode and match their owned GameCube
+  code, data and relocations;
+- the four module prologs were also compiled as C++ inside an explicit
+  `extern "C"` boundary in an isolated output directory;
+- for every prolog, `.text`, owned `.data`, relocation entries and functional
+  symbols were identical to the C object; only the local ELF `STT_FILE` source
+  marker changed;
+- therefore the linked GameCube binary cannot distinguish C source from C++
+  source with C linkage for those prologs.
+
+Cross-platform validation used only local symbol metadata from the North
+American retail PS2 executable and `stdump` v2.1:
+
+- `stdump identify` found `.symtab` but no `.mdebug`/DWARF source-file table,
+  and `stdump files` returned no file records;
+- the PS2 overlay exposes mangled prolog names for the advertise, autosave and
+  movie modules, establishing C++ linkage for those PS2 counterparts but not
+  for the platform-specific GameCube entry stubs;
+- the SFX/SUD symbols expose a C ABI and correlate the middleware families, but
+  without a source-file/language record they do not prove a historical `.c`
+  filename.
+
+The result is intentionally conservative. These paths remain matching C ABI
+boundaries and are not silently relabeled as historically confirmed C. A new
+entry in this category still requires a reviewed rationale and complete
+GameCube validation; the category is not a general escape hatch for new C
+files.
+
 ## Remaining queue
 
 After the GameCube platform-main decision:
@@ -269,7 +315,9 @@ After the GameCube platform-main decision:
 - 42 belong to the protected `advertiseD`/`autosaveD` areas;
 - 5 protected sources have direct C++ evidence but remain in C mode until their
   active changes are coordinated;
-- no C-compiled game source still awaits a language decision;
+- no C-compiled game source is silently unclassified: one has positive C
+  evidence and eight are explicitly reviewed C ABI boundaries that do not
+  claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
 - one source, `game/state_accessor.cpp`, has a reviewed `-inline deferred`

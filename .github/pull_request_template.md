@@ -6,6 +6,8 @@ Describe the one logical unit changed by this pull request.
 
 - [ ] I identified the source language and linkage from evidence, not from the
       current file extension or a byte match alone.
+- [ ] If this is a C path, I distinguished positive C source evidence from a
+      reviewed C ABI boundary whose historical file language is unresolved.
 - [ ] I recorded whether names/types came from GameCube, PS2, PC or a known
       library reference, and marked guesses as guesses.
 - [ ] If I used PS2 metadata, I kept the executable and tool output local and

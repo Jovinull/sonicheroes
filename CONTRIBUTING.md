@@ -45,7 +45,11 @@ Sonic Heroes' own game code is C++ by default. New game-owned translation units
 use the canonical `.cpp` extension and compile as C++; `.cc`, `.cxx` and
 case variants are rejected so the policy has one unambiguous convention. A new
 `.c` file is accepted only for a reviewed C boundary or known C library and
-must be added to the explicit policy allowlist.
+must be added to the explicit policy allowlist. `confirmed_c_sources` is for
+positive source-language evidence; `reviewed_c_boundary_sources` is for a
+matching C ABI boundary whose historical source language cannot be proved from
+the available artifacts. Do not present the second category as proof of
+original C source.
 Every configured source must be under a reviewed game-code or known-library
 prefix; do not create a new top-level source area to bypass the language policy.
 Uncertain C classifications stay unchanged and under review rather than being

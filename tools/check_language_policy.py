@@ -29,6 +29,7 @@ def load_policy(path: Path) -> dict[str, Any]:
         "managed_prefixes",
         "library_prefixes",
         "confirmed_c_sources",
+        "reviewed_c_boundary_sources",
         "pending_c_evidence",
         "protected_cpp_c_sources",
         "c_sources_compiled_as_cpp",
@@ -74,6 +75,7 @@ def load_policy(path: Path) -> dict[str, Any]:
 
     source_keys = (
         "confirmed_c_sources",
+        "reviewed_c_boundary_sources",
         "pending_c_evidence",
         "protected_cpp_c_sources",
         "c_sources_compiled_as_cpp",
@@ -89,6 +91,7 @@ def load_policy(path: Path) -> dict[str, Any]:
 
     groups = (
         set(policy["confirmed_c_sources"]),
+        set(policy["reviewed_c_boundary_sources"]),
         set(policy["pending_c_evidence"]),
         set(policy["protected_cpp_c_sources"]),
         set(policy["c_sources_compiled_as_cpp"]),
@@ -96,6 +99,7 @@ def load_policy(path: Path) -> dict[str, Any]:
     )
     labels = (
         "confirmed C",
+        "reviewed C ABI boundary",
         "pending C",
         "protected C++/C-mode debt",
         "reviewed C/C++ mode",
@@ -247,9 +251,10 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     prefixes = policy["managed_prefixes"]
     library_prefixes = policy["library_prefixes"]
     confirmed_c = set(policy["confirmed_c_sources"])
+    reviewed_c_boundaries = set(policy["reviewed_c_boundary_sources"])
     pending_c = set(policy["pending_c_evidence"])
     protected_cpp_c = set(policy["protected_cpp_c_sources"])
-    allowed_c = confirmed_c | pending_c | protected_cpp_c
+    allowed_c = confirmed_c | reviewed_c_boundaries | pending_c | protected_cpp_c
     cpp_mode_c = set(policy["c_sources_compiled_as_cpp"])
     legacy_cpp = set(policy["legacy_cpp_c_sources"])
     deferred = set(policy["deferred_sources"])
@@ -329,6 +334,7 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
             "language policy OK: "
             f"{len(managed)} managed sources "
             f"({cpp_count} C++, {c_count} C, "
+            f"{len(reviewed_c_boundaries)} reviewed C ABI boundaries, "
             f"{len(pending_c)} pending evidence, "
             f"{len(protected_cpp_c)} protected C++/C-mode debt, "
             f"{len(cpp_mode_c)} reviewed C/C++-mode, "
@@ -349,6 +355,7 @@ def audit_staged_sources(policy: dict[str, Any]) -> list[str]:
     prefixes = policy["managed_prefixes"]
     library_prefixes = policy["library_prefixes"]
     confirmed_c = set(policy["confirmed_c_sources"])
+    reviewed_c_boundaries = set(policy["reviewed_c_boundary_sources"])
     pending_c = set(policy["pending_c_evidence"])
     protected_cpp_c = set(policy["protected_cpp_c_sources"])
     cpp_mode_c = set(policy["c_sources_compiled_as_cpp"])
@@ -387,7 +394,11 @@ def audit_staged_sources(policy: dict[str, Any]) -> list[str]:
             errors.append(
                 f"{source}: staged legacy C++ work must migrate from .c to .cpp"
             )
-        elif source not in confirmed_c and source not in cpp_mode_c:
+        elif (
+            source not in confirmed_c
+            and source not in reviewed_c_boundaries
+            and source not in cpp_mode_c
+        ):
             errors.append(
                 f"{source}: new game-owned .c source is forbidden; use .cpp or add reviewed C evidence"
             )
