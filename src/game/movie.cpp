@@ -133,8 +133,8 @@ inline MovieTask::MovieTask(TObject* parent)
 	counter = 0;
 }
 
-// Descriptive name inferred from the sole GC caller and the constructed type;
-// the PS2 beta does not contain an equivalent task factory.
+// Descriptive name inferred from the function behavior, retail call sites, and
+// constructed type; the PS2 beta does not contain an equivalent task factory.
 void InitMovieTask()
 {
 	if (lbl_8042C7E8 == 0)
