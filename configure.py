@@ -548,6 +548,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "advertiseD/prolog.c",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/adv_story_tail.cpp",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
             ),

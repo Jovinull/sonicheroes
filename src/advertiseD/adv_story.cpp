@@ -945,9 +945,6 @@ void fn_1_8740(void)
 	fn_800A9418(lbl_80303EC8, tbl);
 	fn_800A9444(lbl_80303EC8);
 }
-
-// 0x8808 - empty base virtual.
-void fn_1_8808(void) { }
 #pragma dont_inline reset
 
 } // extern "C"
