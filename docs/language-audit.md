@@ -218,6 +218,28 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
 - progress totals remained unchanged.
 
+### Game endian-conversion translation unit
+
+Reconstructed `game/Endian.cpp` (`.text` `0x8004BECC`–`0x8004C160`) as C++.
+
+Language and boundary evidence:
+
+- the PS2 debug symbols independently retain the neighboring
+  `TEndianCnv::ConvAnyParameter`, `TEndianCnv::ps2uNtoHS` and
+  `TEndianCnv::ps2uNtoHL` C++ conversion family;
+- the five-function GameCube conversion run terminates in its own static
+  initializer and corresponding `.ctors` word at `0x802398D0`; the preceding
+  object's initializer ends immediately before `0x8004BECC`, establishing
+  both ends of the object independently of instruction similarity.
+
+Validation:
+
+- all six functions, 660 bytes of `.text`, and the four-byte `.ctors` section
+  match exactly in objdiff;
+- the fresh build linked every configured artifact;
+- `config/G9SE8P/build.sha1` verified all 18 artifacts;
+- the language-policy check passed with the source compiled in C++ mode.
+
 ### GameCube platform heap
 
 Migrated `game/heap.cpp` while preserving explicit C linkage for the public
