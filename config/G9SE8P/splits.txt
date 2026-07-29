@@ -58,6 +58,12 @@ game/dvd_status.cpp:
 game/state_accessor.cpp:
 	.text       start:0x80013398 end:0x800133D0
 
+game/moviePlay.cpp:
+	extab       start:0x8000B97C end:0x8000B994
+	extabindex  start:0x800119EC end:0x80011A10
+	.text       start:0x801390A4 end:0x801391D0
+	.data       start:0x8028CAB0 end:0x8028CF04
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
