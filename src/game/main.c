@@ -13,7 +13,7 @@
 //   translation unit owns a contiguous run of .text, so everything between
 //   them is in this file too. fn_80012E50 does nothing but hand back that
 //   block's address, which is what a file's accessor for its own state looks
-//   like. The .bss neighbours settle the data bound: lbl_8029BB80 before it
+//   like. The .bss neighbours settle the data bound: RsGlobal before it
 //   has seventeen referencing units and lbl_8029BBD0 after it has thirty nine,
 //   so the private block is exactly these sixteen bytes.
 //
@@ -86,13 +86,13 @@ extern void GXSetMisc(u32 token, u32 value);
 extern void PADInit(void);
 
 // The dispatcher. Returns zero on failure for the two codes main checks.
-extern int fn_80011FA8(int code, void* arg);
+extern int RsEventHandler(int code, void* arg);
 
 // Handed this file's own block on the way up, and reports whether it took.
 extern int fn_8001234C(void* state);
 
 // Called as a pair on the way in. The first hands back a value the second
-// turns into the two words main copies into lbl_8029BB80 and passes on.
+// turns into the two words main copies into RsGlobal and passes on.
 extern u32 fn_8019D4D4(void);
 extern void fn_8019D448(u32* out, u32 arg);
 
@@ -122,7 +122,7 @@ typedef struct Pair {
 	u32 second;
 } Pair;
 
-extern Unk8029BB80 lbl_8029BB80;
+extern Unk8029BB80 RsGlobal;
 
 // One byte of a pair in another unit's .sbss, set once on the way in.
 extern u8 lbl_8042C0C0;
@@ -175,41 +175,41 @@ int main(int argc, char** argv)
 
 	lbl_8042C0C0 = 1;
 
-	if (!fn_80011FA8(0x10, NULL)) {
+	if (!RsEventHandler(0x10, NULL)) {
 		return 0;
 	}
 
 	for (i = 1; i < argc; i++) {
-		fn_80011FA8(0x1C, argv[i]);
+		RsEventHandler(0x1C, argv[i]);
 	}
 
-	if (!fn_80011FA8(0x0D, cfg)) {
-		fn_80011FA8(0x11, NULL);
+	if (!RsEventHandler(0x0D, cfg)) {
+		RsEventHandler(0x11, NULL);
 		return 0;
 	}
 
 	PADInit();
 
 	for (i = 1; i < argc; i++) {
-		fn_80011FA8(0x1, argv[i]);
+		RsEventHandler(0x1, argv[i]);
 	}
 
 	fn_8019D448(tick, fn_8019D4D4());
 
-	lbl_8029BB80.unk_0x4 = tick[0];
-	lbl_8029BB80.unk_0x8 = tick[1];
+	RsGlobal.unk_0x4 = tick[0];
+	RsGlobal.unk_0x8 = tick[1];
 
 	args[0]          = 0;
 	args[1]          = 0;
 	*(Pair*)&args[2] = *(Pair*)tick;
-	fn_80011FA8(0x0, args);
+	RsEventHandler(0x0, args);
 
-	while (lbl_8029BB80.unk_0x10 == 0) {
-		fn_80011FA8(0x12, NULL);
+	while (RsGlobal.unk_0x10 == 0) {
+		RsEventHandler(0x12, NULL);
 	}
 
-	fn_80011FA8(0x0E, NULL);
-	fn_80011FA8(0x11, NULL);
+	RsEventHandler(0x0E, NULL);
+	RsEventHandler(0x11, NULL);
 
 	return 0;
 }

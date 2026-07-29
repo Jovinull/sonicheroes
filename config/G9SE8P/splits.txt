@@ -13,6 +13,14 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:8
 
+game/skeleton.cpp:
+	extab       start:0x800056C0 end:0x80005710
+	extabindex  start:0x8000BC20 end:0x8000BC98
+	.text       start:0x80011C20 end:0x8001234C
+	.data       start:0x80240660 end:0x802406EC
+	.bss        start:0x8029BB80 end:0x8029BBC0
+	.sdata      start:0x8042AD60 end:0x8042AD74
+
 game/heap.cpp:
 	extab       start:0x80005710 end:0x80005748
 	extabindex  start:0x8000BC98 end:0x8000BCEC

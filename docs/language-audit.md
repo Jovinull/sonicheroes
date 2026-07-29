@@ -309,6 +309,32 @@ Validation:
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts and the DOL
   retained SHA-1 `9214426b8a3fb1d6fe3dcff09bcc1a959e1e04a8`.
 
+### RenderWare skeleton
+
+Added `game/skeleton.cpp` for the complete GameCube RenderWare skeleton range,
+including camera sizing, initialization and shutdown, pathname forwarding,
+event dispatch, raster presentation and error reporting.
+
+Language evidence:
+
+- the corresponding PS2 symbols retain the same `RsInitialize`,
+  `RsRwInitialize`, `RsRwTerminate`, `RsEventHandler`,
+  `RsCameraShowRaster` and `RsErrorMessage` interface;
+- that PS2 platform-code run uses C linkage for the public RenderWare
+  callbacks alongside a private C++-mangled timer handler;
+- the GameCube unit is therefore reconstructed in C++ mode with explicit C
+  linkage at the RenderWare boundary, consistent with the adjacent callback
+  fragments.
+
+Validation:
+
+- all ten functions in `.text` `0x80011C20` through `0x8001234C` match
+  byte-for-byte;
+- the complete `extab`, `extabindex`, `.data`, `.bss` and `.sdata` sections
+  and their relocations match;
+- the complete build relinked `main.dol` and all modules;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts.
+
 ## Remaining queue
 
 After the GameCube platform-main decision:
