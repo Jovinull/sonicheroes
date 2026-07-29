@@ -24,6 +24,11 @@ splits: config/G9SE8P/splits.txt
 #   14 = CW for GameCube 3.0a3+
 mw_comment_version: 10
 
+# This tail is contiguous with the separately retained first word of the
+# retail resource table, but no relocation points at the tail itself.
+force_active:
+  - lbl_8028D0F0
+
 # 18 REL modules ship with main.dol. One per stage, plus advertise (attract
 # mode), autosave and movie.
 #
