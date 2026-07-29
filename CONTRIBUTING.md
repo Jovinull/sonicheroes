@@ -42,8 +42,21 @@ Read [the source-language policy](docs/language-policy.md) before creating a
 game-code translation unit.
 
 Sonic Heroes' own game code is C++ by default. New game-owned translation units
-use `.cpp` and compile as C++. A new `.c` file is accepted only for a reviewed C
-boundary or known C library and must be added to the explicit policy allowlist.
+use the canonical `.cpp` extension and compile as C++; `.cc`, `.cxx` and
+case variants are rejected so the policy has one unambiguous convention. A new
+`.c` file is accepted only for a reviewed C boundary or known C library and
+must be added to the explicit policy allowlist. `confirmed_c_sources` is for
+positive source-language evidence; `reviewed_c_boundary_sources` is for a
+matching C ABI boundary whose historical source language cannot be proved from
+the available artifacts. Do not present the second category as proof of
+original C source.
+Every configured source must be under a reviewed game-code or known-library
+prefix; do not create a new top-level source area to bypass the language policy.
+Uncertain C classifications stay unchanged and under review rather than being
+added to the policy as new pending debt.
+Source paths must be canonical, and every C/C++ file under `src/` must appear
+in at least one configured compiler command. Repeated commands for a source
+must agree; dormant, conflicting or path-traversing units are rejected.
 The `.c` files that receive `-lang=c++` are either matching legacy paths or an
 explicitly reviewed vendor compatibility exception, not a pattern for new
 work.
@@ -64,8 +77,9 @@ Do not apply `-inline deferred` globally. It changes inlining and function
 emission order. A deferred override needs the source-order evidence and
 before/after objdiff required by the language policy.
 
-Run `python tools/check_language_policy.py` after `python configure.py`. The
-commit hook also refuses newly added game-owned `.c` files that have no reviewed
+Run `python -m unittest tools.test_check_language_policy` and
+`python tools/check_language_policy.py` after `python configure.py`. The commit
+hook also refuses added or renamed game-owned `.c` files that have no reviewed
 C classification.
 
 The hook protects only clones where `core.hooksPath` is enabled. The repository

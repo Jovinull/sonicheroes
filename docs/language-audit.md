@@ -14,14 +14,45 @@ The initial configured-command audit found 134 game-owned sources:
 
 - 115 compiled as C++ through `.c` plus `-lang=c++`;
 - 19 compiled as C;
-- 9 of those C sources pending stronger language evidence;
+- 9 of those C sources were initially pending stronger language evidence;
 - no approved `-inline deferred` source.
 
-The protected `advertiseD` and `autosaveD` areas are not changed while their
-owners have active work. Their 42 legacy C++ paths remain in the queue until a
-coordinated follow-up.
+Those nine initial decisions are now closed: `game/main.c` has positive C
+source evidence and the other eight are explicitly recorded as reviewed C ABI
+boundaries whose historical file language remains unresolved. The current
+policy therefore has no `pending_c_evidence` entry.
+
+The coordinated `advertiseD` reconstruction has now replaced all 30 of its
+legacy C++/`.c` fragments. AutoSaveD remains protected while PR #116 is a
+draft: its 12 legacy C++/`.c` fragments and four C-mode fragments with direct
+C++ evidence remain in the queue.
 
 ## Completed batches
+
+### AdvertiseD overlay
+
+PR #125 replaces the legacy AdvertiseD fragments with 21 C++ source objects
+covering the complete overlay. Its retained `prolog.c` stays in the reviewed C
+ABI-boundary category.
+
+Language and boundary evidence:
+
+- the correlated PS2 prototype retains the AdvertiseD class, method and source
+  names used to reconstruct the logical C++ units;
+- GameCube constructors, destructors, vtables and exception metadata
+  independently establish C++ for the class-owned code;
+- the GameCube REL remains the authority for every boundary, instruction,
+  relocation and owned data range.
+
+Validation:
+
+- all 434 reconstructed source functions and all 21 source objects match;
+- the linked AdvertiseD REL is byte-identical to retail;
+- `adv_2p.cpp` and `adv_draw.cpp` retain their reviewed
+  `-inline deferred,noauto` modes because natural emission does not reproduce
+  the target order and data layout;
+- all 30 obsolete AdvertiseD paths and the completed protected
+  `anim_handle.c` entry were removed from the language-policy debt lists.
 
 ### Spring fragments
 
@@ -365,48 +396,88 @@ Validation:
   in-progress GX sources reference the unconfigured `__gxVerif`; this unit
   introduces neither reference.
 
+### Reviewed C ABI and middleware boundaries
+
+The policy distinguishes positive C source evidence from an existing boundary
+that is reviewed in C mode but cannot be assigned a historical file language
+honestly. `game/main.c` is the sole `confirmed_c_sources` entry. The following
+eight paths are instead `reviewed_c_boundary_sources`:
+
+- `advertiseD/prolog.c`
+- `autosaveD/prolog.c`
+- `movieD/prolog.c`
+- `rel/prolog.c`
+- `movieD/cri/sfxahn.c`
+- `movieD/cri/sfxcnv.c`
+- `movieD/cri/sfxset.c`
+- `movieD/cri/sud.c`
+
+GameCube validation:
+
+- all eight compile in the configured C mode and match their owned GameCube
+  code, data and relocations;
+- the four module prologs were also compiled as C++ inside an explicit
+  `extern "C"` boundary in an isolated output directory;
+- for every prolog, `.text`, owned `.data`, relocation entries and functional
+  symbols were identical to the C object; only the local ELF `STT_FILE` source
+  marker changed;
+- therefore the linked GameCube binary cannot distinguish C source from C++
+  source with C linkage for those prologs.
+
+Cross-platform validation used only local symbol metadata from the North
+American retail PS2 executable and `stdump` v2.1:
+
+- `stdump identify` found `.symtab` but no `.mdebug`/DWARF source-file table,
+  and `stdump files` returned no file records;
+- the PS2 overlay exposes mangled prolog names for the advertise, autosave and
+  movie modules, establishing C++ linkage for those PS2 counterparts but not
+  for the platform-specific GameCube entry stubs;
+- the SFX/SUD symbols expose a C ABI and correlate the middleware families, but
+  without a source-file/language record they do not prove a historical `.c`
+  filename.
+
+The result is intentionally conservative. These paths remain matching C ABI
+boundaries and are not silently relabeled as historically confirmed C. A new
+entry in this category still requires a reviewed rationale and complete
+GameCube validation; the category is not a general escape hatch for new C
+files.
+
 ## Remaining queue
 
 After the GameCube platform-main decision:
 
-- 42 legacy `.c` paths still compile as C++;
+- 12 legacy `.c` paths still compile as C++;
 - none of them are outside the protected areas;
-- 42 belong to the protected `advertiseD`/`autosaveD` areas;
-- 5 protected sources have direct C++ evidence but remain in C mode until their
+- all 12 belong to the protected `autosaveD` area;
+- 4 protected sources have direct C++ evidence but remain in C mode until their
   active changes are coordinated;
-- no C-compiled game source still awaits a language decision;
+- no C-compiled game source is silently unclassified: one has positive C
+  evidence and eight are explicitly reviewed C ABI boundaries that do not
+  claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- one source, `game/state_accessor.cpp`, has a reviewed `-inline deferred`
-  override.
+- three sources have reviewed deferred-inline modes:
+  `game/skyfs_adx.c`, `advertiseD/adv_2p.cpp` and
+  `advertiseD/adv_draw.cpp`.
 
 ### Reviewed inline exception
 
-`game/state_accessor.cpp` keeps its object-level `-inline deferred` override.
-The disc supplies no map, DWARF or named symbols that establish a natural
-source order for these anonymous accessors; that absence is recorded rather
-than inferred away. The controlled source permutation declares the four
-forced-active functions in reverse address order.
-With ordinary `-inline auto`, CodeWarrior emits that declaration order:
-`fn_800133C8`, `fn_800133A8`, `fn_800133A0`, `fn_80013398`. With the deferred
-override, it emits the original GameCube address order:
-`fn_80013398`, `fn_800133A0`, `fn_800133A8`, `fn_800133C8`. The latter matches
-the target `.text` exactly, including the branchless comparison in
-`fn_800133A8`; the ordinary mode does not. The target and both candidates have
-no relocations, so there is no hidden relocation tradeoff.
+`game/skyfs_adx.c` needs `-inline deferred`: correlated PS2 metadata establishes
+the unified translation-unit order, and the controlled GameCube comparison
+shows that ordinary auto inlining changes accessor emission and call sites.
+The deferred form reproduces all 19 functions, relocations and owned sections.
 
-The same controlled comparison was performed for `game/dvd_status.cpp`.
-Removing its deferred override preserved the function instructions, jump-table
-contents and relocation targets. Only compiler-generated local symbol numbers
-changed, which do not affect the linked result. The redundant override was
-therefore removed rather than allowlisted.
+`advertiseD/adv_2p.cpp` and `advertiseD/adv_draw.cpp` need the combined
+`deferred,noauto` mode to preserve their reviewed function emission and linked
+data layout. Both remain exact as part of the complete AdvertiseD object and
+REL validation. The policy treats comma-separated inline modes as exact tokens
+and rejects unreviewed deferred use.
 
 ### Protected C++ migration debt
 
 The following sources are classified in `protected_cpp_c_sources` without
 changing their source, split or object configuration:
 
-- `advertiseD/anim_handle.c`
 - `autosaveD/menu_selectors.c`
 - `autosaveD/table.c`
 - `autosaveD/widget_rendering.c`
@@ -414,16 +485,6 @@ changing their source, split or object configuration:
 
 Language evidence:
 
-- the GameCube `anim_handle.c` callbacks belong to the vtable at
-  `lbl_1_data_3740`; the adjacent deleting destructor and constructor both
-  install that vtable, and the constructor initializes the same fields in a
-  `0x38`-byte object;
-- the correlated PS2 symbols identify the corresponding disable, enable,
-  display, execute, destructor and constructor sequence as methods of
-  `TAdvChallengeEme`;
-- a controlled GameCube C++ compile with explicit C ABI reproduced
-  `anim_handle.c` code, constants, relocations and functional symbols exactly;
-  only the object-file source marker changed from `.c` to `.cpp`;
 - the correlated PS2 metadata retains C++-mangled constructors, destructors and
   methods for `ADV_MENU`, `ADV_WINDOW` and `sADV_WINDOW_PARAM`;
 - it retains the `ADV_WINDOW` vtable and class record;
@@ -434,12 +495,10 @@ Language evidence:
 
 These facts prove that the corresponding code belongs to C++ class
 implementations; the current matching C fragments do not prove original C
-source. PR #116 is an active draft reconstructing the same AutoSaveD classes,
-and `advertiseD` has separately announced active local work. This audit
-therefore makes no protected-area source, split or configuration change.
-Migration must be coordinated with each owner, reviewed against the final
-class layout and accepted only after the GameCube object diffs and all 18
-artifact hashes remain exact.
+source. PR #116 is an active draft reconstructing the same AutoSaveD classes.
+Migration must be coordinated with its owner, reviewed against the final class
+layout and accepted only after the GameCube object diffs and all 18 artifact
+hashes remain exact.
 
 ### AutoSaveD draft inline audit
 
@@ -492,13 +551,12 @@ No binary, SDK archive or extracted proprietary source is needed.
 
 ### Protected C++ dry run
 
-The five C-mode paths with direct C++ evidence were also compiled in C++ mode
+The four AutoSaveD C-mode paths with direct C++ evidence were also compiled in C++ mode
 in an isolated temporary output directory. No protected source, split or
 configuration was changed.
 
 | current fragment | C++-mode result | integration consequence |
 | --- | --- | --- |
-| `advertiseD/anim_handle.c` | raw `.text` is identical; all 4 relocation types and offsets are retained | coordinate the final class and external ABI names with the active AdvertiseD reconstruction |
 | `autosaveD/menu_selectors.c` | raw `.text` is identical; all 53 relocation types and offsets are retained | absorb into the reconstructed `ADV_MENU` logical unit rather than preserve C-shaped free functions |
 | `autosaveD/table.c` | raw `.text` is identical; its one relocation is retained | absorb into `ADV_MENU`; the current pre-mangled `__dl__FPv` placeholder is double-mangled by a naive C++ compile |
 | `autosaveD/window_input.c` | raw `.text` is identical; all 11 relocation types and offsets are retained | absorb into the reconstructed `ADV_WINDOW` logical unit and resolve its member/external ABI names together |
@@ -514,12 +572,12 @@ edges before the paths are renamed.
 
 ### Protected integration plan
 
-The 42 remaining `legacy_cpp_c_sources` already compile as C++. Cross-platform
-metadata additionally retains the C++ unit markers `adv_overlay.cpp` and
-`as_overlay.cpp`, plus the `TAutoSave`, `ADV_WINDOW`, `ADV_MENU`, `TAS_EMBLEM`,
-`TAS_CONG` and `TAS_SAVE` class families. This establishes the module language,
-but not every original GameCube translation-unit boundary: many current paths
-are artificial matching fragments.
+The 12 remaining `legacy_cpp_c_sources` already compile as C++. Cross-platform
+metadata retains the C++ unit marker `as_overlay.cpp`, plus the `TAutoSave`,
+`ADV_WINDOW`, `ADV_MENU`, `TAS_EMBLEM`, `TAS_CONG` and `TAS_SAVE` class
+families. This establishes the module language, but not every original
+GameCube translation-unit boundary: many current paths are artificial matching
+fragments.
 
 Complete the protected migration in this order:
 
@@ -529,9 +587,6 @@ Complete the protected migration in this order:
 2. Re-audit the remaining AutoSaveD list after that integration. Rename only
    fragments that remain independent; merge fragments only where class, data
    and ordering evidence establishes one logical unit.
-3. Repeat the same process for `advertiseD` after its active local branch is
-   published and coordinated. Do not pre-rename paths that the owner may have
-   merged or reconstructed.
 
 Each completed batch must leave no stale policy entry, no `.c` path compiled as
 C++ outside a reviewed vendor exception, and no newly introduced C-mode game
@@ -539,9 +594,9 @@ source. The final checkpoint is an empty `legacy_cpp_c_sources`,
 `protected_cpp_c_sources` and `pending_c_evidence`, together with a clean
 language-policy check and all 18 artifact hashes exact.
 
-Until those owners coordinate integration, the checker permits this debt only
-under `advertiseD/` and `autosaveD/`. A legacy C++/`.c` entry anywhere else is
-a policy error.
+Until the AutoSaveD owner coordinates integration, the checker permits this
+debt only under `autosaveD/`. A legacy C++/`.c` entry anywhere else is a policy
+error.
 
 ### GetSpParam
 
