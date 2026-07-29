@@ -527,6 +527,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/GetSpParam.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/action.cpp",
                 extra_cflags=[
                     "-Cpp_exceptions on",

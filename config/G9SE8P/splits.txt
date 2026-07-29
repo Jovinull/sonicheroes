@@ -124,6 +124,14 @@ game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
 
+game/GetSpParam.cpp:
+	extab       start:0x8000B698 end:0x8000B6A8
+	extabindex  start:0x8001165C end:0x80011674
+	.text       start:0x80130BC0 end:0x80130DF0
+	.ctors      start:0x80239904 end:0x80239908
+	.bss        start:0x803EA488 end:0x803EA4B8
+	.sdata2     start:0x8042EE88 end:0x8042EEA8
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
