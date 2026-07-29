@@ -87,6 +87,18 @@ struct CollisionSearchResult {
 	void* object;
 };
 
+struct RotationPair {
+	f32 cosine;
+	f32 sine;
+};
+
+struct Color {
+	u8 red;
+	u8 green;
+	u8 blue;
+	u8 alpha;
+};
+
 extern "C" {
 void TDisp__14TObjEffTornadoFv(TObjEffTornado*);
 void Exec__14TObjEffTornadoFv(TObjEffTornado*);
@@ -153,18 +165,25 @@ extern f32 lbl_8042DBE0;
 extern f32 lbl_8042DBE8;
 extern f32 lbl_8042DBF0;
 extern f32 lbl_8042DBF4;
+extern f32 lbl_8042DBC4;
 extern f32 lbl_8042DC10;
 extern f32 lbl_8042DC14;
 extern f32 lbl_8042DC18;
 extern f32 lbl_8042DC1C;
 extern f32 lbl_8042DC20;
+extern f32 lbl_8042DC24;
 
 extern u8 lbl_8029C310[];
 extern u8 lbl_802D5E80[];
 extern void* lbl_802AD070[];
 extern u8 lbl_8042C1A4;
-extern u8 lbl_80239984[];
+extern RwV3d lbl_80239978;
+extern RwV3d lbl_80239984;
 extern void* lbl_802535F0[];
+extern RwV3d lbl_8025337C[];
+extern RwV3d lbl_802533DC[];
+extern RotationPair lbl_8025343C[];
+extern s32 lbl_8025347C[];
 
 void fn_80194294(s32, u32*);
 void fn_80194234(s32, u32);
@@ -177,9 +196,9 @@ void fn_80021824(void*);
 CollisionSearchResult* fn_80020BD8(void*, s32);
 void fn_80150958(void*);
 void fn_8019EC30(void*, RwV3d*, s32);
-f32 fn_800D7B00(s16);
-f32 fn_800D7AE4(s16);
-void fn_80195790(void*, void*, f32, f32, s32);
+f32 fn_800D7B00(s32);
+f32 fn_800D7AE4(s32);
+void fn_80195790(void*, RwV3d*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, RwV3d*, s32);
 void fn_8003BC38(C_COLLI*);
@@ -276,7 +295,7 @@ extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 	fn_8019EC30(frame, &effect->position, 0);
 	f32 sine   = fn_800D7B00(effect->angle);
 	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(effect->angle);
-	fn_80195790((u8*)frame + 0x10, lbl_80239984, cosine, sine, 2);
+	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
 	fn_8019E880(frame);
 	fn_8019EB94(frame, &effect->direction, 2);
 }
@@ -483,6 +502,166 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 	}
 	return effect;
 }
+
+#pragma opt_common_subs off
+extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
+{
+	u32 state10;
+	u32 state11;
+	u32 state20;
+	u32 state14;
+	fn_80194294(10, &state10);
+	fn_80194294(11, &state11);
+	fn_80194294(20, &state20);
+	fn_80194294(14, &state14);
+	fn_80194234(10, 5);
+	fn_80194234(11, 2);
+	fn_80194234(20, 1);
+	fn_80194234(14, 0);
+
+	f32 height       = lbl_8042DBB4;
+	s8 index         = 0;
+	void** resources = lbl_802532F4;
+	u8* material     = *(u8**)((u8*)resources[0] + 4);
+	Color color      = *(Color*)(material + 4);
+	f32 multiplier   = lbl_8042DBF4;
+	color.alpha      = (u8)(effect->alpha * multiplier);
+	material[4]      = color.red;
+	material[5]      = color.green;
+	material[6]      = color.blue;
+	material[7]      = color.alpha;
+
+	material    = *(u8**)((u8*)resources[1] + 4);
+	color.red   = material[4];
+	color.green = material[5];
+	color.blue  = material[6];
+	color.alpha = material[7];
+	color.alpha = (u8)(effect->alpha * multiplier);
+	material[4] = color.red;
+	material[5] = color.green;
+	material[6] = color.blue;
+	material[7] = color.alpha;
+
+	material    = *(u8**)((u8*)resources[2] + 4);
+	color.red   = material[4];
+	color.green = material[5];
+	color.blue  = material[6];
+	color.alpha = material[7];
+	color.alpha = (u8)(effect->alpha * multiplier);
+	material[4] = color.red;
+	material[5] = color.green;
+	material[6] = color.blue;
+	material[7] = color.alpha;
+
+	fn_80053660(lbl_802D5E80, 16);
+	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+
+	s32 angle = (s32)(effect->scale * lbl_8042DBC4);
+	{
+		void** models           = lbl_802532E8;
+		RwV3d* positions        = lbl_8025337C;
+		RwV3d* directions       = lbl_802533DC;
+		RotationPair* rotations = lbl_8025343C;
+		RwV3d* firstAxis        = &lbl_80239978;
+		f32 one                 = lbl_8042DBC0;
+		s32* angleOffsets       = lbl_8025347C;
+		RwV3d* secondAxis       = &lbl_80239984;
+		f32 increment           = lbl_8042DC24;
+		f32 limit               = lbl_8042DBB8;
+		while (height <= limit) {
+			void* model    = models[0];
+			void* frame    = *(void**)((u8*)model + 4);
+			s32 tableIndex = index & 7;
+			fn_8019EC30(frame, &positions[tableIndex], 0);
+			fn_8019EB94(frame, &directions[tableIndex], 2);
+			RotationPair* pair = &rotations[tableIndex];
+			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			s32 rotation = angle + angleOffsets[tableIndex];
+			f32 sine     = fn_800D7B00(rotation);
+			f32 cosine   = one - fn_800D7AE4(rotation);
+			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
+			fn_8019E880(frame);
+			RwV3d position = effect->position;
+			position.y += height;
+			fn_8019EB94(frame, &position, 2);
+			fn_8014FF2C(model);
+			height += increment;
+			index++;
+			angle += 0x3b05;
+		}
+	}
+
+	{
+		void** models           = lbl_802532E8;
+		RwV3d* positions        = lbl_8025337C;
+		RwV3d* directions       = lbl_802533DC;
+		RotationPair* rotations = lbl_8025343C;
+		RwV3d* firstAxis        = &lbl_80239978;
+		f32 one                 = lbl_8042DBC0;
+		s32* angleOffsets       = lbl_8025347C;
+		RwV3d* secondAxis       = &lbl_80239984;
+		f32 increment           = lbl_8042DC24;
+		f32 limit               = lbl_8042DBF0;
+		while (height <= limit) {
+			void* model    = models[1];
+			void* frame    = *(void**)((u8*)model + 4);
+			s32 tableIndex = index & 7;
+			fn_8019EC30(frame, &positions[tableIndex], 0);
+			fn_8019EB94(frame, &directions[tableIndex], 2);
+			RotationPair* pair = &rotations[tableIndex];
+			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			s32 rotation = angle + angleOffsets[tableIndex];
+			f32 sine     = fn_800D7B00(rotation);
+			f32 cosine   = one - fn_800D7AE4(rotation);
+			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
+			RwV3d position = effect->position;
+			position.y += height;
+			fn_8019EB94(frame, &position, 2);
+			fn_8014FF2C(model);
+			height += increment;
+			index++;
+			angle += 0x127d;
+		}
+	}
+
+	{
+		s32 count               = 0;
+		void** models           = lbl_802532E8;
+		RwV3d* positions        = lbl_8025337C;
+		RwV3d* directions       = lbl_802533DC;
+		RotationPair* rotations = lbl_8025343C;
+		RwV3d* firstAxis        = &lbl_80239978;
+		f32 one                 = lbl_8042DBC0;
+		s32* angleOffsets       = lbl_8025347C;
+		RwV3d* secondAxis       = &lbl_80239984;
+		do {
+			void* model    = models[2];
+			void* frame    = *(void**)((u8*)model + 4);
+			s32 tableIndex = index & 7;
+			fn_8019EC30(frame, &positions[tableIndex], 0);
+			fn_8019EB94(frame, &directions[tableIndex], 2);
+			RotationPair* pair = &rotations[tableIndex];
+			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			s32 rotation = angle + angleOffsets[tableIndex];
+			f32 sine     = fn_800D7B00(rotation);
+			f32 cosine   = one - fn_800D7AE4(rotation);
+			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
+			RwV3d position = effect->position;
+			position.y += height;
+			fn_8019EB94(frame, &position, 2);
+			fn_8014FF2C(model);
+			index++;
+			angle += 0x2666;
+			count++;
+		} while (count < 4);
+	}
+
+	fn_80194234(14, state14);
+	fn_80194234(20, state20);
+	fn_80194234(10, state10);
+	fn_80194234(11, state11);
+}
+#pragma opt_common_subs reset
 
 extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 {
