@@ -152,6 +152,7 @@ def main() -> None:
         jump_table: "jumptable_8028CF90",
         "__nw__FUl": "fn_80057644",
         "__ct__21MovieSubtitleResourceFPCc": "fn_800CEE18",
+        "fn_8004BEE0": "ConvertAnyParameter__FPUcPCci",
         exception_tables[0]: "@etb_8000B994",
         exception_tables[1]: "@etb_8000B99C",
         exception_tables[2]: "@etb_8000B9A4",

@@ -153,7 +153,10 @@ u32 StageFailedResourcesTail[44] = {
 	0,
 };
 
-u8 StageFailedAnimation[0x70];
+// The GameCube section order proves this storage was a separate linker input:
+// keeping it in this code object creates an impossible .text/.bss order cycle.
+extern "C" u8 lbl_80303EC8[0x70];
+#define StageFailedAnimation lbl_80303EC8
 extern "C" {
 void* StageFailedArchive;
 void* StageFailedController;

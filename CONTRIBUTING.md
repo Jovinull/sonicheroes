@@ -83,14 +83,14 @@ hook also refuses added or renamed game-owned `.c` files that have no reviewed
 C classification.
 
 The hook protects only clones where `core.hooksPath` is enabled. The repository
-therefore also protects `main`: changes require a pull request, resolved review
-conversations and the `build (G9SE8P)` status check. While the repository has
-only one maintainer, it requires zero approving reviews so that the pull-request
-author can merge after CI; raise this to one when another trusted collaborator
-can review. The rules include administrators, and force pushes and branch
-deletion are disabled. A pull-request branch does not need to be updated with
-the latest `main` before merging, so frequent parallel commits do not create a
-mandatory rebase loop. Do not push game-code changes directly to `main`.
+therefore also protects `main`: changes require a pull request, one approval
+from someone other than the author, resolved review conversations and the
+`build (G9SE8P)` status check. A new commit dismisses an earlier approval, so
+request review only after the tested head is final. The rules include
+administrators, and force pushes and branch deletion are disabled. A
+pull-request branch does not need to be updated with the latest `main` before
+merging, so frequent parallel commits do not create a mandatory rebase loop.
+Do not push game-code changes directly to `main`.
 
 The full build uses private original-game inputs. Code from a fork never runs in
 that container: its required build gate intentionally fails until a maintainer

@@ -69,7 +69,7 @@ void fn_801A47EC(void*, int);
 void fn_801A46D0();
 char* fn_80012EA0(const char*);
 void fn_80012E5C(void*);
-RsEventStatus fn_80015AC0(int, void*);
+RsEventStatus AppEventHandler(int, void*);
 int fn_80012C08(int);
 int fn_801C3C04(void*, const char*);
 int fn_801A0470(const char*, void*, int);
@@ -77,9 +77,9 @@ void fn_80176DC8();
 void fn_801922D8();
 void fn_80012C10();
 void fn_8019D558();
-void fn_8004BEDC(void*);
+void EndianConversionNoop__Fv(void*);
 void fn_80013010(void*);
-void fn_80013038(void*);
+void _skyChgDir(void*);
 }
 
 extern "C" {
@@ -237,7 +237,7 @@ extern "C" void RsPathnameDestroy(void* path)
 
 extern "C" RsEventStatus RsEventHandler(int event, void* param)
 {
-	RsEventStatus result = fn_80015AC0(event, param);
+	RsEventStatus result = AppEventHandler(event, param);
 
 	if (event == 21) {
 		RsGlobal.quit = 1;
@@ -253,7 +253,7 @@ extern "C" RsEventStatus RsEventHandler(int event, void* param)
 				}
 				break;
 			case 1:
-				fn_80015AC0(2, param);
+				AppEventHandler(2, param);
 				result = rsEVENTPROCESSED;
 				break;
 			case 28:
@@ -322,7 +322,7 @@ extern "C" RsEventStatus RsEventHandler(int event, void* param)
 
 extern "C" void RsCameraShowRaster(void* camera)
 {
-	fn_8004BEDC(camera);
+	EndianConversionNoop__Fv(camera);
 	fn_80013010(camera);
 }
 
@@ -335,5 +335,5 @@ extern "C" void RsErrorMessage(void* param)
 	if (RsGlobal.field1C != 0) {
 		((void (*)(int, int*))RsGlobal.field20)(20, values);
 	}
-	fn_80013038(param);
+	_skyChgDir(param);
 }

@@ -124,13 +124,20 @@ game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
 
-game/GetSpParam.cpp:
-	extab       start:0x8000B698 end:0x8000B6A8
-	extabindex  start:0x8001165C end:0x80011674
-	.text       start:0x80130BC0 end:0x80130DF0
-	.ctors      start:0x80239904 end:0x80239908
-	.bss        start:0x803EA488 end:0x803EA4B8
-	.sdata2     start:0x8042EE88 end:0x8042EEA8
+game/dAnim.cpp:
+	extab       start:0x80007B40 end:0x80007B70
+	extabindex  start:0x8000E1AC end:0x8000E1F4
+	.text       start:0x800A7AE0 end:0x800A80DC
+	.ctors      start:0x802398E4 end:0x802398E8
+	.bss        start:0x80303EB8 end:0x80303EC8
+	.sbss       start:0x8042C340 end:0x8042C348
+	.sdata2     start:0x8042DB30 end:0x8042DB44
+
+game/SpAdvStgFailed_bss.cpp:
+	.bss        start:0x80303EC8 end:0x80303F38
+
+game/dAnim_ctor.cpp:
+	.text       start:0x800A80DC end:0x800A80E0
 
 game/hAnim.cpp:
 	extab       start:0x80008300 end:0x80008348
@@ -142,43 +149,24 @@ game/hAnim.cpp:
 	.sbss       start:0x8042C3D0 end:0x8042C3D8
 	.sdata2     start:0x8042DDB0 end:0x8042DDC8
 
-game/dAnim.cpp:
-	extab       start:0x80007B40 end:0x80007B70
-	extabindex  start:0x8000E1AC end:0x8000E1F4
-	.text       start:0x800A7AE0 end:0x800A80DC
-	.ctors      start:0x802398E4 end:0x802398E8
-	.bss        start:0x80303EB8 end:0x80303EC8
-	.sbss       start:0x8042C340 end:0x8042C348
-	.sdata2     start:0x8042DB30 end:0x8042DB44
-
-game/dAnim_ctor.cpp:
-	.text       start:0x800A80DC end:0x800A80E0
-
-game/eventCore.cpp:
-	.text       start:0x8011E5A4 end:0x8011E5F0
-	.rodata     start:0x8023AAB0 end:0x8023ACB0
+game/expasm.cpp:
+	.text       start:0x800D52AC end:0x800D5488
 
 game/SeqFlagCtrl.cpp:
 	.text       start:0x801143E0 end:0x801144E0
 	.bss        start:0x803E75E8 end:0x803E7668
 
-game/expasm.cpp:
-	.text       start:0x800D52AC end:0x800D5488
+game/eventCore.cpp:
+	.text       start:0x8011E5A4 end:0x8011E5F0
+	.rodata     start:0x8023AAB0 end:0x8023ACB0
 
-game/SpAdvStgFailed.cpp:
-	extab       start:0x8000BAA8 end:0x8000BB08
-	extabindex  start:0x80011ADC end:0x80011B18
-	.text       start:0x8013B76C end:0x8013BC78
-	.data       start:0x8028D0F0 end:0x8028D1CC
-	.bss        start:0x80303EC8 end:0x80303F38
-	.sbss       start:0x8042C810 end:0x8042C818
-	.sdata2     start:0x8042F198 end:0x8042F19C
-
-game/enemy_voice.cpp:
-	extab       start:0x8000B9CC end:0x8000BA80
-	extabindex  start:0x80011A34 end:0x80011AA0
-	.text       start:0x80139738 end:0x80139FC4
-	.data       start:0x8028CFB0 end:0x8028D068
+game/GetSpParam.cpp:
+	extab       start:0x8000B698 end:0x8000B6A8
+	extabindex  start:0x8001165C end:0x80011674
+	.text       start:0x80130BC0 end:0x80130DF0
+	.ctors      start:0x80239904 end:0x80239908
+	.bss        start:0x803EA488 end:0x803EA4B8
+	.sdata2     start:0x8042EE88 end:0x8042EEA8
 
 game/moviePlay.cpp:
 	extab       start:0x8000B97C end:0x8000B994
@@ -196,6 +184,20 @@ game/moviePlaySub.cpp:
 	.sdata      start:0x8042BC88 end:0x8042BCAC
 	.sbss       start:0x8042C7F0 end:0x8042C800
 	.sdata2     start:0x8042F158 end:0x8042F168
+
+game/enemy_voice.cpp:
+	extab       start:0x8000B9CC end:0x8000BA80
+	extabindex  start:0x80011A34 end:0x80011AA0
+	.text       start:0x80139738 end:0x80139FC4
+	.data       start:0x8028CFB0 end:0x8028D068
+
+game/SpAdvStgFailed.cpp:
+	extab       start:0x8000BAA8 end:0x8000BB08
+	extabindex  start:0x80011ADC end:0x80011B18
+	.text       start:0x8013B76C end:0x8013BC78
+	.data       start:0x8028D0F0 end:0x8028D1CC
+	.sbss       start:0x8042C810 end:0x8042C818
+	.sdata2     start:0x8042F198 end:0x8042F19C
 
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0

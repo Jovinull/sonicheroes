@@ -11,13 +11,10 @@ from pathlib import Path
 
 SYMBOL_RENAMES = {
     "Error__7TObjectFPc": "fn_80017854",
-    "__dt__7TObjectFv": "dtor_800186D0",
-    "__ct__7TObjectFP7TObject": "fn_80018818",
     "StartFadeOut__7TObjectFv": "fn_8001894C",
     "ImmAftSetRaster__7TObjectFv": "fn_80018950",
     "Debug__7TObjectFv": "fn_80018954",
     "Render__7TObjectFv": "fn_80018958",
-    "__dl__7TObjectFPv": "dtor_8001895C",
     "Exec__7TObjectFv": "fn_80018984",
     "Disp__7TObjectFv": "fn_80018988",
     "Virtual1__7TObjectFv": "fn_8001898C",
@@ -50,7 +47,6 @@ SYMBOL_RENAMES = {
     "StageFailedResources": "lbl_8028D0EC",
     "StageFailedResourcesTail": "lbl_8028D0F0",
     "__vt__14SpAdvStgFailed": "lbl_8028D1A0",
-    "StageFailedAnimation": "lbl_80303EC8",
     "StageFailedDrawList": "lbl_8042BCC8",
     "StageFailedResourceName": "lbl_8042BCCC",
     "TaskHeap": "lbl_8042C148",

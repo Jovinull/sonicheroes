@@ -24,6 +24,10 @@ RENAMES = (
     ("mainStringTableName", "lbl_80240A80"),
     ("__nw__9TMainTaskFUl", "fn_80057644"),
     ("__ct__9TMainTaskFv", "fn_8001F5A0"),
+    ("lbl_8029BB80", "RsGlobal"),
+    ("fn_80011D64", "RsInitialize"),
+    ("fn_80011DD8", "RsRwInitialize"),
+    ("fn_800122E8", "RsErrorMessage"),
 )
 
 

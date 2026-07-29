@@ -292,7 +292,7 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C108;
 extern u8 lbl_8029C728[];
 extern u8 lbl_8029C5A8[];
-extern u8 lbl_802410C8[];
+extern u8 __vt__8SEQUENCE[];
 extern u8 lbl_80240E2C[];
 extern u8 lbl_803E73B0[];
 extern void* lbl_803E7F88[];
@@ -363,9 +363,9 @@ extern "C" void fn_8016EF70();
 extern "C" void fn_80205624();
 extern "C" void fn_8016EE28(float);
 extern "C" void fn_8016EE58(float);
-extern "C" void* fn_80011F68(void*);
+extern "C" void* RsPathnameCreate(void*);
 extern "C" void fn_8016E054();
-extern "C" void fn_80011F88(void*);
+extern "C" void RsPathnameDestroy(void*);
 extern "C" void fn_8011264C(void*);
 extern "C" void fn_800CE0CC();
 extern "C" void fn_801125D4(void*);
@@ -417,7 +417,7 @@ extern "C" void fn_80177C50_noarg();
 extern "C" void fn_800CD6A0(void* object);
 extern "C" void fn_800CDE58(void* object, s32 index);
 extern "C" void fn_8004DC80(void* object, s32 mode);
-extern "C" void fn_800122B4(void* world);
+extern "C" void RsCameraShowRaster(void* world);
 extern "C" void fn_800B7BDC();
 extern "C" void fn_800BEEF0();
 extern "C" void fn_8019CF28(void* world, void* color, s32 mode);
@@ -1093,7 +1093,7 @@ void ACTION::CheckPauseOff()
 
 	fn_8004DC80(lbl_8042C1F8, 1);
 	if (*(s32*)((u8*)lbl_8042C180 + 48) > 2)
-		fn_800122B4(*(void**)((u8*)lbl_8042C1F8 + 40));
+		RsCameraShowRaster(*(void**)((u8*)lbl_8042C1F8 + 40));
 	fn_800B7BDC();
 	fn_800BEEF0();
 	fn_8019CF28(*(void**)((u8*)lbl_8042C1F8 + 40), &lbl_8042AEB0, 3);
@@ -2444,9 +2444,9 @@ void ACTION::Init()
 	fn_80205624();
 	fn_8016EE28(lbl_8042CFDC);
 	fn_8016EE58(lbl_8042CFE0);
-	void* state = fn_80011F68(&lbl_8042AE98);
+	void* state = RsPathnameCreate(&lbl_8042AE98);
 	fn_8016E054();
-	fn_80011F88(state);
+	RsPathnameDestroy(state);
 	fn_8011264C(lbl_803E73B0);
 	fn_800CE0CC();
 	softReset                  = 0;
@@ -2470,7 +2470,7 @@ void __sinit_action_cpp()
 	u8* action               = (u8*)&Action;
 	*(void**)(action + 4)    = action + 0x294;
 	*(void**)(action + 8)    = action + 0x295;
-	*(void* volatile*)action = lbl_802410C8;
+	*(void* volatile*)action = __vt__8SEQUENCE;
 	*(void* volatile*)action = lbl_80240E2C;
 	memcpy(lbl_8029C5A8, lbl_80240D0C, 0x120);
 	*(s32*)((u8*)&Action + 0x284) = 0;
@@ -2558,7 +2558,7 @@ extern "C" void fn_8004ECBC(void*, u32, s32);
 extern "C" void fn_800BF794();
 extern "C" s32 fn_8004B308(void*, u32);
 extern "C" s32 fn_8004B9D4(void*, u32);
-extern "C" void fn_800122E8(void*);
+extern "C" void RsErrorMessage(void*);
 extern "C" void fn_80053D58(void*);
 extern "C" void fn_8005B5B8(void*, u32);
 extern "C" void fn_8009250C(RawTask*);
@@ -2849,7 +2849,7 @@ void ACTION::subInit()
 	fn_800BF794();
 	stageObject = currentStage != 0 ? *(u32*)currentStage : 0;
 	if (fn_8004B308(lbl_8042C1D0, stageObject) == 0) {
-		fn_800122E8(lbl_80240EAC);
+		RsErrorMessage(lbl_80240EAC);
 		for (;;) {
 		}
 	}
@@ -2866,7 +2866,7 @@ void ACTION::subInit()
 	}
 	stageObject = currentStage != 0 ? *(u32*)currentStage : 0;
 	if (fn_8004B9D4(lbl_8042C1D0, stageObject) == 0) {
-		fn_800122E8(lbl_80240EAC);
+		RsErrorMessage(lbl_80240EAC);
 		for (;;) {
 		}
 	}

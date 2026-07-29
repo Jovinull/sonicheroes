@@ -27,6 +27,22 @@ legacy C++/`.c` fragments. AutoSaveD remains protected while PR #116 is a
 draft: its 12 legacy C++/`.c` fragments and four C-mode fragments with direct
 C++ evidence remain in the queue.
 
+### Integrated-link invariant
+
+A 100% object diff is necessary but not sufficient for integration. Object
+comparison can correlate relocations by target address while two reconstructed
+objects still spell the same external ELF symbol differently. A completed
+batch must therefore run `ninja progress`, which links the DOL and every REL
+and verifies all 18 hashes through `build/G9SE8P/ok`; `all_source` or a green
+per-function diff alone is not the completion gate.
+
+Post-compile rename targets for externally visible symbols must use the current
+canonical name in `config/G9SE8P/symbols.txt`. The combined C++ batch exposed
+stale address-label aliases for the `TObject` constructor, destructor and
+delete routine, RenderWare callbacks, `RsGlobal`, pathname helpers and endian
+converter. Replacing those aliases changed only source or ELF symbol names,
+not instructions; every matching source object remained complete in objdiff.
+
 ## Completed batches
 
 ### AdvertiseD overlay
@@ -778,13 +794,20 @@ retail object boundaries required by the MetroWerks linker.
 The PS2 beta debug symbols identify the `SpAdvStgFailed` class, its
 `StartFadeOut`, `Disp`, `Exec`, constructor, destructor, and `GoStageFailed`
 family. The GameCube virtual table independently fixes the class relationship
-and method ordering, while the contiguous resource table, animation workspace,
-resource globals, exception records, and seven-function code range establish
-the complete GameCube translation-unit boundary.
+and method ordering. The contiguous resource table, resource globals, exception
+records, and seven-function code range establish the code object's owned
+sections.
 
-All seven functions and every owned section match byte-for-byte. GC/1.3.2
-emits a duplicate weak copy of `TObject::operator delete` when this
-reconstruction is compiled independently; the post-compile normalizer removes
-that compiler-only atom and leaves exception cleanup bound to the existing
-retail `TObject` delete routine. It does not alter any retail function
-instruction bytes.
+The 112-byte animation workspace at `0x80303EC8` is deliberately emitted by the
+data-only build fragment `game/SpAdvStgFailed_bss.cpp`. A controlled GameCube
+compile showed that the code object emits regular BSS after `hAnim.cpp`'s BSS,
+while the retail workspace precedes it. Assigning both the code and workspace
+to `SpAdvStgFailed.cpp` therefore creates a linker-order cycle; correlated PS2
+names identify the data, but do not override this GameCube ownership evidence.
+
+All seven functions and every assigned section, including the separate BSS
+fragment, match byte-for-byte. GC/1.3.2 emits a duplicate weak copy of
+`TObject::operator delete` when this reconstruction is compiled independently;
+the post-compile normalizer removes that compiler-only atom and leaves
+exception cleanup bound to the existing retail `TObject` delete routine. It
+does not alter any retail function instruction bytes.
