@@ -631,6 +631,11 @@ config.libs = [
                     "-opt noschedule,nopeephole",
                 ],
             ),
+            Object(
+                Matching,
+                "game/perf.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-str nopool"],
+            ),
         ],
     },
     Rel(
