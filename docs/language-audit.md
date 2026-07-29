@@ -609,6 +609,18 @@ Evidence and rationale:
 - the configured C++ object matches its complete text and uninitialized-data
   ranges byte-for-byte.
 
+### `game/expasm.cpp`
+
+`game/expasm.cpp` is C++.
+
+Evidence and rationale:
+
+- the PS2 beta metadata retains the `expasm.cpp` source marker and
+  `Expand2(void*, void*)` symbol;
+- the GameCube function is the corresponding bitstream decompressor, including
+  the same literal-byte, short-back-reference and long-back-reference forms;
+- the configured C++ object matches its complete text range byte-for-byte.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.

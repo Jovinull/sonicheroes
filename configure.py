@@ -557,6 +557,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/expasm.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/action.cpp",
                 extra_cflags=[
                     "-Cpp_exceptions on",
