@@ -46,7 +46,7 @@ struct TObjEffTornado : TObject {
 	s32 active;
 	s8 kind;
 	u8 padB5;
-	u16 state;
+	s16 state;
 	RwV3d position;
 	sAngle rotation;
 	f32 scale;
@@ -140,6 +140,10 @@ extern f32 lbl_8042DBB8;
 extern f32 lbl_8042DBC0;
 extern f32 lbl_8042DBE0;
 extern f32 lbl_8042DBE8;
+extern double lbl_8042DBD8;
+extern f32 lbl_8042DBF0;
+extern f32 lbl_8042DBF4;
+extern f32 lbl_8042DC10;
 extern f32 lbl_8042DC14;
 extern f32 lbl_8042DC18;
 extern f32 lbl_8042DC1C;
@@ -168,6 +172,8 @@ f32 fn_800D7AE4(s16);
 void fn_80195790(void*, void*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, RwV3d*, s32);
+void fn_8003BC38(C_COLLI*);
+void fn_8003BE78(C_COLLI*);
 
 void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
 void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
@@ -540,6 +546,70 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 		}
 	}
 	return effect;
+}
+
+extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
+{
+	if (fn_8005BB20(&effect->position, lbl_8042DBE0) != 0) {
+		effect->flags |= 1;
+		return;
+	}
+
+	switch (effect->active) {
+		case 1:
+			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			if (effect->alpha >= lbl_8042DBC0) {
+				effect->active = 2;
+				effect->state  = 0;
+			}
+			break;
+		case 2: {
+			s16 timer = effect->state;
+			effect->state++;
+			if ((f32)timer >= lbl_8042DBF0) {
+				effect->active = 3;
+			}
+			CollisionSearchResult* result = fn_80020BD8(&effect->effectModel, 11);
+			void* object                  = result != 0 ? result->object : 0;
+			if (object != 0) {
+				effect->active = 3;
+			}
+			break;
+		}
+		case 3:
+			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			if (effect->alpha <= lbl_8042DBB4) {
+				effect->active = 4;
+			}
+			break;
+		case 4: {
+			TObject* parent = *(TObject**)((u8*)effect + 0x10);
+			if (parent == lbl_8042C110 || parent == lbl_8042C2A0) {
+				effect->flags |= 1;
+			}
+			return;
+		}
+	}
+
+	effect->scale += lbl_8042DBF4;
+	if (effect->alpha > lbl_8042DC10 && effect->active == 2) {
+		if (*(s32*)(lbl_8029C310 + 0x18) == 0) {
+			*(f32*)((u8*)effect + 0xa4) = *(f32*)((u8*)effect + 0x88);
+			*(f32*)((u8*)effect + 0xa8) = *(f32*)((u8*)effect + 0x8c);
+			*(f32*)((u8*)effect + 0xac) = *(f32*)((u8*)effect + 0x90);
+			*(f32*)((u8*)effect + 0x88) = effect->position.x;
+			*(f32*)((u8*)effect + 0x8c) = effect->position.y;
+			*(f32*)((u8*)effect + 0x90) = effect->position.z;
+			*(s32*)((u8*)effect + 0x94) = effect->rotation.x;
+			*(s32*)((u8*)effect + 0x98) = effect->rotation.y;
+			*(s32*)((u8*)effect + 0x9c) = effect->rotation.z;
+			fn_8003BC38(&effect->effectModel);
+		} else {
+			fn_8003BE78(&effect->effectModel);
+		}
+	} else {
+		fn_8003BE78(&effect->effectModel);
+	}
 }
 
 extern "C" TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado* effect, s32 shouldDelete)
