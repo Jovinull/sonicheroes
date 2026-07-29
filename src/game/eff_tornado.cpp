@@ -99,6 +99,20 @@ struct Color {
 	u8 alpha;
 };
 
+enum CHARACTER_ID {
+	CHARACTER_ID_0 = 0,
+	CHARACTER_ID_1,
+	CHARACTER_ID_2,
+	CHARACTER_ID_3,
+	CHARACTER_ID_4,
+	CHARACTER_ID_5,
+	CHARACTER_ID_6,
+	CHARACTER_ID_7,
+	CHARACTER_ID_8,
+	CHARACTER_ID_9,
+	CHARACTER_ID_10,
+};
+
 extern "C" {
 void TDisp__14TObjEffTornadoFv(TObjEffTornado*);
 void Exec__14TObjEffTornadoFv(TObjEffTornado*);
@@ -319,7 +333,7 @@ extern "C" TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(
 
 static inline s32 tornadoTeamFromObject(void* collision)
 {
-	u32 type = *(u32*)((u8*)collision + 0x78);
+	CHARACTER_ID type = *(CHARACTER_ID*)((u8*)collision + 0x78);
 	void* team;
 	s32 teamNumber;
 	team = 0;
