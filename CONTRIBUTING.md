@@ -92,6 +92,15 @@ branch does not need to be updated with the latest `main` before merging, so
 frequent parallel commits do not create a mandatory rebase loop. Do not push
 game-code changes directly to `main`.
 
+`.github/CODEOWNERS` names a maintainer for the paths that execute during a
+private build: the workflows, the build post-processors under `tools/` and
+`configure.py`. A pull request touching those needs that maintainer's review,
+because code on those paths runs in the container holding the original game
+files and could copy them somewhere. Decompilation work is deliberately not
+covered: `src/` and `config/` are reviewed like any other change, so a
+contributor with write access can review and merge unit reconstructions without
+waiting on the package owner.
+
 The full build uses private original-game inputs. A same-repository pull request
 waits for approval from a reviewer on the protected `private-build` environment
 before its code can receive the container credentials. Code from a fork never
