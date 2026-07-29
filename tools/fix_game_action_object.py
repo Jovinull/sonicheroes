@@ -58,6 +58,7 @@ RENAMES = {
     "fn_80177C50_noarg": "fn_80177C50",
     "Action": "lbl_8029C310",
     "@160": "jumptable_80240E40",
+    "@1228": "jumptable_80240E64",
 }
 
 
