@@ -771,12 +771,12 @@ void TObjEffTornado2::TDisp()
 	u32 saved11;
 	u32 saved20;
 	u32 saved14;
+	void* model;
 	s32 frame;
+	u32 blue;
 	u32 red;
 	u32 green;
-	u32 blue;
 	u32 alpha;
-	void* model;
 
 	fn_80194294(10, &saved10);
 	fn_80194294(11, &saved11);
