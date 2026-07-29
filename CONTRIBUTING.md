@@ -70,19 +70,27 @@ C classification.
 
 The hook protects only clones where `core.hooksPath` is enabled. The repository
 therefore also protects `main`: changes require a pull request, resolved review
-conversations and the `build (G9SE8P)` status check. While the repository has
-only one maintainer, it requires zero approving reviews so that the pull-request
-author can merge after CI; raise this to one when another trusted collaborator
-can review. The rules include administrators, and force pushes and branch
-deletion are disabled. A pull-request branch does not need to be updated with
-the latest `main` before merging, so frequent parallel commits do not create a
-mandatory rebase loop. Do not push game-code changes directly to `main`.
+conversations, one approving review and the `build (G9SE8P)` status check.
+Pushing new commits dismisses stale approvals, and the person who pushed the
+most recent change cannot supply the required approval. These rules include
+administrators; force pushes and branch deletion are disabled. A pull-request
+branch does not need to be updated with the latest `main` before merging, so
+frequent parallel commits do not create a mandatory rebase loop. Do not push
+game-code changes directly to `main`.
 
-The full build uses private original-game inputs. Code from a fork never runs in
-that container: its required build gate intentionally fails until a maintainer
-reviews the commits and tests them from a repository-owned integration branch.
-This security handoff does not require the contributor to rebase or keep the
-fork branch synchronized with `main`.
+The full build uses private original-game inputs. A same-repository pull request
+waits for approval from a reviewer on the protected `private-build` environment
+before its code can receive the container credentials. Code from a fork never
+runs in that container: its required build gate intentionally fails until a
+maintainer reviews the exact commits and tests them from a repository-owned
+integration branch. This security handoff does not require the contributor to
+rebase or keep the fork branch synchronized with `main`.
+
+The private GHCR package must not inherit repository access or grant this
+repository automatic Actions access. The workflow authenticates with an
+environment-scoped package credential limited to `read:packages`. Repository
+collaborator access must never imply access to the package, original-game
+inputs, environment secrets or an owner's personal credentials.
 
 Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
 migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
