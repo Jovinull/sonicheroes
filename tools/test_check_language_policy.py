@@ -15,6 +15,9 @@ from unittest.mock import patch
 import tools.check_language_policy as checker
 
 
+REPOSITORY_ROOT = Path(__file__).resolve().parent.parent
+
+
 def make_policy(**overrides: list[str]) -> dict[str, list[str]]:
     policy = {
         "managed_prefixes": ["game/"],
@@ -67,6 +70,15 @@ class PolicyValidationTests(unittest.TestCase):
         policy = make_policy(confirmed_c_sources=["dolphin/unit.c"])
         with self.assertRaisesRegex(ValueError, "outside managed game code"):
             self.load_policy(policy)
+
+
+class HookContractTests(unittest.TestCase):
+    def test_rename_only_commit_reaches_language_policy_check(self) -> None:
+        hook = (REPOSITORY_ROOT / ".githooks/pre-commit").read_text(encoding="utf-8")
+        self.assertIn(
+            "staged=$(git diff --cached --name-only --diff-filter=ACMR)",
+            hook,
+        )
 
 
 class StagedPolicyTests(unittest.TestCase):

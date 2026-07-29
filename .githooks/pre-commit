@@ -18,7 +18,7 @@
 #   5. the reviewed C/C++ and inline policy
 #   6. source formatting
 
-staged=$(git diff --cached --name-only --diff-filter=AM)
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
 [ -z "$staged" ] && exit 0
 
 fail() {
