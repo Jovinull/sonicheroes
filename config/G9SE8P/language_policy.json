@@ -51,6 +51,7 @@
     "deferred_sources": [
         "advertiseD/adv_2p.cpp",
         "advertiseD/adv_draw.cpp",
+        "game/modeswitch.cpp",
         "game/skyfs_adx.c"
     ]
 }

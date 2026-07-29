@@ -636,6 +636,15 @@ config.libs = [
                 "game/perf.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-str nopool"],
             ),
+            Object(
+                Matching,
+                "game/modeswitch.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-inline deferred",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
         ],
     },
     Rel(

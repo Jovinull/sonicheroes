@@ -472,11 +472,11 @@ After the GameCube platform-main decision:
   claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- three sources have reviewed deferred-inline modes:
-  `game/skyfs_adx.c`, `advertiseD/adv_2p.cpp` and
+- four sources have reviewed deferred-inline modes:
+  `game/skyfs_adx.c`, `game/modeswitch.cpp`, `advertiseD/adv_2p.cpp` and
   `advertiseD/adv_draw.cpp`.
 
-### Reviewed inline exception
+### Reviewed inline exceptions
 
 `game/skyfs_adx.c` needs `-inline deferred`: correlated PS2 metadata establishes
 the unified translation-unit order, and the controlled GameCube comparison
@@ -488,6 +488,18 @@ The deferred form reproduces all 19 functions, relocations and owned sections.
 data layout. Both remain exact as part of the complete AdvertiseD object and
 REL validation. The policy treats comma-separated inline modes as exact tokens
 and rejects unreviewed deferred use.
+
+`game/modeswitch.cpp` also keeps an object-level `-inline deferred` override.
+The PS2 beta debug symbols identify the original C++ source and its
+`MODESWITCH` constructor, destructor, and setter. Declaring those three
+functions in constructor/destructor/setter order under ordinary
+`-inline auto` emits the exception records in that same order, while the
+GameCube object records setter/destructor/constructor. Deferred emission
+reverses the source order and reproduces the target `.text`, `extab`, and
+`extabindex`, including every function and exception-table relocation. Its
+initializer arrays must remain writable at the same time: const qualification
+under deferred emission moves them to `.rodata`, whereas the writable
+declarations reproduce the target `.data` byte-for-byte.
 
 ### Protected C++ migration debt
 
