@@ -20,6 +20,21 @@ struct sAngle {
 	s32 z;
 };
 
+struct Rgba {
+	u8 red;
+	u8 green;
+	u8 blue;
+	u8 alpha;
+};
+
+struct Material {
+	u32 pad;
+	u8 red;
+	u8 green;
+	u8 blue;
+	u8 alpha;
+};
+
 struct TObject {
 	const char* className;
 	u16 flags;
@@ -74,6 +89,7 @@ struct TObjEffTornado2 : TObjEffTornado {
 
 	TObjEffTornado2(TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 	~TObjEffTornado2();
+	void TDisp();
 };
 
 struct PlayerColorSource {
@@ -163,6 +179,9 @@ extern void* lbl_8042C374;
 extern s32 lbl_8042C378[2];
 extern void* lbl_8042C360;
 extern void* lbl_8042C364;
+extern void* lbl_8042C180;
+extern s32 lbl_8042C378;
+extern Rgba lbl_8042B35C;
 extern u8 lbl_8042C3D0[4];
 extern void* lbl_80303F98[3];
 extern const char* lbl_8042B350;
@@ -190,7 +209,9 @@ extern char lbl_802534D4[];
 extern f32 lbl_8042DBB0;
 extern f32 lbl_8042DBB4;
 extern f32 lbl_8042DBB8;
+extern f32 lbl_8042DBBC;
 extern f32 lbl_8042DBC0;
+extern f32 lbl_8042DBC8;
 extern f32 lbl_8042DBE0;
 extern f32 lbl_8042DBE8;
 extern f32 lbl_8042DBF0;
@@ -243,6 +264,12 @@ void fn_8019E880(void*);
 void fn_8019EB94(void*, RwV3d*, s32);
 void fn_8003BC38(C_COLLI*);
 void fn_8003BE78(C_COLLI*);
+void GXSetBlendMode(s32, s32, s32, s32);
+void fn_8011B844(f32);
+void fn_8014FFBC(void*, void*, void*);
+void fn_8005BF88();
+void fn_8020CC18(void*, f32);
+void fn_8013FC30(void*);
 
 void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
 void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
@@ -731,6 +758,129 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	fn_80194234(11, state11);
 }
 #pragma opt_common_subs reset
+
+#pragma peephole on
+void TObjEffTornado2::TDisp()
+{
+	u32 saved10;
+	u32 saved11;
+	u32 saved20;
+	u32 saved14;
+	s32 frame;
+	u32 red;
+	u32 green;
+	u32 blue;
+	u32 alpha;
+	void* model;
+
+	fn_80194294(10, &saved10);
+	fn_80194294(11, &saved11);
+	fn_80194294(20, &saved20);
+	fn_80194294(14, &saved14);
+
+	red = this->color[0], green = this->color[1], blue = this->color[2], alpha = this->color[3];
+	if (red != 0 || green != 0 || blue != 0) {
+		fn_80194234(10, 5);
+		fn_80194234(11, 2);
+		fn_80194234(20, 1);
+	} else {
+		fn_80194234(10, 5);
+		fn_80194234(11, 2);
+		GXSetBlendMode(3, 4, 1, 0);
+		fn_80194234(20, 1);
+		red   = (s32)((f32)lbl_8042B35C.red * this->alpha);
+		green = (s32)((f32)lbl_8042B35C.green * this->alpha);
+		blue  = (s32)((f32)lbl_8042B35C.blue * this->alpha);
+	}
+
+	fn_80194234(14, 0);
+	Material* material = (Material*)lbl_8042C354;
+	material->red      = red;
+	material->green    = green;
+	material->blue     = blue;
+	material->alpha    = alpha;
+
+	fn_80053660(lbl_802D5E80, 16);
+	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+
+	model = lbl_8042C350;
+	frame = *(s32*)((u8*)lbl_8042C180 + 0x30);
+	if (lbl_8042C378 != frame) {
+		f32 elapsed = (f32)(frame - lbl_8042C378);
+		if (lbl_8042C370 != 0 && lbl_8042C374 != 0) {
+			fn_8011B844(elapsed);
+			fn_8014FFBC(model, (void*)fn_8005BF88, lbl_80303F98);
+		}
+		if (lbl_8042C368 != 0) {
+			fn_8020CC18(*(void**)((u8*)lbl_8042C368 + 0x20), lbl_8042DBBC * elapsed);
+			fn_8013FC30(lbl_8042C368);
+		}
+		lbl_8042C378 = frame;
+	}
+
+	void* primaryFrame = *(void**)((u8*)model + 4);
+	RwV3d position     = this->position;
+	fn_8019EB94(primaryFrame, &position, 0);
+	fn_8014FF2C(model);
+
+	model       = lbl_8042C358;
+	u32 opacity = this->opacity;
+	if (model != 0 && opacity != 0) {
+		material        = (Material*)lbl_8042C35C;
+		material->red   = red;
+		material->green = green;
+		material->blue  = blue;
+		material->alpha = opacity;
+
+		void* frameObject = *(void**)((u8*)model + 4);
+		RwV3d scale;
+		scale.x = this->swirlScale;
+		scale.y = this->swirlScale;
+		scale.z = this->swirlScale;
+		fn_8019EC30(frameObject, &scale, 0);
+
+		s32 angle         = (s32)(lbl_8042DBC4 * this->scale);
+		f32 sine          = fn_800D7B00(angle);
+		f32 inverseCosine = lbl_8042DBC0 - fn_800D7AE4((s32)(lbl_8042DBC4 * this->scale));
+		fn_80195790((u8*)frameObject + 0x10, &lbl_80239984, inverseCosine, sine, 2);
+		fn_8019E880(frameObject);
+		fn_8019EB94(frameObject, &position, 2);
+		fn_8014FF2C(model);
+	}
+
+	model   = lbl_8042C360;
+	opacity = this->opacity;
+	if (model != 0 && opacity != 0) {
+		material        = (Material*)lbl_8042C364;
+		material->red   = red;
+		material->green = green;
+		material->blue  = blue;
+		material->alpha = opacity;
+
+		void* frameObject = *(void**)((u8*)model + 4);
+		RwV3d scale;
+		scale.x = this->verticalScale;
+		scale.y = this->verticalScale;
+		scale.z = this->verticalScale;
+		fn_8019EC30(frameObject, &scale, 0);
+
+		s32 angle         = (s32)(lbl_8042DBC4 * this->scale);
+		f32 sine          = fn_800D7B00(angle);
+		f32 inverseCosine = lbl_8042DBC0 - fn_800D7AE4((s32)(lbl_8042DBC4 * this->scale));
+		fn_80195790((u8*)frameObject + 0x10, &lbl_80239984, inverseCosine, sine, 2);
+		fn_8019E880(frameObject);
+		f32 height = lbl_8042DBC8 * (lbl_8042DBC0 - this->verticalScale);
+		position.y = position.y + height;
+		fn_8019EB94(frameObject, &position, 2);
+		fn_8014FF2C(model);
+	}
+
+	fn_80194234(14, saved14);
+	fn_80194234(20, saved20);
+	fn_80194234(10, saved10);
+	fn_80194234(11, saved11);
+}
+#pragma peephole reset
 
 extern "C" void Exec__15TObjEffTornado2Fv(TObjEffTornado2* effect)
 {
