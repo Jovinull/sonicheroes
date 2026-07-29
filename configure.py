@@ -487,18 +487,78 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "game/state_set.cpp",
+                "game/skyfs_adx.c",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-Cpp_exceptions on",
+                    "-opt noschedule,nopeephole",
+                    "-inline deferred",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/Peripheral.cpp",
+                extra_cflags=["-lang=c++", "-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/main/main.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "game/state_accessor.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline deferred"],
+                "game/Task.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "game/dvd_status.cpp",
+                "game/Memory.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/action.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont1.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont2.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont3.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont4.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
             ),
         ],
     },
@@ -1251,6 +1311,34 @@ config.custom_build_rules = [
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
     },
+    {
+        "name": "fix_game_main_symbols",
+        "command": f"$python tools/fix_game_main_symbols.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX main.cpp symbols",
+    },
+    {
+        "name": "fix_game_task_object",
+        "command": f"$python tools/fix_game_task_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX Task.cpp object layout",
+    },
+    {
+        "name": "fix_game_memory_object",
+        "command": f"$python tools/fix_game_memory_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX Memory.cpp object layout",
+    },
+    {
+        "name": "fix_game_action_object",
+        "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part 0",
+        "description": "FIX action.cpp part 0",
+    },
+    *[
+        {
+            "name": f"fix_game_action_object_{part}",
+            "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part {part}",
+            "description": f"FIX action.cpp part {part}",
+        }
+        for part in range(1, 5)
+    ],
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -1260,6 +1348,39 @@ config.custom_build_steps = {
             "inputs": "build/G9SE8P/src/movieD/cri/sud.o",
             "implicit": ["tools/fix_sud_symbols.py", str(binutils_dir)],
         },
+        {
+            "outputs": "build/G9SE8P/game-main-symbols.stamp",
+            "rule": "fix_game_main_symbols",
+            "inputs": "build/G9SE8P/src/game/main/main.o",
+            "implicit": ["tools/fix_game_main_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-task-object.stamp",
+            "rule": "fix_game_task_object",
+            "inputs": "build/G9SE8P/src/game/Task.o",
+            "implicit": ["tools/fix_game_task_object.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-memory-object.stamp",
+            "rule": "fix_game_memory_object",
+            "inputs": "build/G9SE8P/src/game/Memory.o",
+            "implicit": ["tools/fix_game_memory_object.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-action-object.stamp",
+            "rule": "fix_game_action_object",
+            "inputs": "build/G9SE8P/src/game/action.o",
+            "implicit": ["tools/fix_game_action_object.py", str(binutils_dir)],
+        },
+        *[
+            {
+                "outputs": f"build/G9SE8P/game-action-object-{part}.stamp",
+                "rule": f"fix_game_action_object_{part}",
+                "inputs": f"build/G9SE8P/src/game/action_cont{part}.o",
+                "implicit": ["tools/fix_game_action_object.py", str(binutils_dir)],
+            }
+            for part in range(1, 5)
+        ],
     ],
 }
 

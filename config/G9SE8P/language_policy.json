@@ -26,6 +26,7 @@
     "autosaveD/window_input.c"
   ],
   "c_sources_compiled_as_cpp": [
+    "game/skyfs_adx.c",
     "movieD/cri/sfx.c"
   ],
   "legacy_cpp_c_sources": [
@@ -73,6 +74,6 @@
     "autosaveD/window_lifecycle.c"
   ],
   "deferred_sources": [
-    "game/state_accessor.cpp"
+    "game/skyfs_adx.c"
   ]
 }

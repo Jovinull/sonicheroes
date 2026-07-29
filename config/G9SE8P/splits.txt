@@ -45,18 +45,72 @@ game/task_create.cpp:
 	extabindex  start:0x8000BD40 end:0x8000BD4C
 	.text       start:0x80013010 end:0x80013038
 
-game/state_set.cpp:
-	.text       start:0x80013038 end:0x80013044
-	.sbss       start:0x8042C0D8 end:0x8042C0DC
+game/skyfs_adx.c:
+	extab       start:0x80005788 end:0x800057D8
+	extabindex  start:0x8000BD4C end:0x8000BDC4
+	.text       start:0x80013038 end:0x80014154
+	.data       start:0x802406F0 end:0x802408F8
+	.sdata      start:0x8042AD78 end:0x8042AD7E
+	.sdata      start:0x8042AD7E end:0x8042AD80 skip
+	.sbss       start:0x8042C0C8 end:0x8042C0E0
 
-game/dvd_status.cpp:
-	extab       start:0x80005788 end:0x80005790
-	extabindex  start:0x8000BD4C end:0x8000BD58
-	.text       start:0x80013044 end:0x80013128
-	.data       start:0x802406F0 end:0x80240758
+game/Peripheral.cpp:
+	extab       start:0x800057D8 end:0x80005828
+	extabindex  start:0x8000BDC4 end:0x8000BE3C
+	.text       start:0x80014154 end:0x80015AC0
+	.rodata     start:0x80239940 end:0x80239978
+	.data       start:0x802408F8 end:0x802409C4
+	.data       start:0x802409C4 end:0x802409C8 skip
+	.bss        start:0x8029BBD0 end:0x8029C5A8
+	.sdata      start:0x8042AD80 end:0x8042AD8F
+	.sdata      start:0x8042AD8F end:0x8042AD90 skip
+	.sbss       start:0x8042C0E0 end:0x8042C0E9
+	.sbss       start:0x8042C0E9 end:0x8042C0F0 skip
+	.sdata2     start:0x8042CFD0 end:0x8042CFD8
 
-game/state_accessor.cpp:
-	.text       start:0x80013398 end:0x800133D0
+game/main/main.cpp:
+	extab       start:0x80005828 end:0x80005850
+	extabindex  start:0x8000BE3C end:0x8000BE60
+	.text       start:0x80015AC0 end:0x80016514
+	.data       start:0x802409C8 end:0x80240A90
+	.sdata      start:0x8042AD90 end:0x8042AD98
+	.sbss       start:0x8042C0F0 end:0x8042C0F8
+
+game/Task.cpp:
+	extab       start:0x80005850 end:0x80005908
+	extabindex  start:0x8000BE60 end:0x8000BF5C
+	.text       start:0x80016514 end:0x800189A4
+	.ctors      start:0x802398C4 end:0x802398C8
+	.data       start:0x80240A90 end:0x80240B10
+	.sdata      start:0x8042AD98 end:0x8042AE20
+	.sbss       start:0x8042C0F8 end:0x8042C150
+
+game/Memory.cpp:
+	extab       start:0x80005908 end:0x80005928
+	extabindex  start:0x8000BF5C end:0x8000BF8C
+	.text       start:0x800189A4 end:0x80018C0C
+
+game/action.cpp:
+	extab       start:0x80005928 end:0x80005940
+	extabindex  start:0x8000BF8C end:0x8000BFB0
+	.text       start:0x80018C0C end:0x80019034
+
+game/action_cont1.cpp:
+	extab       start:0x80005940 end:0x80005A90
+	extabindex  start:0x8000BFB0 end:0x8000C118
+	.text       start:0x80019034 end:0x8001D70C
+	.ctors      start:0x802398C8 end:0x802398CC
+
+game/action_cont2.cpp:
+	.text       start:0x8001D70C end:0x8001D718
+
+game/action_cont3.cpp:
+	extab       start:0x80005A90 end:0x80005A98
+	extabindex  start:0x8000C118 end:0x8000C124
+	.text       start:0x8001D718 end:0x8001D754
+
+game/action_cont4.cpp:
+	.text       start:0x8001D754 end:0x8001D764
 
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0

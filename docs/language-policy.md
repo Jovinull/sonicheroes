@@ -127,14 +127,18 @@ legacy paths in the policy file. The compiler already treats those files as
 C++; migration aligns the extension and build configuration with the effective
 language rather than rewriting working code.
 
-There is one reviewed exception: `movieD/cri/sfx.c` remains a C-path vendor
+There are two reviewed exceptions. `movieD/cri/sfx.c` remains a C-path vendor
 source while compiling in C++ mode. This CRI middleware unit exposes a C
 boundary and belongs beside the other `sfx*.c` sources, but the matching
 GameCube build requires CodeWarrior's C++ declaration-order `.bss` emission
-instead of its C first-reference order. It remains in
-`c_sources_compiled_as_cpp`, retains the explicit `-lang=c++` and is not part
-of the extension-migration queue. This narrow compatibility exception is not a
-precedent for game-owned code.
+instead of its C first-reference order.
+
+`game/skyfs_adx.c` is positively identified as C by the PS2 beta DWARF
+filename and language metadata, while its GameCube object requires
+CodeWarrior's C++ compilation path. The same evidence establishes that the
+previous state, DVD-status, accessor and file-system fragments are one source
+file. Both exceptions remain in `c_sources_compiled_as_cpp`, retain explicit
+`-lang=c++`, and are not part of the extension-migration queue.
 
 Migrate them in reviewable, module-sized batches:
 
@@ -213,10 +217,14 @@ Before enabling a deferred mode for a game-owned translation unit, document:
   build rather than a convenient permutation.
 
 The approved deferred list is deliberately narrow. At present,
-`game/state_accessor.cpp` is the only reviewed entry. A source must be added to
-`deferred_sources` in the policy file in the same reviewed change that records
-the evidence, and stale entries must be removed with the flag they approved.
-Multiple object-level `-inline` overrides are rejected as ambiguous.
+`game/skyfs_adx.c` is the only reviewed entry. Natural PS2 symbol order and
+GameCube section adjacency establish the unified TU order; `-inline auto`
+changes the accessor emission and call sites, while `-inline deferred`
+reproduces all 19 functions, relocations, and owned sections byte-for-byte and
+passes the retail DOL SHA-1 gate. A source must be added to `deferred_sources`
+in the policy file in the same reviewed change that records the evidence, and
+stale entries must be removed with the flag they approved. Multiple
+object-level `-inline` overrides are rejected as ambiguous.
 
 ## Pull-request requirements
 

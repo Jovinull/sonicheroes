@@ -260,6 +260,33 @@ Evidence and validation:
 - the reviewed C form keeps all 18 configured artifact hashes exact without a
   deferred-inline override or register-forcing workaround.
 
+### Game-owned main loop
+
+Added `game/main/main.cpp`, corresponding to the original game-owned
+`main.cpp` rather than the unrelated GameCube platform entry point above.
+The extra directory prevents the two basenames from resolving to the same
+build object.
+
+Language evidence:
+
+- local PS2 beta DWARF identifies the correlated unit as `main.cpp`;
+- the same metadata identifies `MAIN::Init()` and signed
+  `MAIN::Loop()` methods and the local `MOBJECT_RETURN` enum;
+- the GameCube functions reproduce those method relationships and call the
+  neighboring `TMainTask` class constructor.
+
+Validation:
+
+- all three functions, exception records, relocations, strings, jump table,
+  small data and small BSS match the GameCube target;
+- CodeWarrior's four writable-string definitions use staging names so their
+  declaration order remains original without triggering a local-address-base
+  optimization absent from the target; a post-compile symbol-only rename
+  restores the retail labels;
+- the complete build relinked the DOL and all modules;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts and the DOL
+  retained SHA-1 `9214426b8a3fb1d6fe3dcff09bcc1a959e1e04a8`.
+
 ## Remaining queue
 
 After the GameCube platform-main decision:
@@ -457,3 +484,61 @@ sources may not use this exception as an escape hatch.
 
 Update this file after every migration batch. A path leaves the queue only
 after its configured command, GameCube objdiff and final artifact hashes pass.
+
+### Game Task translation unit
+
+`game/Task.cpp` is reconstructed as C++.
+
+Evidence and rationale:
+
+- PS2 beta DWARF positively identifies the original translation unit as
+  `Task.cpp` and supplies the `TMainTask`, `TObject`, heap, task-list, and sleep
+  flag names;
+- the GameCube virtual-table order, constructor record, exception tables, and
+  mangled member symbols independently establish C++ classes and linkage;
+- the retail GameCube object and the following PS2 `Memory.cpp` method order fix
+  the boundary at `0x80016514`–`0x800189A4`;
+- all 34 functions and every owned section match byte-for-byte in objdiff.
+
+CodeWarrior must see mutually recursive inline and destructor bodies before
+their retail call sites, but then emits their out-of-line copies in dependency
+order. The post-compile normalizer moves those already-matching function and
+exception-record units into the retail order and restores split symbol names;
+it does not synthesize or alter instructions.
+
+### Game memory translation unit
+
+`game/Memory.cpp` is reconstructed as C++.
+
+PS2 beta DWARF positively identifies `Memory.cpp`, the `THeapCtrl` and `sHeap`
+types, all member fields, and all six methods. The contiguous GameCube method
+order fixes the original boundary at `0x800189A4`–`0x80018C0C`. All six
+functions and every owned section match byte-for-byte in objdiff.
+
+As in `Task.cpp`, CodeWarrior emits the deleting operator before the destructor
+whose cleanup uses it. The post-compile normalizer moves the already-matching
+function and exception records into retail source order without changing
+instructions.
+
+### Game action translation unit
+
+`game/action.cpp` is reconstructed as C++.
+
+The GameCube object directly establishes the language through its mangled
+`ACTION` and `FADESCREEN` member symbols, virtual calls, static initializer and
+exception metadata. The preceding `Memory.cpp` boundary and the contiguous
+retail symbols fix this unit at `0x80018C0C`–`0x8001D764`. All 61 functions
+across the five retail split objects match byte-for-byte in objdiff.
+
+`ACTION::Loop` needs `opt_lifetimes off` and a function-scope iterator aggregate
+to reproduce CodeWarrior's original register interference graph. Its task loops
+remain ordinary indexed C++ and compile to the retail pointer walks. The
+post-compile helper restores split symbols, uses the existing retail
+switch-table data, and removes a duplicate weak inline-destructor atom that
+GC/1.3.2 emits only because the reconstructed unit is compiled in isolation.
+It does not alter the instruction bytes of any retail function.
+
+The five entries in `splits.txt` are build fragments of this one C++ source,
+not evidence for five original translation units. The four continuation files
+contain only an include of `action.cpp`; their purpose is to preserve the
+retail object boundaries required by the MetroWerks linker.

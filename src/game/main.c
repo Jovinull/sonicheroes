@@ -98,7 +98,7 @@ extern void fn_8019D448(u32* out, u32 arg);
 
 // Run before the machine is reset, and by fn_80012E2C on the way down.
 extern void GXDrawDone(void);
-extern void fn_80013130(void);
+extern void SkyInstallFileSystem(void);
 
 // Passed to the dispatcher under code 0x0D as the first word of a three word
 // block. In another unit's .data.
@@ -221,7 +221,7 @@ int fn_80012E24(void)
 
 int fn_80012E2C(void)
 {
-	fn_80013130();
+	SkyInstallFileSystem();
 
 	return 1;
 }
