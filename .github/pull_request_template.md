@@ -27,6 +27,7 @@ Evidence and references:
      commits and tests them from a repository-owned integration branch. -->
 
 - [ ] `python tools/check_language_policy.py`
+- [ ] `python -m unittest tools.test_check_language_policy`
 - [ ] `clang-format -i` on changed files under `src/` and `include/`
 - [ ] objdiff result recorded below
 - [ ] `ninja` passes and the artifact SHA-1 checks remain valid

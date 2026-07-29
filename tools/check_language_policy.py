@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_POLICY = ROOT / "config/G9SE8P/language_policy.json"
 CONFIGURE = ROOT / "configure.py"
 PROTECTED_PREFIXES = ("advertiseD/", "autosaveD/")
+CPP_STYLE_SUFFIXES = {".cc", ".cp", ".cpp", ".cxx", ".c++"}
 
 
 def load_policy(path: Path) -> dict[str, Any]:
@@ -76,6 +77,12 @@ def load_policy(path: Path) -> dict[str, Any]:
 
 def is_managed(source: str, prefixes: list[str]) -> bool:
     return any(source.startswith(prefix) for prefix in prefixes)
+
+
+def inline_mode_enabled(value: str, mode: str) -> bool:
+    """Return whether an exact comma-separated inline mode is enabled."""
+    modes = {part for part in re.sub(r"\s+", "", value).split(",") if part}
+    return mode in modes
 
 
 def parse_source_commands() -> dict[str, dict[str, Any]]:
@@ -156,7 +163,10 @@ def static_inline_overrides(errors: list[str], policy: dict[str, Any]) -> None:
         inline_flags = [flag for flag in flags if flag.startswith("-inline ")]
         if len(inline_flags) > 1:
             errors.append(f"{source}: multiple object-level -inline overrides: {inline_flags}")
-        if any("deferred" in flag for flag in inline_flags) and source not in deferred:
+        if any(
+            inline_mode_enabled(flag.removeprefix("-inline "), "deferred")
+            for flag in inline_flags
+        ) and source not in deferred:
             errors.append(f"{source}: uses deferred inline without reviewed policy evidence")
 
 
@@ -190,13 +200,15 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
                 actual_legacy.add(source)
                 if source not in legacy_cpp and source not in cpp_mode_c:
                     errors.append(f"{source}: new C++ source uses .c; new game code must use .cpp")
+            elif not source.endswith(".cpp"):
+                errors.append(f"{source}: game-owned C++ source must use the .cpp extension")
         else:
             errors.append(f"{source}: unknown effective language {language!r}")
 
         if len(inline_modes) > 2:
             errors.append(f"{source}: ambiguous inline flags in compiler command: {inline_modes}")
         effective_inline = inline_modes[-1] if inline_modes else ""
-        if "deferred" in effective_inline:
+        if inline_mode_enabled(effective_inline, "deferred"):
             actual_deferred.add(source)
             if source not in deferred:
                 errors.append(f"{source}: effective deferred inline mode has no reviewed evidence")
@@ -239,10 +251,10 @@ def audit_configured_build(policy: dict[str, Any]) -> list[str]:
     return errors
 
 
-def audit_staged_additions(policy: dict[str, Any]) -> list[str]:
+def audit_staged_sources(policy: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     result = subprocess.run(
-        ["git", "diff", "--cached", "--name-only", "--diff-filter=A"],
+        ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR"],
         cwd=ROOT,
         check=True,
         capture_output=True,
@@ -259,7 +271,15 @@ def audit_staged_additions(policy: dict[str, Any]) -> list[str]:
         if not path.startswith("src/"):
             continue
         source = path.removeprefix("src/")
-        if not is_managed(source, prefixes) or not source.endswith(".c"):
+        if not is_managed(source, prefixes):
+            continue
+        suffix = Path(source).suffix
+        if suffix != ".cpp" and (
+            suffix == ".C" or suffix.lower() in CPP_STYLE_SUFFIXES
+        ):
+            errors.append(f"{source}: game-owned C++ source must use the .cpp extension")
+            continue
+        if suffix != ".c":
             continue
         if source in pending_c:
             errors.append(f"{source}: a new source cannot enter as pending C evidence; use .cpp")
@@ -290,7 +310,7 @@ def main() -> int:
 
     try:
         policy = load_policy(args.policy)
-        errors = audit_staged_additions(policy) if args.staged else audit_configured_build(policy)
+        errors = audit_staged_sources(policy) if args.staged else audit_configured_build(policy)
     except (OSError, ValueError, RuntimeError, subprocess.CalledProcessError) as exc:
         print(f"language policy check failed: {exc}", file=sys.stderr)
         return 1

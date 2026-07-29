@@ -96,8 +96,10 @@ big=$(git diff --cached --numstat --diff-filter=AM -z \
 [ -n "$big" ] && fail "These staged binaries are over 512 KB:" "$big"
 
 # 5. Language policy. The staged form does not need a configured build tree and
-#    catches newly added game-owned C files plus unreviewed deferred-inline
-#    overrides. CI performs the complete configured-command audit.
+#    catches added or renamed game-owned C files, noncanonical C++ extensions
+#    and unreviewed deferred-inline overrides. CI performs the complete
+#    configured-command audit.
+python3 -m unittest tools.test_check_language_policy || exit 1
 python3 tools/check_language_policy.py --staged || exit 1
 
 # 6. Formatting. Only runs if clang-format is installed, so a contributor

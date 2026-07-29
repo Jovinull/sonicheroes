@@ -112,7 +112,9 @@ substitute for reviewing the evidence or matching the GameCube object.
 
 ## New source
 
-- New game-owned translation units use `.cpp` and compile as C++.
+- New game-owned translation units use the canonical `.cpp` extension and
+  compile as C++. Alternative C++ extensions such as `.cc` and `.cxx` are
+  rejected to keep the convention machine-checkable.
 - A new `.c` file under `game`, `rel`, `advertiseD`, `autosaveD` or `movieD`
   must be added to the reviewed C allowlist in
   `config/G9SE8P/language_policy.json`.
@@ -216,7 +218,9 @@ The approved deferred list is deliberately narrow. At present,
 `game/state_accessor.cpp` is the only reviewed entry. A source must be added to
 `deferred_sources` in the policy file in the same reviewed change that records
 the evidence, and stale entries must be removed with the flag they approved.
-Multiple object-level `-inline` overrides are rejected as ambiguous.
+Multiple object-level `-inline` overrides are rejected as ambiguous. Inline
+modes are compared as exact comma-separated tokens: `nodeferred` is not a
+deferred override.
 
 ## Pull-request requirements
 
@@ -228,8 +232,8 @@ For language, linkage or inline changes:
 - show the before/after objdiff result;
 - do not turn matching objects into non-matching objects in a mechanical
   language-only change;
-- run `python tools/check_language_policy.py`, `ninja` and the artifact SHA-1
-  check.
+- run `python -m unittest tools.test_check_language_policy`,
+  `python tools/check_language_policy.py`, `ninja` and the artifact SHA-1 check.
 
 Existing matching work is a test oracle, not disposable work. Refactor it
 incrementally when evidence improves the source reconstruction, preserving the
