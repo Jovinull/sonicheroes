@@ -819,7 +819,7 @@ TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngl
 	}
 }
 
-#pragma opt_common_subs off
+#pragma opt_common_subs reset
 TObjEffTyphoon::TObjEffTyphoon(
     TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
     : TObjEffTornado(parent, kind, position, rotation)
@@ -841,7 +841,6 @@ TObjEffTyphoon::TObjEffTyphoon(
 	}
 	result->particle = fn_8006298C(14, &result->position, &result->rotation);
 }
-#pragma opt_common_subs reset
 
 extern "C" void SetEffectTyphoon__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
