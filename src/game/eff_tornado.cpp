@@ -128,19 +128,29 @@ extern void* lbl_8042C364;
 extern u8 lbl_8042C3D0[4];
 extern u8 lbl_8042B364[4];
 extern u8 lbl_8042B36C[4];
-extern void* lbl_80303F98;
+extern void* lbl_80303F98[3];
 extern const char* lbl_8042B350;
 extern const char* lbl_8042B360;
 extern const char* lbl_8042B354;
 extern u8 lbl_8025333C[];
 extern void* lbl_8025361C[];
+extern void* lbl_802532E8[3];
+extern void* lbl_802532F4[3];
+extern char lbl_80253300[];
+extern char lbl_80253310[];
+extern char lbl_80253320[];
+extern char* lbl_80253330[3];
+extern char lbl_80253568[];
+extern char lbl_80253578[];
+extern char lbl_8025358C[];
+extern char lbl_802535A4[];
+extern char lbl_802535B4[];
 extern f32 lbl_8042DBB0;
 extern f32 lbl_8042DBB4;
 extern f32 lbl_8042DBB8;
 extern f32 lbl_8042DBC0;
 extern f32 lbl_8042DBE0;
 extern f32 lbl_8042DBE8;
-extern double lbl_8042DBD8;
 extern f32 lbl_8042DBF0;
 extern f32 lbl_8042DBF4;
 extern f32 lbl_8042DC10;
@@ -194,80 +204,6 @@ void __ct__15TObjEffTornado2FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObjEffTornado2*, TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 }
 
-void* lbl_802532E8[3]         = { 0, 0, 0 };
-extern const f64 lbl_8042DBD8 = 4503601774854144.0;
-void* lbl_802532F4[3]         = { 0, 0, 0 };
-char lbl_80253300[]           = "EF_TORNADE.DFF";
-char lbl_80253310[]           = "EF_TORNADEB.DFF";
-char lbl_80253320[]           = "EF_TORNADEC.DFF";
-char* lbl_80253330[3]         = { lbl_80253300, lbl_80253310, lbl_80253320 };
-u8 lbl_8025333C[0x30]         = {
-	0x0a,
-	0x0a,
-	0xf0,
-	0xe2,
-	0x00,
-	0x20,
-	0x20,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x42,
-	0x70,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x41,
-	0xa0,
-	0x00,
-	0x00,
-	0x42,
-	0x70,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-};
-char lbl_80253568[] = "EF_TORNADO.DFF";
-char lbl_80253578[] = "EF_TORNADO_RING.DFF";
-char lbl_8025358C[] = "EF_TORNADO_RINGB.DFF";
-char lbl_802535A4[] = "EF_TORNADO.ANM";
-char lbl_802535B4[] = "EF_TORNADO.UVB";
-
-static inline f32 signedToFloat(s32 value)
-{
-	struct {
-		u32 high;
-		u32 low;
-	} conversion;
-	conversion.low  = value ^ 0x80000000;
-	conversion.high = 0x43300000;
-	return *(f64*)&conversion - lbl_8042DBD8;
-}
-
 extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 {
 	u32 state10;
@@ -319,7 +255,7 @@ extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 		case 2: {
 			s16 timer = effect->timer;
 			effect->timer++;
-			if (signedToFloat(timer) >= lbl_8042DC18) {
+			if ((f32)timer >= lbl_8042DC18) {
 				effect->state = 3;
 			}
 			break;
@@ -451,7 +387,7 @@ TObjEffTornadoSpin::TObjEffTornadoSpin(
 	result->position.z          = positionValue->z;
 	result->timer               = 0;
 	result->alpha               = lbl_8042DBB4;
-	result->angle               = (s16)(signedToFloat(fn_801C28D8()) * lbl_8042DC20 * lbl_8042DC1C);
+	result->angle               = (s16)(fn_801C28D8() * lbl_8042DC20 * lbl_8042DC1C);
 	result->state               = 1;
 	result->model               = fn_80150588(lbl_802532E8[1]);
 
@@ -695,7 +631,7 @@ TObjEffTyphoon::TObjEffTyphoon(
     TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
     : TObjEffTornado(parent, kind, position, rotation)
 {
-	TObjEffTyphoon* result = this;
+	TObjEffTyphoon* __restrict result = this;
 
 	result->vtable              = lbl_802534E4;
 	result->className           = lbl_8042B360;
@@ -831,10 +767,72 @@ extern "C" void InitEffTornado__Fv()
 
 	lbl_8042C374 = fn_8005EA04(lbl_802535B4);
 	if (lbl_8042C374 != 0 && lbl_8042C370 != 0) {
-		void* material = fn_8005E1DC(lbl_8042C350, 0, lbl_8042B36C);
-		lbl_80303F98   = lbl_8042C374;
+		void* material  = fn_8005E1DC(lbl_8042C350, 0, lbl_8042B36C);
+		lbl_80303F98[0] = lbl_8042C374;
 		fn_8005C014(material);
 		fn_801491A8(material);
 	}
 }
 #pragma opt_common_subs reset
+
+void* lbl_802532E8[3] = { 0, 0, 0 };
+void* lbl_802532F4[3] = { 0, 0, 0 };
+char lbl_80253300[]   = "EF_TORNADE.DFF";
+char lbl_80253310[]   = "EF_TORNADEB.DFF";
+char lbl_80253320[]   = "EF_TORNADEC.DFF";
+char* lbl_80253330[3] = { lbl_80253300, lbl_80253310, lbl_80253320 };
+u8 lbl_8025333C[0x30] = {
+	0x0a,
+	0x0a,
+	0xf0,
+	0xe2,
+	0x00,
+	0x20,
+	0x20,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x42,
+	0x70,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x41,
+	0xa0,
+	0x00,
+	0x00,
+	0x42,
+	0x70,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+};
+char lbl_80253568[] = "EF_TORNADO.DFF";
+char lbl_80253578[] = "EF_TORNADO_RING.DFF";
+char lbl_8025358C[] = "EF_TORNADO_RINGB.DFF";
+char lbl_802535A4[] = "EF_TORNADO.ANM";
+char lbl_802535B4[] = "EF_TORNADO.UVB";
