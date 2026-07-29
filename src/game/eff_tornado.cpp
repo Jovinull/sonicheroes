@@ -247,6 +247,8 @@ void fn_8003BE78(C_COLLI*);
 void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
 void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
 TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*, s32);
+void TDisp__15TObjEffTornado2Fv(TObjEffTornado2*);
+void Exec__15TObjEffTornado2Fv(TObjEffTornado2*);
 int SetPosition__18TObjEffTornadoSpinFv(TObjEffTornadoSpin*);
 int CheckTornado__FP7C_COLLI(C_COLLI*);
 
@@ -1247,14 +1249,53 @@ RotationPair lbl_8025343C[8] = {
 	{ 0.990268f, -0.139173f },
 	{ 0.994522f, 0.104528f },
 };
-s32 lbl_8025347C[8]   = { 0, -0x4000, 0x1600, -0xc00, 0x3000, 0x1000, -0x1600, 0xa00 };
-char lbl_8025349C[]   = "TObjEffTornadoSpin";
-char lbl_802534B0[16] = "TObjEffTornado2";
-char lbl_80253568[]   = "EF_TORNADO.DFF";
-char lbl_80253578[]   = "EF_TORNADO_RING.DFF";
-char lbl_8025358C[]   = "EF_TORNADO_RINGB.DFF";
-char lbl_802535A4[]   = "EF_TORNADO.ANM";
-char lbl_802535B4[]   = "EF_TORNADO.UVB";
+s32 lbl_8025347C[8]    = { 0, -0x4000, 0x1600, -0xc00, 0x3000, 0x1000, -0x1600, 0xa00 };
+char lbl_8025349C[]    = "TObjEffTornadoSpin";
+char lbl_802534B0[16]  = "TObjEffTornado2";
+char lbl_80253568[]    = "EF_TORNADO.DFF";
+char lbl_80253578[]    = "EF_TORNADO_RING.DFF";
+char lbl_8025358C[]    = "EF_TORNADO_RINGB.DFF";
+char lbl_802535A4[]    = "EF_TORNADO.ANM";
+char lbl_802535B4[]    = "EF_TORNADO.UVB";
+void* lbl_802535C4[11] = {
+	0,
+	0,
+	(void*)__dt__15TObjEffTornado2Fv,
+	(void*)Exec__15TObjEffTornado2Fv,
+	(void*)fn_8001898C,
+	(void*)TDisp__15TObjEffTornado2Fv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
+void* lbl_802535F0[11] = {
+	0,
+	0,
+	(void*)__dt__18TObjEffTornadoSpinFv,
+	(void*)Exec__18TObjEffTornadoSpinFv,
+	(void*)fn_8001898C,
+	(void*)TDisp__18TObjEffTornadoSpinFv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
+void* lbl_8025361C[11] = {
+	0,
+	0,
+	(void*)__dt__14TObjEffTornadoFv,
+	(void*)Exec__14TObjEffTornadoFv,
+	(void*)fn_8001898C,
+	(void*)TDisp__14TObjEffTornadoFv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
 
 void* lbl_8042C350;
 void* lbl_8042C354;
