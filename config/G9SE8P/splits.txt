@@ -214,6 +214,12 @@ game/voice_sequence.cpp:
 	.text       start:0x80138664 end:0x80138ECC
 	.data       start:0x8028C964 end:0x8028CA70
 
+game/movie.cpp:
+	extab       start:0x8000B940 end:0x8000B97C
+	extabindex  start:0x800119C8 end:0x800119EC
+	.text       start:0x80138ECC end:0x801390A4
+	.data       start:0x8028CA70 end:0x8028CAAC
+
 game/moviePlay.cpp:
 	extab       start:0x8000B97C end:0x8000B994
 	extabindex  start:0x800119EC end:0x80011A10
