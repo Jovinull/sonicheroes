@@ -500,6 +500,11 @@ config.libs = [
                 "game/dvd_status.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/SpAdvStgFailed.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
@@ -1251,6 +1256,11 @@ config.custom_build_rules = [
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
     },
+    {
+        "name": "fix_sp_adv_stg_failed_object",
+        "command": f"$python tools/fix_sp_adv_stg_failed_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX SpAdvStgFailed compiler-only atom",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -1259,6 +1269,15 @@ config.custom_build_steps = {
             "rule": "fix_sud_symbols",
             "inputs": "build/G9SE8P/src/movieD/cri/sud.o",
             "implicit": ["tools/fix_sud_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-sp-adv-stg-failed.stamp",
+            "rule": "fix_sp_adv_stg_failed_object",
+            "inputs": "build/G9SE8P/src/game/SpAdvStgFailed.o",
+            "implicit": [
+                "tools/fix_sp_adv_stg_failed_object.py",
+                str(binutils_dir),
+            ],
         },
     ],
 }

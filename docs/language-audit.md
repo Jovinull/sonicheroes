@@ -457,3 +457,19 @@ sources may not use this exception as an escape hatch.
 
 Update this file after every migration batch. A path leaves the queue only
 after its configured command, GameCube objdiff and final artifact hashes pass.
+
+### `game/SpAdvStgFailed.cpp`
+
+The PS2 beta debug symbols identify the `SpAdvStgFailed` class, its
+`StartFadeOut`, `Disp`, `Exec`, constructor, destructor, and `GoStageFailed`
+family. The GameCube virtual table independently fixes the class relationship
+and method ordering, while the contiguous resource table, animation workspace,
+resource globals, exception records, and seven-function code range establish
+the complete GameCube translation-unit boundary.
+
+All seven functions and every owned section match byte-for-byte. GC/1.3.2
+emits a duplicate weak copy of `TObject::operator delete` when this
+reconstruction is compiled independently; the post-compile normalizer removes
+that compiler-only atom and leaves exception cleanup bound to the existing
+retail `TObject` delete routine. It does not alter any retail function
+instruction bytes.
