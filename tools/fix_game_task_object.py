@@ -394,13 +394,6 @@ def main() -> None:
     for source in dynamic_renames:
         if source.startswith("@"):
             command.extend(("--globalize-symbol", dynamic_renames[source]))
-    for address in (0x16, 0x22, 0x2E, 0x3A, 0x46, 0x52, 0x5E, 0x6A, 0x76):
-        command.extend(
-            (
-                "--add-symbol",
-                f"gap_09_8042{0xAD98 + address:04X}_sdata=.sdata:{address},global,object",
-            )
-        )
     for source, target in {**RENAMES, **dynamic_renames}.items():
         command.extend(("--redefine-sym", f"{source}={target}"))
     command.extend((str(args.object), str(temporary)))

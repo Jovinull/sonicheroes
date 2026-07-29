@@ -150,11 +150,6 @@ extern void* __vt__7TObject[];
 u64 OSGetTime();
 void fn_8005751C();
 void fn_80057574();
-void fn_80017878(TObject*);
-void fn_80017AEC(TObject*);
-void fn_80017DF0(TObject*);
-void fn_80018064(TObject*);
-void fn_80018368(TObject*);
 void fn_80018AB0(THeapCtrl*, int);
 void* fn_80018A34(THeapCtrl*, u32);
 void fn_80057520(char*);
@@ -228,17 +223,18 @@ void TMainTask::Debug()
 			}                                                                                      \
 			previous = trigger;                                                                    \
 		}                                                                                          \
-		callback(object);                                                                          \
+		object->callback();                                                                        \
 		u64 end                       = OSGetTime();                                               \
 		*(u16*)((u8*)object + offset) = (u16)((((u32)end - (u32)start) * 8)                        \
 		    / (((*(volatile u32*)0x800000F8) >> 2) / 125000));                                     \
 	}
 
-PROFILE_WRAPPER(ImmAftSetRaster, lbl_8042C13C, lbl_8042C134, lbl_8042C140, 0x10, fn_80017878, 0x20)
-PROFILE_WRAPPER(TDisp, lbl_8042C134, lbl_8042C134, lbl_8042C138, 0x10, fn_80017AEC, 0x20)
-PROFILE_WRAPPER(PDisp, lbl_8042C134, lbl_8042C134, lbl_8042C138, 0x10, fn_80017DF0, 0x22)
-PROFILE_WRAPPER(Disp, lbl_8042C134, lbl_8042C134, lbl_8042C138, 0x10, fn_80018064, 0x1E)
-PROFILE_WRAPPER(Exec, lbl_8042C12C, lbl_8042C12C, lbl_8042C130, 8, fn_80018368, 0x1C)
+PROFILE_WRAPPER(
+    ImmAftSetRaster, lbl_8042C13C, lbl_8042C134, lbl_8042C140, 0x10, ImmAftSetRasterChild, 0x20)
+PROFILE_WRAPPER(TDisp, lbl_8042C134, lbl_8042C134, lbl_8042C138, 0x10, TDispChild, 0x20)
+PROFILE_WRAPPER(PDisp, lbl_8042C134, lbl_8042C134, lbl_8042C138, 0x10, PDispChild, 0x22)
+PROFILE_WRAPPER(Disp, lbl_8042C134, lbl_8042C134, lbl_8042C138, 0x10, DispChild, 0x1E)
+PROFILE_WRAPPER(Exec, lbl_8042C12C, lbl_8042C12C, lbl_8042C130, 8, ExecChild, 0x1C)
 
 static inline void destroyAndClear(TObject*& object)
 {
