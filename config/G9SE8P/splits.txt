@@ -58,6 +58,17 @@ game/dvd_status.cpp:
 game/state_accessor.cpp:
 	.text       start:0x80013398 end:0x800133D0
 
+game/e_paralysis.cpp:
+	extab       start:0x8000A79C end:0x8000A7F0
+	extabindex  start:0x8001087C end:0x800108DC
+	.text       start:0x80113090 end:0x801137AC
+	.ctors      start:0x802398FC end:0x80239900
+	.data       start:0x80288C90 end:0x80288CF0
+	.bss        start:0x803E7538 end:0x803E75A0
+	.sdata      start:0x8042B810 end:0x8042B818
+	.sbss       start:0x8042C648 end:0x8042C658
+	.sdata2     start:0x8042E980 end:0x8042E9B4
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

@@ -73,6 +73,7 @@
     "autosaveD/window_lifecycle.c"
   ],
   "deferred_sources": [
+    "game/e_paralysis.cpp",
     "game/state_accessor.cpp"
   ]
 }
