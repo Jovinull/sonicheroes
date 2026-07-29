@@ -71,6 +71,31 @@ class PolicyValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "outside managed game code"):
             self.load_policy(policy)
 
+    def test_policy_lists_must_be_sorted_and_unique(self) -> None:
+        policy = make_policy(
+            confirmed_c_sources=["game/z.c", "game/a.c", "game/a.c"]
+        )
+        with self.assertRaisesRegex(ValueError, "must be sorted and contain no duplicates"):
+            self.load_policy(policy)
+
+    def test_source_classifications_cannot_overlap(self) -> None:
+        policy = make_policy(
+            confirmed_c_sources=["game/unit.c"],
+            c_sources_compiled_as_cpp=["game/unit.c"],
+        )
+        with self.assertRaisesRegex(ValueError, "confirmed C and reviewed C/C\\+\\+ mode overlap"):
+            self.load_policy(policy)
+
+    def test_protected_debt_must_stay_in_protected_areas(self) -> None:
+        policy = make_policy(protected_cpp_c_sources=["game/unit.c"])
+        with self.assertRaisesRegex(ValueError, "outside a protected area"):
+            self.load_policy(policy)
+
+    def test_legacy_debt_must_stay_in_protected_areas(self) -> None:
+        policy = make_policy(legacy_cpp_c_sources=["game/unit.c"])
+        with self.assertRaisesRegex(ValueError, "outside a protected area"):
+            self.load_policy(policy)
+
 
 class HookContractTests(unittest.TestCase):
     def test_rename_only_commit_reaches_language_policy_check(self) -> None:
@@ -212,6 +237,44 @@ class StagedPolicyTests(unittest.TestCase):
         policy = make_policy(deferred_sources=["game/unit.cpp"])
         self.assertEqual(self.staged_errors(policy), [])
 
+    def test_modified_protected_c_debt_is_blocked_until_migration(self) -> None:
+        source = self.write_source("autosaveD/unit.c")
+        self.run_git("add", ".")
+        self.run_git("commit", "-q", "-m", "baseline")
+        source.write_text("void unit(void) { int changed = 1; }\n", encoding="utf-8")
+        self.run_git("add", "-A")
+
+        policy = make_policy(
+            managed_prefixes=["autosaveD/"],
+            protected_cpp_c_sources=["autosaveD/unit.c"],
+        )
+        self.assertEqual(
+            self.staged_errors(policy),
+            [
+                "autosaveD/unit.c: protected C++/C-mode work must be "
+                "coordinated and migrated to .cpp"
+            ],
+        )
+
+    def test_modified_legacy_cpp_c_path_is_blocked_until_migration(self) -> None:
+        source = self.write_source("advertiseD/unit.c")
+        self.run_git("add", ".")
+        self.run_git("commit", "-q", "-m", "baseline")
+        source.write_text("void unit(void) { int changed = 1; }\n", encoding="utf-8")
+        self.run_git("add", "-A")
+
+        policy = make_policy(
+            managed_prefixes=["advertiseD/"],
+            legacy_cpp_c_sources=["advertiseD/unit.c"],
+        )
+        self.assertEqual(
+            self.staged_errors(policy),
+            [
+                "advertiseD/unit.c: staged legacy C++ work must migrate "
+                "from .c to .cpp"
+            ],
+        )
+
 
 class ConfiguredPolicyTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -327,6 +390,61 @@ class ConfiguredPolicyTests(unittest.TestCase):
             [
                 "game/unit.cpp: effective deferred inline mode has no "
                 "reviewed evidence"
+            ],
+        )
+
+    def test_unreviewed_configured_c_source_is_rejected(self) -> None:
+        errors = self.configured_errors(
+            {"game/unit.c": {"language": "c", "inline_modes": ["auto"]}}
+        )
+        self.assertEqual(
+            errors,
+            ["game/unit.c: game-owned C source is not in the reviewed allowlist"],
+        )
+
+    def test_stale_confirmed_c_entry_is_rejected(self) -> None:
+        errors = self.configured_errors(
+            {"game/unit.cpp": {"language": "c++", "inline_modes": ["auto"]}},
+            policy=make_policy(confirmed_c_sources=["game/missing.c"]),
+        )
+        self.assertEqual(
+            errors,
+            ["game/missing.c: C policy entry has no configured source"],
+        )
+
+    def test_stale_deferred_entry_is_rejected(self) -> None:
+        errors = self.configured_errors(
+            {"game/unit.cpp": {"language": "c++", "inline_modes": ["auto"]}},
+            policy=make_policy(deferred_sources=["game/unit.cpp"]),
+        )
+        self.assertEqual(
+            errors,
+            [
+                "game/unit.cpp: approved deferred entry is not effectively "
+                "compiled with deferred"
+            ],
+        )
+
+    def test_multiple_object_inline_overrides_are_rejected(self) -> None:
+        self.configure.write_text(
+            'Object(Matching, "game/unit.cpp", '
+            'extra_cflags=["-inline auto", "-inline deferred"])\n',
+            encoding="utf-8",
+        )
+        errors = self.configured_errors(
+            {
+                "game/unit.cpp": {
+                    "language": "c++",
+                    "inline_modes": ["auto", "deferred"],
+                }
+            },
+            policy=make_policy(deferred_sources=["game/unit.cpp"]),
+        )
+        self.assertEqual(
+            errors,
+            [
+                "game/unit.cpp: multiple object-level -inline overrides: "
+                "['-inline auto', '-inline deferred']"
             ],
         )
 

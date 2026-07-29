@@ -374,11 +374,19 @@ def audit_staged_sources(policy: dict[str, Any]) -> list[str]:
         if suffix != ".c":
             continue
         if source in pending_c:
-            errors.append(f"{source}: a new source cannot enter as pending C evidence; use .cpp")
+            errors.append(
+                f"{source}: a staged source cannot remain pending C evidence; "
+                "resolve the classification before changing it"
+            )
         elif source in protected_cpp_c:
-            errors.append(f"{source}: a new source cannot enter as protected migration debt; use .cpp")
+            errors.append(
+                f"{source}: protected C++/C-mode work must be coordinated and "
+                "migrated to .cpp"
+            )
         elif source in legacy_cpp:
-            errors.append(f"{source}: a new C++ source cannot enter with a .c extension; use .cpp")
+            errors.append(
+                f"{source}: staged legacy C++ work must migrate from .c to .cpp"
+            )
         elif source not in confirmed_c and source not in cpp_mode_c:
             errors.append(
                 f"{source}: new game-owned .c source is forbidden; use .cpp or add reviewed C evidence"
