@@ -120,6 +120,20 @@ game/action_cont3.cpp:
 game/action_cont4.cpp:
 	.text       start:0x8001D754 end:0x8001D764
 
+game/modeswitch.cpp:
+	extab       start:0x80005BA8 end:0x80005BC0
+	extabindex  start:0x8000C2A4 end:0x8000C2C8
+	.text       start:0x8001F4E8 end:0x8001F600
+	.data       start:0x802412C0 end:0x80241308
+	.sbss       start:0x8042C180 end:0x8042C188
+
+game/vibration.cpp:
+	extab       start:0x80005BC0 end:0x80005BF0
+	extabindex  start:0x8000C2C8 end:0x8000C2F8
+	.text       start:0x8001F600 end:0x8001F9F8
+	.data       start:0x80241308 end:0x80241358
+	.sdata2     start:0x8042D038 end:0x8042D048
+
 game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
@@ -149,8 +163,34 @@ game/hAnim.cpp:
 	.sbss       start:0x8042C3D0 end:0x8042C3D8
 	.sdata2     start:0x8042DDB0 end:0x8042DDC8
 
+game/perf.cpp:
+	extab       start:0x800089A0 end:0x800089C8
+	extabindex  start:0x8000EFEC end:0x8000F028
+	.text       start:0x800CD6A0 end:0x800CE010
+	.ctors      start:0x802398F8 end:0x802398FC
+	.data       start:0x80255098 end:0x80255738
+	.bss        start:0x803A6690 end:0x803A6FE0
+	.sdata      start:0x8042B648 end:0x8042B650
+
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
+
+game/obj_set_damage_collision.cpp:
+	extab       start:0x8000A794 end:0x8000A79C
+	extabindex  start:0x80010870 end:0x8001087C
+	.text       start:0x80113038 end:0x80113090
+	.sbss       start:0x8042C640 end:0x8042C648
+
+game/e_paralysis.cpp:
+	extab       start:0x8000A79C end:0x8000A7F0
+	extabindex  start:0x8001087C end:0x800108DC
+	.text       start:0x80113090 end:0x801137AC
+	.ctors      start:0x802398FC end:0x80239900
+	.data       start:0x80288C90 end:0x80288CF0
+	.bss        start:0x803E7538 end:0x803E75A0
+	.sdata      start:0x8042B810 end:0x8042B818
+	.sbss       start:0x8042C648 end:0x8042C658
+	.sdata2     start:0x8042E980 end:0x8042E9B4
 
 game/SeqFlagCtrl.cpp:
 	.text       start:0x801143E0 end:0x801144E0
@@ -167,6 +207,12 @@ game/GetSpParam.cpp:
 	.ctors      start:0x80239904 end:0x80239908
 	.bss        start:0x803EA488 end:0x803EA4B8
 	.sdata2     start:0x8042EE88 end:0x8042EEA8
+
+game/voice_sequence.cpp:
+	extab       start:0x8000B908 end:0x8000B940
+	extabindex  start:0x80011974 end:0x800119C8
+	.text       start:0x80138664 end:0x80138ECC
+	.data       start:0x8028C964 end:0x8028CA70
 
 game/moviePlay.cpp:
 	extab       start:0x8000B97C end:0x8000B994

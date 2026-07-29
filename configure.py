@@ -467,6 +467,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/vibration.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/heap.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
             ),
@@ -630,6 +635,40 @@ config.libs = [
                     "-bool off",
                     "-opt noschedule,nopeephole",
                 ],
+            ),
+            Object(
+                Matching,
+                "game/perf.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-str nopool"],
+            ),
+            Object(
+                Matching,
+                "game/modeswitch.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-inline deferred",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/e_paralysis.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-inline deferred",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/voice_sequence.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
+                "game/obj_set_damage_collision.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
         ],
     },
@@ -817,9 +856,9 @@ config.libs = [
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
-                "autosaveD/widget_slices.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                Matching,
+                "autosaveD/widget_slices.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
