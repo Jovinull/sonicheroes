@@ -467,6 +467,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/vibration.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/heap.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
             ),
