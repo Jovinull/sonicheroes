@@ -438,6 +438,24 @@ Until those owners coordinate integration, the checker permits this debt only
 under `advertiseD/` and `autosaveD/`. A legacy C++/`.c` entry anywhere else is
 a policy error.
 
+### `game/dAnim.cpp`
+
+`game/dAnim.cpp` and its constructor emission fragment are C++.
+
+Evidence and rationale:
+
+- the PS2 beta metadata retains the `dAnim.cpp` source marker together with
+  `DAnimClass` methods, its constructor and its destructor;
+- the GameCube run has the same method sequence and RenderWare morph-animation
+  calls, followed by the `DAnimClass` global-object initializer;
+- both configured C++ objects match their complete text and owned section
+  ranges byte-for-byte.
+
+The four-byte constructor is compiled as a separate reconstruction object.
+Keeping its empty definition visible in the body object suppresses a constructor
+call in the static initializer, while emitting the definition separately
+preserves the original constructor-after-initializer text order.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.

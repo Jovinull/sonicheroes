@@ -38,7 +38,7 @@ extern "C" u8 lbl_1_data_3C8[0x18];
 extern "C" u8 lbl_1_data_3E0[0x2C];
 extern "C" u8 lbl_1_data_414[];
 
-extern "C" void fn_800A80DC(Timed* timed, s32 value);
+extern "C" void __ct__10DAnimClassFv(Timed* timed, s32 value);
 extern "C" void fn_800A8620(Timed* timed, s32 flag);
 extern "C" void fn_800A8828(Timed* timed);
 extern "C" void fn_800CC280(void);
@@ -92,9 +92,9 @@ extern "C" Timed* fn_1_1154(Timed* timed, void* context)
 	timed->name   = lbl_1_data_294;
 	timed->unk1E  = 0x8C;
 
-	fn_800A80DC(timed, 3);
-	fn_800A80DC(timed, 4);
-	fn_800A80DC(timed, 15);
+	__ct__10DAnimClassFv(timed, 3);
+	__ct__10DAnimClassFv(timed, 4);
+	__ct__10DAnimClassFv(timed, 15);
 
 	timed->unk40 = 3;
 	timed->unk44 = 15;

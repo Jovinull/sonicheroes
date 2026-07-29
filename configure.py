@@ -500,6 +500,16 @@ config.libs = [
                 "game/dvd_status.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/dAnim.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"],
+            ),
+            Object(
+                Matching,
+                "game/dAnim_ctor.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
