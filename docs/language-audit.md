@@ -505,3 +505,17 @@ their retail call sites, but then emits their out-of-line copies in dependency
 order. The post-compile normalizer moves those already-matching function and
 exception-record units into the retail order and restores split symbol names;
 it does not synthesize or alter instructions.
+
+### Game memory translation unit
+
+`game/Memory.cpp` is reconstructed as C++.
+
+PS2 beta DWARF positively identifies `Memory.cpp`, the `THeapCtrl` and `sHeap`
+types, all member fields, and all six methods. The contiguous GameCube method
+order fixes the original boundary at `0x800189A4`–`0x80018C0C`. All six
+functions and every owned section match byte-for-byte in objdiff.
+
+As in `Task.cpp`, CodeWarrior emits the deleting operator before the destructor
+whose cleanup uses it. The post-compile normalizer moves the already-matching
+function and exception records into retail source order without changing
+instructions.
