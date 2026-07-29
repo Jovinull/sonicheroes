@@ -232,8 +232,8 @@ extern s32 lbl_1_bss_720;
 extern f32 lbl_1_bss_724;
 extern u8 lbl_1_bss_728;
 
-extern u8 lbl_803EC340[];
-extern void* lbl_8028CEF0[];
+extern u8 MoviePlaySub[];
+extern void* MoviePlay[];
 extern void* lbl_8042C180;
 extern u8 lbl_8042C1C0[];
 extern void* lbl_8042C388;
@@ -267,13 +267,13 @@ void fn_1_DAB0(ADV_MOVIE* self)
 			if (self->movie[0] == -1) {
 				break;
 			}
-			((s32*)lbl_803EC340)[1] = self->movie[0];
-			((void (*)(void))lbl_8028CEF0[0])();
+			((s32*)MoviePlaySub)[1] = self->movie[0];
+			((void (*)(void))MoviePlay[0])();
 			do {
-				r = (int)((int (*)(void))lbl_8028CEF0[2])();
+				r = (int)((int (*)(void))MoviePlay[2])();
 				fn_8011253C();
 			} while (r == 0);
-			((void (*)(void))lbl_8028CEF0[1])();
+			((void (*)(void))MoviePlay[1])();
 			fn_1_DA84(self);
 			if ((u32)(r - 2) <= 1) {
 				break;
@@ -342,7 +342,7 @@ ADV_MOVIE* fn_1_DCD0(void* parent)
 void fn_1_DD10(void)
 {
 	fn_800421C8(lbl_8042C1C0, &lbl_1_data_6398);
-	memset(lbl_8028CEF0, 0, 0x14);
+	memset(MoviePlay, 0, 0x14);
 	fn_1_8740();
 }
 

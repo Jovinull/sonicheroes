@@ -49,7 +49,7 @@ void fn_800A8828(void*);
 extern void* lbl_8042C180;    // manager handle (loaded then passed)
 extern void* lbl_8042C388;    // sound/system handle (loaded)
 extern s32 lbl_1_data_20;     // module state flag
-extern s32 lbl_803EC340[];    // scene param block
+extern s32 MoviePlaySub[];    // scene param block
 extern u8 lbl_8029C310[];     // draw/anim object
 extern u8 lbl_80303EC8[];     // task/effect object
 extern u8 lbl_803E774C[];     // path/name buffer
@@ -66,8 +66,8 @@ void fn_800A96B0(void*, int, int);
 void fn_800B52E8(void*, int, int, int);
 int fn_80116B68(void*);
 int fn_800A92E0(void*, int, int);
-int fn_800158A0(void*, int);
-int fn_800158EC(void*, int);
+int ConvertBit_AD(const u8*, u32);
+int edgeCheck(const u8*, u32);
 void fn_8012CEF0(void*, f32);
 int fn_1_12A0(void*, int);
 
@@ -186,7 +186,7 @@ void advE3Rom_exec(AdvE3Rom* self)
 		case 1:
 			self->se = (void*)lbl_1_data_A4;
 			self->timer += lbl_1_rodata_4;
-			if (fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0
+			if (ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0
 			    || self->timer >= (*(AdvClip**)(lbl_1_data_A4 + 0x8))->f0C) {
 				self->se    = (void*)(lbl_1_data_A4 + 0x68);
 				self->mode  = 2;
@@ -209,7 +209,7 @@ void advE3Rom_exec(AdvE3Rom* self)
 				fn_8001934C(lbl_8029C310, 0, 0);
 				fn_800A96B0(lbl_80303EC8, 0x18, 2);
 				self->mode = 8;
-			} else if (fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0) {
+			} else if (ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0) {
 				h = lbl_8042C388;
 				if (h) {
 					fn_800B52E8(h, 0xE008, 0, 0);
@@ -233,7 +233,7 @@ void advE3Rom_exec(AdvE3Rom* self)
 			if (self->counter == 0) {
 				self->mode  = 2;
 				self->timer = lbl_1_rodata_0;
-			} else if (fn_800158EC((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 4) != 0
+			} else if (edgeCheck((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 4) != 0
 			    || ((s16*)(lbl_8029BBD0 + 0x226))[lbl_802408F8 * 0x26] > 0x32) {
 				h = lbl_8042C388;
 				if (h) {
@@ -241,14 +241,14 @@ void advE3Rom_exec(AdvE3Rom* self)
 				}
 				self->mode    = 6;
 				self->counter = 0x708;
-			} else if (fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0
-			    || fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x100) != 0) {
+			} else if (ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0
+			    || ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x100) != 0) {
 				h = lbl_8042C388;
 				if (h) {
 					fn_800B52E8(h, 0xE008, 0, 0);
 				}
 				self->mode = 5;
-			} else if (fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x200) != 0) {
+			} else if (ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x200) != 0) {
 				h = lbl_8042C388;
 				if (h) {
 					fn_800B52E8(h, 0xE009, 0, 0);
@@ -275,7 +275,7 @@ void advE3Rom_exec(AdvE3Rom* self)
 			if (self->counter == 0) {
 				self->mode  = 2;
 				self->timer = lbl_1_rodata_0;
-			} else if (fn_800158EC((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 8) != 0
+			} else if (edgeCheck((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 8) != 0
 			    || ((s16*)(lbl_8029BBD0 + 0x226))[lbl_802408F8 * 0x26] < -0x32) {
 				h = lbl_8042C388;
 				if (h) {
@@ -283,14 +283,14 @@ void advE3Rom_exec(AdvE3Rom* self)
 				}
 				self->mode    = 4;
 				self->counter = 0x708;
-			} else if (fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0
-			    || fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x100) != 0) {
+			} else if (ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x1000) != 0
+			    || ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x100) != 0) {
 				h = lbl_8042C388;
 				if (h) {
 					fn_800B52E8(h, 0xE008, 0, 0);
 				}
 				self->mode = 7;
-			} else if (fn_800158A0((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x200) != 0) {
+			} else if (ConvertBit_AD((u8*)lbl_8029BBD0 + lbl_802408F8 * 0x4C + 0x48, 0x200) != 0) {
 				h = lbl_8042C388;
 				if (h) {
 					fn_800B52E8(h, 0xE009, 0, 0);
@@ -463,9 +463,9 @@ void advE3Rom_disp(AdvE3Rom* self)
 			case 0:
 			case 3:
 				if (fn_1_12A0(lbl_8042C180, 0x14) == 0) {
-					lbl_803EC340[1] = 0x1A;
+					MoviePlaySub[1] = 0x1A;
 				} else {
-					lbl_803EC340[1] = 0x19;
+					MoviePlaySub[1] = 0x19;
 				}
 				fn_800A96B0(lbl_80303EC8, 0x31, 5);
 				break;
