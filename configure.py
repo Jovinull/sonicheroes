@@ -524,6 +524,42 @@ config.libs = [
                     "-opt noschedule,nopeephole",
                 ],
             ),
+            Object(
+                Matching,
+                "game/action_cont1.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont2.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont3.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont4.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
         ],
     },
     Rel(
@@ -1292,9 +1328,17 @@ config.custom_build_rules = [
     },
     {
         "name": "fix_game_action_object",
-        "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path}",
-        "description": "FIX action.cpp split symbols",
+        "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part 0",
+        "description": "FIX action.cpp part 0",
     },
+    *[
+        {
+            "name": f"fix_game_action_object_{part}",
+            "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part {part}",
+            "description": f"FIX action.cpp part {part}",
+        }
+        for part in range(1, 5)
+    ],
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -1328,6 +1372,15 @@ config.custom_build_steps = {
             "inputs": "build/G9SE8P/src/game/action.o",
             "implicit": ["tools/fix_game_action_object.py", str(binutils_dir)],
         },
+        *[
+            {
+                "outputs": f"build/G9SE8P/game-action-object-{part}.stamp",
+                "rule": f"fix_game_action_object_{part}",
+                "inputs": f"build/G9SE8P/src/game/action_cont{part}.o",
+                "implicit": ["tools/fix_game_action_object.py", str(binutils_dir)],
+            }
+            for part in range(1, 5)
+        ],
     ],
 }
 

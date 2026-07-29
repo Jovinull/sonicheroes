@@ -95,6 +95,23 @@ game/action.cpp:
 	extabindex  start:0x8000BF8C end:0x8000BFB0
 	.text       start:0x80018C0C end:0x80019034
 
+game/action_cont1.cpp:
+	extab       start:0x80005940 end:0x80005A90
+	extabindex  start:0x8000BFB0 end:0x8000C118
+	.text       start:0x80019034 end:0x8001D70C
+	.ctors      start:0x802398C8 end:0x802398CC
+
+game/action_cont2.cpp:
+	.text       start:0x8001D70C end:0x8001D718
+
+game/action_cont3.cpp:
+	extab       start:0x80005A90 end:0x80005A98
+	extabindex  start:0x8000C118 end:0x8000C124
+	.text       start:0x8001D718 end:0x8001D754
+
+game/action_cont4.cpp:
+	.text       start:0x8001D754 end:0x8001D764
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

@@ -519,3 +519,26 @@ As in `Task.cpp`, CodeWarrior emits the deleting operator before the destructor
 whose cleanup uses it. The post-compile normalizer moves the already-matching
 function and exception records into retail source order without changing
 instructions.
+
+### Game action translation unit
+
+`game/action.cpp` is reconstructed as C++.
+
+The GameCube object directly establishes the language through its mangled
+`ACTION` and `FADESCREEN` member symbols, virtual calls, static initializer and
+exception metadata. The preceding `Memory.cpp` boundary and the contiguous
+retail symbols fix this unit at `0x80018C0C`–`0x8001D764`. All 61 functions
+across the five retail split objects match byte-for-byte in objdiff.
+
+`ACTION::Loop` needs `opt_lifetimes off` and a function-scope iterator aggregate
+to reproduce CodeWarrior's original register interference graph. Its task loops
+remain ordinary indexed C++ and compile to the retail pointer walks. The
+post-compile helper restores split symbols, uses the existing retail
+switch-table data, and removes a duplicate weak inline-destructor atom that
+GC/1.3.2 emits only because the reconstructed unit is compiled in isolation.
+It does not alter the instruction bytes of any retail function.
+
+The five entries in `splits.txt` are build fragments of this one C++ source,
+not evidence for five original translation units. The four continuation files
+contain only an include of `action.cpp`; their purpose is to preserve the
+retail object boundaries required by the MetroWerks linker.
