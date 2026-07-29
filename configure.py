@@ -578,6 +578,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/texture.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/SpAdvStgFailed.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
