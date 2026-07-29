@@ -457,6 +457,11 @@ config.libs = [
         "objects": [
             Object(
                 Matching,
+                "game/hAnim.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"],
+            ),
+            Object(
+                Matching,
                 "game/heap.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
             ),

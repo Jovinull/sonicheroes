@@ -58,6 +58,16 @@ game/dvd_status.cpp:
 game/state_accessor.cpp:
 	.text       start:0x80013398 end:0x800133D0
 
+game/hAnim.cpp:
+	extab       start:0x80008300 end:0x80008348
+	extabindex  start:0x8000EA10 end:0x8000EA7C
+	.text       start:0x800BCE78 end:0x800BD1E8
+	.ctors      start:0x802398EC end:0x802398F0
+	.bss        start:0x803041D0 end:0x803041DC
+	.bss        start:0x803041DC end:0x803041E0 skip
+	.sbss       start:0x8042C3D0 end:0x8042C3D8
+	.sdata2     start:0x8042DDB0 end:0x8042DDC8
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
