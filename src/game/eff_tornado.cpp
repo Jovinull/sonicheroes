@@ -741,8 +741,8 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		do {
 			void* model = tornadoModel(models, 2);
 			void* frame = tornadoFrame(model);
-			s32 tableIndex;
 			s32 vectorOffset;
+			s32 tableIndex;
 			fn_8019EC30(frame,
 			    (RwV3d*)((u8*)positions
 			        + (vectorOffset = (tableIndex = index & 7) * sizeof(RwV3d))),
