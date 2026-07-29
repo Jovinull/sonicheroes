@@ -58,6 +58,13 @@ game/dvd_status.cpp:
 game/state_accessor.cpp:
 	.text       start:0x80013398 end:0x800133D0
 
+game/modeswitch.cpp:
+	extab       start:0x80005BA8 end:0x80005BC0
+	extabindex  start:0x8000C2A4 end:0x8000C2C8
+	.text       start:0x8001F4E8 end:0x8001F600
+	.data       start:0x802412C0 end:0x80241308
+	.sbss       start:0x8042C180 end:0x8042C188
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

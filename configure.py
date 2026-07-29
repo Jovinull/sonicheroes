@@ -500,6 +500,15 @@ config.libs = [
                 "game/dvd_status.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/modeswitch.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-inline deferred",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
         ],
     },
     Rel(

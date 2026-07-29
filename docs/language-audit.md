@@ -272,10 +272,10 @@ After the GameCube platform-main decision:
 - no C-compiled game source still awaits a language decision;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- one source, `game/state_accessor.cpp`, has a reviewed `-inline deferred`
-  override.
+- two sources, `game/state_accessor.cpp` and `game/modeswitch.cpp`, have
+  reviewed `-inline deferred` overrides.
 
-### Reviewed inline exception
+### Reviewed inline exceptions
 
 `game/state_accessor.cpp` keeps its object-level `-inline deferred` override.
 The disc supplies no map, DWARF or named symbols that establish a natural
@@ -289,6 +289,18 @@ override, it emits the original GameCube address order:
 the target `.text` exactly, including the branchless comparison in
 `fn_800133A8`; the ordinary mode does not. The target and both candidates have
 no relocations, so there is no hidden relocation tradeoff.
+
+`game/modeswitch.cpp` also keeps an object-level `-inline deferred` override.
+The PS2 beta debug symbols identify the original C++ source and its
+`MODESWITCH` constructor, destructor, and setter. Declaring those three
+functions in constructor/destructor/setter order under ordinary
+`-inline auto` emits the exception records in that same order, while the
+GameCube object records setter/destructor/constructor. Deferred emission
+reverses the source order and reproduces the target `.text`, `extab`, and
+`extabindex`, including every function and exception-table relocation. Its
+initializer arrays must remain writable at the same time: const qualification
+under deferred emission moves them to `.rodata`, whereas the writable
+declarations reproduce the target `.data` byte-for-byte.
 
 The same controlled comparison was performed for `game/dvd_status.cpp`.
 Removing its deferred override preserved the function instructions, jump-table
