@@ -51,6 +51,11 @@ RENAMES = {
     "dispPunch__6ACTIONFPv7BitFlag": "fn_8001A730",
     "dispOpeq__6ACTIONFPv7BitFlag": "fn_8001A950",
     "Exec__6ACTIONFv": "fn_8001AB48",
+    "Loop__6ACTIONFv": "fn_8001B120",
+    "fn_8019CC28_noarg": "fn_8019CC28",
+    "fn_8019CC00_noarg": "fn_8019CC00",
+    "fn_800122B4_noarg": "fn_800122B4",
+    "fn_80177C50_noarg": "fn_80177C50",
     "Action": "lbl_8029C310",
     "@160": "jumptable_80240E40",
 }
