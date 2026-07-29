@@ -272,29 +272,23 @@ After the GameCube platform-main decision:
 - no C-compiled game source still awaits a language decision;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- one source, `game/state_accessor.cpp`, has a reviewed `-inline deferred`
-  override.
+- one source, `game/skyfs_adx.c`, has a reviewed `-inline deferred` override.
 
 ### Reviewed inline exception
 
-`game/state_accessor.cpp` keeps its object-level `-inline deferred` override.
-The disc supplies no map, DWARF or named symbols that establish a natural
-source order for these anonymous accessors; that absence is recorded rather
-than inferred away. The controlled source permutation declares the four
-forced-active functions in reverse address order.
-With ordinary `-inline auto`, CodeWarrior emits that declaration order:
-`fn_800133C8`, `fn_800133A8`, `fn_800133A0`, `fn_80013398`. With the deferred
-override, it emits the original GameCube address order:
-`fn_80013398`, `fn_800133A0`, `fn_800133A8`, `fn_800133C8`. The latter matches
-the target `.text` exactly, including the branchless comparison in
-`fn_800133A8`; the ordinary mode does not. The target and both candidates have
-no relocations, so there is no hidden relocation tradeoff.
+`game/skyfs_adx.c` is the sole reviewed object-level `-inline deferred`
+exception. PS2 beta DWARF identifies the original source as C and establishes
+the natural function order. GameCube section adjacency and shared private data
+correlate the state, DVD-status, accessor and file-system fragments with that
+single translation unit.
 
-The same controlled comparison was performed for `game/dvd_status.cpp`.
-Removing its deferred override preserved the function instructions, jump-table
-contents and relocation targets. Only compiler-generated local symbol numbers
-changed, which do not affect the linked result. The redundant override was
-therefore removed rather than allowlisted.
+With ordinary `-inline auto`, CodeWarrior changes the accessor emission and its
+call sites. The deferred mode reproduces the target order, all 19 functions,
+relocations and owned sections byte-for-byte. The unified object passes the
+configured language-policy check, complete artifact hash check and retail DOL
+SHA-1 gate. The obsolete standalone accessor and DVD-status fragments and
+their redundant inline overrides were therefore removed rather than retained
+as separate exceptions.
 
 ### Protected C++ migration debt
 
