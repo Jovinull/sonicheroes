@@ -609,12 +609,12 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	void** resources = lbl_802532F4;
 	u8* material     = (u8*)resources[0];
 	Color color      = *(Color*)(material + 4);
-	f32 multiplier   = lbl_8042DBF4;
-	color.alpha      = (u8)(effect->alpha * multiplier);
-	material[4]      = color.red;
-	material[5]      = color.green;
-	material[6]      = color.blue;
-	material[7]      = color.alpha;
+	f32 multiplier;
+	color.alpha = (u8)(effect->alpha * (multiplier = lbl_8042DBF4));
+	material[4] = color.red;
+	material[5] = color.green;
+	material[6] = color.blue;
+	material[7] = color.alpha;
 
 	material    = (u8*)resources[1];
 	color.red   = material[4];
