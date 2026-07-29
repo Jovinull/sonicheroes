@@ -45,6 +45,11 @@ RENAMES = {
     "SetGoalAction__6ACTIONFi": "fn_80019898",
     "StepStage__6ACTIONFv": "fn_80019A20",
     "ExitPauseMode__6ACTIONFv": "fn_80019A68",
+    "EnterPauseMode__6ACTIONFv": "fn_80019BFC",
+    "CheckPauseOff__6ACTIONFv": "fn_80019F80",
+    "dispAlpha__6ACTIONFPv7BitFlag": "fn_8001A518",
+    "dispPunch__6ACTIONFPv7BitFlag": "fn_8001A730",
+    "dispOpeq__6ACTIONFPv7BitFlag": "fn_8001A950",
     "Action": "lbl_8029C310",
     "@160": "jumptable_80240E40",
 }
