@@ -54,8 +54,8 @@ extern "C" const f32 lbl_1_rodata_19A4;
 extern "C" u8 lbl_1_data_75FC[];
 extern "C" u8 lbl_1_data_79B0[0x2C];
 
-extern "C" void dtor_800186D0(Fade* fade, s32 flag);
-extern "C" void fn_80018818(Fade* fade);
+extern "C" void __dt__7TObjectFv(Fade* fade, s32 flag);
+extern "C" void __ct__7TObjectFP7TObject(Fade* fade);
 extern "C" void fn_8012CC20(void* handle);
 extern "C" void fn_8012CEF0(void* handle, f32 value);
 extern "C" void fn_1_AEC(void* memory);
@@ -122,7 +122,7 @@ extern "C" Fade* fn_1_EE7C(Fade* fade, s16 free)
 {
 	if (fade != NULL) {
 		fade->vtable = lbl_1_data_79B0;
-		dtor_800186D0(fade, 0);
+		__dt__7TObjectFv(fade, 0);
 		if (free > 0) {
 			fn_1_AEC(fade);
 		}
@@ -132,7 +132,7 @@ extern "C" Fade* fn_1_EE7C(Fade* fade, s16 free)
 
 extern "C" Fade* fn_1_EEE4(Fade* fade, void* owner, s32 kind)
 {
-	fn_80018818(fade);
+	__ct__7TObjectFP7TObject(fade);
 	fade->vtable   = lbl_1_data_79B0;
 	fade->from     = lbl_1_rodata_19A4;
 	fade->kind     = kind;

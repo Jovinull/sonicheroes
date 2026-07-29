@@ -567,6 +567,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/enemy_voice.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-bool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/action.cpp",
                 extra_cflags=[
                     "-Cpp_exceptions on",

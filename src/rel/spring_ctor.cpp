@@ -112,7 +112,7 @@ static inline u32 springFlags(Spring* object)
 
 extern "C" World* lbl_8042C1D0;
 
-extern "C" void fn_80018818(TObject* object, void* owner);
+extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
 extern "C" void fn_8003BF04(void* part, const void* params, s32 a, s32 b);
 extern "C" void fn_8003C618(void* part);
 extern "C" s32 fn_8005B8D8(Motion* motion);
@@ -137,7 +137,7 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 	PathParams* params;
 	s32* handle;
 
-	fn_80018818(&object->base, owner);
+	__ct__7TObjectFP7TObject(&object->base, owner);
 	fn_8005BE6C(&object->motion);
 	fn_8003C618(&object->list);
 
