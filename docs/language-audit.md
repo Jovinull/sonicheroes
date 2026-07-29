@@ -335,6 +335,36 @@ Validation:
 - the complete build relinked `main.dol` and all modules;
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts.
 
+### HAnim helpers
+
+Added `game/hAnim.cpp` for the complete HAnim helper unit, including hierarchy
+node lookup, animation-key conversion, skin hierarchy attachment and
+recursive frame discovery.
+
+Language evidence:
+
+- the PS2 beta symbols identify the same ordered run as methods of
+  `HAnimClass`, followed by its constructor, destructor and
+  `__sinit_hAnim.cpp`;
+- the GameCube unit contains the corresponding C++-mangled class methods,
+  global-object destructor registration and `.ctors` entry;
+- the source is therefore reconstructed as C++ rather than relying on a
+  C-path/C++-mode exception.
+
+Validation:
+
+- all eleven functions in `.text` `0x800BCE78` through `0x800BD1E8` match
+  byte-for-byte;
+- the complete `extab`, `extabindex`, `.ctors`, `.bss`, `.sbss` and
+  `.sdata2` sections and their relocations match;
+- the four-byte linker-alignment gap following the unit's 12-byte destructor
+  record is explicitly excluded from its `.bss` object;
+- the language-policy check and all independent object-level gates pass;
+- a clean full link currently stops in pre-existing upstream code:
+  `dvd.c` references the missing `__DVDIsBlockInWaitingQueue`, while the
+  in-progress GX sources reference the unconfigured `__gxVerif`; this unit
+  introduces neither reference.
+
 ## Remaining queue
 
 After the GameCube platform-main decision:
