@@ -642,15 +642,22 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
 
 	s32 angle = (s32)(lbl_8042DBC4 * effect->scale);
+	void** models;
+	RwV3d* positions;
+	RwV3d* directions;
+	RotationPair* rotations;
+	RwV3d* firstAxis;
+	s32* angleOffsets;
+	RwV3d* secondAxis;
 	{
-		void** models           = lbl_802532E8;
-		RwV3d* positions        = lbl_8025337C;
-		RwV3d* directions       = lbl_802533DC;
-		RotationPair* rotations = lbl_8025343C;
-		RwV3d* firstAxis        = &lbl_80239978;
-		f32 one                 = lbl_8042DBC0;
-		s32* angleOffsets       = lbl_8025347C;
-		RwV3d* secondAxis       = &lbl_80239984;
+		models       = lbl_802532E8;
+		positions    = lbl_8025337C;
+		directions   = lbl_802533DC;
+		rotations    = lbl_8025343C;
+		firstAxis    = &lbl_80239978;
+		f32 one      = lbl_8042DBC0;
+		angleOffsets = lbl_8025347C;
+		secondAxis   = &lbl_80239984;
 		f32 sine;
 		f32 increment = lbl_8042DC24;
 		f32 limit     = lbl_8042DBB8;
@@ -682,14 +689,14 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	}
 
 	{
-		void** models           = lbl_802532E8;
-		RwV3d* positions        = lbl_8025337C;
-		RwV3d* directions       = lbl_802533DC;
-		RotationPair* rotations = lbl_8025343C;
-		RwV3d* firstAxis        = &lbl_80239978;
-		f32 one                 = lbl_8042DBC0;
-		s32* angleOffsets       = lbl_8025347C;
-		RwV3d* secondAxis       = &lbl_80239984;
+		models       = lbl_802532E8;
+		positions    = lbl_8025337C;
+		directions   = lbl_802533DC;
+		rotations    = lbl_8025343C;
+		firstAxis    = &lbl_80239978;
+		f32 one      = lbl_8042DBC0;
+		angleOffsets = lbl_8025347C;
+		secondAxis   = &lbl_80239984;
 		f32 sine;
 		f32 limit;
 		f32 increment = lbl_8042DC24;
