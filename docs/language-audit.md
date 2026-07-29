@@ -438,6 +438,21 @@ Until those owners coordinate integration, the checker permits this debt only
 under `advertiseD/` and `autosaveD/`. A legacy C++/`.c` entry anywhere else is
 a policy error.
 
+### `game/SeqFlagCtrl.cpp`
+
+`game/SeqFlagCtrl.cpp` is C++.
+
+Evidence and rationale:
+
+- the PS2 beta metadata retains the `SeqFlagCtrl.cpp` source marker, the
+  `TQuestSeqCtrl::CheckSequenceVars(int)` and
+  `TQuestSeqCtrl::SetSequenceVars(int)` methods, and the class-owned `seqVars`
+  array;
+- the GameCube pair performs the same bounded bit lookup and update against the
+  corresponding 128-byte array;
+- the configured C++ object matches its complete text and uninitialized-data
+  ranges byte-for-byte.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.
