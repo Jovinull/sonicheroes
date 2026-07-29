@@ -154,6 +154,10 @@ game/dAnim.cpp:
 game/dAnim_ctor.cpp:
 	.text       start:0x800A80DC end:0x800A80E0
 
+game/eventCore.cpp:
+	.text       start:0x8011E5A4 end:0x8011E5F0
+	.rodata     start:0x8023AAB0 end:0x8023ACB0
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

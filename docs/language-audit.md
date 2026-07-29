@@ -580,6 +580,20 @@ Keeping its empty definition visible in the body object suppresses a constructor
 call in the static initializer, while emitting the definition separately
 preserves the original constructor-after-initializer text order.
 
+### `game/eventCore.cpp`
+
+`game/eventCore.cpp` is C++.
+
+Evidence and rationale:
+
+- the PS2 beta metadata retains the `eventCore.cpp` source marker,
+  `EventVoiceList::GetTopVoiceOffset(int)` and the class-owned
+  `eventVoiceTopList` table;
+- the GameCube function performs the same event-number lookup against the
+  corresponding 64-entry table;
+- the configured C++ object matches its complete text and read-only-data ranges
+  byte-for-byte.
+
 ### CRI SFX compiler-mode exception
 
 `movieD/cri/sfx.c` remains a `.c` source and retains `-lang=c++`.
