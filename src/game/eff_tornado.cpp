@@ -121,8 +121,8 @@ void fn_8003C200(void*, void*, s32, s32);
 void fn_80021384(void*);
 void* fn_8006298C(s32, RwV3d*, sAngle*);
 void* fn_8005EA04(const char*);
-void* fn_8005E410(void*, s32, void*);
-void* fn_8005E1DC(void*, s32, void*);
+void* fn_8005E410(void*, s32, const void*);
+void* fn_8005E1DC(void*, s32, const void*);
 void fn_8005DA34(void*);
 void fn_8005D9F4(void*);
 void fn_8005D6DC(void*);
@@ -149,15 +149,16 @@ extern void* lbl_8042C368;
 extern void* lbl_8042C36C;
 extern void* lbl_8042C370;
 extern void* lbl_8042C374;
+extern s32 lbl_8042C378[2];
 extern void* lbl_8042C360;
 extern void* lbl_8042C364;
 extern u8 lbl_8042C3D0[4];
-extern u8 lbl_8042B364[4];
-extern u8 lbl_8042B36C[4];
 extern void* lbl_80303F98[3];
 extern const char* lbl_8042B350;
+extern const char* lbl_8042B358;
 extern const char* lbl_8042B360;
 extern const char* lbl_8042B354;
+extern Color lbl_8042B35C;
 extern u8 lbl_8025333C[];
 extern void* lbl_8025361C[];
 extern void* lbl_802532E8[3];
@@ -171,6 +172,10 @@ extern char lbl_80253578[];
 extern char lbl_8025358C[];
 extern char lbl_802535A4[];
 extern char lbl_802535B4[];
+extern char lbl_8025336C[];
+extern char lbl_8025349C[];
+extern char lbl_802534B0[];
+extern char lbl_802534D4[];
 extern f32 lbl_8042DBB0;
 extern f32 lbl_8042DBB4;
 extern f32 lbl_8042DBB8;
@@ -912,6 +917,12 @@ extern "C" void EndEffTornado__Fv()
 	lbl_8042C374    = 0;
 }
 
+const char* lbl_8042B350 = lbl_8025336C;
+const char* lbl_8042B354 = lbl_8025349C;
+const char* lbl_8042B358 = lbl_802534B0;
+Color lbl_8042B35C       = { 0x60, 0x60, 0x60, 0xff };
+const char* lbl_8042B360 = lbl_802534D4;
+
 #pragma opt_common_subs off
 extern "C" void InitEffTornado__Fv()
 {
@@ -919,14 +930,14 @@ extern "C" void InitEffTornado__Fv()
 		if (lbl_802532E8[i] == 0) {
 			lbl_802532E8[i] = fn_8005EA04(lbl_80253330[i]);
 			if (lbl_802532E8[i] != 0) {
-				lbl_802532F4[i] = fn_8005E410(lbl_802532E8[i], 0, lbl_8042B364);
+				lbl_802532F4[i] = fn_8005E410(lbl_802532E8[i], 0, "ef_tnd");
 			}
 		}
 	}
 
 	lbl_8042C350 = fn_8005EA04(lbl_80253568);
 	if (lbl_8042C350 != 0) {
-		lbl_8042C354 = fn_8005E410(lbl_8042C350, 0, lbl_8042B36C);
+		lbl_8042C354 = fn_8005E410(lbl_8042C350, 0, "ef_chbl");
 		lbl_8042C370 = lbl_8042C354;
 		lbl_8042C368 = fn_800BD0AC(lbl_8042C3D0, lbl_8042C350);
 		fn_8005D9F4(lbl_8042C350);
@@ -935,7 +946,7 @@ extern "C" void InitEffTornado__Fv()
 
 	lbl_8042C358 = fn_8005EA04(lbl_80253578);
 	if (lbl_8042C358 != 0) {
-		lbl_8042C35C = fn_8005E410(lbl_8042C358, 0, lbl_8042B36C);
+		lbl_8042C35C = fn_8005E410(lbl_8042C358, 0, "ef_chbl");
 		fn_8005DA34(lbl_8042C358);
 		fn_8005D9F4(lbl_8042C358);
 		fn_8005D6DC(lbl_8042C358);
@@ -943,7 +954,7 @@ extern "C" void InitEffTornado__Fv()
 
 	lbl_8042C360 = fn_8005EA04(lbl_8025358C);
 	if (lbl_8042C360 != 0) {
-		lbl_8042C364 = fn_8005E410(lbl_8042C360, 0, lbl_8042B36C);
+		lbl_8042C364 = fn_8005E410(lbl_8042C360, 0, "ef_chbl");
 		fn_8005DA34(lbl_8042C360);
 		fn_8005D9F4(lbl_8042C360);
 		fn_8005D6DC(lbl_8042C360);
@@ -959,7 +970,7 @@ extern "C" void InitEffTornado__Fv()
 
 	lbl_8042C374 = fn_8005EA04(lbl_802535B4);
 	if (lbl_8042C374 != 0 && lbl_8042C370 != 0) {
-		void* material  = fn_8005E1DC(lbl_8042C350, 0, lbl_8042B36C);
+		void* material  = fn_8005E1DC(lbl_8042C350, 0, "ef_chbl");
 		lbl_80303F98[0] = lbl_8042C374;
 		fn_8005C014(material);
 		fn_801491A8(material);
@@ -1062,3 +1073,15 @@ char lbl_80253578[]   = "EF_TORNADO_RING.DFF";
 char lbl_8025358C[]   = "EF_TORNADO_RINGB.DFF";
 char lbl_802535A4[]   = "EF_TORNADO.ANM";
 char lbl_802535B4[]   = "EF_TORNADO.UVB";
+
+void* lbl_8042C350;
+void* lbl_8042C354;
+void* lbl_8042C358;
+void* lbl_8042C35C;
+void* lbl_8042C360;
+void* lbl_8042C364;
+void* lbl_8042C368;
+void* lbl_8042C36C;
+void* lbl_8042C370;
+void* lbl_8042C374;
+s32 lbl_8042C378[2];
