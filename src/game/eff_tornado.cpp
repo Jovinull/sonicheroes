@@ -180,7 +180,6 @@ extern s32 lbl_8042C378[2];
 extern void* lbl_8042C360;
 extern void* lbl_8042C364;
 extern void* lbl_8042C180;
-extern s32 lbl_8042C378;
 extern Rgba lbl_8042B35C;
 extern u8 lbl_8042C3D0[4];
 extern void* lbl_80303F98[3];
@@ -188,7 +187,6 @@ extern const char* lbl_8042B350;
 extern const char* lbl_8042B358;
 extern const char* lbl_8042B360;
 extern const char* lbl_8042B354;
-extern Color lbl_8042B35C;
 extern u8 lbl_8025333C[];
 extern void* lbl_8025361C[];
 extern void* lbl_802532E8[3];
@@ -805,8 +803,8 @@ void TObjEffTornado2::TDisp()
 
 	model = lbl_8042C350;
 	frame = *(s32*)((u8*)lbl_8042C180 + 0x30);
-	if (lbl_8042C378 != frame) {
-		f32 elapsed = (f32)(frame - lbl_8042C378);
+	if (lbl_8042C378[0] != frame) {
+		f32 elapsed = (f32)(frame - lbl_8042C378[0]);
 		if (lbl_8042C370 != 0 && lbl_8042C374 != 0) {
 			fn_8011B844(elapsed);
 			fn_8014FFBC(model, (void*)fn_8005BF88, lbl_80303F98);
@@ -815,7 +813,7 @@ void TObjEffTornado2::TDisp()
 			fn_8020CC18(*(void**)((u8*)lbl_8042C368 + 0x20), lbl_8042DBBC * elapsed);
 			fn_8013FC30(lbl_8042C368);
 		}
-		lbl_8042C378 = frame;
+		lbl_8042C378[0] = frame;
 	}
 
 	void* primaryFrame = *(void**)((u8*)model + 4);
@@ -1263,7 +1261,7 @@ extern "C" void EndEffTornado__Fv()
 const char* lbl_8042B350 = lbl_8025336C;
 const char* lbl_8042B354 = lbl_8025349C;
 const char* lbl_8042B358 = lbl_802534B0;
-Color lbl_8042B35C       = { 0x60, 0x60, 0x60, 0xff };
+Rgba lbl_8042B35C        = { 0x60, 0x60, 0x60, 0xff };
 const char* lbl_8042B360 = lbl_802534D4;
 
 #pragma opt_common_subs off
