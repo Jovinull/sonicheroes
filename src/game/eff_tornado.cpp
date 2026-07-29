@@ -507,6 +507,16 @@ static inline void copyAngle(sAngle* destination, const sAngle* source)
 	}
 }
 
+static inline void* tornadoModel(void** models, s32 index)
+{
+	return models[index];
+}
+
+static inline void* tornadoFrame(void* model)
+{
+	return *(void**)((u8*)model + 4);
+}
+
 extern "C" void TDisp__14TObjEffTyphoonFv(TObjEffTyphoon* effect)
 {
 	TDisp__14TObjEffTornadoFv(effect);
@@ -617,8 +627,8 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 increment           = lbl_8042DC24;
 		f32 limit               = lbl_8042DBB8;
 		while (height <= limit) {
-			void* model    = models[0];
-			void* frame    = *(void**)((u8*)model + 4);
+			void* model    = tornadoModel(models, 0);
+			void* frame    = tornadoFrame(model);
 			s32 tableIndex = index & 7;
 			fn_8019EC30(frame, &positions[tableIndex], 0);
 			fn_8019EB94(frame, &directions[tableIndex], 2);
@@ -651,8 +661,8 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 increment           = lbl_8042DC24;
 		f32 limit               = lbl_8042DBF0;
 		while (height <= limit) {
-			void* model    = models[1];
-			void* frame    = *(void**)((u8*)model + 4);
+			void* model    = tornadoModel(models, 1);
+			void* frame    = tornadoFrame(model);
 			s32 tableIndex = index & 7;
 			fn_8019EC30(frame, &positions[tableIndex], 0);
 			fn_8019EB94(frame, &directions[tableIndex], 2);
@@ -683,8 +693,8 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		s32* angleOffsets       = lbl_8025347C;
 		RwV3d* secondAxis       = &lbl_80239984;
 		do {
-			void* model    = models[2];
-			void* frame    = *(void**)((u8*)model + 4);
+			void* model    = tornadoModel(models, 2);
+			void* frame    = tornadoFrame(model);
 			s32 tableIndex = index & 7;
 			fn_8019EC30(frame, &positions[tableIndex], 0);
 			fn_8019EB94(frame, &directions[tableIndex], 2);
