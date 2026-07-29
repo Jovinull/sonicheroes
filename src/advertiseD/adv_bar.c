@@ -42,8 +42,8 @@ extern "C" BarDesc lbl_1_data_7CD0;
 extern "C" u8 lbl_1_data_7D54[0x18];
 extern "C" u8 lbl_1_data_7D6C[0x2C];
 
-extern "C" void dtor_800186D0(AdvBar* bar, s32 flag);
-extern "C" void fn_80018818(AdvBar* bar);
+extern "C" void __dt__7TObjectFv(AdvBar* bar, s32 flag);
+extern "C" void __ct__7TObjectFP7TObject(AdvBar* bar);
 extern "C" void fn_8012CA94(void* resource);
 extern "C" void fn_8012CB70(void* resource);
 extern "C" void fn_1_AEC(void* memory);
@@ -52,7 +52,7 @@ extern "C" AdvBar* fn_1_10D1C(AdvBar* bar, s16 free)
 {
 	if (bar != NULL) {
 		bar->vtable = lbl_1_data_7D6C;
-		dtor_800186D0(bar, 0);
+		__dt__7TObjectFv(bar, 0);
 		if (free > 0) {
 			fn_1_AEC(bar);
 		}
@@ -62,7 +62,7 @@ extern "C" AdvBar* fn_1_10D1C(AdvBar* bar, s16 free)
 
 extern "C" AdvBar* fn_1_10D84(AdvBar* bar)
 {
-	fn_80018818(bar);
+	__ct__7TObjectFP7TObject(bar);
 	bar->vtable = lbl_1_data_7D6C;
 	bar->name   = lbl_1_data_7CBC;
 	bar->unk1E  = 0x30;

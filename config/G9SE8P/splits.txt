@@ -58,6 +58,12 @@ game/dvd_status.cpp:
 game/state_accessor.cpp:
 	.text       start:0x80013398 end:0x800133D0
 
+game/enemy_voice.cpp:
+	extab       start:0x8000B9CC end:0x8000BA80
+	extabindex  start:0x80011A34 end:0x80011AA0
+	.text       start:0x80139738 end:0x80139FC4
+	.data       start:0x8028CFB0 end:0x8028D068
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

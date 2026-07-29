@@ -13,7 +13,7 @@
 // apart. The constructor builds them front to back and the destructor tears
 // them down back to front, which is what the two orders below say.
 //
-// fn_80018818 is declared here with the parent it is handed. The other units
+// __ct__7TObjectFP7TObject is declared here with the parent it is handed. The other units
 // that call it - adv_bar.c, adv_help.c, fade_object.c - declare it with one
 // parameter, because at their call sites the second register already holds
 // what it needs and no instruction moves it. Here the caller has to load it,
@@ -63,7 +63,7 @@ extern "C" u8 lbl_1_data_3818[0x2C];
 extern "C" void fn_800A80DC(Select* select, s32 value);
 extern "C" void fn_800A8620(Select* select, s32 flag);
 extern "C" void fn_800A8828(Select* select);
-extern "C" void* fn_80018818(void* object, Select* parent);
+extern "C" void* __ct__7TObjectFP7TObject(void* object, Select* parent);
 extern "C" void* fn_1_89E4(void* object, Select* parent);
 extern "C" void* fn_1_8B8C(void* object, Select* parent, s32 index);
 extern "C" void* fn_1_8E18(void* object, Select* parent);
@@ -186,7 +186,7 @@ extern "C" Select* fn_1_A208(Select* select, void* context)
 
 	child = fn_1_B1C(0x28);
 	if (child != NULL) {
-		child = fn_80018818(child, select);
+		child = __ct__7TObjectFP7TObject(child, select);
 	}
 	select->cursor = child;
 

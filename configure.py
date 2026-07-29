@@ -500,6 +500,11 @@ config.libs = [
                 "game/dvd_status.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/enemy_voice.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-bool off", "-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(

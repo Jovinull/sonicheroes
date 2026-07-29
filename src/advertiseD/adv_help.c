@@ -48,8 +48,8 @@ extern "C" HelpDesc lbl_1_data_7C18;
 extern "C" u8 lbl_1_data_7C9C[0x18];
 extern "C" u8 lbl_1_data_7D98[0x30];
 
-extern "C" void dtor_800186D0(AdvHelp* help, s32 flag);
-extern "C" void fn_80018818(AdvHelp* help);
+extern "C" void __dt__7TObjectFv(AdvHelp* help, s32 flag);
+extern "C" void __ct__7TObjectFP7TObject(AdvHelp* help);
 extern "C" void fn_8012CA94(void* resource);
 extern "C" void fn_8012CB70(void* resource);
 extern "C" void fn_1_AEC(void* memory);
@@ -58,7 +58,7 @@ extern "C" AdvHelp* fn_1_10ED8(AdvHelp* help, s16 free)
 {
 	if (help != NULL) {
 		help->vtable = lbl_1_data_7D98;
-		dtor_800186D0(help, 0);
+		__dt__7TObjectFv(help, 0);
 		if (free > 0) {
 			fn_1_AEC(help);
 		}
@@ -68,7 +68,7 @@ extern "C" AdvHelp* fn_1_10ED8(AdvHelp* help, s16 free)
 
 extern "C" AdvHelp* fn_1_10F40(AdvHelp* help, void* owner)
 {
-	fn_80018818(help);
+	__ct__7TObjectFP7TObject(help);
 	help->vtable = lbl_1_data_7D98;
 	help->name   = lbl_1_data_7BF4;
 	help->unk1E  = 0x30;
