@@ -180,6 +180,23 @@ game/enemy_voice.cpp:
 	.text       start:0x80139738 end:0x80139FC4
 	.data       start:0x8028CFB0 end:0x8028D068
 
+game/moviePlay.cpp:
+	extab       start:0x8000B97C end:0x8000B994
+	extabindex  start:0x800119EC end:0x80011A10
+	.text       start:0x801390A4 end:0x801391D0
+	.data       start:0x8028CAB0 end:0x8028CF04
+
+game/moviePlaySub.cpp:
+	extab       start:0x8000B994 end:0x8000B9CC
+	extabindex  start:0x80011A10 end:0x80011A34
+	.text       start:0x801391D0 end:0x80139738
+	.ctors      start:0x80239908 end:0x8023990C
+	.data       start:0x8028CF04 end:0x8028CFB0
+	.bss        start:0x803EC340 end:0x803EC350
+	.sdata      start:0x8042BC88 end:0x8042BCAC
+	.sbss       start:0x8042C7F0 end:0x8042C800
+	.sdata2     start:0x8042F158 end:0x8042F168
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 

@@ -527,6 +527,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/moviePlaySub.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/moviePlay.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/Endian.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
@@ -1359,6 +1369,10 @@ config.progress_report_args = [
 binutils_dir = config.binutils_path or (config.build_dir / "binutils")
 objcopy_exe = "powerpc-eabi-objcopy.exe" if is_windows() else "powerpc-eabi-objcopy"
 objcopy_path = binutils_dir / objcopy_exe
+nm_path = binutils_dir / ("powerpc-eabi-nm.exe" if is_windows() else "powerpc-eabi-nm")
+objdump_path = binutils_dir / (
+    "powerpc-eabi-objdump.exe" if is_windows() else "powerpc-eabi-objdump"
+)
 
 config.custom_build_rules = [
     {
@@ -1398,6 +1412,14 @@ config.custom_build_rules = [
         "name": "fix_sp_adv_stg_failed_object",
         "command": f"$python tools/fix_sp_adv_stg_failed_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SpAdvStgFailed compiler-only atom",
+    },
+    {
+        "name": "fix_movie_play_sub_symbols",
+        "command": (
+            f"$python tools/fix_movie_play_sub_symbols.py $in $out "
+            f"--objcopy {objcopy_path} --nm {nm_path} --objdump {objdump_path}"
+        ),
+        "description": "FIX moviePlaySub symbols",
     },
 ]
 config.custom_build_steps = {
@@ -1449,6 +1471,12 @@ config.custom_build_steps = {
                 "tools/fix_sp_adv_stg_failed_object.py",
                 str(binutils_dir),
             ],
+        },
+        {
+            "outputs": "build/G9SE8P/main/movie-play-sub-symbols.stamp",
+            "rule": "fix_movie_play_sub_symbols",
+            "inputs": "build/G9SE8P/src/game/moviePlaySub.o",
+            "implicit": ["tools/fix_movie_play_sub_symbols.py", str(binutils_dir)],
         },
     ],
 }
