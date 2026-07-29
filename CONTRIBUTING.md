@@ -92,6 +92,12 @@ environment-scoped package credential limited to `read:packages`. Repository
 collaborator access must never imply access to the package, original-game
 inputs, environment secrets or an owner's personal credentials.
 
+Before approving the first `private-build` deployment, a maintainer must first
+disable both package permission inheritance and automatic Actions access, then
+confirm that `GHCR_USERNAME` and the read-only `GHCR_TOKEN` exist as environment
+secrets. Do not approve or bypass a waiting job while either secret is missing,
+and never move the token to a repository-level secret.
+
 Paths in `legacy_cpp_c_sources` that already compile with `-lang=c++` are a
 migration queue. A path in `c_sources_compiled_as_cpp` is a reviewed C/vendor
 boundary whose C++ compiler mode is required for matching; do not rename it
