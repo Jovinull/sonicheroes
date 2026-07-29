@@ -457,6 +457,16 @@ config.libs = [
         "objects": [
             Object(
                 Matching,
+                "game/skeleton.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/hAnim.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"],
+            ),
+            Object(
+                Matching,
                 "game/heap.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
             ),
@@ -487,18 +497,139 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "game/state_set.cpp",
+                "game/skyfs_adx.c",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-Cpp_exceptions on",
+                    "-opt noschedule,nopeephole",
+                    "-inline deferred",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/Peripheral.cpp",
+                extra_cflags=["-lang=c++", "-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/main/main.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "game/state_accessor.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline deferred"],
+                "game/Task.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "game/dvd_status.cpp",
+                "game/Memory.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/moviePlaySub.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
+                "game/moviePlay.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/Endian.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/GetSpParam.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/dAnim.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"],
+            ),
+            Object(
+                Matching,
+                "game/dAnim_ctor.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/eventCore.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/SeqFlagCtrl.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/expasm.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/SpAdvStgFailed.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/SpAdvStgFailed_bss.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/enemy_voice.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-bool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/action.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont1.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont2.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont3.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "game/action_cont4.cpp",
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-bool off",
+                    "-opt noschedule,nopeephole",
+                ],
             ),
         ],
     },
@@ -507,163 +638,137 @@ config.libs = [
         [
             Object(
                 Matching,
+                "advertiseD/adv_e3rom.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/adv_title.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
+                "advertiseD/adv_fileselect.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
+                "advertiseD/adv_mainmenu.cpp",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-opt noschedule,nopeephole",
+                    "-inline noauto",
+                ],
+            ),
+            Object(
+                Matching,
+                "advertiseD/adv_player.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/adv_progressive.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
+            ),
+            Object(
+                Matching,
+                "advertiseD/adv_story.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
+            ),
+            Object(
+                Matching,
                 "advertiseD/prolog.c",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "advertiseD/resource_hooks.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_story_tail.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
             ),
             Object(
                 Matching,
-                "advertiseD/task_runtime.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_challenge.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
+                data_section_alignment=4,
             ),
             Object(
                 Matching,
-                "advertiseD/delayed_trigger.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_option.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
+                data_section_alignment=4,
             ),
             Object(
                 Matching,
-                "advertiseD/stage_values.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_audio.cpp",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-opt noschedule,nopeephole",
+                    "-pool off",
+                    "-inline noauto",
+                ],
             ),
             Object(
                 Matching,
-                "advertiseD/motion_reset.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_cg.cpp",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-opt noschedule,nopeephole",
+                    "-pool off",
+                    "-inline noauto",
+                ],
             ),
             Object(
                 Matching,
-                "advertiseD/marker_spawn.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_2p.cpp",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-opt noschedule,nopeephole",
+                    "-pool off",
+                    "-inline deferred,noauto",
+                ],
             ),
             Object(
                 Matching,
-                "advertiseD/demo_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_pal.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
             ),
             Object(
                 Matching,
-                "advertiseD/scene_tick.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_bar.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
             ),
             Object(
                 Matching,
-                "advertiseD/timed_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_bg.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
+            ),
+            Object(Matching, "advertiseD/adv_staffroll_data.cpp", extra_cflags=["-lang=c++"]),
+            Object(
+                Matching,
+                "advertiseD/adv_staffroll.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
             ),
             Object(
                 Matching,
-                "advertiseD/anim_handle.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                "advertiseD/adv_draw.cpp",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-opt noschedule,nopeephole",
+                    "-pool off",
+                    "-inline deferred,noauto",
+                ],
             ),
             Object(
                 Matching,
-                "advertiseD/choice_widget.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_draw_constants.cpp",
+                extra_cflags=["-lang=c++", "-pool off"],
             ),
             Object(
                 Matching,
-                "advertiseD/quad_fill.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/fade_step.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/line_count.c",
-                extra_cflags=["-lang=c++", "-bool off", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/resource_pair.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/panel_callbacks.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/adv_bar.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/adv_help.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/logo_spawn.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/attract_dispatch.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/quad_submit.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/marker_emitters.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/slot_refresh.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                NonMatching,
-                "advertiseD/slot_query.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/panel_setters.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/anim_stubs.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/emblem_gate.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/attract_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/fade_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/select_object.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "advertiseD/stage_start.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "advertiseD/adv_window.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
             ),
         ],
     ),
@@ -1244,12 +1349,62 @@ config.progress_report_args = [
 binutils_dir = config.binutils_path or (config.build_dir / "binutils")
 objcopy_exe = "powerpc-eabi-objcopy.exe" if is_windows() else "powerpc-eabi-objcopy"
 objcopy_path = binutils_dir / objcopy_exe
+nm_path = binutils_dir / ("powerpc-eabi-nm.exe" if is_windows() else "powerpc-eabi-nm")
+objdump_path = binutils_dir / (
+    "powerpc-eabi-objdump.exe" if is_windows() else "powerpc-eabi-objdump"
+)
 
 config.custom_build_rules = [
     {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
+    },
+    {
+        "name": "fix_game_main_symbols",
+        "command": f"$python tools/fix_game_main_symbols.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX main.cpp symbols",
+    },
+    {
+        "name": "fix_game_task_object",
+        "command": f"$python tools/fix_game_task_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX Task.cpp object layout",
+    },
+    {
+        "name": "fix_game_memory_object",
+        "command": f"$python tools/fix_game_memory_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX Memory.cpp object layout",
+    },
+    {
+        "name": "fix_game_action_object",
+        "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part 0",
+        "description": "FIX action.cpp part 0",
+    },
+    *[
+        {
+            "name": f"fix_game_action_object_{part}",
+            "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part {part}",
+            "description": f"FIX action.cpp part {part}",
+        }
+        for part in range(1, 5)
+    ],
+    {
+        "name": "fix_sp_adv_stg_failed_object",
+        "command": f"$python tools/fix_sp_adv_stg_failed_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX SpAdvStgFailed compiler-only atom",
+    },
+    {
+        "name": "fix_game_enemy_voice_object",
+        "command": f"$python tools/fix_game_enemy_voice_object.py $in $out",
+        "description": "FIX enemy_voice.cpp object layout",
+    },
+    {
+        "name": "fix_movie_play_sub_symbols",
+        "command": (
+            f"$python tools/fix_movie_play_sub_symbols.py $in $out "
+            f"--objcopy {objcopy_path} --nm {nm_path} --objdump {objdump_path}"
+        ),
+        "description": "FIX moviePlaySub symbols",
     },
 ]
 config.custom_build_steps = {
@@ -1259,6 +1414,60 @@ config.custom_build_steps = {
             "rule": "fix_sud_symbols",
             "inputs": "build/G9SE8P/src/movieD/cri/sud.o",
             "implicit": ["tools/fix_sud_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-main-symbols.stamp",
+            "rule": "fix_game_main_symbols",
+            "inputs": "build/G9SE8P/src/game/main/main.o",
+            "implicit": ["tools/fix_game_main_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-task-object.stamp",
+            "rule": "fix_game_task_object",
+            "inputs": "build/G9SE8P/src/game/Task.o",
+            "implicit": ["tools/fix_game_task_object.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-memory-object.stamp",
+            "rule": "fix_game_memory_object",
+            "inputs": "build/G9SE8P/src/game/Memory.o",
+            "implicit": ["tools/fix_game_memory_object.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/game-action-object.stamp",
+            "rule": "fix_game_action_object",
+            "inputs": "build/G9SE8P/src/game/action.o",
+            "implicit": ["tools/fix_game_action_object.py", str(binutils_dir)],
+        },
+        *[
+            {
+                "outputs": f"build/G9SE8P/game-action-object-{part}.stamp",
+                "rule": f"fix_game_action_object_{part}",
+                "inputs": f"build/G9SE8P/src/game/action_cont{part}.o",
+                "implicit": ["tools/fix_game_action_object.py", str(binutils_dir)],
+            }
+            for part in range(1, 5)
+        ],
+        {
+            "outputs": "build/G9SE8P/game-sp-adv-stg-failed.stamp",
+            "rule": "fix_sp_adv_stg_failed_object",
+            "inputs": "build/G9SE8P/src/game/SpAdvStgFailed.o",
+            "implicit": [
+                "tools/fix_sp_adv_stg_failed_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/game-enemy-voice-object.stamp",
+            "rule": "fix_game_enemy_voice_object",
+            "inputs": "build/G9SE8P/src/game/enemy_voice.o",
+            "implicit": ["tools/fix_game_enemy_voice_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/main/movie-play-sub-symbols.stamp",
+            "rule": "fix_movie_play_sub_symbols",
+            "inputs": "build/G9SE8P/src/game/moviePlaySub.o",
+            "implicit": ["tools/fix_movie_play_sub_symbols.py", str(binutils_dir)],
         },
     ],
 }

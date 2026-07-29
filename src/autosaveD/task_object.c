@@ -56,9 +56,9 @@ extern "C" void fn_2_13E0(Task* task);
 extern "C" void fn_8012CEF0(void* callback, f32 frame);
 extern "C" void fn_800B52E8(void* object, s32 id, s32 arg2, s32 arg3);
 extern "C" void fn_80130464(s32 type);
-extern "C" Task* dtor_800186D0(Task* task, s32 flags);
+extern "C" Task* __dt__7TObjectFv(Task* task, s32 flags);
 extern "C" void fn_2_13F4(void* memory);
-extern "C" void fn_80018818(Task* task, void* context);
+extern "C" void __ct__7TObjectFP7TObject(Task* task, void* context);
 extern "C" void fn_2_4004(AutosaveState* state);
 extern "C" u32 fn_8012ECA8(s32 group, s32 id);
 extern "C" void* fn_2_3DF0(void* parent, AutosaveState* state);
@@ -100,7 +100,7 @@ extern "C" Task* fn_2_20A8(Task* task, s16 flags)
 	if (task != NULL) {
 		task->methods = lbl_2_data_3C0;
 		fn_80130464(2);
-		dtor_800186D0(task, 0);
+		__dt__7TObjectFv(task, 0);
 
 		if (flags > 0) {
 			fn_2_13F4(task);
@@ -115,7 +115,7 @@ extern "C" Task* fn_2_211C(Task* task, void* context)
 	AutosaveState state;
 	s32 index;
 
-	fn_80018818(task, context);
+	__ct__7TObjectFP7TObject(task, context);
 	task->methods           = lbl_2_data_3C0;
 	*(void**)&task->base[0] = lbl_2_data_3BC;
 	task->size              = 0x38;

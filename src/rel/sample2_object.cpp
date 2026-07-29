@@ -115,8 +115,8 @@ extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 extern "C" Vec3* lbl_8042C208;
 
-extern "C" void dtor_800186D0(TObject* object, s32 flags);
-extern "C" void fn_80018818(TObject* object, void* owner);
+extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
+extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
 extern "C" void fn_800189A4(void* heap, TObject* object);
 extern "C" void* fn_80018A34(void* heap, u32 size);
 extern "C" s32 fn_8005B8BC(Motion* motion);
@@ -156,7 +156,7 @@ extern "C" Sample2* sample2Dtor(Sample2* object, s16 flags)
 		object->base.vtable   = sample2Vtable;
 		object->motion.vtable = sample2Vtable + 0xB;
 		dtor_8005BD3C(&object->motion, 0);
-		dtor_800186D0(&object->base, 0);
+		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
 			fn_800189A4(lbl_8042C148, &object->base);
 		}
@@ -166,7 +166,7 @@ extern "C" Sample2* sample2Dtor(Sample2* object, s16 flags)
 
 extern "C" Sample2* sample2Ctor(Sample2* object, void* owner)
 {
-	fn_80018818(&object->base, owner);
+	__ct__7TObjectFP7TObject(&object->base, owner);
 	fn_8005BE6C(&object->motion);
 
 	object->base.vtable   = sample2Vtable;

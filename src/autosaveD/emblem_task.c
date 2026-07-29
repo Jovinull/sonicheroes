@@ -100,7 +100,7 @@ typedef struct SaveState {
 
 typedef void (*VtEntry)(void);
 
-extern "C" Screen lbl_8029BB80;
+extern "C" Screen RsGlobal;
 extern "C" void* lbl_8042C388;
 extern "C" void** lbl_8042C9A4;
 extern "C" u8 lbl_80303EC8[];
@@ -111,11 +111,11 @@ extern "C" const f32 lbl_80239984[];
 
 extern "C" void __construct_array(void* base, void* ctor, void* dtor, s32 size, s32 count);
 extern "C" void __destroy_arr(void* base, void* dtor, s32 size, s32 count);
-extern "C" void dtor_800186D0(Emblem* emblem, s32 flag);
+extern "C" void __dt__7TObjectFv(Emblem* emblem, s32 flag);
 extern "C" void dtor_800FE334(void);
 extern "C" void fn_800FE3FC(void);
 extern "C" void fn_80017854(void);
-extern "C" void fn_80018818(Emblem* emblem);
+extern "C" void __ct__7TObjectFP7TObject(Emblem* emblem);
 extern "C" s32 fn_800A8BF8(void* settings);
 extern "C" void fn_800B52E8(void* handle, s32 id, s32 arg1, s32 arg2);
 extern "C" void* fn_800BBF20(void* archive, s32 index, void* heap);
@@ -220,8 +220,8 @@ extern "C" void fn_2_1454(Emblem* emblem)
 	half  = 0.5f;
 	width = scale * width;
 
-	emblem->x = lbl_8029BB80.width * half - width * half;
-	emblem->y = 5.0f * lbl_8029BB80.height / 6.0f - 24.0f * scale * half;
+	emblem->x = RsGlobal.width * half - width * half;
+	emblem->y = 5.0f * RsGlobal.height / 6.0f - 24.0f * scale * half;
 }
 
 extern "C" void fn_2_16C0(Emblem* emblem)
@@ -301,7 +301,7 @@ extern "C" Emblem* fn_2_1914(Emblem* emblem, s16 free)
 		}
 		fn_80130464(1);
 		__destroy_arr(emblem->parts, (void*)dtor_800FE334, 0x4C, 2);
-		dtor_800186D0(emblem, 0);
+		__dt__7TObjectFv(emblem, 0);
 		if (free > 0) {
 			fn_2_13F4(emblem);
 		}
@@ -313,7 +313,7 @@ extern "C" Emblem* fn_2_19D0(Emblem* emblem, void* arg)
 {
 	SaveState* state;
 
-	fn_80018818(emblem);
+	__ct__7TObjectFP7TObject(emblem);
 	emblem->vtable = lbl_2_data_244;
 	__construct_array(emblem->parts, (void*)fn_800FE3FC, (void*)dtor_800FE334, 0x4C, 2);
 	emblem->name  = lbl_2_data_1A4;
