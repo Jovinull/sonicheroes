@@ -14,8 +14,13 @@ The initial configured-command audit found 134 game-owned sources:
 
 - 115 compiled as C++ through `.c` plus `-lang=c++`;
 - 19 compiled as C;
-- 9 of those C sources pending stronger language evidence;
+- 9 of those C sources were initially pending stronger language evidence;
 - no approved `-inline deferred` source.
+
+Those nine initial decisions are now closed: `game/main.c` has positive C
+source evidence and the other eight are explicitly recorded as reviewed C ABI
+boundaries whose historical file language remains unresolved. The current
+policy therefore has no `pending_c_evidence` entry.
 
 The protected `advertiseD` and `autosaveD` areas are not changed while their
 owners have active work. Their 42 legacy C++ paths remain in the queue until a
