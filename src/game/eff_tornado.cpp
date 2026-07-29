@@ -629,11 +629,12 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 increment           = lbl_8042DC24;
 		f32 limit               = lbl_8042DBB8;
 		while (height <= limit) {
-			void* model    = tornadoModel(models, 0);
-			void* frame    = tornadoFrame(model);
-			s32 tableIndex = index & 7;
-			fn_8019EC30(frame, &positions[tableIndex], 0);
-			fn_8019EB94(frame, &directions[tableIndex], 2);
+			void* model      = tornadoModel(models, 0);
+			void* frame      = tornadoFrame(model);
+			s32 tableIndex   = index & 7;
+			s32 vectorOffset = tableIndex * sizeof(RwV3d);
+			fn_8019EC30(frame, (RwV3d*)((u8*)positions + vectorOffset), 0);
+			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
 			f32 sine   = fn_800D7B00(angle + angleOffsets[tableIndex]);
@@ -662,11 +663,12 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 increment           = lbl_8042DC24;
 		f32 limit               = lbl_8042DBF0;
 		while (height <= limit) {
-			void* model    = tornadoModel(models, 1);
-			void* frame    = tornadoFrame(model);
-			s32 tableIndex = index & 7;
-			fn_8019EC30(frame, &positions[tableIndex], 0);
-			fn_8019EB94(frame, &directions[tableIndex], 2);
+			void* model      = tornadoModel(models, 1);
+			void* frame      = tornadoFrame(model);
+			s32 tableIndex   = index & 7;
+			s32 vectorOffset = tableIndex * sizeof(RwV3d);
+			fn_8019EC30(frame, (RwV3d*)((u8*)positions + vectorOffset), 0);
+			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
 			f32 sine   = fn_800D7B00(angle + angleOffsets[tableIndex]);
@@ -693,11 +695,12 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		s32* angleOffsets       = lbl_8025347C;
 		RwV3d* secondAxis       = &lbl_80239984;
 		do {
-			void* model    = tornadoModel(models, 2);
-			void* frame    = tornadoFrame(model);
-			s32 tableIndex = index & 7;
-			fn_8019EC30(frame, &positions[tableIndex], 0);
-			fn_8019EB94(frame, &directions[tableIndex], 2);
+			void* model      = tornadoModel(models, 2);
+			void* frame      = tornadoFrame(model);
+			s32 tableIndex   = index & 7;
+			s32 vectorOffset = tableIndex * sizeof(RwV3d);
+			fn_8019EC30(frame, (RwV3d*)((u8*)positions + vectorOffset), 0);
+			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
 			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
 			f32 sine   = fn_800D7B00(angle + angleOffsets[tableIndex]);
