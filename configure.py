@@ -1262,6 +1262,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/set_collision_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/set_collision_object.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
