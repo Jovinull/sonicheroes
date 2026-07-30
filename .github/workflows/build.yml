@@ -16,7 +16,13 @@ jobs:
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
     # Approval protects the package credentials before any submitted code can run.
-    environment: private-build
+    #
+    # Only the pull request needs it. "Protect Main" requires a pull request to
+    # move main and lists no bypass actors, so a push here is always a merge of
+    # commits that already cleared this gate once. Asking again stalls the run
+    # on a review that nobody is waiting to give, and the queue of unapproved
+    # main builds hides a real failure rather than catching one.
+    environment: ${{ github.event_name == 'pull_request' && 'private-build' || '' }}
     container:
       image: ghcr.io/jovinull/sonicheroes-build:main
       credentials:
