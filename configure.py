@@ -1287,6 +1287,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/switch_guard.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_object.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

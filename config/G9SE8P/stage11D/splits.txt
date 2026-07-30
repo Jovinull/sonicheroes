@@ -83,6 +83,9 @@ rel/switch_transform.cpp:
 rel/switch_dtor.cpp:
 	.text       start:0x00004580 end:0x00004650
 
+rel/switch_guard.cpp:
+	.text       start:0x00004AC4 end:0x00004B44
+
 rel/switch_object.cpp:
 	.text       start:0x00004B44 end:0x00004C4C
 
