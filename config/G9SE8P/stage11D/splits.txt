@@ -102,6 +102,9 @@ rel/switch_hooks.cpp:
 rel/obj_transform.cpp:
 	.text       start:0x00005984 end:0x00005A34
 
+rel/set_collision_dtor.cpp:
+	.text       start:0x00005A34 end:0x00005AFC
+
 rel/set_collision_object.cpp:
 	.text       start:0x00005F4C end:0x0000616C
 	.ctors      start:0x00000014 end:0x00000018
