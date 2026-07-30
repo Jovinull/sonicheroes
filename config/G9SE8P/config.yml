@@ -162,6 +162,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage03D.rel
   hash: 9e1c377aa780e2bee876a14325263a6b2b541934
@@ -190,6 +191,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage05D.rel
   hash: 76a08d21162462b8c75b124aee8bb213db292bee
@@ -218,6 +220,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage07D.rel
   hash: 89b6ee655fa9bb07ca8ef9d30dc00befcc9295f2
@@ -246,6 +249,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage09D.rel
   hash: 836d0accf611530095e01d5f87c43d35bc87bc3c
@@ -274,6 +278,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage11D.rel
   hash: 79a86badbc61416b3efc14802c536eeaef6cf0aa
@@ -302,6 +307,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
@@ -326,6 +332,7 @@ modules:
     - sample1Ctor
     - sample2Ctor
     - scrollRingStep
+    - scrollRingTouch
     - springCtor
 - object: files/stage26D.rel
   hash: e5585aec40ebb843bbd5c9a2d947abeda4acc048
@@ -350,6 +357,7 @@ modules:
     - sample1Ctor
     - sample2Ctor
     - scrollRingStep
+    - scrollRingTouch
     - springCtor
 - object: files/stage27D.rel
   hash: 06e4b2926228a64dd7ae81007c75fd9194c402c2
@@ -374,6 +382,7 @@ modules:
     - sample1Ctor
     - sample2Ctor
     - scrollRingStep
+    - scrollRingTouch
     - springCtor
 - object: files/stage28D.rel
   hash: 93b0dd05156fa2dee32a64930d354c9e985d7e4a
@@ -398,6 +407,7 @@ modules:
     - sample1Ctor
     - sample2Ctor
     - scrollRingStep
+    - scrollRingTouch
     - springCtor
 - object: files/stage31D.rel
   hash: 4c052149e2df1c88c29038dd20e7a53c863c1d09
@@ -426,6 +436,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage32D.rel
   hash: 27d8092da77c4fdb3b53381849966e91d9672e68
@@ -454,6 +465,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage33D.rel
   hash: 8456fb201666c6ea3bf200fcf2fe8dfd2e05ca50
@@ -482,6 +494,7 @@ modules:
     - systemObject2Ctor
     - systemObject3Ctor
     - scrollRingStep
+    - scrollRingTouch
     - systemObject4Ctor
 - object: files/stage40D.rel
   hash: efc22e14f102354f27547b3d68c1df6b5e63fce6
