@@ -86,6 +86,12 @@ rel/switch_dtor.cpp:
 rel/switch_object.cpp:
 	.text       start:0x00004B44 end:0x00004C4C
 
+rel/switch_unload.cpp:
+	.text       start:0x00004C4C end:0x00004C90
+
+rel/switch_load.cpp:
+	.text       start:0x00004C90 end:0x00004E50
+
 rel/switch_assets.cpp:
 	.text       start:0x00004E50 end:0x00004F48
 	.ctors      start:0x00000010 end:0x00000014
