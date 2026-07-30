@@ -175,6 +175,11 @@ game/perf.cpp:
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 
+game/texture.cpp:
+	extab       start:0x80008CA0 end:0x80008CA8
+	extabindex  start:0x8000F3D0 end:0x8000F3DC
+	.text       start:0x800D8B48 end:0x800D8BC4
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C
@@ -213,6 +218,12 @@ game/voice_sequence.cpp:
 	extabindex  start:0x80011974 end:0x800119C8
 	.text       start:0x80138664 end:0x80138ECC
 	.data       start:0x8028C964 end:0x8028CA70
+
+game/movie.cpp:
+	extab       start:0x8000B940 end:0x8000B97C
+	extabindex  start:0x800119C8 end:0x800119EC
+	.text       start:0x80138ECC end:0x801390A4
+	.data       start:0x8028CA70 end:0x8028CAAC
 
 game/moviePlay.cpp:
 	extab       start:0x8000B97C end:0x8000B994

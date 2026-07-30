@@ -532,6 +532,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/movie.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/moviePlaySub.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
                 data_section_alignment=4,
@@ -575,6 +580,11 @@ config.libs = [
                 Matching,
                 "game/expasm.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "game/texture.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -1433,6 +1443,11 @@ config.custom_build_rules = [
         "description": "FIX SpAdvStgFailed compiler-only atom",
     },
     {
+        "name": "fix_game_movie_object",
+        "command": f"$python tools/fix_game_movie_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX movie.cpp compiler-only atom",
+    },
+    {
         "name": "fix_game_enemy_voice_object",
         "command": f"$python tools/fix_game_enemy_voice_object.py $in $out",
         "description": "FIX enemy_voice.cpp object layout",
@@ -1492,6 +1507,16 @@ config.custom_build_steps = {
             "rule": "fix_sp_adv_stg_failed_object",
             "inputs": "build/G9SE8P/src/game/SpAdvStgFailed.o",
             "implicit": [
+                "tools/fix_sp_adv_stg_failed_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/game-movie-object.stamp",
+            "rule": "fix_game_movie_object",
+            "inputs": "build/G9SE8P/src/game/movie.o",
+            "implicit": [
+                "tools/fix_game_movie_object.py",
                 "tools/fix_sp_adv_stg_failed_object.py",
                 str(binutils_dir),
             ],
