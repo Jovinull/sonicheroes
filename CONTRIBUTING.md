@@ -93,13 +93,19 @@ frequent parallel commits do not create a mandatory rebase loop. Do not push
 game-code changes directly to `main`.
 
 `.github/CODEOWNERS` names a maintainer for the paths that execute during a
-private build: the workflows, the build post-processors under `tools/` and
-`configure.py`. A pull request touching those needs that maintainer's review,
-because code on those paths runs in the container holding the original game
-files and could copy them somewhere. Decompilation work is deliberately not
-covered: `src/` and `config/` are reviewed like any other change, so a
-contributor with write access can review and merge unit reconstructions without
-waiting on the package owner.
+private build: the workflows and the build post-processors under `tools/`. A
+pull request touching those needs that maintainer's review, because code on
+those paths runs in the container holding the original game files and could copy
+them somewhere.
+
+Decompilation work is deliberately not covered. `src/`, `config/` and
+`configure.py` are reviewed like any other change, so a contributor with write
+access can review and merge unit reconstructions without waiting on the package
+owner. `splits.txt`, `symbols.txt` and a `configure.py` object entry move in
+nearly every unit that lands, and claiming them would mean no reconstruction
+could be merged without the package owner. `configure.py` does run in the build
+container, so read a change to it as build configuration rather than skimming it
+as data; the build logic it drives lives in `tools/`, which is owned.
 
 The full build uses private original-game inputs. A same-repository pull request
 waits for approval from a reviewer on the protected `private-build` environment
