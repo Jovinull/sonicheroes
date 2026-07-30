@@ -2,11 +2,12 @@ name: Build
 
 on:
   push:
+    branches:
+    - main
   pull_request:
 
 permissions:
   contents: read
-  packages: read
 
 jobs:
   private_build:
@@ -14,8 +15,13 @@ jobs:
     if: >-
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
-    # Private build container holding the original game files. Fork code is blocked below.
-    container: ghcr.io/jovinull/sonicheroes-build:main
+    # Approval protects the package credentials before any submitted code can run.
+    environment: private-build
+    container:
+      image: ghcr.io/jovinull/sonicheroes-build:main
+      credentials:
+        username: ${{ secrets.GHCR_USERNAME }}
+        password: ${{ secrets.GHCR_TOKEN }}
 
     runs-on: ubuntu-latest
     strategy:

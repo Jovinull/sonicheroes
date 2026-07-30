@@ -175,6 +175,11 @@ game/perf.cpp:
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 
+game/texture.cpp:
+	extab       start:0x80008CA0 end:0x80008CA8
+	extabindex  start:0x8000F3D0 end:0x8000F3DC
+	.text       start:0x800D8B48 end:0x800D8BC4
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C

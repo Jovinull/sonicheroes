@@ -1,0 +1,15 @@
+# Ownership of the paths that execute during a private build.
+#
+# A contributor with write access reviews and merges decompilation work on their
+# own: src/ and config/ are not listed here, and splits.txt and symbols.txt
+# change in nearly every unit that lands, so requiring a maintainer there would
+# remove the point of granting write access.
+#
+# What is listed is the code that runs inside the container holding the original
+# game files. A change to a workflow, a build post-processor or configure.py can
+# read /orig and send it somewhere, so those paths need the maintainer who owns
+# the private package and its credentials.
+
+/.github/     @Jovinull
+/tools/       @Jovinull
+/configure.py @Jovinull
