@@ -16,7 +16,20 @@ jobs:
       github.event_name != 'pull_request' ||
       github.event.pull_request.head.repo.full_name == github.repository
     # Approval protects the package credentials before any submitted code can run.
-    environment: private-build
+    #
+    # A push does not need it. "Protect Main" requires a pull request to move
+    # main and lists no bypass actors, so a push is always a merge of commits
+    # whose build was approved on the pull request. Asking twice left every
+    # merge parked on a review nobody was waiting to give, which hides a real
+    # failure among the ones nobody clicked.
+    #
+    # private-build-auto carries the same credentials with no reviewer, and is
+    # restricted to the main branch. That restriction is the load-bearing part.
+    # A pull request runs the workflow from its own head branch, so naming the
+    # unreviewed environment is something any branch could do; the branch policy
+    # is what refuses it. What guards /orig is the credential being reachable
+    # only from a gated or main-only environment, not the approval click.
+    environment: ${{ github.event_name == 'pull_request' && 'private-build' || 'private-build-auto' }}
     container:
       image: ghcr.io/jovinull/sonicheroes-build:main
       credentials:
