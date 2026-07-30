@@ -1257,6 +1257,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/switch_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/switch_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
