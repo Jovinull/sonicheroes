@@ -130,6 +130,9 @@ rel/obj_box_trigger.cpp:
 rel/obj_apply_transform.cpp:
 	.text       start:0x00007E20 end:0x00007EB0
 
+rel/dashpanel_dtor.cpp:
+	.text       start:0x00007EB0 end:0x00007F84
+
 rel/dashpanel_object.cpp:
 	.text       start:0x000081C0 end:0x00008314
 	.rodata     start:0x00000170 end:0x00000178

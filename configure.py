@@ -1257,6 +1257,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dashpanel_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dashpanel_object.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
