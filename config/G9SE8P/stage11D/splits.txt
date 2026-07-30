@@ -284,6 +284,9 @@ rel/light_collision_register.cpp:
 	.text       start:0x0004F2E4 end:0x0004F37C
 	.ctors      start:0x000000A0 end:0x000000A4
 
+rel/invoke_collision_dtor.cpp:
+	.text       start:0x0004F6F0 end:0x0004F7D4
+
 rel/invoke_collision_register.cpp:
 	.text       start:0x0004FBFC end:0x0004FC90
 	.ctors      start:0x000000A4 end:0x000000A8
