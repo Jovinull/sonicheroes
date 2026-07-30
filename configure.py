@@ -1037,6 +1037,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scroll_ring_step.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/scroll_ring_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
