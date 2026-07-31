@@ -78,7 +78,7 @@ static OSResetFunctionInfo ResetFunctionInfo = {
 };
 
 // Arms the decrementer for the alarm at the head of the queue. Inlined into
-// every caller, so it has no body in the binary — which requires the
+// every caller, so it has no body in the binary - which requires the
 // `inline` keyword: MWCC emits an out-of-line body for a plain static even
 // when every call site is inlined, and that body is 152 stray .text bytes.
 static inline void SetTimer(OSAlarm* alarm)

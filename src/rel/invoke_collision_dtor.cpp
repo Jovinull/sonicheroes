@@ -10,7 +10,7 @@
 // constant, so it owns no rodata.
 //
 // The run is the same in the nine stage modules that carry this revision of the
-// engine core — 01D, 03D, 05D, 07D, 09D, 11D, 31D, 32D and 33D — which is the
+// engine core - 01D, 03D, 05D, 07D, 09D, 11D, 31D, 32D and 33D - which is the
 // same set rel/system_object1_object.cpp records. The other stage modules are a
 // different revision this far in.
 //
