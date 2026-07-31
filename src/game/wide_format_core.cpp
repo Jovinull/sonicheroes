@@ -171,6 +171,7 @@ extern "C" s32 wideFormatCore(
 	s32 length;
 	s32 isWide;
 	s32 zeroPad;
+	const wchar* specAt;
 	State st;
 
 	fmt         = format;
@@ -202,6 +203,7 @@ extern "C" s32 wideFormatCore(
 		continue;
 
 	spec:
+		specAt    = fmt - 1;
 		state     = 0;
 		flags     = 0;
 		width     = -1;
@@ -504,10 +506,24 @@ emit:
 		emitChar(&st, c);
 	}
 
-finish:
 done:
+	for (;;) {
+		c = *specAt++;
+
+		if (c == 0) {
+			break;
+		}
+
+		emitChar(&st, c);
+	}
+
+finish:
 	if (st.held != 0) {
-		write(st.out, st.held, st.writeArg);
+		if (st.write(st.out, st.held, st.writeArg) == NULL) {
+			st.failed = 1;
+		}
+
+		st.held = 0;
 	}
 
 	return st.failed != 0 ? -1 : st.total;
