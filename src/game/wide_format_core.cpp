@@ -407,6 +407,36 @@ fetch:
 	}
 
 padded:
+	if (precision >= 0) {
+		wchar* at = convPos;
+		s32 bare;
+
+		if (at != NULL) {
+			length = 0;
+
+			while (*at != 0) {
+				length = length + 1;
+				at     = at + 1;
+			}
+		} else {
+			length = 0;
+		}
+
+		bare = length;
+
+		if (*convPos == 0x2D) {
+			bare = length - 1;
+		} else if (sign != 0) {
+			length  = length + 1;
+			convPos = convPos - 1;
+
+			*convPos = sign;
+		}
+
+		if (precision > bare) {
+			zeroPad = precision - bare;
+		}
+	}
 	goto emit;
 
 pointer: {
