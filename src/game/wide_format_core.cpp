@@ -436,7 +436,61 @@ padded:
 		if (precision > bare) {
 			zeroPad = precision - bare;
 		}
+
+		goto emit;
 	}
+
+	if ((flags & 0x8) != 0 && width > 0) {
+		wchar* at = convPos;
+		s32 len;
+
+		if (at != NULL) {
+			len = 0;
+
+			while (*at != 0) {
+				len = len + 1;
+				at  = at + 1;
+			}
+		} else {
+			len = 0;
+		}
+
+		if (*convPos == 0x2D) {
+			len = len - 1;
+		}
+
+		if (width > len) {
+			zeroPad = width - len;
+		}
+	}
+
+	if (*convPos == 0x2D || sign != 0) {
+		if (*convPos != 0x2D) {
+			convPos = convPos - 1;
+
+			*convPos = sign;
+		}
+
+		if (zeroPad > 0) {
+			zeroPad = zeroPad - 1;
+		}
+	}
+
+	{
+		wchar* at = convPos;
+
+		if (at != NULL) {
+			length = 0;
+
+			while (*at != 0) {
+				length = length + 1;
+				at     = at + 1;
+			}
+		} else {
+			length = 0;
+		}
+	}
+
 	goto emit;
 
 pointer: {
