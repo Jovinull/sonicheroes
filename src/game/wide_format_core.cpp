@@ -182,6 +182,7 @@ extern "C" s32 wideFormatCore(
 	st.writeArg = writeArg;
 	st.limitAt  = hasLimit != 0 ? &limit : NULL;
 
+nextChar:
 	for (;;) {
 		c = *fmt++;
 
@@ -474,7 +475,23 @@ string:
 	goto emit;
 
 floating:
-storeCount:
+	goto emit;
+
+storeCount: {
+	void* at = (void*)ARG_INT;
+
+	convPos = (wchar*)at;
+
+	if ((flags & 0x10) != 0) {
+		*(s32*)at = st.total;
+	} else if ((flags & 0x200) != 0) {
+		*(s16*)at = (s16)st.total;
+	} else {
+		*(s32*)at = st.total;
+	}
+}
+	goto nextChar;
+
 emit:
 	if ((flags & 0x1) != 0) {
 		if (c == 0x6F) {
