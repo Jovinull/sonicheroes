@@ -141,7 +141,7 @@ void ARQInit(void)
 	// One chained assignment, not two statements: the chain stores the Lo
 	// queue first, matching the original's store order (the two stores are
 	// byte-identical apart from their sda21 offsets, so objdiff scores the
-	// swapped pair 100% — only linking catches it).
+	// swapped pair 100% - only linking catches it).
 	__ARQRequestQueueHi = __ARQRequestQueueLo = NULL;
 	__ARQChunkSize                            = ARQ_CHUNK_SIZE_DEFAULT;
 
