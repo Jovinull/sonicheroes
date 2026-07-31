@@ -1192,6 +1192,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/shield_splinter_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/item_box_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
