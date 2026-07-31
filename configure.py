@@ -588,6 +588,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/wide_format_write.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/SpAdvStgFailed.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),

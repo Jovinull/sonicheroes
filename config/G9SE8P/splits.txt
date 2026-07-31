@@ -248,6 +248,11 @@ game/enemy_voice.cpp:
 	.text       start:0x80139738 end:0x80139FC4
 	.data       start:0x8028CFB0 end:0x8028D068
 
+game/wide_format_write.cpp:
+	extab       start:0x8000BA90 end:0x8000BAA0
+	extabindex  start:0x80011AB8 end:0x80011AD0
+	.text       start:0x8013A5F0 end:0x8013A6B8
+
 game/SpAdvStgFailed.cpp:
 	extab       start:0x8000BAA8 end:0x8000BB08
 	extabindex  start:0x80011ADC end:0x80011B18
