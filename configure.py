@@ -588,6 +588,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/camera_slot_update.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-fp_contract off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/camera_slot_create.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
