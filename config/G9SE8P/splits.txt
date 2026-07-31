@@ -248,6 +248,12 @@ game/enemy_voice.cpp:
 	.text       start:0x80139738 end:0x80139FC4
 	.data       start:0x8028CFB0 end:0x8028D068
 
+game/camera_slot_update.cpp:
+	extab       start:0x8000BA80 end:0x8000BA88
+	extabindex  start:0x80011AA0 end:0x80011AAC
+	.text       start:0x80139FC4 end:0x8013A49C
+	.sdata2     start:0x8042F168 end:0x8042F190
+
 game/camera_slot_create.cpp:
 	extab       start:0x8000BA88 end:0x8000BA90
 	extabindex  start:0x80011AAC end:0x80011AB8
