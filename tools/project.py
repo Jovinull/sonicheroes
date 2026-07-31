@@ -723,10 +723,10 @@ def generate_build_ninja(
         mwcc_sjis_extab_implicit.append(transform_dep)
 
     mwcc_align_cmd = (
-        f"{mwcc_cmd} && $python {section_align_tool} $out .data $data_section_alignment"
+        f"{CHAIN}{mwcc_cmd} && $python {section_align_tool} $out .data $data_section_alignment"
     )
     mwcc_sjis_align_cmd = (
-        f"{mwcc_sjis_cmd} && $python {section_align_tool} $out .data $data_section_alignment"
+        f"{CHAIN}{mwcc_sjis_cmd} && $python {section_align_tool} $out .data $data_section_alignment"
     )
     mwcc_align_implicit = [*mwcc_implicit, section_align_tool]
     mwcc_sjis_align_implicit = [*mwcc_sjis_implicit, section_align_tool]
