@@ -120,6 +120,11 @@ static wchar wideNull[6] = { 0, 0, 0, 0, 0, 0 };
 static wchar convBuf[48];
 static wchar* convPos;
 
+// Never read here. The target's lbl_8042C808 is one eight byte object with
+// only its first word referenced, so a second pointer has to exist beside the
+// cursor for .sbss to come out at eight rather than four.
+static wchar* convEnd;
+
 // Inlined at every site that emits one character. The flush computes a flag the
 // call never reads, which is this helper's dead parameter on that path.
 struct State {
@@ -175,9 +180,9 @@ extern "C" s32 wideFormatCore(
 	State st;
 
 	fmt         = format;
-	st.held     = 0;
-	st.total    = 0;
 	st.failed   = 0;
+	st.total    = 0;
+	st.held     = 0;
 	st.write    = write;
 	st.writeArg = writeArg;
 	st.limitAt  = hasLimit != 0 ? &limit : NULL;
