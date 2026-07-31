@@ -132,7 +132,7 @@ struct State {
 	u32* limitAt; // 0x144
 };
 
-static void emitChar(State* s, wchar c)
+static inline void emitChar(State* s, wchar c)
 {
 	if (s->held >= 0x50 && s->held != 0) {
 		if (s->write(s->out, s->held, s->writeArg) == NULL) {
@@ -153,7 +153,6 @@ static void emitChar(State* s, wchar c)
 extern "C" s32 wideFormatCore(
     WriteProc write, void* writeArg, const wchar* format, s32 hasLimit, u32 limit, void* args)
 {
-	wchar out[80];
 	s32 held;
 	s32 total;
 	s32 failed;
@@ -171,12 +170,16 @@ extern "C" s32 wideFormatCore(
 	s32 isSigned;
 	s32 length;
 	s32 isWide;
+	s32 zeroPad;
+	State st;
 
-	fmt     = format;
-	held    = 0;
-	total   = 0;
-	failed  = 0;
-	limitAt = hasLimit != 0 ? &limit : NULL;
+	fmt         = format;
+	st.held     = 0;
+	st.total    = 0;
+	st.failed   = 0;
+	st.write    = write;
+	st.writeArg = writeArg;
+	st.limitAt  = hasLimit != 0 ? &limit : NULL;
 
 	for (;;) {
 		c = *fmt++;
@@ -195,20 +198,7 @@ extern "C" s32 wideFormatCore(
 			fmt++;
 		}
 
-		if (held >= 0x50 && held != 0) {
-			if (write(out, held, writeArg) == NULL) {
-				failed = 1;
-			}
-
-			held = 0;
-		}
-
-		if (limitAt == NULL || total < (s32)*limitAt) {
-			out[held] = c;
-			held      = held + 1;
-		}
-
-		total = total + 1;
+		emitChar(&st, c);
 		continue;
 
 	spec:
@@ -484,11 +474,41 @@ string:
 floating:
 storeCount:
 emit:
-finish:
-done:
-	if (held != 0) {
-		write(out, held, writeArg);
+	if ((flags & 0x1) != 0) {
+		if (c == 0x6F) {
+			if (zeroPad <= 0) {
+				zeroPad = 1;
+			}
+		} else if (c == 0x78 || c == 0x58) {
+			flags |= 0x40;
+			width   = width - 2;
+			zeroPad = zeroPad - 2;
+
+			if (zeroPad < 0) {
+				zeroPad = 0;
+			}
+		}
 	}
 
-	return failed != 0 ? -1 : total;
+	length = length + zeroPad;
+
+	if ((flags & 0x2) == 0) {
+		while (width > length) {
+			emitChar(&st, 0x20);
+			width = width - 1;
+		}
+	}
+
+	if ((flags & 0x40) != 0) {
+		emitChar(&st, 0x30);
+		emitChar(&st, c);
+	}
+
+finish:
+done:
+	if (st.held != 0) {
+		write(st.out, st.held, st.writeArg);
+	}
+
+	return st.failed != 0 ? -1 : st.total;
 }
