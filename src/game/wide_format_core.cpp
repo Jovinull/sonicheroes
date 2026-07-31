@@ -115,8 +115,8 @@ static const u8 charClass[96] = {
 };
 
 // The conversion buffer and the cursor into it, both file scope.
-static char narrowNull[] = "(null)";
-static wchar wideNull[6] = { 0, 0, 0, 0, 0, 0 };
+static char narrowNull[8] = "(null)";
+static wchar wideNull[6]  = { 0, 0, 0, 0, 0, 0 };
 static wchar convBuf[48];
 static wchar* convPos;
 
