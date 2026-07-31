@@ -120,6 +120,36 @@ static wchar wideNull[6] = { 0, 0, 0, 0, 0, 0 };
 static wchar convBuf[48];
 static wchar* convPos;
 
+// Inlined at every site that emits one character. The flush computes a flag the
+// call never reads, which is this helper's dead parameter on that path.
+struct State {
+	wchar out[80]; // 0x90
+	s32 held;      // 0x130
+	WriteProc write;
+	void* writeArg;
+	s32 total;    // 0x13C
+	s32 failed;   // 0x140
+	u32* limitAt; // 0x144
+};
+
+static void emitChar(State* s, wchar c)
+{
+	if (s->held >= 0x50 && s->held != 0) {
+		if (s->write(s->out, s->held, s->writeArg) == NULL) {
+			s->failed = 1;
+		}
+
+		s->held = 0;
+	}
+
+	if (s->limitAt == NULL || s->total < (s32)*s->limitAt) {
+		s->out[s->held] = c;
+		s->held         = s->held + 1;
+	}
+
+	s->total = s->total + 1;
+}
+
 extern "C" s32 wideFormatCore(
     WriteProc write, void* writeArg, const wchar* format, s32 hasLimit, u32 limit, void* args)
 {
