@@ -440,6 +440,7 @@ padded:
 		goto emit;
 	}
 
+zeroFill:
 	if ((flags & 0x8) != 0 && width > 0) {
 		wchar* at = convPos;
 		s32 len;
@@ -559,7 +560,7 @@ string:
 	goto emit;
 
 floating:
-	goto emit;
+	goto zeroFill;
 
 storeCount: {
 	void* at = (void*)ARG_INT;
