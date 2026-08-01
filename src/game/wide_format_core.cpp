@@ -249,8 +249,28 @@ nextChar:
 					}
 					flags |= 0x1;
 					break;
-				case 0x02: // *
+				case 0x02: { // *
+					s32 given = ARG_INT;
+
+					if (state < 2) {
+						if (given < 0) {
+							width = -given;
+							flags |= 0x2;
+						} else {
+							width = given;
+						}
+
+						state = 3;
+					} else {
+						if (state != 4) {
+							goto done;
+						}
+
+						precision = given;
+						state     = state + 1;
+					}
 					break;
+				}
 				case 0x03: // -
 					if (state != 0) {
 						goto done;
