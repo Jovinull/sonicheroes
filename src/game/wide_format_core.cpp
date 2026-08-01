@@ -164,8 +164,8 @@ extern "C" s32 wideFormatCore(
 	u32* limitAt;
 	const wchar* fmt;
 	wchar c;
-	s32 state;
-	s32 flags;
+	u32 state;
+	u32 flags;
 	s32 width;
 	s32 precision;
 	wchar sign;
