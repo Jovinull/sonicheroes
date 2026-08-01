@@ -382,7 +382,7 @@ fetch:
 		wchar* at = convPos;
 
 		if (base >= 2 && base <= 0x24) {
-			wchar digits[48];
+			wchar digits[66];
 			wchar* end;
 
 			if (value < 0 && isSigned != 0) {
