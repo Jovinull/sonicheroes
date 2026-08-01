@@ -416,13 +416,17 @@ fetch:
 	if ((flags & 0x100) != 0) {
 		value = ARG_INT;
 	} else if ((flags & 0x10) != 0) {
-		value = ARG_INT;
+		s32 wide = ARG_INT;
+
+		value = isSigned != 0 ? (s32)wide : (u32)wide;
 	} else if ((flags & 0x200) != 0) {
 		s32 narrow = (u16)ARG_INT;
 
-		value = isSigned != 0 ? (s16)narrow : narrow;
+		value = isSigned != 0 ? (s16)narrow : (u16)narrow;
 	} else {
-		value = ARG_INT;
+		s32 plain = ARG_INT;
+
+		value = isSigned != 0 ? (s32)plain : (u32)plain;
 	}
 
 	convPos = (convBuf + 1);
