@@ -171,21 +171,22 @@ static inline void emitChar(State* s, wchar c)
 extern "C" s32 wideFormatCore(
     WriteProc write, void* writeArg, const wchar* format, s32 hasLimit, u32 limit, void* args)
 {
-	s32 base;
-	u32 state;
-	s32 length;
-	wchar c;
 	s32 width;
-	u32 flags;
-	s32 precision;
-	wchar sign;
+	s32 zeroPad;
+	wchar c;
+	s32 length;
 	wchar hexBias;
+	wchar* bufStart;
+	u32 flags;
+	wchar* bufBase;
+	wchar sign;
+	s32 precision;
+	const wchar* specAt;
+	u32 state;
+	s32 base;
 	u32 value;
 	wchar isSigned;
 	s32 isWide;
-	s32 zeroPad;
-	const wchar* specAt;
-	wchar* bufBase;
 	State st;
 
 	st.failed   = 0;
@@ -195,7 +196,8 @@ extern "C" s32 wideFormatCore(
 	st.writeArg = writeArg;
 	st.limitAt  = hasLimit != 0 ? &limit : NULL;
 
-	bufBase = convBuf;
+	bufBase  = convBuf;
+	bufStart = bufBase + 1;
 
 nextChar:
 	for (;;) {
@@ -423,11 +425,11 @@ fetch:
 		value = isSigned != 0 ? (s32)plain : (u32)plain;
 	}
 
-	convPos = (convBuf + 1);
+	convPos = bufStart;
 
 	if (value == 0) {
 		if (precision == 0) {
-			*(convBuf + 1) = 0;
+			*bufStart = 0;
 			goto padded;
 		}
 	} else {
@@ -554,10 +556,10 @@ character:
 		convPos           = convBuf;
 		length            = 1;
 	} else {
-		convBuf[0]     = (wchar)ARG_INT;
-		*(convBuf + 1) = 0;
-		convPos        = convBuf;
-		length         = 1;
+		convBuf[0] = (wchar)ARG_INT;
+		*bufStart  = 0;
+		convPos    = convBuf;
+		length     = 1;
 	}
 	goto emit;
 
