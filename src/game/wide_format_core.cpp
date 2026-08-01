@@ -465,9 +465,9 @@ fetch:
 				if (d < 10) {
 					*at++ = (wchar)(d + 0x30);
 				} else {
-					s32 raised = d + hexBias;
+					d = (wchar)(d + hexBias);
 
-					*at++ = (wchar)(raised - 10);
+					*at++ = (wchar)(d - 10);
 				}
 			}
 		}
