@@ -531,12 +531,18 @@ pointer: {
 		for (i = 0; i < 4; i++) {
 			s32 d = v & 0xF;
 
-			*at-- = (wchar)(d < 10 ? d + 0x30 : d + 0x37);
-			v >>= 4;
+			if (d < 10) {
+				*at = (wchar)(d + 0x30);
+			} else {
+				*at = (wchar)(d + 0x37);
+			}
+
+			v  = v >> 4;
+			at = at - 1;
 		}
 	}
 
-	convBuf[8] = 0;
+	bufBase[8] = 0;
 	flags &= ~0x4;
 	convPos = convBuf;
 }
