@@ -309,18 +309,13 @@ nextChar:
 					state = 1;
 					break;
 				case 0x0A: // d and i
-					base = 10;
 					goto integer;
 				case 0x0B: // o
-					base = 8;
-					goto unsignedInteger;
+					goto octal;
 				case 0x0C: // u
-					base = 10;
-					goto unsignedInteger;
+					goto unsignedDecimal;
 				case 0x0D: // x and X
-					base    = 16;
-					hexBias = c - 0x17;
-					goto unsignedInteger;
+					goto hexadecimal;
 				case 0x0E: // p
 					goto pointer;
 				case 0x0F: // e f g E G
@@ -387,14 +382,26 @@ nextChar:
 		}
 	}
 
-unsignedInteger:
+octal:
+	base = 8;
+	goto unsignedShared;
+
+unsignedDecimal:
+	base = 10;
+	goto unsignedShared;
+
+hexadecimal:
+	base    = 16;
+	hexBias = c - 0x17;
+
+unsignedShared:
 	sign     = 0;
 	isSigned = 0;
+	goto fetch;
 
 integer:
 	base     = 10;
 	isSigned = 1;
-	goto fetch;
 
 fetch:
 	if ((flags & 0x100) != 0) {
