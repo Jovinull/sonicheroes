@@ -325,9 +325,9 @@ nextChar:
 				case 0x11: // s
 					goto string;
 				case 0x12: // C
-					goto character;
+					goto narrowCharDefault;
 				case 0x13: // S
-					goto string;
+					goto narrowStringDefault;
 				case 0x14: // n
 					goto storeCount;
 				case 0x15:
@@ -485,11 +485,12 @@ pointer: {
 }
 	goto emit;
 
-character:
+narrowCharDefault:
 	if ((flags & 0x210) == 0) {
 		flags |= 0x200;
 	}
 
+character:
 	if ((flags & 0x200) != 0) {
 		((s8*)convBuf)[0] = (s8)ARG_INT;
 		((s8*)bufBase)[1] = 0;
@@ -503,11 +504,12 @@ character:
 	}
 	goto emit;
 
-string:
+narrowStringDefault:
 	if ((flags & 0x210) == 0) {
 		flags |= 0x200;
 	}
 
+string:
 	if ((flags & 0x200) != 0) {
 		convPos = (wchar*)ARG_INT;
 		isWide  = 0;
