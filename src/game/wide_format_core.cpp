@@ -188,7 +188,7 @@ extern "C" s32 wideFormatCore(
 	u32 value;
 	wchar isSigned;
 	s32 isWide;
-	u32 zeroPad;
+	s32 zeroPad;
 	const wchar* specAt;
 	wchar* bufBase;
 	State st;
@@ -700,6 +700,24 @@ emit:
 		emitChar(&st, c);
 	}
 
+	if (zeroPad > 0) {
+		wchar lead;
+
+		length = length - zeroPad;
+		width  = width - zeroPad;
+
+		lead = *convPos;
+
+		if (lead == 0x2D || lead == 0x20 || lead == 0x2B) {
+			sign = *convPos++;
+
+			emitChar(&st, sign);
+
+			length = length - 1;
+			width  = width - 1;
+		}
+	}
+
 	while (zeroPad != 0) {
 		emitChar(&st, 0x30);
 		zeroPad = zeroPad - 1;
@@ -728,9 +746,8 @@ emit:
 		}
 	}
 
-	while (width > 0) {
+	while (width-- > 0) {
 		emitChar(&st, 0x20);
-		width = width - 1;
 	}
 
 floating:
@@ -752,13 +769,7 @@ storeCount: {
 	goto nextChar;
 
 done:
-	for (;;) {
-		c = *specAt++;
-
-		if (c == 0) {
-			break;
-		}
-
+	while ((c = *specAt++) != 0) {
 		emitChar(&st, c);
 	}
 
