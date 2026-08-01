@@ -235,6 +235,18 @@ nextChar:
 			}
 
 			switch (charClass[c - 0x20]) {
+				case 0x01: // #
+					if (state != 0) {
+						goto done;
+					}
+					flags |= 0x1;
+					break;
+				case 0x03: // -
+					if (state != 0) {
+						goto done;
+					}
+					flags |= 0x2;
+					break;
 				case 0x00: // space and +
 					if (state != 0) {
 						goto done;
@@ -243,11 +255,23 @@ nextChar:
 						sign = c;
 					}
 					break;
-				case 0x01: // #
+				case 0x18: // N
+					flags &= ~0x20;
+					state = 5;
+					break;
+				case 0x19: // F
+					flags |= 0x20;
+					state = 5;
+					break;
+				case 0x09: // 0
 					if (state != 0) {
-						goto done;
+						goto digit;
 					}
-					flags |= 0x1;
+					if ((flags & 0x2) != 0) {
+						break;
+					}
+					flags |= 0x8;
+					state = 1;
 					break;
 				case 0x02: { // *
 					s32 given = ARG_INT;
@@ -271,12 +295,6 @@ nextChar:
 					}
 					break;
 				}
-				case 0x03: // -
-					if (state != 0) {
-						goto done;
-					}
-					flags |= 0x2;
-					break;
 				case 0x04: // .
 					if (state >= 4) {
 						goto done;
@@ -298,50 +316,6 @@ nextChar:
 					flags = (flags | 0x200) & ~0x10;
 					state = 5;
 					break;
-				case 0x09: // 0
-					if (state != 0) {
-						goto digit;
-					}
-					if ((flags & 0x2) != 0) {
-						break;
-					}
-					flags |= 0x8;
-					state = 1;
-					break;
-				case 0x0A: // d and i
-					goto integer;
-				case 0x0B: // o
-					goto octal;
-				case 0x0C: // u
-					goto unsignedDecimal;
-				case 0x0D: // x and X
-					goto hexadecimal;
-				case 0x0E: // p
-					goto pointer;
-				case 0x0F: // e f g E G
-					goto floating;
-				case 0x10: // c
-					goto character;
-				case 0x11: // s
-					goto string;
-				case 0x12: // C
-					goto narrowCharDefault;
-				case 0x13: // S
-					goto narrowStringDefault;
-				case 0x14: // n
-					goto storeCount;
-				case 0x15:
-				case 0x16:
-				case 0x17:
-					goto done;
-				case 0x18: // N
-					flags &= ~0x20;
-					state = 5;
-					break;
-				case 0x19: // F
-					flags |= 0x20;
-					state = 5;
-					break;
 				case 0x1A: // I64, I32, I16 and I8
 					if (fmt[0] == 0x36 && fmt[1] == 0x34) {
 						fmt += 2;
@@ -361,6 +335,32 @@ nextChar:
 						state = 5;
 					}
 					break;
+				case 0x0B: // o
+					goto octal;
+				case 0x0C: // u
+					goto unsignedDecimal;
+				case 0x0D: // x and X
+					goto hexadecimal;
+				case 0x0A: // d and i
+					goto integer;
+				case 0x0E: // p
+					goto pointer;
+				case 0x12: // C
+					goto narrowCharDefault;
+				case 0x10: // c
+					goto character;
+				case 0x13: // S
+					goto narrowStringDefault;
+				case 0x11: // s
+					goto string;
+				case 0x0F: // e f g E G
+					goto floating;
+				case 0x14: // n
+					goto storeCount;
+				case 0x15:
+				case 0x16:
+				case 0x17:
+					goto done;
 			}
 
 			continue;
