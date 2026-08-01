@@ -439,7 +439,7 @@ fetch:
 			end = digits;
 
 			do {
-				*end++ = (wchar)(s8)((u32)value % (u32)base);
+				*end++ = (wchar)(s8)(value - value / (u32)base * (u32)base);
 				value  = (s32)((u32)value / (u32)base);
 			} while (value != 0);
 
