@@ -171,25 +171,25 @@ static inline void emitChar(State* s, wchar c)
 extern "C" s32 wideFormatCore(
     WriteProc write, void* writeArg, const wchar* format, s32 hasLimit, u32 limit, void* args)
 {
+	s32 base;
+	u32 state;
 	s32 held;
 	s32 total;
 	s32 failed;
 	u32* limitAt;
-	u32 flags;
 	s32 length;
-	const wchar* fmt;
 	wchar c;
-	u32 state;
 	s32 width;
+	u32 flags;
 	s32 precision;
 	wchar sign;
-	s32 base;
 	s32 hexBias;
 	u32 value;
 	wchar isSigned;
 	s32 isWide;
 	s32 zeroPad;
 	const wchar* specAt;
+	const wchar* fmt;
 	wchar* bufBase;
 	State st;
 
