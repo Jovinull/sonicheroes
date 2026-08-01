@@ -618,6 +618,30 @@ emit:
 		emitChar(&st, c);
 	}
 
+	while (zeroPad != 0) {
+		emitChar(&st, 0x30);
+		zeroPad = zeroPad - 1;
+	}
+
+	if (length != 0) {
+		width = width - length;
+
+		do {
+			wchar ch = *convPos;
+
+			convPos = convPos + 1;
+
+			emitChar(&st, ch);
+
+			length = length - 1;
+		} while (length != 0);
+	}
+
+	while (width > 0) {
+		emitChar(&st, 0x20);
+		width = width - 1;
+	}
+
 done:
 	for (;;) {
 		c = *specAt++;
