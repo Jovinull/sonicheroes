@@ -604,6 +604,20 @@ string:
 			convPos = wideNull;
 		}
 	}
+
+	{
+		s32 room  = precision >= 0 ? precision : 0x7FFFFFFF;
+		wchar* at = convPos;
+
+		length = 0;
+
+		while (room != 0 && *at != 0) {
+			room   = room - 1;
+			length = length + 1;
+			at     = at + 1;
+		}
+	}
+
 	goto emit;
 
 floating:
