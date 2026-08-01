@@ -173,7 +173,7 @@ extern "C" s32 wideFormatCore(
 	s32 base;
 	s32 hexBias;
 	u32 value;
-	s32 isSigned;
+	wchar isSigned;
 	s32 isWide;
 	u32 zeroPad;
 	const wchar* specAt;
@@ -431,17 +431,21 @@ fetch:
 			wchar digits[66];
 			wchar* end;
 
-			if (value < 0 && isSigned != 0) {
+			if ((s32)value < 0 && isSigned != 0) {
 				*at++ = 0x2D;
 				value = -value;
 			}
 
 			end = digits;
 
-			do {
-				*end++ = (wchar)(s8)(value - value / (u32)base * (u32)base);
-				value  = (s32)((u32)value / (u32)base);
-			} while (value != 0);
+			for (;;) {
+				*end++ = (wchar)(s8)(value - value / base * base);
+				value  = value / base;
+
+				if ((s32)value == 0) {
+					break;
+				}
+			}
 
 			while (end != digits) {
 				wchar d = *--end;
@@ -449,13 +453,56 @@ fetch:
 				if (d < 10) {
 					*at++ = (wchar)(d + 0x30);
 				} else {
-					*at++ = (wchar)(d + hexBias - 10);
+					s32 raised = d + hexBias;
+
+					*at++ = (wchar)(raised - 10);
 				}
 			}
 		}
 
 		*at = 0;
 	}
+
+padded:
+	if (precision < 0) {
+		goto zeroFill;
+	}
+
+	{
+		const wchar* s = convPos;
+		const wchar* at;
+		s32 bare;
+
+		at = s;
+
+		if (at != NULL) {
+			length = 0;
+
+			while (*at != 0) {
+				length = length + 1;
+				at     = at + 1;
+			}
+		} else {
+			length = 0;
+		}
+
+		bare = length;
+
+		if (*s == 0x2D) {
+			bare = length - 1;
+		} else if (sign != 0) {
+			length  = length + 1;
+			convPos = convPos - 1;
+
+			*convPos = sign;
+		}
+
+		if (precision > bare) {
+			zeroPad = precision - bare;
+		}
+	}
+
+	goto emit;
 
 pointer: {
 	u32 v = (u32)ARG_INT;
@@ -548,40 +595,6 @@ string:
 	}
 
 	goto emit;
-
-padded:
-	if (precision >= 0) {
-		wchar* at = convPos;
-		s32 bare;
-
-		if (at != NULL) {
-			length = 0;
-
-			while (*at != 0) {
-				length = length + 1;
-				at     = at + 1;
-			}
-		} else {
-			length = 0;
-		}
-
-		bare = length;
-
-		if (*convPos == 0x2D) {
-			bare = length - 1;
-		} else if (sign != 0) {
-			length  = length + 1;
-			convPos = convPos - 1;
-
-			*convPos = sign;
-		}
-
-		if (precision > bare) {
-			zeroPad = precision - bare;
-		}
-
-		goto emit;
-	}
 
 zeroFill:
 	if ((flags & 0x8) != 0 && width > 0) {
