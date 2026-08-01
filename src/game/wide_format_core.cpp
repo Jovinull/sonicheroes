@@ -183,17 +183,15 @@ extern "C" s32 wideFormatCore(
 	u32 flags;
 	s32 precision;
 	wchar sign;
-	s32 hexBias;
+	wchar hexBias;
 	u32 value;
 	wchar isSigned;
 	s32 isWide;
 	s32 zeroPad;
 	const wchar* specAt;
-	const wchar* fmt;
 	wchar* bufBase;
 	State st;
 
-	fmt         = format;
 	st.failed   = 0;
 	st.total    = 0;
 	st.held     = 0;
@@ -205,27 +203,27 @@ extern "C" s32 wideFormatCore(
 
 nextChar:
 	for (;;) {
-		c = *fmt++;
+		c = *format++;
 
 		if (c == 0) {
 			goto finish;
 		}
 
 		if (c == 0x25) {
-			c = *fmt;
+			c = *format;
 
 			if (c != 0x25) {
 				goto spec;
 			}
 
-			fmt++;
+			format++;
 		}
 
 		emitChar(&st, c);
 		continue;
 
 	spec:
-		specAt    = fmt - 1;
+		specAt    = format - 1;
 		state     = 0;
 		zeroPad   = 0;
 		sign      = 0;
@@ -234,7 +232,7 @@ nextChar:
 		width     = -1;
 
 		for (;;) {
-			c = *fmt++;
+			c = *format++;
 
 			if (c < 0x20) {
 				goto done;
@@ -341,20 +339,20 @@ nextChar:
 					state = 5;
 					break;
 				case 0x1A: // I64, I32, I16 and I8
-					if (fmt[0] == 0x36 && fmt[1] == 0x34) {
-						fmt += 2;
+					if (format[0] == 0x36 && format[1] == 0x34) {
+						format += 2;
 						flags = (flags | 0x100) & ~0x210;
 						state = 5;
-					} else if (fmt[0] == 0x33 && fmt[1] == 0x32) {
-						fmt += 2;
+					} else if (format[0] == 0x33 && format[1] == 0x32) {
+						format += 2;
 						flags = (flags | 0x10) & ~0x300;
 						state = 5;
-					} else if (fmt[0] == 0x31 && fmt[1] == 0x36) {
-						fmt += 2;
+					} else if (format[0] == 0x31 && format[1] == 0x36) {
+						format += 2;
 						flags = (flags | 0x200) & ~0x110;
 						state = 5;
-					} else if (fmt[0] == 0x38) {
-						fmt += 1;
+					} else if (format[0] == 0x38) {
+						format += 1;
 						flags = flags & ~0x310;
 						state = 5;
 					}
