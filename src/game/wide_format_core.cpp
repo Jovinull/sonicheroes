@@ -178,7 +178,6 @@ extern "C" s32 wideFormatCore(
 	u32 zeroPad;
 	const wchar* specAt;
 	wchar* bufBase;
-	wchar* bufNext;
 	State st;
 
 	fmt         = format;
@@ -190,7 +189,6 @@ extern "C" s32 wideFormatCore(
 	st.limitAt  = hasLimit != 0 ? &limit : NULL;
 
 	bufBase = convBuf;
-	bufNext = convBuf + 1;
 
 nextChar:
 	for (;;) {
@@ -415,11 +413,11 @@ fetch:
 		value = ARG_INT;
 	}
 
-	convPos = bufNext;
+	convPos = (convBuf + 1);
 
 	if (value == 0) {
 		if (precision == 0) {
-			*bufNext = 0;
+			*(convBuf + 1) = 0;
 			goto padded;
 		}
 	} else {
@@ -496,10 +494,10 @@ character:
 		convPos           = convBuf;
 		length            = 1;
 	} else {
-		convBuf[0] = (wchar)ARG_INT;
-		*bufNext   = 0;
-		convPos    = convBuf;
-		length     = 1;
+		convBuf[0]     = (wchar)ARG_INT;
+		*(convBuf + 1) = 0;
+		convPos        = convBuf;
+		length         = 1;
 	}
 	goto emit;
 
