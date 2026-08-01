@@ -374,15 +374,15 @@ nextChar:
 			if (state <= 2) {
 				state = 2;
 				if (width == -1) {
-					width = c - 0x30;
+					width = (wchar)(c - 0x30);
 				} else {
-					width = (c - 0x30) + width * 10;
+					width = (wchar)(c - 0x30) + width * 10;
 				}
 			} else {
 				if (state != 4) {
 					goto done;
 				}
-				precision = (c - 0x30) + precision * 10;
+				precision = (wchar)(c - 0x30) + precision * 10;
 			}
 		}
 	}
