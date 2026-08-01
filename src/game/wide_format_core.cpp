@@ -517,26 +517,23 @@ padded:
 pointer: {
 	u32 v = (u32)ARG_INT;
 	wchar* at;
-	s32 n;
+	s32 i;
 
-	convPos = convBuf;
+	convPos = (wchar*)v;
+	i       = 7;
 	at      = convBuf + 7;
 
-	for (n = 2; n != 0; n--) {
-		s32 i;
+	for (; i >= 0; i--) {
+		s32 d = v & 0xF;
 
-		for (i = 0; i < 4; i++) {
-			s32 d = v & 0xF;
-
-			if (d < 10) {
-				*at = (wchar)(d + 0x30);
-			} else {
-				*at = (wchar)(d + 0x37);
-			}
-
-			v  = v >> 4;
-			at = at - 1;
+		if (d < 10) {
+			*at = (wchar)(d + 0x30);
+		} else {
+			*at = (wchar)(d + 0x37);
 		}
+
+		v  = v >> 4;
+		at = at - 1;
 	}
 
 	bufBase[8] = 0;
