@@ -173,10 +173,6 @@ extern "C" s32 wideFormatCore(
 {
 	s32 base;
 	u32 state;
-	s32 held;
-	s32 total;
-	s32 failed;
-	u32* limitAt;
 	s32 length;
 	wchar c;
 	s32 width;
