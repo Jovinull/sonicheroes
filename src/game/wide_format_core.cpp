@@ -303,7 +303,21 @@ nextChar:
 					precision = precision + 1;
 					break;
 				case 0x05: // 1 to 9
-					goto digit;
+				digit:
+					if (state <= 2) {
+						state = 2;
+						if (width == -1) {
+							width = (wchar)(c - 0x30);
+						} else {
+							width = (wchar)(c - 0x30) + width * 10;
+						}
+					} else {
+						if (state != 4) {
+							goto done;
+						}
+						precision = (wchar)(c - 0x30) + precision * 10;
+					}
+					break;
 				case 0x06: // l
 					flags |= 0x10;
 					state = 5;
@@ -364,21 +378,6 @@ nextChar:
 			}
 
 			continue;
-
-		digit:
-			if (state <= 2) {
-				state = 2;
-				if (width == -1) {
-					width = (wchar)(c - 0x30);
-				} else {
-					width = (wchar)(c - 0x30) + width * 10;
-				}
-			} else {
-				if (state != 4) {
-					goto done;
-				}
-				precision = (wchar)(c - 0x30) + precision * 10;
-			}
 		}
 	}
 
