@@ -11,7 +11,7 @@ extern "C" void* __va_arg(void* ap, s32 kind);
 
 #define ARG_INT (*(s32*)__va_arg(args, 1))
 
-typedef void* (*WriteProc)(const wchar* src, u32 count, void* arg);
+typedef void* (*WriteProc)(const wchar* src, u32 count, void* arg, s32 room);
 
 // Character classes, indexed by the format character less 0x20. Anything above
 // 0x1A leaves the character alone.
@@ -137,14 +137,27 @@ struct State {
 	u32* limitAt; // 0x144
 };
 
-static inline void emitChar(State* s, wchar c)
+static inline void flushBuffer(State* s)
 {
-	if (s->held >= 0x50 && s->held != 0) {
-		if (s->write(s->out, s->held, s->writeArg) == NULL) {
+	s32 room = 1;
+
+	if (s->held != 0) {
+		if (s->limitAt != NULL && s->total >= *s->limitAt) {
+			room = 0;
+		}
+
+		if (s->write(s->out, s->held, s->writeArg, room) == NULL) {
 			s->failed = 1;
 		}
 
 		s->held = 0;
+	}
+}
+
+static inline void emitChar(State* s, wchar c)
+{
+	if (s->held >= 0x50) {
+		flushBuffer(s);
 	}
 
 	if (s->limitAt == NULL || (u32)s->total < *s->limitAt) {
@@ -744,13 +757,7 @@ done:
 	}
 
 finish:
-	if (st.held != 0) {
-		if (st.write(st.out, st.held, st.writeArg) == NULL) {
-			st.failed = 1;
-		}
-
-		st.held = 0;
-	}
+	flushBuffer(&st);
 
 	return st.failed != 0 ? -1 : st.total;
 }
