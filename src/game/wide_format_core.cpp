@@ -408,22 +408,27 @@ integer:
 	base     = 10;
 	isSigned = 1;
 
-fetch:
+fetch: {
+	s32 got;
+
 	if ((flags & 0x100) != 0) {
-		value = ARG_INT;
+		got = ARG_INT;
 	} else if ((flags & 0x10) != 0) {
 		s32 wide = ARG_INT;
 
-		value = isSigned != 0 ? (s32)wide : (u32)wide;
+		got = isSigned != 0 ? (s32)wide : (u32)wide;
 	} else if ((flags & 0x200) != 0) {
 		s32 narrow = (u16)ARG_INT;
 
-		value = isSigned != 0 ? (s16)narrow : (u16)narrow;
+		got = isSigned != 0 ? (s16)narrow : (u16)narrow;
 	} else {
 		s32 plain = ARG_INT;
 
-		value = isSigned != 0 ? (s32)plain : (u32)plain;
+		got = isSigned != 0 ? (s32)plain : (u32)plain;
 	}
+
+	value = got;
+}
 
 	convPos = bufStart;
 
