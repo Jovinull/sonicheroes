@@ -387,14 +387,14 @@ nextChar:
 		}
 	}
 
+unsignedInteger:
+	sign     = 0;
+	isSigned = 0;
+
 integer:
 	base     = 10;
 	isSigned = 1;
 	goto fetch;
-
-unsignedInteger:
-	sign     = 0;
-	isSigned = 0;
 
 fetch:
 	if ((flags & 0x100) != 0) {
@@ -452,94 +452,6 @@ fetch:
 
 		*at = 0;
 	}
-
-padded:
-	if (precision >= 0) {
-		wchar* at = convPos;
-		s32 bare;
-
-		if (at != NULL) {
-			length = 0;
-
-			while (*at != 0) {
-				length = length + 1;
-				at     = at + 1;
-			}
-		} else {
-			length = 0;
-		}
-
-		bare = length;
-
-		if (*convPos == 0x2D) {
-			bare = length - 1;
-		} else if (sign != 0) {
-			length  = length + 1;
-			convPos = convPos - 1;
-
-			*convPos = sign;
-		}
-
-		if (precision > bare) {
-			zeroPad = precision - bare;
-		}
-
-		goto emit;
-	}
-
-zeroFill:
-	if ((flags & 0x8) != 0 && width > 0) {
-		wchar* at = convPos;
-		s32 len;
-
-		if (at != NULL) {
-			len = 0;
-
-			while (*at != 0) {
-				len = len + 1;
-				at  = at + 1;
-			}
-		} else {
-			len = 0;
-		}
-
-		if (*convPos == 0x2D) {
-			len = len - 1;
-		}
-
-		if (width > len) {
-			zeroPad = width - len;
-		}
-	}
-
-	if (*convPos == 0x2D || sign != 0) {
-		if (*convPos != 0x2D) {
-			convPos = convPos - 1;
-
-			*convPos = sign;
-		}
-
-		if (zeroPad > 0) {
-			zeroPad = zeroPad - 1;
-		}
-	}
-
-	{
-		wchar* at = convPos;
-
-		if (at != NULL) {
-			length = 0;
-
-			while (*at != 0) {
-				length = length + 1;
-				at     = at + 1;
-			}
-		} else {
-			length = 0;
-		}
-	}
-
-	goto emit;
 
 pointer: {
 	u32 v = (u32)ARG_INT;
@@ -631,23 +543,93 @@ string:
 
 	goto emit;
 
-floating:
-	goto zeroFill;
+padded:
+	if (precision >= 0) {
+		wchar* at = convPos;
+		s32 bare;
 
-storeCount: {
-	void* at = (void*)ARG_INT;
+		if (at != NULL) {
+			length = 0;
 
-	convPos = (wchar*)at;
+			while (*at != 0) {
+				length = length + 1;
+				at     = at + 1;
+			}
+		} else {
+			length = 0;
+		}
 
-	if ((flags & 0x10) != 0) {
-		*(s32*)at = st.total;
-	} else if ((flags & 0x200) != 0) {
-		*(s16*)at = (s16)st.total;
-	} else {
-		*(s32*)at = st.total;
+		bare = length;
+
+		if (*convPos == 0x2D) {
+			bare = length - 1;
+		} else if (sign != 0) {
+			length  = length + 1;
+			convPos = convPos - 1;
+
+			*convPos = sign;
+		}
+
+		if (precision > bare) {
+			zeroPad = precision - bare;
+		}
+
+		goto emit;
 	}
-}
-	goto nextChar;
+
+zeroFill:
+	if ((flags & 0x8) != 0 && width > 0) {
+		wchar* at = convPos;
+		s32 len;
+
+		if (at != NULL) {
+			len = 0;
+
+			while (*at != 0) {
+				len = len + 1;
+				at  = at + 1;
+			}
+		} else {
+			len = 0;
+		}
+
+		if (*convPos == 0x2D) {
+			len = len - 1;
+		}
+
+		if (width > len) {
+			zeroPad = width - len;
+		}
+	}
+
+	if (*convPos == 0x2D || sign != 0) {
+		if (*convPos != 0x2D) {
+			convPos = convPos - 1;
+
+			*convPos = sign;
+		}
+
+		if (zeroPad > 0) {
+			zeroPad = zeroPad - 1;
+		}
+	}
+
+	{
+		wchar* at = convPos;
+
+		if (at != NULL) {
+			length = 0;
+
+			while (*at != 0) {
+				length = length + 1;
+				at     = at + 1;
+			}
+		} else {
+			length = 0;
+		}
+	}
+
+	goto emit;
 
 emit:
 	if ((flags & 0x1) != 0) {
@@ -703,6 +685,24 @@ emit:
 		emitChar(&st, 0x20);
 		width = width - 1;
 	}
+
+floating:
+	goto zeroFill;
+
+storeCount: {
+	void* at = (void*)ARG_INT;
+
+	convPos = (wchar*)at;
+
+	if ((flags & 0x10) != 0) {
+		*(s32*)at = st.total;
+	} else if ((flags & 0x200) != 0) {
+		*(s16*)at = (s16)st.total;
+	} else {
+		*(s32*)at = st.total;
+	}
+}
+	goto nextChar;
 
 done:
 	for (;;) {
