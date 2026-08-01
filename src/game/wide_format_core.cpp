@@ -675,10 +675,8 @@ emit:
 		zeroPad = zeroPad - 1;
 	}
 
-	if (length != 0) {
-		width = width - length;
-
-		do {
+	if ((flags & 0x2) != 0) {
+		while (length != 0) {
 			wchar ch = *convPos;
 
 			convPos = convPos + 1;
@@ -686,7 +684,18 @@ emit:
 			emitChar(&st, ch);
 
 			length = length - 1;
-		} while (length != 0);
+			width  = width - 1;
+		}
+	} else {
+		while (length != 0) {
+			wchar ch = *convPos;
+
+			convPos = convPos + 1;
+
+			emitChar(&st, ch);
+
+			length = length - 1;
+		}
 	}
 
 	while (width > 0) {
