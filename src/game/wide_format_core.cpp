@@ -556,7 +556,7 @@ narrowCharDefault:
 
 character:
 	if ((flags & 0x200) != 0) {
-		((s8*)convBuf)[0] = (s8)ARG_INT;
+		((s8*)convBuf)[0] = (s8)(u8)ARG_INT;
 		((s8*)bufBase)[1] = 0;
 		convPos           = convBuf;
 		length            = 1;
