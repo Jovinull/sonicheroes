@@ -171,11 +171,11 @@ extern "C" s32 wideFormatCore(
 	wchar sign;
 	s32 base;
 	s32 hexBias;
-	s32 value;
+	u32 value;
 	s32 isSigned;
 	s32 length;
 	s32 isWide;
-	s32 zeroPad;
+	u32 zeroPad;
 	const wchar* specAt;
 	wchar* bufBase;
 	wchar* bufNext;
