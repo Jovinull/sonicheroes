@@ -132,7 +132,7 @@ struct State {
 	s32 held;      // 0x130
 	WriteProc write;
 	void* writeArg;
-	s32 total;    // 0x13C
+	u32 total;    // 0x13C
 	s32 failed;   // 0x140
 	u32* limitAt; // 0x144
 };
@@ -147,7 +147,7 @@ static inline void emitChar(State* s, wchar c)
 		s->held = 0;
 	}
 
-	if (s->limitAt == NULL || s->total < (s32)*s->limitAt) {
+	if (s->limitAt == NULL || (u32)s->total < *s->limitAt) {
 		s->out[s->held] = c;
 		s->held         = s->held + 1;
 	}
