@@ -162,10 +162,11 @@ extern "C" s32 wideFormatCore(
 	s32 total;
 	s32 failed;
 	u32* limitAt;
+	u32 flags;
+	s32 length;
 	const wchar* fmt;
 	wchar c;
 	u32 state;
-	u32 flags;
 	s32 width;
 	s32 precision;
 	wchar sign;
@@ -173,7 +174,6 @@ extern "C" s32 wideFormatCore(
 	s32 hexBias;
 	u32 value;
 	s32 isSigned;
-	s32 length;
 	s32 isWide;
 	u32 zeroPad;
 	const wchar* specAt;
