@@ -227,12 +227,11 @@ nextChar:
 	spec:
 		specAt    = fmt - 1;
 		state     = 0;
-		flags     = 0;
-		width     = -1;
-		precision = -1;
+		zeroPad   = 0;
 		sign      = 0;
-		base      = 10;
-		hexBias   = 0;
+		flags     = 0x20;
+		precision = -1;
+		width     = -1;
 
 		for (;;) {
 			c = *fmt++;
@@ -245,7 +244,7 @@ nextChar:
 				goto done;
 			}
 
-			switch (charClass[c - 0x20]) {
+			switch (charClass[(u8)(c - 0x20)]) {
 				case 0x01: // #
 					if (state != 0) {
 						goto done;
@@ -718,31 +717,17 @@ emit:
 		}
 	}
 
-	while (zeroPad != 0) {
+	while (zeroPad-- != 0) {
 		emitChar(&st, 0x30);
-		zeroPad = zeroPad - 1;
 	}
 
-	if ((flags & 0x2) != 0) {
-		while (length != 0) {
-			wchar ch = *convPos;
+	if (length != 0) {
+		width = width - length;
 
-			convPos = convPos + 1;
+		while (length-- != 0) {
+			sign = *convPos++;
 
-			emitChar(&st, ch);
-
-			length = length - 1;
-			width  = width - 1;
-		}
-	} else {
-		while (length != 0) {
-			wchar ch = *convPos;
-
-			convPos = convPos + 1;
-
-			emitChar(&st, ch);
-
-			length = length - 1;
+			emitChar(&st, sign);
 		}
 	}
 
