@@ -597,6 +597,11 @@ config.libs = [
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "game/wide_format_core.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "game/wide_format_write.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
