@@ -3,15 +3,25 @@
 // The formatter core the buffer entry in game/wide_format_write.cpp calls.
 // See notes/wide-formatter-core.md for the section map and the decoded class
 // table.
+//
+// Every section matches except .text, which is nine instructions short, and
+// .data, whose relocation addends are already identical to the target. The
+// remaining .text gap is register allocation, not control flow: seven of the
+// nine are the copies the target emits in the argument fetch below, where it
+// keeps the converted value apart from the fetched temporary and this build
+// coalesces the two. The byte at offset seven of extabindex encodes the
+// function size, so it reads how far off the reconstruction still is.
 
 typedef u16 wchar;
 
 extern "C" void* memcpy(void* dst, const void* src, u32 size);
 extern "C" void* __va_arg(void* ap, s32 kind);
 
-#define ARG_INT (*(s32*)__va_arg(args, 1))
+#define ARG_INT (*(s32*)__va_arg(ap, 1))
 
-typedef void* (*WriteProc)(const wchar* src, u32 count, void* arg);
+// The fourth parameter is dead in the only implementation the game links, but
+// the core computes and passes it at every flush.
+typedef void* (*WriteProc)(const wchar* src, u32 count, void* arg, s32 more);
 
 // Character classes, indexed by the format character less 0x20. Anything above
 // 0x1A leaves the character alone.
@@ -115,15 +125,18 @@ static const u8 charClass[96] = {
 };
 
 // The conversion buffer and the cursor into it, both file scope.
-static char narrowNull[] = "(null)";
-static wchar wideNull[6] = { 0, 0, 0, 0, 0, 0 };
+static char narrowNull[7] = "(null)";
+static wchar wideNull[6]  = { 0, 0, 0, 0, 0, 0 };
 static wchar convBuf[48];
-static wchar* convPos;
 
-// Never read here. The target's lbl_8042C808 is one eight byte object with
-// only its first word referenced, so a second pointer has to exist beside the
-// cursor for .sbss to come out at eight rather than four.
-static wchar* convEnd;
+// The target's lbl_8042C808 is one eight byte object with only its first word
+// referenced, so the cursor and its unused neighbour are one symbol.
+static struct ConvCursor {
+	wchar* pos;
+	wchar* end;
+} conv;
+
+#define convPos conv.pos
 
 // Inlined at every site that emits one character. The flush computes a flag the
 // call never reads, which is this helper's dead parameter on that path.
@@ -132,19 +145,30 @@ struct State {
 	s32 held;      // 0x130
 	WriteProc write;
 	void* writeArg;
-	u32 total;    // 0x13C
+	s32 total;    // 0x13C
 	s32 failed;   // 0x140
 	u32* limitAt; // 0x144
 };
 
-static inline void emitChar(State* s, wchar c)
+static inline void flushBuffer(State* s, s32 more)
 {
-	if (s->held >= 0x50 && s->held != 0) {
-		if (s->write(s->out, s->held, s->writeArg) == NULL) {
+	if (s->held != 0) {
+		if (s->limitAt != NULL && (u32)s->total >= *s->limitAt) {
+			more = 0;
+		}
+
+		if (s->write(s->out, s->held, s->writeArg, more) == NULL) {
 			s->failed = 1;
 		}
 
 		s->held = 0;
+	}
+}
+
+static inline void emitChar(State* s, wchar c)
+{
+	if (s->held >= 0x50) {
+		flushBuffer(s, 1);
 	}
 
 	if (s->limitAt == NULL || (u32)s->total < *s->limitAt) {
@@ -158,37 +182,32 @@ static inline void emitChar(State* s, wchar c)
 extern "C" s32 wideFormatCore(
     WriteProc write, void* writeArg, const wchar* format, s32 hasLimit, u32 limit, void* args)
 {
-	s32 held;
-	s32 total;
-	s32 failed;
-	u32* limitAt;
-	u32 flags;
-	s32 length;
 	const wchar* fmt;
-	wchar c;
-	u32 state;
 	s32 width;
-	s32 precision;
+	s32 zeroPad;
+	wchar c;
+	s32 length;
+	void* ap;
+	wchar hexBias;
+	u32 flags;
 	wchar sign;
-	s32 base;
-	s32 hexBias;
-	u32 value;
-	s32 isSigned;
-	s32 isWide;
-	u32 zeroPad;
+	s32 precision;
 	const wchar* specAt;
-	wchar* bufBase;
+	u32 state;
+	s32 base;
+	u32 value;
+	u16 isSigned;
+	s32 isWide;
 	State st;
 
 	fmt         = format;
+	ap          = args;
 	st.failed   = 0;
 	st.total    = 0;
 	st.held     = 0;
 	st.write    = write;
 	st.writeArg = writeArg;
 	st.limitAt  = hasLimit != 0 ? &limit : NULL;
-
-	bufBase = convBuf;
 
 nextChar:
 	for (;;) {
@@ -214,12 +233,11 @@ nextChar:
 	spec:
 		specAt    = fmt - 1;
 		state     = 0;
-		flags     = 0;
-		width     = -1;
-		precision = -1;
+		zeroPad   = 0;
 		sign      = 0;
-		base      = 10;
-		hexBias   = 0;
+		flags     = 0x20;
+		precision = -1;
+		width     = -1;
 
 		for (;;) {
 			c = *fmt++;
@@ -232,7 +250,7 @@ nextChar:
 				goto done;
 			}
 
-			switch (charClass[c - 0x20]) {
+			switch (charClass[(u8)(c - 0x20)]) {
 				case 0x01: // #
 					if (state != 0) {
 						goto done;
@@ -271,7 +289,8 @@ nextChar:
 					flags |= 0x8;
 					state = 1;
 					break;
-				case 0x02: { // *
+				case 0x02: // *
+				{
 					s32 given = ARG_INT;
 
 					if (state < 2) {
@@ -287,7 +306,6 @@ nextChar:
 						if (state != 4) {
 							goto done;
 						}
-
 						precision = given;
 						state     = state + 1;
 					}
@@ -328,45 +346,56 @@ nextChar:
 					flags = (flags | 0x200) & ~0x10;
 					state = 5;
 					break;
-				case 0x1A: // I64, I32, I16 and I8
+				case 0x1A: // I
 					if (fmt[0] == 0x36 && fmt[1] == 0x34) {
-						fmt += 2;
+						fmt   = fmt + 2;
 						flags = (flags | 0x100) & ~0x210;
 						state = 5;
-					} else if (fmt[0] == 0x33 && fmt[1] == 0x32) {
-						fmt += 2;
+						break;
+					}
+					if (fmt[0] == 0x33 && fmt[1] == 0x32) {
+						fmt   = fmt + 2;
 						flags = (flags | 0x10) & ~0x300;
 						state = 5;
-					} else if (fmt[0] == 0x31 && fmt[1] == 0x36) {
-						fmt += 2;
+						break;
+					}
+					if (fmt[0] == 0x31 && fmt[1] == 0x36) {
+						fmt   = fmt + 2;
 						flags = (flags | 0x200) & ~0x110;
 						state = 5;
-					} else if (fmt[0] == 0x38) {
-						fmt += 1;
+						break;
+					}
+					if (fmt[0] == 0x38) {
+						fmt   = fmt + 1;
 						flags = flags & ~0x310;
 						state = 5;
 					}
 					break;
 				case 0x0B: // o
-					goto octal;
+					base = 8;
+					goto unsignedInteger;
 				case 0x0C: // u
-					goto unsignedDecimal;
+					base = 10;
+					goto unsignedInteger;
 				case 0x0D: // x and X
-					goto hexadecimal;
+					base    = 16;
+					hexBias = (wchar)(c - 0x17);
+					goto unsignedInteger;
 				case 0x0A: // d and i
+					base = 10;
 					goto integer;
 				case 0x0E: // p
 					goto pointer;
-				case 0x12: // C
-					goto narrowCharDefault;
-				case 0x10: // c
-					goto character;
-				case 0x13: // S
-					goto narrowStringDefault;
-				case 0x11: // s
-					goto string;
 				case 0x0F: // e f g E G
 					goto floating;
+				case 0x10: // c
+					goto character;
+				case 0x11: // s
+					goto string;
+				case 0x12: // C
+					goto character;
+				case 0x13: // S
+					goto string;
 				case 0x14: // n
 					goto storeCount;
 				case 0x15:
@@ -374,24 +403,10 @@ nextChar:
 				case 0x17:
 					goto done;
 			}
-
-			continue;
 		}
 	}
 
-octal:
-	base = 8;
-	goto unsignedShared;
-
-unsignedDecimal:
-	base = 10;
-	goto unsignedShared;
-
-hexadecimal:
-	base    = 16;
-	hexBias = c - 0x17;
-
-unsignedShared:
+unsignedInteger:
 	sign     = 0;
 	isSigned = 0;
 	goto fetch;
@@ -404,20 +419,36 @@ fetch:
 	if ((flags & 0x100) != 0) {
 		value = ARG_INT;
 	} else if ((flags & 0x10) != 0) {
-		value = ARG_INT;
-	} else if ((flags & 0x200) != 0) {
-		s32 narrow = (u16)ARG_INT;
+		s32 wide = ARG_INT;
 
-		value = isSigned != 0 ? (s16)narrow : narrow;
+		if (isSigned != 0) {
+			value = (u32)wide;
+		} else {
+			value = (u32)wide;
+		}
+	} else if ((flags & 0x200) != 0) {
+		u16 narrow = (u16)ARG_INT;
+
+		if (isSigned != 0) {
+			value = (u32)(s16)narrow;
+		} else {
+			value = (u32)narrow;
+		}
 	} else {
-		value = ARG_INT;
+		s32 plain = ARG_INT;
+
+		if (isSigned != 0) {
+			value = (u32)plain;
+		} else {
+			value = (u32)plain;
+		}
 	}
 
-	convPos = (convBuf + 1);
+	convPos = convBuf + 1;
 
 	if (value == 0) {
 		if (precision == 0) {
-			*(convBuf + 1) = 0;
+			convBuf[1] = 0;
 			goto padded;
 		}
 	} else {
@@ -431,17 +462,21 @@ fetch:
 			wchar digits[66];
 			wchar* end;
 
-			if (value < 0 && isSigned != 0) {
+			if ((s32)value < 0 && isSigned != 0) {
 				*at++ = 0x2D;
 				value = -value;
 			}
 
 			end = digits;
 
-			do {
-				*end++ = (wchar)(s8)(value - value / (u32)base * (u32)base);
-				value  = (s32)((u32)value / (u32)base);
-			} while (value != 0);
+			for (;;) {
+				*end++ = (s8)(value - value / base * base);
+				value  = value / base;
+
+				if ((s32)value == 0) {
+					break;
+				}
+			}
 
 			while (end != digits) {
 				wchar d = *--end;
@@ -449,105 +484,15 @@ fetch:
 				if (d < 10) {
 					*at++ = (wchar)(d + 0x30);
 				} else {
-					*at++ = (wchar)(d + hexBias - 10);
+					s32 t = d + hexBias;
+
+					*at++ = (wchar)(t - 10);
 				}
 			}
 		}
 
 		*at = 0;
 	}
-
-pointer: {
-	u32 v = (u32)ARG_INT;
-	wchar* at;
-	s32 n;
-
-	convPos = convBuf;
-	at      = convBuf + 7;
-
-	for (n = 2; n != 0; n--) {
-		s32 i;
-
-		for (i = 0; i < 4; i++) {
-			s32 d = v & 0xF;
-
-			*at-- = (wchar)(d < 10 ? d + 0x30 : d + 0x37);
-			v >>= 4;
-		}
-	}
-
-	convBuf[8] = 0;
-	flags &= ~0x4;
-	convPos = convBuf;
-}
-	goto emit;
-
-narrowCharDefault:
-	if ((flags & 0x210) == 0) {
-		flags |= 0x200;
-	}
-
-character:
-	if ((flags & 0x200) != 0) {
-		((s8*)convBuf)[0] = (s8)ARG_INT;
-		((s8*)bufBase)[1] = 0;
-		convPos           = convBuf;
-		length            = 1;
-	} else {
-		convBuf[0]     = (wchar)ARG_INT;
-		*(convBuf + 1) = 0;
-		convPos        = convBuf;
-		length         = 1;
-	}
-	goto emit;
-
-narrowStringDefault:
-	if ((flags & 0x210) == 0) {
-		flags |= 0x200;
-	}
-
-string:
-	if ((flags & 0x200) != 0) {
-		convPos = (wchar*)ARG_INT;
-		isWide  = 0;
-
-		if (convPos == NULL) {
-			convPos = (wchar*)narrowNull;
-		}
-	} else {
-		convPos = (wchar*)ARG_INT;
-		isWide  = 1;
-
-		if (convPos == NULL) {
-			convPos = wideNull;
-		}
-	}
-
-	if (isWide != 0) {
-		s32 room  = precision >= 0 ? precision : 0x7FFFFFFF;
-		wchar* at = convPos;
-
-		length = 0;
-
-		while (room != 0 && *at != 0) {
-			room   = room - 1;
-			length = length + 1;
-			at     = at + 1;
-		}
-	} else {
-		s32 room = precision >= 0 ? precision : 0x7FFFFFFF;
-		s8* at   = (s8*)convPos;
-
-		length = 0;
-
-		while (room != 0 && *at != 0) {
-			room   = room - 1;
-			length = length + 1;
-			at     = at + 1;
-		}
-	}
-
-	goto emit;
 
 padded:
 	if (precision >= 0) {
@@ -582,6 +527,100 @@ padded:
 
 		goto emit;
 	}
+
+pointer: {
+	u32 v;
+	s32 i;
+	wchar* at;
+
+	v       = (u32)ARG_INT;
+	convPos = (wchar*)v;
+	i       = 7;
+	at      = convBuf;
+	at      = at + 7;
+
+	for (; i >= 0; i--) {
+		s32 d = v & 0xF;
+
+		if (d < 10) {
+			*at = (wchar)(d + 0x30);
+		} else {
+			*at = (wchar)(d + 0x37);
+		}
+
+		v  = v >> 4;
+		at = at - 1;
+	}
+
+	convBuf[8] = 0;
+	flags &= ~0x4;
+	convPos = convBuf;
+}
+	goto zeroFill;
+
+character:
+	if ((flags & 0x210) == 0) {
+		flags |= 0x200;
+	}
+
+	if ((flags & 0x200) != 0) {
+		((s8*)convBuf)[0] = (s8)(u8)ARG_INT;
+		((s8*)convBuf)[1] = 0;
+		convPos           = convBuf;
+		length            = 1;
+	} else {
+		convBuf[0] = (wchar)ARG_INT;
+		convBuf[1] = 0;
+		convPos    = convBuf;
+		length     = 1;
+	}
+	goto emit;
+
+string:
+	if ((flags & 0x210) == 0) {
+		flags |= 0x200;
+	}
+
+	if ((flags & 0x200) != 0) {
+		convPos = (wchar*)ARG_INT;
+		isWide  = 0;
+
+		if (convPos == NULL) {
+			convPos = (wchar*)narrowNull;
+		}
+	} else {
+		convPos = (wchar*)ARG_INT;
+		isWide  = 1;
+
+		if (convPos == NULL) {
+			convPos = wideNull;
+		}
+	}
+
+	if (isWide != 0) {
+		s32 left        = precision >= 0 ? precision : 0x7FFFFFFF;
+		const wchar* at = convPos;
+
+		length = 0;
+
+		while (left != 0 && *at != 0) {
+			left   = left - 1;
+			length = length + 1;
+			at     = at + 1;
+		}
+	} else {
+		s32 left       = precision >= 0 ? precision : 0x7FFFFFFF;
+		const char* at = (const char*)convPos;
+
+		length = 0;
+
+		while (left != 0 && *at != 0) {
+			left   = left - 1;
+			length = length + 1;
+			at     = at + 1;
+		}
+	}
+	goto emit;
 
 zeroFill:
 	if ((flags & 0x8) != 0 && width > 0) {
@@ -635,8 +674,6 @@ zeroFill:
 		}
 	}
 
-	goto emit;
-
 emit:
 	if ((flags & 0x1) != 0) {
 		if (c == 0x6F) {
@@ -668,41 +705,38 @@ emit:
 		emitChar(&st, c);
 	}
 
-	while (zeroPad != 0) {
-		emitChar(&st, 0x30);
-		zeroPad = zeroPad - 1;
-	}
+	if (zeroPad > 0) {
+		wchar lead;
 
-	if ((flags & 0x2) != 0) {
-		while (length != 0) {
-			wchar ch = *convPos;
+		length = length - zeroPad;
+		width  = width - zeroPad;
+		lead   = *convPos;
 
-			convPos = convPos + 1;
-
-			emitChar(&st, ch);
+		if (lead == 0x2D || lead == 0x20 || lead == 0x2B) {
+			emitChar(&st, *convPos++);
 
 			length = length - 1;
 			width  = width - 1;
 		}
-	} else {
-		while (length != 0) {
-			wchar ch = *convPos;
 
-			convPos = convPos + 1;
-
-			emitChar(&st, ch);
-
-			length = length - 1;
+		while (zeroPad-- != 0) {
+			emitChar(&st, 0x30);
 		}
 	}
 
-	while (width > 0) {
-		emitChar(&st, 0x20);
-		width = width - 1;
+	if (length != 0) {
+		width = width - length;
+
+		while (length-- != 0) {
+			emitChar(&st, *convPos++);
+		}
 	}
 
-floating:
-	goto zeroFill;
+	while (width-- > 0) {
+		emitChar(&st, 0x20);
+	}
+
+	goto nextChar;
 
 storeCount: {
 	void* at = (void*)ARG_INT;
@@ -720,24 +754,15 @@ storeCount: {
 	goto nextChar;
 
 done:
-	for (;;) {
-		c = *specAt++;
-
-		if (c == 0) {
-			break;
-		}
-
+	while ((c = *specAt++) != 0) {
 		emitChar(&st, c);
 	}
 
 finish:
-	if (st.held != 0) {
-		if (st.write(st.out, st.held, st.writeArg) == NULL) {
-			st.failed = 1;
-		}
-
-		st.held = 0;
-	}
+	flushBuffer(&st, 1);
 
 	return st.failed != 0 ? -1 : st.total;
+
+floating:
+	goto zeroFill;
 }
