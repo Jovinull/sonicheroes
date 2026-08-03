@@ -49,7 +49,7 @@ extern "C" void* wideFormatWrite(const wchar* src, u32 count, wchar** position);
 // core keeps a pointer to the limit only when the flag is set, which is how the
 // counted variants reach the same code. This entry point is uncounted and
 // passes zero for both.
-extern "C" s32 fn_8013A6B8(void* (*write)(const wchar*, u32, wchar**), wchar** writeArg,
+extern "C" s32 wideFormatCore(void* (*write)(const wchar*, u32, wchar**), wchar** writeArg,
     const wchar* format, s32 hasLimit, u32 limit, void* args);
 
 extern "C" s32 wideFormatToBuffer(wchar* buffer, const wchar* format, void* args)
@@ -57,7 +57,7 @@ extern "C" s32 wideFormatToBuffer(wchar* buffer, const wchar* format, void* args
 	if (buffer != NULL) {
 		*buffer = 0;
 
-		return fn_8013A6B8(wideFormatWrite, &buffer, format, 0, 0, args);
+		return wideFormatCore(wideFormatWrite, &buffer, format, 0, 0, args);
 	}
 
 	return 0;
