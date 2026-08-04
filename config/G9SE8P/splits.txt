@@ -120,6 +120,9 @@ game/action_cont3.cpp:
 game/action_cont4.cpp:
 	.text       start:0x8001D754 end:0x8001D764
 
+game/object_defaults.cpp:
+	.text       start:0x8001ED40 end:0x8001ED60
+
 game/modeswitch.cpp:
 	extab       start:0x80005BA8 end:0x80005BC0
 	extabindex  start:0x8000C2A4 end:0x8000C2C8
