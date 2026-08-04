@@ -155,3 +155,10 @@ rel/scroll_ring_touch.cpp:
 
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
+
+stage13D/o_s13_blinklight.cpp:
+	.text       start:0x0008B058 end:0x0008BBBC
+	.ctors      start:0x00000114 end:0x00000118
+	.rodata     start:0x000016D0 end:0x00001704
+	.data       start:0x00017A70 end:0x00017B7C
+	.bss        start:0x0000165C end:0x00001694

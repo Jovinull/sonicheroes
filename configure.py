@@ -1565,6 +1565,13 @@ config.libs = [
                 "rel/e_end_spboss.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "stage13D/o_s13_blinklight.cpp",
+                cflags=cflags_rel_nofma,
+                data_section_alignment=4,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
@@ -1910,6 +1917,14 @@ config.custom_build_rules = [
         ),
         "description": "FIX o_s11_cloud symbols",
     },
+    {
+        "name": "fix_stage13_blinklight_object",
+        "command": (
+            f"$python tools/fix_stage13_blinklight_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX stage13 BlinkLight object metadata",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -2178,6 +2193,15 @@ config.custom_build_steps = {
             "implicit": [
                 "tools/fix_s11_cloud_symbols.py",
                 "tools/s11_cloud_sections.ld",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage13-blinklight-object.stamp",
+            "rule": "fix_stage13_blinklight_object",
+            "inputs": "build/G9SE8P/src/stage13D/o_s13_blinklight.o",
+            "implicit": [
+                "tools/fix_stage13_blinklight_object.py",
                 str(binutils_dir),
             ],
         },

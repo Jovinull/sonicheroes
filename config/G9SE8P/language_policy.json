@@ -4,7 +4,8 @@
     "autosaveD/",
     "game/",
     "movieD/",
-    "rel/"
+    "rel/",
+    "stage13D/"
   ],
   "library_prefixes": [
     "MSL_C/",
