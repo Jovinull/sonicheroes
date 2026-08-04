@@ -6,9 +6,12 @@ extern funcptr_t _ctors[];
 
 extern void PPCHalt(void);
 
+__declspec(weak) void InitMetroTRK_BBA(void);
 void __init_user(void);
 static void __init_cpp(void);
 void _ExitProcess(void);
+
+__declspec(weak) void InitMetroTRK_BBA(void) { }
 
 void __init_user(void)
 {
