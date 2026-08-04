@@ -162,3 +162,10 @@ stage13D/o_s13_blinklight.cpp:
 	.rodata     start:0x000016D0 end:0x00001704
 	.data       start:0x00017A70 end:0x00017B7C
 	.bss        start:0x0000165C end:0x00001694
+
+stage13D/o_s13_antenna.cpp:
+	.text       start:0x00090DA0 end:0x00091864
+	.ctors      start:0x00000120 end:0x00000124
+	.rodata     start:0x00001778 end:0x000017A4
+	.data       start:0x00018080 end:0x00018188
+	.bss        start:0x0000194C end:0x00001988
