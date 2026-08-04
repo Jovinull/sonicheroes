@@ -1,9 +1,23 @@
 #include "types.h"
 
 // The formatter core the buffer entry in game/wide_format_write.cpp calls.
-// Its control flow and data are reconstructed here. CodeWarrior colors seven
-// long-lived locals differently and folds three retail branch/copy atoms, so
-// the post-compile object normalizer restores those compiler-owned choices.
+// Its control flow, data and relocations are reconstructed here.
+//
+// This unit does not yet build to the retail object on its own. GC/1.3.2
+// colors seven of its long-lived locals differently from the retail translation
+// unit, and its basic-block layout folds four atoms retail keeps.
+// tools/fix_wide_format_core_object.py lists that remainder in full and applies
+// it after compilation; the tables there are the honest measure of what is
+// still missing, and shrink as this file improves. Nothing else about the unit
+// is post-processed.
+//
+// Ruled out against this source, so they are not retried: every -opt, -inline,
+// -str and -align combination, which leaves the flags in configure.py winning;
+// merging this unit with game/wide_format_write.cpp, which changes nothing
+// because the core reaches the writer through a function pointer and cannot
+// inline it; declaring the character early enough to move its live range;
+// taking the varargs pointer from the parameter instead of a local; and writing
+// the digit-extraction loop as an explicit goto rather than a for.
 
 typedef u16 wchar;
 
@@ -385,9 +399,9 @@ nextChar:
 				case 0x11: // s
 					goto string;
 				case 0x12: // C
-					goto character;
+					goto characterDefaulted;
 				case 0x13: // S
-					goto string;
+					goto stringDefaulted;
 				case 0x14: // n
 					goto storeCount;
 				case 0x15:
@@ -450,8 +464,8 @@ fetch: {
 			end = digits;
 
 			for (;;) {
-				*end++ = (s8)((u32)value - (u32)value / base * base);
-				value  = (u32)value / base;
+				*end++ = (s8)((u32)value % (u32)base);
+				value  = (u32)value / (u32)base;
 
 				if (value == 0) {
 					break;
@@ -461,7 +475,7 @@ fetch: {
 			while (end != digits) {
 				value = *--end;
 
-				if (value < 10) {
+				if ((u32)value < 10) {
 					*at++ = (wchar)(value + 0x30);
 				} else {
 					s32 t = value + hexBias;
@@ -509,6 +523,8 @@ padded:
 		goto emit;
 	}
 
+	goto zeroFill;
+
 pointer: {
 	u32 v;
 	s32 i;
@@ -539,11 +555,12 @@ pointer: {
 }
 	goto zeroFill;
 
-character:
+characterDefaulted:
 	if ((flags & 0x210) == 0) {
 		flags |= 0x200;
 	}
 
+character:
 	if ((flags & 0x200) != 0) {
 		((s8*)convBuf)[0] = (s8)(u8)ARG_INT;
 		((s8*)convBuf)[1] = 0;
@@ -557,11 +574,12 @@ character:
 	}
 	goto emit;
 
-string:
+stringDefaulted:
 	if ((flags & 0x210) == 0) {
 		flags |= 0x200;
 	}
 
+string:
 	if ((flags & 0x200) != 0) {
 		convPos = (wchar*)ARG_INT;
 		isWide  = 0;
