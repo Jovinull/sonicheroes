@@ -951,6 +951,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/o_s11_cloud.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/spring_object.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
@@ -1463,6 +1468,7 @@ config.progress_report_args = [
 binutils_dir = config.binutils_path or (config.build_dir / "binutils")
 objcopy_exe = "powerpc-eabi-objcopy.exe" if is_windows() else "powerpc-eabi-objcopy"
 objcopy_path = binutils_dir / objcopy_exe
+ld_path = binutils_dir / ("powerpc-eabi-ld.exe" if is_windows() else "powerpc-eabi-ld")
 nm_path = binutils_dir / ("powerpc-eabi-nm.exe" if is_windows() else "powerpc-eabi-nm")
 objdump_path = binutils_dir / (
     "powerpc-eabi-objdump.exe" if is_windows() else "powerpc-eabi-objdump"
@@ -1524,6 +1530,15 @@ config.custom_build_rules = [
             f"--objcopy {objcopy_path} --nm {nm_path} --objdump {objdump_path}"
         ),
         "description": "FIX moviePlaySub symbols",
+    },
+    {
+        "name": "fix_s11_cloud_symbols",
+        "command": (
+            f"$python tools/fix_s11_cloud_symbols.py $in $out "
+            f"--objcopy {objcopy_path} --ld {ld_path} "
+            f"--script tools/s11_cloud_sections.ld"
+        ),
+        "description": "FIX o_s11_cloud symbols",
     },
 ]
 config.custom_build_steps = {
@@ -1597,6 +1612,16 @@ config.custom_build_steps = {
             "rule": "fix_movie_play_sub_symbols",
             "inputs": "build/G9SE8P/src/game/moviePlaySub.o",
             "implicit": ["tools/fix_movie_play_sub_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/s11-cloud-symbols.stamp",
+            "rule": "fix_s11_cloud_symbols",
+            "inputs": "build/G9SE8P/src/rel/o_s11_cloud.o",
+            "implicit": [
+                "tools/fix_s11_cloud_symbols.py",
+                "tools/s11_cloud_sections.ld",
+                str(binutils_dir),
+            ],
         },
     ],
 }

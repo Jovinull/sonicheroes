@@ -297,3 +297,10 @@ rel/invoke_collision_register.cpp:
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/o_s11_cloud.cpp:
+	.text       start:0x000973DC end:0x00098060
+	.ctors      start:0x00000118 end:0x0000011C
+	.rodata     start:0x00001684 end:0x000016A4
+	.data       start:0x00015448 end:0x000155B8
+	.bss        start:0x00001708 end:0x00001780
