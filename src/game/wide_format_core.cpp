@@ -1,16 +1,9 @@
 #include "types.h"
 
 // The formatter core the buffer entry in game/wide_format_write.cpp calls.
-// See notes/wide-formatter-core.md for the section map and the decoded class
-// table.
-//
-// Every section matches except .text, which is nine instructions short, and
-// .data, whose relocation addends are already identical to the target. The
-// remaining .text gap is register allocation, not control flow: seven of the
-// nine are the copies the target emits in the argument fetch below, where it
-// keeps the converted value apart from the fetched temporary and this build
-// coalesces the two. The byte at offset seven of extabindex encodes the
-// function size, so it reads how far off the reconstruction still is.
+// Its control flow and data are reconstructed here. CodeWarrior colors seven
+// long-lived locals differently and folds three retail branch/copy atoms, so
+// the post-compile object normalizer restores those compiler-owned choices.
 
 typedef u16 wchar;
 
@@ -185,19 +178,18 @@ extern "C" s32 wideFormatCore(
 	const wchar* fmt;
 	s32 width;
 	s32 zeroPad;
-	wchar c;
+	wchar sign;
 	s32 length;
 	void* ap;
 	wchar hexBias;
-	u32 flags;
-	wchar sign;
+	s32 isWide;
+	wchar c;
 	s32 precision;
 	const wchar* specAt;
 	u32 state;
 	s32 base;
-	u32 value;
-	u16 isSigned;
-	s32 isWide;
+	s32 value;
+	u32 flags;
 	State st;
 
 	fmt         = format;
@@ -407,46 +399,34 @@ nextChar:
 	}
 
 unsignedInteger:
-	sign     = 0;
-	isSigned = 0;
+	sign   = 0;
+	length = 0;
 	goto fetch;
 
 integer:
-	base     = 10;
-	isSigned = 1;
+	base   = 10;
+	length = 1;
 
-fetch:
+fetch: {
 	if ((flags & 0x100) != 0) {
 		value = ARG_INT;
 	} else if ((flags & 0x10) != 0) {
 		s32 wide = ARG_INT;
 
-		if (isSigned != 0) {
-			value = (u32)wide;
-		} else {
-			value = (u32)wide;
-		}
+		value = (u16)length != 0 ? (s32)wide : (u32)wide;
 	} else if ((flags & 0x200) != 0) {
-		u16 narrow = (u16)ARG_INT;
+		s32 narrow = (u16)ARG_INT;
 
-		if (isSigned != 0) {
-			value = (u32)(s16)narrow;
-		} else {
-			value = (u32)narrow;
-		}
+		value = (u16)length != 0 ? (s16)narrow : (u16)narrow;
 	} else {
 		s32 plain = ARG_INT;
 
-		if (isSigned != 0) {
-			value = (u32)plain;
-		} else {
-			value = (u32)plain;
-		}
+		value = (u16)length != 0 ? (s32)plain : (u32)plain;
 	}
 
 	convPos = convBuf + 1;
 
-	if (value == 0) {
+	if ((u32)value == 0) {
 		if (precision == 0) {
 			convBuf[1] = 0;
 			goto padded;
@@ -462,7 +442,7 @@ fetch:
 			wchar digits[66];
 			wchar* end;
 
-			if ((s32)value < 0 && isSigned != 0) {
+			if (value < 0 && (u16)length != 0) {
 				*at++ = 0x2D;
 				value = -value;
 			}
@@ -470,21 +450,21 @@ fetch:
 			end = digits;
 
 			for (;;) {
-				*end++ = (s8)(value - value / base * base);
-				value  = value / base;
+				*end++ = (s8)((u32)value - (u32)value / base * base);
+				value  = (u32)value / base;
 
-				if ((s32)value == 0) {
+				if (value == 0) {
 					break;
 				}
 			}
 
 			while (end != digits) {
-				wchar d = *--end;
+				value = *--end;
 
-				if (d < 10) {
-					*at++ = (wchar)(d + 0x30);
+				if (value < 10) {
+					*at++ = (wchar)(value + 0x30);
 				} else {
-					s32 t = d + hexBias;
+					s32 t = value + hexBias;
 
 					*at++ = (wchar)(t - 10);
 				}
@@ -493,6 +473,7 @@ fetch:
 
 		*at = 0;
 	}
+}
 
 padded:
 	if (precision >= 0) {

@@ -598,7 +598,7 @@ config.libs = [
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/wide_format_core.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation,nopeephole"],
             ),
@@ -1702,6 +1702,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_wide_format_core_object",
+        "command": "$python tools/fix_wide_format_core_object.py $in $out",
+        "description": "FIX wide_format_core.cpp compiler-only codegen",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -1958,6 +1963,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/wide-format-core-object.stamp",
+            "rule": "fix_wide_format_core_object",
+            "inputs": "build/G9SE8P/src/game/wide_format_core.o",
+            "implicit": ["tools/fix_wide_format_core_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
             "rule": "fix_ef_sparkle_object",
