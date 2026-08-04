@@ -315,6 +315,7 @@ modules:
     - scrollRingTouch
     - setCollisionDtor
     - systemObject4Ctor
+    - setDamageCollisionCtor
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
   symbols: config/G9SE8P/stage13D/symbols.txt
