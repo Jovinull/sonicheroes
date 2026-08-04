@@ -513,6 +513,8 @@ modules:
   hash: efc22e14f102354f27547b3d68c1df6b5e63fce6
   symbols: config/G9SE8P/stage40D/symbols.txt
   splits: config/G9SE8P/stage40D/splits.txt
+  force_active:
+    - __ct__10TObjSampleFP7TObject
 
 # Resolved: the RELs reproduce. build.sha1 verifies all 17 alongside main.dol.
 #
