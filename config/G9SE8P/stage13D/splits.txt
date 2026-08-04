@@ -155,3 +155,10 @@ rel/scroll_ring_touch.cpp:
 
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
+
+stage13D/o_s13_antenna.cpp:
+	.text       start:0x00090DA0 end:0x00091864
+	.ctors      start:0x00000120 end:0x00000124
+	.rodata     start:0x00001778 end:0x000017A4
+	.data       start:0x00018080 end:0x00018188
+	.bss        start:0x0000194C end:0x00001988
