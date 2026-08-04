@@ -287,13 +287,54 @@ rel/light_collision_register.cpp:
 	.text       start:0x0004F2E4 end:0x0004F37C
 	.ctors      start:0x000000A0 end:0x000000A4
 
-rel/invoke_collision_dtor.cpp:
-	.text       start:0x0004F6F0 end:0x0004F7D4
-
-rel/invoke_collision_register.cpp:
-	.text       start:0x0004FBFC end:0x0004FC90
+rel/o_invoke_colli.cpp:
+	.text       start:0x0004F37C end:0x0004FC90
 	.ctors      start:0x000000A4 end:0x000000A8
+	.rodata     start:0x00000D60 end:0x00000D70
+	.data       start:0x000058A4 end:0x00005A00
+	.bss        start:0x00000D6C end:0x00000D98
 
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/o_s01_ciseki.cpp:
+	.text       start:0x0007C2B4 end:0x0007C9CC
+	.ctors      start:0x000000C4 end:0x000000C8
+	.rodata     start:0x00001340 end:0x00001348
+	.data       start:0x00009F18 end:0x00009FC0
+	.bss        start:0x0000113C end:0x0000116C
+
+rel/o_s01_hana.cpp:
+	.text       start:0x0007F034 end:0x0007FCE0
+	.ctors      start:0x000000D0 end:0x000000D4
+	.rodata     start:0x00001418 end:0x00001460
+	.data       start:0x0000A468 end:0x0000A640
+	.bss        start:0x000012B0 end:0x000012E8
+
+rel/o_s01_hata.cpp:
+	.text       start:0x0007FCE0 end:0x0008165C
+	.ctors      start:0x000000D4 end:0x000000D8
+	.rodata     start:0x00001460 end:0x000014DC
+	.data       start:0x0000A640 end:0x0000A8F0
+	.bss        start:0x000012E8 end:0x00001344
+
+rel/o_s01_iwamizu.cpp:
+	.text       start:0x0008165C end:0x00082328
+	.ctors      start:0x000000D8 end:0x000000DC
+	.rodata     start:0x000014DC end:0x00001500
+	.data       start:0x0000A8F0 end:0x0000AA04
+	.bss        start:0x00001344 end:0x000013D0
+
+rel/o_s01_shachicolli.cpp:
+	.text       start:0x0008A85C end:0x0008AC30
+	.ctors      start:0x000000F0 end:0x000000F4
+	.data       start:0x0000B3C0 end:0x0000B43C
+	.bss        start:0x00001788 end:0x000017B8
+
+rel/o_s01_taihostull.cpp:
+	.text       start:0x0008AC30 end:0x0008B9A4
+	.ctors      start:0x000000F4 end:0x000000F8
+	.rodata     start:0x000016D8 end:0x00001720
+	.data       start:0x0000B59C end:0x0000B610
+	.bss        start:0x000017B8 end:0x000017F4

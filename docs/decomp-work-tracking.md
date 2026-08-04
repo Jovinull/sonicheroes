@@ -22,6 +22,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex rapid lane 3 | `game/moviePlay.cpp` (`0x801390A4`–`0x801391D0`) | Complete; `pr-game-movie-play-cpp` |
 | Codex root lane | `game/SpAdvStgFailed.cpp` (`0x8013B76C`–`0x8013BC78`) | Complete; `pr-game-sp-adv-stg-failed-cpp` |
 | Codex rapid lane 1 | `game/perf_ps.cpp` (provisional `0x8001EDE0`–`0x8001EECC`) | Active; branch pending |
+| Codex | `rel/o_invoke_colli.cpp` (`TObjSetInvokeColli`, nine stage overlays) | Complete; `pr-stage-common-o-invoke-colli-cpp` |
 
 The unified `advertiseD` reconstruction is complete on `pr-advertised`; do not
 open the superseded per-function or per-file advertise branches.
