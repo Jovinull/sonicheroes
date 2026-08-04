@@ -49,11 +49,11 @@ struct SETOBJ_PARAM {
 };
 
 extern "C" {
-void fn_16_2E4(TObject* object);
-void* fn_16_534(u32 size);
-void fn_16_5FC(SETOBJ_PARAM* param, char* name, void (*load)(), void (*unload)(), void (*create)(),
-    void (*reset)(SETOBJ_PARAM*), u32 flags, u32 field18, u32 field20, u32 objectId, u32 field1E,
-    u32 field21, void* fieldTypes, void* fieldNames);
+void markSampleForDeletion(TObject* object);
+void* __nw__10TObjSampleFUl(u32 size);
+void setupObjClass(SETOBJ_PARAM* param, char* name, void (*load)(), void (*unload)(),
+    void (*create)(), void (*reset)(SETOBJ_PARAM*), u32 flags, u32 field18, u32 field20,
+    u32 objectId, u32 field1E, u32 field21, void* fieldTypes, void* fieldNames);
 void fn_8005B2C4(void* scene);
 void fn_8005B8B8();
 s32 fn_8005B8BC(TMotion* motion);
@@ -63,11 +63,11 @@ void fn_8005BE6C(TMotion* motion);
 void __ct__7TObjectFP7TObject(TObject* object, TObject* owner);
 void __dt__7TObjectFv(TObject* object, s16 flags);
 
-void fn_16_F0();
-void fn_16_F4();
-void fn_16_F8();
-void fn_16_FC();
-void fn_16_100();
+void sampleHook0();
+void sampleHook1();
+void sampleHook2();
+void sampleHook3();
+void sampleHook4();
 void fn_80017854();
 extern TObject* lbl_8042C110;
 extern void* lbl_8042C298;
@@ -87,12 +87,12 @@ void* __vt__11TObjSystem2[] = {
 	(void*)__dt__11TObjSystem2Fv,
 	(void*)Exec__11TObjSystem2Fv,
 	(void*)Disp__11TObjSystem2Fv,
-	(void*)fn_16_F0,
-	(void*)fn_16_F4,
-	(void*)fn_16_F8,
-	(void*)fn_16_FC,
+	(void*)sampleHook0,
+	(void*)sampleHook1,
+	(void*)sampleHook2,
+	(void*)sampleHook3,
 	(void*)fn_80017854,
-	(void*)fn_16_100,
+	(void*)sampleHook4,
 	0,
 	0,
 	(void*)fn_8005B8B8,
@@ -107,7 +107,7 @@ void TObjSystem2::Disp() { }
 void TObjSystem2::Exec()
 {
 	if (fn_8005B9F0(&motion) != 0 || fn_8005B8BC(&motion) != 0) {
-		fn_16_2E4(&object);
+		markSampleForDeletion(&object);
 		return;
 	}
 }
@@ -143,7 +143,7 @@ static void startObjSystem2()
 {
 	// The object-registration callback discards the new object. The constructor
 	// result still remains in r3, as it does in the retail callback.
-	TObjSystem2* object = (TObjSystem2*)fn_16_534(sizeof(TObjSystem2));
+	TObjSystem2* object = (TObjSystem2*)__nw__10TObjSampleFUl(sizeof(TObjSystem2));
 	if (object != 0) {
 		object = __ct__11TObjSystem2FP7TObject(object, lbl_8042C110);
 	}
@@ -151,7 +151,7 @@ static void startObjSystem2()
 
 static void registerObjSystem2()
 {
-	fn_16_5FC(&ObjSystem2Param, TObjSystem2DisplayName, initObjSystem2, endObjSystem2,
+	setupObjClass(&ObjSystem2Param, TObjSystem2DisplayName, initObjSystem2, endObjSystem2,
 	    startObjSystem2, continueSystem2, 0x80, 0, 0x1E, 0xFFF1, 2, 0, 0, 0);
 }
 

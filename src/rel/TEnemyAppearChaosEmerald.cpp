@@ -63,7 +63,7 @@ public:
 	virtual void EditOnChange(SETDATA_PARAM* setData);
 };
 
-extern "C" void* fn_16_534(u32 size);
+extern "C" void* __nw__10TObjSampleFUl(u32 size);
 
 class TEnemyAppearChaosEmerald : public TObject, public TObjectTail, public TEditMotion
 {
@@ -79,15 +79,15 @@ public:
 	TEnemyAppearChaosEmerald(TObject* parent);
 	static void Create();
 
-	static void* operator new(unsigned long size) { return fn_16_534(size); }
+	static void* operator new(unsigned long size) { return __nw__10TObjSampleFUl(size); }
 	static void operator delete(void* object);
 };
 
 struct GameState;
 
 extern "C" {
-void fn_16_2E4(TEnemyAppearChaosEmerald* object);
-void fn_16_5FC(void* entry, char* name, void (*initialize)(), void (*finalize)(), void* create,
+void markSampleForDeletion(TEnemyAppearChaosEmerald* object);
+void setupObjClass(void* entry, char* name, void (*initialize)(), void (*finalize)(), void* create,
     void*, void*, void*, u32, u32, u32, u32, char*, void*);
 u32 fn_16_D10(void* collision);
 void fn_16_1180(void* collision, SETDATA_PARAM* setData, sAngle* angle);
@@ -145,12 +145,12 @@ void TEnemyAppearChaosEmerald::Exec()
 
 	if (!fn_16_93ACC(controller, frame, lbl_16_rodata_1738)) {
 		fn_8005BC04((void*)&frame);
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 
 	if (fn_8005B9F0((void*)&frame) || fn_8005B8BC((void*)&frame)) {
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 
@@ -209,7 +209,7 @@ extern "C" TEnemyAppearChaosEmerald* __ct__24TEnemyAppearChaosEmeraldFP7TObject(
 void TEnemyAppearChaosEmerald::Create()
 {
 	register TEnemyAppearChaosEmerald* object
-	    = (TEnemyAppearChaosEmerald*)fn_16_534(sizeof(TEnemyAppearChaosEmerald));
+	    = (TEnemyAppearChaosEmerald*)__nw__10TObjSampleFUl(sizeof(TEnemyAppearChaosEmerald));
 	if (object != 0)
 		object = __ct__24TEnemyAppearChaosEmeraldFP7TObject(object, lbl_16_bss_1058);
 }
@@ -219,7 +219,7 @@ extern "C" char TEnemyAppearChaosEmeraldFieldTypes;
 
 extern "C" void __sinit_TEnemyAppearChaosEmerald_cpp()
 {
-	fn_16_5FC(ObjS40EnemyAppearChaosEmerald, ObjS40EnemyAppearChaosEmeraldName, 0, 0,
+	setupObjClass(ObjS40EnemyAppearChaosEmerald, ObjS40EnemyAppearChaosEmeraldName, 0, 0,
 	    (void*)TEnemyAppearChaosEmerald::Create, 0, 0, 0, 0x32, 0x15E8, 2, 0,
 	    &TEnemyAppearChaosEmeraldFieldTypes, TEnemyAppearChaosEmeraldFieldNames);
 }

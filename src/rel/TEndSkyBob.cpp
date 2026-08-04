@@ -8,7 +8,7 @@ struct sAngle {
 	s32 x, y, z;
 };
 
-extern "C" void* fn_16_534(u32);
+extern "C" void* __nw__10TObjSampleFUl(u32);
 
 struct SETDATA_PARAM {
 	RwV3d position;
@@ -83,16 +83,16 @@ public:
 	static TEndSkyBob* Create();
 	static void Finalize();
 	static void Initialize();
-	static void* operator new(unsigned long size) { return fn_16_534(size); }
+	static void* operator new(unsigned long size) { return __nw__10TObjSampleFUl(size); }
 	static void operator delete(void* object);
 };
 
 extern "C" {
-void fn_16_378(void*);
-void fn_16_2C8(RwV3d*, SETDATA_PARAM*);
-void fn_16_2E4(TEndSkyBob*);
-void fn_16_5FC(void*, char*, void (*)(), void (*)(), void*, void*, void*, void*, u32, u32, u32, u32,
-    char*, void*);
+void __dl__10TObjSampleFPv(void*);
+void copyVec3(RwV3d*, SETDATA_PARAM*);
+void markSampleForDeletion(TEndSkyBob*);
+void setupObjClass(void*, char*, void (*)(), void (*)(), void*, void*, void*, void*, u32, u32, u32,
+    u32, char*, void*);
 void fn_16_900(sAngle*, sAngle*);
 u32 fn_16_D10(void*);
 void fn_16_DB4(void*);
@@ -191,20 +191,20 @@ void TEndSkyBob::Exec()
 	if (!fn_16_93ACC(
 	        updater, *(SETDATA_PARAM**)(((RawTEndSkyBob*)this)->base + 0x28), TEndSkyBobHundred)) {
 		fn_8005BC04(((RawTEndSkyBob*)this)->base + 0x28);
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_8005B9F0(((RawTEndSkyBob*)this)->base + 0x28) && finished) {
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_8005B8BC(((RawTEndSkyBob*)this)->base + 0x28)) {
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 
 	RwV3d oldPosition = position;
-	fn_16_2C8(&position, *(SETDATA_PARAM**)(((RawTEndSkyBob*)this)->base + 0x28));
+	copyVec3(&position, *(SETDATA_PARAM**)(((RawTEndSkyBob*)this)->base + 0x28));
 	if (fn_16_F20(lbl_8042C180, 0x1F))
 		return;
 
@@ -267,7 +267,7 @@ extern "C" TEndSkyBob* __ct__10TEndSkyBobFP7TObject(register TEndSkyBob* object,
 
 TEndSkyBob* TEndSkyBob::Create()
 {
-	TEndSkyBob* object = (TEndSkyBob*)fn_16_534(sizeof(TEndSkyBob));
+	TEndSkyBob* object = (TEndSkyBob*)__nw__10TObjSampleFUl(sizeof(TEndSkyBob));
 	if (object != 0)
 		object = __ct__10TEndSkyBobFP7TObject(object, lbl_16_bss_1058);
 }
@@ -285,8 +285,8 @@ void TEndSkyBob::Initialize()
 
 extern "C" void __sinit_TEndSkyBob_cpp()
 {
-	fn_16_5FC(ObjS40EndSkyBob, ObjS40EndSkyBobName, 0, 0, (void*)TEndSkyBob::Create, 0, 0, 0, 0x64,
-	    0x15EA, 2, 0, TEndSkyBobFieldTypes, TEndSkyBobFields);
+	setupObjClass(ObjS40EndSkyBob, ObjS40EndSkyBobName, 0, 0, (void*)TEndSkyBob::Create, 0, 0, 0,
+	    0x64, 0x15EA, 2, 0, TEndSkyBobFieldTypes, TEndSkyBobFields);
 	fn_16_5A0F0(TEndSkyBobPath);
 }
 

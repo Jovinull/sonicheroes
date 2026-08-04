@@ -8,7 +8,7 @@ struct sAngle {
 	s32 x, y, z;
 };
 
-extern "C" void* fn_16_534(u32);
+extern "C" void* __nw__10TObjSampleFUl(u32);
 
 struct SETDATA_PARAM {
 	RwV3d position;
@@ -57,15 +57,15 @@ public:
 	TEnemyAppearSPBoss(TObject*);
 
 	static TEnemyAppearSPBoss* Create();
-	static void* operator new(unsigned long size) { return fn_16_534(size); }
+	static void* operator new(unsigned long size) { return __nw__10TObjSampleFUl(size); }
 	static void operator delete(void*);
 };
 
 extern "C" {
-void fn_16_378(void*);
-void fn_16_2E4(TEnemyAppearSPBoss*);
-void fn_16_5FC(void*, char*, void (*)(), void (*)(), void*, void*, void*, void*, u32, u32, u32, u32,
-    char*, void*);
+void __dl__10TObjSampleFPv(void*);
+void markSampleForDeletion(TEnemyAppearSPBoss*);
+void setupObjClass(void*, char*, void (*)(), void (*)(), void*, void*, void*, void*, u32, u32, u32,
+    u32, char*, void*);
 u32 fn_16_D10(void*);
 int fn_16_F20(void*, int);
 void fn_16_1180(void*, SETDATA_PARAM*, sAngle*);
@@ -116,11 +116,11 @@ void TEnemyAppearSPBoss::Exec()
 
 	if (!fn_16_93ACC(updater, frame, TEnemyAppearSPBossTen)) {
 		fn_8005BC04((u8*)this + 0x28);
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_8005B9F0((u8*)this + 0x28) || fn_8005B8BC((u8*)this + 0x28)) {
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_16_F20(lbl_8042C180, 0x1F))
@@ -169,14 +169,15 @@ extern "C" TEnemyAppearSPBoss* __ct__18TEnemyAppearSPBossFP7TObject(
 
 TEnemyAppearSPBoss* TEnemyAppearSPBoss::Create()
 {
-	TEnemyAppearSPBoss* object = (TEnemyAppearSPBoss*)fn_16_534(sizeof(TEnemyAppearSPBoss));
+	TEnemyAppearSPBoss* object
+	    = (TEnemyAppearSPBoss*)__nw__10TObjSampleFUl(sizeof(TEnemyAppearSPBoss));
 	if (object != 0)
 		object = __ct__18TEnemyAppearSPBossFP7TObject(object, lbl_16_bss_1058);
 }
 
 extern "C" void __sinit_e_appear_spboss_cpp()
 {
-	fn_16_5FC(ObjS40EnemyAppearSPBoss, ObjS40EnemyAppearSPBossName, 0, 0,
+	setupObjClass(ObjS40EnemyAppearSPBoss, ObjS40EnemyAppearSPBossName, 0, 0,
 	    (void*)TEnemyAppearSPBoss::Create, 0, 0, 0, 0x32, 0x15E5, 2, 0,
 	    TEnemyAppearSPBossFieldTypes, lbl_16_data_40138);
 }

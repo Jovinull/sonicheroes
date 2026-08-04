@@ -9,7 +9,7 @@ struct sAngle {
 };
 
 struct TObject;
-extern "C" void* fn_16_534(u32);
+extern "C" void* __nw__10TObjSampleFUl(u32);
 
 struct SETDATA_PARAM {
 	RwV3d position;
@@ -49,16 +49,16 @@ public:
 	void Exec();
 
 	static TEnemyEndSPBoss* Create();
-	static void* operator new(unsigned long size) { return fn_16_534(size); }
+	static void* operator new(unsigned long size) { return __nw__10TObjSampleFUl(size); }
 };
 
 #define base ((u8*)this)
 
 extern "C" {
-void fn_16_378(void*);
-void fn_16_2E4(void*);
-void fn_16_5FC(void*, char*, void (*)(), void (*)(), void*, void*, void*, void*, u32, u32, u32, u32,
-    char*, void*);
+void __dl__10TObjSampleFPv(void*);
+void markSampleForDeletion(void*);
+void setupObjClass(void*, char*, void (*)(), void (*)(), void*, void*, void*, void*, u32, u32, u32,
+    u32, char*, void*);
 u32 fn_16_D10(void*);
 int fn_16_F20(void*, int);
 void fn_16_1180(void*, SETDATA_PARAM*, sAngle*);
@@ -86,11 +86,11 @@ void Exec__15TEnemyEndSPBossFv();
 void EditOnChange__15TEnemyEndSPBossFP13SETDATA_PARAM(TEnemyEndSPBoss*, SETDATA_PARAM*);
 void fn_16_11640();
 void fn_16_5F3B0();
-void fn_16_F4();
-void fn_16_F8();
-void fn_16_FC();
+void sampleHook1();
+void sampleHook2();
+void sampleHook3();
 void fn_80017854();
-void fn_16_100();
+void sampleHook4();
 }
 
 extern "C" char TEnemyEndSPBossClassName[]   = "TEnemyEndSPBoss";
@@ -116,11 +116,11 @@ void TEnemyEndSPBoss::Exec()
 	if (fn_16_8C05C() != 0
 	    && !fn_16_8BE40(fn_16_8C05C(), *(SETDATA_PARAM**)(base + 0x28), TEnemyEndSPBossHundred)) {
 		fn_8005BC04(base + 0x28);
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_8005B9F0(base + 0x28) || fn_8005B8BC(base + 0x28)) {
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_16_F20(lbl_8042C180, 0x1F))
@@ -154,7 +154,7 @@ extern "C" TEnemyEndSPBoss* __dt__15TEnemyEndSPBossFv(TEnemyEndSPBoss* object, s
 		RwV3d* member                 = (*(SETDATA_PARAM**)((u8*)object + 0x28))->member;
 		fn_16_5F55C(object, 0);
 		if (flags > 0)
-			fn_16_378(object);
+			__dl__10TObjSampleFPv(object);
 	}
 	return object;
 }
@@ -176,15 +176,15 @@ extern "C" TEnemyEndSPBoss* __ct__15TEnemyEndSPBossFP7TObject(
 
 TEnemyEndSPBoss* TEnemyEndSPBoss::Create()
 {
-	TEnemyEndSPBoss* object = (TEnemyEndSPBoss*)fn_16_534(sizeof(TEnemyEndSPBoss));
+	TEnemyEndSPBoss* object = (TEnemyEndSPBoss*)__nw__10TObjSampleFUl(sizeof(TEnemyEndSPBoss));
 	if (object != 0)
 		object = __ct__15TEnemyEndSPBossFP7TObject(object, lbl_16_bss_1058);
 }
 
 extern "C" void __sinit_e_end_spboss_cpp()
 {
-	fn_16_5FC(ObjS40EndSPBoss, ObjS40EndSPBossName, 0, 0, (void*)TEnemyEndSPBoss::Create, 0, 0, 0,
-	    50, 5606, 2, 0, &TEnemyEndSPBossFieldTypes, lbl_16_data_40138);
+	setupObjClass(ObjS40EndSPBoss, ObjS40EndSPBossName, 0, 0, (void*)TEnemyEndSPBoss::Create, 0, 0,
+	    0, 50, 5606, 2, 0, &TEnemyEndSPBossFieldTypes, lbl_16_data_40138);
 }
 
 __declspec(section ".ctors") void (*const TEnemyEndSPBossCtorEntry)() = __sinit_e_end_spboss_cpp;

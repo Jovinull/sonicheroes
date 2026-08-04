@@ -17,11 +17,11 @@ SYMBOL_RENAMES = {
     ),
     "Virtual2__28TEnemyAppearSPBossPosPrimaryFv": "fn_16_11640",
     "Virtual3__28TEnemyAppearSPBossPosPrimaryFv": "fn_16_5F3B0",
-    "Virtual4__28TEnemyAppearSPBossPosPrimaryFv": "fn_16_F4",
-    "Virtual5__28TEnemyAppearSPBossPosPrimaryFv": "fn_16_F8",
-    "Virtual6__28TEnemyAppearSPBossPosPrimaryFv": "fn_16_FC",
+    "Virtual4__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook1",
+    "Virtual5__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook2",
+    "Virtual6__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook3",
     "Virtual7__28TEnemyAppearSPBossPosPrimaryFv": "fn_80017854",
-    "Virtual8__28TEnemyAppearSPBossPosPrimaryFv": "fn_16_100",
+    "Virtual8__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook4",
 }
 
 

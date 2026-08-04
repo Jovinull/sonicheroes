@@ -66,12 +66,12 @@ struct SETOBJ_PARAM {
 };
 
 extern "C" {
-void fn_16_2C8(Vec3* destination, const Vec3* source);
-void fn_16_2E4(TObject* object);
-void* fn_16_534(u32 size);
-void fn_16_5FC(SETOBJ_PARAM* param, char* name, void (*load)(), void (*unload)(), void (*create)(),
-    void (*reset)(SETOBJ_PARAM*), u32 flags, u32 field18, u32 field20, u32 objectId, u32 field1E,
-    u32 field21, void* fieldTypes, void* fieldNames);
+void copyVec3(Vec3* destination, const Vec3* source);
+void markSampleForDeletion(TObject* object);
+void* __nw__10TObjSampleFUl(u32 size);
+void setupObjClass(SETOBJ_PARAM* param, char* name, void (*load)(), void (*unload)(),
+    void (*create)(), void (*reset)(SETOBJ_PARAM*), u32 flags, u32 field18, u32 field20,
+    u32 objectId, u32 field1E, u32 field21, void* fieldTypes, void* fieldNames);
 void fn_8005B8B8();
 s32 fn_8005B8BC(TMotion* motion);
 s32 fn_8005B8D8(TMotion* motion);
@@ -82,11 +82,11 @@ void fn_800D72C0(const Vec3* first, const Vec3* second, Vec3* result);
 void __ct__7TObjectFP7TObject(TObject* object, TObject* owner);
 void __dt__7TObjectFv(TObject* object, s16 flags);
 
-void fn_16_F0();
-void fn_16_F4();
-void fn_16_F8();
-void fn_16_FC();
-void fn_16_100();
+void sampleHook0();
+void sampleHook1();
+void sampleHook2();
+void sampleHook3();
+void sampleHook4();
 void fn_80017854();
 extern TObject* lbl_8042C110;
 extern Vec3* lbl_8042C208;
@@ -107,12 +107,12 @@ void* __vt__11TObjSample2[] = {
 	(void*)__dt__11TObjSample2Fv,
 	(void*)Exec__11TObjSample2Fv,
 	(void*)Disp__11TObjSample2Fv,
-	(void*)fn_16_F0,
-	(void*)fn_16_F4,
-	(void*)fn_16_F8,
-	(void*)fn_16_FC,
+	(void*)sampleHook0,
+	(void*)sampleHook1,
+	(void*)sampleHook2,
+	(void*)sampleHook3,
 	(void*)fn_80017854,
-	(void*)fn_16_100,
+	(void*)sampleHook4,
 	0,
 	0,
 	(void*)fn_8005B8B8,
@@ -129,12 +129,12 @@ void TObjSample2::Exec()
 	Vec3 delta;
 
 	if (fn_8005B9F0(&motion) != 0 || fn_8005B8BC(&motion) != 0) {
-		fn_16_2E4(&object);
+		markSampleForDeletion(&object);
 		return;
 	}
 
 	if (fn_8005B8D8(&motion) != 0) {
-		fn_16_2C8(&position, &motion.frame->position);
+		copyVec3(&position, &motion.frame->position);
 		return;
 	}
 
@@ -158,7 +158,7 @@ TObjSample2::TObjSample2(TObject* owner)
 	motion.vtable     = __vt__11TObjSample2 + 11;
 	object.className  = CL_TObjSample2;
 	object.objectSize = sizeof(TObjSample2);
-	fn_16_2C8(&position, &motion.frame->position);
+	copyVec3(&position, &motion.frame->position);
 	fn_16_900(&rotation, &motion.frame->rotation);
 }
 
@@ -171,7 +171,7 @@ extern "C" void fn_16_900(Rot3* destination, const Rot3* source)
 
 static void startObjSample2()
 {
-	TObjSample2* object = (TObjSample2*)fn_16_534(sizeof(TObjSample2));
+	TObjSample2* object = (TObjSample2*)__nw__10TObjSampleFUl(sizeof(TObjSample2));
 	if (object != 0) {
 		object = __ct__11TObjSample2FP7TObject(object, lbl_8042C110);
 	}
@@ -179,7 +179,7 @@ static void startObjSample2()
 
 static void registerObjSample2()
 {
-	fn_16_5FC(&ObjSample2Param, TObjSample2DisplayName, 0, 0, startObjSample2, 0, 0, 0, 0x1E,
+	setupObjClass(&ObjSample2Param, TObjSample2DisplayName, 0, 0, startObjSample2, 0, 0, 0, 0x1E,
 	    0xFFFE, 6, 0, 0, 0);
 }
 

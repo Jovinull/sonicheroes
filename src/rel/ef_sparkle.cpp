@@ -64,7 +64,7 @@ void __dl__FPv(void*);
 void* fn_8005FAE8(const char*, void*);
 void fn_8005FA8C(void*, void*);
 void fn_8005E00C(void*, s32);
-void fn_16_2C8(RwV3d*, const RwV3d*);
+void copyVec3(RwV3d*, const RwV3d*);
 s32 fn_16_F20(void*, s32);
 u32 fn_801C28D8();
 u32 __cvt_fp2unsigned(f32);
@@ -219,8 +219,8 @@ PARTICLE_INSTANCE* CreateSparkleR(RwV3d* position, RwV3d* velocity, f32 scale, f
 	if (particle == 0)
 		return 0;
 
-	fn_16_2C8(&particle->position, position);
-	fn_16_2C8(&particle->velocity, velocity);
+	copyVec3(&particle->position, position);
+	copyVec3(&particle->velocity, velocity);
 	particle->scale     = scale;
 	particle->angle     = (s16)(s32)(lbl_16_rodata_9B0
 	    * (RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9B4 - lbl_16_rodata_9BC));
@@ -237,8 +237,8 @@ PARTICLE_INSTANCE* CreateSparkle(RwV3d* position, RwV3d* velocity, f32 scale, f3
 	if (particle == 0)
 		return 0;
 
-	fn_16_2C8(&particle->position, position);
-	fn_16_2C8(&particle->velocity, velocity);
+	copyVec3(&particle->position, position);
+	copyVec3(&particle->velocity, velocity);
 	particle->scale = scale;
 	particle->angle
 	    = (s16)(s32)(RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9D0 * lbl_16_rodata_9B0);
@@ -259,8 +259,8 @@ extern "C" PARTICLE_INSTANCE* fn_16_2E3C4(RwV3d* position, RwV3d* velocity, f32 
 	if (particle == 0)
 		return 0;
 
-	fn_16_2C8(&particle->position, position);
-	fn_16_2C8(&particle->velocity, velocity);
+	copyVec3(&particle->position, position);
+	copyVec3(&particle->velocity, velocity);
 	particle->scale     = scale;
 	particle->angle     = (s16)(s32)(lbl_16_rodata_9B0
 	    * (RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9B4 - lbl_16_rodata_9BC));

@@ -11,7 +11,7 @@ def main() -> None:
     parser.add_argument("--objcopy", required=True)
     args = parser.parse_args()
 
-    canonical = "fn_16_378"
+    canonical = "__dl__10TObjSampleFPv"
     for object_name in args.objects:
         path = Path(object_name)
         class_name = path.stem.removeprefix("o_").capitalize()

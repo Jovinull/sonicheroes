@@ -1115,6 +1115,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/o_sample.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/spring_object.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
@@ -1881,6 +1891,11 @@ config.custom_build_rules = [
         ),
         "description": "FIX o_s33_slot.cpp adjustor symbol",
     },
+    {
+        "name": "fix_o_sample_symbols",
+        "command": f"$python tools/fix_o_sample_symbols.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX o_sample.cpp shared virtual symbol",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -2135,6 +2150,12 @@ config.custom_build_steps = {
             "rule": "fix_s33_slot_symbols",
             "inputs": "build/G9SE8P/src/rel/o_s33_slot.o",
             "implicit": ["tools/fix_s33_slot_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/o-sample-symbols.stamp",
+            "rule": "fix_o_sample_symbols",
+            "inputs": "build/G9SE8P/src/rel/o_sample.o",
+            "implicit": ["tools/fix_o_sample_symbols.py", str(binutils_dir)],
         },
     ],
 }

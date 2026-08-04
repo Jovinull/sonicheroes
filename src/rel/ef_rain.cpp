@@ -80,7 +80,7 @@ public:
 };
 
 extern "C" {
-void fn_16_2C8(RwV3d* destination, RwV3d* source);
+void copyVec3(RwV3d* destination, RwV3d* source);
 void* fn_80057644(u32 size);
 void* fn_8005FAE8(char* filename, TEXTURE_LIST* textureList);
 void fn_8005FA8C(void* dictionary, TEXTURE_LIST* textureList);
@@ -155,7 +155,7 @@ PARTICLE_INSTANCE* CreateRain(RwV3d* position, f32 life)
 		return 0;
 	}
 
-	fn_16_2C8(&instance->position, position);
+	copyVec3(&instance->position, position);
 	instance->scale.x = 0.0f;
 	instance->scale.y = 0.0f;
 	instance->scale.z = 0.0f;

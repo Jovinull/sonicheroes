@@ -11,12 +11,12 @@ from pathlib import Path
 
 
 RENAMES = {
-    "__dl__24TEnemyAppearChaosEmeraldFPv": "fn_16_378",
+    "__dl__24TEnemyAppearChaosEmeraldFPv": "__dl__10TObjSampleFPv",
     "__dt__7TObjectFv": "fn_16_5F55C",
-    "TDisp__7TObjectFv": "fn_16_F4",
-    "ImmAftSetRaster__7TObjectFv": "fn_16_F8",
-    "Debug__7TObjectFv": "fn_16_FC",
-    "Render__7TObjectFv": "fn_16_100",
+    "TDisp__7TObjectFv": "sampleHook1",
+    "ImmAftSetRaster__7TObjectFv": "sampleHook2",
+    "Debug__7TObjectFv": "sampleHook3",
+    "Render__7TObjectFv": "sampleHook4",
     "PDisp__7TObjectFv": "fn_16_11640",
     "Disp__7TObjectFv": "fn_16_5F3B0",
     "Error__7TObjectFPc": "fn_80017854",

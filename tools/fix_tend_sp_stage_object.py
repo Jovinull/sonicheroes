@@ -20,11 +20,11 @@ from pathlib import Path
 
 
 LINK_RENAMES = (
-    ("TDisp__7TObjectFv", "fn_16_F4"),
-    ("ImmAftSetRaster__7TObjectFv", "fn_16_F8"),
-    ("Debug__7TObjectFv", "fn_16_FC"),
-    ("Render__7TObjectFv", "fn_16_100"),
-    ("__dl__11TEndSPStageFPv", "fn_16_378"),
+    ("TDisp__7TObjectFv", "sampleHook1"),
+    ("ImmAftSetRaster__7TObjectFv", "sampleHook2"),
+    ("Debug__7TObjectFv", "sampleHook3"),
+    ("Render__7TObjectFv", "sampleHook4"),
+    ("__dl__11TEndSPStageFPv", "__dl__10TObjSampleFPv"),
     ("PDisp__7TObjectFv", "fn_16_11640"),
     ("Disp__7TObjectFv", "fn_16_5F3B0"),
     ("__dt__7TObjectFv", "fn_16_5F55C"),

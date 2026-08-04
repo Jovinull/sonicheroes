@@ -12,7 +12,7 @@ struct sAngle {
 	s32 z;
 };
 
-extern "C" void* fn_16_534(u32 size);
+extern "C" void* __nw__10TObjSampleFUl(u32 size);
 
 struct SETDATA_PARAM {
 	RwV3d position;
@@ -87,7 +87,7 @@ public:
 	static void Create();
 	static void Finalize();
 	static void Initialize();
-	static void* operator new(unsigned long size) { return fn_16_534(size); }
+	static void* operator new(unsigned long size) { return __nw__10TObjSampleFUl(size); }
 	static void operator delete(void* object);
 };
 
@@ -98,11 +98,11 @@ public:
 };
 
 extern "C" {
-void fn_16_2C8(RwV3d* out, SETDATA_PARAM* setData);
-void fn_16_2E4(TEndSPStage* object);
-void fn_16_5FC(void* entry, char* name, void (*initialize)(), void (*finalize)(), void* create,
+void copyVec3(RwV3d* out, SETDATA_PARAM* setData);
+void markSampleForDeletion(TEndSPStage* object);
+void setupObjClass(void* entry, char* name, void (*initialize)(), void (*finalize)(), void* create,
     void*, void*, void*, u32, u32, u32, u32, char*, void*);
-void fn_16_378(void* object);
+void __dl__10TObjSampleFPv(void* object);
 void fn_16_900(sAngle* out, sAngle* in);
 void fn_16_DB4(void* collision);
 u32 fn_16_D10(void* collision);
@@ -215,7 +215,7 @@ void TEndSPStage::SetGoalRingParam()
 	RwV3d position;
 	sAngle angle;
 	if (goalRing != 0) {
-		fn_16_2C8(&position, frame);
+		copyVec3(&position, frame);
 		position.y += lbl_16_data_42044;
 		fn_16_8DAB0(goalRing, &position);
 
@@ -234,7 +234,7 @@ void TEndSPStage::Exec()
 	SETDATA_PARAM* stageObject;
 
 	if (fn_8005B8BC(((RawTEndSPStage*)this)->base + 0x28)) {
-		fn_16_2E4(this);
+		markSampleForDeletion(this);
 		return;
 	}
 
@@ -303,7 +303,7 @@ extern "C" TEndSPStage* __ct__11TEndSPStageFP7TObject(register TEndSPStage* obje
 	RwV3d* volatile member        = object->frame->member;
 	*(u32*)((u8*)object + 0xBC)   = 0x60000000;
 
-	TObjGoalring* goal = (TObjGoalring*)fn_16_534(sizeof(TObjGoalring));
+	TObjGoalring* goal = (TObjGoalring*)__nw__10TObjSampleFUl(sizeof(TObjGoalring));
 	if (goal != 0)
 		goal = __ct__12TObjGoalringFP11TEndSPStage(goal, object);
 	object->goalRing = goal;
@@ -315,7 +315,7 @@ extern "C" TEndSPStage* __ct__11TEndSPStageFP7TObject(register TEndSPStage* obje
 #pragma optimization_level 0
 void TEndSPStage::Create()
 {
-	register TEndSPStage* object = (TEndSPStage*)fn_16_534(sizeof(TEndSPStage));
+	register TEndSPStage* object = (TEndSPStage*)__nw__10TObjSampleFUl(sizeof(TEndSPStage));
 	if (object != 0)
 		object = __ct__11TEndSPStageFP7TObject(object, lbl_16_bss_1058);
 }
@@ -333,7 +333,7 @@ void TEndSPStage::Initialize()
 
 extern "C" void __sinit_TEndSPStage_cpp()
 {
-	fn_16_5FC(ObjS40EndSPStage, ObjS40EndSPStageName, TEndSPStage::Initialize,
+	setupObjClass(ObjS40EndSPStage, ObjS40EndSPStageName, TEndSPStage::Initialize,
 	    TEndSPStage::Finalize, (void*)TEndSPStage::Create, 0, 0, 0, 0x7F, 0x15ED, 2, 0,
 	    TEndSPStageFieldTypes, lbl_16_data_40138);
 }

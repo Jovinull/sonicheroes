@@ -551,6 +551,7 @@ modules:
   symbols: config/G9SE8P/stage40D/symbols.txt
   splits: config/G9SE8P/stage40D/splits.txt
   force_active:
+    - __ct__10TObjSampleFP7TObject
     - __ct__11TObjSample2FP7TObject
     - __ct__11TObjSystem4FP7TObject
     - CreateSparkleR__FP5RwV3dP5RwV3dff
