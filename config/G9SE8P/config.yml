@@ -337,6 +337,7 @@ modules:
     - scrollRingTouch
     - setCollisionDtor
     - systemObject4Ctor
+    - setDamageCollisionCtor
     # The constructor is externally visible but has no in-module caller after
     # the allocation path inlines it, so retain the original public method.
     - __ct__10TObjS11BobFP7TObject

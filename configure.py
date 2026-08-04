@@ -1109,6 +1109,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/o_setDamegeCollision.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-str nopool"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/spring_object.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
@@ -1742,6 +1748,11 @@ config.custom_build_rules = [
         "description": "FIX SpAdvStgFailed compiler-only atom",
     },
     {
+        "name": "fix_set_damage_collision_object",
+        "command": "$python tools/fix_set_damage_collision_object.py $in $out",
+        "description": "FIX o_setDamegeCollision compiler-generated atoms",
+    },
+    {
         "name": "fix_game_movie_object",
         "command": f"$python tools/fix_game_movie_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX movie.cpp compiler-only atom",
@@ -1965,6 +1976,12 @@ config.custom_build_steps = {
                 "tools/fix_sp_adv_stg_failed_object.py",
                 str(binutils_dir),
             ],
+        },
+        {
+            "outputs": "build/G9SE8P/set-damage-collision-object.stamp",
+            "rule": "fix_set_damage_collision_object",
+            "inputs": "build/G9SE8P/src/rel/o_setDamegeCollision.o",
+            "implicit": ["tools/fix_set_damage_collision_object.py"],
         },
         {
             "outputs": "build/G9SE8P/game-movie-object.stamp",
