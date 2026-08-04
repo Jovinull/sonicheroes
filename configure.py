@@ -1321,6 +1321,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sample1_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
