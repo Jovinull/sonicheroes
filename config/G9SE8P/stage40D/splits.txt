@@ -5,3 +5,98 @@ Sections:
 	.rodata     type:rodata align:8
 	.data       type:data align:8
 	.bss        type:bss align:32
+
+rel/stage40_prolog.cpp:
+	.text       start:0x00000000 end:0x000000E0
+
+rel/o_sample2.cpp:
+	.text       start:0x00000750 end:0x000009EC
+	.ctors      start:0x00000004 end:0x00000008
+	.data       start:0x000000A0 end:0x000000F8
+	.bss        start:0x00000030 end:0x00000060
+
+rel/ef_rain.cpp:
+	.text       start:0x000264CC end:0x00026884
+	.ctors      start:0x0000006C end:0x00000070
+	.rodata     start:0x000007C8 end:0x000007E4
+	.data       start:0x000031F0 end:0x000032A4
+	.bss        start:0x00000808 end:0x00000818
+
+rel/ef_rain_strings.cpp:
+	.data       start:0x000032A4 end:0x000032C0
+
+rel/ef_sparkle.cpp:
+	.text       start:0x0002DD2C end:0x0002E9F0
+	.ctors      start:0x00000084 end:0x00000088
+	.rodata     start:0x000009B0 end:0x00000A10
+	.data       start:0x00003CD0 end:0x00003D38
+	.bss        start:0x00000A20 end:0x00000A38
+
+rel/o_system1.cpp:
+	.text       start:0x00031228 end:0x00031460
+	.ctors      start:0x0000008C end:0x00000090
+	.data       start:0x00003FB0 end:0x00004008
+	.bss        start:0x00000AD8 end:0x00000B08
+
+rel/o_system2.cpp:
+	.text       start:0x00031460 end:0x000316C0
+	.ctors      start:0x00000090 end:0x00000094
+	.data       start:0x00004008 end:0x00004060
+	.bss        start:0x00000B08 end:0x00000B38
+
+rel/o_system3.cpp:
+	.text       start:0x000316C0 end:0x00031920
+	.ctors      start:0x00000094 end:0x00000098
+	.data       start:0x00004060 end:0x000040B8
+	.bss        start:0x00000B38 end:0x00000B68
+
+rel/o_system4.cpp:
+	.text       start:0x00031920 end:0x00031B58
+	.ctors      start:0x00000098 end:0x0000009C
+	.data       start:0x000040B8 end:0x00004110
+	.bss        start:0x00000B68 end:0x00000B98
+
+rel/e_end_spboss.cpp:
+	.text       start:0x00058E44 end:0x000591C0
+	.ctors      start:0x000000DC end:0x000000E0
+	.rodata     start:0x00001190 end:0x00001198
+	.data       start:0x00009630 end:0x00009690
+	.bss        start:0x00005B18 end:0x00005B48
+
+rel/e_appear_spboss.cpp:
+	.text       start:0x0006B750 end:0x0006BAF4
+	.ctors      start:0x000000E4 end:0x000000E8
+	.rodata     start:0x00001728 end:0x00001730
+	.data       start:0x000428D8 end:0x00042940
+	.bss        start:0x00005D38 end:0x00005D68
+
+rel/e_appear_spboss_pos.cpp:
+	.text       start:0x0006BAF4 end:0x0006BFB4
+	.ctors      start:0x000000E8 end:0x000000EC
+	.rodata     start:0x00001730 end:0x00001738
+	.data       start:0x00042940 end:0x00042A18
+	.bss        start:0x00005D68 end:0x00005E00
+
+rel/TEnemyAppearChaosEmerald.cpp:
+	.text       start:0x0006BFB4 end:0x0006C380
+	.ctors      start:0x000000EC end:0x000000F0
+	.rodata     start:0x0000173C end:0x00001748
+	.data       start:0x00042A18 end:0x00042AA8
+	.bss        start:0x00005E00 end:0x00005E30
+
+rel/TEnemyAppearChaosEmerald_strings.cpp:
+	.data       start:0x00042AA8 end:0x00042AC8
+
+rel/TEndSkyBob.cpp:
+	.text       start:0x0007E830 end:0x0007EDF4
+	.ctors      start:0x00000104 end:0x00000108
+	.rodata     start:0x00001C58 end:0x00001C68
+	.data       start:0x00043FF0 end:0x000440B0
+	.bss        start:0x00006338 end:0x000063D0
+
+rel/TEndSPStage.cpp:
+	.text       start:0x00082088 end:0x00082624
+	.ctors      start:0x00000118 end:0x0000011C
+	.rodata     start:0x00001D08 end:0x00001D30
+	.data       start:0x000445D0 end:0x00044660
+	.bss        start:0x00006540 end:0x00006570

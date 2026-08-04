@@ -287,13 +287,20 @@ rel/light_collision_register.cpp:
 	.text       start:0x0004F2E4 end:0x0004F37C
 	.ctors      start:0x000000A0 end:0x000000A4
 
-rel/invoke_collision_dtor.cpp:
-	.text       start:0x0004F6F0 end:0x0004F7D4
-
-rel/invoke_collision_register.cpp:
-	.text       start:0x0004FBFC end:0x0004FC90
+rel/o_invoke_colli.cpp:
+	.text       start:0x0004F37C end:0x0004FC90
 	.ctors      start:0x000000A4 end:0x000000A8
+	.rodata     start:0x00000D60 end:0x00000D70
+	.data       start:0x000058BC end:0x00005A18
+	.bss        start:0x00000D6C end:0x00000D98
 
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/e_capture_collision.cpp:
+	.text       start:0x000BC1C0 end:0x000BC720
+	.ctors      start:0x00000174 end:0x00000178
+	.rodata     start:0x00001BFC end:0x00001C00
+	.data       start:0x00014098 end:0x00014120
+	.bss        start:0x00001F20 end:0x00001F50

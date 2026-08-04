@@ -951,6 +951,163 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/o_s33_dice.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/o_s11_bob.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/o_s33_roulet.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/o_s33_slot.cpp",
+                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/o_s33_chip.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/o_s01_taihostull.cpp",
+                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/o_s01_shachicolli.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/stage40_prolog.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/o_sample2.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/o_system4.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/ef_sparkle.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                    "-fp_contract off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/o_system3.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/o_system2.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/o_system1.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/ef_rain.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(Matching, "rel/ef_rain_strings.cpp"),
+            Object(
+                Matching,
+                "rel/TEnemyAppearChaosEmerald.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(Matching, "rel/TEnemyAppearChaosEmerald_strings.cpp"),
+            Object(
+                Matching,
+                "rel/o_s01_ciseki.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e_appear_spboss.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/TEndSkyBob.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-pool off",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/TEndSPStage.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/spring_object.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
@@ -1092,12 +1249,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/invoke_collision_dtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/invoke_collision_register.cpp",
+                "rel/o_invoke_colli.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -1355,6 +1507,42 @@ config.libs = [
                 "rel/sample2_object.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "rel/o_s01_hata.cpp",
+                extra_cflags=[
+                    "-pool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/o_s01_hana.cpp",
+                extra_cflags=[
+                    "-pool off",
+                    "-opt noschedule,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/o_s01_iwamizu.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e_capture_collision.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e_appear_spboss_pos.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e_end_spboss.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
@@ -1463,12 +1651,49 @@ config.progress_report_args = [
 binutils_dir = config.binutils_path or (config.build_dir / "binutils")
 objcopy_exe = "powerpc-eabi-objcopy.exe" if is_windows() else "powerpc-eabi-objcopy"
 objcopy_path = binutils_dir / objcopy_exe
+ld_path = binutils_dir / ("powerpc-eabi-ld.exe" if is_windows() else "powerpc-eabi-ld")
 nm_path = binutils_dir / ("powerpc-eabi-nm.exe" if is_windows() else "powerpc-eabi-nm")
 objdump_path = binutils_dir / (
     "powerpc-eabi-objdump.exe" if is_windows() else "powerpc-eabi-objdump"
 )
 
 config.custom_build_rules = [
+    {
+        "name": "fix_ef_sparkle_object",
+        "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX ef_sparkle compiler-owned atom order",
+    },
+    {
+        "name": "fix_ef_rain_object",
+        "command": f"$python tools/fix_ef_rain_object.py $in $out",
+        "description": "FIX ef_rain generated function order",
+    },
+    {
+        "name": "fix_stage40_delete_symbols",
+        "command": f"$python tools/fix_stage40_delete_symbols.py $in --objcopy {objcopy_path}",
+        "description": "FIX stage40 shared delete symbol",
+    },
+    {
+        "name": "fix_ef_rain_strings_object",
+        "command": f"$python tools/fix_ef_rain_strings_object.py $in $out",
+        "description": "FIX ef_rain filename alignment",
+    },
+    {
+        "name": "fix_enemy_appear_spboss_object",
+        "command": (
+            f"$python tools/fix_enemy_appear_spboss_object.py $in $out "
+            f"--objcopy {objcopy_path} --ld {ld_path}"
+        ),
+        "description": "FIX e_appear_spboss.cpp data atom order",
+    },
+    {
+        "name": "fix_end_sky_bob_object",
+        "command": (
+            f"$python tools/fix_end_sky_bob_object.py $in $out "
+            f"--objcopy {objcopy_path} --ld {ld_path}"
+        ),
+        "description": "FIX TEndSkyBob.cpp data atom order",
+    },
     {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
@@ -1483,6 +1708,14 @@ config.custom_build_rules = [
         "name": "fix_game_task_object",
         "command": f"$python tools/fix_game_task_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX Task.cpp object layout",
+    },
+    {
+        "name": "fix_tend_sp_stage_object",
+        "command": (
+            f"$python tools/fix_tend_sp_stage_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX TEndSPStage.cpp data atom order",
     },
     {
         "name": "fix_game_memory_object",
@@ -1513,9 +1746,88 @@ config.custom_build_rules = [
         "description": "FIX movie.cpp compiler-only atom",
     },
     {
+        "name": "fix_e_appear_spboss_pos_object",
+        "command": (
+            f"$python tools/fix_e_appear_spboss_pos_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX e_appear_spboss_pos.cpp compiler atom order",
+    },
+    {
+        "name": "fix_e_end_spboss_object",
+        "command": f"$python tools/fix_e_end_spboss_object.py $in $out --objcopy {objcopy_path}",
+        "description": "FIX e_end_spboss.cpp compiler atom order",
+    },
+    {
         "name": "fix_game_enemy_voice_object",
         "command": f"$python tools/fix_game_enemy_voice_object.py $in $out",
         "description": "FIX enemy_voice.cpp object layout",
+    },
+    {
+        "name": "fix_s01_hata_object",
+        "command": (
+            f"$python tools/fix_s01_hata_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s01_hata.cpp retail atom layout",
+    },
+    {
+        "name": "fix_s01_taihostull_object",
+        "command": (
+            f"$python tools/fix_s01_taihostull_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s01_taihostull.cpp compiler-only ABI data",
+    },
+    {
+        "name": "fix_s01_hana_object",
+        "command": (
+            f"$python tools/fix_s01_hana_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s01_hana.cpp compiler-only ABI data",
+    },
+    {
+        "name": "fix_s01_iwamizu_object",
+        "command": f"$python tools/fix_s01_iwamizu_object.py $in $out",
+        "description": "FIX o_s01_iwamizu.cpp compiler-only ABI atoms",
+    },
+    {
+        "name": "fix_s01_ciseki_object",
+        "command": (
+            f"$python tools/fix_s01_ciseki_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s01_ciseki.cpp compiler-only ABI atoms",
+    },
+    {
+        "name": "fix_e_capture_collision_object",
+        "command": (
+            f"$python tools/fix_e_capture_collision_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX e_capture_collision.cpp compiler-only atoms",
+    },
+    {
+        "name": "fix_enemy_appear_chaos_emerald_object",
+        "command": (
+            f"$python tools/fix_enemy_appear_chaos_emerald_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX TEnemyAppearChaosEmerald rodata alignment",
+    },
+    {
+        "name": "fix_enemy_appear_chaos_emerald_strings_object",
+        "command": (
+            f"$python tools/fix_enemy_appear_chaos_emerald_strings_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX TEnemyAppearChaosEmerald field-signature symbol",
+    },
+    {
+        "name": "fix_o_invoke_colli_object",
+        "command": f"$python tools/fix_o_invoke_colli_object.py $in $out",
+        "description": "FIX o_invoke_colli.cpp compiler-only ABI atoms",
     },
     {
         "name": "fix_movie_play_sub_symbols",
@@ -1525,9 +1837,77 @@ config.custom_build_rules = [
         ),
         "description": "FIX moviePlaySub symbols",
     },
+    {
+        "name": "fix_s33_dice_symbols",
+        "command": (
+            f"$python tools/fix_s33_dice_symbols.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s33_dice.cpp method and adjustor symbols",
+    },
+    {
+        "name": "fix_s33_roulet_symbols",
+        "command": (
+            f"$python tools/fix_s33_roulet_symbols.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s33_roulet.cpp method and adjustor symbols",
+    },
+    {
+        "name": "fix_s33_chip_symbols",
+        "command": (
+            f"$python tools/fix_s33_chip_symbols.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s33_chip.cpp adjustor symbol",
+    },
+    {
+        "name": "fix_s33_slot_symbols",
+        "command": (
+            f"$python tools/fix_s33_slot_symbols.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX o_s33_slot.cpp adjustor symbol",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
+            "rule": "fix_ef_sparkle_object",
+            "inputs": "build/G9SE8P/src/rel/ef_sparkle.o",
+            "implicit": ["tools/fix_ef_sparkle_object.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/ef-rain-object.stamp",
+            "rule": "fix_ef_rain_object",
+            "inputs": "build/G9SE8P/src/rel/ef_rain.o",
+            "implicit": ["tools/fix_ef_rain_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/ef-rain-strings-object.stamp",
+            "rule": "fix_ef_rain_strings_object",
+            "inputs": "build/G9SE8P/src/rel/ef_rain_strings.o",
+            "implicit": ["tools/fix_ef_rain_strings_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/enemy-appear-spboss-object.stamp",
+            "rule": "fix_enemy_appear_spboss_object",
+            "inputs": "build/G9SE8P/src/rel/e_appear_spboss.o",
+            "implicit": [
+                "tools/fix_enemy_appear_spboss_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/end-sky-bob-object.stamp",
+            "rule": "fix_end_sky_bob_object",
+            "inputs": "build/G9SE8P/src/rel/TEndSkyBob.o",
+            "implicit": [
+                "tools/fix_end_sky_bob_object.py",
+                str(binutils_dir),
+            ],
+        },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
             "rule": "fix_sud_symbols",
@@ -1545,6 +1925,15 @@ config.custom_build_steps = {
             "rule": "fix_game_task_object",
             "inputs": "build/G9SE8P/src/game/Task.o",
             "implicit": ["tools/fix_game_task_object.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/tend-sp-stage-object.stamp",
+            "rule": "fix_tend_sp_stage_object",
+            "inputs": "build/G9SE8P/src/rel/TEndSPStage.o",
+            "implicit": [
+                "tools/fix_tend_sp_stage_object.py",
+                str(binutils_dir),
+            ],
         },
         {
             "outputs": "build/G9SE8P/game-memory-object.stamp",
@@ -1593,10 +1982,141 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_game_enemy_voice_object.py"],
         },
         {
+            "outputs": "build/G9SE8P/stage01D-o-s01-hata-object.stamp",
+            "rule": "fix_s01_hata_object",
+            "inputs": "build/G9SE8P/src/rel/o_s01_hata.o",
+            "implicit": [
+                "tools/fix_s01_hata_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage01D-o-s01-taihostull-object.stamp",
+            "rule": "fix_s01_taihostull_object",
+            "inputs": "build/G9SE8P/src/rel/o_s01_taihostull.o",
+            "implicit": [
+                "tools/fix_s01_taihostull_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage01D-o-s01-hana-object.stamp",
+            "rule": "fix_s01_hana_object",
+            "inputs": "build/G9SE8P/src/rel/o_s01_hana.o",
+            "implicit": [
+                "tools/fix_s01_hana_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage01D-o-s01-iwamizu-object.stamp",
+            "rule": "fix_s01_iwamizu_object",
+            "inputs": "build/G9SE8P/src/rel/o_s01_iwamizu.o",
+            "implicit": [
+                "tools/fix_s01_iwamizu_object.py",
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage01D-o-s01-ciseki-object.stamp",
+            "rule": "fix_s01_ciseki_object",
+            "inputs": "build/G9SE8P/src/rel/o_s01_ciseki.o",
+            "implicit": [
+                "tools/fix_s01_ciseki_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/e-capture-collision-object.stamp",
+            "rule": "fix_e_capture_collision_object",
+            "inputs": "build/G9SE8P/src/rel/e_capture_collision.o",
+            "implicit": [
+                "tools/fix_e_capture_collision_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/enemy-appear-chaos-emerald-object.stamp",
+            "rule": "fix_enemy_appear_chaos_emerald_object",
+            "inputs": "build/G9SE8P/src/rel/TEnemyAppearChaosEmerald.o",
+            "implicit": [
+                "tools/fix_enemy_appear_chaos_emerald_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/e-end-spboss-object.stamp",
+            "rule": "fix_e_end_spboss_object",
+            "inputs": "build/G9SE8P/src/rel/e_end_spboss.o",
+            "implicit": [
+                "tools/fix_e_end_spboss_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/enemy-appear-chaos-emerald-strings-object.stamp",
+            "rule": "fix_enemy_appear_chaos_emerald_strings_object",
+            "inputs": "build/G9SE8P/src/rel/TEnemyAppearChaosEmerald_strings.o",
+            "implicit": [
+                "tools/fix_enemy_appear_chaos_emerald_strings_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/e-appear-spboss-pos-object.stamp",
+            "rule": "fix_e_appear_spboss_pos_object",
+            "inputs": "build/G9SE8P/src/rel/e_appear_spboss_pos.o",
+            "implicit": [
+                "tools/fix_e_appear_spboss_pos_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/o-invoke-colli-object.stamp",
+            "rule": "fix_o_invoke_colli_object",
+            "inputs": "build/G9SE8P/src/rel/o_invoke_colli.o",
+            "implicit": ["tools/fix_o_invoke_colli_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/stage40D/shared-delete-symbols.stamp",
+            "rule": "fix_stage40_delete_symbols",
+            "inputs": [
+                "build/G9SE8P/src/rel/o_system1.o",
+                "build/G9SE8P/src/rel/o_system2.o",
+                "build/G9SE8P/src/rel/o_system3.o",
+                "build/G9SE8P/src/rel/o_system4.o",
+                "build/G9SE8P/src/rel/o_sample2.o",
+            ],
+            "implicit": ["tools/fix_stage40_delete_symbols.py", str(binutils_dir)],
+        },
+        {
             "outputs": "build/G9SE8P/main/movie-play-sub-symbols.stamp",
             "rule": "fix_movie_play_sub_symbols",
             "inputs": "build/G9SE8P/src/game/moviePlaySub.o",
             "implicit": ["tools/fix_movie_play_sub_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/stage33D/o-s33-dice-symbols.stamp",
+            "rule": "fix_s33_dice_symbols",
+            "inputs": "build/G9SE8P/src/rel/o_s33_dice.o",
+            "implicit": ["tools/fix_s33_dice_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/stage33D/o-s33-roulet-symbols.stamp",
+            "rule": "fix_s33_roulet_symbols",
+            "inputs": "build/G9SE8P/src/rel/o_s33_roulet.o",
+            "implicit": ["tools/fix_s33_roulet_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/stage33D/o-s33-chip-symbols.stamp",
+            "rule": "fix_s33_chip_symbols",
+            "inputs": "build/G9SE8P/src/rel/o_s33_chip.o",
+            "implicit": ["tools/fix_s33_chip_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/stage33D/o-s33-slot-symbols.stamp",
+            "rule": "fix_s33_slot_symbols",
+            "inputs": "build/G9SE8P/src/rel/o_s33_slot.o",
+            "implicit": ["tools/fix_s33_slot_symbols.py", str(binutils_dir)],
         },
     ],
 }

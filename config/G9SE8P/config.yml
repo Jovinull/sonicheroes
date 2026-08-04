@@ -137,9 +137,13 @@ modules:
   hash: 7c61a97a347c714cd72bdf6cab204b0749e946f2
   symbols: config/G9SE8P/stage01D/symbols.txt
   splits: config/G9SE8P/stage01D/splits.txt
-  # Only the module's own factory reaches the constructor, and that one is
-  # still assembly, so mwld drops it once its translation unit is compiled.
+  # These Iwamizu atoms are retained in the retail object even though no
+  # surviving relocation reaches them. Preserve them when the reconstructed
+  # compiler object replaces dtk's exported object.
   force_active:
+    - CaptureIwamizuCallback
+    - SetPosition__14TObjS01IwamizuFv
+    - __ct__14TObjS01IwamizuFP7TObject
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -158,6 +162,10 @@ modules:
     - sample1Ctor
     - sample2Ctor
     - springCtor
+    - flagSetPosition
+    - flagCollisionConstants
+    - __ct__18TObjS01ShachiColliFP7TObject
+    - __ct__13TObjS01CisekiFP7TObject
     - systemObject1Ctor
     - systemObject2Ctor
     - systemObject3Ctor
@@ -165,6 +173,11 @@ modules:
     - scrollRingTouch
     - setCollisionDtor
     - systemObject4Ctor
+    - SetPosition__12TObjS01StullFv
+    - __ct__12TObjS01StullFP7TObject
+    - stullVector1
+    - stullVector2
+    - stullTrailingZero
 - object: files/stage03D.rel
   hash: 9e1c377aa780e2bee876a14325263a6b2b541934
   symbols: config/G9SE8P/stage03D/symbols.txt
@@ -186,6 +199,15 @@ modules:
     - dashpanelRegisterNoop
     - objGroupNoneActive
     - sample1Ctor
+    # The capture-collision registration reaches the factory indirectly
+    # through data owned by this TU. Retain the remaining externally callable
+    # methods as dtk did for the original split object; otherwise mwld
+    # dead-strips them and shifts the rest of stage03D.
+    - KillMyself__20TObjCaptureCollisionFv
+    - SetParameter__20TObjCaptureCollisionFv
+    - ResetVariable__20TObjCaptureCollisionFv
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - CreateInstance__20TObjCaptureCollisionFv
     - sample2Ctor
     - springCtor
     - systemObject1Ctor
@@ -315,6 +337,9 @@ modules:
     - scrollRingTouch
     - setCollisionDtor
     - systemObject4Ctor
+    # The constructor is externally visible but has no in-module caller after
+    # the allocation path inlines it, so retain the original public method.
+    - __ct__10TObjS11BobFP7TObject
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
   symbols: config/G9SE8P/stage13D/symbols.txt
@@ -509,10 +534,36 @@ modules:
     - scrollRingTouch
     - setCollisionDtor
     - systemObject4Ctor
+    # These externally visible methods are not called by stage33D itself.
+    # Retain them when their dtk object is replaced by compiled source.
+    - SetPosition__11TObjS33DiceFv
+    - SetParameter__11TObjS33DiceFv
+    - __ct__11TObjS33DiceFP7TObject
+    - SetPosition__13TObjS33RouletFv
+    - SetParameter__13TObjS33RouletFv
+    - __ct__13TObjS33RouletFP7TObject
+    - SetPosition__11TObjS33ChipFv
+    - SetParameter__11TObjS33ChipFv
+    - __ct__11TObjS33ChipFP7TObject
 - object: files/stage40D.rel
   hash: efc22e14f102354f27547b3d68c1df6b5e63fce6
   symbols: config/G9SE8P/stage40D/symbols.txt
   splits: config/G9SE8P/stage40D/splits.txt
+  force_active:
+    - __ct__11TObjSample2FP7TObject
+    - __ct__11TObjSystem4FP7TObject
+    - CreateSparkleR__FP5RwV3dP5RwV3dff
+    - __ct__11TObjSystem3FP7TObject
+    - __ct__11TObjSystem2FP7TObject
+    - __ct__11TObjSystem1FP7TObject
+    - CreateRain__FP5RwV3df
+    - Move__6EfRainFP17PARTICLE_INSTANCE
+    - __ct__6EfRainFv
+    - ReleaseTextureRain__Fv
+    - LoadTextureRain__Fv
+    - __sinit_ef_rain_cpp
+    - __dt__6EfRainFv
+    - efRainUnusedTail
 
 # Resolved: the RELs reproduce. build.sha1 verifies all 17 alongside main.dol.
 #
