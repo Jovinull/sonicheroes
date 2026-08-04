@@ -176,6 +176,9 @@ rel/wood_container_register.cpp:
 	.text       start:0x000140F0 end:0x00014198
 	.ctors      start:0x00000034 end:0x00000038
 
+rel/iron_container_unload.cpp:
+	.text       start:0x00014544 end:0x00014558
+
 rel/iron_container_register.cpp:
 	.text       start:0x000146DC end:0x00014784
 	.ctors      start:0x00000038 end:0x0000003C
