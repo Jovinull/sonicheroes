@@ -1209,7 +1209,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/obj_release_models.cpp",
+                "rel/ironball_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

@@ -116,8 +116,8 @@ rel/set_collision_object.cpp:
 rel/set_collision_hooks.cpp:
 	.text       start:0x00006174 end:0x00006178
 
-rel/obj_release_models.cpp:
-	.text       start:0x00006E78 end:0x00006EFC
+rel/ironball_dtor.cpp:
+	.text       start:0x00006E78 end:0x00006FDC
 
 rel/ironball_register.cpp:
 	.text       start:0x000076C0 end:0x00007768
