@@ -1579,6 +1579,13 @@ config.libs = [
                 data_section_alignment=8,
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "stage13D/o_s14_3way_colli.cpp",
+                cflags=cflags_rel_nofma,
+                data_section_alignment=8,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
         ],
     },
     Rel(
@@ -1940,6 +1947,14 @@ config.custom_build_rules = [
         ),
         "description": "FIX stage13 Antenna object metadata",
     },
+    {
+        "name": "fix_stage13_3way_colli_object",
+        "command": (
+            f"$python tools/fix_stage13_3way_colli_object.py $in $out "
+            f"--objcopy {objcopy_path}"
+        ),
+        "description": "FIX stage13 3WAY collision compiler-only atoms",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -2226,6 +2241,15 @@ config.custom_build_steps = {
             "inputs": "build/G9SE8P/src/stage13D/o_s13_antenna.o",
             "implicit": [
                 "tools/fix_stage13_antenna_object.py",
+                str(binutils_dir),
+            ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage13-3way-colli-object.stamp",
+            "rule": "fix_stage13_3way_colli_object",
+            "inputs": "build/G9SE8P/src/stage13D/o_s14_3way_colli.o",
+            "implicit": [
+                "tools/fix_stage13_3way_colli_object.py",
                 str(binutils_dir),
             ],
         },
