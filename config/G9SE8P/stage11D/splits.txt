@@ -304,6 +304,13 @@ rel/o_setDamegeCollision.cpp:
 	.data       start:0x0000717C end:0x00007260
 	.bss        start:0x000010A8 end:0x000010D8
 
+rel/o_s11_cloud.cpp:
+	.text       start:0x000973DC end:0x00098060
+	.ctors      start:0x00000118 end:0x0000011C
+	.rodata     start:0x00001684 end:0x000016A4
+	.data       start:0x00015448 end:0x000155B8
+	.bss        start:0x00001708 end:0x00001780
+
 rel/o_s11_bob.cpp:
 	.text       start:0x000CBBB0 end:0x000CBF20
 	.ctors      start:0x00000164 end:0x00000168

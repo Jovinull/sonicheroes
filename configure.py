@@ -1125,6 +1125,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/o_s11_cloud.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/spring_object.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
@@ -1896,6 +1901,15 @@ config.custom_build_rules = [
         "command": f"$python tools/fix_o_sample_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX o_sample.cpp shared virtual symbol",
     },
+    {
+        "name": "fix_s11_cloud_symbols",
+        "command": (
+            f"$python tools/fix_s11_cloud_symbols.py $in $out "
+            f"--objcopy {objcopy_path} --ld {ld_path} "
+            f"--script tools/s11_cloud_sections.ld"
+        ),
+        "description": "FIX o_s11_cloud symbols",
+    },
 ]
 config.custom_build_steps = {
     "post-compile": [
@@ -2156,6 +2170,16 @@ config.custom_build_steps = {
             "rule": "fix_o_sample_symbols",
             "inputs": "build/G9SE8P/src/rel/o_sample.o",
             "implicit": ["tools/fix_o_sample_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/s11-cloud-symbols.stamp",
+            "rule": "fix_s11_cloud_symbols",
+            "inputs": "build/G9SE8P/src/rel/o_s11_cloud.o",
+            "implicit": [
+                "tools/fix_s11_cloud_symbols.py",
+                "tools/s11_cloud_sections.ld",
+                str(binutils_dir),
+            ],
         },
     ],
 }
