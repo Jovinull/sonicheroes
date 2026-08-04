@@ -183,6 +183,9 @@ rel/iron_container_register.cpp:
 	.text       start:0x000146DC end:0x00014784
 	.ctors      start:0x00000038 end:0x0000003C
 
+rel/unbreakable_container_unload.cpp:
+	.text       start:0x00014AEC end:0x00014B00
+
 rel/unbreakable_container_register.cpp:
 	.text       start:0x00014C9C end:0x00014D44
 	.ctors      start:0x0000003C end:0x00000040
