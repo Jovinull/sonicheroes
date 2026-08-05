@@ -1555,7 +1555,7 @@ config.libs = [
             Object(
                 Matching,
                 "rel/o_s01_base.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,

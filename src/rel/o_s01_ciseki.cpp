@@ -103,7 +103,7 @@ void* fn_80018A34(void*, u32);
 void fn_80063E7C(void*, s32);
 void s01ObjectBaseUpdate(TObjS01Ciseki*);
 void s01ObjectBaseDtor(TObjS01Ciseki*, s16);
-void fn_3_7CB30(TObjS01Ciseki*, void*);
+void s01ObjectBaseCtor(TObjS01Ciseki*, void*);
 
 void fn_3_1A9B0();
 void objDefaultPDisp();
@@ -295,7 +295,7 @@ TObjS01Ciseki::~TObjS01Ciseki()
 
 TObjS01Ciseki::TObjS01Ciseki(TObject* parent)
 {
-	fn_3_7CB30(this, parent);
+	s01ObjectBaseCtor(this, parent);
 	vtable               = cisekiVtable;
 	motion.vtable        = cisekiVtable + 11;
 	CisekiParams* params = (CisekiParams*)motion.frame->params;
@@ -312,7 +312,7 @@ extern "C" void startObj_S01_Ciseki()
 {
 	TObjS01Ciseki* object = (TObjS01Ciseki*)fn_80018A34(lbl_8042C148, sizeof(TObjS01Ciseki));
 	if (object != NULL) {
-		fn_3_7CB30(object, lbl_8042C110);
+		s01ObjectBaseCtor(object, lbl_8042C110);
 		object->vtable        = cisekiVtable;
 		object->motion.vtable = cisekiVtable + 11;
 		CisekiParams* params  = (CisekiParams*)object->motion.frame->params;

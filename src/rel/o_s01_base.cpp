@@ -1,10 +1,11 @@
 #include "types.h"
 
-// Two methods of the base class the stage-01 objects derive from: the per-frame
-// update, and the destructor that restores both vtable pointers, releases the
-// handle it registered, runs the embedded volume and motion bases down and then
-// the object base, and hands the object back to the heap when the caller asks
-// for it.
+// Four methods of the base class the stage-01 objects derive from, in the order
+// the original emits them: the per-frame update; the destructor, which restores
+// both vtable pointers, releases the handle it registered, runs the embedded
+// volume and motion bases down and then the object base, and hands the object
+// back to the heap when the caller asks for it; the constructor; and the editor
+// callback.
 //
 // That it is a base rather than an object of its own is read from its callers:
 // rel/o_s01_ciseki.cpp and rel/o_s01_shachicolli.cpp each end their own
@@ -13,10 +14,17 @@
 // running __ct__7TObjectFP7TObject, the motion constructor at +0x28 and the
 // volume constructor at +0x30 before installing the two vtable pointers.
 //
-// The claim is .text 0x0007C9CC to 0x0007CB30 and nothing else. The two
-// functions are contiguous and neither reads a constant, so the pair owns no
-// rodata. The vtable stays in the module's data and is renamed to the name
-// below.
+// The claim is .text 0x0007C9CC to 0x0007CCD0 and .rodata 0x00001348 to
+// 0x00001358. The four functions are contiguous. The rodata is the four float
+// constants the constructor and the editor callback need, emitted in first-use
+// order; `lbl_3_rodata_1354` was sized 0x28 only because nothing referenced
+// 0x1358 yet, and is split here so the claim ends on a symbol boundary.
+//
+// `-pool off` is needed: with pooling on, CodeWarrior gathers those four
+// constants behind one base register, where the original addresses each with
+// its own lis/addi pair.
+//
+// The vtable stays in the module's data and is renamed to the name below.
 //
 // The class name could not be recovered. `__ct__7TObjectFP7TObject` sets the
 // name field and the base's own constructor does not overwrite it, and the only
@@ -35,8 +43,11 @@
 // 0x0007D66C and the second beginning at 0x0007D9A0, with no span crossing
 // between them. The unit's static initializer sits at 0x0007D8BC inside that
 // quiet zone, and an eight byte adjustor thunk at 0x0007D968 closes it, which
-// is the tail shape `o_s01_ciseki.cpp` also has. Only these two functions are
-// reconstructed here; the rest of the unit is still assembly.
+// is the tail shape `o_s01_ciseki.cpp` also has. Only these four functions are
+// reconstructed here; the rest of the unit is still assembly. The eight byte
+// adjustor thunk at 0x0007CCD0 forwards into the editor callback and belongs to
+// this unit, but reproducing it needs the multiple inheritance modelled, so it
+// is left out.
 //
 // Same shape as rel/ironball_dtor.cpp, with one difference: where that one
 // releases five meshes through a loop, this one releases a single handle.
@@ -82,9 +93,18 @@ typedef struct Motion {
 	void** vtable;        // 0x04
 } Motion;                 // 0x08
 
+typedef struct VolumeBody {
+	u8 unk0[0x14]; // 0x00
+	Vec3 scale;    // 0x14
+} VolumeBody;
+
 typedef struct Volume {
-	u8 unk0[0x88]; // 0x00
-} Volume;          // 0x88
+	u8 unk0[0x08];    // 0x00
+	u16 flags;        // 0x08
+	u8 unk0A[0x06];   // 0x0A
+	VolumeBody* body; // 0x10
+	u8 unk14[0x74];   // 0x14
+} Volume;             // 0x88
 
 typedef struct S01ObjectBase {
 	TObject base;  // 0x00
@@ -98,6 +118,11 @@ typedef struct S01ObjectBase {
 extern "C" void* lbl_8042C148;
 extern "C" void* lbl_8042C180;
 
+// The unit's own editor parameter descriptor, and the collision entry the
+// volume registers with. The entry is defined by rel/o_s01_ciseki.cpp.
+extern "C" u32 lbl_3_data_A170[];
+extern "C" u32 cisekiEntry[12];
+
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void dtor_8003C52C(Volume* volume, s32 flags);
 extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
@@ -106,6 +131,11 @@ extern "C" void fn_80063E7C(void* handle, s32 flags);
 extern "C" s32 fn_8005B8BC(Motion* motion);
 extern "C" s32 fn_8005B8D8(Motion* motion);
 extern "C" s32 fn_8005B9F0(Motion* motion);
+extern "C" void __ct__7TObjectFP7TObject(TObject* object, TObject* parent);
+extern "C" void fn_8003C200(Volume* volume, u32* entry, s32 kind, s32 count);
+extern "C" void fn_8003C618(Volume* volume);
+extern "C" void fn_80021384(Volume* volume);
+extern "C" void fn_8005BE6C(Motion* motion);
 
 // Defined by the module, renamed to this name in its own symbols.txt.
 extern "C" void* s01ObjectBaseVtable[];
@@ -148,4 +178,69 @@ extern "C" S01ObjectBase* s01ObjectBaseDtor(S01ObjectBase* object, s16 flags)
 		}
 	}
 	return object;
+}
+
+// Builds the base: the object, motion and volume bases in declaration order,
+// then both vtable pointers, then the editor frame's scale. A frame that leaves
+// the scale at zero gets the default instead. The volume registers with the
+// shared collision entry and takes half the scale as its extent.
+extern "C" S01ObjectBase* s01ObjectBaseCtor(S01ObjectBase* object, TObject* parent)
+{
+	Vec3* params;
+	VolumeBody* body;
+
+	__ct__7TObjectFP7TObject(&object->base, parent);
+	fn_8005BE6C(&object->motion);
+	fn_8003C618(&object->volume);
+
+	object->base.vtable   = s01ObjectBaseVtable;
+	object->motion.vtable = s01ObjectBaseVtable + 0xB;
+
+	params = object->motion.frame->params;
+
+	if (params->x == 0.0f && params->y == 0.0f && params->z == 0.0f) {
+		params->x = 100.0f;
+		params->y = 100.0f;
+		params->z = 10.0f;
+	}
+
+	object->position.x = params->x;
+	object->position.y = params->y;
+	object->position.z = params->z;
+
+	object->unkBC  = lbl_3_data_A170[0];
+	object->handle = NULL;
+
+	fn_8003C200(&object->volume, cisekiEntry, 1, 4);
+
+	body = object->volume.body;
+
+	body->scale.x = 0.5f * object->position.x;
+	body->scale.y = 0.5f * object->position.y;
+	body->scale.z = 0.5f * object->position.z;
+
+	fn_80021384(&object->volume);
+
+	object->volume.flags = object->volume.flags & ~0x40;
+
+	return object;
+}
+
+// The editor callback. It refuses a negative scale on any axis, clamping each
+// component of the frame's parameters back to zero.
+extern "C" void s01ObjectBaseEditOnChange(S01ObjectBase* object, SETDATA_PARAM* frame)
+{
+	Vec3* params = frame->params;
+
+	if (params->x < 0.0f) {
+		params->x = 0.0f;
+	}
+
+	if (params->y < 0.0f) {
+		params->y = 0.0f;
+	}
+
+	if (params->z < 0.0f) {
+		params->z = 0.0f;
+	}
 }
