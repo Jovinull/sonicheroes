@@ -150,6 +150,7 @@ modules:
     # so mwld drops them once the reconstructed object replaces dtk's.
     - s01ObjectBaseNoop
     - s01ObjectBaseReleaseMesh
+    - s01ObjectBaseCreateMesh
     - objResetDraw
     - objPullPlacement
     - objPushScale
