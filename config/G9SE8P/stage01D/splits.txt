@@ -372,6 +372,14 @@ rel/no_input_collision_register.cpp:
 	.text       start:0x0006DD8C end:0x0006DE34
 	.ctors      start:0x000000B4 end:0x000000B8
 
+rel/damage_collision_register.cpp:
+	.text       start:0x00070D50 end:0x00070DE8
+	.ctors      start:0x000000BC end:0x000000C0
+
+rel/egghawk_colli_register.cpp:
+	.text       start:0x0007BF88 end:0x0007C020
+	.ctors      start:0x000000C0 end:0x000000C4
+
 rel/o_s01_ciseki.cpp:
 	.text       start:0x0007C2B4 end:0x0007C9CC
 	.ctors      start:0x000000C4 end:0x000000C8
@@ -428,6 +436,10 @@ rel/kamome_register.cpp:
 	.text       start:0x00084518 end:0x000845C4
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/s01_koware_register.cpp:
+	.text       start:0x00085F54 end:0x00085FEC
+	.ctors      start:0x000000E0 end:0x000000E4
+
 rel/wave_register.cpp:
 	.text       start:0x00089438 end:0x000894E4
 	.ctors      start:0x000000E8 end:0x000000EC
@@ -452,6 +464,10 @@ rel/o_s01_taihostull.cpp:
 rel/s01_truck_rail_register.cpp:
 	.text       start:0x0008FBCC end:0x0008FC74
 	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/s01_truck_path_register.cpp:
+	.text       start:0x0009261C end:0x000926B4
+	.ctors      start:0x000000FC end:0x00000100
 
 rel/s02_break_door_register.cpp:
 	.text       start:0x00095E7C end:0x00095F24
@@ -489,6 +505,14 @@ rel/s20d_whale_stone_register.cpp:
 	.text       start:0x000BC130 end:0x000BC1DC
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/key_register.cpp:
+	.text       start:0x000C20F4 end:0x000C218C
+	.ctors      start:0x00000154 end:0x00000158
+
+rel/s31_bob_dummy_register.cpp:
+	.text       start:0x000C4ED0 end:0x000C4F68
+	.ctors      start:0x00000158 end:0x0000015C
+
 rel/s66_star_register.cpp:
 	.text       start:0x000CB010 end:0x000CB0BC
 	.ctors      start:0x00000164 end:0x00000168
@@ -496,3 +520,7 @@ rel/s66_star_register.cpp:
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D2CB0 end:0x000D2D58
 	.ctors      start:0x00000168 end:0x0000016C
+
+rel/no_ottotto_collision_register.cpp:
+	.text       start:0x000D6000 end:0x000D6098
+	.ctors      start:0x0000016C end:0x00000170
