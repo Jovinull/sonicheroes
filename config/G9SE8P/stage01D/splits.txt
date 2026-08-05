@@ -168,6 +168,9 @@ rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
 
+rel/reel_dtor.cpp:
+	.text       start:0x00011B18 end:0x00011BE0
+
 rel/reel_assets.cpp:
 	.text       start:0x00012128 end:0x00012218
 	.ctors      start:0x00000030 end:0x00000034
@@ -197,6 +200,9 @@ rel/cannon_register.cpp:
 	.text       start:0x0001A9B4 end:0x0001AA64
 	.ctors      start:0x00000040 end:0x00000044
 
+rel/laser_fence_dtor.cpp:
+	.text       start:0x0001BED4 end:0x0001BF6C
+
 rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
@@ -209,9 +215,15 @@ rel/cage_assets.cpp:
 	.text       start:0x00021C44 end:0x00021D34
 	.ctors      start:0x0000004C end:0x00000050
 
+rel/target_dtor.cpp:
+	.text       start:0x00023C28 end:0x00023CD8
+
 rel/target_assets.cpp:
 	.text       start:0x000240DC end:0x000241CC
 	.ctors      start:0x00000050 end:0x00000054
+
+rel/fan_dtor.cpp:
+	.text       start:0x000251E8 end:0x000252B0
 
 rel/fan_assets.cpp:
 	.text       start:0x00025810 end:0x00025900
