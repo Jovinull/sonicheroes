@@ -103,7 +103,7 @@ void* fn_800211A8(void*);
 void fn_8003BC38(void*);
 void fn_800189A4(void*, void*);
 void* fn_80018A34(void*, u32);
-void fn_3_7C9CC(TObjS01ShachiColli*);
+void s01ObjectBaseUpdate(TObjS01ShachiColli*);
 void s01ObjectBaseDtor(TObjS01ShachiColli*, s16);
 void fn_3_7CB30(TObjS01ShachiColli*, void*);
 
@@ -160,7 +160,7 @@ void TObjS01ShachiColli::Exec()
 	if (*(s8*)((u8*)lbl_8042C180 + 0x1F) != 0)
 		return;
 
-	fn_3_7C9CC(this);
+	s01ObjectBaseUpdate(this);
 	if (fn_8005B8D8(&motion) != 0)
 		return;
 

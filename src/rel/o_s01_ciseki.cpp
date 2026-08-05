@@ -101,7 +101,7 @@ void fn_8003BC38(void*);
 void fn_800189A4(void*, void*);
 void* fn_80018A34(void*, u32);
 void fn_80063E7C(void*, s32);
-void fn_3_7C9CC(TObjS01Ciseki*);
+void s01ObjectBaseUpdate(TObjS01Ciseki*);
 void s01ObjectBaseDtor(TObjS01Ciseki*, s16);
 void fn_3_7CB30(TObjS01Ciseki*, void*);
 
@@ -244,7 +244,7 @@ void TObjS01Ciseki::Exec()
 		return;
 	}
 
-	fn_3_7C9CC(this);
+	s01ObjectBaseUpdate(this);
 	if (fn_8005B8D8(&motion) != 0)
 		return;
 
