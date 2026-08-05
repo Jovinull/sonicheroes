@@ -1574,6 +1574,21 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/kamome_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wave_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/shachi_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gokurakucho_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
