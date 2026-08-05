@@ -170,6 +170,9 @@ rel/checkpoint_edit.cpp:
 rel/checkpoint_bind.cpp:
 	.text       start:0x00010A38 end:0x00010A94
 
+rel/checkpoint_field.cpp:
+	.text       start:0x00010A94 end:0x00010ACC
+
 rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
@@ -307,6 +310,9 @@ rel/propeller_register.cpp:
 
 rel/goal_ring_bind.cpp:
 	.text       start:0x0004D4F0 end:0x0004D54C
+
+rel/goal_ring_field.cpp:
+	.text       start:0x0004D54C end:0x0004D584
 
 rel/goal_ring_register.cpp:
 	.text       start:0x0004D584 end:0x0004D62C
