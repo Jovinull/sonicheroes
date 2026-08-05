@@ -1554,6 +1554,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/o_s01_base_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/o_s01_hana.cpp",
                 extra_cflags=[
                     "-pool off",

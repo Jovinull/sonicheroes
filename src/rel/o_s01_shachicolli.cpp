@@ -104,7 +104,7 @@ void fn_8003BC38(void*);
 void fn_800189A4(void*, void*);
 void* fn_80018A34(void*, u32);
 void fn_3_7C9CC(TObjS01ShachiColli*);
-void fn_3_7CA7C(TObjS01ShachiColli*, s16);
+void s01ObjectBaseDtor(TObjS01ShachiColli*, s16);
 void fn_3_7CB30(TObjS01ShachiColli*, void*);
 
 void fn_3_1A9B0();
@@ -192,7 +192,7 @@ TObjS01ShachiColli::~TObjS01ShachiColli()
 	if (fn_8005B8D8(&motion) != 0)
 		((ShachiColliDispatch*)this)->SetCommunication(motion.frame->pad1C[0xE], 0);
 	fn_8005BC04(&motion);
-	fn_3_7CA7C(this, 0);
+	s01ObjectBaseDtor(this, 0);
 }
 
 TObjS01ShachiColli::TObjS01ShachiColli(TObject* parent)
