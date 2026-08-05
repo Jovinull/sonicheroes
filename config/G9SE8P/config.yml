@@ -152,6 +152,7 @@ modules:
     - s01ObjectBaseReleaseMesh
     - s01ObjectBaseCreateMesh
     - s01ObjectA34CDtor
+    - s01ObjectBaseLoad
     - objResetDraw
     - objPullPlacement
     - objPushScale
