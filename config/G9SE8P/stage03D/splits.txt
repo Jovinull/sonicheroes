@@ -244,17 +244,29 @@ rel/pawn_assets.cpp:
 rel/shield_splinter_dtor.cpp:
 	.text       start:0x0003720C end:0x00037280
 
+rel/item_box_dtor.cpp:
+	.text       start:0x0003ABF4 end:0x0003AC9C
+
 rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
+
+rel/pole_dtor.cpp:
+	.text       start:0x0003F870 end:0x0003F930
 
 rel/pole_assets.cpp:
 	.text       start:0x0003FF74 end:0x00040064
 	.ctors      start:0x0000006C end:0x00000070
 
+rel/case_obj_dtor.cpp:
+	.text       start:0x00040F64 end:0x00041034
+
 rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0
 	.ctors      start:0x00000074 end:0x00000078
+
+rel/roll_door_dtor.cpp:
+	.text       start:0x0004395C end:0x00043A3C
 
 rel/roll_door_assets.cpp:
 	.text       start:0x00044118 end:0x00044208

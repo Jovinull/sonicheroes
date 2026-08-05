@@ -1559,6 +1559,26 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/item_box_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pole_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/case_obj_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/roll_door_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/laser_fence_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
