@@ -314,8 +314,8 @@ rel/o_s01_ciseki.cpp:
 	.data       start:0x00009F18 end:0x00009FC0
 	.bss        start:0x0000113C end:0x0000116C
 
-rel/o_s01_base_dtor.cpp:
-	.text       start:0x0007CA7C end:0x0007CB30
+rel/o_s01_base.cpp:
+	.text       start:0x0007C9CC end:0x0007CB30
 
 rel/o_s01_hana.cpp:
 	.text       start:0x0007F034 end:0x0007FCE0

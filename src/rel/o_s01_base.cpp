@@ -1,9 +1,10 @@
 #include "types.h"
 
-// The destructor of the base class the stage-01 objects derive from. It
-// restores both vtable pointers, releases the handle it registered, runs the
-// embedded volume and motion bases down and then the object base, and hands the
-// object back to the heap when the caller asks for it.
+// Two methods of the base class the stage-01 objects derive from: the per-frame
+// update, and the destructor that restores both vtable pointers, releases the
+// handle it registered, runs the embedded volume and motion bases down and then
+// the object base, and hands the object back to the heap when the caller asks
+// for it.
 //
 // That it is a base rather than an object of its own is read from its callers:
 // rel/o_s01_ciseki.cpp and rel/o_s01_shachicolli.cpp each end their own
@@ -12,9 +13,10 @@
 // running __ct__7TObjectFP7TObject, the motion constructor at +0x28 and the
 // volume constructor at +0x30 before installing the two vtable pointers.
 //
-// The claim is .text 0x0007CA7C to 0x0007CB30 and nothing else. The vtable
-// stays in the module's data and is renamed to the name below; the function
-// reads no constant, so it owns no rodata.
+// The claim is .text 0x0007C9CC to 0x0007CB30 and nothing else. The two
+// functions are contiguous and neither reads a constant, so the pair owns no
+// rodata. The vtable stays in the module's data and is renamed to the name
+// below.
 //
 // The class name could not be recovered. `__ct__7TObjectFP7TObject` sets the
 // name field and the base's own constructor does not overwrite it, and the only
@@ -33,7 +35,7 @@
 // 0x0007D66C and the second beginning at 0x0007D9A0, with no span crossing
 // between them. The unit's static initializer sits at 0x0007D8BC inside that
 // quiet zone, and an eight byte adjustor thunk at 0x0007D968 closes it, which
-// is the tail shape `o_s01_ciseki.cpp` also has. Only the destructor is
+// is the tail shape `o_s01_ciseki.cpp` also has. Only these two functions are
 // reconstructed here; the rest of the unit is still assembly.
 //
 // Same shape as rel/ironball_dtor.cpp, with one difference: where that one
@@ -59,12 +61,26 @@ typedef struct TObject {
 	s16 unk26;              // 0x26
 } TObject;                  // 0x28
 
-typedef struct Frame Frame;
+typedef struct Vec3 {
+	f32 x;
+	f32 y;
+	f32 z;
+} Vec3;
+
+typedef struct SETDATA_PARAM {
+	Vec3 position; // 0x00
+	s32 angleX;    // 0x0C
+	s32 angleY;    // 0x10
+	s32 angleZ;    // 0x14
+	u32 flags;     // 0x18
+	u8 pad1C[0x10];
+	Vec3* params; // 0x2C
+} SETDATA_PARAM;
 
 typedef struct Motion {
-	Frame* frame;  // 0x00
-	void** vtable; // 0x04
-} Motion;          // 0x08
+	SETDATA_PARAM* frame; // 0x00
+	void** vtable;        // 0x04
+} Motion;                 // 0x08
 
 typedef struct Volume {
 	u8 unk0[0x88]; // 0x00
@@ -75,18 +91,42 @@ typedef struct S01ObjectBase {
 	Motion motion; // 0x28
 	Volume volume; // 0x30
 	void* handle;  // 0xB8
-} S01ObjectBase;   // 0xBC
+	u32 unkBC;     // 0xBC
+	Vec3 position; // 0xC0
+} S01ObjectBase;   // 0xCC
 
 extern "C" void* lbl_8042C148;
+extern "C" void* lbl_8042C180;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void dtor_8003C52C(Volume* volume, s32 flags);
 extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
 extern "C" void fn_800189A4(void* heap, TObject* object);
 extern "C" void fn_80063E7C(void* handle, s32 flags);
+extern "C" s32 fn_8005B8BC(Motion* motion);
+extern "C" s32 fn_8005B8D8(Motion* motion);
+extern "C" s32 fn_8005B9F0(Motion* motion);
 
 // Defined by the module, renamed to this name in its own symbols.txt.
 extern "C" void* s01ObjectBaseVtable[];
+
+// Runs once a frame. When the motion reports it has started or finished, the
+// object raises its own signal bit; otherwise it tracks the editor frame's
+// position while the global at +0x1F says the editor is not holding it.
+extern "C" void s01ObjectBaseUpdate(S01ObjectBase* object)
+{
+	Vec3* params = object->motion.frame->params;
+
+	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+		object->base.signal = object->base.signal | 1;
+	} else if (((s8*)lbl_8042C180)[0x1F] == 0) {
+		if (fn_8005B8D8(&object->motion) != 0) {
+			object->position.x = params->x;
+			object->position.y = params->y;
+			object->position.z = params->z;
+		}
+	}
+}
 
 extern "C" S01ObjectBase* s01ObjectBaseDtor(S01ObjectBase* object, s16 flags)
 {
