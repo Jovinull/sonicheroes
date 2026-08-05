@@ -151,6 +151,7 @@ modules:
     - s01ObjectBaseNoop
     - s01ObjectBaseReleaseMesh
     - s01ObjectBaseCreateMesh
+    - s01ObjectA34CDtor
     - objResetDraw
     - objPullPlacement
     - objPushScale
