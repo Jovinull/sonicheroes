@@ -318,6 +318,9 @@ rel/o_s01_base.cpp:
 	.text       start:0x0007C9CC end:0x0007CCD0
 	.rodata     start:0x00001348 end:0x00001358
 
+rel/o_s01_base_collision.cpp:
+	.text       start:0x0007CCD8 end:0x0007CD38
+
 rel/o_s01_hana.cpp:
 	.text       start:0x0007F034 end:0x0007FCE0
 	.ctors      start:0x000000D0 end:0x000000D4

@@ -116,7 +116,7 @@ void fn_80017854();
 void objDefaultRender();
 void fn_3_7CCD0();
 extern "C" void MotionNoop__13TObjS01CisekiFv();
-void fn_3_7CCD8();
+void s01ObjectBaseNoop();
 void s01ObjectBaseEditOnChange();
 TObjS01ShachiColli* __dt__18TObjS01ShachiColliFv(TObjS01ShachiColli*, s16);
 void Exec__18TObjS01ShachiColliFv(TObjS01ShachiColli*);
@@ -239,7 +239,7 @@ extern "C" void* shachiColliVtable[18] = {
 	(void*)fn_3_7CCD0,
 	(void*)MotionNoop__13TObjS01CisekiFv,
 	(void*)SetCommuicateFlag__18TObjS01ShachiColliFUci,
-	(void*)fn_3_7CCD8,
+	(void*)s01ObjectBaseNoop,
 	(void*)s01ObjectBaseEditOnChange,
 };
 

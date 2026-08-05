@@ -1554,6 +1554,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/o_s01_base_collision.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/o_s01_base.cpp",
                 extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
             ),
