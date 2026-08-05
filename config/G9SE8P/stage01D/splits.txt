@@ -456,3 +456,15 @@ rel/s02_green_register.cpp:
 rel/s02_pole_register.cpp:
 	.text       start:0x000B05CC end:0x000B0678
 	.ctors      start:0x0000012C end:0x00000130
+
+rel/s20d_curb_stone_register.cpp:
+	.text       start:0x000BB5BC end:0x000BB668
+	.ctors      start:0x0000013C end:0x00000140
+
+rel/s20d_whale_stone_register.cpp:
+	.text       start:0x000BC130 end:0x000BC1DC
+	.ctors      start:0x00000140 end:0x00000144
+
+rel/s66_star_register.cpp:
+	.text       start:0x000CB010 end:0x000CB0BC
+	.ctors      start:0x00000164 end:0x00000168

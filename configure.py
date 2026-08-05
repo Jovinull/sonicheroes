@@ -1589,6 +1589,21 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s20d_curb_stone_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s20d_whale_stone_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s66_star_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_pole_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
