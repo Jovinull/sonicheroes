@@ -1559,6 +1559,21 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/checkpoint_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/iron_container_sound.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wood_container_sound.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/item_box_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
