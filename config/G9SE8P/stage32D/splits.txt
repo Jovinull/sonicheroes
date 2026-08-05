@@ -290,6 +290,9 @@ rel/roll_door_assets.cpp:
 rel/lens_flare_edit.cpp:
 	.text       start:0x00045444 end:0x000454A8
 
+rel/lens_flare_test.cpp:
+	.text       start:0x00045A00 end:0x00045A10
+
 rel/lens_flare_register.cpp:
 	.text       start:0x00045A10 end:0x00045AB8
 	.ctors      start:0x0000007C end:0x00000080
@@ -347,6 +350,9 @@ rel/o_invoke_colli.cpp:
 	.rodata     start:0x00000D60 end:0x00000D70
 	.data       start:0x00005814 end:0x00005970
 	.bss        start:0x00000D6C end:0x00000D98
+
+rel/push_pull_switch_edit.cpp:
+	.text       start:0x0005169C end:0x000516F8
 
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
