@@ -1614,6 +1614,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_set_particle_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/warp_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
