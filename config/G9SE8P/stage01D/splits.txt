@@ -167,6 +167,9 @@ rel/dash_ring_assets.cpp:
 rel/checkpoint_edit.cpp:
 	.text       start:0x0001079C end:0x000107CC
 
+rel/checkpoint_bind.cpp:
+	.text       start:0x00010A38 end:0x00010A94
+
 rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
@@ -298,6 +301,9 @@ rel/signal_assets.cpp:
 rel/propeller_register.cpp:
 	.text       start:0x00049590 end:0x00049630
 	.ctors      start:0x00000084 end:0x00000088
+
+rel/goal_ring_bind.cpp:
+	.text       start:0x0004D4F0 end:0x0004D54C
 
 rel/goal_ring_register.cpp:
 	.text       start:0x0004D584 end:0x0004D62C

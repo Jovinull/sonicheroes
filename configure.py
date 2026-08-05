@@ -1559,6 +1559,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/checkpoint_bind.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/goal_ring_bind.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_reload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
