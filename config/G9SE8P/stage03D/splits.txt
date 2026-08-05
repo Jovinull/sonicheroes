@@ -224,6 +224,9 @@ rel/cage_assets.cpp:
 	.text       start:0x00021C44 end:0x00021D34
 	.ctors      start:0x0000004C end:0x00000050
 
+rel/target_reload.cpp:
+	.text       start:0x00023BD4 end:0x00023C28
+
 rel/target_dtor.cpp:
 	.text       start:0x00023C28 end:0x00023CD8
 
@@ -280,6 +283,9 @@ rel/roll_door_dtor.cpp:
 rel/roll_door_assets.cpp:
 	.text       start:0x00044118 end:0x00044208
 	.ctors      start:0x00000078 end:0x0000007C
+
+rel/lens_flare_edit.cpp:
+	.text       start:0x00045444 end:0x000454A8
 
 rel/lens_flare_register.cpp:
 	.text       start:0x00045A10 end:0x00045AB8

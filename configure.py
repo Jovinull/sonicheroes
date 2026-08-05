@@ -1559,6 +1559,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/target_reload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/lens_flare_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/checkpoint_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
