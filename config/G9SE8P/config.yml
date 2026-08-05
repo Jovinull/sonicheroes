@@ -141,6 +141,8 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - CaptureIwamizuCallback
     - SetPosition__14TObjS01IwamizuFv
     - __ct__14TObjS01IwamizuFP7TObject
@@ -190,6 +192,8 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -229,6 +233,8 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -259,6 +265,8 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -289,6 +297,8 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -319,6 +329,8 @@ modules:
   symbols: config/G9SE8P/stage11D/symbols.txt
   splits: config/G9SE8P/stage11D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - DestroyClump__12TObjS11CloudFv
     - CloneClump__12TObjS11CloudFi
     - SetPosition__12TObjS11CloudFv
@@ -384,6 +396,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - targetReloadModel
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -410,6 +423,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - targetReloadModel
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -436,6 +450,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - targetReloadModel
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -462,6 +477,8 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -492,6 +509,8 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -522,6 +541,8 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
     - objApplyTransform
     - objReleaseModels
     - objResetDraw

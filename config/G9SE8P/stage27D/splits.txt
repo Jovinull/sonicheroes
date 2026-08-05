@@ -224,6 +224,9 @@ rel/cage_assets.cpp:
 	.text       start:0x00021C44 end:0x00021D34
 	.ctors      start:0x0000004C end:0x00000050
 
+rel/target_reload.cpp:
+	.text       start:0x00023BD4 end:0x00023C28
+
 rel/target_dtor.cpp:
 	.text       start:0x00023C28 end:0x00023CD8
 
