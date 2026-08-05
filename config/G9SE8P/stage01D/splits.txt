@@ -416,6 +416,18 @@ rel/o_s01_iwamizu.cpp:
 	.data       start:0x0000A8F0 end:0x0000AA04
 	.bss        start:0x00001344 end:0x000013D0
 
+rel/kamome_register.cpp:
+	.text       start:0x00084518 end:0x000845C4
+	.ctors      start:0x000000DC end:0x000000E0
+
+rel/wave_register.cpp:
+	.text       start:0x00089438 end:0x000894E4
+	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/shachi_register.cpp:
+	.text       start:0x0008A7A8 end:0x0008A854
+	.ctors      start:0x000000EC end:0x000000F0
+
 rel/o_s01_shachicolli.cpp:
 	.text       start:0x0008A85C end:0x0008AC30
 	.ctors      start:0x000000F0 end:0x000000F4
