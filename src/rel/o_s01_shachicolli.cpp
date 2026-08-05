@@ -105,7 +105,7 @@ void fn_800189A4(void*, void*);
 void* fn_80018A34(void*, u32);
 void s01ObjectBaseUpdate(TObjS01ShachiColli*);
 void s01ObjectBaseDtor(TObjS01ShachiColli*, s16);
-void fn_3_7CB30(TObjS01ShachiColli*, void*);
+void s01ObjectBaseCtor(TObjS01ShachiColli*, void*);
 
 void fn_3_1A9B0();
 extern "C" void TDisp__13TObjS01CisekiFv();
@@ -117,7 +117,7 @@ void objDefaultRender();
 void fn_3_7CCD0();
 extern "C" void MotionNoop__13TObjS01CisekiFv();
 void fn_3_7CCD8();
-void fn_3_7CC74();
+void s01ObjectBaseEditOnChange();
 TObjS01ShachiColli* __dt__18TObjS01ShachiColliFv(TObjS01ShachiColli*, s16);
 void Exec__18TObjS01ShachiColliFv(TObjS01ShachiColli*);
 void SetCommuicateFlag__18TObjS01ShachiColliFUci(TObjS01ShachiColli*, u8, s32);
@@ -197,7 +197,7 @@ TObjS01ShachiColli::~TObjS01ShachiColli()
 
 TObjS01ShachiColli::TObjS01ShachiColli(TObject* parent)
 {
-	fn_3_7CB30(this, parent);
+	s01ObjectBaseCtor(this, parent);
 	vtable        = shachiColliVtable;
 	motion.vtable = shachiColliVtable + 11;
 	className     = CL_TObjS01ShachiColli;
@@ -210,7 +210,7 @@ extern "C" void startObj_S01_ShachiColli()
 	TObjS01ShachiColli* object
 	    = (TObjS01ShachiColli*)fn_80018A34(lbl_8042C148, sizeof(TObjS01ShachiColli));
 	if (object != NULL) {
-		fn_3_7CB30(object, lbl_8042C110);
+		s01ObjectBaseCtor(object, lbl_8042C110);
 		object->vtable        = shachiColliVtable;
 		object->motion.vtable = shachiColliVtable + 11;
 		object->className     = CL_TObjS01ShachiColli;
@@ -240,7 +240,7 @@ extern "C" void* shachiColliVtable[18] = {
 	(void*)MotionNoop__13TObjS01CisekiFv,
 	(void*)SetCommuicateFlag__18TObjS01ShachiColliFUci,
 	(void*)fn_3_7CCD8,
-	(void*)fn_3_7CC74,
+	(void*)s01ObjectBaseEditOnChange,
 };
 
 extern "C" char shachiColliDisplayName[] = "S01 COLLI FOR SHACHI";

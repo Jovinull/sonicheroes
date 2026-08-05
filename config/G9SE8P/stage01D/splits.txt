@@ -315,7 +315,8 @@ rel/o_s01_ciseki.cpp:
 	.bss        start:0x0000113C end:0x0000116C
 
 rel/o_s01_base.cpp:
-	.text       start:0x0007C9CC end:0x0007CB30
+	.text       start:0x0007C9CC end:0x0007CCD0
+	.rodata     start:0x00001348 end:0x00001358
 
 rel/o_s01_hana.cpp:
 	.text       start:0x0007F034 end:0x0007FCE0
