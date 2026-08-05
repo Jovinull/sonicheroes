@@ -164,6 +164,9 @@ rel/dash_ring_assets.cpp:
 	.text       start:0x0000E32C end:0x0000E41C
 	.ctors      start:0x00000028 end:0x0000002C
 
+rel/checkpoint_edit.cpp:
+	.text       start:0x0001079C end:0x000107CC
+
 rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
@@ -179,12 +182,18 @@ rel/wood_container_register.cpp:
 	.text       start:0x000140F0 end:0x00014198
 	.ctors      start:0x00000034 end:0x00000038
 
+rel/wood_container_sound.cpp:
+	.text       start:0x00014198 end:0x000141D8
+
 rel/iron_container_unload.cpp:
 	.text       start:0x00014544 end:0x00014558
 
 rel/iron_container_register.cpp:
 	.text       start:0x000146DC end:0x00014784
 	.ctors      start:0x00000038 end:0x0000003C
+
+rel/iron_container_sound.cpp:
+	.text       start:0x00014784 end:0x000147C4
 
 rel/unbreakable_container_unload.cpp:
 	.text       start:0x00014AEC end:0x00014B00
