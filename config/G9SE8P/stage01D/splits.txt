@@ -364,6 +364,14 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/formgate_register.cpp:
+	.text       start:0x00061848 end:0x000618F0
+	.ctors      start:0x000000B0 end:0x000000B4
+
+rel/no_input_collision_register.cpp:
+	.text       start:0x0006DD8C end:0x0006DE34
+	.ctors      start:0x000000B4 end:0x000000B8
+
 rel/o_s01_ciseki.cpp:
 	.text       start:0x0007C2B4 end:0x0007C9CC
 	.ctors      start:0x000000C4 end:0x000000C8
@@ -441,6 +449,18 @@ rel/o_s01_taihostull.cpp:
 	.data       start:0x0000B59C end:0x0000B610
 	.bss        start:0x000017B8 end:0x000017F4
 
+rel/s01_truck_rail_register.cpp:
+	.text       start:0x0008FBCC end:0x0008FC74
+	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/s02_break_door_register.cpp:
+	.text       start:0x00095E7C end:0x00095F24
+	.ctors      start:0x00000104 end:0x00000108
+
+rel/s02_break_gareki_register.cpp:
+	.text       start:0x00097CCC end:0x00097D74
+	.ctors      start:0x00000108 end:0x0000010C
+
 rel/s02_moving_land_register.cpp:
 	.text       start:0x0009F2CC end:0x0009F378
 	.ctors      start:0x00000118 end:0x0000011C
@@ -457,6 +477,10 @@ rel/s02_pole_register.cpp:
 	.text       start:0x000B05CC end:0x000B0678
 	.ctors      start:0x0000012C end:0x00000130
 
+rel/bob_jump_collision_register.cpp:
+	.text       start:0x000B1FE0 end:0x000B2088
+	.ctors      start:0x00000130 end:0x00000134
+
 rel/s20d_curb_stone_register.cpp:
 	.text       start:0x000BB5BC end:0x000BB668
 	.ctors      start:0x0000013C end:0x00000140
@@ -468,3 +492,7 @@ rel/s20d_whale_stone_register.cpp:
 rel/s66_star_register.cpp:
 	.text       start:0x000CB010 end:0x000CB0BC
 	.ctors      start:0x00000164 end:0x00000168
+
+rel/unbreakable_bob_container_register.cpp:
+	.text       start:0x000D2CB0 end:0x000D2D58
+	.ctors      start:0x00000168 end:0x0000016C
