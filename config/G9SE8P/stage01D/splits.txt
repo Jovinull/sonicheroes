@@ -319,7 +319,7 @@ rel/o_s01_base.cpp:
 	.rodata     start:0x00001348 end:0x00001358
 
 rel/o_s01_base_collision.cpp:
-	.text       start:0x0007CCD8 end:0x0007CD38
+	.text       start:0x0007CCD8 end:0x0007CDA4
 
 rel/o_s01_hana.cpp:
 	.text       start:0x0007F034 end:0x0007FCE0
