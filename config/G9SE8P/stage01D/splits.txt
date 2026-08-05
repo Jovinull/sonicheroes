@@ -440,3 +440,19 @@ rel/o_s01_taihostull.cpp:
 	.rodata     start:0x000016D8 end:0x00001720
 	.data       start:0x0000B59C end:0x0000B610
 	.bss        start:0x000017B8 end:0x000017F4
+
+rel/s02_moving_land_register.cpp:
+	.text       start:0x0009F2CC end:0x0009F378
+	.ctors      start:0x00000118 end:0x0000011C
+
+rel/s02_water_register.cpp:
+	.text       start:0x000A35B0 end:0x000A365C
+	.ctors      start:0x00000120 end:0x00000124
+
+rel/s02_green_register.cpp:
+	.text       start:0x000AECF0 end:0x000AED9C
+	.ctors      start:0x00000124 end:0x00000128
+
+rel/s02_pole_register.cpp:
+	.text       start:0x000B05CC end:0x000B0678
+	.ctors      start:0x0000012C end:0x00000130
