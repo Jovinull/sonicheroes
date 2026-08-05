@@ -146,6 +146,10 @@ modules:
     - __ct__14TObjS01IwamizuFP7TObject
     - objApplyTransform
     - objReleaseModels
+    # Reached only through the base's vtable, which stays in the module's data,
+    # so mwld drops them once the reconstructed object replaces dtk's.
+    - s01ObjectBaseNoop
+    - s01ObjectBaseReleaseMesh
     - objResetDraw
     - objPullPlacement
     - objPushScale
