@@ -501,6 +501,10 @@ rel/s02_green_register.cpp:
 	.text       start:0x000AECF0 end:0x000AED9C
 	.ctors      start:0x00000124 end:0x00000128
 
+rel/obj_set_particle_register.cpp:
+	.text       start:0x000AF398 end:0x000AF434
+	.ctors      start:0x00000128 end:0x0000012C
+
 rel/s02_pole_register.cpp:
 	.text       start:0x000B05CC end:0x000B0678
 	.ctors      start:0x0000012C end:0x00000130
