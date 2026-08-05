@@ -497,6 +497,14 @@ rel/bob_jump_collision_register.cpp:
 	.text       start:0x000B1FE0 end:0x000B2088
 	.ctors      start:0x00000130 end:0x00000134
 
+rel/flower_register.cpp:
+	.text       start:0x000B6320 end:0x000B63D0
+	.ctors      start:0x00000134 end:0x00000138
+
+rel/chao_register.cpp:
+	.text       start:0x000B7870 end:0x000B7920
+	.ctors      start:0x00000138 end:0x0000013C
+
 rel/s20d_curb_stone_register.cpp:
 	.text       start:0x000BB5BC end:0x000BB668
 	.ctors      start:0x0000013C end:0x00000140
@@ -505,6 +513,10 @@ rel/s20d_whale_stone_register.cpp:
 	.text       start:0x000BC130 end:0x000BC1DC
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/hintcolli_register.cpp:
+	.text       start:0x000C0008 end:0x000C00B8
+	.ctors      start:0x0000014C end:0x00000150
+
 rel/key_register.cpp:
 	.text       start:0x000C20F4 end:0x000C218C
 	.ctors      start:0x00000154 end:0x00000158
@@ -512,6 +524,10 @@ rel/key_register.cpp:
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000C4ED0 end:0x000C4F68
 	.ctors      start:0x00000158 end:0x0000015C
+
+rel/hermitcrab_register.cpp:
+	.text       start:0x000C83D0 end:0x000C8480
+	.ctors      start:0x00000160 end:0x00000164
 
 rel/s66_star_register.cpp:
 	.text       start:0x000CB010 end:0x000CB0BC
