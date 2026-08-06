@@ -15,7 +15,8 @@
 // The .ctors slot is derived: every function owning a .ctors word, sorted by run
 // address, at position times four.
 //
-// Only stage01D carries this run.
+// The run is the same in thirteen of the fourteen stage modules. stage40D
+// registers the same object from a different build and does not share it.
 
 typedef struct ObjectEntry {
 	const char* name;        // 0x00

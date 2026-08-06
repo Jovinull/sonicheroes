@@ -6,8 +6,8 @@
 // record is taken: the hooks it points at stay assembly and are reached by the
 // names each module's symbols.txt gives them.
 //
-// The run is the same in nine of the fourteen stage modules. stage13D, 26D, 27D
-// and 28D are a different revision this far in, and stage40D everywhere.
+// The run is the same in thirteen of the fourteen stage modules. stage40D
+// registers the same object from a different build and does not share it.
 //
 // This class has only a factory: nothing to load or unload, and no reset
 // hook. Its byte at 0x20 is 0x32 rather than the 0x1E the others use.

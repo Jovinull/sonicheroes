@@ -6,8 +6,8 @@
 // record is taken: the three hooks it points at stay assembly and are reached
 // by the names each module's symbols.txt gives them.
 //
-// The run is the same in twelve of the fourteen stage modules. stage13D is
-// built from a different revision here, and stage40D everywhere.
+// The run is the same in thirteen of the fourteen stage modules. stage40D
+// registers the same object from a different build and does not share it.
 //
 // "cCsffssf" is the field type string: one character per parameter the editor
 // shows, and the array beside it holds their labels.

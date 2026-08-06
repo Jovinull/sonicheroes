@@ -156,6 +156,94 @@ rel/scroll_ring_touch.cpp:
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
 
+rel/unbreakable_container_register.cpp:
+	.text       start:0x00014CA0 end:0x00014D48
+	.ctors      start:0x0000003C end:0x00000040
+
+rel/weight_register.cpp:
+	.text       start:0x00028C18 end:0x00028CC0
+	.ctors      start:0x00000058 end:0x0000005C
+
+rel/breakable_weight_register.cpp:
+	.text       start:0x0002C93C end:0x0002C9E4
+	.ctors      start:0x0000005C end:0x00000060
+
+rel/lens_flare_register.cpp:
+	.text       start:0x000459F8 end:0x00045AA0
+	.ctors      start:0x0000007C end:0x00000080
+
+rel/propeller_register.cpp:
+	.text       start:0x00049578 end:0x00049618
+	.ctors      start:0x00000084 end:0x00000088
+
+rel/goal_ring_register.cpp:
+	.text       start:0x0004D568 end:0x0004D610
+	.ctors      start:0x0000008C end:0x00000090
+
+rel/system_object1_register.cpp:
+	.text       start:0x0004D7FC end:0x0004D8A0
+	.ctors      start:0x00000090 end:0x00000094
+
+rel/system_object2_register.cpp:
+	.text       start:0x0004DAAC end:0x0004DB50
+	.ctors      start:0x00000094 end:0x00000098
+
+rel/system_object3_register.cpp:
+	.text       start:0x0004DD5C end:0x0004DE00
+	.ctors      start:0x00000098 end:0x0000009C
+
+rel/system_object4_register.cpp:
+	.text       start:0x0004DFE4 end:0x0004E088
+	.ctors      start:0x0000009C end:0x000000A0
+
+rel/light_collision_register.cpp:
+	.text       start:0x0004F2C8 end:0x0004F360
+	.ctors      start:0x000000A0 end:0x000000A4
+
+rel/push_pull_switch_register.cpp:
+	.text       start:0x00051900 end:0x000519B0
+	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/formgate_register.cpp:
+	.text       start:0x00061804 end:0x000618AC
+	.ctors      start:0x000000B0 end:0x000000B4
+
+rel/no_input_collision_register.cpp:
+	.text       start:0x0006382C end:0x000638D4
+	.ctors      start:0x000000B4 end:0x000000B8
+
+rel/damage_collision_register.cpp:
+	.text       start:0x000667F0 end:0x00066888
+	.ctors      start:0x000000BC end:0x000000C0
+
+rel/obj_set_particle_register.cpp:
+	.text       start:0x000670D8 end:0x00067174
+	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/flower_register.cpp:
+	.text       start:0x0006B414 end:0x0006B4C4
+	.ctors      start:0x000000C4 end:0x000000C8
+
+rel/chao_register.cpp:
+	.text       start:0x0006C964 end:0x0006CA14
+	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/warp_register.cpp:
+	.text       start:0x0006D0B8 end:0x0006D164
+	.ctors      start:0x000000CC end:0x000000D0
+
+rel/hintcolli_register.cpp:
+	.text       start:0x0006EF8C end:0x0006F03C
+	.ctors      start:0x000000D0 end:0x000000D4
+
+rel/obj_se_collision_register.cpp:
+	.text       start:0x0006F9A0 end:0x0006FA34
+	.ctors      start:0x000000D4 end:0x000000D8
+
+rel/key_register.cpp:
+	.text       start:0x00070DC0 end:0x00070E58
+	.ctors      start:0x000000D8 end:0x000000DC
+
 stage13D/o_s13_blinklight.cpp:
 	.text       start:0x0008B058 end:0x0008BBBC
 	.ctors      start:0x00000114 end:0x00000118
@@ -176,3 +264,11 @@ stage13D/o_s14_3way_colli.cpp:
 	.rodata     start:0x000018B8 end:0x000018C8
 	.data       start:0x0001A020 end:0x0001A320
 	.bss        start:0x00001B8C end:0x00001BC4
+
+rel/unbreakable_bob_container_register.cpp:
+	.text       start:0x000DE66C end:0x000DE714
+	.ctors      start:0x000001B4 end:0x000001B8
+
+rel/no_ottotto_collision_register.cpp:
+	.text       start:0x000DEBAC end:0x000DEC44
+	.ctors      start:0x000001B8 end:0x000001BC
