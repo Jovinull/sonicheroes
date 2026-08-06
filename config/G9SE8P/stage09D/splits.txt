@@ -392,6 +392,142 @@ rel/damage_collision_register.cpp:
 	.text       start:0x00070D50 end:0x00070DE8
 	.ctors      start:0x000000BC end:0x000000C0
 
+rel/bush_register.cpp:
+	.text       start:0x000717F0 end:0x000718A0
+	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/butterfly_register.cpp:
+	.text       start:0x00072980 end:0x00072A30
+	.ctors      start:0x000000C4 end:0x000000C8
+
+rel/floatj_register.cpp:
+	.text       start:0x00073354 end:0x00073400
+	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/froggreen_register.cpp:
+	.text       start:0x0007717C end:0x0007722C
+	.ctors      start:0x000000D0 end:0x000000D4
+
+rel/ivyjump_register.cpp:
+	.text       start:0x00079590 end:0x00079640
+	.ctors      start:0x000000D4 end:0x000000D8
+
+rel/kazariobj_register.cpp:
+	.text       start:0x0007A3BC end:0x0007A46C
+	.ctors      start:0x000000D8 end:0x000000DC
+
+rel/leafaa_register.cpp:
+	.text       start:0x0007AE00 end:0x0007AEB0
+	.ctors      start:0x000000DC end:0x000000E0
+
+rel/mushroom_register.cpp:
+	.text       start:0x0007BEE8 end:0x0007BF98
+	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/palm_register.cpp:
+	.text       start:0x0007CC2C end:0x0007CCDC
+	.ctors      start:0x000000E4 end:0x000000E8
+
+rel/pepe_register.cpp:
+	.text       start:0x0007DD84 end:0x0007DE34
+	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/pond_register.cpp:
+	.text       start:0x0007EEB4 end:0x0007EF64
+	.ctors      start:0x000000EC end:0x000000F0
+
+rel/powder_register.cpp:
+	.text       start:0x000802FC end:0x000803AC
+	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/rainfloor_register.cpp:
+	.text       start:0x00080FB0 end:0x00081060
+	.ctors      start:0x000000F4 end:0x000000F8
+
+rel/rainfruit_register.cpp:
+	.text       start:0x00082ED4 end:0x00082F84
+	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/rainfruitmi_register.cpp:
+	.text       start:0x000844D0 end:0x00084570
+	.ctors      start:0x000000FC end:0x00000100
+
+rel/rainivy_register.cpp:
+	.text       start:0x0008581C end:0x000858CC
+	.ctors      start:0x00000100 end:0x00000104
+
+rel/rainleaf_register.cpp:
+	.text       start:0x00087148 end:0x000871F8
+	.ctors      start:0x00000104 end:0x00000108
+
+rel/rainmush_register.cpp:
+	.text       start:0x00088A58 end:0x00088B08
+	.ctors      start:0x00000108 end:0x0000010C
+
+rel/raintree_register.cpp:
+	.text       start:0x00089E28 end:0x00089ED4
+	.ctors      start:0x0000010C end:0x00000110
+
+rel/redweed_register.cpp:
+	.text       start:0x0008B138 end:0x0008B1F0
+	.ctors      start:0x00000110 end:0x00000114
+
+rel/sida_register.cpp:
+	.text       start:0x0008BB30 end:0x0008BBE0
+	.ctors      start:0x00000114 end:0x00000118
+
+rel/spring_mush_register.cpp:
+	.text       start:0x0008CD4C end:0x0008CDFC
+	.ctors      start:0x00000118 end:0x0000011C
+
+rel/stoprain_register.cpp:
+	.text       start:0x0008D390 end:0x0008D430
+	.ctors      start:0x0000011C end:0x00000120
+
+rel/tsukushi_register.cpp:
+	.text       start:0x0008E174 end:0x0008E224
+	.ctors      start:0x00000120 end:0x00000124
+
+rel/aligator_register.cpp:
+	.text       start:0x0009336C end:0x0009341C
+	.ctors      start:0x00000128 end:0x0000012C
+
+rel/bushsq_register.cpp:
+	.text       start:0x00093FF4 end:0x000940A4
+	.ctors      start:0x0000012C end:0x00000130
+
+rel/bushzenmai_register.cpp:
+	.text       start:0x00094BB4 end:0x00094C64
+	.ctors      start:0x00000130 end:0x00000134
+
+rel/dispfruit_register.cpp:
+	.text       start:0x00095F84 end:0x00096034
+	.ctors      start:0x00000134 end:0x00000138
+
+rel/reafredgreen_register.cpp:
+	.text       start:0x00097108 end:0x000971B8
+	.ctors      start:0x00000138 end:0x0000013C
+
+rel/mushanim_register.cpp:
+	.text       start:0x00098254 end:0x00098304
+	.ctors      start:0x0000013C end:0x00000140
+
+rel/redleaves_register.cpp:
+	.text       start:0x00098EF8 end:0x00098FA8
+	.ctors      start:0x00000140 end:0x00000144
+
+rel/treeleaf_register.cpp:
+	.text       start:0x000999E0 end:0x00099A90
+	.ctors      start:0x00000144 end:0x00000148
+
+rel/waterplant_register.cpp:
+	.text       start:0x0009C85C end:0x0009C90C
+	.ctors      start:0x00000150 end:0x00000154
+
+rel/watersurface_register.cpp:
+	.text       start:0x0009D204 end:0x0009D2A4
+	.ctors      start:0x00000154 end:0x00000158
+
 rel/obj_set_particle_register.cpp:
 	.text       start:0x0009DAB0 end:0x0009DB4C
 	.ctors      start:0x00000158 end:0x0000015C
@@ -420,13 +556,25 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x000A7170 end:0x000A7204
 	.ctors      start:0x00000170 end:0x00000174
 
+rel/tutaetc_register.cpp:
+	.text       start:0x000A80D4 end:0x000A8174
+	.ctors      start:0x00000174 end:0x00000178
+
 rel/key_register.cpp:
 	.text       start:0x000A9500 end:0x000A9598
 	.ctors      start:0x00000178 end:0x0000017C
 
+rel/wanibreak_register.cpp:
+	.text       start:0x000AA464 end:0x000AA514
+	.ctors      start:0x0000017C end:0x00000180
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000AD260 end:0x000AD2F8
 	.ctors      start:0x00000180 end:0x00000184
+
+rel/raincollision_register.cpp:
+	.text       start:0x000B4098 end:0x000B4148
+	.ctors      start:0x00000188 end:0x0000018C
 
 rel/capture_register.cpp:
 	.text       start:0x000B9378 end:0x000B9474

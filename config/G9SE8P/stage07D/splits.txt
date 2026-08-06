@@ -392,6 +392,158 @@ rel/damage_collision_register.cpp:
 	.text       start:0x00070D50 end:0x00070DE8
 	.ctors      start:0x000000BC end:0x000000C0
 
+rel/railwatersupply_register.cpp:
+	.text       start:0x000717BC end:0x0007185C
+	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/barrel_register.cpp:
+	.text       start:0x000726AC end:0x0007274C
+	.ctors      start:0x000000C4 end:0x000000C8
+
+rel/bigcannon_register.cpp:
+	.text       start:0x00073C6C end:0x00073D1C
+	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/bridge_register.cpp:
+	.text       start:0x00074678 end:0x00074728
+	.ctors      start:0x000000CC end:0x000000D0
+
+rel/crossing_register.cpp:
+	.text       start:0x00077A88 end:0x00077B38
+	.ctors      start:0x000000D0 end:0x000000D4
+
+rel/destructrail_register.cpp:
+	.text       start:0x00078F78 end:0x00079018
+	.ctors      start:0x000000D4 end:0x000000D8
+
+rel/dfan_register.cpp:
+	.text       start:0x00079E08 end:0x00079EB8
+	.ctors      start:0x000000D8 end:0x000000DC
+
+rel/duct_register.cpp:
+	.text       start:0x0007ACFC end:0x0007ADAC
+	.ctors      start:0x000000DC end:0x000000E0
+
+rel/egghorn_register.cpp:
+	.text       start:0x0007B674 end:0x0007B724
+	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/ikaribakuhatu_register.cpp:
+	.text       start:0x0007CB18 end:0x0007CBC8
+	.ctors      start:0x000000E4 end:0x000000E8
+
+rel/piston_register.cpp:
+	.text       start:0x0007D70C end:0x0007D7AC
+	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/pulley_register.cpp:
+	.text       start:0x0007EF18 end:0x0007EFB8
+	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/railburbwire_register.cpp:
+	.text       start:0x0007F880 end:0x0007F920
+	.ctors      start:0x000000F4 end:0x000000F8
+
+rel/railboard_register.cpp:
+	.text       start:0x00080DC4 end:0x00080E74
+	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/railbulletrack_register.cpp:
+	.text       start:0x00081730 end:0x000817D0
+	.ctors      start:0x000000FC end:0x00000100
+
+rel/railbush_register.cpp:
+	.text       start:0x0008212C end:0x000821DC
+	.ctors      start:0x00000100 end:0x00000104
+
+rel/railcapen_register.cpp:
+	.text       start:0x00082DA0 end:0x00082E40
+	.ctors      start:0x00000104 end:0x00000108
+
+rel/railcapex_register.cpp:
+	.text       start:0x00083924 end:0x000839C4
+	.ctors      start:0x00000108 end:0x0000010C
+
+rel/railchangerail_register.cpp:
+	.text       start:0x0008428C end:0x0008432C
+	.ctors      start:0x0000010C end:0x00000110
+
+rel/railchimney_register.cpp:
+	.text       start:0x00084BE8 end:0x00084C88
+	.ctors      start:0x00000110 end:0x00000114
+
+rel/raildash_register.cpp:
+	.text       start:0x00086074 end:0x00086124
+	.ctors      start:0x00000114 end:0x00000118
+
+rel/railenden_register.cpp:
+	.text       start:0x00086D68 end:0x00086E08
+	.ctors      start:0x00000118 end:0x0000011C
+
+rel/railendex_register.cpp:
+	.text       start:0x000878DC end:0x0008797C
+	.ctors      start:0x0000011C end:0x00000120
+
+rel/railmechtypeabc_register.cpp:
+	.text       start:0x00088724 end:0x000887D4
+	.ctors      start:0x00000120 end:0x00000124
+
+rel/railpollex_register.cpp:
+	.text       start:0x000892B8 end:0x00089358
+	.ctors      start:0x00000124 end:0x00000128
+
+rel/railpollgol_register.cpp:
+	.text       start:0x00089F1C end:0x00089FBC
+	.ctors      start:0x00000128 end:0x0000012C
+
+rel/railpollgor_register.cpp:
+	.text       start:0x0008AB80 end:0x0008AC20
+	.ctors      start:0x0000012C end:0x00000130
+
+rel/railtie_register.cpp:
+	.text       start:0x0008B4DC end:0x0008B57C
+	.ctors      start:0x00000130 end:0x00000134
+
+rel/autodoor_register.cpp:
+	.text       start:0x0008C4BC end:0x0008C56C
+	.ctors      start:0x00000134 end:0x00000138
+
+rel/stationdoor_register.cpp:
+	.text       start:0x0008E16C end:0x0008E21C
+	.ctors      start:0x00000138 end:0x0000013C
+
+rel/trainappear_register.cpp:
+	.text       start:0x0008E78C end:0x0008E83C
+	.ctors      start:0x0000013C end:0x00000140
+
+rel/traincapsule_register.cpp:
+	.text       start:0x0008F7A8 end:0x0008F858
+	.ctors      start:0x00000140 end:0x00000144
+
+rel/trainchangeboard_register.cpp:
+	.text       start:0x00090818 end:0x000908C8
+	.ctors      start:0x00000144 end:0x00000148
+
+rel/trainchangerail_register.cpp:
+	.text       start:0x000918D0 end:0x00091970
+	.ctors      start:0x00000148 end:0x0000014C
+
+rel/trainchangeswitch_register.cpp:
+	.text       start:0x00092B1C end:0x00092BBC
+	.ctors      start:0x0000014C end:0x00000150
+
+rel/traincollision_register.cpp:
+	.text       start:0x0009313C end:0x000931EC
+	.ctors      start:0x00000150 end:0x00000154
+
+rel/traintrain_register.cpp:
+	.text       start:0x0009533C end:0x000953DC
+	.ctors      start:0x00000154 end:0x00000158
+
+rel/traintop_register.cpp:
+	.text       start:0x00096040 end:0x000960E0
+	.ctors      start:0x0000015C end:0x00000160
+
 rel/obj_set_particle_register.cpp:
 	.text       start:0x000966DC end:0x00096778
 	.ctors      start:0x00000160 end:0x00000164
@@ -415,6 +567,42 @@ rel/warp_register.cpp:
 rel/hintcolli_register.cpp:
 	.text       start:0x000C551C end:0x000C55CC
 	.ctors      start:0x00000174 end:0x00000178
+
+rel/bigcannontop_register.cpp:
+	.text       start:0x000C675C end:0x000C6810
+	.ctors      start:0x00000178 end:0x0000017C
+
+rel/blowfan_register.cpp:
+	.text       start:0x000C733C end:0x000C73EC
+	.ctors      start:0x0000017C end:0x00000180
+
+rel/eggmaso_register.cpp:
+	.text       start:0x000C8130 end:0x000C81CC
+	.ctors      start:0x00000180 end:0x00000184
+
+rel/roompillar_register.cpp:
+	.text       start:0x000C8AF8 end:0x000C8B98
+	.ctors      start:0x00000184 end:0x00000188
+
+rel/torch_register.cpp:
+	.text       start:0x000C9530 end:0x000C95E0
+	.ctors      start:0x00000188 end:0x0000018C
+
+rel/traincore_register.cpp:
+	.text       start:0x000CA4A8 end:0x000CA558
+	.ctors      start:0x0000018C end:0x00000190
+
+rel/trainrolltunnel_register.cpp:
+	.text       start:0x000CB384 end:0x000CB438
+	.ctors      start:0x00000190 end:0x00000194
+
+rel/wcannon_register.cpp:
+	.text       start:0x000CC964 end:0x000CCA14
+	.ctors      start:0x00000194 end:0x00000198
+
+rel/wheel_register.cpp:
+	.text       start:0x000CD708 end:0x000CD7B8
+	.ctors      start:0x00000198 end:0x0000019C
 
 rel/obj_se_collision_register.cpp:
 	.text       start:0x000CF594 end:0x000CF628
@@ -459,3 +647,11 @@ rel/unbreakable_bob_container_register.cpp:
 rel/no_ottotto_collision_register.cpp:
 	.text       start:0x000F4834 end:0x000F48CC
 	.ctors      start:0x000001C8 end:0x000001CC
+
+rel/s08bob_colli_object_register.cpp:
+	.text       start:0x000F4F08 end:0x000F4FA8
+	.ctors      start:0x000001CC end:0x000001D0
+
+rel/s23_warppos_register.cpp:
+	.text       start:0x000F54AC end:0x000F5558
+	.ctors      start:0x000001D0 end:0x000001D4

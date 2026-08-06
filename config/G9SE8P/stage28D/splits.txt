@@ -259,13 +259,33 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/item_box_register.cpp:
+	.text       start:0x00033EDC end:0x00033F84
+	.ctors      start:0x00000060 end:0x00000064
+
 rel/itembaloon_register.cpp:
 	.text       start:0x00035E0C end:0x00035F58
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/pole_register.cpp:
+	.text       start:0x00038B84 end:0x00038C2C
+	.ctors      start:0x00000068 end:0x0000006C
+
+rel/case_obj_register.cpp:
+	.text       start:0x0003A1C0 end:0x0003A268
+	.ctors      start:0x00000070 end:0x00000074
+
+rel/roll_door_register.cpp:
+	.text       start:0x0003CD28 end:0x0003CDD0
+	.ctors      start:0x00000074 end:0x00000078
+
 rel/lens_flare_register.cpp:
 	.text       start:0x0003E5D8 end:0x0003E680
 	.ctors      start:0x00000078 end:0x0000007C
+
+rel/signal_register.cpp:
+	.text       start:0x0003F734 end:0x0003F7DC
+	.ctors      start:0x0000007C end:0x00000080
 
 rel/propeller_register.cpp:
 	.text       start:0x00042158 end:0x000421F8
@@ -355,9 +375,17 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00078C90 end:0x00078D28
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s13_cloud_register.cpp:
+	.text       start:0x0007A410 end:0x0007A54C
+	.ctors      start:0x000000E4 end:0x000000E8
+
 rel/s14_thunder_ptcl_register.cpp:
 	.text       start:0x0007AF30 end:0x0007AFCC
 	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/stg28_obj_register.cpp:
+	.text       start:0x0007BFE0 end:0x0007C088
+	.ctors      start:0x000000EC end:0x000000F0
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x00083C74 end:0x00083D1C

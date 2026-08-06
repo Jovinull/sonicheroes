@@ -428,6 +428,102 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0007EE48 end:0x0007EEE0
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/bingogate_register.cpp:
+	.text       start:0x00080504 end:0x000805B4
+	.ctors      start:0x000000E4 end:0x000000E8
+
+rel/bingopanel_register.cpp:
+	.text       start:0x00081CE4 end:0x00081D94
+	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/bigchip_register.cpp:
+	.text       start:0x000842DC end:0x0008438C
+	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/bigdice_register.cpp:
+	.text       start:0x0008530C end:0x000853BC
+	.ctors      start:0x000000F4 end:0x000000F8
+
+rel/bigfireworks_register.cpp:
+	.text       start:0x00086484 end:0x00086534
+	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/bigslot_register.cpp:
+	.text       start:0x00087AC4 end:0x00087B74
+	.ctors      start:0x000000FC end:0x00000100
+
+rel/bobin_register.cpp:
+	.text       start:0x00088C54 end:0x00088D04
+	.ctors      start:0x00000100 end:0x00000104
+
+rel/bobinair_register.cpp:
+	.text       start:0x00089E4C end:0x00089EFC
+	.ctors      start:0x00000104 end:0x00000108
+
+rel/bumper_register.cpp:
+	.text       start:0x0008B5B8 end:0x0008B668
+	.ctors      start:0x00000108 end:0x0000010C
+
+rel/casinodoor_register.cpp:
+	.text       start:0x0008C830 end:0x0008C8E0
+	.ctors      start:0x0000010C end:0x00000110
+
+rel/456dice_register.cpp:
+	.text       start:0x0008E8A4 end:0x0008E954
+	.ctors      start:0x00000110 end:0x00000114
+
+rel/flipper_register.cpp:
+	.text       start:0x000904B4 end:0x00090564
+	.ctors      start:0x00000114 end:0x00000118
+
+rel/glassfloor_register.cpp:
+	.text       start:0x00091444 end:0x000914F4
+	.ctors      start:0x00000118 end:0x0000011C
+
+rel/moji_register.cpp:
+	.text       start:0x0009246C end:0x0009251C
+	.ctors      start:0x0000011C end:0x00000120
+
+rel/roulette_register.cpp:
+	.text       start:0x00092F2C end:0x00092FDC
+	.ctors      start:0x00000120 end:0x00000124
+
+rel/slotlarge_register.cpp:
+	.text       start:0x00097384 end:0x00097434
+	.ctors      start:0x00000124 end:0x00000128
+
+rel/slotsmall_register.cpp:
+	.text       start:0x00099200 end:0x000992B0
+	.ctors      start:0x00000128 end:0x0000012C
+
+rel/springblk_register.cpp:
+	.text       start:0x0009A630 end:0x0009A6E0
+	.ctors      start:0x0000012C end:0x00000130
+
+rel/springblk_air_register.cpp:
+	.text       start:0x0009BACC end:0x0009BB7C
+	.ctors      start:0x00000130 end:0x00000134
+
+rel/trispring_register.cpp:
+	.text       start:0x0009D78C end:0x0009D83C
+	.ctors      start:0x00000134 end:0x00000138
+
+rel/x_sign_register.cpp:
+	.text       start:0x0009E204 end:0x0009E2B4
+	.ctors      start:0x00000138 end:0x0000013C
+
+rel/xxxsign_register.cpp:
+	.text       start:0x0009EB2C end:0x0009EBDC
+	.ctors      start:0x0000013C end:0x00000140
+
+rel/yajirusi_register.cpp:
+	.text       start:0x0009FA10 end:0x0009FAC0
+	.ctors      start:0x00000140 end:0x00000144
+
+rel/casinodush_register.cpp:
+	.text       start:0x000A2C78 end:0x000A2D28
+	.ctors      start:0x00000148 end:0x0000014C
+
 rel/capture_register.cpp:
 	.text       start:0x000A841C end:0x000A8518
 	.ctors      start:0x0000014C end:0x00000150
@@ -448,9 +544,17 @@ rel/turtle_register.cpp:
 	.text       start:0x000B9A30 end:0x000B9B10
 	.ctors      start:0x00000160 end:0x00000164
 
+rel/s06chip_object_register.cpp:
+	.text       start:0x000BB468 end:0x000BB500
+	.ctors      start:0x00000164 end:0x00000168
+
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000C30EC end:0x000C3194
 	.ctors      start:0x00000168 end:0x0000016C
+
+rel/tenkyu_register.cpp:
+	.text       start:0x000C9CD4 end:0x000C9D74
+	.ctors      start:0x0000016C end:0x00000170
 
 rel/flyer_register.cpp:
 	.text       start:0x000CD798 end:0x000CD83C
