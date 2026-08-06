@@ -399,6 +399,14 @@ stage13D/o_s13_blinklight.cpp:
 	.data       start:0x00017A70 end:0x00017B7C
 	.bss        start:0x0000165C end:0x00001694
 
+rel/s13d_senkan_far_move_top_l_register.cpp:
+	.text       start:0x0008F468 end:0x0008FC40
+	.ctors      start:0x00000118 end:0x0000011C
+
+rel/s13d_senkan_middle_register.cpp:
+	.text       start:0x00090C6C end:0x00090D98
+	.ctors      start:0x0000011C end:0x00000120
+
 stage13D/o_s13_antenna.cpp:
 	.text       start:0x00090DA0 end:0x00091864
 	.ctors      start:0x00000120 end:0x00000124
@@ -409,6 +417,14 @@ stage13D/o_s13_antenna.cpp:
 rel/s13_bigmovship_register.cpp:
 	.text       start:0x00092C78 end:0x00092D20
 	.ctors      start:0x00000124 end:0x00000128
+
+rel/s13d_rail_arrow_1_register.cpp:
+	.text       start:0x00093CBC end:0x00093DE8
+	.ctors      start:0x00000128 end:0x0000012C
+
+rel/s13d_rail_cap_fore_register.cpp:
+	.text       start:0x00094A0C end:0x00094B38
+	.ctors      start:0x0000012C end:0x00000130
 
 rel/s13d_ufo_register.cpp:
 	.text       start:0x00096518 end:0x000965C0
@@ -433,6 +449,10 @@ stage13D/o_s14_3way_colli.cpp:
 	.data       start:0x0001A020 end:0x0001A320
 	.bss        start:0x00001B8C end:0x00001BC4
 
+rel/s14_thunder_register.cpp:
+	.text       start:0x000A12A0 end:0x000A13F4
+	.ctors      start:0x00000148 end:0x0000014C
+
 rel/s14_laser_beam_register.cpp:
 	.text       start:0x000A3D00 end:0x000A3DAC
 	.ctors      start:0x0000014C end:0x00000150
@@ -449,6 +469,10 @@ rel/capture_collision_register.cpp:
 	.text       start:0x000AC6B8 end:0x000AC760
 	.ctors      start:0x00000158 end:0x0000015C
 
+rel/e2000_object_register.cpp:
+	.text       start:0x000B2370 end:0x000B246C
+	.ctors      start:0x0000015C end:0x00000160
+
 rel/flyer_register.cpp:
 	.text       start:0x000B8468 end:0x000B850C
 	.ctors      start:0x00000160 end:0x00000164
@@ -464,6 +488,10 @@ rel/wall_register.cpp:
 rel/s13_cloud_register.cpp:
 	.text       start:0x000C3C38 end:0x000C3D74
 	.ctors      start:0x0000016C end:0x00000170
+
+rel/s14_holea_neon_register.cpp:
+	.text       start:0x000C4AC8 end:0x000C4DB0
+	.ctors      start:0x00000170 end:0x00000174
 
 rel/s14_laser_light_register.cpp:
 	.text       start:0x000C6168 end:0x000C6210
@@ -485,6 +513,10 @@ rel/s14_roadlight_register.cpp:
 	.text       start:0x000C8F3C end:0x000C8FE4
 	.ctors      start:0x00000184 end:0x00000188
 
+rel/s14_roadside_a_register.cpp:
+	.text       start:0x000C9A54 end:0x000C9B70
+	.ctors      start:0x00000188 end:0x0000018C
+
 rel/s14_thunder_ptcl_register.cpp:
 	.text       start:0x000CA4F8 end:0x000CA594
 	.ctors      start:0x0000018C end:0x00000190
@@ -492,6 +524,10 @@ rel/s14_thunder_ptcl_register.cpp:
 rel/s14d_ufo_register.cpp:
 	.text       start:0x000CBFFC end:0x000CC0A4
 	.ctors      start:0x00000190 end:0x00000194
+
+rel/s14d_walllight_side_register.cpp:
+	.text       start:0x000CD498 end:0x000CD5C4
+	.ctors      start:0x00000194 end:0x00000198
 
 rel/s14d_wall_neon_register.cpp:
 	.text       start:0x000CE574 end:0x000CE60C
@@ -504,6 +540,10 @@ rel/s14key_object_register.cpp:
 rel/s14d_search_light_register.cpp:
 	.text       start:0x000D1834 end:0x000D18DC
 	.ctors      start:0x000001A0 end:0x000001A4
+
+rel/s14_tower_neon_a_register.cpp:
+	.text       start:0x000D2558 end:0x000D2684
+	.ctors      start:0x000001A4 end:0x000001A8
 
 rel/s14d_eggman_register.cpp:
 	.text       start:0x000D3CF4 end:0x000D3D90
