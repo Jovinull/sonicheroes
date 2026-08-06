@@ -379,6 +379,10 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00074CE0 end:0x00074D78
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/stg26_colli_cc_register.cpp:
+	.text       start:0x000756F4 end:0x00075840
+	.ctors      start:0x000000E0 end:0x000000E4
+
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000800C4 end:0x0008016C
 	.ctors      start:0x000000E4 end:0x000000E8
@@ -394,6 +398,10 @@ rel/capture_register.cpp:
 rel/capture_collision_register.cpp:
 	.text       start:0x0008EE40 end:0x0008EEE8
 	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/e2000_object_register.cpp:
+	.text       start:0x00094B00 end:0x00094BFC
+	.ctors      start:0x000000F4 end:0x000000F8
 
 rel/pawn_register.cpp:
 	.text       start:0x0009E4BC end:0x0009E564
