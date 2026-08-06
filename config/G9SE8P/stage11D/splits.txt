@@ -364,11 +364,55 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/formgate_register.cpp:
+	.text       start:0x00061848 end:0x000618F0
+	.ctors      start:0x000000B0 end:0x000000B4
+
+rel/no_input_collision_register.cpp:
+	.text       start:0x0006DD8C end:0x0006DE34
+	.ctors      start:0x000000B4 end:0x000000B8
+
 rel/o_setDamegeCollision.cpp:
 	.text       start:0x000708B8 end:0x00070DF0
 	.ctors      start:0x000000BC end:0x000000C0
 	.data       start:0x0000717C end:0x00007260
 	.bss        start:0x000010A8 end:0x000010D8
+
+rel/obj_set_particle_register.cpp:
+	.text       start:0x000713E4 end:0x00071480
+	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/bob_jump_collision_register.cpp:
+	.text       start:0x000721F0 end:0x00072298
+	.ctors      start:0x000000C4 end:0x000000C8
+
+rel/flower_register.cpp:
+	.text       start:0x00076530 end:0x000765E0
+	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/chao_register.cpp:
+	.text       start:0x00077A80 end:0x00077B30
+	.ctors      start:0x000000CC end:0x000000D0
+
+rel/warp_register.cpp:
+	.text       start:0x00077FA8 end:0x00078054
+	.ctors      start:0x000000D0 end:0x000000D4
+
+rel/hintcolli_register.cpp:
+	.text       start:0x00079E7C end:0x00079F2C
+	.ctors      start:0x000000D4 end:0x000000D8
+
+rel/obj_se_collision_register.cpp:
+	.text       start:0x0007A8A0 end:0x0007A934
+	.ctors      start:0x000000D8 end:0x000000DC
+
+rel/key_register.cpp:
+	.text       start:0x0007BCC0 end:0x0007BD58
+	.ctors      start:0x000000DC end:0x000000E0
+
+rel/s31_bob_dummy_register.cpp:
+	.text       start:0x0008A9B4 end:0x0008AA4C
+	.ctors      start:0x000000F0 end:0x000000F4
 
 rel/o_s11_cloud.cpp:
 	.text       start:0x000973DC end:0x00098060
@@ -382,3 +426,11 @@ rel/o_s11_bob.cpp:
 	.ctors      start:0x00000164 end:0x00000168
 	.data       start:0x00018EA0 end:0x00018F28
 	.bss        start:0x00001D78 end:0x00001DB0
+
+rel/unbreakable_bob_container_register.cpp:
+	.text       start:0x000D5A28 end:0x000D5AD0
+	.ctors      start:0x0000016C end:0x00000170
+
+rel/no_ottotto_collision_register.cpp:
+	.text       start:0x000DD2D0 end:0x000DD368
+	.ctors      start:0x00000174 end:0x00000178

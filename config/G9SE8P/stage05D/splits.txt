@@ -363,3 +363,59 @@ rel/push_pull_switch_edit.cpp:
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/formgate_register.cpp:
+	.text       start:0x00061848 end:0x000618F0
+	.ctors      start:0x000000B0 end:0x000000B4
+
+rel/no_input_collision_register.cpp:
+	.text       start:0x0006DD8C end:0x0006DE34
+	.ctors      start:0x000000B4 end:0x000000B8
+
+rel/damage_collision_register.cpp:
+	.text       start:0x00070D50 end:0x00070DE8
+	.ctors      start:0x000000BC end:0x000000C0
+
+rel/obj_set_particle_register.cpp:
+	.text       start:0x000713E4 end:0x00071480
+	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/bob_jump_collision_register.cpp:
+	.text       start:0x000721F0 end:0x00072298
+	.ctors      start:0x000000C4 end:0x000000C8
+
+rel/flower_register.cpp:
+	.text       start:0x00076530 end:0x000765E0
+	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/chao_register.cpp:
+	.text       start:0x00077A80 end:0x00077B30
+	.ctors      start:0x000000CC end:0x000000D0
+
+rel/warp_register.cpp:
+	.text       start:0x000780E8 end:0x00078194
+	.ctors      start:0x000000D0 end:0x000000D4
+
+rel/hintcolli_register.cpp:
+	.text       start:0x00079FBC end:0x0007A06C
+	.ctors      start:0x000000D4 end:0x000000D8
+
+rel/obj_se_collision_register.cpp:
+	.text       start:0x0007AC4C end:0x0007ACE0
+	.ctors      start:0x000000D8 end:0x000000DC
+
+rel/key_register.cpp:
+	.text       start:0x0007C06C end:0x0007C104
+	.ctors      start:0x000000DC end:0x000000E0
+
+rel/s31_bob_dummy_register.cpp:
+	.text       start:0x0007EE48 end:0x0007EEE0
+	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/unbreakable_bob_container_register.cpp:
+	.text       start:0x000C30EC end:0x000C3194
+	.ctors      start:0x00000168 end:0x0000016C
+
+rel/no_ottotto_collision_register.cpp:
+	.text       start:0x000D15C8 end:0x000D1660
+	.ctors      start:0x00000178 end:0x0000017C
