@@ -156,6 +156,10 @@ rel/scroll_ring_touch.cpp:
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
 
+rel/ring_register.cpp:
+	.text       start:0x0000BD38 end:0x0000BE94
+	.ctors      start:0x00000020 end:0x00000024
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
@@ -255,6 +259,10 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/itembaloon_register.cpp:
+	.text       start:0x00035E0C end:0x00035F58
+	.ctors      start:0x00000064 end:0x00000068
+
 rel/lens_flare_register.cpp:
 	.text       start:0x0003E5D8 end:0x0003E680
 	.ctors      start:0x00000078 end:0x0000007C
@@ -287,6 +295,10 @@ rel/light_collision_register.cpp:
 	.text       start:0x00047EAC end:0x00047F44
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/invoke_colli_register.cpp:
+	.text       start:0x000487C4 end:0x00048858
+	.ctors      start:0x000000A0 end:0x000000A4
+
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0004A4E4 end:0x0004A594
 	.ctors      start:0x000000A4 end:0x000000A8
@@ -298,6 +310,10 @@ rel/formgate_register.cpp:
 rel/no_input_collision_register.cpp:
 	.text       start:0x00059484 end:0x0005952C
 	.ctors      start:0x000000AC end:0x000000B0
+
+rel/hintring_register.cpp:
+	.text       start:0x0005BED4 end:0x0005BFA8
+	.ctors      start:0x000000B0 end:0x000000B4
 
 rel/damage_collision_register.cpp:
 	.text       start:0x0005C448 end:0x0005C4E0
@@ -338,6 +354,10 @@ rel/key_register.cpp:
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0007779C end:0x00077834
 	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/s14_thunder_ptcl_register.cpp:
+	.text       start:0x00079A3C end:0x00079AD8
+	.ctors      start:0x000000E8 end:0x000000EC
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000827DC end:0x00082884

@@ -156,6 +156,10 @@ rel/scroll_ring_touch.cpp:
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
 
+rel/ring_register.cpp:
+	.text       start:0x0000BD3C end:0x0000BE98
+	.ctors      start:0x00000020 end:0x00000024
+
 rel/unbreakable_container_register.cpp:
 	.text       start:0x00014CA0 end:0x00014D48
 	.ctors      start:0x0000003C end:0x00000040
@@ -167,6 +171,10 @@ rel/weight_register.cpp:
 rel/breakable_weight_register.cpp:
 	.text       start:0x0002C93C end:0x0002C9E4
 	.ctors      start:0x0000005C end:0x00000060
+
+rel/itembaloon_register.cpp:
+	.text       start:0x0003D228 end:0x0003D374
+	.ctors      start:0x00000068 end:0x0000006C
 
 rel/lens_flare_register.cpp:
 	.text       start:0x000459F8 end:0x00045AA0
@@ -200,9 +208,17 @@ rel/light_collision_register.cpp:
 	.text       start:0x0004F2C8 end:0x0004F360
 	.ctors      start:0x000000A0 end:0x000000A4
 
+rel/invoke_colli_register.cpp:
+	.text       start:0x0004FBE0 end:0x0004FC74
+	.ctors      start:0x000000A4 end:0x000000A8
+
 rel/push_pull_switch_register.cpp:
 	.text       start:0x00051900 end:0x000519B0
 	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/searcher_register.cpp:
+	.text       start:0x0005A414 end:0x0005A514
+	.ctors      start:0x000000AC end:0x000000B0
 
 rel/formgate_register.cpp:
 	.text       start:0x00061804 end:0x000618AC
@@ -211,6 +227,10 @@ rel/formgate_register.cpp:
 rel/no_input_collision_register.cpp:
 	.text       start:0x0006382C end:0x000638D4
 	.ctors      start:0x000000B4 end:0x000000B8
+
+rel/hintring_register.cpp:
+	.text       start:0x0006627C end:0x00066350
+	.ctors      start:0x000000B8 end:0x000000BC
 
 rel/damage_collision_register.cpp:
 	.text       start:0x000667F0 end:0x00066888
@@ -264,6 +284,30 @@ stage13D/o_s14_3way_colli.cpp:
 	.rodata     start:0x000018B8 end:0x000018C8
 	.data       start:0x0001A020 end:0x0001A320
 	.bss        start:0x00001B8C end:0x00001BC4
+
+rel/capture_register.cpp:
+	.text       start:0x000ABFE8 end:0x000AC0E4
+	.ctors      start:0x00000154 end:0x00000158
+
+rel/capture_collision_register.cpp:
+	.text       start:0x000AC6B8 end:0x000AC760
+	.ctors      start:0x00000158 end:0x0000015C
+
+rel/flyer_register.cpp:
+	.text       start:0x000B8468 end:0x000B850C
+	.ctors      start:0x00000160 end:0x00000164
+
+rel/flyer_col_register.cpp:
+	.text       start:0x000B99E4 end:0x000B9A8C
+	.ctors      start:0x00000164 end:0x00000168
+
+rel/wall_register.cpp:
+	.text       start:0x000C2544 end:0x000C2624
+	.ctors      start:0x00000168 end:0x0000016C
+
+rel/s14_thunder_ptcl_register.cpp:
+	.text       start:0x000CA4F8 end:0x000CA594
+	.ctors      start:0x0000018C end:0x00000190
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000DE66C end:0x000DE714
