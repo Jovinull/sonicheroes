@@ -156,6 +156,10 @@ rel/scroll_ring_touch.cpp:
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
 
+rel/ring_register.cpp:
+	.text       start:0x0000BD38 end:0x0000BE94
+	.ctors      start:0x00000020 end:0x00000024
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
@@ -269,6 +273,10 @@ rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/itembaloon_register.cpp:
+	.text       start:0x0003D244 end:0x0003D390
+	.ctors      start:0x00000068 end:0x0000006C
+
 rel/pole_dtor.cpp:
 	.text       start:0x0003F870 end:0x0003F930
 
@@ -364,6 +372,10 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/searcher_register.cpp:
+	.text       start:0x0005A440 end:0x0005A540
+	.ctors      start:0x000000AC end:0x000000B0
+
 rel/formgate_register.cpp:
 	.text       start:0x00061848 end:0x000618F0
 	.ctors      start:0x000000B0 end:0x000000B4
@@ -371,6 +383,10 @@ rel/formgate_register.cpp:
 rel/no_input_collision_register.cpp:
 	.text       start:0x0006DD8C end:0x0006DE34
 	.ctors      start:0x000000B4 end:0x000000B8
+
+rel/hintring_register.cpp:
+	.text       start:0x000707DC end:0x000708B0
+	.ctors      start:0x000000B8 end:0x000000BC
 
 rel/damage_collision_register.cpp:
 	.text       start:0x00070D50 end:0x00070DE8
@@ -411,6 +427,30 @@ rel/key_register.cpp:
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000AD260 end:0x000AD2F8
 	.ctors      start:0x00000180 end:0x00000184
+
+rel/capture_register.cpp:
+	.text       start:0x000B9378 end:0x000B9474
+	.ctors      start:0x0000018C end:0x00000190
+
+rel/capture_collision_register.cpp:
+	.text       start:0x000B9A48 end:0x000B9AF0
+	.ctors      start:0x00000190 end:0x00000194
+
+rel/wall_register.cpp:
+	.text       start:0x000C13F8 end:0x000C14D8
+	.ctors      start:0x00000194 end:0x00000198
+
+rel/flyer_register.cpp:
+	.text       start:0x000C4EFC end:0x000C4FA0
+	.ctors      start:0x00000198 end:0x0000019C
+
+rel/flyer_col_register.cpp:
+	.text       start:0x000C647C end:0x000C6524
+	.ctors      start:0x0000019C end:0x000001A0
+
+rel/turtle_register.cpp:
+	.text       start:0x000CD630 end:0x000CD710
+	.ctors      start:0x000001A0 end:0x000001A4
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D5304 end:0x000D53AC

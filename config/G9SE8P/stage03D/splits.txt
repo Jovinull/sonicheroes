@@ -156,6 +156,10 @@ rel/scroll_ring_touch.cpp:
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
 
+rel/ring_register.cpp:
+	.text       start:0x0000BD38 end:0x0000BE94
+	.ctors      start:0x00000020 end:0x00000024
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
@@ -269,6 +273,10 @@ rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/itembaloon_register.cpp:
+	.text       start:0x0003D244 end:0x0003D390
+	.ctors      start:0x00000068 end:0x0000006C
+
 rel/pole_dtor.cpp:
 	.text       start:0x0003F870 end:0x0003F930
 
@@ -364,6 +372,10 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/searcher_register.cpp:
+	.text       start:0x0005A440 end:0x0005A540
+	.ctors      start:0x000000AC end:0x000000B0
+
 rel/formgate_register.cpp:
 	.text       start:0x00061848 end:0x000618F0
 	.ctors      start:0x000000B0 end:0x000000B4
@@ -371,6 +383,10 @@ rel/formgate_register.cpp:
 rel/no_input_collision_register.cpp:
 	.text       start:0x0006DD8C end:0x0006DE34
 	.ctors      start:0x000000B4 end:0x000000B8
+
+rel/hintring_register.cpp:
+	.text       start:0x000707DC end:0x000708B0
+	.ctors      start:0x000000B8 end:0x000000BC
 
 rel/damage_collision_register.cpp:
 	.text       start:0x00070D50 end:0x00070DE8
@@ -412,12 +428,20 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000B4A08 end:0x000B4AA0
 	.ctors      start:0x00000164 end:0x00000168
 
+rel/capture_register.cpp:
+	.text       start:0x000BBFA0 end:0x000BC09C
+	.ctors      start:0x00000170 end:0x00000174
+
 rel/e_capture_collision.cpp:
 	.text       start:0x000BC1C0 end:0x000BC720
 	.ctors      start:0x00000174 end:0x00000178
 	.rodata     start:0x00001BFC end:0x00001C00
 	.data       start:0x00014098 end:0x00014120
 	.bss        start:0x00001F20 end:0x00001F50
+
+rel/turtle_register.cpp:
+	.text       start:0x000C266C end:0x000C274C
+	.ctors      start:0x00000178 end:0x0000017C
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000CC5FC end:0x000CC6A4
