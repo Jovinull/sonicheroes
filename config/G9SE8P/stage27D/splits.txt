@@ -259,13 +259,33 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/item_box_register.cpp:
+	.text       start:0x00033EDC end:0x00033F84
+	.ctors      start:0x00000060 end:0x00000064
+
 rel/itembaloon_register.cpp:
 	.text       start:0x00035E0C end:0x00035F58
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/pole_register.cpp:
+	.text       start:0x00038B84 end:0x00038C2C
+	.ctors      start:0x00000068 end:0x0000006C
+
+rel/case_obj_register.cpp:
+	.text       start:0x0003A1C0 end:0x0003A268
+	.ctors      start:0x00000070 end:0x00000074
+
+rel/roll_door_register.cpp:
+	.text       start:0x0003CD28 end:0x0003CDD0
+	.ctors      start:0x00000074 end:0x00000078
+
 rel/lens_flare_register.cpp:
 	.text       start:0x0003E5D8 end:0x0003E680
 	.ctors      start:0x00000078 end:0x0000007C
+
+rel/signal_register.cpp:
+	.text       start:0x0003F734 end:0x0003F7DC
+	.ctors      start:0x0000007C end:0x00000080
 
 rel/propeller_register.cpp:
 	.text       start:0x00042158 end:0x000421F8
@@ -347,6 +367,10 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x00065F98 end:0x0006602C
 	.ctors      start:0x000000D0 end:0x000000D4
 
+rel/metal_sonic_1st_register.cpp:
+	.text       start:0x0006C340 end:0x0006C3E8
+	.ctors      start:0x000000D4 end:0x000000D8
+
 rel/key_register.cpp:
 	.text       start:0x0006D774 end:0x0006D80C
 	.ctors      start:0x000000D8 end:0x000000DC
@@ -355,9 +379,17 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0007779C end:0x00077834
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s13_cloud_register.cpp:
+	.text       start:0x00078F1C end:0x00079058
+	.ctors      start:0x000000E4 end:0x000000E8
+
 rel/s14_thunder_ptcl_register.cpp:
 	.text       start:0x00079A3C end:0x00079AD8
 	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/stg27_obj_register.cpp:
+	.text       start:0x0007AB48 end:0x0007ABF0
+	.ctors      start:0x000000EC end:0x000000F0
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000827DC end:0x00082884

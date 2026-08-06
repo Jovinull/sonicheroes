@@ -392,6 +392,114 @@ rel/damage_collision_register.cpp:
 	.text       start:0x00070D50 end:0x00070DE8
 	.ctors      start:0x000000BC end:0x000000C0
 
+rel/s03_aircar_register.cpp:
+	.text       start:0x00073650 end:0x000736FC
+	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/s03_baloon_design_register.cpp:
+	.text       start:0x00074764 end:0x00074810
+	.ctors      start:0x000000C4 end:0x000000C8
+
+rel/s03_baloon_wk_register.cpp:
+	.text       start:0x00075878 end:0x00075920
+	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/s03_big_bridge2_register.cpp:
+	.text       start:0x0007763C end:0x000776E4
+	.ctors      start:0x000000CC end:0x000000D0
+
+rel/s03_bridge_register.cpp:
+	.text       start:0x00079208 end:0x000792A0
+	.ctors      start:0x000000D0 end:0x000000D4
+
+rel/s03_door_register.cpp:
+	.text       start:0x0007A3FC end:0x0007A494
+	.ctors      start:0x000000D4 end:0x000000D8
+
+rel/s03_egg_cap_register.cpp:
+	.text       start:0x0007D48C end:0x0007D534
+	.ctors      start:0x000000D8 end:0x000000DC
+
+rel/s03d_light_register.cpp:
+	.text       start:0x0007E99C end:0x0007EA44
+	.ctors      start:0x000000DC end:0x000000E0
+
+rel/s03_pipe_register.cpp:
+	.text       start:0x0008228C end:0x00082334
+	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/s03d_pipe_design_register.cpp:
+	.text       start:0x00083304 end:0x000833B0
+	.ctors      start:0x000000E4 end:0x000000E8
+
+rel/s03_plane_register.cpp:
+	.text       start:0x00084128 end:0x000841D4
+	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/s03d_pole_register.cpp:
+	.text       start:0x0008562C end:0x000856D8
+	.ctors      start:0x000000EC end:0x000000F0
+
+rel/s03_train_register.cpp:
+	.text       start:0x000867D8 end:0x00086884
+	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/s03_walk_way_register.cpp:
+	.text       start:0x00087004 end:0x000870AC
+	.ctors      start:0x000000F4 end:0x000000F8
+
+rel/s04d_ball_glass_register.cpp:
+	.text       start:0x00088818 end:0x000888B4
+	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/s04_e_bubble_register.cpp:
+	.text       start:0x00089ED0 end:0x00089F78
+	.ctors      start:0x000000FC end:0x00000100
+
+rel/s04_egg_cap2_register.cpp:
+	.text       start:0x0008C6CC end:0x0008C774
+	.ctors      start:0x00000100 end:0x00000104
+
+rel/s04_egg_cap_big_register.cpp:
+	.text       start:0x0008EDE4 end:0x0008EE7C
+	.ctors      start:0x00000104 end:0x00000108
+
+rel/s04_egg_cap_elev_register.cpp:
+	.text       start:0x0009105C end:0x000910F4
+	.ctors      start:0x00000108 end:0x0000010C
+
+rel/s04d_e_cylinder_register.cpp:
+	.text       start:0x00092584 end:0x0009262C
+	.ctors      start:0x0000010C end:0x00000110
+
+rel/s04d_elevator_register.cpp:
+	.text       start:0x00094D34 end:0x00094DDC
+	.ctors      start:0x00000110 end:0x00000114
+
+rel/s04d_energy_fire_register.cpp:
+	.text       start:0x000951C4 end:0x0009526C
+	.ctors      start:0x00000114 end:0x00000118
+
+rel/s04d_energy_up_register.cpp:
+	.text       start:0x00096230 end:0x000962D8
+	.ctors      start:0x00000118 end:0x0000011C
+
+rel/s04d_ashiba_register.cpp:
+	.text       start:0x00097EA0 end:0x00097F48
+	.ctors      start:0x0000011C end:0x00000120
+
+rel/s04_energy_pipe_up_register.cpp:
+	.text       start:0x00098D88 end:0x00098E30
+	.ctors      start:0x00000120 end:0x00000124
+
+rel/s04d_shutter_register.cpp:
+	.text       start:0x00099914 end:0x000999BC
+	.ctors      start:0x00000124 end:0x00000128
+
+rel/s04_wall_register.cpp:
+	.text       start:0x0009A318 end:0x0009A3B4
+	.ctors      start:0x00000128 end:0x0000012C
+
 rel/obj_set_particle_register.cpp:
 	.text       start:0x0009BB0C end:0x0009BBA8
 	.ctors      start:0x0000012C end:0x00000130
@@ -412,6 +520,26 @@ rel/warp_register.cpp:
 	.text       start:0x000A4268 end:0x000A4314
 	.ctors      start:0x0000013C end:0x00000140
 
+rel/s04d_floor_light_register.cpp:
+	.text       start:0x000A5BC4 end:0x000A5C6C
+	.ctors      start:0x00000140 end:0x00000144
+
+rel/s04_big_shutter_register.cpp:
+	.text       start:0x000A6C18 end:0x000A6CB4
+	.ctors      start:0x00000144 end:0x00000148
+
+rel/s04d_room_light_register.cpp:
+	.text       start:0x000A784C end:0x000A78F8
+	.ctors      start:0x00000148 end:0x0000014C
+
+rel/s04_solar_robo_register.cpp:
+	.text       start:0x000A8AA0 end:0x000A8B4C
+	.ctors      start:0x0000014C end:0x00000150
+
+rel/s04d_crane_register.cpp:
+	.text       start:0x000A97E4 end:0x000A9890
+	.ctors      start:0x00000150 end:0x00000154
+
 rel/hintcolli_register.cpp:
 	.text       start:0x000AB6B8 end:0x000AB768
 	.ctors      start:0x00000154 end:0x00000158
@@ -420,6 +548,10 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x000AC0DC end:0x000AC170
 	.ctors      start:0x00000158 end:0x0000015C
 
+rel/s03_sign_board_register.cpp:
+	.text       start:0x000ACE44 end:0x000ACEE0
+	.ctors      start:0x0000015C end:0x00000160
+
 rel/key_register.cpp:
 	.text       start:0x000AE26C end:0x000AE304
 	.ctors      start:0x00000160 end:0x00000164
@@ -427,6 +559,10 @@ rel/key_register.cpp:
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000B4A08 end:0x000B4AA0
 	.ctors      start:0x00000164 end:0x00000168
+
+rel/s04_ball_colli_register.cpp:
+	.text       start:0x000B6CD4 end:0x000B6D70
+	.ctors      start:0x0000016C end:0x00000170
 
 rel/capture_register.cpp:
 	.text       start:0x000BBFA0 end:0x000BC09C
@@ -442,6 +578,18 @@ rel/e_capture_collision.cpp:
 rel/turtle_register.cpp:
 	.text       start:0x000C266C end:0x000C274C
 	.ctors      start:0x00000178 end:0x0000017C
+
+rel/s04_floating_path_register.cpp:
+	.text       start:0x000C3110 end:0x000C31A8
+	.ctors      start:0x0000017C end:0x00000180
+
+rel/s01_taiho_daiza_register.cpp:
+	.text       start:0x000C3E74 end:0x000C3F1C
+	.ctors      start:0x00000180 end:0x00000184
+
+rel/s04d_pipe_elev_register.cpp:
+	.text       start:0x000C4970 end:0x000C4A08
+	.ctors      start:0x00000184 end:0x00000188
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000CC5FC end:0x000CC6A4

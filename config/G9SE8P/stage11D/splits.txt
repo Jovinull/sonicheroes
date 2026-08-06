@@ -426,9 +426,49 @@ rel/key_register.cpp:
 	.text       start:0x0007BCC0 end:0x0007BD58
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/scaffold_object_register.cpp:
+	.text       start:0x0007EAC0 end:0x0007EB68
+	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/s11warp_object_register.cpp:
+	.text       start:0x000807FC end:0x000808AC
+	.ctors      start:0x000000E4 end:0x000000E8
+
+rel/s11ghost_object_register.cpp:
+	.text       start:0x00084058 end:0x00084108
+	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/s11fire_object_register.cpp:
+	.text       start:0x00087BB8 end:0x00087C68
+	.ctors      start:0x000000EC end:0x000000F0
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0008A9B4 end:0x0008AA4C
 	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/s11light_object_register.cpp:
+	.text       start:0x0008D6C4 end:0x0008D76C
+	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/scaffold12_object_register.cpp:
+	.text       start:0x0008F7F8 end:0x0008F8A0
+	.ctors      start:0x000000FC end:0x00000100
+
+rel/s11wall_object_register.cpp:
+	.text       start:0x00091DB4 end:0x00091E5C
+	.ctors      start:0x00000104 end:0x00000108
+
+rel/s12wall_object_register.cpp:
+	.text       start:0x000930BC end:0x00093164
+	.ctors      start:0x00000108 end:0x0000010C
+
+rel/s11door_object_register.cpp:
+	.text       start:0x000966B8 end:0x00096760
+	.ctors      start:0x00000110 end:0x00000114
+
+rel/s12celestial_object_register.cpp:
+	.text       start:0x0009732C end:0x000973D4
+	.ctors      start:0x00000114 end:0x00000118
 
 rel/o_s11_cloud.cpp:
 	.text       start:0x000973DC end:0x00098060
@@ -453,6 +493,10 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000A81F8 end:0x000A82A0
 	.ctors      start:0x0000012C end:0x00000130
 
+rel/magician_object_register.cpp:
+	.text       start:0x000AF904 end:0x000AF9AC
+	.ctors      start:0x00000130 end:0x00000134
+
 rel/rinoliner_register.cpp:
 	.text       start:0x000B4930 end:0x000B49D8
 	.ctors      start:0x00000134 end:0x00000138
@@ -469,6 +513,38 @@ rel/turtle_register.cpp:
 	.text       start:0x000C27EC end:0x000C28CC
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/s11spider_object_register.cpp:
+	.text       start:0x000C3738 end:0x000C37E0
+	.ctors      start:0x00000144 end:0x00000148
+
+rel/s12fan_object_register.cpp:
+	.text       start:0x000C3F60 end:0x000C3FF8
+	.ctors      start:0x00000148 end:0x0000014C
+
+rel/tree_object_register.cpp:
+	.text       start:0x000C4DEC end:0x000C4E94
+	.ctors      start:0x0000014C end:0x00000150
+
+rel/grass2_object_register.cpp:
+	.text       start:0x000C5EFC end:0x000C5FA4
+	.ctors      start:0x00000150 end:0x00000154
+
+rel/grass_object_register.cpp:
+	.text       start:0x000C74A0 end:0x000C7548
+	.ctors      start:0x00000154 end:0x00000158
+
+rel/s11_flag_register.cpp:
+	.text       start:0x000C8FD0 end:0x000C907C
+	.ctors      start:0x00000158 end:0x0000015C
+
+rel/mask_object_register.cpp:
+	.text       start:0x000CA168 end:0x000CA210
+	.ctors      start:0x0000015C end:0x00000160
+
+rel/s11key_object_register.cpp:
+	.text       start:0x000CBB18 end:0x000CBBB0
+	.ctors      start:0x00000160 end:0x00000164
+
 rel/o_s11_bob.cpp:
 	.text       start:0x000CBBB0 end:0x000CBF20
 	.ctors      start:0x00000164 end:0x00000168
@@ -478,6 +554,10 @@ rel/o_s11_bob.cpp:
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D5A28 end:0x000D5AD0
 	.ctors      start:0x0000016C end:0x00000170
+
+rel/bgmcolli_object_register.cpp:
+	.text       start:0x000DCD80 end:0x000DCE30
+	.ctors      start:0x00000170 end:0x00000174
 
 rel/no_ottotto_collision_register.cpp:
 	.text       start:0x000DD2D0 end:0x000DD368
