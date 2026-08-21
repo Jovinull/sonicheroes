@@ -5,7 +5,11 @@
 // motion bases down and then the object base, and hands the object back to the
 // heap when the caller asks for it.
 //
-// The claim is .text 0x0003F870 to 0x0003F930 and nothing else. The vtable stays
+// The claim is .text 0x0003F870 to 0x0003F930 in stage01D/03D/05D/07D/09D/
+// 11D/31D/32D/33D, and 0x38438 to 0x384F8 in stage26D/27D/28D: the same
+// bytes, but the surrounding unclaimed code is laid out differently between
+// the two revisions of the shared engine core, so the run sits at a
+// different address in each. The vtable stays
 // in each module's data and is renamed to the shared name below; it reads no
 // constant, so it owns no rodata.
 //
@@ -14,7 +18,8 @@
 // Like the item box and unlike the fan and reel, the model is released without a
 // null check, which is also why the scene is fetched before the model rather
 // than after.//
-// The run is the same in the nine stage modules that carry it, checked by
+// The run is the same in all twelve stage modules that share the engine
+// core, checked by
 // normalising the disassembly and comparing across modules.
 //
 // The delete flag is a short. It is sign extended before the test, so a plain

@@ -6,7 +6,11 @@
 // then the object base, and hands the object back to the heap when the
 // caller asks for it.
 //
-// The claim is .text 0x51234 to 0x512F4 and nothing else. The vtable stays
+// The claim is .text 0x51234 to 0x512F4 in stage01D/03D/05D/07D/09D/11D/31D/
+// 32D/33D, and 0x49DFC to 0x49EBC in stage26D/27D/28D: the same bytes, but
+// the surrounding unclaimed code is laid out differently between the two
+// revisions of the shared engine core, so the run sits at a different
+// address in each. The vtable stays
 // in each module's data and is renamed to the shared name below; it reads
 // no constant, so it owns no rodata.
 //
@@ -15,9 +19,8 @@
 // identified: no *Ctor boundary sits next to this run, so the name comes
 // from tracing the vtable's other user instead.
 //
-// The run is the same in nine of the twelve stage modules that share the
-// engine core; stage26D, stage27D and stage28D carry a different revision
-// here and are left out.
+// The run is the same in all twelve stage modules that share the engine
+// core.
 //
 // The delete flag is a short. It is sign extended before the test, so a
 // plain s32 parameter does not reproduce the compare.

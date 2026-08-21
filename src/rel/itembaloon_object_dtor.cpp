@@ -5,9 +5,12 @@
 // then the object base, and hands the object back to the heap when the
 // caller asks for it.
 //
-// The claim is .text 0x3CDB0 to 0x3CE58 and nothing else. The vtable stays
-// in each module's data and is renamed to the shared name below; it reads
-// no constant, so it owns no rodata.
+// The claim is .text 0x3CDB0 to 0x3CE58 in stage01D/03D/05D/07D/09D/11D/31D/
+// 32D/33D, and 0x35978 to 0x35A20 in stage26D/27D/28D: the same bytes, but
+// the surrounding unclaimed code is laid out differently between the two
+// revisions of the shared engine core, so the run sits at a different
+// address in each. The vtable stays in each module's data and is renamed to
+// the shared name below; it reads no constant, so it owns no rodata.
 //
 // itembaloonObjectCreate (rel/itembaloon_register.cpp) constructs objects
 // with the same vtable this run writes, which is how the family is
@@ -17,7 +20,8 @@
 // The model is released without a null check first, the same shape as
 // rel/item_box_dtor.cpp.
 //
-// The run is the same in the nine stage modules that carry it.
+// The run is the same in all twelve stage modules that share the engine
+// core.
 //
 // The delete flag is a short. It is sign extended before the test, so a
 // plain s32 parameter does not reproduce the compare.
