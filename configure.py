@@ -2121,6 +2121,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s11_door_object_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s11fire_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2537,6 +2542,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s12door_object_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s12_door_object_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
