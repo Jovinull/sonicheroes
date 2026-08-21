@@ -46,6 +46,9 @@ rel/spring_assets.cpp:
 	.text       start:0x00001734 end:0x0000189C
 	.ctors      start:0x00000008 end:0x0000000C
 
+rel/tri_spring_dtor.cpp:
+	.text       start:0x0000282C end:0x00002920
+
 rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
 

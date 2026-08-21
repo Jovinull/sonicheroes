@@ -46,6 +46,9 @@ rel/spring_assets.cpp:
 	.text       start:0x00001734 end:0x0000189C
 	.ctors      start:0x00000008 end:0x0000000C
 
+rel/tri_spring_dtor.cpp:
+	.text       start:0x0000282C end:0x00002920
+
 rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
 
@@ -319,6 +322,9 @@ rel/lens_flare_test.cpp:
 rel/lens_flare_register.cpp:
 	.text       start:0x00045A10 end:0x00045AB8
 	.ctors      start:0x0000007C end:0x00000080
+
+rel/signal_dtor.cpp:
+	.text       start:0x000464D0 end:0x00046578
 
 rel/signal_assets.cpp:
 	.text       start:0x00046B24 end:0x00046C14
