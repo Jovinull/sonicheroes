@@ -3099,6 +3099,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scroll_ring_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/o_s01_base_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
