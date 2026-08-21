@@ -396,6 +396,10 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - systemObject1Ctor
+    - systemObject2Ctor
+    - systemObject3Ctor
+    - systemObject4Ctor
     - targetReloadModel
     - objApplyTransform
     - objReleaseModels
@@ -423,6 +427,10 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - systemObject1Ctor
+    - systemObject2Ctor
+    - systemObject3Ctor
+    - systemObject4Ctor
     - targetReloadModel
     - objApplyTransform
     - objReleaseModels
@@ -450,6 +458,10 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - systemObject1Ctor
+    - systemObject2Ctor
+    - systemObject3Ctor
+    - systemObject4Ctor
     - targetReloadModel
     - objApplyTransform
     - objReleaseModels
