@@ -293,6 +293,9 @@ rel/case_obj_register.cpp:
 	.text       start:0x0003A1C0 end:0x0003A268
 	.ctors      start:0x00000070 end:0x00000074
 
+rel/roll_door_dtor.cpp:
+	.text       start:0x0003C524 end:0x0003C604
+
 rel/roll_door_register.cpp:
 	.text       start:0x0003CD28 end:0x0003CDD0
 	.ctors      start:0x00000074 end:0x00000078
