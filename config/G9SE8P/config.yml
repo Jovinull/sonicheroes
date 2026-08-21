@@ -336,6 +336,8 @@ modules:
   symbols: config/G9SE8P/stage11D/symbols.txt
   splits: config/G9SE8P/stage11D/splits.txt
   force_active:
+    - s12doorObjectDtor
+    - s11doorObjectDtor
     - s31bobObjectdummyDtor
     - targetReloadModel
     - lensFlareEditOnChange

@@ -502,9 +502,15 @@ rel/s12wall_object_register.cpp:
 	.text       start:0x000930BC end:0x00093164
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/s12_door_object_dtor.cpp:
+	.text       start:0x00094A38 end:0x00094B18
+
 rel/s12door_object_register.cpp:
 	.text       start:0x000950FC end:0x00095240
 	.ctors      start:0x0000010C end:0x00000110
+
+rel/s11_door_object_dtor.cpp:
+	.text       start:0x00095F38 end:0x00096018
 
 rel/s11door_object_register.cpp:
 	.text       start:0x000966B8 end:0x00096760
