@@ -331,17 +331,29 @@ rel/goal_ring_register.cpp:
 	.text       start:0x0004614C end:0x000461F4
 	.ctors      start:0x00000088 end:0x0000008C
 
+rel/system_object1_object.cpp:
+	.text       start:0x000461FC end:0x00046354
+
 rel/system_object1_register.cpp:
 	.text       start:0x000463E0 end:0x00046484
 	.ctors      start:0x0000008C end:0x00000090
+
+rel/system_object2_object.cpp:
+	.text       start:0x00046484 end:0x00046604
 
 rel/system_object2_register.cpp:
 	.text       start:0x00046690 end:0x00046734
 	.ctors      start:0x00000090 end:0x00000094
 
+rel/system_object3_object.cpp:
+	.text       start:0x00046734 end:0x000468B4
+
 rel/system_object3_register.cpp:
 	.text       start:0x00046940 end:0x000469E4
 	.ctors      start:0x00000094 end:0x00000098
+
+rel/system_object4_object.cpp:
+	.text       start:0x000469E4 end:0x00046B3C
 
 rel/system_object4_register.cpp:
 	.text       start:0x00046BC8 end:0x00046C6C
