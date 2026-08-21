@@ -144,6 +144,9 @@ rel/dashpanel_assets.cpp:
 rel/dashpanel_hooks.cpp:
 	.text       start:0x00008628 end:0x0000862C
 
+rel/scroll_ring_dtor.cpp:
+	.text       start:0x00008914 end:0x00008A24
+
 rel/scroll_ring_create.cpp:
 	.text       start:0x00008D68 end:0x00008DB0
 
