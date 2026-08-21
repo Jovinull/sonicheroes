@@ -166,6 +166,9 @@ rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
 
+rel/jump_panel_dtor.cpp:
+	.text       start:0x0000C6CC end:0x0000C7AC
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
@@ -263,6 +266,9 @@ rel/fan_assets.cpp:
 	.text       start:0x00025810 end:0x00025900
 	.ctors      start:0x00000054 end:0x00000058
 
+rel/weight_dtor.cpp:
+	.text       start:0x000283E8 end:0x000284C8
+
 rel/weight_register.cpp:
 	.text       start:0x00028C34 end:0x00028CDC
 	.ctors      start:0x00000058 end:0x0000005C
@@ -287,6 +293,9 @@ rel/item_box_dtor.cpp:
 rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
+
+rel/itembaloon_object_dtor.cpp:
+	.text       start:0x0003CDB0 end:0x0003CE58
 
 rel/itembaloon_register.cpp:
 	.text       start:0x0003D244 end:0x0003D390
@@ -382,6 +391,9 @@ rel/o_invoke_colli.cpp:
 	.rodata     start:0x00000D60 end:0x00000D70
 	.data       start:0x00005814 end:0x00005970
 	.bss        start:0x00000D6C end:0x00000D98
+
+rel/push_pull_switch_dtor.cpp:
+	.text       start:0x00051234 end:0x000512F4
 
 rel/push_pull_switch_edit.cpp:
 	.text       start:0x0005169C end:0x000516F8

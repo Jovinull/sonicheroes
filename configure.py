@@ -3114,6 +3114,26 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/jump_panel_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/weight_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/itembaloon_object_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/push_pull_switch_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/o_s01_base_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
