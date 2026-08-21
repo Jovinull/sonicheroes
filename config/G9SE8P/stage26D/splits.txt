@@ -277,6 +277,9 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/item_box_dtor.cpp:
+	.text       start:0x000337BC end:0x00033864
+
 rel/item_box_register.cpp:
 	.text       start:0x00033EDC end:0x00033F84
 	.ctors      start:0x00000060 end:0x00000064
@@ -288,9 +291,15 @@ rel/itembaloon_register.cpp:
 	.text       start:0x00035E0C end:0x00035F58
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/pole_dtor.cpp:
+	.text       start:0x00038438 end:0x000384F8
+
 rel/pole_register.cpp:
 	.text       start:0x00038B84 end:0x00038C2C
 	.ctors      start:0x00000068 end:0x0000006C
+
+rel/case_obj_dtor.cpp:
+	.text       start:0x00039B2C end:0x00039BFC
 
 rel/case_obj_register.cpp:
 	.text       start:0x0003A1C0 end:0x0003A268
@@ -306,6 +315,9 @@ rel/roll_door_register.cpp:
 rel/lens_flare_register.cpp:
 	.text       start:0x0003E5D8 end:0x0003E680
 	.ctors      start:0x00000078 end:0x0000007C
+
+rel/signal_dtor.cpp:
+	.text       start:0x0003F098 end:0x0003F140
 
 rel/signal_register.cpp:
 	.text       start:0x0003F734 end:0x0003F7DC
@@ -342,6 +354,9 @@ rel/light_collision_register.cpp:
 rel/invoke_colli_register.cpp:
 	.text       start:0x000487C4 end:0x00048858
 	.ctors      start:0x000000A0 end:0x000000A4
+
+rel/push_pull_switch_dtor.cpp:
+	.text       start:0x00049DFC end:0x00049EBC
 
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0004A4E4 end:0x0004A594
