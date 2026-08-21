@@ -546,6 +546,9 @@ rel/s02_moving_land_register.cpp:
 	.text       start:0x0009F2CC end:0x0009F378
 	.ctors      start:0x00000118 end:0x0000011C
 
+rel/s02_water_dtor.cpp:
+	.text       start:0x000A2EA8 end:0x000A2F68
+
 rel/s02_water_register.cpp:
 	.text       start:0x000A35B0 end:0x000A365C
 	.ctors      start:0x00000120 end:0x00000124
@@ -573,6 +576,9 @@ rel/flower_register.cpp:
 rel/chao_register.cpp:
 	.text       start:0x000B7870 end:0x000B7920
 	.ctors      start:0x00000138 end:0x0000013C
+
+rel/s20d_curb_stone_dtor.cpp:
+	.text       start:0x000BB060 end:0x000BB120
 
 rel/s20d_curb_stone_register.cpp:
 	.text       start:0x000BB5BC end:0x000BB668
