@@ -164,6 +164,9 @@ rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
 
+rel/dash_ring_dtor.cpp:
+	.text       start:0x0000DC58 end:0x0000DD5C
+
 rel/dash_ring_assets.cpp:
 	.text       start:0x0000E32C end:0x0000E41C
 	.ctors      start:0x00000028 end:0x0000002C
@@ -225,6 +228,9 @@ rel/laser_fence_dtor.cpp:
 rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
+
+rel/big_rings_dtor.cpp:
+	.text       start:0x0001E910 end:0x0001E9D8
 
 rel/big_rings_assets.cpp:
 	.text       start:0x0001F090 end:0x0001F180

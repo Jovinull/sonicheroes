@@ -3084,6 +3084,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dash_ring_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/big_rings_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/o_s01_base_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
