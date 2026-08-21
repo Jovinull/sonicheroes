@@ -645,6 +645,9 @@ rel/key_register.cpp:
 	.text       start:0x000D09B4 end:0x000D0A4C
 	.ctors      start:0x000001A0 end:0x000001A4
 
+rel/s31_bob_dummy_dtor.cpp:
+	.text       start:0x000D0A4C end:0x000D0AD8
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000D3790 end:0x000D3828
 	.ctors      start:0x000001A4 end:0x000001A8

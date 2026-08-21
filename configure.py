@@ -3069,6 +3069,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s31_bob_dummy_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/laser_fence_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
