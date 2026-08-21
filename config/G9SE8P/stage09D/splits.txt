@@ -601,6 +601,9 @@ rel/wanibreak_register.cpp:
 	.text       start:0x000AA464 end:0x000AA514
 	.ctors      start:0x0000017C end:0x00000180
 
+rel/s31_bob_dummy_dtor.cpp:
+	.text       start:0x000AA51C end:0x000AA5A8
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000AD260 end:0x000AD2F8
 	.ctors      start:0x00000180 end:0x00000184

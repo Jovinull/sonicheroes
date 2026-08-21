@@ -425,6 +425,9 @@ rel/key_register.cpp:
 	.text       start:0x000673B8 end:0x00067450
 	.ctors      start:0x000000D4 end:0x000000D8
 
+rel/s31_bob_dummy_dtor.cpp:
+	.text       start:0x00075F4C end:0x00075FD8
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00078C90 end:0x00078D28
 	.ctors      start:0x000000E0 end:0x000000E4
