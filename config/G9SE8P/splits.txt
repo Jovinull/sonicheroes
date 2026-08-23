@@ -156,6 +156,14 @@ game/SpAdvStgFailed_bss.cpp:
 game/dAnim_ctor.cpp:
 	.text       start:0x800A80DC end:0x800A80E0
 
+game/easySelect.cpp:
+	extab       start:0x80007B70 end:0x80007C44
+	extabindex  start:0x8000E1F4 end:0x8000E2E4
+	.text       start:0x800A80E0 end:0x800A99F8
+	.data       start:0x80253124 end:0x80253158
+	.sbss       start:0x8042C348 end:0x8042C34C
+	.sdata2     start:0x8042DB48 end:0x8042DB70
+
 game/hAnim.cpp:
 	extab       start:0x80008300 end:0x80008348
 	extabindex  start:0x8000EA10 end:0x8000EA7C

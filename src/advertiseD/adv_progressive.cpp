@@ -68,7 +68,7 @@ extern s32 lbl_1_bss_568; // progressive-scan available flag
 extern void* lbl_8042C180;
 
 // Engine helpers (DOL / other REL objects).
-extern void fn_800A8828(ADV_PROGRESSIVE* self, void* parent);
+extern void __ct__10EasySelectFP7TObject(ADV_PROGRESSIVE* self, void* parent);
 extern void fn_800A8620(ADV_PROGRESSIVE* self, s32 flag);
 extern void advE3Rom_pause(void* self);
 extern void fn_801D5CB0(s32 flag);
@@ -158,7 +158,7 @@ ADV_PROGRESSIVE* fn_1_6EDC(ADV_PROGRESSIVE* self, void* parent)
 {
 	Obj* c;
 
-	fn_800A8828(self, parent);
+	__ct__10EasySelectFP7TObject(self, parent);
 	self->vtable = &lbl_1_data_1D74;
 	self->f28    = 0;
 	self->f2c    = 5;

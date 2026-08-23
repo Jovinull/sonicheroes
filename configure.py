@@ -701,6 +701,12 @@ config.libs = [
                 "game/obj_set_damage_collision.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/easySelect.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pool off", "-inline auto", "-fp_contract off"],
+                data_section_alignment=4,
+            ),
         ],
     },
     Rel(
