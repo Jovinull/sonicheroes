@@ -68,7 +68,7 @@ void sampleHook1();
 void sampleHook2();
 void sampleHook3();
 void sampleHook4();
-void fn_80017854();
+void Error__7TObjectFPc();
 extern TObject* lbl_8042C110;
 extern void* lbl_8042C298;
 
@@ -91,7 +91,7 @@ void* __vt__11TObjSystem2[] = {
 	(void*)sampleHook1,
 	(void*)sampleHook2,
 	(void*)sampleHook3,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)sampleHook4,
 	0,
 	0,

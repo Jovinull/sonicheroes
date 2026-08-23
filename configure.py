@@ -863,7 +863,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "autosaveD/emblem_task.c",
+                "autosaveD/emblem_task.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-lang=c++", "-pool off", "-opt noschedule,nopeephole"],
             ),
@@ -1136,14 +1136,13 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/spring_object.cpp",
+                "rel/o_spring.cpp",
                 cflags=cflags_rel_nofma,
-                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_dtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                extra_cflags=[
+                    "-inline deferred,auto",
+                    "-pool off",
+                    "-opt noschedule,nopeephole",
+                ],
             ),
             Object(
                 Matching,
@@ -2783,21 +2782,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/switch_object.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_assets.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_ctor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_clamp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

@@ -29,7 +29,6 @@ LINK_RENAMES = (
     ("Disp__7TObjectFv", "fn_16_5F3B0"),
     ("__dt__7TObjectFv", "fn_16_5F55C"),
     ("__ct__12TObjGoalringFP11TEndSPStage", "fn_16_8DBF8"),
-    ("Error__7TObjectFPc", "fn_80017854"),
 )
 
 

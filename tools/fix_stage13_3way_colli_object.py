@@ -15,11 +15,11 @@ SYMBOL_RENAMES = {
     "slot1__20CollisionPrimaryBaseFv": "collisionExec",
     "slot2__20CollisionPrimaryBaseFv": "fn_9_1A9B4",
     "slot3__20CollisionPrimaryBaseFv": "collisionRelease",
-    "slot4__20CollisionPrimaryBaseFv": "objDefaultPDisp",
-    "slot5__20CollisionPrimaryBaseFv": "objDefaultImmAftSetRaster",
-    "slot6__20CollisionPrimaryBaseFv": "objDefaultDebug",
-    "slot7__20CollisionPrimaryBaseFv": "fn_80017854",
-    "slot8__20CollisionPrimaryBaseFv": "objDefaultRender",
+    "slot4__20CollisionPrimaryBaseFv": "PDisp__7TObjectFv",
+    "slot5__20CollisionPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",
+    "slot6__20CollisionPrimaryBaseFv": "Debug__7TObjectFv",
+    "slot7__20CollisionPrimaryBaseFv": "Error__7TObjectFPc",
+    "slot8__20CollisionPrimaryBaseFv": "Render__7TObjectFv",
 }
 
 TEXT_ORDER = (

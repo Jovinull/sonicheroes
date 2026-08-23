@@ -74,7 +74,7 @@ void fn_8001898C();
 void fn_80018988();
 void fn_80018950();
 void fn_80018954();
-void fn_80017854();
+void Error__7TObjectFPc();
 void fn_80018958();
 void __dt__15TEnemyParalysisFv();
 void Exec__15TEnemyParalysisFv();
@@ -130,7 +130,7 @@ extern "C" void* lbl_80288CA0[] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 

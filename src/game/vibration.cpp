@@ -60,7 +60,7 @@ void fn_80018984();
 void fn_80018988();
 void fn_80018950();
 void fn_80018954();
-void fn_80017854();
+void Error__7TObjectFPc();
 void fn_80018958();
 }
 
@@ -92,7 +92,7 @@ void* lbl_80241328[12]         = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 	0,
 };

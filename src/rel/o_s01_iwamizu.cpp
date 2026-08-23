@@ -44,11 +44,11 @@ extern "C" {
 void* fn_3_81128(void*);
 void* fn_3_82320(void*);
 void objDefaultTDisp();
-void objDefaultPDisp();
-void objDefaultImmAftSetRaster();
-void objDefaultDebug();
-void fn_80017854();
-void objDefaultRender();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
 void fn_8005F4B4(void*, void*);
 void* fn_8005F490();
 int fn_8004A5B8(void*, int, int);
@@ -496,11 +496,11 @@ extern "C" void* IwamizuVtable[]     = {
 	(void*)Exec__14TObjS01IwamizuFv,
 	(void*)Disp__14TObjS01IwamizuFv,
 	(void*)objDefaultTDisp,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	0,
 	0,
 	(void*)fn_3_82320,

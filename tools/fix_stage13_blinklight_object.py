@@ -15,11 +15,11 @@ SYMBOL_RENAMES = {
     "slot1__21BlinkLightPrimaryBaseFv": "blinkLightExec",
     "slot2__21BlinkLightPrimaryBaseFv": "fn_9_1A9B4",
     "slot3__21BlinkLightPrimaryBaseFv": "objDefaultTDisp",
-    "slot4__21BlinkLightPrimaryBaseFv": "objDefaultPDisp",
-    "slot5__21BlinkLightPrimaryBaseFv": "objDefaultImmAftSetRaster",
-    "slot6__21BlinkLightPrimaryBaseFv": "objDefaultDebug",
-    "slot7__21BlinkLightPrimaryBaseFv": "fn_80017854",
-    "slot8__21BlinkLightPrimaryBaseFv": "objDefaultRender",
+    "slot4__21BlinkLightPrimaryBaseFv": "PDisp__7TObjectFv",
+    "slot5__21BlinkLightPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",
+    "slot6__21BlinkLightPrimaryBaseFv": "Debug__7TObjectFv",
+    "slot7__21BlinkLightPrimaryBaseFv": "Error__7TObjectFPc",
+    "slot8__21BlinkLightPrimaryBaseFv": "Render__7TObjectFv",
 }
 
 # The retail new-expression keeps the allocation in r0, then moves the object

@@ -3,11 +3,6 @@
 // TObjSpring's asset hooks and its factory: load the model and the material the
 // display pass tints, drop them again, and allocate one spring.
 //
-// The claim is .text 0x1734 to 0x189C and nothing else. Everything these three
-// touch is either a DOL symbol or one of the module's own blocks reached as an
-// external, so there is no data to take: the two name strings and the model
-// pointer are shared with the constructor at 0x1500, which is still assembly.
-//
 // The code is the same in thirteen of the fourteen stage modules; stage40D is a
 // different revision of the source and is left out, as everywhere else.
 //
@@ -55,31 +50,9 @@ extern "C" void* springModel;
 extern "C" u8* springMaterial;
 extern "C" char springModelName[];
 extern "C" char springTextureName[];
-
-extern "C" void springUnload(void)
-{
-	springModel    = NULL;
-	springMaterial = NULL;
-}
-
-extern "C" void springLoad(void)
-{
-	void* model = fn_8005EA04(springModelName);
-
-	springModel = model;
-	if (model != NULL) {
-		springMaterial = fn_8005E410(model, 0, springTextureName);
-	}
-}
-
-extern "C" void springCreate(void)
-{
-	void* memory = fn_80018A34(lbl_8042C148, 0xFC);
-
-	if (memory != NULL) {
-		springCtor(memory, lbl_8042C110);
-	}
-}
+extern "C" void springUnload(void);
+extern "C" void springLoad(void);
+extern "C" void springCreate(void);
 
 // Fills the record in and hands it to the editor. The module's .ctors list
 // names this, so it runs before the stage does.
@@ -109,6 +82,31 @@ extern "C" void springRegister(void)
 	} else {
 		springEntry.flags &= ~8;
 	}
+}
+
+extern "C" void springCreate(void)
+{
+	void* memory = fn_80018A34(lbl_8042C148, 0xFC);
+
+	if (memory != NULL) {
+		springCtor(memory, lbl_8042C110);
+	}
+}
+
+extern "C" void springLoad(void)
+{
+	void* model = fn_8005EA04(springModelName);
+
+	springModel = model;
+	if (model != NULL) {
+		springMaterial = fn_8005E410(model, 0, springTextureName);
+	}
+}
+
+extern "C" void springUnload(void)
+{
+	springModel    = NULL;
+	springMaterial = NULL;
 }
 
 // The .ctors word that names the function above. The compiler only emits one

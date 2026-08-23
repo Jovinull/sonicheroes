@@ -78,11 +78,11 @@ extern u32 lbl_3_data_5820[];
 extern void* lbl_3_data_5854[];
 
 void fn_3_1A9B0();
-void objDefaultPDisp();
-void objDefaultImmAftSetRaster();
-void objDefaultDebug();
-void fn_80017854();
-void objDefaultRender();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
 void fn_3_4FC90();
 }
 
@@ -459,11 +459,11 @@ extern "C" void* InvokeVtable[] = {
 	(void*)Exec__18TObjSetInvokeColliFv,
 	(void*)fn_3_1A9B0,
 	(void*)TDisp__18TObjSetInvokeColliFv,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	0,
 	0,
 	(void*)fn_3_4FC90,

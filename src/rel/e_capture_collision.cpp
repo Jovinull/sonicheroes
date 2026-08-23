@@ -86,11 +86,11 @@ void TDisp__20TObjCaptureCollisionFv();
 void EditOnChange__20TObjCaptureCollisionFP13SETDATA_PARAM(TObjCaptureCollision*, SETDATA_PARAM*);
 void TObjCaptureCollisionEditThunk();
 void fn_3_1A9B0();
-void objDefaultPDisp();
-void objDefaultImmAftSetRaster();
-void objDefaultDebug();
-void fn_80017854();
-void objDefaultRender();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
 }
 
 extern "C" char TObjCaptureCollisionNumber[];
@@ -326,11 +326,11 @@ extern "C" void* TObjCaptureCollisionVtable[]     = {
 	(void*)Exec__20TObjCaptureCollisionFv,
 	(void*)fn_3_1A9B0,
 	(void*)TDisp__20TObjCaptureCollisionFv,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	0,
 	0,
 	(void*)TObjCaptureCollisionEditThunk,

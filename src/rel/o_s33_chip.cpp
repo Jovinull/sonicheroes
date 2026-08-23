@@ -78,12 +78,12 @@ void fn_8019E880(void*);
 void fn_8019EB94(void*, Vec3*, s32);
 void fn_801A4C84(void*);
 
-void objDefaultDebug();
-void objDefaultImmAftSetRaster();
-void objDefaultPDisp();
-void objDefaultRender();
+void Debug__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void PDisp__7TObjectFv();
+void Render__7TObjectFv();
 void objDefaultTDisp();
-void fn_80017854();
+void Error__7TObjectFPc();
 }
 
 class TObjS33Chip
@@ -313,11 +313,11 @@ extern "C" void* chipVtable[15] = {
 	(void*)Exec__11TObjS33ChipFv,
 	(void*)Disp__11TObjS33ChipFv,
 	(void*)objDefaultTDisp,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)AdjustorEditOnChange__11TObjS33ChipFP13SETDATA_PARAM,

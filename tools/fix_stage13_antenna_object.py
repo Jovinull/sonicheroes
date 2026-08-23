@@ -15,11 +15,11 @@ SYMBOL_RENAMES = {
     "slot1__18AntennaPrimaryBaseFv": "antennaExec",
     "slot2__18AntennaPrimaryBaseFv": "fn_9_1A9B4",
     "slot3__18AntennaPrimaryBaseFv": "objDefaultTDisp",
-    "slot4__18AntennaPrimaryBaseFv": "objDefaultPDisp",
-    "slot5__18AntennaPrimaryBaseFv": "objDefaultImmAftSetRaster",
-    "slot6__18AntennaPrimaryBaseFv": "objDefaultDebug",
-    "slot7__18AntennaPrimaryBaseFv": "fn_80017854",
-    "slot8__18AntennaPrimaryBaseFv": "objDefaultRender",
+    "slot4__18AntennaPrimaryBaseFv": "PDisp__7TObjectFv",
+    "slot5__18AntennaPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",
+    "slot6__18AntennaPrimaryBaseFv": "Debug__7TObjectFv",
+    "slot7__18AntennaPrimaryBaseFv": "Error__7TObjectFPc",
+    "slot8__18AntennaPrimaryBaseFv": "Render__7TObjectFv",
     "@59": "antennaIntegerBias",
 }
 

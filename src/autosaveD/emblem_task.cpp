@@ -114,7 +114,7 @@ extern "C" void __destroy_arr(void* base, void* dtor, s32 size, s32 count);
 extern "C" void __dt__7TObjectFv(Emblem* emblem, s32 flag);
 extern "C" void dtor_800FE334(void);
 extern "C" void fn_800FE3FC(void);
-extern "C" void fn_80017854(void);
+extern "C" void Error__7TObjectFPc(void);
 extern "C" void __ct__7TObjectFP7TObject(Emblem* emblem);
 extern "C" s32 fn_800A8BF8(void* settings);
 extern "C" void fn_800B52E8(void* handle, s32 id, s32 arg1, s32 arg2);
@@ -183,7 +183,7 @@ extern "C" AnimDesc lbl_2_data_1FC
 
 extern "C" VtEntry lbl_2_data_244[11]
     = { NULL, NULL, (VtEntry)fn_2_1914, (VtEntry)fn_2_1844, (VtEntry)fn_2_173C, (VtEntry)fn_2_16C0,
-	      fn_2_13D0, fn_2_13D4, fn_2_13D8, fn_80017854, fn_2_13DC };
+	      fn_2_13D0, fn_2_13D4, fn_2_13D8, Error__7TObjectFPc, fn_2_13DC };
 
 extern "C" char lbl_2_data_270[] = "./advertise/sonic_e.prs";
 extern "C" char lbl_2_data_288[] = "./advertise/as_emblem.one";

@@ -239,15 +239,17 @@ Before enabling a deferred mode for a game-owned translation unit, document:
   build rather than a convenient permutation.
 
 The approved deferred list is deliberately narrow. At present it contains
-`game/skyfs_adx.c`, `game/modeswitch.cpp`, `advertiseD/adv_2p.cpp` and
-`advertiseD/adv_draw.cpp`. Natural PS2 symbol order and GameCube section
+`game/skyfs_adx.c`, `game/modeswitch.cpp`, `advertiseD/adv_2p.cpp`,
+`advertiseD/adv_draw.cpp` and `rel/o_spring.cpp`. Natural PS2 symbol order and GameCube section
 adjacency establish the unified `skyfs_adx.c` unit order; `-inline auto`
 changes its accessor emission and call sites, while `-inline deferred`
 reproduces all 19 functions, relocations and owned sections byte-for-byte.
 `game/modeswitch.cpp` needs deferred emission to reverse its source order and
 reproduce the target exception-record order. The two reconstructed AdvertiseD
 units require deferred/noauto emission to reproduce their reviewed object
-order and linked data layout. Each entry is justified in
+order and linked data layout. The unified spring unit requires deferred/auto
+emission to place its transform helper after `springExec`, matching all
+functions, relocations and owned sections. Each entry is justified in
 `docs/language-audit.md`.
 
 A source must be added to `deferred_sources` in the policy file in the same

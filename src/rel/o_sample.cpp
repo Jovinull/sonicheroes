@@ -148,7 +148,7 @@ FlagWord* initFlagWord(FlagWord* word);
 void zeroFlagWord(FlagWord* word);
 void drawSample(void* display, Vec3* position, f32 scaleX, f32 scaleY, void* model);
 
-void fn_80017854();
+void Error__7TObjectFPc();
 void* fn_80018A34(void* heap, u32 size);
 void fn_800189A4(void* heap, void* object);
 void fn_80051EF0(void* context, Vec3* vector, const Rot3* rotation);

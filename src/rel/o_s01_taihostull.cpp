@@ -115,11 +115,11 @@ void dtor_8005BD3C(void*, s32);
 void __dt__7TObjectFv(void*, s32);
 void fn_800189A4(void*, void*);
 void fn_3_1A9B0();
-void objDefaultPDisp();
-void objDefaultImmAftSetRaster();
-void objDefaultDebug();
-void fn_80017854();
-void objDefaultRender();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
 extern void* stullResource;
 extern void* stullClump;
 extern char stullEmpty[4];
@@ -375,11 +375,11 @@ void* stullVtable[15]   = {
 	(void*)Exec__12TObjS01StullFv,
 	(void*)fn_3_1A9B0,
 	(void*)TDisp__12TObjS01StullFv,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)AdjustorEditOnChange__10StullThunkFP13SETDATA_PARAM,

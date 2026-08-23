@@ -183,11 +183,11 @@ extern "C" s32 fn_8005B8D8(void*);
 extern "C" void fn_8003BC38(void*);
 extern "C" void* lbl_8042C180;
 extern "C" void objDefaultTDisp();
-extern "C" void objDefaultPDisp();
-extern "C" void objDefaultImmAftSetRaster();
-extern "C" void objDefaultDebug();
-extern "C" void fn_80017854();
-extern "C" void objDefaultRender();
+extern "C" void PDisp__7TObjectFv();
+extern "C" void ImmAftSetRaster__7TObjectFv();
+extern "C" void Debug__7TObjectFv();
+extern "C" void Error__7TObjectFPc();
+extern "C" void Render__7TObjectFv();
 
 extern "C" {
 __declspec(section ".rodata") TransformConstants flagTransformZeroConstants
@@ -238,8 +238,8 @@ u32 flagCollisionConfig[36]   = { 0x0001FF0C, 0x00000008, 0x00000000, 0x42960000
 char flagClassText[12]        = "TObjS01Flag";
 const char* flagClassName     = flagClassText;
 void* flagVtable[15]          = { NULL, NULL, (void*)flagDtor, (void*)flagExec, (void*)flagDisp,
-	(void*)objDefaultTDisp, (void*)objDefaultPDisp, (void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug, (void*)fn_80017854, (void*)objDefaultRender, NULL, NULL,
+	(void*)objDefaultTDisp, (void*)PDisp__7TObjectFv, (void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv, (void*)Error__7TObjectFPc, (void*)Render__7TObjectFv, NULL, NULL,
 	(void*)AdjustorEditOnChange__9FlagThunkFP9FlagFrame,
 	(void*)EditOnChange__9FlagThunkFP9FlagFrame };
 char flagAssetFormat[8]       = "%s_%s";

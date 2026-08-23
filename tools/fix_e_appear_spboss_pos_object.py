@@ -20,7 +20,7 @@ SYMBOL_RENAMES = {
     "Virtual4__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook1",
     "Virtual5__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook2",
     "Virtual6__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook3",
-    "Virtual7__28TEnemyAppearSPBossPosPrimaryFv": "fn_80017854",
+    "Virtual7__28TEnemyAppearSPBossPosPrimaryFv": "Error__7TObjectFPc",
     "Virtual8__28TEnemyAppearSPBossPosPrimaryFv": "sampleHook4",
 }
 

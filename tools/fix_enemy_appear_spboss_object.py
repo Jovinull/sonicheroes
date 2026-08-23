@@ -74,7 +74,6 @@ def main() -> None:
             "ImmAftSetRaster__7TObjectFv": "sampleHook2",
             "Debug__7TObjectFv": "sampleHook3",
             "Render__7TObjectFv": "sampleHook4",
-            "Error__7TObjectFPc": "fn_80017854",
         }
         for source, target in renames.items():
             command.extend(["--redefine-sym", f"{source}={target}"])

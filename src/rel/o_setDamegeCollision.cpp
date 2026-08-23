@@ -75,11 +75,11 @@ extern "C" void dtor_8005BD3C(Motion*, s32);
 extern "C" void fn_8005BE6C(Motion*);
 
 extern "C" void fn_3_1A9B0(void);
-extern "C" void objDefaultPDisp(void);
-extern "C" void objDefaultImmAftSetRaster(void);
-extern "C" void objDefaultDebug(void);
-extern "C" void fn_80017854(void);
-extern "C" void objDefaultRender(void);
+extern "C" void PDisp__7TObjectFv(void);
+extern "C" void ImmAftSetRaster__7TObjectFv(void);
+extern "C" void Debug__7TObjectFv(void);
+extern "C" void Error__7TObjectFPc(void);
+extern "C" void Render__7TObjectFv(void);
 
 extern "C" void setDamageCollisionTDisp(TObjSetDamageCollision*) { }
 
@@ -223,11 +223,11 @@ extern "C" char setDamageCollisionClassString[]    = { 'T', 'O', 'b', 'j', 'S', 
 	'm', 'a', 'g', 'e', 'C', 'o', 'l', 'l', 'i', 's', 'i', 'o', 'n', 0 };
 extern "C" const char* setDamageCollisionClassName = setDamageCollisionClassString;
 extern "C" void setDamageCollisionEditThunk(TObjSetDamageCollision*, Frame*);
-extern "C" void* setDamageCollisionVtable[]
-    = { NULL, NULL, (void*)setDamageCollisionDtor, (void*)setDamageCollisionExec, (void*)fn_3_1A9B0,
-	      (void*)setDamageCollisionTDisp, (void*)objDefaultPDisp, (void*)objDefaultImmAftSetRaster,
-	      (void*)objDefaultDebug, (void*)fn_80017854, (void*)objDefaultRender, NULL, NULL,
-	      (void*)setDamageCollisionEditThunk, (void*)setDamageCollisionEditOnChange };
+extern "C" void* setDamageCollisionVtable[] = { NULL, NULL, (void*)setDamageCollisionDtor,
+	(void*)setDamageCollisionExec, (void*)fn_3_1A9B0, (void*)setDamageCollisionTDisp,
+	(void*)PDisp__7TObjectFv, (void*)ImmAftSetRaster__7TObjectFv, (void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc, (void*)Render__7TObjectFv, NULL, NULL,
+	(void*)setDamageCollisionEditThunk, (void*)setDamageCollisionEditOnChange };
 extern "C" char setDamageCollisionDisplayName[]
     = { 'D', 'A', 'M', 'A', 'G', 'E', ' ', 'C', 'O', 'L', 'L', 'I', 'S', 'I', 'O', 'N', 0 };
 extern "C" char setDamageCollisionFieldTypes[] = { 'i', 'f', 'f', 'f', 0 };
