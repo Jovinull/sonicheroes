@@ -127,7 +127,7 @@ extern "C" void fn_800A8120(void* t);
 extern "C" void fn_800A8174(void* t, s32 v);
 extern "C" void fn_800A8264(void* t);
 extern "C" void fn_800A8620(void* t, s32 v);
-extern "C" void fn_800A8828(void* t, void* parent);
+extern "C" void __ct__10EasySelectFP7TObject(void* t, void* parent);
 extern "C" s32 fn_800A8C0C(void* t);
 extern "C" void fn_800A8C50(void* t, s32 v);
 extern "C" void fn_800A8C7C(void* t);
@@ -368,7 +368,7 @@ extern "C" void fn_1_103F0(void* t)
 ADV_2P::ADV_2P(TObject* parent)
 {
 	void* t = this;
-	fn_800A8828(t, parent);
+	__ct__10EasySelectFP7TObject(t, parent);
 	pp(0x18) = lbl_1_data_79DC;
 	__construct_array((u8*)t + 0x84, (void*)fn_1_12124, (void*)fn_1_120E0, 0x8c, 3);
 	__construct_array((u8*)t + 0x23c, (void*)fn_1_12124, (void*)fn_1_120E0, 0x8c, 2);

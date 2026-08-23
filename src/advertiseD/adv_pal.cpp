@@ -79,7 +79,7 @@ extern s32 lbl_1_bss_7BC; // deflicker-mode flag
 extern void* lbl_8042C180;
 
 // Engine helpers (DOL / other REL objects).
-extern void fn_800A8828(ADV_PAL* self, void* parent);
+extern void __ct__10EasySelectFP7TObject(ADV_PAL* self, void* parent);
 extern void fn_800A8620(ADV_PAL* self, s32 flag);
 extern void advE3Rom_pause(void* self);
 extern void fn_800A8C7C(void* p);
@@ -179,7 +179,7 @@ ADV_PAL* fn_1_10A74(ADV_PAL* self, void* parent)
 {
 	Obj* c;
 
-	fn_800A8828(self, parent);
+	__ct__10EasySelectFP7TObject(self, parent);
 	self->vtable = &lbl_1_data_7B8C;
 	fn_1_12124(&self->unk_0x80);
 	self->name = lbl_1_data_7B88;

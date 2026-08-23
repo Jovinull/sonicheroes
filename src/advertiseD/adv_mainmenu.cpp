@@ -111,7 +111,7 @@ void fn_1_4028(void* obj, int a);
 void fn_1_152C0(void* p);
 void* fn_8012ECA8(int a, int b);
 void* fn_1_150AC(void* obj, void* params);
-void fn_800A8828(void* obj, void* parent);
+void __ct__10EasySelectFP7TObject(void* obj, void* parent);
 void __construct_array(void* arr, void (*ctor)(void*), void (*dtor)(void*), int size, int count);
 void fn_1_12124(void* p);
 void fn_1_120C4(void* p, int i);
@@ -310,7 +310,7 @@ void* fn_1_4E18(void* obj, s16 flag)
 ADV_MAINMENU* fn_1_4E9C(ADV_MAINMENU* obj, void* parent)
 {
 	MMCtorView* v = (MMCtorView*)obj;
-	fn_800A8828(obj, parent);
+	__ct__10EasySelectFP7TObject(obj, parent);
 	*(void**)((char*)obj + 0x18) = lbl_1_data_10D8;
 	__construct_array(v->sel, fn_1_12124, fn_1_120E0, 0x8c, 5);
 	*(void**)((char*)obj + 0x0)  = lbl_1_data_10D4;
