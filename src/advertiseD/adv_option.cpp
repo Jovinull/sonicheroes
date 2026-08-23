@@ -153,7 +153,7 @@ void fn_800A8264(void*);
 void __ct__10DAnimClassFv(void*, int);
 void fn_800A80E0(void*, const void*, int);
 void fn_800A8620(void*, int);
-void fn_800A8828(void*);
+void __ct__10EasySelectFP7TObject(void*);
 void* fn_800A8BF0(void*);
 int fn_800A9398(void*, int);
 void fn_800B52E8(void*, int, int, int);
@@ -352,7 +352,7 @@ Adv* fn_1_C608(Adv* self, void* parent)
 {
 	void* p;
 	(void)parent;
-	fn_800A8828(self);
+	__ct__10EasySelectFP7TObject(self);
 	self->vtable = lbl_1_data_3CA8;
 	__construct_array(&self->unk_9C, (void*)fn_1_12124, (void*)fn_1_120E0, 0x8c, 6);
 	self->name     = lbl_1_data_3CA4;

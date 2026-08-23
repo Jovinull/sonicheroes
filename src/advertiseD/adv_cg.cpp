@@ -194,7 +194,7 @@ void fn_1_10F40(void* obj, ADV_CG* self);
 void fn_1_11750(int a);
 
 void fn_800A8620(void* self, int flag);
-void fn_800A8828(void* self, void* parent);
+void __ct__10EasySelectFP7TObject(void* self, void* parent);
 void* __dt__7TObjectFv(void* self, int flag);
 void* __ct__7TObjectFP7TObject(void* self, void* parent);
 void fn_800421C8(void* a, void* b);
@@ -305,7 +305,7 @@ ADV_MOVIE* fn_1_DBDC(ADV_MOVIE* self, void* parent)
 {
 	s32 i;
 
-	fn_800A8828(self, parent);
+	__ct__10EasySelectFP7TObject(self, parent);
 	self->vtable = lbl_1_data_6364;
 	self->templ = (void*)lbl_1_data_6360;
 	self->objsize = 0x98;
@@ -710,7 +710,7 @@ ADV_CG* fn_1_EA48(ADV_CG* self, void* parent)
 {
 	void* obj;
 
-	fn_800A8828(self, parent);
+	__ct__10EasySelectFP7TObject(self, parent);
 	self->vtable = lbl_1_data_63CC;
 	fn_1_12124(&self->selector);
 	self->templ = (void*)lbl_1_data_6340;

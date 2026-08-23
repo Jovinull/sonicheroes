@@ -76,7 +76,7 @@ extern u8 lbl_1_data_8450;
 extern void fn_800A8264(Line* self);
 extern void* advE3Rom_resume(s32 size);
 extern void fn_8012F3D0(void* tag, void* str);
-extern void fn_800A8828(Line* self, void* parent);
+extern void __ct__10EasySelectFP7TObject(Line* self, void* parent);
 extern s32 fn_1_12A0(void* obj, s32 x);
 extern void* lbl_8042C180;
 extern void* lbl_1_data_844C;
@@ -750,7 +750,7 @@ void* fn_1_130C0(Line* o, s16 flag)
 #pragma dont_inline on
 Line* fn_1_131B0(Line* self, void* parent, void* csv, void* csvIdx, const f32* pos)
 {
-	fn_800A8828(self, parent);
+	__ct__10EasySelectFP7TObject(self, parent);
 	self->vtable   = &lbl_1_data_8460;
 	*(void**)self  = lbl_1_data_844C;
 	self->unk_0x1e = 0xa4;

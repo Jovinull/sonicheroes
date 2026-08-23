@@ -44,7 +44,7 @@ f32 fn_802012B0(void*);
 f32 fn_802012B8(void*);
 void fn_800CC280(void);
 void fn_800A8620(void*, int);
-void fn_800A8828(void*);
+void __ct__10EasySelectFP7TObject(void*);
 // disp/exec externs
 extern void* lbl_8042C180;    // manager handle (loaded then passed)
 extern void* lbl_8042C388;    // sound/system handle (loaded)
@@ -339,7 +339,7 @@ AdvE3Rom* advE3Rom_ct(AdvE3Rom* self, s16 flag)
 AdvE3Rom* advE3Rom_create(AdvE3Rom* self, void* parent)
 {
 	(void)parent;
-	fn_800A8828(self);
+	__ct__10EasySelectFP7TObject(self);
 	self->vtable = lbl_1_data_210;
 	self->name   = lbl_1_data_1C;
 	self->unk_1E = 0x8C;

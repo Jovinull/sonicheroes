@@ -160,7 +160,7 @@ extern "C" void fn_1_2164(FS* t);
 
 // 0x358C - OnExec: tick sub-tasks then dispatch on the current state.
 
-extern "C" void fn_800A8828(FS* t, void* parent);
+extern "C" void __ct__10EasySelectFP7TObject(FS* t, void* parent);
 extern "C" void __ct__10DAnimClassFv(FS* t, int i);
 extern "C" void fn_1_11750(int i);
 extern "C" void* fn_80126200(FS* t);
@@ -460,7 +460,7 @@ extern "C" FS* fn_1_368C(FS* t, s16 free)
 
 extern "C" FS* fn_1_3714(FS* t, void* parent, int mode)
 {
-	fn_800A8828(t, parent);
+	__ct__10EasySelectFP7TObject(t, parent);
 	pp(0x18)                 = &lbl_1_data_87C;
 	pp(0x0)                  = lbl_1_data_878;
 	*(u16*)((char*)t + 0x1e) = 0xb0;

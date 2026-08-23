@@ -185,7 +185,7 @@ void fn_800A8120(void*);
 void fn_800A8174(void*, int);
 void fn_800A8620(void*, int);
 void __ct__10DAnimClassFv(void*, int);
-void fn_800A8828(void*);
+void __ct__10EasySelectFP7TObject(void*);
 void fn_800A8C9C(void*, void*);
 void fn_800A9418(void*, void*);
 void fn_800A9444(void*);
@@ -810,7 +810,7 @@ AStory* fn_1_8434(AStory* self, void* parent)
 	int selOff;
 	int j;
 	(void)parent;
-	fn_800A8828(self);
+	__ct__10EasySelectFP7TObject(self);
 	self->vtable = lbl_1_data_29BC;
 	fn_1_12124(&self->pageSel);
 	__construct_array(&self->itemSel[0], (void*)fn_1_12124, (void*)fn_1_120E0, 0x8c, 4);
