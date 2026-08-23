@@ -17,7 +17,6 @@ SYMBOL_RENAMES = {
     "Disp__7TObjectFv": "fn_80018988",
     "ImmAftSetRaster__7TObjectFv": "fn_80018950",
     "Debug__7TObjectFv": "fn_80018954",
-    "Error__7TObjectFPc": "fn_80017854",
     "Render__7TObjectFv": "fn_80018958",
 }
 

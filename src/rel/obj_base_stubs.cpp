@@ -16,10 +16,10 @@
 
 extern "C" void objDefaultTDisp(void) { }
 
-extern "C" void objDefaultPDisp(void) { }
+extern "C" void PDisp__7TObjectFv(void) { }
 
-extern "C" void objDefaultImmAftSetRaster(void) { }
+extern "C" void ImmAftSetRaster__7TObjectFv(void) { }
 
-extern "C" void objDefaultDebug(void) { }
+extern "C" void Debug__7TObjectFv(void) { }
 
-extern "C" void objDefaultRender(void) { }
+extern "C" void Render__7TObjectFv(void) { }

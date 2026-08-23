@@ -1,16 +1,6 @@
 #include "types.h"
 
-// TObjSpring, as far as it has been carved: the contact pass that launches
-// whatever is touching the spring, the two display hooks after it, and the
-// class's vtable.
-//
-// The claim is .text 0x88C to 0xC70, the five constants in .rodata, and the
-// class's vtable together with the jump table in .data. That is an island
-// inside TObjSpring's translation unit rather than the whole of it: the
-// constants and the table are read here and nowhere else in the module, which
-// is what makes the run cuttable on its own. Exec, the constructor and the
-// destructor are still assembly, and so is the clamp at 0x16CC, which sits far
-// enough away to be its own island in rel/spring_clamp.cpp.
+// TObjSpring's contact pass, display hooks, and class vtable.
 //
 // Disp tints the spring: it recomputes a colour once per tick and writes it
 // into the material the module keeps a pointer to, 192 plus 63 times a wave, so
@@ -119,49 +109,19 @@ extern "C" s32 springTick;
 // four. The vtable ends exactly where the table begins and does start on eight,
 // so the two are claimed together and the compiler lays them out in that order.
 //
-// Nine of the fifteen slots are still assembly and are reached by the names
-// each module's symbols.txt gives them. Four of those, the ones between PDisp
-// and Render, are the base class defaults both sample objects point at as well.
-extern "C" void springDtor(void);
-extern "C" void springExec(void);
-extern "C" void springDisp(Spring* object);
-extern "C" void springTDisp(Spring* object);
-extern "C" void objDefaultPDisp(void);
-extern "C" void objDefaultImmAftSetRaster(void);
-extern "C" void objDefaultDebug(void);
-extern "C" void fn_80017854(void);
-extern "C" void objDefaultRender(void);
-extern "C" void springThunk(void);
-extern "C" void springClamp(void* object, void* frame);
+// The compiler-owned two-base vtable emits all fifteen retail slots, including
+// the secondary-base adjustor thunk at offset 0x34.
 
-extern "C" void* springVtable[] = {
-	NULL,
-	NULL,
-	(void*)springDtor,
-	(void*)springExec,
-	(void*)springDisp,
-	(void*)springTDisp,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
-	NULL,
-	NULL,
-	(void*)springThunk,
-	(void*)springClamp,
-};
-
-extern "C" void springLaunch(Spring* object)
+static inline void springLaunchImpl(Spring* object)
 {
-	Vec3 world;
-	Vec3 impulse;
 	Vec3 out;
+	Vec3 impulse;
+	Vec3 world;
 	Node* node;
 	Contact* contact;
-	s32 player;
-	s32 partner;
 	Character* team;
+	s32 partner;
+	s32 player;
 
 	fn_80021824(lbl_8042C1A4);
 	node    = fn_80020BD8(object->list, 0x13);
@@ -244,9 +204,9 @@ extern "C" void springLaunch(Spring* object)
 	}
 }
 
-extern "C" void springTDisp(Spring* object) { }
+static inline void springTDispImpl(Spring* object) { }
 
-extern "C" void springDisp(Spring* object)
+static inline void springDispImpl(Spring* object)
 {
 	s32 tick = lbl_8042C180->tick;
 	u8* material;
@@ -267,4 +227,21 @@ extern "C" void springDisp(Spring* object)
 	material[7] = 0xFF;
 
 	springTick = tick;
+}
+
+extern "C" void Disp__11SpringClassFv(Spring* object)
+{
+	springDispImpl(object);
+}
+
+} // namespace spring_object_unit
+
+void SpringClass::TDisp() { }
+
+namespace spring_object_unit
+{
+
+extern "C" void springLaunch(Spring* object)
+{
+	springLaunchImpl(object);
 }

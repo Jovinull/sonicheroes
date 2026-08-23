@@ -37,7 +37,6 @@
         "movieD/cri/sfx.c"
     ],
     "legacy_cpp_c_sources": [
-        "autosaveD/emblem_task.c",
         "autosaveD/line_count.c",
     "autosaveD/quad_fill.c",
     "autosaveD/quad_submit.c",
@@ -54,6 +53,7 @@
         "advertiseD/adv_draw.cpp",
         "game/e_paralysis.cpp",
         "game/modeswitch.cpp",
-        "game/skyfs_adx.c"
+        "game/skyfs_adx.c",
+        "rel/o_spring.cpp"
     ]
 }

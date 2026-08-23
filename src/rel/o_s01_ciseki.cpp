@@ -106,11 +106,11 @@ void s01ObjectBaseDtor(TObjS01Ciseki*, s16);
 void s01ObjectBaseCtor(TObjS01Ciseki*, void*);
 
 void fn_3_1A9B0();
-void objDefaultPDisp();
-void objDefaultImmAftSetRaster();
-void objDefaultDebug();
-void fn_80017854();
-void objDefaultRender();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
 
 TObjS01Ciseki* __dt__13TObjS01CisekiFv(TObjS01Ciseki*, s16);
 TObjS01Ciseki* __ct__13TObjS01CisekiFP7TObject(TObjS01Ciseki*, void*);
@@ -348,11 +348,11 @@ extern "C" void* cisekiVtable[18] = {
 	(void*)Exec__13TObjS01CisekiFv,
 	(void*)fn_3_1A9B0,
 	(void*)TDisp__13TObjS01CisekiFv,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)AdjustorEditOnChange__11CisekiThunkFP13SETDATA_PARAM,

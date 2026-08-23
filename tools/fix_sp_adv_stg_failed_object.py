@@ -10,7 +10,6 @@ import tempfile
 from pathlib import Path
 
 SYMBOL_RENAMES = {
-    "Error__7TObjectFPc": "fn_80017854",
     "StartFadeOut__7TObjectFv": "fn_8001894C",
     "ImmAftSetRaster__7TObjectFv": "fn_80018950",
     "Debug__7TObjectFv": "fn_80018954",

@@ -173,7 +173,7 @@ extern "C" StageCollisionTable* lbl_8042C298;
 
 extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
-extern "C" void fn_80017854(void);
+extern "C" void Error__7TObjectFPc(void);
 extern "C" void fn_800189A4(void*, TObject*);
 extern "C" void* fn_80018A34(void*, u32);
 extern "C" IteratorResult* fn_800211A8(Transform*);

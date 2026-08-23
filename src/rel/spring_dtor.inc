@@ -1,12 +1,6 @@
 #include "types.h"
 
-// TObjSpring's destructor. It sits apart from the rest of the class in
-// rel/spring_object.cpp because the constructor between them is not carvable on
-// its own: it shares the asset name strings with the loader.
-//
-// The claim is .text 0x1430 to 0x1500 and nothing else. Everything it touches
-// is either a DOL symbol or a name the module already exports, the vtable
-// among them, so there is no data to take.
+// TObjSpring's destructor.
 //
 // The run is the same in all thirteen stage modules that share the engine core.
 // stage40D is a different revision of the source and is left out, as everywhere
@@ -50,7 +44,7 @@ extern "C" void* fn_8015BD78(void* model);
 // Defined by each module, renamed to this name in its own symbols.txt.
 extern "C" void* springVtable[];
 
-extern "C" Spring* springDtor(Spring* object, s16 flags)
+extern "C" Spring* Destroy__11SpringClassFs(Spring* object, s16 flags)
 {
 	if (object != NULL) {
 		object->base.vtable = springVtable;

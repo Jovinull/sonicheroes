@@ -357,11 +357,11 @@ extern "C" char flowerClassNameString[] = "TObjS01Flower";
 extern "C" const char* flowerClassName  = flowerClassNameString;
 
 extern "C" void objDefaultTDisp();
-extern "C" void objDefaultPDisp();
-extern "C" void objDefaultImmAftSetRaster();
-extern "C" void objDefaultDebug();
-extern "C" void fn_80017854();
-extern "C" void objDefaultRender();
+extern "C" void PDisp__7TObjectFv();
+extern "C" void ImmAftSetRaster__7TObjectFv();
+extern "C" void Debug__7TObjectFv();
+extern "C" void Error__7TObjectFPc();
+extern "C" void Render__7TObjectFv();
 extern "C" void EditOnChange__11FlowerThunkFP5Frame(FlowerThunk*, Frame*);
 extern "C" void AdjustorEditOnChange__11FlowerThunkFP5Frame(FlowerThunk*, Frame*);
 
@@ -372,11 +372,11 @@ extern "C" void* flowerVtable[15] = {
 	(void*)flowerExec,
 	(void*)flowerDisp,
 	(void*)objDefaultTDisp,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)AdjustorEditOnChange__11FlowerThunkFP5Frame,
