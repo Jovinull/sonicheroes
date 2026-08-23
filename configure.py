@@ -474,7 +474,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "game/eff_tornado.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pooldata off"],
             ),
             Object(
                 Matching,
