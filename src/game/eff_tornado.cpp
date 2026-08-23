@@ -90,6 +90,7 @@ struct TObjEffTornado2 : TObjEffTornado {
 	TObjEffTornado2(TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 	~TObjEffTornado2();
 	void TDisp();
+	void Exec();
 };
 
 struct PlayerColorSource {
@@ -750,92 +751,92 @@ void TObjEffTornado2::TDisp()
 }
 #pragma peephole reset
 
-extern "C" void Exec__15TObjEffTornado2Fv(TObjEffTornado2* effect)
+void TObjEffTornado2::Exec()
 {
-	if (fn_8005BB20(&effect->position, lbl_8042DBE0) != 0) {
-		effect->flags |= 1;
+	if (fn_8005BB20(&this->position, lbl_8042DBE0) != 0) {
+		this->flags |= 1;
 		return;
 	}
 
-	switch (effect->active) {
+	switch (this->active) {
 		case 1:
-			if (effect->direction != 0) {
-				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE4);
+			if (this->direction != 0) {
+				this->alpha = fn_800D7328(this->alpha, lbl_8042DBC0, lbl_8042DBE4);
 			} else {
-				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+				this->alpha = fn_800D7328(this->alpha, lbl_8042DBC0, lbl_8042DBE8);
 			}
-			if (effect->alpha >= lbl_8042DBC0) {
-				effect->active = 2;
-				effect->state  = 0;
+			if (this->alpha >= lbl_8042DBC0) {
+				this->active = 2;
+				this->state  = 0;
 			}
 			break;
 
 		case 2: {
-			if (effect->direction != 0) {
-				s16 timer = effect->state++;
+			if (this->direction != 0) {
+				s16 timer = this->state++;
 				if ((f32)timer >= lbl_8042DBEC) {
-					effect->active = 3;
+					this->active = 3;
 				}
 			} else {
-				s16 timer = effect->state++;
+				s16 timer = this->state++;
 				if ((f32)timer >= lbl_8042DBF0) {
-					effect->active = 3;
+					this->active = 3;
 				}
 			}
 
-			CollisionSearchResult* collision = fn_80020BD8(&effect->effectModel, 11);
+			CollisionSearchResult* collision = fn_80020BD8(&this->effectModel, 11);
 			void* hit                        = collision != 0 ? collision->object : 0;
 			if (hit != 0) {
-				effect->active = 3;
+				this->active = 3;
 			}
 			break;
 		}
 
 		case 3:
-			if (effect->direction != 0) {
-				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE4);
+			if (this->direction != 0) {
+				this->alpha = fn_800D7328(this->alpha, lbl_8042DBB4, lbl_8042DBE4);
 			} else {
-				effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+				this->alpha = fn_800D7328(this->alpha, lbl_8042DBB4, lbl_8042DBE8);
 			}
-			if (effect->alpha <= lbl_8042DBB4) {
-				effect->active = 4;
+			if (this->alpha <= lbl_8042DBB4) {
+				this->active = 4;
 			}
 			break;
 
 		case 4: {
-			TObject* parent = *(TObject**)((u8*)effect + 0x10);
+			TObject* parent = *(TObject**)((u8*)this + 0x10);
 			if (parent != lbl_8042C110 && parent != lbl_8042C2A0) {
 				return;
 			}
-			effect->flags |= 1;
+			this->flags |= 1;
 			return;
 		}
 	}
 
-	effect->scale += lbl_8042DBF4;
-	effect->swirlScale    = fn_800D7328(effect->swirlScale, lbl_8042DBC0, lbl_8042DBF8);
-	effect->verticalScale = fn_800D7328(effect->verticalScale, lbl_8042DBFC, lbl_8042DC00);
+	this->scale += lbl_8042DBF4;
+	this->swirlScale    = fn_800D7328(this->swirlScale, lbl_8042DBC0, lbl_8042DBF8);
+	this->verticalScale = fn_800D7328(this->verticalScale, lbl_8042DBFC, lbl_8042DC00);
 
-	if (effect->swirlScale >= lbl_8042DC04) {
-		s32 opacity = effect->opacity;
+	if (this->swirlScale >= lbl_8042DC04) {
+		s32 opacity = this->opacity;
 		if ((opacity -= 0x7f) < 0) {
-			effect->opacity       = 0xff;
-			effect->swirlScale    = lbl_8042DC08;
-			effect->verticalScale = lbl_8042DBC0;
+			this->opacity       = 0xff;
+			this->swirlScale    = lbl_8042DC08;
+			this->verticalScale = lbl_8042DBC0;
 		} else {
-			effect->opacity = opacity;
+			this->opacity = opacity;
 		}
 	}
 
-	effect->color[3] = (u8)(lbl_8042DC0C * effect->alpha);
-	if (effect->alpha > lbl_8042DC10) {
+	this->color[3] = (u8)(lbl_8042DC0C * this->alpha);
+	if (this->alpha > lbl_8042DC10) {
 		if (*(s32*)(lbl_8029C310 + 0x18) == 0) {
-			*(RwV3d*)&effect->effectModel.data[0x7c]  = *(RwV3d*)&effect->effectModel.data[0x60];
-			*(RwV3d*)&effect->effectModel.data[0x60]  = effect->position;
-			*(sAngle*)&effect->effectModel.data[0x6c] = effect->rotation;
-			fn_8003BC38(&effect->effectModel);
+			*(RwV3d*)&this->effectModel.data[0x7c]  = *(RwV3d*)&this->effectModel.data[0x60];
+			*(RwV3d*)&this->effectModel.data[0x60]  = this->position;
+			*(sAngle*)&this->effectModel.data[0x6c] = this->rotation;
+			fn_8003BC38(&this->effectModel);
 		} else {
-			fn_8003BE78(&effect->effectModel);
+			fn_8003BE78(&this->effectModel);
 		}
 	}
 }
