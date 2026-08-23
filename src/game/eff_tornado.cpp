@@ -1208,8 +1208,8 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		f32 increment = lbl_8042DC24;
 		limit         = lbl_8042DBF0;
 		while (height <= limit) {
-			void* model = tornadoModel(models, 1);
-			void* frame = tornadoFrame(model);
+			void* model = models[1];
+			void* frame = *(void**)((u8*)model + 4);
 			s32 tableIndex;
 			s32 vectorOffset;
 			fn_8019EC30(frame,
@@ -1246,7 +1246,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		angleOffsets = lbl_8025347C;
 		do {
 			void* model = tornadoModel(models, 2);
-			void* frame = tornadoFrame(model);
+			void* frame = *(void**)((u8*)model + 4);
 			s32 vectorOffset;
 			s32 tableIndex;
 			fn_8019EC30(frame,
