@@ -156,6 +156,15 @@ game/SpAdvStgFailed_bss.cpp:
 game/dAnim_ctor.cpp:
 	.text       start:0x800A80DC end:0x800A80E0
 
+game/eff_tornado.cpp:
+	extab       start:0x80007CFC end:0x80007E84
+	extabindex  start:0x8000E38C end:0x8000E488
+	.text       start:0x800AB77C end:0x800ADC3C
+	.data       start:0x802532E8 end:0x80253648
+	.sdata      start:0x8042B350 end:0x8042B374
+	.sbss       start:0x8042C350 end:0x8042C380
+	.sdata2     start:0x8042DBD8 end:0x8042DBE0
+
 game/hAnim.cpp:
 	extab       start:0x80008300 end:0x80008348
 	extabindex  start:0x8000EA10 end:0x8000EA7C
@@ -285,15 +294,6 @@ game/SpAdvStgFailed.cpp:
 	.data       start:0x8028D0F0 end:0x8028D1CC
 	.sbss       start:0x8042C810 end:0x8042C818
 	.sdata2     start:0x8042F198 end:0x8042F19C
-
-game/eff_tornado.cpp:
-	extab       start:0x80007CFC end:0x80007E84
-	extabindex  start:0x8000E38C end:0x8000E488
-	.text       start:0x800AB77C end:0x800ADC3C
-	.data       start:0x802532E8 end:0x80253648
-	.sdata      start:0x8042B350 end:0x8042B374
-	.sbss       start:0x8042C350 end:0x8042C380
-	.sdata2     start:0x8042DBD8 end:0x8042DBE0
 
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0

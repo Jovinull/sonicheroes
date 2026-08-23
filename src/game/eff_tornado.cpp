@@ -161,7 +161,7 @@ void fn_8013F3A4(void*);
 void fn_801491A8(void*);
 int fn_801C28D8();
 void* fn_80150588(void*);
-void __dt__7C_COLLIFv(C_COLLI*, s32);
+void dtor_8003C52C(C_COLLI*, s32);
 void __dt__7TObjectFv(TObject*, s32);
 TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado*, s32);
 void fn_800189A4(void*, void*);
@@ -578,7 +578,7 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 		effect->vtable = lbl_802534E4;
 		if (effect != 0) {
 			effect->vtable = lbl_8025361C;
-			__dt__7C_COLLIFv(&effect->effectModel, 0);
+			dtor_8003C52C(&effect->effectModel, 0);
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
@@ -990,7 +990,7 @@ extern "C" TObjEffTornado2* __dt__15TObjEffTornado2Fv(TObjEffTornado2* effect, s
 		effect->vtable = lbl_802535C4;
 		if (effect != 0) {
 			effect->vtable = lbl_8025361C;
-			__dt__7C_COLLIFv(&effect->effectModel, 0);
+			dtor_8003C52C(&effect->effectModel, 0);
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
@@ -1068,7 +1068,7 @@ extern "C" TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado* effect, s32 
 {
 	if (effect != 0) {
 		effect->vtable = lbl_8025361C;
-		__dt__7C_COLLIFv(&effect->effectModel, 0);
+		dtor_8003C52C(&effect->effectModel, 0);
 		__dt__7TObjectFv(effect, 0);
 		if ((s16)shouldDelete > 0) {
 			fn_800189A4(lbl_8042C148, effect);
