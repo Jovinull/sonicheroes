@@ -376,6 +376,125 @@ static inline void* tornadoFrame(void* model)
 	return *(void**)((u8*)model + 4);
 }
 
+void* lbl_802532E8[3] = { 0, 0, 0 };
+void* lbl_802532F4[3] = { 0, 0, 0 };
+char lbl_80253300[]   = "EF_TORNADE.DFF";
+char lbl_80253310[]   = "EF_TORNADEB.DFF";
+char lbl_80253320[]   = "EF_TORNADEC.DFF";
+char* lbl_80253330[3] = { lbl_80253300, lbl_80253310, lbl_80253320 };
+u8 lbl_8025333C[0x30] = {
+	0x0a,
+	0x0a,
+	0xf0,
+	0xe2,
+	0x00,
+	0x20,
+	0x20,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x42,
+	0x70,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x41,
+	0xa0,
+	0x00,
+	0x00,
+	0x42,
+	0x70,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+	0x00,
+};
+char lbl_8025336C[]   = "TObjEffTornado";
+RwV3d lbl_8025337C[8] = {
+	{ 0.8f, 1.5f, 0.9f },
+	{ 1.1f, 0.8f, 1.2f },
+	{ 1.1f, 0.9f, 1.0f },
+	{ 0.9f, 1.4f, 0.8f },
+	{ 0.8f, 0.6f, 0.9f },
+	{ 0.8f, 1.8f, 0.8f },
+	{ 0.9f, 1.2f, 0.7f },
+	{ 1.0f, 0.9f, 1.1f },
+};
+RwV3d lbl_802533DC[8] = {
+	{ 4.0f, -1.5f, 4.5f },
+	{ 5.5f, 0.0f, -6.0f },
+	{ -5.5f, 2.5f, -5.0f },
+	{ -4.5f, 1.0f, 4.0f },
+	{ 4.0f, -0.5f, 4.5f },
+	{ 4.0f, 0.8f, -4.0f },
+	{ -4.5f, -0.9f, -3.5f },
+	{ -5.0f, 0.3f, 5.5f },
+};
+RotationPair lbl_8025343C[8] = {
+	{ 0.996195f, 0.087156f },
+	{ 0.965926f, -0.258819f },
+	{ 0.999391f, 0.034899f },
+	{ 0.992546f, 0.121869f },
+	{ 0.996195f, -0.087156f },
+	{ 0.999848f, 0.017452f },
+	{ 0.990268f, -0.139173f },
+	{ 0.994522f, 0.104528f },
+};
+s32 lbl_8025347C[8]   = { 0, -0x4000, 0x1600, -0xc00, 0x3000, 0x1000, -0x1600, 0xa00 };
+char lbl_8025349C[]   = "TObjEffTornadoSpin";
+char lbl_802534B0[16] = "TObjEffTornado2";
+
+u32 lbl_802534C0[5] = {
+	0xffffffff,
+	0x005aaaff,
+	0x000000ff,
+	0x00a000ff,
+	0xff0060ff,
+};
+char lbl_802534D4[]    = "TObjEffTyphoon";
+void* lbl_802534E4[11] = {
+	0,
+	0,
+	(void*)__dt__14TObjEffTyphoonFv,
+	(void*)Exec__14TObjEffTyphoonFv,
+	(void*)fn_8001898C,
+	(void*)TDisp__14TObjEffTyphoonFv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
+
+const char* lbl_8042B350 = lbl_8025336C;
+const char* lbl_8042B354 = lbl_8025349C;
+const char* lbl_8042B358 = lbl_802534B0;
+Rgba lbl_8042B35C        = { 0x60, 0x60, 0x60, 0xff };
+const char* lbl_8042B360 = lbl_802534D4;
+
 extern "C" void TDisp__14TObjEffTyphoonFv(TObjEffTyphoon* effect)
 {
 	TDisp__14TObjEffTornadoFv(effect);
@@ -913,6 +1032,51 @@ extern "C" int SetPosition__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 	return -1;
 }
 
+char lbl_80253568[]    = "EF_TORNADO.DFF";
+char lbl_80253578[]    = "EF_TORNADO_RING.DFF";
+char lbl_8025358C[]    = "EF_TORNADO_RINGB.DFF";
+char lbl_802535A4[]    = "EF_TORNADO.ANM";
+char lbl_802535B4[]    = "EF_TORNADO.UVB";
+void* lbl_802535C4[11] = {
+	0,
+	0,
+	(void*)__dt__15TObjEffTornado2Fv,
+	(void*)Exec__15TObjEffTornado2Fv,
+	(void*)fn_8001898C,
+	(void*)TDisp__15TObjEffTornado2Fv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
+void* lbl_802535F0[11] = {
+	0,
+	0,
+	(void*)__dt__18TObjEffTornadoSpinFv,
+	(void*)Exec__18TObjEffTornadoSpinFv,
+	(void*)fn_8001898C,
+	(void*)TDisp__18TObjEffTornadoSpinFv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
+void* lbl_8025361C[11] = {
+	0,
+	0,
+	(void*)__dt__14TObjEffTornadoFv,
+	(void*)Exec__14TObjEffTornadoFv,
+	(void*)fn_8001898C,
+	(void*)TDisp__14TObjEffTornadoFv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
+
 extern "C" int CheckTornado__FP7C_COLLI(C_COLLI* collision)
 {
 	fn_80021824(&lbl_8042C1A4);
@@ -1307,169 +1471,6 @@ extern "C" void SetEffectTornado__FP7TObjectiP5RwV3dP6sAngle(
 
 	new TObjEffTornado(parent, kind, position, rotation);
 }
-
-u32 lbl_802534C0[5] = {
-	0xffffffff,
-	0x005aaaff,
-	0x000000ff,
-	0x00a000ff,
-	0xff0060ff,
-};
-char lbl_802534D4[]    = "TObjEffTyphoon";
-void* lbl_802534E4[11] = {
-	0,
-	0,
-	(void*)__dt__14TObjEffTyphoonFv,
-	(void*)Exec__14TObjEffTyphoonFv,
-	(void*)fn_8001898C,
-	(void*)TDisp__14TObjEffTyphoonFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
-	(void*)fn_80017854,
-	(void*)fn_80018958,
-};
-
-const char* lbl_8042B350 = lbl_8025336C;
-const char* lbl_8042B354 = lbl_8025349C;
-const char* lbl_8042B358 = lbl_802534B0;
-Rgba lbl_8042B35C        = { 0x60, 0x60, 0x60, 0xff };
-const char* lbl_8042B360 = lbl_802534D4;
-
-void* lbl_802532E8[3] = { 0, 0, 0 };
-void* lbl_802532F4[3] = { 0, 0, 0 };
-char lbl_80253300[]   = "EF_TORNADE.DFF";
-char lbl_80253310[]   = "EF_TORNADEB.DFF";
-char lbl_80253320[]   = "EF_TORNADEC.DFF";
-char* lbl_80253330[3] = { lbl_80253300, lbl_80253310, lbl_80253320 };
-u8 lbl_8025333C[0x30] = {
-	0x0a,
-	0x0a,
-	0xf0,
-	0xe2,
-	0x00,
-	0x20,
-	0x20,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x42,
-	0x70,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x41,
-	0xa0,
-	0x00,
-	0x00,
-	0x42,
-	0x70,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-	0x00,
-};
-char lbl_8025336C[]   = "TObjEffTornado";
-RwV3d lbl_8025337C[8] = {
-	{ 0.8f, 1.5f, 0.9f },
-	{ 1.1f, 0.8f, 1.2f },
-	{ 1.1f, 0.9f, 1.0f },
-	{ 0.9f, 1.4f, 0.8f },
-	{ 0.8f, 0.6f, 0.9f },
-	{ 0.8f, 1.8f, 0.8f },
-	{ 0.9f, 1.2f, 0.7f },
-	{ 1.0f, 0.9f, 1.1f },
-};
-RwV3d lbl_802533DC[8] = {
-	{ 4.0f, -1.5f, 4.5f },
-	{ 5.5f, 0.0f, -6.0f },
-	{ -5.5f, 2.5f, -5.0f },
-	{ -4.5f, 1.0f, 4.0f },
-	{ 4.0f, -0.5f, 4.5f },
-	{ 4.0f, 0.8f, -4.0f },
-	{ -4.5f, -0.9f, -3.5f },
-	{ -5.0f, 0.3f, 5.5f },
-};
-RotationPair lbl_8025343C[8] = {
-	{ 0.996195f, 0.087156f },
-	{ 0.965926f, -0.258819f },
-	{ 0.999391f, 0.034899f },
-	{ 0.992546f, 0.121869f },
-	{ 0.996195f, -0.087156f },
-	{ 0.999848f, 0.017452f },
-	{ 0.990268f, -0.139173f },
-	{ 0.994522f, 0.104528f },
-};
-s32 lbl_8025347C[8]    = { 0, -0x4000, 0x1600, -0xc00, 0x3000, 0x1000, -0x1600, 0xa00 };
-char lbl_8025349C[]    = "TObjEffTornadoSpin";
-char lbl_802534B0[16]  = "TObjEffTornado2";
-char lbl_80253568[]    = "EF_TORNADO.DFF";
-char lbl_80253578[]    = "EF_TORNADO_RING.DFF";
-char lbl_8025358C[]    = "EF_TORNADO_RINGB.DFF";
-char lbl_802535A4[]    = "EF_TORNADO.ANM";
-char lbl_802535B4[]    = "EF_TORNADO.UVB";
-void* lbl_802535C4[11] = {
-	0,
-	0,
-	(void*)__dt__15TObjEffTornado2Fv,
-	(void*)Exec__15TObjEffTornado2Fv,
-	(void*)fn_8001898C,
-	(void*)TDisp__15TObjEffTornado2Fv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
-	(void*)fn_80017854,
-	(void*)fn_80018958,
-};
-void* lbl_802535F0[11] = {
-	0,
-	0,
-	(void*)__dt__18TObjEffTornadoSpinFv,
-	(void*)Exec__18TObjEffTornadoSpinFv,
-	(void*)fn_8001898C,
-	(void*)TDisp__18TObjEffTornadoSpinFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
-	(void*)fn_80017854,
-	(void*)fn_80018958,
-};
-void* lbl_8025361C[11] = {
-	0,
-	0,
-	(void*)__dt__14TObjEffTornadoFv,
-	(void*)Exec__14TObjEffTornadoFv,
-	(void*)fn_8001898C,
-	(void*)TDisp__14TObjEffTornadoFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
-	(void*)fn_80017854,
-	(void*)fn_80018958,
-};
 
 void* lbl_8042C350;
 void* lbl_8042C354;
