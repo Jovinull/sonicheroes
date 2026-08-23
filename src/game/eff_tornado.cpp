@@ -204,6 +204,8 @@ extern char lbl_8025336C[];
 extern char lbl_8025349C[];
 extern char lbl_802534B0[];
 extern char lbl_802534D4[];
+extern u32 lbl_802534C0[5];
+extern void* lbl_802534E4[];
 extern f32 lbl_8042DBB0;
 extern f32 lbl_8042DBB4;
 extern f32 lbl_8042DBB8;
@@ -290,100 +292,6 @@ void __ct__15TObjEffTornado2FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObjEffTornado2*, TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 }
 
-extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
-{
-	u32 state10;
-	u32 state11;
-	u32 state20;
-	u32 state14;
-	fn_80194294(10, &state10);
-	fn_80194294(11, &state11);
-	fn_80194294(20, &state20);
-	fn_80194294(14, &state14);
-	fn_80194234(10, 5);
-	fn_80194234(11, 2);
-	fn_80194234(20, 1);
-	fn_80194234(14, 0);
-
-	u8* material     = *(u8**)((u8*)lbl_802532F4 + 4);
-	u32 saved        = *(u32*)(material + 4);
-	((u8*)&saved)[3] = (u8)(effect->alpha * lbl_8042DC14);
-	material[4]      = ((u8*)&saved)[0];
-	material[5]      = ((u8*)&saved)[1];
-	material[6]      = ((u8*)&saved)[2];
-	material[7]      = ((u8*)&saved)[3];
-
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
-	fn_8014FF2C(effect->model);
-
-	fn_80194234(14, state14);
-	fn_80194234(20, state20);
-	fn_80194234(10, state10);
-	fn_80194234(11, state11);
-}
-
-extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
-{
-	if (fn_8005BB20(&effect->direction, lbl_8042DBE0) != 0 || *(s32*)(lbl_8029C310 + 0x18) != 0) {
-		effect->flags |= 1;
-		return;
-	}
-
-	switch (effect->state) {
-		case 1:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
-			if (effect->alpha >= lbl_8042DBC0) {
-				effect->state = 2;
-				effect->timer = 0;
-			}
-			break;
-		case 2: {
-			s16 timer = effect->timer;
-			effect->timer++;
-			if ((f32)timer >= lbl_8042DC18) {
-				effect->state = 3;
-			}
-			break;
-		}
-		case 3:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
-			if (effect->alpha <= lbl_8042DBB4) {
-				effect->state = 4;
-			}
-			break;
-		case 4:
-			effect->flags |= 1;
-			return;
-	}
-
-	effect->angle += 0x1000;
-	void* frame = *(void**)((u8*)effect->model + 4);
-	fn_8019EC30(frame, &effect->position, 0);
-	f32 sine   = fn_800D7B00(effect->angle);
-	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(effect->angle);
-	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
-	fn_8019E880(frame);
-	fn_8019EB94(frame, &effect->direction, 2);
-}
-
-extern "C" TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(
-    TObjEffTornadoSpin* effect, s32 shouldDelete)
-{
-	if (effect != 0) {
-		effect->vtable = lbl_802535F0;
-		if (effect->model != 0) {
-			fn_80150958(effect->model);
-			effect->model = 0;
-		}
-		__dt__7TObjectFv(effect, 0);
-		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
-		}
-	}
-	return effect;
-}
-
 static inline s32 tornadoTeamFromObject(void* collision)
 {
 	CHARACTER_ID type = *(CHARACTER_ID*)((u8*)collision + 0x78);
@@ -431,82 +339,6 @@ static inline s32 tornadoTeamFromObject(void* collision)
 	}
 	return teamNumber;
 }
-
-extern "C" int SetPosition__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
-{
-	fn_80021824(&lbl_8042C1A4);
-	CollisionSearchResult* result = fn_80020BD8(effect, 10);
-	void* object                  = result != 0 ? result->object : 0;
-	if (object != 0) {
-		return tornadoTeamFromObject(object);
-	}
-	result = fn_80020BD8(effect, 16);
-	object = result != 0 ? result->object : 0;
-	if (object != 0) {
-		return tornadoTeamFromObject(object);
-	}
-	return -1;
-}
-
-extern "C" int CheckTornado__FP7C_COLLI(C_COLLI* collision)
-{
-	fn_80021824(&lbl_8042C1A4);
-	if (fn_80020BD8(collision, 10) != 0) {
-		return 1;
-	}
-	return fn_80020BD8(collision, 16) != 0;
-}
-
-TObjEffTornadoSpin::TObjEffTornadoSpin(
-    TObject* parent, const RwV3d* directionValue, const RwV3d* positionValue)
-    : TObject(parent)
-{
-	TObjEffTornadoSpin* result  = this;
-	result->vtable              = lbl_802535F0;
-	result->className           = lbl_8042B354;
-	*(u16*)((u8*)result + 0x1e) = 0x50;
-	result->direction.x         = directionValue->x;
-	result->direction.y         = directionValue->y;
-	result->direction.z         = directionValue->z;
-	result->position.x          = positionValue->x;
-	result->position.y          = positionValue->y;
-	result->position.z          = positionValue->z;
-	result->timer               = 0;
-	result->alpha               = lbl_8042DBB4;
-	result->angle               = (s16)(fn_801C28D8() * lbl_8042DC20 * lbl_8042DC1C);
-	result->state               = 1;
-	result->model               = fn_80150588(lbl_802532E8[1]);
-
-	void* frame = *(void**)((u8*)result->model + 4);
-	fn_8019EC30(frame, &result->position, 0);
-	f32 sine   = fn_800D7B00(result->angle);
-	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(result->angle);
-	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
-	fn_8019E880(frame);
-	fn_8019EB94(frame, &result->direction, 2);
-}
-
-u32 lbl_802534C0[5] = {
-	0xffffffff,
-	0x005aaaff,
-	0x000000ff,
-	0x00a000ff,
-	0xff0060ff,
-};
-char lbl_802534D4[]    = "TObjEffTyphoon";
-void* lbl_802534E4[11] = {
-	0,
-	0,
-	(void*)__dt__14TObjEffTyphoonFv,
-	(void*)Exec__14TObjEffTyphoonFv,
-	(void*)fn_8001898C,
-	(void*)TDisp__14TObjEffTyphoonFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
-	(void*)fn_80017854,
-	(void*)fn_80018958,
-};
 
 static inline void copyVec(RwV3d* destination, const RwV3d* source)
 {
@@ -588,189 +420,94 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 	return effect;
 }
 
-#pragma opt_common_subs off
-extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
+TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngle* rotation)
+    : TObject(parent)
 {
-	u32 state10;
-	u32 state11;
-	u32 state20;
-	u32 state14;
-	fn_80194294(10, &state10);
-	fn_80194294(11, &state11);
-	fn_80194294(20, &state20);
-	fn_80194294(14, &state14);
-	fn_80194234(10, 5);
-	fn_80194234(11, 2);
-	fn_80194234(20, 1);
-	fn_80194234(14, 0);
-
-	f32 height       = lbl_8042DBB4;
-	s8 index         = 0;
-	void** resources = lbl_802532F4;
-	u8* material     = (u8*)resources[0];
-	Color color      = *(Color*)(material + 4);
-	f32 multiplier;
-	color.alpha = (u8)(effect->alpha * (multiplier = lbl_8042DBF4));
-	material[4] = color.red;
-	material[5] = color.green;
-	material[6] = color.blue;
-	material[7] = color.alpha;
-
-	material    = (u8*)resources[1];
-	color.red   = material[4];
-	color.green = material[5];
-	color.blue  = material[6];
-	color.alpha = material[7];
-	color.alpha = (u8)(effect->alpha * multiplier);
-	material[4] = color.red;
-	material[5] = color.green;
-	material[6] = color.blue;
-	material[7] = color.alpha;
-
-	material    = (u8*)resources[2];
-	color.red   = material[4];
-	color.green = material[5];
-	color.blue  = material[6];
-	color.alpha = material[7];
-	color.alpha = (u8)(effect->alpha * multiplier);
-	material[4] = color.red;
-	material[5] = color.green;
-	material[6] = color.blue;
-	material[7] = color.alpha;
-
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
-
-	s32 angle = (s32)(lbl_8042DBC4 * effect->scale);
-	void** models;
-	RwV3d* positions;
-	RwV3d* directions;
-	RotationPair* rotations;
-	RwV3d* firstAxis;
-	s32* angleOffsets;
-	RwV3d* secondAxis;
-	{
-		models       = lbl_802532E8;
-		positions    = lbl_8025337C;
-		directions   = lbl_802533DC;
-		rotations    = lbl_8025343C;
-		firstAxis    = &lbl_80239978;
-		f32 one      = lbl_8042DBC0;
-		angleOffsets = lbl_8025347C;
-		secondAxis   = &lbl_80239984;
-		f32 sine;
-		f32 increment = lbl_8042DC24;
-		f32 limit     = lbl_8042DBB8;
-		while (height <= limit) {
-			void* model = tornadoModel(models, 0);
-			void* frame = tornadoFrame(model);
-			s32 tableIndex;
-			s32 vectorOffset;
-			fn_8019EC30(frame,
-			    (RwV3d*)((u8*)positions
-			        + (vectorOffset = (tableIndex = index & 7) * sizeof(RwV3d))),
-			    0);
-			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
-			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
-			s32 angleByteOffset = tableIndex * sizeof(s32);
-			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
-			sine                = fn_800D7B00(angle + *angleEntry);
-			f32 cosine          = one - fn_800D7AE4(angle + *angleEntry);
-			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
-			fn_8019E880(frame);
-			RwV3d position = effect->position;
-			position.y += height;
-			fn_8019EB94(frame, &position, 2);
-			fn_8014FF2C(model);
-			height += increment;
-			index++;
-			angle += 0x3b05;
-		}
+	TObjEffTornado* base      = this;
+	base->vtable              = lbl_8025361C;
+	base->className           = lbl_8042B350;
+	*(u16*)((u8*)base + 0x1e) = 0xdc;
+	base->position.x          = position->x;
+	base->position.y          = position->y;
+	base->position.z          = position->z;
+	if (rotation != 0) {
+		base->rotation.x = rotation->x;
+		base->rotation.y = rotation->y;
+		base->rotation.z = rotation->z;
+	} else {
+		base->rotation.z = 0;
+		base->rotation.y = 0;
+		base->rotation.x = 0;
 	}
+	base->state      = 0;
+	f32 initialValue = lbl_8042DBB4;
+	base->alpha      = initialValue;
+	base->scale      = initialValue;
+	base->kind       = kind;
+	base->active     = 1;
+	base->timer      = 0;
+	fn_8003C200(&base->effectModel, lbl_8025333C, 1, 1);
 
-	{
-		models       = lbl_802532E8;
-		positions    = lbl_8025337C;
-		directions   = lbl_802533DC;
-		rotations    = lbl_8025343C;
-		firstAxis    = &lbl_80239978;
-		f32 one      = lbl_8042DBC0;
-		angleOffsets = lbl_8025347C;
-		secondAxis   = &lbl_80239984;
-		f32 sine;
-		f32 limit;
-		f32 increment = lbl_8042DC24;
-		limit         = lbl_8042DBF0;
-		while (height <= limit) {
-			void* model = tornadoModel(models, 1);
-			void* frame = tornadoFrame(model);
-			s32 tableIndex;
-			s32 vectorOffset;
-			fn_8019EC30(frame,
-			    (RwV3d*)((u8*)positions
-			        + (vectorOffset = (tableIndex = index & 7) * sizeof(RwV3d))),
-			    0);
-			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
-			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
-			s32 angleByteOffset = tableIndex * sizeof(s32);
-			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
-			sine                = fn_800D7B00(angle + *angleEntry);
-			f32 cosine          = one - fn_800D7AE4(angle + *angleEntry);
-			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
-			RwV3d position = effect->position;
-			position.y += height;
-			fn_8019EB94(frame, &position, 2);
-			fn_8014FF2C(model);
-			height += increment;
-			index++;
-			angle += 0x127d;
-		}
+	s32 effectType;
+	switch (base->kind) {
+		case 0:
+			effectType = 7;
+			break;
+		case 1:
+			effectType = 8;
+			break;
+		case 2:
+			effectType = 9;
+			break;
+		case 3:
+			effectType = 10;
+			break;
+		default:
+			effectType = 0;
+			break;
 	}
-
-	{
-		s32 count  = 0;
-		models     = lbl_802532E8;
-		positions  = lbl_8025337C;
-		directions = lbl_802533DC;
-		rotations  = lbl_8025343C;
-		firstAxis  = &lbl_80239978;
-		f32 sine;
-		f32 one      = lbl_8042DBC0;
-		angleOffsets = lbl_8025347C;
-		do {
-			void* model = tornadoModel(models, 2);
-			void* frame = tornadoFrame(model);
-			s32 vectorOffset;
-			s32 tableIndex;
-			fn_8019EC30(frame,
-			    (RwV3d*)((u8*)positions
-			        + (vectorOffset = (tableIndex = index & 7) * sizeof(RwV3d))),
-			    0);
-			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
-			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
-			vectorOffset = tableIndex * sizeof(s32);
-			sine         = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
-			f32 cosine   = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
-			fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
-			RwV3d position = effect->position;
-			position.y += height;
-			fn_8019EB94(frame, &position, 2);
-			fn_8014FF2C(model);
-			index++;
-			angle += 0x2666;
-			count++;
-		} while (count < 4);
+	base->effectType = effectType;
+	if (base->effectType == 0) {
+		u8* model = *(u8**)&base->effectModel.data[0x10];
+		u32 flags = model[3];
+		flags &= ~3;
+		model[3] = flags;
 	}
-
-	fn_80194234(14, state14);
-	fn_80194234(20, state20);
-	fn_80194234(10, state10);
-	fn_80194234(11, state11);
+	*(u16*)&base->effectModel.data[4] = 0;
+	void* model                       = *(void**)&base->effectModel.data[0x10];
+	if (model != 0) {
+		((RwV3d*)((u8*)model + 8))->x = base->position.x;
+		((RwV3d*)((u8*)model + 8))->y = base->position.y;
+		((RwV3d*)((u8*)model + 8))->z = base->position.z;
+		model                         = *(void**)&base->effectModel.data[0x10];
+		((RwV3d*)((u8*)model + 8))->y += lbl_8042DBB8;
+		fn_80021384(&base->effectModel);
+	}
 }
+
 #pragma opt_common_subs reset
+
+TObjEffTyphoon::TObjEffTyphoon(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+    : TObjEffTornado(parent, kind, position, rotation)
+{
+	TObjEffTyphoon* __restrict result = this;
+
+	result->vtable              = lbl_802534E4;
+	result->className           = lbl_8042B360;
+	*(u16*)((u8*)result + 0x1e) = 0xec;
+	if (velocity != 0) {
+		result->velocity.x = velocity->x;
+		result->velocity.y = velocity->y;
+		result->velocity.z = velocity->z;
+	} else {
+		f32 zeroVelocity   = lbl_8042DBB4;
+		result->velocity.z = zeroVelocity;
+		result->velocity.y = zeroVelocity;
+		result->velocity.x = zeroVelocity;
+	}
+	result->particle = fn_8006298C(14, &result->position, &result->rotation);
+}
 
 #pragma peephole on
 void TObjEffTornado2::TDisp()
@@ -1000,6 +737,375 @@ extern "C" TObjEffTornado2* __dt__15TObjEffTornado2Fv(TObjEffTornado2* effect, s
 	return effect;
 }
 
+#pragma opt_common_subs off
+TObjEffTornado2::TObjEffTornado2(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+    : TObjEffTornado(parent, kind, position, rotation)
+{
+	TObjEffTornado2* result = this;
+
+	result->vtable              = lbl_802535C4;
+	result->className           = lbl_8042B358;
+	*(u16*)((u8*)result + 0x1e) = 0xec;
+
+	if (kind < 0) {
+		copyColor(result->color, (u8*)lbl_802534C0);
+	} else {
+		switch (lbl_80303DC8[kind]->team) {
+			case 0:
+				copyColor(result->color, (u8*)lbl_802534C0 + 4);
+				break;
+			case 1:
+				copyColor(result->color, (u8*)lbl_802534C0 + 8);
+				break;
+			case 3:
+				copyColor(result->color, (u8*)lbl_802534C0 + 12);
+				break;
+			case 2:
+				copyColor(result->color, (u8*)lbl_802534C0 + 16);
+				break;
+		}
+	}
+
+	result->swirlScale    = lbl_8042DC08;
+	result->verticalScale = lbl_8042DBC0;
+	result->opacity       = 0xff;
+	result->direction     = (s8)(u32)velocity;
+}
+#pragma opt_common_subs reset
+
+extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
+{
+	u32 state10;
+	u32 state11;
+	u32 state20;
+	u32 state14;
+	fn_80194294(10, &state10);
+	fn_80194294(11, &state11);
+	fn_80194294(20, &state20);
+	fn_80194294(14, &state14);
+	fn_80194234(10, 5);
+	fn_80194234(11, 2);
+	fn_80194234(20, 1);
+	fn_80194234(14, 0);
+
+	u8* material     = *(u8**)((u8*)lbl_802532F4 + 4);
+	u32 saved        = *(u32*)(material + 4);
+	((u8*)&saved)[3] = (u8)(effect->alpha * lbl_8042DC14);
+	material[4]      = ((u8*)&saved)[0];
+	material[5]      = ((u8*)&saved)[1];
+	material[6]      = ((u8*)&saved)[2];
+	material[7]      = ((u8*)&saved)[3];
+
+	fn_80053660(lbl_802D5E80, 16);
+	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	fn_8014FF2C(effect->model);
+
+	fn_80194234(14, state14);
+	fn_80194234(20, state20);
+	fn_80194234(10, state10);
+	fn_80194234(11, state11);
+}
+
+extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
+{
+	if (fn_8005BB20(&effect->direction, lbl_8042DBE0) != 0 || *(s32*)(lbl_8029C310 + 0x18) != 0) {
+		effect->flags |= 1;
+		return;
+	}
+
+	switch (effect->state) {
+		case 1:
+			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			if (effect->alpha >= lbl_8042DBC0) {
+				effect->state = 2;
+				effect->timer = 0;
+			}
+			break;
+		case 2: {
+			s16 timer = effect->timer;
+			effect->timer++;
+			if ((f32)timer >= lbl_8042DC18) {
+				effect->state = 3;
+			}
+			break;
+		}
+		case 3:
+			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			if (effect->alpha <= lbl_8042DBB4) {
+				effect->state = 4;
+			}
+			break;
+		case 4:
+			effect->flags |= 1;
+			return;
+	}
+
+	effect->angle += 0x1000;
+	void* frame = *(void**)((u8*)effect->model + 4);
+	fn_8019EC30(frame, &effect->position, 0);
+	f32 sine   = fn_800D7B00(effect->angle);
+	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(effect->angle);
+	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+	fn_8019E880(frame);
+	fn_8019EB94(frame, &effect->direction, 2);
+}
+
+extern "C" TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(
+    TObjEffTornadoSpin* effect, s32 shouldDelete)
+{
+	if (effect != 0) {
+		effect->vtable = lbl_802535F0;
+		if (effect->model != 0) {
+			fn_80150958(effect->model);
+			effect->model = 0;
+		}
+		__dt__7TObjectFv(effect, 0);
+		if ((s16)shouldDelete > 0) {
+			fn_800189A4(lbl_8042C148, effect);
+		}
+	}
+	return effect;
+}
+
+TObjEffTornadoSpin::TObjEffTornadoSpin(
+    TObject* parent, const RwV3d* directionValue, const RwV3d* positionValue)
+    : TObject(parent)
+{
+	TObjEffTornadoSpin* result  = this;
+	result->vtable              = lbl_802535F0;
+	result->className           = lbl_8042B354;
+	*(u16*)((u8*)result + 0x1e) = 0x50;
+	result->direction.x         = directionValue->x;
+	result->direction.y         = directionValue->y;
+	result->direction.z         = directionValue->z;
+	result->position.x          = positionValue->x;
+	result->position.y          = positionValue->y;
+	result->position.z          = positionValue->z;
+	result->timer               = 0;
+	result->alpha               = lbl_8042DBB4;
+	result->angle               = (s16)(fn_801C28D8() * lbl_8042DC20 * lbl_8042DC1C);
+	result->state               = 1;
+	result->model               = fn_80150588(lbl_802532E8[1]);
+
+	void* frame = *(void**)((u8*)result->model + 4);
+	fn_8019EC30(frame, &result->position, 0);
+	f32 sine   = fn_800D7B00(result->angle);
+	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(result->angle);
+	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+	fn_8019E880(frame);
+	fn_8019EB94(frame, &result->direction, 2);
+}
+
+extern "C" int SetPosition__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
+{
+	fn_80021824(&lbl_8042C1A4);
+	CollisionSearchResult* result = fn_80020BD8(effect, 10);
+	void* object                  = result != 0 ? result->object : 0;
+	if (object != 0) {
+		return tornadoTeamFromObject(object);
+	}
+	result = fn_80020BD8(effect, 16);
+	object = result != 0 ? result->object : 0;
+	if (object != 0) {
+		return tornadoTeamFromObject(object);
+	}
+	return -1;
+}
+
+extern "C" int CheckTornado__FP7C_COLLI(C_COLLI* collision)
+{
+	fn_80021824(&lbl_8042C1A4);
+	if (fn_80020BD8(collision, 10) != 0) {
+		return 1;
+	}
+	return fn_80020BD8(collision, 16) != 0;
+}
+
+#pragma opt_common_subs off
+extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
+{
+	u32 state10;
+	u32 state11;
+	u32 state20;
+	u32 state14;
+	fn_80194294(10, &state10);
+	fn_80194294(11, &state11);
+	fn_80194294(20, &state20);
+	fn_80194294(14, &state14);
+	fn_80194234(10, 5);
+	fn_80194234(11, 2);
+	fn_80194234(20, 1);
+	fn_80194234(14, 0);
+
+	f32 height       = lbl_8042DBB4;
+	s8 index         = 0;
+	void** resources = lbl_802532F4;
+	u8* material     = (u8*)resources[0];
+	Color color      = *(Color*)(material + 4);
+	f32 multiplier;
+	color.alpha = (u8)(effect->alpha * (multiplier = lbl_8042DBF4));
+	material[4] = color.red;
+	material[5] = color.green;
+	material[6] = color.blue;
+	material[7] = color.alpha;
+
+	material    = (u8*)resources[1];
+	color.red   = material[4];
+	color.green = material[5];
+	color.blue  = material[6];
+	color.alpha = material[7];
+	color.alpha = (u8)(effect->alpha * multiplier);
+	material[4] = color.red;
+	material[5] = color.green;
+	material[6] = color.blue;
+	material[7] = color.alpha;
+
+	material    = (u8*)resources[2];
+	color.red   = material[4];
+	color.green = material[5];
+	color.blue  = material[6];
+	color.alpha = material[7];
+	color.alpha = (u8)(effect->alpha * multiplier);
+	material[4] = color.red;
+	material[5] = color.green;
+	material[6] = color.blue;
+	material[7] = color.alpha;
+
+	fn_80053660(lbl_802D5E80, 16);
+	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+
+	s32 angle = (s32)(lbl_8042DBC4 * effect->scale);
+	void** models;
+	RwV3d* positions;
+	RwV3d* directions;
+	RotationPair* rotations;
+	RwV3d* firstAxis;
+	s32* angleOffsets;
+	RwV3d* secondAxis;
+	{
+		models       = lbl_802532E8;
+		positions    = lbl_8025337C;
+		directions   = lbl_802533DC;
+		rotations    = lbl_8025343C;
+		firstAxis    = &lbl_80239978;
+		f32 one      = lbl_8042DBC0;
+		angleOffsets = lbl_8025347C;
+		secondAxis   = &lbl_80239984;
+		f32 sine;
+		f32 increment = lbl_8042DC24;
+		f32 limit     = lbl_8042DBB8;
+		while (height <= limit) {
+			void* model = tornadoModel(models, 0);
+			void* frame = tornadoFrame(model);
+			s32 tableIndex;
+			s32 vectorOffset;
+			fn_8019EC30(frame,
+			    (RwV3d*)((u8*)positions
+			        + (vectorOffset = (tableIndex = index & 7) * sizeof(RwV3d))),
+			    0);
+			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
+			RotationPair* pair = &rotations[tableIndex];
+			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			s32 angleByteOffset = tableIndex * sizeof(s32);
+			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
+			sine                = fn_800D7B00(angle + *angleEntry);
+			f32 cosine          = one - fn_800D7AE4(angle + *angleEntry);
+			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
+			fn_8019E880(frame);
+			RwV3d position = effect->position;
+			position.y += height;
+			fn_8019EB94(frame, &position, 2);
+			fn_8014FF2C(model);
+			height += increment;
+			index++;
+			angle += 0x3b05;
+		}
+	}
+
+	{
+		models       = lbl_802532E8;
+		positions    = lbl_8025337C;
+		directions   = lbl_802533DC;
+		rotations    = lbl_8025343C;
+		firstAxis    = &lbl_80239978;
+		f32 one      = lbl_8042DBC0;
+		angleOffsets = lbl_8025347C;
+		secondAxis   = &lbl_80239984;
+		f32 sine;
+		f32 limit;
+		f32 increment = lbl_8042DC24;
+		limit         = lbl_8042DBF0;
+		while (height <= limit) {
+			void* model = tornadoModel(models, 1);
+			void* frame = tornadoFrame(model);
+			s32 tableIndex;
+			s32 vectorOffset;
+			fn_8019EC30(frame,
+			    (RwV3d*)((u8*)positions
+			        + (vectorOffset = (tableIndex = index & 7) * sizeof(RwV3d))),
+			    0);
+			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
+			RotationPair* pair = &rotations[tableIndex];
+			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			s32 angleByteOffset = tableIndex * sizeof(s32);
+			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
+			sine                = fn_800D7B00(angle + *angleEntry);
+			f32 cosine          = one - fn_800D7AE4(angle + *angleEntry);
+			fn_80195790((u8*)frame + 0x10, secondAxis, cosine, sine, 2);
+			RwV3d position = effect->position;
+			position.y += height;
+			fn_8019EB94(frame, &position, 2);
+			fn_8014FF2C(model);
+			height += increment;
+			index++;
+			angle += 0x127d;
+		}
+	}
+
+	{
+		s32 count  = 0;
+		models     = lbl_802532E8;
+		positions  = lbl_8025337C;
+		directions = lbl_802533DC;
+		rotations  = lbl_8025343C;
+		firstAxis  = &lbl_80239978;
+		f32 sine;
+		f32 one      = lbl_8042DBC0;
+		angleOffsets = lbl_8025347C;
+		do {
+			void* model = tornadoModel(models, 2);
+			void* frame = tornadoFrame(model);
+			s32 vectorOffset;
+			s32 tableIndex;
+			fn_8019EC30(frame,
+			    (RwV3d*)((u8*)positions
+			        + (vectorOffset = (tableIndex = index & 7) * sizeof(RwV3d))),
+			    0);
+			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
+			RotationPair* pair = &rotations[tableIndex];
+			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			vectorOffset = tableIndex * sizeof(s32);
+			sine         = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
+			f32 cosine   = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
+			fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+			RwV3d position = effect->position;
+			position.y += height;
+			fn_8019EB94(frame, &position, 2);
+			fn_8014FF2C(model);
+			index++;
+			angle += 0x2666;
+			count++;
+		} while (count < 4);
+	}
+
+	fn_80194234(14, state14);
+	fn_80194234(20, state20);
+	fn_80194234(10, state10);
+	fn_80194234(11, state11);
+}
+#pragma opt_common_subs reset
+
 extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 {
 	if (fn_8005BB20(&effect->position, lbl_8042DBE0) != 0) {
@@ -1077,183 +1183,6 @@ extern "C" TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado* effect, s32 
 	return effect;
 }
 
-TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngle* rotation)
-    : TObject(parent)
-{
-	TObjEffTornado* base      = this;
-	base->vtable              = lbl_8025361C;
-	base->className           = lbl_8042B350;
-	*(u16*)((u8*)base + 0x1e) = 0xdc;
-	base->position.x          = position->x;
-	base->position.y          = position->y;
-	base->position.z          = position->z;
-	if (rotation != 0) {
-		base->rotation.x = rotation->x;
-		base->rotation.y = rotation->y;
-		base->rotation.z = rotation->z;
-	} else {
-		base->rotation.z = 0;
-		base->rotation.y = 0;
-		base->rotation.x = 0;
-	}
-	base->state      = 0;
-	f32 initialValue = lbl_8042DBB4;
-	base->alpha      = initialValue;
-	base->scale      = initialValue;
-	base->kind       = kind;
-	base->active     = 1;
-	base->timer      = 0;
-	fn_8003C200(&base->effectModel, lbl_8025333C, 1, 1);
-
-	s32 effectType;
-	switch (base->kind) {
-		case 0:
-			effectType = 7;
-			break;
-		case 1:
-			effectType = 8;
-			break;
-		case 2:
-			effectType = 9;
-			break;
-		case 3:
-			effectType = 10;
-			break;
-		default:
-			effectType = 0;
-			break;
-	}
-	base->effectType = effectType;
-	if (base->effectType == 0) {
-		u8* model = *(u8**)&base->effectModel.data[0x10];
-		u32 flags = model[3];
-		flags &= ~3;
-		model[3] = flags;
-	}
-	*(u16*)&base->effectModel.data[4] = 0;
-	void* model                       = *(void**)&base->effectModel.data[0x10];
-	if (model != 0) {
-		((RwV3d*)((u8*)model + 8))->x = base->position.x;
-		((RwV3d*)((u8*)model + 8))->y = base->position.y;
-		((RwV3d*)((u8*)model + 8))->z = base->position.z;
-		model                         = *(void**)&base->effectModel.data[0x10];
-		((RwV3d*)((u8*)model + 8))->y += lbl_8042DBB8;
-		fn_80021384(&base->effectModel);
-	}
-}
-
-#pragma opt_common_subs reset
-#pragma opt_common_subs off
-TObjEffTornado2::TObjEffTornado2(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
-    : TObjEffTornado(parent, kind, position, rotation)
-{
-	TObjEffTornado2* result = this;
-
-	result->vtable              = lbl_802535C4;
-	result->className           = lbl_8042B358;
-	*(u16*)((u8*)result + 0x1e) = 0xec;
-
-	if (kind < 0) {
-		copyColor(result->color, (u8*)lbl_802534C0);
-	} else {
-		switch (lbl_80303DC8[kind]->team) {
-			case 0:
-				copyColor(result->color, (u8*)lbl_802534C0 + 4);
-				break;
-			case 1:
-				copyColor(result->color, (u8*)lbl_802534C0 + 8);
-				break;
-			case 3:
-				copyColor(result->color, (u8*)lbl_802534C0 + 12);
-				break;
-			case 2:
-				copyColor(result->color, (u8*)lbl_802534C0 + 16);
-				break;
-		}
-	}
-
-	result->swirlScale    = lbl_8042DC08;
-	result->verticalScale = lbl_8042DBC0;
-	result->opacity       = 0xff;
-	result->direction     = (s8)(u32)velocity;
-}
-#pragma opt_common_subs reset
-
-TObjEffTyphoon::TObjEffTyphoon(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
-    : TObjEffTornado(parent, kind, position, rotation)
-{
-	TObjEffTyphoon* __restrict result = this;
-
-	result->vtable              = lbl_802534E4;
-	result->className           = lbl_8042B360;
-	*(u16*)((u8*)result + 0x1e) = 0xec;
-	if (velocity != 0) {
-		result->velocity.x = velocity->x;
-		result->velocity.y = velocity->y;
-		result->velocity.z = velocity->z;
-	} else {
-		f32 zeroVelocity   = lbl_8042DBB4;
-		result->velocity.z = zeroVelocity;
-		result->velocity.y = zeroVelocity;
-		result->velocity.x = zeroVelocity;
-	}
-	result->particle = fn_8006298C(14, &result->position, &result->rotation);
-}
-
-extern "C" void SetEffectTyphoon__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
-{
-	if (parent == 0) {
-		parent = lbl_8042C2A0;
-		if (parent == 0) {
-			parent = lbl_8042C110;
-		}
-	}
-
-	new TObjEffTyphoon(parent, kind, position, rotation, velocity);
-}
-
-extern "C" void SetEffectTornado2__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
-{
-	if (parent == 0) {
-		parent = lbl_8042C2A0;
-		if (parent == 0) {
-			parent = lbl_8042C110;
-		}
-	}
-
-	new TObjEffTornado2(parent, kind, position, rotation, velocity);
-}
-
-extern "C" void SetEffectTornadoSpin__FP7TObjectPC5RwV3dPC5RwV3d(
-    TObject* parent, const RwV3d* direction, const RwV3d* position)
-{
-	if (parent == 0) {
-		parent = lbl_8042C2A0;
-		if (parent == 0) {
-			parent = lbl_8042C110;
-		}
-	}
-
-	new TObjEffTornadoSpin(parent, direction, position);
-}
-
-extern "C" void SetEffectTornado__FP7TObjectiP5RwV3dP6sAngle(
-    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation)
-{
-	if (parent == 0) {
-		parent = lbl_8042C2A0;
-		if (parent == 0) {
-			parent = lbl_8042C110;
-		}
-	}
-
-	new TObjEffTornado(parent, kind, position, rotation);
-}
-
 extern "C" void EndEffTornado__Fv()
 {
 	lbl_802532E8[0] = 0;
@@ -1271,12 +1200,6 @@ extern "C" void EndEffTornado__Fv()
 	lbl_8042C370    = 0;
 	lbl_8042C374    = 0;
 }
-
-const char* lbl_8042B350 = lbl_8025336C;
-const char* lbl_8042B354 = lbl_8025349C;
-const char* lbl_8042B358 = lbl_802534B0;
-Rgba lbl_8042B35C        = { 0x60, 0x60, 0x60, 0xff };
-const char* lbl_8042B360 = lbl_802534D4;
 
 #pragma opt_common_subs off
 extern "C" void InitEffTornado__Fv()
@@ -1332,6 +1255,86 @@ extern "C" void InitEffTornado__Fv()
 	}
 }
 #pragma opt_common_subs reset
+
+extern "C" void SetEffectTyphoon__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+{
+	if (parent == 0) {
+		parent = lbl_8042C2A0;
+		if (parent == 0) {
+			parent = lbl_8042C110;
+		}
+	}
+
+	new TObjEffTyphoon(parent, kind, position, rotation, velocity);
+}
+
+extern "C" void SetEffectTornado2__FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation, RwV3d* velocity)
+{
+	if (parent == 0) {
+		parent = lbl_8042C2A0;
+		if (parent == 0) {
+			parent = lbl_8042C110;
+		}
+	}
+
+	new TObjEffTornado2(parent, kind, position, rotation, velocity);
+}
+
+extern "C" void SetEffectTornadoSpin__FP7TObjectPC5RwV3dPC5RwV3d(
+    TObject* parent, const RwV3d* direction, const RwV3d* position)
+{
+	if (parent == 0) {
+		parent = lbl_8042C2A0;
+		if (parent == 0) {
+			parent = lbl_8042C110;
+		}
+	}
+
+	new TObjEffTornadoSpin(parent, direction, position);
+}
+
+extern "C" void SetEffectTornado__FP7TObjectiP5RwV3dP6sAngle(
+    TObject* parent, s32 kind, RwV3d* position, sAngle* rotation)
+{
+	if (parent == 0) {
+		parent = lbl_8042C2A0;
+		if (parent == 0) {
+			parent = lbl_8042C110;
+		}
+	}
+
+	new TObjEffTornado(parent, kind, position, rotation);
+}
+
+u32 lbl_802534C0[5] = {
+	0xffffffff,
+	0x005aaaff,
+	0x000000ff,
+	0x00a000ff,
+	0xff0060ff,
+};
+char lbl_802534D4[]    = "TObjEffTyphoon";
+void* lbl_802534E4[11] = {
+	0,
+	0,
+	(void*)__dt__14TObjEffTyphoonFv,
+	(void*)Exec__14TObjEffTyphoonFv,
+	(void*)fn_8001898C,
+	(void*)TDisp__14TObjEffTyphoonFv,
+	(void*)fn_80018988,
+	(void*)fn_80018950,
+	(void*)fn_80018954,
+	(void*)fn_80017854,
+	(void*)fn_80018958,
+};
+
+const char* lbl_8042B350 = lbl_8025336C;
+const char* lbl_8042B354 = lbl_8025349C;
+const char* lbl_8042B358 = lbl_802534B0;
+Rgba lbl_8042B35C        = { 0x60, 0x60, 0x60, 0xff };
+const char* lbl_8042B360 = lbl_802534D4;
 
 void* lbl_802532E8[3] = { 0, 0, 0 };
 void* lbl_802532F4[3] = { 0, 0, 0 };
