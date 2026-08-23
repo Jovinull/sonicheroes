@@ -127,17 +127,17 @@ struct Color {
 };
 
 enum CHARACTER_ID {
-	CHARACTER_ID_0 = 0,
-	CHARACTER_ID_1,
-	CHARACTER_ID_2,
-	CHARACTER_ID_3,
-	CHARACTER_ID_4,
-	CHARACTER_ID_5,
-	CHARACTER_ID_6,
-	CHARACTER_ID_7,
-	CHARACTER_ID_8,
-	CHARACTER_ID_9,
-	CHARACTER_ID_10,
+	CHARACTER_ID_0  = 7,
+	CHARACTER_ID_1  = 8,
+	CHARACTER_ID_2  = 9,
+	CHARACTER_ID_3  = 10,
+	CHARACTER_ID_4  = 1,
+	CHARACTER_ID_5  = 2,
+	CHARACTER_ID_6  = 3,
+	CHARACTER_ID_7  = 4,
+	CHARACTER_ID_8  = 5,
+	CHARACTER_ID_9  = 6,
+	CHARACTER_ID_10 = 0,
 };
 
 extern "C" {
@@ -299,37 +299,37 @@ static inline s32 tornadoTeamFromObject(void* collision)
 	s32 teamNumber;
 	team = 0;
 	switch (type) {
-		case 0:
+		case CHARACTER_ID_0:
 			teamNumber = 0;
 			break;
-		case 1:
+		case CHARACTER_ID_1:
 			teamNumber = 1;
 			break;
-		case 2:
+		case CHARACTER_ID_2:
 			teamNumber = 2;
 			break;
-		case 3:
+		case CHARACTER_ID_3:
 			teamNumber = 3;
 			break;
-		case 4:
+		case CHARACTER_ID_4:
 			team = lbl_802AD070[0];
 			break;
-		case 5:
+		case CHARACTER_ID_5:
 			team = lbl_802AD070[1];
 			break;
-		case 6:
+		case CHARACTER_ID_6:
 			team = lbl_802AD070[2];
 			break;
-		case 7:
+		case CHARACTER_ID_7:
 			team = lbl_802AD070[3];
 			break;
-		case 8:
+		case CHARACTER_ID_8:
 			team = lbl_802AD070[4];
 			break;
-		case 9:
+		case CHARACTER_ID_9:
 			team = lbl_802AD070[5];
 			break;
-		case 10:
+		case CHARACTER_ID_10:
 		default:
 			teamNumber = -1;
 			break;
