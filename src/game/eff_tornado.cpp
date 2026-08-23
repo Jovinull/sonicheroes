@@ -232,6 +232,7 @@ extern f32 lbl_8042DC18;
 extern f32 lbl_8042DC1C;
 extern f32 lbl_8042DC20;
 extern f32 lbl_8042DC24;
+extern const f64 lbl_8042DBD0 = 4503599627370496.0;
 
 extern u8 lbl_8029C310[];
 extern u8 lbl_802D5E80[];
@@ -630,15 +631,20 @@ TObjEffTyphoon::TObjEffTyphoon(
 }
 
 #pragma peephole on
+static inline s32 tornadoFrameCounter()
+{
+	return *(s32*)((u8*)lbl_8042C180 + 0x30);
+}
+
 void TObjEffTornado2::TDisp()
 {
 	u32 saved10;
 	u32 saved11;
 	u32 saved20;
 	u32 saved14;
-	void* model;
 	s32 frame;
 	u32 blue;
+	void* model;
 	u32 red;
 	u32 green;
 	u32 alpha;
@@ -674,7 +680,7 @@ void TObjEffTornado2::TDisp()
 	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
 
 	model = lbl_8042C350;
-	frame = *(s32*)((u8*)lbl_8042C180 + 0x30);
+	frame = tornadoFrameCounter();
 	if (lbl_8042C378[0] != frame) {
 		f32 elapsed = (f32)(frame - lbl_8042C378[0]);
 		if (lbl_8042C370 != 0 && lbl_8042C374 != 0) {
