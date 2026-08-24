@@ -189,44 +189,49 @@ static inline s32 gcci_Done(GcciObj* p)
 	return done;
 }
 
-static inline void gcci_Stop(GcciObj* p)
+static inline void gcci_StopBusy(GcciObj* p)
 {
 	u32 start;
 	u32 now;
 	u32 elapsed;
 	s32 result;
 
+	DVDGetCommandBlockStatus(&p->fileInfo);
+	DVDGetDriveStatus();
+	gcci_Canceling = 1;
+	result         = DVDCancel(&p->fileInfo);
+	gcci_Canceling = 0;
+	if (result < 0) {
+		gcci_ErrorArg(gcci_ErrCancel, p);
+		return;
+	}
+	start = gcci_GetMilliseconds();
+	while (!gcci_Done(p)) {
+		p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
+		gcci_DvdStatus = p->dvdStatus;
+		now            = gcci_GetMilliseconds();
+		elapsed        = now + (-1U - start);
+		if (now >= start) {
+			elapsed = now - start;
+		}
+		if (elapsed > 2000) {
+			gcci_ErrorArg(gcci_ErrCancelTimeout, p);
+			break;
+		}
+	}
+	p->busy   = 0;
+	gcci_Busy = 0;
+	DVDGetCommandBlockStatus(&p->fileInfo);
+	DVDGetDriveStatus();
+}
+
+static inline void gcci_Stop(GcciObj* p)
+{
 	if (p->busy == 1) {
 		return;
 	}
 	if (p->busy != 0) {
-		DVDGetCommandBlockStatus(&p->fileInfo);
-		DVDGetDriveStatus();
-		gcci_Canceling = 1;
-		result         = DVDCancel(&p->fileInfo);
-		gcci_Canceling = 0;
-		if (result < 0) {
-			gcci_ErrorArg(gcci_ErrCancel, p);
-			return;
-		}
-		start = gcci_GetMilliseconds();
-		while (!gcci_Done(p)) {
-			p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
-			gcci_DvdStatus = p->dvdStatus;
-			now            = gcci_GetMilliseconds();
-			elapsed        = now + (-1U - start);
-			if (now >= start) {
-				elapsed = now - start;
-			}
-			if (elapsed > 2000) {
-				gcci_ErrorArg(gcci_ErrCancelTimeout, p);
-				break;
-			}
-		}
-		p->busy   = 0;
-		gcci_Busy = 0;
-		DVDGetCommandBlockStatus(&p->fileInfo);
-		DVDGetDriveStatus();
+		gcci_StopBusy(p);
 	}
 }
 
