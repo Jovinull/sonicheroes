@@ -58,8 +58,8 @@
 // count, the one that returns -1 yields a status, the one that returns null
 // yields a name.
 //
-// NOT MATCHING: eighteen of the twenty-two functions are written so far, and
-// all eighteen are byte-exact. The rest are still assembly. Struct offsets
+// NOT MATCHING: nineteen of the twenty-two functions are written so far, and
+// all nineteen are byte-exact. The rest are still assembly. Struct offsets
 // recovered by them are recorded below; the fields they do not touch are
 // padding until something reaches them.
 
@@ -277,6 +277,45 @@ void fn_8021FAE4(LscObj* lsc)
 		lsc->numstm = 0;
 	}
 	lsc->unk34 = 0;
+}
+
+void fn_8021FBA0(LscObj* lsc)
+{
+	s8 crs[8];
+	s8 stat;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return;
+	}
+	fn_8021F524(crs);
+	stat = lsc->stat;
+	if (stat != 0) {
+		if (lsc == NULL) {
+			fn_8021F410(lsc_ErrParam);
+		} else if (stat != 0) {
+			lsc->stat = 0;
+			if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
+				fn_80216F18(lsc->stmhndl);
+				lsc->pad2 = 0;
+			}
+			lsc->unk2C = NULL;
+			if (lsc == NULL) {
+				fn_8021F410(lsc_ErrParam);
+			} else if (lsc->stat == 0) {
+				lsc->rdsct  = 0;
+				lsc->head   = 0;
+				lsc->numstm = 0;
+			}
+			lsc->unk34 = 0;
+		}
+	}
+	if (lsc->numstm > 0) {
+		lsc->stat = 2;
+	} else {
+		lsc->stat = 1;
+	}
+	fn_8021F504(crs);
 }
 
 void LSC_EntryFname(LscObj* lsc, const char* fname)
