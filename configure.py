@@ -350,6 +350,7 @@ config.libs = [
             Object(Matching, "MSL_C/s_modf.c"),
             Object(Matching, "MSL_C/s_nextafter.c"),
             Object(Matching, "MSL_C/s_sin.c"),
+            Object(Matching, "MSL_C/s_tan.c"),
         ],
     },
     {
