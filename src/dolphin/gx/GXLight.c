@@ -3,8 +3,7 @@
 
 #include "__gx.h"
 
-extern f32 fn_801C93F4(f32 x);
-#define cosf fn_801C93F4
+extern f32 cosf(f32 x);
 
 // GXLight, 0x801F4A9C to 0x801F5084. Light-object register writes plus channel
 // control. Only the functions the game links survive here (dead-strip drops the
