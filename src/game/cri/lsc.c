@@ -58,8 +58,8 @@
 // count, the one that returns -1 yields a status, the one that returns null
 // yields a name.
 //
-// NOT MATCHING: fourteen of the twenty-two functions are written so far, and
-// all fourteen are byte-exact. The rest are still assembly. Struct offsets
+// NOT MATCHING: fifteen of the twenty-two functions are written so far, and
+// all fifteen are byte-exact. The rest are still assembly. Struct offsets
 // recovered by them are recorded below; the fields they do not touch are
 // padding until something reaches them.
 
@@ -94,8 +94,11 @@ typedef void (*LscStatFunc)(void* obj, s32 stat);
 extern void fn_8021F410(const char* msg, ...);
 extern void fn_8021F504(void* crs);
 extern void fn_8021F524(void* crs);
+extern void fn_8021F4D0(s32, s32);
 extern void fn_802202FC(LscObj* lsc);
 extern void fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
+extern void* memset(void* dst, s32 value, u32 size);
+extern volatile u32 lbl_8023FF30[];
 
 extern const char lsc_ErrParam[];
 extern const char lsc_ErrMin[];
@@ -119,7 +122,9 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id);
 
 #define LSC_OBJ_MAX 16
 
+static u32 lsc_ObjTblPad;
 static LscObj lsc_ObjTbl[LSC_OBJ_MAX];
+static s32 lsc_InitCount;
 
 static struct {
 	LscStatFunc func;
@@ -292,4 +297,18 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id)
 		return NULL;
 	}
 	return lsc->stm[i].fname;
+}
+
+void fn_80220284(void)
+{
+	s8 crs[8];
+
+	lbl_8023FF30[0];
+	fn_8021F524(crs);
+	if (lsc_InitCount == 0) {
+		memset(lsc_ObjTbl, 0, sizeof(lsc_ObjTbl));
+		fn_8021F4D0(0, 0);
+	}
+	lsc_InitCount++;
+	fn_8021F504(crs);
 }
