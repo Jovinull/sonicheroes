@@ -58,8 +58,8 @@
 // count, the one that returns -1 yields a status, the one that returns null
 // yields a name.
 //
-// NOT MATCHING: all twenty-two functions are written, and twenty are
-// byte-exact. The two remaining functions are still being matched. Struct offsets
+// NOT MATCHING: all twenty-two functions are written, and twenty-one are
+// byte-exact. The remaining function is still being matched. Struct offsets
 // recovered by them are recorded below; the fields they do not touch are
 // padding until something reaches them.
 
@@ -354,10 +354,11 @@ void fn_8021FBA0(LscObj* lsc)
 static LscObj* lsc_Alloc(void)
 {
 	LscObj* lsc = NULL;
+	LscObj* obj = lsc_ObjTbl;
 	s32 i;
 
-	for (i = 0; i < LSC_OBJ_MAX; i++) {
-		if (lsc_ObjTbl[i].used == 0) {
+	for (i = 0; i < LSC_OBJ_MAX; obj++, i++) {
+		if (obj->used == 0) {
 			lsc = &lsc_ObjTbl[i];
 			break;
 		}
@@ -365,6 +366,7 @@ static LscObj* lsc_Alloc(void)
 	return lsc;
 }
 
+#pragma opt_propagation off
 LscObj* fn_80220054(LscSj* sj)
 {
 	LscObj* lsc;
@@ -384,14 +386,31 @@ LscObj* fn_80220054(LscSj* sj)
 		lsc->stat      = 0;
 		lsc->nsct      = sj->vtable->getNumSct(sj, 0) + sj->vtable->getNumSct(sj, 1);
 		lsc->flowlimit = (lsc->nsct * 8) / 10;
-		for (i = 0; i < LSC_STM_MAX; i++) {
-			lsc->stm[i].stat = 0;
+		i              = 0;
+		if (i < LSC_STM_MAX) {
+			lsc->stm[0].stat  = 0;
+			lsc->stm[1].stat  = 0;
+			lsc->stm[2].stat  = 0;
+			lsc->stm[3].stat  = 0;
+			lsc->stm[4].stat  = 0;
+			lsc->stm[5].stat  = 0;
+			lsc->stm[6].stat  = 0;
+			lsc->stm[7].stat  = 0;
+			lsc->stm[8].stat  = 0;
+			lsc->stm[9].stat  = 0;
+			lsc->stm[10].stat = 0;
+			lsc->stm[11].stat = 0;
+			lsc->stm[12].stat = 0;
+			lsc->stm[13].stat = 0;
+			lsc->stm[14].stat = 0;
+			lsc->stm[15].stat = 0;
 		}
 		lsc->used = 1;
 	}
 	fn_8021F504(crs);
 	return lsc;
 }
+#pragma opt_propagation reset
 
 #pragma dont_inline on
 s32 fn_8021FD04(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
