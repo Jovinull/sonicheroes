@@ -463,7 +463,7 @@ MSL_C/s_ldexp.c:
 	.text       start:0x801C8D5C end:0x801C8F20
 	.sdata2     start:0x8042FD60 end:0x8042FD88
 
-MSL_C/s_sin.c:
+MSL_C/s_modf.c:
 	.text       start:0x801C8F20 end:0x801C901C
 	.sdata2     start:0x8042FD88 end:0x8042FD90
 
