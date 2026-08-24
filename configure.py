@@ -335,6 +335,7 @@ config.libs = [
             Object(Matching, "MSL_C/e_log.c"),
             Object(Matching, "MSL_C/e_log10.c"),
             Object(Matching, "MSL_C/e_pow.c"),
+            Object(Matching, "MSL_C/e_rem_pio2.c"),
         ],
     },
     {
