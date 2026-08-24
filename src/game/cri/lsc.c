@@ -65,6 +65,17 @@
 
 #define LSC_STM_MAX 16
 
+typedef struct LscSj LscSj;
+
+typedef struct LscSjVtbl {
+	/* 0x00 */ u8 pad00[0x24];
+	/* 0x24 */ s32 (*get)(LscSj* sj, s32 which);
+} LscSjVtbl;
+
+struct LscSj {
+	/* 0x00 */ LscSjVtbl* vtbl;
+};
+
 typedef struct LscStm {
 	/* 0x00 */ s32 id;
 	/* 0x04 */ const char* fname;
@@ -78,7 +89,9 @@ typedef struct LscObj {
 	/* 0x01 */ s8 stat;
 	/* 0x02 */ s8 busy;
 	/* 0x03 */ s8 lpflg;
-	/* 0x04 */ s8 pad4[0x10];
+	/* 0x04 */ s32 pad04;
+	/* 0x08 */ struct LscSj* sj;
+	/* 0x0C */ s8 pad0C[8];
 	/* 0x14 */ s32 flowlimit;
 	/* 0x18 */ s32 nsct;
 	/* 0x1C */ s32 rdsct;
@@ -106,6 +119,7 @@ extern void fn_80216F18(void* hndl);
 extern void* memset(void* p, int c, u32 n);
 
 extern const char lsc_ErrParam[];
+extern const char lsc_ErrSj[];
 extern const char lsc_ErrMin[];
 extern const char lsc_ErrNo[];
 extern const char lsc_ErrId[];
@@ -418,4 +432,44 @@ void fn_8021FBA0(LscObj* lsc)
 		lsc->stat = 1;
 	}
 	fn_8021F504(crs);
+}
+
+// LSC_Create: takes the first unused entry, asks the stream joiner for the two
+// halves of its sector count, and derives the flow limit as eight tenths of it.
+// The compiler unrolls the sixteen-slot clear and leaves the loop's init and
+// entry test behind, which is why the compare below has no branch.
+LscObj* LSC_Create(LscSj* sj)
+{
+	void* crs[2];
+	LscObj* lsc;
+	s32 i;
+	s32 n;
+
+	if (sj == NULL) {
+		fn_8021F410(lsc_ErrSj);
+		return NULL;
+	}
+	fn_8021F524(crs);
+	lsc = NULL;
+	for (i = 0; i < LSC_OBJ_MAX; i++) {
+		if (lsc_ObjTbl[i].used == 0) {
+			lsc = &lsc_ObjTbl[i];
+			break;
+		}
+	}
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrMin);
+	} else {
+		lsc->sj        = sj;
+		lsc->stat      = 0;
+		n              = sj->vtbl->get(sj, 1);
+		lsc->nsct      = sj->vtbl->get(sj, 0) + n;
+		lsc->flowlimit = lsc->nsct * 8 / 10;
+		for (i = 0; i < LSC_STM_MAX; i++) {
+			lsc->stm[i].stat = 0;
+		}
+		lsc->used = 1;
+	}
+	fn_8021F504(crs);
+	return lsc;
 }
