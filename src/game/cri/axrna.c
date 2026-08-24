@@ -564,7 +564,7 @@ void fn_802240CC(AxRna* root, s32 sw)
 			}
 			p++;
 		}
-		root->flags &= ~1;
+		root->flags &= 2;
 	} else {
 		fn_80223424("E1070308:Illigal parameter(sw).\n");
 	}
