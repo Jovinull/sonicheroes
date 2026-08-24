@@ -3,6 +3,45 @@
 // The original translation-unit name and private type names are unknown. This
 // neutral filename follows the first function address; descriptive private
 // identifiers below are reconstruction aids rather than recovered names.
+//
+// The bounds came from a data-privacy scan over the run: every lbl_ object the
+// five functions reference is consumed inside them, and the next function up,
+// fn_8005F194, reaches labels with ninety to a hundred and forty-five users.
+// See issue #297. Three claims in splits.txt are still unargued and are tracked
+// there: lbl_80301780 (8800 bytes, no user anywhere in the DOL), lbl_80243570
+// (only user fn_8005F194, which is the next unit) and lbl_803039E0 (used here
+// and by fn_8005D498 -- not wrong on its own, a unit can own a global another
+// reads, but it should be said out loud).
+//
+// NOT MATCHING: two of the five functions are byte-exact, fn_8005EC0C and
+// fn_8005EC14.
+//
+//   fn_8005E8EC is the right length now and thirty-five bytes differ, all of
+//   them register fields plus one branch. Two things got it there and are worth
+//   remembering for the other two. The sentinel test has to read
+//   `(s32)found != -1` while the bound test stays unsigned: the target compares
+//   with `cmpwi r31, -0x1` and `cmplwi r31, 0xa`, so the counter is unsigned and
+//   only the sentinel is looked at as signed. Writing the counter as s32 fixes
+//   the sentinel and breaks the bound; the cast fixes both.
+//
+//   What is left in it, and in the other two, is the same pair everywhere: the
+//   target writes an address constant straight into its callee-saved register
+//   where this build goes through r0 and copies, and the target leaves
+//   `bne .L_next` followed by `b .L_out` where this build folds the two into a
+//   single `beq .L_out`. The fold is not the peephole flag -- the unit already
+//   builds with -opt noschedule,nopeephole, and every other combination tried
+//   (none, nopeephole alone, noschedule alone, level=4) is worse. Five loop
+//   spellings all normalise to the folded form.
+//
+//   fn_8005EA04 is twelve bytes short. It gained sixteen of those by recomputing
+//   `lbl_802FF5E0[i].object` from the index instead of reusing the walked
+//   `entry` pointer -- the target really does rebuild base + i * 0x44 rather
+//   than reuse the cursor it already has. The same recompute applied to the
+//   `request` accesses in the second half overshoots to 524 and, more to the
+//   point, misaligns the function badly (81 differing rows against 66), so it
+//   is not simply more of the same.
+//
+//   fn_8005ED88 is thirty-two bytes short and has not been looked at yet.
 
 struct ResourceEntry {
 	char name[0x40];
@@ -149,7 +188,7 @@ extern "C" void fn_8005E8EC(void)
 			}
 			break;
 		}
-		if (found != -1) {
+		if ((s32)found != -1) {
 			char* extension = strchr(entry->name, '.');
 			if (extension != NULL) {
 				if (strncmp(extension + 1, lbl_8042B228, 3) == 0)
@@ -183,7 +222,7 @@ extern "C" void* fn_8005EA04(char* name)
 		break;
 	}
 	if (i != -1) {
-		result = entry->object;
+		result = lbl_802FF5E0[i].object;
 		goto done;
 	}
 
