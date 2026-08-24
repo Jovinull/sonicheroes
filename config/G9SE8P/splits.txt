@@ -419,6 +419,16 @@ MSL_C/e_log10.c:
 	.sbss       start:0x8042CAD0 end:0x8042CAD8
 	.sdata2     start:0x8042FA78 end:0x8042FAA8
 
+MSL_C/e_pow.c:
+	.text       start:0x801C6920 end:0x801C71AC
+	.rodata     start:0x8023D038 end:0x8023D068
+	.sdata2     start:0x8042FAA8 end:0x8042FBB8
+
+MSL_C/e_rem_pio2.c:
+	.text       start:0x801C71AC end:0x801C754C
+	.rodata     start:0x8023D068 end:0x8023D1F0
+	.sdata2     start:0x8042FBB8 end:0x8042FC10
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
