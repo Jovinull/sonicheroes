@@ -346,6 +346,7 @@ config.libs = [
             Object(Matching, "MSL_C/s_cos.c"),
             Object(Matching, "MSL_C/s_floor.c"),
             Object(Matching, "MSL_C/s_frexp.c"),
+            Object(Matching, "MSL_C/s_ldexp.c"),
         ],
     },
     {
