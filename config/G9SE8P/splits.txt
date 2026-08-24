@@ -680,3 +680,7 @@ game/cri/mfci.c:
 	.rodata     start:0x80240168 end:0x80240400
 	.data       start:0x8029BA48 end:0x8029BAB0
 	.bss        start:0x80427F78 end:0x80428970
+
+game/cri/adapter.c:
+	.text       start:0x80223424 end:0x80223500
+	.bss        start:0x80428970 end:0x80428A78
