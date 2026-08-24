@@ -87,15 +87,18 @@
 //   `cmpwi r0, 0x28`, `blr` -- the dead remains of a loop the optimiser
 //   deleted after emitting its guard. The PS2 build shows the body: a walk over
 //   the object table calling mfCiExecHndl, which is empty there (eight bytes,
-//   `jr ra`). Inlining that empty callee here removes the loop outright, so
-//   this build emits only `blr`; keeping the counter alive instead yields a
-//   `mtctr`/`bdnz` spin, and `volatile` yields a full stack frame. Those three
-//   are attractors, not a spectrum -- index and pointer walks, `while`, `do`,
-//   `goto`, a `break`, an empty inner loop, `-inline deferred` and empty
+//   `jr ra`), guarded at the call site by the same stat test. Reproducing that
+//   split exactly -- empty callee, test in the caller -- lets this compiler
+//   delete the loop outright and emit a bare `blr`. Moving the test into the
+//   callee instead keeps the loop, as a `mtctr`/`bdnz` spin; that is what is
+//   written below, because it is the closest of the three shapes this compiler
+//   will produce. The third is `volatile`, which yields a full stack frame.
+//   They are attractors, not a spectrum: index and pointer walks, `while`,
+//   `do`, `goto`, a `break`, an empty inner loop, `-inline deferred` and empty
 //   callees nested two and three deep all land on one of them. The target sits
-//   between the first two: the loop was deleted late enough that its guard had
-//   already been emitted, and its trip count never became a `ctr` loop, which
-//   here happens only while the body still holds a call.
+//   between the first two -- the loop was deleted late enough that its guard
+//   had already been emitted, and its trip count never became a `ctr` loop,
+//   which here happens only while the body still holds a call.
 //
 // The register allocation of mfCiOpen and mfCiReqRd turned out to be steered
 // from outside those functions. Whether mfCiOpenEntry touches a third .bss
@@ -482,11 +485,22 @@ void fn_802233F0(MfciErrFunc func, void* obj)
 	mfci_ErrObj  = obj;
 }
 
+// Empty on the PS2 build too (eight bytes, `jr ra`), where the caller guards
+// the call with the same stat test. Folding the test into the callee is the
+// one shape that keeps the loop alive here; see the header.
+static void mfCiExecHndl(MfciObj* hn)
+{
+	if (hn->stat == 0) {
+		return;
+	}
+}
+
 void fn_80223404(void)
 {
 	s32 i;
 
 	for (i = 0; i < MFCI_OBJ_MAX; i++) {
+		mfCiExecHndl(&mfci_ObjTbl[i]);
 	}
 }
 
