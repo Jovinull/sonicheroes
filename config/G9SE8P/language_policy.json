@@ -20,6 +20,7 @@
     "autosaveD/prolog.c",
     "game/cri/adapter.c",
     "game/cri/axrna.c",
+    "game/cri/lsc.c",
     "game/cri/mfci.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
