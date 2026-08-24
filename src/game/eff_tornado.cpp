@@ -1,5 +1,47 @@
 #include "types.h"
 
+// The tornado, typhoon and tornado-spin effects: TObjEffTornado and the two
+// classes derived from it, plus the free functions that create and dispose of
+// them. The unit runs from InitEffTornado at 0x800AB77C to the end of
+// SetEffectTornadoSpin at 0x800ADC3C, and owns .data 0x802532E8..0x80253648,
+// .sdata 0x8042B350..0x8042B374, .sbss 0x8042C34C..0x8042C380 and .sdata2
+// 0x8042DBD0..0x8042DBE0.
+//
+// Every one of those data ranges now reproduces byte for byte, which took two
+// corrections worth recording:
+//
+//   The .sdata2 claim used to start at 0x8042DBD8 and so covered only one of
+//   the unit's two generated conversion constants. The one left outside,
+//   0x8042DBD0, is the unsigned int-to-double magic 2^52; the file worked
+//   around the gap by defining it as a variable of its own, which made the
+//   compiler emit a third constant and pushed every pool index along. Claiming
+//   0x8042DBD0 and deleting the hand-written definition leaves exactly the two
+//   the original had.
+//
+//   lbl_8042C34C is storage this unit owns but never touches -- easySelect.cpp
+//   is what reads and writes it. It has to be defined here, and defined first,
+//   because MWCC lays .sbss out in order of first reference and an object
+//   nothing in the file references keeps its declaration position. Without it
+//   every later .sbss object sat four bytes low.
+//
+// NOT MATCHING: twenty of the twenty-two functions are byte-exact.
+//
+//   TDisp__15TObjEffTornado2Fv differs only in register allocation -- the
+//   target keeps the handle in r31 and this build keeps it in r27, and r26,
+//   r28 and r30 rotate along with it. Size, mnemonics and relocations already
+//   agree.
+//
+//   TDisp__14TObjEffTornadoFv is one instruction long. The target materialises
+//   two of the loop's address constants straight into their callee-saved
+//   registers; this build routes them through r0 and copies, and saves one
+//   copy elsewhere, for a net gain of one. Ruled out: dropping or inverting the
+//   opt_common_subs pragma around it, which costs three more instructions, and
+//   declaring the three loops' pointers inside their blocks instead of sharing
+//   the outer declarations, which costs the same three.
+//
+// The remaining extab and extabindex bytes are the frame descriptors of those
+// two functions and will follow them.
+
 inline void* operator new(unsigned long, void* address)
 {
 	return address;
@@ -169,6 +211,11 @@ void fn_800189A4(void*, void*);
 
 extern TObject* lbl_8042C2A0;
 extern TObject* lbl_8042C110;
+// Storage owned by this unit but read and written from easySelect.cpp, which is
+// why nothing here touches it. It has to be declared first: MWCC lays .sbss out
+// in order of first reference, and an object nothing in the file references
+// keeps its declaration position.
+void* lbl_8042C34C;
 extern void* lbl_8042C350;
 extern void* lbl_8042C354;
 extern void* lbl_8042C358;
@@ -232,7 +279,6 @@ extern f32 lbl_8042DC18;
 extern f32 lbl_8042DC1C;
 extern f32 lbl_8042DC20;
 extern f32 lbl_8042DC24;
-extern const f64 lbl_8042DBD0 = 4503599627370496.0;
 
 extern u8 lbl_8029C310[];
 extern u8 lbl_802D5E80[];
