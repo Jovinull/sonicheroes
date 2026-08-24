@@ -58,10 +58,9 @@
 // count, the one that returns -1 yields a status, the one that returns null
 // yields a name.
 //
-// NOT MATCHING: all twenty-two functions are written, and twenty-one are
-// byte-exact. The remaining function is still being matched. Struct offsets
-// recovered by them are recorded below; the fields they do not touch are
-// padding until something reaches them.
+// MATCHING: all twenty-two functions and every owned section are byte-exact.
+// Struct offsets recovered by them are recorded below; the fields they do not
+// touch are padding until something reaches them.
 
 #define LSC_STM_MAX 16
 
@@ -157,18 +156,17 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id);
 
 #define LSC_OBJ_MAX 16
 
+static LscStatFunc lsc_StatFunc = NULL;
+static void* lsc_StatObj        = NULL;
+static s32 lsc_StatValue        = 0;
+static s32 lsc_StatPad          = 0;
+
+static s32 lsc_InitCount = 0;
+
 static struct {
 	LscObj entries[LSC_OBJ_MAX];
 	u32 pad;
 } lsc_ObjTbl;
-static s32 lsc_InitCount;
-
-static struct {
-	LscStatFunc func;
-	void* obj;
-	s32 stat;
-	s32 pad;
-} lsc_StatEntry;
 
 void LSC_SetLpFlg(LscObj* lsc, s8 flag)
 {
@@ -182,8 +180,8 @@ void LSC_SetLpFlg(LscObj* lsc, s8 flag)
 #pragma dont_inline on
 void LSC_CallStatFunc(void)
 {
-	if (lsc_StatEntry.func != NULL) {
-		lsc_StatEntry.func(lsc_StatEntry.obj, lsc_StatEntry.stat);
+	if (lsc_StatFunc != NULL) {
+		lsc_StatFunc(lsc_StatObj, lsc_StatValue);
 	}
 }
 #pragma dont_inline reset
@@ -210,6 +208,79 @@ void LSC_SetFlowLimit(LscObj* lsc, s32 min)
 	lsc->flowlimit = min;
 }
 
+s32 LSC_GetStmRdSct(LscObj* lsc, s32 id)
+{
+	s32 i;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return 0;
+	}
+	for (i = 0; i < LSC_STM_MAX; i++) {
+		if (lsc->stm[i].id == id) {
+			break;
+		}
+	}
+	if (i == LSC_STM_MAX) {
+		fn_8021F410(lsc_ErrId, id);
+		return 0;
+	}
+	return lsc->stm[i].rdsct;
+}
+
+s32 LSC_GetStmStat(LscObj* lsc, s32 id)
+{
+	s32 i;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	for (i = 0; i < LSC_STM_MAX; i++) {
+		if (lsc->stm[i].id == id) {
+			break;
+		}
+	}
+	if (i == LSC_STM_MAX) {
+		fn_8021F410(lsc_ErrId, id);
+		return -1;
+	}
+	return lsc->stm[i].stat;
+}
+
+const char* LSC_GetStmFname(LscObj* lsc, s32 id)
+{
+	s32 i;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return NULL;
+	}
+	for (i = 0; i < LSC_STM_MAX; i++) {
+		if (lsc->stm[i].id == id) {
+			break;
+		}
+	}
+	if (i == LSC_STM_MAX) {
+		fn_8021F410(lsc_ErrId, id);
+		return NULL;
+	}
+	return lsc->stm[i].fname;
+}
+
+s32 LSC_GetStmId(LscObj* lsc, s32 no)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	if (no < 0 || no >= lsc->numstm) {
+		fn_8021F410(lsc_ErrNo, no);
+		return -1;
+	}
+	return lsc->stm[(lsc->head + no) % LSC_STM_MAX].id;
+}
+
 s32 LSC_GetNumStm(LscObj* lsc)
 {
 	if (lsc == NULL) {
@@ -226,71 +297,6 @@ s32 LSC_GetStat(LscObj* lsc)
 		return -1;
 	}
 	return lsc->stat;
-}
-
-void LSC_SetStmHndl(LscObj* lsc, void* hndl)
-{
-	lsc->stmhndl = hndl;
-}
-
-#pragma dont_inline on
-void fn_8021FF7C(LscObj* lsc)
-{
-	if (lsc == NULL) {
-		return;
-	}
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-	} else if (lsc->stat != 0) {
-		lsc->stat = 0;
-		if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
-			fn_80216F18(lsc->stmhndl);
-			lsc->pad2 = 0;
-		}
-		lsc->unk2C = NULL;
-		if (lsc == NULL) {
-			fn_8021F410(lsc_ErrParam);
-		} else if (lsc->stat == 0) {
-			lsc->rdsct  = 0;
-			lsc->head   = 0;
-			lsc->numstm = 0;
-		}
-		lsc->unk34 = 0;
-	}
-	lsc->used = 0;
-	memset(lsc, 0, sizeof(*lsc));
-}
-#pragma dont_inline reset
-
-void LSC_ResetEntry(LscObj* lsc)
-{
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return;
-	}
-	if (lsc->stat == 0) {
-		lsc->rdsct  = 0;
-		lsc->head   = 0;
-		lsc->numstm = 0;
-	}
-}
-
-void fn_802201E0(void)
-{
-	s8 crs[8];
-	s32 i;
-
-	fn_8021F524(crs);
-	if (--lsc_InitCount == 0) {
-		for (i = 0; i < LSC_OBJ_MAX; i++) {
-			if (lsc_ObjTbl.entries[i].used == 1) {
-				fn_8021FF7C(&lsc_ObjTbl.entries[i]);
-			}
-		}
-		memset(lsc_ObjTbl.entries, 0, sizeof(lsc_ObjTbl.entries));
-		fn_8021F4D0(0, 0);
-	}
-	fn_8021F504(crs);
 }
 
 void LSC_ExecServer(void)
@@ -371,6 +377,106 @@ void fn_8021FBA0(LscObj* lsc)
 	fn_8021F504(crs);
 }
 
+void LSC_ResetEntry(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return;
+	}
+	if (lsc->stat == 0) {
+		lsc->rdsct  = 0;
+		lsc->head   = 0;
+		lsc->numstm = 0;
+	}
+}
+
+#pragma dont_inline on
+s32 LSC_EntryFileRange(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	if (lsc->numstm >= LSC_STM_MAX) {
+		return -1;
+	}
+	if (fname == NULL) {
+		fn_8021F410(lsc_ErrFname, fname);
+		return -1;
+	}
+	{
+		LscStm* stm;
+		s32 id;
+		s32 i;
+		u32 fnameLength;
+		s32 prevStmIndex;
+		const u32* words;
+
+		words        = (const u32*)fname;
+		prevStmIndex = (lsc->rdsct + LSC_STM_MAX - 1) % LSC_STM_MAX;
+		stm          = (0, &lsc->stm[lsc->rdsct]);
+		id           = lsc->stm[prevStmIndex].id == 0x7FFFFFFF ? 0 : lsc->stm[prevStmIndex].id + 1;
+		stm->id      = id;
+		stm->fname   = fname;
+		fnameLength  = strlen(fname) / sizeof(u32);
+		stm->unk08   = 0;
+		for (i = 0; i < fnameLength; i++) {
+			stm->unk08 += words[i];
+		}
+		stm->ofst   = ofst;
+		stm->nbyte  = nbyte;
+		stm->dir    = dir;
+		stm->stat   = 0;
+		stm->rdsct  = 0;
+		lsc->numstm = lsc->numstm + 1;
+		lsc->rdsct  = (lsc->rdsct + 1) % LSC_STM_MAX;
+		if (lsc->stat == 1) {
+			lsc->stat = 2;
+		}
+		return id;
+	}
+}
+#pragma dont_inline reset
+
+void LSC_EntryFname(LscObj* lsc, const char* fname)
+{
+	LSC_EntryFileRange(lsc, fname, 0, 0, 0x100000 - 1);
+}
+
+void LSC_SetStmHndl(LscObj* lsc, void* hndl)
+{
+	lsc->stmhndl = hndl;
+}
+
+#pragma dont_inline on
+void fn_8021FF7C(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		return;
+	}
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+	} else if (lsc->stat != 0) {
+		lsc->stat = 0;
+		if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
+			fn_80216F18(lsc->stmhndl);
+			lsc->pad2 = 0;
+		}
+		lsc->unk2C = NULL;
+		if (lsc == NULL) {
+			fn_8021F410(lsc_ErrParam);
+		} else if (lsc->stat == 0) {
+			lsc->rdsct  = 0;
+			lsc->head   = 0;
+			lsc->numstm = 0;
+		}
+		lsc->unk34 = 0;
+	}
+	lsc->used = 0;
+	memset(lsc, 0, sizeof(*lsc));
+}
+#pragma dont_inline reset
+
 static inline LscObj* lsc_Alloc(void)
 {
 	LscObj* lsc = NULL;
@@ -432,130 +538,22 @@ LscObj* fn_80220054(LscSj* sj)
 }
 #pragma opt_propagation reset
 
-#pragma dont_inline on
-s32 LSC_EntryFileRange(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
+void fn_802201E0(void)
 {
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return -1;
-	}
-	if (lsc->numstm >= LSC_STM_MAX) {
-		return -1;
-	}
-	if (fname == NULL) {
-		fn_8021F410(lsc_ErrFname, fname);
-		return -1;
-	}
-	{
-		LscStm* stm;
-		s32 id;
-		s32 i;
-		u32 fnameLength;
-		s32 prevStmIndex;
-		const u32* words;
-
-		words        = (const u32*)fname;
-		prevStmIndex = (lsc->rdsct + LSC_STM_MAX - 1) % LSC_STM_MAX;
-		stm          = &lsc->stm[lsc->rdsct];
-		id           = lsc->stm[prevStmIndex].id == 0x7FFFFFFF ? 0 : lsc->stm[prevStmIndex].id + 1;
-		stm->id      = id;
-		stm->fname   = fname;
-		fnameLength  = strlen(fname) / sizeof(u32);
-		stm->unk08   = 0;
-		for (i = 0; i < fnameLength; i++) {
-			stm->unk08 += words[i];
-		}
-		stm->ofst   = ofst;
-		stm->nbyte  = nbyte;
-		stm->dir    = dir;
-		stm->stat   = 0;
-		stm->rdsct  = 0;
-		lsc->numstm = lsc->numstm + 1;
-		lsc->rdsct  = (lsc->rdsct + 1) % LSC_STM_MAX;
-		if (lsc->stat == 1) {
-			lsc->stat = 2;
-		}
-		return id;
-	}
-}
-#pragma dont_inline reset
-
-void LSC_EntryFname(LscObj* lsc, const char* fname)
-{
-	LSC_EntryFileRange(lsc, fname, 0, 0, 0x100000 - 1);
-}
-
-s32 LSC_GetStmId(LscObj* lsc, s32 no)
-{
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return -1;
-	}
-	if (no < 0 || no >= lsc->numstm) {
-		fn_8021F410(lsc_ErrNo, no);
-		return -1;
-	}
-	return lsc->stm[(lsc->head + no) % LSC_STM_MAX].id;
-}
-
-s32 LSC_GetStmRdSct(LscObj* lsc, s32 id)
-{
+	s8 crs[8];
 	s32 i;
 
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return 0;
-	}
-	for (i = 0; i < LSC_STM_MAX; i++) {
-		if (lsc->stm[i].id == id) {
-			break;
+	fn_8021F524(crs);
+	if (--lsc_InitCount == 0) {
+		for (i = 0; i < LSC_OBJ_MAX; i++) {
+			if (lsc_ObjTbl.entries[i].used == 1) {
+				fn_8021FF7C(&lsc_ObjTbl.entries[i]);
+			}
 		}
+		memset(lsc_ObjTbl.entries, 0, sizeof(lsc_ObjTbl.entries));
+		fn_8021F4D0(0, 0);
 	}
-	if (i == LSC_STM_MAX) {
-		fn_8021F410(lsc_ErrId, id);
-		return 0;
-	}
-	return lsc->stm[i].rdsct;
-}
-
-s32 LSC_GetStmStat(LscObj* lsc, s32 id)
-{
-	s32 i;
-
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return -1;
-	}
-	for (i = 0; i < LSC_STM_MAX; i++) {
-		if (lsc->stm[i].id == id) {
-			break;
-		}
-	}
-	if (i == LSC_STM_MAX) {
-		fn_8021F410(lsc_ErrId, id);
-		return -1;
-	}
-	return lsc->stm[i].stat;
-}
-
-const char* LSC_GetStmFname(LscObj* lsc, s32 id)
-{
-	s32 i;
-
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return NULL;
-	}
-	for (i = 0; i < LSC_STM_MAX; i++) {
-		if (lsc->stm[i].id == id) {
-			break;
-		}
-	}
-	if (i == LSC_STM_MAX) {
-		fn_8021F410(lsc_ErrId, id);
-		return NULL;
-	}
-	return lsc->stm[i].fname;
+	fn_8021F504(crs);
 }
 
 void fn_80220284(void)

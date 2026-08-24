@@ -541,7 +541,7 @@ config.libs = [
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/cri/lsc.c",
                 extra_cflags=[
                     "-sdata 0",
