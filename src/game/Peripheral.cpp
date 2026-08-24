@@ -41,7 +41,7 @@ int fn_80124858(void);
 float sqrtf(float);
 double sqrt(double);
 double __frsqrte(double);
-double fn_801C9330(float, float);
+double atan2(double, double);
 int sprintf(char*, const char*, ...);
 void* memcpy(void*, const void*, unsigned long);
 int fn_80042048(const char*, void*);
@@ -498,7 +498,7 @@ static inline s32 CalcAnalogAngle(float x, float y)
 			return 0;
 		return 0x8000;
 	}
-	return (s32)(lbl_8042CFB0 * (float)fn_801C9330(y, x));
+	return (s32)(lbl_8042CFB0 * (float)atan2(y, x));
 }
 
 #pragma fp_contract off
