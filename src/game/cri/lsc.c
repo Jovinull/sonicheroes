@@ -44,7 +44,7 @@
 // call it too. It is variadic, which is why every call site sets cr1eq.
 //
 // Two call relationships pin the naming beyond the three anchors above.
-// fn_8021FF44 does nothing but tail-call fn_8021FD04 with a zero offset and a
+// fn_8021FF44 does nothing but tail-call LSC_EntryFileRange with a zero offset and a
 // length of 0x100000 - 1, which is LSC_EntryFname delegating to
 // LSC_EntryFileRange. fn_8021FA78 walks sixteen handles and calls fn_802202FC
 // on each one that is in use, which is LSC_ExecServer driving lsc_ExecHndl.
@@ -58,30 +58,20 @@
 // count, the one that returns -1 yields a status, the one that returns null
 // yields a name.
 //
-// NOT MATCHING: fourteen of the twenty-two functions are written so far, and
-// all fourteen are byte-exact. The rest are still assembly. Struct offsets
-// recovered by them are recorded below; the fields they do not touch are
-// padding until something reaches them.
+// MATCHING: all twenty-two functions and every owned section are byte-exact.
+// Struct offsets recovered by them are recorded below; the fields they do not
+// touch are padding until something reaches them.
 
 #define LSC_STM_MAX 16
 
 typedef struct LscSj LscSj;
 
-typedef struct LscSjVtbl {
-	/* 0x00 */ u8 pad00[0x24];
-	/* 0x24 */ s32 (*get)(LscSj* sj, s32 which);
-} LscSjVtbl;
-
-struct LscSj {
-	/* 0x00 */ LscSjVtbl* vtbl;
-};
-
 typedef struct LscStm {
 	/* 0x00 */ s32 id;
 	/* 0x04 */ const char* fname;
-	/* 0x08 */ s32 sum;
-	/* 0x0C */ s32 ofst;
-	/* 0x10 */ s32 arg4;
+	/* 0x08 */ s32 unk08;
+	/* 0x0C */ void* dir;
+	/* 0x10 */ s32 ofst;
 	/* 0x14 */ s32 nbyte;
 	/* 0x18 */ s32 stat;
 	/* 0x1C */ s32 rdsct;
@@ -90,55 +80,64 @@ typedef struct LscStm {
 typedef struct LscObj {
 	/* 0x00 */ s8 used;
 	/* 0x01 */ s8 stat;
-	/* 0x02 */ s8 busy;
+	/* 0x02 */ s8 pad2;
 	/* 0x03 */ s8 lpflg;
-	/* 0x04 */ s8 halt;
-	/* 0x05 */ s8 pad05[3];
-	/* 0x08 */ struct LscSj* sj;
-	/* 0x0C */ s8 pad0C[8];
+	/* 0x04 */ s8 unk4;
+	/* 0x08 */ LscSj* sj;
+	/* 0x0C */ s32 unkC;
+	/* 0x10 */ s32 unk10;
 	/* 0x14 */ s32 flowlimit;
 	/* 0x18 */ s32 nsct;
-	/* 0x1C */ s32 tail;
+	/* 0x1C */ s32 rdsct;
 	/* 0x20 */ s32 head;
 	/* 0x24 */ s32 numstm;
 	/* 0x28 */ void* stmhndl;
-	/* 0x2C */ s32 f2C;
-	/* 0x30 */ s32 f30;
-	/* 0x34 */ s32 f34;
+	/* 0x2C */ void* unk2C;
+	/* 0x30 */ s8 pad30[4];
+	/* 0x34 */ s32 unk34;
 	/* 0x38 */ LscStm stm[LSC_STM_MAX];
 } LscObj;
 
 typedef void (*LscStatFunc)(void* obj, s32 stat);
 
+typedef struct LscSjVtable {
+	s8 pad00[0x24];
+	s32 (*getNumSct)(LscSj* sj, s32 selector);
+} LscSjVtable;
+
+struct LscSj {
+	LscSjVtable* vtable;
+};
+
 extern void fn_8021F410(const char* msg, ...);
 extern void fn_8021F504(void* crs);
 extern void fn_8021F524(void* crs);
-extern void fn_802202FC(LscObj* lsc);
-s32 fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
-
-extern const char* const volatile lsc_verptr;
-extern void fn_8021F4D0(s32 a, s32 b);
-void fn_8021FF7C(LscObj* lsc);
+extern void fn_8021F4D0(s32, s32);
 extern void fn_80216F18(void* hndl);
-extern void* memset(void* p, int c, u32 n);
-
-extern const char lsc_ErrParam[];
-extern const char lsc_ErrSj[];
-extern const char lsc_ErrFp[];
-extern const char lsc_ErrFname[];
-extern u32 strlen(const char* s);
-extern s32 fn_8021722C(void* hndl);
-extern s32 fn_802171C0(void* hndl);
-extern void fn_80217044(void* hndl);
-extern void fn_80217434(void* hndl);
-extern void fn_80217584(void* hndl, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
+extern void fn_80216810(void* hndl, s32 flowlimit, s32 nsct);
 extern void fn_80216EC4(void* hndl, s32 nbyte);
-extern void fn_80216810(void* hndl, s32 min, s32 nsct);
-extern void fn_802171DC(void* hndl, s32 a);
+extern void fn_80217044(void* hndl);
 extern void fn_8021713C(void* hndl);
-extern const char lsc_ErrMin[];
-extern const char lsc_ErrNo[];
-extern const char lsc_ErrId[];
+extern s32 fn_802171C0(void* hndl);
+extern void fn_802171DC(void* hndl, s32 value);
+extern s32 fn_8021722C(void* hndl);
+extern void fn_80217434(void* hndl);
+extern void fn_80217584(void* hndl, const char* fname, void* dir, s32 ofst, s32 nbyte);
+extern void fn_802202FC(LscObj* lsc);
+extern void fn_8021FF7C(LscObj* lsc);
+extern s32 LSC_EntryFileRange(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte);
+extern void* memset(void* dst, s32 value, u32 size);
+extern u32 strlen(const char* str);
+const char lsc_ErrParam[]                  = "E0003: Illigal parameter lsc=NULL\n";
+const char lsc_ErrMin[]                    = "E0010: Illigal parameter min=%d\n";
+const char lsc_ErrId[]                     = "E0012: Can not find stream ID =%d\n";
+const char lsc_ErrNo[]                     = "E0009: Illigal parameter no=%d\n";
+const char lsc_ErrFname[]                  = "E0011: Illigal parameter fname=%s\n";
+const char lsc_ErrCreateParam[]            = "E0001: Illigal parameter=sj (LSC_Create)\n";
+const char lsc_ErrCreateNoInstance[]       = "E0002: Not enough instance (LSC_Create)\n";
+const char lbl_8023FF00[]                  = "\nLSC/GC Ver.2.11 Build:May  9 2003 17:09:53\n";
+const char* const volatile lbl_8023FF30[2] = { lbl_8023FF00, NULL };
+const char lsc_ErrHandle[]                 = "E0007: lsc->fp=NULL\n";
 
 void LSC_SetLpFlg(LscObj* lsc, s8 flag);
 void LSC_CallStatFunc(void);
@@ -157,16 +156,17 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id);
 
 #define LSC_OBJ_MAX 16
 
-static LscObj lsc_ObjTbl[LSC_OBJ_MAX];
+static LscStatFunc lsc_StatFunc = NULL;
+static void* lsc_StatObj        = NULL;
+static s32 lsc_StatValue        = 0;
+static s32 lsc_StatPad          = 0;
+
+static s32 lsc_InitCount = 0;
 
 static struct {
-	LscStatFunc func;
-	void* obj;
-	s32 stat;
-	s32 pad;
-} lsc_StatEntry;
-
-static s32 lsc_RefCnt;
+	LscObj entries[LSC_OBJ_MAX];
+	u32 pad;
+} lsc_ObjTbl;
 
 void LSC_SetLpFlg(LscObj* lsc, s8 flag)
 {
@@ -177,16 +177,14 @@ void LSC_SetLpFlg(LscObj* lsc, s8 flag)
 	lsc->lpflg = flag;
 }
 
-// Kept out of line: the server calls it rather than inlining it, and at this
-// size the compiler would inline it by default.
 #pragma dont_inline on
 void LSC_CallStatFunc(void)
 {
-	if (lsc_StatEntry.func != NULL) {
-		lsc_StatEntry.func(lsc_StatEntry.obj, lsc_StatEntry.stat);
+	if (lsc_StatFunc != NULL) {
+		lsc_StatFunc(lsc_StatObj, lsc_StatValue);
 	}
 }
-#pragma dont_inline off
+#pragma dont_inline reset
 
 s32 LSC_GetFlowLimit(LscObj* lsc)
 {
@@ -208,74 +206,6 @@ void LSC_SetFlowLimit(LscObj* lsc, s32 min)
 		return;
 	}
 	lsc->flowlimit = min;
-}
-
-s32 LSC_GetNumStm(LscObj* lsc)
-{
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return -1;
-	}
-	return lsc->numstm;
-}
-
-s32 LSC_GetStat(LscObj* lsc)
-{
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return -1;
-	}
-	return lsc->stat;
-}
-
-void LSC_SetStmHndl(LscObj* lsc, void* hndl)
-{
-	lsc->stmhndl = hndl;
-}
-
-void LSC_ResetEntry(LscObj* lsc)
-{
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return;
-	}
-	if (lsc->stat == 0) {
-		lsc->tail   = 0;
-		lsc->head   = 0;
-		lsc->numstm = 0;
-	}
-}
-
-void LSC_ExecServer(void)
-{
-	s8 crs[0x10];
-	s32 i;
-
-	fn_8021F524(crs);
-	for (i = 0; i < LSC_OBJ_MAX; i++) {
-		if (lsc_ObjTbl[i].used == 1) {
-			fn_802202FC(&lsc_ObjTbl[i]);
-		}
-	}
-	fn_8021F504(crs);
-}
-
-void LSC_EntryFname(LscObj* lsc, const char* fname)
-{
-	fn_8021FD04(lsc, fname, 0, 0, 0x100000 - 1);
-}
-
-s32 LSC_GetStmId(LscObj* lsc, s32 no)
-{
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-		return -1;
-	}
-	if (no < 0 || no >= lsc->numstm) {
-		fn_8021F410(lsc_ErrNo, no);
-		return -1;
-	}
-	return lsc->stm[(lsc->head + no) % LSC_STM_MAX].id;
 }
 
 s32 LSC_GetStmRdSct(LscObj* lsc, s32 id)
@@ -338,74 +268,51 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id)
 	return lsc->stm[i].fname;
 }
 
-// Refcounted init and finish. Both keep their dtk names: the PS2 run has an
-// LSC_Init and an LSC_Finish in the right place, but the anchors the rest of
-// the naming rests on do not reach this far, so the mapping here would be a
-// guess rather than a reading.
-void fn_802201E0(void)
+s32 LSC_GetStmId(LscObj* lsc, s32 no)
 {
-	void* crs[2];
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	if (no < 0 || no >= lsc->numstm) {
+		fn_8021F410(lsc_ErrNo, no);
+		return -1;
+	}
+	return lsc->stm[(lsc->head + no) % LSC_STM_MAX].id;
+}
+
+s32 LSC_GetNumStm(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	return lsc->numstm;
+}
+
+s32 LSC_GetStat(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	return lsc->stat;
+}
+
+void LSC_ExecServer(void)
+{
+	s8 crs[0x10];
 	s32 i;
 
 	fn_8021F524(crs);
-	if (--lsc_RefCnt == 0) {
-		for (i = 0; i < LSC_OBJ_MAX; i++) {
-			if (lsc_ObjTbl[i].used == 1) {
-				fn_8021FF7C(&lsc_ObjTbl[i]);
-			}
+	for (i = 0; i < LSC_OBJ_MAX; i++) {
+		if (lsc_ObjTbl.entries[i].used == 1) {
+			fn_802202FC(&lsc_ObjTbl.entries[i]);
 		}
-		memset(lsc_ObjTbl, 0, sizeof(lsc_ObjTbl));
-		fn_8021F4D0(0, 0);
 	}
 	fn_8021F504(crs);
 }
 
-void fn_80220284(void)
-{
-	void* crs[2];
-
-	(void)lsc_verptr;
-	fn_8021F524(crs);
-	if (lsc_RefCnt == 0) {
-		memset(lsc_ObjTbl, 0, sizeof(lsc_ObjTbl));
-		fn_8021F4D0(0, 0);
-	}
-	lsc_RefCnt++;
-	fn_8021F504(crs);
-}
-
-// Stops the entry and wipes it. The null check appears twice because the outer
-// guard and the module's error macro are both in the source; the macro's copy
-// is unreachable and the compiler still emits it, the same shape the MFCI close
-// has.
-void fn_8021FF7C(LscObj* lsc)
-{
-	if (lsc == NULL) {
-		return;
-	}
-	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrParam);
-	} else if (lsc->stat != 0) {
-		lsc->stat = 0;
-		if (lsc->stmhndl != NULL && lsc->busy == 1) {
-			fn_80216F18(lsc->stmhndl);
-			lsc->busy = 0;
-		}
-		lsc->f2C = 0;
-		if (lsc == NULL) {
-			fn_8021F410(lsc_ErrParam);
-		} else if (lsc->stat == 0) {
-			lsc->tail   = 0;
-			lsc->head   = 0;
-			lsc->numstm = 0;
-		}
-		lsc->f34 = 0;
-	}
-	lsc->used = 0;
-	memset(lsc, 0, sizeof(LscObj));
-}
-
-// The same body fn_8021FF7C carries inline, as a function of its own.
 void fn_8021FAE4(LscObj* lsc)
 {
 	if (lsc == NULL) {
@@ -416,35 +323,51 @@ void fn_8021FAE4(LscObj* lsc)
 		return;
 	}
 	lsc->stat = 0;
-	if (lsc->stmhndl != NULL && lsc->busy == 1) {
+	if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
 		fn_80216F18(lsc->stmhndl);
-		lsc->busy = 0;
+		lsc->pad2 = 0;
 	}
-	lsc->f2C = 0;
+	lsc->unk2C = NULL;
 	if (lsc == NULL) {
 		fn_8021F410(lsc_ErrParam);
 	} else if (lsc->stat == 0) {
-		lsc->tail   = 0;
+		lsc->rdsct  = 0;
 		lsc->head   = 0;
 		lsc->numstm = 0;
 	}
-	lsc->f34 = 0;
+	lsc->unk34 = 0;
 }
 
-// Restarts the entry: stops whatever is running, then sets the state from
-// whether any streams are entered. The stop is fn_8021FAE4, which the compiler
-// inlines here.
 void fn_8021FBA0(LscObj* lsc)
 {
-	void* crs[2];
+	s8 crs[8];
+	s8 stat;
 
 	if (lsc == NULL) {
 		fn_8021F410(lsc_ErrParam);
 		return;
 	}
 	fn_8021F524(crs);
-	if (lsc->stat != 0) {
-		fn_8021FAE4(lsc);
+	stat = lsc->stat;
+	if (stat != 0) {
+		if (lsc == NULL) {
+			fn_8021F410(lsc_ErrParam);
+		} else if (stat != 0) {
+			lsc->stat = 0;
+			if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
+				fn_80216F18(lsc->stmhndl);
+				lsc->pad2 = 0;
+			}
+			lsc->unk2C = NULL;
+			if (lsc == NULL) {
+				fn_8021F410(lsc_ErrParam);
+			} else if (lsc->stat == 0) {
+				lsc->rdsct  = 0;
+				lsc->head   = 0;
+				lsc->numstm = 0;
+			}
+			lsc->unk34 = 0;
+		}
 	}
 	if (lsc->numstm > 0) {
 		lsc->stat = 2;
@@ -454,142 +377,22 @@ void fn_8021FBA0(LscObj* lsc)
 	fn_8021F504(crs);
 }
 
-// LSC_Create: takes the first unused entry, asks the stream joiner for the two
-// halves of its sector count, and derives the flow limit as eight tenths of it.
-// The compiler unrolls the sixteen-slot clear and leaves the loop's init and
-// entry test behind, which is why the compare below has no branch.
-LscObj* LSC_Create(LscSj* sj)
+void LSC_ResetEntry(LscObj* lsc)
 {
-	void* crs[2];
-	LscObj* lsc;
-	s32 i;
-	s32 n;
-
-	if (sj == NULL) {
-		fn_8021F410(lsc_ErrSj);
-		return NULL;
-	}
-	fn_8021F524(crs);
-	lsc = NULL;
-	for (i = 0; i < LSC_OBJ_MAX; i++) {
-		if (lsc_ObjTbl[i].used == 0) {
-			lsc = &lsc_ObjTbl[i];
-			break;
-		}
-	}
 	if (lsc == NULL) {
-		fn_8021F410(lsc_ErrMin);
-	} else {
-		lsc->sj        = sj;
-		lsc->stat      = 0;
-		n              = sj->vtbl->get(sj, 1);
-		lsc->nsct      = sj->vtbl->get(sj, 0) + n;
-		lsc->flowlimit = lsc->nsct * 8 / 10;
-		for (i = 0; i < LSC_STM_MAX; i++) {
-			lsc->stm[i].stat = 0;
-		}
-		lsc->used = 1;
-	}
-	fn_8021F504(crs);
-	return lsc;
-}
-
-// lsc_ExecHndl: one pass of the server over a single handle. Three stages run
-// in sequence on the record at the head of the ring -- poll a read in flight,
-// retire one that finished, then start the next -- so a record can move two
-// states in a single pass.
-void fn_802202FC(LscObj* lsc)
-{
-	LscStm* stm;
-	s32 ret;
-	const char* fname;
-	s32 ofst;
-	s32 arg4;
-	s32 nbyte;
-
-	if (lsc->halt == 1) {
+		fn_8021F410(lsc_ErrParam);
 		return;
 	}
-	if (lsc->stat != 2) {
-		return;
-	}
-	if (lsc->numstm <= 0) {
-		return;
-	}
-
-	if (lsc->stm[lsc->head].stat == 1) {
-		if (lsc->stmhndl == NULL) {
-			fn_8021F410(lsc_ErrFp);
-		} else {
-			stm = &lsc->stm[lsc->head];
-			ret = fn_8021722C(lsc->stmhndl);
-			if (ret == 4) {
-				lsc->stat = 3;
-			} else if (ret == 2) {
-				stm->rdsct = fn_802171C0(lsc->stmhndl);
-			} else if (ret == 3) {
-				stm->rdsct = lsc->f2C;
-				stm->stat  = 2;
-			}
-		}
-	}
-
-	if (lsc->stm[lsc->head].stat == 2) {
-		nbyte = 0;
-		arg4  = 0;
-		ofst  = 0;
-		fname = NULL;
-		if (lsc->stmhndl != NULL) {
-			if (lsc->lpflg == 1) {
-				stm   = &lsc->stm[lsc->head];
-				fname = stm->fname;
-				ofst  = stm->ofst;
-				arg4  = stm->arg4;
-				nbyte = stm->nbyte;
-			}
-			lsc->numstm--;
-			lsc->head = (lsc->head + 1) % LSC_STM_MAX;
-			if (lsc->numstm <= 0) {
-				LSC_CallStatFunc();
-				lsc->stat = 1;
-			}
-			if (lsc->lpflg == 1) {
-				fn_8021FD04(lsc, fname, ofst, arg4, nbyte);
-			}
-		}
-	}
-
-	if (lsc->stm[lsc->head].stat == 0) {
-		stm = &lsc->stm[lsc->head];
-		if (lsc->numstm > 0) {
-			fn_80217044(lsc->stmhndl);
-			fn_80217434(lsc->stmhndl);
-			fn_80217584(lsc->stmhndl, stm->fname, stm->ofst, stm->arg4, stm->nbyte);
-			fn_80216EC4(lsc->stmhndl, stm->nbyte);
-			lsc->f2C   = stm->nbyte;
-			stm->rdsct = 0;
-			lsc->busy  = 0;
-			if (lsc->busy == 0) {
-				fn_80216810(lsc->stmhndl, lsc->flowlimit, lsc->nsct);
-				fn_802171DC(lsc->stmhndl, 0);
-				fn_8021713C(lsc->stmhndl);
-				lsc->busy = 1;
-			}
-			stm->stat = 1;
-		}
+	if (lsc->stat == 0) {
+		lsc->rdsct  = 0;
+		lsc->head   = 0;
+		lsc->numstm = 0;
 	}
 }
 
-// LSC_EntryFileRange: queues one file range on the tail of the ring. The id it
-// hands back is the previous entry's plus one, wrapping at INT_MAX, and the
-// name is summed a word at a time -- the compiler unrolls that loop eight deep.
-s32 fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte)
+#pragma dont_inline on
+s32 LSC_EntryFileRange(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
 {
-	LscStm* stm;
-	s32 id;
-	u32 n;
-	u32 i;
-
 	if (lsc == NULL) {
 		fn_8021F410(lsc_ErrParam);
 		return -1;
@@ -598,30 +401,267 @@ s32 fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte)
 		return -1;
 	}
 	if (fname == NULL) {
-		fn_8021F410(lsc_ErrFname);
+		fn_8021F410(lsc_ErrFname, fname);
 		return -1;
 	}
+	{
+		LscStm* stm;
+		s32 id;
+		s32 i;
+		u32 fnameLength;
+		s32 prevStmIndex;
+		const u32* words;
 
-	stm = &lsc->stm[lsc->tail];
-	id  = lsc->stm[(lsc->tail + LSC_STM_MAX - 1) % LSC_STM_MAX].id;
-	id  = id == 0x7FFFFFFF ? 0 : id + 1;
-
-	stm->id    = id;
-	stm->fname = fname;
-	stm->sum   = 0;
-	n          = strlen(fname) / 4;
-	for (i = 0; i < n; i++) {
-		stm->sum += ((s32*)fname)[i];
+		words        = (const u32*)fname;
+		prevStmIndex = (lsc->rdsct + LSC_STM_MAX - 1) % LSC_STM_MAX;
+		stm          = (0, &lsc->stm[lsc->rdsct]);
+		id           = lsc->stm[prevStmIndex].id == 0x7FFFFFFF ? 0 : lsc->stm[prevStmIndex].id + 1;
+		stm->id      = id;
+		stm->fname   = fname;
+		fnameLength  = strlen(fname) / sizeof(u32);
+		stm->unk08   = 0;
+		for (i = 0; i < fnameLength; i++) {
+			stm->unk08 += words[i];
+		}
+		stm->ofst   = ofst;
+		stm->nbyte  = nbyte;
+		stm->dir    = dir;
+		stm->stat   = 0;
+		stm->rdsct  = 0;
+		lsc->numstm = lsc->numstm + 1;
+		lsc->rdsct  = (lsc->rdsct + 1) % LSC_STM_MAX;
+		if (lsc->stat == 1) {
+			lsc->stat = 2;
+		}
+		return id;
 	}
-	stm->arg4  = arg4;
-	stm->nbyte = nbyte;
-	stm->ofst  = ofst;
-	stm->stat  = 0;
+}
+#pragma dont_inline reset
+
+void LSC_EntryFname(LscObj* lsc, const char* fname)
+{
+	LSC_EntryFileRange(lsc, fname, 0, 0, 0x100000 - 1);
+}
+
+void LSC_SetStmHndl(LscObj* lsc, void* hndl)
+{
+	lsc->stmhndl = hndl;
+}
+
+#pragma dont_inline on
+void fn_8021FF7C(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		return;
+	}
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+	} else if (lsc->stat != 0) {
+		lsc->stat = 0;
+		if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
+			fn_80216F18(lsc->stmhndl);
+			lsc->pad2 = 0;
+		}
+		lsc->unk2C = NULL;
+		if (lsc == NULL) {
+			fn_8021F410(lsc_ErrParam);
+		} else if (lsc->stat == 0) {
+			lsc->rdsct  = 0;
+			lsc->head   = 0;
+			lsc->numstm = 0;
+		}
+		lsc->unk34 = 0;
+	}
+	lsc->used = 0;
+	memset(lsc, 0, sizeof(*lsc));
+}
+#pragma dont_inline reset
+
+static inline LscObj* lsc_Alloc(void)
+{
+	LscObj* lsc = NULL;
+	LscObj* obj = lsc_ObjTbl.entries;
+	s32 i;
+
+	for (i = 0; i < LSC_OBJ_MAX; obj++, i++) {
+		if (obj->used == 0) {
+			lsc = &lsc_ObjTbl.entries[i];
+			break;
+		}
+	}
+	return lsc;
+}
+
+#pragma opt_propagation off
+LscObj* LSC_Create(LscSj* sj)
+{
+	LscObj* lsc;
+	s8 crs[8];
+	s32 i;
+
+	if (sj == NULL) {
+		fn_8021F410(lsc_ErrCreateParam);
+		return NULL;
+	}
+	fn_8021F524(crs);
+	lsc = lsc_Alloc();
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrCreateNoInstance);
+	} else {
+		lsc->sj        = sj;
+		lsc->stat      = 0;
+		lsc->nsct      = sj->vtable->getNumSct(sj, 0) + sj->vtable->getNumSct(sj, 1);
+		lsc->flowlimit = (lsc->nsct * 8) / 10;
+		i              = 0;
+		if (i < LSC_STM_MAX) {
+			lsc->stm[0].stat  = 0;
+			lsc->stm[1].stat  = 0;
+			lsc->stm[2].stat  = 0;
+			lsc->stm[3].stat  = 0;
+			lsc->stm[4].stat  = 0;
+			lsc->stm[5].stat  = 0;
+			lsc->stm[6].stat  = 0;
+			lsc->stm[7].stat  = 0;
+			lsc->stm[8].stat  = 0;
+			lsc->stm[9].stat  = 0;
+			lsc->stm[10].stat = 0;
+			lsc->stm[11].stat = 0;
+			lsc->stm[12].stat = 0;
+			lsc->stm[13].stat = 0;
+			lsc->stm[14].stat = 0;
+			lsc->stm[15].stat = 0;
+		}
+		lsc->used = 1;
+	}
+	fn_8021F504(crs);
+	return lsc;
+}
+#pragma opt_propagation reset
+
+void fn_802201E0(void)
+{
+	s8 crs[8];
+	s32 i;
+
+	fn_8021F524(crs);
+	if (--lsc_InitCount == 0) {
+		for (i = 0; i < LSC_OBJ_MAX; i++) {
+			if (lsc_ObjTbl.entries[i].used == 1) {
+				fn_8021FF7C(&lsc_ObjTbl.entries[i]);
+			}
+		}
+		memset(lsc_ObjTbl.entries, 0, sizeof(lsc_ObjTbl.entries));
+		fn_8021F4D0(0, 0);
+	}
+	fn_8021F504(crs);
+}
+
+void fn_80220284(void)
+{
+	s8 crs[8];
+
+	lbl_8023FF30[0];
+	fn_8021F524(crs);
+	if (lsc_InitCount == 0) {
+		memset(lsc_ObjTbl.entries, 0, sizeof(lsc_ObjTbl.entries));
+		fn_8021F4D0(0, 0);
+	}
+	lsc_InitCount++;
+	fn_8021F504(crs);
+}
+
+static inline void lsc_StatRead(LscObj* lsc)
+{
+	LscStm* stm;
+	s32 stat;
+
+	if (lsc->stmhndl == NULL) {
+		fn_8021F410(lsc_ErrHandle);
+		return;
+	}
+	stm  = &lsc->stm[lsc->head];
+	stat = fn_8021722C(lsc->stmhndl);
+	if (stat == 4) {
+		lsc->stat = 3;
+	} else if (stat == 2) {
+		stm->rdsct = fn_802171C0(lsc->stmhndl);
+	} else if (stat == 3) {
+		stm->rdsct = (s32)lsc->unk2C;
+		stm->stat  = 2;
+	}
+}
+
+static inline void lsc_StatEnd(LscObj* lsc)
+{
+	const char* fname = NULL;
+	void* dir         = NULL;
+	s32 ofst          = 0;
+	s32 nbyte         = 0;
+	LscStm* stm;
+
+	if (lsc->stmhndl == NULL) {
+		return;
+	}
+	if (lsc->lpflg == 1) {
+		stm   = &lsc->stm[lsc->head];
+		fname = stm->fname;
+		dir   = stm->dir;
+		ofst  = stm->ofst;
+		nbyte = stm->nbyte;
+	}
+	lsc->numstm--;
+	lsc->head = (lsc->head + 1) % LSC_STM_MAX;
+	if (lsc->numstm <= 0) {
+		LSC_CallStatFunc();
+		lsc->stat = 1;
+	}
+	if (lsc->lpflg == 1) {
+		LSC_EntryFileRange(lsc, fname, dir, ofst, nbyte);
+	}
+}
+
+static inline void lsc_StatWait(LscObj* lsc)
+{
+	LscStm* stm = &lsc->stm[lsc->head];
+
+	if (lsc->numstm <= 0) {
+		return;
+	}
+	fn_80217044(lsc->stmhndl);
+	fn_80217434(lsc->stmhndl);
+	fn_80217584(lsc->stmhndl, stm->fname, stm->dir, stm->ofst, stm->nbyte);
+	fn_80216EC4(lsc->stmhndl, stm->nbyte);
+	lsc->unk2C = (void*)stm->nbyte;
 	stm->rdsct = 0;
-	lsc->numstm++;
-	lsc->tail = (lsc->tail + 1) % LSC_STM_MAX;
-	if (lsc->stat == 1) {
-		lsc->stat = 2;
+	lsc->pad2  = 0;
+	if (lsc->pad2 == 0) {
+		fn_80216810(lsc->stmhndl, lsc->flowlimit, lsc->nsct);
+		fn_802171DC(lsc->stmhndl, 0);
+		fn_8021713C(lsc->stmhndl);
+		lsc->pad2 = 1;
 	}
-	return id;
+	stm->stat = 1;
+}
+
+void fn_802202FC(LscObj* lsc)
+{
+	if (lsc->unk4 == 1) {
+		return;
+	}
+	if (lsc->stat != 2) {
+		return;
+	}
+	if (lsc->numstm <= 0) {
+		return;
+	}
+	if (lsc->stm[lsc->head].stat == 1) {
+		lsc_StatRead(lsc);
+	}
+	if (lsc->stm[lsc->head].stat == 2) {
+		lsc_StatEnd(lsc);
+	}
+	if (lsc->stm[lsc->head].stat != 0) {
+		return;
+	}
+	lsc_StatWait(lsc);
 }
