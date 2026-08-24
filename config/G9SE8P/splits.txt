@@ -498,6 +498,9 @@ MSL_C/w_asin.c:
 MSL_C/w_atan2.c:
 	.text       start:0x801C9330 end:0x801C9350
 
+MSL_C/w_fmod.c:
+	.text       start:0x801C9350 end:0x801C9370
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
