@@ -440,6 +440,10 @@ MSL_C/s_atan.c:
 	.rodata     start:0x8023D2A8 end:0x8023D340
 	.sdata2     start:0x8042FD08 end:0x8042FD30
 
+MSL_C/s_ceil.c:
+	.text       start:0x801C8948 end:0x801C8A8C
+	.sdata2     start:0x8042FD30 end:0x8042FD40
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0

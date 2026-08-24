@@ -341,6 +341,7 @@ config.libs = [
             Object(Matching, "MSL_C/k_sin.c"),
             Object(Matching, "MSL_C/k_tan.c"),
             Object(Matching, "MSL_C/s_atan.c"),
+            Object(Matching, "MSL_C/s_ceil.c"),
         ],
     },
     {
