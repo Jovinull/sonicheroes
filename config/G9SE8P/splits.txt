@@ -455,6 +455,10 @@ MSL_C/s_floor.c:
 	.text       start:0x801C8B88 end:0x801C8CD0
 	.sdata2     start:0x8042FD48 end:0x8042FD58
 
+MSL_C/s_frexp.c:
+	.text       start:0x801C8CD0 end:0x801C8D5C
+	.sdata2     start:0x8042FD58 end:0x8042FD60
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
