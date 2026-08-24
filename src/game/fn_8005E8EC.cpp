@@ -41,7 +41,33 @@
 //   point, misaligns the function badly (81 differing rows against 66), so it
 //   is not simply more of the same.
 //
-//   fn_8005ED88 is thirty-two bytes short and has not been looked at yet.
+//   fn_8005ED88 is the right length now and twenty-seven bytes differ, all of
+//   them one register swap: the target keeps the archive handle in r27 and the
+//   scratch buffer in r29, this build has them the other way round. Getting
+//   there took four things.
+//
+//   The big one is a build flag, not source: the unit needs -pooldata off. With
+//   pooling on, MWCC notices that every one of this unit's data labels lives in
+//   its own sections and folds them into one base register plus offsets --
+//   `addi r3, r25, 0x4400`, `addi r4, r31, 0x188` and so on -- where the target
+//   emits an independent lis/addi pair for each. That alone was thirty-six
+//   bytes. eff_tornado.cpp already carries the same flag.
+//
+//   The stack frame gave away the path buffer. The target opens with
+//   `stwu r1, -0x50(r1)` and saves r24 through r31, which leaves forty bytes
+//   between the linkage area and the register save area. A `char path[0x40]`
+//   cannot fit there; anything from 0x20 to 0x28 produces identical code, so
+//   the size is only bounded, not recovered, and 0x20 is what is written.
+//
+//   The clearing loop shares the array base with the walk that follows it, and
+//   the target materialises that base once into a callee-saved register. That
+//   needs `request` declared before the loop, used by it, and assigned again
+//   afterwards -- redundant as C, but it is what produces the single
+//   materialisation.
+//
+//   Last, materialData has to be declared and initialised before material, with
+//   material's call split out into its own statement, or the `li rN, 0` lands
+//   after the fn_80041FF4 call instead of before it.
 
 struct ResourceEntry {
 	char name[0x40];
@@ -319,15 +345,16 @@ extern "C" void fn_8005ED88(void)
 	fn_8015C710(lbl_803039E0, 1, 3, 10);
 	fn_8015C720(lbl_803039E0, 3);
 	if (lbl_8042C2A8 == NULL) {
-		char path[0x40];
+		char path[0x20];
 		sprintf(path, lbl_802435A0);
 		lbl_8042C2A8 = texLoadTexDictionaryFile__FPc(path);
 		if (lbl_8042C2A8 == NULL)
 			return;
 		fn_801A4778(lbl_8042C2A8, (void*)fn_8005E03C, 6);
 	}
-	void* material     = fn_80041FF4(lbl_802435BC);
+	void* material;
 	void* materialData = NULL;
+	material           = fn_80041FF4(lbl_802435BC);
 	if (material != NULL) {
 		if (fn_80192F38(material, 0x21, 0, 0) != 0)
 			materialData = fn_80146EA8(material);
@@ -340,11 +367,13 @@ extern "C" void fn_8005ED88(void)
 		fn_800BCC84(archive, lbl_802435C8, 0);
 	if (archive != NULL) {
 		fn_801A4C84(lbl_8042C2A8);
-		void* workspace = fn_80012994(0x25800);
-		for (u32 i = 0; i < 10; i++)
-			lbl_803039F8[i].data = NULL;
+		u32 i;
+		void* workspace          = fn_80012994(0x25800);
 		ResourceRequest* request = lbl_803039F8;
-		for (u32 i = 0; i < 0x100; i++) {
+		for (u32 i = 0; i < 10; i++)
+			request[i].data = NULL;
+		request = lbl_803039F8;
+		for (i = 0; i < 0x100; i++) {
 			char* source = (char*)fn_800BC694(archive, i);
 			if (source == NULL) {
 				memset(&lbl_802FF5E0[i], 0, 0x40);
