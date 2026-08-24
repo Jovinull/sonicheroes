@@ -328,6 +328,7 @@ config.libs = [
             ),
             Object(Matching, "MSL_C/strtoul.c"),
             Object(Matching, "MSL_C/uart_console_io.c"),
+            Object(Matching, "MSL_C/wchar_io.c"),
         ],
     },
     {
