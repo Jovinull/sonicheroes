@@ -111,21 +111,21 @@ const char gcci_ErrFileName[]      = "E0092901:fname is null.(gcCiGetFileSize)";
 const char gcci_ErrFileOpen[]      = "E0040201:can't open a file.(gcCiGetFileSize)";
 const char gcci_ErrFileClose[]     = "E0040202:can't close a file.(gcCiGetFileSize)";
 
-static s32 gcci_DvdStatus;
-static s8 gcci_Busy;
-static s32 gcci_Canceling;
-static void* gcci_ErrObj;
-static GcciErrFunc gcci_ErrFunc;
-static GcciObj gcci_ObjTbl[GCCI_OBJ_MAX];
-static s32 gcci_Unknown;
-static char gcci_WorkStr[0x100];
+s32 gcci_DvdStatus;
+s8 gcci_Busy;
+s32 gcci_Canceling;
+void* gcci_ErrObj;
+GcciErrFunc gcci_ErrFunc;
+GcciObj gcci_ObjTbl[GCCI_OBJ_MAX];
+volatile s32 gcci_Unknown;
+extern char gcci_WorkStr[0x100];
 
 s32 fn_8021E3D8(GcciObj* p);
 void fn_8021E438(GcciObj* p, s32 sctsize);
 s32 fn_8021E51C(GcciObj* p);
 s32 fn_8021E57C(GcciObj* p);
 void fn_8021E5E0(GcciObj* p);
-s32 fn_8021E780(GcciObj* p, s32 nsct, void* buffer);
+s32 fn_8021E780(void* obj, s32 nsct, void* buffer);
 s32 fn_8021EBA8(GcciObj* p);
 s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence);
 void fn_8021ECD4(GcciObj* p);
@@ -133,6 +133,7 @@ GcciObj* fn_8021EE98(const char* fname, s32 mode, s32 rw);
 u32 fn_8021F0A8(const char* fname);
 void fn_8021F20C(GcciErrFunc func, void* obj);
 void fn_8021F220(void);
+static inline void gcci_ExecServer(void);
 
 GcciFunc gcci_IfTbl[26] = {
 	(GcciFunc)fn_8021F220,
@@ -152,8 +153,12 @@ GcciFunc gcci_IfTbl[26] = {
 	(GcciFunc)fn_8021E3D8,
 };
 
-static s32 gcci_ReadMode;
-static s32 gcci_DataPad;
+#pragma section data_type ".data"                                                                  \
+                          ".data"
+static s32 gcci_ReadMode = 0;
+static s32 gcci_DataPad  = 0;
+#pragma section data_type ".data"                                                                  \
+                          ".bss"
 
 static void gcci_Error(const char* msg)
 {
@@ -174,48 +179,55 @@ static u32 gcci_GetMilliseconds(void)
 	return OSGetTick() / ((*(u32*)0x800000F8 >> 2) / 1000);
 }
 
+static inline s32 gcci_Done(GcciObj* p)
+{
+	s32 done = 0;
+
+	if (p->dvdStatus == 0 || p->dvdStatus == 10) {
+		done = 1;
+	}
+	return done;
+}
+
 static inline void gcci_Stop(GcciObj* p)
 {
 	u32 start;
 	u32 now;
 	u32 elapsed;
-	s32 done;
 	s32 result;
 
 	if (p->busy == 1) {
 		return;
 	}
-	if (p->busy == 0) {
-		return;
-	}
-	DVDGetCommandBlockStatus(&p->fileInfo);
-	DVDGetDriveStatus();
-	gcci_Canceling = 1;
-	result         = DVDCancel(&p->fileInfo);
-	gcci_Canceling = 0;
-	if (result < 0) {
-		gcci_ErrorArg(gcci_ErrCancel, p);
-		return;
-	}
-	start = gcci_GetMilliseconds();
-	for (;;) {
-		p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
-		gcci_DvdStatus = p->dvdStatus;
-		now            = gcci_GetMilliseconds();
-		elapsed        = now < start ? now + (-1U - start) : now - start;
-		if (elapsed > 2000) {
-			gcci_ErrorArg(gcci_ErrCancelTimeout, p);
-			break;
+	if (p->busy != 0) {
+		DVDGetCommandBlockStatus(&p->fileInfo);
+		DVDGetDriveStatus();
+		gcci_Canceling = 1;
+		result         = DVDCancel(&p->fileInfo);
+		gcci_Canceling = 0;
+		if (result < 0) {
+			gcci_ErrorArg(gcci_ErrCancel, p);
+			return;
 		}
-		done = p->dvdStatus == 0 || p->dvdStatus == 10;
-		if (done) {
-			break;
+		start = gcci_GetMilliseconds();
+		while (!gcci_Done(p)) {
+			p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
+			gcci_DvdStatus = p->dvdStatus;
+			now            = gcci_GetMilliseconds();
+			elapsed        = now + (-1U - start);
+			if (now >= start) {
+				elapsed = now - start;
+			}
+			if (elapsed > 2000) {
+				gcci_ErrorArg(gcci_ErrCancelTimeout, p);
+				break;
+			}
 		}
+		p->busy   = 0;
+		gcci_Busy = 0;
+		DVDGetCommandBlockStatus(&p->fileInfo);
+		DVDGetDriveStatus();
 	}
-	p->busy   = 0;
-	gcci_Busy = 0;
-	DVDGetCommandBlockStatus(&p->fileInfo);
-	DVDGetDriveStatus();
 }
 
 static void gcci_SetNsct(GcciObj* p)
@@ -225,6 +237,67 @@ static void gcci_SetNsct(GcciObj* p)
 	n       = p->sctsize + p->size;
 	n       = n - 1;
 	p->nsct = n / p->sctsize;
+}
+
+static GcciObj* gcci_Alloc(void)
+{
+	GcciObj* p;
+	s32 i;
+
+	p = NULL;
+	for (i = 0; i < GCCI_OBJ_MAX; i++) {
+		if (gcci_ObjTbl[i].stat == 0) {
+			p = &gcci_ObjTbl[i];
+			break;
+		}
+	}
+	return p;
+}
+
+static inline void gcci_ExecServer(void)
+{
+	GcciObj* p;
+	s32 i;
+	s32 transferred;
+	s32 total;
+	s32 over;
+	void* end;
+
+	p = gcci_ObjTbl;
+	for (i = 0; i < GCCI_OBJ_MAX; i++, p++) {
+		if (p->stat == 1 && p->busy == 2) {
+			p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
+			gcci_DvdStatus = p->dvdStatus;
+			switch (p->dvdStatus) {
+				case -1:
+					p->busy   = 3;
+					gcci_Busy = 3;
+					break;
+				case 0:
+					total = p->rdsct * p->sctsize;
+					DCInvalidateRange(p->buffer, total);
+					p->total = total;
+					p->pos += p->rdsct;
+					if (p->pos * p->sctsize > p->size) {
+						over = p->pos * p->sctsize - p->size;
+						end  = (char*)p->buffer + p->total - over;
+						memset(end, 0, over);
+						DCStoreRange(end, over);
+					}
+					p->busy   = 1;
+					gcci_Busy = 1;
+					break;
+				case 10:
+					transferred = DVDGetTransferredSize(&p->fileInfo);
+					DCInvalidateRange(p->buffer, transferred);
+					gcci_Busy = 0;
+					p->total  = p->sctsize * (transferred / p->sctsize);
+					p->pos += transferred / p->sctsize;
+					p->busy = 0;
+					break;
+			}
+		}
+	}
 }
 
 s32 fn_8021E3D8(GcciObj* p)
@@ -282,14 +355,18 @@ void fn_8021E5E0(GcciObj* p)
 	gcci_Stop(p);
 }
 
-s32 fn_8021E780(GcciObj* p, s32 nsct, void* buffer)
+s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 {
+	GcciObj* p;
 	GcciObj* q;
 	s32 i;
 	s32 ready;
+	s32 found;
 	s32 offset;
 	s32 length;
 	s32 result;
+
+	p = obj;
 
 	if (p == NULL) {
 		gcci_Error(gcci_ErrHandl);
@@ -311,11 +388,16 @@ s32 fn_8021E780(GcciObj* p, s32 nsct, void* buffer)
 	if (!ready) {
 		return 0;
 	}
-	q = gcci_ObjTbl;
+	q     = gcci_ObjTbl;
+	found = 0;
 	for (i = 0; i < GCCI_OBJ_MAX; i++, q++) {
 		if (q->stat == 1 && q->busy == 2) {
-			return 0;
+			found = 1;
+			break;
 		}
+	}
+	if (found) {
+		return 0;
 	}
 	if (nsct == 0) {
 		p->busy   = 1;
@@ -325,7 +407,7 @@ s32 fn_8021E780(GcciObj* p, s32 nsct, void* buffer)
 	p->total  = 0;
 	p->buffer = buffer;
 	p->rdsct  = nsct;
-	fn_8021F220();
+	gcci_ExecServer();
 	offset = p->pos * p->sctsize;
 	length = p->rdsct * p->sctsize;
 	if (offset + length > p->size) {
@@ -403,7 +485,8 @@ GcciObj* fn_8021EE98(const char* fname, s32 mode, s32 rw)
 	GcciObj* p;
 	char path[0x100];
 	s32 i;
-	char* q;
+	u32 len;
+	u32 size;
 
 	if (fname == NULL) {
 		gcci_Error(gcci_ErrOpenName);
@@ -413,27 +496,18 @@ GcciObj* fn_8021EE98(const char* fname, s32 mode, s32 rw)
 		gcci_Error(gcci_ErrOpenRw);
 		return NULL;
 	}
-	p = NULL;
-	for (i = 0; i < GCCI_OBJ_MAX; i++) {
-		if (gcci_ObjTbl[i].stat == 0) {
-			p = &gcci_ObjTbl[i];
-			break;
-		}
-	}
+	p = gcci_Alloc();
 	if (p == NULL) {
 		gcci_Error(gcci_ErrOpenResource);
 		return NULL;
 	}
 	strcpy(path, gcci_WorkStr);
 	strcat(path, fname);
-	q = path;
-	i = strlen(path);
-	while (i != 0) {
-		if (*q == '\\') {
-			*q = '/';
+	len = strlen(path);
+	for (i = 0; i < len; i++) {
+		if (path[i] == '\\') {
+			path[i] = '/';
 		}
-		q++;
-		i--;
 	}
 	if (DVDOpen(path, &p->fileInfo) == 0) {
 		gcci_Error(gcci_ErrOpenDvd);
@@ -441,10 +515,11 @@ GcciObj* fn_8021EE98(const char* fname, s32 mode, s32 rw)
 		return NULL;
 	}
 	p->sctsize = GCCI_SCT_SIZE;
-	p->size    = p->fileInfo.length;
-	if (p->size & 0x80000000) {
-		p->size = 0x7FFFFFFF;
+	size       = p->fileInfo.length;
+	if (size & 0x80000000) {
+		size = 0x7FFFFFFF;
 	}
+	p->size = size;
 	gcci_SetNsct(p);
 	p->pos    = 0;
 	p->buffer = NULL;
@@ -461,7 +536,7 @@ u32 fn_8021F0A8(const char* fname)
 	char path[0x100];
 	u32 size;
 	s32 i;
-	char* p;
+	u32 len;
 
 	if (fname == NULL) {
 		gcci_Error(gcci_ErrFileName);
@@ -469,14 +544,11 @@ u32 fn_8021F0A8(const char* fname)
 	}
 	strcpy(path, gcci_WorkStr);
 	strcat(path, fname);
-	p = path;
-	i = strlen(path);
-	while (i != 0) {
-		if (*p == '\\') {
-			*p = '/';
+	len = strlen(path);
+	for (i = 0; i < len; i++) {
+		if (path[i] == '\\') {
+			path[i] = '/';
 		}
-		p++;
-		i--;
 	}
 	if (DVDOpen(path, &fileInfo) == 0) {
 		gcci_Error(gcci_ErrFileOpen);
@@ -559,3 +631,5 @@ void fn_8021F404(void* arg0, void* arg1, void* arg2, s32 mode)
 {
 	gcci_ReadMode = mode;
 }
+
+char gcci_WorkStr[0x100];
