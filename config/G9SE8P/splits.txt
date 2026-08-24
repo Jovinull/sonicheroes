@@ -492,6 +492,9 @@ MSL_C/w_fmod.c:
 MSL_C/w_log.c:
 	.text       start:0x801C9370 end:0x801C9390
 
+MSL_C/w_log10.c:
+	.text       start:0x801C9390 end:0x801C93B0
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
