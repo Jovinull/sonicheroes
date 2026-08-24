@@ -1478,6 +1478,7 @@ extern "C" void SetEffectTornado__FP7TObjectiP5RwV3dP6sAngle(
 	new TObjEffTornado(parent, kind, position, rotation);
 }
 
+void* lbl_8042C34C;
 void* lbl_8042C350;
 void* lbl_8042C354;
 void* lbl_8042C358;
