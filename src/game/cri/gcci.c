@@ -109,7 +109,7 @@ const char gcci_ErrOpenResource[]  = "E0092910:not enough handle resource.(gcCiO
 const char gcci_ErrOpenDvd[]       = "E0092911:DVDOpen fail.(gcCiOpen)";
 const char gcci_ErrFileName[]      = "E0092901:fname is null.(gcCiGetFileSize)";
 const char gcci_ErrFileOpen[]      = "E0040201:can't open a file.(gcCiGetFileSize)";
-const char gcci_ErrFileClose[]     = "E0040202:can't close a file.(gcCiGetFileSize)";
+const char gcci_ErrFileClose[]     = "E0040202:can't close a file.(gcCiGetFileSize)\0\0";
 
 s32 gcci_DvdStatus;
 s8 gcci_Busy;
@@ -470,11 +470,7 @@ void fn_8021ECD4(GcciObj* p)
 	if (p == NULL) {
 		return;
 	}
-	if (p == NULL) {
-		gcci_Error(gcci_ErrHandl);
-	} else {
-		gcci_Stop(p);
-	}
+	fn_8021E5E0(p);
 	DVDClose(&p->fileInfo);
 	p->stat = 0;
 	memset(p, 0, sizeof(GcciObj));
