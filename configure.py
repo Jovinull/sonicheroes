@@ -354,6 +354,7 @@ config.libs = [
             Object(Matching, "MSL_C/w_acos.c"),
             Object(Matching, "MSL_C/w_asin.c"),
             Object(Matching, "MSL_C/w_atan2.c"),
+            Object(Matching, "MSL_C/w_fmod.c"),
         ],
     },
     {
