@@ -42,7 +42,8 @@ typedef struct AxRna {
 	/* 0x03 */ s8 idx;
 	/* 0x04 */ u8 pad04[4];
 	/* 0x08 */ AxObj* obj[11];
-	/* 0x34 */ AxObj* slot[21];
+	/* 0x34 */ AxObj* slot[20];
+	/* 0x84 */ s32 vol;
 	/* 0x88 */ s32 pan[11];
 	/* 0xB4 */ u8 padB4[0x34];
 } AxRna;
@@ -52,6 +53,7 @@ typedef struct AxRna {
 extern void fn_8022347C(void* func, void* obj);
 extern void fn_80223490(void);
 extern void fn_802234B0(void);
+extern void fn_801E89A4(AxObj* obj, s32 v);
 extern void fn_801E89CC(AxObj* obj, s32 v);
 
 extern s32 ax_PanTbl[31];
@@ -77,6 +79,29 @@ void fn_80223500(AxRna* p, s32 ch, s32 v)
 		fn_801E89CC(p->obj[ch], ax_PanTbl[n + 15]);
 	}
 	fn_80223490();
+}
+
+void fn_802235B4(AxRna* p, s32 v)
+{
+	s32 n;
+	s32 i;
+
+	if (p == NULL) {
+		return;
+	}
+	n = v < 0 ? v : 0;
+	n = n <= -999 ? -999 : n;
+	if (n == p->vol) {
+		return;
+	}
+	p->vol = n;
+	for (i = 0; i < p->nch; i++) {
+		fn_802234B0();
+		if (p->obj[i] != NULL) {
+			fn_801E89A4(p->obj[i], n);
+		}
+		fn_80223490();
+	}
 }
 
 extern void fn_80223820(AxRna* p);
@@ -119,6 +144,24 @@ s32 fn_80223ED0(AxRna* p)
 		return -1;
 	}
 	return 4096 - (s32)((u32)p->slot[p->idx]->vtbl->get(p->slot[p->idx], 0) >> 1);
+}
+
+extern void fn_801E8984(AxObj* obj);
+
+void fn_80224A88(AxObj* obj)
+{
+	s32 i;
+	s32 j;
+
+	for (i = 0; i < AX_RNA_MAX; i++) {
+		for (j = 0; j < 2; j++) {
+			if (obj == ax_Tbl[i].obj[j]) {
+				fn_801E8984(ax_Tbl[i].obj[j]);
+				ax_Tbl[i].obj[j] = NULL;
+				return;
+			}
+		}
+	}
 }
 
 void fn_80224CB0(void* func, void* obj)
