@@ -18,6 +18,7 @@
   "reviewed_c_boundary_sources": [
     "advertiseD/prolog.c",
     "autosaveD/prolog.c",
+    "game/cri/adapter.c",
     "game/cri/mfci.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
