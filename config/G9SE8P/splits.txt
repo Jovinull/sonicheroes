@@ -851,6 +851,11 @@ dolphin/exi/EXIBios.c:
 	.bss        start:0x8040EA90 end:0x8040EB50
 	.sbss       start:0x8042CF30 end:0x8042CF34
 
+game/cri/lsc.c:
+	.text       start:0x8021F544 end:0x80220544
+	.rodata     start:0x8023FDF8 end:0x8023FF50
+	.bss        start:0x80420878 end:0x80422C10
+
 game/cri/mfci.c:
 	.text       start:0x80222A14 end:0x80223424
 	.rodata     start:0x80240168 end:0x80240400
