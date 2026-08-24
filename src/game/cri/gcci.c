@@ -31,15 +31,18 @@
 
 typedef void (*GcciErrFunc)(void* obj, const char* msg, void* arg);
 
+// The handle mirrors MFCI's, shifted by 0x0C: the same sector size, size,
+// sector count, position, total and read-count run, in the same order.
 typedef struct GcciObj {
 	/* 0x00 */ s8 pad00[2];
-	/* 0x02 */ s8 unk02;
+	/* 0x02 */ s8 stat;
 	/* 0x03 */ s8 pad03[0xD];
-	/* 0x10 */ s32 unk10;
-	/* 0x14 */ s32 pad14;
-	/* 0x18 */ s32 unk18;
-	/* 0x1C */ s32 unk1C;
-	/* 0x20 */ s32 unk20;
+	/* 0x10 */ s32 sctsize;
+	/* 0x14 */ s32 size;
+	/* 0x18 */ s32 nsct;
+	/* 0x1C */ s32 pos;
+	/* 0x20 */ s32 total;
+	/* 0x24 */ s32 rdsct;
 } GcciObj;
 
 static GcciErrFunc gcci_ErrFunc;
@@ -49,6 +52,15 @@ extern const char gcci_ErrHandl[];
 extern const char gcci_ErrHandl2[];
 extern const char gcci_ErrSize[];
 extern const char gcci_ErrHandl3[];
+
+static void gcci_SetNsct(GcciObj* p)
+{
+	s32 n;
+
+	n       = p->sctsize + p->size;
+	n       = n - 1;
+	p->nsct = n / p->sctsize;
+}
 
 static void gcci_Error(const char* msg)
 {
@@ -63,7 +75,7 @@ s32 fn_8021E3D8(GcciObj* p)
 		gcci_Error(gcci_ErrHandl);
 		return 0;
 	}
-	return p->unk20;
+	return p->total;
 }
 
 s32 fn_8021E51C(GcciObj* p)
@@ -72,7 +84,7 @@ s32 fn_8021E51C(GcciObj* p)
 		gcci_Error(gcci_ErrHandl3);
 		return 0;
 	}
-	return p->unk10;
+	return p->sctsize;
 }
 
 void fn_8021F20C(GcciErrFunc func, void* obj)
@@ -87,7 +99,7 @@ s32 fn_8021E57C(GcciObj* p)
 		gcci_Error(gcci_ErrHandl);
 		return 0;
 	}
-	return p->unk02;
+	return p->stat;
 }
 
 s32 fn_8021EBA8(GcciObj* p)
@@ -96,26 +108,51 @@ s32 fn_8021EBA8(GcciObj* p)
 		gcci_Error(gcci_ErrHandl);
 		return 0;
 	}
-	return p->unk1C;
+	return p->pos;
 }
 
 s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence)
 {
+	s32 pos;
+
 	if (p == NULL) {
 		gcci_Error(gcci_ErrHandl);
 		return 0;
 	}
 	if (whence == 0) {
-		p->unk1C = off;
+		p->pos = off;
 	} else if (whence == 2) {
-		p->unk1C = p->unk18 + off;
+		p->pos = p->nsct + off;
 	} else if (whence == 1) {
-		p->unk1C = p->unk1C + off;
+		p->pos = p->pos + off;
 	}
-	p->unk1C = p->unk1C < p->unk18 ? p->unk1C : p->unk18;
-	if (p->unk1C > 0) {
+	p->pos = p->pos < p->nsct ? p->pos : p->nsct;
+	pos    = p->pos;
+	if (pos > 0) {
+		if (pos && pos) {
+		}
 	} else {
-		p->unk1C = 0;
+		pos = 0;
 	}
-	return p->unk1C;
+	p->pos = pos;
+	return p->pos;
+}
+
+void fn_8021E438(GcciObj* p, s32 sctsize)
+{
+	s32 total;
+
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl2);
+		return;
+	}
+	if (p->sctsize % 32 != 0) {
+		gcci_Error(gcci_ErrSize);
+		return;
+	}
+	total      = p->pos * p->sctsize;
+	p->sctsize = sctsize;
+	gcci_SetNsct(p);
+	p->pos   = total / p->sctsize;
+	p->total = p->rdsct * sctsize;
 }
