@@ -29,7 +29,9 @@ typedef struct AxObj AxObj;
 typedef struct AxVtbl {
 	/* 0x00 */ u8 pad00[0xc];
 	/* 0x0c */ void (*stop)(AxObj* obj);
-	/* 0x10 */ u8 pad10[0x10];
+	/* 0x10 */ u8 pad10[4];
+	/* 0x14 */ void (*reset)(AxObj* obj);
+	/* 0x18 */ u8 pad18[8];
 	/* 0x20 */ void (*put)(AxObj* obj, s32 which, void* buf);
 	/* 0x24 */ s32 (*get)(AxObj* obj, s32 arg);
 } AxVtbl;
@@ -51,13 +53,15 @@ typedef struct AxStream {
 
 typedef struct AxRna {
 	/* 0x00 */ s8 stat;
-	/* 0x01 */ s8 pad01;
+	/* 0x01 */ u8 flags;
 	/* 0x02 */ s8 nch;
 	/* 0x03 */ s8 idx;
-	/* 0x04 */ u8 pad04[4];
+	/* 0x04 */ s32 loopReq;
 	/* 0x08 */ AxObj* obj[2];
 	/* 0x10 */ AxCb* cb[2];
-	/* 0x18 */ u8 pad18[0x18];
+	/* 0x18 */ s32 loopStart[2];
+	/* 0x20 */ s32 loopLen;
+	/* 0x24 */ u8 pad24[0xc];
 	/* 0x30 */ AxObj* strmA[2];
 	/* 0x38 */ AxObj* strmB[2];
 	/* 0x40 */ u8 bufA[2][8];
@@ -272,6 +276,7 @@ extern void fn_80224D00(void* p);
 
 void fn_802242CC(AxRna* p)
 {
+	s8* nchp;
 	s32 i;
 
 	if (p == NULL) {
@@ -279,7 +284,7 @@ void fn_802242CC(AxRna* p)
 	}
 	fn_80223F2C(p, 0);
 	fn_802240CC(p, 0);
-	for (i = 0; i < p->nch; i++) {
+	for (i = 0, nchp = &p->nch; i < *nchp; i++) {
 		if (p->strmB[i] != NULL) {
 			p->strmB[i]->vtbl->stop(p->strmB[i]);
 		}
@@ -294,6 +299,86 @@ void fn_802242CC(AxRna* p)
 		fn_80223490();
 	}
 	memset(p, 0, sizeof(AxRna));
+}
+
+extern void fn_80224D00(void* p);
+
+extern void fn_801E4994(AxObj* obj, s32 v);
+extern void fn_801E4C44(AxObj* obj, void* buf);
+extern void fn_80223424(const char* msg);
+
+void fn_80223F2C(AxRna* p, s32 sw)
+{
+	s32 cur;
+	s32 i;
+
+	if (p == NULL) {
+		return;
+	}
+	if (p == NULL) {
+		cur = -1;
+	} else {
+		cur = (p->flags >> 1) & 1;
+	}
+	if (sw == cur) {
+		return;
+	}
+	fn_802234B0();
+	if (sw == 1) {
+		p->loopReq = -1;
+		for (i = 0; i < p->idx; i++) {
+			if (p->obj[i] != NULL) {
+				s16 buf[8];
+				s32 start = p->loopStart[i];
+				s32 end   = start + p->loopLen - 1;
+				buf[0]    = 1;
+				buf[1]    = 10;
+				buf[2]    = (s16)(start >> 16);
+				buf[3]    = (s16)start;
+				buf[4]    = (s16)(end >> 16);
+				buf[5]    = (s16)end;
+				buf[6]    = (s16)(start >> 16);
+				buf[7]    = (s16)start;
+				fn_801E4C44(p->obj[i], buf);
+				fn_801E4994(p->obj[i], 1);
+			}
+		}
+		p->flags |= 2;
+	} else if (sw == 0) {
+		for (i = 0; i < p->idx; i++) {
+			if (p->obj[i] != NULL) {
+				fn_801E4994(p->obj[i], 0);
+			}
+		}
+		for (i = 0; i < p->nch; i++) {
+			p->strmB[i]->vtbl->reset(p->strmB[i]);
+		}
+		p->flags &= 1;
+	} else {
+		fn_80223424("E1070309:Illigal parameter(sw).\n");
+	}
+	fn_80223490();
+}
+
+extern void fn_80224E1C(void);
+
+void fn_80224B1C(void)
+{
+	AxRna* p;
+	s32 i;
+
+	if (--ax_RefCnt != 0) {
+		return;
+	}
+	p = ax_Tbl;
+	for (i = 0; i < AX_RNA_MAX; i++) {
+		if (p->stat == 1) {
+			fn_802242CC(p);
+		}
+		p++;
+	}
+	memset(ax_Tbl, 0, sizeof(ax_Tbl));
+	fn_80224E1C();
 }
 
 void fn_80224D00(void* p)
