@@ -381,6 +381,9 @@ MSL_C/uart_console_io.c:
 	.text       start:0x801C5900 end:0x801C59CC
 	.sbss       start:0x8042CAC0 end:0x8042CAC4
 
+MSL_C/wchar_io.c:
+	.text       start:0x801C59CC end:0x801C5A54
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
