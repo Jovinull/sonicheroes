@@ -76,6 +76,9 @@ extern void fn_801E89CC(AxObj* obj, s32 v);
 
 extern s32 ax_PanTbl[31];
 
+const char ax_ver[]                         = "\nAXRNA Ver.1.02 Build:May  9 2003 17:10:58\n";
+static const char* const volatile ax_verptr = ax_ver;
+
 void fn_80223500(AxRna* p, s32 ch, s32 v)
 {
 	s32 n;
@@ -124,6 +127,12 @@ void fn_802235B4(AxRna* p, s32 v)
 
 extern void fn_80223820(AxRna* p);
 
+static s32 ax_RefCnt;
+static void* ax_AlignedBuf;
+static s32 ax_X[2];
+static s32 ax_Y;
+static s32 ax_Z[32];
+static u8 ax_Buf[4160];
 static AxRna ax_Tbl[AX_RNA_MAX];
 
 void fn_802237B4(void* p, s8 v)
@@ -202,6 +211,19 @@ void fn_80223C24(AxCb* cb)
 }
 
 extern void fn_801E8984(AxObj* obj);
+extern void fn_80224F88(void);
+extern void* memset(void* p, int c, u32 n);
+
+void fn_80224C3C(void)
+{
+	(void)ax_verptr;
+	if (ax_RefCnt == 0) {
+		fn_80224F88();
+		memset(ax_Tbl, 0, sizeof(ax_Tbl));
+		ax_AlignedBuf = (void*)(((u32)ax_Buf + 31) & ~31);
+	}
+	ax_RefCnt++;
+}
 
 void fn_80224A88(AxObj* obj)
 {
