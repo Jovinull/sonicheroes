@@ -150,6 +150,11 @@ game/Endian.cpp:
 game/fn_8005421C.cpp:
 	.text       start:0x8005421C end:0x80054230
 
+game/fn_80054230.cpp:
+	extab       start:0x80006524 end:0x8000652C
+	extabindex  start:0x8000CEBC end:0x8000CEC8
+	.text       start:0x80054230 end:0x8005428C
+
 game/fn_80057524.cpp:
 	extab       start:0x800065E4 end:0x800065EC
 	extabindex  start:0x8000CF94 end:0x8000CFA0
