@@ -84,8 +84,6 @@ def main() -> None:
                 "Debug__7TObjectFv=sampleHook3",
                 "--redefine-sym",
                 "Render__7TObjectFv=sampleHook4",
-                "--redefine-sym",
-                "Error__7TObjectFPc=fn_80017854",
                 args.object,
                 renamed,
             ],

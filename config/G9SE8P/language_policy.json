@@ -18,6 +18,9 @@
   "reviewed_c_boundary_sources": [
     "advertiseD/prolog.c",
     "autosaveD/prolog.c",
+    "game/cri/adapter.c",
+    "game/cri/axrna.c",
+    "game/cri/mfci.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
     "movieD/cri/sfxset.c",
@@ -37,7 +40,6 @@
         "movieD/cri/sfx.c"
     ],
     "legacy_cpp_c_sources": [
-        "autosaveD/emblem_task.c",
         "autosaveD/line_count.c",
     "autosaveD/quad_fill.c",
     "autosaveD/quad_submit.c",
@@ -54,6 +56,7 @@
         "advertiseD/adv_draw.cpp",
         "game/e_paralysis.cpp",
         "game/modeswitch.cpp",
-        "game/skyfs_adx.c"
+        "game/skyfs_adx.c",
+        "rel/o_spring.cpp"
     ]
 }

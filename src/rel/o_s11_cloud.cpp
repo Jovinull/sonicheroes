@@ -108,12 +108,12 @@ void* fn_800BB92C(void*, s32, void*);
 s32 fn_800BC6CC(void*, const char*);
 void fn_800BC9F4(void*, void*);
 
-void objDefaultDebug();
-void objDefaultImmAftSetRaster();
-void objDefaultPDisp();
-void objDefaultRender();
+void Debug__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void PDisp__7TObjectFv();
+void Render__7TObjectFv();
 void objDefaultTDisp();
-void fn_80017854();
+void Error__7TObjectFPc();
 }
 
 class TObjS11Cloud : public TObject, public Motion
@@ -483,11 +483,11 @@ extern "C" void* cloudVtable[15]   = {
 	(void*)Exec__12TObjS11CloudFv,
 	(void*)Disp__12TObjS11CloudFv,
 	(void*)objDefaultTDisp,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)AdjustorEditOnChange__12TObjS11CloudFP13SETDATA_PARAM,

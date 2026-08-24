@@ -16,6 +16,8 @@ orig/*/*
 *.o
 *.map
 *.MAP
+*.iso
+*.rvz
 
 # Build files
 build/

@@ -36,12 +36,12 @@ void fn_801A4C84(void*);
 void fn_3_1A9B0();
 void fn_8_8AA4C();
 void fn_8005B8B8();
-void objDefaultDebug();
-void objDefaultImmAftSetRaster();
-void objDefaultPDisp();
-void objDefaultRender();
+void Debug__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void PDisp__7TObjectFv();
+void Render__7TObjectFv();
 void objDefaultTDisp();
-void fn_80017854();
+void Error__7TObjectFPc();
 }
 
 class TObjS11Bob
@@ -168,11 +168,11 @@ extern "C" void* bobVtable[14] = {
 	(void*)fn_8_8AA4C,
 	(void*)fn_3_1A9B0,
 	(void*)objDefaultTDisp,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)fn_8005B8B8,

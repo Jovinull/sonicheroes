@@ -109,11 +109,11 @@ void s01ObjectBaseCtor(TObjS01ShachiColli*, void*);
 
 void fn_3_1A9B0();
 extern "C" void TDisp__13TObjS01CisekiFv();
-void objDefaultPDisp();
-void objDefaultImmAftSetRaster();
-void objDefaultDebug();
-void fn_80017854();
-void objDefaultRender();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
 void fn_3_7CCD0();
 extern "C" void MotionNoop__13TObjS01CisekiFv();
 void s01ObjectBaseNoop();
@@ -229,11 +229,11 @@ extern "C" void* shachiColliVtable[18] = {
 	(void*)Exec__18TObjS01ShachiColliFv,
 	(void*)fn_3_1A9B0,
 	(void*)TDisp__13TObjS01CisekiFv,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)fn_3_7CCD0,

@@ -220,7 +220,7 @@ void fn_1_AA10(void* self, s32 arg);
 void fn_1_A85C(void* self, s32 arg);
 
 extern void* const lbl_1_data_36DC; // -> "ADV_CHALLENGE"
-extern void fn_800A8828(void* self, void* parent);
+extern void __ct__10EasySelectFP7TObject(void* self, void* parent);
 extern void fn_1_12124(void* panel);
 extern void fn_1_119D4(void* cursor);
 extern void fn_1_120C4(void* cursor, s32 i);
@@ -1297,7 +1297,7 @@ ADV_CHALLENGE* fn_1_A208(ADV_CHALLENGE* self, void* parent)
 {
 	s32 i;
 
-	fn_800A8828(self, parent);
+	__ct__10EasySelectFP7TObject(self, parent);
 	self->vtable = &lbl_1_data_3818;
 	fn_1_12124(&self->obj_0x80);
 	fn_1_12124(&self->obj_0x10c);

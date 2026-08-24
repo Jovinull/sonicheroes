@@ -112,7 +112,7 @@ void advE3Rom_setFlag(void*);
 // ---- external functions (DOL / other modules) -------------------------
 void __ct__10DAnimClassFv(void*, int);
 void fn_800A8620(void*, int);
-void fn_800A8828(void*);
+void __ct__10EasySelectFP7TObject(void*);
 int fn_800A92E0(void*, int, int);
 int fn_800A9398(void*, int);
 void fn_800B52E8(void*, int, int, int);
@@ -215,7 +215,7 @@ Adv* fn_1_10E4(Adv* self, s16 flag)
 Adv* fn_1_1154(Adv* self, void* parent)
 {
 	(void)parent;
-	fn_800A8828(self);
+	__ct__10EasySelectFP7TObject(self);
 	self->vtable = lbl_1_data_3E0;
 	self->name   = lbl_1_data_294;
 	self->unk_1E = 0x8C;

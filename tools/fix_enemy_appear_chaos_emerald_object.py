@@ -19,7 +19,6 @@ RENAMES = {
     "Render__7TObjectFv": "sampleHook4",
     "PDisp__7TObjectFv": "fn_16_11640",
     "Disp__7TObjectFv": "fn_16_5F3B0",
-    "Error__7TObjectFPc": "fn_80017854",
 }
 
 

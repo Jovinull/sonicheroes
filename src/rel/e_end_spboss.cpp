@@ -89,7 +89,7 @@ void fn_16_5F3B0();
 void sampleHook1();
 void sampleHook2();
 void sampleHook3();
-void fn_80017854();
+void Error__7TObjectFPc();
 void sampleHook4();
 }
 

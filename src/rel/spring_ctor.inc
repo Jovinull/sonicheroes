@@ -1,12 +1,6 @@
 #include "types.h"
 
-// TObjSpring's constructor. It sits on its own for the same reason the
-// destructor in rel/spring_dtor.cpp does: rel/spring_object.cpp carved an island
-// out of the middle of TObjSpring's translation unit, and this is the next
-// piece of that unit that can be cut without dragging the loader's asset names
-// in with it.
-//
-// The claim is .text 0x1500 to 0x16CC and nothing else. The code is the same in
+// TObjSpring's constructor. The code is the same in
 // all thirteen stage modules that share the engine core, 115 instructions
 // identical once the per module label names are set aside; stage40D is a
 // different revision of the source and is left out, as everywhere else.
@@ -125,7 +119,6 @@ extern "C" void fn_8015BB08(void* scene, void* model);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" void* springVtable[];
-extern "C" const f32 springScaleOne;
 extern "C" const char* springClassName;
 extern "C" const u8 springPartParams[];
 extern "C" void* springModel;
@@ -163,9 +156,9 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 
 	object->unkE0 = 0;
 
-	object->scale.x = springScaleOne;
-	object->scale.y = springScaleOne;
-	object->scale.z = springScaleOne;
+	object->scale.x = 1.0f;
+	object->scale.y = 1.0f;
+	object->scale.z = 1.0f;
 
 	object->hits[0] = 0;
 	object->hits[1] = 0;

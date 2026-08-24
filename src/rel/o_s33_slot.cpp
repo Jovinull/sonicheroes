@@ -93,12 +93,12 @@ void* fn_80226468(void*);
 void fn_80226440(void*, void*);
 void* fn_800BB0D4(void*, s32, void*);
 
-void objDefaultDebug();
-void objDefaultImmAftSetRaster();
-void objDefaultPDisp();
-void objDefaultRender();
+void Debug__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void PDisp__7TObjectFv();
+void Render__7TObjectFv();
 void objDefaultTDisp();
-void fn_80017854();
+void Error__7TObjectFPc();
 }
 
 class TObjS33Slot
@@ -431,11 +431,11 @@ extern "C" void* slotVtable[15] = {
 	(void*)Exec__11TObjS33SlotFv,
 	(void*)Disp__11TObjS33SlotFv,
 	(void*)objDefaultTDisp,
-	(void*)objDefaultPDisp,
-	(void*)objDefaultImmAftSetRaster,
-	(void*)objDefaultDebug,
-	(void*)fn_80017854,
-	(void*)objDefaultRender,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
 	(void*)AdjustorEditOnChange__11TObjS33SlotFP13SETDATA_PARAM,

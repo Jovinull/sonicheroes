@@ -141,9 +141,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
-    - s02WaterDtor
-    - s20dCurbstoneDtor
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - CaptureIwamizuCallback
@@ -195,7 +193,7 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - objApplyTransform
@@ -237,7 +235,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - objApplyTransform
@@ -270,7 +268,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - objApplyTransform
@@ -303,7 +301,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - objApplyTransform
@@ -336,9 +334,7 @@ modules:
   symbols: config/G9SE8P/stage11D/symbols.txt
   splits: config/G9SE8P/stage11D/splits.txt
   force_active:
-    - s12doorObjectDtor
-    - s11doorObjectDtor
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - DestroyClump__12TObjS11CloudFv
@@ -380,6 +376,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - springTransform
     - objApplyTransform
     - objReleaseModels
     - objResetDraw
@@ -406,11 +403,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
-    - systemObject1Ctor
-    - systemObject2Ctor
-    - systemObject3Ctor
-    - systemObject4Ctor
+    - springTransform
     - targetReloadModel
     - objApplyTransform
     - objReleaseModels
@@ -432,17 +425,17 @@ modules:
     - scrollRingStep
     - scrollRingTouch
     - setCollisionDtor
+    - systemObject1Ctor
+    - systemObject2Ctor
+    - systemObject3Ctor
+    - systemObject4Ctor
     - springCtor
 - object: files/stage27D.rel
   hash: 06e4b2926228a64dd7ae81007c75fd9194c402c2
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
-    - systemObject1Ctor
-    - systemObject2Ctor
-    - systemObject3Ctor
-    - systemObject4Ctor
+    - springTransform
     - targetReloadModel
     - objApplyTransform
     - objReleaseModels
@@ -464,17 +457,17 @@ modules:
     - scrollRingStep
     - scrollRingTouch
     - setCollisionDtor
+    - systemObject1Ctor
+    - systemObject2Ctor
+    - systemObject3Ctor
+    - systemObject4Ctor
     - springCtor
 - object: files/stage28D.rel
   hash: 93b0dd05156fa2dee32a64930d354c9e985d7e4a
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
-    - systemObject1Ctor
-    - systemObject2Ctor
-    - systemObject3Ctor
-    - systemObject4Ctor
+    - springTransform
     - targetReloadModel
     - objApplyTransform
     - objReleaseModels
@@ -496,13 +489,17 @@ modules:
     - scrollRingStep
     - scrollRingTouch
     - setCollisionDtor
+    - systemObject1Ctor
+    - systemObject2Ctor
+    - systemObject3Ctor
+    - systemObject4Ctor
     - springCtor
 - object: files/stage31D.rel
   hash: 4c052149e2df1c88c29038dd20e7a53c863c1d09
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - objApplyTransform
@@ -535,7 +532,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - objApplyTransform
@@ -568,7 +565,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
-    - s31bobObjectdummyDtor
+    - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
     - objApplyTransform

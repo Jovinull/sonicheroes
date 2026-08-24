@@ -70,15 +70,13 @@ Validation:
 - all 30 obsolete AdvertiseD paths and the completed protected
   `anim_handle.c` entry were removed from the language-policy debt lists.
 
-### Spring fragments
+### Spring translation unit
 
-Migrated:
-
-- `rel/spring_object.cpp`
-- `rel/spring_dtor.cpp`
-- `rel/spring_assets.cpp`
-- `rel/spring_ctor.cpp`
-- `rel/spring_clamp.cpp`
+`rel/o_spring.cpp` reconstructs the complete shared retail translation unit.
+The implementation includes are organizational only; the build has one source
+command, one compiler object and one contiguous split in each of the thirteen
+stage modules that share this revision. Stage40D contains a different revision
+and remains outside this claim.
 
 Language evidence:
 
@@ -86,18 +84,31 @@ Language evidence:
   marker;
 - the same metadata identifies the `TObjSpring` constructor, destructor,
   methods and vtable as C++ symbols;
-- the GameCube fragments implement the same object/vtable family and were
-  already compiled with `-lang=c++`.
+- the GameCube constructor, destructor, methods, two-base vtable layout and
+  adjustor thunk independently establish the same C++ object family;
+- the contiguous GameCube range fixes the complete unit at `.text`
+  `0x88C`–`0x18A4`, including all thirteen functions.
 
 Validation:
 
-- a controlled `.c`/explicit-language versus `.cpp`/inferred-language compile
-  produced identical `.text`, `.rodata` and `.data`;
-- functional symbols and relocation entries were identical; only the ELF
-  `STT_FILE` source-name string changed from `.c` to `.cpp`;
-- the complete build relinked all affected stage modules;
+- `.text`, `.ctors`, `.rodata` and `.data` all match byte-for-byte, including
+  every relocation;
+- `-inline auto` emits the transform helper before `springExec`, while
+  `-inline deferred,auto` emits the retail `springExec`-then-helper order. The
+  PS2 `o_spring.cpp` marker, class relationships and contiguous GameCube object
+  establish that these routines belong to one natural source family rather
+  than unrelated fragments, and deferred mode reproduces the complete retail
+  function and section order;
+- ordinary multiple-inheritance C++ emits the retail eight-byte secondary-base
+  adjustor. The post-compile normalizer removes only the compiler-only
+  standalone forwarding method and duplicate class vtable, then retargets and
+  names that generated adjustor; it does not add or replace instructions;
+- the unreferenced transform helper is explicitly retained by each affected
+  module's linker configuration;
+- the complete build relinked all thirteen affected stage modules;
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts;
-- progress totals remained unchanged.
+- the language-policy check passes with `rel/o_spring.cpp` recorded as an
+  approved deferred source.
 
 ### Tri-spring and switch fragments
 

@@ -126,7 +126,7 @@ extern "C" void __ct__10DAnimClassFv(void* t, s32 v);
 extern "C" void fn_800A823C(void);
 extern "C" void fn_800A8264(void* t);
 extern "C" void fn_800A8620(void* t, s32 v);
-extern "C" void fn_800A8828(void* t, void* parent);
+extern "C" void __ct__10EasySelectFP7TObject(void* t, void* parent);
 extern "C" void fn_800CC9F4(void* a);
 extern "C" void fn_8012CC20(void* a);
 extern "C" void fn_8012CEF0(void* a, f32 f);
@@ -278,7 +278,7 @@ extern "C" void* fn_1_D47C(void* t, void* parent)
 {
 	void* sub;
 	f32 z;
-	fn_800A8828(t, parent);
+	__ct__10EasySelectFP7TObject(t, parent);
 	pp(0x18) = lbl_1_data_5964;
 	__construct_array((u8*)t + 0x80, (void*)fn_1_12124, (void*)fn_1_120E0, 0x8c, 2);
 	uw(0)                  = lbl_1_data_5960[0];

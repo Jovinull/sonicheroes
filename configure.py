@@ -507,6 +507,26 @@ config.libs = [
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "game/cri/axrna.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adapter.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
+                "game/cri/mfci.c",
+                extra_cflags=[
+                    "-sdata 0",
+                    "-sdata2 0",
+                    "-str reuse,readonly",
+                    "-use_lmw_stmw on",
+                ],
+            ),
+            Object(
                 Matching,
                 "game/skyfs_adx.c",
                 extra_cflags=[
@@ -706,6 +726,12 @@ config.libs = [
                 "game/obj_set_damage_collision.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/easySelect.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pool off", "-inline auto", "-fp_contract off"],
+                data_section_alignment=4,
+            ),
         ],
     },
     Rel(
@@ -862,7 +888,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "autosaveD/emblem_task.c",
+                "autosaveD/emblem_task.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-lang=c++", "-pool off", "-opt noschedule,nopeephole"],
             ),
@@ -1135,14 +1161,13 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/spring_object.cpp",
+                "rel/o_spring.cpp",
                 cflags=cflags_rel_nofma,
-                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_dtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                extra_cflags=[
+                    "-inline deferred,auto",
+                    "-pool off",
+                    "-opt noschedule,nopeephole",
+                ],
             ),
             Object(
                 Matching,
@@ -2782,21 +2807,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/switch_object.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_assets.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_ctor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/spring_clamp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

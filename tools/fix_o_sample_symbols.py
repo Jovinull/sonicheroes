@@ -17,7 +17,7 @@ from pathlib import Path
 
 
 RENAMES = {
-    "EngineHook__16SampleObjectBaseFv": "fn_80017854",
+    "EngineHook__16SampleObjectBaseFv": "Error__7TObjectFPc",
     "Hook0__10TObjSampleFv": "sampleHook0",
     "Hook1__10TObjSampleFv": "sampleHook1",
     "Hook2__10TObjSampleFv": "sampleHook2",

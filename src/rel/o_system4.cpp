@@ -67,7 +67,7 @@ void sampleHook1();
 void sampleHook2();
 void sampleHook3();
 void sampleHook4();
-void fn_80017854();
+void Error__7TObjectFPc();
 extern TObject* lbl_8042C110;
 
 TObjSystem4* __ct__11TObjSystem4FP7TObject(TObjSystem4* object, TObject* owner);
@@ -89,7 +89,7 @@ void* __vt__11TObjSystem4[] = {
 	(void*)sampleHook1,
 	(void*)sampleHook2,
 	(void*)sampleHook3,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)sampleHook4,
 	0,
 	0,

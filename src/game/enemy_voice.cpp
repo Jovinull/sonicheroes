@@ -114,7 +114,7 @@ void fn_80018984();
 void fn_80018988();
 void fn_80018950();
 void fn_80018954();
-void fn_80017854();
+void Error__7TObjectFPc();
 void fn_80018958();
 }
 
@@ -367,7 +367,7 @@ void* lbl_8028CFE4[] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 
@@ -381,7 +381,7 @@ void* lbl_8028D010[] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 
@@ -395,7 +395,7 @@ void* lbl_8028D03C[] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 }
