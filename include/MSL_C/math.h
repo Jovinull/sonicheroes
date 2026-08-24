@@ -10,6 +10,7 @@ extern s32 lbl_8042BEEC[];
 #define HUGE_VALF (*(float*)lbl_8042BEEC)
 
 double __frsqrte(double x);
+double __fabs(double x);
 
 extern inline double sqrt(double x)
 {

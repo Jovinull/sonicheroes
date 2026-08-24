@@ -329,6 +329,7 @@ config.libs = [
             Object(Matching, "MSL_C/strtoul.c"),
             Object(Matching, "MSL_C/uart_console_io.c"),
             Object(Matching, "MSL_C/e_acos.c"),
+            Object(Matching, "MSL_C/e_asin.c"),
         ],
     },
     {

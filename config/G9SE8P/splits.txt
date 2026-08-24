@@ -385,6 +385,10 @@ MSL_C/e_acos.c:
 	.text       start:0x801C5A54 end:0x801C5D64
 	.sdata2     start:0x8042F878 end:0x8042F908
 
+MSL_C/e_asin.c:
+	.text       start:0x801C5D64 end:0x801C5FC8
+	.sdata2     start:0x8042F908 end:0x8042F9A0
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
