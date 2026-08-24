@@ -80,7 +80,7 @@ typedef struct LscStm {
 typedef struct LscObj {
 	/* 0x00 */ s8 used;
 	/* 0x01 */ s8 stat;
-	/* 0x02 */ s8 pad2;
+	/* 0x02 */ s8 busy;
 	/* 0x03 */ s8 lpflg;
 	/* 0x04 */ s8 unk4;
 	/* 0x08 */ LscSj* sj;
@@ -88,7 +88,7 @@ typedef struct LscObj {
 	/* 0x10 */ s32 unk10;
 	/* 0x14 */ s32 flowlimit;
 	/* 0x18 */ s32 nsct;
-	/* 0x1C */ s32 rdsct;
+	/* 0x1C */ s32 tail;
 	/* 0x20 */ s32 head;
 	/* 0x24 */ s32 numstm;
 	/* 0x28 */ void* stmhndl;
@@ -167,6 +167,8 @@ static struct {
 	LscObj entries[LSC_OBJ_MAX];
 	u32 pad;
 } lsc_ObjTbl;
+
+static s32 lsc_RefCnt;
 
 void LSC_SetLpFlg(LscObj* lsc, s8 flag)
 {

@@ -405,7 +405,7 @@ void fn_80223D00(AxRna* p)
 
 	req = p->loopReq;
 	if (p->obj[p->idx - 1] != NULL) {
-		n            = *(s32*)((u8*)p->obj[p->idx - 1] + 0x1B2) - p->loopStart[p->idx];
+		n            = *(s32*)((u8*)p->obj[p->idx - 1] + 0x1B2) - p->loopStart[p->idx - 1];
 		ax_Z[ax_Y++] = n;
 		if (ax_Y == 32) {
 			ax_Y = 0;
