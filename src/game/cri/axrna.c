@@ -52,6 +52,11 @@ typedef struct AxStream {
 	/* 0x0C */ s32 total;
 } AxStream;
 
+typedef struct AxRange {
+	/* 0x00 */ void* addr;
+	/* 0x04 */ s32 size;
+} AxRange;
+
 typedef struct AxRna {
 	/* 0x00 */ s8 stat;
 	/* 0x01 */ u8 flags;
@@ -86,8 +91,48 @@ extern void fn_80223490(void);
 extern void fn_802234B0(void);
 extern void fn_801E89A4(AxObj* obj, s32 v);
 extern void fn_801E89CC(AxObj* obj, s32 v);
+extern void fn_80223B58(AxCb* cb);
+extern void fn_80223C24(AxCb* cb);
+extern void fn_80223D00(AxRna* p);
+extern void fn_80221824(AxRange* src, s32 size, AxRange* consumed, AxRange* remaining);
+extern void DCFlushRange(void* addr, u32 size);
+extern void ARQPostRequest(void* request, u32 owner, u32 type, u32 priority, u32 source, u32 dest,
+    u32 length, void (*callback)(AxCb*));
 
-extern s32 ax_PanTbl[31];
+static s32 ax_RateBias   = 1;
+static s32 ax_PanTbl[31] = {
+	0,
+	4,
+	8,
+	12,
+	16,
+	20,
+	24,
+	28,
+	33,
+	37,
+	41,
+	45,
+	49,
+	53,
+	57,
+	64,
+	68,
+	72,
+	76,
+	81,
+	85,
+	89,
+	93,
+	98,
+	102,
+	106,
+	110,
+	115,
+	119,
+	123,
+	127,
+};
 
 const char ax_ver[]                         = "\nAXRNA Ver.1.02 Build:May  9 2003 17:10:58\n";
 static const char* const volatile ax_verptr = ax_ver;
@@ -142,6 +187,50 @@ void fn_802235B4(AxRna* p, s32 v)
 	}
 }
 
+extern void fn_801E48D0(AxObj* obj, s32 rate);
+extern void fn_801E4DF8(AxObj* obj, void* buf);
+
+void fn_80223660(AxRna* p, s32 v)
+{
+	s32 adj;
+	s32 whole;
+	s32 frac;
+	s32 i;
+
+	if (p == NULL) {
+		return;
+	}
+	p->rate = v;
+	adj     = (v * 1124 + 1124) / 1125;
+	whole   = v / 32000;
+	frac    = (v << 8) / 125;
+	for (i = 0; i < p->nch; i++) {
+		fn_802234B0();
+		if (p->obj[i] != NULL) {
+			s16 buf[8];
+			if (p->rateMode == 1) {
+				if (v == 32000 && p->rateFlag == 0 && p != NULL) {
+					p->rateBias = 0;
+					p->rateFlag = 1;
+				}
+				buf[0] = (s16)((u32)adj / 32000);
+				buf[1] = (s16)(((u32)adj << 8) / 125);
+			} else {
+				buf[0] = (s16)whole;
+				buf[1] = (s16)frac;
+			}
+			buf[2] = 0;
+			buf[3] = 0;
+			buf[4] = 0;
+			buf[5] = 0;
+			buf[6] = 0;
+			fn_801E48D0(p->obj[i], p->rateBias);
+			fn_801E4DF8(p->obj[i], buf);
+		}
+		fn_80223490();
+	}
+}
+
 extern void fn_80223820(AxRna* p);
 
 static s32 ax_RefCnt;
@@ -174,20 +263,85 @@ void fn_802237C4(void)
 	}
 }
 
-s32 fn_80223E78(AxRna* p)
+void fn_80223820(AxRna* p)
 {
-	if (p == NULL) {
-		return -1;
-	}
-	return (s32)((u32)p->strmA[p->idx + 1]->vtbl->get(p->strmA[p->idx + 1], 0) >> 1);
-}
+	AxRange first;
+	AxRange second;
+	AxRange firstRemaining;
+	AxRange secondRemaining;
+	s32 bytes;
+	s32 cur;
+	s32 i;
 
-s32 fn_80223ED0(AxRna* p)
-{
 	if (p == NULL) {
-		return -1;
+		return;
 	}
-	return 4096 - (s32)((u32)p->strmA[p->idx + 1]->vtbl->get(p->strmA[p->idx + 1], 0) >> 1);
+	if (p == NULL) {
+		cur = -1;
+	} else {
+		cur = (p->flags >> 1) & 1;
+	}
+	if (cur == 1) {
+		fn_80223D00(p);
+	}
+	if (p == NULL) {
+		cur = -1;
+	} else {
+		cur = p->flags & 1;
+	}
+	if (cur == 1) {
+		for (i = 0; i < p->idx; i++) {
+			if (p->obj[i] != NULL && p->st[0].flag[i] == 0) {
+				p->strmB[i]->vtbl->read(p->strmB[i], 0, 0x2000, &second);
+				p->strmA[i]->vtbl->read(p->strmA[i], 1, second.size, &first);
+				bytes = first.size < second.size ? first.size : second.size;
+				bytes = (bytes >> 5) << 5;
+				fn_80221824(&second, bytes, &second, &secondRemaining);
+				p->strmB[i]->vtbl->put(p->strmB[i], 0, &secondRemaining);
+				fn_80221824(&first, bytes, &first, &firstRemaining);
+				p->strmA[i]->vtbl->put(p->strmA[i], 1, &firstRemaining);
+				if (bytes == 0) {
+					return;
+				}
+				if (first.size != second.size) {
+					for (;;) {
+					}
+				}
+				((AxRange*)p->bufA)[i] = first;
+				((AxRange*)p->bufB)[i] = second;
+				p->st[0].acc           = bytes >> 1;
+				DCFlushRange(((AxRange*)p->bufA)[i].addr, ((AxRange*)p->bufA)[i].size);
+				p->st[0].flag[i] = 1;
+				ARQPostRequest(p->pad_a8 + i * 0x20, p->rate, 0, 1, (u32)first.addr,
+				    (u32)second.addr, bytes, fn_80223C24);
+			}
+		}
+	} else {
+		if (p == NULL) {
+			cur = -1;
+		} else {
+			cur = (p->flags >> 1) & 1;
+		}
+		if (cur != 1 || p->st[1].total >= p->loopLen) {
+			return;
+		}
+		for (i = 0; i < p->idx; i++) {
+			if (p->st[1].flag[i] == 0) {
+				p->strmB[i]->vtbl->read(p->strmB[i], 0, 0x2000, &second);
+				bytes = (second.size >> 5) << 5;
+				fn_80221824(&second, bytes, &second, &secondRemaining);
+				p->strmB[i]->vtbl->put(p->strmB[i], 0, &secondRemaining);
+				if (bytes != 0) {
+					((AxRange*)p->bufB)[i] = second;
+					p->st[1].acc           = bytes >> 1;
+					DCFlushRange(ax_AlignedBuf, 0x1000);
+					p->st[1].flag[i] = 1;
+					ARQPostRequest(p->pad_a8 + i * 0x20, p->rate, 0, 1, (u32)ax_AlignedBuf,
+					    (u32)second.addr, bytes, fn_80223B58);
+				}
+			}
+		}
+	}
 }
 
 void fn_80223B58(AxCb* cb)
@@ -277,91 +431,25 @@ void fn_80223D00(AxRna* p)
 	}
 }
 
+s32 fn_80223E78(AxRna* p)
+{
+	if (p == NULL) {
+		return -1;
+	}
+	return (s32)((u32)p->strmA[p->idx + 1]->vtbl->get(p->strmA[p->idx + 1], 0) >> 1);
+}
+
+s32 fn_80223ED0(AxRna* p)
+{
+	if (p == NULL) {
+		return -1;
+	}
+	return 4096 - (s32)((u32)p->strmA[p->idx + 1]->vtbl->get(p->strmA[p->idx + 1], 0) >> 1);
+}
+
 extern void fn_801E8984(AxObj* obj);
 extern void fn_80224F88(void);
 extern void* memset(void* p, int c, u32 n);
-
-void fn_80224C3C(void)
-{
-	(void)ax_verptr;
-	if (ax_RefCnt == 0) {
-		fn_80224F88();
-		memset(ax_Tbl, 0, sizeof(ax_Tbl));
-		ax_AlignedBuf = (void*)(((u32)ax_Buf + 31) & ~31);
-	}
-	ax_RefCnt++;
-}
-
-void fn_80224A88(AxObj* obj)
-{
-	s32 i;
-	s32 j;
-
-	for (i = 0; i < AX_RNA_MAX; i++) {
-		for (j = 0; j < 2; j++) {
-			if (obj == ax_Tbl[i].obj[j]) {
-				fn_801E8984(ax_Tbl[i].obj[j]);
-				ax_Tbl[i].obj[j] = NULL;
-				return;
-			}
-		}
-	}
-}
-
-void fn_80224CB0(void* func, void* obj)
-{
-	fn_8022347C(func, obj);
-}
-
-s32 fn_80224CD0(void* p)
-{
-	if (p == NULL) {
-		return 0;
-	}
-	return *(s32*)((s8*)p + 8);
-}
-
-s32 fn_80224CE8(void* p)
-{
-	if (p == NULL) {
-		return 0;
-	}
-	return *(s32*)((s8*)p + 4);
-}
-
-extern void fn_80223F2C(AxRna* p, s32 v);
-extern void fn_802240CC(AxRna* p, s32 v);
-extern void fn_801E221C(AxObj* obj);
-extern void fn_80224D00(void* p);
-
-void fn_802242CC(AxRna* p)
-{
-	s8* nchp;
-	s32 i;
-
-	if (p == NULL) {
-		return;
-	}
-	fn_80223F2C(p, 0);
-	fn_802240CC(p, 0);
-	for (i = 0, nchp = &p->nch; i < *nchp; i++) {
-		if (p->strmB[i] != NULL) {
-			p->strmB[i]->vtbl->stop(p->strmB[i]);
-		}
-		if (p->cb[i] != NULL) {
-			fn_80224D00(p->cb[i]);
-		}
-		fn_802234B0();
-		if (p->obj[i] != NULL) {
-			fn_801E8984(p->obj[i]);
-			fn_801E221C(p->obj[i]);
-		}
-		fn_80223490();
-	}
-	memset(p, 0, sizeof(AxRna));
-}
-
-extern void fn_80224D00(void* p);
 
 extern void fn_801E4994(AxObj* obj, s32 v);
 extern void fn_801E4C44(AxObj* obj, void* buf);
@@ -482,7 +570,169 @@ void fn_802240CC(AxRna* root, s32 sw)
 	}
 }
 
+extern void fn_801E221C(AxObj* obj);
+extern void fn_80224D00(void* p);
+
+void fn_802242CC(AxRna* p)
+{
+	s8* nchp;
+	s32 i;
+
+	if (p == NULL) {
+		return;
+	}
+	fn_80223F2C(p, 0);
+	fn_802240CC(p, 0);
+	for (i = 0, nchp = &p->nch; i < *nchp; i++) {
+		if (p->strmB[i] != NULL) {
+			p->strmB[i]->vtbl->stop(p->strmB[i]);
+		}
+		if (p->cb[i] != NULL) {
+			fn_80224D00(p->cb[i]);
+		}
+		fn_802234B0();
+		if (p->obj[i] != NULL) {
+			fn_801E8984(p->obj[i]);
+			fn_801E221C(p->obj[i]);
+		}
+		fn_80223490();
+	}
+	memset(p, 0, sizeof(AxRna));
+}
+
 extern void fn_80224E1C(void);
+extern void fn_80224A88(AxObj* obj);
+extern AxCb* fn_80224D14(void);
+extern AxObj* fn_80221300(s32 start, s32 length, s32 zero);
+extern AxObj* fn_801E229C(s32 priority, void (*callback)(AxObj*), s32 zero);
+extern void fn_801E7B08(AxObj* obj, s32 type, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
+
+AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
+{
+	AxRna* p;
+	AxRna* q;
+	s16 rate[7];
+	s32 i;
+	s32 n;
+
+	if (maxnch <= 0) {
+		fn_80223424("E1070301:Illigal parameter(maxnch<=0).\n");
+		return NULL;
+	}
+	if (sj == NULL) {
+		fn_80223424("E1070302:Illigal parameter(sj=null).\n");
+		return NULL;
+	}
+	for (i = 0; i < maxnch; i++) {
+		if (sj[i] == NULL) {
+			fn_80223424("E1070303:Illigal parameter(sj[]=null).\n");
+			return NULL;
+		}
+	}
+	p = ax_Tbl;
+	for (i = 0; i < AX_RNA_MAX; i++, p++) {
+		if (p->stat == 0) {
+			break;
+		}
+	}
+	if (i == AX_RNA_MAX) {
+		fn_80223424("E1070304:Not enough RNA handle.\n");
+		return NULL;
+	}
+	p->nch = (s8)maxnch;
+	p->idx = (s8)maxnch;
+	for (i = 0; i < p->nch; i++) {
+		p->strmA[i] = sj[i];
+	}
+	p->vol                 = 0;
+	*(s32*)((u8*)p + 0x90) = 127;
+	*(s32*)((u8*)p + 0x94) = -999;
+	*(s32*)((u8*)p + 0x98) = -999;
+	*(s32*)((u8*)p + 0x9C) = 0;
+	for (i = 0, n = 0; i < p->nch; i++, n++) {
+		*(s32*)((u8*)p + 0x28) = 0x80000000 | n;
+		p->cb[i]               = fn_80224D14();
+		if (p->cb[i] == NULL) {
+			fn_80223424("E1070305:Can't create RNARES.\n");
+			fn_802242CC(p);
+			return NULL;
+		}
+		p->loopStart[i] = fn_80224CE8(p->cb[i]);
+		p->loopLen      = fn_80224CD0(p->cb[i]);
+		p->strmB[i]     = fn_80221300(p->loopStart[i] * 2, p->loopLen * 2, 0);
+		if (p->strmB[i] == NULL) {
+			fn_80223424("E1070306:Can't create SJ.\n");
+			fn_802242CC(p);
+			return NULL;
+		}
+		p->obj[i] = fn_801E229C(31, fn_80224A88, 0);
+		if (p->obj[i] == NULL) {
+			fn_80223424("E1070307:Can't acquire voice(AX).\n");
+			fn_802242CC(p);
+			return NULL;
+		}
+		fn_802234B0();
+		fn_801E7B08(p->obj[i], 3, p->vol, *(s32*)((u8*)p + 0x94), *(s32*)((u8*)p + 0x98),
+		    *(s32*)((u8*)p + 0x90), *(s32*)((u8*)p + 0x9C), 0x40);
+		fn_80223490();
+	}
+	p->rateMode = (s16)ax_X[0];
+	p->rateBias = ax_RateBias;
+	p->rateFlag = 1;
+	p->rateFlag = 0;
+	p->rate     = 32000;
+	for (i = 0; i < p->nch; i++) {
+		fn_802234B0();
+		if (p->obj[i] != NULL) {
+			if (p->rateMode == 1) {
+				rate[0] = 1;
+				rate[1] = 0x7FA9;
+			} else {
+				rate[0] = 1;
+				rate[1] = (s16)0x8000;
+			}
+			rate[2] = 0;
+			rate[3] = 0;
+			rate[4] = 0;
+			rate[5] = 0;
+			rate[6] = 0;
+			fn_801E48D0(p->obj[i], p->rateBias);
+			fn_801E4DF8(p->obj[i], rate);
+		}
+		fn_80223490();
+	}
+	p->pad80 = 16;
+	if (p->nch == 2) {
+		fn_80223500(p, 0, -15);
+	} else {
+		fn_80223500(p, 0, 0);
+		if (p->nch > 1) {
+			fn_80223500(p, 1, 15);
+		}
+	}
+	p->flags = 0;
+	p->stat  = 1;
+	q        = p;
+	return q;
+}
+
+const s32 ax_rodata_pad3 = 0;
+
+void fn_80224A88(AxObj* obj)
+{
+	s32 i;
+	s32 j;
+
+	for (i = 0; i < AX_RNA_MAX; i++) {
+		for (j = 0; j < 2; j++) {
+			if (obj == ax_Tbl[i].obj[j]) {
+				fn_801E8984(ax_Tbl[i].obj[j]);
+				ax_Tbl[i].obj[j] = NULL;
+				return;
+			}
+		}
+	}
+}
 
 void fn_80224B1C(void)
 {
@@ -503,54 +753,42 @@ void fn_80224B1C(void)
 	fn_80224E1C();
 }
 
+void fn_80224C3C(void)
+{
+	(void)ax_verptr;
+	if (ax_RefCnt == 0) {
+		fn_80224F88();
+		memset(ax_Tbl, 0, sizeof(ax_Tbl));
+		ax_AlignedBuf = (void*)(((u32)ax_Buf + 31) & ~31);
+	}
+	ax_RefCnt++;
+}
+
+void fn_80224CB0(void* func, void* obj)
+{
+	fn_8022347C(func, obj);
+}
+
+s32 fn_80224CD0(void* p)
+{
+	if (p == NULL) {
+		return 0;
+	}
+	return *(s32*)((s8*)p + 8);
+}
+
+s32 fn_80224CE8(void* p)
+{
+	if (p == NULL) {
+		return 0;
+	}
+	return *(s32*)((s8*)p + 4);
+}
+
 void fn_80224D00(void* p)
 {
 	if (p == NULL) {
 		return;
 	}
 	*(s32*)p = 0;
-}
-
-extern void fn_801E48D0(AxObj* obj, s32 rate);
-extern void fn_801E4DF8(AxObj* obj, void* buf);
-
-void fn_80223660(AxRna* p, s32 v)
-{
-	s32 adj;
-	s32 whole;
-	s32 frac;
-	s32 i;
-
-	if (p == NULL) {
-		return;
-	}
-	p->rate = v;
-	adj     = (v * 1124 + 1124) / 1125;
-	whole   = v / 32000;
-	frac    = (v << 8) / 125;
-	for (i = 0; i < p->nch; i++) {
-		fn_802234B0();
-		if (p->obj[i] != NULL) {
-			s16 buf[8];
-			if (p->rateMode == 1) {
-				if (v == 32000 && p->rateFlag == 0 && p != NULL) {
-					p->rateBias = 0;
-					p->rateFlag = 1;
-				}
-				buf[0] = (s16)((u32)adj / 32000);
-				buf[1] = (s16)(((u32)adj << 8) / 125);
-			} else {
-				buf[0] = (s16)whole;
-				buf[1] = (s16)frac;
-			}
-			buf[2] = 0;
-			buf[3] = 0;
-			buf[4] = 0;
-			buf[5] = 0;
-			buf[6] = 0;
-			fn_801E48D0(p->obj[i], p->rateBias);
-			fn_801E4DF8(p->obj[i], buf);
-		}
-		fn_80223490();
-	}
 }
