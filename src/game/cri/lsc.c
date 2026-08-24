@@ -43,30 +43,64 @@
 // plumbing rather than a static of this file -- the functions above 0x8021F544
 // call it too. It is variadic, which is why every call site sets cr1eq.
 //
-// NOT MATCHING: seven of the twenty-two functions are written so far, and all
-// seven are byte-exact. The rest are still assembly. Struct offsets recovered
-// by them are recorded in LscObj below; the fields they do not touch are
+// Two call relationships pin the naming beyond the three anchors above.
+// fn_8021FF44 does nothing but tail-call fn_8021FD04 with a zero offset and a
+// length of 0x100000 - 1, which is LSC_EntryFname delegating to
+// LSC_EntryFileRange. fn_8021FA78 walks sixteen handles and calls fn_802202FC
+// on each one that is in use, which is LSC_ExecServer driving lsc_ExecHndl.
+//
+// The handle layout fell out of LSC_GetStmId: it indexes 0x38 + n * 0x20 with n
+// taken modulo sixteen, and 0x38 + 16 * 0x20 is 0x238, which is exactly the
+// stride LSC_ExecServer walks. So LscObj ends in a sixteen-entry ring of
+// thirty-two byte stream records, and the object table is sixteen of those.
+// The three search-by-id getters give the record's fields and their own return
+// types confirm which is which: the one that returns zero on failure yields a
+// count, the one that returns -1 yields a status, the one that returns null
+// yields a name.
+//
+// NOT MATCHING: fourteen of the twenty-two functions are written so far, and
+// all fourteen are byte-exact. The rest are still assembly. Struct offsets
+// recovered by them are recorded below; the fields they do not touch are
 // padding until something reaches them.
 
+#define LSC_STM_MAX 16
+
+typedef struct LscStm {
+	/* 0x00 */ s32 id;
+	/* 0x04 */ const char* fname;
+	/* 0x08 */ s8 pad08[0x10];
+	/* 0x18 */ s32 stat;
+	/* 0x1C */ s32 rdsct;
+} LscStm;
+
 typedef struct LscObj {
-	/* 0x00 */ s8 pad0;
+	/* 0x00 */ s8 used;
 	/* 0x01 */ s8 stat;
 	/* 0x02 */ s8 pad2;
 	/* 0x03 */ s8 lpflg;
 	/* 0x04 */ s8 pad4[0x10];
 	/* 0x14 */ s32 flowlimit;
 	/* 0x18 */ s32 nsct;
-	/* 0x1C */ s8 pad1C[8];
+	/* 0x1C */ s32 rdsct;
+	/* 0x20 */ s32 head;
 	/* 0x24 */ s32 numstm;
 	/* 0x28 */ void* stmhndl;
+	/* 0x2C */ s8 pad2C[0xC];
+	/* 0x38 */ LscStm stm[LSC_STM_MAX];
 } LscObj;
 
 typedef void (*LscStatFunc)(void* obj, s32 stat);
 
 extern void fn_8021F410(const char* msg, ...);
+extern void fn_8021F504(void* crs);
+extern void fn_8021F524(void* crs);
+extern void fn_802202FC(LscObj* lsc);
+extern void fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
 
 extern const char lsc_ErrParam[];
 extern const char lsc_ErrMin[];
+extern const char lsc_ErrNo[];
+extern const char lsc_ErrId[];
 
 void LSC_SetLpFlg(LscObj* lsc, s8 flag);
 void LSC_CallStatFunc(void);
@@ -75,6 +109,17 @@ void LSC_SetFlowLimit(LscObj* lsc, s32 min);
 s32 LSC_GetNumStm(LscObj* lsc);
 s32 LSC_GetStat(LscObj* lsc);
 void LSC_SetStmHndl(LscObj* lsc, void* hndl);
+void LSC_ResetEntry(LscObj* lsc);
+void LSC_ExecServer(void);
+void LSC_EntryFname(LscObj* lsc, const char* fname);
+s32 LSC_GetStmId(LscObj* lsc, s32 no);
+s32 LSC_GetStmRdSct(LscObj* lsc, s32 id);
+s32 LSC_GetStmStat(LscObj* lsc, s32 id);
+const char* LSC_GetStmFname(LscObj* lsc, s32 id);
+
+#define LSC_OBJ_MAX 16
+
+static LscObj lsc_ObjTbl[LSC_OBJ_MAX];
 
 static struct {
 	LscStatFunc func;
@@ -142,4 +187,109 @@ s32 LSC_GetStat(LscObj* lsc)
 void LSC_SetStmHndl(LscObj* lsc, void* hndl)
 {
 	lsc->stmhndl = hndl;
+}
+
+void LSC_ResetEntry(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return;
+	}
+	if (lsc->stat == 0) {
+		lsc->rdsct  = 0;
+		lsc->head   = 0;
+		lsc->numstm = 0;
+	}
+}
+
+void LSC_ExecServer(void)
+{
+	s8 crs[0x10];
+	s32 i;
+
+	fn_8021F524(crs);
+	for (i = 0; i < LSC_OBJ_MAX; i++) {
+		if (lsc_ObjTbl[i].used == 1) {
+			fn_802202FC(&lsc_ObjTbl[i]);
+		}
+	}
+	fn_8021F504(crs);
+}
+
+void LSC_EntryFname(LscObj* lsc, const char* fname)
+{
+	fn_8021FD04(lsc, fname, 0, 0, 0x100000 - 1);
+}
+
+s32 LSC_GetStmId(LscObj* lsc, s32 no)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	if (no < 0 || no >= lsc->numstm) {
+		fn_8021F410(lsc_ErrNo, no);
+		return -1;
+	}
+	return lsc->stm[(lsc->head + no) % LSC_STM_MAX].id;
+}
+
+s32 LSC_GetStmRdSct(LscObj* lsc, s32 id)
+{
+	s32 i;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return 0;
+	}
+	for (i = 0; i < LSC_STM_MAX; i++) {
+		if (lsc->stm[i].id == id) {
+			break;
+		}
+	}
+	if (i == LSC_STM_MAX) {
+		fn_8021F410(lsc_ErrId, id);
+		return 0;
+	}
+	return lsc->stm[i].rdsct;
+}
+
+s32 LSC_GetStmStat(LscObj* lsc, s32 id)
+{
+	s32 i;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	for (i = 0; i < LSC_STM_MAX; i++) {
+		if (lsc->stm[i].id == id) {
+			break;
+		}
+	}
+	if (i == LSC_STM_MAX) {
+		fn_8021F410(lsc_ErrId, id);
+		return -1;
+	}
+	return lsc->stm[i].stat;
+}
+
+const char* LSC_GetStmFname(LscObj* lsc, s32 id)
+{
+	s32 i;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return NULL;
+	}
+	for (i = 0; i < LSC_STM_MAX; i++) {
+		if (lsc->stm[i].id == id) {
+			break;
+		}
+	}
+	if (i == LSC_STM_MAX) {
+		fn_8021F410(lsc_ErrId, id);
+		return NULL;
+	}
+	return lsc->stm[i].fname;
 }
