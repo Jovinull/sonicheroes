@@ -32,9 +32,13 @@
 typedef void (*GcciErrFunc)(void* obj, const char* msg, void* arg);
 
 typedef struct GcciObj {
-	/* 0x00 */ s8 pad00[0x10];
+	/* 0x00 */ s8 pad00[2];
+	/* 0x02 */ s8 unk02;
+	/* 0x03 */ s8 pad03[0xD];
 	/* 0x10 */ s32 unk10;
-	/* 0x14 */ s8 pad14[0xC];
+	/* 0x14 */ s32 pad14;
+	/* 0x18 */ s32 unk18;
+	/* 0x1C */ s32 unk1C;
 	/* 0x20 */ s32 unk20;
 } GcciObj;
 
@@ -75,4 +79,43 @@ void fn_8021F20C(GcciErrFunc func, void* obj)
 {
 	gcci_ErrFunc = func;
 	gcci_ErrObj  = obj;
+}
+
+s32 fn_8021E57C(GcciObj* p)
+{
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl);
+		return 0;
+	}
+	return p->unk02;
+}
+
+s32 fn_8021EBA8(GcciObj* p)
+{
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl);
+		return 0;
+	}
+	return p->unk1C;
+}
+
+s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence)
+{
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl);
+		return 0;
+	}
+	if (whence == 0) {
+		p->unk1C = off;
+	} else if (whence == 2) {
+		p->unk1C = p->unk18 + off;
+	} else if (whence == 1) {
+		p->unk1C = p->unk1C + off;
+	}
+	p->unk1C = p->unk1C < p->unk18 ? p->unk1C : p->unk18;
+	if (p->unk1C > 0) {
+	} else {
+		p->unk1C = 0;
+	}
+	return p->unk1C;
 }
