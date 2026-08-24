@@ -488,6 +488,8 @@ config.libs = [
         "progress_category": "game",
         "objects": [
             Object(Matching, "game/object_defaults.cpp"),
+            Object(Matching, "game/fn_8003F300.cpp"),
+            Object(Matching, "game/fn_80042864.cpp"),
             Object(
                 Matching,
                 "game/skeleton.cpp",
@@ -609,6 +611,8 @@ config.libs = [
                 "game/Endian.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(Matching, "game/fn_8005776C.cpp"),
+            Object(Matching, "game/fn_8005F794.cpp"),
             Object(
                 Matching,
                 "game/GetSpParam.cpp",
