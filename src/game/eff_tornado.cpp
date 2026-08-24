@@ -36,7 +36,18 @@
 //   or rotating the four material stores and the three else-branch colour
 //   computations, all of which are worse; rewriting the function as the free
 //   `extern "C" void TDisp__15TObjEffTornado2Fv(TObjEffTornado2*)` that every
-//   other TDisp in this file already is; and aliasing `this` into a local.
+//   other TDisp in this file already is; and aliasing `this` into a local. Also
+//   ruled out: every type the six locals can plausibly take (blue as u8, s8 or
+//   s32, all four colours as u8 or s32, frame as u32 -- which shortens the
+//   function by an instruction instead), eight more declaration orders, and
+//   twelve optimiser pragmas scoped tightly around this function alone.
+//
+//   And one negative that matters more than the rest: there is no
+//   translation-unit lever here. Adding an unused static function, an unused
+//   file-scope pointer or another `static inline` elsewhere in the file leaves
+//   both functions bit for bit unchanged. That is what cracked mfCiOpen and
+//   mfCiReqRd when nothing inside those functions responded, so its absence
+//   says the answer for these two has to be in their own shape.
 //
 //   TDisp__14TObjEffTornadoFv is one instruction long. The target materialises
 //   two of the loop's address constants straight into their callee-saved
