@@ -91,6 +91,10 @@ extern s32 ax_PanTbl[31];
 
 const char ax_ver[]                         = "\nAXRNA Ver.1.02 Build:May  9 2003 17:10:58\n";
 static const char* const volatile ax_verptr = ax_ver;
+const char ax_off[]                         = "OFF";
+const char ax_on[]                          = "ON ";
+const s32 ax_rodata_pad                     = 0;
+const s32 ax_rodata_pad2                    = 0;
 
 void fn_80223500(AxRna* p, s32 ch, s32 v)
 {
@@ -414,6 +418,68 @@ void fn_80223F2C(AxRna* p, s32 sw)
 		fn_80223424("E1070309:Illigal parameter(sw).\n");
 	}
 	fn_80223490();
+}
+
+void fn_802240CC(AxRna* root, s32 sw)
+{
+	s32 cur;
+	s32* p;
+	s32 i;
+	s32 j;
+	s32 k;
+
+	if (root == NULL) {
+		return;
+	}
+	if (root == NULL) {
+		cur = -1;
+	} else {
+		cur = root->flags & 1;
+	}
+	if (sw == cur) {
+		return;
+	}
+	if (sw == 1) {
+		fn_802234B0();
+		for (i = 0; i < root->idx; i++) {
+			root->strmB[i]->vtbl->reset(root->strmB[i]);
+			memset(root->bufA[i], 0, sizeof(root->bufA[i]));
+			memset(root->bufB[i], 0, sizeof(root->bufB[i]));
+			memset(root->pad_a8 + i * 0x20, 0, 0x20);
+			root->st[0].flag[i] = 0;
+		}
+		root->st[0].acc   = 0;
+		root->st[0].total = 0;
+		root->st[1].acc   = 0;
+		root->st[1].total = 0;
+		root->loopReq     = -1;
+		root->flags |= 1;
+		fn_80223490();
+	} else if (sw == 0) {
+		p = (s32*)root;
+		for (i = 0; i < root->idx; i++) {
+			for (j = 0; *(s32*)((u8*)p + 0x60) != 0 && j < 200; j++) {
+				for (k = 0; k < 100000; k++) {
+				}
+			}
+			if (j == 200) {
+				fn_80223424("E2071701:DMA transfer(data) to A-RAM did not finish.\n");
+				return;
+			}
+			for (j = 0; *(s32*)((u8*)p + 0x70) != 0 && j < 200; j++) {
+				for (k = 0; k < 100000; k++) {
+				}
+			}
+			if (j == 200) {
+				fn_80223424("E2071701:DMA transfer(flash) to A-RAM did not finish.\n");
+				return;
+			}
+			p++;
+		}
+		root->flags &= ~1;
+	} else {
+		fn_80223424("E1070308:Illigal parameter(sw).\n");
+	}
 }
 
 extern void fn_80224E1C(void);
