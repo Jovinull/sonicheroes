@@ -330,19 +330,27 @@ void fn_80223820(AxRna* p)
 		if (cur != 1 || p->st[1].total >= p->loopLen) {
 			return;
 		}
-		for (i = 0; i < p->idx; i++) {
-			if (p->st[1].flag[i] == 0) {
-				p->strmB[i]->vtbl->read(p->strmB[i], 0, 0x2000, &second);
-				bytes = (second.size >> 5) << 5;
-				fn_80221824(&second, bytes, &second, &secondRemaining);
-				p->strmB[i]->vtbl->put(p->strmB[i], 0, &secondRemaining);
-				if (bytes != 0) {
-					((AxRange*)p->bufB)[i] = second;
-					p->st[1].acc           = bytes >> 1;
-					DCFlushRange(ax_AlignedBuf, 0x1000);
-					p->st[1].flag[i] = 1;
-					ARQPostRequest(p->pad_a8 + i * 0x20, p->rate, 0, 1, (u32)ax_AlignedBuf,
-					    (u32)second.addr, bytes, fn_80223B58);
+		{
+			u8* objp = (u8*)p;
+			u8* bufp = (u8*)p;
+			u8* reqp = (u8*)p;
+
+			for (i = 0; i < p->idx; i++, objp += 4, bufp += 8, reqp += 0x20) {
+				if (*(s32*)(objp + 0x70) == 0) {
+					(*(AxObj**)(objp + 0x38))
+					    ->vtbl->read(*(AxObj**)(objp + 0x38), 0, 0x2000, &second);
+					bytes = (second.size >> 5) << 5;
+					fn_80221824(&second, bytes, &second, &secondRemaining);
+					(*(AxObj**)(objp + 0x38))
+					    ->vtbl->put(*(AxObj**)(objp + 0x38), 0, &secondRemaining);
+					if (bytes != 0) {
+						*(AxRange*)(bufp + 0x50) = second;
+						p->st[1].acc             = bytes >> 1;
+						DCFlushRange(ax_AlignedBuf, 0x1000);
+						*(s32*)(objp + 0x70) = 1;
+						ARQPostRequest(reqp + 0xA8, p->rate, 0, 1, (u32)ax_AlignedBuf,
+						    (u32)second.addr, bytes, fn_80223B58);
+					}
 				}
 			}
 		}
