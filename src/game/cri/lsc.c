@@ -79,7 +79,7 @@ struct LscSj {
 typedef struct LscStm {
 	/* 0x00 */ s32 id;
 	/* 0x04 */ const char* fname;
-	/* 0x08 */ s32 pad08;
+	/* 0x08 */ s32 sum;
 	/* 0x0C */ s32 ofst;
 	/* 0x10 */ s32 arg4;
 	/* 0x14 */ s32 nbyte;
@@ -98,7 +98,7 @@ typedef struct LscObj {
 	/* 0x0C */ s8 pad0C[8];
 	/* 0x14 */ s32 flowlimit;
 	/* 0x18 */ s32 nsct;
-	/* 0x1C */ s32 rdsct;
+	/* 0x1C */ s32 tail;
 	/* 0x20 */ s32 head;
 	/* 0x24 */ s32 numstm;
 	/* 0x28 */ void* stmhndl;
@@ -114,7 +114,7 @@ extern void fn_8021F410(const char* msg, ...);
 extern void fn_8021F504(void* crs);
 extern void fn_8021F524(void* crs);
 extern void fn_802202FC(LscObj* lsc);
-extern void fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
+s32 fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
 
 extern const char* const volatile lsc_verptr;
 extern void fn_8021F4D0(s32 a, s32 b);
@@ -125,6 +125,8 @@ extern void* memset(void* p, int c, u32 n);
 extern const char lsc_ErrParam[];
 extern const char lsc_ErrSj[];
 extern const char lsc_ErrFp[];
+extern const char lsc_ErrFname[];
+extern u32 strlen(const char* s);
 extern s32 fn_8021722C(void* hndl);
 extern s32 fn_802171C0(void* hndl);
 extern void fn_80217044(void* hndl);
@@ -238,7 +240,7 @@ void LSC_ResetEntry(LscObj* lsc)
 		return;
 	}
 	if (lsc->stat == 0) {
-		lsc->rdsct  = 0;
+		lsc->tail   = 0;
 		lsc->head   = 0;
 		lsc->numstm = 0;
 	}
@@ -393,7 +395,7 @@ void fn_8021FF7C(LscObj* lsc)
 		if (lsc == NULL) {
 			fn_8021F410(lsc_ErrParam);
 		} else if (lsc->stat == 0) {
-			lsc->rdsct  = 0;
+			lsc->tail   = 0;
 			lsc->head   = 0;
 			lsc->numstm = 0;
 		}
@@ -422,7 +424,7 @@ void fn_8021FAE4(LscObj* lsc)
 	if (lsc == NULL) {
 		fn_8021F410(lsc_ErrParam);
 	} else if (lsc->stat == 0) {
-		lsc->rdsct  = 0;
+		lsc->tail   = 0;
 		lsc->head   = 0;
 		lsc->numstm = 0;
 	}
@@ -576,4 +578,50 @@ void fn_802202FC(LscObj* lsc)
 			stm->stat = 1;
 		}
 	}
+}
+
+// LSC_EntryFileRange: queues one file range on the tail of the ring. The id it
+// hands back is the previous entry's plus one, wrapping at INT_MAX, and the
+// name is summed a word at a time -- the compiler unrolls that loop eight deep.
+s32 fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte)
+{
+	LscStm* stm;
+	s32 id;
+	u32 n;
+	u32 i;
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return -1;
+	}
+	if (lsc->numstm >= LSC_STM_MAX) {
+		return -1;
+	}
+	if (fname == NULL) {
+		fn_8021F410(lsc_ErrFname);
+		return -1;
+	}
+
+	stm = &lsc->stm[lsc->tail];
+	id  = lsc->stm[(lsc->tail + LSC_STM_MAX - 1) % LSC_STM_MAX].id;
+	id  = id == 0x7FFFFFFF ? 0 : id + 1;
+
+	stm->id    = id;
+	stm->fname = fname;
+	stm->sum   = 0;
+	n          = strlen(fname) / 4;
+	for (i = 0; i < n; i++) {
+		stm->sum += ((s32*)fname)[i];
+	}
+	stm->arg4  = arg4;
+	stm->nbyte = nbyte;
+	stm->ofst  = ofst;
+	stm->stat  = 0;
+	stm->rdsct = 0;
+	lsc->numstm++;
+	lsc->tail = (lsc->tail + 1) % LSC_STM_MAX;
+	if (lsc->stat == 1) {
+		lsc->stat = 2;
+	}
+	return id;
 }
