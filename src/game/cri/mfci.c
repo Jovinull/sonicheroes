@@ -46,16 +46,12 @@
 // mfCiExecServer and mfCiGetInterface. The statics it also names are
 // mfci_alloc, mfci_reset_hn, mfci_get_adr_size and mfci_call_errfn.
 //
-// NOT MATCHING: thirteen of the fourteen functions are byte-exact. What is
-// left is fn_80222C40 (mfCiReqRd).
+// MATCHING: all fourteen functions are byte-exact.
 //
-//   fn_80222C40 differs only in six register fields. Treating its public handle
-//   as opaque, then naming the private `MfciObj*` locally, gives the target's
-//   entry allocation exactly: handle r29, buffer r28, .rodata r30 and .bss r31.
-//   Once the inlined address lookup frees the two section bases, the remaining
-//   miss is one swapped pair: the target keeps the returned address in r31 and
-//   the clamped byte count in r30, while this build chooses r30/r31. Every
-//   instruction, relocation and the 648-byte function size otherwise agree.
+//   fn_80222C40 needs its public handle typed opaquely and converted to the
+//   private `MfciObj*` locally. After the inlined address lookup, a named `max`
+//   and `n > max ? max : n` give the retail address/count register pair and
+//   branch direction.
 //
 //   fn_80222F28 is exact. Its final clamp needs a local result and a nested
 //   empty condition in the positive arm. The latter keeps both sides of the
@@ -306,11 +302,13 @@ void fn_80222BD0(MfciObj* hn)
 
 s32 fn_80222C40(void* obj, s32 nsct, void* buf)
 {
-	MfciObj* hn = obj;
 	s32 rest;
+	MfciObj* hn;
 	u32 adr;
 	u32 size;
 	s32 n;
+
+	hn = obj;
 
 	if (hn == NULL) {
 		mfci_ErrorN("E01100307:handl is null.");
@@ -346,9 +344,10 @@ s32 fn_80222C40(void* obj, s32 nsct, void* buf)
 	}
 	hn->busy = 2;
 	adr      = mfci_get_adr_size(hn->fname, &size);
-	n        = hn->nbyte;
-	if (n > (s32)(size - hn->ofst)) {
-		n = (s32)(size - hn->ofst);
+	{
+		s32 max = (s32)(size - hn->ofst);
+		n       = hn->nbyte;
+		n       = n > max ? max : n;
 	}
 	memcpy(buf, (void*)(adr + hn->ofst), hn->nbyte);
 	memset((s8*)buf + n, 0, hn->nbyte - n);
