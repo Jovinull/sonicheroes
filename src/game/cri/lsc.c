@@ -58,8 +58,8 @@
 // count, the one that returns -1 yields a status, the one that returns null
 // yields a name.
 //
-// NOT MATCHING: seventeen of the twenty-two functions are written so far, and
-// all seventeen are byte-exact. The rest are still assembly. Struct offsets
+// NOT MATCHING: eighteen of the twenty-two functions are written so far, and
+// all eighteen are byte-exact. The rest are still assembly. Struct offsets
 // recovered by them are recorded below; the fields they do not touch are
 // padding until something reaches them.
 
@@ -197,6 +197,35 @@ void LSC_SetStmHndl(LscObj* lsc, void* hndl)
 {
 	lsc->stmhndl = hndl;
 }
+
+#pragma dont_inline on
+void fn_8021FF7C(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		return;
+	}
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+	} else if (lsc->stat != 0) {
+		lsc->stat = 0;
+		if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
+			fn_80216F18(lsc->stmhndl);
+			lsc->pad2 = 0;
+		}
+		lsc->unk2C = NULL;
+		if (lsc == NULL) {
+			fn_8021F410(lsc_ErrParam);
+		} else if (lsc->stat == 0) {
+			lsc->rdsct  = 0;
+			lsc->head   = 0;
+			lsc->numstm = 0;
+		}
+		lsc->unk34 = 0;
+	}
+	lsc->used = 0;
+	memset(lsc, 0, sizeof(*lsc));
+}
+#pragma dont_inline reset
 
 void LSC_ResetEntry(LscObj* lsc)
 {
