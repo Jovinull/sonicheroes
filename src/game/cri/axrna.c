@@ -251,15 +251,12 @@ void fn_802237B4(void* p, s8 v)
 
 void fn_802237C4(void)
 {
-	AxRna* p;
 	u32 i;
 
-	p = ax_Tbl;
 	for (i = 0; i < AX_RNA_MAX; i++) {
-		if (p->stat == 1) {
-			fn_80223820(p);
+		if (ax_Tbl[i].stat == 1) {
+			fn_80223820(&ax_Tbl[i]);
 		}
-		p++;
 	}
 }
 
@@ -754,18 +751,15 @@ void fn_80224A88(AxObj* obj)
 
 void fn_80224B1C(void)
 {
-	AxRna* p;
 	s32 i;
 
 	if (--ax_RefCnt != 0) {
 		return;
 	}
-	p = ax_Tbl;
 	for (i = 0; i < AX_RNA_MAX; i++) {
-		if (p->stat == 1) {
-			fn_802242CC(p);
+		if (ax_Tbl[i].stat == 1) {
+			fn_802242CC(&ax_Tbl[i]);
 		}
-		p++;
 	}
 	memset(ax_Tbl, 0, sizeof(ax_Tbl));
 	fn_80224E1C();
