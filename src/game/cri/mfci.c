@@ -365,8 +365,8 @@ s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf)
 	rest      = hn->nsct - hn->pos;
 	hn->rdsct = nsct < rest ? nsct : rest;
 	{
-		s32 nbyte = hn->rdsct * hn->sctsize;
 		s32 ofst  = hn->pos * hn->sctsize;
+		s32 nbyte = hn->rdsct * hn->sctsize;
 		if (nbyte == 0) {
 			hn->busy = 1;
 			fn_8022291C();
