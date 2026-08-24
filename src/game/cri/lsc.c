@@ -79,7 +79,10 @@ struct LscSj {
 typedef struct LscStm {
 	/* 0x00 */ s32 id;
 	/* 0x04 */ const char* fname;
-	/* 0x08 */ s8 pad08[0x10];
+	/* 0x08 */ s32 pad08;
+	/* 0x0C */ s32 ofst;
+	/* 0x10 */ s32 arg4;
+	/* 0x14 */ s32 nbyte;
 	/* 0x18 */ s32 stat;
 	/* 0x1C */ s32 rdsct;
 } LscStm;
@@ -89,7 +92,8 @@ typedef struct LscObj {
 	/* 0x01 */ s8 stat;
 	/* 0x02 */ s8 busy;
 	/* 0x03 */ s8 lpflg;
-	/* 0x04 */ s32 pad04;
+	/* 0x04 */ s8 halt;
+	/* 0x05 */ s8 pad05[3];
 	/* 0x08 */ struct LscSj* sj;
 	/* 0x0C */ s8 pad0C[8];
 	/* 0x14 */ s32 flowlimit;
@@ -120,6 +124,16 @@ extern void* memset(void* p, int c, u32 n);
 
 extern const char lsc_ErrParam[];
 extern const char lsc_ErrSj[];
+extern const char lsc_ErrFp[];
+extern s32 fn_8021722C(void* hndl);
+extern s32 fn_802171C0(void* hndl);
+extern void fn_80217044(void* hndl);
+extern void fn_80217434(void* hndl);
+extern void fn_80217584(void* hndl, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
+extern void fn_80216EC4(void* hndl, s32 nbyte);
+extern void fn_80216810(void* hndl, s32 min, s32 nsct);
+extern void fn_802171DC(void* hndl, s32 a);
+extern void fn_8021713C(void* hndl);
 extern const char lsc_ErrMin[];
 extern const char lsc_ErrNo[];
 extern const char lsc_ErrId[];
@@ -161,12 +175,16 @@ void LSC_SetLpFlg(LscObj* lsc, s8 flag)
 	lsc->lpflg = flag;
 }
 
+// Kept out of line: the server calls it rather than inlining it, and at this
+// size the compiler would inline it by default.
+#pragma dont_inline on
 void LSC_CallStatFunc(void)
 {
 	if (lsc_StatEntry.func != NULL) {
 		lsc_StatEntry.func(lsc_StatEntry.obj, lsc_StatEntry.stat);
 	}
 }
+#pragma dont_inline off
 
 s32 LSC_GetFlowLimit(LscObj* lsc)
 {
@@ -472,4 +490,90 @@ LscObj* LSC_Create(LscSj* sj)
 	}
 	fn_8021F504(crs);
 	return lsc;
+}
+
+// lsc_ExecHndl: one pass of the server over a single handle. Three stages run
+// in sequence on the record at the head of the ring -- poll a read in flight,
+// retire one that finished, then start the next -- so a record can move two
+// states in a single pass.
+void fn_802202FC(LscObj* lsc)
+{
+	LscStm* stm;
+	s32 ret;
+	const char* fname;
+	s32 ofst;
+	s32 arg4;
+	s32 nbyte;
+
+	if (lsc->halt == 1) {
+		return;
+	}
+	if (lsc->stat != 2) {
+		return;
+	}
+	if (lsc->numstm <= 0) {
+		return;
+	}
+
+	if (lsc->stm[lsc->head].stat == 1) {
+		if (lsc->stmhndl == NULL) {
+			fn_8021F410(lsc_ErrFp);
+		} else {
+			stm = &lsc->stm[lsc->head];
+			ret = fn_8021722C(lsc->stmhndl);
+			if (ret == 4) {
+				lsc->stat = 3;
+			} else if (ret == 2) {
+				stm->rdsct = fn_802171C0(lsc->stmhndl);
+			} else if (ret == 3) {
+				stm->rdsct = lsc->f2C;
+				stm->stat  = 2;
+			}
+		}
+	}
+
+	if (lsc->stm[lsc->head].stat == 2) {
+		nbyte = 0;
+		arg4  = 0;
+		ofst  = 0;
+		fname = NULL;
+		if (lsc->stmhndl != NULL) {
+			if (lsc->lpflg == 1) {
+				stm   = &lsc->stm[lsc->head];
+				fname = stm->fname;
+				ofst  = stm->ofst;
+				arg4  = stm->arg4;
+				nbyte = stm->nbyte;
+			}
+			lsc->numstm--;
+			lsc->head = (lsc->head + 1) % LSC_STM_MAX;
+			if (lsc->numstm <= 0) {
+				LSC_CallStatFunc();
+				lsc->stat = 1;
+			}
+			if (lsc->lpflg == 1) {
+				fn_8021FD04(lsc, fname, ofst, arg4, nbyte);
+			}
+		}
+	}
+
+	if (lsc->stm[lsc->head].stat == 0) {
+		stm = &lsc->stm[lsc->head];
+		if (lsc->numstm > 0) {
+			fn_80217044(lsc->stmhndl);
+			fn_80217434(lsc->stmhndl);
+			fn_80217584(lsc->stmhndl, stm->fname, stm->ofst, stm->arg4, stm->nbyte);
+			fn_80216EC4(lsc->stmhndl, stm->nbyte);
+			lsc->f2C   = stm->nbyte;
+			stm->rdsct = 0;
+			lsc->busy  = 0;
+			if (lsc->busy == 0) {
+				fn_80216810(lsc->stmhndl, lsc->flowlimit, lsc->nsct);
+				fn_802171DC(lsc->stmhndl, 0);
+				fn_8021713C(lsc->stmhndl);
+				lsc->busy = 1;
+			}
+			stm->stat = 1;
+		}
+	}
 }
