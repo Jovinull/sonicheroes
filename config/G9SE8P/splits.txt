@@ -183,7 +183,7 @@ game/eff_tornado.cpp:
 	.data       start:0x802532E8 end:0x80253648
 	.sdata      start:0x8042B350 end:0x8042B374
 	.sbss       start:0x8042C34C end:0x8042C380
-	.sdata2     start:0x8042DBD8 end:0x8042DBE0
+	.sdata2     start:0x8042DBD0 end:0x8042DBE0
 
 game/hAnim.cpp:
 	extab       start:0x80008300 end:0x80008348
