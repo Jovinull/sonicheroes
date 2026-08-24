@@ -27,13 +27,25 @@
 typedef struct AxObj AxObj;
 
 typedef struct AxVtbl {
-	/* 0x00 */ u8 pad00[0x24];
+	/* 0x00 */ u8 pad00[0x20];
+	/* 0x20 */ void (*put)(AxObj* obj, s32 which, void* buf);
 	/* 0x24 */ s32 (*get)(AxObj* obj, s32 arg);
 } AxVtbl;
+
+typedef struct AxCb {
+	/* 0x00 */ s32 pad00;
+	/* 0x04 */ s32 id;
+} AxCb;
 
 struct AxObj {
 	/* 0x00 */ AxVtbl* vtbl;
 };
+
+typedef struct AxStream {
+	/* 0x00 */ s32 flag[2];
+	/* 0x08 */ s32 acc;
+	/* 0x0C */ s32 total;
+} AxStream;
 
 typedef struct AxRna {
 	/* 0x00 */ s8 stat;
@@ -41,11 +53,17 @@ typedef struct AxRna {
 	/* 0x02 */ s8 nch;
 	/* 0x03 */ s8 idx;
 	/* 0x04 */ u8 pad04[4];
-	/* 0x08 */ AxObj* obj[11];
-	/* 0x34 */ AxObj* slot[20];
+	/* 0x08 */ AxObj* obj[2];
+	/* 0x10 */ u8 pad10[0x20];
+	/* 0x30 */ AxObj* strmA[2];
+	/* 0x38 */ AxObj* strmB[2];
+	/* 0x40 */ u8 bufA[2][8];
+	/* 0x50 */ u8 bufB[2][8];
+	/* 0x60 */ AxStream st[2];
+	/* 0x80 */ s32 pad80;
 	/* 0x84 */ s32 vol;
-	/* 0x88 */ s32 pan[11];
-	/* 0xB4 */ u8 padB4[0x34];
+	/* 0x88 */ s32 pan[2];
+	/* 0x90 */ u8 pad90[0x58];
 } AxRna;
 
 #define AX_RNA_MAX 16
@@ -135,7 +153,7 @@ s32 fn_80223E78(AxRna* p)
 	if (p == NULL) {
 		return -1;
 	}
-	return (s32)((u32)p->slot[p->idx]->vtbl->get(p->slot[p->idx], 0) >> 1);
+	return (s32)((u32)p->strmA[p->idx + 1]->vtbl->get(p->strmA[p->idx + 1], 0) >> 1);
 }
 
 s32 fn_80223ED0(AxRna* p)
@@ -143,7 +161,44 @@ s32 fn_80223ED0(AxRna* p)
 	if (p == NULL) {
 		return -1;
 	}
-	return 4096 - (s32)((u32)p->slot[p->idx]->vtbl->get(p->slot[p->idx], 0) >> 1);
+	return 4096 - (s32)((u32)p->strmA[p->idx + 1]->vtbl->get(p->strmA[p->idx + 1], 0) >> 1);
+}
+
+void fn_80223B58(AxCb* cb)
+{
+	s32 x;
+	AxRna* p;
+	s32 ch;
+
+	x  = cb->id & 0x7FFFFFFF;
+	p  = &ax_Tbl[x / 2];
+	ch = x % 2;
+	if (p->st[1].flag[ch] == 1) {
+		p->strmB[ch]->vtbl->put(p->strmB[ch], 1, &p->bufB[ch]);
+		p->st[1].flag[ch] = 0;
+		if (ch == p->idx - 1) {
+			p->st[1].total += p->st[1].acc;
+		}
+	}
+}
+
+void fn_80223C24(AxCb* cb)
+{
+	s32 x;
+	AxRna* p;
+	s32 ch;
+
+	x  = cb->id & 0x7FFFFFFF;
+	p  = &ax_Tbl[x / 2];
+	ch = x % 2;
+	if (p->st[0].flag[ch] == 1) {
+		p->strmA[ch]->vtbl->put(p->strmA[ch], 0, &p->bufA[ch]);
+		p->strmB[ch]->vtbl->put(p->strmB[ch], 1, &p->bufB[ch]);
+		p->st[0].flag[ch] = 0;
+		if (ch == p->idx - 1) {
+			p->st[0].total += p->st[0].acc;
+		}
+	}
 }
 
 extern void fn_801E8984(AxObj* obj);
