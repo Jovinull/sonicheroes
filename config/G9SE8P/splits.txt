@@ -470,6 +470,9 @@ MSL_C/s_modf.c:
 MSL_C/s_nextafter.c:
 	.text       start:0x801C901C end:0x801C91A0
 
+MSL_C/s_sin.c:
+	.text       start:0x801C91A0 end:0x801C9278
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
