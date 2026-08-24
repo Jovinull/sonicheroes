@@ -626,7 +626,7 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	AxRna* q;
 	s16 rate[7];
 	s32 i;
-	s32 n;
+	s32 id;
 
 	if (maxnch <= 0) {
 		fn_80223424("E1070301:Illigal parameter(maxnch<=0).\n");
@@ -652,6 +652,7 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 		fn_80223424("E1070304:Not enough RNA handle.\n");
 		return NULL;
 	}
+	id     = i * 2;
 	p->nch = (s8)maxnch;
 	p->idx = (s8)maxnch;
 	for (i = 0; i < p->nch; i++) {
@@ -662,8 +663,8 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	*(s32*)((u8*)p + 0x94) = -999;
 	*(s32*)((u8*)p + 0x98) = -999;
 	*(s32*)((u8*)p + 0x9C) = 0;
-	for (i = 0, n = 0; i < p->nch; i++, n++) {
-		*(s32*)((u8*)p + 0x28) = 0x80000000 | n;
+	for (i = 0; i < p->nch; i++, id++) {
+		*(s32*)((u8*)p + 0x28) = 0x80000000 | id;
 		p->cb[i]               = fn_80224D14();
 		if (p->cb[i] == NULL) {
 			fn_80223424("E1070305:Can't create RNARES.\n");
