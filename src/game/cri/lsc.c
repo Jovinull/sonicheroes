@@ -58,8 +58,8 @@
 // count, the one that returns -1 yields a status, the one that returns null
 // yields a name.
 //
-// NOT MATCHING: sixteen of the twenty-two functions are written so far, and
-// all sixteen are byte-exact. The rest are still assembly. Struct offsets
+// NOT MATCHING: seventeen of the twenty-two functions are written so far, and
+// all seventeen are byte-exact. The rest are still assembly. Struct offsets
 // recovered by them are recorded below; the fields they do not touch are
 // padding until something reaches them.
 
@@ -85,7 +85,9 @@ typedef struct LscObj {
 	/* 0x20 */ s32 head;
 	/* 0x24 */ s32 numstm;
 	/* 0x28 */ void* stmhndl;
-	/* 0x2C */ s8 pad2C[0xC];
+	/* 0x2C */ void* unk2C;
+	/* 0x30 */ s8 pad30[4];
+	/* 0x34 */ s32 unk34;
 	/* 0x38 */ LscStm stm[LSC_STM_MAX];
 } LscObj;
 
@@ -95,6 +97,7 @@ extern void fn_8021F410(const char* msg, ...);
 extern void fn_8021F504(void* crs);
 extern void fn_8021F524(void* crs);
 extern void fn_8021F4D0(s32, s32);
+extern void fn_80216F18(void* hndl);
 extern void fn_802202FC(LscObj* lsc);
 extern void fn_8021FF7C(LscObj* lsc);
 extern void fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
@@ -220,6 +223,31 @@ void LSC_ExecServer(void)
 		}
 	}
 	fn_8021F504(crs);
+}
+
+void fn_8021FAE4(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return;
+	}
+	if (lsc->stat == 0) {
+		return;
+	}
+	lsc->stat = 0;
+	if (lsc->stmhndl != NULL && lsc->pad2 == 1) {
+		fn_80216F18(lsc->stmhndl);
+		lsc->pad2 = 0;
+	}
+	lsc->unk2C = NULL;
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+	} else if (lsc->stat == 0) {
+		lsc->rdsct  = 0;
+		lsc->head   = 0;
+		lsc->numstm = 0;
+	}
+	lsc->unk34 = 0;
 }
 
 void LSC_EntryFname(LscObj* lsc, const char* fname)
