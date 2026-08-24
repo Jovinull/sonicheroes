@@ -164,6 +164,15 @@ game/easySelect.cpp:
 	.sbss       start:0x8042C348 end:0x8042C34C
 	.sdata2     start:0x8042DB48 end:0x8042DB70
 
+game/eff_tornado.cpp:
+	extab       start:0x80007CFC end:0x80007E84
+	extabindex  start:0x8000E38C end:0x8000E488
+	.text       start:0x800AB77C end:0x800ADC3C
+	.data       start:0x802532E8 end:0x80253648
+	.sdata      start:0x8042B350 end:0x8042B374
+	.sbss       start:0x8042C34C end:0x8042C380
+	.sdata2     start:0x8042DBD8 end:0x8042DBE0
+
 game/hAnim.cpp:
 	extab       start:0x80008300 end:0x80008348
 	extabindex  start:0x8000EA10 end:0x8000EA7C
@@ -687,3 +696,9 @@ game/cri/mfci.c:
 game/cri/adapter.c:
 	.text       start:0x80223424 end:0x80223500
 	.bss        start:0x80428970 end:0x80428A78
+
+game/cri/axrna.c:
+	.text       start:0x80223500 end:0x80224D14
+	.rodata     start:0x80240400 end:0x802405F8
+	.data       start:0x8029BAB0 end:0x8029BB30
+	.bss        start:0x80428A78 end:0x8042A9D0

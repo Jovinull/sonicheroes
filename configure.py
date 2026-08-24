@@ -473,6 +473,11 @@ config.libs = [
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "game/eff_tornado.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pooldata off"],
+            ),
+            Object(
                 Matching,
                 "game/heap.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopropagation"],
@@ -501,6 +506,11 @@ config.libs = [
                 Matching,
                 "game/task_create.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "game/cri/axrna.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
                 Matching,
