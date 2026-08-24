@@ -129,16 +129,16 @@ extern void fn_8021FF7C(LscObj* lsc);
 extern s32 LSC_EntryFileRange(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte);
 extern void* memset(void* dst, s32 value, u32 size);
 extern u32 strlen(const char* str);
-extern volatile u32 lbl_8023FF30[];
-
-extern const char lsc_ErrParam[];
-extern const char lsc_ErrMin[];
-extern const char lsc_ErrNo[];
-extern const char lsc_ErrId[];
-extern const char lsc_ErrFname[];
-extern const char lsc_ErrCreateParam[];
-extern const char lsc_ErrCreateNoInstance[];
-extern const char lsc_ErrHandle[];
+const char lsc_ErrParam[]                  = "E0003: Illigal parameter lsc=NULL\n";
+const char lsc_ErrMin[]                    = "E0010: Illigal parameter min=%d\n";
+const char lsc_ErrId[]                     = "E0012: Can not find stream ID =%d\n";
+const char lsc_ErrNo[]                     = "E0009: Illigal parameter no=%d\n";
+const char lsc_ErrFname[]                  = "E0011: Illigal parameter fname=%s\n";
+const char lsc_ErrCreateParam[]            = "E0001: Illigal parameter=sj (LSC_Create)\n";
+const char lsc_ErrCreateNoInstance[]       = "E0002: Not enough instance (LSC_Create)\n";
+const char lbl_8023FF00[]                  = "\nLSC/GC Ver.2.11 Build:May  9 2003 17:09:53\n";
+const char* const volatile lbl_8023FF30[2] = { lbl_8023FF00, NULL };
+const char lsc_ErrHandle[]                 = "E0007: lsc->fp=NULL\n";
 
 void LSC_SetLpFlg(LscObj* lsc, s8 flag);
 void LSC_CallStatFunc(void);
@@ -157,8 +157,10 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id);
 
 #define LSC_OBJ_MAX 16
 
-static u32 lsc_ObjTblPad;
-static LscObj lsc_ObjTbl[LSC_OBJ_MAX];
+static struct {
+	LscObj entries[LSC_OBJ_MAX];
+	u32 pad;
+} lsc_ObjTbl;
 static s32 lsc_InitCount;
 
 static struct {
@@ -273,6 +275,24 @@ void LSC_ResetEntry(LscObj* lsc)
 	}
 }
 
+void fn_802201E0(void)
+{
+	s8 crs[8];
+	s32 i;
+
+	fn_8021F524(crs);
+	if (--lsc_InitCount == 0) {
+		for (i = 0; i < LSC_OBJ_MAX; i++) {
+			if (lsc_ObjTbl.entries[i].used == 1) {
+				fn_8021FF7C(&lsc_ObjTbl.entries[i]);
+			}
+		}
+		memset(lsc_ObjTbl.entries, 0, sizeof(lsc_ObjTbl.entries));
+		fn_8021F4D0(0, 0);
+	}
+	fn_8021F504(crs);
+}
+
 void LSC_ExecServer(void)
 {
 	s8 crs[0x10];
@@ -280,8 +300,8 @@ void LSC_ExecServer(void)
 
 	fn_8021F524(crs);
 	for (i = 0; i < LSC_OBJ_MAX; i++) {
-		if (lsc_ObjTbl[i].used == 1) {
-			fn_802202FC(&lsc_ObjTbl[i]);
+		if (lsc_ObjTbl.entries[i].used == 1) {
+			fn_802202FC(&lsc_ObjTbl.entries[i]);
 		}
 	}
 	fn_8021F504(crs);
@@ -351,15 +371,15 @@ void fn_8021FBA0(LscObj* lsc)
 	fn_8021F504(crs);
 }
 
-static LscObj* lsc_Alloc(void)
+static inline LscObj* lsc_Alloc(void)
 {
 	LscObj* lsc = NULL;
-	LscObj* obj = lsc_ObjTbl;
+	LscObj* obj = lsc_ObjTbl.entries;
 	s32 i;
 
 	for (i = 0; i < LSC_OBJ_MAX; obj++, i++) {
 		if (obj->used == 0) {
-			lsc = &lsc_ObjTbl[i];
+			lsc = &lsc_ObjTbl.entries[i];
 			break;
 		}
 	}
@@ -538,24 +558,6 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id)
 	return lsc->stm[i].fname;
 }
 
-void fn_802201E0(void)
-{
-	s8 crs[8];
-	s32 i;
-
-	fn_8021F524(crs);
-	if (--lsc_InitCount == 0) {
-		for (i = 0; i < LSC_OBJ_MAX; i++) {
-			if (lsc_ObjTbl[i].used == 1) {
-				fn_8021FF7C(&lsc_ObjTbl[i]);
-			}
-		}
-		memset(lsc_ObjTbl, 0, sizeof(lsc_ObjTbl));
-		fn_8021F4D0(0, 0);
-	}
-	fn_8021F504(crs);
-}
-
 void fn_80220284(void)
 {
 	s8 crs[8];
@@ -563,7 +565,7 @@ void fn_80220284(void)
 	lbl_8023FF30[0];
 	fn_8021F524(crs);
 	if (lsc_InitCount == 0) {
-		memset(lsc_ObjTbl, 0, sizeof(lsc_ObjTbl));
+		memset(lsc_ObjTbl.entries, 0, sizeof(lsc_ObjTbl.entries));
 		fn_8021F4D0(0, 0);
 	}
 	lsc_InitCount++;
