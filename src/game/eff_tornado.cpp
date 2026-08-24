@@ -34,10 +34,21 @@
 //   TDisp__14TObjEffTornadoFv is one instruction long. The target materialises
 //   two of the loop's address constants straight into their callee-saved
 //   registers; this build routes them through r0 and copies, and saves one
-//   copy elsewhere, for a net gain of one. Ruled out: dropping or inverting the
-//   opt_common_subs pragma around it, which costs three more instructions, and
-//   declaring the three loops' pointers inside their blocks instead of sharing
-//   the outer declarations, which costs the same three.
+//   copy elsewhere, for a net gain of one. Both builds use the same register
+//   set, r18 through r28, and hand out the same eleven values; only the mapping
+//   differs, and two of ours land on registers the allocator could not coalesce
+//   into. Ruled out so far: dropping or inverting the opt_common_subs pragma,
+//   which costs three more instructions; declaring the three loops' pointers
+//   inside their blocks instead of sharing the outer declarations, same three;
+//   every permutation tried of the eight assignments that open the first loop;
+//   dropping the firstAxis and secondAxis locals and passing &lbl_80239978 and
+//   &lbl_80239984 straight to the call, which changes nothing because the
+//   address is loop-invariant and gets hoisted back into a register anyway; and
+//   ten optimiser pragmas layered on top of opt_common_subs off -- lifetimes,
+//   dead_assignments, loop_invariants, strength_reduction, unroll_loops,
+//   scheduling, peephole, optimize_for_size, propagation and global_optimizer.
+//   None reaches 1476: they either leave the size alone or overshoot, and
+//   peephole on takes it to 1456 while breaking eight of the twenty that match.
 //
 // The remaining extab and extabindex bytes are the frame descriptors of those
 // two functions and will follow them.
