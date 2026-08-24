@@ -616,7 +616,11 @@ config.libs = [
             Object(
                 NonMatching,
                 "game/fn_8005E8EC.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+                extra_cflags=[
+                    "-Cpp_exceptions on",
+                    "-opt noschedule,nopeephole",
+                    "-pooldata off",
+                ],
             ),
             Object(
                 Matching,
