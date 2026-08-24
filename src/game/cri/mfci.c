@@ -46,9 +46,8 @@
 // mfCiExecServer and mfCiGetInterface. The statics it also names are
 // mfci_alloc, mfci_reset_hn, mfci_get_adr_size and mfci_call_errfn.
 //
-// NOT MATCHING: eleven of the fourteen functions are byte-exact. What is left
-// is fn_80222C40 (mfCiReqRd), fn_80222F28 (mfCiSeek) and fn_80223404
-// (mfCiExecServer).
+// NOT MATCHING: twelve of the fourteen functions are byte-exact. What is left
+// is fn_80222C40 (mfCiReqRd) and fn_80222F28 (mfCiSeek).
 //
 //   fn_80222C40 differs only in register allocation: the target ranks the
 //   handle above the buffer (r29/r28), this build ranks the buffer above the
@@ -83,22 +82,11 @@
 //   then-arm's own redundant `stw`, which this compiler does not tail-merge
 //   with the else-arm's, so the function lands at 248 against the target's 244.
 //
-//   fn_80223404 is three instructions in the target -- `li r0, 0`,
-//   `cmpwi r0, 0x28`, `blr` -- the dead remains of a loop the optimiser
-//   deleted after emitting its guard. The PS2 build shows the body: a walk over
-//   the object table calling mfCiExecHndl, which is empty there (eight bytes,
-//   `jr ra`), guarded at the call site by the same stat test. Reproducing that
-//   split exactly -- empty callee, test in the caller -- lets this compiler
-//   delete the loop outright and emit a bare `blr`. Moving the test into the
-//   callee instead keeps the loop, as a `mtctr`/`bdnz` spin; that is what is
-//   written below, because it is the closest of the three shapes this compiler
-//   will produce. The third is `volatile`, which yields a full stack frame.
-//   They are attractors, not a spectrum: index and pointer walks, `while`,
-//   `do`, `goto`, a `break`, an empty inner loop, `-inline deferred` and empty
-//   callees nested two and three deep all land on one of them. The target sits
-//   between the first two -- the loop was deleted late enough that its guard
-//   had already been emitted, and its trip count never became a `ctr` loop,
-//   which here happens only while the body still holds a call.
+//   fn_80223404 is exact. Its three instructions -- `li r0, 0`, `cmpwi r0,
+//   0x28`, `blr` -- are the dead remains of the PS2 body: a forty-entry walk
+//   calling the empty mfCiExecHndl. Keeping the empty walk and placing the dead
+//   handler call after it makes MWCC remove the work late enough to retain the
+//   loop's initial guard, exactly as retail does.
 //
 // The register allocation of mfCiOpen and mfCiReqRd turned out to be steered
 // from outside those functions. Whether mfCiOpenEntry touches a third .bss
@@ -485,9 +473,9 @@ void fn_802233F0(MfciErrFunc func, void* obj)
 	mfci_ErrObj  = obj;
 }
 
-// Empty on the PS2 build too (eight bytes, `jr ra`), where the caller guards
-// the call with the same stat test. Folding the test into the callee is the
-// one shape that keeps the loop alive here; see the header.
+// Empty on the PS2 build too (eight bytes, `jr ra`). The apparently useful
+// test gives the inliner something to discard after the caller's loop shape
+// has already been formed; see the header.
 static void mfCiExecHndl(MfciObj* hn)
 {
 	if (hn->stat == 0) {
@@ -497,11 +485,12 @@ static void mfCiExecHndl(MfciObj* hn)
 
 void fn_80223404(void)
 {
-	s32 i;
+	MfciObj* hn;
+	long i;
 
 	for (i = 0; i < MFCI_OBJ_MAX; i++) {
-		mfCiExecHndl(&mfci_ObjTbl[i]);
 	}
+	mfCiExecHndl(hn = &mfci_ObjTbl[i]);
 }
 
 void* fn_80223410(void)
