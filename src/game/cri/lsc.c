@@ -396,11 +396,11 @@ LscObj* fn_80220054(LscSj* sj)
 #pragma dont_inline on
 s32 fn_8021FD04(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
 {
-	s32 id;
 	LscStm* stm;
-	s32 prevStmIndex;
+	s32 id;
 	u32 fnameLength;
 	s32 i;
+	s32 prevStmIndex;
 
 	if (lsc == NULL) {
 		fn_8021F410(lsc_ErrParam);
@@ -415,9 +415,9 @@ s32 fn_8021FD04(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
 	}
 	stm          = &lsc->stm[lsc->rdsct];
 	prevStmIndex = (lsc->rdsct + LSC_STM_MAX - 1) % LSC_STM_MAX;
-	stm->fname   = fname;
 	id           = lsc->stm[prevStmIndex].id == 0x7FFFFFFF ? 0 : lsc->stm[prevStmIndex].id + 1;
 	stm->id      = id;
+	stm->fname   = fname;
 	fnameLength  = strlen(fname) / sizeof(u32);
 	stm->unk08   = 0;
 	for (i = 0; i < fnameLength; i++) {
