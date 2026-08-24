@@ -426,6 +426,10 @@ MSL_C/k_rem_pio2.c:
 	.rodata     start:0x8023D1F0 end:0x8023D240
 	.sdata2     start:0x8042FC58 end:0x8042FC98
 
+MSL_C/k_sin.c:
+	.text       start:0x801C8494 end:0x801C8534
+	.sdata2     start:0x8042FC98 end:0x8042FCD0
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
