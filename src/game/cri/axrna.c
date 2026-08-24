@@ -663,32 +663,36 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	*(s32*)((u8*)p + 0x94) = -999;
 	*(s32*)((u8*)p + 0x98) = -999;
 	*(s32*)((u8*)p + 0x9C) = 0;
-	for (i = 0; i < p->nch; i++, id++) {
-		*(s32*)((u8*)p + 0x28) = 0x80000000 | id;
-		p->cb[i]               = fn_80224D14();
-		if (p->cb[i] == NULL) {
-			fn_80223424("E1070305:Can't create RNARES.\n");
-			fn_802242CC(p);
-			return NULL;
+	{
+		u8* chp = (u8*)p;
+
+		for (i = 0; i < p->nch; i++, id++, chp += 4) {
+			*(s32*)(chp + 0x28)   = 0x80000000 | id;
+			*(AxCb**)(chp + 0x10) = fn_80224D14();
+			if (*(AxCb**)(chp + 0x10) == NULL) {
+				fn_80223424("E1070305:Can't create RNARES.\n");
+				fn_802242CC(p);
+				return NULL;
+			}
+			*(s32*)(chp + 0x18)    = fn_80224CE8(*(AxCb**)(chp + 0x10));
+			p->loopLen             = fn_80224CD0(*(AxCb**)(chp + 0x10));
+			*(AxObj**)(chp + 0x38) = fn_80221300(*(s32*)(chp + 0x18) * 2, p->loopLen * 2, 0);
+			if (*(AxObj**)(chp + 0x38) == NULL) {
+				fn_80223424("E1070306:Can't create SJ.\n");
+				fn_802242CC(p);
+				return NULL;
+			}
+			*(AxObj**)(chp + 8) = fn_801E229C(31, fn_80224A88, 0);
+			if (*(AxObj**)(chp + 8) == NULL) {
+				fn_80223424("E1070307:Can't acquire voice(AX).\n");
+				fn_802242CC(p);
+				return NULL;
+			}
+			fn_802234B0();
+			fn_801E7B08(*(AxObj**)(chp + 8), 3, p->vol, *(s32*)((u8*)p + 0x94),
+			    *(s32*)((u8*)p + 0x98), *(s32*)((u8*)p + 0x90), *(s32*)((u8*)p + 0x9C), 0x40);
+			fn_80223490();
 		}
-		p->loopStart[i] = fn_80224CE8(p->cb[i]);
-		p->loopLen      = fn_80224CD0(p->cb[i]);
-		p->strmB[i]     = fn_80221300(p->loopStart[i] * 2, p->loopLen * 2, 0);
-		if (p->strmB[i] == NULL) {
-			fn_80223424("E1070306:Can't create SJ.\n");
-			fn_802242CC(p);
-			return NULL;
-		}
-		p->obj[i] = fn_801E229C(31, fn_80224A88, 0);
-		if (p->obj[i] == NULL) {
-			fn_80223424("E1070307:Can't acquire voice(AX).\n");
-			fn_802242CC(p);
-			return NULL;
-		}
-		fn_802234B0();
-		fn_801E7B08(p->obj[i], 3, p->vol, *(s32*)((u8*)p + 0x94), *(s32*)((u8*)p + 0x98),
-		    *(s32*)((u8*)p + 0x90), *(s32*)((u8*)p + 0x9C), 0x40);
-		fn_80223490();
 	}
 	p->rateMode = (s16)ax_X[0];
 	p->rateBias = ax_RateBias;
