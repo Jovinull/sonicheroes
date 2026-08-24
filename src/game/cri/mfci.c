@@ -37,20 +37,22 @@
 // Names come from the error strings, which CRI writes with the reporting
 // function in parentheses. Everything not named there keeps its dtk name.
 //
-// NOT MATCHING: 528 of 644 instructions. Seven of the fourteen functions are
-// byte-exact; mfCiReqRd and mfCiOpen carry most of what is left. See
-// notes/cri-mfci.md for the measurements, including what has already been
-// ruled out.
+// NOT MATCHING: 584 of 644 instructions. Eight of the fourteen functions are
+// byte-exact. See notes/cri-mfci.md for the measurements, including what has
+// already been ruled out.
 //
-// The open problem is one shape. Those two functions reach five messages each
-// through a single base register (addi rN, r30, 388, with r30 pointing at the
-// banner), and read the module globals as displacements off a second one. That
-// only works when the literals share one object and the globals share another.
-// Both ways of asking for that -- "-str pool" and folding the globals into one
-// struct -- make MWCC 1.3.2 emit "lis; addi base; addi +offset" everywhere,
-// three instructions where the twelve small functions want two, and the total
-// falls (408 and 362 against 528). The original evidently folds the offset into
-// @l when it does not hoist, and this compiler never does.
+// .rodata and .bss both match the original layout byte for byte. The .bss order
+// is load-bearing and not obvious: MWCC lays those statics out in order of
+// first reference, not order of declaration, so mfci_WorkStr only lands at
+// offset 8 because nothing touches mfci_ObjTbl before mfci_get_adr_size runs.
+// That is why mfCiOpenEntry below does not scan the table.
+//
+// What is left in mfCiReqRd and mfCiOpen is a two-register permutation, not a
+// shape difference: both are over 98% aligned on mnemonics, and the diff is
+// that the target puts the .bss base in r30 and the .rodata base in r29 while
+// this build swaps them. The prologues are otherwise instruction for
+// instruction identical. Local declaration order does not steer it -- all six
+// permutations in mfCiOpen measure the same.
 //
 // The .rodata also still carries the three "(mfCiOpenEntry)" messages although
 // no surviving function reads them. mfCiOpenEntry is reconstructed below as the
@@ -149,7 +151,6 @@ static void mfci_Error(const char* msg, void* arg)
 static MfciObj* mfCiOpenEntry(s32 no, s32 rw)
 {
 	MfciObj* hn;
-	s32 i;
 
 	if (no < 0 || no >= MFCI_OBJ_MAX) {
 		mfci_ErrorN("E1041001:invalid entry number.(mfCiOpenEntry)");
@@ -160,12 +161,6 @@ static MfciObj* mfCiOpenEntry(s32 no, s32 rw)
 		return NULL;
 	}
 	hn = NULL;
-	for (i = 0; i < MFCI_OBJ_MAX; i++) {
-		if (mfci_ObjTbl[i].stat == 0) {
-			hn = &mfci_ObjTbl[i];
-			break;
-		}
-	}
 	if (hn == NULL) {
 		mfci_ErrorN("E1041002:not enough handle resource.(mfCiOpenEntry)");
 		return NULL;
@@ -175,7 +170,7 @@ static MfciObj* mfCiOpenEntry(s32 no, s32 rw)
 
 static u32 mfci_get_adr_size(const char* fname, u32* size)
 {
-	char* p = (char*)fname;
+	char* p;
 	u32 v;
 
 	if (strlen(fname) != 17) {
@@ -187,6 +182,7 @@ static u32 mfci_get_adr_size(const char* fname, u32* size)
 		sprintf(mfci_WorkStr, "E01100309:illegal file name format '%s'(mfci_get_adr_size)", fname);
 		mfci_ErrorN(mfci_WorkStr);
 	}
+	p = (char*)fname;
 	v = strtoul(p, &p, 16);
 	if (*p != '\0') {
 		p++;
@@ -291,7 +287,10 @@ s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf)
 	}
 	hn->busy = 2;
 	adr      = mfci_get_adr_size(hn->fname, &size);
-	n        = hn->nbyte <= (s32)(size - hn->ofst) ? hn->nbyte : (s32)(size - hn->ofst);
+	n        = hn->nbyte;
+	if (n > (s32)(size - hn->ofst)) {
+		n = (s32)(size - hn->ofst);
+	}
 	memcpy(buf, (void*)(adr + hn->ofst), hn->nbyte);
 	memset((s8*)buf + n, 0, hn->nbyte - n);
 	hn->total = hn->rdsct * hn->sctsize;
