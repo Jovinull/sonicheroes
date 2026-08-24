@@ -328,6 +328,7 @@ config.libs = [
             ),
             Object(Matching, "MSL_C/strtoul.c"),
             Object(Matching, "MSL_C/uart_console_io.c"),
+            Object(Matching, "MSL_C/wchar_io.c"),
             Object(Matching, "MSL_C/e_acos.c"),
             Object(Matching, "MSL_C/e_asin.c"),
             Object(Matching, "MSL_C/e_atan2.c"),
@@ -496,6 +497,11 @@ config.libs = [
                 Matching,
                 "game/vibration.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "game/eff_tornado.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pooldata off"],
             ),
             Object(
                 Matching,
