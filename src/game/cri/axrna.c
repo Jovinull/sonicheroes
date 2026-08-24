@@ -31,7 +31,8 @@ typedef struct AxVtbl {
 	/* 0x0c */ void (*stop)(AxObj* obj);
 	/* 0x10 */ u8 pad10[4];
 	/* 0x14 */ void (*reset)(AxObj* obj);
-	/* 0x18 */ u8 pad18[8];
+	/* 0x18 */ void (*read)(AxObj* obj, s32 which, s32 size, void* out);
+	/* 0x1c */ u8 pad1c[4];
 	/* 0x20 */ void (*put)(AxObj* obj, s32 which, void* buf);
 	/* 0x24 */ s32 (*get)(AxObj* obj, s32 arg);
 } AxVtbl;
@@ -218,6 +219,56 @@ void fn_80223C24(AxCb* cb)
 		p->st[0].flag[ch] = 0;
 		if (ch == p->idx - 1) {
 			p->st[0].total += p->st[0].acc;
+		}
+	}
+}
+
+void fn_80223D00(AxRna* p)
+{
+	s32 buf[2];
+	s32 n;
+	s32 req;
+	s32 size;
+	s32 i;
+	s32 bytes;
+
+	req = p->loopReq;
+	if (p->obj[p->idx - 1] != NULL) {
+		n            = *(s32*)((u8*)p->obj[p->idx - 1] + 0x1B2) - p->loopStart[p->idx];
+		ax_Z[ax_Y++] = n;
+		if (ax_Y == 32) {
+			ax_Y = 0;
+		}
+		if (n < 0 || n > p->loopLen) {
+			while (TRUE) {
+			}
+		}
+		if (req == -1) {
+			if (n == 0) {
+				size = 0;
+			} else {
+				req        = 0;
+				p->loopReq = 0;
+			}
+		}
+		if (req != -1) {
+			if (n > req) {
+				size = n - req;
+			} else {
+				size = 4096 - (req - n);
+			}
+		}
+		size = (size / 2048) * 2048;
+		if (size > 0) {
+			bytes = size * 2;
+			for (i = 0; i < p->idx; i++) {
+				p->strmB[i]->vtbl->read(p->strmB[i], 1, bytes, buf);
+				p->strmB[i]->vtbl->put(p->strmB[i], 0, buf);
+			}
+			p->loopReq += size;
+			if (p->loopReq >= 4096) {
+				p->loopReq -= 4096;
+			}
 		}
 	}
 }
