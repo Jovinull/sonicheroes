@@ -27,7 +27,9 @@
 typedef struct AxObj AxObj;
 
 typedef struct AxVtbl {
-	/* 0x00 */ u8 pad00[0x20];
+	/* 0x00 */ u8 pad00[0xc];
+	/* 0x0c */ void (*stop)(AxObj* obj);
+	/* 0x10 */ u8 pad10[0x10];
 	/* 0x20 */ void (*put)(AxObj* obj, s32 which, void* buf);
 	/* 0x24 */ s32 (*get)(AxObj* obj, s32 arg);
 } AxVtbl;
@@ -54,7 +56,8 @@ typedef struct AxRna {
 	/* 0x03 */ s8 idx;
 	/* 0x04 */ u8 pad04[4];
 	/* 0x08 */ AxObj* obj[2];
-	/* 0x10 */ u8 pad10[0x20];
+	/* 0x10 */ AxCb* cb[2];
+	/* 0x18 */ u8 pad18[0x18];
 	/* 0x30 */ AxObj* strmA[2];
 	/* 0x38 */ AxObj* strmB[2];
 	/* 0x40 */ u8 bufA[2][8];
@@ -260,6 +263,37 @@ s32 fn_80224CE8(void* p)
 		return 0;
 	}
 	return *(s32*)((s8*)p + 4);
+}
+
+extern void fn_80223F2C(AxRna* p, s32 v);
+extern void fn_802240CC(AxRna* p, s32 v);
+extern void fn_801E221C(AxObj* obj);
+extern void fn_80224D00(void* p);
+
+void fn_802242CC(AxRna* p)
+{
+	s32 i;
+
+	if (p == NULL) {
+		return;
+	}
+	fn_80223F2C(p, 0);
+	fn_802240CC(p, 0);
+	for (i = 0; i < p->nch; i++) {
+		if (p->strmB[i] != NULL) {
+			p->strmB[i]->vtbl->stop(p->strmB[i]);
+		}
+		if (p->cb[i] != NULL) {
+			fn_80224D00(p->cb[i]);
+		}
+		fn_802234B0();
+		if (p->obj[i] != NULL) {
+			fn_801E8984(p->obj[i]);
+			fn_801E221C(p->obj[i]);
+		}
+		fn_80223490();
+	}
+	memset(p, 0, sizeof(AxRna));
 }
 
 void fn_80224D00(void* p)
