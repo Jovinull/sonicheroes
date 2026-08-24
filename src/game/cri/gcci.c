@@ -45,8 +45,21 @@ typedef struct GcciObj {
 	/* 0x24 */ s32 rdsct;
 } GcciObj;
 
-static GcciErrFunc gcci_ErrFunc;
+static struct {
+	s32 a;
+	s32 b;
+	s32 c;
+} gcci_Hdr;
+
 static void* gcci_ErrObj;
+static GcciErrFunc gcci_ErrFunc;
+
+extern void* gcci_IfTbl;
+extern void* gcci_Arg;
+extern void* memset(void* p, int c, u32 n);
+
+static u8 gcci_Big[0xFA4];
+static u8 gcci_Ram[256];
 
 extern const char gcci_ErrHandl[];
 extern const char gcci_ErrHandl2[];
@@ -155,4 +168,19 @@ void fn_8021E438(GcciObj* p, s32 sctsize)
 	gcci_SetNsct(p);
 	p->pos   = total / p->sctsize;
 	p->total = p->rdsct * sctsize;
+}
+
+void fn_8021F404(s32 a, s32 b, s32 c, void* d)
+{
+	gcci_Arg = d;
+}
+
+void* fn_8021F398(void)
+{
+	gcci_Big[0xFA0] = gcci_Big[0xFA0];
+	memset(gcci_Ram, 0, sizeof(gcci_Ram));
+	gcci_ErrFunc = NULL;
+	gcci_ErrObj  = NULL;
+	memset(&gcci_Hdr, 0, sizeof(gcci_Hdr));
+	return gcci_IfTbl;
 }
