@@ -26,10 +26,17 @@
 //
 // NOT MATCHING: twenty of the twenty-two functions are byte-exact.
 //
-//   TDisp__15TObjEffTornado2Fv differs only in register allocation -- the
-//   target keeps the handle in r31 and this build keeps it in r27, and r26,
-//   r28 and r30 rotate along with it. Size, mnemonics and relocations already
-//   agree.
+//   TDisp__15TObjEffTornado2Fv differs only in register allocation, and the
+//   difference is now down to a single swap: _savegpr_26 saves r26 through r31
+//   on both sides, red, green and alpha land on r29, r28 and r26 on both, and
+//   only the handle and blue trade places -- r31 and r27 the one way here, the
+//   other way in the target. Ruled out: six declaration orders for the locals;
+//   four ways of loading the four colour bytes (separate statements, reversed
+//   comma order, through a local pointer, through a static helper); reversing
+//   or rotating the four material stores and the three else-branch colour
+//   computations, all of which are worse; rewriting the function as the free
+//   `extern "C" void TDisp__15TObjEffTornado2Fv(TObjEffTornado2*)` that every
+//   other TDisp in this file already is; and aliasing `this` into a local.
 //
 //   TDisp__14TObjEffTornadoFv is one instruction long. The target materialises
 //   two of the loop's address constants straight into their callee-saved
@@ -49,6 +56,10 @@
 //   scheduling, peephole, optimize_for_size, propagation and global_optimizer.
 //   None reaches 1476: they either leave the size alone or overshoot, and
 //   peephole on takes it to 1456 while breaking eight of the twenty that match.
+//   Pulling the loop body apart into same-TU static helpers -- the trick that
+//   closed mfCiSetSctLen and mfCiOpen -- does nothing here either, for the two
+//   pieces tried (the first fn_80195790 call, and the trig plus the second
+//   one): they inline straight back to the same instructions.
 //
 // The remaining extab and extabindex bytes are the frame descriptors of those
 // two functions and will follow them.
