@@ -37,35 +37,64 @@
 // Names come from the error strings, which CRI writes with the reporting
 // function in parentheses. Everything not named there keeps its dtk name.
 //
-// NOT MATCHING: 587 of 644 instructions. Ten of the fourteen functions are
-// byte-exact; mfCiReqRd, mfCiOpen, fn_80222A74 and fn_80222F28 are what is
-// left. See notes/cri-mfci.md for the measurements, including what has already
-// been ruled out.
+// The names come from two places. The error strings name the reporting function
+// in parentheses, and the PS2 build of the same CRI library ships a symbol
+// table: its mfci_vtbl is entry for entry the table below, which fixes every
+// slot. That mapping reads, from the top of the run down: mfCiGetNumTr,
+// mfCiSetSctLen, mfCiGetSctLen, mfCiGetStat, mfCiStopTr, mfCiReqRd, mfCiTell,
+// mfCiSeek, mfCiClose, mfCiOpen, mfCiGetFileSize, mfCiEntryErrFunc,
+// mfCiExecServer and mfCiGetInterface. The statics it also names are
+// mfci_alloc, mfci_reset_hn, mfci_get_adr_size and mfci_call_errfn.
 //
-// Two of the four closed on `volatile`, which is worth remembering. The target
-// keeps a load whose value is discarded (fn_80223410) and a loop whose body is
-// empty (fn_80223404); at -O4 nothing else makes MWCC keep either. Neither the
-// qualifier nor the read alone is enough -- the variable has to be volatile and
-// the read has to be written out.
+// NOT MATCHING: eleven of the fourteen functions are byte-exact. What is left
+// is fn_80222C40 (mfCiReqRd), fn_80222F28 (mfCiSeek) and fn_80223404
+// (mfCiExecServer).
+//
+//   fn_80222C40 differs only in register allocation: the target ranks the
+//   handle above the buffer (r29/r28), this build ranks the buffer above the
+//   handle. Every instruction, every relocation and the function size already
+//   agree. Local declaration order, local types, helper extraction and the
+//   shape of the clamp all leave the ranking untouched.
+//
+//   fn_80222F28 is one instruction short. The target lowers the final clamp
+//   branchily -- `ble` into the block, `b` past the `li` into the shared store,
+//   which is a select with the value in r0. Every `?:` spelling of that clamp
+//   makes this compiler emit the branchless `neg/andc/srawi/and` sequence
+//   instead, and every `if`/`else` spelling makes it invert the test and drop
+//   the `b`.
+//
+//   fn_80223404 is three instructions in the target -- `li r0, 0`,
+//   `cmpwi r0, 0x28`, `blr` -- the dead remains of a loop the optimiser
+//   deleted after emitting its guard. The PS2 build shows the body: a walk over
+//   the object table calling mfCiExecHndl, which is empty there (eight bytes,
+//   `jr ra`). Inlining that empty callee here removes the loop outright, so
+//   this build emits only `blr`; keeping the counter alive instead yields a
+//   `mtctr`/`bdnz` spin, and `volatile` yields a full stack frame. None of the
+//   three is the target.
+//
+// The register allocation of mfCiOpen and mfCiReqRd turned out to be steered
+// from outside those functions. Whether mfCiOpenEntry touches a third .bss
+// object decides, for the whole unit, how the section bases rank against the
+// parameters: without it the .rodata base sinks below them, with it the base
+// order is right. That is why mfCiOpenEntry below hands mfci_WorkStr to
+// mfCiOpen -- the reference has to be to mfci_WorkStr and not mfci_ObjTbl,
+// because .bss is laid out in order of first reference and touching the table
+// there would move it in front of the work buffer.
 //
 // .rodata and .bss both match the original layout byte for byte. The .bss order
 // is load-bearing and not obvious: MWCC lays those statics out in order of
 // first reference, not order of declaration, so mfci_WorkStr only lands at
 // offset 8 because nothing touches mfci_ObjTbl before mfci_get_adr_size runs.
-// That is why mfCiOpenEntry below does not scan the table.
+// Both sections read four bytes longer in the target object than here; that is
+// the padding dtk's split carries to the next unit's boundary, not data of
+// ours -- 0x80240168 + 664 is exactly where AXRNA's banner starts.
 //
-// What is left in mfCiReqRd and mfCiOpen is a two-register permutation, not a
-// shape difference: both are over 98% aligned on mnemonics, and the diff is
-// that the target puts the .bss base in r30 and the .rodata base in r29 while
-// this build swaps them. The prologues are otherwise instruction for
-// instruction identical. Local declaration order does not steer it -- all six
-// permutations in mfCiOpen measure the same.
-//
-// The .rodata also still carries the three "(mfCiOpenEntry)" messages although
-// no surviving function reads them. mfCiOpenEntry is reconstructed below as the
-// static it must have been. The reconstruction is a hypothesis about how those
-// strings survive, and an incomplete one: this compiler keeps the body, so the
-// object holds eighteen functions against the target's fourteen.
+// The .rodata still carries the three "(mfCiOpenEntry)" messages although no
+// surviving function reads them. mfCiOpenEntry is reconstructed below as the
+// static it must have been, and its position at the top of the file is what
+// puts those three strings at the head of the pool. The reconstruction stays a
+// hypothesis, and an incomplete one: this compiler keeps the body, so the
+// object holds more functions than the target's fourteen.
 
 typedef void (*MfciErrFunc)(void* obj, const char* msg, void* arg);
 typedef void (*MfciFunc)(void);
@@ -153,8 +182,10 @@ static void mfci_Error(const char* msg, void* arg)
 	}
 }
 
-// Never called. The hypothesis is that the original was a static the compiler
-// dropped, leaving only its three messages at the head of the pool.
+// Never called here. The three messages it reports are the head of this file's
+// string pool, so it has to sit at the top of the source even though nothing
+// in the run reaches it; the linker drops the body and keeps the pool. The body
+// is a hypothesis: validate, then hand the work buffer to mfCiOpen.
 static MfciObj* mfCiOpenEntry(s32 no, s32 rw)
 {
 	MfciObj* hn;
@@ -167,7 +198,7 @@ static MfciObj* mfCiOpenEntry(s32 no, s32 rw)
 		mfci_ErrorN("E1041002:rw is illigal.(mfCiOpenEntry)");
 		return NULL;
 	}
-	hn = NULL;
+	hn = fn_802230B4(mfci_WorkStr, 0, rw);
 	if (hn == NULL) {
 		mfci_ErrorN("E1041002:not enough handle resource.(mfCiOpenEntry)");
 		return NULL;
@@ -200,6 +231,30 @@ static u32 mfci_get_adr_size(const char* fname, u32* size)
 	return v;
 }
 
+static MfciObj* mfci_alloc(void)
+{
+	MfciObj* hn;
+	s32 i;
+
+	hn = NULL;
+	for (i = 0; i < MFCI_OBJ_MAX; i++) {
+		if (mfci_ObjTbl[i].stat == 0) {
+			hn = &mfci_ObjTbl[i];
+			break;
+		}
+	}
+	return hn;
+}
+
+static void mfci_SetNsct(MfciObj* hn)
+{
+	s32 n;
+
+	n        = hn->sctsize + hn->size;
+	n        = n - 1;
+	hn->nsct = n / hn->sctsize;
+}
+
 s32 fn_80222A14(MfciObj* hn)
 {
 	if (hn == NULL) {
@@ -219,12 +274,7 @@ void fn_80222A74(MfciObj* hn, s32 sctsize)
 	}
 	total       = hn->pos * hn->sctsize;
 	hn->sctsize = sctsize;
-	{
-		s32 n;
-		n        = hn->sctsize + hn->size;
-		n        = n - 1;
-		hn->nsct = n / hn->sctsize;
-	}
+	mfci_SetNsct(hn);
 	hn->pos   = total / hn->sctsize;
 	hn->total = hn->rdsct * sctsize;
 }
@@ -241,7 +291,7 @@ s32 fn_80222B0C(MfciObj* hn)
 s32 fn_80222B6C(MfciObj* hn)
 {
 	if (hn == NULL) {
-		mfci_ErrorN("E01100307:handl is null.");
+		mfci_ErrorN("E0092912:handl is null.");
 		return 0;
 	}
 	return hn->busy;
@@ -366,7 +416,6 @@ MfciObj* fn_802230B4(const char* fname, s32 mode, s32 rw)
 {
 	MfciObj* hn;
 	u32 size;
-	s32 i;
 
 	if (fname == NULL) {
 		mfci_ErrorN("E01100301:fname is null.(mfCiOpen)");
@@ -376,13 +425,7 @@ MfciObj* fn_802230B4(const char* fname, s32 mode, s32 rw)
 		mfci_ErrorN("E01100302:rw is illigal.(mfCiOpen)");
 		return NULL;
 	}
-	hn = NULL;
-	for (i = 0; i < MFCI_OBJ_MAX; i++) {
-		if (mfci_ObjTbl[i].stat == 0) {
-			hn = &mfci_ObjTbl[i];
-			break;
-		}
-	}
+	hn = mfci_alloc();
 	if (hn == NULL) {
 		mfci_ErrorN("E01100303:not enough handle resource.(mfCiOpen)");
 		return NULL;
@@ -391,12 +434,7 @@ MfciObj* fn_802230B4(const char* fname, s32 mode, s32 rw)
 	hn->sctsize = MFCI_SCT_SIZE;
 	mfci_get_adr_size(hn->fname, &size);
 	hn->size = size;
-	{
-		s32 n;
-		n        = hn->sctsize + hn->size;
-		n        = n - 1;
-		hn->nsct = n / hn->sctsize;
-	}
+	mfci_SetNsct(hn);
 	hn->pos   = 0;
 	hn->rdsct = 0;
 	hn->total = 0;
@@ -421,7 +459,7 @@ void fn_802233F0(MfciErrFunc func, void* obj)
 
 void fn_80223404(void)
 {
-	volatile s32 i;
+	s32 i;
 
 	for (i = 0; i < MFCI_OBJ_MAX; i++) {
 	}
