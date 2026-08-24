@@ -46,8 +46,8 @@
 // mfCiExecServer and mfCiGetInterface. The statics it also names are
 // mfci_alloc, mfci_reset_hn, mfci_get_adr_size and mfci_call_errfn.
 //
-// NOT MATCHING: twelve of the fourteen functions are byte-exact. What is left
-// is fn_80222C40 (mfCiReqRd) and fn_80222F28 (mfCiSeek).
+// NOT MATCHING: thirteen of the fourteen functions are byte-exact. What is
+// left is fn_80222C40 (mfCiReqRd).
 //
 //   fn_80222C40 differs only in register allocation: the target ranks the
 //   handle above the buffer (r29/r28), this build ranks the buffer above the
@@ -63,24 +63,10 @@
 //   or the base order right with the handle and buffer swapped. Neither is the
 //   target, so the remaining nudge has to come from somewhere else again.
 //
-//   fn_80222F28 is one instruction short. The target lowers the final clamp
-//   branchily -- `ble` into the block, `b` past the `li` into the shared store,
-//   so both arms converge on one `stw` with the value in r0. That the compiler
-//   is willing to branch for a select is not in doubt: the preceding clamp
-//   against nsct is emitted exactly that way. It is the zero that is the
-//   problem. Every `?:` spelling whose false arm reaches zero -- literal,
-//   returned from a static helper, `off - off`, `whence & 0`, a local assigned
-//   0 -- constant-propagates before the idiom recogniser runs, and the clamp
-//   comes out as branchless `neg/andc/srawi/and`. Every plain `if`/`else`
-//   spelling has an empty then-arm, which the compiler answers by inverting
-//   the test and dropping the `b`.
-//
-//   The closest miss is worth keeping. Route both arms through a same-TU
-//   static setter -- `if (hn->pos > 0) { mfci_SetPos(hn, hn->pos); } else {
-//   mfci_SetPos(hn, 0); }` -- and the branch layout comes out exactly right,
-//   `ble` into the block and `b` skipping the `li`. What is left over is the
-//   then-arm's own redundant `stw`, which this compiler does not tail-merge
-//   with the else-arm's, so the function lands at 248 against the target's 244.
+//   fn_80222F28 is exact. Its final clamp needs a local result and a nested
+//   empty condition in the positive arm. The latter keeps both sides of the
+//   source branch alive until after MWCC forms the retail `ble`/`b` diamond;
+//   it then disappears, leaving both arms converging on one shared store.
 //
 //   fn_80223404 is exact. Its three instructions -- `li r0, 0`, `cmpwi r0,
 //   0x28`, `blr` -- are the dead remains of the PS2 body: a forty-entry walk
@@ -389,6 +375,8 @@ s32 fn_80222EC8(MfciObj* hn)
 
 s32 fn_80222F28(MfciObj* hn, s32 off, s32 whence)
 {
+	s32 pos;
+
 	if (hn == NULL) {
 		mfci_ErrorN("E01100305:handl is null.");
 		return 0;
@@ -402,10 +390,14 @@ s32 fn_80222F28(MfciObj* hn, s32 off, s32 whence)
 		hn->pos = hn->pos + off;
 	}
 	hn->pos = hn->pos < hn->nsct ? hn->pos : hn->nsct;
-	if (hn->pos > 0) {
+	pos     = hn->pos;
+	if (pos > 0) {
+		if (pos && pos) {
+		}
 	} else {
-		hn->pos = 0;
+		pos = 0;
 	}
+	hn->pos = pos;
 	fn_8022291C();
 	return hn->pos;
 }
