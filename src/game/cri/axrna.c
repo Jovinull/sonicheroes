@@ -290,16 +290,21 @@ void fn_80223820(AxRna* p)
 		cur = p->flags & 1;
 	}
 	if (cur == 1) {
-		for (i = 0; i < p->idx; i++) {
-			if (p->obj[i] != NULL && p->st[0].flag[i] == 0) {
-				p->strmB[i]->vtbl->read(p->strmB[i], 0, 0x2000, &second);
-				p->strmA[i]->vtbl->read(p->strmA[i], 1, second.size, &first);
+		u8* objp = (u8*)p;
+		u8* bufp = (u8*)p;
+		u8* reqp = (u8*)p;
+
+		for (i = 0; i < p->idx; i++, objp += 4, bufp += 8, reqp += 0x20) {
+			if (*(AxObj**)(objp + 8) != NULL && *(s32*)(objp + 0x60) == 0) {
+				(*(AxObj**)(objp + 0x38))->vtbl->read(*(AxObj**)(objp + 0x38), 0, 0x2000, &second);
+				(*(AxObj**)(objp + 0x30))
+				    ->vtbl->read(*(AxObj**)(objp + 0x30), 1, second.size, &first);
 				bytes = first.size < second.size ? first.size : second.size;
 				bytes = (bytes >> 5) << 5;
 				fn_80221824(&second, bytes, &second, &secondRemaining);
-				p->strmB[i]->vtbl->put(p->strmB[i], 0, &secondRemaining);
+				(*(AxObj**)(objp + 0x38))->vtbl->put(*(AxObj**)(objp + 0x38), 0, &secondRemaining);
 				fn_80221824(&first, bytes, &first, &firstRemaining);
-				p->strmA[i]->vtbl->put(p->strmA[i], 1, &firstRemaining);
+				(*(AxObj**)(objp + 0x30))->vtbl->put(*(AxObj**)(objp + 0x30), 1, &firstRemaining);
 				if (bytes == 0) {
 					return;
 				}
@@ -307,13 +312,13 @@ void fn_80223820(AxRna* p)
 					for (;;) {
 					}
 				}
-				((AxRange*)p->bufA)[i] = first;
-				((AxRange*)p->bufB)[i] = second;
-				p->st[0].acc           = bytes >> 1;
-				DCFlushRange(((AxRange*)p->bufA)[i].addr, ((AxRange*)p->bufA)[i].size);
-				p->st[0].flag[i] = 1;
-				ARQPostRequest(p->pad_a8 + i * 0x20, p->rate, 0, 1, (u32)first.addr,
-				    (u32)second.addr, bytes, fn_80223C24);
+				*(AxRange*)(bufp + 0x40) = first;
+				*(AxRange*)(bufp + 0x50) = second;
+				p->st[0].acc             = bytes >> 1;
+				DCFlushRange(((AxRange*)(bufp + 0x40))->addr, ((AxRange*)(bufp + 0x40))->size);
+				*(s32*)(objp + 0x60) = 1;
+				ARQPostRequest(reqp + 0xA8, p->rate, 0, 1, (u32)first.addr, (u32)second.addr, bytes,
+				    fn_80223C24);
 			}
 		}
 	} else {
