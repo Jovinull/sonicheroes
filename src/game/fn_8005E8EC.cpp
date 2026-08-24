@@ -33,13 +33,24 @@
 //   (none, nopeephole alone, noschedule alone, level=4) is worse. Five loop
 //   spellings all normalise to the folded form.
 //
-//   fn_8005EA04 is twelve bytes short. It gained sixteen of those by recomputing
-//   `lbl_802FF5E0[i].object` from the index instead of reusing the walked
-//   `entry` pointer -- the target really does rebuild base + i * 0x44 rather
-//   than reuse the cursor it already has. The same recompute applied to the
-//   `request` accesses in the second half overshoots to 524 and, more to the
-//   point, misaligns the function badly (81 differing rows against 66), so it
-//   is not simply more of the same.
+//   fn_8005EA04 is twelve bytes short, and what is left of it is now down to
+//   three shapes. Three things brought it from thirteen structural differences
+//   to four. It recomputes `lbl_802FF5E0[i].object` from the index rather than
+//   reusing the walked `entry` pointer, and does the same for the request in
+//   the second half -- `request = &lbl_803039F8[i]` -- which is what makes the
+//   target's `mulli r4, r30, 0x50` plus base reload appear. It caches
+//   `request->data` into a local read before the slot check, because the target
+//   loads it there and not at its point of use. And `streamArgs` has to be two
+//   assignments in reverse order, `[1]` then `[0]`, not a braced initialiser:
+//   the initialiser makes MWCC lay down an eight-byte zero template from
+//   .sdata2 first, four instructions the target does not have.
+//
+//   Left in it: two `bne`/`b` pairs this build folds, an argument register the
+//   target loads once where this build reloads, and a join at the very end
+//   where both the found and the not-found path write r0 and then a single
+//   `mr r28, r0` -- the NULL initialiser sunk to the join instead of sitting at
+//   the top. Neither dropping the initialiser with explicit else arms nor a
+//   ternary on the last assignment reproduces it.
 //
 //   fn_8005ED88 is the right length now and twenty-seven bytes differ, all of
 //   them one register swap: the target keeps the archive handle in r27 and the
@@ -265,14 +276,18 @@ extern "C" void* fn_8005EA04(char* name)
 		break;
 	}
 	if (i != -1) {
+		request    = &lbl_803039F8[i];
+		void* data = request->data;
 		if (lbl_802FF5E0[request->slot].object != NULL)
 			return lbl_802FF5E0[request->slot].object;
-		if (request->data != NULL) {
+		if (data != NULL) {
 			void* expanded = fn_80012994(0x19000);
 			void* input    = fn_80012994(request->size);
-			fn_800D0624(input, request->data, request->size);
-			void* end           = Expand2__FPvPv(input, expanded);
-			void* streamArgs[2] = { expanded, end };
+			fn_800D0624(input, data, request->size);
+			void* end = Expand2__FPvPv(input, expanded);
+			void* streamArgs[2];
+			streamArgs[1] = end;
+			streamArgs[0] = expanded;
 			fn_801A4C84(request->dictionary);
 			void* stream = fn_80198000(3, 1, streamArgs);
 			if (fn_80192F38(stream, 0x10, 0, 0) != 0)
