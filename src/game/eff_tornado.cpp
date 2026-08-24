@@ -232,7 +232,6 @@ extern f32 lbl_8042DC18;
 extern f32 lbl_8042DC1C;
 extern f32 lbl_8042DC20;
 extern f32 lbl_8042DC24;
-extern const f64 lbl_8042DBD0 = 4503599627370496.0;
 
 extern u8 lbl_8029C310[];
 extern u8 lbl_802D5E80[];
