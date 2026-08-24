@@ -44,7 +44,7 @@
 // call it too. It is variadic, which is why every call site sets cr1eq.
 //
 // Two call relationships pin the naming beyond the three anchors above.
-// fn_8021FF44 does nothing but tail-call fn_8021FD04 with a zero offset and a
+// fn_8021FF44 does nothing but tail-call LSC_EntryFileRange with a zero offset and a
 // length of 0x100000 - 1, which is LSC_EntryFname delegating to
 // LSC_EntryFileRange. fn_8021FA78 walks sixteen handles and calls fn_802202FC
 // on each one that is in use, which is LSC_ExecServer driving lsc_ExecHndl.
@@ -126,7 +126,7 @@ extern void fn_80217434(void* hndl);
 extern void fn_80217584(void* hndl, const char* fname, void* dir, s32 ofst, s32 nbyte);
 extern void fn_802202FC(LscObj* lsc);
 extern void fn_8021FF7C(LscObj* lsc);
-extern s32 fn_8021FD04(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte);
+extern s32 LSC_EntryFileRange(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte);
 extern void* memset(void* dst, s32 value, u32 size);
 extern u32 strlen(const char* str);
 extern volatile u32 lbl_8023FF30[];
@@ -413,14 +413,8 @@ LscObj* fn_80220054(LscSj* sj)
 #pragma opt_propagation reset
 
 #pragma dont_inline on
-s32 fn_8021FD04(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
+s32 LSC_EntryFileRange(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
 {
-	LscStm* stm;
-	s32 id;
-	u32 fnameLength;
-	s32 i;
-	s32 prevStmIndex;
-
 	if (lsc == NULL) {
 		fn_8021F410(lsc_ErrParam);
 		return -1;
@@ -432,33 +426,43 @@ s32 fn_8021FD04(LscObj* lsc, const char* fname, void* dir, s32 ofst, s32 nbyte)
 		fn_8021F410(lsc_ErrFname, fname);
 		return -1;
 	}
-	stm          = &lsc->stm[lsc->rdsct];
-	prevStmIndex = (lsc->rdsct + LSC_STM_MAX - 1) % LSC_STM_MAX;
-	id           = lsc->stm[prevStmIndex].id == 0x7FFFFFFF ? 0 : lsc->stm[prevStmIndex].id + 1;
-	stm->id      = id;
-	stm->fname   = fname;
-	fnameLength  = strlen(fname) / sizeof(u32);
-	stm->unk08   = 0;
-	for (i = 0; i < fnameLength; i++) {
-		stm->unk08 += ((const u32*)fname)[i];
+	{
+		LscStm* stm;
+		s32 id;
+		s32 i;
+		u32 fnameLength;
+		s32 prevStmIndex;
+		const u32* words;
+
+		words        = (const u32*)fname;
+		prevStmIndex = (lsc->rdsct + LSC_STM_MAX - 1) % LSC_STM_MAX;
+		stm          = &lsc->stm[lsc->rdsct];
+		id           = lsc->stm[prevStmIndex].id == 0x7FFFFFFF ? 0 : lsc->stm[prevStmIndex].id + 1;
+		stm->id      = id;
+		stm->fname   = fname;
+		fnameLength  = strlen(fname) / sizeof(u32);
+		stm->unk08   = 0;
+		for (i = 0; i < fnameLength; i++) {
+			stm->unk08 += words[i];
+		}
+		stm->ofst   = ofst;
+		stm->nbyte  = nbyte;
+		stm->dir    = dir;
+		stm->stat   = 0;
+		stm->rdsct  = 0;
+		lsc->numstm = lsc->numstm + 1;
+		lsc->rdsct  = (lsc->rdsct + 1) % LSC_STM_MAX;
+		if (lsc->stat == 1) {
+			lsc->stat = 2;
+		}
+		return id;
 	}
-	stm->ofst   = ofst;
-	stm->nbyte  = nbyte;
-	stm->dir    = dir;
-	stm->stat   = 0;
-	stm->rdsct  = 0;
-	lsc->numstm = lsc->numstm + 1;
-	lsc->rdsct  = (lsc->rdsct + 1) % LSC_STM_MAX;
-	if (lsc->stat == 1) {
-		lsc->stat = 2;
-	}
-	return id;
 }
 #pragma dont_inline reset
 
 void LSC_EntryFname(LscObj* lsc, const char* fname)
 {
-	fn_8021FD04(lsc, fname, 0, 0, 0x100000 - 1);
+	LSC_EntryFileRange(lsc, fname, 0, 0, 0x100000 - 1);
 }
 
 s32 LSC_GetStmId(LscObj* lsc, s32 no)
@@ -612,7 +616,7 @@ static inline void lsc_StatEnd(LscObj* lsc)
 		lsc->stat = 1;
 	}
 	if (lsc->lpflg == 1) {
-		fn_8021FD04(lsc, fname, dir, ofst, nbyte);
+		LSC_EntryFileRange(lsc, fname, dir, ofst, nbyte);
 	}
 }
 
