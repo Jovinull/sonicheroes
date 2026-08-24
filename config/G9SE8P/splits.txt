@@ -480,6 +480,9 @@ MSL_C/s_tan.c:
 MSL_C/w_acos.c:
 	.text       start:0x801C92F0 end:0x801C9310
 
+MSL_C/w_asin.c:
+	.text       start:0x801C9310 end:0x801C9330
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
