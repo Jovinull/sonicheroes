@@ -435,6 +435,11 @@ MSL_C/k_tan.c:
 	.rodata     start:0x8023D240 end:0x8023D2A8
 	.sdata2     start:0x8042FCD0 end:0x8042FD08
 
+MSL_C/s_atan.c:
+	.text       start:0x801C8748 end:0x801C8948
+	.rodata     start:0x8023D2A8 end:0x8023D340
+	.sdata2     start:0x8042FD08 end:0x8042FD30
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
