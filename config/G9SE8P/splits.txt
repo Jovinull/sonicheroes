@@ -150,6 +150,15 @@ game/Endian.cpp:
 game/fn_8005776C.cpp:
 	.text       start:0x8005776C end:0x80057774
 
+game/fn_8005E8EC.cpp:
+	extab       start:0x800069A4 end:0x800069D4
+	extabindex  start:0x8000D3F0 end:0x8000D420
+	.text       start:0x8005E8EC end:0x8005F194
+	.data       start:0x80243418 end:0x802435D8
+	.bss        start:0x802FF5E0 end:0x80303D18
+	.sdata      start:0x8042B228 end:0x8042B234
+	.sbss       start:0x8042C2A8 end:0x8042C2AC
+
 game/fn_8005F794.cpp:
 	.text       start:0x8005F794 end:0x8005F79C
 
