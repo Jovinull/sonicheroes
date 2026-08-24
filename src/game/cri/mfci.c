@@ -37,9 +37,16 @@
 // Names come from the error strings, which CRI writes with the reporting
 // function in parentheses. Everything not named there keeps its dtk name.
 //
-// NOT MATCHING: 584 of 644 instructions. Eight of the fourteen functions are
-// byte-exact. See notes/cri-mfci.md for the measurements, including what has
-// already been ruled out.
+// NOT MATCHING: 587 of 644 instructions. Ten of the fourteen functions are
+// byte-exact; mfCiReqRd, mfCiOpen, fn_80222A74 and fn_80222F28 are what is
+// left. See notes/cri-mfci.md for the measurements, including what has already
+// been ruled out.
+//
+// Two of the four closed on `volatile`, which is worth remembering. The target
+// keeps a load whose value is discarded (fn_80223410) and a loop whose body is
+// empty (fn_80223404); at -O4 nothing else makes MWCC keep either. Neither the
+// qualifier nor the read alone is enough -- the variable has to be volatile and
+// the read has to be written out.
 //
 // .rodata and .bss both match the original layout byte for byte. The .bss order
 // is load-bearing and not obvious: MWCC lays those statics out in order of
@@ -106,8 +113,8 @@ void fn_802233F0(MfciErrFunc func, void* obj);
 void fn_80223404(void);
 void* fn_80223410(void);
 
-const char mfci_ver[]                = "\nMFCI/GC Ver.1.05 Build:May  9 2003 17:10:33\n";
-static const char* const mfci_verptr = mfci_ver;
+const char mfci_ver[]                         = "\nMFCI/GC Ver.1.05 Build:May  9 2003 17:10:33\n";
+static const char* const volatile mfci_verptr = mfci_ver;
 
 static MfciErrFunc mfci_ErrFunc;
 static void* mfci_ErrObj;
@@ -212,9 +219,14 @@ void fn_80222A74(MfciObj* hn, s32 sctsize)
 	}
 	total       = hn->pos * hn->sctsize;
 	hn->sctsize = sctsize;
-	hn->nsct    = (hn->sctsize + hn->size - 1) / hn->sctsize;
-	hn->pos     = total / hn->sctsize;
-	hn->total   = hn->rdsct * sctsize;
+	{
+		s32 n;
+		n        = hn->sctsize + hn->size;
+		n        = n - 1;
+		hn->nsct = n / hn->sctsize;
+	}
+	hn->pos   = total / hn->sctsize;
+	hn->total = hn->rdsct * sctsize;
 }
 
 s32 fn_80222B0C(MfciObj* hn)
@@ -409,7 +421,7 @@ void fn_802233F0(MfciErrFunc func, void* obj)
 
 void fn_80223404(void)
 {
-	s32 i;
+	volatile s32 i;
 
 	for (i = 0; i < MFCI_OBJ_MAX; i++) {
 	}
@@ -417,5 +429,6 @@ void fn_80223404(void)
 
 void* fn_80223410(void)
 {
+	(void)mfci_verptr;
 	return mfci_IfTbl;
 }
