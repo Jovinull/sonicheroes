@@ -611,6 +611,11 @@ config.libs = [
                 "game/Endian.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(
+                Matching,
+                "game/fn_80053FB8.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
             Object(Matching, "game/fn_8005421C.cpp"),
             Object(
                 Matching,
