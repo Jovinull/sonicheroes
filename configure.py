@@ -331,6 +331,9 @@ config.libs = [
             Object(Matching, "MSL_C/wchar_io.c"),
             Object(Matching, "MSL_C/e_acos.c"),
             Object(Matching, "MSL_C/e_asin.c"),
+            Object(Matching, "MSL_C/e_atan2.c"),
+            Object(Matching, "MSL_C/e_fmod.c"),
+            Object(Matching, "MSL_C/e_log.c"),
         ],
     },
     {

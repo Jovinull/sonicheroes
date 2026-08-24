@@ -11,6 +11,7 @@ extern s32 lbl_8042BEEC[];
 
 double __frsqrte(double x);
 double __fabs(double x);
+double atan(double x);
 
 extern inline double sqrt(double x)
 {
