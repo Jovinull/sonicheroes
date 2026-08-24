@@ -76,7 +76,7 @@ typedef struct LscStm {
 typedef struct LscObj {
 	/* 0x00 */ s8 used;
 	/* 0x01 */ s8 stat;
-	/* 0x02 */ s8 pad2;
+	/* 0x02 */ s8 busy;
 	/* 0x03 */ s8 lpflg;
 	/* 0x04 */ s8 pad4[0x10];
 	/* 0x14 */ s32 flowlimit;
@@ -85,7 +85,9 @@ typedef struct LscObj {
 	/* 0x20 */ s32 head;
 	/* 0x24 */ s32 numstm;
 	/* 0x28 */ void* stmhndl;
-	/* 0x2C */ s8 pad2C[0xC];
+	/* 0x2C */ s32 f2C;
+	/* 0x30 */ s32 f30;
+	/* 0x34 */ s32 f34;
 	/* 0x38 */ LscStm stm[LSC_STM_MAX];
 } LscObj;
 
@@ -96,6 +98,12 @@ extern void fn_8021F504(void* crs);
 extern void fn_8021F524(void* crs);
 extern void fn_802202FC(LscObj* lsc);
 extern void fn_8021FD04(LscObj* lsc, const char* fname, s32 ofst, s32 arg4, s32 nbyte);
+
+extern const char* const volatile lsc_verptr;
+extern void fn_8021F4D0(s32 a, s32 b);
+void fn_8021FF7C(LscObj* lsc);
+extern void fn_80216F18(void* hndl);
+extern void* memset(void* p, int c, u32 n);
 
 extern const char lsc_ErrParam[];
 extern const char lsc_ErrMin[];
@@ -127,6 +135,8 @@ static struct {
 	s32 stat;
 	s32 pad;
 } lsc_StatEntry;
+
+static s32 lsc_RefCnt;
 
 void LSC_SetLpFlg(LscObj* lsc, s8 flag)
 {
@@ -292,4 +302,120 @@ const char* LSC_GetStmFname(LscObj* lsc, s32 id)
 		return NULL;
 	}
 	return lsc->stm[i].fname;
+}
+
+// Refcounted init and finish. Both keep their dtk names: the PS2 run has an
+// LSC_Init and an LSC_Finish in the right place, but the anchors the rest of
+// the naming rests on do not reach this far, so the mapping here would be a
+// guess rather than a reading.
+void fn_802201E0(void)
+{
+	void* crs[2];
+	s32 i;
+
+	fn_8021F524(crs);
+	if (--lsc_RefCnt == 0) {
+		for (i = 0; i < LSC_OBJ_MAX; i++) {
+			if (lsc_ObjTbl[i].used == 1) {
+				fn_8021FF7C(&lsc_ObjTbl[i]);
+			}
+		}
+		memset(lsc_ObjTbl, 0, sizeof(lsc_ObjTbl));
+		fn_8021F4D0(0, 0);
+	}
+	fn_8021F504(crs);
+}
+
+void fn_80220284(void)
+{
+	void* crs[2];
+
+	(void)lsc_verptr;
+	fn_8021F524(crs);
+	if (lsc_RefCnt == 0) {
+		memset(lsc_ObjTbl, 0, sizeof(lsc_ObjTbl));
+		fn_8021F4D0(0, 0);
+	}
+	lsc_RefCnt++;
+	fn_8021F504(crs);
+}
+
+// Stops the entry and wipes it. The null check appears twice because the outer
+// guard and the module's error macro are both in the source; the macro's copy
+// is unreachable and the compiler still emits it, the same shape the MFCI close
+// has.
+void fn_8021FF7C(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		return;
+	}
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+	} else if (lsc->stat != 0) {
+		lsc->stat = 0;
+		if (lsc->stmhndl != NULL && lsc->busy == 1) {
+			fn_80216F18(lsc->stmhndl);
+			lsc->busy = 0;
+		}
+		lsc->f2C = 0;
+		if (lsc == NULL) {
+			fn_8021F410(lsc_ErrParam);
+		} else if (lsc->stat == 0) {
+			lsc->rdsct  = 0;
+			lsc->head   = 0;
+			lsc->numstm = 0;
+		}
+		lsc->f34 = 0;
+	}
+	lsc->used = 0;
+	memset(lsc, 0, sizeof(LscObj));
+}
+
+// The same body fn_8021FF7C carries inline, as a function of its own.
+void fn_8021FAE4(LscObj* lsc)
+{
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return;
+	}
+	if (lsc->stat == 0) {
+		return;
+	}
+	lsc->stat = 0;
+	if (lsc->stmhndl != NULL && lsc->busy == 1) {
+		fn_80216F18(lsc->stmhndl);
+		lsc->busy = 0;
+	}
+	lsc->f2C = 0;
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+	} else if (lsc->stat == 0) {
+		lsc->rdsct  = 0;
+		lsc->head   = 0;
+		lsc->numstm = 0;
+	}
+	lsc->f34 = 0;
+}
+
+// Restarts the entry: stops whatever is running, then sets the state from
+// whether any streams are entered. The stop is fn_8021FAE4, which the compiler
+// inlines here.
+void fn_8021FBA0(LscObj* lsc)
+{
+	void* crs[2];
+
+	if (lsc == NULL) {
+		fn_8021F410(lsc_ErrParam);
+		return;
+	}
+	fn_8021F524(crs);
+	if (lsc->stat != 0) {
+		fn_8021FAE4(lsc);
+	}
+	if (lsc->numstm > 0) {
+		lsc->stat = 2;
+	} else {
+		lsc->stat = 1;
+	}
+	fn_8021F504(crs);
 }
