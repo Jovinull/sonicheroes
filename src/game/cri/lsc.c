@@ -493,7 +493,7 @@ static inline LscObj* lsc_Alloc(void)
 }
 
 #pragma opt_propagation off
-LscObj* fn_80220054(LscSj* sj)
+LscObj* LSC_Create(LscSj* sj)
 {
 	LscObj* lsc;
 	s8 crs[8];
