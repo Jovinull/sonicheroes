@@ -37,16 +37,48 @@ struct AxObj {
 
 typedef struct AxRna {
 	/* 0x00 */ s8 stat;
-	/* 0x01 */ s8 pad01[2];
+	/* 0x01 */ s8 pad01;
+	/* 0x02 */ s8 nch;
 	/* 0x03 */ s8 idx;
-	/* 0x04 */ u8 pad04[0x30];
-	/* 0x34 */ AxObj* slot[4];
-	/* 0x44 */ u8 pad44[0xA4];
+	/* 0x04 */ u8 pad04[4];
+	/* 0x08 */ AxObj* obj[11];
+	/* 0x34 */ AxObj* slot[21];
+	/* 0x88 */ s32 pan[11];
+	/* 0xB4 */ u8 padB4[0x34];
 } AxRna;
 
 #define AX_RNA_MAX 16
 
 extern void fn_8022347C(void* func, void* obj);
+extern void fn_80223490(void);
+extern void fn_802234B0(void);
+extern void fn_801E89CC(AxObj* obj, s32 v);
+
+extern s32 ax_PanTbl[31];
+
+void fn_80223500(AxRna* p, s32 ch, s32 v)
+{
+	s32 n;
+
+	if (p == NULL) {
+		return;
+	}
+	if (ch >= p->nch) {
+		return;
+	}
+	n = v >= 15 ? 15 : v;
+	n = n <= -15 ? -15 : n;
+	if (n == p->pan[ch]) {
+		return;
+	}
+	p->pan[ch] = n;
+	fn_802234B0();
+	if (p->obj[ch] != NULL) {
+		fn_801E89CC(p->obj[ch], ax_PanTbl[n + 15]);
+	}
+	fn_80223490();
+}
+
 extern void fn_80223820(AxRna* p);
 
 static AxRna ax_Tbl[AX_RNA_MAX];
