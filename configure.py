@@ -489,6 +489,11 @@ config.libs = [
             Object(Matching, "game/object_defaults.cpp"),
             Object(
                 Matching,
+                "game/fn_80042864.cpp",
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "game/skeleton.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
