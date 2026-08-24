@@ -61,7 +61,8 @@ typedef struct AxRna {
 	/* 0x10 */ AxCb* cb[2];
 	/* 0x18 */ s32 loopStart[2];
 	/* 0x20 */ s32 loopLen;
-	/* 0x24 */ u8 pad24[0xc];
+	/* 0x24 */ s32 rate;
+	/* 0x28 */ u8 pad28[8];
 	/* 0x30 */ AxObj* strmA[2];
 	/* 0x38 */ AxObj* strmB[2];
 	/* 0x40 */ u8 bufA[2][8];
@@ -70,7 +71,11 @@ typedef struct AxRna {
 	/* 0x80 */ s32 pad80;
 	/* 0x84 */ s32 vol;
 	/* 0x88 */ s32 pan[2];
-	/* 0x90 */ u8 pad90[0x58];
+	/* 0x90 */ u8 pad90[0x10];
+	/* 0xa0 */ s16 rateMode;
+	/* 0xa2 */ s16 rateFlag;
+	/* 0xa4 */ s32 rateBias;
+	/* 0xa8 */ u8 pad_a8[0x40];
 } AxRna;
 
 #define AX_RNA_MAX 16
@@ -387,4 +392,48 @@ void fn_80224D00(void* p)
 		return;
 	}
 	*(s32*)p = 0;
+}
+
+extern void fn_801E48D0(AxObj* obj, s32 rate);
+extern void fn_801E4DF8(AxObj* obj, void* buf);
+
+void fn_80223660(AxRna* p, s32 v)
+{
+	s32 adj;
+	s32 whole;
+	s32 frac;
+	s32 i;
+
+	if (p == NULL) {
+		return;
+	}
+	p->rate = v;
+	adj     = (v * 1124 + 1124) / 1125;
+	whole   = v / 32000;
+	frac    = (v << 8) / 125;
+	for (i = 0; i < p->nch; i++) {
+		fn_802234B0();
+		if (p->obj[i] != NULL) {
+			s16 buf[8];
+			if (p->rateMode == 1) {
+				if (v == 32000 && p->rateFlag == 0 && p != NULL) {
+					p->rateBias = 0;
+					p->rateFlag = 1;
+				}
+				buf[0] = (s16)((u32)adj / 32000);
+				buf[1] = (s16)(((u32)adj << 8) / 125);
+			} else {
+				buf[0] = (s16)whole;
+				buf[1] = (s16)frac;
+			}
+			buf[2] = 0;
+			buf[3] = 0;
+			buf[4] = 0;
+			buf[5] = 0;
+			buf[6] = 0;
+			fn_801E48D0(p->obj[i], p->rateBias);
+			fn_801E4DF8(p->obj[i], buf);
+		}
+		fn_80223490();
+	}
 }
