@@ -333,6 +333,7 @@ config.libs = [
             Object(Matching, "MSL_C/e_atan2.c"),
             Object(Matching, "MSL_C/e_fmod.c"),
             Object(Matching, "MSL_C/e_log.c"),
+            Object(Matching, "MSL_C/e_log10.c"),
         ],
     },
     {

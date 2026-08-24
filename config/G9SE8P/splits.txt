@@ -402,6 +402,11 @@ MSL_C/e_log.c:
 	.sbss       start:0x8042CAC8 end:0x8042CAD0
 	.sdata2     start:0x8042F9F8 end:0x8042FA78
 
+MSL_C/e_log10.c:
+	.text       start:0x801C6810 end:0x801C6920
+	.sbss       start:0x8042CAD0 end:0x8042CAD8
+	.sdata2     start:0x8042FA78 end:0x8042FAA8
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
