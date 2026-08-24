@@ -137,9 +137,21 @@ game/vibration.cpp:
 	.data       start:0x80241308 end:0x80241358
 	.sdata2     start:0x8042D038 end:0x8042D048
 
+game/fn_8003F300.cpp:
+	.text       start:0x8003F300 end:0x8003F308
+
+game/fn_80042864.cpp:
+	.text       start:0x80042864 end:0x8004286C
+
 game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
+
+game/fn_8005776C.cpp:
+	.text       start:0x8005776C end:0x80057774
+
+game/fn_8005F794.cpp:
+	.text       start:0x8005F794 end:0x8005F79C
 
 game/dAnim.cpp:
 	extab       start:0x80007B40 end:0x80007B70
