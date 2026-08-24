@@ -459,6 +459,45 @@ MSL_C/s_ceil.c:
 MSL_C/s_copysign.c:
 	.text       start:0x801C8A8C end:0x801C8AB4
 
+MSL_C/s_cos.c:
+	.text       start:0x801C8AB4 end:0x801C8B88
+	.sdata2     start:0x8042FD40 end:0x8042FD48
+
+MSL_C/s_floor.c:
+	.text       start:0x801C8B88 end:0x801C8CD0
+	.sdata2     start:0x8042FD48 end:0x8042FD58
+
+MSL_C/s_frexp.c:
+	.text       start:0x801C8CD0 end:0x801C8D5C
+	.sdata2     start:0x8042FD58 end:0x8042FD60
+
+MSL_C/s_ldexp.c:
+	.text       start:0x801C8D5C end:0x801C8F20
+	.sdata2     start:0x8042FD60 end:0x8042FD88
+
+MSL_C/s_modf.c:
+	.text       start:0x801C8F20 end:0x801C901C
+	.sdata2     start:0x8042FD88 end:0x8042FD90
+
+MSL_C/s_nextafter.c:
+	.text       start:0x801C901C end:0x801C91A0
+
+MSL_C/s_sin.c:
+	.text       start:0x801C91A0 end:0x801C9278
+
+MSL_C/s_tan.c:
+	.text       start:0x801C9278 end:0x801C92F0
+	.sdata2     start:0x8042FD90 end:0x8042FD98
+
+MSL_C/w_acos.c:
+	.text       start:0x801C92F0 end:0x801C9310
+
+MSL_C/w_asin.c:
+	.text       start:0x801C9310 end:0x801C9330
+
+MSL_C/w_atan2.c:
+	.text       start:0x801C9330 end:0x801C9350
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
