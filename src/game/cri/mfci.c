@@ -49,19 +49,13 @@
 // NOT MATCHING: thirteen of the fourteen functions are byte-exact. What is
 // left is fn_80222C40 (mfCiReqRd).
 //
-//   fn_80222C40 differs only in register allocation: the target ranks the
-//   handle above the buffer (r29/r28), this build ranks the buffer above the
-//   handle, and the two callee-saved registers the string and .bss bases free
-//   up afterwards follow that swap. Every instruction, every relocation and the
-//   function size already agree; 48 bytes differ and all of them are register
-//   fields. Ruled out: local declaration order, local types (`u32` vs a pointer
-//   for the address, signedness of the clamp), aliasing the buffer through a
-//   local `s8*`, extracting the min, the request setup or the memset tail into
-//   a static helper, and reshaping mfci_get_adr_size, which is inlined here.
-//   The mfCiOpenEntry lever described below is binary and already saturated:
-//   its two states give handle-above-buffer with the .rodata base sunk too far,
-//   or the base order right with the handle and buffer swapped. Neither is the
-//   target, so the remaining nudge has to come from somewhere else again.
+//   fn_80222C40 differs only in six register fields. Treating its public handle
+//   as opaque, then naming the private `MfciObj*` locally, gives the target's
+//   entry allocation exactly: handle r29, buffer r28, .rodata r30 and .bss r31.
+//   Once the inlined address lookup frees the two section bases, the remaining
+//   miss is one swapped pair: the target keeps the returned address in r31 and
+//   the clamped byte count in r30, while this build chooses r30/r31. Every
+//   instruction, relocation and the 648-byte function size otherwise agree.
 //
 //   fn_80222F28 is exact. Its final clamp needs a local result and a nested
 //   empty condition in the positive arm. The latter keeps both sides of the
@@ -134,7 +128,7 @@ void fn_80222A74(MfciObj* hn, s32 sctsize);
 s32 fn_80222B0C(MfciObj* hn);
 s32 fn_80222B6C(MfciObj* hn);
 void fn_80222BD0(MfciObj* hn);
-s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf);
+s32 fn_80222C40(void* obj, s32 nsct, void* buf);
 s32 fn_80222EC8(MfciObj* hn);
 s32 fn_80222F28(MfciObj* hn, s32 off, s32 whence);
 void fn_8022301C(MfciObj* hn);
@@ -310,8 +304,9 @@ void fn_80222BD0(MfciObj* hn)
 	fn_8022291C();
 }
 
-s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf)
+s32 fn_80222C40(void* obj, s32 nsct, void* buf)
 {
+	MfciObj* hn = obj;
 	s32 rest;
 	u32 adr;
 	u32 size;
