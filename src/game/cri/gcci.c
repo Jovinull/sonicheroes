@@ -32,10 +32,15 @@
 typedef void (*GcciErrFunc)(void* obj, const char* msg, void* arg);
 
 typedef struct GcciObj {
-	/* 0x00 */ s8 pad00[0x10];
-	/* 0x10 */ s32 unk10;
-	/* 0x14 */ s8 pad14[0xC];
-	/* 0x20 */ s32 unk20;
+	/* 0x00 */ s8 pad00[2];
+	/* 0x02 */ s8 busy;
+	/* 0x03 */ s8 pad03[0xD];
+	/* 0x10 */ s32 sctsize;
+	/* 0x14 */ s32 size;
+	/* 0x18 */ s32 nsct;
+	/* 0x1C */ s32 pos;
+	/* 0x20 */ s32 total;
+	/* 0x24 */ s32 rdsct;
 } GcciObj;
 
 static GcciErrFunc gcci_ErrFunc;
@@ -53,13 +58,41 @@ static void gcci_Error(const char* msg)
 	}
 }
 
+static void gcci_SetNsct(GcciObj* p)
+{
+	s32 n;
+
+	n       = p->sctsize + p->size;
+	n       = n - 1;
+	p->nsct = n / p->sctsize;
+}
+
 s32 fn_8021E3D8(GcciObj* p)
 {
 	if (p == NULL) {
 		gcci_Error(gcci_ErrHandl);
 		return 0;
 	}
-	return p->unk20;
+	return p->total;
+}
+
+void fn_8021E438(GcciObj* p, s32 sctsize)
+{
+	s32 total;
+
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl2);
+		return;
+	}
+	if (p->sctsize % 32 != 0) {
+		gcci_Error(gcci_ErrSize);
+		return;
+	}
+	total      = p->pos * p->sctsize;
+	p->sctsize = sctsize;
+	gcci_SetNsct(p);
+	p->pos   = total / p->sctsize;
+	p->total = p->rdsct * sctsize;
 }
 
 s32 fn_8021E51C(GcciObj* p)
@@ -68,7 +101,48 @@ s32 fn_8021E51C(GcciObj* p)
 		gcci_Error(gcci_ErrHandl3);
 		return 0;
 	}
-	return p->unk10;
+	return p->sctsize;
+}
+
+s32 fn_8021E57C(GcciObj* p)
+{
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl);
+		return 0;
+	}
+	return p->busy;
+}
+
+s32 fn_8021EBA8(GcciObj* p)
+{
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl);
+		return 0;
+	}
+	return p->pos;
+}
+
+s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence)
+{
+	if (p == NULL) {
+		gcci_Error(gcci_ErrHandl);
+		return 0;
+	}
+	if (whence == 0) {
+		p->pos = off;
+	} else if (whence == 2) {
+		p->pos = p->nsct + off;
+	} else if (whence == 1) {
+		p->pos = p->pos + off;
+	}
+	p->pos = p->pos < p->nsct ? p->pos : p->nsct;
+	if (p->pos > 0) {
+		if (p->pos && p->pos) {
+		}
+	} else {
+		p->pos = 0;
+	}
+	return p->pos;
 }
 
 void fn_8021F20C(GcciErrFunc func, void* obj)
