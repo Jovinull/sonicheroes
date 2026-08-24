@@ -397,6 +397,11 @@ MSL_C/e_fmod.c:
 	.text       start:0x801C6258 end:0x801C6594
 	.rodata     start:0x8023D028 end:0x8023D038
 
+MSL_C/e_log.c:
+	.text       start:0x801C6594 end:0x801C6810
+	.sbss       start:0x8042CAC8 end:0x8042CAD0
+	.sdata2     start:0x8042F9F8 end:0x8042FA78
+
 dolphin/trk/nubevent.c:
 	.text       start:0x801C9418 end:0x801C9738
 	.bss        start:0x803EE0C8 end:0x803EE0F0
