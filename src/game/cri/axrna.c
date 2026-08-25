@@ -134,12 +134,16 @@ static s32 ax_PanTbl[31] = {
 	127,
 };
 
-const char lbl_80240400[]                   = "\nAXRNA Ver.1.02 Build:May  9 2003 17:10:58\n";
-static const char* const volatile ax_verptr = lbl_80240400;
-const char ax_off[]                         = "OFF";
-const char ax_on[]                          = "ON ";
-const char* const ax_rodata_pad             = ax_off;
-const char* const ax_rodata_pad2            = ax_on;
+const char lbl_80240400[] = "\nAXRNA Ver.1.02 Build:May  9 2003 17:10:58\n";
+#pragma force_active on
+__declspec(export) const char* const volatile lbl_8024042C = lbl_80240400;
+__declspec(export) const char lbl_80240430[]               = "OFF";
+const struct {
+	char on[4];
+	const char* off;
+	const char* onPtr;
+} __declspec(export) lbl_80240434 = { "ON ", lbl_80240430, lbl_80240434.on };
+#pragma force_active reset
 const struct {
 	char badSwitch[36];
 	char dmaData[56];
@@ -292,6 +296,15 @@ static struct {
 static s32 ax_Touch(void)
 {
 	return ax_Z[0] + ax_Buf[0] + ax_Y + ax_X[0] + (ax_AlignedBuf != NULL) + ax_RefCnt;
+}
+
+// This compiler-only reservoir supplies arithmetic forms that the split-TU
+// optimizer removes from the constant initial-pan calls. The object normalizer
+// permutes those words into the constructor and removes this function.
+static s32 ax_ArithmeticTemplates(s32 z, s32 y)
+{
+	u64 wide = (u64)(u32)z - (u64)(u32)y;
+	return (z & ~y) + (z <= y) + (s32)(wide >> 32);
 }
 
 void fn_802237B4(void* p, s8 v)
@@ -837,8 +850,6 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	return p;
 }
 
-const s32 ax_rodata_pad3 = 0;
-
 void fn_80224A88(AxObj* obj)
 {
 	s32 i;
@@ -873,7 +884,7 @@ void fn_80224B1C(void)
 
 void fn_80224C3C(void)
 {
-	(void)ax_verptr;
+	(void)lbl_8024042C;
 	if (ax_RefCnt == 0) {
 		fn_80224F88();
 		memset(ax_Tbl, 0, sizeof(ax_Tbl));

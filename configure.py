@@ -566,7 +566,7 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
