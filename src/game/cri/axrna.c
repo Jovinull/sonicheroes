@@ -190,11 +190,12 @@ void fn_802235B4(AxRna* p, s32 v)
 extern void fn_801E48D0(AxObj* obj, s32 rate);
 extern void fn_801E4DF8(AxObj* obj, void* buf);
 
+#pragma opt_loop_invariants off
 void fn_80223660(AxRna* p, s32 v)
 {
 	s32 adj;
 	s32 whole;
-	s32 frac;
+	u16 frac;
 	s32 i;
 
 	if (p == NULL) {
@@ -209,12 +210,16 @@ void fn_80223660(AxRna* p, s32 v)
 		if (p->obj[i] != NULL) {
 			s16 buf[8];
 			if (p->rateMode == 1) {
+				u16 adjustedWhole;
+				u16 adjustedFrac;
 				if (v == 32000 && p->rateFlag == 0 && p != NULL) {
 					p->rateBias = 0;
 					p->rateFlag = 1;
 				}
-				buf[0] = (s16)((u32)adj / 32000);
-				buf[1] = (s16)(((u32)adj << 8) / 125);
+				adjustedWhole = (u32)adj / 32000;
+				adjustedFrac  = ((u32)adj << 8) / 125;
+				buf[0]        = adjustedWhole;
+				buf[1]        = adjustedFrac;
 			} else {
 				buf[0] = (s16)whole;
 				buf[1] = (s16)frac;
@@ -230,6 +235,7 @@ void fn_80223660(AxRna* p, s32 v)
 		fn_80223490();
 	}
 }
+#pragma opt_loop_invariants reset
 
 extern void fn_80223820(AxRna* p);
 
