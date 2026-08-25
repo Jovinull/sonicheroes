@@ -654,8 +654,8 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 {
 	AxRna* p;
 	s16 rate[7];
-	s32 i;
-	s32 id;
+	u32 i;
+	u32 id;
 
 	if (maxnch <= 0) {
 		fn_80223424("E1070301:Illigal parameter(maxnch<=0).\n");
