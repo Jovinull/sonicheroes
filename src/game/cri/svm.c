@@ -205,13 +205,14 @@ u32 fn_802218A8(s32* value)
 	u32 result;
 
 	if (lbl_80427CB0.testAndSet != NULL) {
-		return lbl_80427CB0.testAndSet(value);
+		result = lbl_80427CB0.testAndSet(value);
+	} else {
+		svm_lock_overlay(fullState, 1);
+		previous = *value;
+		*value   = 1;
+		result   = (u32)((1 - previous) | (previous - 1)) >> 31;
+		svm_unlock_overlay(fullState, 1);
 	}
-	svm_lock_overlay(fullState, 1);
-	previous = *value;
-	*value   = 1;
-	result   = (u32)((1 - previous) | (previous - 1)) >> 31;
-	svm_unlock_overlay(fullState, 1);
 	return result;
 }
 
@@ -225,7 +226,7 @@ void fn_802219BC(void)
 		memset(fullState->active, 0, sizeof(fullState->active));
 		memset(&fullState->lock, 0, sizeof(fullState->lock));
 		memset(&fullState->unlock, 0, sizeof(fullState->unlock));
-		counts            = (s32*)((char*)state + 0x2A8);
+		counts            = fullState->counts;
 		counts[0]         = 0;
 		counts[1]         = 0;
 		counts[2]         = 0;
