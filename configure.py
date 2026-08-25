@@ -601,7 +601,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/rw_gcn_raster.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
@@ -3492,11 +3492,6 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
-        "name": "fix_rw_gcn_raster_object",
-        "command": "$python tools/fix_rw_gcn_raster_object.py $in $out",
-        "description": "FIX rw_gcn_raster whole-TU compiler scheduling and metadata",
-    },
-    {
         "name": "fix_sj_object",
         "command": "$python tools/fix_sj_object.py $in $out",
         "description": "FIX SJ split-TU compiler layout",
@@ -3808,12 +3803,6 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
-        {
-            "outputs": "build/G9SE8P/rw-gcn-raster-object.stamp",
-            "rule": "fix_rw_gcn_raster_object",
-            "inputs": "build/G9SE8P/src/game/rw_gcn_raster.o",
-            "implicit": ["tools/fix_rw_gcn_raster_object.py"],
-        },
         {
             "outputs": "build/G9SE8P/sj-object.stamp",
             "rule": "fix_sj_object",
