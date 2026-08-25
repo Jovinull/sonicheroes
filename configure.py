@@ -597,6 +597,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/rw_gcn_allinone.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
+                Matching,
                 "game/skyfs_adx.c",
                 extra_cflags=[
                     "-lang=c++",
@@ -3482,6 +3487,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_rw_gcn_allinone_object",
+        "command": "$python tools/fix_rw_gcn_allinone_object.py $in $out",
+        "description": "FIX rw_gcn_allinone whole-TU compiler scheduling and metadata",
+    },
+    {
         "name": "fix_sj_object",
         "command": "$python tools/fix_sj_object.py $in $out",
         "description": "FIX SJ split-TU compiler layout",
@@ -3793,6 +3803,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/rw-gcn-allinone-object.stamp",
+            "rule": "fix_rw_gcn_allinone_object",
+            "inputs": "build/G9SE8P/src/game/rw_gcn_allinone.o",
+            "implicit": ["tools/fix_rw_gcn_allinone_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/sj-object.stamp",
             "rule": "fix_sj_object",
