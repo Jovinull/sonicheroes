@@ -191,6 +191,11 @@ game/fn_80054524.cpp:
 	.text       start:0x80054524 end:0x800546F4
 	.sdata2     start:0x8042D3B0 end:0x8042D3B8
 
+game/fn_800546F4.cpp:
+	extab       start:0x80006554 end:0x8000655C
+	extabindex  start:0x8000CF04 end:0x8000CF10
+	.text       start:0x800546F4 end:0x80054900
+
 game/fn_80057524.cpp:
 	extab       start:0x800065E4 end:0x800065EC
 	extabindex  start:0x8000CF94 end:0x8000CFA0
