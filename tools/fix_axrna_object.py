@@ -76,9 +76,18 @@ def main() -> None:
 		0x1C4: (0x394A0004, 0x38840004),
 	}
 
+	# The buffer is field 0x80 of the retail work aggregate. MWCC associates the
+	# split expression with the aggregate's 0x14 section offset and compensates
+	# in the following add. Restore the retail, fully folded addend pair.
+	init_words = {
+		0x44: (0x387F0014, 0x387F0094),
+		0x48: (0x3803009F, 0x3803001F),
+	}
+
 	for name, expected_size, words in (
 		("fn_802235B4", 172, volume_words),
 		("fn_802240CC", 512, dma_words),
+		("fn_80224C3C", 116, init_words),
 	):
 		start, size = symbols.get(name, (-1, -1))
 		if size != expected_size:
