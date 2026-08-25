@@ -349,23 +349,27 @@ void fn_80223820(AxRna* p)
 			u8* objp = (u8*)p;
 			u8* bufp = (u8*)p;
 			u8* reqp = (u8*)p;
+			s32 loopIndex;
+			s32 loopBytes;
 
-			for (i = 0; i < p->idx; objp += 4, bufp += 8, reqp += 0x20, i++) {
+			for (loopIndex = 0; loopIndex < p->idx;
+			    objp += 4, bufp += 8, reqp += 0x20, loopIndex++) {
 				if (*(s32*)(objp + 0x70) == 0) {
 					(*(AxObj**)(objp + 0x38))
 					    ->vtbl->read(*(AxObj**)(objp + 0x38), 0, 0x2000, &loopRange);
-					bytes = loopRange.size / 32 * 32;
-					fn_80221824(&loopRange, bytes, &loopRange, &loopRemaining);
+					loopBytes = loopRange.size / 32 * 32;
+					fn_80221824(&loopRange, loopBytes, &loopRange, &loopRemaining);
 					(*(AxObj**)(objp + 0x38))
 					    ->vtbl->unget(*(AxObj**)(objp + 0x38), 0, &loopRemaining);
-					if (bytes != 0) {
-						*(AxRange*)(bufp + 0x50) = loopRange;
-						p->st[1].acc             = (u32)bytes >> 1;
-						DCFlushRange(ax_AlignedBuf, 0x1000);
-						*(s32*)(objp + 0x70) = 1;
-						ARQPostRequest(reqp + 0xA8, *(u32*)(objp + 0x28), 0, 1, (u32)ax_AlignedBuf,
-						    (u32)loopRange.addr, bytes, fn_80223B58);
+					if (loopBytes == 0) {
+						return;
 					}
+					*(AxRange*)(bufp + 0x50) = loopRange;
+					p->st[1].acc             = (u32)loopBytes >> 1;
+					DCFlushRange(ax_AlignedBuf, 0x1000);
+					*(s32*)(objp + 0x70) = 1;
+					ARQPostRequest(reqp + 0xA8, *(u32*)(objp + 0x28), 0, 1, (u32)ax_AlignedBuf,
+					    (u32)loopRange.addr, loopBytes, fn_80223B58);
 				}
 			}
 		}
