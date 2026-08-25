@@ -636,7 +636,7 @@ config.libs = [
             Object(Matching, "game/fn_800556A0.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_80055874.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800546F4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(NonMatching, "game/fn_8005438C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/fn_8005438C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800D75CC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800D7920.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800D7A54.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
@@ -3461,6 +3461,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_fn_8005438C_object",
+        "command": "$python tools/fix_fn_8005438C_object.py $in $out",
+        "description": "FIX fn_8005438C shared conversion bias",
+    },
+    {
         "name": "fix_wide_format_core_object",
         "command": "$python tools/fix_wide_format_core_object.py $in $out",
         "description": "FIX wide_format_core.cpp compiler-only codegen",
@@ -3722,6 +3727,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/fn-8005438C-object.stamp",
+            "rule": "fix_fn_8005438C_object",
+            "inputs": "build/G9SE8P/src/game/fn_8005438C.o",
+            "implicit": ["tools/fix_fn_8005438C_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/wide-format-core-object.stamp",
             "rule": "fix_wide_format_core_object",
