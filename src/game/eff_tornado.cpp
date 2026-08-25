@@ -230,8 +230,14 @@ void fn_8005DA34(void*);
 void fn_8005D9F4(void*);
 void fn_8005D6DC(void*);
 void fn_8005C014(void*);
-void fn_800BD02C(void*, void*, void*);
-void* fn_800BD0AC(void*, void*);
+struct RpClump;
+struct RpHAnimHierarchy;
+
+struct HAnimClass {
+	u8 data[8];
+	void SetHierarchyForAtomic(RpClump*, RpHAnimHierarchy*);
+	RpHAnimHierarchy* GetHierarchy(RpClump*);
+};
 void fn_8020C72C(void*, void*);
 void fn_8013F3A4(void*);
 void fn_801491A8(void*);
@@ -262,7 +268,7 @@ extern void* lbl_8042C360;
 extern void* lbl_8042C364;
 extern void* lbl_8042C180;
 extern Rgba lbl_8042B35C;
-extern u8 lbl_8042C3D0[4];
+extern HAnimClass HAnim;
 extern void* lbl_80303F98[3];
 extern const char* lbl_8042B350;
 extern const char* lbl_8042B358;
@@ -1467,7 +1473,7 @@ extern "C" void InitEffTornado__Fv()
 	if (lbl_8042C350 != 0) {
 		lbl_8042C354 = fn_8005E410(lbl_8042C350, 0, "ef_chbl");
 		lbl_8042C370 = lbl_8042C354;
-		lbl_8042C368 = fn_800BD0AC(lbl_8042C3D0, lbl_8042C350);
+		lbl_8042C368 = HAnim.GetHierarchy((RpClump*)lbl_8042C350);
 		fn_8005D9F4(lbl_8042C350);
 		fn_8005D6DC(lbl_8042C350);
 	}
@@ -1490,7 +1496,7 @@ extern "C" void InitEffTornado__Fv()
 
 	lbl_8042C36C = fn_8005EA04(lbl_802535A4);
 	if (lbl_8042C36C != 0 && lbl_8042C368 != 0) {
-		fn_800BD02C(lbl_8042C3D0, lbl_8042C350, lbl_8042C368);
+		HAnim.SetHierarchyForAtomic((RpClump*)lbl_8042C350, (RpHAnimHierarchy*)lbl_8042C368);
 		*(u32*)lbl_8042C368 |= 0x3000;
 		fn_8020C72C(*(void**)((u8*)lbl_8042C368 + 0x20), lbl_8042C36C);
 		fn_8013F3A4(lbl_8042C368);
