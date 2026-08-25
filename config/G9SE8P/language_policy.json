@@ -20,6 +20,7 @@
     "autosaveD/prolog.c",
     "game/cri/adapter.c",
     "game/cri/axrna.c",
+    "game/cri/fn_8021F410.c",
     "game/cri/gcci.c",
     "game/cri/lsc.c",
     "game/cri/mfci.c",
