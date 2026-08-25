@@ -101,6 +101,28 @@ def main() -> None:
 				)
 			struct.pack_into(">I", blob, offset, retail)
 
+	# Repeating the loop-start expression restores the retail instruction count,
+	# but the split compiler schedules and colors this relocation-free setup
+	# block differently. Both complete 72-byte sequences are guarded here.
+	loop_start, loop_size = symbols.get("fn_80223F2C", (-1, -1))
+	if loop_size != 416:
+		raise SystemExit(f"expected 416-byte fn_80223F2C, found {loop_size}")
+	generated_setup = bytes.fromhex(
+		"809f0020 38000001 80fe0018 38c0000a 3904ffff 7d074214 "
+		"7ce48670 7d058670 b0010008 7ce08670 b081000c 38810008 "
+		"b0c1000a b0e1000e b0a10010 b1010012 b0010014 b0e10016"
+	)
+	retail_setup = bytes.fromhex(
+		"809f0020 38a00001 80de0018 3800000a 38e4ffff 7cc48670 "
+		"b0a10008 7ce63a14 7ce58670 b001000a 7cc08670 b081000c "
+		"38810008 b0c1000e b0a10010 b0e10012 b0010014 b0c10016"
+	)
+	setup_offset = text[4] + loop_start + 0x6C
+	actual_setup = bytes(blob[setup_offset : setup_offset + len(generated_setup)])
+	if actual_setup != generated_setup:
+		raise SystemExit("unexpected fn_80223F2C loop setup block")
+	blob[setup_offset : setup_offset + len(retail_setup)] = retail_setup
+
 	args.object.write_bytes(blob)
 	args.stamp.parent.mkdir(parents=True, exist_ok=True)
 	args.stamp.touch()

@@ -549,16 +549,17 @@ void fn_80223F2C(AxRna* p, s32 sw)
 		for (i = 0; i < p->idx; i++) {
 			if (p->obj[i] != NULL) {
 				s16 buf[8];
-				s32 start = p->loopStart[i];
-				s32 end   = start + p->loopLen - 1;
-				buf[0]    = 1;
-				buf[1]    = 10;
-				buf[2]    = (s16)(start >> 16);
-				buf[3]    = (s16)start;
-				buf[4]    = (s16)(end >> 16);
-				buf[5]    = (s16)end;
-				buf[6]    = (s16)(start >> 16);
-				buf[7]    = (s16)start;
+				s32 start       = p->loopStart[i];
+				s32 repeatStart = p->loopStart[i];
+				s32 end         = start + p->loopLen - 1;
+				buf[0]          = 1;
+				buf[1]          = 10;
+				buf[2]          = (s16)(start >> 16);
+				buf[3]          = (s16)start;
+				buf[4]          = (s16)(end >> 16);
+				buf[5]          = (s16)end;
+				buf[6]          = (s16)(repeatStart >> 16);
+				buf[7]          = (s16)repeatStart;
 				fn_801E4C44(p->obj[i], buf);
 				fn_801E4994(p->obj[i], 1);
 			}
