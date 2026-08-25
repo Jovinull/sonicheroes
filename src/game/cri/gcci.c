@@ -215,7 +215,7 @@ static inline void gcci_StopBusy(GcciObj* p)
 		p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
 		gcci_DvdStatus = p->dvdStatus;
 		now            = gcci_GetMilliseconds();
-		elapsed        = now + wrap;
+		elapsed        = wrap + now;
 		if (now >= start) {
 			elapsed = now - start;
 		}
