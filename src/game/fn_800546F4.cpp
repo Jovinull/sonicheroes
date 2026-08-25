@@ -1,6 +1,7 @@
 #include "types.h"
 
-// Grid-list pruning operation split from the original game translation unit.
+// Prunes geometrically equivalent nodes from a linked list, preferring the
+// node selected by its flags and squared vector length.
 
 struct Fn800546F4Vector {
 	f32 x;
@@ -46,10 +47,9 @@ extern "C" void fn_800546F4(Fn800546F4Context* context, Fn800546F4List* list)
 	Fn800546F4Lookup* currentLookup;
 	Fn800546F4Vector* currentVector;
 	Fn800546F4Node* current = list->first;
-	Fn800546F4Node* next;
-	f64 threshold = lbl_8042D3B8;
-	for (; current != 0; current = next) {
-		next                      = current->next;
+	f64 threshold           = lbl_8042D3B8;
+	while (current != 0) {
+		Fn800546F4Node* next      = current->next;
 		currentLookup             = &context->lookups[current->lookupIndex];
 		currentVector             = &context->vectors[currentLookup->vectorIndex];
 		Fn800546F4Node* candidate = current->next;
@@ -60,38 +60,41 @@ extern "C" void fn_800546F4(Fn800546F4Context* context, Fn800546F4List* list)
 			if ((f32)__fabs(currentLookup->normal.x - candidateLookup->normal.x) < threshold
 			    && (f32)__fabs(currentLookup->normal.y - candidateLookup->normal.y) < threshold
 			    && (f32)__fabs(currentLookup->normal.z - candidateLookup->normal.z) < threshold) {
-				f32 projected = currentLookup->normal.z * (candidateVector->z - currentVector->z);
-				f32 planar    = currentLookup->normal.x * (candidateVector->x - currentVector->x)
-				    + currentLookup->normal.y * (candidateVector->y - currentVector->y);
-				projected += planar;
+				f32 projected = currentLookup->normal.x * (candidateVector->x - currentVector->x)
+				    + currentLookup->normal.y * (candidateVector->y - currentVector->y)
+				    + currentLookup->normal.z * (candidateVector->z - currentVector->z);
 				if ((f32)__fabs(projected) < threshold) {
 					s32 candidateFlags = candidate->flags & 0x70;
-					if (candidateFlags != 0 && (current->flags & 0x70) == 0)
-						goto remove_candidate;
-					s32 candidateType = candidateFlags != 0;
-					s32 currentType   = (current->flags & 0x70) != 0;
-					if (candidateType != currentType)
-						goto remove_current;
-					f32 currentLength = current->x * current->x + current->y * current->y
-					    + current->z * current->z;
-					f32 candidateLength = candidate->x * candidate->x + candidate->y * candidate->y
-					    + candidate->z * candidate->z;
-					if (currentLength < candidateLength)
-						goto remove_candidate;
-					goto remove_current;
+					if (candidateFlags != 0) {
+						if ((current->flags & 0x70) == 0) {
+							goto removeCandidate;
+						}
+					}
+					if ((s32)(candidateFlags != 0) == (s32)((current->flags & 0x70) != 0)) {
+						f32 currentLength = current->x * current->x + current->y * current->y
+						    + current->z * current->z;
+						f32 candidateLength = candidate->x * candidate->x
+						    + candidate->y * candidate->y + candidate->z * candidate->z;
+						if (currentLength < candidateLength) {
+							goto removeCandidate;
+						} else {
+							goto removeCurrent;
+						}
+					}
+					goto removeCurrent;
+				removeCandidate:
+					if (candidate == next)
+						next = candidateNext;
+					fn_80053FB8(list, candidate);
+					goto nextCandidate;
+				removeCurrent:
+					fn_80053FB8(list, current);
+					break;
 				}
-				goto advance_candidate;
-			remove_candidate:
-				if (candidate == next)
-					next = candidateNext;
-				fn_80053FB8(list, candidate);
-				goto advance_candidate;
-			remove_current:
-				fn_80053FB8(list, current);
-				break;
-			advance_candidate:
-				candidate = candidateNext;
 			}
+		nextCandidate:
+			candidate = candidateNext;
 		}
+		current = next;
 	}
 }
