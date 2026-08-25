@@ -996,3 +996,8 @@ game/cri/axrna.c:
 	.rodata     start:0x80240400 end:0x802405F8
 	.data       start:0x8029BAB0 end:0x8029BB30
 	.bss        start:0x80428A78 end:0x8042A9D0
+
+game/cri/rnares.c:
+	.text       start:0x80224D14 end:0x80225100
+	.rodata     start:0x802405F8 end:0x80240648
+	.bss        start:0x8042A9D0 end:0x8042AB68
