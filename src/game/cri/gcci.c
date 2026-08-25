@@ -133,7 +133,7 @@ GcciObj* fn_8021EE98(const char* fname, s32 mode, s32 rw);
 u32 fn_8021F0A8(const char* fname);
 void fn_8021F20C(GcciErrFunc func, void* obj);
 void fn_8021F220(void);
-static inline void gcci_ExecServer(s8* state, GcciObj* p);
+static inline void gcci_ExecServer(s8* state, GcciObj* p, s32 i);
 
 GcciFunc gcci_IfTbl[26] = {
 	(GcciFunc)fn_8021F220,
@@ -264,12 +264,10 @@ static inline GcciObj* gcci_Alloc(void)
 	return p;
 }
 
-static inline void gcci_ExecServer(s8* state, GcciObj* p)
+static inline void gcci_ExecServer(s8* state, GcciObj* p, s32 i)
 {
-	s32 i;
-	s32 transferred;
+	s32 amount;
 	s32 total;
-	s32 over;
 	void* end;
 
 	for (i = 0; i < GCCI_OBJ_MAX; i++, p++) {
@@ -287,20 +285,20 @@ static inline void gcci_ExecServer(s8* state, GcciObj* p)
 					p->total = total;
 					p->pos += p->rdsct;
 					if (p->pos * p->sctsize > p->size) {
-						over = p->pos * p->sctsize - p->size;
-						end  = (char*)p->buffer + p->total - over;
-						memset(end, 0, over);
-						DCStoreRange(end, over);
+						amount = p->pos * p->sctsize - p->size;
+						end    = (char*)p->buffer + p->total - amount;
+						memset(end, 0, amount);
+						DCStoreRange(end, amount);
 					}
 					p->busy  = 1;
 					state[4] = 1;
 					break;
 				case 10:
-					transferred = DVDGetTransferredSize(&p->fileInfo);
-					DCInvalidateRange(p->buffer, transferred);
+					amount = DVDGetTransferredSize(&p->fileInfo);
+					DCInvalidateRange(p->buffer, amount);
 					state[4] = 0;
-					p->total = p->sctsize * (transferred / p->sctsize);
-					p->pos += transferred / p->sctsize;
+					p->total = p->sctsize * (amount / p->sctsize);
+					p->pos += amount / p->sctsize;
 					p->busy = 0;
 					break;
 			}
@@ -420,7 +418,7 @@ s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 	p->total  = 0;
 	p->buffer = buffer;
 	p->rdsct  = nsct;
-	gcci_ExecServer(state, q);
+	gcci_ExecServer(state, q, 0);
 	offset = p->pos * p->sctsize;
 	length = p->rdsct * p->sctsize;
 	if (offset + length > p->size) {
@@ -582,48 +580,7 @@ void fn_8021F20C(GcciErrFunc func, void* obj)
 
 void fn_8021F220(void)
 {
-	GcciObj* p;
-	s32 i;
-	s32 transferred;
-	s32 total;
-	s32 over;
-	void* end;
-
-	p = gcci_ObjTbl;
-	for (i = 0; i < GCCI_OBJ_MAX; i++, p++) {
-		if (p->stat == 1 && p->busy == 2) {
-			p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
-			gcci_DvdStatus = p->dvdStatus;
-			switch (p->dvdStatus) {
-				case -1:
-					p->busy   = 3;
-					gcci_Busy = 3;
-					break;
-				case 0:
-					total = p->rdsct * p->sctsize;
-					DCInvalidateRange(p->buffer, total);
-					p->total = total;
-					p->pos += p->rdsct;
-					if (p->pos * p->sctsize > p->size) {
-						over = p->pos * p->sctsize - p->size;
-						end  = (char*)p->buffer + p->total - over;
-						memset(end, 0, over);
-						DCStoreRange(end, over);
-					}
-					p->busy   = 1;
-					gcci_Busy = 1;
-					break;
-				case 10:
-					transferred = DVDGetTransferredSize(&p->fileInfo);
-					DCInvalidateRange(p->buffer, transferred);
-					gcci_Busy = 0;
-					p->total  = p->sctsize * (transferred / p->sctsize);
-					p->pos += transferred / p->sctsize;
-					p->busy = 0;
-					break;
-			}
-		}
-	}
+	gcci_ExecServer((s8*)&gcci_DvdStatus, gcci_ObjTbl, 0);
 }
 
 void* fn_8021F398(void)
