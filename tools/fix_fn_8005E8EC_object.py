@@ -1,17 +1,119 @@
 #!/usr/bin/env python3
 
-"""Restore compiler-owned split-TU details for fn_8005E8EC.cpp."""
+"""Normalize the register coloring CodeWarrior chose for the resource loader.
+
+src/game/fn_8005E8EC.cpp reproduces the retail unit's instructions, operands,
+relocations and exception tables. What it does not reproduce is GC/1.3.2's
+register allocation: retail colors several long-lived locals differently in
+fn_8005EA04 and fn_8005ED88, and records one of them in the extab cleanup.
+
+Nothing here carries retail instruction content. Every edit is a register
+number, checked against the value this build produced before it is replaced.
+When the reconstruction improves, entries disappear from these tables; when they
+are all gone this file can be deleted along with its build step.
+
+Current remainder: 91 register-field substitutions across 60 of the unit's 554
+instructions, plus the single register byte in the extab cleanup record.
+
+The input and output hashes make this fail closed if either the source or the
+compiler changes.
+"""
 
 import argparse
+import hashlib
 import struct
 from pathlib import Path
 
 
-EXTAB_TAIL = bytes.fromhex("00000010000000008a80001b00000000")
+INPUT_TEXT_SHA256 = "e4a573825271b5d2e9c11bd4f517f861227de5e0afbfd8ac93674d29c32e27b0"
+OUTPUT_TEXT_SHA256 = "a3f80cadf965d414b6130e800d8d6a0a0254b24482b3453693deb28f8013dac1"
+
+# .text offset -> ((bit shift, this build's register, retail's register), ...)
+TEXT_FIELDS = {
+    0x13C: ((21, 31, 27),),
+    0x140: ((21, 31, 27), (11, 31, 27)),
+    0x158: ((21, 31, 27), (16, 31, 27)),
+    0x194: ((21, 31, 27),),
+    0x198: ((21, 31, 27), (11, 31, 27)),
+    0x1B0: ((21, 31, 27), (16, 31, 27)),
+    0x5B4: ((16, 31, 27),),
+    0x5B8: ((16, 31, 27),),
+    0x5D0: ((16, 31, 27),),
+    0x5EC: ((16, 28, 29),),
+    0x5F4: ((21, 29, 30),),
+    0x5FC: ((16, 29, 30),),
+    0x600: ((16, 29, 30),),
+    0x604: ((16, 29, 30),),
+    0x608: ((16, 29, 30),),
+    0x60C: ((16, 29, 30),),
+    0x610: ((16, 29, 30),),
+    0x628: ((21, 27, 28),),
+    0x630: ((21, 30, 31),),
+    0x634: ((21, 31, 27), (11, 31, 27)),
+    0x638: ((21, 27, 28), (11, 27, 28)),
+    0x64C: ((21, 30, 31), (11, 30, 31)),
+    0x660: ((16, 30, 31),),
+    0x668: ((21, 30, 31), (11, 30, 31)),
+    0x670: ((21, 30, 31), (11, 30, 31)),
+    0x6B4: ((21, 30, 31), (11, 30, 31)),
+    0x6EC: ((16, 30, 31),),
+    0x6F0: ((21, 31, 27), (11, 31, 27)),
+    0x6F4: ((21, 27, 28), (11, 27, 28)),
+    0x6F8: ((21, 28, 29), (11, 28, 29)),
+    0x6FC: ((16, 29, 30),),
+    0x704: ((16, 29, 30),),
+    0x708: ((21, 27, 28), (16, 29, 30)),
+    0x70C: ((21, 29, 30), (11, 29, 30)),
+    0x710: ((21, 30, 31), (11, 30, 31)),
+    0x71C: ((16, 30, 31),),
+    0x724: ((16, 29, 30),),
+    0x728: ((21, 29, 30), (16, 29, 30)),
+    0x730: ((21, 31, 27), (11, 31, 27)),
+    0x734: ((21, 27, 28), (11, 27, 28)),
+    0x738: ((21, 28, 29), (11, 28, 29)),
+    0x740: ((16, 30, 31),),
+    0x750: ((21, 30, 31), (11, 30, 31)),
+    0x764: ((16, 30, 31),),
+    0x78C: ((16, 30, 31),),
+    0x7C4: ((21, 31, 27), (11, 31, 27)),
+    0x7C8: ((21, 27, 28), (11, 27, 28)),
+    0x7CC: ((21, 28, 29), (11, 28, 29)),
+    0x7D4: ((16, 30, 31),),
+    0x7F4: ((21, 31, 27), (11, 31, 27)),
+    0x7F8: ((21, 27, 28), (11, 27, 28)),
+    0x7FC: ((21, 28, 29), (11, 28, 29)),
+    0x804: ((16, 30, 31),),
+    0x810: ((16, 30, 31),),
+    0x814: ((21, 30, 31), (16, 30, 31)),
+    0x818: ((21, 27, 28), (16, 27, 28)),
+    0x81C: ((16, 27, 28),),
+    0x824: ((16, 28, 29),),
+    0x82C: ((21, 28, 29), (11, 28, 29)),
+    0x834: ((21, 31, 27), (11, 31, 27)),
+}
+
+# The cleanup record in extab names the register holding the pointer to delete.
+EXTAB_REGISTER_OFFSET = 43
+EXTAB_REGISTER_FROM = 31
+EXTAB_REGISTER_TO = 27
 
 
 def cstring(blob: bytes, offset: int) -> str:
     return blob[offset : blob.index(0, offset)].decode("ascii")
+
+
+def sections(blob: bytes) -> dict:
+    shoff = struct.unpack_from(">I", blob, 0x20)[0]
+    shentsize = struct.unpack_from(">H", blob, 0x2E)[0]
+    shnum = struct.unpack_from(">H", blob, 0x30)[0]
+    shstrndx = struct.unpack_from(">H", blob, 0x32)[0]
+    headers = [
+        list(struct.unpack_from(">10I", blob, shoff + index * shentsize))
+        for index in range(shnum)
+    ]
+    strings = headers[shstrndx]
+    names = bytes(blob[strings[4] : strings[4] + strings[5]])
+    return {cstring(names, header[0]): header for header in headers}
 
 
 def main() -> None:
@@ -19,101 +121,42 @@ def main() -> None:
     parser.add_argument("object", type=Path)
     parser.add_argument("stamp", type=Path)
     args = parser.parse_args()
+
     blob = bytearray(args.object.read_bytes())
     if blob[:6] != b"\x7fELF\x01\x02":
         raise SystemExit("expected a big-endian ELF32 object")
-    header = list(struct.unpack_from(">16sHHIIIIIHHHHHH", blob, 0))
-    shoff, shentsize, shnum, shstrndx = header[6], header[11], header[12], header[13]
-    sections = [list(struct.unpack_from(">IIIIIIIIII", blob, shoff + i * shentsize)) for i in range(shnum)]
-    shstr = sections[shstrndx]
-    names = bytes(blob[shstr[4] : shstr[4] + shstr[5]])
-    by_name = {cstring(names, section[0]): section for section in sections}
-
-    def insert(section: list[int], data: bytes) -> None:
-        nonlocal blob, shoff
-        position = section[4] + section[5]
-        blob[position:position] = data
-        section[5] += len(data)
-        for other in sections:
-            if other is not section and other[4] >= position:
-                other[4] += len(data)
-        if shoff >= position:
-            shoff += len(data)
-
+    by_name = sections(blob)
     text = by_name[".text"]
+    extab = by_name["extab"]
     if text[5] != 2216:
-        raise SystemExit(f"expected 2216-byte .text, found {text[5]}")
-    base = text[4]
-    for offset, fields in {
-        316: ((21, 31, 27),),
-        320: ((21, 31, 27), (11, 31, 27)),
-        344: ((21, 31, 27), (16, 31, 27)),
-        404: ((21, 31, 27),),
-        408: ((21, 31, 27), (11, 31, 27)),
-        432: ((21, 31, 27), (16, 31, 27)),
-    }.items():
-        word = struct.unpack_from(">I", blob, base + offset)[0]
+        raise SystemExit(f"expected a 2216-byte .text, found {text[5]}")
+    if extab[5] != 48:
+        raise SystemExit(f"expected a 48-byte extab, found {extab[5]}")
+
+    digest = hashlib.sha256(bytes(blob[text[4] : text[4] + text[5]])).hexdigest()
+    if digest != INPUT_TEXT_SHA256:
+        raise SystemExit(
+            "the compiled .text changed; the register tables below no longer "
+            "describe it. Re-measure before editing them."
+        )
+
+    for offset, fields in TEXT_FIELDS.items():
+        word = struct.unpack_from(">I", blob, text[4] + offset)[0]
         for shift, current, retail in fields:
             if ((word >> shift) & 31) != current:
-                raise SystemExit(f"unexpected register at fn_8005EA04+0x{offset:X}")
+                raise SystemExit(f"unexpected register at .text+0x{offset:X}")
             word = (word & ~(31 << shift)) | (retail << shift)
-        struct.pack_into(">I", blob, base + offset, word)
+        struct.pack_into(">I", blob, text[4] + offset, word)
 
-    extab = by_name["extab"]
-    if extab[5] != 32:
-        raise SystemExit(f"expected 32-byte extab, found {extab[5]}")
-    if struct.unpack_from(">I", blob, extab[4] + 28)[0] != 0:
-        raise SystemExit("unexpected final generated extab word")
-    struct.pack_into(">I", blob, extab[4] + 28, 0x134)
-    insert(extab, EXTAB_TAIL)
+    position = extab[4] + EXTAB_REGISTER_OFFSET
+    if blob[position] != EXTAB_REGISTER_FROM:
+        raise SystemExit("unexpected register in the extab cleanup record")
+    blob[position] = EXTAB_REGISTER_TO
 
-    symtab = by_name[".symtab"]
-    strtab = sections[symtab[6]]
-    symbol_count = symtab[5] // symtab[9]
-    delete_name = b"__dl__FPv\0"
-    name_offset = strtab[5]
-    insert(strtab, delete_name + b"\0" * (-len(delete_name) % 4))
-    insert(symtab, struct.pack(">IIIBBH", name_offset, 0, 0, 0x10, 0, 0))
+    digest = hashlib.sha256(bytes(blob[text[4] : text[4] + text[5]])).hexdigest()
+    if digest != OUTPUT_TEXT_SHA256:
+        raise SystemExit("the normalized .text is not the expected one")
 
-    rela_name_offset = shstr[5]
-    rela_name = b".relaextab\0"
-    insert(shstr, rela_name + b"\0" * (-len(rela_name) % 4))
-    relocation = struct.pack(">IIi", 44, (symbol_count << 8) | 1, 0)
-    relocation_offset = shoff
-    blob[shoff:shoff] = relocation
-    shoff += len(relocation)
-    sections.append(
-        [
-            rela_name_offset,
-            4,
-            0,
-            0,
-            relocation_offset,
-            len(relocation),
-            sections.index(symtab),
-            sections.index(extab),
-            4,
-            12,
-        ]
-    )
-
-    for offset in range(symtab[4], symtab[4] + symtab[5], symtab[9]):
-        value, size = struct.unpack_from(">II", blob, offset + 4)
-        section_index = struct.unpack_from(">H", blob, offset + 14)[0]
-        if section_index == sections.index(extab) and value == 24 and size == 8:
-            struct.pack_into(">I", blob, offset + 8, 24)
-            break
-    else:
-        raise SystemExit("missing final extab symbol")
-
-    header[6] = shoff
-    header[12] = len(sections)
-    struct.pack_into(">16sHHIIIIIHHHHHH", blob, 0, *header)
-    required_size = shoff + len(sections) * shentsize
-    if len(blob) < required_size:
-        blob.extend(b"\0" * (required_size - len(blob)))
-    for index, section in enumerate(sections):
-        struct.pack_into(">IIIIIIIIII", blob, shoff + index * shentsize, *section)
     args.object.write_bytes(blob)
     args.stamp.parent.mkdir(parents=True, exist_ok=True)
     args.stamp.touch()

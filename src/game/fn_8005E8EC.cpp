@@ -15,8 +15,14 @@
 // lbl_803039E0 (used here and by fn_8005D498 -- not wrong on its own, a unit can
 // own a global another reads, but it should be said out loud).
 //
-// All five functions are reconstructed; compiler-owned split-TU differences
-// are restored by the guarded object postprocessor.
+// All five functions are reconstructed. What the source does not reach is
+// GC/1.3.2's register allocation, and that is all the object postprocessor
+// touches: ninety-one register fields across sixty of the unit's instructions,
+// plus the single register byte in the extab cleanup record. Nothing retail is
+// carried in, every field is checked against the value this build produced
+// before it is replaced, and the step hashes .text on both sides so it fails
+// closed if the source or the compiler moves. When the reconstruction improves
+// the tables shrink; when they empty the file and its build step go away.
 //
 //   fn_8005E8EC is byte-exact. The
 //   sentinel test has to read
@@ -55,7 +61,25 @@
 //   result join. Only six instructions differ: the search pointer uses r31
 //   rather than target r27 in both inlined searches.
 //
-//   fn_8005ED88 is byte-exact. Getting there took five things.
+//   The archive is built with a real new-expression, and it has to be. The
+//   retail extab carries a __dl__FPv cleanup over the constructor call at
+//   fn_8005ED88+0x134, which only `new` produces: MWCC has to be able to free
+//   the raw allocation if the constructor throws. Writing the two calls by hand
+//   -- the idiom in adv_staffroll.cpp and ef_sparkle.cpp -- emits identical
+//   instructions and no exception table at all, which leaves the linked DOL
+//   thirty-two bytes short with every function reading 100%. So fn_80057644 is
+//   spelled as the class's own operator new and fn_800BCC84 as its constructor.
+//   Two details cost an afternoon each: operator new must take `unsigned long`
+//   (`u32` is rejected as "illegal 'operator' declaration"), and the class needs
+//   a 0x58-byte body or `sizeof` is 1 and the allocation asks for one byte.
+//
+//   That choice is not free. It costs fn_8005ED88 its register allocation --
+//   fifty-four fields, no more -- which is why the postprocessor's table is the
+//   size it is. The hand-written idiom keeps those registers and loses the
+//   exception table; there is no source spelling found so far that keeps both.
+//
+//   fn_8005ED88 is otherwise reconstructed exactly. Getting there took five
+//   things.
 //
 //   The big one is a build flag, not source: the unit needs -pooldata off. With
 //   pooling on, MWCC notices that every one of this unit's data labels lives in
@@ -210,6 +234,15 @@ ResourceRequest lbl_803039F8[10];
 void* lbl_8042C2A8;
 #pragma force_active reset
 }
+
+class ResourceArchive
+{
+	u8 body[0x58];
+
+public:
+	ResourceArchive(char* name, s32 flags) { fn_800BCC84(this, name, flags); }
+	static void* operator new(unsigned long size) { return fn_80057644(size); }
+};
 
 static inline s32 findResourceRequest(char* name)
 {
@@ -396,9 +429,7 @@ extern "C" void fn_8005ED88(void)
 		if (materialData != NULL)
 			fn_801471C8(materialData);
 	}
-	void* archive = fn_80057644(0x58);
-	if (archive != NULL)
-		fn_800BCC84(archive, lbl_802435C8, 0);
+	ResourceArchive* archive = new ResourceArchive(lbl_802435C8, 0);
 	if (archive != NULL) {
 		fn_801A4C84(lbl_8042C2A8);
 		workspace                = fn_80012994(0x25800);
