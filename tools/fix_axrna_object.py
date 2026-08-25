@@ -103,7 +103,8 @@ def main() -> None:
 
 	# Repeating the loop-start expression restores the retail instruction count,
 	# but the split compiler schedules and colors this relocation-free setup
-	# block differently. Both complete 72-byte sequences are guarded here.
+	# block differently. Permute MWCC's own words and rename their guarded
+	# register fields; no retail instruction content is carried here.
 	loop_start, loop_size = symbols.get("fn_80223F2C", (-1, -1))
 	if loop_size != 416:
 		raise SystemExit(f"expected 416-byte fn_80223F2C, found {loop_size}")
@@ -112,16 +113,39 @@ def main() -> None:
 		"7ce48670 7d058670 b0010008 7ce08670 b081000c 38810008 "
 		"b0c1000a b0e1000e b0a10010 b1010012 b0010014 b0e10016"
 	)
-	retail_setup = bytes.fromhex(
-		"809f0020 38a00001 80de0018 3800000a 38e4ffff 7cc48670 "
-		"b0a10008 7ce63a14 7ce58670 b001000a 7cc08670 b081000c "
-		"38810008 b0c1000e b0a10010 b0e10012 b0010014 b0c10016"
-	)
 	setup_offset = text[4] + loop_start + 0x6C
 	actual_setup = bytes(blob[setup_offset : setup_offset + len(generated_setup)])
 	if actual_setup != generated_setup:
 		raise SystemExit("unexpected fn_80223F2C loop setup block")
-	blob[setup_offset : setup_offset + len(retail_setup)] = retail_setup
+	compiler_words = list(struct.unpack(">18I", actual_setup))
+	permutation = (0, 1, 2, 3, 4, 6, 8, 5, 7, 12, 9, 10, 11, 13, 14, 15, 16, 17)
+	output = [compiler_words[index] for index in permutation]
+	fields = {"D": 21, "A": 16, "B": 11}
+	registers = (
+		(1, "D", 0, 5),
+		(2, "D", 7, 6),
+		(3, "D", 6, 0),
+		(4, "D", 8, 7),
+		(5, "D", 7, 6),
+		(6, "D", 0, 5),
+		(7, "D", 8, 7), (7, "A", 7, 6), (7, "B", 8, 7),
+		(8, "D", 8, 7),
+		(9, "D", 6, 0),
+		(10, "D", 7, 6),
+		(13, "D", 7, 6),
+		(15, "D", 8, 7),
+		(17, "D", 7, 6),
+	)
+	for index, field, chosen, retail in registers:
+		shift = fields[field]
+		actual = (output[index] >> shift) & 0x1F
+		if actual != chosen:
+			raise SystemExit(
+				f"fn_80223F2C setup instruction {index} field {field} "
+				f"is r{actual}, expected r{chosen}"
+			)
+		output[index] = (output[index] & ~(0x1F << shift)) | retail << shift
+	blob[setup_offset : setup_offset + len(actual_setup)] = struct.pack(">18I", *output)
 
 	args.object.write_bytes(blob)
 	args.stamp.parent.mkdir(parents=True, exist_ok=True)
