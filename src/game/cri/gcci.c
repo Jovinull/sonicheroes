@@ -297,8 +297,10 @@ static inline void gcci_ExecServer(s8* state, GcciObj* p, s32 i)
 					amount = DVDGetTransferredSize(&p->fileInfo);
 					DCInvalidateRange(p->buffer, amount);
 					state[4] = 0;
-					p->total = p->sctsize * (amount / p->sctsize);
-					p->pos += amount / p->sctsize;
+					total    = amount / p->sctsize;
+					p->total = p->sctsize * total;
+					total    = amount / p->sctsize;
+					p->pos += total;
 					p->busy = 0;
 					break;
 			}
@@ -340,8 +342,10 @@ static inline void gcci_ExecServerRequest(s8* state, GcciObj* p)
 					amount = DVDGetTransferredSize(&p->fileInfo);
 					DCInvalidateRange(p->buffer, amount);
 					state[4] = 0;
-					p->total = p->sctsize * (amount / p->sctsize);
-					p->pos += amount / p->sctsize;
+					total    = amount / p->sctsize;
+					p->total = p->sctsize * total;
+					total    = amount / p->sctsize;
+					p->pos += total;
 					p->busy = 0;
 					break;
 			}
