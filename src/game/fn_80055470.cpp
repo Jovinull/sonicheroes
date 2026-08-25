@@ -1,6 +1,7 @@
 #include "types.h"
 
-// Recursive grid branch query split from the original game translation unit.
+// Keeping the bounds as vector aggregates preserves the retail floating-point
+// live ranges and register allocation across the recursive traversal.
 
 struct Fn80055470Vec {
 	f32 x;
@@ -36,19 +37,18 @@ extern "C" Fn80055470Result* fn_8005428C(Fn80055470Result*, u16);
 extern "C" Fn80055470Result* fn_80055470(Fn80055470Grid* grid, Fn80055470Result* result,
     Fn80055470Node* node, const Fn80055470Vec* upper, const Fn80055470Vec* lower)
 {
-	f32 extent = grid->cellExtents[node->level];
-	f32 maxX;
-	f32 maxZ;
-	f32 minX;
-	f32 minZ;
 	Fn80055470Vec center;
+	Fn80055470Vec maximum;
+	Fn80055470Vec minimum;
+	f32 extent = grid->cellExtents[node->level];
 	fn_8005430C(grid, node, &center);
-	maxX = center.x + extent;
-	maxZ = center.z + extent;
-	minX = center.x - extent;
-	minZ = center.z - extent;
+	maximum.x = center.x + extent;
+	maximum.z = center.z + extent;
+	minimum.x = center.x - extent;
+	minimum.z = center.z - extent;
 
-	if (lower->x <= minX && maxX <= upper->x && lower->z <= minZ && maxZ <= upper->z) {
+	if (lower->x <= minimum.x && maximum.x <= upper->x && lower->z <= minimum.z
+	    && maximum.z <= upper->z) {
 		if (node->count != 0)
 			result = fn_8005428C(result, node->value);
 		return result;
@@ -69,8 +69,10 @@ extern "C" Fn80055470Result* fn_80055470(Fn80055470Grid* grid, Fn80055470Result*
 				    grid, result, &grid->root[node->firstChild + index], upper, lower);
 		}
 	} else if (node->count != 0) {
-		if (((lower->x <= minX && minX <= upper->x) || (minX <= lower->x && lower->x <= maxX))
-		    && ((lower->z <= minZ && minZ <= upper->z) || (minZ <= lower->z && lower->z <= maxZ)))
+		if (((lower->x <= minimum.x && minimum.x <= upper->x)
+		        || (minimum.x <= lower->x && lower->x <= maximum.x))
+		    && ((lower->z <= minimum.z && minimum.z <= upper->z)
+		        || (minimum.z <= lower->z && lower->z <= maximum.z)))
 			result = fn_8005428C(result, node->value);
 	}
 	return result;

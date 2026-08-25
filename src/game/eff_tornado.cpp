@@ -49,10 +49,10 @@
 //   mfCiReqRd when nothing inside those functions responded, so its absence
 //   says the answer for these two has to be in their own shape.
 //
-//   TDisp__14TObjEffTornadoFv is one instruction long. The target materialises
-//   two of the loop's address constants straight into their callee-saved
-//   registers; this build routes them through r0 and copies, and saves one
-//   copy elsewhere, for a net gain of one. Both builds use the same register
+//   TDisp__14TObjEffTornadoFv now has the target's exact 1476-byte size. A
+//   one-field wrapper around firstAxis makes MWCC scalarise the pointer and
+//   materialise one loop-invariant address directly instead of routing it
+//   through r0. The remaining difference is register allocation. Both builds use the same register
 //   set, r18 through r28, and hand out the same eleven values; only the mapping
 //   differs, and two of ours land on registers the allocator could not coalesce
 //   into. Ruled out so far: dropping or inverting the opt_common_subs pragma,
@@ -65,7 +65,7 @@
 //   ten optimiser pragmas layered on top of opt_common_subs off -- lifetimes,
 //   dead_assignments, loop_invariants, strength_reduction, unroll_loops,
 //   scheduling, peephole, optimize_for_size, propagation and global_optimizer.
-//   None reaches 1476: they either leave the size alone or overshoot, and
+//   None reached 1476 on the unwrapped pointer form: they either left the size alone or overshot, and
 //   peephole on takes it to 1456 while breaking eight of the twenty that match.
 //   Pulling the loop body apart into same-TU static helpers -- the trick that
 //   closed mfCiSetSctLen and mfCiOpen -- does nothing here either, for the two
@@ -230,8 +230,14 @@ void fn_8005DA34(void*);
 void fn_8005D9F4(void*);
 void fn_8005D6DC(void*);
 void fn_8005C014(void*);
-void fn_800BD02C(void*, void*, void*);
-void* fn_800BD0AC(void*, void*);
+struct RpClump;
+struct RpHAnimHierarchy;
+
+struct HAnimClass {
+	u8 data[8];
+	void SetHierarchyForAtomic(RpClump*, RpHAnimHierarchy*);
+	RpHAnimHierarchy* GetHierarchy(RpClump*);
+};
 void fn_8020C72C(void*, void*);
 void fn_8013F3A4(void*);
 void fn_801491A8(void*);
@@ -262,7 +268,7 @@ extern void* lbl_8042C360;
 extern void* lbl_8042C364;
 extern void* lbl_8042C180;
 extern Rgba lbl_8042B35C;
-extern u8 lbl_8042C3D0[4];
+extern HAnimClass HAnim;
 extern void* lbl_80303F98[3];
 extern const char* lbl_8042B350;
 extern const char* lbl_8042B358;
@@ -367,7 +373,7 @@ void fn_8001898C();
 void fn_80018988();
 void fn_80018950();
 void fn_80018954();
-void fn_80017854();
+void Error__7TObjectFPc();
 void fn_80018958();
 void __ct__15TObjEffTornado2FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObjEffTornado2*, TObject*, s32, RwV3d*, sAngle*, RwV3d*);
@@ -566,7 +572,7 @@ void* lbl_802534E4[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 
@@ -1133,7 +1139,7 @@ void* lbl_802535C4[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 void* lbl_802535F0[11] = {
@@ -1146,7 +1152,7 @@ void* lbl_802535F0[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 void* lbl_8025361C[11] = {
@@ -1159,7 +1165,7 @@ void* lbl_8025361C[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 
@@ -1230,18 +1236,20 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	RwV3d* positions;
 	RwV3d* directions;
 	RotationPair* rotations;
-	RwV3d* firstAxis;
+	struct FirstAxisPointer {
+		RwV3d* value;
+	} firstAxis;
 	s32* angleOffsets;
 	RwV3d* secondAxis;
 	{
-		models       = lbl_802532E8;
-		positions    = lbl_8025337C;
-		directions   = lbl_802533DC;
-		rotations    = lbl_8025343C;
-		firstAxis    = &lbl_80239978;
-		f32 one      = lbl_8042DBC0;
-		angleOffsets = lbl_8025347C;
-		secondAxis   = &lbl_80239984;
+		models          = lbl_802532E8;
+		positions       = lbl_8025337C;
+		directions      = lbl_802533DC;
+		rotations       = lbl_8025343C;
+		firstAxis.value = &lbl_80239978;
+		f32 one         = lbl_8042DBC0;
+		angleOffsets    = lbl_8025347C;
+		secondAxis      = &lbl_80239984;
 		f32 sine;
 		f32 increment = lbl_8042DC24;
 		f32 limit     = lbl_8042DBB8;
@@ -1256,7 +1264,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			    0);
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			fn_80195790((u8*)frame + 0x10, firstAxis.value, one - pair->cosine, pair->sine, 2);
 			s32 angleByteOffset = tableIndex * sizeof(s32);
 			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
 			sine                = fn_800D7B00(angle + *angleEntry);
@@ -1274,14 +1282,14 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	}
 
 	{
-		models       = lbl_802532E8;
-		positions    = lbl_8025337C;
-		directions   = lbl_802533DC;
-		rotations    = lbl_8025343C;
-		firstAxis    = &lbl_80239978;
-		f32 one      = lbl_8042DBC0;
-		angleOffsets = lbl_8025347C;
-		secondAxis   = &lbl_80239984;
+		models          = lbl_802532E8;
+		positions       = lbl_8025337C;
+		directions      = lbl_802533DC;
+		rotations       = lbl_8025343C;
+		firstAxis.value = &lbl_80239978;
+		f32 one         = lbl_8042DBC0;
+		angleOffsets    = lbl_8025347C;
+		secondAxis      = &lbl_80239984;
 		f32 sine;
 		f32 limit;
 		f32 increment = lbl_8042DC24;
@@ -1297,7 +1305,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			    0);
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			fn_80195790((u8*)frame + 0x10, firstAxis.value, one - pair->cosine, pair->sine, 2);
 			s32 angleByteOffset = tableIndex * sizeof(s32);
 			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
 			sine                = fn_800D7B00(angle + *angleEntry);
@@ -1314,12 +1322,12 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	}
 
 	{
-		s32 count  = 0;
-		models     = lbl_802532E8;
-		positions  = lbl_8025337C;
-		directions = lbl_802533DC;
-		rotations  = lbl_8025343C;
-		firstAxis  = &lbl_80239978;
+		s32 count       = 0;
+		models          = lbl_802532E8;
+		positions       = lbl_8025337C;
+		directions      = lbl_802533DC;
+		rotations       = lbl_8025343C;
+		firstAxis.value = &lbl_80239978;
 		f32 sine;
 		f32 one      = lbl_8042DBC0;
 		angleOffsets = lbl_8025347C;
@@ -1334,7 +1342,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			    0);
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			fn_80195790((u8*)frame + 0x10, firstAxis.value, one - pair->cosine, pair->sine, 2);
 			vectorOffset = tableIndex * sizeof(s32);
 			sine         = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
 			f32 cosine   = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
@@ -1467,7 +1475,7 @@ extern "C" void InitEffTornado__Fv()
 	if (lbl_8042C350 != 0) {
 		lbl_8042C354 = fn_8005E410(lbl_8042C350, 0, "ef_chbl");
 		lbl_8042C370 = lbl_8042C354;
-		lbl_8042C368 = fn_800BD0AC(lbl_8042C3D0, lbl_8042C350);
+		lbl_8042C368 = HAnim.GetHierarchy((RpClump*)lbl_8042C350);
 		fn_8005D9F4(lbl_8042C350);
 		fn_8005D6DC(lbl_8042C350);
 	}
@@ -1490,7 +1498,7 @@ extern "C" void InitEffTornado__Fv()
 
 	lbl_8042C36C = fn_8005EA04(lbl_802535A4);
 	if (lbl_8042C36C != 0 && lbl_8042C368 != 0) {
-		fn_800BD02C(lbl_8042C3D0, lbl_8042C350, lbl_8042C368);
+		HAnim.SetHierarchyForAtomic((RpClump*)lbl_8042C350, (RpHAnimHierarchy*)lbl_8042C368);
 		*(u32*)lbl_8042C368 |= 0x3000;
 		fn_8020C72C(*(void**)((u8*)lbl_8042C368 + 0x20), lbl_8042C36C);
 		fn_8013F3A4(lbl_8042C368);
