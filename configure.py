@@ -571,6 +571,11 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
+                Matching,
+                "game/cri/sj.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
                 NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
@@ -3477,6 +3482,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_sj_object",
+        "command": "$python tools/fix_sj_object.py $in $out",
+        "description": "FIX SJ split-TU compiler layout",
+    },
+    {
         "name": "fix_fn_80054F08_object",
         "command": "$python tools/fix_fn_80054F08_object.py $in $out",
         "description": "FIX fn_80054F08 compiler block layout and register coloring",
@@ -3783,6 +3793,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/sj-object.stamp",
+            "rule": "fix_sj_object",
+            "inputs": "build/G9SE8P/src/game/cri/sj.o",
+            "implicit": ["tools/fix_sj_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/fn-80054F08-object.stamp",
             "rule": "fix_fn_80054F08_object",
