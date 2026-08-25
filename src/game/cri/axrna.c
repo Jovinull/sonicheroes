@@ -233,13 +233,25 @@ void fn_80223660(AxRna* p, s32 v)
 
 extern void fn_80223820(AxRna* p);
 
-static s32 ax_RefCnt;
+static u32 ax_RefCnt;
 static void* ax_AlignedBuf;
 static s32 ax_X[2];
 static s32 ax_Y;
 static s32 ax_Z[32];
 static u8 ax_Buf[4160];
 static AxRna ax_Tbl[AX_RNA_MAX];
+
+// Never called, and it is here for its side effect on layout, not its value.
+// MWCC lays .bss out in the reverse of the order the first function to touch
+// these reads them, so a dead static above the first user is what decides where
+// they land -- not declaration order, not alignment. Reading them backwards
+// here puts all seven at the addresses the target's base register uses. The
+// original must have had a real function above this doing the same; what it was
+// is unknown, so this stands in for it and is a hypothesis, not a reading.
+static s32 ax_Touch(void)
+{
+	return ax_Z[0] + ax_Buf[0] + ax_Y + ax_X[0] + (ax_AlignedBuf != NULL) + ax_RefCnt;
+}
 
 void fn_802237B4(void* p, s8 v)
 {
@@ -585,7 +597,6 @@ extern void fn_80224D00(void* p);
 
 void fn_802242CC(AxRna* p)
 {
-	s8* nchp;
 	s32 i;
 
 	if (p == NULL) {
@@ -593,7 +604,7 @@ void fn_802242CC(AxRna* p)
 	}
 	fn_80223F2C(p, 0);
 	fn_802240CC(p, 0);
-	for (i = 0, nchp = &p->nch; i < *nchp; i++) {
+	for (i = 0; i < p->nch; i++) {
 		if (p->strmB[i] != NULL) {
 			p->strmB[i]->vtbl->stop(p->strmB[i]);
 		}
