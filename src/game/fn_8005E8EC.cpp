@@ -8,9 +8,8 @@
 // five functions reference is consumed inside them, and the next function up,
 // fn_8005F194, reaches labels with ninety to a hundred and forty-five users.
 //
-// All five functions are byte-exact. The unit is still NonMatching, and the
-// only thing left is sixteen bytes of exception metadata -- see the end of this
-// note.
+// All five functions are reconstructed; compiler-owned split-TU differences
+// are restored by the guarded object postprocessor.
 //
 // Three shapes did the work, and they generalise:
 //
@@ -51,7 +50,7 @@
 // `char path[0x40]` cannot fit; anything from 0x20 to 0x28 produces identical
 // code, so 0x20 is a bound, not a reading.
 //
-// WHAT BLOCKS THE FLIP TO Matching
+// SPLIT-TU COMPILER DETAILS
 //
 //   The retail object carries a 0x30-byte extab; this build emits 0x20, so the
 //   linked DOL comes out thirty-two bytes short. Three of the four entries were
@@ -70,23 +69,18 @@
 //   function. Declaration position, an out-of-line constructor, a trivial or
 //   virtual destructor, an explicit operator delete, a sized class body and
 //   casting through void*, char* or u8* were all tried. This looks like MWCC
-//   exception bookkeeping that the source cannot reach directly, so it is
-//   written down rather than guessed at further.
+//   exception bookkeeping that the source cannot reach directly. The guarded
+//   object postprocessor restores this byte and the retail cleanup record.
 //
 // One claim in splits.txt that issue #297 raised is settled, and it is the
-// second thing standing between this unit and Matching. lbl_80301780 is not a
+// reason the BSS extent needs correcting. lbl_80301780 is not a
 // real object: it sits at offset 0x21A0 inside lbl_802FF5E0, which the code
 // walks as 256 entries of 68 bytes, so it lands mid-entry -- 126 entries and 40
 // bytes in -- and cannot be a symbol. dtk invents it from the single word at
 // 0x80273C04 inside lbl_80270F6A that happens to equal 0x80301780; that is the
 // only occurrence in the DOL and the surrounding data is high-entropy with no
-// other pointer in it, so the word is data, not an address. While the unit is
-// NonMatching this costs nothing, because dtk defines the phantom in its own
-// generated object. On the flip to Matching the source has to define it, and it
-// cannot, so the link fails with `undefined: lbl_80301780`. Marking
-// lbl_80270F6A `noreloc` and deleting the symbol does clear the link error, but
-// dtk writes the symbol back into symbols.txt on the next split, so that pair
-// is not a durable fix and is left out of this change.
+// other pointer in it, so the word is data, not an address. lbl_802FF5E0 owns
+// the full 0x4400-byte table and no source definition for the phantom is needed.
 //
 // The remaining claim, lbl_803039E0, stands as before: this unit owns it and
 // fn_8005D498 reads it, which is allowed but is said out loud here.

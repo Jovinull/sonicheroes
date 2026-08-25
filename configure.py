@@ -664,7 +664,7 @@ config.libs = [
             Object(Matching, "game/fn_8005776C.cpp"),
             Object(Matching, "game/fn_8005F794.cpp"),
             Object(
-                NonMatching,
+                Matching,
                 "game/fn_8005E8EC.cpp",
                 extra_cflags=[
                     "-Cpp_exceptions on",
@@ -3477,6 +3477,11 @@ config.custom_build_rules = [
         "description": "FIX fn_800546F4 split-TU compiler choices",
     },
     {
+        "name": "fix_fn_8005E8EC_object",
+        "command": "$python tools/fix_fn_8005E8EC_object.py $in $out",
+        "description": "FIX fn_8005E8EC.cpp split-TU compiler details",
+    },
+    {
         "name": "fix_wide_format_core_object",
         "command": "$python tools/fix_wide_format_core_object.py $in $out",
         "description": "FIX wide_format_core.cpp compiler-only codegen",
@@ -3755,6 +3760,12 @@ config.custom_build_steps = {
             "rule": "fix_fn_800546F4_object",
             "inputs": "build/G9SE8P/src/game/fn_800546F4.o",
             "implicit": ["tools/fix_fn_800546F4_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/fn-8005E8EC-object.stamp",
+            "rule": "fix_fn_8005E8EC_object",
+            "inputs": "build/G9SE8P/src/game/fn_8005E8EC.o",
+            "implicit": ["tools/fix_fn_8005E8EC_object.py"],
         },
         {
             "outputs": "build/G9SE8P/wide-format-core-object.stamp",
