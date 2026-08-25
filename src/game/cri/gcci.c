@@ -267,6 +267,7 @@ static inline void gcci_StopBusyClose(GcciObj* p)
 
 static inline void gcci_StopBusy(GcciObj* p)
 {
+	s32* cancel;
 	u32 start;
 	u32 wrap;
 	u32 now;
@@ -276,9 +277,10 @@ static inline void gcci_StopBusy(GcciObj* p)
 
 	DVDGetCommandBlockStatus(&p->fileInfo);
 	DVDGetDriveStatus();
-	gcci_Canceling = 1;
-	result         = DVDCancel(&p->fileInfo);
-	gcci_Canceling = 0;
+	cancel    = &gcci_DvdStatus;
+	cancel[2] = 1;
+	result    = DVDCancel(&p->fileInfo);
+	cancel[2] = 0;
 	if (result < 0) {
 		gcci_ErrorArg(gcci_ErrCancel, p);
 		return;
@@ -491,6 +493,7 @@ s32 fn_8021E57C(GcciObj* p)
 	return p->busy;
 }
 
+#pragma opt_propagation off
 void fn_8021E5E0(void* obj)
 {
 	GcciObj* p;
@@ -502,10 +505,15 @@ void fn_8021E5E0(void* obj)
 	}
 	if (p->busy != 1) {
 		if (p->busy != 0) {
-			gcci_StopBusy(p);
+			goto stop;
 		}
 	}
+	return;
+
+stop:
+	gcci_StopBusy(p);
 }
+#pragma opt_propagation reset
 s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 {
 	s8* state;
