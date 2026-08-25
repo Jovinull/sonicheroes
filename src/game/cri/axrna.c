@@ -824,11 +824,9 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	ax_SetBufferCount(p);
 	if (p->nch == 2) {
 		fn_80223500(p, 0, -15);
+		fn_80223500(p, 1, 15);
 	} else {
 		fn_80223500(p, 0, 0);
-		if (p->nch > 1) {
-			fn_80223500(p, 1, 15);
-		}
 	}
 	p->flags = 0;
 	p->stat  = 1;
