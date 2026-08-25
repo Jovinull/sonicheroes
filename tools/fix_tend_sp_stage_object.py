@@ -76,6 +76,22 @@ def retarget_symbols(
             struct.pack_into(">H", data, offset + 14, new_section)
 
 
+def symbol_names(data: bytes, headers: list[list[int]], names: list[str]) -> set[str]:
+    symbol_header = headers[names.index(".symtab")]
+    string_header = headers[symbol_header[6]]
+    strings = data[string_header[4] : string_header[4] + string_header[5]]
+    found = set()
+    for offset in range(
+        symbol_header[4],
+        symbol_header[4] + symbol_header[5],
+        symbol_header[9],
+    ):
+        name_offset = struct.unpack_from(">I", data, offset)[0]
+        end = strings.find(b"\0", name_offset)
+        found.add(strings[name_offset:end].decode("ascii"))
+    return found
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("object", type=Path)
@@ -119,6 +135,25 @@ def main() -> None:
             struct.pack_into(">I", normalized, header_offset + 20, 0)
         elif header[4] >= strings_end and header[1] != 8:
             struct.pack_into(">I", normalized, header_offset + 16, header[4] - removed_padding)
+
+    # objcopy --redefine-sym is silent when the source symbol is absent, so a
+    # rename that quietly stops applying would only surface as an artifact hash
+    # mismatch much later. Check the table before handing it over.
+    #
+    # This step edits the object in place and is not idempotent, so ninja
+    # re-running it after the script's own mtime changes sees an object whose
+    # sources are all gone and whose targets are all present. That state is
+    # already-applied, not broken, and must not fail the build.
+    present = symbol_names(object_data, headers, names)
+    missing = sorted(old for old, _ in LINK_RENAMES if old not in present)
+    if missing:
+        if all(new in present for _, new in LINK_RENAMES):
+            args.stamp.parent.mkdir(parents=True, exist_ok=True)
+            args.stamp.touch()
+            return
+        raise SystemExit(
+            "TEndSPStage rename sources absent from the object: " + ", ".join(missing)
+        )
 
     with tempfile.TemporaryDirectory() as directory:
         normalized_path = Path(directory) / "normalized.o"
