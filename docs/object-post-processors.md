@@ -44,9 +44,16 @@ branch offsets recomputed from where the blocks landed. Nothing is copied in
 from retail; the bytes all came from MWCC.
 
 The fourth shape — writing bytes taken from the retail object — is the one that
-is out, and today nothing in `tools/` does it. `fix_wide_format_core_object.py`
-uses a retail literal in exactly one place, an assertion, which is the opposite
-of carrying one.
+is out. One step still does it: `fix_game_action_object.py` replaces the whole
+`extab` section with `TARGET_EXTAB`, a hex table of retail's exception records.
+It predates these criteria, and `action.cpp` is a 77 KB source compiled into
+five split objects, so producing that table from source is its own piece of
+work. `tools/check_post_processors.py` records it as named debt so the rule can
+be enforced everywhere else and this one stays visible rather than passing
+quietly. Nothing may be added to that list.
+
+Elsewhere the line holds. `fix_wide_format_core_object.py` uses a retail literal
+in exactly one place, an assertion, which is the opposite of carrying one.
 
 **Telling slicing from injection.** Slicing only removes; the bytes that remain
 are still at the offsets MWCC put them, or shifted whole. Injection introduces a
@@ -124,6 +131,20 @@ Two things that have each closed a wall recently, both cheaper than a patch:
   new-expression. The hand-written `alloc(); if (p) ctor(p, ...)` idiom emits
   identical instructions and no exception table, so the unit links short while
   every function reads 100%.
+
+## Enforcement
+
+`tools/check_post_processors.py` decides the two properties that can be decided
+mechanically, and CI runs it alongside the language policy:
+
+- **no retail content** — a module-level `bytes.fromhex()` constant must never
+  reach a write, whether through `pack_into`, `insert`, or a slice assignment.
+  Comparing against one is a guard and stays allowed.
+- **fails closed** — a step that writes must validate something first, so a
+  stale table stops the build instead of quietly not applying.
+
+The remainder count and the input/output hashes are not machine-checkable and
+stay a review matter.
 
 ## Reviewing one
 
