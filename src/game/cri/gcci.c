@@ -306,6 +306,63 @@ static inline void gcci_ExecServer(s8* state, GcciObj* p, s32 i)
 	}
 }
 
+static inline void gcci_ExecServerRequest(s8* state, GcciObj* p)
+{
+	s32 i;
+	s32 amount;
+	s32 total;
+	void* end;
+
+	for (i = 0; i < GCCI_OBJ_MAX; i++, p++) {
+		if (p->stat == 1 && p->busy == 2) {
+			p->dvdStatus   = DVDGetCommandBlockStatus(&p->fileInfo);
+			gcci_DvdStatus = p->dvdStatus;
+			switch (p->dvdStatus) {
+				case -1:
+					p->busy  = 3;
+					state[4] = 3;
+					break;
+				case 0:
+					total = p->rdsct * p->sctsize;
+					DCInvalidateRange(p->buffer, total);
+					p->total = total;
+					p->pos += p->rdsct;
+					if (p->pos * p->sctsize > p->size) {
+						amount = p->pos * p->sctsize - p->size;
+						end    = (char*)p->buffer + p->total - amount;
+						memset(end, 0, amount);
+						DCStoreRange(end, amount);
+					}
+					p->busy  = 1;
+					state[4] = 1;
+					break;
+				case 10:
+					amount = DVDGetTransferredSize(&p->fileInfo);
+					DCInvalidateRange(p->buffer, amount);
+					state[4] = 0;
+					p->total = p->sctsize * (amount / p->sctsize);
+					p->pos += amount / p->sctsize;
+					p->busy = 0;
+					break;
+			}
+		}
+	}
+}
+
+static inline s32 gcci_IsReading(void)
+{
+	GcciObj* p;
+	s32 i;
+
+	p = gcci_ObjTbl;
+	for (i = 0; i < GCCI_OBJ_MAX; i++, p++) {
+		if (p->stat == 1 && p->busy == 2) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
 s32 fn_8021E3D8(GcciObj* p)
 {
 	if (p == NULL) {
@@ -366,8 +423,6 @@ s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 	s8* state;
 	GcciObj* p;
 	GcciObj* q;
-	GcciObj* scan;
-	s32 i;
 	s32 ready;
 	s32 found;
 	s32 offset;
@@ -397,14 +452,7 @@ s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 		return 0;
 	}
 	q     = gcci_ObjTbl;
-	scan  = q;
-	found = 0;
-	for (i = 0; i < GCCI_OBJ_MAX; i++, scan++) {
-		if (scan->stat == 1 && scan->busy == 2) {
-			found = 1;
-			break;
-		}
-	}
+	found = gcci_IsReading();
 	if (found) {
 		return 0;
 	}
@@ -418,7 +466,7 @@ s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 	p->total  = 0;
 	p->buffer = buffer;
 	p->rdsct  = nsct;
-	gcci_ExecServer(state, q, 0);
+	gcci_ExecServerRequest(state, q);
 	offset = p->pos * p->sctsize;
 	length = p->rdsct * p->sctsize;
 	if (offset + length > p->size) {
