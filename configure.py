@@ -3467,11 +3467,6 @@ config.custom_build_rules = [
         "description": "FIX fn_8005438C shared conversion bias",
     },
     {
-        "name": "fix_fn_800546F4_object",
-        "command": "$python tools/fix_fn_800546F4_object.py $in $out",
-        "description": "FIX fn_800546F4 split-TU compiler choices",
-    },
-    {
         "name": "fix_fn_8005E8EC_object",
         "command": "$python tools/fix_fn_8005E8EC_object.py $in $out",
         "description": "FIX fn_8005E8EC.cpp split-TU compiler details",
@@ -3743,12 +3738,6 @@ config.custom_build_steps = {
             "rule": "fix_fn_8005438C_object",
             "inputs": "build/G9SE8P/src/game/fn_8005438C.o",
             "implicit": ["tools/fix_fn_8005438C_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/fn-800546F4-object.stamp",
-            "rule": "fix_fn_800546F4_object",
-            "inputs": "build/G9SE8P/src/game/fn_800546F4.o",
-            "implicit": ["tools/fix_fn_800546F4_object.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-8005E8EC-object.stamp",
