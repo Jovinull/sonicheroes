@@ -152,6 +152,7 @@ const struct {
 	char noResource[32];
 	char noStream[28];
 	char noVoice[36];
+	u8 pad[4];
 } lbl_80240440 = {
 	"E1070309:Illigal parameter(sw).\n",
 	"E2071701:DMA transfer(data) to A-RAM did not finish.\n",
