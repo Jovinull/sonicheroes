@@ -285,9 +285,9 @@ static inline void gcci_ExecServer(s8* state, GcciObj* p, s32 i)
 					p->total = total;
 					p->pos += p->rdsct;
 					if (p->pos * p->sctsize > p->size) {
-						amount = p->pos * p->sctsize - p->size;
-						end    = (char*)p->buffer + p->total - amount;
-						memset(end, 0, amount);
+						memset(end = (char*)p->buffer + p->total
+						        - (amount = p->pos * p->sctsize - p->size),
+						    0, amount);
 						DCStoreRange(end, amount);
 					}
 					p->busy  = 1;
@@ -327,9 +327,9 @@ static inline void gcci_ExecServerRequest(s8* state, GcciObj* p)
 					p->total = total;
 					p->pos += p->rdsct;
 					if (p->pos * p->sctsize > p->size) {
-						amount = p->pos * p->sctsize - p->size;
-						end    = (char*)p->buffer + p->total - amount;
-						memset(end, 0, amount);
+						memset(end = (char*)p->buffer + p->total
+						        - (amount = p->pos * p->sctsize - p->size),
+						    0, amount);
 						DCStoreRange(end, amount);
 					}
 					p->busy  = 1;
