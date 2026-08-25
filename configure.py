@@ -3487,6 +3487,11 @@ config.custom_build_rules = [
         "description": "FIX SJRBF split-TU commutative register order",
     },
     {
+        "name": "fix_axrna_object",
+        "command": "$python tools/fix_axrna_object.py $in $out",
+        "description": "FIX AXRNA split-TU register allocation",
+    },
+    {
         "name": "fix_fn_800D75CC_object",
         "command": "$python tools/fix_fn_800D75CC_object.py $in $out",
         "description": "FIX fn_800D75CC compiler register coloring",
@@ -3790,6 +3795,12 @@ config.custom_build_steps = {
             "rule": "fix_sjrbf_object",
             "inputs": "build/G9SE8P/src/game/cri/sjrbf.o",
             "implicit": ["tools/fix_sjrbf_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/axrna-object.stamp",
+            "rule": "fix_axrna_object",
+            "inputs": "build/G9SE8P/src/game/cri/axrna.o",
+            "implicit": ["tools/fix_axrna_object.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-800D75CC-object.stamp",
