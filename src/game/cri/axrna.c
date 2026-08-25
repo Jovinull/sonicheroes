@@ -237,9 +237,18 @@ static u32 ax_RefCnt;
 static void* ax_AlignedBuf;
 static s32 ax_X[2];
 static s32 ax_Y;
-static s32 ax_Z[32];
-static u8 ax_Buf[4160];
-static AxRna ax_Tbl[AX_RNA_MAX];
+static struct {
+	s32 z[32];
+	u8 buf[4160];
+} ax_Work;
+static struct {
+	AxRna tbl[AX_RNA_MAX];
+	s32 pad;
+} ax_Table;
+
+#define ax_Z   ax_Work.z
+#define ax_Buf ax_Work.buf
+#define ax_Tbl ax_Table.tbl
 
 // Never called, and it is here for its side effect on layout, not its value.
 // MWCC lays .bss out in the reverse of the order the first function to touch
