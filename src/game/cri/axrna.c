@@ -669,6 +669,22 @@ extern AxObj* fn_80221300(s32 start, s32 length, s32 zero);
 extern AxObj* fn_801E229C(s32 priority, void (*callback)(AxObj*), s32 zero);
 extern void fn_801E7B08(AxObj* obj, s32 type, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
 
+static inline void ax_SetRateMode(AxRna* p)
+{
+	if (p == NULL) {
+		return;
+	}
+	p->rateMode = (s16)ax_X[0];
+}
+
+static inline void ax_SetRateBias(AxRna* p)
+{
+	if (p == NULL) {
+		return;
+	}
+	p->rateBias = ax_RateBias;
+}
+
 AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 {
 	AxRna* p;
@@ -742,8 +758,8 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 			fn_80223490();
 		}
 	}
-	p->rateMode = (s16)ax_X[0];
-	p->rateBias = ax_RateBias;
+	ax_SetRateMode(p);
+	ax_SetRateBias(p);
 	p->rateFlag = 1;
 	p->rateFlag = 0;
 	p->rate     = 32000;
