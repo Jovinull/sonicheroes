@@ -576,6 +576,11 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
+                Matching,
+                "game/cri/svm.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
                 NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
@@ -3537,6 +3542,11 @@ config.custom_build_rules = [
         "description": "FIX wide_format_core.cpp compiler-only codegen",
     },
     {
+        "name": "fix_svm_object",
+        "command": "$python tools/fix_svm_object.py $in $out",
+        "description": "FIX SVM split-BSS layout and loop scheduling",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -3858,6 +3868,12 @@ config.custom_build_steps = {
             "rule": "fix_wide_format_core_object",
             "inputs": "build/G9SE8P/src/game/wide_format_core.o",
             "implicit": ["tools/fix_wide_format_core_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/svm-object.stamp",
+            "rule": "fix_svm_object",
+            "inputs": "build/G9SE8P/src/game/cri/svm.o",
+            "implicit": ["tools/fix_svm_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
