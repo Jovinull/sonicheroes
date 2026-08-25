@@ -2266,12 +2266,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/s11door_object_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/s11_door_object_dtor.cpp",
+                "rel/o_s11_door.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3487,6 +3482,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_o_s11_door_object",
+        "command": "$python tools/fix_o_s11_door_object.py $in $out",
+        "description": "FIX o_s11_door whole-TU compiler scheduling and metadata",
+    },
+    {
         "name": "fix_sj_object",
         "command": "$python tools/fix_sj_object.py $in $out",
         "description": "FIX SJ split-TU compiler layout",
@@ -3798,6 +3798,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/o-s11-door-object.stamp",
+            "rule": "fix_o_s11_door_object",
+            "inputs": "build/G9SE8P/src/rel/o_s11_door.o",
+            "implicit": ["tools/fix_o_s11_door_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/sj-object.stamp",
             "rule": "fix_sj_object",
