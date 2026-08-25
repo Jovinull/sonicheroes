@@ -138,8 +138,8 @@ const char ax_ver[]                         = "\nAXRNA Ver.1.02 Build:May  9 200
 static const char* const volatile ax_verptr = ax_ver;
 const char ax_off[]                         = "OFF";
 const char ax_on[]                          = "ON ";
-const s32 ax_rodata_pad                     = 0;
-const s32 ax_rodata_pad2                    = 0;
+const char* const ax_rodata_pad             = ax_off;
+const char* const ax_rodata_pad2            = ax_on;
 
 void fn_80223500(AxRna* p, s32 ch, s32 v)
 {
