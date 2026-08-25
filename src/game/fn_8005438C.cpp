@@ -2,6 +2,9 @@
 
 // The field order and left-associated arithmetic below preserve the retail
 // coordinate loads, floating-point live ranges, and bounding comparisons.
+// Compiling this carved TU alone still creates a private u16 conversion bias
+// and different exception-atom metadata; fix_fn_8005438c_object.py removes
+// that split-only atom and restores the combined-TU linker metadata.
 
 struct Fn8005438CVec {
 	f32 x;
@@ -30,9 +33,14 @@ struct Fn8005438CGrid {
 	f32 cellSizes[1];
 };
 
+static inline Fn8005438CNode* fn_8005438CNodes(Fn8005438CGrid* grid)
+{
+	return grid->nodes;
+}
+
 extern "C" Fn8005438CNode* fn_8005438C(Fn8005438CGrid* grid, const Fn8005438CVec* point)
 {
-	Fn8005438CNode* nodes = grid->nodes;
+	Fn8005438CNode* nodes = fn_8005438CNodes(grid);
 	u32 child;
 	if (nodes == 0)
 		return 0;
