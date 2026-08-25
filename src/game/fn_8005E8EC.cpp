@@ -7,78 +7,89 @@
 // The bounds came from a data-privacy scan over the run: every lbl_ object the
 // five functions reference is consumed inside them, and the next function up,
 // fn_8005F194, reaches labels with ninety to a hundred and forty-five users.
-// See issue #297. Three claims in splits.txt are still unargued and are tracked
-// there: lbl_80301780 (8800 bytes, no user anywhere in the DOL), lbl_80243570
-// (only user fn_8005F194, which is the next unit) and lbl_803039E0 (used here
-// and by fn_8005D498 -- not wrong on its own, a unit can own a global another
-// reads, but it should be said out loud).
 //
-// NOT MATCHING: two of the five functions are byte-exact, fn_8005EC0C and
-// fn_8005EC14.
+// All five functions are byte-exact. The unit is still NonMatching, and the
+// only thing left is sixteen bytes of exception metadata -- see the end of this
+// note.
 //
-//   fn_8005E8EC is the right length now and thirty-five bytes differ, all of
-//   them register fields plus one branch. Two things got it there and are worth
-//   remembering for the other two. The sentinel test has to read
-//   `(s32)found != -1` while the bound test stays unsigned: the target compares
-//   with `cmpwi r31, -0x1` and `cmplwi r31, 0xa`, so the counter is unsigned and
-//   only the sentinel is looked at as signed. Writing the counter as s32 fixes
-//   the sentinel and breaks the bound; the cast fixes both.
+// Three shapes did the work, and they generalise:
 //
-//   What is left in it, and in the other two, is the same pair everywhere: the
-//   target writes an address constant straight into its callee-saved register
-//   where this build goes through r0 and copies, and the target leaves
-//   `bne .L_next` followed by `b .L_out` where this build folds the two into a
-//   single `beq .L_out`. The fold is not the peephole flag -- the unit already
-//   builds with -opt noschedule,nopeephole, and every other combination tried
-//   (none, nopeephole alone, noschedule alone, level=4) is worse. Five loop
-//   spellings all normalise to the folded form.
+//   The sentinel test reads `(s32)found != -1` while the bound test stays
+//   unsigned. The target compares with `cmpwi r31, -0x1` and `cmplwi r31, 0xa`,
+//   so the counter is unsigned and only the sentinel is read as signed. Writing
+//   the counter as s32 fixes the sentinel and breaks the bound; the cast fixes
+//   both.
 //
-//   fn_8005EA04 is twelve bytes short, and what is left of it is now down to
-//   three shapes. Three things brought it from thirteen structural differences
-//   to four. It recomputes `lbl_802FF5E0[i].object` from the index rather than
-//   reusing the walked `entry` pointer, and does the same for the request in
-//   the second half -- `request = &lbl_803039F8[i]` -- which is what makes the
-//   target's `mulli r4, r30, 0x50` plus base reload appear. It caches
-//   `request->data` into a local read before the slot check, because the target
-//   loads it there and not at its point of use. And `streamArgs` has to be two
-//   assignments in reverse order, `[1]` then `[0]`, not a braced initialiser:
-//   the initialiser makes MWCC lay down an eight-byte zero template from
-//   .sdata2 first, four instructions the target does not have.
+//   fn_8005EA04 closes on a short-circuit `&&`. The target ends the request
+//   path with a `bne`/`b` pair and a join where both arms write r0 before a
+//   single `mr r28, r0`; this build folded that into one `beq` and returned the
+//   value directly. The fold is not an optimisation flag -- every pragma the
+//   compiler accepts (opt_propagation, opt_common_subs, opt_lifetimes,
+//   no_register_coloring, peephole, optimization_level 0 through 3) and every
+//   flag combination leaves it, and twenty different loop and goto spellings
+//   all normalise to the same folded form. What produces the pair is writing
+//   the two conditions as one `&&`: `if (result == NULL && data != NULL)` with
+//   an `else if (result == NULL) result = NULL;` arm. Short-circuit evaluation
+//   is what emits the second branch, not a missing peephole.
 //
-//   Left in it: two `bne`/`b` pairs this build folds, an argument register the
-//   target loads once where this build reloads, and a join at the very end
-//   where both the found and the not-found path write r0 and then a single
-//   `mr r28, r0` -- the NULL initialiser sunk to the join instead of sitting at
-//   the top. Neither dropping the initialiser with explicit else arms nor a
-//   ternary on the last assignment reproduces it.
-//
-//   fn_8005ED88 is the right length now and twenty-seven bytes differ, all of
-//   them one register swap: the target keeps the archive handle in r27 and the
-//   scratch buffer in r29, this build has them the other way round. Getting
-//   there took four things.
-//
-//   The big one is a build flag, not source: the unit needs -pooldata off. With
-//   pooling on, MWCC notices that every one of this unit's data labels lives in
-//   its own sections and folds them into one base register plus offsets --
-//   `addi r3, r25, 0x4400`, `addi r4, r31, 0x188` and so on -- where the target
+//   The unit needs -pooldata off. With pooling on, MWCC folds every one of this
+//   unit's data labels into one base register plus offsets where the target
 //   emits an independent lis/addi pair for each. That alone was thirty-six
 //   bytes. eff_tornado.cpp already carries the same flag.
 //
-//   The stack frame gave away the path buffer. The target opens with
-//   `stwu r1, -0x50(r1)` and saves r24 through r31, which leaves forty bytes
-//   between the linkage area and the register save area. A `char path[0x40]`
-//   cannot fit there; anything from 0x20 to 0x28 produces identical code, so
-//   the size is only bounded, not recovered, and 0x20 is what is written.
+// Two smaller ones, kept because they are easy to undo by accident. `request`
+// has to be declared before the clearing loop, used by it, and assigned again
+// afterwards -- redundant as C, but it is what makes the target materialise the
+// array base once into a callee-saved register. And `streamArgs` has to be two
+// assignments in reverse order, `[1]` then `[0]`, not a braced initialiser: the
+// initialiser makes MWCC lay down an eight-byte zero template from .sdata2
+// first, four instructions the target does not have.
 //
-//   The clearing loop shares the array base with the walk that follows it, and
-//   the target materialises that base once into a callee-saved register. That
-//   needs `request` declared before the loop, used by it, and assigned again
-//   afterwards -- redundant as C, but it is what produces the single
-//   materialisation.
+// The stack frame bounds the path buffer rather than recovering it. The target
+// opens fn_8005ED88 with `stwu r1, -0x50(r1)` and saves r24 through r31, which
+// leaves forty bytes between the linkage area and the register save area. A
+// `char path[0x40]` cannot fit; anything from 0x20 to 0x28 produces identical
+// code, so 0x20 is a bound, not a reading.
 //
-//   Last, materialData has to be declared and initialised before material, with
-//   material's call split out into its own statement, or the `li rN, 0` lands
-//   after the fn_80041FF4 call instead of before it.
+// WHAT BLOCKS THE FLIP TO Matching
+//
+//   The retail object carries a 0x30-byte extab; this build emits 0x20, so the
+//   linked DOL comes out thirty-two bytes short. Three of the four entries were
+//   already right. The fourth, fn_8005ED88's, carries a __dl__FPv cleanup over
+//   the constructor call at +0x134, which only a real new-expression produces:
+//   MWCC has to be able to free the raw allocation if the constructor throws.
+//   Writing the allocation as `new ResourceArchive(...)`, with fn_80057644 as
+//   the class's own operator new and fn_800BCC84 as the constructor, keeps all
+//   five functions byte-exact and brings the extab to the right 0x30 bytes.
+//
+//   One byte inside it still differs: the cleanup record reads 0x8a80001b in
+//   the target and 0x8a80001f here. The low field tracks the register the
+//   compiler believes holds the pointer -- 27 against 31 -- and the target's 27
+//   is the register the emitted code actually uses. Every spelling that keeps
+//   the five functions byte-exact yields 31; the two that yield 24 both break a
+//   function. Declaration position, an out-of-line constructor, a trivial or
+//   virtual destructor, an explicit operator delete, a sized class body and
+//   casting through void*, char* or u8* were all tried. This looks like MWCC
+//   exception bookkeeping that the source cannot reach directly, so it is
+//   written down rather than guessed at further.
+//
+// One claim in splits.txt that issue #297 raised is settled, and it is the
+// second thing standing between this unit and Matching. lbl_80301780 is not a
+// real object: it sits at offset 0x21A0 inside lbl_802FF5E0, which the code
+// walks as 256 entries of 68 bytes, so it lands mid-entry -- 126 entries and 40
+// bytes in -- and cannot be a symbol. dtk invents it from the single word at
+// 0x80273C04 inside lbl_80270F6A that happens to equal 0x80301780; that is the
+// only occurrence in the DOL and the surrounding data is high-entropy with no
+// other pointer in it, so the word is data, not an address. While the unit is
+// NonMatching this costs nothing, because dtk defines the phantom in its own
+// generated object. On the flip to Matching the source has to define it, and it
+// cannot, so the link fails with `undefined: lbl_80301780`. Marking
+// lbl_80270F6A `noreloc` and deleting the symbol does clear the link error, but
+// dtk writes the symbol back into symbols.txt on the next split, so that pair
+// is not a durable fix and is left out of this change.
+//
+// The remaining claim, lbl_803039E0, stands as before: this unit owns it and
+// fn_8005D498 reads it, which is allowed but is said out loud here.
 
 struct ResourceEntry {
 	char name[0x40];
@@ -206,6 +217,20 @@ void* lbl_8042C2A8;
 #pragma force_active reset
 }
 
+// The retail extab carries a __dl__FPv cleanup over the constructor call at
+// fn_8005ED88+0x134, which only a real new-expression produces: MWCC has to be
+// able to free the raw allocation if the constructor throws. So the archive is
+// built with `new`, with fn_80057644 as the class's own operator new and
+// fn_800BCC84 as the constructor. Writing the two calls by hand -- the idiom
+// used in adv_staffroll.cpp and ef_sparkle.cpp -- emits the same instructions
+// but no exception table, which is how this unit read before.
+class ResourceArchive
+{
+public:
+	ResourceArchive(char* name, s32 flags) { fn_800BCC84(this, name, flags); }
+	static void* operator new(unsigned long size) { return fn_80057644(size); }
+};
+
 extern "C" void fn_8005E8EC(void)
 {
 	s32 i                = 0;
@@ -278,9 +303,8 @@ extern "C" void* fn_8005EA04(char* name)
 	if (i != -1) {
 		request    = &lbl_803039F8[i];
 		void* data = request->data;
-		if (lbl_802FF5E0[request->slot].object != NULL)
-			return lbl_802FF5E0[request->slot].object;
-		if (data != NULL) {
+		result     = lbl_802FF5E0[request->slot].object;
+		if (result == NULL && data != NULL) {
 			void* expanded = fn_80012994(0x19000);
 			void* input    = fn_80012994(request->size);
 			fn_800D0624(input, data, request->size);
@@ -299,6 +323,8 @@ extern "C" void* fn_8005EA04(char* name)
 			if (lbl_802FF5E0[request->slot].object != NULL)
 				fn_8014FFBC(lbl_802FF5E0[request->slot].object, (void*)fn_8005D498, 0);
 			result = lbl_802FF5E0[request->slot].object;
+		} else if (result == NULL) {
+			result = NULL;
 		}
 	}
 done:
@@ -377,9 +403,7 @@ extern "C" void fn_8005ED88(void)
 	}
 	if (materialData != NULL)
 		fn_801471C8(materialData);
-	void* archive = fn_80057644(0x58);
-	if (archive != NULL)
-		fn_800BCC84(archive, lbl_802435C8, 0);
+	ResourceArchive* archive = new ResourceArchive(lbl_802435C8, 0);
 	if (archive != NULL) {
 		fn_801A4C84(lbl_8042C2A8);
 		u32 i;
