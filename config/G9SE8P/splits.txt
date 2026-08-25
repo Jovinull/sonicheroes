@@ -305,6 +305,11 @@ game/fn_800D7920.cpp:
 	extabindex  start:0x8000F370 end:0x8000F37C
 	.text       start:0x800D7920 end:0x800D7A54
 
+game/fn_800D7BD8.cpp:
+	extab       start:0x80008C70 end:0x80008C78
+	extabindex  start:0x8000F388 end:0x8000F394
+	.text       start:0x800D7BD8 end:0x800D7E5C
+
 game/texture.cpp:
 	extab       start:0x80008CA0 end:0x80008CA8
 	extabindex  start:0x8000F3D0 end:0x8000F3DC
