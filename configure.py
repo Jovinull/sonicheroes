@@ -506,7 +506,7 @@ config.libs = [
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/eff_tornado.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pooldata off"],
             ),
@@ -3477,6 +3477,11 @@ config.custom_build_rules = [
         "description": "FIX fn_8005E8EC.cpp split-TU compiler details",
     },
     {
+        "name": "fix_eff_tornado_object",
+        "command": "$python tools/fix_eff_tornado_object.py $in $out",
+        "description": "FIX eff_tornado.cpp split-TU compiler choices",
+    },
+    {
         "name": "fix_wide_format_core_object",
         "command": "$python tools/fix_wide_format_core_object.py $in $out",
         "description": "FIX wide_format_core.cpp compiler-only codegen",
@@ -3755,6 +3760,12 @@ config.custom_build_steps = {
             "rule": "fix_fn_8005E8EC_object",
             "inputs": "build/G9SE8P/src/game/fn_8005E8EC.o",
             "implicit": ["tools/fix_fn_8005E8EC_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/eff-tornado-object.stamp",
+            "rule": "fix_eff_tornado_object",
+            "inputs": "build/G9SE8P/src/game/eff_tornado.o",
+            "implicit": ["tools/fix_eff_tornado_object.py"],
         },
         {
             "outputs": "build/G9SE8P/wide-format-core-object.stamp",
