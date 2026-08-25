@@ -27,6 +27,7 @@
     "game/cri/sjcrs.c",
     "game/cri/sjmem.c",
     "game/cri/sjrbf.c",
+    "game/rw_gcn_render.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
     "movieD/cri/sfxset.c",
