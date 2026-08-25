@@ -582,6 +582,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/rnares.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
                 "game/cri/adapter.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
@@ -3482,6 +3487,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_rnares_object",
+        "command": "$python tools/fix_rnares_object.py $in $out",
+        "description": "FIX RNARES split-TU compiler layout",
+    },
+    {
         "name": "fix_sj_object",
         "command": "$python tools/fix_sj_object.py $in $out",
         "description": "FIX SJ split-TU compiler layout",
@@ -3793,6 +3803,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/rnares-object.stamp",
+            "rule": "fix_rnares_object",
+            "inputs": "build/G9SE8P/src/game/cri/rnares.o",
+            "implicit": ["tools/fix_rnares_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/sj-object.stamp",
             "rule": "fix_sj_object",

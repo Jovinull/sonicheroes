@@ -23,6 +23,7 @@
     "game/cri/gcci.c",
     "game/cri/lsc.c",
     "game/cri/mfci.c",
+    "game/cri/rnares.c",
     "game/cri/sj.c",
     "game/cri/sjcrs.c",
     "game/cri/sjmem.c",

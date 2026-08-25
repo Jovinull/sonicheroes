@@ -953,21 +953,24 @@ game/cri/lsc.c:
 game/cri/sjcrs.c:
 	.text       start:0x80220544 end:0x802205DC
 	.bss        start:0x80422C10 end:0x80422C18
-game/cri/sjrbf.c:
-	.text       start:0x8022154C end:0x802218A8
-	.rodata     start:0x8023FFB0 end:0x8023FFC0
-	.data       start:0x8029B888 end:0x8029BA48
-	.bss        start:0x804270A8 end:0x80427CB0
+
 game/cri/sjmem.c:
 	.text       start:0x802205DC end:0x80220BF0
 	.rodata     start:0x8023FF50 end:0x8023FF70
 	.data       start:0x8029B828 end:0x8029B858
 	.bss        start:0x80422C18 end:0x804230A0
+
 game/cri/sj.c:
 	.text       start:0x80220BF0 end:0x8022154C
 	.rodata     start:0x8023FF70 end:0x8023FFB0
 	.data       start:0x8029B858 end:0x8029B888
 	.bss        start:0x804230A0 end:0x804270A8
+
+game/cri/sjrbf.c:
+	.text       start:0x8022154C end:0x802218A8
+	.rodata     start:0x8023FFB0 end:0x8023FFC0
+	.data       start:0x8029B888 end:0x8029BA48
+	.bss        start:0x804270A8 end:0x80427CB0
 
 game/cri/mfci.c:
 	.text       start:0x80222A14 end:0x80223424
@@ -984,3 +987,8 @@ game/cri/axrna.c:
 	.rodata     start:0x80240400 end:0x802405F8
 	.data       start:0x8029BAB0 end:0x8029BB30
 	.bss        start:0x80428A78 end:0x8042A9D0
+
+game/cri/rnares.c:
+	.text       start:0x80224D14 end:0x80225100
+	.rodata     start:0x802405F8 end:0x80240648
+	.bss        start:0x8042A9D0 end:0x8042AB68
