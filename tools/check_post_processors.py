@@ -34,7 +34,74 @@ WRITE_CALLS = {"pack_into", "insert", "write_bytes", "pack_into_"}
 # Nothing may be added to this list. A new step gets the bytes from source.
 CARRIED_RETAIL_DEBT = {
     "fix_game_action_object.py": {"TARGET_EXTAB"},
+    "fix_eff_tornado_object.py": {"TEXT_PATCHES"},
+    "fix_stage13_3way_colli_object.py": {"WORD_FIXES"},
+    "fix_stage13_antenna_object.py": {"FACTORY_REGISTER_WORDS"},
+    "fix_stage13_blinklight_object.py": {"FACTORY_REGISTER_WORDS"},
 }
+
+
+def instruction_sized_constants(tree: ast.Module) -> set[str]:
+    """Module-level names bound to a literal holding instruction-sized values.
+
+    A step may carry register numbers, bit shifts and offsets; those are small.
+    A 32-bit value in a table is an instruction word, and writing one is
+    carrying retail content whether it is spelled as hex bytes or as an int.
+    """
+    found = set()
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        big = False
+        for child in ast.walk(node.value):
+            if isinstance(child, ast.Constant) and isinstance(child.value, int):
+                if not isinstance(child.value, bool) and child.value >= 0x10000:
+                    big = True
+        if not big:
+            continue
+        for target in node.targets:
+            if isinstance(target, ast.Name):
+                found.add(target.id)
+    return found
+
+
+def value_argument_names(tree: ast.Module) -> set[str]:
+    """Names used as the *value* being written, not as an offset or a buffer.
+
+    struct.pack_into(fmt, buffer, offset, *values) -> args[3:]
+    insert(section, data)                          -> args[1]
+    blob[a:b] = value                              -> the right-hand side
+    """
+    values = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Call):
+            func = node.func
+            name = func.attr if isinstance(func, ast.Attribute) else getattr(func, "id", "")
+            if name == "pack_into":
+                for argument in node.args[3:]:
+                    values |= names_in(argument)
+            elif name == "insert" and len(node.args) >= 2:
+                values |= names_in(node.args[1])
+        elif isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Subscript):
+                    values |= names_in(node.value)
+    return values
+
+
+def unpacked_from(tree: ast.Module, sources: set[str]) -> set[str]:
+    """Names bound by iterating one of `sources`. One hop, no fixpoint.
+
+    Catches `for offset, (current, retail) in TABLE.items(): ... retail ...`,
+    which is how an instruction table reaches a write without the constant
+    itself appearing at the call. Deliberately shallow: a wider walk floods on
+    ordinary names like `offset` and `index` that every step reuses.
+    """
+    bound = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.For) and names_in(node.iter) & sources:
+            bound |= names_in(node.target)
+    return bound
 
 
 def hex_constants(tree: ast.Module) -> set[str]:
@@ -112,12 +179,30 @@ def writes_anything(tree: ast.Module) -> bool:
 def check(path: Path) -> list[str]:
     tree = ast.parse(path.read_text())
     problems = []
-    carried = hex_constants(tree) & written_names(tree)
-    carried -= CARRIED_RETAIL_DEBT.get(path.name, set())
+    allowed = CARRIED_RETAIL_DEBT.get(path.name, set())
+    written = written_names(tree)
+
+    carried = (hex_constants(tree) & written) - allowed
     for name in sorted(carried):
         problems.append(
             f"{path.name}: {name} is a hex literal that gets written. "
             "A post-processor may compare retail bytes, never carry them. "
+            "See docs/object-post-processors.md."
+        )
+
+    sized = instruction_sized_constants(tree) - allowed
+    values = value_argument_names(tree)
+    for name in sorted(sized & values):
+        problems.append(
+            f"{path.name}: {name} holds instruction-sized values and is written "
+            "as a value. Register numbers, shifts and offsets are fine to carry; "
+            "a 32-bit word is retail content. See docs/object-post-processors.md."
+        )
+    for name in sorted(unpacked_from(tree, sized) & values):
+        origin = ", ".join(sorted(sized))
+        problems.append(
+            f"{path.name}: {name} is unpacked from {origin}, which holds "
+            "instruction-sized values, and is written as a value. "
             "See docs/object-post-processors.md."
         )
     if writes_anything(tree) and not validates(tree):
