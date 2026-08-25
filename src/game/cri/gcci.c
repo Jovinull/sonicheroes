@@ -446,7 +446,7 @@ static inline s32 gcci_IsReading(void)
 	s32 i;
 
 	p = gcci_ObjTbl;
-	for (i = 0; i < GCCI_OBJ_MAX; i++, p++) {
+	for (i = 0; i < GCCI_OBJ_MAX; p++, i++) {
 		if (p->stat == 1 && p->busy == 2) {
 			return 1;
 		}
