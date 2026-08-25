@@ -25,9 +25,23 @@
 //   fn_8021E118 and fn_8021E3D8 share nothing. The upper bound is fn_8021F410,
 //   the shared error reporter that lsc.c also calls, so it belongs to neither.
 //
-// Nothing is named yet. The messages here carry no function names -- unlike
-// MFCI and LSC, whose "(mfCiOpen)" and "(LSC_Create)" suffixes gave the naming
-// away -- so every function keeps its dtk name until something anchors it.
+// Correcting what stood here: the messages DO carry function names, the same
+// way MFCI's and LSC's do. I had only read the first third of the .rodata. The
+// suffixes in the block name three functions outright --
+//
+//   +200 "E0092913:nsct < 0.(gcCiReqRd)"          +232 "...buf is null.(gcCiReqRd)"
+//   +276 "E0092908:fname is null.(gcCiOpen)"       and three more (gcCiOpen)
+//   +428 "E0092901:fname is null.(gcCiGetFileSize)" and two more (gcCiGetFileSize)
+//
+// -- and fn_8021F0A8 is gcCiGetFileSize: it is the only function that reads all
+// three of the +428/+472/+520 messages. The names are not applied yet because
+// the functions that own them are still unwritten; renaming a dtk symbol before
+// its body exists would only make the diff harder to read.
+//
+// The whole .rodata is one string pool addressed from a single base register,
+// so its layout is decided by the order the functions first use the literals.
+// That order is therefore also the source order of the functions, which is what
+// the remaining six will have to respect.
 
 typedef void (*GcciErrFunc)(void* obj, const char* msg, void* arg);
 typedef void (*GcciFunc)(void);
@@ -57,6 +71,8 @@ typedef struct DVDFileInfo {
 	DVDCallback callback;
 } DVDFileInfo;
 
+// The handle mirrors MFCI's, shifted by 0x0C: the same sector size, size,
+// sector count, position, total and read-count run, in the same order.
 typedef struct GcciObj {
 	/* 0x00 */ s8 stat;
 	/* 0x01 */ s8 pad01;

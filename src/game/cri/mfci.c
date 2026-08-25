@@ -46,59 +46,23 @@
 // mfCiExecServer and mfCiGetInterface. The statics it also names are
 // mfci_alloc, mfci_reset_hn, mfci_get_adr_size and mfci_call_errfn.
 //
-// NOT MATCHING: eleven of the fourteen functions are byte-exact. What is left
-// is fn_80222C40 (mfCiReqRd), fn_80222F28 (mfCiSeek) and fn_80223404
-// (mfCiExecServer).
+// MATCHING: all fourteen functions are byte-exact.
 //
-//   fn_80222C40 differs only in register allocation: the target ranks the
-//   handle above the buffer (r29/r28), this build ranks the buffer above the
-//   handle, and the two callee-saved registers the string and .bss bases free
-//   up afterwards follow that swap. Every instruction, every relocation and the
-//   function size already agree; 48 bytes differ and all of them are register
-//   fields. Ruled out: local declaration order, local types (`u32` vs a pointer
-//   for the address, signedness of the clamp), aliasing the buffer through a
-//   local `s8*`, extracting the min, the request setup or the memset tail into
-//   a static helper, and reshaping mfci_get_adr_size, which is inlined here.
-//   The mfCiOpenEntry lever described below is binary and already saturated:
-//   its two states give handle-above-buffer with the .rodata base sunk too far,
-//   or the base order right with the handle and buffer swapped. Neither is the
-//   target, so the remaining nudge has to come from somewhere else again.
+//   fn_80222C40 needs its public handle typed opaquely and converted to the
+//   private `MfciObj*` locally. After the inlined address lookup, a named `max`
+//   and `n > max ? max : n` give the retail address/count register pair and
+//   branch direction.
 //
-//   fn_80222F28 is one instruction short. The target lowers the final clamp
-//   branchily -- `ble` into the block, `b` past the `li` into the shared store,
-//   so both arms converge on one `stw` with the value in r0. That the compiler
-//   is willing to branch for a select is not in doubt: the preceding clamp
-//   against nsct is emitted exactly that way. It is the zero that is the
-//   problem. Every `?:` spelling whose false arm reaches zero -- literal,
-//   returned from a static helper, `off - off`, `whence & 0`, a local assigned
-//   0 -- constant-propagates before the idiom recogniser runs, and the clamp
-//   comes out as branchless `neg/andc/srawi/and`. Every plain `if`/`else`
-//   spelling has an empty then-arm, which the compiler answers by inverting
-//   the test and dropping the `b`.
+//   fn_80222F28 is exact. Its final clamp needs a local result and a nested
+//   empty condition in the positive arm. The latter keeps both sides of the
+//   source branch alive until after MWCC forms the retail `ble`/`b` diamond;
+//   it then disappears, leaving both arms converging on one shared store.
 //
-//   The closest miss is worth keeping. Route both arms through a same-TU
-//   static setter -- `if (hn->pos > 0) { mfci_SetPos(hn, hn->pos); } else {
-//   mfci_SetPos(hn, 0); }` -- and the branch layout comes out exactly right,
-//   `ble` into the block and `b` skipping the `li`. What is left over is the
-//   then-arm's own redundant `stw`, which this compiler does not tail-merge
-//   with the else-arm's, so the function lands at 248 against the target's 244.
-//
-//   fn_80223404 is three instructions in the target -- `li r0, 0`,
-//   `cmpwi r0, 0x28`, `blr` -- the dead remains of a loop the optimiser
-//   deleted after emitting its guard. The PS2 build shows the body: a walk over
-//   the object table calling mfCiExecHndl, which is empty there (eight bytes,
-//   `jr ra`), guarded at the call site by the same stat test. Reproducing that
-//   split exactly -- empty callee, test in the caller -- lets this compiler
-//   delete the loop outright and emit a bare `blr`. Moving the test into the
-//   callee instead keeps the loop, as a `mtctr`/`bdnz` spin; that is what is
-//   written below, because it is the closest of the three shapes this compiler
-//   will produce. The third is `volatile`, which yields a full stack frame.
-//   They are attractors, not a spectrum: index and pointer walks, `while`,
-//   `do`, `goto`, a `break`, an empty inner loop, `-inline deferred` and empty
-//   callees nested two and three deep all land on one of them. The target sits
-//   between the first two -- the loop was deleted late enough that its guard
-//   had already been emitted, and its trip count never became a `ctr` loop,
-//   which here happens only while the body still holds a call.
+//   fn_80223404 is exact. Its three instructions -- `li r0, 0`, `cmpwi r0,
+//   0x28`, `blr` -- are the dead remains of the PS2 body: a forty-entry walk
+//   calling the empty mfCiExecHndl. Keeping the empty walk and placing the dead
+//   handler call after it makes MWCC remove the work late enough to retain the
+//   loop's initial guard, exactly as retail does.
 //
 // The register allocation of mfCiOpen and mfCiReqRd turned out to be steered
 // from outside those functions. Whether mfCiOpenEntry touches a third .bss
@@ -160,7 +124,7 @@ void fn_80222A74(MfciObj* hn, s32 sctsize);
 s32 fn_80222B0C(MfciObj* hn);
 s32 fn_80222B6C(MfciObj* hn);
 void fn_80222BD0(MfciObj* hn);
-s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf);
+s32 fn_80222C40(void* obj, s32 nsct, void* buf);
 s32 fn_80222EC8(MfciObj* hn);
 s32 fn_80222F28(MfciObj* hn, s32 off, s32 whence);
 void fn_8022301C(MfciObj* hn);
@@ -336,12 +300,15 @@ void fn_80222BD0(MfciObj* hn)
 	fn_8022291C();
 }
 
-s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf)
+s32 fn_80222C40(void* obj, s32 nsct, void* buf)
 {
 	s32 rest;
+	MfciObj* hn;
 	u32 adr;
 	u32 size;
 	s32 n;
+
+	hn = obj;
 
 	if (hn == NULL) {
 		mfci_ErrorN("E01100307:handl is null.");
@@ -365,8 +332,8 @@ s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf)
 	rest      = hn->nsct - hn->pos;
 	hn->rdsct = nsct < rest ? nsct : rest;
 	{
-		s32 nbyte = hn->rdsct * hn->sctsize;
 		s32 ofst  = hn->pos * hn->sctsize;
+		s32 nbyte = hn->rdsct * hn->sctsize;
 		if (nbyte == 0) {
 			hn->busy = 1;
 			fn_8022291C();
@@ -377,9 +344,10 @@ s32 fn_80222C40(MfciObj* hn, s32 nsct, void* buf)
 	}
 	hn->busy = 2;
 	adr      = mfci_get_adr_size(hn->fname, &size);
-	n        = hn->nbyte;
-	if (n > (s32)(size - hn->ofst)) {
-		n = (s32)(size - hn->ofst);
+	{
+		s32 max = (s32)(size - hn->ofst);
+		n       = hn->nbyte;
+		n       = n > max ? max : n;
 	}
 	memcpy(buf, (void*)(adr + hn->ofst), hn->nbyte);
 	memset((s8*)buf + n, 0, hn->nbyte - n);
@@ -401,6 +369,8 @@ s32 fn_80222EC8(MfciObj* hn)
 
 s32 fn_80222F28(MfciObj* hn, s32 off, s32 whence)
 {
+	s32 pos;
+
 	if (hn == NULL) {
 		mfci_ErrorN("E01100305:handl is null.");
 		return 0;
@@ -414,10 +384,14 @@ s32 fn_80222F28(MfciObj* hn, s32 off, s32 whence)
 		hn->pos = hn->pos + off;
 	}
 	hn->pos = hn->pos < hn->nsct ? hn->pos : hn->nsct;
-	if (hn->pos > 0) {
+	pos     = hn->pos;
+	if (pos > 0) {
+		if (pos && pos) {
+		}
 	} else {
-		hn->pos = 0;
+		pos = 0;
 	}
+	hn->pos = pos;
 	fn_8022291C();
 	return hn->pos;
 }
@@ -485,9 +459,9 @@ void fn_802233F0(MfciErrFunc func, void* obj)
 	mfci_ErrObj  = obj;
 }
 
-// Empty on the PS2 build too (eight bytes, `jr ra`), where the caller guards
-// the call with the same stat test. Folding the test into the callee is the
-// one shape that keeps the loop alive here; see the header.
+// Empty on the PS2 build too (eight bytes, `jr ra`). The apparently useful
+// test gives the inliner something to discard after the caller's loop shape
+// has already been formed; see the header.
 static void mfCiExecHndl(MfciObj* hn)
 {
 	if (hn->stat == 0) {
@@ -497,11 +471,12 @@ static void mfCiExecHndl(MfciObj* hn)
 
 void fn_80223404(void)
 {
-	s32 i;
+	MfciObj* hn;
+	long i;
 
 	for (i = 0; i < MFCI_OBJ_MAX; i++) {
-		mfCiExecHndl(&mfci_ObjTbl[i]);
 	}
+	mfCiExecHndl(hn = &mfci_ObjTbl[i]);
 }
 
 void* fn_80223410(void)
