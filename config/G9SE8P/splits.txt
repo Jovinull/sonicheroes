@@ -963,6 +963,11 @@ game/cri/sjmem.c:
 	.rodata     start:0x8023FF50 end:0x8023FF70
 	.data       start:0x8029B828 end:0x8029B858
 	.bss        start:0x80422C18 end:0x804230A0
+game/cri/sj.c:
+	.text       start:0x80220BF0 end:0x8022154C
+	.rodata     start:0x8023FF70 end:0x8023FFB0
+	.data       start:0x8029B858 end:0x8029B888
+	.bss        start:0x804230A0 end:0x804270A8
 
 game/cri/mfci.c:
 	.text       start:0x80222A14 end:0x80223424
