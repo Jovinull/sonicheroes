@@ -373,7 +373,7 @@ void fn_8001898C();
 void fn_80018988();
 void fn_80018950();
 void fn_80018954();
-void fn_80017854();
+void Error__7TObjectFPc();
 void fn_80018958();
 void __ct__15TObjEffTornado2FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObjEffTornado2*, TObject*, s32, RwV3d*, sAngle*, RwV3d*);
@@ -572,7 +572,7 @@ void* lbl_802534E4[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 
@@ -1139,7 +1139,7 @@ void* lbl_802535C4[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 void* lbl_802535F0[11] = {
@@ -1152,7 +1152,7 @@ void* lbl_802535F0[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 void* lbl_8025361C[11] = {
@@ -1165,7 +1165,7 @@ void* lbl_8025361C[11] = {
 	(void*)fn_80018988,
 	(void*)fn_80018950,
 	(void*)fn_80018954,
-	(void*)fn_80017854,
+	(void*)Error__7TObjectFPc,
 	(void*)fn_80018958,
 };
 
