@@ -124,11 +124,11 @@ s32 fn_8021E3D8(GcciObj* p);
 void fn_8021E438(GcciObj* p, s32 sctsize);
 s32 fn_8021E51C(GcciObj* p);
 s32 fn_8021E57C(GcciObj* p);
-void fn_8021E5E0(GcciObj* p);
+void fn_8021E5E0(void* obj);
 s32 fn_8021E780(void* obj, s32 nsct, void* buffer);
 s32 fn_8021EBA8(GcciObj* p);
 s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence);
-void fn_8021ECD4(GcciObj* p);
+void fn_8021ECD4(void* obj);
 GcciObj* fn_8021EE98(const char* fname, s32 mode, s32 rw);
 u32 fn_8021F0A8(const char* fname);
 void fn_8021F20C(GcciErrFunc func, void* obj);
@@ -407,8 +407,11 @@ s32 fn_8021E57C(GcciObj* p)
 	return p->busy;
 }
 
-void fn_8021E5E0(GcciObj* p)
+void fn_8021E5E0(void* obj)
 {
+	GcciObj* p;
+
+	p = obj;
 	if (p == NULL) {
 		gcci_Error(gcci_ErrHandl);
 		return;
@@ -526,12 +529,15 @@ s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence)
 	return p->pos;
 }
 
-void fn_8021ECD4(GcciObj* p)
+void fn_8021ECD4(void* obj)
 {
+	GcciObj* p;
+
+	p = obj;
 	if (p == NULL) {
 		return;
 	}
-	fn_8021E5E0(p);
+	fn_8021E5E0(obj);
 	DVDClose(&p->fileInfo);
 	p->stat = 0;
 	memset(p, 0, sizeof(GcciObj));
