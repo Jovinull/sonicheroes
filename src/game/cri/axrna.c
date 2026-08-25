@@ -539,10 +539,12 @@ void fn_80223F2C(AxRna* p, s32 sw)
 void fn_802240CC(AxRna* root, s32 sw)
 {
 	s32 cur;
+	s32 zero;
 	s32* p;
 	s32 i;
 	s32 j;
 	s32 k;
+	s32 delay;
 
 	if (root == NULL) {
 		return;
@@ -574,16 +576,30 @@ void fn_802240CC(AxRna* root, s32 sw)
 	} else if (sw == 0) {
 		p = (s32*)root;
 		for (i = 0; i < root->idx; i++) {
-			for (j = 0; *(volatile s32*)((u8*)p + 0x60) != 0 && j < 200; j++) {
-				for (k = 0; k < 100000; k++) {
+			k = sw;
+			for (j = 0; j < 200; j++) {
+				zero = 0;
+				if (*(volatile s32*)((u8*)p + 0x60) == 0) {
+					break;
+				}
+				if (k < 100000) {
+					for (delay = zero; delay < 100000; delay++) {
+					}
 				}
 			}
 			if (j == 200) {
 				fn_80223424("E2071701:DMA transfer(data) to A-RAM did not finish.\n");
 				return;
 			}
-			for (j = 0; *(volatile s32*)((u8*)p + 0x70) != 0 && j < 200; j++) {
-				for (k = 0; k < 100000; k++) {
+			j = zero;
+			k = j;
+			for (; j < 200; j++) {
+				if (*(volatile s32*)((u8*)p + 0x70) == 0) {
+					break;
+				}
+				if (k < 100000) {
+					for (delay = 0; delay < 100000; delay++) {
+					}
 				}
 			}
 			if (j == 200) {
