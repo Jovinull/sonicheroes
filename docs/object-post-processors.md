@@ -19,6 +19,42 @@ of those, a post-processor is the honest way to say so.
 That is the whole purpose. A post-processor describes a **known, measured gap
 between our build and retail's**. It is a bookmark, not a conclusion.
 
+## What they do today, measured
+
+Diffing each unit's freshly compiled object against the same object after its
+step runs puts every one of the 38 into one of three shapes. All three are
+legitimate; knowing which one you are looking at is what keeps a review honest,
+because two of them touch `.text` and that is not by itself a problem.
+
+**Metadata and symbols.** The majority. Atom order, `.ctors` slots, section
+alignment fields, ABI bytes in `.comment`, symbol names and scopes, string
+sub-sections. `.text` untouched.
+
+**Split-translation-unit slicing.** Several units are one source compiled more
+than once. `src/game/action_cont1.cpp` is thirty-one bytes — `#include
+"src/game/action.cpp"` — and so are `_cont2` through `_cont4`. All five objects
+compile the same 77 KB source, and each step keeps the slice that belongs to its
+object and drops the rest. That shows up as `.text` shrinking by around 19 KB,
+which looks alarming in a diff and is only extraction. The same pattern covers
+`game/movie.o`, `rel/o_invoke_colli.o` and others.
+
+**Permutation of our own compiler's output.** `fix_wide_format_core_object.py`
+is the one that does this: register fields renumbered, basic blocks reordered,
+branch offsets recomputed from where the blocks landed. Nothing is copied in
+from retail; the bytes all came from MWCC.
+
+The fourth shape — writing bytes taken from the retail object — is the one that
+is out, and today nothing in `tools/` does it. `fix_wide_format_core_object.py`
+uses a retail literal in exactly one place, an assertion, which is the opposite
+of carrying one.
+
+**Telling slicing from injection.** Slicing only removes; the bytes that remain
+are still at the offsets MWCC put them, or shifted whole. Injection introduces a
+value the compiler never produced at that offset. In review, look at what the
+script's tables hold: instruction indices, symbol names and section names are
+descriptions of our own output, while a hex literal being written rather than
+compared is retail content.
+
 ## The standard
 
 `tools/fix_wide_format_core_object.py` set it, and it is worth quoting because
