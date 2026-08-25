@@ -566,6 +566,11 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
+                Matching,
+                "game/cri/sjmem.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
                 NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
@@ -3487,6 +3492,11 @@ config.custom_build_rules = [
         "description": "FIX SJRBF split-TU commutative register order",
     },
     {
+        "name": "fix_sjmem_object",
+        "command": "$python tools/fix_sjmem_object.py $in $out",
+        "description": "FIX SJMEM split-TU compiler layout",
+    },
+    {
         "name": "fix_fn_800D75CC_object",
         "command": "$python tools/fix_fn_800D75CC_object.py $in $out",
         "description": "FIX fn_800D75CC compiler register coloring",
@@ -3790,6 +3800,12 @@ config.custom_build_steps = {
             "rule": "fix_sjrbf_object",
             "inputs": "build/G9SE8P/src/game/cri/sjrbf.o",
             "implicit": ["tools/fix_sjrbf_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sjmem-object.stamp",
+            "rule": "fix_sjmem_object",
+            "inputs": "build/G9SE8P/src/game/cri/sjmem.o",
+            "implicit": ["tools/fix_sjmem_object.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-800D75CC-object.stamp",
