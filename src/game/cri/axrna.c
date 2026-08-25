@@ -134,12 +134,37 @@ static s32 ax_PanTbl[31] = {
 	127,
 };
 
-const char ax_ver[]                         = "\nAXRNA Ver.1.02 Build:May  9 2003 17:10:58\n";
-static const char* const volatile ax_verptr = ax_ver;
+const char lbl_80240400[]                   = "\nAXRNA Ver.1.02 Build:May  9 2003 17:10:58\n";
+static const char* const volatile ax_verptr = lbl_80240400;
 const char ax_off[]                         = "OFF";
 const char ax_on[]                          = "ON ";
 const char* const ax_rodata_pad             = ax_off;
 const char* const ax_rodata_pad2            = ax_on;
+const struct {
+	char badSwitch[36];
+	char dmaData[56];
+	char dmaFlash[56];
+	char illegalSwitch[36];
+	char badChannelCount[40];
+	char nullStreams[40];
+	char nullStream[40];
+	char noHandles[36];
+	char noResource[32];
+	char noStream[28];
+	char noVoice[36];
+} lbl_80240440 = {
+	"E1070309:Illigal parameter(sw).\n",
+	"E2071701:DMA transfer(data) to A-RAM did not finish.\n",
+	"E2071701:DMA transfer(flash) to A-RAM did not finish.\n",
+	"E1070308:Illigal parameter(sw).\n",
+	"E1070301:Illigal parameter(maxnch<=0).\n",
+	"E1070302:Illigal parameter(sj=null).\n",
+	"E1070303:Illigal parameter(sj[]=null).\n",
+	"E1070304:Not enough RNA handle.\n",
+	"E1070305:Can't create RNARES.\n",
+	"E1070306:Can't create SJ.\n",
+	"E1070307:Can't acquire voice(AX).\n",
+};
 
 void fn_80223500(AxRna* p, s32 ch, s32 v)
 {
@@ -550,13 +575,14 @@ void fn_80223F2C(AxRna* p, s32 sw)
 		}
 		p->flags &= 1;
 	} else {
-		fn_80223424("E1070309:Illigal parameter(sw).\n");
+		fn_80223424(lbl_80240440.badSwitch);
 	}
 	fn_80223490();
 }
 
 void fn_802240CC(AxRna* root, s32 sw)
 {
+	const char* rodata = lbl_80240400;
 	s32 cur;
 	s32 zero;
 	s32* p;
@@ -607,7 +633,7 @@ void fn_802240CC(AxRna* root, s32 sw)
 				}
 			}
 			if (j == 200) {
-				fn_80223424("E2071701:DMA transfer(data) to A-RAM did not finish.\n");
+				fn_80223424(rodata + 0x64);
 				return;
 			}
 			j = zero;
@@ -622,14 +648,14 @@ void fn_802240CC(AxRna* root, s32 sw)
 				}
 			}
 			if (j == 200) {
-				fn_80223424("E2071701:DMA transfer(flash) to A-RAM did not finish.\n");
+				fn_80223424(rodata + 0x9C);
 				return;
 			}
 			p++;
 		}
 		root->flags &= 2;
 	} else {
-		fn_80223424("E1070308:Illigal parameter(sw).\n");
+		fn_80223424(rodata + 0xD4);
 	}
 }
 
@@ -687,22 +713,23 @@ static inline void ax_SetRateBias(AxRna* p)
 
 AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 {
+	const char* rodata = lbl_80240400;
 	AxRna* p;
 	s16 rate[7];
 	u32 i;
 	u32 id;
 
 	if (maxnch <= 0) {
-		fn_80223424("E1070301:Illigal parameter(maxnch<=0).\n");
+		fn_80223424(rodata + 0xF8);
 		return NULL;
 	}
 	if (sj == NULL) {
-		fn_80223424("E1070302:Illigal parameter(sj=null).\n");
+		fn_80223424(rodata + 0x120);
 		return NULL;
 	}
 	for (i = 0; i < maxnch; i++) {
 		if (sj[i] == NULL) {
-			fn_80223424("E1070303:Illigal parameter(sj[]=null).\n");
+			fn_80223424(rodata + 0x148);
 			return NULL;
 		}
 	}
@@ -712,7 +739,7 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 		}
 	}
 	if (i == AX_RNA_MAX) {
-		fn_80223424("E1070304:Not enough RNA handle.\n");
+		fn_80223424(rodata + 0x170);
 		return NULL;
 	}
 	p      = &ax_Tbl[i];
@@ -734,7 +761,7 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 			*(s32*)(chp + 0x28)   = 0x80000000 | id;
 			*(AxCb**)(chp + 0x10) = fn_80224D14();
 			if (*(AxCb**)(chp + 0x10) == NULL) {
-				fn_80223424("E1070305:Can't create RNARES.\n");
+				fn_80223424(rodata + 0x194);
 				fn_802242CC(p);
 				return NULL;
 			}
@@ -742,13 +769,13 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 			p->loopLen             = fn_80224CD0(*(AxCb**)(chp + 0x10));
 			*(AxObj**)(chp + 0x38) = fn_80221300(*(s32*)(chp + 0x18) * 2, p->loopLen * 2, 0);
 			if (*(AxObj**)(chp + 0x38) == NULL) {
-				fn_80223424("E1070306:Can't create SJ.\n");
+				fn_80223424(rodata + 0x1B4);
 				fn_802242CC(p);
 				return NULL;
 			}
 			*(AxObj**)(chp + 8) = fn_801E229C(31, fn_80224A88, 0);
 			if (*(AxObj**)(chp + 8) == NULL) {
-				fn_80223424("E1070307:Can't acquire voice(AX).\n");
+				fn_80223424(rodata + 0x1D0);
 				fn_802242CC(p);
 				return NULL;
 			}
