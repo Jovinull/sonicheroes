@@ -23,6 +23,7 @@
     "game/cri/gcci.c",
     "game/cri/lsc.c",
     "game/cri/mfci.c",
+    "game/cri/sjcrs.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
     "movieD/cri/sfxset.c",
