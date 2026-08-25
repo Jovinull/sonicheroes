@@ -507,6 +507,8 @@ s32 fn_8021EBA8(GcciObj* p)
 
 s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence)
 {
+	s32 pos;
+
 	if (p == NULL) {
 		gcci_Error(gcci_ErrHandl);
 		return 0;
@@ -519,12 +521,14 @@ s32 fn_8021EC08(GcciObj* p, s32 off, s32 whence)
 		p->pos = p->pos + off;
 	}
 	p->pos = p->pos < p->nsct ? p->pos : p->nsct;
-	if (p->pos > 0) {
-		if (p->pos && p->pos) {
+	pos    = p->pos;
+	if (pos > 0) {
+		if (pos && pos) {
 		}
 	} else {
-		p->pos = 0;
+		pos = 0;
 	}
+	p->pos = pos;
 	return p->pos;
 }
 
