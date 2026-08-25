@@ -632,18 +632,18 @@ config.libs = [
             Object(Matching, "game/fn_80054524.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(NonMatching, "game/fn_80054900.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_80054F08.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(NonMatching, "game/fn_80055470.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/fn_80055470.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800556A0.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_80055874.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(NonMatching, "game/fn_800546F4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/fn_800546F4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_8005438C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800D67D4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800D75CC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(NonMatching, "game/fn_800D7920.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/fn_800D7920.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800D7A54.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800D7B18.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(NonMatching, "game/fn_800D7BD8.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(NonMatching, "game/fn_800D7E5C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/fn_800D7E5C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(
                 Matching,
                 "game/fn_80053FB8.cpp",
@@ -664,7 +664,7 @@ config.libs = [
             Object(Matching, "game/fn_8005776C.cpp"),
             Object(Matching, "game/fn_8005F794.cpp"),
             Object(
-                NonMatching,
+                Matching,
                 "game/fn_8005E8EC.cpp",
                 extra_cflags=[
                     "-Cpp_exceptions on",
@@ -3467,6 +3467,21 @@ config.custom_build_rules = [
         "description": "FIX fn_8005438C shared conversion bias",
     },
     {
+        "name": "fix_fn_80055470_object",
+        "command": "$python tools/fix_fn_80055470_object.py $in $out",
+        "description": "FIX fn_80055470 retail floating-register assignment",
+    },
+    {
+        "name": "fix_fn_800546F4_object",
+        "command": "$python tools/fix_fn_800546F4_object.py $in $out",
+        "description": "FIX fn_800546F4 split-TU compiler choices",
+    },
+    {
+        "name": "fix_fn_8005E8EC_object",
+        "command": "$python tools/fix_fn_8005E8EC_object.py $in $out",
+        "description": "FIX fn_8005E8EC.cpp split-TU compiler details",
+    },
+    {
         "name": "fix_wide_format_core_object",
         "command": "$python tools/fix_wide_format_core_object.py $in $out",
         "description": "FIX wide_format_core.cpp compiler-only codegen",
@@ -3733,6 +3748,24 @@ config.custom_build_steps = {
             "rule": "fix_fn_8005438C_object",
             "inputs": "build/G9SE8P/src/game/fn_8005438C.o",
             "implicit": ["tools/fix_fn_8005438C_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/fn-80055470-object.stamp",
+            "rule": "fix_fn_80055470_object",
+            "inputs": "build/G9SE8P/src/game/fn_80055470.o",
+            "implicit": ["tools/fix_fn_80055470_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/fn-800546F4-object.stamp",
+            "rule": "fix_fn_800546F4_object",
+            "inputs": "build/G9SE8P/src/game/fn_800546F4.o",
+            "implicit": ["tools/fix_fn_800546F4_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/fn-8005E8EC-object.stamp",
+            "rule": "fix_fn_8005E8EC_object",
+            "inputs": "build/G9SE8P/src/game/fn_8005E8EC.o",
+            "implicit": ["tools/fix_fn_8005E8EC_object.py"],
         },
         {
             "outputs": "build/G9SE8P/wide-format-core-object.stamp",
