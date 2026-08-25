@@ -295,6 +295,11 @@ game/perf.cpp:
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 
+game/fn_800D67D4.cpp:
+	extab       start:0x80008C10 end:0x80008C20
+	extabindex  start:0x8000F2F8 end:0x8000F310
+	.text       start:0x800D67D4 end:0x800D689C
+
 game/fn_800D75CC.cpp:
 	extab       start:0x80008C58 end:0x80008C60
 	extabindex  start:0x8000F364 end:0x8000F370
