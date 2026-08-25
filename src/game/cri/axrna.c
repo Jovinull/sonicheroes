@@ -698,18 +698,20 @@ extern void fn_801E7B08(AxObj* obj, s32 type, s32 a, s32 b, s32 c, s32 d, s32 e,
 
 static inline void ax_SetRateMode(AxRna* p)
 {
+	s32 mode = ax_X[0];
 	if (p == NULL) {
 		return;
 	}
-	p->rateMode = (s16)ax_X[0];
+	p->rateMode = mode;
 }
 
 static inline void ax_SetRateBias(AxRna* p)
 {
+	s32 bias = ax_RateBias;
 	if (p == NULL) {
 		return;
 	}
-	p->rateBias = ax_RateBias;
+	p->rateBias = bias;
 	p->rateFlag = 1;
 }
 
@@ -768,9 +770,8 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 		u8* chp = (u8*)p;
 
 		for (i = 0; i < p->nch; i++, id++, chp += 4) {
-			*(s32*)(chp + 0x28)   = 0x80000000 | id;
-			*(AxCb**)(chp + 0x10) = fn_80224D14();
-			if (*(AxCb**)(chp + 0x10) == NULL) {
+			*(s32*)(chp + 0x28) = 0x80000000 | id;
+			if ((*(AxCb**)(chp + 0x10) = fn_80224D14()) == NULL) {
 				fn_80223424(rodata + 0x194);
 				fn_802242CC(p);
 				return NULL;
@@ -790,8 +791,10 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 				return NULL;
 			}
 			fn_802234B0();
-			fn_801E7B08(*(AxObj**)(chp + 8), 3, p->vol, p->voiceParam[1], p->voiceParam[2],
-			    p->voiceParam[0], p->voiceParam[3], 0x40);
+			if (*(AxObj**)(chp + 8) != NULL) {
+				fn_801E7B08(*(AxObj**)(chp + 8), 3, p->vol, p->voiceParam[1], p->voiceParam[2],
+				    p->voiceParam[0], p->voiceParam[3], 0x40);
+			}
 			fn_80223490();
 		}
 	}
@@ -799,7 +802,7 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	ax_SetRateBias(p);
 	p->rateFlag = 0;
 	if (p != NULL) {
-		p->rate = 32000;
+		p->rate = 48000;
 		for (i = 0; i < p->nch; i++) {
 			fn_802234B0();
 			if (p->obj[i] != NULL) {
@@ -808,7 +811,7 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 					rate[1] = 0x7FA9;
 				} else {
 					rate[0] = 1;
-					rate[1] = (s16)0x8000;
+					rate[1] = 32768;
 				}
 				rate[2] = 0;
 				rate[3] = 0;
