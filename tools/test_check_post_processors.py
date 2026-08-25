@@ -44,6 +44,43 @@ class HexLiteralTests(unittest.TestCase):
         self.assertEqual(checker.hex_constants(tree) & checker.written_names(tree), {"TAIL"})
 
 
+class InstructionSizedTests(unittest.TestCase):
+    def test_a_table_of_instruction_words_is_rejected(self) -> None:
+        tree = parse(
+            "import struct\n"
+            "PATCHES = {0x10: (0x7C7F1B78, 0x7C601B78)}\n"
+            "def main(blob, text):\n"
+            "    for offset, (current, retail) in PATCHES.items():\n"
+            "        struct.pack_into('>I', blob, text + offset, retail)\n"
+        )
+        sized = checker.instruction_sized_constants(tree)
+        self.assertEqual(sized, {"PATCHES"})
+        self.assertIn("retail", checker.unpacked_from(tree, sized) & checker.value_argument_names(tree))
+
+    def test_a_table_of_register_numbers_is_allowed(self) -> None:
+        tree = parse(
+            "import struct\n"
+            "FIELDS = {0x10: ((21, 31, 27), (11, 31, 27))}\n"
+            "def main(blob, text):\n"
+            "    for offset, fields in FIELDS.items():\n"
+            "        word = 0\n"
+            "        for shift, current, retail in fields:\n"
+            "            word = word | (retail << shift)\n"
+            "        struct.pack_into('>I', blob, text + offset, word)\n"
+        )
+        self.assertEqual(checker.instruction_sized_constants(tree), set())
+
+    def test_a_name_in_offset_position_is_not_a_value(self) -> None:
+        tree = parse(
+            "import struct\n"
+            "def main(blob, offset, word):\n"
+            "    struct.pack_into('>I', blob, offset, word)\n"
+        )
+        values = checker.value_argument_names(tree)
+        self.assertIn("word", values)
+        self.assertNotIn("offset", values)
+
+
 class ValidationTests(unittest.TestCase):
     def test_a_step_that_writes_without_validating_is_rejected(self) -> None:
         tree = parse(
@@ -80,7 +117,13 @@ class RepositoryTests(unittest.TestCase):
         # A new step gets its bytes from source. This list only ever shrinks.
         self.assertEqual(
             checker.CARRIED_RETAIL_DEBT,
-            {"fix_game_action_object.py": {"TARGET_EXTAB"}},
+            {
+                "fix_game_action_object.py": {"TARGET_EXTAB"},
+                "fix_eff_tornado_object.py": {"TEXT_PATCHES"},
+                "fix_stage13_3way_colli_object.py": {"WORD_FIXES"},
+                "fix_stage13_antenna_object.py": {"FACTORY_REGISTER_WORDS"},
+                "fix_stage13_blinklight_object.py": {"FACTORY_REGISTER_WORDS"},
+            },
         )
 
 

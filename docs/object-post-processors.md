@@ -43,14 +43,27 @@ is the one that does this: register fields renumbered, basic blocks reordered,
 branch offsets recomputed from where the blocks landed. Nothing is copied in
 from retail; the bytes all came from MWCC.
 
-The fourth shape — writing bytes taken from the retail object — is the one that
-is out. One step still does it: `fix_game_action_object.py` replaces the whole
-`extab` section with `TARGET_EXTAB`, a hex table of retail's exception records.
-It predates these criteria, and `action.cpp` is a 77 KB source compiled into
-five split objects, so producing that table from source is its own piece of
-work. `tools/check_post_processors.py` records it as named debt so the rule can
-be enforced everywhere else and this one stays visible rather than passing
-quietly. Nothing may be added to that list.
+The fourth shape — writing values taken from the retail object — is the one that
+is out. Five steps still do it, and all five are recorded as named debt in
+`tools/check_post_processors.py` so the rule can be enforced everywhere else
+while these stay visible instead of passing quietly:
+
+| step | constant | what it carries |
+| --- | --- | --- |
+| `fix_game_action_object.py` | `TARGET_EXTAB` | the whole `extab` section, as hex |
+| `fix_eff_tornado_object.py` | `TEXT_PATCHES` | whole instruction words |
+| `fix_stage13_3way_colli_object.py` | `WORD_FIXES` | whole instruction words |
+| `fix_stage13_antenna_object.py` | `FACTORY_REGISTER_WORDS` | whole instruction words |
+| `fix_stage13_blinklight_object.py` | `FACTORY_REGISTER_WORDS` | whole instruction words |
+
+The word tables are mostly register differences spelled the long way, but not
+only: `fix_stage13_antenna_object.py` turns `0x418201A4` into `0x7C1E0378`,
+which is a `beq` replaced by a `mr`. That is a different instruction, not a
+different register, and it cannot be re-spelled as a field substitution.
+
+**Nothing may be added to that list.** A test asserts it, and it only ever
+shrinks — `fix_fn_80055470_object.py` and `fix_fn_800546F4_object.py` were
+deleted outright when a better source spelling made them unnecessary.
 
 Elsewhere the line holds. `fix_wide_format_core_object.py` uses a retail literal
 in exactly one place, an assertion, which is the opposite of carrying one.
@@ -137,9 +150,14 @@ Two things that have each closed a wall recently, both cheaper than a patch:
 `tools/check_post_processors.py` decides the two properties that can be decided
 mechanically, and CI runs it alongside the language policy:
 
-- **no retail content** — a module-level `bytes.fromhex()` constant must never
-  reach a write, whether through `pack_into`, `insert`, or a slice assignment.
-  Comparing against one is a guard and stays allowed.
+- **no retail content** — a module-level constant must never reach a write,
+  whether spelled as `bytes.fromhex()` or as a table of integers, and whether it
+  arrives through `pack_into`, `insert`, a slice assignment, or one hop of
+  unpacking in a `for` loop. Size is what separates the two cases: register
+  numbers, bit shifts and offsets are small and fine to carry, while a value of
+  0x10000 or more is instruction-sized and is retail content. Only the *value*
+  position counts — a name used as an offset is not a value. Comparing against a
+  literal is a guard and stays allowed.
 - **fails closed** — a step that writes must validate something first, so a
   stale table stops the build instead of quietly not applying.
 
