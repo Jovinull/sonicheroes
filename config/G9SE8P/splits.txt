@@ -945,6 +945,10 @@ game/cri/gcci.c:
 	.data       start:0x8029B7B8 end:0x8029B828
 	.bss        start:0x8041F6B8 end:0x80420770
 
+game/cri/fn_8021F410.c:
+	.text       start:0x8021F410 end:0x8021F544
+	.bss        start:0x80420770 end:0x80420878
+
 game/cri/lsc.c:
 	.text       start:0x8021F544 end:0x80220544
 	.rodata     start:0x8023FDF8 end:0x8023FF50
