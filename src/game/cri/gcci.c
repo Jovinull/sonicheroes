@@ -111,14 +111,24 @@ const char gcci_ErrFileName[]      = "E0092901:fname is null.(gcCiGetFileSize)";
 const char gcci_ErrFileOpen[]      = "E0040201:can't open a file.(gcCiGetFileSize)";
 const char gcci_ErrFileClose[]     = "E0040202:can't close a file.(gcCiGetFileSize)\0\0";
 
-s32 gcci_DvdStatus       = 0;
-s8 gcci_Busy             = 0;
-s32 gcci_Canceling       = 0;
-void* gcci_ErrObj        = NULL;
-GcciErrFunc gcci_ErrFunc = NULL;
-GcciObj gcci_ObjTbl[GCCI_OBJ_MAX];
-volatile s32 gcci_Unknown;
+typedef struct GcciHeader {
+	s32 dvdStatus;
+	s8 busy;
+	s8 pad[3];
+	s32 canceling;
+} GcciHeader;
+
+static GcciHeader gcci_Header;
+static void* gcci_ErrObj;
+static GcciErrFunc gcci_ErrFunc;
+static u8 gcci_Big[0xFA0];
+static volatile s32 gcci_Unknown;
 extern char gcci_WorkStr[0x100];
+
+#define gcci_DvdStatus gcci_Header.dvdStatus
+#define gcci_Busy      gcci_Header.busy
+#define gcci_Canceling gcci_Header.canceling
+#define gcci_ObjTbl    ((GcciObj*)gcci_Big)
 
 s32 fn_8021E3D8(GcciObj* p);
 void fn_8021E438(GcciObj* p, s32 sctsize);
@@ -159,6 +169,12 @@ static s32 gcci_ReadMode = 0;
 static s32 gcci_DataPad  = 0;
 #pragma section data_type ".data"                                                                  \
                           ".bss"
+
+static s32 gcci_Touch(void)
+{
+	return gcci_Big[0] + gcci_Unknown + gcci_WorkStr[0] + (gcci_ErrFunc != NULL)
+	    + (gcci_ErrObj != NULL) + gcci_Header.dvdStatus;
+}
 
 static inline void gcci_Error(const char* msg)
 {
