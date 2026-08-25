@@ -94,6 +94,14 @@ s32 lbl_80427F58[8];
 #define SVM_ACTIVE lbl_80427F38
 #define SVM_COUNTS lbl_80427F58
 
+static s32 svm_touch(void)
+{
+	return lbl_80427F38[0] + lbl_80427F58[0] + (lbl_80427DB8[0][0].function != NULL)
+	    + (lbl_80427D78[0].function != NULL) + (lbl_80427D70.function != NULL)
+	    + (lbl_80427D68.function != NULL) + (lbl_80427D60.function != NULL) + lbl_80427CE0[0]
+	    + lbl_80427CB0.initCount;
+}
+
 static inline void svm_report(const char* message)
 {
 	strncpy(lbl_80427CE0, message, 0x7F);
