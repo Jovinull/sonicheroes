@@ -77,7 +77,7 @@ typedef struct AxRna {
 	/* 0x80 */ s32 pad80;
 	/* 0x84 */ s32 vol;
 	/* 0x88 */ s32 pan[2];
-	/* 0x90 */ u8 pad90[0x10];
+	/* 0x90 */ s32 voiceParam[4];
 	/* 0xa0 */ s16 rateMode;
 	/* 0xa2 */ s16 rateFlag;
 	/* 0xa4 */ s32 rateBias;
@@ -637,7 +637,6 @@ extern void fn_801E7B08(AxObj* obj, s32 type, s32 a, s32 b, s32 c, s32 d, s32 e,
 AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 {
 	AxRna* p;
-	AxRna* q;
 	s16 rate[7];
 	s32 i;
 	s32 id;
@@ -656,9 +655,8 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 			return NULL;
 		}
 	}
-	p = ax_Tbl;
-	for (i = 0; i < AX_RNA_MAX; i++, p++) {
-		if (p->stat == 0) {
+	for (i = 0; i < AX_RNA_MAX; i++) {
+		if (ax_Tbl[i].stat == 0) {
 			break;
 		}
 	}
@@ -666,17 +664,18 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 		fn_80223424("E1070304:Not enough RNA handle.\n");
 		return NULL;
 	}
-	id     = i * 2;
-	p->nch = (s8)maxnch;
+	p      = &ax_Tbl[i];
 	p->idx = (s8)maxnch;
+	p->nch = (s8)maxnch;
 	for (i = 0; i < p->nch; i++) {
 		p->strmA[i] = sj[i];
 	}
-	p->vol                 = 0;
-	*(s32*)((u8*)p + 0x90) = 127;
-	*(s32*)((u8*)p + 0x94) = -999;
-	*(s32*)((u8*)p + 0x98) = -999;
-	*(s32*)((u8*)p + 0x9C) = 0;
+	p->vol           = 0;
+	p->voiceParam[0] = 127;
+	p->voiceParam[1] = -999;
+	p->voiceParam[2] = -999;
+	p->voiceParam[3] = 0;
+	id               = i * 2;
 	{
 		u8* chp = (u8*)p;
 
@@ -703,8 +702,8 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 				return NULL;
 			}
 			fn_802234B0();
-			fn_801E7B08(*(AxObj**)(chp + 8), 3, p->vol, *(s32*)((u8*)p + 0x94),
-			    *(s32*)((u8*)p + 0x98), *(s32*)((u8*)p + 0x90), *(s32*)((u8*)p + 0x9C), 0x40);
+			fn_801E7B08(*(AxObj**)(chp + 8), 3, p->vol, p->voiceParam[1], p->voiceParam[2],
+			    p->voiceParam[0], p->voiceParam[3], 0x40);
 			fn_80223490();
 		}
 	}
@@ -744,8 +743,7 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	}
 	p->flags = 0;
 	p->stat  = 1;
-	q        = p;
-	return q;
+	return p;
 }
 
 const s32 ax_rodata_pad3 = 0;
