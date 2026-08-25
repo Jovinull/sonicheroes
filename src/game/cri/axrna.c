@@ -710,6 +710,15 @@ static inline void ax_SetRateBias(AxRna* p)
 		return;
 	}
 	p->rateBias = ax_RateBias;
+	p->rateFlag = 1;
+}
+
+static inline void ax_SetBufferCount(AxRna* p)
+{
+	if (p == NULL) {
+		return;
+	}
+	p->pad80 = 16;
 }
 
 AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
@@ -788,30 +797,31 @@ AxRna* fn_8022439C(AxObj** sj, s32 maxnch)
 	}
 	ax_SetRateMode(p);
 	ax_SetRateBias(p);
-	p->rateFlag = 1;
 	p->rateFlag = 0;
-	p->rate     = 32000;
-	for (i = 0; i < p->nch; i++) {
-		fn_802234B0();
-		if (p->obj[i] != NULL) {
-			if (p->rateMode == 1) {
-				rate[0] = 1;
-				rate[1] = 0x7FA9;
-			} else {
-				rate[0] = 1;
-				rate[1] = (s16)0x8000;
+	if (p != NULL) {
+		p->rate = 32000;
+		for (i = 0; i < p->nch; i++) {
+			fn_802234B0();
+			if (p->obj[i] != NULL) {
+				if (p->rateMode == 1) {
+					rate[0] = 1;
+					rate[1] = 0x7FA9;
+				} else {
+					rate[0] = 1;
+					rate[1] = (s16)0x8000;
+				}
+				rate[2] = 0;
+				rate[3] = 0;
+				rate[4] = 0;
+				rate[5] = 0;
+				rate[6] = 0;
+				fn_801E48D0(p->obj[i], p->rateBias);
+				fn_801E4DF8(p->obj[i], rate);
 			}
-			rate[2] = 0;
-			rate[3] = 0;
-			rate[4] = 0;
-			rate[5] = 0;
-			rate[6] = 0;
-			fn_801E48D0(p->obj[i], p->rateBias);
-			fn_801E4DF8(p->obj[i], rate);
+			fn_80223490();
 		}
-		fn_80223490();
 	}
-	p->pad80 = 16;
+	ax_SetBufferCount(p);
 	if (p->nch == 2) {
 		fn_80223500(p, 0, -15);
 	} else {
