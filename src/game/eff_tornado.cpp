@@ -49,10 +49,10 @@
 //   mfCiReqRd when nothing inside those functions responded, so its absence
 //   says the answer for these two has to be in their own shape.
 //
-//   TDisp__14TObjEffTornadoFv is one instruction long. The target materialises
-//   two of the loop's address constants straight into their callee-saved
-//   registers; this build routes them through r0 and copies, and saves one
-//   copy elsewhere, for a net gain of one. Both builds use the same register
+//   TDisp__14TObjEffTornadoFv now has the target's exact 1476-byte size. A
+//   one-field wrapper around firstAxis makes MWCC scalarise the pointer and
+//   materialise one loop-invariant address directly instead of routing it
+//   through r0. The remaining difference is register allocation. Both builds use the same register
 //   set, r18 through r28, and hand out the same eleven values; only the mapping
 //   differs, and two of ours land on registers the allocator could not coalesce
 //   into. Ruled out so far: dropping or inverting the opt_common_subs pragma,
@@ -65,7 +65,7 @@
 //   ten optimiser pragmas layered on top of opt_common_subs off -- lifetimes,
 //   dead_assignments, loop_invariants, strength_reduction, unroll_loops,
 //   scheduling, peephole, optimize_for_size, propagation and global_optimizer.
-//   None reaches 1476: they either leave the size alone or overshoot, and
+//   None reached 1476 on the unwrapped pointer form: they either left the size alone or overshot, and
 //   peephole on takes it to 1456 while breaking eight of the twenty that match.
 //   Pulling the loop body apart into same-TU static helpers -- the trick that
 //   closed mfCiSetSctLen and mfCiOpen -- does nothing here either, for the two
@@ -1236,18 +1236,20 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	RwV3d* positions;
 	RwV3d* directions;
 	RotationPair* rotations;
-	RwV3d* firstAxis;
+	struct FirstAxisPointer {
+		RwV3d* value;
+	} firstAxis;
 	s32* angleOffsets;
 	RwV3d* secondAxis;
 	{
-		models       = lbl_802532E8;
-		positions    = lbl_8025337C;
-		directions   = lbl_802533DC;
-		rotations    = lbl_8025343C;
-		firstAxis    = &lbl_80239978;
-		f32 one      = lbl_8042DBC0;
-		angleOffsets = lbl_8025347C;
-		secondAxis   = &lbl_80239984;
+		models          = lbl_802532E8;
+		positions       = lbl_8025337C;
+		directions      = lbl_802533DC;
+		rotations       = lbl_8025343C;
+		firstAxis.value = &lbl_80239978;
+		f32 one         = lbl_8042DBC0;
+		angleOffsets    = lbl_8025347C;
+		secondAxis      = &lbl_80239984;
 		f32 sine;
 		f32 increment = lbl_8042DC24;
 		f32 limit     = lbl_8042DBB8;
@@ -1262,7 +1264,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			    0);
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			fn_80195790((u8*)frame + 0x10, firstAxis.value, one - pair->cosine, pair->sine, 2);
 			s32 angleByteOffset = tableIndex * sizeof(s32);
 			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
 			sine                = fn_800D7B00(angle + *angleEntry);
@@ -1280,14 +1282,14 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	}
 
 	{
-		models       = lbl_802532E8;
-		positions    = lbl_8025337C;
-		directions   = lbl_802533DC;
-		rotations    = lbl_8025343C;
-		firstAxis    = &lbl_80239978;
-		f32 one      = lbl_8042DBC0;
-		angleOffsets = lbl_8025347C;
-		secondAxis   = &lbl_80239984;
+		models          = lbl_802532E8;
+		positions       = lbl_8025337C;
+		directions      = lbl_802533DC;
+		rotations       = lbl_8025343C;
+		firstAxis.value = &lbl_80239978;
+		f32 one         = lbl_8042DBC0;
+		angleOffsets    = lbl_8025347C;
+		secondAxis      = &lbl_80239984;
 		f32 sine;
 		f32 limit;
 		f32 increment = lbl_8042DC24;
@@ -1303,7 +1305,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			    0);
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			fn_80195790((u8*)frame + 0x10, firstAxis.value, one - pair->cosine, pair->sine, 2);
 			s32 angleByteOffset = tableIndex * sizeof(s32);
 			s32* angleEntry     = (s32*)((u8*)angleOffsets + angleByteOffset);
 			sine                = fn_800D7B00(angle + *angleEntry);
@@ -1320,12 +1322,12 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	}
 
 	{
-		s32 count  = 0;
-		models     = lbl_802532E8;
-		positions  = lbl_8025337C;
-		directions = lbl_802533DC;
-		rotations  = lbl_8025343C;
-		firstAxis  = &lbl_80239978;
+		s32 count       = 0;
+		models          = lbl_802532E8;
+		positions       = lbl_8025337C;
+		directions      = lbl_802533DC;
+		rotations       = lbl_8025343C;
+		firstAxis.value = &lbl_80239978;
 		f32 sine;
 		f32 one      = lbl_8042DBC0;
 		angleOffsets = lbl_8025347C;
@@ -1340,7 +1342,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			    0);
 			fn_8019EB94(frame, (RwV3d*)((u8*)directions + vectorOffset), 2);
 			RotationPair* pair = &rotations[tableIndex];
-			fn_80195790((u8*)frame + 0x10, firstAxis, one - pair->cosine, pair->sine, 2);
+			fn_80195790((u8*)frame + 0x10, firstAxis.value, one - pair->cosine, pair->sine, 2);
 			vectorOffset = tableIndex * sizeof(s32);
 			sine         = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
 			f32 cosine   = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
