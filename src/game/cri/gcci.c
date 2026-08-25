@@ -440,18 +440,21 @@ static inline void gcci_ExecServerRequest(s8* state, GcciObj* p)
 	}
 }
 
-static inline s32 gcci_IsReading(void)
+static inline GcciObj* gcci_GetObjects(s32* reading)
 {
+	GcciObj* q;
 	GcciObj* p;
 	s32 i;
 
-	p = gcci_ObjTbl;
+	q = p = gcci_ObjTbl;
 	for (i = 0; i < GCCI_OBJ_MAX; p++, i++) {
 		if (p->stat == 1 && p->busy == 2) {
-			return 1;
+			*reading = 1;
+			return q;
 		}
 	}
-	return 0;
+	*reading = 0;
+	return q;
 }
 
 s32 fn_8021E3D8(GcciObj* p)
@@ -545,8 +548,7 @@ s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 	if (!ready) {
 		return 0;
 	}
-	q     = gcci_ObjTbl;
-	found = gcci_IsReading();
+	q = gcci_GetObjects(&found);
 	if (found) {
 		return 0;
 	}
