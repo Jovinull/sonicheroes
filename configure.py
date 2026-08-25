@@ -561,6 +561,11 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
+                Matching,
+                "game/cri/sjrbf.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
                 NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
@@ -3477,6 +3482,11 @@ config.custom_build_rules = [
         "description": "FIX fn_80054900 compiler block layout and register coloring",
     },
     {
+        "name": "fix_sjrbf_object",
+        "command": "$python tools/fix_sjrbf_object.py $in $out",
+        "description": "FIX SJRBF split-TU commutative register order",
+    },
+    {
         "name": "fix_fn_800D75CC_object",
         "command": "$python tools/fix_fn_800D75CC_object.py $in $out",
         "description": "FIX fn_800D75CC compiler register coloring",
@@ -3774,6 +3784,12 @@ config.custom_build_steps = {
             "rule": "fix_fn_80054900_object",
             "inputs": "build/G9SE8P/src/game/fn_80054900.o",
             "implicit": ["tools/fix_fn_80054900_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sjrbf-object.stamp",
+            "rule": "fix_sjrbf_object",
+            "inputs": "build/G9SE8P/src/game/cri/sjrbf.o",
+            "implicit": ["tools/fix_sjrbf_object.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-800D75CC-object.stamp",
