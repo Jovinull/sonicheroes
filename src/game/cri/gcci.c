@@ -446,7 +446,8 @@ static inline GcciObj* gcci_GetObjects(s32* reading)
 	GcciObj* p;
 	s32 i;
 
-	q = p = gcci_ObjTbl;
+	q = gcci_ObjTbl;
+	p = q;
 	for (i = 0; i < GCCI_OBJ_MAX; p++, i++) {
 		if (p->stat == 1 && p->busy == 2) {
 			*reading = 1;
