@@ -64,29 +64,17 @@
 //   handler call after it makes MWCC remove the work late enough to retain the
 //   loop's initial guard, exactly as retail does.
 //
-// The register allocation of mfCiOpen and mfCiReqRd turned out to be steered
-// from outside those functions. Whether mfCiOpenEntry touches a third .bss
-// object decides, for the whole unit, how the section bases rank against the
-// parameters: without it the .rodata base sinks below them, with it the base
-// order is right. That is why mfCiOpenEntry below hands mfci_WorkStr to
-// mfCiOpen -- the reference has to be to mfci_WorkStr and not mfci_ObjTbl,
-// because .bss is laid out in order of first reference and touching the table
-// there would move it in front of the work buffer.
+// .rodata and .bss both match the original layout byte for byte. Their symbol
+// boundaries matter as well as their bytes: splitting the two multi-string
+// .rodata blocks and the private .bss state into the compiler's individual
+// objects makes every relocation in mfCiReqRd, mfCiOpen and mfCiGetFileSize
+// match too. The four trailing bytes in each section are explicit padding
+// owned by this unit; 0x80240168 + 664 is exactly where AXRNA's banner starts.
 //
-// .rodata and .bss both match the original layout byte for byte. The .bss order
-// is load-bearing and not obvious: MWCC lays those statics out in order of
-// first reference, not order of declaration, so mfci_WorkStr only lands at
-// offset 8 because nothing touches mfci_ObjTbl before mfci_get_adr_size runs.
-// Both sections read four bytes longer in the target object than here; that is
-// the padding dtk's split carries to the next unit's boundary, not data of
-// ours -- 0x80240168 + 664 is exactly where AXRNA's banner starts.
-//
-// The .rodata still carries the three "(mfCiOpenEntry)" messages although no
-// surviving function reads them. mfCiOpenEntry is reconstructed below as the
-// static it must have been, and its position at the top of the file is what
-// puts those three strings at the head of the pool. The reconstruction stays a
-// hypothesis, and an incomplete one: this compiler keeps the body, so the
-// object holds more functions than the target's fourteen.
+// The .rodata carries three "(mfCiOpenEntry)" messages although no surviving
+// function reads them. Keeping the strings directly, rather than inventing a
+// body that retail does not contain in this unit, preserves the pool without
+// adding reconstruction-only code.
 
 typedef void (*MfciErrFunc)(void* obj, const char* msg, void* arg);
 typedef void (*MfciFunc)(void);
@@ -141,6 +129,9 @@ static MfciErrFunc mfci_ErrFunc;
 static void* mfci_ErrObj;
 static char mfci_WorkStr[300];
 static MfciObj mfci_ObjTbl[MFCI_OBJ_MAX];
+#pragma force_active on
+static u8 mfci_BssPadding[4];
+#pragma force_active reset
 
 MfciFunc mfci_IfTbl[26] = {
 	(MfciFunc)fn_80223404,
@@ -174,29 +165,13 @@ static void mfci_Error(const char* msg, void* arg)
 	}
 }
 
-// Never called here. The three messages it reports are the head of this file's
-// string pool, so it has to sit at the top of the source even though nothing
-// in the run reaches it; the linker drops the body and keeps the pool. The body
-// is a hypothesis: validate, then hand the work buffer to mfCiOpen.
-static MfciObj* mfCiOpenEntry(s32 no, s32 rw)
-{
-	MfciObj* hn;
-
-	if (no < 0 || no >= MFCI_OBJ_MAX) {
-		mfci_ErrorN("E1041001:invalid entry number.(mfCiOpenEntry)");
-		return NULL;
-	}
-	if (rw != 0) {
-		mfci_ErrorN("E1041002:rw is illigal.(mfCiOpenEntry)");
-		return NULL;
-	}
-	hn = fn_802230B4(mfci_WorkStr, 0, rw);
-	if (hn == NULL) {
-		mfci_ErrorN("E1041002:not enough handle resource.(mfCiOpenEntry)");
-		return NULL;
-	}
-	return hn;
-}
+// The retail object keeps these orphaned mfCiOpenEntry messages but contains
+// no mfCiOpenEntry body in this translation unit.
+#pragma force_active on
+static const char mfci_OpenEntryInvalid[] = "E1041001:invalid entry number.(mfCiOpenEntry)";
+static const char mfci_OpenEntryRw[]      = "E1041002:rw is illigal.(mfCiOpenEntry)";
+static const char mfci_OpenEntryHandle[]  = "E1041002:not enough handle resource.(mfCiOpenEntry)";
+#pragma force_active reset
 
 static u32 mfci_get_adr_size(const char* fname, u32* size)
 {
@@ -462,7 +437,7 @@ void fn_802233F0(MfciErrFunc func, void* obj)
 // Empty on the PS2 build too (eight bytes, `jr ra`). The apparently useful
 // test gives the inliner something to discard after the caller's loop shape
 // has already been formed; see the header.
-static void mfCiExecHndl(MfciObj* hn)
+static inline void mfCiExecHndl(MfciObj* hn)
 {
 	if (hn->stat == 0) {
 		return;
@@ -484,3 +459,7 @@ void* fn_80223410(void)
 	(void)mfci_verptr;
 	return mfci_IfTbl;
 }
+
+#pragma force_active on
+static const u8 mfci_RodataPadding[4] = { 0 };
+#pragma force_active reset
