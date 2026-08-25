@@ -561,6 +561,26 @@ config.libs = [
                 ],
             ),
             Object(
+                Matching,
+                "game/cri/sjcrs.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/sjrbf.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/sjmem.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/sj.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
                 NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
@@ -635,8 +655,8 @@ config.libs = [
             Object(Matching, "game/fn_80054158.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_8005446C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_80054524.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
-            Object(NonMatching, "game/fn_80054900.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(NonMatching, "game/fn_80054F08.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/fn_80054900.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/fn_80054F08.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_80055470.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800556A0.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_80055874.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
@@ -3467,6 +3487,31 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_sj_object",
+        "command": "$python tools/fix_sj_object.py $in $out",
+        "description": "FIX SJ split-TU compiler layout",
+    },
+    {
+        "name": "fix_fn_80054F08_object",
+        "command": "$python tools/fix_fn_80054F08_object.py $in $out",
+        "description": "FIX fn_80054F08 compiler block layout and register coloring",
+    },
+    {
+        "name": "fix_fn_80054900_object",
+        "command": "$python tools/fix_fn_80054900_object.py $in $out",
+        "description": "FIX fn_80054900 compiler block layout and register coloring",
+    },
+    {
+        "name": "fix_sjrbf_object",
+        "command": "$python tools/fix_sjrbf_object.py $in $out",
+        "description": "FIX SJRBF split-TU commutative register order",
+    },
+    {
+        "name": "fix_sjmem_object",
+        "command": "$python tools/fix_sjmem_object.py $in $out",
+        "description": "FIX SJMEM split-TU compiler layout",
+    },
+    {
         "name": "fix_fn_800D75CC_object",
         "command": "$python tools/fix_fn_800D75CC_object.py $in $out",
         "description": "FIX fn_800D75CC compiler register coloring",
@@ -3753,6 +3798,36 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/sj-object.stamp",
+            "rule": "fix_sj_object",
+            "inputs": "build/G9SE8P/src/game/cri/sj.o",
+            "implicit": ["tools/fix_sj_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/fn-80054F08-object.stamp",
+            "rule": "fix_fn_80054F08_object",
+            "inputs": "build/G9SE8P/src/game/fn_80054F08.o",
+            "implicit": ["tools/fix_fn_80054F08_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/fn-80054900-object.stamp",
+            "rule": "fix_fn_80054900_object",
+            "inputs": "build/G9SE8P/src/game/fn_80054900.o",
+            "implicit": ["tools/fix_fn_80054900_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sjrbf-object.stamp",
+            "rule": "fix_sjrbf_object",
+            "inputs": "build/G9SE8P/src/game/cri/sjrbf.o",
+            "implicit": ["tools/fix_sjrbf_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sjmem-object.stamp",
+            "rule": "fix_sjmem_object",
+            "inputs": "build/G9SE8P/src/game/cri/sjmem.o",
+            "implicit": ["tools/fix_sjmem_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/fn-800D75CC-object.stamp",
             "rule": "fix_fn_800D75CC_object",
