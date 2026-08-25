@@ -953,6 +953,11 @@ game/cri/lsc.c:
 game/cri/sjcrs.c:
 	.text       start:0x80220544 end:0x802205DC
 	.bss        start:0x80422C10 end:0x80422C18
+game/cri/sjrbf.c:
+	.text       start:0x8022154C end:0x802218A8
+	.rodata     start:0x8023FFB0 end:0x8023FFC0
+	.data       start:0x8029B888 end:0x8029BA48
+	.bss        start:0x804270A8 end:0x80427CB0
 
 game/cri/mfci.c:
 	.text       start:0x80222A14 end:0x80223424
