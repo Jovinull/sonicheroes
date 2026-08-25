@@ -158,6 +158,28 @@ def main() -> None:
         exception_tables[2]: "@etb_8000B9A4",
     }
 
+    # objcopy --redefine-sym is silent when the source symbol is absent, so a
+    # rename that quietly stops applying would only surface as an artifact hash
+    # mismatch much later. Check the table before handing it over.
+    #
+    # This step edits the object in place and is not idempotent, so ninja
+    # re-running it after the script's own mtime changes sees an object whose
+    # sources are all gone and whose targets are all present. That state is
+    # already-applied, not broken, and must not fail the build.
+    present = {
+        fields[-1]
+        for fields in (line.split() for line in symbols.splitlines())
+        if fields
+    }
+    missing = sorted(name for name in renames if name not in present)
+    if missing:
+        if all(target in present for target in renames.values()):
+            args.stamp.touch()
+            return
+        raise RuntimeError(
+            "moviePlaySub rename sources absent from the object: " + ", ".join(missing)
+        )
+
     temporary = args.object.parent / (args.object.name + ".symbols.tmp")
     command = [str(args.objcopy)]
     for source, target in renames.items():
