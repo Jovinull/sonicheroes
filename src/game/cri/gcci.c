@@ -110,22 +110,23 @@ extern void fn_8021E3D4(s32 result, void* fileInfo);
 extern void DCInvalidateRange(void* ptr, u32 size);
 extern void DCStoreRange(void* ptr, u32 size);
 
-const char gcci_Ver[]              = "\nGCCI Ver.1.09 Build:May  9 2003 17:09:53\n";
-const char gcci_ErrHandl[]         = "E0092912:handl is null.";
-const char gcci_ErrHandl2[]        = "E0040302:handl is null.";
-const char gcci_ErrSize[]          = "E0040303:invalidate size.";
-const char gcci_ErrHandl3[]        = "E0040301:handl is null.";
-const char gcci_ErrCancel[]        = "E0092917:DVDCancel failed.";
-const char gcci_ErrCancelTimeout[] = "E0092918:DVDCancel time out.";
-const char gcci_ErrReqCount[]      = "E0092913:nsct < 0.(gcCiReqRd)";
-const char gcci_ErrReqBuffer[]     = "E0092914:buf is null.(gcCiReqRd)";
-const char gcci_ErrOpenName[]      = "E0092908:fname is null.(gcCiOpen)";
-const char gcci_ErrOpenRw[]        = "E0092909:rw is illigal.(gcCiOpen)";
-const char gcci_ErrOpenResource[]  = "E0092910:not enough handle resource.(gcCiOpen)";
-const char gcci_ErrOpenDvd[]       = "E0092911:DVDOpen fail.(gcCiOpen)";
-const char gcci_ErrFileName[]      = "E0092901:fname is null.(gcCiGetFileSize)";
-const char gcci_ErrFileOpen[]      = "E0040201:can't open a file.(gcCiGetFileSize)";
-const char gcci_ErrFileClose[]     = "E0040202:can't close a file.(gcCiGetFileSize)\0\0";
+const char gcci_Ver[] = "\nGCCI Ver.1.09 Build:May  9 2003 17:09:53\n";
+
+#define gcci_ErrHandl         "E0092912:handl is null."
+#define gcci_ErrHandl2        "E0040302:handl is null."
+#define gcci_ErrSize          "E0040303:invalidate size."
+#define gcci_ErrHandl3        "E0040301:handl is null."
+#define gcci_ErrCancel        "E0092917:DVDCancel failed."
+#define gcci_ErrCancelTimeout "E0092918:DVDCancel time out."
+#define gcci_ErrReqCount      "E0092913:nsct < 0.(gcCiReqRd)"
+#define gcci_ErrReqBuffer     "E0092914:buf is null.(gcCiReqRd)"
+#define gcci_ErrOpenName      "E0092908:fname is null.(gcCiOpen)"
+#define gcci_ErrOpenRw        "E0092909:rw is illigal.(gcCiOpen)"
+#define gcci_ErrOpenResource  "E0092910:not enough handle resource.(gcCiOpen)"
+#define gcci_ErrOpenDvd       "E0092911:DVDOpen fail.(gcCiOpen)"
+#define gcci_ErrFileName      "E0092901:fname is null.(gcCiGetFileSize)"
+#define gcci_ErrFileOpen      "E0040201:can't open a file.(gcCiGetFileSize)"
+#define gcci_ErrFileClose     "E0040202:can't close a file.(gcCiGetFileSize)\0\0"
 
 typedef struct GcciHeader {
 	s32 dvdStatus;
