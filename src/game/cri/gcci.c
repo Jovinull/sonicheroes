@@ -75,6 +75,18 @@ static void gcci_SetNsct(GcciObj* p)
 	p->nsct = n / p->sctsize;
 }
 
+// Never called, and it is here for its side effect on layout, not its value.
+// MWCC lays .bss out in order of first reference, so whatever touches the
+// header and the error object before gcci_Error runs decides where all three
+// land. With this, the header sits at 0 and the hook pair at 12 and 16, which
+// is what the target's shared base register addresses. The original must have
+// had something above gcci_Error doing the same; what that was is unknown, so
+// this stands in for it and is a hypothesis, not a reading.
+static s32 gcci_Touch(void)
+{
+	return gcci_Hdr.a + (gcci_ErrObj != NULL);
+}
+
 static void gcci_Error(const char* msg)
 {
 	if (gcci_ErrFunc != NULL) {
