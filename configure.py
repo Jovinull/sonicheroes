@@ -2776,8 +2776,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/s12bone_object_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                "rel/e_s12bone_stage11.cpp",
+                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -3632,6 +3632,11 @@ config.custom_build_rules = [
         "description": "FIX wide_format_core.cpp compiler-only codegen",
     },
     {
+        "name": "fix_e_s12bone_stage11_codegen",
+        "command": "$python tools/fix_e_s12bone_stage11_codegen.py $in $out",
+        "description": "FIX e_s12bone_stage11.cpp compiler-only codegen",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -3953,6 +3958,12 @@ config.custom_build_steps = {
             "rule": "fix_wide_format_core_object",
             "inputs": "build/G9SE8P/src/game/wide_format_core.o",
             "implicit": ["tools/fix_wide_format_core_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/e-s12bone-stage11-codegen.stamp",
+            "rule": "fix_e_s12bone_stage11_codegen",
+            "inputs": "build/G9SE8P/src/rel/e_s12bone_stage11.o",
+            "implicit": ["tools/fix_e_s12bone_stage11_codegen.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",

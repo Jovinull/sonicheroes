@@ -667,9 +667,11 @@ rel/o_s11_bob.cpp:
 	.data       start:0x00018EA0 end:0x00018F28
 	.bss        start:0x00001D78 end:0x00001DB0
 
-rel/s12bone_object_register.cpp:
-	.text       start:0x000CDB88 end:0x000CDCD4
+rel/e_s12bone_stage11.cpp:
+	.text       start:0x000CBF20 end:0x000CDCD4
 	.ctors      start:0x00000168 end:0x0000016C
+	.data       start:0x00018F28 end:0x000191A0
+	.bss        start:0x00001DB0 end:0x00001E30
 
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D5A28 end:0x000D5AD0
