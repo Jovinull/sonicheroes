@@ -547,6 +547,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/fn_8021F410.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
                 "game/cri/lsc.c",
                 extra_cflags=[
                     "-sdata 0",
@@ -577,11 +582,21 @@ config.libs = [
             ),
             Object(
                 NonMatching,
+                "game/cri/svm.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                Matching,
+                NonMatching,
+                "game/cri/rnares.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
                 "game/rw_gcn_render.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
@@ -599,6 +614,16 @@ config.libs = [
                     "-str reuse,readonly",
                     "-use_lmw_stmw on",
                 ],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_allinone.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_raster.c",
+                extra_cflags=["-str reuse,readonly"],
             ),
             Object(
                 Matching,
@@ -3487,11 +3512,6 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
-        "name": "fix_rw_gcn_render_object",
-        "command": "$python tools/fix_rw_gcn_render_object.py $in $out",
-        "description": "FIX rw_gcn_render whole-TU compiler scheduling and metadata",
-    },
-    {
         "name": "fix_sj_object",
         "command": "$python tools/fix_sj_object.py $in $out",
         "description": "FIX SJ split-TU compiler layout",
@@ -3803,12 +3823,6 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
-        {
-            "outputs": "build/G9SE8P/rw-gcn-render-object.stamp",
-            "rule": "fix_rw_gcn_render_object",
-            "inputs": "build/G9SE8P/src/game/rw_gcn_render.o",
-            "implicit": ["tools/fix_rw_gcn_render_object.py"],
-        },
         {
             "outputs": "build/G9SE8P/sj-object.stamp",
             "rule": "fix_sj_object",

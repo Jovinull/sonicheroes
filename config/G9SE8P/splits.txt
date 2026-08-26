@@ -945,6 +945,10 @@ game/cri/gcci.c:
 	.data       start:0x8029B7B8 end:0x8029B828
 	.bss        start:0x8041F6B8 end:0x80420770
 
+game/cri/fn_8021F410.c:
+	.text       start:0x8021F410 end:0x8021F544
+	.bss        start:0x80420770 end:0x80420878
+
 game/cri/lsc.c:
 	.text       start:0x8021F544 end:0x80220544
 	.rodata     start:0x8023FDF8 end:0x8023FF50
@@ -953,21 +957,29 @@ game/cri/lsc.c:
 game/cri/sjcrs.c:
 	.text       start:0x80220544 end:0x802205DC
 	.bss        start:0x80422C10 end:0x80422C18
-game/cri/sjrbf.c:
-	.text       start:0x8022154C end:0x802218A8
-	.rodata     start:0x8023FFB0 end:0x8023FFC0
-	.data       start:0x8029B888 end:0x8029BA48
-	.bss        start:0x804270A8 end:0x80427CB0
+
 game/cri/sjmem.c:
 	.text       start:0x802205DC end:0x80220BF0
 	.rodata     start:0x8023FF50 end:0x8023FF70
 	.data       start:0x8029B828 end:0x8029B858
 	.bss        start:0x80422C18 end:0x804230A0
+
 game/cri/sj.c:
 	.text       start:0x80220BF0 end:0x8022154C
 	.rodata     start:0x8023FF70 end:0x8023FFB0
 	.data       start:0x8029B858 end:0x8029B888
 	.bss        start:0x804230A0 end:0x804270A8
+
+game/cri/sjrbf.c:
+	.text       start:0x8022154C end:0x802218A8
+	.rodata     start:0x8023FFB0 end:0x8023FFC0
+	.data       start:0x8029B888 end:0x8029BA48
+	.bss        start:0x804270A8 end:0x80427CB0
+
+game/cri/svm.c:
+	.text       start:0x802218A8 end:0x80222A14
+	.rodata     start:0x8023FFC0 end:0x80240168
+	.bss        start:0x80427CB0 end:0x80427F78
 
 game/cri/mfci.c:
 	.text       start:0x80222A14 end:0x80223424
@@ -988,3 +1000,17 @@ game/cri/axrna.c:
 game/rw_gcn_render.c:
 	.text       start:0x8022B3E4 end:0x802321EC
 	.bss        start:0x8042ABB0 end:0x8042AC68
+game/cri/rnares.c:
+	.text       start:0x80224D14 end:0x80225100
+	.rodata     start:0x802405F8 end:0x80240648
+	.bss        start:0x8042A9D0 end:0x8042AB68
+
+game/rw_gcn_raster.c:
+	.text       start:0x80225100 end:0x80228BEC
+	.rodata     start:0x80240648 end:0x8024065C
+	.data       start:0x8029BB30 end:0x8029BB6C
+	.bss        start:0x8042AB68 end:0x8042AB90
+
+game/rw_gcn_allinone.c:
+	.text       start:0x80228BEC end:0x8022B3E4
+	.bss        start:0x8042AB90 end:0x8042ABB0
