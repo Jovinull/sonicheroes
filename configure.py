@@ -586,12 +586,12 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/cri/rnares.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
@@ -3864,6 +3864,16 @@ config.custom_build_rules = [
         "description": "FIX CRI SVM complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_axrna_object",
+        "command": "$python tools/fix_axrna_object.py $in $out",
+        "description": "FIX CRI AXRNA complete-TU compiler-owned layout",
+    },
+    {
+        "name": "fix_rnares_object",
+        "command": "$python tools/fix_rnares_object.py $in $out",
+        "description": "FIX CRI RNARES complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4401,6 +4411,18 @@ config.custom_build_steps = {
             "rule": "fix_svm_object",
             "inputs": "build/G9SE8P/src/game/cri/svm.o",
             "implicit": ["tools/fix_svm_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/axrna-object.stamp",
+            "rule": "fix_axrna_object",
+            "inputs": "build/G9SE8P/src/game/cri/axrna.o",
+            "implicit": ["tools/fix_axrna_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/rnares-object.stamp",
+            "rule": "fix_rnares_object",
+            "inputs": "build/G9SE8P/src/game/cri/rnares.o",
+            "implicit": ["tools/fix_rnares_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
