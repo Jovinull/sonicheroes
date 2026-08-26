@@ -135,3 +135,8 @@ rel/TEndSPStage.cpp:
 	.rodata     start:0x00001D08 end:0x00001D30
 	.data       start:0x000445D0 end:0x00044660
 	.bss        start:0x00006540 end:0x00006570
+
+rel/spboss_throw_object.cpp:
+	.text       start:0x00082624 end:0x0008328C
+	.rodata     start:0x00001D30 end:0x00001D60
+	.data       start:0x00044660 end:0x000446E8
