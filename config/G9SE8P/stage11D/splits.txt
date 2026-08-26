@@ -531,8 +531,20 @@ rel/e_capture_collision_stage11.cpp:
 	.data       start:0x000159E8 end:0x00015A70
 	.bss        start:0x00001870 end:0x000018A8
 
+<<<<<<< HEAD
 rel/e_flyer_stage11.cpp:
 	.text       start:0x000A2584 end:0x000A6D1C
+=======
+rel/e_strategy_flyer_stage11.cpp:
+	.text       start:0x0009DA00 end:0x000A2584
+	.ctors      start:0x00000124 end:0x00000128
+	.rodata     start:0x000017F4 end:0x000018B0
+	.data       start:0x00015A70 end:0x00015F80
+	.bss        start:0x000018A8 end:0x00001948
+
+rel/flyer_register.cpp:
+	.text       start:0x000A6C78 end:0x000A6D1C
+>>>>>>> origin/main
 	.ctors      start:0x00000128 end:0x0000012C
 	.rodata     start:0x000018B0 end:0x0000198C
 	.data       start:0x00015F80 end:0x000162C8
