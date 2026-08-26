@@ -561,7 +561,7 @@ rel/e_flyer_path_stage11.cpp:
 rel/e_strategy_magician_stage11.cpp:
 	.text       start:0x000AABC8 end:0x000ACE24
 	.rodata     start:0x00001AE8 end:0x00001B70
-	.data       start:0x00016A30 end:0x00016B08
+	.data       start:0x00016A30 end:0x00016B98
 
 rel/e_magician_stage11.cpp:
 	.text       start:0x000ACE24 end:0x000AF9AC
@@ -572,7 +572,6 @@ rel/e_magician_stage11.cpp:
 
 rel/e_strategy_rinoliner_stage11.cpp:
 	.text       start:0x000AF9AC end:0x000B0924
-	.data       start:0x00016B08 end:0x00016B98
 
 rel/rinoliner_register.cpp:
 	.text       start:0x000B4930 end:0x000B49D8
