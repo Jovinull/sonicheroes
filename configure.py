@@ -1586,6 +1586,11 @@ config.libs = [
             ),
             Object(
                 NonMatching,
+                "rel/e_strategy_magician_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
                 "rel/e_flyer_path_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
