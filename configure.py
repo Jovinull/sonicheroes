@@ -1600,7 +1600,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_capture.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3802,11 +3802,6 @@ config.custom_build_rules = [
         "description": "FIX o_s11_cloud symbols",
     },
     {
-        "name": "fix_e_capture_object",
-        "command": "$python tools/fix_e_capture_object.py $in $out",
-        "description": "FIX stage11 e_capture.cpp combined-TU object",
-    },
-    {
         "name": "fix_stage13_blinklight_object",
         "command": (
             f"$python tools/fix_stage13_blinklight_object.py $in $out "
@@ -4166,12 +4161,6 @@ config.custom_build_steps = {
                 "tools/s11_cloud_sections.ld",
                 str(binutils_dir),
             ],
-        },
-        {
-            "outputs": "build/G9SE8P/e-capture-object.stamp",
-            "rule": "fix_e_capture_object",
-            "inputs": "build/G9SE8P/src/rel/e_capture.o",
-            "implicit": ["tools/fix_e_capture_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage13-blinklight-object.stamp",
