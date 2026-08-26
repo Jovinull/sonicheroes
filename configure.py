@@ -1645,6 +1645,11 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/e_turtle_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/wall_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],

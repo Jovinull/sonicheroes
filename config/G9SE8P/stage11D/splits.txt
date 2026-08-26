@@ -599,9 +599,12 @@ rel/e_wall_stage11.cpp:
 	.data       start:0x000172E0 end:0x00017BB0
 	.bss        start:0x00001AC8 end:0x00001B78
 
-rel/turtle_register.cpp:
-	.text       start:0x000C27EC end:0x000C28CC
+rel/e_turtle_stage11.cpp:
+	.text       start:0x000BDA48 end:0x000C28CC
 	.ctors      start:0x00000140 end:0x00000144
+	.rodata     start:0x00001E38 end:0x00001F08
+	.data       start:0x00017BB0 end:0x00018180
+	.bss        start:0x00001B78 end:0x00001BD0
 
 rel/s11spider_object_register.cpp:
 	.text       start:0x000C3738 end:0x000C37E0
