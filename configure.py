@@ -1570,7 +1570,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_flyer_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3749,6 +3749,11 @@ config.custom_build_rules = [
         "description": "FIX stage11 capture-collision complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_e_flyer_stage11_object",
+        "command": "$python tools/fix_e_flyer_stage11_object.py $in $out",
+        "description": "FIX stage11 flyer complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4148,6 +4153,12 @@ config.custom_build_steps = {
             "rule": "fix_e_capture_collision_stage11_object",
             "inputs": "build/G9SE8P/src/rel/e_capture_collision_stage11.o",
             "implicit": ["tools/fix_e_capture_collision_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/e-flyer-stage11-object.stamp",
+            "rule": "fix_e_flyer_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/e_flyer_stage11.o",
+            "implicit": ["tools/fix_e_flyer_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
