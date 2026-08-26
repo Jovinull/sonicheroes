@@ -1575,6 +1575,11 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/e_flyer_collision_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/flyer_col_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
