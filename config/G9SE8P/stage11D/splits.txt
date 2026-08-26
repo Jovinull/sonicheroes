@@ -534,9 +534,12 @@ rel/magician_object_register.cpp:
 	.text       start:0x000AF904 end:0x000AF9AC
 	.ctors      start:0x00000130 end:0x00000134
 
-rel/rinoliner_register.cpp:
-	.text       start:0x000B4930 end:0x000B49D8
+rel/e_rinoliner_stage11.cpp:
+	.text       start:0x000B2BB4 end:0x000B49D8
 	.ctors      start:0x00000134 end:0x00000138
+	.rodata     start:0x00001C08 end:0x00001C64
+	.data       start:0x00016BB0 end:0x00016FD8
+	.bss        start:0x00001A48 end:0x00001A90
 
 rel/rino_col_register.cpp:
 	.text       start:0x000B7168 end:0x000B7210
