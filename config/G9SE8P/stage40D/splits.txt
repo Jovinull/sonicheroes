@@ -146,3 +146,9 @@ rel/sky_bobsleigh_path.cpp:
 	.rodata     start:0x00001D60 end:0x00001DE8
 	.data       start:0x000446E8 end:0x000447C8
 	.bss        start:0x00006570 end:0x00006580
+
+rel/player_effects.cpp:
+	.text       start:0x00084894 end:0x00086310
+	.rodata     start:0x00001DE8 end:0x00001EA8
+	.data       start:0x000447C8 end:0x0004490C
+	.bss        start:0x00006580 end:0x00006588
