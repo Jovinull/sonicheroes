@@ -1551,6 +1551,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/e_strategy_rinoliner_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/invoke_colli_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3712,6 +3717,11 @@ config.custom_build_rules = [
         "description": "FIX e_capture_collision.cpp compiler-only atoms",
     },
     {
+        "name": "fix_e_strategy_rinoliner_stage11_object",
+        "command": "$python tools/fix_e_strategy_rinoliner_stage11_object.py $in $out",
+        "description": "FIX stage11 e_strategy_rinoliner.cpp object",
+    },
+    {
         "name": "fix_enemy_appear_chaos_emerald_object",
         "command": (
             f"$python tools/fix_enemy_appear_chaos_emerald_object.py $in $out "
@@ -4046,6 +4056,12 @@ config.custom_build_steps = {
                 "tools/fix_e_capture_collision_object.py",
                 str(binutils_dir),
             ],
+        },
+        {
+            "outputs": "build/G9SE8P/stage11D/e-strategy-rinoliner-object.stamp",
+            "rule": "fix_e_strategy_rinoliner_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/e_strategy_rinoliner_stage11.o",
+            "implicit": ["tools/fix_e_strategy_rinoliner_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/enemy-appear-chaos-emerald-object.stamp",
