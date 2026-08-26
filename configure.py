@@ -612,6 +612,11 @@ config.libs = [
             ),
             Object(
                 NonMatching,
+                "game/rw_gcn_allinone.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
+                NonMatching,
                 "game/rw_gcn_raster.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
