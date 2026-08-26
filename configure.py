@@ -3174,8 +3174,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/no_ottotto_collision_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                "rel/no_ottotto_collision_stage11.cpp",
+                extra_cflags=["-pool off", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -3637,6 +3637,11 @@ config.custom_build_rules = [
         "description": "FIX e_s12bone_stage11.cpp compiler-only codegen",
     },
     {
+        "name": "fix_no_ottotto_collision_stage11_codegen",
+        "command": "$python tools/fix_no_ottotto_collision_stage11_codegen.py $in $out",
+        "description": "FIX no_ottotto_collision_stage11.cpp compiler-only codegen",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -3964,6 +3969,12 @@ config.custom_build_steps = {
             "rule": "fix_e_s12bone_stage11_codegen",
             "inputs": "build/G9SE8P/src/rel/e_s12bone_stage11.o",
             "implicit": ["tools/fix_e_s12bone_stage11_codegen.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/no-ottotto-collision-stage11-codegen.stamp",
+            "rule": "fix_no_ottotto_collision_stage11_codegen",
+            "inputs": "build/G9SE8P/src/rel/no_ottotto_collision_stage11.o",
+            "implicit": ["tools/fix_no_ottotto_collision_stage11_codegen.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
