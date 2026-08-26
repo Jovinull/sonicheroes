@@ -115,6 +115,13 @@ rel/sp_dashpanel.cpp:
 	.data       start:0x00044214 end:0x00044398
 	.bss        start:0x00006450 end:0x000064E0
 
+rel/sp_dashring.cpp:
+	.text       start:0x00080624 end:0x0008150C
+	.ctors      start:0x00000110 end:0x00000114
+	.rodata     start:0x00001CA8 end:0x00001CF8
+	.data       start:0x00044398 end:0x00044430
+	.bss        start:0x000064E0 end:0x00006510
+
 rel/TEndSPStage.cpp:
 	.text       start:0x00082088 end:0x00082624
 	.ctors      start:0x00000118 end:0x0000011C

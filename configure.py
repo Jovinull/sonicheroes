@@ -1299,6 +1299,14 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sp_dashring.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/TEndSPStage.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -3962,6 +3970,11 @@ config.custom_build_rules = [
         "description": "FIX complete SP DASHPANEL compiler object",
     },
     {
+        "name": "fix_sp_dashring_object",
+        "command": "$python tools/fix_sp_dashring_object.py $in $out",
+        "description": "FIX complete SP DASHRING compiler object",
+    },
+    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4547,6 +4560,12 @@ config.custom_build_steps = {
             "rule": "fix_sp_dashpanel_object",
             "inputs": "build/G9SE8P/src/rel/sp_dashpanel.o",
             "implicit": ["tools/fix_sp_dashpanel_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sp-dashring-object.stamp",
+            "rule": "fix_sp_dashring_object",
+            "inputs": "build/G9SE8P/src/rel/sp_dashring.o",
+            "implicit": ["tools/fix_sp_dashring_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
