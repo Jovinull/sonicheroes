@@ -1620,6 +1620,11 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/e_rinoliner_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/rinoliner_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
