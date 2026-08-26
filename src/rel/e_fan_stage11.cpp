@@ -21,6 +21,8 @@ typedef struct TObject {
 	/* 0x3C */ void* unk3C; /* inferred */
 } TObject;                  /* size >= 0x40 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(...);                   /* extern */
 void* __dt__7TObjectFv(...);                           /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                 /* extern */
@@ -269,3 +271,4 @@ void s12fanObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const s12fanObjectCtorEntry)(void) = s12fanObjectRegister;
+}
