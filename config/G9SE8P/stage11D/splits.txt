@@ -570,6 +570,9 @@ rel/e_magician_stage11.cpp:
 	.data       start:0x00016B98 end:0x00016D80
 	.bss        start:0x000019D4 end:0x00001A48
 
+rel/e_strategy_rinoliner_stage11.cpp:
+	.text       start:0x000AF9AC end:0x000B0924
+
 rel/rinoliner_register.cpp:
 	.text       start:0x000B4930 end:0x000B49D8
 	.ctors      start:0x00000134 end:0x00000138

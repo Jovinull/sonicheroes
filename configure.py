@@ -1596,6 +1596,11 @@ config.libs = [
             ),
             Object(
                 NonMatching,
+                "rel/e_strategy_rinoliner_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
                 "rel/e_magician_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
