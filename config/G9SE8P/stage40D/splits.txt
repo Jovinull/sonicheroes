@@ -122,6 +122,13 @@ rel/sp_dashring.cpp:
 	.data       start:0x00044398 end:0x00044430
 	.bss        start:0x000064E0 end:0x00006510
 
+rel/particle_test.cpp:
+	.text       start:0x0008150C end:0x00082088
+	.ctors      start:0x00000114 end:0x00000118
+	.rodata     start:0x00001CF8 end:0x00001D08
+	.data       start:0x00044430 end:0x000445D0
+	.bss        start:0x00006510 end:0x00006540
+
 rel/TEndSPStage.cpp:
 	.text       start:0x00082088 end:0x00082624
 	.ctors      start:0x00000118 end:0x0000011C
