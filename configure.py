@@ -1331,6 +1331,14 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sky_bobsleigh_path.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/o_setDamegeCollision.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-str nopool"],
                 data_section_alignment=4,
@@ -4001,6 +4009,11 @@ config.custom_build_rules = [
         "description": "FIX complete SP boss throw-object compiler object",
     },
     {
+        "name": "fix_sky_bobsleigh_path_object",
+        "command": "$python tools/fix_sky_bobsleigh_path_object.py $in $out",
+        "description": "FIX complete sky-bobsleigh path compiler object",
+    },
+    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4604,6 +4617,12 @@ config.custom_build_steps = {
             "rule": "fix_spboss_throw_object",
             "inputs": "build/G9SE8P/src/rel/spboss_throw_object.o",
             "implicit": ["tools/fix_spboss_throw_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sky-bobsleigh-path-object.stamp",
+            "rule": "fix_sky_bobsleigh_path_object",
+            "inputs": "build/G9SE8P/src/rel/sky_bobsleigh_path.o",
+            "implicit": ["tools/fix_sky_bobsleigh_path_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
