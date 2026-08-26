@@ -496,16 +496,19 @@ rel/s12door_object_register.cpp:
 	.text       start:0x000950FC end:0x00095240
 	.ctors      start:0x0000010C end:0x00000110
 
-rel/s11_door_object_dtor.cpp:
-	.text       start:0x00095F38 end:0x00096018
-
-rel/s11door_object_register.cpp:
-	.text       start:0x000966B8 end:0x00096760
+rel/o_s11_door.cpp:
+	.text       start:0x00095240 end:0x00096760
 	.ctors      start:0x00000110 end:0x00000114
+	.rodata     start:0x00001634 end:0x00001658
+	.data       start:0x00015134 end:0x00015340
+	.bss        start:0x000016A0 end:0x000016D0
 
-rel/s12celestial_object_register.cpp:
-	.text       start:0x0009732C end:0x000973D4
+rel/o_s12_celestial_sphere.cpp:
+	.text       start:0x00096760 end:0x000973DC
 	.ctors      start:0x00000114 end:0x00000118
+	.rodata     start:0x00001658 end:0x00001684
+	.data       start:0x00015340 end:0x00015448
+	.bss        start:0x000016D0 end:0x00001708
 
 rel/o_s11_cloud.cpp:
 	.text       start:0x000973DC end:0x00098060
