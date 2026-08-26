@@ -180,3 +180,9 @@ rel/tenkyu_goalring.cpp:
 	.rodata     start:0x00001FA8 end:0x00001FB4
 	.data       start:0x00044DE4 end:0x00045048
 	.bss        start:0x00006758 end:0x00006778
+
+rel/stage40_object_parser.cpp:
+	.text       start:0x0008E198 end:0x00092100
+	.rodata     start:0x00001FB4 end:0x00001FE8
+	.data       start:0x00045048 end:0x000459B0
+	.bss        start:0x00006778 end:0x00011960
