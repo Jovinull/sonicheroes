@@ -617,9 +617,12 @@ rel/mask_object_register.cpp:
 	.text       start:0x000CA168 end:0x000CA210
 	.ctors      start:0x0000015C end:0x00000160
 
-rel/s11key_object_register.cpp:
-	.text       start:0x000CBB18 end:0x000CBBB0
+rel/e_s11_key_stage11.cpp:
+	.text       start:0x000CA210 end:0x000CBBB0
 	.ctors      start:0x00000160 end:0x00000164
+	.rodata     start:0x00002118 end:0x0000211C
+	.data       start:0x00018DF0 end:0x00018EA0
+	.bss        start:0x00001D4C end:0x00001D78
 
 rel/o_s11_bob.cpp:
 	.text       start:0x000CBBB0 end:0x000CBF20
