@@ -29,6 +29,8 @@ typedef struct TObject {
 	/* 0xE0 */ s32 unkE0;     /* inferred */
 } TObject;                    /* size >= 0xE4 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(...);                        /* extern */
 void* __dt__7TObjectFv(...);                                /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                      /* extern */
@@ -870,3 +872,4 @@ void s11keyObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const s11keyObjectCtorEntry)(void) = s11keyObjectRegister;
+}

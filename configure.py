@@ -2375,7 +2375,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_s11_key_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3844,6 +3844,11 @@ config.custom_build_rules = [
         "description": "FIX stage11 door complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_e_s11_key_stage11_object",
+        "command": "$python tools/fix_e_s11_key_stage11_object.py $in $out",
+        "description": "FIX stage11 key complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4357,6 +4362,12 @@ config.custom_build_steps = {
             "rule": "fix_o_s11_door_object",
             "inputs": "build/G9SE8P/src/rel/o_s11_door.o",
             "implicit": ["tools/fix_o_s11_door_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/e-s11-key-stage11-object.stamp",
+            "rule": "fix_e_s11_key_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/e_s11_key_stage11.o",
+            "implicit": ["tools/fix_e_s11_key_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
