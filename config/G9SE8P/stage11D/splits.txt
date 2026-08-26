@@ -592,9 +592,12 @@ rel/e_rinoliner_collision_stage11.cpp:
 	.data       start:0x00016FD8 end:0x000172E0
 	.bss        start:0x00001A90 end:0x00001AC8
 
-rel/wall_register.cpp:
-	.text       start:0x000BD968 end:0x000BDA48
+rel/e_wall_stage11.cpp:
+	.text       start:0x000B7210 end:0x000BDA48
 	.ctors      start:0x0000013C end:0x00000140
+	.rodata     start:0x00001E20 end:0x00001E38
+	.data       start:0x000172E0 end:0x00017BB0
+	.bss        start:0x00001AC8 end:0x00001B78
 
 rel/turtle_register.cpp:
 	.text       start:0x000C27EC end:0x000C28CC
