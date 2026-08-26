@@ -2340,7 +2340,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/o_s12_celestial_sphere.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3802,11 +3802,6 @@ config.custom_build_rules = [
         "description": "FIX o_s11_cloud symbols",
     },
     {
-        "name": "fix_o_s12_celestial_sphere_object",
-        "command": "$python tools/fix_o_s12_celestial_sphere_object.py $in $out",
-        "description": "FIX celestial-sphere combined-TU object",
-    },
-    {
         "name": "fix_stage13_blinklight_object",
         "command": (
             f"$python tools/fix_stage13_blinklight_object.py $in $out "
@@ -4166,12 +4161,6 @@ config.custom_build_steps = {
                 "tools/s11_cloud_sections.ld",
                 str(binutils_dir),
             ],
-        },
-        {
-            "outputs": "build/G9SE8P/s12-celestial-sphere-object.stamp",
-            "rule": "fix_o_s12_celestial_sphere_object",
-            "inputs": "build/G9SE8P/src/rel/o_s12_celestial_sphere.o",
-            "implicit": ["tools/fix_o_s12_celestial_sphere_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage13-blinklight-object.stamp",
