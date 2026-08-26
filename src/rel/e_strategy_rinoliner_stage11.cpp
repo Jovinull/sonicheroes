@@ -6,6 +6,8 @@ typedef s32 M2C_UNK;
 #define M2C_ERROR(...)
 #define M2C_BITWISE(type, value) (*(type*)&(value))
 
+extern "C" {
+
 M2C_UNK __dl__FPv(...);   /* extern */
 M2C_UNK fn_800A31B8(...); /* extern */
 s32 fn_800A3ED4(...);     /* extern */
@@ -517,4 +519,5 @@ void fn_8_B08F0(void* arg0)
 	M2C_FIELD(arg0, s32*, 0x14)   = 0;
 	M2C_FIELD(arg0, s32*, 0x10)   = 0;
 	M2C_FIELD(arg0, M2C_UNK**, 0) = &lbl_8_data_16B08;
+}
 }
