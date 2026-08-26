@@ -324,6 +324,9 @@ rel/case_assets.cpp:
 rel/roll_door_dtor.cpp:
 	.text       start:0x0004395C end:0x00043A3C
 
+rel/roll_door_lifecycle_stage11.cpp:
+	.text       start:0x00043A3C end:0x00044118
+
 rel/roll_door_assets.cpp:
 	.text       start:0x00044118 end:0x00044208
 	.ctors      start:0x00000078 end:0x0000007C
@@ -341,9 +344,15 @@ rel/lens_flare_register.cpp:
 rel/signal_dtor.cpp:
 	.text       start:0x000464D0 end:0x00046578
 
+rel/signal_lifecycle_stage11.cpp:
+	.text       start:0x00046578 end:0x00046B24
+
 rel/signal_assets.cpp:
 	.text       start:0x00046B24 end:0x00046C14
 	.ctors      start:0x00000080 end:0x00000084
+
+rel/propeller_stage11.cpp:
+	.text       start:0x00046C14 end:0x00049590
 
 rel/propeller_register.cpp:
 	.text       start:0x00049590 end:0x00049630
