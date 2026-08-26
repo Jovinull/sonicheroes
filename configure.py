@@ -1910,8 +1910,8 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
-                "rel/grass2_object_register.cpp",
+                NonMatching,
+                "rel/e_grass2_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

@@ -627,9 +627,11 @@ rel/e_tree_stage11.cpp:
 	.data       start:0x00018298 end:0x00018468
 	.bss        start:0x00001C40 end:0x00001CA8
 
-rel/grass2_object_register.cpp:
-	.text       start:0x000C5EFC end:0x000C5FA4
+rel/e_grass2_stage11.cpp:
+	.text       start:0x000C4E94 end:0x000C5FA4
 	.ctors      start:0x00000150 end:0x00000154
+	.rodata     start:0x00001F48 end:0x00001F60
+	.data       start:0x00018468 end:0x00018778
 
 rel/grass_object_register.cpp:
 	.text       start:0x000C74A0 end:0x000C7548
