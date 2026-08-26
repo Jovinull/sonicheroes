@@ -1600,6 +1600,11 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/e_capture.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/roll_door_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
