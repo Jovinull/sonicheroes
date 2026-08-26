@@ -621,7 +621,7 @@ config.libs = [
                 ],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/rw_gcn_allinone.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
@@ -3874,6 +3874,11 @@ config.custom_build_rules = [
         "description": "FIX CRI RNARES complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_rw_gcn_allinone_object",
+        "command": "$python tools/fix_rw_gcn_allinone_object.py $in $out",
+        "description": "FIX RenderWare GCN all-in-one complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4423,6 +4428,12 @@ config.custom_build_steps = {
             "rule": "fix_rnares_object",
             "inputs": "build/G9SE8P/src/game/cri/rnares.o",
             "implicit": ["tools/fix_rnares_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/rw-gcn-allinone-object.stamp",
+            "rule": "fix_rw_gcn_allinone_object",
+            "inputs": "build/G9SE8P/src/game/rw_gcn_allinone.o",
+            "implicit": ["tools/fix_rw_gcn_allinone_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
