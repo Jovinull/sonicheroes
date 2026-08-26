@@ -1282,6 +1282,14 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/put_particle.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/TEndSPStage.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -3935,6 +3943,11 @@ config.custom_build_rules = [
         "description": "FIX TEndSkyBob.cpp data atom order",
     },
     {
+        "name": "fix_put_particle_object",
+        "command": "$python tools/fix_put_particle_object.py $in $out",
+        "description": "FIX complete PUT PARTICLE compiler object",
+    },
+    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4508,6 +4521,12 @@ config.custom_build_steps = {
                 "tools/fix_end_sky_bob_object.py",
                 str(binutils_dir),
             ],
+        },
+        {
+            "outputs": "build/G9SE8P/put-particle-object.stamp",
+            "rule": "fix_put_particle_object",
+            "inputs": "build/G9SE8P/src/rel/put_particle.o",
+            "implicit": ["tools/fix_put_particle_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
