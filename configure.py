@@ -2700,8 +2700,8 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
-                "rel/tree_object_register.cpp",
+                NonMatching,
+                "rel/e_tree_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
