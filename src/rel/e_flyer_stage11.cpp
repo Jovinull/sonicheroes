@@ -5,6 +5,8 @@ typedef struct HAnimClass HAnimClass;
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
 #define M2C_ERROR(...)
 
+extern "C" {
+
 void* __ct__10HAnimClassFv(void* self);                                          /* extern */
 M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
 void* __dt__10HAnimClassFv(void* self, s16 destroyFlag);                         /* extern */
@@ -2593,4 +2595,5 @@ void flyerObjectRegister(void)
 		return;
 	}
 	M2C_FIELD(&flyerObjectEntry, s32*, 0x14) = 0;
+}
 }
