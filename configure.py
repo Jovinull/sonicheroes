@@ -3216,6 +3216,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/object_effects_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/goal_ring_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s01_truck_path_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3709,6 +3719,16 @@ config.custom_build_rules = [
         "description": "FIX stage11 propeller complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_goal_ring_stage11_object",
+        "command": "$python tools/fix_goal_ring_stage11_object.py $in $out",
+        "description": "FIX stage11 goal-ring complete-TU compiler-owned layout",
+    },
+    {
+        "name": "fix_object_effects_stage11_object",
+        "command": "$python tools/fix_object_effects_stage11_object.py $in $out",
+        "description": "FIX stage11 object-effects complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4078,6 +4098,18 @@ config.custom_build_steps = {
             "rule": "fix_propeller_stage11_object",
             "inputs": "build/G9SE8P/src/rel/propeller_stage11.o",
             "implicit": ["tools/fix_propeller_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/goal-ring-stage11-object.stamp",
+            "rule": "fix_goal_ring_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/goal_ring_stage11.o",
+            "implicit": ["tools/fix_goal_ring_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/object-effects-stage11-object.stamp",
+            "rule": "fix_object_effects_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/object_effects_stage11.o",
+            "implicit": ["tools/fix_object_effects_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
