@@ -997,15 +997,16 @@ game/cri/axrna.c:
 	.data       start:0x8029BAB0 end:0x8029BB30
 	.bss        start:0x80428A78 end:0x8042A9D0
 
+game/cri/rnares.c:
+	.text       start:0x80224D14 end:0x80225100
+	.rodata     start:0x802405F8 end:0x80240648
+	.bss        start:0x8042A9D0 end:0x8042AB68
+
 game/rw_gcn_raster.c:
 	.text       start:0x80225100 end:0x80228BEC
 	.rodata     start:0x80240648 end:0x8024065C
 	.data       start:0x8029BB30 end:0x8029BB6C
 	.bss        start:0x8042AB68 end:0x8042AB90
-game/cri/rnares.c:
-	.text       start:0x80224D14 end:0x80225100
-	.rodata     start:0x802405F8 end:0x80240648
-	.bss        start:0x8042A9D0 end:0x8042AB68
 
 game/rw_gcn_allinone.c:
 	.text       start:0x80228BEC end:0x8022B3E4
