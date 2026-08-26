@@ -3201,6 +3201,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/roll_door_lifecycle_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s01_truck_path_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3679,6 +3684,11 @@ config.custom_build_rules = [
         "description": "FIX stage11 case object lifecycle compiler-only codegen",
     },
     {
+        "name": "fix_roll_door_lifecycle_stage11_object",
+        "command": "$python tools/fix_roll_door_lifecycle_stage11_object.py $in $out",
+        "description": "FIX stage11 roll-door lifecycle compiler-only codegen",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4030,6 +4040,12 @@ config.custom_build_steps = {
             "rule": "fix_case_obj_lifecycle_stage11_object",
             "inputs": "build/G9SE8P/src/rel/case_obj_lifecycle_stage11.o",
             "implicit": ["tools/fix_case_obj_lifecycle_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/roll-door-lifecycle-stage11-object.stamp",
+            "rule": "fix_roll_door_lifecycle_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/roll_door_lifecycle_stage11.o",
+            "implicit": ["tools/fix_roll_door_lifecycle_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
