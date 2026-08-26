@@ -1347,6 +1347,14 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sp_eff_dash.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/o_setDamegeCollision.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-str nopool"],
                 data_section_alignment=4,
@@ -4027,6 +4035,11 @@ config.custom_build_rules = [
         "description": "FIX complete player-effects compiler object",
     },
     {
+        "name": "fix_sp_eff_dash_object",
+        "command": "$python tools/fix_sp_eff_dash_object.py $in $out",
+        "description": "FIX complete SP effect-dash compiler object",
+    },
+    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4642,6 +4655,12 @@ config.custom_build_steps = {
             "rule": "fix_player_effects_object",
             "inputs": "build/G9SE8P/src/rel/player_effects.o",
             "implicit": ["tools/fix_player_effects_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sp-eff-dash-object.stamp",
+            "rule": "fix_sp_eff_dash_object",
+            "inputs": "build/G9SE8P/src/rel/sp_eff_dash.o",
+            "implicit": ["tools/fix_sp_eff_dash_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
