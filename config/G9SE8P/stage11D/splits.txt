@@ -314,6 +314,9 @@ rel/fn_403ec_stage11.cpp:
 rel/case_obj_dtor.cpp:
 	.text       start:0x00040F64 end:0x00041034
 
+rel/case_obj_lifecycle_stage11.cpp:
+	.text       start:0x00041034 end:0x000415B0
+
 rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0
 	.ctors      start:0x00000074 end:0x00000078
