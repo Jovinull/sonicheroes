@@ -547,6 +547,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/fn_8021F410.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
                 "game/cri/lsc.c",
                 extra_cflags=[
                     "-sdata 0",
@@ -567,7 +572,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/sjmem.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/sj.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
+                "game/cri/svm.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
                 "game/cri/axrna.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
+                "game/cri/rnares.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
@@ -584,6 +609,11 @@ config.libs = [
                     "-str reuse,readonly",
                     "-use_lmw_stmw on",
                 ],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_raster.c",
+                extra_cflags=["-str reuse,readonly"],
             ),
             Object(
                 Matching,
@@ -3472,6 +3502,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_sj_object",
+        "command": "$python tools/fix_sj_object.py $in $out",
+        "description": "FIX SJ split-TU compiler layout",
+    },
+    {
         "name": "fix_fn_80054F08_object",
         "command": "$python tools/fix_fn_80054F08_object.py $in $out",
         "description": "FIX fn_80054F08 compiler block layout and register coloring",
@@ -3485,11 +3520,6 @@ config.custom_build_rules = [
         "name": "fix_sjrbf_object",
         "command": "$python tools/fix_sjrbf_object.py $in $out",
         "description": "FIX SJRBF split-TU commutative register order",
-    },
-    {
-        "name": "fix_axrna_object",
-        "command": "$python tools/fix_axrna_object.py $in $out",
-        "description": "FIX AXRNA split-TU register allocation",
     },
     {
         "name": "fix_fn_800D75CC_object",
@@ -3779,6 +3809,12 @@ config.custom_build_rules = [
 config.custom_build_steps = {
     "post-compile": [
         {
+            "outputs": "build/G9SE8P/sj-object.stamp",
+            "rule": "fix_sj_object",
+            "inputs": "build/G9SE8P/src/game/cri/sj.o",
+            "implicit": ["tools/fix_sj_object.py"],
+        },
+        {
             "outputs": "build/G9SE8P/fn-80054F08-object.stamp",
             "rule": "fix_fn_80054F08_object",
             "inputs": "build/G9SE8P/src/game/fn_80054F08.o",
@@ -3795,12 +3831,6 @@ config.custom_build_steps = {
             "rule": "fix_sjrbf_object",
             "inputs": "build/G9SE8P/src/game/cri/sjrbf.o",
             "implicit": ["tools/fix_sjrbf_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/axrna-object.stamp",
-            "rule": "fix_axrna_object",
-            "inputs": "build/G9SE8P/src/game/cri/axrna.o",
-            "implicit": ["tools/fix_axrna_object.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-800D75CC-object.stamp",
