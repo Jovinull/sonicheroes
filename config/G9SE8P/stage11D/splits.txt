@@ -496,16 +496,19 @@ rel/s12door_object_register.cpp:
 	.text       start:0x000950FC end:0x00095240
 	.ctors      start:0x0000010C end:0x00000110
 
-rel/s11_door_object_dtor.cpp:
-	.text       start:0x00095F38 end:0x00096018
-
-rel/s11door_object_register.cpp:
-	.text       start:0x000966B8 end:0x00096760
+rel/o_s11_door.cpp:
+	.text       start:0x00095240 end:0x00096760
 	.ctors      start:0x00000110 end:0x00000114
+	.rodata     start:0x00001634 end:0x00001658
+	.data       start:0x00015134 end:0x00015340
+	.bss        start:0x000016A0 end:0x000016D0
 
-rel/s12celestial_object_register.cpp:
-	.text       start:0x0009732C end:0x000973D4
+rel/o_s12_celestial_sphere.cpp:
+	.text       start:0x00096760 end:0x000973DC
 	.ctors      start:0x00000114 end:0x00000118
+	.rodata     start:0x00001658 end:0x00001684
+	.data       start:0x00015340 end:0x00015448
+	.bss        start:0x000016D0 end:0x00001708
 
 rel/o_s11_cloud.cpp:
 	.text       start:0x000973DC end:0x00098060
@@ -514,21 +517,51 @@ rel/o_s11_cloud.cpp:
 	.data       start:0x00015448 end:0x000155B8
 	.bss        start:0x00001708 end:0x00001780
 
-rel/capture_register.cpp:
-	.text       start:0x0009D288 end:0x0009D384
+rel/e_capture.cpp:
+	.text       start:0x00098060 end:0x0009D3BC
 	.ctors      start:0x0000011C end:0x00000120
+	.rodata     start:0x000016A4 end:0x000017BC
+	.data       start:0x000155B8 end:0x000159E8
+	.bss        start:0x00001780 end:0x00001870
 
-rel/capture_collision_register.cpp:
-	.text       start:0x0009D958 end:0x0009DA00
+rel/e_capture_collision_stage11.cpp:
+	.text       start:0x0009D3BC end:0x0009DA00
 	.ctors      start:0x00000120 end:0x00000124
+	.rodata     start:0x000017BC end:0x000017F4
+	.data       start:0x000159E8 end:0x00015A70
+	.bss        start:0x00001870 end:0x000018A8
 
-rel/flyer_register.cpp:
-	.text       start:0x000A6C78 end:0x000A6D1C
+rel/e_strategy_flyer_stage11.cpp:
+	.text       start:0x0009DA00 end:0x000A2584
+	.ctors      start:0x00000124 end:0x00000128
+	.rodata     start:0x000017F4 end:0x000018B0
+	.data       start:0x00015A70 end:0x00015F80
+	.bss        start:0x000018A8 end:0x00001948
+
+rel/e_flyer_stage11.cpp:
+	.text       start:0x000A2584 end:0x000A6D1C
 	.ctors      start:0x00000128 end:0x0000012C
+	.rodata     start:0x000018B0 end:0x0000198C
+	.data       start:0x00015F80 end:0x000162C8
+	.bss        start:0x00001948 end:0x0000195C
 
-rel/flyer_col_register.cpp:
-	.text       start:0x000A81F8 end:0x000A82A0
+rel/e_flyer_collision_stage11.cpp:
+	.text       start:0x000A6D1C end:0x000A82A0
 	.ctors      start:0x0000012C end:0x00000130
+	.rodata     start:0x0000198C end:0x000019A4
+	.data       start:0x000162C8 end:0x00016430
+	.bss        start:0x00001988 end:0x000019B8
+
+rel/e_flyer_path_stage11.cpp:
+	.text       start:0x000A82A0 end:0x000AA610
+	.rodata     start:0x000019A4 end:0x00001AAC
+	.data       start:0x00016430 end:0x00016550
+	.bss        start:0x000019B8 end:0x000019C8
+
+rel/e_strategy_magician_stage11.cpp:
+	.text       start:0x000AABC8 end:0x000ACE24
+	.rodata     start:0x00001AE8 end:0x00001B70
+	.data       start:0x00016A30 end:0x00016B98
 
 rel/magician_object_register.cpp:
 	.text       start:0x000AF904 end:0x000AF9AC
