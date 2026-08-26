@@ -2335,8 +2335,8 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
-                "rel/s12celestial_object_register.cpp",
+                NonMatching,
+                "rel/o_s12_celestial_sphere.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
