@@ -582,8 +582,28 @@ config.libs = [
             ),
             Object(
                 NonMatching,
+                "game/cri/svm.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
+                "game/cri/rnares.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_core.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_render.c",
+                extra_cflags=["-str reuse,readonly"],
             ),
             Object(
                 Matching,
@@ -599,6 +619,16 @@ config.libs = [
                     "-str reuse,readonly",
                     "-use_lmw_stmw on",
                 ],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_allinone.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_raster.c",
+                extra_cflags=["-str reuse,readonly"],
             ),
             Object(
                 Matching,
@@ -2270,13 +2300,8 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
-                "rel/s11door_object_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/s11_door_object_dtor.cpp",
+                NonMatching,
+                "rel/o_s11_door.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
