@@ -150,6 +150,12 @@ Two things that have each closed a wall recently, both cheaper than a patch:
 `tools/check_post_processors.py` decides the two properties that can be decided
 mechanically, and CI runs it alongside the language policy:
 
+- **no embedded object** — a module-level constant longer than 256 bytes must
+  never reach a decode or decompress call. Carrying a compressed copy of the
+  retail object and writing it over the compiler's output does not permute a
+  reconstruction, it replaces it: the unit then measures the original against
+  itself. Forty-five steps did this and were deleted; see
+  `docs/units-returned-to-nonmatching.md`.
 - **no retail content** — a module-level constant must never reach a write,
   whether spelled as `bytes.fromhex()` or as a table of integers, and whether it
   arrives through `pack_into`, `insert`, a slice assignment, or one hop of
