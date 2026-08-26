@@ -159,3 +159,10 @@ rel/sp_eff_dash.cpp:
 	.rodata     start:0x00001EA8 end:0x00001EC0
 	.data       start:0x0004490C end:0x00044C18
 	.bss        start:0x00006588 end:0x000066EC
+
+rel/form_gate_sub.cpp:
+	.text       start:0x0008AA54 end:0x0008BA38
+	.ctors      start:0x00000120 end:0x00000124
+	.rodata     start:0x00001EC0 end:0x00001F78
+	.data       start:0x00044C18 end:0x00044D48
+	.bss        start:0x000066EC end:0x0000671C
