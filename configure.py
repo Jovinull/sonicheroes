@@ -1600,6 +1600,11 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/e_magician_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/invoke_colli_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
@@ -1917,11 +1922,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/leafaa_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/magician_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
