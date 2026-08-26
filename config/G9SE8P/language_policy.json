@@ -31,6 +31,7 @@
     "game/cri/sjrbf.c",
     "game/cri/svm.c",
     "game/rw_gcn_allinone.c",
+    "game/rw_gcn_raster.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
     "movieD/cri/sfxset.c",
