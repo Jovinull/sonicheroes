@@ -2385,7 +2385,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_spider_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3804,6 +3804,11 @@ config.custom_build_rules = [
         "description": "FIX stage11 turtle complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_e_spider_stage11_object",
+        "command": "$python tools/fix_e_spider_stage11_object.py $in $out",
+        "description": "FIX stage11 spider complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4269,6 +4274,12 @@ config.custom_build_steps = {
             "rule": "fix_e_turtle_stage11_object",
             "inputs": "build/G9SE8P/src/rel/e_turtle_stage11.o",
             "implicit": ["tools/fix_e_turtle_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/e-spider-stage11-object.stamp",
+            "rule": "fix_e_spider_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/e_spider_stage11.o",
+            "implicit": ["tools/fix_e_spider_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
