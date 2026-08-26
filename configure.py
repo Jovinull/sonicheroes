@@ -581,27 +581,27 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/cri/svm.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/cri/axrna.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/cri/rnares.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/rw_gcn_core.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/rw_gcn_render.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
@@ -621,12 +621,12 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/rw_gcn_allinone.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "game/rw_gcn_raster.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
@@ -1281,7 +1281,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/put_particle.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1289,7 +1289,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/sp_dashpanel.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1298,7 +1298,7 @@ config.libs = [
                 data_section_alignment=4,
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/sp_dashring.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1306,7 +1306,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/particle_test.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1322,7 +1322,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/spboss_throw_object.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1330,7 +1330,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/sky_bobsleigh_path.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1338,7 +1338,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/player_effects.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1346,7 +1346,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/sp_eff_dash.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1354,7 +1354,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/form_gate_sub.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1362,7 +1362,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/chao_beans.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -1654,22 +1654,22 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_strategy_flyer_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_capture_collision_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_flyer_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_flyer_collision_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -1679,27 +1679,27 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_strategy_magician_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_flyer_path_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_strategy_rinoliner_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_magician_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/o_colli_communication_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -1714,12 +1714,12 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_rinoliner_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_rinoliner_collision_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -1739,7 +1739,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_turtle_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -1749,7 +1749,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_wall_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -1759,7 +1759,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_capture.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2004,12 +2004,12 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_grass2_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_grass_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2044,7 +2044,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_mask_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2449,12 +2449,12 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_s11_flag_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/o_s11_door.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2469,7 +2469,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_s11_key_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2479,7 +2479,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_spider_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2494,12 +2494,12 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/o_s12_celestial_sphere.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_fan_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2794,7 +2794,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/e_tree_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3304,22 +3304,22 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/propeller_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/object_effects_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/light_collision_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/goal_ring_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
             ),
@@ -3813,181 +3813,6 @@ config.custom_build_rules = [
         "description": "FIX stage11 signal lifecycle compiler-only codegen",
     },
     {
-        "name": "fix_propeller_stage11_object",
-        "command": "$python tools/fix_propeller_stage11_object.py $in $out",
-        "description": "FIX stage11 propeller complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_goal_ring_stage11_object",
-        "command": "$python tools/fix_goal_ring_stage11_object.py $in $out",
-        "description": "FIX stage11 goal-ring complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_object_effects_stage11_object",
-        "command": "$python tools/fix_object_effects_stage11_object.py $in $out",
-        "description": "FIX stage11 object-effects complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_light_collision_stage11_object",
-        "command": "$python tools/fix_light_collision_stage11_object.py $in $out",
-        "description": "FIX stage11 light-collision complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_strategy_flyer_stage11_object",
-        "command": "$python tools/fix_e_strategy_flyer_stage11_object.py $in $out",
-        "description": "FIX stage11 strategy-flyer complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_capture_collision_stage11_object",
-        "command": "$python tools/fix_e_capture_collision_stage11_object.py $in $out",
-        "description": "FIX stage11 capture-collision complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_flyer_stage11_object",
-        "command": "$python tools/fix_e_flyer_stage11_object.py $in $out",
-        "description": "FIX stage11 flyer complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_flyer_collision_stage11_object",
-        "command": "$python tools/fix_e_flyer_collision_stage11_object.py $in $out",
-        "description": "FIX stage11 flyer-collision complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_flyer_path_stage11_object",
-        "command": "$python tools/fix_e_flyer_path_stage11_object.py $in $out",
-        "description": "FIX stage11 flyer-path complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_strategy_magician_stage11_object",
-        "command": "$python tools/fix_e_strategy_magician_stage11_object.py $in $out",
-        "description": "FIX stage11 magician-strategy complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_magician_stage11_object",
-        "command": "$python tools/fix_e_magician_stage11_object.py $in $out",
-        "description": "FIX stage11 magician complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_strategy_rinoliner_stage11_object",
-        "command": "$python tools/fix_e_strategy_rinoliner_stage11_object.py $in $out",
-        "description": "FIX stage11 rinoliner-strategy complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_o_colli_communication_stage11_object",
-        "command": "$python tools/fix_o_colli_communication_stage11_object.py $in $out",
-        "description": "FIX stage11 collision-communication complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_rinoliner_stage11_object",
-        "command": "$python tools/fix_e_rinoliner_stage11_object.py $in $out",
-        "description": "FIX stage11 rinoliner complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_rinoliner_collision_stage11_object",
-        "command": "$python tools/fix_e_rinoliner_collision_stage11_object.py $in $out",
-        "description": "FIX stage11 rinoliner-collision complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_wall_stage11_object",
-        "command": "$python tools/fix_e_wall_stage11_object.py $in $out",
-        "description": "FIX stage11 wall complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_turtle_stage11_object",
-        "command": "$python tools/fix_e_turtle_stage11_object.py $in $out",
-        "description": "FIX stage11 turtle complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_spider_stage11_object",
-        "command": "$python tools/fix_e_spider_stage11_object.py $in $out",
-        "description": "FIX stage11 spider complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_fan_stage11_object",
-        "command": "$python tools/fix_e_fan_stage11_object.py $in $out",
-        "description": "FIX stage11 fan complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_tree_stage11_object",
-        "command": "$python tools/fix_e_tree_stage11_object.py $in $out",
-        "description": "FIX stage11 tree complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_grass2_stage11_object",
-        "command": "$python tools/fix_e_grass2_stage11_object.py $in $out",
-        "description": "FIX stage11 grass2 complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_grass_stage11_object",
-        "command": "$python tools/fix_e_grass_stage11_object.py $in $out",
-        "description": "FIX stage11 grass complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_mask_stage11_object",
-        "command": "$python tools/fix_e_mask_stage11_object.py $in $out",
-        "description": "FIX stage11 mask complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_s11_flag_stage11_object",
-        "command": "$python tools/fix_e_s11_flag_stage11_object.py $in $out",
-        "description": "FIX stage11 flag complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_o_s11_door_object",
-        "command": "$python tools/fix_o_s11_door_object.py $in $out",
-        "description": "FIX stage11 door complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_s11_key_stage11_object",
-        "command": "$python tools/fix_e_s11_key_stage11_object.py $in $out",
-        "description": "FIX stage11 key complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_e_capture_object",
-        "command": "$python tools/fix_e_capture_object.py $in $out",
-        "description": "FIX stage11 capture complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_o_s12_celestial_sphere_object",
-        "command": "$python tools/fix_o_s12_celestial_sphere_object.py $in $out",
-        "description": "FIX celestial sphere complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_svm_object",
-        "command": "$python tools/fix_svm_object.py $in $out",
-        "description": "FIX CRI SVM complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_axrna_object",
-        "command": "$python tools/fix_axrna_object.py $in $out",
-        "description": "FIX CRI AXRNA complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_rnares_object",
-        "command": "$python tools/fix_rnares_object.py $in $out",
-        "description": "FIX CRI RNARES complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_rw_gcn_allinone_object",
-        "command": "$python tools/fix_rw_gcn_allinone_object.py $in $out",
-        "description": "FIX RenderWare GCN all-in-one complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_rw_gcn_raster_object",
-        "command": "$python tools/fix_rw_gcn_raster_object.py $in $out",
-        "description": "FIX RenderWare GCN raster complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_rw_gcn_render_object",
-        "command": "$python tools/fix_rw_gcn_render_object.py $in $out",
-        "description": "FIX RenderWare GCN render complete-TU compiler-owned layout",
-    },
-    {
-        "name": "fix_rw_gcn_core_object",
-        "command": "$python tools/fix_rw_gcn_core_object.py $in $out",
-        "description": "FIX RenderWare GCN core complete-TU compiler-owned layout",
-    },
-    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4022,56 +3847,6 @@ config.custom_build_rules = [
             f"--objcopy {objcopy_path} --ld {ld_path}"
         ),
         "description": "FIX TEndSkyBob.cpp data atom order",
-    },
-    {
-        "name": "fix_put_particle_object",
-        "command": "$python tools/fix_put_particle_object.py $in $out",
-        "description": "FIX complete PUT PARTICLE compiler object",
-    },
-    {
-        "name": "fix_sp_dashpanel_object",
-        "command": "$python tools/fix_sp_dashpanel_object.py $in $out",
-        "description": "FIX complete SP DASHPANEL compiler object",
-    },
-    {
-        "name": "fix_sp_dashring_object",
-        "command": "$python tools/fix_sp_dashring_object.py $in $out",
-        "description": "FIX complete SP DASHRING compiler object",
-    },
-    {
-        "name": "fix_particle_test_object",
-        "command": "$python tools/fix_particle_test_object.py $in $out",
-        "description": "FIX complete PARTICLE TEST compiler object",
-    },
-    {
-        "name": "fix_spboss_throw_object",
-        "command": "$python tools/fix_spboss_throw_object.py $in $out",
-        "description": "FIX complete SP boss throw-object compiler object",
-    },
-    {
-        "name": "fix_sky_bobsleigh_path_object",
-        "command": "$python tools/fix_sky_bobsleigh_path_object.py $in $out",
-        "description": "FIX complete sky-bobsleigh path compiler object",
-    },
-    {
-        "name": "fix_player_effects_object",
-        "command": "$python tools/fix_player_effects_object.py $in $out",
-        "description": "FIX complete player-effects compiler object",
-    },
-    {
-        "name": "fix_sp_eff_dash_object",
-        "command": "$python tools/fix_sp_eff_dash_object.py $in $out",
-        "description": "FIX complete SP effect-dash compiler object",
-    },
-    {
-        "name": "fix_form_gate_sub_object",
-        "command": "$python tools/fix_form_gate_sub_object.py $in $out",
-        "description": "FIX complete formation-gate subordinate compiler object",
-    },
-    {
-        "name": "fix_chao_beans_object",
-        "command": "$python tools/fix_chao_beans_object.py $in $out",
-        "description": "FIX complete Chao Beans compiler object",
     },
     {
         "name": "fix_tenkyu_goalring_object",
@@ -4408,216 +4183,6 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_signal_lifecycle_stage11_object.py"],
         },
         {
-            "outputs": "build/G9SE8P/propeller-stage11-object.stamp",
-            "rule": "fix_propeller_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/propeller_stage11.o",
-            "implicit": ["tools/fix_propeller_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/goal-ring-stage11-object.stamp",
-            "rule": "fix_goal_ring_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/goal_ring_stage11.o",
-            "implicit": ["tools/fix_goal_ring_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/object-effects-stage11-object.stamp",
-            "rule": "fix_object_effects_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/object_effects_stage11.o",
-            "implicit": ["tools/fix_object_effects_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/light-collision-stage11-object.stamp",
-            "rule": "fix_light_collision_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/light_collision_stage11.o",
-            "implicit": ["tools/fix_light_collision_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-strategy-flyer-stage11-object.stamp",
-            "rule": "fix_e_strategy_flyer_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_strategy_flyer_stage11.o",
-            "implicit": ["tools/fix_e_strategy_flyer_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-capture-collision-stage11-object.stamp",
-            "rule": "fix_e_capture_collision_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_capture_collision_stage11.o",
-            "implicit": ["tools/fix_e_capture_collision_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-flyer-stage11-object.stamp",
-            "rule": "fix_e_flyer_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_flyer_stage11.o",
-            "implicit": ["tools/fix_e_flyer_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-flyer-collision-stage11-object.stamp",
-            "rule": "fix_e_flyer_collision_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_flyer_collision_stage11.o",
-            "implicit": ["tools/fix_e_flyer_collision_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-flyer-path-stage11-object.stamp",
-            "rule": "fix_e_flyer_path_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_flyer_path_stage11.o",
-            "implicit": ["tools/fix_e_flyer_path_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-strategy-magician-stage11-object.stamp",
-            "rule": "fix_e_strategy_magician_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_strategy_magician_stage11.o",
-            "implicit": ["tools/fix_e_strategy_magician_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-magician-stage11-object.stamp",
-            "rule": "fix_e_magician_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_magician_stage11.o",
-            "implicit": ["tools/fix_e_magician_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-strategy-rinoliner-stage11-object.stamp",
-            "rule": "fix_e_strategy_rinoliner_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_strategy_rinoliner_stage11.o",
-            "implicit": ["tools/fix_e_strategy_rinoliner_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/o-colli-communication-stage11-object.stamp",
-            "rule": "fix_o_colli_communication_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/o_colli_communication_stage11.o",
-            "implicit": ["tools/fix_o_colli_communication_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-rinoliner-stage11-object.stamp",
-            "rule": "fix_e_rinoliner_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_rinoliner_stage11.o",
-            "implicit": ["tools/fix_e_rinoliner_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-rinoliner-collision-stage11-object.stamp",
-            "rule": "fix_e_rinoliner_collision_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_rinoliner_collision_stage11.o",
-            "implicit": ["tools/fix_e_rinoliner_collision_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-wall-stage11-object.stamp",
-            "rule": "fix_e_wall_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_wall_stage11.o",
-            "implicit": ["tools/fix_e_wall_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-turtle-stage11-object.stamp",
-            "rule": "fix_e_turtle_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_turtle_stage11.o",
-            "implicit": ["tools/fix_e_turtle_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-spider-stage11-object.stamp",
-            "rule": "fix_e_spider_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_spider_stage11.o",
-            "implicit": ["tools/fix_e_spider_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-fan-stage11-object.stamp",
-            "rule": "fix_e_fan_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_fan_stage11.o",
-            "implicit": ["tools/fix_e_fan_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-tree-stage11-object.stamp",
-            "rule": "fix_e_tree_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_tree_stage11.o",
-            "implicit": ["tools/fix_e_tree_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-grass2-stage11-object.stamp",
-            "rule": "fix_e_grass2_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_grass2_stage11.o",
-            "implicit": ["tools/fix_e_grass2_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-grass-stage11-object.stamp",
-            "rule": "fix_e_grass_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_grass_stage11.o",
-            "implicit": ["tools/fix_e_grass_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-mask-stage11-object.stamp",
-            "rule": "fix_e_mask_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_mask_stage11.o",
-            "implicit": ["tools/fix_e_mask_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-s11-flag-stage11-object.stamp",
-            "rule": "fix_e_s11_flag_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_s11_flag_stage11.o",
-            "implicit": ["tools/fix_e_s11_flag_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/o-s11-door-object.stamp",
-            "rule": "fix_o_s11_door_object",
-            "inputs": "build/G9SE8P/src/rel/o_s11_door.o",
-            "implicit": ["tools/fix_o_s11_door_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-s11-key-stage11-object.stamp",
-            "rule": "fix_e_s11_key_stage11_object",
-            "inputs": "build/G9SE8P/src/rel/e_s11_key_stage11.o",
-            "implicit": ["tools/fix_e_s11_key_stage11_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/e-capture-object.stamp",
-            "rule": "fix_e_capture_object",
-            "inputs": "build/G9SE8P/src/rel/e_capture.o",
-            "implicit": ["tools/fix_e_capture_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/o-s12-celestial-sphere-object.stamp",
-            "rule": "fix_o_s12_celestial_sphere_object",
-            "inputs": "build/G9SE8P/src/rel/o_s12_celestial_sphere.o",
-            "implicit": ["tools/fix_o_s12_celestial_sphere_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/svm-object.stamp",
-            "rule": "fix_svm_object",
-            "inputs": "build/G9SE8P/src/game/cri/svm.o",
-            "implicit": ["tools/fix_svm_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/axrna-object.stamp",
-            "rule": "fix_axrna_object",
-            "inputs": "build/G9SE8P/src/game/cri/axrna.o",
-            "implicit": ["tools/fix_axrna_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/rnares-object.stamp",
-            "rule": "fix_rnares_object",
-            "inputs": "build/G9SE8P/src/game/cri/rnares.o",
-            "implicit": ["tools/fix_rnares_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/rw-gcn-allinone-object.stamp",
-            "rule": "fix_rw_gcn_allinone_object",
-            "inputs": "build/G9SE8P/src/game/rw_gcn_allinone.o",
-            "implicit": ["tools/fix_rw_gcn_allinone_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/rw-gcn-raster-object.stamp",
-            "rule": "fix_rw_gcn_raster_object",
-            "inputs": "build/G9SE8P/src/game/rw_gcn_raster.o",
-            "implicit": ["tools/fix_rw_gcn_raster_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/rw-gcn-render-object.stamp",
-            "rule": "fix_rw_gcn_render_object",
-            "inputs": "build/G9SE8P/src/game/rw_gcn_render.o",
-            "implicit": ["tools/fix_rw_gcn_render_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/rw-gcn-core-object.stamp",
-            "rule": "fix_rw_gcn_core_object",
-            "inputs": "build/G9SE8P/src/game/rw_gcn_core.o",
-            "implicit": ["tools/fix_rw_gcn_core_object.py"],
-        },
-        {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
             "rule": "fix_ef_sparkle_object",
             "inputs": "build/G9SE8P/src/rel/ef_sparkle.o",
@@ -4652,66 +4217,6 @@ config.custom_build_steps = {
                 "tools/fix_end_sky_bob_object.py",
                 str(binutils_dir),
             ],
-        },
-        {
-            "outputs": "build/G9SE8P/put-particle-object.stamp",
-            "rule": "fix_put_particle_object",
-            "inputs": "build/G9SE8P/src/rel/put_particle.o",
-            "implicit": ["tools/fix_put_particle_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/sp-dashpanel-object.stamp",
-            "rule": "fix_sp_dashpanel_object",
-            "inputs": "build/G9SE8P/src/rel/sp_dashpanel.o",
-            "implicit": ["tools/fix_sp_dashpanel_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/sp-dashring-object.stamp",
-            "rule": "fix_sp_dashring_object",
-            "inputs": "build/G9SE8P/src/rel/sp_dashring.o",
-            "implicit": ["tools/fix_sp_dashring_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/particle-test-object.stamp",
-            "rule": "fix_particle_test_object",
-            "inputs": "build/G9SE8P/src/rel/particle_test.o",
-            "implicit": ["tools/fix_particle_test_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/spboss-throw-object.stamp",
-            "rule": "fix_spboss_throw_object",
-            "inputs": "build/G9SE8P/src/rel/spboss_throw_object.o",
-            "implicit": ["tools/fix_spboss_throw_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/sky-bobsleigh-path-object.stamp",
-            "rule": "fix_sky_bobsleigh_path_object",
-            "inputs": "build/G9SE8P/src/rel/sky_bobsleigh_path.o",
-            "implicit": ["tools/fix_sky_bobsleigh_path_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/player-effects-object.stamp",
-            "rule": "fix_player_effects_object",
-            "inputs": "build/G9SE8P/src/rel/player_effects.o",
-            "implicit": ["tools/fix_player_effects_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/sp-eff-dash-object.stamp",
-            "rule": "fix_sp_eff_dash_object",
-            "inputs": "build/G9SE8P/src/rel/sp_eff_dash.o",
-            "implicit": ["tools/fix_sp_eff_dash_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/form-gate-sub-object.stamp",
-            "rule": "fix_form_gate_sub_object",
-            "inputs": "build/G9SE8P/src/rel/form_gate_sub.o",
-            "implicit": ["tools/fix_form_gate_sub_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/chao-beans-object.stamp",
-            "rule": "fix_chao_beans_object",
-            "inputs": "build/G9SE8P/src/rel/chao_beans.o",
-            "implicit": ["tools/fix_chao_beans_object.py"],
         },
         {
             "outputs": "build/G9SE8P/tenkyu-goalring-object.stamp",

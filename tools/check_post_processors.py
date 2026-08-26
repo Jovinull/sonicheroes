@@ -104,6 +104,41 @@ def unpacked_from(tree: ast.Module, sources: set[str]) -> set[str]:
     return bound
 
 
+def embedded_object_writers(tree: ast.Module) -> set[str]:
+    """Module-level constants that get decoded and written as object content.
+
+    The most direct way to fake a match is to carry a compressed copy of the
+    retail object and write it over whatever the compiler produced. The source
+    then has no bearing on the result, the artifact hashes because it *is* the
+    artifact, and every percentage the project reports for that unit is the
+    original measured against itself.
+
+    A blob is neither a hex literal nor an integer table, so the earlier rules
+    do not see it. This one looks for a decode or decompress call anywhere in
+    the module and reports the constants that feed it.
+    """
+    decoders = {"b85decode", "b64decode", "a85decode", "b32decode", "b16decode",
+                "decompress", "unhexlify", "decodebytes"}
+    found = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        func = node.func
+        name = func.attr if isinstance(func, ast.Attribute) else getattr(func, "id", "")
+        if name not in decoders:
+            continue
+        for argument in node.args:
+            found |= names_in(argument)
+    literals = set()
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant):
+            if isinstance(node.value.value, (str, bytes)) and len(node.value.value) > 256:
+                for target in node.targets:
+                    if isinstance(target, ast.Name):
+                        literals.add(target.id)
+    return found & literals
+
+
 def hex_constants(tree: ast.Module) -> set[str]:
     """Module-level names bound to a bytes.fromhex(...) literal."""
     found = set()
@@ -187,6 +222,15 @@ def check(path: Path) -> list[str]:
         problems.append(
             f"{path.name}: {name} is a hex literal that gets written. "
             "A post-processor may compare retail bytes, never carry them. "
+            "See docs/object-post-processors.md."
+        )
+
+    for name in sorted(embedded_object_writers(tree) - allowed):
+        problems.append(
+            f"{path.name}: {name} is an encoded blob that gets decoded and "
+            "written. A post-processor may permute what our compiler produced; "
+            "carrying a copy of the retail object replaces it, and the unit "
+            "then measures the original against itself. "
             "See docs/object-post-processors.md."
         )
 

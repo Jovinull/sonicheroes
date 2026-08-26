@@ -81,6 +81,34 @@ class InstructionSizedTests(unittest.TestCase):
         self.assertNotIn("offset", values)
 
 
+class EmbeddedBlobTests(unittest.TestCase):
+    def test_a_decoded_blob_written_as_the_object_is_rejected(self) -> None:
+        tree = parse(
+            "import base64, zlib\n"
+            "RETAIL = '" + "x" * 300 + "'\n"
+            "def main(path):\n"
+            "    path.write_bytes(zlib.decompress(base64.b85decode(RETAIL)))\n"
+        )
+        self.assertEqual(checker.embedded_object_writers(tree), {"RETAIL"})
+
+    def test_a_short_constant_is_not_a_blob(self) -> None:
+        tree = parse(
+            "import base64\n"
+            "TAG = 'abc'\n"
+            "def main(path):\n"
+            "    path.write_bytes(base64.b64decode(TAG))\n"
+        )
+        self.assertEqual(checker.embedded_object_writers(tree), set())
+
+    def test_a_step_that_decodes_nothing_is_untouched(self) -> None:
+        tree = parse(
+            "import struct\n"
+            "def main(blob):\n"
+            "    struct.pack_into('>I', blob, 0, 1)\n"
+        )
+        self.assertEqual(checker.embedded_object_writers(tree), set())
+
+
 class ValidationTests(unittest.TestCase):
     def test_a_step_that_writes_without_validating_is_rejected(self) -> None:
         tree = parse(
