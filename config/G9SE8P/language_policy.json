@@ -24,10 +24,16 @@
     "game/cri/gcci.c",
     "game/cri/lsc.c",
     "game/cri/mfci.c",
+    "game/cri/rnares.c",
     "game/cri/sj.c",
     "game/cri/sjcrs.c",
     "game/cri/sjmem.c",
     "game/cri/sjrbf.c",
+    "game/cri/svm.c",
+    "game/rw_gcn_allinone.c",
+    "game/rw_gcn_core.c",
+    "game/rw_gcn_raster.c",
+    "game/rw_gcn_render.c",
     "movieD/cri/sfxahn.c",
     "movieD/cri/sfxcnv.c",
     "movieD/cri/sfxset.c",
@@ -35,19 +41,19 @@
     "movieD/prolog.c",
     "rel/prolog.c"
   ],
-    "pending_c_evidence": [],
-    "protected_cpp_c_sources": [
-        "autosaveD/menu_selectors.c",
-        "autosaveD/table.c",
-        "autosaveD/widget_rendering.c",
+  "pending_c_evidence": [],
+  "protected_cpp_c_sources": [
+    "autosaveD/menu_selectors.c",
+    "autosaveD/table.c",
+    "autosaveD/widget_rendering.c",
     "autosaveD/window_input.c"
   ],
   "c_sources_compiled_as_cpp": [
     "game/skyfs_adx.c",
-        "movieD/cri/sfx.c"
-    ],
-    "legacy_cpp_c_sources": [
-        "autosaveD/line_count.c",
+    "movieD/cri/sfx.c"
+  ],
+  "legacy_cpp_c_sources": [
+    "autosaveD/line_count.c",
     "autosaveD/quad_fill.c",
     "autosaveD/quad_submit.c",
     "autosaveD/state_selector.c",
@@ -57,13 +63,13 @@
     "autosaveD/task_system.c",
     "autosaveD/window_frame.c",
     "autosaveD/window_lifecycle.c"
-    ],
-    "deferred_sources": [
-        "advertiseD/adv_2p.cpp",
-        "advertiseD/adv_draw.cpp",
-        "game/e_paralysis.cpp",
-        "game/modeswitch.cpp",
-        "game/skyfs_adx.c",
-        "rel/o_spring.cpp"
-    ]
+  ],
+  "deferred_sources": [
+    "advertiseD/adv_2p.cpp",
+    "advertiseD/adv_draw.cpp",
+    "game/e_paralysis.cpp",
+    "game/modeswitch.cpp",
+    "game/skyfs_adx.c",
+    "rel/o_spring.cpp"
+  ]
 }
