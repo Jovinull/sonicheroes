@@ -76,6 +76,8 @@ typedef struct TObject {
 	/* 0x34C */ f32 unk34C;        /* inferred */
 } TObject;                         /* size >= 0x350 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(...); /* extern */
 s32 fn_80017800(...);                /* extern */
 TObject* fn_80018A34(...);           /* extern */
@@ -1257,4 +1259,5 @@ void fn_8_ACDC4(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			return;
 	}
+}
 }
