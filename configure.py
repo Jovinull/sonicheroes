@@ -1290,6 +1290,15 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sp_dashpanel.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/TEndSPStage.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -3948,6 +3957,11 @@ config.custom_build_rules = [
         "description": "FIX complete PUT PARTICLE compiler object",
     },
     {
+        "name": "fix_sp_dashpanel_object",
+        "command": "$python tools/fix_sp_dashpanel_object.py $in $out",
+        "description": "FIX complete SP DASHPANEL compiler object",
+    },
+    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4527,6 +4541,12 @@ config.custom_build_steps = {
             "rule": "fix_put_particle_object",
             "inputs": "build/G9SE8P/src/rel/put_particle.o",
             "implicit": ["tools/fix_put_particle_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/sp-dashpanel-object.stamp",
+            "rule": "fix_sp_dashpanel_object",
+            "inputs": "build/G9SE8P/src/rel/sp_dashpanel.o",
+            "implicit": ["tools/fix_sp_dashpanel_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
