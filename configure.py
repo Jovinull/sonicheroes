@@ -2355,8 +2355,8 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
-                "rel/s11_flag_register.cpp",
+                NonMatching,
+                "rel/e_s11_flag_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
