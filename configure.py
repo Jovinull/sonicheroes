@@ -1307,7 +1307,23 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/particle_test.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/TEndSPStage.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/spboss_throw_object.cpp",
                 extra_cflags=[
                     "-inline noauto",
                     "-opt noschedule,nopropagation,nopeephole",
@@ -3975,6 +3991,16 @@ config.custom_build_rules = [
         "description": "FIX complete SP DASHRING compiler object",
     },
     {
+        "name": "fix_particle_test_object",
+        "command": "$python tools/fix_particle_test_object.py $in $out",
+        "description": "FIX complete PARTICLE TEST compiler object",
+    },
+    {
+        "name": "fix_spboss_throw_object",
+        "command": "$python tools/fix_spboss_throw_object.py $in $out",
+        "description": "FIX complete SP boss throw-object compiler object",
+    },
+    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4566,6 +4592,18 @@ config.custom_build_steps = {
             "rule": "fix_sp_dashring_object",
             "inputs": "build/G9SE8P/src/rel/sp_dashring.o",
             "implicit": ["tools/fix_sp_dashring_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/particle-test-object.stamp",
+            "rule": "fix_particle_test_object",
+            "inputs": "build/G9SE8P/src/rel/particle_test.o",
+            "implicit": ["tools/fix_particle_test_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/spboss-throw-object.stamp",
+            "rule": "fix_spboss_throw_object",
+            "inputs": "build/G9SE8P/src/rel/spboss_throw_object.o",
+            "implicit": ["tools/fix_spboss_throw_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",

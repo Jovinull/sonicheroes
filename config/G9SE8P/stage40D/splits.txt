@@ -122,9 +122,21 @@ rel/sp_dashring.cpp:
 	.data       start:0x00044398 end:0x00044430
 	.bss        start:0x000064E0 end:0x00006510
 
+rel/particle_test.cpp:
+	.text       start:0x0008150C end:0x00082088
+	.ctors      start:0x00000114 end:0x00000118
+	.rodata     start:0x00001CF8 end:0x00001D08
+	.data       start:0x00044430 end:0x000445D0
+	.bss        start:0x00006510 end:0x00006540
+
 rel/TEndSPStage.cpp:
 	.text       start:0x00082088 end:0x00082624
 	.ctors      start:0x00000118 end:0x0000011C
 	.rodata     start:0x00001D08 end:0x00001D30
 	.data       start:0x000445D0 end:0x00044660
 	.bss        start:0x00006540 end:0x00006570
+
+rel/spboss_throw_object.cpp:
+	.text       start:0x00082624 end:0x0008328C
+	.rodata     start:0x00001D30 end:0x00001D60
+	.data       start:0x00044660 end:0x000446E8
