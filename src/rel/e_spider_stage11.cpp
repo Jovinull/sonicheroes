@@ -36,6 +36,8 @@ typedef struct TObject {
 	/* 0xF8 */ u32 unkF8; /* inferred */
 } TObject;                /* size >= 0xFC */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(...);                   /* extern */
 void* __dt__7TObjectFv(...);                           /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                 /* extern */
@@ -635,3 +637,4 @@ void s11spiderObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const s11spiderObjectCtorEntry)(void) = s11spiderObjectRegister;
+}
