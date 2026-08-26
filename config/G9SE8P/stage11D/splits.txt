@@ -344,6 +344,9 @@ rel/lens_flare_register.cpp:
 rel/signal_dtor.cpp:
 	.text       start:0x000464D0 end:0x00046578
 
+rel/signal_lifecycle_stage11.cpp:
+	.text       start:0x00046578 end:0x00046B24
+
 rel/signal_assets.cpp:
 	.text       start:0x00046B24 end:0x00046C14
 	.ctors      start:0x00000080 end:0x00000084
