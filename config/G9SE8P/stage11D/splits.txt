@@ -298,8 +298,24 @@ rel/pole_assets.cpp:
 	.text       start:0x0003FF74 end:0x00040064
 	.ctors      start:0x0000006C end:0x00000070
 
+rel/ef_rain_stage11.cpp:
+	.text       start:0x0004006C end:0x000403EC
+	.ctors      start:0x00000070 end:0x00000074
+	.rodata     start:0x00000A70 end:0x00000A80
+	.data       start:0x0000430C end:0x00004364
+	.bss        start:0x00000978 end:0x00000988
+
+rel/fn_403ec_stage11.cpp:
+	.text       start:0x000403EC end:0x00040F64
+	.rodata     start:0x00000A80 end:0x00000AA8
+	.data       start:0x00004364 end:0x00004584
+	.bss        start:0x00000988 end:0x000009E0
+
 rel/case_obj_dtor.cpp:
 	.text       start:0x00040F64 end:0x00041034
+
+rel/case_obj_lifecycle_stage11.cpp:
+	.text       start:0x00041034 end:0x000415B0
 
 rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0

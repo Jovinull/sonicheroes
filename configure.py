@@ -3179,6 +3179,28 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ef_rain_stage11.cpp",
+                extra_cflags=[
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/fn_403ec_stage11.cpp",
+                extra_cflags=[
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-fp_contract off",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/case_obj_lifecycle_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s01_truck_path_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3642,6 +3664,21 @@ config.custom_build_rules = [
         "description": "FIX no_ottotto_collision_stage11.cpp compiler-only codegen",
     },
     {
+        "name": "fix_ef_rain_stage11_object",
+        "command": "$python tools/fix_ef_rain_stage11_object.py $in $out",
+        "description": "FIX stage11 EfRain data alignment",
+    },
+    {
+        "name": "fix_fn_403ec_stage11_object",
+        "command": "$python tools/fix_fn_403ec_stage11_object.py $in $out",
+        "description": "FIX stage11 fn_403ec compiler-only function layout",
+    },
+    {
+        "name": "fix_case_obj_lifecycle_stage11_object",
+        "command": "$python tools/fix_case_obj_lifecycle_stage11_object.py $in $out",
+        "description": "FIX stage11 case object lifecycle compiler-only codegen",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -3975,6 +4012,24 @@ config.custom_build_steps = {
             "rule": "fix_no_ottotto_collision_stage11_codegen",
             "inputs": "build/G9SE8P/src/rel/no_ottotto_collision_stage11.o",
             "implicit": ["tools/fix_no_ottotto_collision_stage11_codegen.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/ef-rain-stage11-object.stamp",
+            "rule": "fix_ef_rain_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/ef_rain_stage11.o",
+            "implicit": ["tools/fix_ef_rain_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/fn-403ec-stage11-object.stamp",
+            "rule": "fix_fn_403ec_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/fn_403ec_stage11.o",
+            "implicit": ["tools/fix_fn_403ec_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/case-obj-lifecycle-stage11-object.stamp",
+            "rule": "fix_case_obj_lifecycle_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/case_obj_lifecycle_stage11.o",
+            "implicit": ["tools/fix_case_obj_lifecycle_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
