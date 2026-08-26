@@ -1605,6 +1605,11 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/o_colli_communication_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/invoke_colli_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
