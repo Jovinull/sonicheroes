@@ -558,6 +558,18 @@ rel/e_flyer_path_stage11.cpp:
 	.data       start:0x00016430 end:0x00016550
 	.bss        start:0x000019B8 end:0x000019C8
 
+rel/e_strategy_magician_stage11.cpp:
+	.text       start:0x000AABC8 end:0x000ACE24
+	.rodata     start:0x00001AE8 end:0x00001B70
+	.data       start:0x00016A30 end:0x00016B98
+
+rel/e_magician_stage11.cpp:
+	.text       start:0x000ACE24 end:0x000AF9AC
+	.ctors      start:0x00000130 end:0x00000134
+	.rodata     start:0x00001B70 end:0x00001E20
+	.data       start:0x00016B98 end:0x00016D80
+	.bss        start:0x000019D4 end:0x00001A48
+
 rel/rinoliner_register.cpp:
 	.text       start:0x000B4930 end:0x000B49D8
 	.ctors      start:0x00000134 end:0x00000138
@@ -627,10 +639,3 @@ rel/bgmcolli_object_register.cpp:
 rel/no_ottotto_collision_register.cpp:
 	.text       start:0x000DD2D0 end:0x000DD368
 	.ctors      start:0x00000174 end:0x00000178
-
-rel/e_magician_stage11.cpp:
-	.text       start:0x000ACE24 end:0x000AF9AC
-	.ctors      start:0x00000130 end:0x00000134
-	.rodata     start:0x00001B70 end:0x00001E20
-	.data       start:0x00016B98 end:0x00016D80
-	.bss        start:0x000019D4 end:0x00001A48
