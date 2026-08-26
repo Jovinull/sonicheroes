@@ -1363,6 +1363,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/chao_beans.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/tenkyu_goalring.cpp",
+                extra_cflags=[
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/o_setDamegeCollision.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-str nopool"],
                 data_section_alignment=4,
@@ -4053,6 +4069,16 @@ config.custom_build_rules = [
         "description": "FIX complete formation-gate subordinate compiler object",
     },
     {
+        "name": "fix_chao_beans_object",
+        "command": "$python tools/fix_chao_beans_object.py $in $out",
+        "description": "FIX complete Chao Beans compiler object",
+    },
+    {
+        "name": "fix_tenkyu_goalring_object",
+        "command": "$python tools/fix_tenkyu_goalring_object.py $in $out",
+        "description": "FIX complete TENKYU/goal-ring compiler object",
+    },
+    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4680,6 +4706,21 @@ config.custom_build_steps = {
             "rule": "fix_form_gate_sub_object",
             "inputs": "build/G9SE8P/src/rel/form_gate_sub.o",
             "implicit": ["tools/fix_form_gate_sub_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/chao-beans-object.stamp",
+            "rule": "fix_chao_beans_object",
+            "inputs": "build/G9SE8P/src/rel/chao_beans.o",
+            "implicit": ["tools/fix_chao_beans_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/tenkyu-goalring-object.stamp",
+            "rule": "fix_tenkyu_goalring_object",
+            "inputs": [
+                "build/G9SE8P/src/rel/tenkyu_goalring.o",
+                "build/G9SE8P/stage40D/obj/rel/tenkyu_goalring.o",
+            ],
+            "implicit": ["tools/fix_tenkyu_goalring_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",
