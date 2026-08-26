@@ -139,6 +139,8 @@ typedef struct TEnemyParalysis {
 	/* 0x358 */ f32 unk358;        /* inferred */
 } TEnemyParalysis;                 /* size >= 0x35C */
 
+extern "C" {
+
 M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(...);               /* extern */
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(...);        /* extern */
 void* __ct__10HAnimClassFv(...);                                           /* extern */
@@ -1324,4 +1326,5 @@ void magicianObjectRegister(void)
 		return;
 	}
 	M2C_FIELD(&magicianObjectEntry, s32*, 0x14) = 0x20000;
+}
 }
