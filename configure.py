@@ -1560,7 +1560,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_strategy_flyer_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3221,6 +3221,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/light_collision_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/goal_ring_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
             ),
@@ -3729,6 +3734,16 @@ config.custom_build_rules = [
         "description": "FIX stage11 object-effects complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_light_collision_stage11_object",
+        "command": "$python tools/fix_light_collision_stage11_object.py $in $out",
+        "description": "FIX stage11 light-collision complete-TU compiler-owned layout",
+    },
+    {
+        "name": "fix_e_strategy_flyer_stage11_object",
+        "command": "$python tools/fix_e_strategy_flyer_stage11_object.py $in $out",
+        "description": "FIX stage11 strategy-flyer complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4110,6 +4125,18 @@ config.custom_build_steps = {
             "rule": "fix_object_effects_stage11_object",
             "inputs": "build/G9SE8P/src/rel/object_effects_stage11.o",
             "implicit": ["tools/fix_object_effects_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/light-collision-stage11-object.stamp",
+            "rule": "fix_light_collision_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/light_collision_stage11.o",
+            "implicit": ["tools/fix_light_collision_stage11_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/e-strategy-flyer-stage11-object.stamp",
+            "rule": "fix_e_strategy_flyer_stage11_object",
+            "inputs": "build/G9SE8P/src/rel/e_strategy_flyer_stage11.o",
+            "implicit": ["tools/fix_e_strategy_flyer_stage11_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",

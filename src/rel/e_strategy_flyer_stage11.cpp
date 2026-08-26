@@ -243,6 +243,8 @@ static f64 lbl_8_rodata_1890;
 static f32 lbl_8_rodata_1898;
 static f32 lbl_8_rodata_189C[4];
 
+extern "C" {
+
 void fn_8_9DA00(s32 arg0)
 {
 	fn_8_9D81C(arg0 - 0x28);
@@ -2810,4 +2812,5 @@ void fn_8_A2454(void)
 	lbl_8_data_15E0C[3].unk0 = M2C_FIELD(&lbl_8_data_15E00, s32*, 0);
 	lbl_8_data_15E0C[3].unk4 = M2C_FIELD(&lbl_8_data_15E00, s32*, 4);
 	lbl_8_data_15E0C[3].unk8 = M2C_FIELD(&lbl_8_data_15E00, s32*, 8);
+}
 }
