@@ -176,6 +176,8 @@ typedef struct TObject {
 	/* 0x314 */ f32 unk314;   /* inferred */
 } TObject;                    /* size >= 0x318 */
 
+extern "C" {
+
 M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(...);                     /* extern */
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(...);              /* extern */
 void* __ct__10HAnimClassFv(...);                                                 /* extern */
@@ -3890,3 +3892,4 @@ void wallObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const wallObjectCtorEntry)(void) = wallObjectRegister;
+}
