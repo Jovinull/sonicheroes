@@ -40,6 +40,8 @@ typedef struct TObject {
 	/* 0xF8 */ void* unkF8;      /* inferred */
 } TObject;                       /* size >= 0xFC */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                        /* extern */
@@ -676,4 +678,5 @@ void s11doorObjectRegister(void)
 		return;
 	}
 	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14) = 0x20000;
+}
 }
