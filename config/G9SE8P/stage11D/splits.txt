@@ -517,9 +517,12 @@ rel/o_s11_cloud.cpp:
 	.data       start:0x00015448 end:0x000155B8
 	.bss        start:0x00001708 end:0x00001780
 
-rel/capture_register.cpp:
-	.text       start:0x0009D288 end:0x0009D384
+rel/e_capture.cpp:
+	.text       start:0x00098060 end:0x0009D3BC
 	.ctors      start:0x0000011C end:0x00000120
+	.rodata     start:0x000016A4 end:0x000017BC
+	.data       start:0x000155B8 end:0x000159E8
+	.bss        start:0x00001780 end:0x00001870
 
 rel/e_capture_collision_stage11.cpp:
 	.text       start:0x0009D3BC end:0x0009DA00
