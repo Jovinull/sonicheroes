@@ -52,6 +52,8 @@ typedef struct TObject {
 	/* 0xF0 */ f32 unkF0;        /* inferred */
 } TObject;                       /* size >= 0xF4 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(...); /* extern */
 M2C_UNK __dl__FPv(...);              /* extern */
 void* __dt__7TObjectFv(...);         /* extern */
@@ -1608,3 +1610,4 @@ s32 fn_8_AAE98(void* arg0)
 }
 
 void fn_8_AAF48(void) { }
+}
