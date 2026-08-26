@@ -67,6 +67,8 @@ struct _struct_lbl_8_data_18978_0x14 {
 	/* 0x04 */ char pad4[0x10]; /* maybe part of unk0[5]? */
 }; /* size = 0x14 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(...);                               /* extern */
 void* __dt__7TObjectFv(...);                                       /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                             /* extern */
@@ -997,3 +999,4 @@ void grassObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const grassObjectCtorEntry)(void) = grassObjectRegister;
+}
