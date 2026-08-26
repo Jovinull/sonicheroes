@@ -358,6 +358,10 @@ rel/propeller_register.cpp:
 	.text       start:0x00049590 end:0x00049630
 	.ctors      start:0x00000084 end:0x00000088
 
+rel/object_effects_stage11.cpp:
+	.text       start:0x00049630 end:0x0004A4CC
+	.ctors      start:0x00000088 end:0x0000008C
+
 rel/goal_ring_stage11.cpp:
 	.text       start:0x0004A4CC end:0x0004D4F0
 
