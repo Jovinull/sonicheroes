@@ -42,6 +42,8 @@ typedef struct TObject {
 	/* 0xF0 */ f32 unkF0;        /* inferred */
 } TObject;                       /* size >= 0xF4 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);   /* extern */
 M2C_UNK __dl__FPv(void* arg0);                                  /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);         /* extern */
@@ -1997,3 +1999,4 @@ void rinoColObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const rinoColObjectCtorEntry)(void) = rinoColObjectRegister;
+}
