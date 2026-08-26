@@ -681,6 +681,8 @@ rel/bgmcolli_object_register.cpp:
 	.text       start:0x000DCD80 end:0x000DCE30
 	.ctors      start:0x00000170 end:0x00000174
 
-rel/no_ottotto_collision_register.cpp:
-	.text       start:0x000DD2D0 end:0x000DD368
+rel/no_ottotto_collision_stage11.cpp:
+	.text       start:0x000DCE30 end:0x000DD370
 	.ctors      start:0x00000174 end:0x00000178
+	.data       start:0x0001A364 end:0x0001A450
+	.bss        start:0x0000D4A8 end:0x0000D4D4
