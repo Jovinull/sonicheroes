@@ -530,9 +530,12 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000A81F8 end:0x000A82A0
 	.ctors      start:0x0000012C end:0x00000130
 
-rel/magician_object_register.cpp:
-	.text       start:0x000AF904 end:0x000AF9AC
+rel/e_magician_stage11.cpp:
+	.text       start:0x000ACE24 end:0x000AF9AC
 	.ctors      start:0x00000130 end:0x00000134
+	.rodata     start:0x00001B70 end:0x00001E20
+	.data       start:0x00016B98 end:0x00016D80
+	.bss        start:0x000019D4 end:0x00001A48
 
 rel/rinoliner_register.cpp:
 	.text       start:0x000B4930 end:0x000B49D8
