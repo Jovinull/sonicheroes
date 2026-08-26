@@ -130,6 +130,8 @@ typedef struct TObject {
 	/* 0x31C */ s32 unk31C;              /* inferred */
 } TObject;                               /* size >= 0x320 */
 
+extern "C" {
+
 M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(...);               /* extern */
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(...);        /* extern */
 void* __ct__10HAnimClassFv(...);                                           /* extern */
@@ -1305,3 +1307,4 @@ void rinolinerObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const rinolinerObjectCtorEntry)(void) = rinolinerObjectRegister;
+}
