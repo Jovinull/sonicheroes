@@ -334,6 +334,9 @@ modules:
   symbols: config/G9SE8P/stage11D/symbols.txt
   splits: config/G9SE8P/stage11D/splits.txt
   force_active:
+    # This internal update helper has no relocation from outside its original
+    # monolithic compiler atom, so retain it once that atom is reconstructed.
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
