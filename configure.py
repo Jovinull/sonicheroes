@@ -596,6 +596,16 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
+                NonMatching,
+                "game/rw_gcn_core.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_render.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
                 Matching,
                 "game/cri/adapter.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
@@ -609,6 +619,16 @@ config.libs = [
                     "-str reuse,readonly",
                     "-use_lmw_stmw on",
                 ],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_allinone.c",
+                extra_cflags=["-str reuse,readonly"],
+            ),
+            Object(
+                NonMatching,
+                "game/rw_gcn_raster.c",
+                extra_cflags=["-str reuse,readonly"],
             ),
             Object(
                 Matching,
@@ -1540,8 +1560,33 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                NonMatching,
+                "rel/e_strategy_flyer_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "rel/e_capture_collision_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "rel/e_flyer_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "rel/e_flyer_collision_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
                 Matching,
                 "rel/flyer_col_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "rel/e_flyer_path_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -1582,6 +1627,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/capture_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                NonMatching,
+                "rel/e_capture.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -2275,13 +2325,8 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
-                "rel/s11door_object_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/s11_door_object_dtor.cpp",
+                NonMatching,
+                "rel/o_s11_door.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -2320,8 +2365,8 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                Matching,
-                "rel/s12celestial_object_register.cpp",
+                NonMatching,
+                "rel/o_s12_celestial_sphere.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
