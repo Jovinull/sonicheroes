@@ -188,6 +188,8 @@ typedef struct TObject {
 	/* 0x588 */ f32 unk588;         /* inferred */
 } TObject;                          /* size >= 0x58C */
 
+extern "C" {
+
 M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(
     TEnemyParalysis* self, RwV3d* arg0, sAngle* arg1); /* extern */
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(
@@ -3180,4 +3182,5 @@ void captureObjectRegister(void)
 void captureObjectGlobalArrayDtor(void)
 {
 	__destroy_arr(&captureObjectGlobalArray, &fn_80113C2C, 0x14, 8);
+}
 }
