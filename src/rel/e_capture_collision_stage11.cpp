@@ -46,6 +46,8 @@ static M2C_UNK captureCollisionDisplayName; /* unable to generate initializer: u
 static M2C_UNK captureCollisionFieldTypes;  /* unable to generate initializer: unknown type */
 static M2C_UNK captureCollisionEntry;
 
+extern "C" {
+
 void fn_8_9D3BC(s32 arg0)
 {
 	fn_8_9CAF0(arg0 - 0xB0);
@@ -286,4 +288,5 @@ void captureCollisionRegister(void)
 		return;
 	}
 	M2C_FIELD(&captureCollisionEntry, s32*, 0x14) = 0x20000;
+}
 }
