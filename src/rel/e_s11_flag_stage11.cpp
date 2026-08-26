@@ -50,6 +50,8 @@ struct _struct_lbl_8_data_18B68_0x8 {
 	/* 0x4 */ char pad4[4];
 }; /* size = 0x8 */
 
+extern "C" {
+
 f32 GetTotalFrame__10DAnimClassFP17RpDMorphAnimation(...);  /* extern */
 void* __ct__7TObjectFP7TObject(...);                        /* extern */
 void* __dt__7TObjectFv(...);                                /* extern */
@@ -1024,3 +1026,4 @@ void s11FlagRegister(void)
 }
 
 __declspec(section ".ctors") void (*const s11FlagCtorEntry)(void) = s11FlagRegister;
+}
