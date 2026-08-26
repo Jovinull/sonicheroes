@@ -581,7 +581,7 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/cri/svm.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
@@ -2400,7 +2400,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/o_s12_celestial_sphere.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3854,6 +3854,16 @@ config.custom_build_rules = [
         "description": "FIX stage11 capture complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_o_s12_celestial_sphere_object",
+        "command": "$python tools/fix_o_s12_celestial_sphere_object.py $in $out",
+        "description": "FIX celestial sphere complete-TU compiler-owned layout",
+    },
+    {
+        "name": "fix_svm_object",
+        "command": "$python tools/fix_svm_object.py $in $out",
+        "description": "FIX CRI SVM complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4379,6 +4389,18 @@ config.custom_build_steps = {
             "rule": "fix_e_capture_object",
             "inputs": "build/G9SE8P/src/rel/e_capture.o",
             "implicit": ["tools/fix_e_capture_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/o-s12-celestial-sphere-object.stamp",
+            "rule": "fix_o_s12_celestial_sphere_object",
+            "inputs": "build/G9SE8P/src/rel/o_s12_celestial_sphere.o",
+            "implicit": ["tools/fix_o_s12_celestial_sphere_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/svm-object.stamp",
+            "rule": "fix_svm_object",
+            "inputs": "build/G9SE8P/src/game/cri/svm.o",
+            "implicit": ["tools/fix_svm_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",

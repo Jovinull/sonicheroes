@@ -27,6 +27,8 @@ typedef struct TObject {
 	/* 0x5C */ void* unk5C; /* inferred */
 } TObject;                  /* size >= 0x60 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                        /* extern */
@@ -414,4 +416,5 @@ void s12celestialObjectRegister(void)
 void fn_8_973D4(s32 arg0)
 {
 	fn_8_96EF0((void*)(arg0 - 0x28));
+}
 }
