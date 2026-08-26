@@ -578,9 +578,12 @@ rel/turtle_register.cpp:
 	.text       start:0x000C27EC end:0x000C28CC
 	.ctors      start:0x00000140 end:0x00000144
 
-rel/s11spider_object_register.cpp:
-	.text       start:0x000C3738 end:0x000C37E0
+rel/e_spider_stage11.cpp:
+	.text       start:0x000C28CC end:0x000C37E0
 	.ctors      start:0x00000144 end:0x00000148
+	.rodata     start:0x00001F08 end:0x00001F24
+	.data       start:0x00018180 end:0x00018228
+	.bss        start:0x00001BD0 end:0x00001C10
 
 rel/s12fan_object_register.cpp:
 	.text       start:0x000C3F60 end:0x000C3FF8
