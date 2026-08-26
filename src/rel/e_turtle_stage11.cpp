@@ -180,6 +180,8 @@ typedef struct TObject {
 	/* 0x31C */ f32 unk31C; /* inferred */
 } TObject;                  /* size >= 0x320 */
 
+extern "C" {
+
 M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(...);                     /* extern */
 s32 SetPosition__18TObjEffTornadoSpinFv(...);                                    /* extern */
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(...);              /* extern */
@@ -3008,3 +3010,4 @@ void turtleObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const turtleObjectCtorEntry)(void) = turtleObjectRegister;
+}
