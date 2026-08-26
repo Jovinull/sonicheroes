@@ -596,7 +596,7 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/rw_gcn_core.c",
                 extra_cflags=["-str reuse,readonly"],
             ),
@@ -3889,6 +3889,11 @@ config.custom_build_rules = [
         "description": "FIX RenderWare GCN render complete-TU compiler-owned layout",
     },
     {
+        "name": "fix_rw_gcn_core_object",
+        "command": "$python tools/fix_rw_gcn_core_object.py $in $out",
+        "description": "FIX RenderWare GCN core complete-TU compiler-owned layout",
+    },
+    {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX ef_sparkle compiler-owned atom order",
@@ -4456,6 +4461,12 @@ config.custom_build_steps = {
             "rule": "fix_rw_gcn_render_object",
             "inputs": "build/G9SE8P/src/game/rw_gcn_render.o",
             "implicit": ["tools/fix_rw_gcn_render_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/rw-gcn-core-object.stamp",
+            "rule": "fix_rw_gcn_core_object",
+            "inputs": "build/G9SE8P/src/game/rw_gcn_core.o",
+            "implicit": ["tools/fix_rw_gcn_core_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage40D/ef-sparkle-object.stamp",
