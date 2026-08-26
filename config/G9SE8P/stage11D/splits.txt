@@ -582,9 +582,12 @@ rel/s11spider_object_register.cpp:
 	.text       start:0x000C3738 end:0x000C37E0
 	.ctors      start:0x00000144 end:0x00000148
 
-rel/s12fan_object_register.cpp:
-	.text       start:0x000C3F60 end:0x000C3FF8
+rel/e_fan_stage11.cpp:
+	.text       start:0x000C37E0 end:0x000C3FF8
 	.ctors      start:0x00000148 end:0x0000014C
+	.rodata     start:0x00001F24 end:0x00001F28
+	.data       start:0x00018228 end:0x00018298
+	.bss        start:0x00001C10 end:0x00001C40
 
 rel/tree_object_register.cpp:
 	.text       start:0x000C4DEC end:0x000C4E94
