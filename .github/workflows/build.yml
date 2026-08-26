@@ -86,6 +86,17 @@ jobs:
         python tools/check_post_processors.py
         ninja all_source progress build/${{ matrix.version }}/report.json
 
+    # The `progress` target already reaches this through build/<version>/ok, so
+    # a mismatch fails the step above. That guarantee is a dependency edge, not
+    # a line anyone reads: if `progress` ever stops depending on `ok`, the byte
+    # comparison disappears silently and every build still looks green.
+    #
+    # So state it. Hashing eighteen artifacts costs about a second, and this
+    # fails independently of what the ninja graph happens to look like.
+    - name: Verify the artifacts match retail
+      run: |
+        build/tools/dtk shasum -c config/${{ matrix.version }}/build.sha1
+
     - name: Upload map
       uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
