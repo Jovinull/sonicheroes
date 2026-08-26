@@ -31,6 +31,8 @@ typedef struct TObject {
 	/* 0xE4 */ void* unkE4; /* inferred */
 } TObject;                  /* size >= 0xE8 */
 
+extern "C" {
+
 void* __ct__7TObjectFP7TObject(...);                                /* extern */
 void* __dt__7TObjectFv(...);                                        /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                              /* extern */
@@ -648,3 +650,4 @@ void maskObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const maskObjectCtorEntry)(void) = maskObjectRegister;
+}
