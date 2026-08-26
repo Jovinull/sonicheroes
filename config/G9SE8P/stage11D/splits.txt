@@ -575,8 +575,6 @@ rel/e_strategy_rinoliner_stage11.cpp:
 
 rel/o_colli_communication_stage11.cpp:
 	.text       start:0x000B0924 end:0x000B2BB4
-	.rodata     start:0x00001BB8 end:0x00001C08
-	.data       start:0x00016B98 end:0x00016BB0
 
 rel/rinoliner_register.cpp:
 	.text       start:0x000B4930 end:0x000B49D8
