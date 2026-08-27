@@ -13,6 +13,7 @@ struct Params {
 struct Object {
 	u8 base[0x28];
 	void* motion;
+	u8 unk2C[4];
 	void* particle;
 	u8 effect, family, pad[2];
 	s32 timer;

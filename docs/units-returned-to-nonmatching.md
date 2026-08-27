@@ -222,6 +222,17 @@ knowing why before someone tries. Two obstacles came up:
   has to be settled against the target's register setup at the call site rather
   than by majority.
 
+**A constant multiply that retail keeps in a register.** `fn_8022C300` in
+`game/rw_gcn_render` is `li r3, 0x16` then `mullw r3, r3, r0`, where this build
+folds it to one `mulli`. Same cause as the record flag fold — propagation sees
+the literal — and the same fix, `-opt nopropagation` on the unit.
+
+**A struct four bytes too narrow shifts every field after it.**
+`rel/particle_test` stored to 0x2c and 0x34 where the target uses 0x30 and
+0x38: its `motion` member is a two-word structure, not one pointer. The give-away
+is that *both* offsets are wrong by the same amount, so the fix is one padding
+member rather than two field edits.
+
 **m2c names a dropped parameter for you.** When it decides a function takes
 one argument but the target reads r4, it still calls that parameter `arg1` —
 the number is the register position it came from, not the position in the list
@@ -324,6 +335,21 @@ That took the unit from 94.51% to 95.90% and `left` from 54 to 47, with
 0x21 from the same register that holds the zero variable, and mwcc always
 materialises a fresh `li r0, 0x0` for the byte store no matter how the field or
 the variable is typed.
+
+**`bool` is a byte in C++ and an int in retail.** A float comparison returned
+as `s32` costs one extra instruction, because mwcc normalises the `bool` before
+widening it:
+
+```
+  xori r3, r0, 0x1      |  xori   r0, r0, 0x1
+                        |  clrlwi r3, r0, 24
+```
+
+`-bool off` makes `bool` an `int` and the mask disappears. Swept across the
+open units it improves eleven and regresses none; two units, `rel/propeller_stage11`
+and `rel/light_collision_stage11`, do not compile with it and keep their flags.
+Unlike `-use_lmw_stmw` this one is safe to try everywhere, because a unit that
+does not return a comparison is simply unaffected.
 
 **`-use_lmw_stmw on` is not a general answer, unlike `-pool off`.** Swept
 across all 43 open units it improves three — `rel/spboss_throw_object` (+1.05),
