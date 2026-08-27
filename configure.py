@@ -623,7 +623,9 @@ config.libs = [
             Object(
                 NonMatching,
                 "game/rw_gcn_allinone.c",
-                extra_cflags=["-str reuse,readonly", "-bool off"],
+                extra_cflags=["-str reuse,readonly", "-bool off",
+                    "-opt nopropagation",
+                ],
             ),
             Object(
                 NonMatching,
@@ -1682,7 +1684,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_flyer_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
@@ -1697,12 +1699,12 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_strategy_magician_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
                 "rel/e_flyer_path_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
@@ -1732,7 +1734,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_rinoliner_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
