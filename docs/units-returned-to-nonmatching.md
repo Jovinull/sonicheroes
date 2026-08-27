@@ -307,6 +307,15 @@ That took the unit from 94.51% to 95.90% and `left` from 54 to 47, with
 materialises a fresh `li r0, 0x0` for the byte store no matter how the field or
 the variable is typed.
 
+**`-use_lmw_stmw on` is not a general answer, unlike `-pool off`.** Swept
+across all 43 open units it improves three — `rel/spboss_throw_object` (+1.05),
+`rel/light_collision_stage11` (+0.07), `rel/e_wall_stage11` (+0.05) — and
+regresses seventeen, `rel/e_grass2_stage11` by -2.21 and `game/rw_gcn_core` by
+-2.08. Worth trying per unit, never worth adopting broadly. The contrast with
+`-pool off` below is the useful part: pooling announces itself in our object
+with an anchor symbol, so it can be decided from evidence, while multiple-word
+moves have no such tell and only the report can settle them.
+
 **Data pooling is on where retail had it off.** mwcc's `-pool` collects a
 translation unit's static data behind one anchor and addresses every object as
 `base + offset`; retail emits a `lis`/`addi` pair per symbol. Our object gives
