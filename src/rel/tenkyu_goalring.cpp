@@ -1,6 +1,17 @@
 #include "types.h"
 
-// Complete special-stage TENKYU and goal-ring implementation TU.
+// Special-stage TENKYU and goal-ring TU. Nothing here is reconstructed.
+//
+// This file arrived with a build step that overwrote its compiled object with
+// dtk's target object, so the unit reported 100% while these bodies were empty.
+// The step is gone and the unit is NonMatching. What the bodies actually earn
+// is 8 of 6616 bytes: two of the twenty-nine functions are a bare blr in retail
+// and an empty body happens to be one too.
+//
+// The declarations below are kept as a worklist, not as a claim. Also verify
+// the split before writing source against it: the .data range starts on the
+// string "SP CHAO BEANS", which belongs to rel/chao_beans, so these bounds have
+// never been tested against a real link. See docs/units-returned-to-nonmatching.md.
 extern "C" __declspec(section ".rodata") const u8 tenkyuGoalringRodata[0xC] = { 0 };
 extern "C" u8 tenkyuGoalringData[0x264]                                     = { 1 };
 extern "C" u8 tenkyuGoalringBss[0x20];

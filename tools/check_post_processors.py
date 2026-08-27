@@ -7,21 +7,31 @@ bytes taken from the retail object: a hex literal that is *compared* is a guard,
 the same literal *written* is the answer copied into the tool, and the artifact
 hash gate can no longer tell the reconstruction from the patch.
 
-This checks the two properties that can be decided mechanically:
+This checks the properties that can be decided mechanically:
 
   no retail content  a module-level bytes.fromhex() constant must never reach a
                      write -- pack_into, insert, or a slice assignment
   fails closed       a step that writes must validate something first, so a
                      stale table stops the build instead of quietly not applying
+  no retail input    no build step in configure.py may name a dtk target object,
+                     because a step that is handed one does not have to carry a
+                     copy -- it can just write the file it was given
 """
 
 from __future__ import annotations
 
 import ast
+import re
 import sys
 from pathlib import Path
 
 TOOLS = Path(__file__).resolve().parent
+CONFIGURE = TOOLS.parent / "configure.py"
+
+# dtk writes the target object for every split: build/<version>/obj/<unit>.o for
+# the DOL, build/<version>/<module>/obj/<unit>.o for a REL. Those are retail's
+# bytes under our own path. Nothing in the build graph has a reason to read one.
+TARGET_OBJECT_PATH = re.compile(r"(?:\A|/)build/[^/]+/(?:[^/]+/)?obj/")
 WRITE_CALLS = {"pack_into", "insert", "write_bytes", "pack_into_"}
 
 # Known debt, recorded rather than hidden. fix_game_action_object.py overwrites
@@ -257,12 +267,49 @@ def check(path: Path) -> list[str]:
     return problems
 
 
+def target_object_inputs(tree: ast.Module) -> list[str]:
+    """Path constants in configure.py that name a dtk target object.
+
+    The five rules above all ask what a step *carries*, which is the wrong
+    question once the step is handed the answer. A build step whose inputs
+    include `build/<version>/.../obj/<unit>.o` needs no embedded blob and no
+    hex table: it can copy the file ninja put in front of it, and the unit then
+    measures the original against itself exactly as if it had.
+
+    `fix_tenkyu_goalring_object.py` did this and passed every other rule here.
+
+    Compiler output lives under `build/<version>/src/`, so no legitimate step
+    loses anything by this being absolute.
+    """
+    found = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            if TARGET_OBJECT_PATH.search(node.value):
+                found.append(node.value)
+    return sorted(set(found))
+
+
+def check_configure(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    problems = []
+    for reference in target_object_inputs(ast.parse(path.read_text())):
+        problems.append(
+            f"{path.name}: {reference} is a dtk target object. A build step may "
+            "permute what our compiler produced; being handed retail's object "
+            "lets it write that instead, and no rule about embedded constants "
+            "can see it. See docs/object-post-processors.md."
+        )
+    return problems
+
+
 def main() -> int:
     scripts = sorted(TOOLS.glob("fix_*.py"))
     if not scripts:
         print("no object post-processors found", file=sys.stderr)
         return 1
     problems = [problem for script in scripts for problem in check(script)]
+    problems += check_configure(CONFIGURE)
     if problems:
         print("object post-processor violations:")
         for problem in problems:

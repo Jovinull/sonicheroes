@@ -6,12 +6,20 @@ the original against itself: `build.sha1` passed because the artifact *was* the
 artifact, and the source had no bearing on the result. Those steps are deleted
 and their units are `NonMatching` again.
 
+A forty-sixth, `fix_tenkyu_goalring_object.py`, reached the same result without
+carrying anything. Its build step listed
+`build/G9SE8P/stage40D/obj/rel/tenkyu_goalring.o` — the target object dtk writes
+for that split — as a second input, and copied it over the compiler's object.
+There was no blob to find, so the rule written for the other forty-five did not
+see it. It is deleted too, and `rel/tenkyu_goalring` is in the table below.
+
 **No source was removed.** Every reconstruction is still in the tree. What
 follows is how far each one actually is, measured against the dtk target with
 the step gone, so the work is a roadmap rather than a loss.
 
-Reported progress moves from 10.43% to 7.49% of code and 5.96% to 5.62% of data.
-That is the number the sources actually earn.
+Reported progress moves from 10.43% to 7.49% of code and 5.96% to 5.62% of data,
+and removing the forty-sixth takes it to 7.44% and 5.61%. That is the number the
+sources actually earn.
 
 ## What is left, per unit
 
@@ -62,6 +70,7 @@ all, usually a missing or extra block.
 | `rel/form_gate_sub` | 1004 | 0 | 0 | 1004 | 1017 |
 | `rel/sky_bobsleigh_path` | 1231 | 0 | 0 | 1231 | 1410 |
 | `game/rw_gcn_render` | 1257 | 225 | 365 | 667 | 7042 |
+| `rel/tenkyu_goalring` | 1626 | 0 | 1 | 1625 | 1654 |
 | `rel/player_effects` | 1632 | 0 | 0 | 1632 | 1695 |
 | `rel/o_colli_communication_stage11` | 1757 | 0 | 2 | 1755 | 2212 |
 | `rel/goal_ring_stage11` | 1761 | 6 | 18 | 1737 | 3081 |
@@ -86,8 +95,27 @@ No pragma or flag tried so far reproduces it — `opt_unroll_loops`, `opt_unroll
 Worth knowing: `-O4,s` on that unit drops the rest of the gap from 31 differences
 to 11, so the unit flags are probably not right either.
 
-## The rule that now stops this
+## The rules that now stop this
 
 `tools/check_post_processors.py` rejects a module-level constant longer than 256
 bytes that reaches a decode or decompress call. A blob is neither a hex literal
-nor an integer table, so the two earlier rules did not see it. CI runs the check.
+nor an integer table, so the two earlier rules did not see it.
+
+It also rejects any path constant in `configure.py` that names a dtk target
+object — `build/<version>/obj/…` or `build/<version>/<module>/obj/…`. That is
+the rule the forty-sixth needed: a step handed retail's object does not have to
+carry a copy of it, so no amount of looking at what the script contains will
+find it. Our compiler's output is under `build/<version>/src/`, so the check
+costs nothing legitimate. CI runs both.
+
+`rel/tenkyu_goalring` is worth reading as the shape to recognise. Its source is
+twenty-nine `void fn_16_*() { }` bodies and three sized arrays, and it reported
+`100.00% fuzzy, 6616 / 6616`. The second detector is source-side and needs no
+build: a unit whose source has several empty function bodies and no
+statement-bearing one cannot be earning kilobytes of matched code.
+
+One thing to settle before anyone reconstructs it: the split's `.data` range,
+`0x00044DE4`–`0x00045048`, opens on the string `SP CHAO BEANS`, which belongs to
+the neighbouring `rel/chao_beans` unit. The bounds came in with the step and
+were never tested against a real link, so check them before writing source
+against them.
