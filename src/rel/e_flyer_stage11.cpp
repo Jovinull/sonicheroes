@@ -714,7 +714,7 @@ void fn_8_A325C(void* arg0)
 	}
 }
 
-void fn_8_A3420(s32 arg1)
+void fn_8_A3420(void* arg0, s32 arg1)
 {
 	fn_8_90B10(arg1);
 }
@@ -1472,7 +1472,7 @@ void fn_8_A4830(void* arg0, void* arg1, void* arg2)
 	}
 }
 
-void fn_8_A4AC0(void* arg1, void* arg2)
+void fn_8_A4AC0(void* arg0, void* arg1, void* arg2)
 {
 	f32 temp_f1;
 
@@ -2430,7 +2430,7 @@ M2C_UNK* fn_8_A66D4(void)
 	return var_r0;
 }
 
-void fn_8_A6728(void* arg1)
+void fn_8_A6728(void* arg0, void* arg1)
 {
 	f32* var_r4_3;
 	f32 temp_f1;

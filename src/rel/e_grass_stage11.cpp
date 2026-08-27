@@ -800,7 +800,7 @@ s32 fn_8_C70C4(s32 arg0, void** arg1)
 	return 0;
 }
 
-void fn_8_C7128(void* arg1)
+void fn_8_C7128(void* arg0, void* arg1)
 {
 	void* temp_r5;
 

@@ -1146,7 +1146,7 @@ TEnemyParalysis* fn_8_AF390(void)
 	return var_r0;
 }
 
-void fn_8_AF3E8(void* arg1)
+void fn_8_AF3E8(void* arg0, void* arg1)
 {
 	f32* var_r4_2;
 	f32* var_r4_3;

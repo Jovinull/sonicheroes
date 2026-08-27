@@ -595,7 +595,7 @@ TObject* fn_8_96018(TObject* arg0, TObject* arg1)
 	return arg0;
 }
 
-void fn_8_964DC(void* arg1)
+void fn_8_964DC(void* arg0, void* arg1)
 {
 	u8* temp_r3;
 

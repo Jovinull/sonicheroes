@@ -1075,7 +1075,7 @@ TObject* fn_8_A7E24(void)
 	return temp_r3;
 }
 
-void fn_8_A7FA4(void* arg1)
+void fn_8_A7FA4(void* arg0, void* arg1)
 {
 	s32* var_r5_2;
 	s32 temp_r6;

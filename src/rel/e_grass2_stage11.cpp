@@ -638,7 +638,7 @@ s32 fn_8_C5BB8(s32 arg0, void** arg1)
 	return 0;
 }
 
-void fn_8_C5C1C(void* arg1)
+void fn_8_C5C1C(void* arg0, void* arg1)
 {
 	void* temp_r5;
 

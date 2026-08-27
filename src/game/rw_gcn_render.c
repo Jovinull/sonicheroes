@@ -2221,7 +2221,7 @@ u8* fn_8022E09C(u8* arg0, u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_8022E46C(u8* arg1)
+u8* fn_8022E46C(void* arg0, u8* arg1)
 {
 	f32 temp_f1;
 	f32 temp_f4;
@@ -2277,7 +2277,7 @@ u8* fn_8022E46C(u8* arg1)
 	return arg1;
 }
 
-u8* fn_8022E5D4(u8* arg1, u8* arg2)
+u8* fn_8022E5D4(void* arg0, u8* arg1, u8* arg2)
 {
 	s32 temp_r31;
 	s32 temp_r3;
@@ -2295,7 +2295,7 @@ u8* fn_8022E5D4(u8* arg1, u8* arg2)
 	return arg2;
 }
 
-u8* fn_8022E674(u8* arg1, s32* arg2)
+u8* fn_8022E674(void* arg0, u8* arg1, s32* arg2)
 {
 	s32 var_r0;
 	u32* temp_r6;
@@ -2309,7 +2309,7 @@ u8* fn_8022E674(u8* arg1, s32* arg2)
 	return arg1;
 }
 
-u8* fn_8022E6D4(u8* arg1, s32 arg2)
+u8* fn_8022E6D4(void* arg0, u8* arg1, s32 arg2)
 {
 	s32 temp_r3;
 	u8* temp_r30;
@@ -2325,7 +2325,7 @@ u8* fn_8022E6D4(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_8022E774(u8* arg1, s32 arg2)
+u8* fn_8022E774(void* arg0, u8* arg1, s32 arg2)
 {
 	s32 temp_r3;
 	u8* temp_r30;
@@ -2461,7 +2461,7 @@ u8* fn_8022E814(u8* arg0, u8* arg1, f32* arg2)
 	return arg1;
 }
 
-u8* fn_8022EB2C(u8* arg1)
+u8* fn_8022EB2C(void* arg0, u8* arg1)
 {
 	s32 spB8;
 	s32 spB4;
@@ -3160,7 +3160,7 @@ u8* fn_8022EB2C(u8* arg1)
 	return var_r15;
 }
 
-u8* fn_8022FA00(u8* arg1, u8* arg2)
+u8* fn_8022FA00(void* arg0, u8* arg1, u8* arg2)
 {
 	s32* temp_r4;
 	s32* temp_r4_2;
@@ -3212,7 +3212,7 @@ u8* fn_8022FA00(u8* arg1, u8* arg2)
 	return arg2;
 }
 
-u8* fn_8022FB60(u8* arg1, s32* arg2)
+u8* fn_8022FB60(void* arg0, u8* arg1, s32* arg2)
 {
 	s32 temp_r3;
 	s32 temp_r3_2;
@@ -3240,7 +3240,7 @@ u8* fn_8022FB60(u8* arg1, s32* arg2)
 	return arg1;
 }
 
-u8* fn_8022FC2C(u8* arg1, s32 arg2)
+u8* fn_8022FC2C(void* arg0, u8* arg1, s32 arg2)
 {
 	s32 temp_r3;
 	s32 temp_r3_2;
@@ -3309,7 +3309,7 @@ u8* fn_8022FC2C(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_8022FE30(u8* arg1, s32 arg2)
+u8* fn_8022FE30(void* arg0, u8* arg1, s32 arg2)
 {
 	s32 temp_r3;
 	s32 temp_r3_2;
@@ -3353,7 +3353,7 @@ u8* fn_8022FE30(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_8022FF58(u8* arg1)
+u8* fn_8022FF58(void* arg0, u8* arg1)
 {
 	u8* sp8;
 	s32 temp_r3;
@@ -3474,7 +3474,7 @@ u8* fn_802301CC(u8* arg0, u8* arg1, f32* arg2)
 	return arg1;
 }
 
-u8* fn_8023031C(u8* arg1, M2C_UNK arg_sp0)
+u8* fn_8023031C(void* arg0, u8* arg1, M2C_UNK arg_sp0)
 {
 	f32 sp24;
 	f32 sp20;
@@ -3662,7 +3662,7 @@ u8* fn_8023031C(u8* arg1, M2C_UNK arg_sp0)
 	return var_r19;
 }
 
-u8* fn_80230794(u8* arg1, u8* arg2)
+u8* fn_80230794(void* arg0, u8* arg1, u8* arg2)
 {
 	s32* temp_r4;
 	s32 temp_r31;
@@ -3682,7 +3682,7 @@ u8* fn_80230794(u8* arg1, u8* arg2)
 	return arg2;
 }
 
-u8* fn_80230834(u8* arg1, s32* arg2)
+u8* fn_80230834(void* arg0, u8* arg1, s32* arg2)
 {
 	s32 temp_r3;
 	s32 var_r31;
@@ -3698,7 +3698,7 @@ u8* fn_80230834(u8* arg1, s32* arg2)
 	return arg1;
 }
 
-u8* fn_802308A4(u8* arg1, s32 arg2)
+u8* fn_802308A4(void* arg0, u8* arg1, s32 arg2)
 {
 	s32 temp_r3;
 	u32* temp_r30;
@@ -3723,7 +3723,7 @@ u8* fn_802308A4(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_8023096C(u8* arg1, s32 arg2)
+u8* fn_8023096C(void* arg0, u8* arg1, s32 arg2)
 {
 	s32 temp_r3;
 	u32* temp_r30;
@@ -3741,7 +3741,7 @@ u8* fn_8023096C(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_802309F8(u8* arg1)
+u8* fn_802309F8(void* arg0, u8* arg1)
 {
 	u8* sp8;
 	s32 temp_r3;
@@ -3770,7 +3770,7 @@ u8* fn_802309F8(u8* arg1)
 	return arg1;
 }
 
-u8* fn_80230AF0(u8* arg1)
+u8* fn_80230AF0(void* arg0, u8* arg1)
 {
 	f32 sp1C;
 	f32 sp18;
@@ -3933,7 +3933,7 @@ u8* fn_80230AF0(u8* arg1)
 	return arg1;
 }
 
-u8* fn_80230F78(u8* arg1, u8* arg2)
+u8* fn_80230F78(void* arg0, u8* arg1, u8* arg2)
 {
 	s32 temp_r31;
 	s32 temp_r3;
@@ -3948,7 +3948,7 @@ u8* fn_80230F78(u8* arg1, u8* arg2)
 	return arg2;
 }
 
-u8* fn_80231004(u8* arg1, s32* arg2)
+u8* fn_80231004(void* arg0, u8* arg1, s32* arg2)
 {
 	s32 var_r0;
 	u32* temp_r6;
@@ -3962,7 +3962,7 @@ u8* fn_80231004(u8* arg1, s32* arg2)
 	return arg1;
 }
 
-u8* fn_80231064(u8* arg1, s32 arg2)
+u8* fn_80231064(void* arg0, u8* arg1, s32 arg2)
 {
 	u32 sp8;
 	s32 temp_r3;
@@ -3988,7 +3988,7 @@ u8* fn_80231064(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_8023113C(u8* arg1, s32 arg2)
+u8* fn_8023113C(void* arg0, u8* arg1, s32 arg2)
 {
 	u32 sp8;
 	s32 temp_r3;
@@ -4012,7 +4012,7 @@ u8* fn_8023113C(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_80231208(u8* arg1)
+u8* fn_80231208(void* arg0, u8* arg1)
 {
 	f32 sp1C;
 	f32 sp18;
@@ -4162,7 +4162,7 @@ u8* fn_80231208(u8* arg1)
 	return arg1;
 }
 
-u8* fn_802315DC(u8* arg1, u8* arg2)
+u8* fn_802315DC(void* arg0, u8* arg1, u8* arg2)
 {
 	s32 temp_r31;
 	s32 temp_r3;
@@ -4177,7 +4177,7 @@ u8* fn_802315DC(u8* arg1, u8* arg2)
 	return arg2;
 }
 
-u8* fn_80231668(u8* arg1, s32* arg2)
+u8* fn_80231668(void* arg0, u8* arg1, s32* arg2)
 {
 	s32 var_r0;
 	u32* temp_r6;
@@ -4191,7 +4191,7 @@ u8* fn_80231668(u8* arg1, s32* arg2)
 	return arg1;
 }
 
-u8* fn_802316C8(u8* arg1, s32 arg2)
+u8* fn_802316C8(void* arg0, u8* arg1, s32 arg2)
 {
 	u32 sp8;
 	s32 temp_r3;
@@ -4215,7 +4215,7 @@ u8* fn_802316C8(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_80231780(u8* arg1, s32 arg2)
+u8* fn_80231780(void* arg0, u8* arg1, s32 arg2)
 {
 	u32 sp8;
 	s32 temp_r3;
@@ -4237,7 +4237,7 @@ u8* fn_80231780(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_8023182C(u8* arg1, u8* arg_sp0)
+u8* fn_8023182C(void* arg0, u8* arg1, u8* arg_sp0)
 {
 	f32 sp1C;
 	f32 sp18;
@@ -4409,7 +4409,7 @@ u8* fn_8023182C(u8* arg1, u8* arg_sp0)
 	return arg1;
 }
 
-u8* fn_80231CE8(u8* arg1, u8* arg2)
+u8* fn_80231CE8(void* arg0, u8* arg1, u8* arg2)
 {
 	s32 temp_r31;
 	s32 temp_r3;
@@ -4436,7 +4436,7 @@ u8* fn_80231CE8(u8* arg1, u8* arg2)
 	return arg2;
 }
 
-u8* fn_80231DB8(u8* arg1, s32* arg2)
+u8* fn_80231DB8(void* arg0, u8* arg1, s32* arg2)
 {
 	s32 temp_r3;
 	s32 var_r4;
@@ -4464,7 +4464,7 @@ u8* fn_80231DB8(u8* arg1, s32* arg2)
 	return arg1;
 }
 
-u8* fn_80231E5C(u8* arg1, s32 arg2)
+u8* fn_80231E5C(void* arg0, u8* arg1, s32 arg2)
 {
 	u32 sp8;
 	s32 temp_r3;
@@ -4505,7 +4505,7 @@ u8* fn_80231E5C(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_80231FAC(u8* arg1, s32 arg2)
+u8* fn_80231FAC(void* arg0, u8* arg1, s32 arg2)
 {
 	u32 sp8;
 	s32 temp_r3;
@@ -4544,7 +4544,7 @@ u8* fn_80231FAC(u8* arg1, s32 arg2)
 	return arg1;
 }
 
-u8* fn_80232114(u8* arg1)
+u8* fn_80232114(void* arg0, u8* arg1)
 {
 	u8* sp8;
 	u32* temp_r5;

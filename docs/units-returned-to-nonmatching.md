@@ -222,6 +222,24 @@ knowing why before someone tries. Two obstacles came up:
   has to be settled against the target's register setup at the call site rather
   than by majority.
 
+**m2c names a dropped parameter for you.** When it decides a function takes
+one argument but the target reads r4, it still calls that parameter `arg1` —
+the number is the register position it came from, not the position in the list
+it wrote. So a function whose *first* declared parameter is named `arg1` is
+missing `arg0`:
+
+```c
+void fn_8_B9548(s32 arg1)      /* target: mr r3, r4; bl fn_8_90B10 */
+{
+	fn_8_90B10(arg1);
+}
+```
+
+Sixty-seven functions across twenty files have that shape, and it is a one-line
+grep: the first parameter's name. Prepending `void* arg0` moved nine units,
+`game/rw_gcn_render` by +1.22. Three files have to be left out because a call
+site inside the file then needs the argument too, and one measures worse.
+
 **A `(...)` extern can hide a lost argument.** m2c cannot see an argument that
 was already in the right register. `fn_8_C4B58` in `rel/e_tree_stage11` calls
 `fn_8013F484` right after `mr r30, r3`, so r3 still holds the function's own

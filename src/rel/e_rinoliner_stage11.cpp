@@ -1076,7 +1076,7 @@ TEnemyParalysis* fn_8_B4394(void)
 	return var_r0;
 }
 
-void fn_8_B43E8(void* arg1)
+void fn_8_B43E8(void* arg0, void* arg1)
 {
 	f32* var_r4_4;
 	f32* var_r4_6;

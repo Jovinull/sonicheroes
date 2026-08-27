@@ -850,7 +850,7 @@ TObject* fn_8_C8688(TObject* arg0, TObject* arg1)
 	return arg0;
 }
 
-void fn_8_C8C34(void* arg1)
+void fn_8_C8C34(void* arg0, void* arg1)
 {
 	void* temp_r5;
 

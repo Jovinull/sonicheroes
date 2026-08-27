@@ -1576,7 +1576,7 @@ void fn_8_B93A4(void* arg0)
 	}
 }
 
-void fn_8_B9548(s32 arg1)
+void fn_8_B9548(void* arg0, s32 arg1)
 {
 	fn_8_90B10(arg1);
 }
@@ -3694,7 +3694,7 @@ TObject* fn_8_BD32C(void)
 	return var_r0;
 }
 
-void fn_8_BD380(void* arg1)
+void fn_8_BD380(void* arg0, void* arg1)
 {
 	f32* var_r4_3;
 	f32* var_r4_4;

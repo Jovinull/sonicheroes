@@ -409,7 +409,7 @@ void fn_8_98060(void* arg0)
 	}
 }
 
-void fn_8_980F8(s32 arg1)
+void fn_8_980F8(void* arg0, s32 arg1)
 {
 	fn_8_90B10(arg1);
 }
@@ -516,7 +516,7 @@ s32 fn_8_9832C(void* arg0)
 	return var_r0;
 }
 
-s32 fn_8_983D8(void* arg1, s32 arg2, u8 arg3)
+s32 fn_8_983D8(void* arg0, void* arg1, s32 arg2, u8 arg3)
 {
 	s32* temp_r6;
 	void* temp_r0;
@@ -2930,7 +2930,7 @@ TObject* fn_8_9CA9C(void)
 	return var_r0;
 }
 
-void fn_8_9CAF0(void* arg1)
+void fn_8_9CAF0(void* arg0, void* arg1)
 {
 	f32* var_r4_3;
 	f32* var_r4_4;
