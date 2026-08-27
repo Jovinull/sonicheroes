@@ -268,6 +268,15 @@ differences are now visible in a function that previously had the wrong
 instructions to compare. It is the same effect the column warning above
 describes.
 
+**The object record recipe does not generalise past the flag hoist.** The
+literal-to-named-object half of it changes where the unit's strings live, and
+that moves the whole data section. Applied to the seven units whose register
+function tests an inline literal, it helped `rel/e_wall_stage11` (+0.09) and
+`rel/e_mask_stage11` (+0.05) and *hurt* `rel/e_capture` (-0.07),
+`rel/e_grass_stage11` (-0.11) and `rel/e_rinoliner_collision_stage11` (-0.11).
+Measure each one; the name is right in every case, but the layout it implies is
+not yet right in most.
+
 **The object record is a recipe, and it repeats per unit.** Every stage object
 has a `<name>ObjectRegister` that fills one record and ends with a flag test.
 m2c gets the same three things wrong in each of them, so the second unit costs

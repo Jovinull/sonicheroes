@@ -460,12 +460,12 @@ static M2C_UNK* lbl_8_data_17990 = (M2C_UNK*)"TObjEnemyWall";
 static M2C_UNK lbl_8_data_17994; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_179C4; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_179D8 = (M2C_UNK*)"TObjEnemyWallHelmet";
-static M2C_UNK lbl_8_data_179DC;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17AE0;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17AEC;      /* unable to generate initializer: unknown type */
-static M2C_UNK wallObjectDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK wallObjectFieldTypes;  /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00017BAC_data;  /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_179DC; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17AE0; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17AEC; /* unable to generate initializer: unknown type */
+static const char wallObjectDisplayName[] = "WALL OBJECT";
+static const char wallObjectFieldTypes[]  = "ccccffffiff";
+static M2C_UNK gap_04_00017BAC_data; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_bss_1AC8;
 static u32 lbl_8_bss_1ADC;
 static u32 lbl_8_bss_1AE0[0x11];
@@ -3882,31 +3882,33 @@ void fn_8_BD950(void* arg0, s32 arg1)
 
 void wallObjectRegister(void)
 {
+	s32 flags;
 	M2C_UNK* temp_r3;
 
 	fn_80113C7C(&wallObjectGlobalA);
 	__register_global_object(&fn_80113C2C, &wallObjectGlobalAChain);
 	M2C_FIELD(&wallObjectEntry, s32*, 0x14)       = 0;
 	M2C_FIELD(&wallObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&wallObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)"WALL OBJECT";
+	M2C_FIELD(&wallObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)wallObjectDisplayName;
 	M2C_FIELD(&wallObjectEntry, void (**)(), 4)   = wallObjectLoad;
 	M2C_FIELD(&wallObjectEntry, void (**)(), 8)   = wallObjectUnload;
 	M2C_FIELD(&wallObjectEntry, void (**)(), 0xC) = wallObjectCreate;
 	M2C_FIELD(&wallObjectEntry, s32*, 0x10)       = 0;
-	M2C_FIELD(&wallObjectEntry, s32*, 0x14)       = 0x20000;
+	flags                                         = 0x20000;
+	M2C_FIELD(&wallObjectEntry, s32*, 0x14)       = flags;
 	M2C_FIELD(&wallObjectEntry, s32*, 0x18)       = 0;
 	M2C_FIELD(&wallObjectEntry, s8*, 0x20)        = 0x1E;
 	M2C_FIELD(&wallObjectEntry, s16*, 0x1C)       = 0x1540;
 	M2C_FIELD(&wallObjectEntry, s16*, 0x1E)       = 4;
 	M2C_FIELD(&wallObjectEntry, s8*, 0x21)        = 0;
-	temp_r3                                       = (M2C_UNK*)"ccccffffiff";
+	temp_r3                                       = (M2C_UNK*)wallObjectFieldTypes;
 	M2C_FIELD(&wallObjectEntry, M2C_UNK**, 0x24)  = temp_r3;
 	M2C_FIELD(&wallObjectEntry, M2C_UNK**, 0x28)  = &wallObjectFieldNames;
 	if (temp_r3 != NULL) {
-		M2C_FIELD(&wallObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&wallObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&wallObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&wallObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const wallObjectCtorEntry)(void) = wallObjectRegister;
