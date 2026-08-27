@@ -41,9 +41,9 @@ static s32 lbl_8_data_159F4 = 0;
 static s32 lbl_8_data_159F8 = 0xFF;
 static M2C_UNK lbl_8_data_159FC; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_15A14 = "TObjCaptureCollision";
-static M2C_UNK lbl_8_data_15A18;            /* unable to generate initializer: unknown type */
-static M2C_UNK captureCollisionDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK captureCollisionFieldTypes;  /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_15A18; /* unable to generate initializer: unknown type */
+static const char captureCollisionDisplayName[] = "CAPTURE COLLISION";
+static const char captureCollisionFieldTypes[]  = "i";
 static M2C_UNK captureCollisionEntry;
 
 extern "C" {
@@ -206,7 +206,7 @@ TObject* fn_8_9D724(void)
 	return temp_r3;
 }
 
-void fn_8_9D81C(void* arg1)
+void fn_8_9D81C(void* arg0, void* arg1)
 {
 	s32* temp_r5;
 	s32* var_r3;
@@ -266,27 +266,29 @@ void captureCollisionCreate(void)
 void captureCollisionRegister(void)
 {
 	const char* temp_r3;
+	s32 flags;
 
 	M2C_FIELD(&captureCollisionEntry, s32*, 0x14)         = 0;
 	M2C_FIELD(&captureCollisionEntry, s32*, 0x18)         = 0;
-	M2C_FIELD(&captureCollisionEntry, const char**, 0)    = "CAPTURE COLLISION";
+	M2C_FIELD(&captureCollisionEntry, const char**, 0)    = captureCollisionDisplayName;
 	M2C_FIELD(&captureCollisionEntry, void (**)(), 4)     = captureCollisionLoad;
 	M2C_FIELD(&captureCollisionEntry, void (**)(), 8)     = captureCollisionUnload;
 	M2C_FIELD(&captureCollisionEntry, void (**)(), 0xC)   = captureCollisionCreate;
 	M2C_FIELD(&captureCollisionEntry, s32*, 0x10)         = 0;
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x14)         = 0x20000;
+	flags                                                 = 0x20000;
+	M2C_FIELD(&captureCollisionEntry, s32*, 0x14)         = flags;
 	M2C_FIELD(&captureCollisionEntry, s32*, 0x18)         = 0;
 	M2C_FIELD(&captureCollisionEntry, s8*, 0x20)          = 0x1E;
 	M2C_FIELD(&captureCollisionEntry, s16*, 0x1C)         = 0x65;
 	M2C_FIELD(&captureCollisionEntry, s16*, 0x1E)         = 4;
 	M2C_FIELD(&captureCollisionEntry, s8*, 0x21)          = 0;
-	temp_r3                                               = "i";
+	temp_r3                                               = captureCollisionFieldTypes;
 	M2C_FIELD(&captureCollisionEntry, const char**, 0x24) = temp_r3;
 	M2C_FIELD(&captureCollisionEntry, M2C_UNK**, 0x28)    = &captureCollisionFieldNames;
 	if (temp_r3 != NULL) {
-		M2C_FIELD(&captureCollisionEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&captureCollisionEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&captureCollisionEntry, s32*, 0x14) = flags & ~8;
 }
 }
