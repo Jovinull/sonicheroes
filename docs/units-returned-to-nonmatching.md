@@ -41,27 +41,27 @@ all, usually a missing or extra block.
 | `rel/e_grass_stage11` | 69 | 19 | 1 | 49 | 1385 |
 | `rel/e_s11_flag_stage11` | 82 | 18 | 13 | 51 | 1741 |
 | `rel/e_rinoliner_stage11` | 90 | 15 | 0 | 75 | 1929 |
-| `rel/e_flyer_path_stage11` | 96 | 0 | 0 | 96 | 2268 |
+| `rel/e_flyer_path_stage11` | 92 | 0 | 0 | 92 | 2268 |
 | `rel/e_spider_stage11` | 108 | 10 | 31 | 67 | 965 |
 | `rel/o_s11_door` | 109 | 25 | 47 | 37 | 1352 |
 | `rel/o_s12_celestial_sphere` | 142 | 13 | 104 | 25 | 799 |
 | `rel/object_effects_stage11` | 150 | 0 | 0 | 150 | 935 |
-| `rel/e_strategy_rinoliner_stage11` | 156 | 8 | 24 | 124 | 990 |
+| `rel/e_strategy_rinoliner_stage11` | 151 | 8 | 24 | 119 | 990 |
 | `rel/e_strategy_magician_stage11` | 175 | 2 | 50 | 123 | 2199 |
 | `rel/e_s11_key_stage11` | 222 | 13 | 139 | 70 | 1640 |
 | `rel/e_flyer_collision_stage11` | 232 | 8 | 39 | 185 | 1377 |
-| `rel/e_rinoliner_collision_stage11` | 281 | 14 | 8 | 259 | 2574 |
+| `rel/e_rinoliner_collision_stage11` | 276 | 14 | 8 | 254 | 2574 |
 | `rel/particle_test` | 317 | 0 | 0 | 317 | 735 |
-| `rel/e_strategy_flyer_stage11` | 341 | 52 | 81 | 208 | 4833 |
+| `rel/e_strategy_flyer_stage11` | 334 | 52 | 81 | 201 | 4833 |
 | `rel/e_capture` | 362 | 33 | 31 | 298 | 5335 |
 | `rel/put_particle` | 420 | 0 | 0 | 420 | 808 |
-| `rel/e_wall_stage11` | 470 | 34 | 37 | 399 | 6670 |
+| `rel/e_wall_stage11` | 461 | 34 | 37 | 390 | 6670 |
 | `rel/sp_dashpanel` | 475 | 0 | 0 | 475 | 740 |
 | `game/rw_gcn_raster` | 483 | 165 | 291 | 27 | 3771 |
 | `rel/light_collision_stage11` | 489 | 6 | 8 | 475 | 1168 |
 | `rel/spboss_throw_object` | 517 | 0 | 1 | 516 | 794 |
-| `rel/e_turtle_stage11` | 623 | 53 | 236 | 334 | 5025 |
-| `rel/e_flyer_stage11` | 649 | 39 | 8 | 602 | 4582 |
+| `rel/e_turtle_stage11` | 617 | 53 | 236 | 328 | 5025 |
+| `rel/e_flyer_stage11` | 641 | 39 | 8 | 594 | 4582 |
 | `rel/sp_dashring` | 697 | 0 | 0 | 697 | 954 |
 | `rel/propeller_stage11` | 805 | 5 | 6 | 794 | 2655 |
 | `game/rw_gcn_allinone` | 818 | 13 | 51 | 754 | 2558 |
@@ -76,6 +76,53 @@ all, usually a missing or extra block.
 | `rel/goal_ring_stage11` | 1761 | 6 | 18 | 1737 | 3081 |
 | `game/rw_gcn_core` | 2020 | 32 | 288 | 1700 | 7601 |
 | `rel/sp_eff_dash` | 4490 | 0 | 0 | 4490 | 4561 |
+
+## Idioms that close a whole column at once
+
+These sources are m2c output, so their control flow is a transcription of the
+branches rather than the source that produced them. Some of that transcription
+is wrong in the same way in many places at once, and recognising the shape is
+worth far more than grinding one function.
+
+**A two-armed `if` that returns either way is a `switch` with empty cases.**
+m2c writes this:
+
+```c
+if (arg1 != 0) {
+    if (arg1 >= 0) {
+        return;
+    }
+    return;
+}
+/* body */
+```
+
+The two `return`s are the same return, so nothing in that C makes the compiler
+emit the compare that retail has. The original is a `switch` whose other case
+labels have empty bodies:
+
+```c
+switch (arg1) {
+case 0:
+    /* body */
+    break;
+case 1:
+case 2:
+case 3:
+    break;
+}
+```
+
+mwcc lowers a small dense switch as: equality test on the first label, `bltlr`
+for anything below the range, then a compare against **one past the largest
+label** whose result is discarded because both edges return. That last compare
+is what a hand-written `if` chain never produces, and its immediate is what
+tells you how many labels the original had — retail's `cmpwi rX, 0x4` means the
+labels ran 0 through 3. Read the immediate out of the target rather than
+guessing it.
+
+Thirty-eight sites across seven units had exactly this shape, all with the same
+bound, and converting them closed 44 instructions.
 
 ## Where to start
 

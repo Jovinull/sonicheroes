@@ -450,24 +450,28 @@ void fn_8_BDA50(void* arg0, s32 arg1)
 
 void fn_8_BDB0C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 0x1A;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 0x1A;
 }
 
 void fn_8_BDB2C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 0x20;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 0x20;
 }
 
 void fn_8_BDB4C(void* arg0, s32 arg1)
@@ -505,24 +509,28 @@ void fn_8_BDB4C(void* arg0, s32 arg1)
 
 void fn_8_BDC5C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 0x1D;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 0x1D;
 }
 
 void fn_8_BDC7C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 0x29;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 0x29;
 }
 
 void fn_8_BDC9C(void* arg0, s32 arg1)

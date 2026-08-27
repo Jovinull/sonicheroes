@@ -625,13 +625,15 @@ void fn_8_B7608(void* arg0, s32 arg1)
 
 void fn_8_B76FC(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 0x25;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 0x25;
 }
 
 void fn_8_B771C(void* arg0, s32 arg1)
@@ -678,24 +680,28 @@ void fn_8_B77D4(void* arg0, s32 arg1)
 
 void fn_8_B788C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 0x20;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 0x20;
 }
 
 void fn_8_B78AC(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 0x1D;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 0x1D;
 }
 
 void fn_8_B78CC(void* arg0, s32 arg1)
@@ -776,24 +782,28 @@ void fn_8_B7AA4(void* arg0, s32 arg1)
 
 void fn_8_B7B5C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 7;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 7;
 }
 
 void fn_8_B7B7C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0x10) = 2;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0x10) = 2;
 }
 
 void fn_8_B7B9C(void* arg0, s32 arg1)
@@ -2240,13 +2250,15 @@ void fn_8_BA3A4(TObject* arg0)
 
 void fn_8_BA8C0(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0xD4) = 8;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0xD4) = 8;
 }
 
 void fn_8_BA8E0(TObject* arg0, s32 arg1)
@@ -2765,13 +2777,15 @@ void fn_8_BB5E4(TObject* arg0, s32 arg1)
 
 void fn_8_BB99C(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0xD4) = 0xB;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0xD4) = 0xB;
 }
 
 void fn_8_BB9BC(void* arg0, s32 arg1)
@@ -2796,24 +2810,28 @@ void fn_8_BB9BC(void* arg0, s32 arg1)
 
 void fn_8_BBA90(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0xD4) = 1;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0xD4) = 1;
 }
 
 void fn_8_BBAB0(void* arg0, s32 arg1)
 {
-	if (arg1 != 0) {
-		if (arg1 >= 0) {
-			return;
-		}
-		return;
+	switch (arg1) {
+		case 0:
+			M2C_FIELD(arg0, s32*, 0xD4) = 0;
+			break;
+		case 1:
+		case 2:
+		case 3:
+			break;
 	}
-	M2C_FIELD(arg0, s32*, 0xD4) = 0;
 }
 
 void fn_8_BBAD0(void* arg0, u32 arg1, s32 arg2)
