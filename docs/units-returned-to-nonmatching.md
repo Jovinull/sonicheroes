@@ -26,56 +26,65 @@ sources actually earn.
 Counted in instructions. **registers** are differences confined to register
 fields, the shape a post-processor is allowed to normalise. **other** are real
 instruction differences. **length** is functions whose size does not match at
-all, usually a missing or extra block.
+all, charged only the size delta. **previous** is the value this
+table last carried, so a row that moved says which way.
 
-| unit | left | registers | other | length | size |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| `rel/e_mask_stage11` | 32 | 3 | 0 | 29 | 1125 |
-| `rel/e_tree_stage11` | 36 | 1 | 0 | 35 | 935 |
-| `game/cri/axrna` | 48 | 20 | 11 | 17 | 1541 |
-| `rel/e_grass2_stage11` | 49 | 10 | 0 | 39 | 1092 |
-| `game/cri/svm` | 50 | 0 | 24 | 26 | 1115 |
-| `rel/e_capture_collision_stage11` | 51 | 8 | 20 | 23 | 401 |
-| `rel/e_fan_stage11` | 54 | 9 | 22 | 23 | 518 |
-| `game/cri/rnares` | 55 | 0 | 0 | 55 | 251 |
-| `rel/e_grass_stage11` | 69 | 19 | 1 | 49 | 1385 |
-| `rel/e_s11_flag_stage11` | 82 | 18 | 13 | 51 | 1741 |
-| `rel/e_rinoliner_stage11` | 90 | 15 | 0 | 75 | 1929 |
-| `rel/e_flyer_path_stage11` | 92 | 0 | 0 | 92 | 2268 |
-| `rel/e_spider_stage11` | 108 | 10 | 31 | 67 | 965 |
-| `rel/o_s11_door` | 109 | 25 | 47 | 37 | 1352 |
-| `rel/o_s12_celestial_sphere` | 142 | 13 | 104 | 25 | 799 |
-| `rel/object_effects_stage11` | 150 | 0 | 0 | 150 | 935 |
-| `rel/e_strategy_rinoliner_stage11` | 151 | 8 | 24 | 119 | 990 |
-| `rel/e_strategy_magician_stage11` | 175 | 2 | 50 | 123 | 2199 |
-| `rel/e_s11_key_stage11` | 222 | 13 | 139 | 70 | 1640 |
-| `rel/e_flyer_collision_stage11` | 232 | 8 | 39 | 185 | 1377 |
-| `rel/e_rinoliner_collision_stage11` | 276 | 14 | 8 | 254 | 2574 |
-| `rel/particle_test` | 317 | 0 | 0 | 317 | 735 |
-| `rel/e_strategy_flyer_stage11` | 334 | 52 | 81 | 201 | 4833 |
-| `rel/e_capture` | 362 | 33 | 31 | 298 | 5335 |
-| `rel/put_particle` | 420 | 0 | 0 | 420 | 808 |
-| `rel/e_wall_stage11` | 461 | 34 | 37 | 390 | 6670 |
-| `rel/sp_dashpanel` | 475 | 0 | 0 | 475 | 740 |
-| `game/rw_gcn_raster` | 483 | 165 | 291 | 27 | 3771 |
-| `rel/light_collision_stage11` | 489 | 6 | 8 | 475 | 1168 |
-| `rel/spboss_throw_object` | 517 | 0 | 1 | 516 | 794 |
-| `rel/e_turtle_stage11` | 617 | 53 | 236 | 328 | 5025 |
-| `rel/e_flyer_stage11` | 641 | 39 | 8 | 594 | 4582 |
-| `rel/sp_dashring` | 697 | 0 | 0 | 697 | 954 |
-| `rel/propeller_stage11` | 805 | 5 | 6 | 794 | 2655 |
-| `game/rw_gcn_allinone` | 818 | 13 | 51 | 754 | 2558 |
-| `rel/chao_beans` | 842 | 0 | 0 | 842 | 866 |
-| `rel/e_magician_stage11` | 962 | 5 | 6 | 951 | 2786 |
-| `rel/form_gate_sub` | 1004 | 0 | 0 | 1004 | 1017 |
-| `rel/sky_bobsleigh_path` | 1231 | 0 | 0 | 1231 | 1410 |
-| `game/rw_gcn_render` | 1257 | 225 | 365 | 667 | 7042 |
-| `rel/tenkyu_goalring` | 1626 | 0 | 1 | 1625 | 1654 |
-| `rel/player_effects` | 1632 | 0 | 0 | 1632 | 1695 |
-| `rel/o_colli_communication_stage11` | 1757 | 0 | 2 | 1755 | 2212 |
-| `rel/goal_ring_stage11` | 1761 | 6 | 18 | 1737 | 3081 |
-| `game/rw_gcn_core` | 1992 | 32 | 288 | 1672 | 7601 |
-| `rel/sp_eff_dash` | 4490 | 0 | 0 | 4490 | 4561 |
+**`left` is a lower bound, not a score.** A function whose size does not match
+is charged its size delta and nothing else, so its content is never counted.
+Close that size gap and the column can *rise* even though the unit improved —
+`rel/e_mask_stage11` went from 32 to 224 that way while its objdiff percentage
+went up, because 197 instructions that were hidden behind a length mismatch are
+now visible. Use this table to pick a target and to see the shape of a gap;
+decide whether a change helped with `build/G9SE8P/report.json`.
+
+| unit | left | registers | other | length | size | previous |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `rel/e_tree_stage11` | 36 | 1 | 0 | 35 | 935 | 36 |
+| `game/cri/axrna` | 48 | 20 | 11 | 17 | 1541 | 48 |
+| `game/cri/svm` | 50 | 0 | 24 | 26 | 1115 | 50 |
+| `rel/e_capture_collision_stage11` | 51 | 8 | 20 | 23 | 401 | 51 |
+| `rel/e_fan_stage11` | 54 | 14 | 18 | 22 | 518 | 54 |
+| `game/cri/rnares` | 55 | 0 | 0 | 55 | 251 | 55 |
+| `rel/e_grass2_stage11` | 61 | 15 | 7 | 39 | 1092 | 49 |
+| `rel/e_flyer_path_stage11` | 84 | 0 | 0 | 84 | 2268 | 92 |
+| `rel/e_rinoliner_stage11` | 88 | 13 | 0 | 75 | 1929 | 90 |
+| `rel/e_grass_stage11` | 89 | 31 | 11 | 47 | 1385 | 69 |
+| `rel/e_s11_flag_stage11` | 92 | 18 | 22 | 52 | 1741 | 82 |
+| `rel/e_spider_stage11` | 109 | 8 | 33 | 68 | 965 | 108 |
+| `rel/o_s11_door` | 109 | 23 | 49 | 37 | 1352 | 109 |
+| `rel/e_strategy_rinoliner_stage11` | 115 | 0 | 0 | 115 | 990 | 151 |
+| `rel/o_s12_celestial_sphere` | 142 | 11 | 106 | 25 | 799 | 142 |
+| `rel/object_effects_stage11` | 148 | 0 | 0 | 148 | 935 | 150 |
+| `rel/e_strategy_magician_stage11` | 150 | 2 | 47 | 101 | 2199 | 175 |
+| `rel/e_mask_stage11` | 224 | 4 | 193 | 27 | 1125 | 32 |
+| `rel/e_s11_key_stage11` | 226 | 13 | 142 | 71 | 1640 | 222 |
+| `rel/e_flyer_collision_stage11` | 232 | 8 | 39 | 185 | 1377 | 232 |
+| `rel/e_rinoliner_collision_stage11` | 276 | 14 | 8 | 254 | 2574 | 276 |
+| `rel/particle_test` | 317 | 0 | 0 | 317 | 735 | 317 |
+| `rel/e_strategy_flyer_stage11` | 334 | 51 | 82 | 201 | 4833 | 334 |
+| `rel/e_capture` | 358 | 30 | 30 | 298 | 5335 | 362 |
+| `rel/e_turtle_stage11` | 369 | 35 | 3 | 331 | 5025 | 617 |
+| `rel/put_particle` | 420 | 0 | 0 | 420 | 808 | 420 |
+| `rel/e_wall_stage11` | 464 | 35 | 39 | 390 | 6670 | 461 |
+| `rel/sp_dashpanel` | 475 | 0 | 0 | 475 | 740 | 475 |
+| `game/rw_gcn_raster` | 480 | 162 | 291 | 27 | 3771 | 483 |
+| `rel/light_collision_stage11` | 487 | 5 | 8 | 474 | 1168 | 489 |
+| `rel/spboss_throw_object` | 517 | 0 | 1 | 516 | 794 | 517 |
+| `rel/e_flyer_stage11` | 641 | 36 | 8 | 597 | 4582 | 641 |
+| `rel/sp_dashring` | 697 | 0 | 0 | 697 | 954 | 697 |
+| `rel/propeller_stage11` | 804 | 4 | 6 | 794 | 2655 | 805 |
+| `game/rw_gcn_allinone` | 822 | 13 | 55 | 754 | 2558 | 818 |
+| `rel/chao_beans` | 842 | 0 | 0 | 842 | 866 | 842 |
+| `rel/e_magician_stage11` | 932 | 3 | 6 | 923 | 2786 | 962 |
+| `rel/form_gate_sub` | 1004 | 0 | 0 | 1004 | 1017 | 1004 |
+| `rel/sky_bobsleigh_path` | 1231 | 0 | 0 | 1231 | 1410 | 1231 |
+| `game/rw_gcn_render` | 1253 | 220 | 366 | 667 | 7042 | 1257 |
+| `rel/tenkyu_goalring` | 1625 | 0 | 0 | 1625 | 1654 | 1626 |
+| `rel/player_effects` | 1632 | 0 | 0 | 1632 | 1695 | 1632 |
+| `rel/o_colli_communication_stage11` | 1756 | 0 | 2 | 1754 | 2212 | 1757 |
+| `rel/goal_ring_stage11` | 1780 | 7 | 27 | 1746 | 3081 | 1761 |
+| `game/rw_gcn_core` | 1992 | 81 | 228 | 1683 | 7601 | 1992 |
+| `rel/sp_eff_dash` | 4490 | 0 | 0 | 4490 | 4561 | 4490 |
 
 ## Idioms that close a whole column at once
 
@@ -215,14 +224,21 @@ knowing why before someone tries. Two obstacles came up:
 
 ## Where to start
 
-The eight closest are within sixty instructions, and several of those are almost
-entirely register colouring — the one gap a step may legitimately close:
+The six closest are within sixty instructions:
 
-- `rel/e_mask_stage11` (32 left, 29 of them length)
-- `rel/e_tree_stage11` (36, 35 length)
+- `rel/e_tree_stage11` (36; 1 register, 35 length)
 - `game/cri/axrna` (48; 20 registers, 11 other, 17 length)
-- `rel/e_grass2_stage11` (49, 39 length)
 - `game/cri/svm` (50; 24 other, 26 length)
+- `rel/e_capture_collision_stage11` (51; 8 registers, 20 other, 23 length)
+- `rel/e_fan_stage11` (54; 14 registers, 18 other, 22 length)
+- `game/cri/rnares` (55, all length)
+
+`game/cri/rnares` has three functions and no wrong instruction at all — every
+one of its 55 is a length gap. It is also the clearest read of the `axrna`
+wall below: `fn_80224D14` scans a 32-entry table and retail unrolls that scan
+eight times behind `mtctr 4`, where this build keeps it rolled against an index
+compare. Same shape, same library, same unresolved question — so a flag that
+cracks one cracks both.
 
 For `game/cri/axrna` the length gap is one loop: retail unrolls the sixteen-entry
 scan in `fn_8022439C` eight times and this build keeps it rolled with `mtctr`.
