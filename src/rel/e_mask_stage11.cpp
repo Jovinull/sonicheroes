@@ -550,7 +550,7 @@ s32 fn_8_C9E7C(s32 arg0, void** arg1)
 	return 0;
 }
 
-void fn_8_C9EE0(void* arg1)
+void fn_8_C9EE0(void* arg0, void* arg1)
 {
 	void* temp_r3;
 

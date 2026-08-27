@@ -865,7 +865,7 @@ void fn_8_BE5AC(void* arg0, void* arg1)
 	}
 }
 
-void fn_8_BE644(s32 arg1)
+void fn_8_BE644(void* arg0, s32 arg1)
 {
 	fn_8_90B10(arg1);
 }
@@ -2843,7 +2843,7 @@ TEnemyParalysis* fn_8_C2344(void)
 	return var_r0;
 }
 
-void fn_8_C2398(void* arg1)
+void fn_8_C2398(void* arg0, void* arg1)
 {
 	f32* var_r4_3;
 	f32* var_r4_4;

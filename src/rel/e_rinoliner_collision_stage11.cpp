@@ -1892,7 +1892,7 @@ TObject* fn_8_B6DC0(void)
 	return temp_r3;
 }
 
-void fn_8_B6F14(void* arg1)
+void fn_8_B6F14(void* arg0, void* arg1)
 {
 	u8* temp_r3;
 	u8* var_r5;

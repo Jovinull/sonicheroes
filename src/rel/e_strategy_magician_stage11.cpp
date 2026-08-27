@@ -209,7 +209,7 @@ s32 fn_8_AABC8(void* arg0)
 	return ((lbl_8_rodata_1ACC * (f32)fn_801C28D8()) < lbl_8_rodata_1AD0) == 0;
 }
 
-void fn_8_AAC6C(s32 arg1)
+void fn_8_AAC6C(void* arg0, s32 arg1)
 {
 	fn_8_90B10(arg1);
 }
