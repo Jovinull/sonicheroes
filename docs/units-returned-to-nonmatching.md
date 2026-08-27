@@ -42,7 +42,7 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | `rel/e_tree_stage11` | 32 | 0 | 0 | 32 | 935 | 36 |
 | `game/cri/axrna` | 48 | 20 | 11 | 17 | 1541 | 48 |
 | `game/cri/svm` | 50 | 0 | 24 | 26 | 1115 | 50 |
-| `rel/e_capture_collision_stage11` | 51 | 8 | 20 | 23 | 401 | 51 |
+| `rel/e_capture_collision_stage11` | 63 | 21 | 20 | 22 | 401 | 51 |
 | `rel/e_fan_stage11` | 54 | 14 | 18 | 22 | 518 | 54 |
 | `game/cri/rnares` | 55 | 0 | 0 | 55 | 251 | 55 |
 | `rel/e_grass2_stage11` | 61 | 15 | 7 | 39 | 1092 | 49 |
@@ -247,6 +247,27 @@ parameter, and where it is not, the fill has to come from the target. The two
 that held are `rel/e_capture` (`fn_800A5A54`, `fn_8014FF2C`; +124 bytes of
 matched code) and `rel/e_turtle_stage11` (`fn_80017800`; +124 bytes).
 
+**An inline string literal is a named object in retail.** m2c writes the
+literal at the use site, so mwcc emits an anonymous `@107`, and the register
+function reads `lis r3, @107@ha` where retail reads
+`lis r3, captureCollisionDisplayName@ha`. Declare the object with the name the
+target gives it — objdiff pairs data by symbol name, so the literal has to
+become a named `static const char[]` before either side can match.
+
+**A constant that retail ORs, we add.** `captureCollisionRegister` sets a flag
+word to `0x20000`, then `| 8` on one path and `& ~8` on the other. With
+propagation on, mwcc knows bit 3 is clear and folds both: `addi r0, r5, 0x8`
+for the first and nothing at all for the second, so the whole else-branch
+disappears. `-opt nopropagation` on the unit restores `ori` and `rlwinm`, and
+the function becomes structurally exact — every instruction in the right place,
+differing only in whether the entry pointer lives in r5 or r6.
+
+That register swap is the reason this unit's `left` **rose** from 51 to 63 while
+its objdiff percentage went from 93.85% to 94.00%. Twenty-one register
+differences are now visible in a function that previously had the wrong
+instructions to compare. It is the same effect the column warning above
+describes.
+
 ## Where to start
 
 The six closest are within sixty instructions:
@@ -254,7 +275,7 @@ The six closest are within sixty instructions:
 - `rel/e_tree_stage11` (32, all length)
 - `game/cri/axrna` (48; 20 registers, 11 other, 17 length)
 - `game/cri/svm` (50; 24 other, 26 length)
-- `rel/e_capture_collision_stage11` (51; 8 registers, 20 other, 23 length)
+- `rel/e_capture_collision_stage11` (63; 21 registers, 20 other, 22 length — the registers grew because the instructions around them became right, see below)
 - `rel/e_fan_stage11` (54; 14 registers, 18 other, 22 length)
 - `game/cri/rnares` (55, all length)
 
