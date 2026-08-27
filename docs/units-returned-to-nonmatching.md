@@ -147,6 +147,40 @@ Seventy units are still short on a data section, `rel/e_wall_stage11` by 1820
 bytes of `.data` at the top. That sweep is the next block, and an undersized
 declaration is one of the things it will turn up.
 
+**`(...)` in an m2c extern is "unknown", never "variadic".** m2c writes an
+ellipsis whenever it could not infer a prototype. mwcc reads that as a genuine
+variadic function and emits the PPC EABI marker `crclr cr1eq` before every call
+to it, so each call site is one instruction longer than retail's.
+
+Three of these have signatures already established by the hand-written units,
+and correcting them across sixteen files moved fifteen units and 160 bytes of
+matched code:
+
+```c
+void  __dt__7TObjectFv(void*, s32);          /* was (...) */
+void  __dl__FPv(void*);                      /* was (...) */
+void* __ct__7TObjectFP7TObject(void*, void*); /* was (...) */
+```
+
+**241 spurious `crclr` remain across eighteen units, and every one of those
+targets contains zero.** No function these units call is variadic in retail, so
+every remaining `(...)` extern is wrong. `rel/e_wall_stage11` leads with 39,
+then `rel/e_strategy_magician_stage11` with 33 and `rel/e_flyer_path_stage11`
+with 31. Count them with the instruction word `0x4CC63242`.
+
+Deriving the rest is not purely mechanical, and it is worth knowing why before
+someone tries. Two obstacles came up:
+
+- A mangled name carries its own signature — `Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType`
+  is `(RwFrame*, RwOpCombineType)` plus `this` — but only 32 of the 322
+  ellipsis externs are mangled. The other 290 are `fn_XXXX` and have to be
+  typed from their call sites.
+- m2c sometimes emits calls to the same symbol with **different argument
+  counts**: `fn_8019E8EC` in `rel/e_wall_stage11` is called once with none and
+  nineteen times with one. At least one of those is m2c guessing, and which one
+  has to be settled against the target's register setup at the call site rather
+  than by majority.
+
 ## Where to start
 
 The eight closest are within sixty instructions, and several of those are almost

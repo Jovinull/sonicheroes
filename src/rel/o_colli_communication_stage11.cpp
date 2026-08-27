@@ -8,7 +8,7 @@ typedef s32 M2C_UNK;
 
 extern "C" {
 
-M2C_UNK __dl__FPv(...);   /* extern */
+M2C_UNK __dl__FPv(void*); /* extern */
 s32 fn_80017800(...);     /* extern */
 void* fn_80020BD8(...);   /* extern */
 M2C_UNK fn_80021824(...); /* extern */
