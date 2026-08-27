@@ -772,6 +772,8 @@ void grass2ObjectCreate(void)
 
 void grass2ObjectRegister(void)
 {
+	s32 flags;
+
 	M2C_FIELD(&grass2ObjectEntry, s32*, 0x14)            = 0;
 	M2C_FIELD(&grass2ObjectEntry, s32*, 0x18)            = 0;
 	M2C_FIELD(&grass2ObjectEntry, M2C_UNK**, 0)          = &grass2ObjectDisplayName;
@@ -779,7 +781,8 @@ void grass2ObjectRegister(void)
 	M2C_FIELD(&grass2ObjectEntry, void (**)(M2C_UNK), 8) = grass2ObjectUnload;
 	M2C_FIELD(&grass2ObjectEntry, void (**)(), 0xC)      = grass2ObjectCreate;
 	M2C_FIELD(&grass2ObjectEntry, s32*, 0x10)            = 0;
-	M2C_FIELD(&grass2ObjectEntry, s32*, 0x14)            = 0x20000;
+	flags                                                = 0x20000;
+	M2C_FIELD(&grass2ObjectEntry, s32*, 0x14)            = flags;
 	M2C_FIELD(&grass2ObjectEntry, s32*, 0x18)            = 0;
 	M2C_FIELD(&grass2ObjectEntry, s8*, 0x20)             = 0x1E;
 	M2C_FIELD(&grass2ObjectEntry, s16*, 0x1C)            = 0x118C;
@@ -788,10 +791,10 @@ void grass2ObjectRegister(void)
 	M2C_FIELD(&grass2ObjectEntry, M2C_UNK**, 0x24)       = &grass2ObjectFieldTypes;
 	M2C_FIELD(&grass2ObjectEntry, M2C_UNK**, 0x28)       = &grass2ObjectFieldNames;
 	if (&grass2ObjectFieldTypes != NULL) {
-		M2C_FIELD(&grass2ObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&grass2ObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&grass2ObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&grass2ObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const grass2ObjectCtorEntry)(void) = grass2ObjectRegister;

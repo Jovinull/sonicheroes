@@ -1169,6 +1169,8 @@ void flyerColObjectCreate(void)
 
 void flyerColObjectRegister(void)
 {
+	s32 flags;
+
 	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14)       = 0;
 	M2C_FIELD(&flyerColObjectEntry, s32*, 0x18)       = 0;
 	M2C_FIELD(&flyerColObjectEntry, M2C_UNK**, 0)     = &flyerColObjectDisplayName;
@@ -1176,7 +1178,8 @@ void flyerColObjectRegister(void)
 	M2C_FIELD(&flyerColObjectEntry, void (**)(), 8)   = flyerColObjectUnload;
 	M2C_FIELD(&flyerColObjectEntry, void (**)(), 0xC) = flyerColObjectCreate;
 	M2C_FIELD(&flyerColObjectEntry, s32*, 0x10)       = 0;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14)       = 0x20000;
+	flags                                             = 0x20000;
+	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14)       = flags;
 	M2C_FIELD(&flyerColObjectEntry, s32*, 0x18)       = 0;
 	M2C_FIELD(&flyerColObjectEntry, s8*, 0x20)        = 0x1E;
 	M2C_FIELD(&flyerColObjectEntry, s16*, 0x1C)       = 0x63;
@@ -1185,9 +1188,9 @@ void flyerColObjectRegister(void)
 	M2C_FIELD(&flyerColObjectEntry, M2C_UNK**, 0x24)  = &flyerColObjectFieldTypes;
 	M2C_FIELD(&flyerColObjectEntry, M2C_UNK***, 0x28) = flyerColObjectFieldNames;
 	if (&flyerColObjectFieldTypes != NULL) {
-		M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = flags & ~8;
 }
 }
