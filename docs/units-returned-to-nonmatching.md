@@ -237,6 +237,16 @@ parameter: `fn_8_C4BBC` read `arg1` while the target reads r4, meaning the
 function takes two parameters and uses the second. 84.32% to 84.65%, and the
 unit's remaining 32 are now all length.
 
+Swept tree-wide, this is smaller than it looks. Of the 322 ellipsis externs,
+only 14 sit in a file where the tree agrees on an arity *and* every call site
+has fewer arguments than that — the shape where a dropped argument is the
+explanation. Filling those from the enclosing function's own parameters, in
+order, holds in two units and breaks in eight, which is the right ratio to
+expect: the register the call reads is not always the enclosing function's
+parameter, and where it is not, the fill has to come from the target. The two
+that held are `rel/e_capture` (`fn_800A5A54`, `fn_8014FF2C`; +124 bytes of
+matched code) and `rel/e_turtle_stage11` (`fn_80017800`; +124 bytes).
+
 ## Where to start
 
 The six closest are within sixty instructions:
