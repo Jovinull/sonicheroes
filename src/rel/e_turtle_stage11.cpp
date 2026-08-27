@@ -193,7 +193,7 @@ M2C_UNK __dl__FPv(void* arg0);                                                  
 void* __dt__10HAnimClassFv(...);                                                 /* extern */
 M2C_UNK __register_global_object(M2C_UNK*, M2C_UNK*);                            /* extern */
 M2C_UNK dtor_800FE334(M2C_UNK);                                                  /* extern */
-s32 fn_80017800(...);                                                            /* extern */
+s32 fn_80017800(void*);                                                          /* extern */
 M2C_UNK fn_800189A4(s32, void*);                                                 /* extern */
 TEnemyParalysis* fn_80018A34(s32, ...);                                          /* extern */
 u32 fn_800207C4(M2C_UNK*, M2C_UNK, M2C_UNK);                                     /* extern */
@@ -230,7 +230,7 @@ M2C_UNK fn_800A4668(void*);                                                     
 M2C_UNK fn_800A4A8C(void*, M2C_UNK*, f32);                                       /* extern */
 s32 fn_800A5888(void*, M2C_UNK*, f32);                                           /* extern */
 s32 fn_800A5998(void*);                                                          /* extern */
-s32 fn_800A5A54(...);                                                            /* extern */
+s32 fn_800A5A54(void*);                                                          /* extern */
 f32 fn_800A5AC0();                                                               /* extern */
 M2C_UNK fn_800A5B34(TObject*);                                                   /* extern */
 M2C_UNK fn_800A5B50(void*, M2C_UNK);                                             /* extern */
@@ -1413,7 +1413,7 @@ s32 fn_8_BF684(void* arg0)
 	if ((s32)M2C_FIELD(arg0, s32*, 0x2F0) == 0) {
 		return 0;
 	}
-	temp_r31                     = fn_800A5A54();
+	temp_r31                     = fn_800A5A54(arg0);
 	M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(
 	    M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 	if (temp_r31 < 0x10) {
@@ -1736,7 +1736,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 			return;
 		case 1:
 			if ((void*)M2C_FIELD(arg0, void**, 0x2EC) != NULL) {
-				if (fn_80017800() == 0) {
+				if (fn_80017800(arg0) == 0) {
 					M2C_FIELD(arg0, void**, 0x2EC) = NULL;
 					return;
 				}
@@ -2041,7 +2041,7 @@ void fn_8_C08C8(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x2F0) == 0) {
 
 			} else {
-				temp_r31                     = fn_800A5A54();
+				temp_r31                     = fn_800A5A54(arg0);
 				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r31 < 0x10) {
