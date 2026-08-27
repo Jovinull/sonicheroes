@@ -33,12 +33,12 @@ void fn_8005BE6C(...);
 void dtor_8005BD3C(...);
 int fn_8005B9F0(...);
 int fn_8005B8BC(...);
-int fn_8005B8D8(...);
+s32 fn_8005B8D8(void*);
 void fn_80052DAC(...);
 void fn_8014FFBC(...);
-void fn_801527A4(...);
+void fn_801527A4(void*, void*, void*);
 float fn_801991B4(...);
-float fn_800D7218(...);
+f32 fn_800D7218(void*, void*);
 }
 
 template <typename T> static inline T& field(void* object, int offset)
