@@ -168,8 +168,25 @@ every remaining `(...)` extern is wrong. `rel/e_wall_stage11` leads with 39,
 then `rel/e_strategy_magician_stage11` with 33 and `rel/e_flyer_path_stage11`
 with 31. Count them with the instruction word `0x4CC63242`.
 
-Deriving the rest is not purely mechanical, and it is worth knowing why before
-someone tries. Two obstacles came up:
+The tree itself supplies a good part of the answer. A symbol an m2c unit
+declares as `(...)` is often declared properly in a hand-written unit, in
+several spellings that are the same ABI — `void*`/`TObject*`/`C_COLLI*`,
+`int`/`s32`/`M2C_UNK`. Collapsing each parameter position to its category
+(pointer, float, integer) and requiring every spelling in the tree to agree on
+it yields one prototype worth adopting; anything that disagrees is left alone.
+That adopted 106 declarations, of which 100 held. It moved six units — up to
++2.38% on `rel/e_strategy_magician_stage11` — and took the spurious `crclr`
+count from 241 to 228.
+
+Six files had to be reverted because an adopted return type or parameter
+conflicts with how m2c uses the result there:
+`rel/e_flyer_path_stage11`, `rel/e_magician_stage11`,
+`rel/o_colli_communication_stage11`, `rel/e_rinoliner_stage11`,
+`rel/e_turtle_stage11` and `rel/e_wall_stage11`. Each needs its call sites read
+against the target rather than a wider rule.
+
+Beyond that, deriving the rest is not purely mechanical, and it is worth
+knowing why before someone tries. Two obstacles came up:
 
 - A mangled name carries its own signature — `Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType`
   is `(RwFrame*, RwOpCombineType)` plus `this` — but only 32 of the 322

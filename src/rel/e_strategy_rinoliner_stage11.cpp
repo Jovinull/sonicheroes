@@ -10,9 +10,9 @@ extern "C" {
 
 M2C_UNK __dl__FPv(void*); /* extern */
 M2C_UNK fn_800A31B8(...); /* extern */
-s32 fn_800A3ED4(...);     /* extern */
-s32 fn_800A6334(...);     /* extern */
-M2C_UNK fn_80137FE8(...); /* extern */
+s32 fn_800A3ED4(void*);   /* extern */
+s32 fn_800A6334(void);    /* extern */
+s32 fn_80137FE8(void*);   /* extern */
 s32 fn_8_AABC8(...);      /* extern */
 s32 fn_8_AAE98(...);      /* extern */
 s32 fn_8_AAF4C(...);      /* extern */

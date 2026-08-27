@@ -39,10 +39,10 @@ void __dt__17PARTICLE_MATERIALFv(...);
 void __ct__17PARTICLE_MATERIALF8Pt_FLAGSP11SPRITE_INFO(...);
 void __dl__FPv(void*);
 void* fn_80057644(...);
-void* fn_8005FAE8(...);
-void fn_8005FA8C(...);
+void* fn_8005FAE8(void*, void*);
+void fn_8005FA8C(void*, void*);
 void fn_8005E00C(...);
-void fn_80064380(...);
+void fn_80064380(void*);
 u32 fn_801C28D8();
 }
 
