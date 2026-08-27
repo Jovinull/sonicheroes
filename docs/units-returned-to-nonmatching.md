@@ -351,6 +351,22 @@ and `rel/light_collision_stage11`, do not compile with it and keep their flags.
 Unlike `-use_lmw_stmw` this one is safe to try everywhere, because a unit that
 does not return a comparison is simply unaffected.
 
+**`-opt nopropagation` is per-unit, not a sweep.** It is the right fix wherever
+retail keeps a constant in a register that this build folds — the record flag
+word, the `mullw` in `game/rw_gcn_render` — but applied to every unit that
+lacked it, five improve and nine regress, `game/cri/axrna` by -4.69 and
+`game/cri/rnares` by -1.32. The CRI units in particular want propagation on.
+Read the folded instruction first, then add the flag to that unit.
+
+So far two flags sweep cleanly and two do not:
+
+| flag | improves | regresses | decidable without building? |
+| --- | ---: | ---: | --- |
+| `-pool off` | 19 | 2 | yes — anchor symbol `...bss.0` |
+| `-bool off` | 11 | 0 | yes — a `clrlwi rX, rY, 24` on a returned comparison |
+| `-opt nopropagation` | 5 | 9 | only from the folded instruction |
+| `-use_lmw_stmw on` | 3 | 17 | no |
+
 **`-use_lmw_stmw on` is not a general answer, unlike `-pool off`.** Swept
 across all 43 open units it improves three — `rel/spboss_throw_object` (+1.05),
 `rel/light_collision_stage11` (+0.07), `rel/e_wall_stage11` (+0.05) — and
