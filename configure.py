@@ -1329,6 +1329,8 @@ config.libs = [
                 extra_cflags=[
                     "-inline noauto",
                     "-opt noschedule,nopropagation,nopeephole",
+                    "-use_lmw_stmw on",
+
                 ],
             ),
             Object(
@@ -1753,7 +1755,9 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_wall_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off",
+                    "-use_lmw_stmw on",
+                ],
             ),
             Object(
                 Matching,
@@ -3318,7 +3322,9 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/light_collision_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole",
+                    "-use_lmw_stmw on",
+                ],
             ),
             Object(
                 NonMatching,
