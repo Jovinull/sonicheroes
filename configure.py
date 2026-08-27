@@ -2501,7 +2501,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_fan_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
             ),
             Object(
                 Matching,
