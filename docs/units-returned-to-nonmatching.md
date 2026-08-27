@@ -298,6 +298,26 @@ That took the unit from 94.51% to 95.90% and `left` from 54 to 47, with
 materialises a fresh `li r0, 0x0` for the byte store no matter how the field or
 the variable is typed.
 
+**Data pooling is on where retail had it off.** mwcc's `-pool` collects a
+translation unit's static data behind one anchor and addresses every object as
+`base + offset`; retail emits a `lis`/`addi` pair per symbol. Our object gives
+itself away with a symbol named `...bss.0` or `...data.0`, and the register
+function reads
+
+```
+  lis  r3, treeObjectDisplayName@ha    |  <missing>
+  addi r0, r3, treeObjectDisplayName@l |  addi r0, r6, 0x48
+```
+
+Twenty units carry a pool anchor. `-pool off` improves nineteen of them, from
++0.55 to +5.27, and the two it does not are the CRI units `game/cri/svm`
+(-6.02) and `game/cri/axrna` (-0.63), which really were pooled. Check for the
+anchor symbol before assuming either way.
+
+This is also the clearest case of the `left` column misleading: `rel/e_tree_stage11`
+went 84.65% to 87.48% with every register and content difference gone, and its
+`left` **rose** from 32 to 37 because only length gaps remain to be charged.
+
 ## Where to start
 
 The six closest are within sixty instructions:
