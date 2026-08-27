@@ -2994,6 +2994,8 @@ void turtleObjectCreate(void)
 
 void turtleObjectRegister(void)
 {
+	s32 flags;
+
 	fn_80113C7C(&turtleObjectGlobalA);
 	__register_global_object(&fn_80113C2C, &turtleObjectGlobalAChain);
 	M2C_FIELD(&turtleObjectEntry, s32*, 0x14)       = 0;
@@ -3003,7 +3005,8 @@ void turtleObjectRegister(void)
 	M2C_FIELD(&turtleObjectEntry, void (**)(), 8)   = turtleObjectUnload;
 	M2C_FIELD(&turtleObjectEntry, void (**)(), 0xC) = turtleObjectCreate;
 	M2C_FIELD(&turtleObjectEntry, s32*, 0x10)       = 0;
-	M2C_FIELD(&turtleObjectEntry, s32*, 0x14)       = 0x20000;
+	flags                                           = 0x20000;
+	M2C_FIELD(&turtleObjectEntry, s32*, 0x14)       = flags;
 	M2C_FIELD(&turtleObjectEntry, s32*, 0x18)       = 0;
 	M2C_FIELD(&turtleObjectEntry, s8*, 0x20)        = 0x1E;
 	M2C_FIELD(&turtleObjectEntry, s16*, 0x1C)       = 0x1570;
@@ -3012,10 +3015,10 @@ void turtleObjectRegister(void)
 	M2C_FIELD(&turtleObjectEntry, M2C_UNK**, 0x24)  = &turtleObjectFieldTypes;
 	M2C_FIELD(&turtleObjectEntry, M2C_UNK**, 0x28)  = &turtleObjectFieldNames;
 	if (&turtleObjectFieldTypes != NULL) {
-		M2C_FIELD(&turtleObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&turtleObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&turtleObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&turtleObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const turtleObjectCtorEntry)(void) = turtleObjectRegister;

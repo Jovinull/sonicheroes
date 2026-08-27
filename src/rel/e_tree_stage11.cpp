@@ -555,6 +555,8 @@ void treeObjectCreate(void)
 
 void treeObjectRegister(void)
 {
+	s32 flags;
+
 	M2C_FIELD(&treeObjectEntry, s32*, 0x14)       = 0;
 	M2C_FIELD(&treeObjectEntry, s32*, 0x18)       = 0;
 	M2C_FIELD(&treeObjectEntry, M2C_UNK**, 0)     = &treeObjectDisplayName;
@@ -562,7 +564,8 @@ void treeObjectRegister(void)
 	M2C_FIELD(&treeObjectEntry, void (**)(), 8)   = treeObjectUnload;
 	M2C_FIELD(&treeObjectEntry, void (**)(), 0xC) = treeObjectCreate;
 	M2C_FIELD(&treeObjectEntry, s32*, 0x10)       = 0;
-	M2C_FIELD(&treeObjectEntry, s32*, 0x14)       = 0x20000;
+	flags                                         = 0x20000;
+	M2C_FIELD(&treeObjectEntry, s32*, 0x14)       = flags;
 	M2C_FIELD(&treeObjectEntry, s32*, 0x18)       = 0;
 	M2C_FIELD(&treeObjectEntry, s8*, 0x20)        = 0x1E;
 	M2C_FIELD(&treeObjectEntry, s16*, 0x1C)       = 0x118A;
@@ -571,10 +574,10 @@ void treeObjectRegister(void)
 	M2C_FIELD(&treeObjectEntry, M2C_UNK**, 0x24)  = &treeObjectFieldTypes;
 	M2C_FIELD(&treeObjectEntry, M2C_UNK**, 0x28)  = &treeObjectFieldNames;
 	if (&treeObjectFieldTypes != NULL) {
-		M2C_FIELD(&treeObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&treeObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&treeObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&treeObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const treeObjectCtorEntry)(void) = treeObjectRegister;

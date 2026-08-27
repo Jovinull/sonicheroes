@@ -658,6 +658,8 @@ void s11doorObjectCreate(void)
 
 void s11doorObjectRegister(void)
 {
+	s32 flags;
+
 	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14)            = 0;
 	M2C_FIELD(&s11doorObjectEntry, s32*, 0x18)            = 0;
 	M2C_FIELD(&s11doorObjectEntry, M2C_UNK**, 0)          = &s11doorObjectDisplayName;
@@ -665,7 +667,8 @@ void s11doorObjectRegister(void)
 	M2C_FIELD(&s11doorObjectEntry, void (**)(), 8)        = s11doorObjectUnload;
 	M2C_FIELD(&s11doorObjectEntry, void (**)(), 0xC)      = s11doorObjectCreate;
 	M2C_FIELD(&s11doorObjectEntry, s32*, 0x10)            = 0;
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14)            = 0x20000;
+	flags                                                 = 0x20000;
+	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14)            = flags;
 	M2C_FIELD(&s11doorObjectEntry, s32*, 0x18)            = 0;
 	M2C_FIELD(&s11doorObjectEntry, s8*, 0x20)             = 0x1E;
 	M2C_FIELD(&s11doorObjectEntry, s16*, 0x1C)            = 0x1101;
@@ -674,9 +677,9 @@ void s11doorObjectRegister(void)
 	M2C_FIELD(&s11doorObjectEntry, M2C_UNK**, 0x24)       = &s11doorObjectFieldTypes;
 	M2C_FIELD(&s11doorObjectEntry, s32**, 0x28)           = &s11doorObjectFieldNames;
 	if (&s11doorObjectFieldTypes != NULL) {
-		M2C_FIELD(&s11doorObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&s11doorObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14) = flags & ~8;
 }
 }
