@@ -182,11 +182,12 @@ typedef struct TObject {
 
 extern "C" {
 
-M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(...);                     /* extern */
-s32 SetPosition__18TObjEffTornadoSpinFv(...);                                    /* extern */
-M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(...);              /* extern */
-void* __ct__10HAnimClassFv(...);                                                 /* extern */
-TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(...);       /* extern */
+M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(void*, void*, void*);      /* extern */
+s32 SetPosition__18TObjEffTornadoSpinFv(void*);                                   /* extern */
+M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(void*, void*, s32); /* extern */
+void* __ct__10HAnimClassFv(void*);                                                /* extern */
+TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
+    void*, void*, void*);                                                        /* extern */
 void* __ct__15sParalysisParamFv(...);                                            /* extern */
 M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
 void* __dt__10HAnimClassFv(...);                                                 /* extern */

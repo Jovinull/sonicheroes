@@ -141,70 +141,71 @@ typedef struct TEnemyParalysis {
 
 extern "C" {
 
-M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(...);               /* extern */
-M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(...);        /* extern */
-void* __ct__10HAnimClassFv(...);                                           /* extern */
-TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(...); /* extern */
-void* __dt__10HAnimClassFv(...);                                           /* extern */
-M2C_UNK fn_800189A4(...);                                                  /* extern */
-TEnemyParalysis* fn_80018A34(...);                                         /* extern */
-M2C_UNK fn_8003C200(...);                                                  /* extern */
-u32 fn_80057644(...);                                                      /* extern */
-s32 fn_8005B8D8(...);                                                      /* extern */
-M2C_UNK fn_8005BF5C(...);                                                  /* extern */
-M2C_UNK fn_8005D5C8(...);                                                  /* extern */
-s32 fn_8005D9A0(...);                                                      /* extern */
-M2C_UNK fn_8005D9F4(...);                                                  /* extern */
-M2C_UNK fn_8005E00C(...);                                                  /* extern */
-s32 fn_8005EA04(...);                                                      /* extern */
-M2C_UNK fn_8005FD8C(...);                                                  /* extern */
-void* fn_8006298C(...);                                                    /* extern */
-M2C_UNK fn_800A31B8(...);                                                  /* extern */
-M2C_UNK fn_800A4668(...);                                                  /* extern */
-M2C_UNK fn_800A4A8C(...);                                                  /* extern */
-s32 fn_800A5888(...);                                                      /* extern */
-s32 fn_800A5A54(...);                                                      /* extern */
-f32 fn_800A5AC0(...);                                                      /* extern */
-M2C_UNK fn_800A5B50(...);                                                  /* extern */
-M2C_UNK fn_800A5C6C(...);                                                  /* extern */
-M2C_UNK fn_800A7088(...);                                                  /* extern */
-M2C_UNK fn_800A714C(...);                                                  /* extern */
-s32 fn_800D7A94(...);                                                      /* extern */
-f32 fn_800D7B00(...);                                                      /* extern */
-f32 fn_800D8BC4(...);                                                      /* extern */
-M2C_UNK fn_800E1208(...);                                                  /* extern */
-u32 fn_800FD8A0(...);                                                      /* extern */
-M2C_UNK fn_800FE248(...);                                                  /* extern */
-M2C_UNK fn_800FE274(...);                                                  /* extern */
-u32 fn_80100280(...);                                                      /* extern */
-u32 fn_80100328(...);                                                      /* extern */
-u32 fn_8010037C(...);                                                      /* extern */
-M2C_UNK fn_801007F4(...);                                                  /* extern */
-M2C_UNK fn_8010096C(...);                                                  /* extern */
-M2C_UNK fn_80100AAC(...);                                                  /* extern */
-s32 fn_80103324(...);                                                      /* extern */
-M2C_UNK fn_8010AFE4(...);                                                  /* extern */
-s32 fn_8010B708(...);                                                      /* extern */
-void* fn_80150588(...);                                                    /* extern */
-M2C_UNK fn_80150958(...);                                                  /* extern */
-M2C_UNK fn_80195A74(...);                                                  /* extern */
-M2C_UNK fn_80196050(...);                                                  /* extern */
-M2C_UNK fn_801990E0(...);                                                  /* extern */
-M2C_UNK fn_8019941C(...);                                                  /* extern */
-void* fn_8019E8EC(...);                                                    /* extern */
-M2C_UNK fn_8019EB94(...);                                                  /* extern */
-M2C_UNK fn_8019EC30(...);                                                  /* extern */
-M2C_UNK fn_8019ED68(...);                                                  /* extern */
-s32 fn_801C28D8(...);                                                      /* extern */
-M2C_UNK fn_8_B0300(...);                                                   /* extern */
-u32 fn_8_B08F0(...);                                                       /* extern */
-void fn_8_AE604(TEnemyParalysis* arg0);                                    /* static */
-void fn_8_AEB80(TEnemyParalysis* arg0);                                    /* static */
-void fn_8_AEE04(TEnemyParalysis* arg0);                                    /* static */
-TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2);    /* static */
-void magicianObjectCreate();                                               /* static */
-void magicianObjectLoad();                                                 /* static */
-void magicianObjectUnload();                                               /* static */
+M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(void*, void*, void*);      /* extern */
+M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(void*, void*, s32); /* extern */
+void* __ct__10HAnimClassFv(void*);                                                /* extern */
+TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
+    void*, void*, void*);                                               /* extern */
+void* __dt__10HAnimClassFv(...);                                        /* extern */
+M2C_UNK fn_800189A4(...);                                               /* extern */
+TEnemyParalysis* fn_80018A34(...);                                      /* extern */
+M2C_UNK fn_8003C200(...);                                               /* extern */
+u32 fn_80057644(...);                                                   /* extern */
+s32 fn_8005B8D8(void*);                                                 /* extern */
+M2C_UNK fn_8005BF5C(...);                                               /* extern */
+M2C_UNK fn_8005D5C8(...);                                               /* extern */
+s32 fn_8005D9A0(...);                                                   /* extern */
+M2C_UNK fn_8005D9F4(void*);                                             /* extern */
+M2C_UNK fn_8005E00C(...);                                               /* extern */
+s32 fn_8005EA04(void*);                                                 /* extern */
+M2C_UNK fn_8005FD8C(...);                                               /* extern */
+void* fn_8006298C(...);                                                 /* extern */
+M2C_UNK fn_800A31B8(...);                                               /* extern */
+M2C_UNK fn_800A4668(void*);                                             /* extern */
+M2C_UNK fn_800A4A8C(...);                                               /* extern */
+s32 fn_800A5888(void*, void*, f32);                                     /* extern */
+s32 fn_800A5A54(void*);                                                 /* extern */
+f32 fn_800A5AC0(...);                                                   /* extern */
+M2C_UNK fn_800A5B50(void*, s32);                                        /* extern */
+M2C_UNK fn_800A5C6C(void*, s32);                                        /* extern */
+M2C_UNK fn_800A7088(...);                                               /* extern */
+M2C_UNK fn_800A714C(...);                                               /* extern */
+s32 fn_800D7A94(s32, s32, s32);                                         /* extern */
+f32 fn_800D7B00(s32);                                                   /* extern */
+f32 fn_800D8BC4(void*, void*, s32);                                     /* extern */
+M2C_UNK fn_800E1208(...);                                               /* extern */
+u32 fn_800FD8A0(...);                                                   /* extern */
+M2C_UNK fn_800FE248(s32, void*);                                        /* extern */
+M2C_UNK fn_800FE274(s32, void*);                                        /* extern */
+u32 fn_80100280(s32, s32, s32);                                         /* extern */
+u32 fn_80100328(s32, s32, s32);                                         /* extern */
+u32 fn_8010037C(s32, s32, s32);                                         /* extern */
+M2C_UNK fn_801007F4(s32, s32);                                          /* extern */
+M2C_UNK fn_8010096C(s32, s32, void*);                                   /* extern */
+M2C_UNK fn_80100AAC(void);                                              /* extern */
+s32 fn_80103324(void*, void*, f32);                                     /* extern */
+M2C_UNK fn_8010AFE4(...);                                               /* extern */
+s32 fn_8010B708(s32);                                                   /* extern */
+void* fn_80150588(...);                                                 /* extern */
+M2C_UNK fn_80150958(...);                                               /* extern */
+M2C_UNK fn_80195A74(...);                                               /* extern */
+M2C_UNK fn_80196050(...);                                               /* extern */
+M2C_UNK fn_801990E0(...);                                               /* extern */
+M2C_UNK fn_8019941C(...);                                               /* extern */
+void* fn_8019E8EC(...);                                                 /* extern */
+M2C_UNK fn_8019EB94(...);                                               /* extern */
+M2C_UNK fn_8019EC30(...);                                               /* extern */
+M2C_UNK fn_8019ED68(...);                                               /* extern */
+s32 fn_801C28D8(...);                                                   /* extern */
+M2C_UNK fn_8_B0300(...);                                                /* extern */
+u32 fn_8_B08F0(...);                                                    /* extern */
+void fn_8_AE604(TEnemyParalysis* arg0);                                 /* static */
+void fn_8_AEB80(TEnemyParalysis* arg0);                                 /* static */
+void fn_8_AEE04(TEnemyParalysis* arg0);                                 /* static */
+TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2); /* static */
+void magicianObjectCreate();                                            /* static */
+void magicianObjectLoad();                                              /* static */
+void magicianObjectUnload();                                            /* static */
 extern M2C_UNK lbl_80239978;
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_80239990;

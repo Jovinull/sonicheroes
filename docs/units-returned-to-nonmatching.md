@@ -178,12 +178,27 @@ That adopted 106 declarations, of which 100 held. It moved six units — up to
 +2.38% on `rel/e_strategy_magician_stage11` — and took the spurious `crclr`
 count from 241 to 228.
 
-Six files had to be reverted because an adopted return type or parameter
-conflicts with how m2c uses the result there:
-`rel/e_flyer_path_stage11`, `rel/e_magician_stage11`,
-`rel/o_colli_communication_stage11`, `rel/e_rinoliner_stage11`,
-`rel/e_turtle_stage11` and `rel/e_wall_stage11`. Each needs its call sites read
-against the target rather than a wider rule.
+Six files had to be reverted at that step. Most of it was the *return* type:
+m2c's `TObject*` is assigned to a `TObject*` in the file, and a canonicalised
+`void*` does not convert back implicitly in C++. The return type never affects
+whether mwcc emits `crclr` — only the ellipsis does — so adopting the parameter
+list alone and keeping m2c's return recovers `rel/e_magician_stage11` (+1.86%)
+and `rel/e_turtle_stage11` (+0.16%).
+
+Four are still out, for two different reasons. `rel/o_colli_communication_stage11`
+and `rel/e_rinoliner_stage11` do not compile even with the parameters alone.
+`rel/e_flyer_path_stage11` (-0.17%) and `rel/e_wall_stage11` (-0.07%) compile
+and measure *worse*, which means an adopted parameter is wrong for the call
+sites in those files.
+
+`rel/e_wall_stage11` is the case to study, because its 39 `crclr` come from
+eight callees and **not one of them has a consistent call arity inside the
+file**: `fn_80018A34` is called with two, three and four arguments;
+`fn_8019E8EC` with none, one and two; `fn_8019ED68` with four, five and six.
+m2c guessed a different shape at each site because it believed the function was
+variadic. There is no rule that resolves that — each call site has to be read
+against the target's register setup. Attribute them by scanning our `.text` for
+`0x4CC63242` and taking the symbol of the next `bl`.
 
 Beyond that, deriving the rest is not purely mechanical, and it is worth
 knowing why before someone tries. Two obstacles came up:
