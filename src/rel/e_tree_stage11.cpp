@@ -59,7 +59,7 @@ M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                                /* extern */
 f32 fn_800D7AE4(s32);                                              /* extern */
 f32 fn_800D7B00(s32);                                              /* extern */
 M2C_UNK fn_8013F3A4(void*);                                        /* extern */
-void* fn_8013F484(...);                                            /* extern */
+void* fn_8013F484(s32);                                            /* extern */
 M2C_UNK fn_8013FC30(void*);                                        /* extern */
 M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);          /* extern */
 s32 fn_80150588(u32);                                              /* extern */
@@ -483,7 +483,7 @@ s32 fn_8_C4B58(s32 arg0, void** arg1)
 {
 	void* temp_r3;
 
-	temp_r3 = fn_8013F484();
+	temp_r3 = fn_8013F484(arg0);
 	if (temp_r3 == NULL) {
 		fn_8019EB10(arg0, fn_8_C4B58, arg1);
 		return arg0;
@@ -492,7 +492,7 @@ s32 fn_8_C4B58(s32 arg0, void** arg1)
 	return 0;
 }
 
-void fn_8_C4BBC(void* arg1)
+void fn_8_C4BBC(void* arg0, void* arg1)
 {
 	void* temp_r3;
 
