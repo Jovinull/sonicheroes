@@ -74,7 +74,7 @@ all, usually a missing or extra block.
 | `rel/player_effects` | 1632 | 0 | 0 | 1632 | 1695 |
 | `rel/o_colli_communication_stage11` | 1757 | 0 | 2 | 1755 | 2212 |
 | `rel/goal_ring_stage11` | 1761 | 6 | 18 | 1737 | 3081 |
-| `game/rw_gcn_core` | 2020 | 32 | 288 | 1700 | 7601 |
+| `game/rw_gcn_core` | 1992 | 32 | 288 | 1672 | 7601 |
 | `rel/sp_eff_dash` | 4490 | 0 | 0 | 4490 | 4561 |
 
 ## Idioms that close a whole column at once
@@ -123,6 +123,29 @@ guessing it.
 
 Thirty-eight sites across seven units had exactly this shape, all with the same
 bound, and converting them closed 44 instructions.
+
+**A `static` declared smaller than its symbol lands in small data.** m2c sizes
+a private object from the accesses it saw, which for a state block reached
+entirely through computed offsets is one word. Under mwcc's small-data
+threshold that object goes to `.sbss`, and every reference to it becomes a
+one-instruction `@sda21` where retail has the `lis`/`addi` pair — so each
+function that touches it is exactly one instruction short, and the unit's
+`.bss` comes out short by the whole object.
+
+`symbols.txt` already carries the real size. `lbl_8042AC68` in
+`game/rw_gcn_core` is `.bss` size `0xF4` against a four-byte declaration;
+declaring the array and dropping the `&` at its 263 use sites moved
+`matched_code` from 864 to 1292 bytes, completed `.bss` at 244/244, and took
+the unit from 60.55% to 62.91% fuzzy.
+
+Worth checking before reaching for a compiler flag: `-sdata 0` fixes the same
+addressing by turning small data off for the whole unit, and on this unit it
+measured *worse* than the declaration (58.55% fuzzy, 980 bytes) because it also
+moves everything else. The declaration is the narrower and the correct fix.
+
+Seventy units are still short on a data section, `rel/e_wall_stage11` by 1820
+bytes of `.data` at the top. That sweep is the next block, and an undersized
+declaration is one of the things it will turn up.
 
 ## Where to start
 
