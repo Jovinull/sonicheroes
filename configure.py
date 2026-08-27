@@ -1753,7 +1753,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_wall_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off"],
             ),
             Object(
                 Matching,
@@ -2048,7 +2048,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_mask_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off"],
             ),
             Object(
                 Matching,

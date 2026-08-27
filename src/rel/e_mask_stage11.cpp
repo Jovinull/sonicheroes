@@ -113,18 +113,18 @@ static M2C_UNK lbl_8_data_18D0C;     /* unable to generate initializer: unknown 
 static M2C_UNK lbl_8_data_18D3C;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018D45_data; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_18D48 = "TObjMask";
-static M2C_UNK lbl_8_data_18D4C;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18D88;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018D99_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18D9C;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018DAD_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18DB0;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018DC1_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18DC4;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018DD5_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK maskObjectDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK maskObjectFieldTypes;  /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018DEC_data;  /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18D4C;     /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18D88;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018D99_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18D9C;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018DAD_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18DB0;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018DC1_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18DC4;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018DD5_data; /* unable to generate initializer: unknown type */
+static const char maskObjectDisplayName[] = "MASK OBJECT";
+static const char maskObjectFieldTypes[]  = "iFFc";
+static M2C_UNK gap_04_00018DEC_data; /* unable to generate initializer: unknown type */
 static M2C_UNK maskObjectEntry;
 static M2C_UNK lbl_8_bss_1D48;
 static M2C_UNK lbl_8_rodata_20F0; /* unable to generate initializer: unknown type; const */
@@ -624,29 +624,31 @@ void maskObjectCreate(void)
 
 void maskObjectRegister(void)
 {
+	s32 flags;
 	M2C_UNK* temp_r3;
 
 	M2C_FIELD(&maskObjectEntry, s32*, 0x14)       = 0;
 	M2C_FIELD(&maskObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&maskObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)"MASK OBJECT";
+	M2C_FIELD(&maskObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)maskObjectDisplayName;
 	M2C_FIELD(&maskObjectEntry, void (**)(), 4)   = maskObjectLoad;
 	M2C_FIELD(&maskObjectEntry, void (**)(), 8)   = maskObjectUnload;
 	M2C_FIELD(&maskObjectEntry, void (**)(), 0xC) = maskObjectCreate;
 	M2C_FIELD(&maskObjectEntry, s32*, 0x10)       = 0;
-	M2C_FIELD(&maskObjectEntry, s32*, 0x14)       = 0x20000;
+	flags                                         = 0x20000;
+	M2C_FIELD(&maskObjectEntry, s32*, 0x14)       = flags;
 	M2C_FIELD(&maskObjectEntry, s32*, 0x18)       = 0;
 	M2C_FIELD(&maskObjectEntry, s8*, 0x20)        = 0x1E;
 	M2C_FIELD(&maskObjectEntry, s16*, 0x1C)       = 0x118D;
 	M2C_FIELD(&maskObjectEntry, s16*, 0x1E)       = 2;
 	M2C_FIELD(&maskObjectEntry, s8*, 0x21)        = 0;
-	temp_r3                                       = (M2C_UNK*)"iFFc";
+	temp_r3                                       = (M2C_UNK*)maskObjectFieldTypes;
 	M2C_FIELD(&maskObjectEntry, M2C_UNK**, 0x24)  = temp_r3;
 	M2C_FIELD(&maskObjectEntry, M2C_UNK**, 0x28)  = &maskObjectFieldNames;
 	if (temp_r3 != NULL) {
-		M2C_FIELD(&maskObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&maskObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&maskObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&maskObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const maskObjectCtorEntry)(void) = maskObjectRegister;
