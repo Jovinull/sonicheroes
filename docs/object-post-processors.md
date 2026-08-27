@@ -147,15 +147,24 @@ Two things that have each closed a wall recently, both cheaper than a patch:
 
 ## Enforcement
 
-`tools/check_post_processors.py` decides the two properties that can be decided
+`tools/check_post_processors.py` decides the properties that can be decided
 mechanically, and CI runs it alongside the language policy:
 
+- **no retail input** — no path constant in `configure.py` may name a dtk target
+  object: `build/<version>/obj/<unit>.o` for the DOL,
+  `build/<version>/<module>/obj/<unit>.o` for a REL. Every other rule here asks
+  what a step *carries*, which stops being the question once ninja hands the
+  step the answer as a second input. `fix_tenkyu_goalring_object.py` took its
+  unit's target object and wrote it over the compiler's, embedded nothing, and
+  passed all four of the rules below. Our compiler's output lives under
+  `build/<version>/src/`, so no legitimate step is affected.
 - **no embedded object** — a module-level constant longer than 256 bytes must
   never reach a decode or decompress call. Carrying a compressed copy of the
   retail object and writing it over the compiler's output does not permute a
   reconstruction, it replaces it: the unit then measures the original against
   itself. Forty-five steps did this and were deleted; see
-  `docs/units-returned-to-nonmatching.md`.
+  `docs/units-returned-to-nonmatching.md`. A forty-sixth reached the same result
+  through the input path above.
 - **no retail content** — a module-level constant must never reach a write,
   whether spelled as `bytes.fromhex()` or as a table of integers, and whether it
   arrives through `pack_into`, `insert`, a slice assignment, or one hop of
@@ -172,6 +181,7 @@ stay a review matter.
 
 ## Reviewing one
 
+- Does its build step take any input other than our own compiler's object?
 - Does it carry any retail byte it writes, rather than asserts?
 - Does the docstring state the remainder as a count?
 - Does it hash input and output?

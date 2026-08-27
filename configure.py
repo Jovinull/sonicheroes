@@ -1370,7 +1370,7 @@ config.libs = [
                 ],
             ),
             Object(
-                Matching,
+                NonMatching,
                 "rel/tenkyu_goalring.cpp",
                 extra_cflags=[
                     "-inline noauto",
@@ -3849,11 +3849,6 @@ config.custom_build_rules = [
         "description": "FIX TEndSkyBob.cpp data atom order",
     },
     {
-        "name": "fix_tenkyu_goalring_object",
-        "command": "$python tools/fix_tenkyu_goalring_object.py $in $out",
-        "description": "FIX complete TENKYU/goal-ring compiler object",
-    },
-    {
         "name": "fix_sud_symbols",
         "command": f"$python tools/fix_sud_symbols.py $in $out --objcopy {objcopy_path}",
         "description": "FIX SUD symbols",
@@ -4217,15 +4212,6 @@ config.custom_build_steps = {
                 "tools/fix_end_sky_bob_object.py",
                 str(binutils_dir),
             ],
-        },
-        {
-            "outputs": "build/G9SE8P/tenkyu-goalring-object.stamp",
-            "rule": "fix_tenkyu_goalring_object",
-            "inputs": [
-                "build/G9SE8P/src/rel/tenkyu_goalring.o",
-                "build/G9SE8P/stage40D/obj/rel/tenkyu_goalring.o",
-            ],
-            "implicit": ["tools/fix_tenkyu_goalring_object.py"],
         },
         {
             "outputs": "build/G9SE8P/movieD/sud-symbols.stamp",

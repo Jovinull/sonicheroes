@@ -134,11 +134,50 @@ class ValidationTests(unittest.TestCase):
         self.assertFalse(checker.writes_anything(tree))
 
 
+class TargetObjectInputTests(unittest.TestCase):
+    def test_a_rel_target_object_input_is_rejected(self) -> None:
+        tree = parse(
+            'config.custom_build_steps = {\n'
+            '    "pre-compile": [\n'
+            '        {\n'
+            '            "inputs": [\n'
+            '                "build/G9SE8P/src/rel/unit.o",\n'
+            '                "build/G9SE8P/stage40D/obj/rel/unit.o",\n'
+            '            ],\n'
+            '        },\n'
+            '    ],\n'
+            '}\n'
+        )
+        self.assertEqual(
+            checker.target_object_inputs(tree),
+            ["build/G9SE8P/stage40D/obj/rel/unit.o"],
+        )
+
+    def test_a_dol_target_object_input_is_rejected(self) -> None:
+        tree = parse('INPUT = "build/G9SE8P/obj/game/unit.o"\n')
+        self.assertEqual(
+            checker.target_object_inputs(tree),
+            ["build/G9SE8P/obj/game/unit.o"],
+        )
+
+    def test_compiler_output_is_allowed(self) -> None:
+        tree = parse(
+            'A = "build/G9SE8P/src/rel/unit.o"\n'
+            'B = "build/G9SE8P/stage40D/stage40D.rel"\n'
+            'C = "build/G9SE8P/unit-object.stamp"\n'
+        )
+        self.assertEqual(checker.target_object_inputs(tree), [])
+
+
 class RepositoryTests(unittest.TestCase):
     def test_every_shipped_step_passes(self) -> None:
         scripts = sorted(checker.TOOLS.glob("fix_*.py"))
         self.assertGreater(len(scripts), 0)
         problems = [problem for script in scripts for problem in checker.check(script)]
+        self.assertEqual(problems, [], "\n".join(problems))
+
+    def test_configure_names_no_target_object(self) -> None:
+        problems = checker.check_configure(checker.CONFIGURE)
         self.assertEqual(problems, [], "\n".join(problems))
 
     def test_the_debt_list_is_not_grown(self) -> None:
