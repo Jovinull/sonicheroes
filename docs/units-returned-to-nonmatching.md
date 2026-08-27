@@ -39,7 +39,7 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 
 | unit | left | registers | other | length | size | previous |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `rel/e_tree_stage11` | 36 | 1 | 0 | 35 | 935 | 36 |
+| `rel/e_tree_stage11` | 32 | 0 | 0 | 32 | 935 | 36 |
 | `game/cri/axrna` | 48 | 20 | 11 | 17 | 1541 | 48 |
 | `game/cri/svm` | 50 | 0 | 24 | 26 | 1115 | 50 |
 | `rel/e_capture_collision_stage11` | 51 | 8 | 20 | 23 | 401 | 51 |
@@ -222,11 +222,26 @@ knowing why before someone tries. Two obstacles came up:
   has to be settled against the target's register setup at the call site rather
   than by majority.
 
+**A `(...)` extern can hide a lost argument.** m2c cannot see an argument that
+was already in the right register. `fn_8_C4B58` in `rel/e_tree_stage11` calls
+`fn_8013F484` right after `mr r30, r3`, so r3 still holds the function's own
+first parameter and m2c wrote `fn_8013F484()` — no arguments at all. Give the
+extern its prototype and the compiler names the omission for you:
+
+```
+function call 'fn_8013F484()' does not match 'fn_8013F484(int)'
+```
+
+Three functions in that unit went byte-exact from this plus one wrong
+parameter: `fn_8_C4BBC` read `arg1` while the target reads r4, meaning the
+function takes two parameters and uses the second. 84.32% to 84.65%, and the
+unit's remaining 32 are now all length.
+
 ## Where to start
 
 The six closest are within sixty instructions:
 
-- `rel/e_tree_stage11` (36; 1 register, 35 length)
+- `rel/e_tree_stage11` (32, all length)
 - `game/cri/axrna` (48; 20 registers, 11 other, 17 length)
 - `game/cri/svm` (50; 24 other, 26 length)
 - `rel/e_capture_collision_stage11` (51; 8 registers, 20 other, 23 length)
