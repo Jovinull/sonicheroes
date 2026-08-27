@@ -25,8 +25,8 @@ extern float lbl_8_rodata_D3C;
 extern float lbl_8_rodata_D40;
 extern float lbl_8_rodata_D58;
 
-void __ct__7TObjectFP7TObject(...);
-void __dt__7TObjectFv(...);
+void __ct__7TObjectFP7TObject(void*, void*);
+void __dt__7TObjectFv(void*, s32);
 void* fn_80018A34(...);
 void fn_800189A4(...);
 void fn_8005BE6C(...);

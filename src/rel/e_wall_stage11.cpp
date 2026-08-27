@@ -183,10 +183,10 @@ M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(...);             
 void* __ct__10HAnimClassFv(...);                                                 /* extern */
 TObject* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(...);               /* extern */
 void* __ct__15sParalysisParamFv(...);                                            /* extern */
-void* __ct__7TObjectFP7TObject(...);                                             /* extern */
+void* __ct__7TObjectFP7TObject(void*, void*);                                    /* extern */
 M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
 void* __dt__10HAnimClassFv(...);                                                 /* extern */
-void* __dt__7TObjectFv(...);                                                     /* extern */
+void* __dt__7TObjectFv(void*, s32);                                              /* extern */
 M2C_UNK __register_global_object(M2C_UNK*, M2C_UNK*);                            /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                           /* extern */
 s32 fn_80017800(TObject*);                                                       /* extern */

@@ -47,9 +47,9 @@ extern char lbl_80239990[];
 
 void* fn_80018A34(...);
 void* fn_80057644(...);
-void __ct__7TObjectFP7TObject(...);
-void __dt__7TObjectFv(...);
-void __dl__FPv(...);
+void __ct__7TObjectFP7TObject(void*, void*);
+void __dt__7TObjectFv(void*, s32);
+void __dl__FPv(void*);
 void fn_800189A4(...);
 void fn_8005BE6C(...);
 void fn_8003C618(...);

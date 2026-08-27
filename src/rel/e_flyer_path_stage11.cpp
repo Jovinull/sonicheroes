@@ -54,61 +54,61 @@ typedef struct TObject {
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(...); /* extern */
-M2C_UNK __dl__FPv(...);              /* extern */
-void* __dt__7TObjectFv(...);         /* extern */
-f64 asin(...);                       /* extern */
-f64 atan2(...);                      /* extern */
-M2C_UNK dtor_8003C52C(...);          /* extern */
-s32 fn_80017800(...);                /* extern */
-M2C_UNK fn_800189A4(...);            /* extern */
-TObject* fn_80018A34(...);           /* extern */
-void* fn_800211A8(...);              /* extern */
-M2C_UNK fn_80021824(...);            /* extern */
-M2C_UNK fn_8003BC38(...);            /* extern */
-M2C_UNK fn_8003BE78(...);            /* extern */
-M2C_UNK fn_8003C200(...);            /* extern */
-M2C_UNK fn_8003C618(...);            /* extern */
-u32 fn_80057644(...);                /* extern */
-u32 fn_8005EA04(...);                /* extern */
-M2C_UNK fn_8005FC74(...);            /* extern */
-M2C_UNK fn_800A31B8(...);            /* extern */
-s32 fn_800A3ED4(...);                /* extern */
-M2C_UNK fn_800AFB50(...);            /* extern */
-M2C_UNK fn_800B4A38(...);            /* extern */
-M2C_UNK fn_800BDEA0(...);            /* extern */
-M2C_UNK fn_800D5A64(...);            /* extern */
-f32 fn_800D71DC(...);                /* extern */
-s32 fn_800D7A94(...);                /* extern */
-f32 fn_800D7B00(...);                /* extern */
-f32 fn_800D7BD8(...);                /* extern */
-f32 fn_800D8BC4(...);                /* extern */
-M2C_UNK fn_800E1208(...);            /* extern */
-void* fn_8010037C(...);              /* extern */
-M2C_UNK fn_80100AAC(...);            /* extern */
-s32 fn_80100BF8(...);                /* extern */
-s32 fn_80103324(...);                /* extern */
-M2C_UNK fn_8010AFF8(...);            /* extern */
-M2C_UNK fn_8010B074(...);            /* extern */
-M2C_UNK fn_8010B208(...);            /* extern */
-M2C_UNK fn_80113874(...);            /* extern */
-M2C_UNK fn_80137FE8(...);            /* extern */
-M2C_UNK fn_8014FF2C(...);            /* extern */
-void* fn_80150588(...);              /* extern */
-M2C_UNK fn_80150958(...);            /* extern */
-M2C_UNK fn_801990E0(...);            /* extern */
-f32 fn_801991B4(...);                /* extern */
-M2C_UNK fn_8019941C(...);            /* extern */
-s32 fn_8019CE34(...);                /* extern */
-M2C_UNK fn_8019EB94(...);            /* extern */
-M2C_UNK fn_8019EC30(...);            /* extern */
-M2C_UNK fn_8019ED68(...);            /* extern */
-s32 fn_801C28D8(...);                /* extern */
-M2C_UNK fn_8_90B10(...);             /* extern */
-M2C_UNK fn_8_A353C(...);             /* extern */
-s32 fn_8_A35BC(...);                 /* extern */
-M2C_UNK fn_8_A7FA4(...);             /* extern */
-void fn_8_A945C(void* arg0);         /* static */
+void* __ct__7TObjectFP7TObject(void*, void*); /* extern */
+M2C_UNK __dl__FPv(void*);                     /* extern */
+void* __dt__7TObjectFv(void*, s32);           /* extern */
+f64 asin(...);                                /* extern */
+f64 atan2(...);                               /* extern */
+M2C_UNK dtor_8003C52C(...);                   /* extern */
+s32 fn_80017800(...);                         /* extern */
+M2C_UNK fn_800189A4(...);                     /* extern */
+TObject* fn_80018A34(...);                    /* extern */
+void* fn_800211A8(...);                       /* extern */
+M2C_UNK fn_80021824(...);                     /* extern */
+M2C_UNK fn_8003BC38(...);                     /* extern */
+M2C_UNK fn_8003BE78(...);                     /* extern */
+M2C_UNK fn_8003C200(...);                     /* extern */
+M2C_UNK fn_8003C618(...);                     /* extern */
+u32 fn_80057644(...);                         /* extern */
+u32 fn_8005EA04(...);                         /* extern */
+M2C_UNK fn_8005FC74(...);                     /* extern */
+M2C_UNK fn_800A31B8(...);                     /* extern */
+s32 fn_800A3ED4(...);                         /* extern */
+M2C_UNK fn_800AFB50(...);                     /* extern */
+M2C_UNK fn_800B4A38(...);                     /* extern */
+M2C_UNK fn_800BDEA0(...);                     /* extern */
+M2C_UNK fn_800D5A64(...);                     /* extern */
+f32 fn_800D71DC(...);                         /* extern */
+s32 fn_800D7A94(...);                         /* extern */
+f32 fn_800D7B00(...);                         /* extern */
+f32 fn_800D7BD8(...);                         /* extern */
+f32 fn_800D8BC4(...);                         /* extern */
+M2C_UNK fn_800E1208(...);                     /* extern */
+void* fn_8010037C(...);                       /* extern */
+M2C_UNK fn_80100AAC(...);                     /* extern */
+s32 fn_80100BF8(...);                         /* extern */
+s32 fn_80103324(...);                         /* extern */
+M2C_UNK fn_8010AFF8(...);                     /* extern */
+M2C_UNK fn_8010B074(...);                     /* extern */
+M2C_UNK fn_8010B208(...);                     /* extern */
+M2C_UNK fn_80113874(...);                     /* extern */
+M2C_UNK fn_80137FE8(...);                     /* extern */
+M2C_UNK fn_8014FF2C(...);                     /* extern */
+void* fn_80150588(...);                       /* extern */
+M2C_UNK fn_80150958(...);                     /* extern */
+M2C_UNK fn_801990E0(...);                     /* extern */
+f32 fn_801991B4(...);                         /* extern */
+M2C_UNK fn_8019941C(...);                     /* extern */
+s32 fn_8019CE34(...);                         /* extern */
+M2C_UNK fn_8019EB94(...);                     /* extern */
+M2C_UNK fn_8019EC30(...);                     /* extern */
+M2C_UNK fn_8019ED68(...);                     /* extern */
+s32 fn_801C28D8(...);                         /* extern */
+M2C_UNK fn_8_90B10(...);                      /* extern */
+M2C_UNK fn_8_A353C(...);                      /* extern */
+s32 fn_8_A35BC(...);                          /* extern */
+M2C_UNK fn_8_A7FA4(...);                      /* extern */
+void fn_8_A945C(void* arg0);                  /* static */
 extern M2C_UNK lbl_80239978;
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_80239990;

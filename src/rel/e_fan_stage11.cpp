@@ -23,8 +23,8 @@ typedef struct TObject {
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(...);                   /* extern */
-void* __dt__7TObjectFv(...);                           /* extern */
+void* __ct__7TObjectFP7TObject(void*, void*);          /* extern */
+void* __dt__7TObjectFv(void*, s32);                    /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                 /* extern */
 M2C_UNK fn_800189A4(s32, TObject*);                    /* extern */
 TObject* fn_80018A34(s32, M2C_UNK);                    /* extern */
