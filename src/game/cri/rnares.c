@@ -36,13 +36,6 @@ static struct {
 #define rnares_aram_address         lbl_8042A9D0.aramAddress
 #define rnares_handles              lbl_8042A9E4.handles
 
-// CodeWarrior lays out these uninitialized statics in reverse first-use order.
-// This unused expression preserves the retail base/handle ordering.
-static s32 rnares_layout_touch(void)
-{
-	return rnares_handles[0].used + rnares_reference_count;
-}
-
 const char lbl_802405F8[]       = "E1070313:Not enough RNARES handle.\n";
 const char lbl_8024061C[]       = "E1090601:Free area other than ADX buffer.\n";
 const u8 gap_06_80240647_rodata = 0;
