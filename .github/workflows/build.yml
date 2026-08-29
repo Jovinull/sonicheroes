@@ -143,6 +143,7 @@ jobs:
 
     - name: Download objdiff-cli
       run: |
+        mkdir -p build/tools
         tag=$(sed -n 's/^config\.objdiff_tag = "\(.*\)"$/\1/p' configure.py)
         python3 tools/download_tool.py objdiff-cli build/tools/objdiff-cli --tag "$tag"
 
