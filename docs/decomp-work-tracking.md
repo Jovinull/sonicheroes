@@ -8,7 +8,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex | `game/cri/axrna.c` | Attempted; no net improvement after source-form and compiler-flag trials |
 | Codex | `game/cri/svm.c` | Attempted; BSS layout identified, but no net object improvement |
 | Codex | `game/cri/rnares.c` | Attempted; aggregate evidence retained, no text improvement without synthetic layout code |
-| Codex | `game/rw_gcn_raster.c` | Active; reserved |
+| Codex | `game/rw_gcn_raster.c` | Active; `fn_80227300` restored to 100%; continuing |
 | Codex | `game/skyfs_adx.c` (`0x80013038`–`0x80014154`) | Complete; `pr-skyfs-adx` |
 | Codex | `game/Peripheral.cpp` (`0x80014154`–`0x80015AC0`) | Complete; `pr-peripheral` (stacked on `pr-skyfs-adx`) |
 | Codex | `game/main.cpp` (`0x80015AC0`–`0x80016514`) | Complete; `pr-game-main-cpp` |

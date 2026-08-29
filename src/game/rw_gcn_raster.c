@@ -1475,14 +1475,14 @@ block_19:
 	return temp_r30;
 }
 
-void fn_80227300(u8* arg0, u32 arg1, s32 arg2)
+void fn_80227300(u8* arg0, s32 arg1, u32 arg2)
 {
 	f32 sp8[12];
+	s32 temp_r31;
 	s32 temp_r30;
-	u32 temp_r31;
 
-	temp_r30 = arg2;
 	temp_r31 = arg1;
+	temp_r30 = arg2;
 	sp8[0]   = -M2C_FIELD(arg0, f32*, 0);
 	sp8[1]   = -M2C_FIELD(arg0, f32*, 0x10);
 	sp8[2]   = -M2C_FIELD(arg0, f32*, 0x20);
