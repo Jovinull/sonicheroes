@@ -562,10 +562,10 @@ s32 fn_80225B60(u8* arg0)
 s32* fn_80225BF0(s32* arg0, s32* unused_arg1, s32* arg2)
 {
 	s32 sp8;
+	u8* temp_r31;
 	s32 temp_r30;
 	s32 temp_r6;
 	s32 temp_r7;
-	u8* temp_r31;
 
 	temp_r31 = M2C_FIELD(arg2, u8**, M2C_FIELD(lbl_8029BB30, s32*, 8));
 	if (temp_r31 != NULL) {
