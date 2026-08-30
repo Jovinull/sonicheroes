@@ -1,6 +1,15 @@
 #include "types.h"
 
 typedef s32 M2C_UNK;
+typedef struct {
+	s32 words[2];
+} M2C_BLOCK8;
+typedef struct {
+	s32 words[3];
+} M2C_BLOCK12;
+typedef struct {
+	s32 words[4];
+} M2C_BLOCK16;
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
 #define M2C_BITWISE(type, value)      (*(type*)&(value))
 #define M2C_ERROR(...)                0
@@ -3382,9 +3391,9 @@ loop_103:
 						    + ((temp_f26 * M2C_FIELD(temp_r15, f32*, 8)) + sp18));
 					} else {
 						if (var_r23 != var_r24) {
-							M2C_STRUCT_COPY(var_r23, var_r24, 0xC);
-							M2C_STRUCT_COPY(var_r23, var_r24, 0xC);
-							M2C_STRUCT_COPY(var_r23, var_r24, 0xC);
+							*(M2C_BLOCK12*)var_r23        = *(M2C_BLOCK12*)var_r24;
+							*(M2C_BLOCK12*)var_r23        = *(M2C_BLOCK12*)var_r24;
+							*(M2C_BLOCK12*)var_r23        = *(M2C_BLOCK12*)var_r24;
 							M2C_FIELD(var_r23, s32*, 0xC) = (s32)M2C_FIELD(var_r24, s32*, 0xC);
 						}
 						sp10 = M2C_FIELD(var_r24, f32*, 0x30);
@@ -3431,7 +3440,7 @@ loop_103:
 						    = (f32)((var_f31 * M2C_FIELD(temp_r27, f32*, 0xC))
 						        + M2C_FIELD(temp_r27, f32*, 4));
 					} else if ((u32)var_r19 != var_r20) {
-						M2C_STRUCT_COPY(var_r19, var_r20, 8);
+						*(M2C_BLOCK8*)var_r19 = *(M2C_BLOCK8*)var_r20;
 					}
 					var_r19 += spD8;
 				}
@@ -3469,7 +3478,7 @@ loop_103:
 						    = (f32)((var_f31 * M2C_FIELD(temp_r28, f32*, 0x1C))
 						        + M2C_FIELD(temp_r28, f32*, 0xC));
 					} else if ((u32)var_r21 != var_r22) {
-						M2C_STRUCT_COPY(var_r21, var_r22, 0x10);
+						*(M2C_BLOCK16*)var_r21 = *(M2C_BLOCK16*)var_r22;
 					}
 					var_r21 += spDC;
 				}
