@@ -1214,36 +1214,23 @@ void fn_80226D3C(u8* arg0, s32 arg1, u32 arg2, s32 arg3, u8* arg4, s32 arg5)
 				var_r21 = arg2;
 				var_r22 = 0;
 				var_r20 = arg3;
-				var_r28 = 0;
-			loop_15:
-				if (var_r28 < arg5) {
+				for (var_r28 = 0; var_r28 < arg5;
+				    var_r23 += 4, var_r22 += 0xC, var_r21 += 0xC, var_r20 += 0xC, var_r28 += 1) {
 					temp_r19 = arg1
 					    + ((M2C_FIELD(M2C_FIELD(arg0, u32**, 0x14), u32*, var_r23) << 6) & 0x3FC0);
 					fn_8019941C(var_r21, M2C_FIELD(arg0, u32*, 0x1C) + var_r22, 1, temp_r19);
 					fn_8019947C(var_r20, M2C_FIELD(arg0, u32*, 0x20) + var_r22, 1, temp_r19);
-					var_r23 += 4;
-					var_r22 += 0xC;
-					var_r21 += 0xC;
-					var_r20 += 0xC;
-					var_r28 += 1;
-					goto loop_15;
 				}
 			} else {
 				var_r20_2 = 0;
 				var_r22_2 = arg2;
 				var_r21_2 = 0;
-				var_r19   = 0;
-			loop_19:
-				if (var_r19 < arg5) {
+				for (var_r19 = 0; var_r19 < arg5;
+				    var_r20_2 += 4, var_r21_2 += 0xC, var_r22_2 += 0xC, var_r19 += 1) {
 					fn_8019941C(var_r22_2, M2C_FIELD(arg0, u32*, 0x1C) + var_r21_2, 1,
 					    arg1
 					        + ((M2C_FIELD(M2C_FIELD(arg0, u32**, 0x14), u32*, var_r20_2) << 6)
 					            & 0x3FC0));
-					var_r20_2 += 4;
-					var_r21_2 += 0xC;
-					var_r22_2 += 0xC;
-					var_r19 += 1;
-					goto loop_19;
 				}
 			}
 			break;
