@@ -573,8 +573,8 @@ s32* fn_80225BF0(s32* arg0, s32* unused_arg1, s32* arg2)
 			temp_r6  = M2C_FIELD(temp_r31, s32*, 0x10);
 			temp_r7  = M2C_FIELD(temp_r31, s32*, 0);
 			temp_r30 = M2C_FIELD(arg2, s32*, 0x14);
-			sp8      = ((((M2C_FIELD(temp_r31, s32*, 4) << 8) & 0xFF00 & ~0xFF0000)
-			                | ((temp_r6 << 0x10) & 0xFF0000))
+			sp8      = ((((temp_r6 << 0x10) & 0xFF0000 & ~0xFF00)
+			                | ((M2C_FIELD(temp_r31, s32*, 4) << 8) & 0xFF00))
 			               & ~0xFF)
 			    | (temp_r7 & 0xFF);
 			if (fn_80193474(arg0, &sp8, 4) == 0U) {
