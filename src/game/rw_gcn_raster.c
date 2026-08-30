@@ -1418,15 +1418,11 @@ void fn_802273D0(u8* arg0, s32 arg1, s32 arg2, M2C_UNK arg_sp0)
 	temp_r23 = M2C_FIELD((temp_r6 + temp_r4), u8*, 1);
 	var_r22  = 0;
 	temp_r24 = (M2C_FIELD(temp_r6, u8*, temp_r4) * 2) & 0xFE;
-	var_r25  = 0;
-loop_7:
-	if (var_r25 < temp_r23) {
-		var_r21  = 0U;
+	for (var_r25 = 0; var_r25 < temp_r23; var_r25 += 1) {
 		temp_r3  = (u8*)(temp_r24 + (M2C_FIELD(arg0, s32*, 0x44) + ((var_r25 * 2) & 0x1FE)));
 		temp_r26 = M2C_FIELD(temp_r3, u8*, 1);
 		var_r29  = M2C_FIELD(temp_r3, u8*, 0) << 6;
-	loop_5:
-		if (var_r21 < temp_r26) {
+		for (var_r21 = 0U; var_r21 < temp_r26; var_r22 += 3, var_r29 += 0x40, var_r21 += 1) {
 			temp_r5 = (u8*)(M2C_FIELD(lbl_8029BB30, s32*, 0xC) + var_r29);
 			sp8[0]  = -M2C_FIELD(temp_r5, f32*, 0);
 			sp8[1]  = -M2C_FIELD(temp_r5, f32*, 0x10);
@@ -1444,13 +1440,7 @@ loop_7:
 			if (arg2 != 0) {
 				GXLoadNrmMtxImm(sp8, var_r22);
 			}
-			var_r22 += 3;
-			var_r29 += 0x40;
-			var_r21 += 1;
-			goto loop_5;
 		}
-		var_r25 += 1;
-		goto loop_7;
 	}
 }
 
