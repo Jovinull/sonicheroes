@@ -343,17 +343,19 @@ void fn_802325F8(u8* arg0, s32* arg1)
 M2C_UNK* fn_80232604(s32 arg0)
 {
 	M2C_UNK* var_r4;
+	M2C_UNK* var_r5;
 	M2C_UNK* var_r6;
 
 	var_r6 = NULL;
-	var_r4 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60);
-	if ((M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60) != NULL) {
+	var_r5 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60);
+	var_r4 = var_r5;
+	if (var_r5 != NULL) {
 	loop_1:
 		if ((s32)M2C_FIELD(var_r4, s32*, 4) == arg0) {
 			var_r6 = var_r4;
 		} else {
 			var_r4 = M2C_FIELD(var_r4, M2C_UNK**, 0);
-			if (var_r4 != (M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60)) {
+			if (var_r4 != var_r5) {
 				goto loop_1;
 			}
 		}
@@ -364,17 +366,19 @@ M2C_UNK* fn_80232604(s32 arg0)
 M2C_UNK* fn_80232648(u8* arg0)
 {
 	M2C_UNK* var_r4;
+	M2C_UNK* var_r5;
 	M2C_UNK* var_r6;
 
 	var_r6 = NULL;
-	var_r4 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60);
-	if ((M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60) != NULL) {
+	var_r5 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60);
+	var_r4 = var_r5;
+	if (var_r5 != NULL) {
 	loop_1:
 		if ((u32)M2C_FIELD(var_r4, u32*, 0x10) == (u32)arg0) {
 			var_r6 = var_r4;
 		} else {
 			var_r4 = M2C_FIELD(var_r4, M2C_UNK**, 0);
-			if (var_r4 != (M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60)) {
+			if (var_r4 != var_r5) {
 				goto loop_1;
 			}
 		}
@@ -1851,17 +1855,19 @@ void fn_802346E0(u8* arg0, s32* arg1)
 M2C_UNK* fn_802346EC(s32 arg0)
 {
 	M2C_UNK* var_r4;
+	M2C_UNK* var_r5;
 	M2C_UNK* var_r6;
 
 	var_r6 = NULL;
-	var_r4 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64);
-	if ((M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64) != NULL) {
+	var_r5 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64);
+	var_r4 = var_r5;
+	if (var_r5 != NULL) {
 	loop_1:
 		if ((s32)M2C_FIELD(var_r4, s32*, 4) == arg0) {
 			var_r6 = var_r4;
 		} else {
 			var_r4 = M2C_FIELD(var_r4, M2C_UNK**, 0);
-			if (var_r4 != (M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64)) {
+			if (var_r4 != var_r5) {
 				goto loop_1;
 			}
 		}
@@ -1872,17 +1878,19 @@ M2C_UNK* fn_802346EC(s32 arg0)
 M2C_UNK* fn_80234730(u8* arg0)
 {
 	M2C_UNK* var_r4;
+	M2C_UNK* var_r5;
 	M2C_UNK* var_r6;
 
 	var_r6 = NULL;
-	var_r4 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64);
-	if ((M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64) != NULL) {
+	var_r5 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64);
+	var_r4 = var_r5;
+	if (var_r5 != NULL) {
 	loop_1:
 		if ((u32)M2C_FIELD(var_r4, u32*, 0x10) == (u32)arg0) {
 			var_r6 = var_r4;
 		} else {
 			var_r4 = M2C_FIELD(var_r4, M2C_UNK**, 0);
-			if (var_r4 != (M2C_UNK*)M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x64)) {
+			if (var_r4 != var_r5) {
 				goto loop_1;
 			}
 		}
@@ -2369,17 +2377,19 @@ loop_4:
 u8* fn_802350D4(s32 arg0)
 {
 	u8* var_r4;
+	u8* var_r5;
 	u8* var_r6;
 
 	var_r6 = NULL;
-	var_r4 = M2C_FIELD(lbl_8042AC68, u8**, 0x68);
-	if ((u8*)M2C_FIELD(lbl_8042AC68, u8**, 0x68) != NULL) {
+	var_r5 = M2C_FIELD(lbl_8042AC68, u8**, 0x68);
+	var_r4 = var_r5;
+	if (var_r5 != NULL) {
 	loop_1:
 		if ((s32)M2C_FIELD(var_r4, s32*, 8) == arg0) {
 			var_r6 = var_r4;
 		} else {
 			var_r4 = M2C_FIELD(var_r4, u8**, 4);
-			if (var_r4 != (u8*)M2C_FIELD(lbl_8042AC68, u8**, 0x68)) {
+			if (var_r4 != var_r5) {
 				goto loop_1;
 			}
 		}
