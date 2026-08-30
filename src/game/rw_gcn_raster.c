@@ -509,8 +509,10 @@ s32 fn_80225B60(u8* arg0)
 			temp_r6   = M2C_FIELD(arg0, s32*, 0x14);
 			temp_r5_2 = temp_r6 * 4;
 			temp_r4   = temp_r6 * 0x10;
-			var_r31   = (s32)((u8*)M2C_FIELD(temp_r5, s32*, 4) + 4 + temp_r5_2 + temp_r4
-			    + (M2C_FIELD(temp_r5, s32*, 0) << 6));
+			var_r31   = (s32)((u8*)M2C_FIELD(temp_r5, s32*, 4) + 4);
+			var_r31 += temp_r5_2;
+			var_r31 += temp_r4;
+			var_r31 += M2C_FIELD(temp_r5, s32*, 0) << 6;
 			var_r31 += fn_80225400(temp_r5);
 		} else {
 			var_r31 = fn_80227F48(arg0);
