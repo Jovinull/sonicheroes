@@ -4632,11 +4632,12 @@ u8* fn_802388D4(s32 arg0, u8* arg1, s32* arg2)
 #pragma dont_inline reset
 
 #pragma dont_inline on
-u8* fn_80238D3C(u8* arg1, s32* arg2)
+u8* fn_80238D3C(s32 arg0, u8* arg1, s32* arg2)
 {
 	s32 temp_r3;
 	s32 temp_r3_2;
 	s32 temp_r3_3;
+	s32 temp_r3_4;
 	s32 var_r31;
 	s32 var_r31_2;
 	u8* temp_r30;
@@ -4646,7 +4647,8 @@ u8* fn_80238D3C(u8* arg1, s32* arg2)
 	temp_r3  = fn_8023506C(temp_r30, 1);
 	if (temp_r3 >= 0) {
 		var_r31_2 = 0x98;
-		if ((u32) * (arg1 + (temp_r3 + 0xA4)) != 0U) {
+		temp_r3_4 = temp_r3 + 0xA4;
+		if ((u32)M2C_FIELD(arg1, u32*, temp_r3_4) != 0U) {
 			var_r31_2 = fn_8019AA5C() + 0xA4;
 		}
 		var_r31 = var_r31_2 + 4;
@@ -4659,7 +4661,8 @@ u8* fn_80238D3C(u8* arg1, s32* arg2)
 	}
 	temp_r3_2 = fn_8023506C(temp_r30, 8);
 	if (temp_r3_2 >= 0) {
-		var_r31 = var_r31 + fn_80193B58(arg1 + temp_r3_2) + 0x40;
+		var_r31 += fn_80193B58(arg1 + temp_r3_2);
+		var_r31 += 0x40;
 	}
 	if (fn_8023506C(temp_r30, 5) >= 0) {
 		var_r31 += 0x20;
@@ -4727,9 +4730,9 @@ void fn_80238FEC(void) { }
 #pragma dont_inline on
 s32 fn_80238FF0(s32 arg0)
 {
-	M2C_UNK* var_r27;
-	M2C_UNK* var_r28;
 	M2C_UNK* var_r30;
+	M2C_UNK* var_r28;
+	M2C_UNK* var_r27;
 	M2C_UNK* var_r30_2;
 	u8* var_r26;
 	u8* var_r27_2;
@@ -4739,34 +4742,28 @@ s32 fn_80238FF0(s32 arg0)
 	var_r26 = NULL;
 	if ((M2C_UNK**)M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x64) != NULL) {
 		var_r30 = *M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x64);
-	loop_3:
-		if (var_r30 != var_r27) {
+		while (var_r30 != var_r27) {
 			var_r27 = var_r30;
 			var_r30 = (M2C_UNK*)*var_r30;
 			fn_802343C4(var_r27);
-			goto loop_3;
 		}
 		M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x64) = NULL;
 	}
 	if ((M2C_UNK**)M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60) != NULL) {
 		var_r30_2 = *M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60);
-	loop_8:
-		if (var_r30_2 != var_r28) {
+		while (var_r30_2 != var_r28) {
 			var_r28   = var_r30_2;
 			var_r30_2 = (M2C_UNK*)*var_r30_2;
 			fn_80232288(var_r28);
-			goto loop_8;
 		}
 		M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60) = NULL;
 	}
 	if ((u8*)M2C_FIELD(lbl_8042AC68, u8**, 0x68) != NULL) {
 		var_r27_2 = M2C_FIELD(M2C_FIELD(lbl_8042AC68, u8**, 0x68), u8**, 4);
-	loop_13:
-		if (var_r27_2 != var_r26) {
+		while (var_r27_2 != var_r26) {
 			var_r26   = var_r27_2;
 			var_r27_2 = M2C_FIELD(var_r27_2, u8**, 4);
 			fn_80234EA0(var_r26);
-			goto loop_13;
 		}
 		M2C_FIELD(lbl_8042AC68, u8**, 0x68) = NULL;
 	}
