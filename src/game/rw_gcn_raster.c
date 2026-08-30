@@ -9,6 +9,10 @@ typedef s32 M2C_UNK;
 typedef struct {
 	s32 words[16];
 } M2C_BLOCK64;
+typedef struct {
+	s32 unk0;
+	s32 unk4;
+} M2C_PAIR;
 #define M2C_FIELD(base, type, offset)   (*(type)((u8*)(base) + (offset)))
 #define M2C_STRUCT_COPY(dst, src, size) memcpy((void*)(dst), (const void*)(src), (size))
 #define M2C_ERROR(...)                  0
@@ -45,13 +49,13 @@ u8* fn_8015F5EC(s32*, s32, s32);                                /* extern */
 u8* fn_8015F8A4(s32*, s32, s32);                                /* extern */
 s32 fn_801659DC(u32*, u8*, u8*);                                /* extern */
 u32 fn_80192ED8(s32*, M2C_UNK, s32, M2C_UNK, M2C_UNK);          /* extern */
-s32 fn_80192F38(M2C_UNK, u32*, u32*);                           /* extern */
+s32 fn_80192F38(u32*, s32, u32*, u32*);                         /* extern */
 u32 fn_8019336C(s32*, s32, s32);                                /* extern */
 u32 fn_80193474(s32*, s32*, s32);                               /* extern */
 u32 fn_801937A0(u32*, u32*, s32);                               /* extern */
 u32 fn_80193884(u32*, s32*, s32);                               /* extern */
 M2C_UNK fn_80193FE8(s32*);                                      /* extern */
-s32 fn_8019408C(M2C_UNK);                                       /* extern */
+s32 fn_8019408C(s32, ...);                                      /* extern */
 M2C_UNK fn_80195674(M2C_UNK*, M2C_UNK*, M2C_UNK*);              /* extern */
 M2C_UNK fn_80195B5C(M2C_UNK*, M2C_UNK*);                        /* extern */
 s32 fn_801966CC(M2C_UNK, s32, M2C_UNK, s32, M2C_UNK*);          /* extern */
@@ -1956,10 +1960,8 @@ block_19:
 
 u32* fn_8022824C(u32* arg0, u32* arg1)
 {
-	s32 sp24;
-	s32 sp20;
-	s32 sp1C;
-	s32 sp18;
+	M2C_PAIR sp20;
+	M2C_PAIR sp18;
 	u32 sp14;
 	u32 sp10;
 	s32 spC;
@@ -1974,19 +1976,19 @@ u32* fn_8022824C(u32* arg0, u32* arg1)
 	u32 temp_r5_6;
 	u8* temp_r30;
 
-	if (fn_80192F38(1, &sp10, &sp14) == 0) {
+	if (fn_80192F38(arg0, 1, &sp10, &sp14) == 0) {
 		return NULL;
 	}
 	if ((sp14 < 0x31000U) || (sp14 > 0x35000U)) {
-		sp20 = 0x116;
-		sp24 = fn_8019408C(0x80000004);
-		fn_80193FE8(&sp20);
+		sp20.unk0 = 0x116;
+		sp20.unk4 = fn_8019408C(0x80000004);
+		fn_80193FE8((s32*)&sp20);
 		return NULL;
 	}
 	if (sp14 < 0x34002U) {
-		sp18 = 0x116;
-		sp1C = fn_8019408C(0x80000004);
-		fn_80193FE8(&sp18);
+		sp18.unk0 = 0x116;
+		sp18.unk4 = fn_8019408C(0x80000004);
+		fn_80193FE8((s32*)&sp18);
 		return NULL;
 	}
 	if (fn_80193884(arg0, &sp8, 4) == 0U) {
@@ -2020,22 +2022,22 @@ u32* fn_8022824C(u32* arg0, u32* arg1)
 		    = (s32)(M2C_FIELD(temp_r30, s32*, 0xC) + (M2C_FIELD(temp_r30, s32*, 0) << 6));
 		temp_r5 = M2C_FIELD(temp_r30, u32*, 4);
 		sp10    = temp_r5;
-		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 8), (u8)temp_r5)) {
+		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 8), temp_r5)) {
 			return NULL;
 		}
 		temp_r5_2 = M2C_FIELD(temp_r30, u32*, 0x10) * temp_r31;
 		sp10      = temp_r5_2;
-		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0x28), (u8)temp_r5_2)) {
+		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0x28), temp_r5_2)) {
 			return NULL;
 		}
 		temp_r5_3 = M2C_FIELD(temp_r30, u32*, 0x10) * temp_r31;
 		sp10      = temp_r5_3;
-		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0x24), (u8)temp_r5_3)) {
+		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0x24), temp_r5_3)) {
 			return NULL;
 		}
 		temp_r5_4 = M2C_FIELD(temp_r30, s32*, 0) << 6;
 		sp10      = temp_r5_4;
-		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0xC), (u8)temp_r5_4)) {
+		if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0xC), temp_r5_4)) {
 			return NULL;
 		}
 		goto block_26;
@@ -2048,12 +2050,12 @@ u32* fn_8022824C(u32* arg0, u32* arg1)
 	    = (s32)(M2C_FIELD(temp_r30, s32*, 0xC) + (M2C_FIELD(temp_r30, s32*, 0) << 6));
 	temp_r5_5 = M2C_FIELD(temp_r30, u32*, 4);
 	sp10      = temp_r5_5;
-	if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 8), (u8)temp_r5_5)) {
+	if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 8), temp_r5_5)) {
 		return NULL;
 	}
 	temp_r5_6 = M2C_FIELD(temp_r30, s32*, 0) << 6;
 	sp10      = temp_r5_6;
-	if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0xC), (u8)temp_r5_6)) {
+	if (sp10 != fn_801979AC(arg0, M2C_FIELD(temp_r30, s32*, 0xC), temp_r5_6)) {
 		return NULL;
 	}
 block_26:
