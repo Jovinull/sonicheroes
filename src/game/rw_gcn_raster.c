@@ -2106,7 +2106,7 @@ s32* fn_80228014(s32* arg0, u8* arg1)
 	temp_r31   = M2C_FIELD(arg1, u8**, M2C_FIELD(lbl_8029BB30, s32*, 8));
 	temp_r0_3  = M2C_FIELD(temp_r31, u32*, 4);
 	temp_r29   = M2C_FIELD(temp_r31, u32*, 0x10);
-	sp8        = ((temp_r0_3 & 0xFF) << 8) | ((temp_r29 & 0xFF) << 16)
+	sp8        = ((temp_r29 & 0xFF) << 16) | ((temp_r0_3 & 0xFF) << 8)
 	    | (M2C_FIELD(temp_r31, u32*, 0) & 0xFF);
 	if (fn_80193474(arg0, &sp8, 4) == 0U) {
 		return NULL;
