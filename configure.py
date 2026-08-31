@@ -1548,6 +1548,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/push_pull_switch_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
