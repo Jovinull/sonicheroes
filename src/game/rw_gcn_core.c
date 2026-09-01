@@ -249,8 +249,7 @@ u8* fn_8023239C(u8* arg0, s32 arg1, u8* arg2)
 		var_r6 = arg2;
 		var_r7 = temp_r3;
 		var_r8 = 0;
-	loop_5:
-		if (var_r8 < arg1) {
+		while (var_r8 < arg1) {
 			M2C_FIELD(var_r7, s32*, 0)    = (s32)M2C_FIELD(var_r6, u8 * (**)(u8*), 0);
 			var_r4                        = (s32*)(var_r6 + 0x28);
 			var_r5                        = (s32*)(var_r7 + 0x28);
@@ -276,7 +275,6 @@ u8* fn_8023239C(u8* arg0, s32 arg1, u8* arg2)
 			var_r6 += 0x2C;
 			var_r7 += 0x2C;
 			var_r8 += 1;
-			goto loop_5;
 		}
 		if ((u8*)M2C_FIELD(arg0, u8**, 0x18) != NULL) {
 			M2C_FIELD(lbl_8042C9A4, M2C_UNK(**)(u8*, M2C_UNK*), 0x138)(
