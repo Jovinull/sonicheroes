@@ -1476,19 +1476,19 @@ block_11:
 				if (var_r22 != NULL) {
 					temp_r20  = M2C_FIELD(var_r22, u8**, 4);
 					var_r18_2 = 0;
-				loop_43:
+					while (var_r19_4 < (s32)M2C_FIELD(temp_r20, s32*, 0x14)) {
+						temp_r12_2 = (u32 (*)(M2C_UNK, u8*, M2C_UNK))
+						    * (u32*)((u8*)M2C_FIELD(temp_r20, u8**, 0x18) + var_r18_2 + 0xC);
+						if ((temp_r12_2 != NULL) && ((u8*)temp_r12_2(0, var_r22, 0) != var_r22)) {
+							break;
+						}
+						var_r18_2 += 0x1C;
+						var_r19_4 += 1;
+					}
 					if (var_r19_4 >= (s32)M2C_FIELD(temp_r20, s32*, 0x14)) {
 						M2C_FIELD(var_r22, s32*, 8)    = 0;
 						M2C_FIELD(var_r22, s32*, 0x10) = 0;
 						M2C_FIELD(var_r22, u8**, 0)    = NULL;
-					} else {
-						temp_r12_2 = (u32 (*)(M2C_UNK, u8*, M2C_UNK))
-						    * (u32*)((u8*)M2C_FIELD(temp_r20, u8**, 0x18) + var_r18_2 + 0xC);
-						if ((temp_r12_2 == NULL) || ((u8*)temp_r12_2(0, var_r22, 0) == var_r22)) {
-							var_r18_2 += 0x1C;
-							var_r19_4 += 1;
-							goto loop_43;
-						}
 					}
 					M2C_FIELD(lbl_8042C9A4, M2C_UNK(**)(u8*, M2C_UNK*), 0x138)(
 					    var_r22, lbl_8042C9A4);
@@ -1527,25 +1527,23 @@ block_11:
 	var_r18_3                           = 0;
 	M2C_FIELD(var_r24, s32*, 0x14)      = sp10;
 	M2C_FIELD(var_r28, s32*, 8)         = (s32)(M2C_FIELD(var_r28, s32*, 8) + 1);
-loop_58:
-	if (var_r19_5 >= (s32)M2C_FIELD(var_r29, s32*, 0x14)) {
-		fn_80239738(arg0, var_r24);
-		if (sp8 != 0) {
-			fn_80234EA0(M2C_FIELD(var_r29, u8**, 0x10));
-			fn_80234EA0(M2C_FIELD(var_r28, u8**, 0x10));
-			fn_80232288(var_r29);
-			fn_802343C4(var_r28);
+	while (var_r19_5 < (s32)M2C_FIELD(var_r29, s32*, 0x14)) {
+		temp_r12_3 = (u32 (*)(u8*, u8*, s32*))
+		    * (u32*)((u8*)M2C_FIELD(var_r29, u8**, 0x18) + var_r18_3 + 0x1C);
+		if ((temp_r12_3 != NULL) && ((u8*)temp_r12_3(arg0, var_r24, arg1) != var_r24)) {
+			return NULL;
 		}
-		return var_r24;
+		var_r18_3 += 0x2C;
+		var_r19_5 += 1;
 	}
-	temp_r12_3 = (u32 (*)(u8*, u8*, s32*))
-	    * (u32*)((u8*)M2C_FIELD(var_r29, u8**, 0x18) + var_r18_3 + 0x1C);
-	if ((temp_r12_3 != NULL) && ((u8*)temp_r12_3(arg0, var_r24, arg1) != var_r24)) {
-		return NULL;
+	fn_80239738(arg0, var_r24);
+	if (sp8 != 0) {
+		fn_80234EA0(M2C_FIELD(var_r29, u8**, 0x10));
+		fn_80234EA0(M2C_FIELD(var_r28, u8**, 0x10));
+		fn_80232288(var_r29);
+		fn_802343C4(var_r28);
 	}
-	var_r18_3 += 0x2C;
-	var_r19_5 += 1;
-	goto loop_58;
+	return var_r24;
 }
 #pragma dont_inline reset
 
