@@ -4331,7 +4331,7 @@ s32 fn_80238228(u8* arg0, u8* arg1, f32* arg2)
 	u8* temp_r4;
 
 	temp_r30                        = arg1 + M2C_FIELD(lbl_8042AC68, s32*, 0x98);
-	M2C_FIELD(temp_r30, s32*, 0xA8) = fn_8019E8EC(M2C_FIELD(arg0, s32*, 4), lbl_8042AC68);
+	M2C_FIELD(temp_r30, s32*, 0xA8) = fn_8019E8EC(M2C_FIELD(arg0, s32*, 4));
 	temp_f2                         = *arg2;
 	M2C_FIELD(temp_r30, f32*, 8)    = (f32)(M2C_FIELD(temp_r30, f32*, 8) + temp_f2);
 	if ((s32)M2C_FIELD(lbl_8042AC68, s32*, 0xA8) >= 0) {
