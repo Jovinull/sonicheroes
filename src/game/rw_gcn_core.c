@@ -433,7 +433,7 @@ M2C_UNK* fn_8023271C(s32* arg0)
 	u8* temp_r31;
 	u8* temp_r8;
 
-	fn_80193884(&spC, (s32*)4U);
+	fn_80193884(arg0, &spC, 4);
 	fn_80193884(arg0, &sp10, 4);
 	var_r4 = NULL;
 	var_r5 = M2C_FIELD(lbl_8042AC68, M2C_UNK**, 0x60);
@@ -2524,7 +2524,7 @@ u8* fn_8023521C(s32* arg0)
 	u8* var_r6;
 	u8* var_r8;
 
-	fn_80193884(&spC, (s32*)4U);
+	fn_80193884(arg0, &spC, 4);
 	fn_80193884(arg0, &sp8, 4);
 	if (sp8 > 0) {
 		temp_r27 = sp8 * 8;
