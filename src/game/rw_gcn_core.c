@@ -3075,7 +3075,6 @@ u8* fn_80235E64(u8* arg0, u8* arg1, f32* arg2)
 	s32* var_r14;
 	s32* var_r16;
 	s32* var_r26;
-	s32 temp_cr0_gt;
 	s32 temp_r0;
 	s32 temp_r0_2;
 	s32 temp_r0_3;
@@ -3225,10 +3224,8 @@ u8* fn_80235E64(u8* arg0, u8* arg1, f32* arg2)
 	spEC = M2C_FIELD(spC, s32*, 8);
 	spF8 = spD0;
 	spE8 = 0;
-loop_103:
-	temp_cr0_gt = spEC > 0;
-	spEC -= 1;
-	if (temp_cr0_gt != 0) {
+	while (spEC > 0) {
+		spEC -= 1;
 		temp_f1 = M2C_FIELD(var_r16, f32*, 4);
 		if (temp_f1 < M2C_FIELD(var_r16, f32*, 8)) {
 			M2C_FIELD(var_r16, f32*, 4) = (f32)(temp_f1 + temp_f26);
@@ -3486,7 +3483,6 @@ loop_103:
 		var_r22 += spDC;
 		var_r20 += spD8;
 		var_r18 += spD4;
-		goto loop_103;
 	}
 	M2C_FIELD(spC, s32*, 8) = spE8;
 	if (var_r30 != NULL) {
