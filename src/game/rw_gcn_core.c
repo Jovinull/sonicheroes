@@ -1577,18 +1577,16 @@ u8* fn_80233DF8(s32 arg0, u8* arg1, s32* arg2)
 	}
 	var_r30 = 0;
 	var_r31 = 0;
-loop_8:
-	if (var_r30 >= (s32)M2C_FIELD(temp_r29, s32*, 0x14)) {
-		return arg1;
+	while (var_r30 < (s32)M2C_FIELD(temp_r29, s32*, 0x14)) {
+		temp_r12 = (u32 (*)(s32, u8*, s32*))
+		    * (u32*)((u8*)M2C_FIELD(temp_r29, u8**, 0x18) + var_r31 + 0x20);
+		if ((temp_r12 != NULL) && ((u8*)temp_r12(arg0, arg1, arg2) != arg1)) {
+			return NULL;
+		}
+		var_r31 += 0x2C;
+		var_r30 += 1;
 	}
-	temp_r12
-	    = (u32 (*)(s32, u8*, s32*)) * (u32*)((u8*)M2C_FIELD(temp_r29, u8**, 0x18) + var_r31 + 0x20);
-	if ((temp_r12 != NULL) && ((u8*)temp_r12(arg0, arg1, arg2) != arg1)) {
-		return NULL;
-	}
-	var_r31 += 0x2C;
-	var_r30 += 1;
-	goto loop_8;
+	return arg1;
 }
 #pragma dont_inline reset
 
