@@ -2362,15 +2362,13 @@ s32 fn_8023501C(u8* arg0, s32 arg1)
 	var_r9 = 0;
 	var_r7 = 0;
 	var_r6 = 0;
-loop_4:
-	if ((var_r9 == 0) && (var_r7 < (s32)M2C_FIELD(arg0, s32*, 0x10))) {
+	while ((var_r9 == 0) && (var_r7 < (s32)M2C_FIELD(arg0, s32*, 0x10))) {
 		if (arg1 == *(s32*)((u8*)M2C_FIELD(arg0, s32*, 0x18) + var_r6)) {
 			var_r9 = 1;
 			var_r8 = var_r7;
 		}
 		var_r6 += 4;
 		var_r7 += 1;
-		goto loop_4;
 	}
 	return var_r8;
 }
@@ -2386,15 +2384,13 @@ s32 fn_8023506C(u8* arg0, s32 arg1)
 	var_r7 = -1;
 	var_r8 = 0;
 	var_r9 = 0;
-loop_4:
-	if ((var_r6 == 0) && (var_r8 < (s32)M2C_FIELD(arg0, s32*, 0x10))) {
+	while ((var_r6 == 0) && (var_r8 < (s32)M2C_FIELD(arg0, s32*, 0x10))) {
 		if (arg1 == *(s32*)((u8*)M2C_FIELD(arg0, s32*, 0x18) + var_r9)) {
 			var_r6 = 1;
 			var_r7 = var_r8;
 		}
 		var_r9 += 4;
 		var_r8 += 1;
-		goto loop_4;
 	}
 	if (var_r7 >= 0) {
 		return *(s32*)((u8*)M2C_FIELD(arg0, s32*, 0x1C) + (var_r7 * 4));
