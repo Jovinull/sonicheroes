@@ -2743,8 +2743,7 @@ u8* fn_802356F0(u8* arg0)
 	M2C_FIELD(arg0, s32*, 0) = 0;
 	var_r29                  = 0;
 	var_r28                  = 1;
-loop_4:
-	if (var_r29 < (s32)*temp_r31) {
+	while (var_r29 < (s32)*temp_r31) {
 		if (fn_801FD224(M2C_FIELD(arg0, u8**, 0x18), &sp8, var_r28, 0x40000000) != 0) {
 			var_r29 += 1;
 			*(s32*)((u8*)M2C_FIELD(arg0, s32*, 0x1C) + var_r30) = sp8;
@@ -2754,7 +2753,6 @@ loop_4:
 			M2C_FIELD(arg0, s32*, 0) = (s32)(M2C_FIELD(arg0, s32*, 0) | var_r28);
 		}
 		var_r28 *= 2;
-		goto loop_4;
 	}
 	return arg0;
 }
