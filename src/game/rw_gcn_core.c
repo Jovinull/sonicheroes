@@ -4562,7 +4562,7 @@ u8* fn_802388D4(s32 arg0, u8* arg1, s32* arg2)
 		            | (M2C_FIELD(temp_r29, u8*, 0x7C) << 0x18))
 		           & ~0xFF00)
 		        | ((temp_r6 << 8) & 0xFF00));
-		fn_80193474(arg2, &sp8, 4, temp_r6, temp_r7);
+		fn_80193474(arg2, &sp8, 4);
 		sp8 = 0;
 		for (sp8 = 0; sp8 < 4; sp8 += 1) {
 			fn_8019336C(arg2, temp_r29 + ((sp8 * 8) + 0x84), 8);
