@@ -792,19 +792,19 @@ loop_1:
 			if (var_r24 != NULL) {
 				temp_r29 = M2C_FIELD(var_r24, u8**, 4);
 				var_r27  = 0;
-			loop_9:
+				while (var_r28 < (s32)M2C_FIELD(temp_r29, s32*, 0x14)) {
+					temp_r12 = (u32 (*)(M2C_UNK, u8*, M2C_UNK))
+					    * (u32*)((u8*)M2C_FIELD(temp_r29, u8**, 0x18) + var_r27 + 0xC);
+					if ((temp_r12 != NULL) && ((u8*)temp_r12(0, var_r24, 0) != var_r24)) {
+						break;
+					}
+					var_r27 += 0x1C;
+					var_r28 += 1;
+				}
 				if (var_r28 >= (s32)M2C_FIELD(temp_r29, s32*, 0x14)) {
 					M2C_FIELD(var_r24, s32*, 8)    = 0;
 					M2C_FIELD(var_r24, s32*, 0x10) = 0;
 					M2C_FIELD(var_r24, u8**, 0)    = NULL;
-				} else {
-					temp_r12 = (u32 (*)(M2C_UNK, u8*, M2C_UNK))
-					    * (u32*)((u8*)M2C_FIELD(temp_r29, u8**, 0x18) + var_r27 + 0xC);
-					if ((temp_r12 == NULL) || ((u8*)temp_r12(0, var_r24, 0) == var_r24)) {
-						var_r27 += 0x1C;
-						var_r28 += 1;
-						goto loop_9;
-					}
 				}
 				M2C_FIELD(lbl_8042C9A4, M2C_UNK(**)(u8*, M2C_UNK*), 0x138)(var_r24, lbl_8042C9A4);
 				var_r28 = 1;
