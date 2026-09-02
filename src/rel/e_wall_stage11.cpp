@@ -1769,19 +1769,21 @@ TObject* fn_8_B8F34(TObject* arg0, s16 arg1)
 TObject* fn_8_B8FD0(TObject* arg0, TObject* arg1, void* arg2)
 {
 	s32 sp8;
+	f32 temp_f0;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	fn_8003C618(&arg0->unk28);
+	temp_f0     = lbl_8_rodata_1D80;
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_179DC;
-	arg0->unkB8 = lbl_8_rodata_1D80;
-	arg0->unkB4 = lbl_8_rodata_1D80;
-	arg0->unkB0 = lbl_8_rodata_1D80;
+	arg0->unkB8 = temp_f0;
+	arg0->unkB4 = temp_f0;
+	arg0->unkB0 = temp_f0;
 	arg0->unkC4 = 0;
 	arg0->unkC0 = 0;
 	arg0->unkBC = 0;
-	arg0->unkC8 = lbl_8_rodata_1D80;
-	arg0->unkD4 = lbl_8_rodata_1D80;
-	arg0->unkCC = lbl_8_rodata_1D80;
+	arg0->unkC8 = temp_f0;
+	arg0->unkD4 = temp_f0;
+	arg0->unkCC = temp_f0;
 	arg0->unkD0 = lbl_8_rodata_1DA8;
 	arg0->unkD8 = 8;
 	arg0->unkDC = 0x4B0;
@@ -1801,8 +1803,8 @@ TObject* fn_8_B8FD0(TObject* arg0, TObject* arg1, void* arg2)
 	arg0->unkD8 = M2C_FIELD(arg2, s32*, 0x28);
 	arg0->unkDC = M2C_FIELD(arg2, s32*, 0x2C);
 	arg0->unkEC = 0;
-	arg0->unkF4 = lbl_8_rodata_1D80;
-	arg0->unkF0 = lbl_8_rodata_1D80;
+	arg0->unkF4 = temp_f0;
+	arg0->unkF0 = temp_f0;
 	arg0->unkE4 = lbl_8_rodata_1D5C;
 	arg0->unkC8 = fn_800D8BC4(&arg0->unkB0, &sp8, 1);
 	arg0->unkE0 = fn_80150588(lbl_8_bss_1AC8[2]);
@@ -1876,15 +1878,18 @@ TObject* fn_8_B9174(void* arg0)
 
 void fn_8_B934C(void* arg0)
 {
-	M2C_FIELD(arg0, f32*, 8)    = (f32)lbl_8_rodata_1D80;
-	M2C_FIELD(arg0, f32*, 4)    = (f32)lbl_8_rodata_1D80;
-	M2C_FIELD(arg0, f32*, 0)    = (f32)lbl_8_rodata_1D80;
+	f32 temp_f0;
+
+	temp_f0                     = lbl_8_rodata_1D80;
+	M2C_FIELD(arg0, f32*, 8)    = (f32)temp_f0;
+	M2C_FIELD(arg0, f32*, 4)    = (f32)temp_f0;
+	M2C_FIELD(arg0, f32*, 0)    = (f32)temp_f0;
 	M2C_FIELD(arg0, s32*, 0x14) = 0;
 	M2C_FIELD(arg0, s32*, 0x10) = 0;
 	M2C_FIELD(arg0, s32*, 0xC)  = 0;
-	M2C_FIELD(arg0, f32*, 0x18) = (f32)lbl_8_rodata_1D80;
-	M2C_FIELD(arg0, f32*, 0x24) = (f32)lbl_8_rodata_1D80;
-	M2C_FIELD(arg0, f32*, 0x1C) = (f32)lbl_8_rodata_1D80;
+	M2C_FIELD(arg0, f32*, 0x18) = (f32)temp_f0;
+	M2C_FIELD(arg0, f32*, 0x24) = (f32)temp_f0;
+	M2C_FIELD(arg0, f32*, 0x1C) = (f32)temp_f0;
 	M2C_FIELD(arg0, f32*, 0x20) = (f32)lbl_8_rodata_1DA8;
 	M2C_FIELD(arg0, s32*, 0x28) = 8;
 	M2C_FIELD(arg0, s32*, 0x2C) = 0x4B0;
@@ -3615,47 +3620,50 @@ void fn_8_BCB60(TObject* arg0)
 
 void fn_8_BCD58(TObject* arg0)
 {
-	arg0->unk248 = 0;
-	arg0->unk26C = 0U;
-	arg0->unk268 = 0U;
-	arg0->unk270 = -1;
-	arg0->unk314 = lbl_8_rodata_1D80;
-	arg0->unk2A0 = 0U;
-	arg0->unk2A4 = 0U;
-	arg0->unk2A8 = 0U;
-	arg0->unk2AC = 0U;
-	arg0->unk2B0 = 0U;
-	arg0->unk2B4 = 0U;
-	arg0->unk2B8 = 0U;
-	arg0->unk2BC = 0.0f;
-	arg0->unk2C0 = 0U;
-	arg0->unk2C4 = 0U;
-	arg0->unk2C8 = NULL;
-	arg0->unk2CC = NULL;
-	arg0->unk27C = lbl_8_rodata_1D80;
-	arg0->unk278 = lbl_8_rodata_1D80;
-	arg0->unk2DC = lbl_8_rodata_1D80;
-	arg0->unk2D8 = lbl_8_rodata_1D80;
-	arg0->unk2D4 = lbl_8_rodata_1D80;
-	arg0->unk2E8 = lbl_8_rodata_1D80;
-	arg0->unk2E4 = lbl_8_rodata_1D80;
-	arg0->unk2E0 = lbl_8_rodata_1D80;
-	arg0->unk2F4 = lbl_8_rodata_1D80;
-	arg0->unk2F0 = lbl_8_rodata_1D80;
-	arg0->unk2EC = lbl_8_rodata_1D80;
-	arg0->unk300 = lbl_8_rodata_1D80;
-	arg0->unk2FC = lbl_8_rodata_1D80;
-	arg0->unk2F8 = lbl_8_rodata_1D80;
-	arg0->unk280 = 0;
-	arg0->unk284 = 0x14;
-	arg0->unk28C = -1;
-	arg0->unk290 = 0;
-	arg0->unk288 = 1;
-	arg0->unk294 = 1;
-	arg0->unk298 = 1;
-	arg0->unk244 = NULL;
-	arg0->unk2D0 = NULL;
-	arg0->unk29C = 0;
+	f32 temp_f0;
+
+	arg0->unk248                 = 0;
+	arg0->unk26C                 = 0U;
+	arg0->unk268                 = 0U;
+	arg0->unk270                 = -1;
+	temp_f0                      = lbl_8_rodata_1D80;
+	arg0->unk314                 = temp_f0;
+	arg0->unk2A0                 = 0U;
+	arg0->unk2A4                 = 0U;
+	arg0->unk2A8                 = 0U;
+	arg0->unk2AC                 = 0U;
+	arg0->unk2B0                 = 0U;
+	arg0->unk2B4                 = 0U;
+	arg0->unk2B8                 = 0U;
+	M2C_FIELD(arg0, s32*, 0x2BC) = 0;
+	arg0->unk2C0                 = 0U;
+	arg0->unk2C4                 = 0U;
+	arg0->unk2C8                 = NULL;
+	arg0->unk2CC                 = NULL;
+	arg0->unk27C                 = temp_f0;
+	arg0->unk278                 = temp_f0;
+	arg0->unk2DC                 = temp_f0;
+	arg0->unk2D8                 = temp_f0;
+	arg0->unk2D4                 = temp_f0;
+	arg0->unk2E8                 = temp_f0;
+	arg0->unk2E4                 = temp_f0;
+	arg0->unk2E0                 = temp_f0;
+	arg0->unk2F4                 = temp_f0;
+	arg0->unk2F0                 = temp_f0;
+	arg0->unk2EC                 = temp_f0;
+	arg0->unk300                 = temp_f0;
+	arg0->unk2FC                 = temp_f0;
+	arg0->unk2F8                 = temp_f0;
+	arg0->unk280                 = 0;
+	arg0->unk284                 = 0x14;
+	arg0->unk28C                 = -1;
+	arg0->unk290                 = 0;
+	arg0->unk288                 = 1;
+	arg0->unk294                 = 1;
+	arg0->unk298                 = 1;
+	arg0->unk244                 = NULL;
+	arg0->unk2D0                 = NULL;
+	arg0->unk29C                 = 0;
 }
 
 TObject* fn_8_BCE1C(TObject* arg0, s16 arg1)
