@@ -2596,9 +2596,7 @@ void fn_8_BA8E0(TObject* arg0, s32 arg1)
 						sp20.unk14 = arg0->unk154;
 						sp20.unk10 = temp_r3_2 + 0x8000;
 						sp20.unk28 = M2C_FIELD(arg0->unk18, s32(**)(TObject*), 0x90)(arg0);
-						sp14.x     = sp20.unk0;
-						sp14.y     = sp20.unk4;
-						sp14.z     = sp20.unk8;
+						M2C_FIELD(&sp14, M2C_BLOCK12*, 0) = M2C_FIELD(&sp20, M2C_BLOCK12*, 0);
 						sp14.x -= arg0->unk140;
 						sp14.y -= arg0->unk144;
 						temp_f1 = sp14.z;
