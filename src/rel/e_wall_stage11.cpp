@@ -2351,11 +2351,13 @@ void fn_8_BA0D4(void* arg0)
 	f32 temp_f1;
 	f32 temp_f1_2;
 	f32 temp_f2;
+	f32 temp_f3;
 
 	fn_800B7864(0);
 	M2C_FIELD(&spC, M2C_BLOCK12*, 0) = M2C_FIELD(&lbl_8_rodata_1D10, M2C_BLOCK12*, 0);
+	temp_f3                          = lbl_8_rodata_1D5C;
 	temp_f2 = lbl_8_rodata_1D64 * (M2C_FIELD(arg0, f32*, 0x144) - M2C_FIELD(arg0, f32*, 0x2D8));
-	temp_f1 = lbl_8_rodata_1D5C - temp_f2;
+	temp_f1 = temp_f3 - temp_f2;
 	sp8     = temp_f1;
 	if (temp_f1 < lbl_8_rodata_1D54) {
 		var_r3 = &lbl_8_rodata_1D54;
