@@ -364,7 +364,7 @@ M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, M2C_UNK, f32);                          
 M2C_UNK fn_8_90B10(s32);                                                         /* extern */
 M2C_UNK fn_8_B6F14(s32);                                                         /* extern */
 void fn_8_B7C50(TObject* arg0, void* arg1);                                      /* static */
-void fn_8_B81B0(void* arg0);                                                     /* static */
+void* fn_8_B81B0(void* arg0);                                                    /* static */
 void fn_8_B9904(TObject* arg0, s32 arg1);                                        /* static */
 s32 fn_8_B9BA0(void* arg0);                                                      /* static */
 s32 fn_8_B9BBC(void* arg0);                                                      /* static */
@@ -1410,7 +1410,7 @@ M2C_UNK** fn_8_B814C(M2C_UNK** arg0, s16 arg1)
 	return arg0;
 }
 
-void fn_8_B81B0(void* arg0)
+void* fn_8_B81B0(void* arg0)
 {
 	M2C_FIELD(arg0, M2C_UNK**, 0) = (M2C_UNK*)lbl_8_data_17378;
 	M2C_FIELD(arg0, s32*, 4)      = 0;
@@ -1419,6 +1419,7 @@ void fn_8_B81B0(void* arg0)
 	M2C_FIELD(arg0, s32*, 0x14)   = 0;
 	M2C_FIELD(arg0, s32*, 0x10)   = 0;
 	M2C_FIELD(arg0, M2C_UNK**, 0) = (M2C_UNK*)lbl_8_data_172E0;
+	return arg0;
 }
 
 M2C_UNK** fn_8_B81E4(M2C_UNK** arg0, s16 arg1)
@@ -3732,6 +3733,7 @@ TObject* fn_8_BCE1C(TObject* arg0, s16 arg1)
 	return arg0;
 }
 
+#pragma dont_inline on
 TObject* fn_8_BCF88(TObject* arg0)
 {
 	f32 sp18;
@@ -3815,7 +3817,7 @@ TObject* fn_8_BCF88(TObject* arg0)
 	arg0->unk134 = lbl_8_rodata_1DF8;
 	var_r0       = fn_80057644(0x20);
 	if (var_r0 != NULL) {
-		fn_8_B81B0(var_r0);
+		var_r0 = (void**)fn_8_B81B0(var_r0);
 	}
 	arg0->unk240 = var_r0;
 	if ((void**)arg0->unk240 != NULL) {
@@ -3843,6 +3845,7 @@ TObject* fn_8_BCF88(TObject* arg0)
 	arg0->unk228 = var_r0_3;
 	return arg0;
 }
+#pragma dont_inline reset
 
 TObject* fn_8_BD32C(void)
 {
