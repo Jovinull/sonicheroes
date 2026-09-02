@@ -3562,21 +3562,19 @@ void fn_8_BC9AC(void* arg0)
 
 void fn_8_BCAB4(void* arg0)
 {
-	M2C_UNK sp14;
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	RwV3d sp8;
+	u8 sp14[0x40];
 	void* temp_r31;
 
 	temp_r31 = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
-	fn_80196050(&sp14, (u8*)arg0 + 0x1C0, 0);
-	sp10 = lbl_8_rodata_1D80;
-	sp8  = lbl_8_rodata_1D80;
-	spC  = M2C_FIELD(temp_r31, f32*, 0x1C);
-	fn_8019941C(&sp8, &sp8, 1, &sp14);
-	M2C_FIELD(arg0, f32*, 0x140) = sp8;
-	M2C_FIELD(arg0, f32*, 0x144) = spC;
-	M2C_FIELD(arg0, f32*, 0x148) = sp10;
+	fn_80196050((M2C_UNK*)sp14, (u8*)arg0 + 0x1C0, 0);
+	sp8.z = lbl_8_rodata_1D80;
+	sp8.x = lbl_8_rodata_1D80;
+	sp8.y = M2C_FIELD(temp_r31, f32*, 0x1C);
+	fn_8019941C(&sp8.x, &sp8.x, 1, (M2C_UNK*)sp14);
+	M2C_FIELD(arg0, f32*, 0x140) = sp8.x;
+	M2C_FIELD(arg0, f32*, 0x144) = sp8.y;
+	M2C_FIELD(arg0, f32*, 0x148) = sp8.z;
 	M2C_FIELD(arg0, f32*, 0x1CC) = (f32)M2C_FIELD(arg0, f32*, 0x1C0);
 	M2C_FIELD(arg0, f32*, 0x1D0) = (f32)M2C_FIELD(arg0, f32*, 0x1C4);
 	M2C_FIELD(arg0, f32*, 0x1D4) = (f32)M2C_FIELD(arg0, f32*, 0x1C8);
@@ -3586,10 +3584,8 @@ void fn_8_BCB5C(void) { }
 
 void fn_8_BCB60(TObject* arg0)
 {
-	M2C_UNK sp14;
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	RwV3d sp8;
+	u8 sp14[0x40];
 	void* temp_r30;
 	void* temp_r3;
 	void* temp_r3_2;
@@ -3629,14 +3625,14 @@ void fn_8_BCB60(TObject* arg0)
 
 	} else {
 		temp_r30 = M2C_FIELD(M2C_BITWISE(u32, arg0->unkB0), void**, 0x2C);
-		fn_80196050(&sp14, (u8*)arg0 + 0x1C0, 0);
-		sp10 = lbl_8_rodata_1D80;
-		sp8  = lbl_8_rodata_1D80;
-		spC  = M2C_FIELD(temp_r30, f32*, 0x1C);
-		fn_8019941C(&sp8, &sp8, 1, &sp14);
-		arg0->unk140 = sp8;
-		arg0->unk144 = spC;
-		arg0->unk148 = sp10;
+		fn_80196050((M2C_UNK*)sp14, (u8*)arg0 + 0x1C0, 0);
+		sp8.z = lbl_8_rodata_1D80;
+		sp8.x = lbl_8_rodata_1D80;
+		sp8.y = M2C_FIELD(temp_r30, f32*, 0x1C);
+		fn_8019941C(&sp8.x, &sp8.x, 1, (M2C_UNK*)sp14);
+		arg0->unk140 = sp8.x;
+		arg0->unk144 = sp8.y;
+		arg0->unk148 = sp8.z;
 		arg0->unk1CC = arg0->unk1C0;
 		arg0->unk1D0 = arg0->unk1C4;
 		arg0->unk1D4 = arg0->unk1C8;
