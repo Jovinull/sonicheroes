@@ -1487,7 +1487,8 @@ TObject* fn_8_B8FD0(TObject* arg0, TObject* arg1, void* arg2)
 	return arg0;
 }
 
-TObject* fn_8_B9174(void* arg0)
+#pragma inline_max_size(5000)
+static inline TObject* wallCreateObject(void* arg0)
 {
 	s32 sp8;
 	TObject* temp_r3;
@@ -1539,6 +1540,11 @@ TObject* fn_8_B9174(void* arg0)
 		temp_r3->unk30 &= 0xFFFFFFBF;
 	}
 	return temp_r3;
+}
+
+TObject* fn_8_B9174(void* arg0)
+{
+	return wallCreateObject(arg0);
 }
 
 void fn_8_B934C(void* arg0)
@@ -2075,9 +2081,7 @@ void fn_8_BA370(TObject* arg0)
 void fn_8_BA3A4(TObject* arg0)
 {
 	sWallObjParam sp14;
-	s32 sp8;
 	M2C_UNK* temp_r3_2;
-	TObject* temp_r3_4;
 	s32 temp_r0;
 	s32 temp_r30;
 	s32 temp_r3_3;
@@ -2148,50 +2152,7 @@ void fn_8_BA3A4(TObject* arg0)
 			sp14.unk14 = arg0->unk154;
 			sp14.unk10 = temp_r3_3 + 0x8000;
 			sp14.unk28 = M2C_FIELD(arg0->unk18, s32(**)(TObject*), 0x90)(arg0);
-			temp_r3_4  = fn_80018A34(lbl_8042C148, 0xF8);
-			if (temp_r3_4 != NULL) {
-				__ct__7TObjectFP7TObject(temp_r3_4, lbl_8042C10C);
-				fn_8003C618(&temp_r3_4->unk28);
-				temp_r3_4->unk18 = &lbl_8_data_179DC;
-				temp_r3_4->unkB8 = lbl_8_rodata_1D80;
-				temp_r3_4->unkB4 = lbl_8_rodata_1D80;
-				temp_r3_4->unkB0 = lbl_8_rodata_1D80;
-				temp_r3_4->unkC4 = 0;
-				temp_r3_4->unkC0 = 0;
-				temp_r3_4->unkBC = 0;
-				temp_r3_4->unkC8 = lbl_8_rodata_1D80;
-				temp_r3_4->unkD4 = lbl_8_rodata_1D80;
-				temp_r3_4->unkCC = lbl_8_rodata_1D80;
-				temp_r3_4->unkD0 = lbl_8_rodata_1DA8;
-				temp_r3_4->unkD8 = 8;
-				temp_r3_4->unkDC = 0x4B0;
-				temp_r3_4->unk0  = lbl_8_data_179D8;
-				temp_r3_4->unk1E = 0xF8;
-				temp_r3_4->unkE8 = 0;
-				temp_r3_4->unkB0 = sp14.unk0;
-				temp_r3_4->unkB4 = sp14.unk4;
-				temp_r3_4->unkB8 = sp14.unk8;
-				temp_r3_4->unkBC = sp14.unkC;
-				temp_r3_4->unkC0 = sp14.unk10;
-				temp_r3_4->unkC4 = sp14.unk14;
-				temp_r3_4->unkC8 = sp14.unk18;
-				temp_r3_4->unkCC = sp14.unk1C;
-				temp_r3_4->unkD0 = sp14.unk20;
-				temp_r3_4->unkD4 = sp14.unk24;
-				temp_r3_4->unkD8 = sp14.unk28;
-				temp_r3_4->unkDC = sp14.unk2C;
-				temp_r3_4->unkEC = 0;
-				temp_r3_4->unkF4 = lbl_8_rodata_1D80;
-				temp_r3_4->unkF0 = lbl_8_rodata_1D80;
-				temp_r3_4->unkE4 = lbl_8_rodata_1D5C;
-				temp_r3_4->unkC8 = fn_800D8BC4(&temp_r3_4->unkB0, &sp8, 1);
-				temp_r3_4->unkE0 = fn_80150588(lbl_8_bss_1AC8[2]);
-				fn_8003C200(&temp_r3_4->unk28, &lbl_8_data_17994, 1, 3);
-				temp_r3_4->unk88 = temp_r3_4->unkB0;
-				temp_r3_4->unk8C = temp_r3_4->unkB4;
-				temp_r3_4->unk90 = temp_r3_4->unkB8;
-				temp_r3_4->unk30 &= 0xFFFFFFBF;
-			}
+			wallCreateObject(&sp14);
 			if ((u32)lbl_8042C388 != 0U) {
 				fn_800B4A38(lbl_8042C388, 0x4024, &arg0->unk140, 0, 1, 0, 0);
 			}
@@ -2249,10 +2210,8 @@ void fn_8_BA8C0(void* arg0, s32 arg1)
 void fn_8_BA8E0(TObject* arg0, s32 arg1)
 {
 	sWallObjParam sp20;
-	s32 sp8;
 	RwV3d sp14;
 	M2C_UNK* temp_r3;
-	TObject* temp_r3_3;
 	f32 temp_f0;
 	f32 temp_f1;
 	f32 temp_f1_2;
@@ -2313,50 +2272,7 @@ void fn_8_BA8E0(TObject* arg0, s32 arg1)
 						sp14.z     = temp_f0;
 						sp20.unk1C = temp_f1_2;
 						sp20.unk24 = temp_f0;
-						temp_r3_3  = fn_80018A34(lbl_8042C148, 0xF8);
-						if (temp_r3_3 != NULL) {
-							__ct__7TObjectFP7TObject(temp_r3_3, lbl_8042C10C);
-							fn_8003C618(&temp_r3_3->unk28);
-							temp_r3_3->unk18 = &lbl_8_data_179DC;
-							temp_r3_3->unkB8 = lbl_8_rodata_1D80;
-							temp_r3_3->unkB4 = lbl_8_rodata_1D80;
-							temp_r3_3->unkB0 = lbl_8_rodata_1D80;
-							temp_r3_3->unkC4 = 0;
-							temp_r3_3->unkC0 = 0;
-							temp_r3_3->unkBC = 0;
-							temp_r3_3->unkC8 = lbl_8_rodata_1D80;
-							temp_r3_3->unkD4 = lbl_8_rodata_1D80;
-							temp_r3_3->unkCC = lbl_8_rodata_1D80;
-							temp_r3_3->unkD0 = lbl_8_rodata_1DA8;
-							temp_r3_3->unkD8 = 8;
-							temp_r3_3->unkDC = 0x4B0;
-							temp_r3_3->unk0  = lbl_8_data_179D8;
-							temp_r3_3->unk1E = 0xF8;
-							temp_r3_3->unkE8 = 0;
-							temp_r3_3->unkB0 = sp20.unk0;
-							temp_r3_3->unkB4 = sp20.unk4;
-							temp_r3_3->unkB8 = sp20.unk8;
-							temp_r3_3->unkBC = sp20.unkC;
-							temp_r3_3->unkC0 = sp20.unk10;
-							temp_r3_3->unkC4 = sp20.unk14;
-							temp_r3_3->unkC8 = sp20.unk18;
-							temp_r3_3->unkCC = sp20.unk1C;
-							temp_r3_3->unkD0 = sp20.unk20;
-							temp_r3_3->unkD4 = sp20.unk24;
-							temp_r3_3->unkD8 = sp20.unk28;
-							temp_r3_3->unkDC = sp20.unk2C;
-							temp_r3_3->unkEC = 0;
-							temp_r3_3->unkF4 = lbl_8_rodata_1D80;
-							temp_r3_3->unkF0 = lbl_8_rodata_1D80;
-							temp_r3_3->unkE4 = lbl_8_rodata_1D5C;
-							temp_r3_3->unkC8 = fn_800D8BC4(&temp_r3_3->unkB0, &sp8, 1);
-							temp_r3_3->unkE0 = fn_80150588(lbl_8_bss_1AC8[2]);
-							fn_8003C200(&temp_r3_3->unk28, &lbl_8_data_17994, 1, 3);
-							temp_r3_3->unk88 = temp_r3_3->unkB0;
-							temp_r3_3->unk8C = temp_r3_3->unkB4;
-							temp_r3_3->unk90 = temp_r3_3->unkB8;
-							temp_r3_3->unk30 &= 0xFFFFFFBF;
-						}
+						wallCreateObject(&sp20);
 						fn_8_B9904(arg0, 2);
 					}
 					arg0->unk288 = 0;
@@ -2550,9 +2466,7 @@ void fn_8_BB180(void* arg0, s32 arg1)
 void fn_8_BB294(TObject* arg0, s32 arg1)
 {
 	sWallObjParam sp14;
-	s32 sp8;
 	M2C_UNK* temp_r3;
-	TObject* temp_r3_3;
 	s32 temp_r3_2;
 
 	switch (arg1) {
@@ -2580,50 +2494,7 @@ void fn_8_BB294(TObject* arg0, s32 arg1)
 				sp14.unk14 = arg0->unk154;
 				sp14.unk10 = temp_r3_2 + 0x8000;
 				sp14.unk28 = M2C_FIELD(arg0->unk18, s32(**)(TObject*), 0x90)(arg0);
-				temp_r3_3  = fn_80018A34(lbl_8042C148, 0xF8);
-				if (temp_r3_3 != NULL) {
-					__ct__7TObjectFP7TObject(temp_r3_3, lbl_8042C10C);
-					fn_8003C618(&temp_r3_3->unk28);
-					temp_r3_3->unk18 = &lbl_8_data_179DC;
-					temp_r3_3->unkB8 = lbl_8_rodata_1D80;
-					temp_r3_3->unkB4 = lbl_8_rodata_1D80;
-					temp_r3_3->unkB0 = lbl_8_rodata_1D80;
-					temp_r3_3->unkC4 = 0;
-					temp_r3_3->unkC0 = 0;
-					temp_r3_3->unkBC = 0;
-					temp_r3_3->unkC8 = lbl_8_rodata_1D80;
-					temp_r3_3->unkD4 = lbl_8_rodata_1D80;
-					temp_r3_3->unkCC = lbl_8_rodata_1D80;
-					temp_r3_3->unkD0 = lbl_8_rodata_1DA8;
-					temp_r3_3->unkD8 = 8;
-					temp_r3_3->unkDC = 0x4B0;
-					temp_r3_3->unk0  = lbl_8_data_179D8;
-					temp_r3_3->unk1E = 0xF8;
-					temp_r3_3->unkE8 = 0;
-					temp_r3_3->unkB0 = sp14.unk0;
-					temp_r3_3->unkB4 = sp14.unk4;
-					temp_r3_3->unkB8 = sp14.unk8;
-					temp_r3_3->unkBC = sp14.unkC;
-					temp_r3_3->unkC0 = sp14.unk10;
-					temp_r3_3->unkC4 = sp14.unk14;
-					temp_r3_3->unkC8 = sp14.unk18;
-					temp_r3_3->unkCC = sp14.unk1C;
-					temp_r3_3->unkD0 = sp14.unk20;
-					temp_r3_3->unkD4 = sp14.unk24;
-					temp_r3_3->unkD8 = sp14.unk28;
-					temp_r3_3->unkDC = sp14.unk2C;
-					temp_r3_3->unkEC = 0;
-					temp_r3_3->unkF4 = lbl_8_rodata_1D80;
-					temp_r3_3->unkF0 = lbl_8_rodata_1D80;
-					temp_r3_3->unkE4 = lbl_8_rodata_1D5C;
-					temp_r3_3->unkC8 = fn_800D8BC4(&temp_r3_3->unkB0, &sp8, 1);
-					temp_r3_3->unkE0 = fn_80150588(lbl_8_bss_1AC8[2]);
-					fn_8003C200(&temp_r3_3->unk28, &lbl_8_data_17994, 1, 3);
-					temp_r3_3->unk88 = temp_r3_3->unkB0;
-					temp_r3_3->unk8C = temp_r3_3->unkB4;
-					temp_r3_3->unk90 = temp_r3_3->unkB8;
-					temp_r3_3->unk30 &= 0xFFFFFFBF;
-				}
+				wallCreateObject(&sp14);
 				if ((u32)lbl_8042C388 != 0U) {
 					fn_800B4A38(lbl_8042C388, 0x4024, (f32*)((u8*)arg0 + 0x140), 0, 1, 0, 0);
 				}
