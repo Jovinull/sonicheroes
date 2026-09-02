@@ -2728,8 +2728,7 @@ u8* fn_8022EB2C(void* arg0, u8* arg1)
 									                 * M2C_FIELD(temp_r7_2, f32*, 0x24))
 									    + M2C_FIELD(temp_r7_2, f32*, 0x14);
 									sp7C = sp6C;
-								loop_18:
-									if (var_r9 < (s32)(M2C_FIELD(var_r30, s32*, 0) - 1)) {
+									while (var_r9 < (s32)(M2C_FIELD(var_r30, s32*, 0) - 1)) {
 										temp_r19 = (var_r25 * 0x0BB38435) + 0x3619636B;
 										temp_r7_3
 										    = M2C_FIELD(var_r30, u8**, 4) + ((var_r9 + 1) * 0x28);
@@ -2796,7 +2795,6 @@ u8* fn_8022EB2C(void* arg0, u8* arg1)
 										sp64 = sp54;
 										sp68 = sp58;
 										sp6C = sp5C;
-										goto loop_18;
 									}
 									*(temp_r12 + (var_r9 * 4))
 									    = var_f12 * M2C_FIELD(var_r21, f32*, 8);
@@ -2893,8 +2891,7 @@ u8* fn_8022EB2C(void* arg0, u8* arg1)
 									                 * M2C_FIELD(temp_r3_5, f32*, 0x24))
 									    + M2C_FIELD(temp_r3_5, f32*, 0x1C);
 									sp34 = sp2C;
-								loop_29:
-									if (var_r23 < (s32)(M2C_FIELD(var_r29, s32*, 0) - 1)) {
+									while (var_r23 < (s32)(M2C_FIELD(var_r29, s32*, 0) - 1)) {
 										temp_r3_6 = (var_r25 * 0x0BB38435) + 0x3619636B;
 										temp_r0_2 = (var_r23 + 1) * 0x28;
 										temp_r4_4 = M2C_FIELD(var_r29, u8**, 4) + temp_r0_2;
@@ -2966,7 +2963,6 @@ u8* fn_8022EB2C(void* arg0, u8* arg1)
 										sp44 = sp3C;
 										sp28 = sp20;
 										sp2C = sp24;
-										goto loop_29;
 									}
 									*(temp_r24 + (var_r23 * 4))
 									    = var_f9 * M2C_FIELD(var_r21, f32*, 8);
@@ -3051,8 +3047,7 @@ u8* fn_8022EB2C(void* arg0, u8* arg1)
 									    + M2C_FIELD(temp_r7_4, f32*, 0xC);
 									sp18 = sp10;
 									sp1C = sp14;
-								loop_40:
-									if (var_r10_2 < (s32)(M2C_FIELD(var_r28, s32*, 0) - 1)) {
+									while (var_r10_2 < (s32)(M2C_FIELD(var_r28, s32*, 0) - 1)) {
 										temp_r19_3 = (var_r25 * 0x0BB38435) + 0x3619636B;
 										temp_r18_5 = (var_r10_2 + 1) * 0x18;
 										temp_r7_5  = M2C_FIELD(var_r28, u8**, 4) + temp_r18_5;
@@ -3098,7 +3093,6 @@ u8* fn_8022EB2C(void* arg0, u8* arg1)
 										M2C_FIELD(var_r6_2, f32*, 0) = temp_f9_3;
 										M2C_FIELD(var_r6_2, f32*, 4) = temp_f6_2;
 										var_r6_2 += 8;
-										goto loop_40;
 									}
 									*(temp_r9_2 + (var_r10_2 * 4))
 									    = var_f2 * M2C_FIELD(var_r21, f32*, 8);
@@ -3571,8 +3565,7 @@ u8* fn_8023031C(void* arg0, u8* arg1)
 							sp14 = (((lbl_804301C4 * (lbl_804301C8 * (f32)var_r9)) - lbl_804301CC)
 							           * M2C_FIELD(temp_r8_2, f32*, 0x24))
 							    + M2C_FIELD(temp_r8_2, f32*, 0x1C);
-						loop_10:
-							if (var_r10 < (s32)(M2C_FIELD(var_r28, s32*, 0) - 1)) {
+							while (var_r10 < (s32)(M2C_FIELD(var_r28, s32*, 0) - 1)) {
 								temp_r21   = (var_r9 * 0x0BB38435) + 0x3619636B;
 								temp_r20_2 = (temp_r21 * 0x0BB38435) + 0x3619636B;
 								temp_f7    = (lbl_804301C4 * (lbl_804301C8 * (f32)temp_r21))
@@ -3614,7 +3607,6 @@ u8* fn_8023031C(void* arg0, u8* arg1)
 								sp24 = sp1C;
 								sp10 = sp8;
 								sp14 = spC;
-								goto loop_10;
 							}
 							temp_r0_2                       = var_r10 * 8;
 							temp_r5                         = temp_r23 + temp_r0_2;
@@ -3835,8 +3827,7 @@ u8* fn_80230AF0(void* arg0, u8* arg1)
 			temp_r28 = M2C_FIELD(temp_r23, u32*, 0xA8);
 			var_r29  = M2C_FIELD(temp_r23, u32*, 0);
 			var_r20  = temp_r3 + (M2C_FIELD(temp_r3, s32*, 0x14) + (temp_r7 * temp_r26));
-		loop_25:
-			if (var_r30 < temp_r27) {
+			for (; var_r30 < temp_r27; var_r20 += temp_r26, var_r30 += 1) {
 				if ((s32)lbl_8042ABB0[0x17] >= 0) {
 					temp_r3_2 = var_r29 * 0x0BB38435;
 					temp_r19  = temp_r3_2 + 0x3619636B;
@@ -3905,9 +3896,6 @@ u8* fn_80230AF0(void* arg0, u8* arg1)
 					M2C_FIELD(var_r25, f32*, 8) = sp10;
 					var_r25 += var_r24;
 				}
-				var_r20 += temp_r26;
-				var_r30 += 1;
-				goto loop_25;
 			}
 			M2C_FIELD(temp_r23, u32*, 0) = var_r29;
 		}
@@ -4073,8 +4061,7 @@ u8* fn_80231208(void* arg0, u8* arg1)
 			temp_r28 = M2C_FIELD(temp_r23, u32*, 0xA8);
 			var_r29  = M2C_FIELD(temp_r23, s32*, 0);
 			var_r20  = temp_r3 + (M2C_FIELD(temp_r3, s32*, 0x14) + (temp_r7 * temp_r26));
-		loop_25:
-			if (var_r30 < temp_r27) {
+			for (; var_r30 < temp_r27; var_r20 += temp_r26, var_r30 += 1) {
 				if ((s32)lbl_8042ABB0[0x17] >= 0) {
 					temp_r3_2 = var_r29 * 0x0BB38435;
 					temp_r19  = temp_r3_2 + 0x3619636B;
@@ -4134,9 +4121,6 @@ u8* fn_80231208(void* arg0, u8* arg1)
 					M2C_FIELD(var_r25, f32*, 8) = sp10;
 					var_r25 += var_r24;
 				}
-				var_r20 += temp_r26;
-				var_r30 += 1;
-				goto loop_25;
 			}
 			M2C_FIELD(temp_r23, s32*, 0) = var_r29;
 		}
@@ -4301,8 +4285,7 @@ u8* fn_8023182C(void* arg0, u8* arg1)
 			temp_r27 = M2C_FIELD(temp_r22, u32*, 0xA8);
 			var_r28  = M2C_FIELD(temp_r22, u32*, 0);
 			var_r19  = temp_r3 + (M2C_FIELD(temp_r3, s32*, 0x14) + (temp_r7 * temp_r25));
-		loop_29:
-			if (var_r29 < temp_r26) {
+			for (; var_r29 < temp_r26; var_r19 += temp_r25, var_r29 += 1) {
 				if ((s32)lbl_8042ABB0[0x17] >= 0) {
 					temp_r5 = (var_r28 * 0x0BB38435) + 0x3619636B;
 					if ((s32)M2C_FIELD(var_r20, s32*, 0xC) != 0) {
@@ -4381,9 +4364,6 @@ u8* fn_8023182C(void* arg0, u8* arg1)
 					M2C_FIELD(var_r24, f32*, 8) = sp10;
 					var_r24 += var_r23;
 				}
-				var_r19 += temp_r25;
-				var_r29 += 1;
-				goto loop_29;
 			}
 			M2C_FIELD(temp_r22, u32*, 0) = var_r28;
 		}
