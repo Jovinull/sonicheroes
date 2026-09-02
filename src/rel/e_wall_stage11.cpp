@@ -1512,28 +1512,21 @@ void fn_8_B82CC(void* arg0)
 
 void fn_8_B8504(void* arg0)
 {
-	f32 sp24;
-	f32 sp20;
-	f32 sp1C;
-	f32 sp18;
-	s32 sp14;
-	s32 sp10;
-	s32 spC;
-	s32 sp8;
+	sVec4 sp18;
+	sVec4i sp8;
 
 	if ((s32*)M2C_FIELD(arg0, s32**, 0xE0) != NULL) {
-		M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-		if (M2C_FIELD(arg0, f32*, 0xE4) == lbl_8_rodata_1D5C) {
-			sp18 = M2C_FIELD(arg0, f32*, 0xB0);
-			sp1C = M2C_FIELD(arg0, f32*, 0xB4);
-			sp20 = M2C_FIELD(arg0, f32*, 0xB8);
-			sp24 = lbl_8_rodata_1D60;
-			if (fn_8019CE34(*lbl_8042C9A4, &sp18) != 0) {
-				sp8  = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 0);
-				spC  = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 4);
-				sp10 = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 8);
-				sp14 = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 0xC);
-				fn_8005DABC(M2C_FIELD(arg0, s32**, 0xE0), &sp8);
+		if (M2C_FIELD(arg0, f32*, 0xE4) >= lbl_8_rodata_1D5C) {
+			sp18.x = M2C_FIELD(arg0, f32*, 0xB0);
+			sp18.y = M2C_FIELD(arg0, f32*, 0xB4);
+			sp18.z = M2C_FIELD(arg0, f32*, 0xB8);
+			sp18.w = lbl_8_rodata_1D60;
+			if (fn_8019CE34(*lbl_8042C9A4, &sp18.x) != 0) {
+				sp8.x = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 0);
+				sp8.y = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 4);
+				sp8.z = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 8);
+				sp8.w = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 0xC);
+				fn_8005DABC(M2C_FIELD(arg0, s32**, 0xE0), (s32*)&sp8);
 				fn_80113874(M2C_FIELD(arg0, s32*, 0xD8));
 				fn_8014FF2C(M2C_FIELD(arg0, s32**, 0xE0));
 			}
@@ -1607,8 +1600,7 @@ void fn_8_B8810(void* arg0)
 	}
 	M2C_FIELD(arg0, f32*, 0xB4) = (f32)(M2C_FIELD(arg0, f32*, 0xB4) + lbl_8_rodata_1D98);
 	temp_f2                     = M2C_FIELD(arg0, f32*, 0xC8);
-	M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-	if ((M2C_FIELD(arg0, f32*, 0xB4) - temp_f2) == lbl_8_rodata_1D9C) {
+	if ((M2C_FIELD(arg0, f32*, 0xB4) - temp_f2) >= lbl_8_rodata_1D9C) {
 		M2C_FIELD(arg0, f32*, 0xB4) = (f32)(lbl_8_rodata_1D9C + temp_f2);
 	}
 	M2C_FIELD(arg0, u32*, 0xEC) = (u32)(M2C_FIELD(arg0, u32*, 0xEC) + 0x800);
@@ -1692,8 +1684,7 @@ void fn_8_B8970(TObject* arg0)
 			}
 			arg0->unkB4 += lbl_8_rodata_1D98;
 			temp_f2 = arg0->unkC8;
-			M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-			if ((arg0->unkB4 - temp_f2) == lbl_8_rodata_1D9C) {
+			if ((arg0->unkB4 - temp_f2) >= lbl_8_rodata_1D9C) {
 				arg0->unkB4 = lbl_8_rodata_1D9C + temp_f2;
 			}
 			arg0->unkEC += 0x800;
@@ -2251,12 +2242,10 @@ s32 fn_8_B9CD4(void* arg0)
 		temp_r4 = *(&lbl_802AD090 + (temp_r0 * 4));
 		if (temp_r4 != 0U) {
 			temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, temp_r4 + 0x18);
-			M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-			if (temp_f1 == lbl_8_rodata_1DB0) {
+			if (temp_f1 <= lbl_8_rodata_1DB0) {
 				return 1;
 			}
-			M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-			if (temp_f1 == lbl_8_rodata_1DB4) {
+			if (temp_f1 <= lbl_8_rodata_1DB4) {
 				return 2;
 			}
 			return 0;
