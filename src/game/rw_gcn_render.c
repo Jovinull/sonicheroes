@@ -2234,7 +2234,7 @@ u8* fn_8022E46C(void* arg0, u8* arg1)
 		var_r31 = arg1 + lbl_8042ABB0[0xC];
 	}
 	temp_r8 = M2C_FIELD(arg1, u8**, 0x20);
-	var_r10 = *(arg1 + lbl_8042ABB0[5]);
+	var_r10 = M2C_FIELD(arg1, u32*, lbl_8042ABB0[5]);
 	if (temp_r8 != NULL) {
 		temp_r7 = M2C_FIELD(temp_r8, s32*, 0x10);
 		if (temp_r7 != -1) {
@@ -2242,27 +2242,23 @@ u8* fn_8022E46C(void* arg0, u8* arg1)
 			if (temp_r7 >= 0) {
 				temp_r5 = M2C_FIELD(temp_r8, s32*, 8) - temp_r7;
 				var_r11 = temp_r8 + M2C_FIELD(temp_r8, s32*, 0x14) + (temp_r7 * temp_r12);
-				var_ctr = temp_r5;
-				if (temp_r5 > 0) {
-					do {
-						temp_r3   = (var_r10 * 0x0BB38435) + 0x3619636B;
-						temp_r5_2 = var_r11 + lbl_8042ABB0[0x1A];
-						temp_f1   = *(var_r11 + (lbl_8042ABB0[0x13] + 4));
-						var_r11 += temp_r12;
-						temp_f4 = (f32)temp_r3;
-						var_r10 = (temp_r3 * 0x0BB38435) + 0x3619636B;
-						M2C_FIELD(temp_r5_2, f32*, 0)
-						    = (f32)((((lbl_80430190 * (lbl_80430194 * temp_f4)) - lbl_8043018C)
-						                * M2C_FIELD(var_r31, f32*, 4))
-						        + (temp_f1 + M2C_FIELD(var_r31, f32*, 0)));
-						M2C_FIELD(temp_r5_2, f32*, 4)
-						    = (f32)((((lbl_80430190 * (lbl_80430194 * (f32)var_r10)) - lbl_8043018C)
-						                * M2C_FIELD(var_r31, f32*, 0xC))
-						        + M2C_FIELD(var_r31, f32*, 8));
-						var_ctr -= 1;
-					} while (var_ctr != 0);
+				for (var_ctr = 0; var_ctr < temp_r5; var_ctr += 1) {
+					temp_r3   = (var_r10 * 0x0BB38435) + 0x3619636B;
+					temp_r5_2 = var_r11 + lbl_8042ABB0[0x1A];
+					temp_f1   = M2C_FIELD(var_r11, f32*, lbl_8042ABB0[0x13] + 4);
+					var_r11 += temp_r12;
+					temp_f4 = (f32)temp_r3;
+					var_r10 = (temp_r3 * 0x0BB38435) + 0x3619636B;
+					M2C_FIELD(temp_r5_2, f32*, 0)
+					    = (f32)((((lbl_80430190 * (lbl_80430194 * temp_f4)) - lbl_8043018C)
+					                * M2C_FIELD(var_r31, f32*, 4))
+					        + (temp_f1 + M2C_FIELD(var_r31, f32*, 0)));
+					M2C_FIELD(temp_r5_2, f32*, 4)
+					    = (f32)((((lbl_80430190 * (lbl_80430194 * (f32)var_r10)) - lbl_8043018C)
+					                * M2C_FIELD(var_r31, f32*, 0xC))
+					        + M2C_FIELD(var_r31, f32*, 8));
 				}
-				*(arg1 + lbl_8042ABB0[5]) = var_r10;
+				M2C_FIELD(arg1, u32*, lbl_8042ABB0[5]) = var_r10;
 			}
 		}
 	}
