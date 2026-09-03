@@ -36,6 +36,19 @@ typedef struct TObject {
 	/* 0xE0 */ f32 unkE0;     /* inferred */
 } TObject;                    /* size >= 0xE4 */
 
+/* Dispatch view of the object's vtable. The handler at vtable offset 0x10 is
+ * reached through genuine virtual dispatch in retail: the target loads the
+ * vtable through the already-materialised `this` in r3 and keeps the slot in
+ * r12, which manual vtable indexing does not reproduce. Two implicit
+ * destructor slots plus the two placeholders below put Release at slot 4. */
+class TObjectDispatch
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3();
+	virtual void Release(s32, s32);
+};
+
 extern "C" {
 
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
@@ -138,11 +151,9 @@ void fn_8_A6D2C(void* arg0, s32 arg1)
 	M2C_FIELD(arg0, s32*, 0x14) = arg1;
 	M2C_FIELD(arg0, s32*, 0x10) = 0;
 	if (M2C_FIELD(M2C_FIELD(arg0, void**, 0), s32(**)(), 0x14)() != 0) {
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-		    arg0, M2C_FIELD(arg0, s32*, 4), 2);
+		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 2);
 	}
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-	    arg0, M2C_FIELD(arg0, s32*, 4), 1);
+	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 1);
 	if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
 		fn_800A31B8(M2C_FIELD(arg0, s32*, 0x14));
 	}
