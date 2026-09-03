@@ -1719,7 +1719,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/o_colli_communication_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-bool off"],
+                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,

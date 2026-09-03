@@ -212,17 +212,34 @@ static M2C_UNK lbl_8_bss_19D0;
 static M2C_UNK lbl_8_bss_19D4;
 static M2C_UNK lbl_8_bss_1A18;
 static M2C_UNK magicianObjectEntry;
-static M2C_UNK lbl_8_rodata_19B8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_19E0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A2C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A38; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A48; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A54; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A60; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A6C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A84; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1A94; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1AA0; /* unable to generate initializer: unknown type; const */
+extern const f32 lbl_8_rodata_19A4[1]  = { 20.0f };
+extern const f32 lbl_8_rodata_19A8[1]  = { -0.05999999865889549f };
+extern const f32 lbl_8_rodata_19AC[1]  = { -1000000.0f };
+extern const f32 lbl_8_rodata_19B0[1]  = { 4.0f };
+extern const f32 lbl_8_rodata_19B4[1]  = { 0.0054931640625f };
+extern const f64 lbl_8_rodata_19B8[1]  = { 4503601774854144.0 };
+extern const f32 lbl_8_rodata_19C0[5]  = { 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_19D4[1]  = { 20.0f };
+extern const f32 lbl_8_rodata_19D8[1]  = { 0.0054931640625f };
+extern const f32 lbl_8_rodata_19DC[1]  = { 180.0f };
+extern const f64 lbl_8_rodata_19E0[1]  = { 4503601774854144.0 };
+extern const f32 lbl_8_rodata_19E8[1]  = { 0.0f };
+extern const f32 lbl_8_rodata_19EC[1]  = { 10430.380859375f };
+extern const f32 lbl_8_rodata_19F0[1]  = { 0.20000000298023224f };
+extern const f32 lbl_8_rodata_19F4[1]  = { 2.0f };
+extern const f32 lbl_8_rodata_19F8[13] = { -0.05999999865889549f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f,
+	0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_1A2C[3]  = { 13.0f, 20.0f, 0.0f };
+extern const f32 lbl_8_rodata_1A38[4]
+    = { 0.20000000298023224f, 0.4000000059604645f, 0.4000000059604645f, 0.4000000059604645f };
+extern const f32 lbl_8_rodata_1A48[3] = { 0.0f, 0.0f, 0.0f };
+extern const f32 lbl_8_rodata_1A54[3] = { 0.0f, 0.0f, 0.0f };
+extern const f32 lbl_8_rodata_1A60[3] = { 0.0f, 8.0f, 0.0f };
+extern const f32 lbl_8_rodata_1A6C[6] = { 0.0f, 8.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+extern const f32 lbl_8_rodata_1A84[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
+extern const f32 lbl_8_rodata_1A94[3] = { 20.0f, 1.0f, 20.0f };
+extern const f32 lbl_8_rodata_1AA0[3]
+    = { 0.20000000298023224f, 0.20000000298023224f, 0.20000000298023224f };
 
 void fn_8_A82A0(s32 arg0)
 {
@@ -1359,7 +1376,7 @@ void fn_8_AA69C(void* arg0)
 	s32 temp_r30;
 	void* temp_r3;
 
-	fn_800D5A64((u8*)arg0 + 0x40, &lbl_8_rodata_1AA0, &lbl_8_rodata_1AB0, lbl_8_rodata_1AB0);
+	fn_800D5A64((u8*)arg0 + 0x40, lbl_8_rodata_1AA0, &lbl_8_rodata_1AB0, lbl_8_rodata_1AB0);
 	M2C_FIELD(arg0, f32*, 0x50) = (f32)(M2C_FIELD(arg0, f32*, 0x50) + lbl_8_rodata_1AB4);
 	M2C_FIELD(arg0, f32*, 0x60) = (f32)(M2C_FIELD(arg0, f32*, 0x60) + lbl_8_rodata_1AB8);
 	if (M2C_FIELD(arg0, f32*, 0x50) > lbl_8_rodata_1ABC) {
