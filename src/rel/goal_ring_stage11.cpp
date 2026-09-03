@@ -56,7 +56,7 @@ void fn_8003C618(...);
 void fn_8003BF04(...);
 void dtor_8003C52C(...);
 void dtor_8005BD3C(...);
-void* fn_80150588(void*);
+void* fn_80150588(...);
 void fn_8015BB08(...);
 void fn_8015BBF8(...);
 void fn_80150958(void*);
