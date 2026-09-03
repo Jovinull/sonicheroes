@@ -671,6 +671,8 @@ void fn_8_BDA50(void* arg0, s32 arg1)
 				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
+		case 4:
+			return;
 	}
 }
 
@@ -730,6 +732,8 @@ void fn_8_BDB4C(void* arg0, s32 arg1)
 				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
+		case 4:
+			return;
 	}
 }
 
@@ -776,6 +780,8 @@ void fn_8_BDC9C(void* arg0, s32 arg1)
 				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
+		case 4:
+			return;
 	}
 }
 
@@ -796,6 +802,8 @@ void fn_8_BDD50(void* arg0, s32 arg1)
 				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
+		case 4:
+			return;
 	}
 }
 
@@ -815,6 +823,8 @@ void fn_8_BDE04(void* arg0, s32 arg1)
 				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
 				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
 			}
+			return;
+		case 4:
 			return;
 	}
 }
@@ -839,6 +849,8 @@ void fn_8_BDEB8(void* arg0, s32 arg1)
 				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
 				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
 			}
+			return;
+		case 4:
 			return;
 	}
 }
@@ -1913,6 +1925,8 @@ void fn_8_BFE68(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x248) = 0x29;
 			}
 			break;
+		case 4:
+			break;
 	}
 }
 
@@ -2161,6 +2175,8 @@ void fn_8_C0418(void* arg0, s32 arg1)
 				}
 			}
 			return;
+		case 4:
+			return;
 	}
 }
 
@@ -2172,6 +2188,8 @@ void fn_8_C0690(void* arg0, s32 arg1)
 			return;
 		case 1:
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
+			return;
+		case 4:
 			return;
 	}
 }
@@ -2221,6 +2239,8 @@ void fn_8_C0730(void* arg0, s32 arg1)
 					M2C_FIELD(arg0, s32*, 0x230) = fn_8009278C(0);
 				}
 			}
+			return;
+		case 4:
 			return;
 	}
 }
@@ -2387,6 +2407,8 @@ void fn_8_C0C9C(void* arg0, s32 arg1)
 			if ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x250), s32*, 0x10) & 1) != 0) {
 				M2C_FIELD(arg0, s32*, 0x2C4) = 0;
 			}
+			return;
+		case 4:
 			return;
 	}
 }
@@ -2662,6 +2684,8 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 					}
 					break;
 			}
+			break;
+		case 4:
 			break;
 	}
 }
@@ -2952,6 +2976,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 	return arg0;
 }
 
+#pragma dont_inline on
 TObject* fn_8_C2018(TObject* arg0)
 {
 	f32 sp18;
@@ -3056,6 +3081,7 @@ TObject* fn_8_C2018(TObject* arg0)
 	arg0->unk228 = var_r0_4;
 	return arg0;
 }
+#pragma dont_inline reset
 
 TEnemyParalysis* fn_8_C2344(void)
 {
