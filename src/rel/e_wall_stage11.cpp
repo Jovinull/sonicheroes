@@ -847,10 +847,10 @@ static void* lbl_8_bss_1AC8[5];
 static u32 lbl_8_bss_1ADC;
 static u32 lbl_8_bss_1AE0[0x11];
 static s32 lbl_8_bss_1B24;
-static M2C_UNK wallObjectGlobalAChain;
-static M2C_UNK wallObjectGlobalA;
-static M2C_UNK wallObjectEntry;
-static f32 lbl_8_rodata_1E20[6] = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f }; /* const */
+static M2C_UNK wallObjectGlobalAChain[3];
+static M2C_UNK wallObjectGlobalA[5];
+static M2C_UNK wallObjectEntry[12];
+static const f32 lbl_8_rodata_1E20[6] = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f }; /* const */
 
 void fn_8_B7210(s32 arg0)
 {
@@ -2408,7 +2408,7 @@ void fn_8_BA2B0(void* arg0)
 	}
 	if ((s32*)M2C_FIELD(arg0, s32**, 0x2CC) != NULL) {
 		fn_80113874(0x10);
-		fn_8011398C(&wallObjectGlobalA, M2C_FIELD(arg0, s32*, 0x290));
+		fn_8011398C(wallObjectGlobalA, M2C_FIELD(arg0, s32*, 0x290));
 		fn_8014FF2C(M2C_FIELD(arg0, s32**, 0x2CC));
 	}
 }
@@ -3924,8 +3924,8 @@ void fn_8_BD380(void* arg0, void* arg1)
 	temp_f1_3                      = M2C_FIELD(temp_r3, f32*, 0x18);
 	if (temp_f1_3 < lbl_8_rodata_1E1C) {
 		var_r4_6 = &lbl_8_rodata_1E1C;
-	} else if (temp_f1_3 > 10000.0f) {
-		var_r4_6 = lbl_8_rodata_1E20;
+	} else if (temp_f1_3 > lbl_8_rodata_1E20[0]) {
+		var_r4_6 = (f32*)lbl_8_rodata_1E20;
 	} else {
 		var_r4_6 = (f32*)(temp_r3 + 0x18);
 	}
@@ -3938,7 +3938,7 @@ void fn_8_BD380(void* arg0, void* arg1)
 
 void wallObjectUnload(void)
 {
-	fn_80113A68(&wallObjectGlobalA);
+	fn_80113A68(wallObjectGlobalA);
 	fn_800FE248(8, (M2C_UNK*)lbl_8_data_17484);
 	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
 		fn_80100AAC();
@@ -3995,7 +3995,7 @@ void wallObjectLoad(void)
 		if (lbl_8_bss_1AC8[3] != NULL) {
 			fn_8005DA34();
 			fn_80113AA8(
-			    &wallObjectGlobalA, temp_r3, lbl_8_bss_1AC8[3], (M2C_UNK*)lbl_8_data_17874, 3);
+			    wallObjectGlobalA, temp_r3, lbl_8_bss_1AC8[3], (M2C_UNK*)lbl_8_data_17874, 3);
 		}
 	}
 }
@@ -4026,30 +4026,30 @@ void wallObjectRegister(void)
 	s32 flags;
 	M2C_UNK* temp_r3;
 
-	fn_80113C7C(&wallObjectGlobalA);
-	__register_global_object(&fn_80113C2C, &wallObjectGlobalAChain);
-	M2C_FIELD(&wallObjectEntry, s32*, 0x14)       = 0;
-	M2C_FIELD(&wallObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&wallObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)wallObjectDisplayName;
-	M2C_FIELD(&wallObjectEntry, void (**)(), 4)   = wallObjectLoad;
-	M2C_FIELD(&wallObjectEntry, void (**)(), 8)   = wallObjectUnload;
-	M2C_FIELD(&wallObjectEntry, void (**)(), 0xC) = wallObjectCreate;
-	M2C_FIELD(&wallObjectEntry, s32*, 0x10)       = 0;
-	flags                                         = 0x20000;
-	M2C_FIELD(&wallObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(&wallObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&wallObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&wallObjectEntry, s16*, 0x1C)       = 0x1540;
-	M2C_FIELD(&wallObjectEntry, s16*, 0x1E)       = 4;
-	M2C_FIELD(&wallObjectEntry, s8*, 0x21)        = 0;
-	temp_r3                                       = (M2C_UNK*)wallObjectFieldTypes;
-	M2C_FIELD(&wallObjectEntry, M2C_UNK**, 0x24)  = temp_r3;
-	M2C_FIELD(&wallObjectEntry, M2C_UNK**, 0x28)  = (M2C_UNK*)wallObjectFieldNames;
+	fn_80113C7C(wallObjectGlobalA);
+	__register_global_object(&fn_80113C2C, wallObjectGlobalAChain);
+	M2C_FIELD(wallObjectEntry, s32*, 0x14)       = 0;
+	M2C_FIELD(wallObjectEntry, s32*, 0x18)       = 0;
+	M2C_FIELD(wallObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)wallObjectDisplayName;
+	M2C_FIELD(wallObjectEntry, void (**)(), 4)   = wallObjectLoad;
+	M2C_FIELD(wallObjectEntry, void (**)(), 8)   = wallObjectUnload;
+	M2C_FIELD(wallObjectEntry, void (**)(), 0xC) = wallObjectCreate;
+	M2C_FIELD(wallObjectEntry, s32*, 0x10)       = 0;
+	flags                                        = 0x20000;
+	M2C_FIELD(wallObjectEntry, s32*, 0x14)       = flags;
+	M2C_FIELD(wallObjectEntry, s32*, 0x18)       = 0;
+	M2C_FIELD(wallObjectEntry, s8*, 0x20)        = 0x1E;
+	M2C_FIELD(wallObjectEntry, s16*, 0x1C)       = 0x1540;
+	M2C_FIELD(wallObjectEntry, s16*, 0x1E)       = 4;
+	M2C_FIELD(wallObjectEntry, s8*, 0x21)        = 0;
+	temp_r3                                      = (M2C_UNK*)wallObjectFieldTypes;
+	M2C_FIELD(wallObjectEntry, M2C_UNK**, 0x24)  = temp_r3;
+	M2C_FIELD(wallObjectEntry, M2C_UNK**, 0x28)  = (M2C_UNK*)wallObjectFieldNames;
 	if (temp_r3 != NULL) {
-		M2C_FIELD(&wallObjectEntry, s32*, 0x14) = flags | 8;
+		M2C_FIELD(wallObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&wallObjectEntry, s32*, 0x14) = flags & ~8;
+	M2C_FIELD(wallObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const wallObjectCtorEntry)(void) = wallObjectRegister;
