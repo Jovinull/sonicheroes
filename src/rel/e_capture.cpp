@@ -188,6 +188,59 @@ typedef struct TObject {
 	/* 0x588 */ f32 unk588;         /* inferred */
 } TObject;                          /* size >= 0x58C */
 
+/* The renderer class keeps its vtable pointer at object offset 0x18, which is
+ * what a polymorphic class derived from a 0x18-byte non-polymorphic base
+ * looks like: the base's data is laid out first and `this` is not adjusted,
+ * exactly as retail's `lwz r12, 0x18(r3)` reads it. Slot numbers are the
+ * retail vtable offsets divided by four, and the two implicit deleting
+ * destructor slots occupy 0 and 1, so a method at slot k needs k - 2
+ * placeholders ahead of it. */
+class TRendererBase
+{
+public:
+	u8 pad0[0x18];
+};
+
+class TRenderer : public TRendererBase
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3();
+	virtual void vslot4();
+	virtual void vslot5();
+	virtual void vslot6();
+	virtual void vslot7();
+	virtual void vslot8();
+	virtual void vslot9();
+	virtual void vslot10();
+	virtual void vslot11();
+	virtual void vslot12();
+	virtual void vslot13();
+	virtual void Slot38();
+	virtual void Slot3C();
+	virtual void Slot40();
+	virtual void vslot17();
+	virtual void vslot18();
+	virtual void vslot19();
+	virtual void Slot50(s32, s32);
+	virtual void vslot21();
+	virtual void vslot22();
+	virtual void vslot23();
+	virtual void vslot24();
+	virtual void vslot25();
+	virtual void vslot26();
+	virtual void vslot27();
+	virtual void vslot28();
+	virtual void vslot29();
+	virtual void vslot30();
+	virtual void Slot7C();
+	virtual void vslot32();
+	virtual void vslot33();
+	virtual void Slot88(void*);
+	virtual void vslot35();
+	virtual s32 Slot90();
+};
+
 extern "C" {
 
 M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(
@@ -1004,7 +1057,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 	u8* var_r29_2;
 
 	if ((s32)M2C_FIELD(arg0, s32*, 0x28C) != 0) {
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x90)();
+		((TRenderer*)arg0)->Slot90();
 		fn_80113874();
 		fn_80113940();
 		fn_801138B4();
@@ -1067,7 +1120,7 @@ void fn_8_99254(void* arg0)
 		var_r31 += 0x14;
 		var_r30 += 1;
 	} while (var_r30 < 2);
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*), 0x90)(arg0);
+	((TRenderer*)arg0)->Slot90();
 	fn_80113874();
 	fn_8014FF2C(M2C_FIELD(arg0, void**, 0xE8));
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2E8) != 0U) {
@@ -1586,7 +1639,7 @@ void fn_8_9A188(void* arg0, s32 arg1)
 				fn_800E1208(0xF, 0);
 				M2C_FIELD(arg0, s32*, 0x278) = -1;
 			}
-			M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*), 0x3C)(arg0);
+			((TRenderer*)arg0)->Slot3C();
 			return;
 		case 1:
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
@@ -2093,7 +2146,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 						fn_800E1208(0xF, 0);
 						M2C_FIELD(arg0, s32*, 0x278) = -1;
 					}
-					M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*), 0x3C)(arg0);
+					((TRenderer*)arg0)->Slot3C();
 					return;
 				case 1: /* switch 5 */
 					M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
@@ -2796,7 +2849,7 @@ void* fn_8_9C4BC(void* arg0, s16 arg1)
 	return arg0;
 }
 
-TObject* fn_8_9C694(TObject* arg0)
+TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 {
 	TEnemyParalysis* temp_r3_2;
 	TEnemyParalysis* var_r0_3;
@@ -2925,7 +2978,7 @@ TObject* fn_8_9CA9C(void)
 
 	var_r0 = (TObject*)fn_80018A34(lbl_8042C148, 0x58C);
 	if (var_r0 != NULL) {
-		var_r0 = fn_8_9C694(lbl_8042C10C);
+		var_r0 = fn_8_9C694((TObject*)var_r0, lbl_8042C10C);
 	}
 	return var_r0;
 }
@@ -3116,8 +3169,11 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 
 void captureObjectCreate(void)
 {
-	if (fn_80018A34(lbl_8042C148, 0x58C) != NULL) {
-		fn_8_9C694(lbl_8042C10C);
+	TEnemyParalysis* temp_r3;
+
+	temp_r3 = fn_80018A34(lbl_8042C148, 0x58C);
+	if (temp_r3 != NULL) {
+		fn_8_9C694((TObject*)temp_r3, lbl_8042C10C);
 	}
 }
 
