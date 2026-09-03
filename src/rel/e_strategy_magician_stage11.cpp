@@ -134,10 +134,10 @@ extern "C" {
 void* __ct__7TObjectFP7TObject(void*, void*); /* extern */
 s32 fn_80017800(void*);                       /* extern */
 TObject* fn_80018A34(...);                    /* extern */
-M2C_UNK fn_8003BC38(...);                     /* extern */
+M2C_UNK fn_8003BC38(void*);                   /* extern */
 M2C_UNK fn_8005DABC(...);                     /* extern */
 M2C_UNK fn_8005FD20(...);                     /* extern */
-M2C_UNK fn_8005FD8C(...);                     /* extern */
+M2C_UNK fn_8005FD8C(M2C_UNK);                 /* extern */
 void* fn_8006298C(...);                       /* extern */
 M2C_UNK fn_80066D20(...);                     /* extern */
 s32 fn_800A34D0(void*, void*, f32);           /* extern */
@@ -173,22 +173,22 @@ s32 fn_8010B0AC(s32, f32);                    /* extern */
 M2C_UNK fn_8010B208(...);                     /* extern */
 s32 fn_8010B350(void*, void*);                /* extern */
 M2C_UNK fn_80113874(...);                     /* extern */
-M2C_UNK fn_801138B4(...);                     /* extern */
-M2C_UNK fn_801138F4(...);                     /* extern */
-M2C_UNK fn_80113940(...);                     /* extern */
-M2C_UNK fn_8011B844(...);                     /* extern */
+M2C_UNK fn_801138B4();                        /* extern */
+M2C_UNK fn_801138F4();                        /* extern */
+M2C_UNK fn_80113940();                        /* extern */
+M2C_UNK fn_8011B844(u32, f32*, f32);          /* extern */
 s32 fn_8011C188(s32, s32);                    /* extern */
-M2C_UNK fn_8011C6EC(...);                     /* extern */
+M2C_UNK fn_8011C6EC();                        /* extern */
 s32 fn_80130B40(s32);                         /* extern */
 s32 fn_80137FE8(void*);                       /* extern */
 M2C_UNK fn_8014FF2C(...);                     /* extern */
 M2C_UNK fn_8014FFBC(...);                     /* extern */
 void* fn_80150588(...);                       /* extern */
-M2C_UNK fn_801990E0(...);                     /* extern */
+void fn_801990E0(void* dst, void* src);       /* extern */
 M2C_UNK fn_8019941C(...);                     /* extern */
 void* fn_8019E8EC(...);                       /* extern */
-M2C_UNK fn_8019EB94(...);                     /* extern */
-M2C_UNK fn_8019EC30(...);                     /* extern */
+M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);      /* extern */
+M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);      /* extern */
 M2C_UNK fn_8019ED68(...);                     /* extern */
 s32 fn_801C28D8(...);                         /* extern */
 s32 fn_8_90B10(s32);                          /* extern */

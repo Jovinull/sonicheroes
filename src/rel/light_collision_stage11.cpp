@@ -28,16 +28,16 @@ extern float lbl_8_rodata_D58;
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
 void* fn_80018A34(...);
-void fn_800189A4(...);
+void fn_800189A4(void*, void*);
 void fn_8005BE6C(...);
 void dtor_8005BD3C(...);
-int fn_8005B9F0(...);
-int fn_8005B8BC(...);
+int fn_8005B9F0(void*);
+int fn_8005B8BC(void*);
 s32 fn_8005B8D8(void*);
 void fn_80052DAC(...);
 void fn_8014FFBC(...);
 void fn_801527A4(void*, void*, void*);
-float fn_801991B4(...);
+f32 fn_801991B4(void* v);
 f32 fn_800D7218(void*, void*);
 }
 
