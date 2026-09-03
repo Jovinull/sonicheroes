@@ -172,74 +172,75 @@ static M2C_UNK rinoColObjectFieldTypes;  /* unable to generate initializer: unkn
 static M2C_UNK gap_04_000172D9_data;     /* unable to generate initializer: unknown type */
 static void* lbl_8_bss_1A90;
 static M2C_UNK rinoColObjectEntry;
-static M2C_UNK lbl_8_rodata_1C64;
-static M2C_UNK lbl_8_rodata_1C70;
-static M2C_UNK lbl_8_rodata_1C74;
-static M2C_UNK lbl_8_rodata_1C78;
-static M2C_UNK lbl_8_rodata_1C7C;
-static M2C_UNK lbl_8_rodata_1C80;
-static M2C_UNK lbl_8_rodata_1CA4;
-static M2C_UNK lbl_8_rodata_1CB8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1CC4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1CD0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1CDC; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1CE8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1CF4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D00; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D10; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D1C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D2C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D3C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D48; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D54; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D58; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D5C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D60; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D64; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D68; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D6C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D70; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D74; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D78; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D7C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D80; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D84; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D88; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D90; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D98; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1D9C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DA0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DA4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DA8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DAC; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DB0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DB4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DB8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DBC; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DC0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DC4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DC8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DCC; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DD0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DD4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DD8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DDC; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DE0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DE4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DE8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DEC; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DF0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DF4; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DF8; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1DFC; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E00; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E04; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E08; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E0C; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E10; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E14; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E18; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1E1C; /* unable to generate initializer: unknown type; const */
+extern const f32 lbl_8_rodata_1C64[3] = { 0.0f, 2.0f, 0.0f };
+extern const f32 lbl_8_rodata_1C70[1] = { 20.0f };
+extern const f32 lbl_8_rodata_1C74[1] = { 100000000.0f };
+extern const f32 lbl_8_rodata_1C78[1] = { 2500.0f };
+extern const f32 lbl_8_rodata_1C7C[1] = { 0.0f };
+extern const f32 lbl_8_rodata_1C80[9]
+    = { 0.05000000074505806f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_1CA4[5] = { 0.0f, 0.0f, 1.5f, 0.0f, 0.0f };
+extern const f32 lbl_8_rodata_1CB8[3] = { 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_1CC4[3] = { 16.0f, 18.0f, 0.0f };
+extern const f32 lbl_8_rodata_1CD0[3] = { 0.0f, -10.0f, 0.0f };
+extern const f32 lbl_8_rodata_1CDC[3] = { 0.0f, -10.0f, 0.0f };
+extern const f32 lbl_8_rodata_1CE8[3] = { 0.0f, -10.0f, 0.0f };
+extern const f32 lbl_8_rodata_1CF4[3] = { 0.0f, -10.0f, 0.0f };
+extern const f32 lbl_8_rodata_1D00[4] = { -1.0f, -1.0f, -1.0f, 1.0f };
+extern const f32 lbl_8_rodata_1D10[3] = { 32.0f, 1.0f, 32.0f };
+extern const f32 lbl_8_rodata_1D1C[4] = { -1.0f, -1.0f, -1.0f, 1.0f };
+extern const f32 lbl_8_rodata_1D2C[4] = { -1.0f, -1.0f, -1.0f, 0.0f };
+extern const f32 lbl_8_rodata_1D3C[3] = { 20.0f, 1.0f, 20.0f };
+extern const f32 lbl_8_rodata_1D48[3] = { 0.0f, 0.0f, 0.0f };
+extern const f32 lbl_8_rodata_1D54[1] = { 0.20000000298023224f };
+extern const f32 lbl_8_rodata_1D58[1] = { 1.0f };
+extern const f32 lbl_8_rodata_1D5C[1] = { 1.0f };
+extern const f32 lbl_8_rodata_1D60[1] = { 20.0f };
+extern const f32 lbl_8_rodata_1D64[1] = { 0.004000000189989805f };
+extern const f32 lbl_8_rodata_1D68[1] = { 0.0010000000474974513f };
+extern const f32 lbl_8_rodata_1D6C[1] = { 0.9800000190734863f };
+extern const f32 lbl_8_rodata_1D70[1] = { 0.0054931640625f };
+extern const f32 lbl_8_rodata_1D74[1] = { 0.029999999329447746f };
+extern const f32 lbl_8_rodata_1D78[1] = { 0.10000000149011612f };
+extern const f32 lbl_8_rodata_1D7C[1] = { 0.20000000298023224f };
+extern const f32 lbl_8_rodata_1D80[1] = { 0.0f };
+extern const f32 lbl_8_rodata_1D84[1] = { 0.8999999761581421f };
+extern const f32 lbl_8_rodata_1D88[1] = { -0.8999999761581421f };
+extern const f64 lbl_8_rodata_1D90[1] = { 4503601774854144.0 };
+extern const f32 lbl_8_rodata_1D98[1] = { 3.0f };
+extern const f32 lbl_8_rodata_1D9C[1] = { 80.0f };
+extern const f32 lbl_8_rodata_1DA0[1] = { 250000.0f };
+extern const f32 lbl_8_rodata_1DA4[1] = { 0.05000000074505806f };
+extern const f32 lbl_8_rodata_1DA8[1] = { -1.0f };
+extern const f32 lbl_8_rodata_1DAC[1] = { 1.2000000476837158f };
+extern const f32 lbl_8_rodata_1DB0[1] = { 1600.0f };
+extern const f32 lbl_8_rodata_1DB4[1] = { 6400.0f };
+extern const f32 lbl_8_rodata_1DB8[1] = { 1.5f };
+extern const f32 lbl_8_rodata_1DBC[1] = { 16.0f };
+extern const f32 lbl_8_rodata_1DC0[1] = { 10.0f };
+extern const f32 lbl_8_rodata_1DC4[1] = { 8.0f };
+extern const f32 lbl_8_rodata_1DC8[1] = { 0.5f };
+extern const f32 lbl_8_rodata_1DCC[1] = { 5.0f };
+extern const f32 lbl_8_rodata_1DD0[1] = { 100000000.0f };
+extern const f32 lbl_8_rodata_1DD4[1] = { 4.0f };
+extern const f32 lbl_8_rodata_1DD8[1] = { 42.0f };
+extern const f32 lbl_8_rodata_1DDC[1] = { 2.0f };
+extern const f32 lbl_8_rodata_1DE0[1] = { 180.0f };
+extern const f32 lbl_8_rodata_1DE4[1] = { 15.0f };
+extern const f32 lbl_8_rodata_1DE8[1] = { 0.30000001192092896f };
+extern const f32 lbl_8_rodata_1DEC[1] = { -1000000.0f };
+extern const f32 lbl_8_rodata_1DF0[1] = { 30.0f };
+extern const f32 lbl_8_rodata_1DF4[1] = { 12.0f };
+extern const f32 lbl_8_rodata_1DF8[1] = { 0.800000011920929f };
+extern const f32 lbl_8_rodata_1DFC[1] = { 55.0f };
+extern const f32 lbl_8_rodata_1E00[1] = { 24.0f };
+extern const f32 lbl_8_rodata_1E04[1] = { 0.0f };
+extern const f32 lbl_8_rodata_1E08[1] = { 10000.0f };
+extern const f32 lbl_8_rodata_1E0C[1] = { 0.0f };
+extern const f32 lbl_8_rodata_1E10[1] = { 10000.0f };
+extern const f32 lbl_8_rodata_1E14[1] = { 0.0f };
+extern const s32 lbl_8_rodata_1E18[1] = { 0x00002710 };
+extern const f32 lbl_8_rodata_1E1C[1] = { 0.0f };
 
 void fn_8_B49D8(s32 arg0)
 {
@@ -316,7 +317,7 @@ void fn_8_B4B9C(void* arg0)
 		return;
 	}
 	if ((s32)M2C_FIELD(arg0, s32*, 0xDC) != 0) {
-		temp_r3 = fn_80103324((u8*)arg0 + 0xB0, &lbl_8_rodata_1C74, 1e8f);
+		temp_r3 = fn_80103324((u8*)arg0 + 0xB0, (s32*)lbl_8_rodata_1C74, 1e8f);
 		if (temp_r3 != -1) {
 			temp_r30 = *(void**)((u8*)&lbl_802AD090 + (temp_r3 * 4));
 			if (temp_r30 != NULL) {
@@ -332,7 +333,7 @@ void fn_8_B4B9C(void* arg0)
 				if (((M2C_FIELD(arg0, f32*, 0xC4) * sp1C)
 				        + ((M2C_FIELD(arg0, f32*, 0xBC) * sp14) + (temp_f31 * sp18)))
 				    > 0.0f) {
-					fn_800D5A64((u8*)arg0 + 0xBC, &sp14, &lbl_8_rodata_1C80, 0.05f);
+					fn_800D5A64((u8*)arg0 + 0xBC, &sp14, (s32*)lbl_8_rodata_1C80, 0.05f);
 					M2C_FIELD(arg0, f32*, 0xC0) = temp_f31;
 				} else {
 					M2C_FIELD(arg0, s32*, 0xDC) = 0;
@@ -355,9 +356,9 @@ void fn_8_B4B9C(void* arg0)
 	M2C_FIELD(arg0, f32*, 0xB8) = (f32)(M2C_FIELD(arg0, f32*, 0xB8) + temp_f1_3);
 	M2C_FIELD(arg0, f32*, 0xE8) = (f32)(M2C_FIELD(arg0, f32*, 0xE8) + 0.0f);
 	M2C_FIELD(arg0, f32*, 0xEC)
-	    = (f32)(M2C_FIELD(arg0, f32*, 0xEC) + M2C_FIELD(&lbl_8_rodata_1C64, f32*, 4));
+	    = (f32)(M2C_FIELD(arg0, f32*, 0xEC) + M2C_FIELD(lbl_8_rodata_1C64, f32*, 4));
 	M2C_FIELD(arg0, f32*, 0xF0)
-	    = (f32)(M2C_FIELD(arg0, f32*, 0xF0) + M2C_FIELD(&lbl_8_rodata_1C64, f32*, 8));
+	    = (f32)(M2C_FIELD(arg0, f32*, 0xF0) + M2C_FIELD(lbl_8_rodata_1C64, f32*, 8));
 }
 
 void fn_8_B4DA4(void* arg0)
@@ -1058,7 +1059,7 @@ s32 fn_8_B5E88(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD4);
 			sp14 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp18 = M2C_FIELD(arg0, f32*, 0xDC);
-			fn_80100D24(&sp8, &lbl_8_rodata_1CA4, NULL);
+			fn_80100D24(&sp8, lbl_8_rodata_1CA4, NULL);
 		}
 	}
 	return var_r31;
@@ -1169,7 +1170,7 @@ s32 fn_8_B6058(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD4);
 			sp14 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp18 = M2C_FIELD(arg0, f32*, 0xDC);
-			fn_80100D24(&sp8, &lbl_8_rodata_1CA4, (void*)4);
+			fn_80100D24(&sp8, lbl_8_rodata_1CA4, (void*)4);
 		}
 	}
 	return var_r31;
