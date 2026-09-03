@@ -1909,9 +1909,9 @@ void fn_8_B934C(void* arg0)
 
 void fn_8_B93A4(void* arg0)
 {
-	sAngle sp8;
-	sAngle sp14;
 	RwV3d sp20;
+	sAngle sp14;
+	sAngle sp8;
 	s32 temp_cr0_eq;
 
 	M2C_FIELD(arg0, s32*, 0x188) = (s32)(M2C_FIELD(arg0, s32*, 0x188) | 0x200);
@@ -3200,10 +3200,10 @@ void fn_8_BBAD0(void* arg0, u32 arg1, s32 arg2)
 
 void fn_8_BBF90(TObject* arg0)
 {
-	RwV3d sp8;
-	RwV3d sp14;
-	RwV3d sp20;
 	RwV3d sp2C;
+	RwV3d sp20;
+	RwV3d sp14;
+	RwV3d sp8;
 	M2C_UNK* temp_r3;
 	M2C_UNK* temp_r3_2;
 	M2C_UNK* temp_r3_3;
