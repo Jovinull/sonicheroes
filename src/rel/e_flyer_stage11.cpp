@@ -18,6 +18,59 @@ public:
 	virtual void Release(s32, s32);
 };
 
+/* The renderer class keeps its vtable pointer at object offset 0x18, which is
+ * what a polymorphic class derived from a 0x18-byte non-polymorphic base
+ * looks like: the base's data is laid out first and `this` is not adjusted,
+ * exactly as retail's `lwz r12, 0x18(r3)` reads it. Slot numbers are the
+ * retail vtable offsets divided by four, and the two implicit deleting
+ * destructor slots occupy 0 and 1, so a method at slot k needs k - 2
+ * placeholders ahead of it. */
+class TRendererBase
+{
+public:
+	u8 pad0[0x18];
+};
+
+class TRenderer : public TRendererBase
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3();
+	virtual void vslot4();
+	virtual void vslot5();
+	virtual void vslot6();
+	virtual void vslot7();
+	virtual void vslot8();
+	virtual void vslot9();
+	virtual void vslot10();
+	virtual void vslot11();
+	virtual void vslot12();
+	virtual void vslot13();
+	virtual void Slot38();
+	virtual void Slot3C();
+	virtual void Slot40();
+	virtual void vslot17();
+	virtual void vslot18();
+	virtual void vslot19();
+	virtual void Slot50(s32, s32);
+	virtual void vslot21();
+	virtual void vslot22();
+	virtual void vslot23();
+	virtual void vslot24();
+	virtual void vslot25();
+	virtual void vslot26();
+	virtual void vslot27();
+	virtual void vslot28();
+	virtual void vslot29();
+	virtual void vslot30();
+	virtual void Slot7C();
+	virtual void vslot32();
+	virtual void vslot33();
+	virtual void Slot88(void*);
+	virtual void vslot35();
+	virtual s32 Slot90();
+};
+
 extern "C" {
 
 void* __ct__10HAnimClassFv(void* self);                                          /* extern */
@@ -662,7 +715,7 @@ void fn_8_A325C(void* arg0)
 		temp_r3                        = M2C_FIELD(arg0, void**, 0xB0);
 		M2C_FIELD(temp_r3, s32*, 0x18) = (s32)(M2C_FIELD(temp_r3, s32*, 0x18) | 0x01000000);
 	}
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*), 0x7C)(arg0);
+	((TRenderer*)arg0)->Slot7C();
 	temp_r0 = M2C_FIELD(lbl_8042C180, u8*, 0x24);
 	if ((((s8)temp_r0 == 4) || ((s8)temp_r0 == 8))
 	    && (((s32)M2C_FIELD(&lbl_8029C310, s32*, 0x2C) == 4)
@@ -673,7 +726,7 @@ void fn_8_A325C(void* arg0)
 		M2C_FIELD(temp_r3_3, s32*, 0x18) = (s32)(M2C_FIELD(temp_r3_3, s32*, 0x18) | 0x200);
 	}
 	fn_8005BC04((u8*)arg0 + 0xB0);
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*), 0x40)(arg0);
+	((TRenderer*)arg0)->Slot40();
 	temp_r0_2 = M2C_FIELD(arg0, s32*, 0x230);
 	if (temp_r0_2 != -1) {
 		temp_r3_4 = lbl_802AD070[temp_r0_2];
@@ -684,8 +737,7 @@ void fn_8_A325C(void* arg0)
 				fn_8011CB64((u8*)arg0 + 0x140,
 				    (s8)M2C_FIELD(
 				        ((u8*)temp_r30 + (s8)M2C_FIELD(temp_r30, u8*, 0x3A)), u8*, 0x110));
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*, void*), 0x88)(
-				    arg0, (u8*)arg0 + 0x140);
+				((TRenderer*)arg0)->Slot88((u8*)arg0 + 0x140);
 			}
 		}
 	}
@@ -885,7 +937,7 @@ void fn_8_A38F8(void* arg0)
 
 void fn_8_A39C8(void* arg0)
 {
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x90)();
+	((TRenderer*)arg0)->Slot90();
 	fn_80113874();
 	fn_80113940();
 	fn_801138B4();
@@ -896,7 +948,7 @@ void fn_8_A39C8(void* arg0)
 
 void fn_8_A3A20(void* arg0)
 {
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x90)();
+	((TRenderer*)arg0)->Slot90();
 	fn_80113874();
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 	if (((s32)M2C_FIELD(arg0, s32*, 0x2E4) != 0) && ((u32)M2C_FIELD(arg0, u32*, 0x2A0) != 0U)) {
@@ -1034,13 +1086,12 @@ void fn_8_A3C88(M2C_UNK* arg0)
 		fn_8019EE04(M2C_FIELD(temp_r3, s32*, 4));
 	}
 	fn_800A5B34(arg0);
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(M2C_UNK*), 0x38)(arg0);
+	((TRenderer*)arg0)->Slot38();
 	temp_r3_2 = M2C_FIELD(arg0, void***, 0x240);
 	if (temp_r3_2 != NULL) {
 		M2C_FIELD(*temp_r3_2, M2C_UNK(**)(M2C_UNK*), 0xC)(arg0);
 	}
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(M2C_UNK*, s32, M2C_UNK), 0x50)(
-	    arg0, M2C_FIELD(arg0, s32*, 0x19C), 1);
+	((TRenderer*)arg0)->Slot50(M2C_FIELD(arg0, s32*, 0x19C), 1);
 	fn_8_A549C(arg0);
 	fn_800A3D48(arg0);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x280) != 0U) {
@@ -1176,7 +1227,7 @@ void fn_8_A4140(void* arg0, s32 arg1)
 				sp6C = M2C_FIELD(arg0, s32*, 0x230);
 				fn_80100D24(&sp8, 0);
 			}
-			M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*), 0x3C)(arg0);
+			((TRenderer*)arg0)->Slot3C();
 			return;
 		case 1:
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
@@ -1188,11 +1239,14 @@ void fn_8_A4230(void* arg0, s32 arg1)
 {
 	switch (arg1) { /* irregular */
 		case 0:
-			M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x3C)();
-			return;
+			((TRenderer*)arg0)->Slot3C();
+			break;
 		case 1:
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
-			return;
+			break;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1365,7 +1419,7 @@ void fn_8_A44D4(M2C_UNK* arg0, s32 arg1, s32 arg2)
 		case 36:            /* switch 1 */
 			switch (arg2) { /* switch 5; irregular */
 				case 0:     /* switch 5 */
-					M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x3C)();
+					((TRenderer*)arg0)->Slot3C();
 					return;
 				case 1: /* switch 5 */
 					M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
@@ -1394,7 +1448,7 @@ void fn_8_A44D4(M2C_UNK* arg0, s32 arg1, s32 arg2)
 						sp6C = M2C_FIELD(arg0, s32*, 0x230);
 						fn_80100D24(&sp8, 0);
 					}
-					M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(M2C_UNK*), 0x3C)(arg0);
+					((TRenderer*)arg0)->Slot3C();
 					return;
 				case 1: /* switch 6 */
 					M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
@@ -1697,7 +1751,7 @@ void fn_8_A4E44(M2C_UNK* arg0)
 			spA0 = M2C_FIELD(arg0, f32*, 0x2F8);
 			spA4 = M2C_FIELD(arg0, f32*, 0x2FC);
 			spA8 = M2C_FIELD(arg0, f32*, 0x300);
-			spC4 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), s32(**)(M2C_UNK*), 0x90)(arg0);
+			spC4 = ((TRenderer*)arg0)->Slot90();
 			fn_8_A9C6C(&sp88);
 			M2C_FIELD(arg0, s32*, 0x2E4) = 0;
 			if ((u32)lbl_8042C388 != 0U) {
@@ -1732,7 +1786,7 @@ void fn_8_A4E44(M2C_UNK* arg0)
 			sp68 = M2C_FIELD(arg0, f32*, 0x2EC);
 			sp6C = M2C_FIELD(arg0, f32*, 0x2F0);
 			sp70 = M2C_FIELD(arg0, f32*, 0x2F4);
-			sp84 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), s32(**)(M2C_UNK*), 0x90)(arg0);
+			sp84 = ((TRenderer*)arg0)->Slot90();
 			fn_8_A8B60(&sp5C);
 			M2C_FIELD(arg0, s32*, 0x2E4) = 0;
 			return;
@@ -2176,7 +2230,7 @@ void* fn_8_A5E08(void* arg0, s16 arg1)
 	return arg0;
 }
 
-M2C_UNK* fn_8_A5F50(M2C_UNK* arg0)
+M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 {
 	s32 sp8;
 	s32 spC, sp10, sp14, sp18, sp1C, sp20, sp24, sp28;
@@ -2414,7 +2468,7 @@ M2C_UNK* fn_8_A66D4(void)
 
 	var_r0 = fn_80018A34(lbl_8042C148, 0x3C4);
 	if (var_r0 != NULL) {
-		var_r0 = fn_8_A5F50(lbl_8042C10C);
+		var_r0 = fn_8_A5F50(var_r0, lbl_8042C10C);
 	}
 	return var_r0;
 }
@@ -2564,8 +2618,11 @@ void flyerObjectLoad(void)
 
 void flyerObjectCreate(void)
 {
-	if (fn_80018A34(lbl_8042C148, 0x3C4) != NULL) {
-		fn_8_A5F50(lbl_8042C10C);
+	M2C_UNK* temp_r3;
+
+	temp_r3 = fn_80018A34(lbl_8042C148, 0x3C4);
+	if (temp_r3 != NULL) {
+		fn_8_A5F50(temp_r3, lbl_8042C10C);
 	}
 }
 

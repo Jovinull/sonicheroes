@@ -862,7 +862,7 @@ void* fn_8_B3CC4(void* arg0, s16 arg1)
 	return arg0;
 }
 
-TObject* fn_8_B3E0C(TObject* arg0)
+TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 {
 	f32 sp30;
 	f32 sp2C;
@@ -1071,7 +1071,7 @@ TEnemyParalysis* fn_8_B4394(void)
 
 	var_r0 = fn_80018A34(lbl_8042C148, 0x320);
 	if (var_r0 != NULL) {
-		var_r0 = (TEnemyParalysis*)fn_8_B3E0C(lbl_8042C10C);
+		var_r0 = (TEnemyParalysis*)fn_8_B3E0C((TObject*)var_r0, lbl_8042C10C);
 	}
 	return var_r0;
 }
@@ -1255,8 +1255,11 @@ void rinolinerObjectLoad(void)
 
 void rinolinerObjectCreate(void)
 {
-	if (fn_80018A34(lbl_8042C148, 0x320) != NULL) {
-		fn_8_B3E0C(lbl_8042C10C);
+	TEnemyParalysis* temp_r3;
+
+	temp_r3 = fn_80018A34(lbl_8042C148, 0x320);
+	if (temp_r3 != NULL) {
+		fn_8_B3E0C((TObject*)temp_r3, lbl_8042C10C);
 	}
 }
 

@@ -82,7 +82,7 @@ void fn_8_AFB20(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			M2C_FIELD(arg0, s32*, 0x10) = 0x3A;
-			return;
+			break;
 		case 1:
 			if ((s32)M2C_FIELD(M2C_FIELD(arg0, void**, 0x14), s32*, 0x2D8) == 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -90,7 +90,10 @@ void fn_8_AFB20(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 4) = 3;
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
-			return;
+			break;
+		case 2:
+		case 3:
+			break;
 	}
 }
 

@@ -214,6 +214,59 @@ public:
 	virtual void Release(s32, s32);
 };
 
+/* The renderer class keeps its vtable pointer at object offset 0x18, which is
+ * what a polymorphic class derived from a 0x18-byte non-polymorphic base
+ * looks like: the base's data is laid out first and `this` is not adjusted,
+ * exactly as retail's `lwz r12, 0x18(r3)` reads it. Slot numbers are the
+ * retail vtable offsets divided by four, and the two implicit deleting
+ * destructor slots occupy 0 and 1, so a method at slot k needs k - 2
+ * placeholders ahead of it. */
+class TRendererBase
+{
+public:
+	u8 pad0[0x18];
+};
+
+class TRenderer : public TRendererBase
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3();
+	virtual void vslot4();
+	virtual void vslot5();
+	virtual void vslot6();
+	virtual void vslot7();
+	virtual void vslot8();
+	virtual void vslot9();
+	virtual void vslot10();
+	virtual void vslot11();
+	virtual void vslot12();
+	virtual void vslot13();
+	virtual void Slot38();
+	virtual void Slot3C();
+	virtual void Slot40();
+	virtual void vslot17();
+	virtual void vslot18();
+	virtual void vslot19();
+	virtual void Slot50(s32, s32);
+	virtual void vslot21();
+	virtual void vslot22();
+	virtual void vslot23();
+	virtual void vslot24();
+	virtual void vslot25();
+	virtual void vslot26();
+	virtual void vslot27();
+	virtual void vslot28();
+	virtual void vslot29();
+	virtual void vslot30();
+	virtual void Slot7C();
+	virtual void vslot32();
+	virtual void vslot33();
+	virtual void Slot88(void*);
+	virtual void vslot35();
+	virtual s32 Slot90();
+};
+
 extern "C" {
 void Debug__7TObjectFv(void);
 void Error__7TObjectFPc(void);
@@ -1730,7 +1783,7 @@ void fn_8_BF9A4(void) { }
 
 void fn_8_BF9A8(void* arg0)
 {
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x90)();
+	((TRenderer*)arg0)->Slot90();
 	fn_80113874();
 	fn_8011398C(turtleObjectGlobalA, M2C_FIELD(arg0, s32*, 0x310));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
@@ -2157,7 +2210,7 @@ void fn_8_C0690(void* arg0, s32 arg1)
 {
 	switch (arg1) { /* irregular */
 		case 0:
-			M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x3C)();
+			((TRenderer*)arg0)->Slot3C();
 			break;
 		case 1:
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
@@ -2505,7 +2558,7 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 		case 29:            /* switch 1 */
 			switch (arg2) { /* switch 6; irregular */
 				case 0:     /* switch 6 */
-					M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(), 0x3C)();
+					((TRenderer*)arg0)->Slot3C();
 					return;
 				case 1: /* switch 6 */
 					M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);

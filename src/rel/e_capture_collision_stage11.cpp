@@ -21,6 +21,7 @@ typedef struct TObject {
 	/* 0x44 */ s32 unk44;   /* inferred */
 } TObject;                  /* size >= 0x48 */
 
+extern "C" {
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                        /* extern */
@@ -31,6 +32,7 @@ s32 fn_8005B9F0(s32);                                         /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
 M2C_UNK fn_800A31B8(s32);                                     /* extern */
 M2C_UNK fn_8_9CAF0(s32);                                      /* extern */
+}
 extern TObject* lbl_8042C10C;
 extern s32 lbl_8042C148;
 extern f32 lbl_8_rodata_1704;

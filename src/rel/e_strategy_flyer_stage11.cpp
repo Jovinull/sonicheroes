@@ -89,6 +89,7 @@ struct _struct_lbl_8_rodata_17F4_0xC {
 	/* 0x8 */ f32 unk8; /* inferred */
 }; /* size = 0xC */
 
+extern "C" {
 void* __ct__10HAnimClassFv(void* self);                                   /* extern */
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);             /* extern */
 M2C_UNK __dl__FPv(void* arg0);                                            /* extern */
@@ -175,6 +176,7 @@ M2C_UNK fn_8_D06B8(u32);                                                  /* ext
 M2C_UNK fn_8_D07F4(u32);                                                  /* extern */
 s32 fn_8_D2190();                                                         /* extern */
 M2C_UNK fn_8_D8E90(M2C_UNK, M2C_UNK, M2C_UNK);                            /* extern */
+}
 extern M2C_UNK fn_8005BF88;
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_8029BBD0;
@@ -254,6 +256,59 @@ public:
 	virtual void vslot2();
 	virtual void vslot3();
 	virtual void Release(s32, s32);
+};
+
+/* The renderer class keeps its vtable pointer at object offset 0x18, which is
+ * what a polymorphic class derived from a 0x18-byte non-polymorphic base
+ * looks like: the base's data is laid out first and `this` is not adjusted,
+ * exactly as retail's `lwz r12, 0x18(r3)` reads it. Slot numbers are the
+ * retail vtable offsets divided by four, and the two implicit deleting
+ * destructor slots occupy 0 and 1, so a method at slot k needs k - 2
+ * placeholders ahead of it. */
+class TRendererBase
+{
+public:
+	u8 pad0[0x18];
+};
+
+class TRenderer : public TRendererBase
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3();
+	virtual void vslot4();
+	virtual void vslot5();
+	virtual void vslot6();
+	virtual void vslot7();
+	virtual void vslot8();
+	virtual void vslot9();
+	virtual void vslot10();
+	virtual void vslot11();
+	virtual void vslot12();
+	virtual void vslot13();
+	virtual void Slot38();
+	virtual void Slot3C();
+	virtual void Slot40();
+	virtual void vslot17();
+	virtual void vslot18();
+	virtual void vslot19();
+	virtual void Slot50(s32, s32);
+	virtual void vslot21();
+	virtual void vslot22();
+	virtual void vslot23();
+	virtual void vslot24();
+	virtual void vslot25();
+	virtual void vslot26();
+	virtual void vslot27();
+	virtual void vslot28();
+	virtual void vslot29();
+	virtual void vslot30();
+	virtual void Slot7C();
+	virtual void vslot32();
+	virtual void vslot33();
+	virtual void Slot88(void*);
+	virtual void vslot35();
+	virtual s32 Slot90();
 };
 
 extern "C" {
@@ -1436,8 +1491,7 @@ void fn_8_9FA94(void* arg0, M2C_UNK arg_sp0)
 	if (temp_r3 != NULL) {
 		M2C_FIELD(*temp_r3, M2C_UNK(**)(void*), 0xC)(arg0);
 	}
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x18), M2C_UNK(**)(void*, s32, M2C_UNK), 0x50)(
-	    arg0, M2C_FIELD(arg0, s32*, 0x19C), 1);
+	((TRenderer*)arg0)->Slot50(M2C_FIELD(arg0, s32*, 0x19C), 1);
 	temp_r3_2 = M2C_FIELD(arg0, void**, 0xE8);
 	if (temp_r3_2 != NULL) {
 		temp_r31 = M2C_FIELD(temp_r3_2, s32*, 4);
@@ -1568,14 +1622,17 @@ void fn_8_9FF78(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			fn_8005BC04((u8*)arg0 + 0xB0);
-			return;
+			break;
 		case 1:
 			if ((s8)M2C_FIELD(lbl_8042C180, u8*, 0x20) == 0) {
 				fn_80019898(&lbl_8029C310, 0);
 				M2C_FIELD(&lbl_8029C310, s32*, 0x290) = 0;
 				M2C_FIELD(arg0, u16*, 4)              = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			}
-			return;
+			break;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
