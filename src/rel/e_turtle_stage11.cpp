@@ -2425,9 +2425,8 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 					return;
 				case 1: /* switch 2 */
 					if ((s32)M2C_FIELD(arg0, s32*, 0x2E8) == 0) {
-						M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
 						if (M2C_FIELD(M2C_FIELD(arg0, void**, 0x250), f32*, 0)
-						    == lbl_8_rodata_1E6C[0]) {
+						    >= lbl_8_rodata_1E6C[0]) {
 							M2C_FIELD(arg0, s32*, 0x2E8) = 1;
 							if ((u32)lbl_8042C388 != 0U) {
 								fn_800B4A38(
