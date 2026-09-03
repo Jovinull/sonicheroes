@@ -5,6 +5,19 @@ typedef struct HAnimClass HAnimClass;
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
 #define M2C_ERROR(...)
 
+/* Dispatch view of the object's vtable. The handler at vtable offset 0x10 is
+ * reached through genuine virtual dispatch in retail: the target loads the
+ * vtable through the already-materialised `this` in r3 and keeps the slot in
+ * r12, which manual vtable indexing does not reproduce. Two implicit
+ * destructor slots plus the two placeholders below put Release at slot 4. */
+class TObjectDispatch
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3();
+	virtual void Release(s32, s32);
+};
+
 extern "C" {
 
 void* __ct__10HAnimClassFv(void* self);                                          /* extern */
@@ -236,11 +249,9 @@ void fn_8_A25CC(void* arg0, s32 arg1)
 			fn_80137FE8((u8*)arg0 + 0x18);
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 1;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
 	}
@@ -270,11 +281,9 @@ void fn_8_A26B0(void* arg0, s32 arg1)
 			fn_80137FE8((u8*)arg0 + 0x18);
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 2;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
 	}
@@ -291,11 +300,9 @@ void fn_8_A2768(void* arg0, s32 arg1)
 			fn_80137FE8((u8*)arg0 + 0x18);
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 1;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
 	}
@@ -331,22 +338,18 @@ void fn_8_A2840(void* arg0, s32 arg1)
 				temp_r0 = M2C_FIELD(arg0, s32*, 0x1C);
 				if ((temp_r0 < 4) && (fn_80100C88(*(&lbl_8_rodata_18AC + temp_r0)) == 1)) {
 					M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-					M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-					    arg0, M2C_FIELD(arg0, s32*, 4), 3);
+					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 					M2C_FIELD(arg0, s32*, 4) = 6;
-					M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-					    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 					return;
 				}
 			}
 			fn_80137FE8((u8*)arg0 + 0x18);
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 3;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
 	}
@@ -372,8 +375,7 @@ void fn_8_A2A00(void* arg0, u32 arg1)
 		M2C_FIELD(arg0, s32*, 0xC)  = 5;
 		M2C_FIELD(arg0, s32*, 0x10) = 0;
 		M2C_FIELD(arg0, s32*, 4)    = 5;
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-		    M2C_FIELD(arg0, s32*, 4), 0);
+		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 		if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
 			fn_800A31B8(M2C_FIELD(arg0, u32*, 0x14));
 		}
@@ -387,8 +389,7 @@ void fn_8_A2A78(void* arg0, u32 arg1)
 		M2C_FIELD(arg0, s32*, 0xC)  = 4;
 		M2C_FIELD(arg0, s32*, 0x10) = 0;
 		M2C_FIELD(arg0, s32*, 4)    = 4;
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-		    M2C_FIELD(arg0, s32*, 4), 0);
+		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 		if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
 			fn_800A31B8(M2C_FIELD(arg0, u32*, 0x14));
 		}
@@ -406,56 +407,44 @@ s32 fn_8_A2AF0(void* arg0)
 		switch (temp_r0) { /* irregular */
 			case 0x42:
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-				    M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 2;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 				var_r4 = 1;
 				break;
 			case 0x43:
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-				    M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 3;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 				var_r4 = 1;
 				break;
 			case 0x2:
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-				    M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 1;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 				var_r4 = 1;
 				break;
 			case 0x44:
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-				    M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 5;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 				var_r4 = 1;
 				break;
 			case 0x1D:
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-				    M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 7;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 				var_r4 = 1;
 				break;
 			case 0x5C:
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(s32, M2C_UNK), 0x10)(
-				    M2C_FIELD(arg0, s32*, 4), 3);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 8;
-				M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK), 0x10)(
-				    arg0, M2C_FIELD(arg0, s32*, 4), 0);
+				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 				var_r4 = 1;
 				break;
 		}
