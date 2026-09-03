@@ -2700,7 +2700,7 @@ void fn_8_BAF00(TObject* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4) = 2;
 			temp_r0                     = arg0->unk270;
 			if (temp_r0 != -1) {
-				temp_r3 = (void*)(u32) * (&lbl_802AD090 + (temp_r0 * 4));
+				temp_r3 = (void*)(u32) * (&lbl_802AD090 + temp_r0);
 				if (temp_r3 != NULL) {
 					arg0->unk1CC = M2C_FIELD(temp_r3, f32*, 0x18);
 					arg0->unk1D0 = M2C_FIELD(temp_r3, f32*, 0x1C);
@@ -2874,8 +2874,8 @@ void fn_8_BB5E4(TObject* arg0, s32 arg1)
 
 	switch (arg1) { /* irregular */
 		case 0:
-			arg0->unk274 = 0;
-			arg0->unkD4  = 1;
+			arg0->unk274                = 0;
+			M2C_FIELD(arg0, s32*, 0xD4) = 1;
 			return;
 		case 1:
 			if ((s32)arg0->unk294 != 0) {
@@ -2883,7 +2883,7 @@ void fn_8_BB5E4(TObject* arg0, s32 arg1)
 				    = fn_80103324((u8*)arg0 + 0x140, &lbl_8_rodata_1DD0, lbl_8_rodata_1DD0);
 				temp_r0 = arg0->unk270;
 				if (temp_r0 != -1) {
-					temp_r3 = (void*)(u32) * (&lbl_802AD090 + (temp_r0 * 4));
+					temp_r3 = (void*)(u32) * (&lbl_802AD090 + temp_r0);
 					if (temp_r3 != NULL) {
 						arg0->unk1CC = M2C_FIELD(temp_r3, f32*, 0x18);
 						arg0->unk1D0 = M2C_FIELD(temp_r3, f32*, 0x1C);
