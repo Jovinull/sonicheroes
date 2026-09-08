@@ -618,7 +618,6 @@ void fn_8_CC670(void* arg0)
 	temp_f1 = (f32)temp_r0 - (temp_f3 * (f32)(s32)((f32)temp_r0 / temp_f3));
 	var_r0  = 0;
 	if (temp_f1 < temp_f3) {
-		M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
 		if (temp_f3 <= (lbl_8_rodata_1FF4 + temp_f1)) {
 			var_r0 = 1;
 		}
@@ -912,7 +911,6 @@ void fn_8_CCDE4(s32 arg0)
 		temp_f1   = (f32)temp_r0_5 - (temp_f3 * (f32)(s32)((f32)temp_r0_5 / temp_f3));
 		var_r0    = 0;
 		if (temp_f1 < temp_f3) {
-			M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
 			if (temp_f3 <= (lbl_8_rodata_1FF4 + temp_f1)) {
 				var_r0 = 1;
 			}

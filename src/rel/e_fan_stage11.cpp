@@ -13,13 +13,12 @@ typedef struct TObject {
 	/* 0x1E */ s16 unk1E;     /* inferred */
 	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
 	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x28 */ char pad28[4];
-	/* 0x2C */ void* unk2C; /* inferred */
-	/* 0x30 */ f32 unk30;   /* inferred */
-	/* 0x34 */ f32 unk34;   /* inferred */
-	/* 0x38 */ f32 unk38;   /* inferred */
-	/* 0x3C */ void* unk3C; /* inferred */
-} TObject;                  /* size >= 0x40 */
+	/* 0x2C */ void* unk2C;   /* inferred */
+	/* 0x30 */ f32 unk30;     /* inferred */
+	/* 0x34 */ f32 unk34;     /* inferred */
+	/* 0x38 */ f32 unk38;     /* inferred */
+	/* 0x3C */ void* unk3C;   /* inferred */
+} TObject;                    /* size >= 0x40 */
 
 extern "C" {
 
@@ -44,7 +43,7 @@ M2C_UNK fn_8015BBF8(s32, void*);                       /* extern */
 M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32); /* extern */
 M2C_UNK fn_8019E880(s32);                              /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);               /* extern */
-M2C_UNK fn_801A4C84();                                 /* extern */
+M2C_UNK fn_801A4C84(u32);                              /* extern */
 M2C_UNK fn_8_C33D0(s32);                               /* extern */
 void s12fanObjectCreate();                             /* static */
 void s12fanObjectLoad();                               /* static */
@@ -141,7 +140,7 @@ TObject* fn_8_C3A98(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_1823C;
-		arg0->unk2C = &lbl_8_data_1823C + 0x2C;
+		arg0->unk2C = (u8*)&lbl_8_data_1823C + 0x2C;
 		if ((void*)arg0->unk3C != NULL) {
 			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0x3C));
 			fn_80150958(arg0->unk3C);
@@ -166,7 +165,7 @@ TObject* fn_8_C3B54(TObject* arg0, TObject* arg1)
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	fn_8005BE6C(&arg0->unk28);
 	arg0->unk18 = &lbl_8_data_1823C;
-	arg0->unk2C = &lbl_8_data_1823C + 0x2C;
+	arg0->unk2C = (u8*)&lbl_8_data_1823C + 0x2C;
 	arg0->unk0  = lbl_8_data_18238;
 	arg0->unk1E = 0x40;
 	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
@@ -201,11 +200,13 @@ void s12fanObjectUnload(void)
 void s12fanObjectLoad(void)
 {
 	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84();
-		fn_800BC9F4(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
-		lbl_8_bss_1C10 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
-		    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_8_data_18274), &lbl_802FF5A0);
+		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
+	} else {
+		return;
 	}
+	fn_800BC9F4(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
+	lbl_8_bss_1C10 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
+	    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_8_data_18274), &lbl_802FF5A0);
 }
 
 void s12fanObjectCreate(void)
@@ -221,7 +222,7 @@ void s12fanObjectCreate(void)
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		fn_8005BE6C(&temp_r3->unk28);
 		temp_r3->unk18 = &lbl_8_data_1823C;
-		temp_r3->unk2C = &lbl_8_data_1823C + 0x2C;
+		temp_r3->unk2C = (u8*)&lbl_8_data_1823C + 0x2C;
 		temp_r3->unk0  = lbl_8_data_18238;
 		temp_r3->unk1E = 0x40;
 		temp_r3_2      = M2C_FIELD(temp_r3, void**, 0x28);

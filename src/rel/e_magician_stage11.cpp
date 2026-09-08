@@ -14,10 +14,9 @@ typedef struct TEnemyParalysis {
 	/* 0x004 */ char pad4[0x14]; /* maybe part of unk0[6]? */
 	/* 0x018 */ M2C_UNK* unk18;  /* inferred */
 	/* 0x01C */ char pad1C[2];
-	/* 0x01E */ s16 unk1E;     /* inferred */
-	/* 0x020 */ char pad20[8]; /* maybe part of unk1E[5]? */
-	/* 0x028 */ M2C_UNK unk28; /* inferred */
-	/* 0x028 */ char pad28[4];
+	/* 0x01E */ s16 unk1E;         /* inferred */
+	/* 0x020 */ char pad20[8];     /* maybe part of unk1E[5]? */
+	/* 0x028 */ M2C_UNK unk28;     /* inferred */
 	/* 0x02C */ s16 unk2C;         /* inferred */
 	/* 0x02E */ s16 unk2E;         /* inferred */
 	/* 0x030 */ char pad30[0x58];  /* maybe part of unk2E[0x2D]? */
@@ -144,12 +143,20 @@ typedef struct TEnemyParalysis {
  * vtable through the already-materialised `this` in r3 and keeps the slot in
  * r12, which manual vtable indexing does not reproduce. Two implicit
  * destructor slots plus the two placeholders below put Release at slot 4. */
+class TSubDispatch
+{
+public:
+	virtual void vslot2(M2C_UNK);
+	virtual void vslot3(void*);
+};
+
 class TObjectDispatch
 {
 public:
 	virtual void vslot2();
 	virtual void vslot3();
 	virtual void Release(s32, s32);
+	virtual s32 vslot5();
 };
 
 extern "C" {
@@ -160,20 +167,20 @@ void* __ct__10HAnimClassFv(void*);                                              
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
     void*, void*, void*);                                               /* extern */
 void* __dt__10HAnimClassFv(void*, s32);                                 /* extern */
-M2C_UNK fn_800189A4(...);                                               /* extern */
-TEnemyParalysis* fn_80018A34(...);                                      /* extern */
+M2C_UNK fn_800189A4(s32, void*);                                        /* extern */
+TEnemyParalysis* fn_80018A34(M2C_UNK, M2C_UNK);                         /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);              /* extern */
-u32 fn_80057644(...);                                                   /* extern */
+u32 fn_80057644(M2C_UNK);                                               /* extern */
 s32 fn_8005B8D8(void*);                                                 /* extern */
-M2C_UNK fn_8005BF5C(...);                                               /* extern */
+M2C_UNK fn_8005BF5C(u32, unsigned int[17]);                             /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                        /* extern */
 s32 fn_8005D9A0(void*, M2C_UNK);                                        /* extern */
 M2C_UNK fn_8005D9F4(void*);                                             /* extern */
-M2C_UNK fn_8005E00C(...);                                               /* extern */
+M2C_UNK fn_8005E00C(u32, M2C_UNK);                                      /* extern */
 s32 fn_8005EA04(void*);                                                 /* extern */
-M2C_UNK fn_8005FD8C(M2C_UNK);                                           /* extern */
-void* fn_8006298C(...);                                                 /* extern */
-M2C_UNK fn_800A31B8(...);                                               /* extern */
+M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                    /* extern */
+void* fn_8006298C(s32, f32*, s32*);                                     /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                        /* extern */
 M2C_UNK fn_800A4668(void*);                                             /* extern */
 M2C_UNK fn_800A4A8C(TObject*, f32);                                     /* extern */
 s32 fn_800A5888(void*, void*, f32);                                     /* extern */
@@ -182,12 +189,12 @@ f32 fn_800A5AC0(...);                                                   /* exter
 M2C_UNK fn_800A5B50(void*, s32);                                        /* extern */
 M2C_UNK fn_800A5C6C(void*, s32);                                        /* extern */
 M2C_UNK fn_800A7088(void*, M2C_UNK);                                    /* extern */
-M2C_UNK fn_800A714C(...);                                               /* extern */
+M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                             /* extern */
 s32 fn_800D7A94(s32, s32, s32);                                         /* extern */
 f32 fn_800D7B00(s32);                                                   /* extern */
 f32 fn_800D8BC4(void*, void*, s32);                                     /* extern */
-M2C_UNK fn_800E1208(s32, ...);                                          /* extern */
-u32 fn_800FD8A0(...);                                                   /* extern */
+M2C_UNK fn_800E1208(s32, s32);                                          /* extern */
+u32 fn_800FD8A0(TEnemyParalysis*, s32);                                 /* extern */
 M2C_UNK fn_800FE248(s32, void*);                                        /* extern */
 M2C_UNK fn_800FE274(s32, void*);                                        /* extern */
 u32 fn_80100280(s32, s32, s32);                                         /* extern */
@@ -197,21 +204,21 @@ M2C_UNK fn_801007F4(s32, s32);                                          /* exter
 M2C_UNK fn_8010096C(s32, s32, void*);                                   /* extern */
 M2C_UNK fn_80100AAC(void);                                              /* extern */
 s32 fn_80103324(void*, void*, f32);                                     /* extern */
-M2C_UNK fn_8010AFE4();                                                  /* extern */
+M2C_UNK fn_8010AFE4(void*);                                             /* extern */
 s32 fn_8010B708(s32);                                                   /* extern */
-void* fn_80150588(...);                                                 /* extern */
-M2C_UNK fn_80150958();                                                  /* extern */
-M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, ...);            /* extern */
+void* fn_80150588(M2C_UNK);                                             /* extern */
+M2C_UNK fn_80150958(void*);                                             /* extern */
+M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, s32);            /* extern */
 M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                          /* extern */
 void fn_801990E0(void* dst, void* src);                                 /* extern */
 M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                     /* extern */
-void* fn_8019E8EC(...);                                                 /* extern */
-M2C_UNK fn_8019EB94(...);                                               /* extern */
-M2C_UNK fn_8019EC30(...);                                               /* extern */
+void* fn_8019E8EC(void*);                                               /* extern */
+M2C_UNK fn_8019EB94(void*, u8*, s32);                                   /* extern */
+M2C_UNK fn_8019EC30(void*, u8*, s32);                                   /* extern */
 M2C_UNK fn_8019ED68(...);                                               /* extern */
 s32 fn_801C28D8(...);                                                   /* extern */
-M2C_UNK fn_8_B0300(...);                                                /* extern */
-u32 fn_8_B08F0(...);                                                    /* extern */
+M2C_UNK fn_8_B0300(TEnemyParalysis*);                                   /* extern */
+u32 fn_8_B08F0();                                                       /* extern */
 void fn_8_AE604(TEnemyParalysis* arg0);                                 /* static */
 void fn_8_AEB80(TEnemyParalysis* arg0);                                 /* static */
 void fn_8_AEE04(TEnemyParalysis* arg0);                                 /* static */
@@ -301,11 +308,11 @@ static M2C_UNK gap_04_00016D7F_data; /* unable to generate initializer: unknown 
 static u32 lbl_8_bss_19D4[0x11];
 static s32 lbl_8_bss_1A18;
 static M2C_UNK magicianObjectEntry;
-static f32 lbl_8_rodata_1B70[9]
-    = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f }; /* const */
-static M2C_UNK lbl_8_rodata_1B94; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1BA0; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1BAC; /* unable to generate initializer: unknown type; const */
+extern const f32 lbl_8_rodata_1B70[9]
+    = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_1B94[3] = { 0.0f, 5.0f, 0.0f };
+extern const f32 lbl_8_rodata_1BA0[3] = { 0.0f, 0.0f, 1.0f };
+extern const f32 lbl_8_rodata_1BAC[3] = { 0.0f, 0.0f, 1.0f };
 static M2C_UNK lbl_8_rodata_1BB8; /* unable to generate initializer: unknown type; const */
 static M2C_UNK lbl_8_rodata_1BC4; /* unable to generate initializer: unknown type; const */
 static M2C_UNK lbl_8_rodata_1BD0; /* unable to generate initializer: unknown type; const */
@@ -486,6 +493,8 @@ void fn_8_ACE24(void* arg0, s32 arg1)
 				        + temp_f31 + M2C_FIELD(arg0, f32*, 0x1C4));
 			}
 			return;
+		case 4:
+			break;
 	}
 }
 
@@ -532,6 +541,8 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 				        + temp_f31 + M2C_FIELD(arg0, f32*, 0x1C4));
 			}
 			return;
+		case 4:
+			break;
 	}
 }
 
@@ -683,6 +694,8 @@ void fn_8_AD670(void* arg0, s32 arg1)
 				        + temp_f31 + M2C_FIELD(arg0, f32*, 0x1C4));
 			}
 			return;
+		case 4:
+			break;
 	}
 }
 
@@ -822,14 +835,14 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 		arg0->unk280 = arg0->unk140;
 		arg0->unk288 = arg0->unk148;
 		if ((u32)arg0->unk2E0 != 0U) {
-			temp_r3_6    = fn_8019E8EC();
+			temp_r3_6    = fn_8019E8EC((void*)arg0->unk2E0);
 			arg0->unk28C = M2C_FIELD(temp_r3_6, f32*, 0x30);
 			arg0->unk290 = M2C_FIELD(temp_r3_6, f32*, 0x34);
 			arg0->unk294 = M2C_FIELD(temp_r3_6, f32*, 0x38);
 			arg0->unk290 = arg0->unk284;
 		}
 		if ((u32)arg0->unk2DC != 0U) {
-			temp_r3_7    = fn_8019E8EC();
+			temp_r3_7    = fn_8019E8EC((void*)arg0->unk2DC);
 			arg0->unk298 = M2C_FIELD(temp_r3_7, f32*, 0x30);
 			arg0->unk29C = M2C_FIELD(temp_r3_7, f32*, 0x34);
 			arg0->unk2A0 = M2C_FIELD(temp_r3_7, f32*, 0x38);
@@ -858,11 +871,11 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 void fn_8_AEAA8(void* arg0)
 {
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2FC) != 0U) {
-		fn_80150958();
+		fn_80150958((void*)M2C_FIELD(arg0, u32*, 0x2FC));
 		M2C_FIELD(arg0, u32*, 0x2FC) = 0U;
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0xE8) != 0U) {
-		fn_80150958();
+		fn_80150958((void*)M2C_FIELD(arg0, u32*, 0xE8));
 		M2C_FIELD(arg0, u32*, 0xE8) = 0U;
 	}
 }
@@ -870,11 +883,11 @@ void fn_8_AEAA8(void* arg0)
 void fn_8_AEB00(void* arg0)
 {
 	if ((void*)M2C_FIELD(arg0, void**, 0x2FC) != NULL) {
-		fn_80150958();
+		fn_80150958((void*)M2C_FIELD(arg0, void**, 0x2FC));
 		M2C_FIELD(arg0, void**, 0x2FC) = NULL;
 	}
 	if ((void*)M2C_FIELD(arg0, void**, 0xE8) != NULL) {
-		fn_80150958();
+		fn_80150958((void*)M2C_FIELD(arg0, void**, 0xE8));
 		M2C_FIELD(arg0, void**, 0xE8) = NULL;
 	}
 	M2C_FIELD(arg0, void**, 0xE8)  = fn_80150588(M2C_FIELD(&lbl_8_bss_19C8, s32*, 0));
@@ -1004,7 +1017,7 @@ void* fn_8_AEEE4(void* arg0, s16 arg1)
 
 	if (arg0 != NULL) {
 		M2C_FIELD(arg0, M2C_UNK**, 0x18) = &lbl_8_data_16A40;
-		M2C_FIELD(arg0, void**, 0xB4)    = (void*)(&lbl_8_data_16A40 + 0x2C);
+		M2C_FIELD(arg0, void**, 0xB4)    = (void*)((u8*)&lbl_8_data_16A40 + 0x2C);
 		if ((s32)M2C_FIELD(arg0, s32*, 0x2D0) != -1) {
 			fn_800E1208(0xF, 0);
 			M2C_FIELD(arg0, s32*, 0x2D0) = -1;
@@ -1015,31 +1028,30 @@ void* fn_8_AEEE4(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, void**, 0x24C) = NULL;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x320) != 0U) {
-			fn_8005FD8C(-1);
+			fn_8005FD8C((void*)M2C_FIELD(arg0, u32*, 0x320), -1);
 			M2C_FIELD(arg0, u32*, 0x320) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-			fn_8010AFE4();
+			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x318));
 			M2C_FIELD(arg0, u32*, 0x318) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-			fn_8010AFE4();
+			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x31C));
 			M2C_FIELD(arg0, u32*, 0x31C) = 0U;
 		}
-		temp_r3_2   = M2C_FIELD(arg0, void***, 0x248);
-		temp_cr0_eq = temp_r3_2 == NULL;
-		if (temp_cr0_eq == 0) {
-			if (temp_cr0_eq == 0) {
-				M2C_FIELD(*temp_r3_2, M2C_UNK(**)(M2C_UNK), 8)(1);
+		temp_r3_2 = M2C_FIELD(arg0, void***, 0x248);
+		if (temp_r3_2 != NULL) {
+			if (temp_r3_2 != NULL) {
+				((TSubDispatch*)temp_r3_2)->vslot2(1);
 			}
 			M2C_FIELD(arg0, void***, 0x248) = NULL;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2FC) != 0U) {
-			fn_80150958();
+			fn_80150958((void*)M2C_FIELD(arg0, u32*, 0x2FC));
 			M2C_FIELD(arg0, u32*, 0x2FC) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0xE8) != 0U) {
-			fn_80150958();
+			fn_80150958((void*)M2C_FIELD(arg0, u32*, 0xE8));
 			M2C_FIELD(arg0, u32*, 0xE8) = 0U;
 		}
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
@@ -1068,7 +1080,7 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	fn_800A714C(arg0, arg2);
 	__ct__10HAnimClassFv((HAnimClass*)&arg0->unk240);
 	arg0->unk18 = &lbl_8_data_16A40;
-	arg0->unkB4 = &lbl_8_data_16A40 + 0x2C;
+	arg0->unkB4 = (u8*)&lbl_8_data_16A40 + 0x2C;
 	arg0->unk0  = lbl_8_data_168E0;
 	arg0->unk1E = 0x360;
 	fn_8_AEE04(arg0);
@@ -1088,11 +1100,11 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	arg0->unk1A0 = lbl_8_rodata_1B48;
 	arg0->unk2C  = 3;
 	if ((void*)arg0->unk2FC != NULL) {
-		fn_80150958();
+		fn_80150958((void*)arg0->unk2FC);
 		arg0->unk2FC = NULL;
 	}
 	if ((void*)arg0->unkE8 != NULL) {
-		fn_80150958();
+		fn_80150958((void*)arg0->unkE8);
 		arg0->unkE8 = NULL;
 	}
 	arg0->unkE8  = fn_80150588(M2C_FIELD(&lbl_8_bss_19C8, s32*, 0));
@@ -1163,7 +1175,7 @@ void fn_8_AF3E8(void* arg0, void* arg1)
 {
 	f32* var_r4_2;
 	f32* var_r4_3;
-	f32* var_r4_5;
+	const f32* var_r4_5;
 	f32 temp_f1;
 	f32 temp_f1_2;
 	f32 temp_f1_3;
@@ -1186,7 +1198,7 @@ void fn_8_AF3E8(void* arg0, void* arg1)
 			var_r4 = temp_r3;
 		}
 	}
-	M2C_FIELD(temp_r3, u8*, 0) = (u8)(s8)*var_r4;
+	M2C_FIELD(temp_r3, s8*, 0) = (s8)*var_r4;
 	M2C_FIELD(temp_r3, s8*, 1) = 0;
 	M2C_FIELD(temp_r3, s8*, 2) = 0;
 	M2C_FIELD(temp_r3, s8*, 3) = 0;
@@ -1270,30 +1282,33 @@ void magicianObjectLoad(void)
 	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
 		fn_80100AAC();
 	}
-	if (fn_80100328(lbl_8042C590, 0xA, 5) != 0U) {
-		fn_8005E00C(6);
-		if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-			fn_80100AAC();
-		}
-		M2C_FIELD(&lbl_8_bss_19C8, u32*, 0) = fn_8010037C(lbl_8042C590, 0xA, 4);
-		fn_8005D9F4(&lbl_8_bss_19C8);
-		if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-			fn_80100AAC();
-		}
-		M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) = fn_8010037C(lbl_8042C590, 0xA, 2);
-		if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-			fn_80100AAC();
-		}
-		temp_r3        = fn_80100280(lbl_8042C590, 0xA, 3);
-		lbl_8_bss_19D0 = temp_r3;
-		if (((u32)M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) != 0U) && (temp_r3 != 0U)) {
-			*lbl_8_bss_19D4 = temp_r3;
-			fn_8005BF5C(M2C_FIELD(&lbl_8_bss_19C8, u32*, 4), lbl_8_bss_19D4);
-		}
-		lbl_8_bss_1A18 = 0;
-		fn_800FE274(0xA, &lbl_8_data_16628);
-		lbl_8_bss_1A48 = fn_8005EA04(&lbl_8_data_1692C);
+	temp_r3 = fn_80100328(lbl_8042C590, 0xA, 5);
+	if (temp_r3 != 0U) {
+		fn_8005E00C(temp_r3, 6);
+	} else {
+		return;
 	}
+	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+		fn_80100AAC();
+	}
+	M2C_FIELD(&lbl_8_bss_19C8, u32*, 0) = fn_8010037C(lbl_8042C590, 0xA, 4);
+	fn_8005D9F4((void*)M2C_FIELD(&lbl_8_bss_19C8, u32*, 0));
+	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+		fn_80100AAC();
+	}
+	M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) = fn_8010037C(lbl_8042C590, 0xA, 2);
+	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+		fn_80100AAC();
+	}
+	temp_r3        = fn_80100280(lbl_8042C590, 0xA, 3);
+	lbl_8_bss_19D0 = temp_r3;
+	if (((u32)M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) != 0U) && (temp_r3 != 0U)) {
+		*lbl_8_bss_19D4 = temp_r3;
+		fn_8005BF5C(M2C_FIELD(&lbl_8_bss_19C8, u32*, 4), lbl_8_bss_19D4);
+	}
+	lbl_8_bss_1A18 = 0;
+	fn_800FE274(0xA, &lbl_8_data_16628);
+	lbl_8_bss_1A48 = fn_8005EA04(&lbl_8_data_1692C);
 }
 
 void magicianObjectCreate(void)
@@ -1307,12 +1322,12 @@ void fn_8_AF86C(void* arg0, s32 arg1)
 {
 	M2C_FIELD(arg0, s32*, 0x14) = arg1;
 	M2C_FIELD(arg0, s32*, 0x10) = 0;
-	if (M2C_FIELD(M2C_FIELD(arg0, void**, 0), s32(**)(), 0x14)() != 0) {
+	if (((TObjectDispatch*)arg0)->vslot5() != 0) {
 		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 2);
 	}
 	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 1);
 	if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
-		fn_800A31B8(M2C_FIELD(arg0, s32*, 0x14));
+		fn_800A31B8((void*)M2C_FIELD(arg0, s32*, 0x14), M2C_FIELD(arg0, s32*, 0x10));
 	}
 }
 

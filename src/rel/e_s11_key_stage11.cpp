@@ -13,10 +13,9 @@ typedef struct TObject {
 	/* 0x1E */ s16 unk1E;     /* inferred */
 	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
 	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x28 */ char pad28[4];
 	/* 0x2C */ void* unk2C;   /* inferred */
 	/* 0x30 */ M2C_UNK unk30; /* inferred */
-	/* 0x30 */ char pad30[0x88];
+	/* 0x34 */ char pad34[0x84];
 	/* 0xB8 */ f32 unkB8;     /* inferred */
 	/* 0xBC */ f32 unkBC;     /* inferred */
 	/* 0xC0 */ f32 unkC0;     /* inferred */
@@ -62,7 +61,7 @@ f32 fn_800D7AE4(s32, ...);                                  /* extern */
 f32 fn_800D7B00(s32, ...);                                  /* extern */
 M2C_UNK fn_80119618(u32);                                   /* extern */
 M2C_UNK fn_8011967C(u32, f32*);                             /* extern */
-M2C_UNK fn_801197F4(M2C_UNK);                               /* extern */
+M2C_UNK fn_801197F4(M2C_UNK*, M2C_UNK);                     /* extern */
 s32* fn_80119A18(u32);                                      /* extern */
 M2C_UNK fn_801379A0(M2C_UNK, s8);                           /* extern */
 M2C_UNK fn_8014FF2C(u32);                                   /* extern */
@@ -74,7 +73,7 @@ M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32);      /* extern */
 M2C_UNK fn_8019E880(s32);                                   /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, ...);                        /* extern */
 M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                    /* extern */
-M2C_UNK fn_801A4C84();                                      /* extern */
+M2C_UNK fn_801A4C84(u32);                                   /* extern */
 M2C_UNK fn_8_C9EE0(s32);                                    /* extern */
 void s11keyObjectCreate();                                  /* static */
 void s11keyObjectLoad();                                    /* static */
@@ -97,22 +96,23 @@ extern f32 lbl_8_rodata_1FC8;
 extern f32 lbl_8_rodata_1FCC;
 extern f32 lbl_8_rodata_1FD0;
 extern f32 lbl_8_rodata_1FD4;
-static f32 lbl_8_data_18DF0 = 0.05f;
-static s32 lbl_8_data_18DF4 = 0x40;
-static f32 lbl_8_data_18DF8 = 0.015f;
-static f32 lbl_8_data_18DFC = 0.015f;
-static f32 lbl_8_data_18E00 = 10.0f;
-static M2C_UNK lbl_8_data_18E04;     /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18E34;     /* unable to generate initializer: unknown type */
+static f32 lbl_8_data_18DF0     = 0.05f;
+static s32 lbl_8_data_18DF4     = 0x40;
+static f32 lbl_8_data_18DF8     = 0.015f;
+static f32 lbl_8_data_18DFC     = 0.015f;
+static f32 lbl_8_data_18E00     = 10.0f;
+static u32 lbl_8_data_18E04[12] = { 0x0000F0E0, 0x00000402, 0x00000000, 0x40F00000, 0x00000000,
+	0x40F00000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
+static char lbl_8_data_18E34[]  = "TObjS11Key";
 static M2C_UNK gap_04_00018E3F_data; /* unable to generate initializer: unknown type */
-static const char* lbl_8_data_18E40 = "TObjS11Key";
-static M2C_UNK lbl_8_data_18E44;        /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18E7C;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018E8E_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK s11keyObjectDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018E9E_data;    /* unable to generate initializer: unknown type */
+static const char* lbl_8_data_18E40 = lbl_8_data_18E34;
+static M2C_UNK lbl_8_data_18E44; /* unable to generate initializer: unknown type */
+static char lbl_8_data_18E7C[] = "s11_o_goalkey.dff";
+static M2C_UNK gap_04_00018E8E_data; /* unable to generate initializer: unknown type */
+static char s11keyObjectDisplayName[] = "S11KEY OBJECT";
+static M2C_UNK gap_04_00018E9E_data; /* unable to generate initializer: unknown type */
 static M2C_UNK s11keyObjectEntry;
-static M2C_UNK lbl_8_rodata_2118; /* unable to generate initializer: unknown type; const */
+extern const f32 lbl_8_rodata_2118[1] = { 0.0f };
 
 void fn_8_CA210(s32 arg0)
 {
@@ -159,17 +159,17 @@ void fn_8_CA308(void* arg0)
 
 s8 fn_8_CA31C(s32 arg0)
 {
-	s32 temp_r0;
 	s32 var_r31;
+	void* temp_r5;
+	void* temp_r4;
 	s8 var_r3;
-	u32 var_r0;
-	u32 var_r0_2;
 	void* temp_r3;
 	void* temp_r3_2;
 	void* temp_r3_3;
-	void* temp_r4;
-	void* temp_r5;
 	void* var_r3_2;
+	s32 temp_r0;
+	u32 var_r0;
+	u32 var_r0_2;
 
 	var_r31 = -1;
 	fn_80021824(&lbl_8042C1A4);
@@ -661,10 +661,10 @@ TObject* fn_8_CB4C4(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_18E44;
-		arg0->unk2C = &lbl_8_data_18E44 + 0x2C;
+		arg0->unk2C = (u8*)&lbl_8_data_18E44 + 0x2C;
 		if ((u32)arg0->unkD8 != 0U) {
 			if ((u32)arg0->unkDC != NULL) {
-				fn_801197F4(1);
+				fn_801197F4(arg0->unkDC, 1);
 				arg0->unkDC = NULL;
 			}
 			fn_80150958(arg0->unkD8);
@@ -698,7 +698,7 @@ TObject* fn_8_CB5B0(TObject* arg0, TObject* arg1)
 	fn_8005BE6C(&arg0->unk28);
 	fn_8003C618(&arg0->unk30);
 	arg0->unk18 = &lbl_8_data_18E44;
-	arg0->unk2C = &lbl_8_data_18E44 + 0x2C;
+	arg0->unk2C = (u8*)&lbl_8_data_18E44 + 0x2C;
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_18E40;
 	arg0->unk1E = 0xE4;
 	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
@@ -721,7 +721,7 @@ TObject* fn_8_CB5B0(TObject* arg0, TObject* arg1)
 		arg0->unkDC = var_r0;
 	}
 	if (fn_8005B8D8(&arg0->unk28) == 0) {
-		fn_8003BF04(&arg0->unk30, &lbl_8_data_18E04, 1, 4);
+		fn_8003BF04(&arg0->unk30, (int*)lbl_8_data_18E04, 1, 4);
 		temp_r4 = M2C_FIELD(arg0, void**, 0x28);
 		if ((s32*)M2C_FIELD(temp_r4, s32**, 0x30) == NULL) {
 			var_r30
@@ -765,12 +765,14 @@ void s11keyObjectLoad(void)
 	s32 temp_r31;
 
 	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84();
-		temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-		fn_800BC9F4(temp_r31, &lbl_802FF5A0);
-		lbl_8_bss_1D48 = fn_800BB92C(
-		    temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)"s11_o_goalkey.dff"), &lbl_802FF5A0);
+		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
+	} else {
+		return;
 	}
+	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
+	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
+	lbl_8_bss_1D48
+	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)lbl_8_data_18E7C), &lbl_802FF5A0);
 }
 
 void s11keyObjectCreate(void)
@@ -791,7 +793,7 @@ void s11keyObjectCreate(void)
 		fn_8005BE6C(&temp_r3->unk28);
 		fn_8003C618(&temp_r3->unk30);
 		temp_r3->unk18 = &lbl_8_data_18E44;
-		temp_r3->unk2C = &lbl_8_data_18E44 + 0x2C;
+		temp_r3->unk2C = (u8*)&lbl_8_data_18E44 + 0x2C;
 		temp_r3->unk0  = (M2C_UNK*)lbl_8_data_18E40;
 		temp_r3->unk1E = 0xE4;
 		temp_r3_2      = M2C_FIELD(temp_r3, void**, 0x28);
@@ -815,7 +817,7 @@ void s11keyObjectCreate(void)
 			temp_r3->unkDC = var_r0;
 		}
 		if (fn_8005B8D8(&temp_r3->unk28) == 0) {
-			fn_8003BF04(&temp_r3->unk30, &lbl_8_data_18E04, 1, 4);
+			fn_8003BF04(&temp_r3->unk30, (int*)lbl_8_data_18E04, 1, 4);
 			temp_r4 = M2C_FIELD(temp_r3, void**, 0x28);
 			if ((s32*)M2C_FIELD(temp_r4, s32**, 0x30) == NULL) {
 				var_r30 = M2C_FIELD(
@@ -851,7 +853,7 @@ void s11keyObjectRegister(void)
 {
 	M2C_FIELD(&s11keyObjectEntry, s32*, 0x14)       = 0;
 	M2C_FIELD(&s11keyObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&s11keyObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)"S11KEY OBJECT";
+	M2C_FIELD(&s11keyObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)s11keyObjectDisplayName;
 	M2C_FIELD(&s11keyObjectEntry, void (**)(), 4)   = s11keyObjectLoad;
 	M2C_FIELD(&s11keyObjectEntry, void (**)(), 8)   = s11keyObjectUnload;
 	M2C_FIELD(&s11keyObjectEntry, void (**)(), 0xC) = s11keyObjectCreate;

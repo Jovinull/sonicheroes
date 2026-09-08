@@ -48,3 +48,4 @@ extern "C" void fn_16_8E118() { }
 
 __declspec(section ".ctors") void (*const tenkyuCtor)(void)   = fn_16_8C7C0;
 __declspec(section ".ctors") void (*const goalringCtor)(void) = fn_16_8D27C;
+extern const f32 lbl_16_rodata_1FA8[3] = { 1.0f, 0.009999999776482582f, 1.0f };

@@ -12,7 +12,7 @@ typedef struct TObject {
 	/* 0x1E */ s16 unk1E;     /* inferred */
 	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
 	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x28 */ char pad28[0x10];
+	/* 0x2C */ char pad2C[0xC];
 	/* 0x38 */ void* unk38;      /* inferred */
 	/* 0x3C */ char pad3C[0x4C]; /* maybe part of unk38[0x14]? */
 	/* 0x88 */ f32 unk88;        /* inferred */
@@ -20,21 +20,20 @@ typedef struct TObject {
 	/* 0x90 */ f32 unk90;        /* inferred */
 	/* 0x94 */ char pad94[0x1C]; /* maybe part of unk90[8]? */
 	/* 0xB0 */ M2C_UNK unkB0;    /* inferred */
-	/* 0xB0 */ char padB0[4];
-	/* 0xB4 */ void* unkB4;   /* inferred */
-	/* 0xB8 */ f32 unkB8;     /* inferred */
-	/* 0xBC */ f32 unkBC;     /* inferred */
-	/* 0xC0 */ f32 unkC0;     /* inferred */
-	/* 0xC4 */ s32 unkC4;     /* inferred */
-	/* 0xC8 */ s32 unkC8;     /* inferred */
-	/* 0xCC */ s32 unkCC;     /* inferred */
-	/* 0xD0 */ u8 unkD0;      /* inferred */
-	/* 0xD1 */ char padD1[3]; /* maybe part of unkD0[4]? */
-	/* 0xD4 */ s32 unkD4;     /* inferred */
-	/* 0xD8 */ f32 unkD8;     /* inferred */
-	/* 0xDC */ f32 unkDC;     /* inferred */
-	/* 0xE0 */ f32 unkE0;     /* inferred */
-} TObject;                    /* size >= 0xE4 */
+	/* 0xB4 */ void* unkB4;      /* inferred */
+	/* 0xB8 */ f32 unkB8;        /* inferred */
+	/* 0xBC */ f32 unkBC;        /* inferred */
+	/* 0xC0 */ f32 unkC0;        /* inferred */
+	/* 0xC4 */ s32 unkC4;        /* inferred */
+	/* 0xC8 */ s32 unkC8;        /* inferred */
+	/* 0xCC */ s32 unkCC;        /* inferred */
+	/* 0xD0 */ u8 unkD0;         /* inferred */
+	/* 0xD1 */ char padD1[3];    /* maybe part of unkD0[4]? */
+	/* 0xD4 */ s32 unkD4;        /* inferred */
+	/* 0xD8 */ f32 unkD8;        /* inferred */
+	/* 0xDC */ f32 unkDC;        /* inferred */
+	/* 0xE0 */ f32 unkE0;        /* inferred */
+} TObject;                       /* size >= 0xE4 */
 
 /* Dispatch view of the object's vtable. The handler at vtable offset 0x10 is
  * reached through genuine virtual dispatch in retail: the target loads the
@@ -47,6 +46,7 @@ public:
 	virtual void vslot2();
 	virtual void vslot3();
 	virtual void Release(s32, s32);
+	virtual s32 vslot5();
 };
 
 extern "C" {
@@ -66,7 +66,7 @@ M2C_UNK fn_8003C618(M2C_UNK*);                                /* extern */
 s32 fn_8005B8BC(void*);                                       /* extern */
 M2C_UNK fn_8005BC04(void*);                                   /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
-M2C_UNK fn_800A31B8(s32);                                     /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                              /* extern */
 M2C_UNK fn_80100D24(s8*, void*, ...);                         /* extern */
 M2C_UNK fn_8_A6728(s32);                                      /* extern */
 void flyerColObjectCreate();                                  /* static */
@@ -132,9 +132,9 @@ static M2C_UNK gap_04_0001641D_data;      /* unable to generate initializer: unk
 static M2C_UNK flyerColObjectFieldTypes;  /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001642A_data;      /* unable to generate initializer: unknown type */
 static M2C_UNK flyerColObjectEntry;
-static f32 lbl_8_rodata_198C;
-static s32 lbl_8_rodata_1990    = 0;                           /* const */
-static s32 lbl_8_rodata_1994[4] = { 0x100, 0, 0x3FC00000, 0 }; /* const */
+extern const f32 lbl_8_rodata_198C[1] = { 0.0f };
+extern const s32 lbl_8_rodata_1990[1] = { 0 };
+extern const s32 lbl_8_rodata_1994[4] = { 0x100, 0, 0x3FC00000, 0 };
 
 void fn_8_A6D1C(s32 arg0)
 {
@@ -150,19 +150,19 @@ void fn_8_A6D2C(void* arg0, s32 arg1)
 {
 	M2C_FIELD(arg0, s32*, 0x14) = arg1;
 	M2C_FIELD(arg0, s32*, 0x10) = 0;
-	if (M2C_FIELD(M2C_FIELD(arg0, void**, 0), s32(**)(), 0x14)() != 0) {
+	if (((TObjectDispatch*)arg0)->vslot5() != 0) {
 		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 2);
 	}
 	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 1);
 	if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
-		fn_800A31B8(M2C_FIELD(arg0, s32*, 0x14));
+		fn_800A31B8((void*)M2C_FIELD(arg0, s32*, 0x14), M2C_FIELD(arg0, s32*, 0x10));
 	}
 }
 
 s32 fn_8_A6DC4(void* arg0)
 {
-	void* temp_r0;
 	void* var_r3;
+	void* temp_r0;
 
 	if (fn_8005B8BC((u8*)arg0 + 0xB0) != 0) {
 		return 1;
@@ -215,8 +215,8 @@ s32 fn_8_A6E60(void* arg0)
 
 s32 fn_8_A6EB4(void* arg0)
 {
-	u32 var_r0;
 	void* temp_r3;
+	u32 var_r0;
 
 	if ((s32)(M2C_FIELD(arg0, u16*, 0x30) & 1) != 0) {
 		fn_80021824(&lbl_8042C1A4);
@@ -284,7 +284,7 @@ s32 fn_8_A6F28(void* arg0)
 			sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 			sp9  = M2C_FIELD(temp_r6, u8*, 0x2A);
 			spC  = 6;
-			fn_80100D24(&sp8, &lbl_8_rodata_198C, 0);
+			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -342,7 +342,7 @@ s32 fn_8_A700C(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, &lbl_8_rodata_198C, 5);
+			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 5);
 		}
 	}
 	return var_r31;
@@ -400,7 +400,7 @@ s32 fn_8_A7104(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, &lbl_8_rodata_198C, 0);
+			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -458,7 +458,7 @@ s32 fn_8_A7200(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, &lbl_8_rodata_198C, 0);
+			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -890,8 +890,8 @@ void fn_8_A7A0C(void) { }
 
 void fn_8_A7A10(void* arg0)
 {
-	s32 var_r0;
 	void* var_r3;
+	s32 var_r0;
 
 	if (fn_8005B8BC((u8*)arg0 + 0xB0) != 0) {
 		var_r0 = 1;
@@ -983,7 +983,7 @@ TObject* fn_8_A7C3C(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_163D0;
-		arg0->unkB4 = &lbl_8_data_163D0 + 0x2C;
+		arg0->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 		dtor_8005BD3C((u8*)arg0 + 0xB0, 0);
 		dtor_8003C52C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
@@ -1004,7 +1004,7 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	fn_8003C618(&arg0->unk28);
 	fn_8005BE6C(&arg0->unkB0);
 	arg0->unk18 = &lbl_8_data_163D0;
-	arg0->unkB4 = &lbl_8_data_163D0 + 0x2C;
+	arg0->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 	arg0->unk0  = lbl_8_data_163CC;
 	arg0->unk1E = 0xE4;
 	arg0->unkD0 = 0;
@@ -1051,7 +1051,7 @@ TObject* fn_8_A7E24(void)
 		fn_8003C618(&temp_r3->unk28);
 		fn_8005BE6C(&temp_r3->unkB0);
 		temp_r3->unk18 = &lbl_8_data_163D0;
-		temp_r3->unkB4 = &lbl_8_data_163D0 + 0x2C;
+		temp_r3->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_163CC;
 		temp_r3->unk1E = 0xE4;
 		temp_r3->unkD0 = 0;
@@ -1088,10 +1088,10 @@ TObject* fn_8_A7E24(void)
 
 void fn_8_A7FA4(void* arg0, void* arg1)
 {
-	s32* var_r5_2;
 	s32 temp_r6;
-	u8* temp_r3;
+	const s32* var_r5_2;
 	u8* var_r5;
+	u8* temp_r3;
 	u8 temp_r0;
 
 	temp_r3 = M2C_FIELD(arg1, u8**, 0x2C);
@@ -1107,10 +1107,10 @@ void fn_8_A7FA4(void* arg0, void* arg1)
 			var_r5 = temp_r3;
 		}
 	}
-	M2C_FIELD(temp_r3, u8*, 0) = (u8)(s8)*var_r5;
+	M2C_FIELD(temp_r3, s8*, 0) = (s8)*var_r5;
 	temp_r6                    = M2C_FIELD(temp_r3, s32*, 0x14);
-	var_r5_2                   = &lbl_8_rodata_1990;
-	if (temp_r6 < (s32)lbl_8_rodata_1990) {
+	var_r5_2                   = lbl_8_rodata_1990;
+	if (temp_r6 < (s32)lbl_8_rodata_1990[0]) {
 
 	} else {
 		var_r5_2 = lbl_8_rodata_1994;
@@ -1144,7 +1144,7 @@ void flyerColObjectCreate(void)
 		fn_8003C618(&temp_r3->unk28);
 		fn_8005BE6C(&temp_r3->unkB0);
 		temp_r3->unk18 = &lbl_8_data_163D0;
-		temp_r3->unkB4 = &lbl_8_data_163D0 + 0x2C;
+		temp_r3->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_163CC;
 		temp_r3->unk1E = 0xE4;
 		temp_r3->unkD0 = 0;

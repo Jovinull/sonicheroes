@@ -5,7 +5,11 @@ typedef s32 M2C_UNK;
 #define M2C_ERROR(...)
 #define M2C_BITWISE(type, value) (*(type*)&(value))
 
-static f32 lbl_8_rodata_1F40;
+extern const f32 lbl_8_rodata_1F28[1] = { 1.0f };
+extern const f32 lbl_8_rodata_1F2C[1] = { 60.0f };
+extern const f32 lbl_8_rodata_1F30[1] = { 15.0f };
+extern const f64 lbl_8_rodata_1F38[1] = { 4503601774854144.0 };
+extern const f32 lbl_8_rodata_1F40[2] = { 0.0f, 0.0f };
 
 typedef struct TObject {
 	/* 0x00 */ M2C_UNK* unk0;   /* inferred */
@@ -15,10 +19,9 @@ typedef struct TObject {
 	/* 0x1E */ s16 unk1E;     /* inferred */
 	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
 	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x28 */ char pad28[4];
 	/* 0x2C */ void* unk2C;   /* inferred */
 	/* 0x30 */ M2C_UNK unk30; /* inferred */
-	/* 0x30 */ char pad30[0x10];
+	/* 0x34 */ char pad34[0xC];
 	/* 0x40 */ void* unk40;      /* inferred */
 	/* 0x44 */ char pad44[0x74]; /* maybe part of unk40[0x1E]? */
 	/* 0xB8 */ f32 unkB8;        /* inferred */
@@ -63,7 +66,7 @@ void* fn_8013F484(s32);                                            /* extern */
 M2C_UNK fn_8013FC30(void*);                                        /* extern */
 M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);          /* extern */
 s32 fn_80150588(u32);                                              /* extern */
-M2C_UNK fn_80150958(...);                                          /* extern */
+M2C_UNK fn_80150958(void*);                                        /* extern */
 M2C_UNK fn_8015BB08(s32, void*);                                   /* extern */
 M2C_UNK fn_8015BBF8(s32);                                          /* extern */
 M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32);             /* extern */
@@ -71,8 +74,8 @@ M2C_UNK fn_8019E880(s32);                                          /* extern */
 M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);            /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                           /* extern */
 M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                           /* extern */
-M2C_UNK fn_801A4C84();                                             /* extern */
-M2C_UNK fn_8020C2D8();                                             /* extern */
+M2C_UNK fn_801A4C84(u32);                                          /* extern */
+M2C_UNK fn_8020C2D8(void*);                                        /* extern */
 M2C_UNK fn_8020C72C(void**, u32);                                  /* extern */
 M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                        /* extern */
 M2C_UNK fn_8020D02C(void**, f32, f32);                             /* extern */
@@ -93,7 +96,7 @@ extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 extern u32 lbl_8042C388;
-static u32 lbl_8_data_18298 = 0U;
+static u32 lbl_8_data_18298[2] = { 0U, 0U };
 static M2C_UNK lbl_8_data_182A0;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_000182AF_data; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_182B0;     /* unable to generate initializer: unknown type */
@@ -102,35 +105,36 @@ static M2C_UNK treeObjectFieldNames; /* unable to generate initializer: unknown 
 static M2C_UNK lbl_8_data_182C8;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_000182D9_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_182DC[2] = { &lbl_8_data_182B0, &lbl_8_data_182C8 };
-static M2C_UNK lbl_8_data_182E4;     /* unable to generate initializer: unknown type */
+static u32 lbl_8_data_182E4[12]     = { 0x0008FFE0, 0x00000002, 0x00000000, 0x418C0000, 0x00000000,
+	0x41700000, 0x418C0000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
 static M2C_UNK lbl_8_data_18314;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001831D_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_18320 = &lbl_8_data_18314;
-static M2C_UNK lbl_8_data_18324;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18360;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18370;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018381_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18384;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018395_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK treeObjectDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK treeObjectFieldTypes;  /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000183A7_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_183A8;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000183BD_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_183C0;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000183D5_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_183D8;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000183ED_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_183F0;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018405_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18408;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001841D_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18420;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018435_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18438;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001844D_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18450;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018465_data;  /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18324; /* unable to generate initializer: unknown type */
+static u32 lbl_8_data_18360[4] = { 0x7331315F, 0x6F6E5F74, 0x7265652E, 0x64666600 };
+static M2C_UNK lbl_8_data_18370;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018381_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18384;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018395_data; /* unable to generate initializer: unknown type */
+static u32 treeObjectDisplayName[3] = { 0x54524545, 0x204F424A, 0x45435400 };
+static M2C_UNK treeObjectFieldTypes; /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000183A7_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_183A8;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000183BD_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_183C0;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000183D5_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_183D8;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000183ED_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_183F0;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018405_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18408;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_0001841D_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18420;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018435_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18438;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_0001844D_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18450;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00018465_data; /* unable to generate initializer: unknown type */
 static u8 lbl_8_bss_1C40;
 static M2C_UNK gap_05_00001C41_bss;
 static u32 lbl_8_bss_1C44;
@@ -143,25 +147,25 @@ void fn_8_C3FF8(void* arg0)
 
 	if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 		M2C_FIELD(M2C_FIELD(arg0, M2C_UNK**, 0x40), f32*, 0xC)
-		    = (f32)(-M2C_FIELD(&lbl_8_data_182E4, f32*, 0xC) * M2C_FIELD(arg0, f32*, 0xD0));
+		    = (f32)(-M2C_FIELD(lbl_8_data_182E4, f32*, 0xC) * M2C_FIELD(arg0, f32*, 0xD0));
 	} else {
 		M2C_FIELD(M2C_FIELD(arg0, M2C_UNK**, 0x40), f32*, 0xC)
-		    = (f32)(M2C_FIELD(&lbl_8_data_182E4, f32*, 0xC) * M2C_FIELD(arg0, f32*, 0xD0));
+		    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0xC) * M2C_FIELD(arg0, f32*, 0xD0));
 	}
 	M2C_FIELD(M2C_FIELD(arg0, M2C_UNK**, 0x40), f32*, 0x14)
-	    = (f32)(M2C_FIELD(&lbl_8_data_182E4, f32*, 0x14) * M2C_FIELD(arg0, f32*, 0xD0));
+	    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0x14) * M2C_FIELD(arg0, f32*, 0xD0));
 	temp_r4 = M2C_FIELD(arg0, M2C_UNK**, 0x40);
 	M2C_FIELD(temp_r4, f32*, 0x18)
-	    = (f32)(M2C_FIELD(&lbl_8_data_182E4, f32*, 0x18) * M2C_FIELD(arg0, f32*, 0xD0));
-	fn_80021384((M2C_UNK*)((u8*)arg0 + 0x30), temp_r4, &lbl_8_data_182E4,
-	    M2C_FIELD(&lbl_8_data_182E4, f32*, 0x18));
+	    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0x18) * M2C_FIELD(arg0, f32*, 0xD0));
+	fn_80021384((M2C_UNK*)((u8*)arg0 + 0x30), temp_r4, lbl_8_data_182E4,
+	    M2C_FIELD(lbl_8_data_182E4, f32*, 0x18));
 }
 
 void fn_8_C4098(void* arg0)
 {
+	void* temp_r5;
 	void* temp_r4;
 	void* temp_r4_2;
-	void* temp_r5;
 
 	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
 	temp_r5                     = M2C_FIELD(temp_r4, void**, 0x2C);
@@ -251,8 +255,7 @@ void fn_8_C4108(void* arg0)
 		return;
 	}
 	if (temp_f31 < temp_f30) {
-		M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-		if (temp_f30 == (1.0f + temp_f31)) {
+		if (temp_f30 <= (1.0f + temp_f31)) {
 			sp14 = M2C_FIELD(arg0, f32*, 0xB8);
 			sp18 = M2C_FIELD(arg0, f32*, 0xBC);
 			sp1C = M2C_FIELD(arg0, f32*, 0xC0);
@@ -317,7 +320,7 @@ TObject* fn_8_C45B4(TObject* arg0, s16 arg1)
 
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_18324;
-		arg0->unk2C = &lbl_8_data_18324 + 0x2C;
+		arg0->unk2C = (u8*)&lbl_8_data_18324 + 0x2C;
 		var_r30     = 0;
 		var_r31     = arg0;
 		do {
@@ -369,7 +372,7 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 	fn_8005BE6C(&arg0->unk28);
 	fn_8003C618(&arg0->unk30);
 	arg0->unk18 = &lbl_8_data_18324;
-	arg0->unk2C = &lbl_8_data_18324 + 0x2C;
+	arg0->unk2C = (u8*)&lbl_8_data_18324 + 0x2C;
 	arg0->unk0  = lbl_8_data_18320;
 	arg0->unk1E = 0xE4;
 	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
@@ -387,7 +390,7 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 	arg0->unkD4 = (s32)(s8)M2C_FIELD(temp_r4, u8*, 4);
 	arg0->unkD0 = 1.0f + M2C_FIELD(temp_r4, f32*, 0);
 	var_r30     = 0;
-	var_r28     = &lbl_8_data_18298;
+	var_r28     = lbl_8_data_18298;
 	do {
 		*(u32*)((u8*)arg0 + var_r31 + 0xD8) = fn_80150588(*var_r28);
 		if (var_r30 == 0) {
@@ -397,7 +400,7 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 		}
 		fn_8005D5C8(*(u32*)((u8*)arg0 + var_r31 + 0xD8),
 		    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
-		var_r28 += 4;
+		var_r28 += 1;
 		var_r31 += 4;
 		var_r30 += 1;
 	} while (var_r30 < 2);
@@ -415,8 +418,8 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 	fn_8020C72C(M2C_FIELD(arg0->unkE0, void***, 0x20), lbl_8_bss_1C44);
 	fn_8013F3A4(arg0->unkE0);
 	fn_8013FC30(arg0->unkE0);
-	fn_8020D02C(M2C_FIELD(arg0->unkE0, void***, 0x20), (f32)(u32)&lbl_8_rodata_1F40, 0.0f);
-	fn_8020CC18(M2C_FIELD(arg0->unkE0, void***, 0x20), (M2C_UNK*)&lbl_8_rodata_1F40, 0.0f);
+	fn_8020D02C(M2C_FIELD(arg0->unkE0, void***, 0x20), (f32)(u32)lbl_8_rodata_1F40, 0.0f);
+	fn_8020CC18(M2C_FIELD(arg0->unkE0, void***, 0x20), (M2C_UNK*)lbl_8_rodata_1F40, 0.0f);
 	temp_f0   = arg0->unkD0;
 	sp14      = temp_f0;
 	sp10      = temp_f0;
@@ -439,20 +442,20 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 		var_r28_2 += 1;
 	} while (var_r28_2 < 2);
 	if (fn_8005B8D8(&arg0->unk28) == 0) {
-		fn_8003C200(&arg0->unk30, &lbl_8_data_182E4, 1, 4);
+		fn_8003C200(&arg0->unk30, (int*)lbl_8_data_182E4, 1, 4);
 		if ((s32)arg0->unkD4 == 1) {
 			M2C_FIELD(arg0->unk40, f32*, 0xC)
-			    = (f32)(-M2C_FIELD(&lbl_8_data_182E4, f32*, 0xC) * arg0->unkD0);
+			    = (f32)(-M2C_FIELD(lbl_8_data_182E4, f32*, 0xC) * arg0->unkD0);
 		} else {
 			M2C_FIELD(arg0->unk40, f32*, 0xC)
-			    = (f32)(M2C_FIELD(&lbl_8_data_182E4, f32*, 0xC) * arg0->unkD0);
+			    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0xC) * arg0->unkD0);
 		}
 		M2C_FIELD(arg0->unk40, f32*, 0x14)
-		    = (f32)(M2C_FIELD(&lbl_8_data_182E4, f32*, 0x14) * arg0->unkD0);
+		    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0x14) * arg0->unkD0);
 		M2C_FIELD(arg0->unk40, f32*, 0x18)
-		    = (f32)(M2C_FIELD(&lbl_8_data_182E4, f32*, 0x18) * arg0->unkD0);
-		fn_80021384(&arg0->unk30, &lbl_8_data_182E4,
-		    M2C_BITWISE(M2C_UNK*, M2C_FIELD(&lbl_8_data_182E4, f32*, 0x18)));
+		    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0x18) * arg0->unkD0);
+		fn_80021384(&arg0->unk30, lbl_8_data_182E4,
+		    M2C_BITWISE(M2C_UNK*, M2C_FIELD(lbl_8_data_182E4, f32*, 0x18)));
 	}
 	return arg0;
 }
@@ -509,21 +512,21 @@ void fn_8_C4BBC(void* arg0, void* arg1)
 
 void treeObjectUnload(void)
 {
-	s32 var_r29;
 	u32* var_r30;
+	s32 var_r29;
 
 	var_r29 = 0;
-	var_r30 = &lbl_8_data_18298;
+	var_r30 = lbl_8_data_18298;
 	do {
 		if ((u32)*var_r30 != 0U) {
-			fn_80150958();
+			fn_80150958((void*)*var_r30);
 			*var_r30 = 0U;
 		}
-		var_r30 += 4;
+		var_r30 += 1;
 		var_r29 += 1;
 	} while (var_r29 < 2);
 	if ((u32)lbl_8_bss_1C44 != 0U) {
-		fn_8020C2D8();
+		fn_8020C2D8((void*)lbl_8_bss_1C44);
 		lbl_8_bss_1C44 = 0U;
 	}
 }
@@ -533,16 +536,17 @@ void treeObjectLoad(void)
 	s32 temp_r31;
 
 	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84();
-		temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-		fn_800BC9F4(temp_r31, &lbl_802FF5A0);
-		M2C_FIELD(&lbl_8_data_18298, u32*, 0)
-		    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18360), &lbl_802FF5A0);
-		M2C_FIELD(&lbl_8_data_18298, u32*, 4)
-		    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18370), &lbl_802FF5A0);
-		lbl_8_bss_1C44
-		    = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18384), &lbl_802FF5A0);
+		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
+	} else {
+		return;
 	}
+	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
+	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
+	M2C_FIELD(&lbl_8_data_18298, u32*, 0)
+	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (int*)lbl_8_data_18360), &lbl_802FF5A0);
+	M2C_FIELD(&lbl_8_data_18298, u32*, 4)
+	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18370), &lbl_802FF5A0);
+	lbl_8_bss_1C44 = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18384), &lbl_802FF5A0);
 }
 
 void treeObjectCreate(void)
@@ -559,7 +563,7 @@ void treeObjectRegister(void)
 
 	M2C_FIELD(&treeObjectEntry, s32*, 0x14)       = 0;
 	M2C_FIELD(&treeObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&treeObjectEntry, M2C_UNK**, 0)     = &treeObjectDisplayName;
+	M2C_FIELD(&treeObjectEntry, M2C_UNK**, 0)     = (int*)treeObjectDisplayName;
 	M2C_FIELD(&treeObjectEntry, void (**)(), 4)   = treeObjectLoad;
 	M2C_FIELD(&treeObjectEntry, void (**)(), 8)   = treeObjectUnload;
 	M2C_FIELD(&treeObjectEntry, void (**)(), 0xC) = treeObjectCreate;

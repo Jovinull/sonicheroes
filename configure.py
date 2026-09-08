@@ -2477,7 +2477,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/o_s11_door.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,

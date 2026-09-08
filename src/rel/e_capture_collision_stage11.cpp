@@ -11,15 +11,14 @@ typedef struct TObject {
 	/* 0x1E */ s16 unk1E;     /* inferred */
 	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
 	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x28 */ char pad28[4];
-	/* 0x2C */ void* unk2C; /* inferred */
-	/* 0x30 */ f32 unk30;   /* inferred */
-	/* 0x34 */ f32 unk34;   /* inferred */
-	/* 0x38 */ f32 unk38;   /* inferred */
-	/* 0x3C */ s32 unk3C;   /* inferred */
-	/* 0x40 */ s32 unk40;   /* inferred */
-	/* 0x44 */ s32 unk44;   /* inferred */
-} TObject;                  /* size >= 0x48 */
+	/* 0x2C */ void* unk2C;   /* inferred */
+	/* 0x30 */ f32 unk30;     /* inferred */
+	/* 0x34 */ f32 unk34;     /* inferred */
+	/* 0x38 */ f32 unk38;     /* inferred */
+	/* 0x3C */ s32 unk3C;     /* inferred */
+	/* 0x40 */ s32 unk40;     /* inferred */
+	/* 0x44 */ s32 unk44;     /* inferred */
+} TObject;                    /* size >= 0x48 */
 
 extern "C" {
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
@@ -30,7 +29,7 @@ TObject* fn_80018A34(s32, M2C_UNK);                           /* extern */
 s32 fn_8005B8BC(s32);                                         /* extern */
 s32 fn_8005B9F0(s32);                                         /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
-M2C_UNK fn_800A31B8(s32);                                     /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                              /* extern */
 M2C_UNK fn_8_9CAF0(s32);                                      /* extern */
 }
 extern TObject* lbl_8042C10C;
@@ -39,14 +38,17 @@ extern f32 lbl_8_rodata_1704;
 extern f32 lbl_8_rodata_170C;
 extern f32 lbl_8_rodata_1710;
 static M2C_UNK captureCollisionFieldNames; /* unable to generate initializer: unknown type */
-static s32 lbl_8_data_159F4 = 0;
-static s32 lbl_8_data_159F8 = 0xFF;
-static M2C_UNK lbl_8_data_159FC; /* unable to generate initializer: unknown type */
-static const char* lbl_8_data_15A14 = "TObjCaptureCollision";
+DECL_SECT(".data") static s32 lbl_8_data_159F4 = 0;
+static s32 lbl_8_data_159F8                    = 0xFF;
+static char lbl_8_data_159FC[]                 = "TObjCaptureCollision";
+static const char* lbl_8_data_15A14            = lbl_8_data_159FC;
 static M2C_UNK lbl_8_data_15A18; /* unable to generate initializer: unknown type */
-static const char captureCollisionDisplayName[] = "CAPTURE COLLISION";
-static const char captureCollisionFieldTypes[]  = "i";
+static char captureCollisionDisplayName[] = "CAPTURE COLLISION";
+static char captureCollisionFieldTypes[]  = "i";
 static M2C_UNK captureCollisionEntry;
+extern const f32 lbl_8_rodata_17BC[8] = { 0.0f, 0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_17DC[3] = { 0.0f, 0.0f, 0.0f };
+extern const s32 lbl_8_rodata_17E8[3] = { 0xDAE, 0xDAF, 0xDB0 };
 
 /* Dispatch view of the object's vtable. The handler at vtable offset 0x10 is
  * reached through genuine virtual dispatch in retail: the target loads the
@@ -59,6 +61,7 @@ public:
 	virtual void vslot2();
 	virtual void vslot3();
 	virtual void Release(s32, s32);
+	virtual s32 vslot5();
 };
 
 extern "C" {
@@ -72,12 +75,12 @@ void fn_8_9D3C4(void* arg0, s32 arg1)
 {
 	M2C_FIELD(arg0, s32*, 0x14) = arg1;
 	M2C_FIELD(arg0, s32*, 0x10) = 0;
-	if (M2C_FIELD(M2C_FIELD(arg0, void**, 0), s32(**)(), 0x14)() != 0) {
+	if (((TObjectDispatch*)arg0)->vslot5() != 0) {
 		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 2);
 	}
 	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 1);
 	if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
-		fn_800A31B8(M2C_FIELD(arg0, s32*, 0x14));
+		fn_800A31B8((void*)M2C_FIELD(arg0, s32*, 0x14), M2C_FIELD(arg0, s32*, 0x10));
 	}
 }
 
@@ -149,8 +152,8 @@ TObject* fn_8_9D5D4(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_15A18;
-		arg0->unk2C = &lbl_8_data_15A18 + 0x2C;
-		dtor_8005BD3C(arg0 + 0x28, 0);
+		arg0->unk2C = (u8*)&lbl_8_data_15A18 + 0x2C;
+		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			fn_800189A4(lbl_8042C148, arg0);
@@ -167,7 +170,7 @@ TObject* fn_8_9D660(TObject* arg0, TObject* arg1)
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	fn_8005BE6C(&arg0->unk28);
 	arg0->unk18 = &lbl_8_data_15A18;
-	arg0->unk2C = &lbl_8_data_15A18 + 0x2C;
+	arg0->unk2C = (u8*)&lbl_8_data_15A18 + 0x2C;
 	arg0->unk0  = lbl_8_data_15A14;
 	arg0->unk1E = 0x48;
 	arg0->unk38 = 0.0f;
@@ -198,7 +201,7 @@ TObject* fn_8_9D724(void)
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8005BE6C(&temp_r3->unk28);
 		temp_r3->unk18 = &lbl_8_data_15A18;
-		temp_r3->unk2C = &lbl_8_data_15A18 + 0x2C;
+		temp_r3->unk2C = (u8*)&lbl_8_data_15A18 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_15A14;
 		temp_r3->unk1E = 0x48;
 		temp_r3->unk38 = 0.0f;
@@ -222,8 +225,8 @@ TObject* fn_8_9D724(void)
 void fn_8_9D81C(void* arg0, void* arg1)
 {
 	s32* temp_r5;
-	s32* var_r3;
 	s32 temp_r4;
+	s32* var_r3;
 
 	temp_r5 = M2C_FIELD(arg1, s32**, 0x2C);
 	temp_r4 = *temp_r5;
@@ -256,7 +259,7 @@ void captureCollisionCreate(void)
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8005BE6C(&temp_r3->unk28);
 		temp_r3->unk18 = &lbl_8_data_15A18;
-		temp_r3->unk2C = &lbl_8_data_15A18 + 0x2C;
+		temp_r3->unk2C = (u8*)&lbl_8_data_15A18 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_15A14;
 		temp_r3->unk1E = 0x48;
 		temp_r3->unk38 = 0.0f;

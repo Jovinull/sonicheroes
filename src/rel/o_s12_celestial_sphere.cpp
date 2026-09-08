@@ -11,21 +11,20 @@ typedef struct TObject {
 	/* 0x1E */ s16 unk1E;     /* inferred */
 	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
 	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x28 */ char pad28[4];
-	/* 0x2C */ void* unk2C; /* inferred */
-	/* 0x30 */ f32 unk30;   /* inferred */
-	/* 0x34 */ f32 unk34;   /* inferred */
-	/* 0x38 */ f32 unk38;   /* inferred */
-	/* 0x3C */ s32 unk3C;   /* inferred */
-	/* 0x40 */ s32 unk40;   /* inferred */
-	/* 0x44 */ s32 unk44;   /* inferred */
-	/* 0x48 */ s32 unk48;   /* inferred */
-	/* 0x4C */ s32 unk4C;   /* inferred */
-	/* 0x50 */ s32 unk50;   /* inferred */
-	/* 0x54 */ f32 unk54;   /* inferred */
-	/* 0x58 */ s32 unk58;   /* inferred */
-	/* 0x5C */ void* unk5C; /* inferred */
-} TObject;                  /* size >= 0x60 */
+	/* 0x2C */ void* unk2C;   /* inferred */
+	/* 0x30 */ f32 unk30;     /* inferred */
+	/* 0x34 */ f32 unk34;     /* inferred */
+	/* 0x38 */ f32 unk38;     /* inferred */
+	/* 0x3C */ s32 unk3C;     /* inferred */
+	/* 0x40 */ s32 unk40;     /* inferred */
+	/* 0x44 */ s32 unk44;     /* inferred */
+	/* 0x48 */ s32 unk48;     /* inferred */
+	/* 0x4C */ s32 unk4C;     /* inferred */
+	/* 0x50 */ s32 unk50;     /* inferred */
+	/* 0x54 */ f32 unk54;     /* inferred */
+	/* 0x58 */ s32 unk58;     /* inferred */
+	/* 0x5C */ void* unk5C;   /* inferred */
+} TObject;                    /* size >= 0x60 */
 
 extern "C" {
 
@@ -49,12 +48,12 @@ f32 fn_800D7B00(s32);                                         /* extern */
 void* fn_80150588(void*);                                     /* extern */
 M2C_UNK fn_80150958(void*);                                   /* extern */
 M2C_UNK fn_8015BB08(s32, void*);                              /* extern */
-M2C_UNK fn_8015BBF8(s32);                                     /* extern */
+M2C_UNK fn_8015BBF8(s32, void*);                              /* extern */
 M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32);        /* extern */
 M2C_UNK fn_8019E880(s32);                                     /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                      /* extern */
 M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                      /* extern */
-M2C_UNK fn_801A4C84();                                        /* extern */
+M2C_UNK fn_801A4C84(u32);                                     /* extern */
 M2C_UNK fn_8_964DC(s32);                                      /* extern */
 extern M2C_UNK lbl_80239978;
 extern M2C_UNK lbl_80239984;
@@ -70,7 +69,8 @@ extern s32 lbl_8_data_153EC;
 extern M2C_UNK lbl_8_data_153F0;
 extern f32 lbl_8_rodata_166C;
 extern f32 lbl_8_rodata_1670;
-extern M2C_UNK s12celestialObjectDisplayName;
+static u32 s12celestialObjectDisplayName[5]
+    = { 0x53313243, 0x454C4553, 0x5449414C, 0x204F424A, 0x45435400 };
 extern M2C_UNK s12celestialObjectEntry;
 extern M2C_UNK s12celestialObjectFieldNames;
 extern M2C_UNK s12celestialObjectFieldTypes;
@@ -83,7 +83,7 @@ void fn_8_96760(s32 arg0)
 void fn_8_96768(void* arg0)
 {
 	if ((void*)M2C_FIELD(arg0, void**, 0x5C) != NULL) {
-		fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0));
+		fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0), M2C_FIELD(arg0, void**, 0x5C));
 		fn_80150958(M2C_FIELD(arg0, void**, 0x5C));
 		M2C_FIELD(arg0, void**, 0x5C) = NULL;
 	}
@@ -132,8 +132,8 @@ void fn_8_96830(void* arg0)
 
 void fn_8_96974(void* arg0)
 {
-	void* temp_r4;
 	void* temp_r5;
+	void* temp_r4;
 
 	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
 	temp_r5                     = M2C_FIELD(temp_r4, void**, 0x2C);
@@ -193,9 +193,9 @@ TObject* fn_8_96BC0(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_153F0;
-		arg0->unk2C = &lbl_8_data_153F0 + 0x2C;
+		arg0->unk2C = (u8*)&lbl_8_data_153F0 + 0x2C;
 		if ((void*)arg0->unk5C != NULL) {
-			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0));
+			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0), arg0->unk5C);
 			fn_80150958(arg0->unk5C);
 			arg0->unk5C = NULL;
 		}
@@ -224,7 +224,7 @@ TObject* fn_8_96C7C(TObject* arg0, TObject* arg1)
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	fn_8005BE6C(&arg0->unk28);
 	arg0->unk18 = &lbl_8_data_153F0;
-	arg0->unk2C = &lbl_8_data_153F0 + 0x2C;
+	arg0->unk2C = (u8*)&lbl_8_data_153F0 + 0x2C;
 	arg0->unk0  = lbl_8_data_153EC;
 	arg0->unk1E = 0x60;
 	arg0->unk50 = 0;
@@ -268,7 +268,7 @@ TObject* fn_8_96C7C(TObject* arg0, TObject* arg1)
 	return arg0;
 }
 
-void fn_8_96EF0(void* arg1)
+void fn_8_96EF0(void* arg0, void* arg1)
 {
 	s32* temp_r3;
 	s32 temp_r0;
@@ -286,8 +286,8 @@ void fn_8_96EF0(void* arg1)
 
 void s12celestialObjectUnload(void)
 {
-	s32 var_r29;
 	void** var_r30;
+	s32 var_r29;
 
 	var_r29 = 0;
 	var_r30 = &lbl_8_bss_16D0;
@@ -302,28 +302,30 @@ void s12celestialObjectUnload(void)
 void s12celestialObjectLoad(M2C_UNK arg_sp0)
 {
 	s32* var_r29;
-	s32 var_r27;
 	void** var_r28;
+	s32 var_r27;
 
 	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84();
-		fn_800BE274(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-		fn_800BC9F4(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
-		var_r27 = 0;
-		var_r29 = &lbl_8_data_15370;
-		var_r28 = &lbl_8_bss_16D0;
-		do {
-			*var_r28 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
-			    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29), &lbl_802FF5A0);
-			if ((void*)*var_r28 != NULL) {
-				fn_800BDF30();
-			}
-			var_r29 += 4;
-			var_r28 += 4;
-			var_r27 += 1;
-		} while (var_r27 < 2);
-		fn_800BE1F4(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
+		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
+	} else {
+		return;
 	}
+	fn_800BE274(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
+	fn_800BC9F4(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
+	var_r27 = 0;
+	var_r29 = &lbl_8_data_15370;
+	var_r28 = &lbl_8_bss_16D0;
+	do {
+		*var_r28 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
+		    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29), &lbl_802FF5A0);
+		if ((void*)*var_r28 != NULL) {
+			fn_800BDF30();
+		}
+		var_r29 += 1;
+		var_r28 += 4;
+		var_r27 += 1;
+	} while (var_r27 < 2);
+	fn_800BE1F4(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
 }
 
 void s12celestialObjectCreate(void)
@@ -345,7 +347,7 @@ void s12celestialObjectCreate(void)
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		fn_8005BE6C(&temp_r3->unk28);
 		temp_r3->unk18 = &lbl_8_data_153F0;
-		temp_r3->unk2C = &lbl_8_data_153F0 + 0x2C;
+		temp_r3->unk2C = (u8*)&lbl_8_data_153F0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_153EC;
 		temp_r3->unk1E = 0x60;
 		temp_r3->unk50 = 0;
@@ -393,9 +395,9 @@ void s12celestialObjectRegister(void)
 {
 	s32 flags;
 
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x14)            = 0;
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s12celestialObjectEntry, M2C_UNK**, 0)          = &s12celestialObjectDisplayName;
+	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x14)   = 0;
+	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x18)   = 0;
+	M2C_FIELD(&s12celestialObjectEntry, M2C_UNK**, 0) = (int*)s12celestialObjectDisplayName;
 	M2C_FIELD(&s12celestialObjectEntry, void (**)(M2C_UNK), 4) = s12celestialObjectLoad;
 	M2C_FIELD(&s12celestialObjectEntry, void (**)(), 8)        = s12celestialObjectUnload;
 	M2C_FIELD(&s12celestialObjectEntry, void (**)(), 0xC)      = s12celestialObjectCreate;
@@ -416,8 +418,8 @@ void s12celestialObjectRegister(void)
 	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
-void fn_8_973D4(s32 arg0)
+void fn_8_973D4(s32 arg0, void* arg1)
 {
-	fn_8_96EF0((void*)(arg0 - 0x28));
+	fn_8_96EF0((void*)(arg0 - 0x28), arg1);
 }
 }

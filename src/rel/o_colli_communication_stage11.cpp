@@ -13,6 +13,13 @@ typedef s32 M2C_UNK;
  * retail vtable offsets divided by four, and the two implicit deleting
  * destructor slots occupy 0 and 1, so a method at slot k needs k - 2
  * placeholders ahead of it. */
+class TSubDispatch
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3(void*);
+};
+
 class TRendererBase
 {
 public:
@@ -172,10 +179,8 @@ s32 fn_8_B0A74(void* arg0)
 		temp_r3 = *(&lbl_802AD090 + (temp_r0 * 4));
 		if (temp_r3 != 0U) {
 			temp_f1 = fn_800D71DC((u8*)temp_r3 + 0x18, (u8*)arg0 + 0x140);
-			M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-			if (lbl_8_rodata_1BD4[0] == temp_f1) {
-				M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-				if (temp_f1 == lbl_8_rodata_1BD8[0]) {
+			if (lbl_8_rodata_1BD4[0] <= temp_f1) {
+				if (temp_f1 <= lbl_8_rodata_1BD8[0]) {
 					return 1;
 				}
 			}
@@ -194,8 +199,7 @@ void fn_8_B0B00(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x2BC) = 0x70;
 		return;
 	}
-	M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-	if ((temp_f1 == lbl_8_rodata_1BDC[0]) && (temp_f1 < lbl_8_rodata_1BE0[0])) {
+	if ((temp_f1 >= lbl_8_rodata_1BDC[0]) && (temp_f1 < lbl_8_rodata_1BE0[0])) {
 		M2C_FIELD(arg0, s32*, 0x2B8) = 0x100;
 		M2C_FIELD(arg0, s32*, 0x2BC) = 0x100;
 		return;
@@ -780,7 +784,7 @@ void fn_8_B1C1C(void* arg0)
 	((TRenderer*)arg0)->Slot38();
 	temp_r3 = M2C_FIELD(arg0, void***, 0x244);
 	if (temp_r3 != NULL) {
-		M2C_FIELD(*temp_r3, M2C_UNK(**)(void*), 0xC)(arg0);
+		((TSubDispatch*)temp_r3)->vslot3(arg0);
 	}
 	((TRenderer*)arg0)->Slot50(M2C_FIELD(arg0, s32*, 0x19C), 1);
 	fn_8_B3598(arg0);
@@ -791,8 +795,7 @@ void fn_8_B1C1C(void* arg0)
 			M2C_FIELD(arg0, s32*, 0x2B8) = 0x70;
 			M2C_FIELD(arg0, s32*, 0x2BC) = 0x70;
 		} else {
-			M2C_ERROR(/* unknown instruction: cror eq, gt, eq */);
-			if ((temp_f1 == lbl_8_rodata_1BDC[0]) && (temp_f1 < lbl_8_rodata_1BE0[0])) {
+			if ((temp_f1 >= lbl_8_rodata_1BDC[0]) && (temp_f1 < lbl_8_rodata_1BE0[0])) {
 				M2C_FIELD(arg0, s32*, 0x2B8) = 0x100;
 				M2C_FIELD(arg0, s32*, 0x2BC) = 0x100;
 			} else {

@@ -14,10 +14,9 @@ typedef struct TObject {
 	/* 0x01E */ s16 unk1E;     /* inferred */
 	/* 0x020 */ char pad20[8]; /* maybe part of unk1E[5]? */
 	/* 0x028 */ M2C_UNK unk28; /* inferred */
-	/* 0x028 */ char pad28[4];
 	/* 0x02C */ void* unk2C;   /* inferred */
 	/* 0x030 */ M2C_UNK unk30; /* inferred */
-	/* 0x030 */ char pad30[0x10];
+	/* 0x034 */ char pad34[0xC];
 	/* 0x040 */ void* unk40;      /* inferred */
 	/* 0x044 */ char pad44[0x4C]; /* maybe part of unk40[0x14]? */
 	/* 0x090 */ f32 unk90;        /* inferred */
@@ -97,14 +96,14 @@ M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);          /* extern */
 void* fn_80150588(s32, s32);                                       /* extern */
 M2C_UNK fn_80150958(void*);                                        /* extern */
 M2C_UNK fn_8015BB08(s32, void*);                                   /* extern */
-M2C_UNK fn_8015BBF8(s32);                                          /* extern */
+M2C_UNK fn_8015BBF8(s32, void*);                                   /* extern */
 M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32);             /* extern */
 M2C_UNK fn_8019E880(s32);                                          /* extern */
 M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);            /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                           /* extern */
 M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                           /* extern */
-M2C_UNK fn_801A4C84();                                             /* extern */
-M2C_UNK fn_8020C2D8(u32);                                          /* extern */
+M2C_UNK fn_801A4C84(u32);                                          /* extern */
+M2C_UNK fn_8020C2D8(void*, u32);                                   /* extern */
 M2C_UNK fn_8020C72C(void**, s32, s32);                             /* extern */
 M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                        /* extern */
 M2C_UNK fn_8020D02C(void**, M2C_UNK*, f32);                        /* extern */
@@ -116,6 +115,7 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1);                 /* static */
 void* fn_8_C7014(void* arg0, s32 arg1);                            /* static */
 s32 fn_8_C70C4(s32 arg0, void** arg1);                             /* static */
 void grassObjectCreate();                                          /* static */
+void grassObjectLoad(M2C_UNK arg_sp0);                             /* static */
 void grassObjectLoad(M2C_UNK arg_sp0);                             /* static */
 void grassObjectUnload(M2C_UNK arg_sp0);                           /* static */
 extern M2C_UNK lbl_80239984;
@@ -149,72 +149,73 @@ static M2C_UNK* lbl_8_data_18778[0xA] = {
 	&lbl_8_data_18750,
 	&lbl_8_data_18764,
 };
-static M2C_UNK lbl_8_data_187A0; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_187B4; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_187C8; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_187DC; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_187F0; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18804; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18818; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_1882C; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18840; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18854; /* unable to generate initializer: unknown type */
+static char lbl_8_data_187A0[]           = "s11_on_grassa1l.dff";
+static char lbl_8_data_187B4[]           = "s11_on_grassa2l.dff";
+static char lbl_8_data_187C8[]           = "s11_on_grassa3l.dff";
+static char lbl_8_data_187DC[]           = "s11_on_grassa4l.dff";
+static char lbl_8_data_187F0[]           = "s11_on_grassa5l.dff";
+static char lbl_8_data_18804[]           = "s11_on_grassa1d.dff";
+static char lbl_8_data_18818[]           = "s11_on_grassa2d.dff";
+static char lbl_8_data_1882C[]           = "s11_on_grassa3d.dff";
+static char lbl_8_data_18840[]           = "s11_on_grassa4d.dff";
+static char lbl_8_data_18854[]           = "s11_on_grassa5d.dff";
 static const char* lbl_8_data_18868[0xA] = {
-	"s11_on_grassa1l.dff",
-	"s11_on_grassa2l.dff",
-	"s11_on_grassa3l.dff",
-	"s11_on_grassa4l.dff",
-	"s11_on_grassa5l.dff",
-	"s11_on_grassa1d.dff",
-	"s11_on_grassa2d.dff",
-	"s11_on_grassa3d.dff",
-	"s11_on_grassa4d.dff",
-	"s11_on_grassa5d.dff",
+	lbl_8_data_187A0,
+	lbl_8_data_187B4,
+	lbl_8_data_187C8,
+	lbl_8_data_187DC,
+	lbl_8_data_187F0,
+	lbl_8_data_18804,
+	lbl_8_data_18818,
+	lbl_8_data_1882C,
+	lbl_8_data_18840,
+	lbl_8_data_18854,
 };
-static M2C_UNK lbl_8_data_18890;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_18890[] = "s11_pnw_grassa1l.dff";
 static M2C_UNK gap_04_000188A5_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_188A8;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_188A8[] = "s11_pnw_grassa2l.dff";
 static M2C_UNK gap_04_000188BD_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_188C0;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_188C0[] = "s11_pnw_grassa3l.dff";
 static M2C_UNK gap_04_000188D5_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_188D8;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_188D8[] = "s11_pnw_grassa1d.dff";
 static M2C_UNK gap_04_000188ED_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_188F0;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_188F0[] = "s11_pnw_grassa2d.dff";
 static M2C_UNK gap_04_00018905_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18908;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_18908[] = "s11_pnw_grassa3d.dff";
 static M2C_UNK gap_04_0001891D_data; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_18920[6] = {
-	"s11_pnw_grassa1l.dff",
-	"s11_pnw_grassa2l.dff",
-	"s11_pnw_grassa3l.dff",
-	"s11_pnw_grassa1d.dff",
-	"s11_pnw_grassa2d.dff",
-	"s11_pnw_grassa3d.dff",
+	lbl_8_data_18890,
+	lbl_8_data_188A8,
+	lbl_8_data_188C0,
+	lbl_8_data_188D8,
+	lbl_8_data_188F0,
+	lbl_8_data_18908,
 };
 static struct _struct_lbl_8_data_18938_0x14 lbl_8_data_18938[2] = { { 0U }, { 0U } };
 static struct _struct_lbl_8_data_18960_0xC lbl_8_data_18960[2]  = { { 0U }, { 0U } };
 static struct _struct_lbl_8_data_18978_0x14 lbl_8_data_18978[2] = { { 0U }, { 0U } };
-static M2C_UNK lbl_8_data_189A0;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000189B2_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_189B4;      /* unable to generate initializer: unknown type */
+static char lbl_8_data_189A0[]                                  = "type      : light";
+static M2C_UNK gap_04_000189B2_data; /* unable to generate initializer: unknown type */
+static char lbl_8_data_189B4[] = "direction : up";
 static M2C_UNK gap_04_000189C3_data;  /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_189C4;      /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_000189D3_data;  /* unable to generate initializer: unknown type */
 static M2C_UNK grassObjectFieldNames; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_189E0;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000189F1_data;  /* unable to generate initializer: unknown type */
-static const char* lbl_8_data_189F4[2] = { "type      : light", "type      : dark" };
-static M2C_UNK lbl_8_data_189FC;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_189E0[] = "type      : dark";
+static M2C_UNK gap_04_000189F1_data; /* unable to generate initializer: unknown type */
+static const char* lbl_8_data_189F4[2] = { lbl_8_data_189A0, lbl_8_data_189E0 };
+static char lbl_8_data_189FC[]         = "direction : down";
 static M2C_UNK gap_04_00018A0D_data; /* unable to generate initializer: unknown type */
-static const char* lbl_8_data_18A10[2] = { "direction : up", "direction : down" };
-static M2C_UNK lbl_8_data_18A18;     /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18A48;     /* unable to generate initializer: unknown type */
+static const char* lbl_8_data_18A10[2] = { lbl_8_data_189B4, lbl_8_data_189FC };
+static u32 lbl_8_data_18A18[12] = { 0x0000FFE0, 0x00000002, 0x00000000, 0xC1200000, 0x00000000,
+	0x41A00000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
+static char lbl_8_data_18A48[]  = "TObjGrass";
 static M2C_UNK gap_04_00018A52_data; /* unable to generate initializer: unknown type */
-static const char* lbl_8_data_18A54 = "TObjGrass";
-static M2C_UNK lbl_8_data_18A58;       /* unable to generate initializer: unknown type */
-static M2C_UNK grassObjectDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018AA1_data;   /* unable to generate initializer: unknown type */
-static M2C_UNK grassObjectFieldTypes;  /* unable to generate initializer: unknown type */
+static const char* lbl_8_data_18A54 = lbl_8_data_18A48;
+static M2C_UNK lbl_8_data_18A58; /* unable to generate initializer: unknown type */
+static char grassObjectDisplayName[] = "GRASS OBJECT";
+static M2C_UNK gap_04_00018AA1_data; /* unable to generate initializer: unknown type */
+static char grassObjectFieldTypes[] = "ccF";
 static u8 lbl_8_bss_1CA8;
 static M2C_UNK gap_05_00001CA9_bss;
 static M2C_UNK grassObjectEntry;
@@ -233,7 +234,7 @@ extern const f32 lbl_8_rodata_1F94[1] = { 0.019999999552965164f };
 extern const f32 lbl_8_rodata_1F98[1] = { 0.0f };
 extern const f32 lbl_8_rodata_1F9C[1] = { 1.0f };
 extern const f32 lbl_8_rodata_1FA0[1] = { 60.0f };
-extern const f32 lbl_8_rodata_1FA8[2] = { 1.75f, 0.0f };
+extern const f64 lbl_8_rodata_1FA8[1] = { 0.5 };
 extern const f64 lbl_8_rodata_1FB0[1] = { 4503601774854144.0 };
 extern const f32 lbl_8_rodata_1FB8[3] = { 0.0f, 0.0f, 0.0f };
 extern const f32 lbl_8_rodata_1FC4[1] = { 100.0f };
@@ -241,7 +242,7 @@ extern const f32 lbl_8_rodata_1FC8[1] = { 1.0f };
 extern const f32 lbl_8_rodata_1FCC[1] = { 2.5f };
 extern const f32 lbl_8_rodata_1FD0[1] = { 182.04444885253906f };
 extern const f32 lbl_8_rodata_1FD4[1] = { 0.0f };
-extern const f32 lbl_8_rodata_1FD8[6] = { 176.0f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f };
+extern const f32 lbl_8_rodata_1FD8[6] = { 176.0f, -0.0f, 0.0f, 1.5f, 0.0f, 0.0f };
 extern const f32 lbl_8_rodata_1FF0[1] = { 60.0f };
 extern const f32 lbl_8_rodata_1FF4[1] = { 2.0f };
 extern const f64 lbl_8_rodata_1FF8[1] = { 4503601774854144.0 };
@@ -257,16 +258,17 @@ void fn_8_C5FA4(s32 arg0)
 
 void fn_8_C5FAC(void* arg0, M2C_UNK arg_sp0)
 {
-	s32 var_r28;
-	s32 var_r28_2;
 	void* var_r29;
 	void* var_r29_2;
+	s32 var_r28;
+	s32 var_r28_2;
 
 	var_r28 = 0;
 	var_r29 = arg0;
 	do {
 		if ((void*)M2C_FIELD(var_r29, void**, 0xDC) != NULL) {
-			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C));
+			fn_8015BBF8(
+			    M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), (void*)M2C_FIELD(var_r29, void**, 0xDC));
 			fn_80150958(M2C_FIELD(var_r29, void**, 0xDC));
 			M2C_FIELD(var_r29, void**, 0xDC) = NULL;
 		}
@@ -277,7 +279,8 @@ void fn_8_C5FAC(void* arg0, M2C_UNK arg_sp0)
 	var_r29_2 = arg0;
 	do {
 		if ((void*)M2C_FIELD(var_r29_2, void**, 0xF0) != NULL) {
-			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x7284));
+			fn_8015BBF8(
+			    M2C_FIELD(lbl_8042C1D0, s32*, 0x7284), (void*)M2C_FIELD(var_r29_2, void**, 0xF0));
 			fn_80150958(M2C_FIELD(var_r29_2, void**, 0xF0));
 			M2C_FIELD(var_r29_2, void**, 0xF0) = NULL;
 		}
@@ -381,9 +384,9 @@ void fn_8_C606C(TObject* arg0, ...)
 
 void fn_8_C6324(void* arg0)
 {
+	void* temp_r5;
 	void* temp_r4;
 	void* temp_r4_2;
-	void* temp_r5;
 
 	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
 	temp_r5                     = M2C_FIELD(temp_r4, void**, 0x2C);
@@ -486,7 +489,7 @@ void fn_8_C63A0(TObject* arg0)
 			var_r27_3 = arg0;
 			do {
 				if ((void*)var_r27_3->unkDC != NULL) {
-					fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C));
+					fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), (void*)var_r27_3->unkDC);
 					fn_80150958(var_r27_3->unkDC);
 					var_r27_3->unkDC = NULL;
 				}
@@ -497,7 +500,7 @@ void fn_8_C63A0(TObject* arg0)
 			var_r27_4 = arg0;
 			do {
 				if ((void*)var_r27_4->unkF0 != NULL) {
-					fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x7284));
+					fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x7284), (void*)var_r27_4->unkF0);
 					fn_80150958(var_r27_4->unkF0);
 					var_r27_4->unkF0 = NULL;
 				}
@@ -551,8 +554,7 @@ void fn_8_C63A0(TObject* arg0)
 		return;
 	}
 	if (temp_f28 < temp_f31_2) {
-		M2C_ERROR(/* unknown instruction: cror eq, lt, eq */);
-		if ((temp_f31_2 == (1.0f + temp_f28)) && ((u32)lbl_8042C388 != 0U)) {
+		if ((temp_f31_2 <= (1.0f + temp_f28)) && ((u32)lbl_8042C388 != 0U)) {
 			fn_800B4A38(0x5A14, &arg0->unkB8, 0, 1, (s8)lbl_8_bss_1CA8, 0);
 		}
 	}
@@ -629,19 +631,19 @@ void fn_8_C6964(void* arg0)
 
 TObject* fn_8_C6B84(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 {
-	TObject* var_r26;
-	TObject* var_r26_2;
 	s32 var_r27;
 	s32 var_r27_2;
+	TObject* var_r26;
+	TObject* var_r26_2;
 
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_18A58;
-		arg0->unk2C = &lbl_8_data_18A58 + 0x2C;
+		arg0->unk2C = (u8*)&lbl_8_data_18A58 + 0x2C;
 		var_r27     = 0;
 		var_r26     = arg0;
 		do {
 			if ((void*)var_r26->unkDC != NULL) {
-				fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C));
+				fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), (void*)var_r26->unkDC);
 				fn_80150958(var_r26->unkDC);
 				var_r26->unkDC = NULL;
 			}
@@ -652,7 +654,7 @@ TObject* fn_8_C6B84(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 		var_r26_2 = arg0;
 		do {
 			if ((void*)var_r26_2->unkF0 != NULL) {
-				fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x7284));
+				fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x7284), (void*)var_r26_2->unkF0);
 				fn_80150958(var_r26_2->unkF0);
 				var_r26_2->unkF0 = NULL;
 			}
@@ -693,7 +695,7 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 	fn_8005BE6C(&arg0->unk28);
 	fn_8003C618(&arg0->unk30);
 	arg0->unk18 = &lbl_8_data_18A58;
-	arg0->unk2C = &lbl_8_data_18A58 + 0x2C;
+	arg0->unk2C = (u8*)&lbl_8_data_18A58 + 0x2C;
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_18A54;
 	arg0->unk1E = 0x11C;
 	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
@@ -757,13 +759,12 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 		var_r27_2 += 4;
 		var_r28 += 1;
 	} while (var_r28 < 3);
-	fn_8003C200(&arg0->unk30, &lbl_8_data_18A18, 1, 4);
+	fn_8003C200(&arg0->unk30, (int*)lbl_8_data_18A18, 1, 4);
 	M2C_FIELD(arg0->unk40, f32*, 0x14)
-	    = (f32)(M2C_FIELD(&lbl_8_data_18A18, f32*, 0x14) * arg0->unkD0);
-	M2C_FIELD(arg0->unk40, f32*, 0xC)
-	    = (f32)(M2C_FIELD(&lbl_8_data_18A18, f32*, 0xC) * arg0->unkD0);
+	    = (f32)(M2C_FIELD(lbl_8_data_18A18, f32*, 0x14) * arg0->unkD0);
+	M2C_FIELD(arg0->unk40, f32*, 0xC) = (f32)(M2C_FIELD(lbl_8_data_18A18, f32*, 0xC) * arg0->unkD0);
 	M2C_FIELD(arg0->unk40, f32*, 0x10)
-	    = (f32)(M2C_FIELD(&lbl_8_data_18A18, f32*, 0x10) * arg0->unkD0);
+	    = (f32)(M2C_FIELD(lbl_8_data_18A18, f32*, 0x10) * arg0->unkD0);
 	return arg0;
 }
 
@@ -827,16 +828,16 @@ void fn_8_C7128(void* arg0, void* arg1)
 
 void grassObjectUnload(M2C_UNK arg_sp0)
 {
+	s32 var_r31;
+	u32* var_r29;
+	u32* var_r29_2;
+	u32* var_r29_3;
+	struct _struct_lbl_8_data_18938_0x14* var_r28;
+	struct _struct_lbl_8_data_18960_0xC* var_r27;
+	struct _struct_lbl_8_data_18978_0x14* var_r26;
 	s32 var_r25;
 	s32 var_r25_2;
 	s32 var_r25_3;
-	s32 var_r31;
-	struct _struct_lbl_8_data_18938_0x14* var_r28;
-	struct _struct_lbl_8_data_18938_0x14* var_r29;
-	struct _struct_lbl_8_data_18960_0xC* var_r27;
-	struct _struct_lbl_8_data_18960_0xC* var_r29_2;
-	struct _struct_lbl_8_data_18978_0x14* var_r26;
-	struct _struct_lbl_8_data_18978_0x14* var_r29_3;
 
 	var_r31 = 0;
 	var_r28 = lbl_8_data_18938;
@@ -844,125 +845,126 @@ void grassObjectUnload(M2C_UNK arg_sp0)
 	var_r26 = lbl_8_data_18978;
 	do {
 		var_r25 = 0;
-		var_r29 = var_r28;
+		var_r29 = (u32*)var_r28;
 	loop_2:
-		if ((u32)var_r29->unk0 != 0U) {
-			fn_80150958((void*)var_r29->unk0);
-			var_r29->unk0 = 0U;
+		if (*var_r29 != 0U) {
+			fn_80150958((void*)*var_r29);
+			*var_r29 = 0U;
 		}
-		var_r29 += 4;
+		var_r29 += 1;
 		var_r25 += 1;
 		if (var_r25 < 5) {
 			goto loop_2;
 		}
 		var_r25_2 = 0;
-		var_r29_2 = var_r27;
+		var_r29_2 = (u32*)var_r27;
 	loop_6:
-		if ((u32)var_r29_2->unk0 != 0U) {
-			fn_80150958((void*)var_r29_2->unk0);
-			var_r29_2->unk0 = 0U;
+		if (*var_r29_2 != 0U) {
+			fn_80150958((void*)*var_r29_2);
+			*var_r29_2 = 0U;
 		}
-		var_r29_2 += 4;
+		var_r29_2 += 1;
 		var_r25_2 += 1;
 		if (var_r25_2 < 3) {
 			goto loop_6;
 		}
 		var_r25_3 = 0;
-		var_r29_3 = var_r26;
+		var_r29_3 = (u32*)var_r26;
 	loop_10:
-		if ((u32)var_r29_3->unk0 != 0U) {
-			fn_8020C2D8(var_r29_3->unk0);
-			var_r29_3->unk0 = 0U;
+		if (*var_r29_3 != 0U) {
+			fn_8020C2D8((void*)*var_r29_3, *var_r29_3);
+			*var_r29_3 = 0U;
 		}
-		var_r29_3 += 4;
+		var_r29_3 += 1;
 		var_r25_3 += 1;
 		if (var_r25_3 < 5) {
 			goto loop_10;
 		}
-		var_r28 += 0x14;
-		var_r27 += 0xC;
-		var_r26 += 0x14;
+		var_r28 += 1;
+		var_r27 += 1;
+		var_r26 += 1;
 		var_r31 += 1;
 	} while (var_r31 < 2);
 }
 
 void grassObjectLoad(M2C_UNK arg_sp0)
 {
+	s32 temp_r31;
+	const char** var_r30;
+	struct _struct_lbl_8_data_18938_0x14* var_r29;
+	const char** var_r28;
+	struct _struct_lbl_8_data_18960_0xC* var_r27;
+	M2C_UNK** var_r26;
+	struct _struct_lbl_8_data_18978_0x14* var_r25;
+	s32 var_r24;
+	const char** var_r21;
+	void** var_r21_2;
+	void** var_r21_3;
+	void** var_r20;
 	const char** var_r20_2;
 	M2C_UNK** var_r20_3;
-	const char** var_r21;
-	M2C_UNK** var_r26;
-	const char** var_r28;
-	const char** var_r30;
-	s32 temp_r31;
 	s32 var_r19;
 	s32 var_r19_2;
 	s32 var_r19_3;
-	s32 var_r24;
-	struct _struct_lbl_8_data_18938_0x14* var_r20;
-	struct _struct_lbl_8_data_18938_0x14* var_r29;
-	struct _struct_lbl_8_data_18960_0xC* var_r21_2;
-	struct _struct_lbl_8_data_18960_0xC* var_r27;
-	struct _struct_lbl_8_data_18978_0x14* var_r21_3;
-	struct _struct_lbl_8_data_18978_0x14* var_r25;
 
 	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84();
-		temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-		fn_800BC9F4(temp_r31, &lbl_802FF5A0);
-		var_r24 = 0;
-		var_r30 = lbl_8_data_18868;
-		var_r29 = lbl_8_data_18938;
-		var_r28 = lbl_8_data_18920;
-		var_r27 = lbl_8_data_18960;
-		var_r26 = lbl_8_data_18778;
-		var_r25 = lbl_8_data_18978;
-		do {
-			var_r19 = 0;
-			var_r21 = var_r30;
-			var_r20 = var_r29;
-		loop_5:
-			var_r20->unk0
-			    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)*var_r21), &lbl_802FF5A0);
-			var_r21 += 4;
-			var_r20 += 4;
-			var_r19 += 1;
-			if (var_r19 < 5) {
-				goto loop_5;
-			}
-			var_r19_2 = 0;
-			var_r20_2 = var_r28;
-			var_r21_2 = var_r27;
-		loop_7:
-			var_r21_2->unk0
-			    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)*var_r20_2), &lbl_802FF5A0);
-			var_r20_2 += 4;
-			var_r21_2 += 4;
-			var_r19_2 += 1;
-			if (var_r19_2 < 3) {
-				goto loop_7;
-			}
-			var_r19_3 = 0;
-			var_r20_3 = var_r26;
-			var_r21_3 = var_r25;
-		loop_9:
-			var_r21_3->unk0
-			    = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, *var_r20_3), &lbl_802FF5A0);
-			var_r20_3 += 4;
-			var_r21_3 += 4;
-			var_r19_3 += 1;
-			if (var_r19_3 < 5) {
-				goto loop_9;
-			}
-			var_r30 += 0x14;
-			var_r29 += 0x14;
-			var_r28 += 0xC;
-			var_r27 += 0xC;
-			var_r26 += 0x14;
-			var_r25 += 0x14;
-			var_r24 += 1;
-		} while (var_r24 < 2);
+		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
+	} else {
+		return;
 	}
+	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
+	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
+	var_r24 = 0;
+	var_r30 = lbl_8_data_18868;
+	var_r29 = lbl_8_data_18938;
+	var_r28 = lbl_8_data_18920;
+	var_r27 = lbl_8_data_18960;
+	var_r26 = lbl_8_data_18778;
+	var_r25 = lbl_8_data_18978;
+	do {
+		var_r19 = 0;
+		var_r21 = var_r30;
+		var_r20 = (void**)var_r29;
+	loop_5:
+		*var_r20 = (void*)fn_800BB92C(
+		    temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)*var_r21), &lbl_802FF5A0);
+		var_r21 += 1;
+		var_r20 += 1;
+		var_r19 += 1;
+		if (var_r19 < 5) {
+			goto loop_5;
+		}
+		var_r19_2 = 0;
+		var_r20_2 = var_r28;
+		var_r21_2 = (void**)var_r27;
+	loop_7:
+		*var_r21_2 = (void*)fn_800BB92C(
+		    temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)*var_r20_2), &lbl_802FF5A0);
+		var_r20_2 += 1;
+		var_r21_2 += 1;
+		var_r19_2 += 1;
+		if (var_r19_2 < 3) {
+			goto loop_7;
+		}
+		var_r19_3 = 0;
+		var_r20_3 = var_r26;
+		var_r21_3 = (void**)var_r25;
+	loop_9:
+		*var_r21_3 = (void*)fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, *var_r20_3), &lbl_802FF5A0);
+		var_r20_3 += 1;
+		var_r21_3 += 1;
+		var_r19_3 += 1;
+		if (var_r19_3 < 5) {
+			goto loop_9;
+		}
+		var_r30 += 5;
+		var_r29 += 1;
+		var_r28 += 3;
+		var_r27 += 1;
+		var_r26 += 5;
+		var_r25 += 1;
+		var_r24 += 1;
+	} while (var_r24 < 2);
 }
 
 void grassObjectCreate(void)
@@ -976,28 +978,30 @@ void grassObjectCreate(void)
 void grassObjectRegister(void)
 {
 	M2C_UNK* temp_r3;
+	s32 flags;
 
 	M2C_FIELD(&grassObjectEntry, s32*, 0x14)            = 0;
 	M2C_FIELD(&grassObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0)          = (M2C_UNK*)"GRASS OBJECT";
+	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0)          = (M2C_UNK*)grassObjectDisplayName;
 	M2C_FIELD(&grassObjectEntry, void (**)(M2C_UNK), 4) = grassObjectLoad;
 	M2C_FIELD(&grassObjectEntry, void (**)(M2C_UNK), 8) = grassObjectUnload;
 	M2C_FIELD(&grassObjectEntry, void (**)(), 0xC)      = grassObjectCreate;
 	M2C_FIELD(&grassObjectEntry, s32*, 0x10)            = 0;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14)            = 0x20000;
+	flags                                               = 0x20000;
+	M2C_FIELD(&grassObjectEntry, s32*, 0x14)            = flags;
 	M2C_FIELD(&grassObjectEntry, s32*, 0x18)            = 0;
 	M2C_FIELD(&grassObjectEntry, s8*, 0x20)             = 0x1E;
 	M2C_FIELD(&grassObjectEntry, s16*, 0x1C)            = 0x118B;
 	M2C_FIELD(&grassObjectEntry, s16*, 0x1E)            = 2;
 	M2C_FIELD(&grassObjectEntry, s8*, 0x21)             = 0;
-	temp_r3                                             = (M2C_UNK*)"ccF";
+	temp_r3                                             = (M2C_UNK*)grassObjectFieldTypes;
 	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0x24)       = temp_r3;
 	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0x28)       = &grassObjectFieldNames;
 	if (temp_r3 != NULL) {
-		M2C_FIELD(&grassObjectEntry, s32*, 0x14) = 0x20008;
+		M2C_FIELD(&grassObjectEntry, s32*, 0x14) = flags | 8;
 		return;
 	}
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14) = 0x20000;
+	M2C_FIELD(&grassObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const grassObjectCtorEntry)(void) = grassObjectRegister;
