@@ -198,11 +198,11 @@ M2C_UNK fn_8019ED68(...);                                                 /* ext
 M2C_UNK fn_801B95EC(s32, struct _struct_lbl_8_data_15E0C_0xC (*)[], s32); /* extern */
 s32 fn_801C28D8();                                                        /* extern */
 s32 fn_8_9832C(s32);                                                      /* extern */
-s32 fn_8_98464();                                                         /* extern */
+s32 fn_8_98464(u32);                                                      /* extern */
 M2C_UNK fn_8_98480(void*);                                                /* extern */
 M2C_UNK fn_8_9897C();                                                     /* extern */
 s32 fn_8_98B08();                                                         /* extern */
-s32 fn_8_98B94();                                                         /* extern */
+s32 fn_8_98B94(u32);                                                      /* extern */
 M2C_UNK fn_8_9D81C(s32);                                                  /* extern */
 M2C_UNK fn_8_A2A00(TObject*);                                             /* extern */
 M2C_UNK fn_8_A2A78(TObject*);                                             /* extern */
@@ -685,21 +685,24 @@ void fn_8_9E324(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 1;
 			return;
 		case 1:
-			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U) && (fn_8_98B94() != 0)) {
+			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U)
+			    && (fn_8_98B94(M2C_FIELD(arg0, u32*, 0x14)) != 0)) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 1;
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 				return;
 			}
-			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U) && (fn_8_98464() != 0)) {
+			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U)
+			    && (fn_8_98464(M2C_FIELD(arg0, u32*, 0x14)) != 0)) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 1;
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }

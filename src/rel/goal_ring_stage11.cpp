@@ -215,13 +215,14 @@ extern "C" void fn_8_4AC70(void*, void* particle)
 
 extern "C" void fn_8_4AD0C(void* self, void* particle)
 {
+	void* tail;
 	void* first = field<void*>(self, 0x3C);
 	if (first == NULL) {
 		field<void*>(self, 0x3C)     = particle;
 		field<void*>(particle, 0x28) = NULL;
 		field<void*>(particle, 0x24) = particle;
 	} else {
-		void* tail                   = field<void*>(first, 0x24);
+		tail                         = field<void*>(first, 0x24);
 		field<void*>(tail, 0x28)     = particle;
 		field<void*>(first, 0x24)    = particle;
 		field<void*>(particle, 0x28) = NULL;
