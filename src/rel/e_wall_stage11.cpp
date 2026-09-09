@@ -1578,10 +1578,10 @@ void fn_8_B82CC(void* arg0)
 			sp24.w                            = lbl_8_rodata_1D60;
 			if (fn_8019CE34(*lbl_8042C9A4, &sp24.x) != 0) {
 				M2C_FIELD(&sp18, M2C_BLOCK12*, 0) = M2C_FIELD(&lbl_8_rodata_1D3C, M2C_BLOCK12*, 0);
-				temp_f2                           = lbl_8_rodata_1D64
-				    * (M2C_FIELD(arg0, f32*, 0xB4) - M2C_FIELD(arg0, f32*, 0xC8));
-				temp_f1_2 = lbl_8_rodata_1D5C - temp_f2;
-				sp8       = temp_f1_2;
+				temp_f1_2                         = lbl_8_rodata_1D5C
+				    - (lbl_8_rodata_1D64
+				        * (M2C_FIELD(arg0, f32*, 0xB4) - M2C_FIELD(arg0, f32*, 0xC8)));
+				sp8 = temp_f1_2;
 				if (temp_f1_2 < lbl_8_rodata_1D54) {
 					var_r3 = &lbl_8_rodata_1D54;
 				} else if (temp_f1_2 > lbl_8_rodata_1D58) {
