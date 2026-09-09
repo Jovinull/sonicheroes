@@ -65,7 +65,25 @@ static M2C_UNK gap_04_00018283_data;    /* unable to generate initializer: unkno
 static M2C_UNK s12fanObjectDisplayName; /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018292_data;    /* unable to generate initializer: unknown type */
 static u32 lbl_8_bss_1C10;
-static M2C_UNK s12fanObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry s12fanObjectEntry;
 
 void fn_8_C37E0(s32 arg0)
 {
@@ -249,30 +267,28 @@ void s12fanObjectCreate(void)
 
 void s12fanObjectRegister(void)
 {
-	s32 flags;
 	u32 fieldTypes = 0;
 
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x14)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x18)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, M2C_UNK**, 0)     = &s12fanObjectDisplayName;
-	M2C_FIELD(&s12fanObjectEntry, void (**)(), 4)   = s12fanObjectLoad;
-	M2C_FIELD(&s12fanObjectEntry, void (**)(), 8)   = s12fanObjectUnload;
-	M2C_FIELD(&s12fanObjectEntry, void (**)(), 0xC) = s12fanObjectCreate;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x10)       = fieldTypes;
-	flags                                           = 0x20000;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x18)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&s12fanObjectEntry, s16*, 0x1C)       = 0x1187;
-	M2C_FIELD(&s12fanObjectEntry, s16*, 0x1E)       = 2;
-	M2C_FIELD(&s12fanObjectEntry, s8*, 0x21)        = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x24)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x28)       = fieldTypes;
-	if (fieldTypes != 0) {
-		M2C_FIELD(&s12fanObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	s12fanObjectEntry.flags      = fieldTypes;
+	s12fanObjectEntry.unk18      = fieldTypes;
+	s12fanObjectEntry.name       = (const char*)&s12fanObjectDisplayName;
+	s12fanObjectEntry.load       = (void (*)(void))s12fanObjectLoad;
+	s12fanObjectEntry.unload     = (void (*)(void))s12fanObjectUnload;
+	s12fanObjectEntry.create     = (void (*)(void))s12fanObjectCreate;
+	s12fanObjectEntry.unk10      = (void*)fieldTypes;
+	s12fanObjectEntry.flags      = 0x20000;
+	s12fanObjectEntry.unk18      = fieldTypes;
+	s12fanObjectEntry.unk20      = 0x1E;
+	s12fanObjectEntry.unk1C      = 0x1187;
+	s12fanObjectEntry.unk1E      = 2;
+	s12fanObjectEntry.unk21      = fieldTypes;
+	s12fanObjectEntry.fieldTypes = (const char*)fieldTypes;
+	s12fanObjectEntry.fieldNames = (const char**)fieldTypes;
+	if ((const char*)fieldTypes != NULL) {
+		s12fanObjectEntry.flags |= 8;
+	} else {
+		s12fanObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const s12fanObjectCtorEntry)(void) = s12fanObjectRegister;

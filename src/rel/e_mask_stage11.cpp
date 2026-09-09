@@ -125,7 +125,25 @@ static M2C_UNK gap_04_00018DD5_data; /* unable to generate initializer: unknown 
 static char maskObjectDisplayName[] = "MASK OBJECT";
 static char maskObjectFieldTypes[]  = "iFFc";
 static M2C_UNK gap_04_00018DEC_data; /* unable to generate initializer: unknown type */
-static M2C_UNK maskObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry maskObjectEntry;
 static M2C_UNK lbl_8_bss_1D48;
 extern const s32 lbl_8_rodata_20F0[5] = { 0x43300000, 0x80000000, 0x5, 0x2, 0x1 };
 extern const f32 lbl_8_rodata_2104[1] = { 0.0054931640625f };
@@ -625,31 +643,26 @@ void maskObjectCreate(void)
 
 void maskObjectRegister(void)
 {
-	s32 flags;
-	M2C_UNK* temp_r3;
-
-	M2C_FIELD(&maskObjectEntry, s32*, 0x14)       = 0;
-	M2C_FIELD(&maskObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&maskObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)maskObjectDisplayName;
-	M2C_FIELD(&maskObjectEntry, void (**)(), 4)   = maskObjectLoad;
-	M2C_FIELD(&maskObjectEntry, void (**)(), 8)   = maskObjectUnload;
-	M2C_FIELD(&maskObjectEntry, void (**)(), 0xC) = maskObjectCreate;
-	M2C_FIELD(&maskObjectEntry, s32*, 0x10)       = 0;
-	flags                                         = 0x20000;
-	M2C_FIELD(&maskObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(&maskObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&maskObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&maskObjectEntry, s16*, 0x1C)       = 0x118D;
-	M2C_FIELD(&maskObjectEntry, s16*, 0x1E)       = 2;
-	M2C_FIELD(&maskObjectEntry, s8*, 0x21)        = 0;
-	temp_r3                                       = (M2C_UNK*)maskObjectFieldTypes;
-	M2C_FIELD(&maskObjectEntry, M2C_UNK**, 0x24)  = temp_r3;
-	M2C_FIELD(&maskObjectEntry, M2C_UNK**, 0x28)  = &maskObjectFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(&maskObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	maskObjectEntry.flags      = 0;
+	maskObjectEntry.unk18      = 0;
+	maskObjectEntry.name       = (const char*)maskObjectDisplayName;
+	maskObjectEntry.load       = (void (*)(void))maskObjectLoad;
+	maskObjectEntry.unload     = (void (*)(void))maskObjectUnload;
+	maskObjectEntry.create     = (void (*)(void))maskObjectCreate;
+	maskObjectEntry.unk10      = (void*)0;
+	maskObjectEntry.flags      = 0x20000;
+	maskObjectEntry.unk18      = 0;
+	maskObjectEntry.unk20      = 0x1E;
+	maskObjectEntry.unk1C      = 0x118D;
+	maskObjectEntry.unk1E      = 2;
+	maskObjectEntry.unk21      = 0;
+	maskObjectEntry.fieldTypes = (const char*)maskObjectFieldTypes;
+	maskObjectEntry.fieldNames = (const char**)&maskObjectFieldNames;
+	if ((const char*)maskObjectFieldTypes != NULL) {
+		maskObjectEntry.flags |= 8;
+	} else {
+		maskObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&maskObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const maskObjectCtorEntry)(void) = maskObjectRegister;

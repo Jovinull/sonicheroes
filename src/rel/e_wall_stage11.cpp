@@ -952,7 +952,25 @@ static u32 lbl_8_bss_1AE0[0x11];
 static s32 lbl_8_bss_1B24;
 static M2C_UNK wallObjectGlobalAChain[3];
 static M2C_UNK wallObjectGlobalA[5];
-static M2C_UNK wallObjectEntry[12];
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry wallObjectEntry;
 static const f32 lbl_8_rodata_1E20[6] = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f }; /* const */
 
 void fn_8_B7210(s32 arg0)
@@ -4097,33 +4115,29 @@ void fn_8_BD950(void* arg0, s32 arg1)
 
 void wallObjectRegister(void)
 {
-	s32 flags;
-	M2C_UNK* temp_r3;
-
 	fn_80113C7C(wallObjectGlobalA);
 	__register_global_object(&fn_80113C2C, wallObjectGlobalAChain);
-	M2C_FIELD(wallObjectEntry, s32*, 0x14)       = 0;
-	M2C_FIELD(wallObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(wallObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)wallObjectDisplayName;
-	M2C_FIELD(wallObjectEntry, void (**)(), 4)   = wallObjectLoad;
-	M2C_FIELD(wallObjectEntry, void (**)(), 8)   = wallObjectUnload;
-	M2C_FIELD(wallObjectEntry, void (**)(), 0xC) = wallObjectCreate;
-	M2C_FIELD(wallObjectEntry, s32*, 0x10)       = 0;
-	flags                                        = 0x20000;
-	M2C_FIELD(wallObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(wallObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(wallObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(wallObjectEntry, s16*, 0x1C)       = 0x1540;
-	M2C_FIELD(wallObjectEntry, s16*, 0x1E)       = 4;
-	M2C_FIELD(wallObjectEntry, s8*, 0x21)        = 0;
-	temp_r3                                      = (M2C_UNK*)wallObjectFieldTypes;
-	M2C_FIELD(wallObjectEntry, M2C_UNK**, 0x24)  = temp_r3;
-	M2C_FIELD(wallObjectEntry, M2C_UNK**, 0x28)  = (M2C_UNK*)wallObjectFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(wallObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+
+	wallObjectEntry.flags      = 0;
+	wallObjectEntry.unk18      = 0;
+	wallObjectEntry.name       = (const char*)wallObjectDisplayName;
+	wallObjectEntry.load       = (void (*)(void))wallObjectLoad;
+	wallObjectEntry.unload     = (void (*)(void))wallObjectUnload;
+	wallObjectEntry.create     = (void (*)(void))wallObjectCreate;
+	wallObjectEntry.unk10      = (void*)0;
+	wallObjectEntry.flags      = 0x20000;
+	wallObjectEntry.unk18      = 0;
+	wallObjectEntry.unk20      = 0x1E;
+	wallObjectEntry.unk1C      = 0x1540;
+	wallObjectEntry.unk1E      = 4;
+	wallObjectEntry.unk21      = 0;
+	wallObjectEntry.fieldTypes = (const char*)wallObjectFieldTypes;
+	wallObjectEntry.fieldNames = (const char**)wallObjectFieldNames;
+	if ((const char*)wallObjectFieldTypes != NULL) {
+		wallObjectEntry.flags |= 8;
+	} else {
+		wallObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(wallObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const wallObjectCtorEntry)(void) = wallObjectRegister;

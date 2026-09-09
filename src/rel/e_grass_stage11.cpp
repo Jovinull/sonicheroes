@@ -218,7 +218,25 @@ static M2C_UNK gap_04_00018AA1_data; /* unable to generate initializer: unknown 
 static char grassObjectFieldTypes[] = "ccF";
 static u8 lbl_8_bss_1CA8;
 static M2C_UNK gap_05_00001CA9_bss;
-static M2C_UNK grassObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry grassObjectEntry;
 static M2C_UNK lbl_8_bss_1CD8;
 static M2C_UNK lbl_8_bss_1CDC;
 static M2C_UNK lbl_8_bss_1CE0;
@@ -977,31 +995,26 @@ void grassObjectCreate(void)
 
 void grassObjectRegister(void)
 {
-	M2C_UNK* temp_r3;
-	s32 flags;
-
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14)            = 0;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0)          = (M2C_UNK*)grassObjectDisplayName;
-	M2C_FIELD(&grassObjectEntry, void (**)(M2C_UNK), 4) = grassObjectLoad;
-	M2C_FIELD(&grassObjectEntry, void (**)(M2C_UNK), 8) = grassObjectUnload;
-	M2C_FIELD(&grassObjectEntry, void (**)(), 0xC)      = grassObjectCreate;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x10)            = 0;
-	flags                                               = 0x20000;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14)            = flags;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&grassObjectEntry, s8*, 0x20)             = 0x1E;
-	M2C_FIELD(&grassObjectEntry, s16*, 0x1C)            = 0x118B;
-	M2C_FIELD(&grassObjectEntry, s16*, 0x1E)            = 2;
-	M2C_FIELD(&grassObjectEntry, s8*, 0x21)             = 0;
-	temp_r3                                             = (M2C_UNK*)grassObjectFieldTypes;
-	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0x24)       = temp_r3;
-	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0x28)       = &grassObjectFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(&grassObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	grassObjectEntry.flags      = 0;
+	grassObjectEntry.unk18      = 0;
+	grassObjectEntry.name       = (const char*)grassObjectDisplayName;
+	grassObjectEntry.load       = (void (*)(void))grassObjectLoad;
+	grassObjectEntry.unload     = (void (*)(void))grassObjectUnload;
+	grassObjectEntry.create     = (void (*)(void))grassObjectCreate;
+	grassObjectEntry.unk10      = (void*)0;
+	grassObjectEntry.flags      = 0x20000;
+	grassObjectEntry.unk18      = 0;
+	grassObjectEntry.unk20      = 0x1E;
+	grassObjectEntry.unk1C      = 0x118B;
+	grassObjectEntry.unk1E      = 2;
+	grassObjectEntry.unk21      = 0;
+	grassObjectEntry.fieldTypes = (const char*)grassObjectFieldTypes;
+	grassObjectEntry.fieldNames = (const char**)&grassObjectFieldNames;
+	if ((const char*)grassObjectFieldTypes != NULL) {
+		grassObjectEntry.flags |= 8;
+	} else {
+		grassObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const grassObjectCtorEntry)(void) = grassObjectRegister;

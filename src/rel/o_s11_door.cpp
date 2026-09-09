@@ -100,7 +100,25 @@ extern const f32 lbl_8_rodata_1634[6] = { 30.0f, 0.0f, 0.0f, -30.0f, 0.0f, 0.0f 
 extern const f32 lbl_8_rodata_164C[1] = { 1.0f };
 extern const f32 lbl_8_rodata_1650[1] = { 60.0f };
 extern M2C_UNK s11doorObjectDisplayName;
-extern M2C_UNK s11doorObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+extern ObjectEntry s11doorObjectEntry;
 extern s32 s11doorObjectFieldNames;
 extern M2C_UNK s11doorObjectFieldTypes;
 extern M2C_UNK s11doorObjectVtable;
@@ -661,28 +679,25 @@ void s11doorObjectCreate(void)
 
 void s11doorObjectRegister(void)
 {
-	s32 flags;
-
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14)            = 0;
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s11doorObjectEntry, M2C_UNK**, 0)          = &s11doorObjectDisplayName;
-	M2C_FIELD(&s11doorObjectEntry, void (**)(M2C_UNK), 4) = s11doorObjectLoad;
-	M2C_FIELD(&s11doorObjectEntry, void (**)(), 8)        = s11doorObjectUnload;
-	M2C_FIELD(&s11doorObjectEntry, void (**)(), 0xC)      = s11doorObjectCreate;
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x10)            = 0;
-	flags                                                 = 0x20000;
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14)            = flags;
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s11doorObjectEntry, s8*, 0x20)             = 0x1E;
-	M2C_FIELD(&s11doorObjectEntry, s16*, 0x1C)            = 0x1101;
-	M2C_FIELD(&s11doorObjectEntry, s16*, 0x1E)            = 2;
-	M2C_FIELD(&s11doorObjectEntry, s8*, 0x21)             = 0;
-	M2C_FIELD(&s11doorObjectEntry, M2C_UNK**, 0x24)       = &s11doorObjectFieldTypes;
-	M2C_FIELD(&s11doorObjectEntry, s32**, 0x28)           = &s11doorObjectFieldNames;
-	if (&s11doorObjectFieldTypes != NULL) {
-		M2C_FIELD(&s11doorObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	s11doorObjectEntry.flags      = 0;
+	s11doorObjectEntry.unk18      = 0;
+	s11doorObjectEntry.name       = (const char*)&s11doorObjectDisplayName;
+	s11doorObjectEntry.load       = (void (*)(void))s11doorObjectLoad;
+	s11doorObjectEntry.unload     = (void (*)(void))s11doorObjectUnload;
+	s11doorObjectEntry.create     = (void (*)(void))s11doorObjectCreate;
+	s11doorObjectEntry.unk10      = (void*)0;
+	s11doorObjectEntry.flags      = 0x20000;
+	s11doorObjectEntry.unk18      = 0;
+	s11doorObjectEntry.unk20      = 0x1E;
+	s11doorObjectEntry.unk1C      = 0x1101;
+	s11doorObjectEntry.unk1E      = 2;
+	s11doorObjectEntry.unk21      = 0;
+	s11doorObjectEntry.fieldTypes = (const char*)&s11doorObjectFieldTypes;
+	s11doorObjectEntry.fieldNames = (const char**)&s11doorObjectFieldNames;
+	if ((const char*)&s11doorObjectFieldTypes != NULL) {
+		s11doorObjectEntry.flags |= 8;
+	} else {
+		s11doorObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&s11doorObjectEntry, s32*, 0x14) = flags & ~8;
 }
 }

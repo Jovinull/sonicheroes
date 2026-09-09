@@ -131,7 +131,25 @@ static M2C_UNK flyerColObjectDisplayName; /* unable to generate initializer: unk
 static M2C_UNK gap_04_0001641D_data;      /* unable to generate initializer: unknown type */
 static M2C_UNK flyerColObjectFieldTypes;  /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001642A_data;      /* unable to generate initializer: unknown type */
-static M2C_UNK flyerColObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry flyerColObjectEntry;
 extern const f32 lbl_8_rodata_198C[1] = { 0.0f };
 extern const s32 lbl_8_rodata_1990[1] = { 0 };
 extern const s32 lbl_8_rodata_1994[4] = { 0x100, 0, 0x3FC00000, 0 };
@@ -1180,28 +1198,25 @@ void flyerColObjectCreate(void)
 
 void flyerColObjectRegister(void)
 {
-	s32 flags;
-
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14)       = 0;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&flyerColObjectEntry, M2C_UNK**, 0)     = &flyerColObjectDisplayName;
-	M2C_FIELD(&flyerColObjectEntry, void (**)(), 4)   = flyerColObjectLoad;
-	M2C_FIELD(&flyerColObjectEntry, void (**)(), 8)   = flyerColObjectUnload;
-	M2C_FIELD(&flyerColObjectEntry, void (**)(), 0xC) = flyerColObjectCreate;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x10)       = 0;
-	flags                                             = 0x20000;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&flyerColObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&flyerColObjectEntry, s16*, 0x1C)       = 0x63;
-	M2C_FIELD(&flyerColObjectEntry, s16*, 0x1E)       = 4;
-	M2C_FIELD(&flyerColObjectEntry, s8*, 0x21)        = 0;
-	M2C_FIELD(&flyerColObjectEntry, M2C_UNK**, 0x24)  = &flyerColObjectFieldTypes;
-	M2C_FIELD(&flyerColObjectEntry, M2C_UNK***, 0x28) = flyerColObjectFieldNames;
-	if (&flyerColObjectFieldTypes != NULL) {
-		M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	flyerColObjectEntry.flags      = 0;
+	flyerColObjectEntry.unk18      = 0;
+	flyerColObjectEntry.name       = (const char*)&flyerColObjectDisplayName;
+	flyerColObjectEntry.load       = (void (*)(void))flyerColObjectLoad;
+	flyerColObjectEntry.unload     = (void (*)(void))flyerColObjectUnload;
+	flyerColObjectEntry.create     = (void (*)(void))flyerColObjectCreate;
+	flyerColObjectEntry.unk10      = (void*)0;
+	flyerColObjectEntry.flags      = 0x20000;
+	flyerColObjectEntry.unk18      = 0;
+	flyerColObjectEntry.unk20      = 0x1E;
+	flyerColObjectEntry.unk1C      = 0x63;
+	flyerColObjectEntry.unk1E      = 4;
+	flyerColObjectEntry.unk21      = 0;
+	flyerColObjectEntry.fieldTypes = (const char*)&flyerColObjectFieldTypes;
+	flyerColObjectEntry.fieldNames = (const char**)flyerColObjectFieldNames;
+	if ((const char*)&flyerColObjectFieldTypes != NULL) {
+		flyerColObjectEntry.flags |= 8;
+	} else {
+		flyerColObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = flags & ~8;
 }
 }

@@ -307,7 +307,25 @@ static M2C_UNK lbl_8_data_16D70;     /* unable to generate initializer: unknown 
 static M2C_UNK gap_04_00016D7F_data; /* unable to generate initializer: unknown type */
 static u32 lbl_8_bss_19D4[0x11];
 static s32 lbl_8_bss_1A18;
-static M2C_UNK magicianObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry magicianObjectEntry;
 extern const f32 lbl_8_rodata_1B70[9]
     = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };
 extern const f32 lbl_8_rodata_1B94[3] = { 0.0f, 5.0f, 0.0f };
@@ -1333,28 +1351,25 @@ void fn_8_AF86C(void* arg0, s32 arg1)
 
 void magicianObjectRegister(void)
 {
-	s32 flags;
-
-	M2C_FIELD(&magicianObjectEntry, s32*, 0x14)       = 0;
-	M2C_FIELD(&magicianObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&magicianObjectEntry, M2C_UNK**, 0)     = &magicianObjectDisplayName;
-	M2C_FIELD(&magicianObjectEntry, void (**)(), 4)   = magicianObjectLoad;
-	M2C_FIELD(&magicianObjectEntry, void (**)(), 8)   = magicianObjectUnload;
-	M2C_FIELD(&magicianObjectEntry, void (**)(), 0xC) = magicianObjectCreate;
-	M2C_FIELD(&magicianObjectEntry, s32*, 0x10)       = 0;
-	flags                                             = 0x20000;
-	M2C_FIELD(&magicianObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(&magicianObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&magicianObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&magicianObjectEntry, s16*, 0x1C)       = 0x15C0;
-	M2C_FIELD(&magicianObjectEntry, s16*, 0x1E)       = 4;
-	M2C_FIELD(&magicianObjectEntry, s8*, 0x21)        = 0;
-	M2C_FIELD(&magicianObjectEntry, M2C_UNK**, 0x24)  = &magicianObjectFieldTypes;
-	M2C_FIELD(&magicianObjectEntry, s32**, 0x28)      = &magicianObjectFieldNames;
-	if (&magicianObjectFieldTypes != NULL) {
-		M2C_FIELD(&magicianObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	magicianObjectEntry.flags      = 0;
+	magicianObjectEntry.unk18      = 0;
+	magicianObjectEntry.name       = (const char*)&magicianObjectDisplayName;
+	magicianObjectEntry.load       = (void (*)(void))magicianObjectLoad;
+	magicianObjectEntry.unload     = (void (*)(void))magicianObjectUnload;
+	magicianObjectEntry.create     = (void (*)(void))magicianObjectCreate;
+	magicianObjectEntry.unk10      = (void*)0;
+	magicianObjectEntry.flags      = 0x20000;
+	magicianObjectEntry.unk18      = 0;
+	magicianObjectEntry.unk20      = 0x1E;
+	magicianObjectEntry.unk1C      = 0x15C0;
+	magicianObjectEntry.unk1E      = 4;
+	magicianObjectEntry.unk21      = 0;
+	magicianObjectEntry.fieldTypes = (const char*)&magicianObjectFieldTypes;
+	magicianObjectEntry.fieldNames = (const char**)&magicianObjectFieldNames;
+	if ((const char*)&magicianObjectFieldTypes != NULL) {
+		magicianObjectEntry.flags |= 8;
+	} else {
+		magicianObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&magicianObjectEntry, s32*, 0x14) = flags & ~8;
 }
 }

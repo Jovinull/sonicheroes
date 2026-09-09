@@ -71,7 +71,25 @@ extern f32 lbl_8_rodata_166C;
 extern f32 lbl_8_rodata_1670;
 static u32 s12celestialObjectDisplayName[5]
     = { 0x53313243, 0x454C4553, 0x5449414C, 0x204F424A, 0x45435400 };
-extern M2C_UNK s12celestialObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+extern ObjectEntry s12celestialObjectEntry;
 extern M2C_UNK s12celestialObjectFieldNames;
 extern M2C_UNK s12celestialObjectFieldTypes;
 
@@ -393,29 +411,26 @@ void s12celestialObjectCreate(void)
 
 void s12celestialObjectRegister(void)
 {
-	s32 flags;
-
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x14)   = 0;
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x18)   = 0;
-	M2C_FIELD(&s12celestialObjectEntry, M2C_UNK**, 0) = (int*)s12celestialObjectDisplayName;
-	M2C_FIELD(&s12celestialObjectEntry, void (**)(M2C_UNK), 4) = s12celestialObjectLoad;
-	M2C_FIELD(&s12celestialObjectEntry, void (**)(), 8)        = s12celestialObjectUnload;
-	M2C_FIELD(&s12celestialObjectEntry, void (**)(), 0xC)      = s12celestialObjectCreate;
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x10)            = 0;
-	flags                                                      = 0x20000;
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x14)            = flags;
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s12celestialObjectEntry, s8*, 0x20)             = 0x1E;
-	M2C_FIELD(&s12celestialObjectEntry, s16*, 0x1C)            = 0x1181;
-	M2C_FIELD(&s12celestialObjectEntry, s16*, 0x1E)            = 2;
-	M2C_FIELD(&s12celestialObjectEntry, s8*, 0x21)             = 0;
-	M2C_FIELD(&s12celestialObjectEntry, M2C_UNK**, 0x24)       = &s12celestialObjectFieldTypes;
-	M2C_FIELD(&s12celestialObjectEntry, M2C_UNK**, 0x28)       = &s12celestialObjectFieldNames;
-	if (&s12celestialObjectFieldTypes != NULL) {
-		M2C_FIELD(&s12celestialObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	s12celestialObjectEntry.flags      = 0;
+	s12celestialObjectEntry.unk18      = 0;
+	s12celestialObjectEntry.name       = (const char*)s12celestialObjectDisplayName;
+	s12celestialObjectEntry.load       = (void (*)(void))s12celestialObjectLoad;
+	s12celestialObjectEntry.unload     = (void (*)(void))s12celestialObjectUnload;
+	s12celestialObjectEntry.create     = (void (*)(void))s12celestialObjectCreate;
+	s12celestialObjectEntry.unk10      = (void*)0;
+	s12celestialObjectEntry.flags      = 0x20000;
+	s12celestialObjectEntry.unk18      = 0;
+	s12celestialObjectEntry.unk20      = 0x1E;
+	s12celestialObjectEntry.unk1C      = 0x1181;
+	s12celestialObjectEntry.unk1E      = 2;
+	s12celestialObjectEntry.unk21      = 0;
+	s12celestialObjectEntry.fieldTypes = (const char*)&s12celestialObjectFieldTypes;
+	s12celestialObjectEntry.fieldNames = (const char**)&s12celestialObjectFieldNames;
+	if ((const char*)&s12celestialObjectFieldTypes != NULL) {
+		s12celestialObjectEntry.flags |= 8;
+	} else {
+		s12celestialObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&s12celestialObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 void fn_8_973D4(s32 arg0, void* arg1)

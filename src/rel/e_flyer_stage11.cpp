@@ -186,7 +186,25 @@ M2C_UNK pawnReleaseBuffer();                                                    
 s32 sprintf(void*, const char*, ...);                                            /* extern */
 void fn_8_A4E44(M2C_UNK* arg0);                                                  /* static */
 void fn_8_A549C(void* arg0, ...);                                                /* static */
-extern M2C_UNK flyerObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+extern ObjectEntry flyerObjectEntry;
 extern M2C_UNK lbl_80239978;
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_80239990;
@@ -2657,28 +2675,25 @@ void flyerObjectCreate(void)
 
 void flyerObjectRegister(void)
 {
-	const char* temp_r3;
-
-	M2C_FIELD(&flyerObjectEntry, s32*, 0x14)         = 0;
-	M2C_FIELD(&flyerObjectEntry, s32*, 0x18)         = 0;
-	M2C_FIELD(&flyerObjectEntry, const char**, 0)    = flyerObjectDisplayName;
-	M2C_FIELD(&flyerObjectEntry, void (**)(), 4)     = flyerObjectLoad;
-	M2C_FIELD(&flyerObjectEntry, void (**)(), 8)     = flyerObjectUnload;
-	M2C_FIELD(&flyerObjectEntry, void (**)(), 0xC)   = flyerObjectCreate;
-	M2C_FIELD(&flyerObjectEntry, s32*, 0x10)         = 0;
-	M2C_FIELD(&flyerObjectEntry, s32*, 0x14)         = 0;
-	M2C_FIELD(&flyerObjectEntry, s32*, 0x18)         = 0;
-	M2C_FIELD(&flyerObjectEntry, s8*, 0x20)          = 0x1E;
-	M2C_FIELD(&flyerObjectEntry, s16*, 0x1C)         = 0x1530;
-	M2C_FIELD(&flyerObjectEntry, s16*, 0x1E)         = 4;
-	M2C_FIELD(&flyerObjectEntry, s8*, 0x21)          = 0;
-	temp_r3                                          = flyerObjectFieldTypes;
-	M2C_FIELD(&flyerObjectEntry, const char**, 0x24) = temp_r3;
-	M2C_FIELD(&flyerObjectEntry, M2C_UNK**, 0x28)    = &flyerObjectFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(&flyerObjectEntry, s32*, 0x14) = 8;
-		return;
+	flyerObjectEntry.flags      = 0;
+	flyerObjectEntry.unk18      = 0;
+	flyerObjectEntry.name       = (const char*)flyerObjectDisplayName;
+	flyerObjectEntry.load       = (void (*)(void))flyerObjectLoad;
+	flyerObjectEntry.unload     = (void (*)(void))flyerObjectUnload;
+	flyerObjectEntry.create     = (void (*)(void))flyerObjectCreate;
+	flyerObjectEntry.unk10      = (void*)0;
+	flyerObjectEntry.flags      = 0;
+	flyerObjectEntry.unk18      = 0;
+	flyerObjectEntry.unk20      = 0x1E;
+	flyerObjectEntry.unk1C      = 0x1530;
+	flyerObjectEntry.unk1E      = 4;
+	flyerObjectEntry.unk21      = 0;
+	flyerObjectEntry.fieldTypes = (const char*)flyerObjectFieldTypes;
+	flyerObjectEntry.fieldNames = (const char**)&flyerObjectFieldNames;
+	if ((const char*)flyerObjectFieldTypes != NULL) {
+		flyerObjectEntry.flags |= 8;
+	} else {
+		flyerObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&flyerObjectEntry, s32*, 0x14) = 0;
 }
 }

@@ -458,7 +458,25 @@ static char captureObjectFieldTypes[]  = "ccccfffif";
 static M2C_UNK lbl_8_bss_1780;
 static M2C_UNK captureObjectGlobalArrayChain;
 static M2C_UNK captureObjectGlobalArray;
-static M2C_UNK captureObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry captureObjectEntry;
 static u32 lbl_8_data_1571C[2] = { 0x656E5F63, 0x61703000 };
 static u32 lbl_8_data_15724[2] = { 0x656E5F63, 0x61703100 };
 static u32 lbl_8_data_15784[3] = { 0x41505045, 0x41522054, 0x59504500 };
@@ -3207,33 +3225,29 @@ void fn_8_9D23C(void* arg0)
 
 void captureObjectRegister(void)
 {
-	M2C_UNK* temp_r3;
-	s32 flags;
-
 	__construct_array(&captureObjectGlobalArray, &fn_80113C7C, &fn_80113C2C, 0x14, 8);
 	__register_global_object(0, captureObjectGlobalArrayDtor, &captureObjectGlobalArrayChain);
-	M2C_FIELD(&captureObjectEntry, s32*, 0x14)            = 0;
-	M2C_FIELD(&captureObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&captureObjectEntry, M2C_UNK**, 0)          = (M2C_UNK*)captureObjectDisplayName;
-	M2C_FIELD(&captureObjectEntry, void (**)(M2C_UNK), 4) = captureObjectLoad;
-	M2C_FIELD(&captureObjectEntry, void (**)(), 8)        = captureObjectUnload;
-	M2C_FIELD(&captureObjectEntry, void (**)(), 0xC)      = captureObjectCreate;
-	M2C_FIELD(&captureObjectEntry, s32*, 0x10)            = 0;
-	flags                                                 = 0x20000;
-	M2C_FIELD(&captureObjectEntry, s32*, 0x14)            = flags;
-	M2C_FIELD(&captureObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&captureObjectEntry, s8*, 0x20)             = 0x1E;
-	M2C_FIELD(&captureObjectEntry, s16*, 0x1C)            = 0x1520;
-	M2C_FIELD(&captureObjectEntry, s16*, 0x1E)            = 4;
-	M2C_FIELD(&captureObjectEntry, s8*, 0x21)             = 0;
-	temp_r3                                               = (M2C_UNK*)captureObjectFieldTypes;
-	M2C_FIELD(&captureObjectEntry, M2C_UNK**, 0x24)       = temp_r3;
-	M2C_FIELD(&captureObjectEntry, M2C_UNK**, 0x28)       = &captureObjectFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(&captureObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+
+	captureObjectEntry.flags      = 0;
+	captureObjectEntry.unk18      = 0;
+	captureObjectEntry.name       = (const char*)captureObjectDisplayName;
+	captureObjectEntry.load       = (void (*)(void))captureObjectLoad;
+	captureObjectEntry.unload     = (void (*)(void))captureObjectUnload;
+	captureObjectEntry.create     = (void (*)(void))captureObjectCreate;
+	captureObjectEntry.unk10      = (void*)0;
+	captureObjectEntry.flags      = 0x20000;
+	captureObjectEntry.unk18      = 0;
+	captureObjectEntry.unk20      = 0x1E;
+	captureObjectEntry.unk1C      = 0x1520;
+	captureObjectEntry.unk1E      = 4;
+	captureObjectEntry.unk21      = 0;
+	captureObjectEntry.fieldTypes = (const char*)captureObjectFieldTypes;
+	captureObjectEntry.fieldNames = (const char**)&captureObjectFieldNames;
+	if ((const char*)captureObjectFieldTypes != NULL) {
+		captureObjectEntry.flags |= 8;
+	} else {
+		captureObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&captureObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 void captureObjectGlobalArrayDtor(void)
