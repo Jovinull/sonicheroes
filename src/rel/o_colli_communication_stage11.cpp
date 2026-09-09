@@ -68,37 +68,37 @@ public:
 
 extern "C" {
 
-M2C_UNK __dl__FPv(void*);               /* extern */
-s32 fn_80017800(void*);                 /* extern */
-void* fn_80020BD8(void*, s32);          /* extern */
-void fn_80021824(void*);                /* extern */
-M2C_UNK fn_8003BC38(void*);             /* extern */
-M2C_UNK fn_8003BE78(void*);             /* extern */
-int fn_8005B8BC(void*);                 /* extern */
-M2C_UNK fn_8006298C(...);               /* extern */
-M2C_UNK fn_800A3D48(...);               /* extern */
-s32 fn_800A3F60(void*);                 /* extern */
-M2C_UNK fn_800A5B34(...);               /* extern */
-s32 fn_800A6D60(...);                   /* extern */
-f32 fn_800AEF48(...);                   /* extern */
-s32 fn_800AF3AC(...);                   /* extern */
-M2C_UNK fn_800AFB50(...);               /* extern */
-M2C_UNK fn_800B4A38(...);               /* extern */
-f32 fn_800D71DC(void*, void*);          /* extern */
-M2C_UNK fn_800D735C(...);               /* extern */
-s32 fn_800D7A94(s32, s32, s32);         /* extern */
-f32 fn_800D7B00(s32);                   /* extern */
-f32 fn_800D7BD8(...);                   /* extern */
-s32 fn_80103324(void*, f32*, f32);      /* extern */
-M2C_UNK fn_80113874();                  /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK); /* extern */
-M2C_UNK fn_8011C6EC();                  /* extern */
-M2C_UNK fn_8014FF2C(...);               /* extern */
-M2C_UNK fn_801990E0(...);               /* extern */
-M2C_UNK fn_8_90B10(...);                /* extern */
-M2C_UNK fn_8_B5160(...);                /* extern */
-M2C_UNK fn_8_B2BB4(...);                /* static */
-M2C_UNK fn_8_B3598(...);                /* static */
+M2C_UNK __dl__FPv(void*);                            /* extern */
+s32 fn_80017800(void*);                              /* extern */
+void* fn_80020BD8(void*, s32);                       /* extern */
+void fn_80021824(void*);                             /* extern */
+M2C_UNK fn_8003BC38(void*);                          /* extern */
+M2C_UNK fn_8003BE78(void*);                          /* extern */
+int fn_8005B8BC(void*);                              /* extern */
+M2C_UNK fn_8006298C(s32, void*, void*);              /* extern */
+M2C_UNK fn_800A3D48(s32);                            /* extern */
+s32 fn_800A3F60(void*);                              /* extern */
+M2C_UNK fn_800A5B34(s32);                            /* extern */
+s32 fn_800A6D60(s32, s32, s32);                      /* extern */
+f32 fn_800AEF48(void*, void*, void*, s32);           /* extern */
+s32 fn_800AF3AC(...);                                /* extern */
+M2C_UNK fn_800AFB50(...);                            /* extern */
+M2C_UNK fn_800B4A38(s32, void*, s32, s32, s32, s32); /* extern */
+f32 fn_800D71DC(void*, void*);                       /* extern */
+M2C_UNK fn_800D735C(void*, s32, void*);              /* extern */
+s32 fn_800D7A94(s32, s32, s32);                      /* extern */
+f32 fn_800D7B00(s32);                                /* extern */
+f32 fn_800D7BD8(void*, void*, void*, s32, f32);      /* extern */
+s32 fn_80103324(void*, f32*, f32);                   /* extern */
+M2C_UNK fn_80113874();                               /* extern */
+M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);              /* extern */
+M2C_UNK fn_8011C6EC();                               /* extern */
+M2C_UNK fn_8014FF2C(s32);                            /* extern */
+M2C_UNK fn_801990E0(void*, void*, f32);              /* extern */
+M2C_UNK fn_8_90B10(...);                             /* extern */
+M2C_UNK fn_8_B5160(void*);                           /* extern */
+M2C_UNK fn_8_B2BB4(...);                             /* static */
+M2C_UNK fn_8_B3598(...);                             /* static */
 extern M2C_UNK lbl_802AD090;
 extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
@@ -780,7 +780,7 @@ void fn_8_B1C1C(void* arg0)
 		M2C_FIELD(arg0, f32*, 0x144) = (f32)M2C_FIELD(arg0, f32*, 0x8C);
 		M2C_FIELD(arg0, f32*, 0x148) = (f32)M2C_FIELD(arg0, f32*, 0x90);
 	}
-	fn_800A5B34(arg0);
+	fn_800A5B34((int)arg0);
 	((TRenderer*)arg0)->Slot38();
 	temp_r3 = M2C_FIELD(arg0, void***, 0x244);
 	if (temp_r3 != NULL) {
@@ -788,7 +788,7 @@ void fn_8_B1C1C(void* arg0)
 	}
 	((TRenderer*)arg0)->Slot50(M2C_FIELD(arg0, s32*, 0x19C), 1);
 	fn_8_B3598(arg0);
-	fn_800A3D48(arg0);
+	fn_800A3D48((int)arg0);
 	if ((s32)M2C_FIELD(arg0, s32*, 0x2E0) != 0) {
 		temp_f1 = M2C_FIELD(arg0, f32*, 0x2FC);
 		if (temp_f1 < lbl_8_rodata_1BDC[0]) {
