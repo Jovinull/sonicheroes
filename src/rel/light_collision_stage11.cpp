@@ -127,7 +127,7 @@ extern "C" void fn_8_4E338(void* self)
 		selected[i] = -1;
 	for (void* object = lbl_8_bss_D3C; object != NULL; object = field<void*>(object, 0x3C)) {
 		for (int i = 0; i < 8; i++) {
-			if (field<s8>(object, 0x30 + i) == 1 && selected[i] < 0)
+			if (((s8*)((u8*)object + 0x30))[i] == 1 && selected[i] < 0)
 				selected[i] = field<s8>(object, 0x38);
 		}
 	}
@@ -270,7 +270,7 @@ extern "C" void* fn_8_4F084(void* self, void* parent)
 		lbl_8_bss_D38 = fn_8_4E654(manager, lbl_8042C118);
 	}
 	for (int i = 0; i < 8; i++)
-		field<u8>(self, 0x30 + i) = 0;
+		((u8*)((u8*)self + 0x30))[i] = 0;
 	u8* config            = field<u8*>(field<void*>(self, 0x28), 0x2C);
 	field<u8>(self, 0x38) = config[0];
 	field<u8>(self, 0x39) = config[1];
