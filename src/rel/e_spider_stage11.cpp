@@ -251,8 +251,10 @@ void fn_8_C2BD8(void* arg0)
 {
 	void* temp_r4;
 	void* temp_r4_2;
+	s32* temp_r5;
 
 	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
+	temp_r5                     = M2C_FIELD(temp_r4, s32**, 0x2C);
 	M2C_FIELD(arg0, f32*, 0xB8) = (f32)M2C_FIELD(temp_r4, f32*, 0);
 	M2C_FIELD(arg0, f32*, 0xBC) = (f32)M2C_FIELD(temp_r4, f32*, 4);
 	M2C_FIELD(arg0, f32*, 0xC0) = (f32)M2C_FIELD(temp_r4, f32*, 8);
@@ -262,7 +264,7 @@ void fn_8_C2BD8(void* arg0)
 	M2C_FIELD(arg0, s32*, 0xCC) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x14);
 	M2C_FIELD(arg0, s32*, 0xCC) = 0;
 	M2C_FIELD(arg0, s32*, 0xC4) = 0;
-	M2C_FIELD(arg0, s32*, 0xD0) = (s32)*M2C_FIELD(temp_r4, s32**, 0x2C);
+	M2C_FIELD(arg0, s32*, 0xD0) = (s32)*temp_r5;
 }
 
 void fn_8_C2C2C(void* arg0)
