@@ -363,7 +363,7 @@ void* __ct__7TObjectFP7TObject(void*, void*);                                   
 M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
 void* __dt__10HAnimClassFv(void*, s32);                                          /* extern */
 void* __dt__7TObjectFv(void*, s32);                                              /* extern */
-M2C_UNK __register_global_object(M2C_UNK*, M2C_UNK*);                            /* extern */
+M2C_UNK __register_global_object(void*, void*, void*);                           /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                           /* extern */
 s32 fn_80017800(TObject*);                                                       /* extern */
 M2C_UNK fn_800189A4(s32, TObject*);                                              /* extern */
@@ -4115,8 +4115,8 @@ void fn_8_BD950(void* arg0, s32 arg1)
 
 void wallObjectRegister(void)
 {
-	fn_80113C7C(wallObjectGlobalA);
-	__register_global_object(&fn_80113C2C, wallObjectGlobalAChain);
+	__register_global_object(
+	    (void*)fn_80113C7C(wallObjectGlobalA), (void*)&fn_80113C2C, (void*)wallObjectGlobalAChain);
 
 	wallObjectEntry.flags      = 0;
 	wallObjectEntry.unk18      = 0;

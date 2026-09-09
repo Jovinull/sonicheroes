@@ -333,7 +333,7 @@ TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
 void* __ct__15sParalysisParamFv(void*);                                          /* extern */
 M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
 void* __dt__10HAnimClassFv(void*, s32);                                          /* extern */
-M2C_UNK __register_global_object(M2C_UNK*, M2C_UNK*);                            /* extern */
+M2C_UNK __register_global_object(void*, void*, void*);                           /* extern */
 M2C_UNK dtor_800FE334(void*, M2C_UNK);                                           /* extern */
 s32 fn_80017800(void*);                                                          /* extern */
 M2C_UNK fn_800189A4(s32, void*);                                                 /* extern */
@@ -3294,8 +3294,8 @@ void turtleObjectCreate(void)
 
 void turtleObjectRegister(void)
 {
-	fn_80113C7C(turtleObjectGlobalA);
-	__register_global_object(&fn_80113C2C, turtleObjectGlobalAChain);
+	__register_global_object((void*)fn_80113C7C(turtleObjectGlobalA), (void*)&fn_80113C2C,
+	    (void*)turtleObjectGlobalAChain);
 
 	turtleObjectEntry.flags      = 0;
 	turtleObjectEntry.unk18      = 0;

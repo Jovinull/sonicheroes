@@ -267,24 +267,22 @@ void s12fanObjectCreate(void)
 
 void s12fanObjectRegister(void)
 {
-	u32 fieldTypes = 0;
-
-	s12fanObjectEntry.flags      = fieldTypes;
-	s12fanObjectEntry.unk18      = fieldTypes;
+	s12fanObjectEntry.flags      = 0;
+	s12fanObjectEntry.unk18      = 0;
 	s12fanObjectEntry.name       = (const char*)&s12fanObjectDisplayName;
 	s12fanObjectEntry.load       = (void (*)(void))s12fanObjectLoad;
 	s12fanObjectEntry.unload     = (void (*)(void))s12fanObjectUnload;
 	s12fanObjectEntry.create     = (void (*)(void))s12fanObjectCreate;
-	s12fanObjectEntry.unk10      = (void*)fieldTypes;
+	s12fanObjectEntry.unk10      = NULL;
 	s12fanObjectEntry.flags      = 0x20000;
-	s12fanObjectEntry.unk18      = fieldTypes;
+	s12fanObjectEntry.unk18      = 0;
 	s12fanObjectEntry.unk20      = 0x1E;
 	s12fanObjectEntry.unk1C      = 0x1187;
 	s12fanObjectEntry.unk1E      = 2;
-	s12fanObjectEntry.unk21      = fieldTypes;
-	s12fanObjectEntry.fieldTypes = (const char*)fieldTypes;
-	s12fanObjectEntry.fieldNames = (const char**)fieldTypes;
-	if ((const char*)fieldTypes != NULL) {
+	s12fanObjectEntry.unk21      = 0;
+	s12fanObjectEntry.fieldTypes = NULL;
+	s12fanObjectEntry.fieldNames = NULL;
+	if (s12fanObjectEntry.fieldTypes != NULL) {
 		s12fanObjectEntry.flags |= 8;
 	} else {
 		s12fanObjectEntry.flags &= ~8;
