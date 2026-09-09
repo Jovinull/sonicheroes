@@ -117,7 +117,8 @@ void fn_8_9D45C(void* arg0)
 
 s32 fn_8_9D4A8(s32 arg0)
 {
-	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0) || (fn_8005B8BC(arg0 + 0x28) != 0)) {
+	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
+	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		return 1;
 	}
 	return 0;
@@ -130,7 +131,7 @@ void fn_8_9D500(void* arg0)
 	s32 var_r0;
 
 	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u8*)arg0 + 0x28)) != 0)) {
+	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		var_r0 = 1;
 	} else {
 		var_r0 = 0;
