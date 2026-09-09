@@ -544,11 +544,11 @@ TObject* fn_8_96018(TObject* arg0, TObject* arg1)
 	var_r29 = 0;
 	var_r28 = lbl_8_data_15134;
 	do {
-		if (M2C_FIELD(arg0, u32*, var_r29 + 0xF4) == 0U) {
+		if (((u32*)((u8*)arg0 + 0xF4))[var_r29 >> 2] == 0U) {
 			temp_r0                        = var_r29 + 0xF4;
 			M2C_FIELD(arg0, u32*, temp_r0) = fn_80150588(*var_r28);
 			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, u32*, temp_r0));
-			fn_8005D5C8(M2C_FIELD(arg0, u32*, var_r29 + 0xF4),
+			fn_8005D5C8(((u32*)((u8*)arg0 + 0xF4))[var_r29 >> 2],
 			    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
 			        + 4);
 		}

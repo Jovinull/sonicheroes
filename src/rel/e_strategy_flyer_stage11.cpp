@@ -2710,8 +2710,8 @@ TObject* fn_8_A18A0(TObject* arg0, M2C_UNK arg_sp0)
 		var_r28 = 0;
 		var_r27 = &lbl_8_rodata_17E8;
 		do {
-			if (M2C_FIELD(arg0, u32*, var_r28 + 0x298) == 0U) {
-				M2C_FIELD(arg0, u32*, var_r28 + 0x298) = fn_8011B5A8(temp_r30, *var_r27);
+			if (((u32*)((u8*)arg0 + 0x298))[var_r28 >> 2] == 0U) {
+				((u32*)((u8*)arg0 + 0x298))[var_r28 >> 2] = fn_8011B5A8(temp_r30, *var_r27);
 			}
 			var_r28 += 1;
 			var_r27 += 1;
