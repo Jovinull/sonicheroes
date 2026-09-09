@@ -137,8 +137,8 @@ void fn_8_C3980(void* arg0)
 void fn_8_C39A0(void* arg0)
 {
 	f32 temp_f31;
-	s32 temp_r30;
 	s32 temp_r31;
+	s32 temp_r30;
 
 	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
 	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
