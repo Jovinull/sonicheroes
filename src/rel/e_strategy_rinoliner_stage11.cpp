@@ -248,7 +248,7 @@ void fn_8_AFF18(void* arg0, s32 arg1)
 			return;
 		case 1: /* switch 1 */
 			if ((void*)M2C_FIELD(arg0, void**, 0x14) != NULL) {
-				if (fn_800A6334((void*)arg0) == 0) {
+				if (fn_800A6334(M2C_FIELD(arg0, void**, 0x14)) == 0) {
 					M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 					M2C_FIELD(arg0, s32*, 4) = 1;
