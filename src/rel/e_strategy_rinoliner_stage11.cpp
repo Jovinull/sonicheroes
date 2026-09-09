@@ -55,7 +55,8 @@ void fn_8_AF9B4(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -76,7 +77,8 @@ void fn_8_AFA68(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -117,7 +119,8 @@ void fn_8_AFBC8(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -141,7 +144,8 @@ void fn_8_AFC80(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -165,7 +169,8 @@ void fn_8_AFD40(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -199,7 +204,8 @@ void fn_8_AFE20(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -290,7 +296,8 @@ void fn_8_AFF18(void* arg0, s32 arg1)
 				return;
 			}
 			break;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -322,7 +329,8 @@ void fn_8_B0178(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -341,7 +349,8 @@ void fn_8_B022C(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }

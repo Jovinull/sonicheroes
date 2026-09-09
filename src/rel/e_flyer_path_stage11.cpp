@@ -1130,7 +1130,8 @@ void fn_8_A9F88(void* arg0, s32 arg1)
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }

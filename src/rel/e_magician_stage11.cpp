@@ -510,7 +510,8 @@ void fn_8_ACE24(void* arg0, s32 arg1)
 				        + temp_f31 + M2C_FIELD(arg0, f32*, 0x1C4));
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -558,7 +559,8 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 				        + temp_f31 + M2C_FIELD(arg0, f32*, 0x1C4));
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
@@ -711,7 +713,8 @@ void fn_8_AD670(void* arg0, s32 arg1)
 				        + temp_f31 + M2C_FIELD(arg0, f32*, 0x1C4));
 			}
 			return;
-		case 4:
+		case 2:
+		case 3:
 			break;
 	}
 }
