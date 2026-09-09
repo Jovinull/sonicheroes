@@ -70,14 +70,14 @@ extern "C" {
 
 M2C_UNK __dl__FPv(void*);               /* extern */
 s32 fn_80017800(void*);                 /* extern */
-void* fn_80020BD8(...);                 /* extern */
+void* fn_80020BD8(void*, s32);          /* extern */
 void fn_80021824(void*);                /* extern */
 M2C_UNK fn_8003BC38(void*);             /* extern */
 M2C_UNK fn_8003BE78(void*);             /* extern */
 int fn_8005B8BC(void*);                 /* extern */
 M2C_UNK fn_8006298C(...);               /* extern */
 M2C_UNK fn_800A3D48(...);               /* extern */
-s32 fn_800A3F60(...);                   /* extern */
+s32 fn_800A3F60(void*);                 /* extern */
 M2C_UNK fn_800A5B34(...);               /* extern */
 s32 fn_800A6D60(...);                   /* extern */
 f32 fn_800AEF48(...);                   /* extern */

@@ -149,7 +149,7 @@ M2C_UNK* fn_8011FA4C(M2C_UNK*, u32);                                            
 M2C_UNK fn_8011FD94(M2C_UNK, M2C_UNK);                                           /* extern */
 u32 fn_8011FE0C(M2C_UNK);                                                        /* extern */
 M2C_UNK fn_80137FE8(void*);                                                      /* extern */
-M2C_UNK fn_8014FF2C(...);                                                        /* extern */
+M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
 void* fn_80150588(void*);                                                        /* extern */
 M2C_UNK fn_80150958(void*);                                                      /* extern */
 M2C_UNK fn_80195790(s32*, M2C_UNK*, f32, f32, M2C_UNK);                          /* extern */
@@ -995,7 +995,7 @@ void fn_8_A3A20(void* arg0)
 	fn_80113874();
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 	if (((s32)M2C_FIELD(arg0, s32*, 0x2E4) != 0) && ((u32)M2C_FIELD(arg0, u32*, 0x2A0) != 0U)) {
-		fn_8014FF2C();
+		fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x2A0));
 	}
 }
 
