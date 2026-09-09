@@ -1684,7 +1684,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_flyer_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
@@ -1699,12 +1699,12 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_strategy_magician_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
                 "rel/e_flyer_path_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
@@ -1714,12 +1714,12 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_magician_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off", "-fp_contract off"],
             ),
             Object(
                 NonMatching,
                 "rel/o_colli_communication_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
@@ -1739,7 +1739,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_rinoliner_collision_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
@@ -1759,7 +1759,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_turtle_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
@@ -1769,7 +1769,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_wall_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off",
                     "-use_lmw_stmw on",
                     "-bool off",
                 ],
@@ -2027,12 +2027,12 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_grass2_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 NonMatching,
                 "rel/e_grass_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
@@ -2067,7 +2067,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_mask_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
@@ -2477,7 +2477,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/o_s11_door.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
@@ -2502,7 +2502,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_spider_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
@@ -2817,7 +2817,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_tree_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
