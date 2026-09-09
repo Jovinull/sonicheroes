@@ -1356,8 +1356,8 @@ void fn_8_BEB1C(void* arg0)
 
 void fn_8_BEBC8(void* arg0)
 {
-	RwV3d sp8;
 	RwV3d sp14;
+	RwV3d sp8;
 	u8 sp20[0x48];
 	f32 temp_f1;
 	f32 temp_f31;
@@ -2172,8 +2172,8 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 
 void fn_8_C0418(void* arg0, s32 arg1)
 {
-	RwV3d sp8;
 	RwV3d sp14;
+	RwV3d sp8;
 	u8 sp20[0x48];
 	f32 temp_f1;
 	f32 temp_f31;
