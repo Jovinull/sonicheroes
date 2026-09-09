@@ -2113,11 +2113,14 @@ void fn_8_B9724(void* arg0, void* arg1)
 void fn_8_B97C0(void* arg0, void* arg1)
 {
 	u32 temp_handle;
-	f32 temp_f1;
 	f32 var_f0;
+	f32 temp_f1;
 
-	if ((s32)M2C_FIELD(arg1, u8*, 0) != 3) {
-		return;
+	switch ((s32)M2C_FIELD(arg1, u8*, 0)) {
+		case 3:
+			break;
+		default:
+			return;
 	}
 	var_f0  = M2C_FIELD(arg1, f32*, 0x14) + M2C_FIELD(arg0, f32*, 0x1A4);
 	temp_f1 = M2C_FIELD(arg0, f32*, 0x264);
