@@ -1075,9 +1075,9 @@ TObject* fn_8_A7E24(void)
 		temp_r3->unk1E = 0xE4;
 		temp_r3->unkD0 = 0;
 		temp_r3->unkD4 = 0;
-		temp_r3->unkE0 = 0.0f;
-		temp_r3->unkDC = 0.0f;
-		temp_r3->unkD8 = 0.0f;
+		temp_r3->unkE0 = lbl_8_rodata_198C[0];
+		temp_r3->unkDC = lbl_8_rodata_198C[0];
+		temp_r3->unkD8 = lbl_8_rodata_198C[0];
 		temp_r3_2      = M2C_FIELD(M2C_FIELD(temp_r3, void**, 0xB0), void**, 0x2C);
 		temp_r3->unkD0 = M2C_FIELD(temp_r3_2, u8*, 0);
 		temp_r3->unkD4 = M2C_FIELD(temp_r3_2, s32*, 0x14);

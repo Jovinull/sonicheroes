@@ -463,12 +463,13 @@ void fn_8_C555C(void* arg0)
 		temp_r28 = M2C_FIELD(M2C_FIELD(var_r30, void**, 0xDC), s32*, 4);
 		fn_8019EB94(temp_r28, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)),
-		    temp_f31, 1);
+		fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+		    lbl_8_rodata_1F4C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
 		fn_8019E880(temp_r28);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
+			fn_80195790(temp_r28 + 0x10, &lbl_80239990, lbl_8_rodata_1F4C[0] - fn_800D7AE4(0x8000),
+			    temp_f31_2, 1);
 			fn_8019E880(temp_r28);
 		}
 		fn_8019EC30(temp_r28, sp8, 1);

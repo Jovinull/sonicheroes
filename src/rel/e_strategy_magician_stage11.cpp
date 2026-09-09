@@ -1210,7 +1210,7 @@ void fn_8_AC9D8(void* arg0, s32 arg1)
 			}
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2E8) == 0)
 			    && ((s32)M2C_FIELD(arg0, s32*, 0xD0) == 1)) {
-				if (M2C_FIELD(arg0, f32*, 0xB8) >= 24.0f) {
+				if (M2C_FIELD(arg0, f32*, 0xB8) >= lbl_8_rodata_1B28[0]) {
 					fn_80130B40(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A));
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(0x4047, (u8*)arg0 + 0x140, NULL, 1, 0, 0);
