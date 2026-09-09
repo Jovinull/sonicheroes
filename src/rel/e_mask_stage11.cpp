@@ -441,6 +441,7 @@ TObject* fn_8_C99B4(TObject* arg0, s16 arg1)
 
 TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
 {
+	f32 temp_f1;
 	f32 sp14;
 	f32 sp10;
 	f32 spC;
@@ -477,8 +478,9 @@ TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
 	arg0->unkCC = 0;
 	arg0->unkC4 = 0;
 	arg0->unkD8 = (s32)(s8)M2C_FIELD(temp_r5, u8*, 0xC);
-	arg0->unkD4 = lbl_8_rodata_1F9C + M2C_FIELD(temp_r5, f32*, 4);
-	arg0->unkD0 = lbl_8_rodata_1F9C + M2C_FIELD(temp_r5, f32*, 8);
+	temp_f1     = lbl_8_rodata_1F9C;
+	arg0->unkD4 = temp_f1 + M2C_FIELD(temp_r5, f32*, 4);
+	arg0->unkD0 = temp_f1 + M2C_FIELD(temp_r5, f32*, 8);
 	arg0->unkDC = M2C_FIELD(temp_r5, s32*, 0);
 	arg0->unkE0 = NULL;
 	if ((void*)arg0->unkE0 == NULL) {
