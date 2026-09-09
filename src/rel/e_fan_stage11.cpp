@@ -40,7 +40,7 @@ void* fn_80150588(u32);                                /* extern */
 M2C_UNK fn_80150958(void*);                            /* extern */
 M2C_UNK fn_8015BB08(s32, void*);                       /* extern */
 M2C_UNK fn_8015BBF8(s32, void*);                       /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32); /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK); /* extern */
 M2C_UNK fn_8019E880(s32);                              /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);               /* extern */
 M2C_UNK fn_801A4C84(u32);                              /* extern */
@@ -118,8 +118,8 @@ void fn_8_C38BC(void* arg0)
 	fn_8019EB94(temp_r30, (f32*)((u8*)arg0 + 0x30), 0);
 	temp_r31 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r31);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r31),
-	    temp_f31);
+	fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r31),
+	    temp_f31, 1);
 	fn_8019E880(temp_r30);
 }
 
@@ -148,8 +148,8 @@ void fn_8_C39A0(void* arg0)
 	fn_8019EB94(temp_r31, (f32*)((u8*)arg0 + 0x30), 0);
 	temp_r30 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r30);
-	fn_80195790(temp_r31 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r30),
-	    temp_f31);
+	fn_80195790(temp_r31 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r30),
+	    temp_f31, 1);
 	fn_8019E880(temp_r31);
 }
 
@@ -200,8 +200,8 @@ TObject* fn_8_C3B54(TObject* arg0, TObject* arg1)
 	fn_8019EB94(temp_r30, &arg0->unk30, 0);
 	temp_r29 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r29);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r29),
-	    temp_f31);
+	fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r29),
+	    temp_f31, 1);
 	fn_8019E880(temp_r30);
 	return arg0;
 }
@@ -258,8 +258,8 @@ void s12fanObjectCreate(void)
 		fn_8019EB94(temp_r30, &temp_r3->unk30, 0);
 		temp_r31 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 		temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r31);
-		fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1,
-		    1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r31), temp_f31);
+		fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r31),
+		    temp_f31, 1);
 		fn_8019E880(temp_r30);
 	}
 }

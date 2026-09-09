@@ -177,7 +177,7 @@ M2C_UNK fn_80139784(void*, void*, void*);                                       
 void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                                     /* extern */
 void* fn_80150588(s32);                                                           /* extern */
 M2C_UNK fn_80150958(void*);                                                       /* extern */
-M2C_UNK fn_80195790(M2C_UNK*, M2C_UNK*, M2C_UNK, f32, f32);                       /* extern */
+M2C_UNK fn_80195790(M2C_UNK*, M2C_UNK*, f32, f32, M2C_UNK);                       /* extern */
 M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                                    /* extern */
 M2C_UNK fn_801990E0(...);                                                         /* extern */
 M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                               /* extern */
@@ -374,11 +374,11 @@ void fn_8_B2BB4(void* arg0)
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2C8) != 0)
 			    && ((lbl_8_rodata_1C08[0] * (f32)fn_801C28D8()) < lbl_8_rodata_1C0C[0])) {
 				temp_f31 = fn_800D7B00(-M2C_FIELD(arg0, s32*, 0x154));
-				fn_80195790(&sp50, &lbl_80239978, 0,
-				    lbl_8_rodata_1C04 - fn_800D7AE4(-M2C_FIELD(arg0, s32*, 0x154)), temp_f31);
+				fn_80195790(&sp50, &lbl_80239978,
+				    lbl_8_rodata_1C04 - fn_800D7AE4(-M2C_FIELD(arg0, s32*, 0x154)), temp_f31, 0);
 				temp_f31_2 = fn_800D7B00(-M2C_FIELD(arg0, s32*, 0x150));
-				fn_80195790(&sp50, &lbl_80239984, 2,
-				    lbl_8_rodata_1C04 - fn_800D7AE4(-M2C_FIELD(arg0, s32*, 0x150)), temp_f31_2);
+				fn_80195790(&sp50, &lbl_80239984,
+				    lbl_8_rodata_1C04 - fn_800D7AE4(-M2C_FIELD(arg0, s32*, 0x150)), temp_f31_2, 2);
 				sp2C = M2C_FIELD(&lbl_8_data_16CB4, f32*, 0);
 				sp30 = M2C_FIELD(&lbl_8_data_16CB4, s32*, 4);
 				sp34 = M2C_FIELD(&lbl_8_data_16CB4, s32*, 8);
@@ -536,7 +536,7 @@ void fn_8_B321C(TObject* arg0, void* arg1, s32 arg2)
 		sp40     = M2C_FIELD(&lbl_8_rodata_1BA0, f32*, 8);
 		temp_f31 = fn_800D7B00(-arg0->unk150, &lbl_8_rodata_1BA0);
 		fn_80195790(
-		    &sp44, &lbl_80239984, 0, lbl_8_rodata_1C04 - fn_800D7AE4(-arg0->unk150), temp_f31);
+		    &sp44, &lbl_80239984, lbl_8_rodata_1C04 - fn_800D7AE4(-arg0->unk150), temp_f31, 0);
 		fn_8019941C(&sp38, &sp38, 1, &sp44);
 		fn_801990E0(&sp38, &sp38);
 		sp2C    = M2C_FIELD(&lbl_8_rodata_1BAC, f32*, 0);
