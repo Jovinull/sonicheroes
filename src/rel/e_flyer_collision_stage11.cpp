@@ -1014,6 +1014,7 @@ TObject* fn_8_A7C3C(TObject* arg0, s16 arg1)
 
 TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 {
+	void* temp_r3_4;
 	void* temp_r3;
 	void* temp_r3_2;
 	void* temp_r3_3;
@@ -1027,9 +1028,9 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	arg0->unk1E = 0xE4;
 	arg0->unkD0 = 0;
 	arg0->unkD4 = 0;
-	arg0->unkE0 = 0.0f;
-	arg0->unkDC = 0.0f;
-	arg0->unkD8 = 0.0f;
+	arg0->unkE0 = lbl_8_rodata_198C[0];
+	arg0->unkDC = lbl_8_rodata_198C[0];
+	arg0->unkD8 = lbl_8_rodata_198C[0];
 	temp_r3     = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
 	arg0->unkD0 = M2C_FIELD(temp_r3, u8*, 0);
 	arg0->unkD4 = M2C_FIELD(temp_r3, s32*, 0x14);
@@ -1046,11 +1047,11 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	arg0->unkCC = M2C_FIELD(temp_r3_3, s32*, 0x14);
 	fn_8003C200(&arg0->unk28, &lbl_8_data_162C8, 1, 4);
 	if ((void*)arg0->unk38 != NULL) {
-		arg0->unk88 = arg0->unkB8;
-		arg0->unk8C = arg0->unkBC;
-		arg0->unk90 = arg0->unkC0;
-		M2C_FIELD(arg0->unk38, f32*, 0x14)
-		    = (f32)M2C_FIELD(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C), f32*, 4);
+		temp_r3_4                          = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
+		arg0->unk88                        = arg0->unkB8;
+		arg0->unk8C                        = arg0->unkBC;
+		arg0->unk90                        = arg0->unkC0;
+		M2C_FIELD(arg0->unk38, f32*, 0x14) = (f32)M2C_FIELD(temp_r3_4, f32*, 4);
 	}
 	fn_80021384(&arg0->unk28);
 	return arg0;
