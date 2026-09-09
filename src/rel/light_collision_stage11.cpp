@@ -102,8 +102,8 @@ extern "C" void fn_8_4E1A8()
 extern "C" void fn_8_4E2C8(s8 player)
 {
 	for (void* object = lbl_8_bss_D3C; object != NULL; object = field<void*>(object, 0x3C)) {
-		if (field<s8>(object, 0x39) == 1 && field<s8>(object, 0x30 + player) == 1)
-			field<s8>(object, 0x30 + player) = 0;
+		if (field<s8>(object, 0x39) == 1 && ((s8*)((u8*)object + 0x30))[player] == 1)
+			((s8*)((u8*)object + 0x30))[player] = 0;
 	}
 }
 
