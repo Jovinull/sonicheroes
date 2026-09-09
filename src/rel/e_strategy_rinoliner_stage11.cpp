@@ -29,7 +29,7 @@ s32 fn_80137FE8(void*);          /* extern */
 s32 fn_8_AABC8(void*);           /* extern */
 s32 fn_8_AAE98(void*);           /* extern */
 s32 fn_8_AAF4C(...);             /* extern */
-s32 fn_8_AB014();                /* extern */
+s32 fn_8_AB014(u32);             /* extern */
 M2C_UNK fn_8_AF3E8(M2C_UNK);     /* extern */
 extern M2C_UNK lbl_8_data_16B98;
 static M2C_UNK lbl_8_data_16B08; /* unable to generate initializer: unknown type */
@@ -343,7 +343,8 @@ void fn_8_B022C(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 2;
 			return;
 		case 1:
-			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U) && (fn_8_AB014() != 0)) {
+			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U)
+			    && (fn_8_AB014(M2C_FIELD(arg0, u32*, 0x14)) != 0)) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 3;
