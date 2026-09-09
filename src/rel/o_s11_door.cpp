@@ -296,7 +296,8 @@ void fn_8_956C0(void* arg0)
 	void* temp_r5;
 	void* temp_r6;
 
-	if ((fn_8005B9F0((u8*)((u32)arg0 + 0x28)) != 0) || (fn_8005B8BC((u8*)((u32)arg0 + 0x28)) != 0)) {
+	if ((fn_8005B9F0((u8*)((u32)arg0 + 0x28)) != 0)
+	    || (fn_8005B8BC((u8*)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
