@@ -956,12 +956,14 @@ void fn_8_A7A10(void* arg0)
 
 void fn_8_A7B4C(void* arg0)
 {
+	void* temp_r4;
+
 	if ((void*)M2C_FIELD(arg0, void**, 0x38) != NULL) {
+		temp_r4                     = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
 		M2C_FIELD(arg0, f32*, 0x88) = (f32)M2C_FIELD(arg0, f32*, 0xB8);
 		M2C_FIELD(arg0, f32*, 0x8C) = (f32)M2C_FIELD(arg0, f32*, 0xBC);
 		M2C_FIELD(arg0, f32*, 0x90) = (f32)M2C_FIELD(arg0, f32*, 0xC0);
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0x38), f32*, 0x14)
-		    = (f32)M2C_FIELD(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C), f32*, 4);
+		M2C_FIELD(M2C_FIELD(arg0, void**, 0x38), f32*, 0x14) = (f32)M2C_FIELD(temp_r4, f32*, 4);
 	}
 	fn_80021384((u8*)arg0 + 0x28);
 }
