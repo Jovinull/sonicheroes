@@ -468,16 +468,16 @@ extern "C" void* fn_8_48A6C(void* self, s16 flags)
 		field<void*>(self, 0x18) = lbl_8_data_4C68;
 		field<void*>(self, 0x2C) = lbl_8_data_4C68 + 11;
 		int index                = 0;
-		void** resource          = (void**)((u8*)self + 0x150);
+		void* cursor             = self;
 		void* nullResource       = NULL;
 		for (; index < 3; index++) {
-			if (*resource != NULL) {
+			if (field<void*>(cursor, 0x150) != NULL) {
 				void* engineResource = field<void*>(lbl_8042C1D0, 0x7260);
-				fn_8015BBF8(engineResource, *resource);
-				fn_80150958(*resource);
-				*resource = nullResource;
+				fn_8015BBF8(engineResource, field<void*>(cursor, 0x150));
+				fn_80150958(field<void*>(cursor, 0x150));
+				field<void*>(cursor, 0x150) = nullResource;
 			}
-			resource++;
+			cursor = (u8*)cursor + 4;
 		}
 		dtor_8003C52C((u8*)self + 0x30, 0);
 		dtor_8005BD3C((u8*)self + 0x28, 0);
