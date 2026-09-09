@@ -27,15 +27,15 @@ extern float lbl_8_rodata_D58;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
-void* fn_80018A34(...);
+void* fn_80018A34(s32, s32);
 void fn_800189A4(void*, void*);
-void fn_8005BE6C(...);
-void dtor_8005BD3C(...);
+void fn_8005BE6C(void*);
+void dtor_8005BD3C(void*, s32);
 int fn_8005B9F0(void*);
 int fn_8005B8BC(void*);
 s32 fn_8005B8D8(void*);
 void fn_80052DAC(...);
-void fn_8014FFBC(...);
+void fn_8014FFBC(s32, s32, s32);
 void fn_801527A4(void*, void*, void*);
 f32 fn_801991B4(void* v);
 f32 fn_800D7218(void*, void*);
@@ -84,7 +84,7 @@ extern "C" void fn_8_4E2AC(void* object)
 extern "C" void fn_8_4E1A8()
 {
 	lbl_8_bss_D50 = lbl_8_bss_D54 = NULL;
-	fn_8014FFBC(NULL, fn_8_4E2AC, NULL);
+	fn_8014FFBC(NULL, (int)fn_8_4E2AC, NULL);
 	if (lbl_8_bss_D54 != NULL) {
 		lbl_8_bss_D58 = field<void*>(lbl_8_bss_D54, 0x18);
 		field<u32>(lbl_8_bss_D58, 8) |= 0x40;
@@ -133,7 +133,7 @@ extern "C" void fn_8_4E338(void* self)
 	}
 	for (int i = 0; i < 8; i++) {
 		if (selected[i] != lbl_8_bss_D40[i * 2])
-			fn_80052DAC(lbl_802D5E80, i);
+			fn_80052DAC((int)lbl_802D5E80, i);
 		lbl_8_bss_D40[i * 2] = selected[i];
 	}
 }
@@ -143,7 +143,7 @@ extern "C" void* fn_8_4E588(void* self, s16 flags)
 	if (self != NULL) {
 		field<void*>(self, 0x18) = lbl_8_data_55CC;
 		for (int i = 0; i < 8; i++)
-			fn_80052DAC(lbl_802D5E80, i);
+			fn_80052DAC((int)lbl_802D5E80, i);
 		if (lbl_8_bss_D38 == self)
 			lbl_8_bss_D38 = NULL;
 		__dt__7TObjectFv(self, 0);
@@ -262,7 +262,7 @@ extern "C" void* fn_8_4F084(void* self, void* parent)
 	field<void*>(self, 0)    = lbl_8_data_559C;
 	field<u16>(self, 0x1E)   = 0x40;
 	if (lbl_8_bss_D38 == NULL) {
-		void* manager = fn_80018A34(lbl_8042C148, 0x28);
+		void* manager = fn_80018A34((int)lbl_8042C148, 0x28);
 		if (manager == NULL) {
 			field<u16>(self, 4) |= 1;
 			return self;
@@ -288,7 +288,7 @@ extern "C" void* fn_8_4F084(void* self, void* parent)
 
 extern "C" void lightCollisionCreate()
 {
-	void* object = fn_80018A34(lbl_8042C148, 0x40);
+	void* object = fn_80018A34((int)lbl_8042C148, 0x40);
 	if (object != NULL)
 		fn_8_4F084(object, lbl_8042C110);
 }
