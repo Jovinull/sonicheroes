@@ -84,7 +84,7 @@ f32 fn_800AEF48(...);                   /* extern */
 s32 fn_800AF3AC(...);                   /* extern */
 M2C_UNK fn_800AFB50(...);               /* extern */
 M2C_UNK fn_800B4A38(...);               /* extern */
-f32 fn_800D71DC(...);                   /* extern */
+f32 fn_800D71DC(void*, void*);          /* extern */
 M2C_UNK fn_800D735C(...);               /* extern */
 s32 fn_800D7A94(s32, s32, s32);         /* extern */
 f32 fn_800D7B00(s32);                   /* extern */
@@ -690,7 +690,7 @@ loop_7:
 
 s32 fn_8_B1A0C(s32 arg0, s32 arg1, f32 farg0)
 {
-	if (fn_800D71DC(lbl_8042C208) > lbl_8_rodata_1C00[0]) {
+	if (fn_800D71DC(lbl_8042C208, (void*)arg1) > lbl_8_rodata_1C00[0]) {
 		return 0;
 	}
 	return fn_800A6D60(arg0, arg1, farg0);

@@ -314,7 +314,7 @@ M2C_UNK fn_800B7820();                                            /* extern */
 M2C_UNK fn_800B7864(M2C_UNK);                                     /* extern */
 s32 fn_800D5A64(void*, void*, ...);                               /* extern */
 s32 fn_800D7A94(s32, s32, s32);                                   /* extern */
-f32 fn_800D7B00(s32, ...);                                        /* extern */
+f32 fn_800D7B00(s32);                                             /* extern */
 f32 fn_800D8BC4(void*, s32*, M2C_UNK);                            /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                               /* extern */
 void** fn_800FD8A0(TObject*, s32);                                /* extern */
@@ -1638,7 +1638,7 @@ void fn_8_9A0B0(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x290) = (s32)(M2C_FIELD(arg0, s32*, 0x290) + 0x550);
 			M2C_FIELD(arg0, f32*, 0x294) = (f32)(20.0f * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x290)));
 			M2C_FIELD(arg0, f32*, 0x298)
-			    = (f32)(20.0f * fn_800D7B00((s32)(0.5f * (f32)M2C_FIELD(arg0, s32*, 0x290)), 0.5f));
+			    = (f32)(20.0f * fn_800D7B00((s32)(0.5f * (f32)M2C_FIELD(arg0, s32*, 0x290))));
 			return;
 	}
 }
@@ -2178,7 +2178,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, f32*, 0x294)
 					    = (f32)(20.0f * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x290)));
 					M2C_FIELD(arg0, f32*, 0x298) = (f32)(20.0f
-					    * fn_800D7B00((s32)(0.5f * (f32)M2C_FIELD(arg0, s32*, 0x290)), 0.5f));
+					    * fn_800D7B00((s32)(0.5f * (f32)M2C_FIELD(arg0, s32*, 0x290))));
 					return;
 			}
 			break;
