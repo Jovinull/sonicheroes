@@ -463,7 +463,7 @@ s32 fn_8_AB11C(void* arg0)
 		return 1;
 	}
 	temp_f2                      = M2C_FIELD(arg0, f32*, 0x1C4);
-	M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + 0.2f);
+	M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + lbl_8_rodata_1AE8[0]);
 	if (M2C_FIELD(arg0, f32*, 0x144) >= temp_f2) {
 		M2C_FIELD(arg0, f32*, 0x144) = temp_f2;
 	} else {
@@ -750,8 +750,9 @@ void fn_8_ABA38(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) == 0) {
 
 			} else {
-				temp_f2                      = M2C_FIELD(arg0, f32*, 0x1C4);
-				M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + 0.2f);
+				temp_f2 = M2C_FIELD(arg0, f32*, 0x1C4);
+				M2C_FIELD(arg0, f32*, 0x144)
+				    = (f32)(M2C_FIELD(arg0, f32*, 0x144) + lbl_8_rodata_1AE8[0]);
 				if (M2C_FIELD(arg0, f32*, 0x144) >= temp_f2) {
 					M2C_FIELD(arg0, f32*, 0x144) = temp_f2;
 				} else {
