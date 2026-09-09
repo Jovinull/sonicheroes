@@ -1389,6 +1389,9 @@ void fn_8_99800(void* arg0, s32 arg1)
 				}
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1447,6 +1450,9 @@ void fn_8_99A60(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1505,6 +1511,9 @@ void fn_8_99BB8(void* arg0, s32 arg1)
 				}
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1535,6 +1544,9 @@ void fn_8_99D64(void* arg0, s32 arg1)
 			}
 			fn_8_98548(arg0);
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1567,6 +1579,9 @@ void fn_8_99E34(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x248) = 2;
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1640,6 +1655,9 @@ void fn_8_9A0B0(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, f32*, 0x298)
 			    = (f32)(20.0f * fn_800D7B00((s32)(0.5f * (f32)M2C_FIELD(arg0, s32*, 0x290))));
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1656,6 +1674,9 @@ void fn_8_9A188(void* arg0, s32 arg1)
 		case 1:
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1828,6 +1849,9 @@ void fn_8_9A514(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x248) = 9;
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1971,6 +1995,9 @@ void fn_8_9AABC(void* arg0, s32 arg1)
 				}
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 

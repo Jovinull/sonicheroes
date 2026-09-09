@@ -763,6 +763,9 @@ void fn_8_ABA38(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x250) = 0x1F;
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -908,6 +911,9 @@ void fn_8_ABE70(void* arg0, s32 arg1)
 				}
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -977,6 +983,9 @@ void fn_8_AC10C(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x250) = 0x3B;
 			}
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 

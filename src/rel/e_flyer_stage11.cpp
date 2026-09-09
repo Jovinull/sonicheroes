@@ -1276,6 +1276,9 @@ void fn_8_A4140(void* arg0, s32 arg1)
 		case 1:
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 

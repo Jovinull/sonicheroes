@@ -2979,6 +2979,9 @@ void fn_8_C1BCC(TObject* arg0)
 			arg0->unk2B8 = lbl_8_rodata_1ED8[0];
 			arg0->unk2B4 = arg0->unk2B8;
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 

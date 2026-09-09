@@ -393,6 +393,9 @@ void fn_8_C2DE4(void* arg0)
 			M2C_FIELD(arg0, f32*, 0xD8)
 			    = (f32)(lbl_8_data_181AC + (temp_f2 * (f32)(lbl_8_data_181A0 - temp_r6)));
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
