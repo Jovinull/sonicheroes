@@ -81,7 +81,7 @@ s32 fn_800A3F60(void*);                              /* extern */
 M2C_UNK fn_800A5B34(s32);                            /* extern */
 s32 fn_800A6D60(s32, s32, s32);                      /* extern */
 f32 fn_800AEF48(void*, void*, void*, s32);           /* extern */
-s32 fn_800AF3AC(...);                                /* extern */
+s32 fn_800AF3AC(s16*, void*);                        /* extern */
 M2C_UNK fn_800AFB50(...);                            /* extern */
 M2C_UNK fn_800B4A38(s32, void*, s32, s32, s32, s32); /* extern */
 f32 fn_800D71DC(void*, void*);                       /* extern */
@@ -541,7 +541,7 @@ loop_5:
 	M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 	if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) != NULL) {
 		sp30 = lbl_8_rodata_1BD0[0];
-		if (fn_800AF3AC(&sp20) == 1) {
+		if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 1) {
 			sp14 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 			sp18 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 			sp1C = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);
@@ -885,7 +885,7 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 					M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 					if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) != NULL) {
 						sp3C = lbl_8_rodata_1BD0[0];
-						if (fn_800AF3AC(&sp2C) == 1) {
+						if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp2C) == 1) {
 							sp20 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 							sp24 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 							sp28 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);

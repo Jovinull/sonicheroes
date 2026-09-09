@@ -185,7 +185,7 @@ M2C_UNK fn_800A4668(void*);                                             /* exter
 M2C_UNK fn_800A4A8C(TObject*, f32);                                     /* extern */
 s32 fn_800A5888(void*, void*, f32);                                     /* extern */
 s32 fn_800A5A54(void*);                                                 /* extern */
-f32 fn_800A5AC0(...);                                                   /* extern */
+f32 fn_800A5AC0(void*);                                                 /* extern */
 M2C_UNK fn_800A5B50(void*, s32);                                        /* extern */
 M2C_UNK fn_800A5C6C(void*, s32);                                        /* extern */
 M2C_UNK fn_800A7088(void*, M2C_UNK);                                    /* extern */
@@ -611,7 +611,7 @@ void fn_8_AD260(void* arg0, s32 arg1)
 				if ((s32)M2C_FIELD(arg0, s32*, 0x310) == 0) {
 
 				} else {
-					if ((fn_800A5AC0() < lbl_8_rodata_1AC4)
+					if ((fn_800A5AC0(arg0) < lbl_8_rodata_1AC4)
 					    || ((s32)(M2C_FIELD(arg0, u16*, 0x106) & 4) != 0)) {
 						fn_800A4668(arg0);
 						var_r30 = 0;
