@@ -253,13 +253,13 @@ static char lbl_8_data_15EA4[] = "en_eggmobile_stg22.one";
 static M2C_UNK lbl_8_data_15EBC; /* unable to generate initializer: unknown type */
 static char lbl_8_data_15F64[] = "EGGMOBILE OBJECT";
 static char lbl_8_data_15F78[] = "f";
-static M2C_UNK lbl_8_bss_18A8;
+static u32 lbl_8_bss_18A8[7];
 static u32 lbl_8_bss_18C4;
 static u32 lbl_8_bss_18C8[0x11];
 static s32 lbl_8_bss_190C;
 static s32 lbl_8_bss_1910;
 static TObject* lbl_8_bss_1914;
-static M2C_UNK lbl_8_bss_1918;
+static u32 lbl_8_bss_1918[12];
 static u32 lbl_8_data_15B90[4] = { 0x6567676D, 0x6F76696C, 0x6530312E, 0x616E6D00 };
 extern const struct _struct_lbl_8_rodata_17F4_0xC lbl_8_rodata_17F4[6] = {
 	{ 0.0f, 0.0f, 0.0f },

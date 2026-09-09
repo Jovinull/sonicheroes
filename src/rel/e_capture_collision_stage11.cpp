@@ -60,8 +60,8 @@ typedef struct ObjectEntry {
 	u8 pad22[2];             /* 0x22 */
 	const char* fieldTypes;  /* 0x24 */
 	const char** fieldNames; /* 0x28 */
-	u8 pad2C[4];             /* 0x2C */
-} ObjectEntry;               /* 0x30 */
+	u8 pad2C[12];            /* 0x2C */
+} ObjectEntry;               /* 0x38 */
 
 static ObjectEntry captureCollisionEntry;
 extern const f32 lbl_8_rodata_17BC[8] = { 0.0f, 0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };

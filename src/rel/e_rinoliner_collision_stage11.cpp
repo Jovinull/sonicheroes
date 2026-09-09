@@ -193,7 +193,10 @@ static M2C_UNK lbl_8_data_17268; /* unable to generate initializer: unknown type
 static char rinoColObjectDisplayName[] = "RINO COL OBJECT";
 static char rinoColObjectFieldTypes[]  = "ccccffff";
 static M2C_UNK gap_04_000172D9_data; /* unable to generate initializer: unknown type */
-static void* lbl_8_bss_1A90;
+static struct {
+	void* p;
+	void* unk4;
+} lbl_8_bss_1A90;
 typedef struct ObjectEntry {
 	const char* name;        /* 0x00 */
 	void (*load)(void);      /* 0x04 */
@@ -311,19 +314,19 @@ void fn_8_B4A7C(void* arg0)
 	f32 sp8;
 	s32 temp_r30;
 
-	if ((void*)lbl_8_bss_1A90 != NULL) {
+	if ((void*)lbl_8_bss_1A90.p != NULL) {
 		sp8  = M2C_FIELD(arg0, f32*, 0xB0);
 		spC  = M2C_FIELD(arg0, f32*, 0xB4);
 		sp10 = M2C_FIELD(arg0, f32*, 0xB8);
 		sp14 = 20.0f;
 		if (fn_8019CE34(*lbl_8042C9A4, &sp8) != 0) {
-			temp_r30 = M2C_FIELD(lbl_8_bss_1A90, s32*, 4);
+			temp_r30 = M2C_FIELD(lbl_8_bss_1A90.p, s32*, 4);
 			fn_8019ED68(temp_r30, &lbl_80239990, 0, M2C_FIELD(arg0, f32*, 0xF0));
 			fn_8019ED68(temp_r30, &lbl_80239978, 2, M2C_FIELD(arg0, f32*, 0xE8));
 			fn_8019ED68(temp_r30, &lbl_80239984, 2, M2C_FIELD(arg0, f32*, 0xEC));
 			fn_8019EB94(temp_r30, (u8*)arg0 + 0xB0, 2);
 			fn_80113874(M2C_FIELD(arg0, s32*, 0xE0));
-			fn_8014FF2C(lbl_8_bss_1A90);
+			fn_8014FF2C(lbl_8_bss_1A90.p);
 		}
 	}
 }
@@ -574,12 +577,12 @@ void fn_8_B5160(void* arg0)
 
 void fn_8_B52F4(void)
 {
-	lbl_8_bss_1A90 = NULL;
+	lbl_8_bss_1A90.p = NULL;
 }
 
 void fn_8_B5308(void)
 {
-	lbl_8_bss_1A90 = fn_8005EA04(lbl_8_data_1704C);
+	lbl_8_bss_1A90.p = fn_8005EA04(lbl_8_data_1704C);
 }
 
 void fn_8_B533C(void* arg0, s32 arg1)

@@ -167,7 +167,25 @@ static char s11FlagDisplayName[] = "S11 FLAG";
 static M2C_UNK gap_04_00018C79_data; /* unable to generate initializer: unknown type */
 static char s11FlagFieldTypes[] = "cccF";
 static M2C_UNK gap_04_00018C81_data; /* unable to generate initializer: unknown type */
-static M2C_UNK s11FlagEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry s11FlagEntry;
 extern const f32 lbl_8_rodata_2010[12] = { 0.0f, 1.401298464324817e-45f, 2.802596928649634e-45f,
 	4.203895392974451e-45f, 5.605193857299268e-45f, 7.006492321624085e-45f, 8.407790785948902e-45f,
 	9.80908925027372e-45f, 1.1210387714598537e-44f, 1.2611686178923354e-44f, 1.401298464324817e-44f,
@@ -994,29 +1012,26 @@ void s11FlagCreate(void)
 
 void s11FlagRegister(void)
 {
-	M2C_UNK* temp_r3;
-
-	M2C_FIELD(&s11FlagEntry, s32*, 0x14)            = 0;
-	M2C_FIELD(&s11FlagEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s11FlagEntry, M2C_UNK**, 0)          = (M2C_UNK*)s11FlagDisplayName;
-	M2C_FIELD(&s11FlagEntry, void (**)(M2C_UNK), 4) = s11FlagLoad;
-	M2C_FIELD(&s11FlagEntry, void (**)(M2C_UNK), 8) = s11FlagUnload;
-	M2C_FIELD(&s11FlagEntry, void (**)(), 0xC)      = s11FlagCreate;
-	M2C_FIELD(&s11FlagEntry, s32*, 0x10)            = 0;
-	M2C_FIELD(&s11FlagEntry, s32*, 0x14)            = 0x21000;
-	M2C_FIELD(&s11FlagEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s11FlagEntry, s8*, 0x20)             = 0x14;
-	M2C_FIELD(&s11FlagEntry, s16*, 0x1C)            = 0x1188;
-	M2C_FIELD(&s11FlagEntry, s16*, 0x1E)            = 2;
-	M2C_FIELD(&s11FlagEntry, s8*, 0x21)             = 0;
-	temp_r3                                         = (M2C_UNK*)s11FlagFieldTypes;
-	M2C_FIELD(&s11FlagEntry, M2C_UNK**, 0x24)       = temp_r3;
-	M2C_FIELD(&s11FlagEntry, M2C_UNK**, 0x28)       = &s11FlagFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(&s11FlagEntry, s32*, 0x14) = (s32)(0x21000 | 8);
-		return;
+	s11FlagEntry.flags      = 0;
+	s11FlagEntry.unk18      = 0;
+	s11FlagEntry.name       = (const char*)s11FlagDisplayName;
+	s11FlagEntry.load       = (void (*)(void))s11FlagLoad;
+	s11FlagEntry.unload     = (void (*)(void))s11FlagUnload;
+	s11FlagEntry.create     = (void (*)(void))s11FlagCreate;
+	s11FlagEntry.unk10      = (void*)0;
+	s11FlagEntry.flags      = 0x21000;
+	s11FlagEntry.unk18      = 0;
+	s11FlagEntry.unk20      = 0x14;
+	s11FlagEntry.unk1C      = 0x1188;
+	s11FlagEntry.unk1E      = 2;
+	s11FlagEntry.unk21      = 0;
+	s11FlagEntry.fieldTypes = (const char*)s11FlagFieldTypes;
+	s11FlagEntry.fieldNames = (const char**)&s11FlagFieldNames;
+	if ((const char*)s11FlagFieldTypes != NULL) {
+		s11FlagEntry.flags |= 8;
+	} else {
+		s11FlagEntry.flags &= ~8;
 	}
-	M2C_FIELD(&s11FlagEntry, s32*, 0x14) = 0x21000;
 }
 
 __declspec(section ".ctors") void (*const s11FlagCtorEntry)(void) = s11FlagRegister;

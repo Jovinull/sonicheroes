@@ -246,7 +246,7 @@ static char lbl_8_data_1628C[]       = "en_flyer.one";
 static char lbl_8_data_1629C[]       = "%s_flyer.one";
 static char flyerObjectDisplayName[] = "FLYER OBJECT";
 static char flyerObjectFieldTypes[]  = "ccccfifxi";
-static M2C_UNK lbl_8_bss_1948;
+static u32 lbl_8_bss_1948[4];
 static u32 lbl_8_bss_1958;
 static u32 lbl_8_data_160F4[4]        = { 0x41545441, 0x434B2049, 0x4E544552, 0x56414C00 };
 extern const f32 lbl_8_rodata_18B0[1] = { 1080.0f };

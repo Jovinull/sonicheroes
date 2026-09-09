@@ -111,7 +111,24 @@ static char lbl_8_data_18E7C[] = "s11_o_goalkey.dff";
 static M2C_UNK gap_04_00018E8E_data; /* unable to generate initializer: unknown type */
 static char s11keyObjectDisplayName[] = "S11KEY OBJECT";
 static M2C_UNK gap_04_00018E9E_data; /* unable to generate initializer: unknown type */
-static M2C_UNK s11keyObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+} ObjectEntry;               /* 0x2C */
+
+static ObjectEntry s11keyObjectEntry;
 extern const f32 lbl_8_rodata_2118[1] = { 0.0f };
 
 void fn_8_CA210(s32 arg0)
@@ -851,26 +868,26 @@ void s11keyObjectCreate(void)
 
 void s11keyObjectRegister(void)
 {
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x14)       = 0;
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&s11keyObjectEntry, M2C_UNK**, 0)     = (M2C_UNK*)s11keyObjectDisplayName;
-	M2C_FIELD(&s11keyObjectEntry, void (**)(), 4)   = s11keyObjectLoad;
-	M2C_FIELD(&s11keyObjectEntry, void (**)(), 8)   = s11keyObjectUnload;
-	M2C_FIELD(&s11keyObjectEntry, void (**)(), 0xC) = s11keyObjectCreate;
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x10)       = 0;
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x14)       = 0x20000;
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&s11keyObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&s11keyObjectEntry, s16*, 0x1C)       = 0x1109;
-	M2C_FIELD(&s11keyObjectEntry, s16*, 0x1E)       = 2;
-	M2C_FIELD(&s11keyObjectEntry, s8*, 0x21)        = 0;
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x24)       = 0;
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x28)       = 0;
-	if (0U != 0U) {
-		M2C_FIELD(&s11keyObjectEntry, s32*, 0x14) = 0x20008;
-		return;
+	s11keyObjectEntry.flags      = 0;
+	s11keyObjectEntry.unk18      = 0;
+	s11keyObjectEntry.name       = (const char*)s11keyObjectDisplayName;
+	s11keyObjectEntry.load       = (void (*)(void))s11keyObjectLoad;
+	s11keyObjectEntry.unload     = (void (*)(void))s11keyObjectUnload;
+	s11keyObjectEntry.create     = (void (*)(void))s11keyObjectCreate;
+	s11keyObjectEntry.unk10      = (void*)0;
+	s11keyObjectEntry.flags      = 0x20000;
+	s11keyObjectEntry.unk18      = 0;
+	s11keyObjectEntry.unk20      = 0x1E;
+	s11keyObjectEntry.unk1C      = 0x1109;
+	s11keyObjectEntry.unk1E      = 2;
+	s11keyObjectEntry.unk21      = 0;
+	s11keyObjectEntry.fieldTypes = NULL;
+	s11keyObjectEntry.fieldNames = NULL;
+	if (s11keyObjectEntry.fieldTypes != NULL) {
+		s11keyObjectEntry.flags |= 8;
+	} else {
+		s11keyObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&s11keyObjectEntry, s32*, 0x14) = 0x20000;
 }
 
 __declspec(section ".ctors") void (*const s11keyObjectCtorEntry)(void) = s11keyObjectRegister;

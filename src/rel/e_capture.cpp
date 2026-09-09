@@ -455,9 +455,9 @@ static M2C_UNK lbl_8_data_15854; /* unable to generate initializer: unknown type
 static char lbl_8_data_159BC[]         = "en_capture.one";
 static char captureObjectDisplayName[] = "CAPTURE OBJECT";
 static char captureObjectFieldTypes[]  = "ccccfffif";
-static M2C_UNK lbl_8_bss_1780;
-static M2C_UNK captureObjectGlobalArrayChain;
-static M2C_UNK captureObjectGlobalArray;
+static u32 lbl_8_bss_1780[6];
+static u32 captureObjectGlobalArrayChain[3];
+static u32 captureObjectGlobalArray[40];
 typedef struct ObjectEntry {
 	const char* name;        /* 0x00 */
 	void (*load)(void);      /* 0x04 */
@@ -473,8 +473,7 @@ typedef struct ObjectEntry {
 	u8 pad22[2];             /* 0x22 */
 	const char* fieldTypes;  /* 0x24 */
 	const char** fieldNames; /* 0x28 */
-	u8 pad2C[4];             /* 0x2C */
-} ObjectEntry;               /* 0x30 */
+} ObjectEntry;               /* 0x2C */
 
 static ObjectEntry captureObjectEntry;
 static u32 lbl_8_data_1571C[2] = { 0x656E5F63, 0x61703000 };
@@ -1139,7 +1138,7 @@ void fn_8_99254(void* arg0)
 	s32 var_r30;
 
 	var_r30 = 0;
-	var_r31 = &captureObjectGlobalArray;
+	var_r31 = (int*)&captureObjectGlobalArray;
 	do {
 		fn_8011398C(var_r31, M2C_FIELD(arg0, s32*, 0x57C));
 		var_r31 += 0x14;
@@ -3166,7 +3165,7 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 		fn_8005DA34(M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14));
 	}
 	fn_800FE274(7, &lbl_8_data_15608);
-	fn_80113AA8(&captureObjectGlobalArray, temp_r3, M2C_FIELD(&lbl_8_bss_1780, u32*, 0),
+	fn_80113AA8((int*)&captureObjectGlobalArray, temp_r3, M2C_FIELD(&lbl_8_bss_1780, u32*, 0),
 	    &lbl_8_data_1572C, 2);
 	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x14), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0), &lbl_8_data_1575C, 2);
@@ -3225,8 +3224,8 @@ void fn_8_9D23C(void* arg0)
 
 void captureObjectRegister(void)
 {
-	__construct_array(&captureObjectGlobalArray, &fn_80113C7C, &fn_80113C2C, 0x14, 8);
-	__register_global_object(0, captureObjectGlobalArrayDtor, &captureObjectGlobalArrayChain);
+	__construct_array((int*)&captureObjectGlobalArray, &fn_80113C7C, &fn_80113C2C, 0x14, 8);
+	__register_global_object(0, captureObjectGlobalArrayDtor, (int*)&captureObjectGlobalArrayChain);
 
 	captureObjectEntry.flags      = 0;
 	captureObjectEntry.unk18      = 0;
@@ -3252,6 +3251,6 @@ void captureObjectRegister(void)
 
 void captureObjectGlobalArrayDtor(void)
 {
-	__destroy_arr(&captureObjectGlobalArray, &fn_80113C2C, 0x14, 8);
+	__destroy_arr((int*)&captureObjectGlobalArray, &fn_80113C2C, 0x14, 8);
 }
 }
