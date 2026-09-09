@@ -852,8 +852,7 @@ block_15:
 				case 0x2C:
 					break;
 				default:
-				block_50:
-					return 0;
+					goto block_50;
 			}
 		block_49:
 			M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -861,6 +860,8 @@ block_15:
 			M2C_FIELD(arg0, s32*, 4) = 9;
 			((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			return 1;
+		block_50:
+			return 0;
 		}
 		return 0;
 	}

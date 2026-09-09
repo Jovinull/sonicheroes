@@ -1414,8 +1414,7 @@ s32 fn_8_B7D24(void* arg0)
 			case 0x2C:
 				break;
 			default:
-			block_22:
-				return 0;
+				goto block_22;
 		}
 	block_21:
 		M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -1423,6 +1422,8 @@ s32 fn_8_B7D24(void* arg0)
 		M2C_FIELD(arg0, s32*, 4) = 8;
 		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 		return 1;
+	block_22:
+		return 0;
 	}
 	return 0;
 }
