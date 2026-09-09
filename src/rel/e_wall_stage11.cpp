@@ -2771,9 +2771,7 @@ void fn_8_BADC4(void* arg0, s32 arg1)
 
 void fn_8_BAF00(TObject* arg0, s32 arg1)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[3];
 	M2C_UNK* temp_r3_2;
 	s32 temp_r0;
 	s32 temp_r30;
@@ -2830,13 +2828,13 @@ void fn_8_BAF00(TObject* arg0, s32 arg1)
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(lbl_8042C388, 0x401F, &arg0->unk140, 0, 1, 0, 0);
 					}
-					fn_8011B594(&sp8);
+					fn_8011B594(sp8);
 					temp_r3_2 = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x2BC));
-					sp8       = M2C_FIELD(temp_r3_2, f32*, 0x30);
-					spC       = M2C_FIELD(temp_r3_2, f32*, 0x34);
-					sp10      = M2C_FIELD(temp_r3_2, f32*, 0x38);
-					spC       = fn_800D8BC4(&sp8, NULL, 1);
-					fn_8011B418(&sp8);
+					sp8[0]    = M2C_FIELD(temp_r3_2, f32*, 0x30);
+					sp8[1]    = M2C_FIELD(temp_r3_2, f32*, 0x34);
+					sp8[2]    = M2C_FIELD(temp_r3_2, f32*, 0x38);
+					sp8[1]    = fn_800D8BC4(sp8, NULL, 1);
+					fn_8011B418(sp8);
 					arg0->unk274 = 2;
 				}
 			}

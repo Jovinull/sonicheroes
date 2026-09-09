@@ -202,9 +202,7 @@ void fn_8_C4098(void* arg0)
 
 void fn_8_C4108(void* arg0)
 {
-	f32 sp1C;
-	f32 sp18;
-	f32 sp14;
+	f32 sp14[3];
 	f32 sp10;
 	f32 spC;
 	f32 sp8;
@@ -274,12 +272,12 @@ void fn_8_C4108(void* arg0)
 	}
 	if (temp_f31 < temp_f30) {
 		if (temp_f30 <= (1.0f + temp_f31)) {
-			sp14 = M2C_FIELD(arg0, f32*, 0xB8);
-			sp18 = M2C_FIELD(arg0, f32*, 0xBC);
-			sp1C = M2C_FIELD(arg0, f32*, 0xC0);
-			sp18 += 15.0f * M2C_FIELD(arg0, f32*, 0xD0);
+			sp14[0] = M2C_FIELD(arg0, f32*, 0xB8);
+			sp14[1] = M2C_FIELD(arg0, f32*, 0xBC);
+			sp14[2] = M2C_FIELD(arg0, f32*, 0xC0);
+			sp14[1] += 15.0f * M2C_FIELD(arg0, f32*, 0xD0);
 			if ((u32)lbl_8042C388 != 0U) {
-				fn_800B4A38(0x5A17, &sp14, 0, 1, (s8)lbl_8_bss_1C40, 0);
+				fn_800B4A38(0x5A17, sp14, 0, 1, (s8)lbl_8_bss_1C40, 0);
 			}
 		}
 	}

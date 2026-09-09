@@ -500,9 +500,7 @@ void fn_8_B2BB4(void* arg0)
 void fn_8_B321C(TObject* arg0, void* arg1, s32 arg2)
 {
 	M2C_UNK sp44;
-	f32 sp40;
-	f32 sp3C;
-	f32 sp38;
+	f32 sp38[3];
 	f32 sp34;
 	f32 sp30;
 	f32 sp2C;
@@ -531,14 +529,14 @@ void fn_8_B321C(TObject* arg0, void* arg1, s32 arg2)
 	void* temp_r4_2;
 
 	if (((RwFrame*)arg0->unk304 != NULL) && ((void*)arg0->unk310 != NULL)) {
-		sp38     = M2C_FIELD(&lbl_8_rodata_1BA0, f32*, 0);
-		sp3C     = M2C_FIELD(&lbl_8_rodata_1BA0, f32*, 4);
-		sp40     = M2C_FIELD(&lbl_8_rodata_1BA0, f32*, 8);
+		sp38[0]  = M2C_FIELD(&lbl_8_rodata_1BA0, f32*, 0);
+		sp38[1]  = M2C_FIELD(&lbl_8_rodata_1BA0, f32*, 4);
+		sp38[2]  = M2C_FIELD(&lbl_8_rodata_1BA0, f32*, 8);
 		temp_f31 = fn_800D7B00(-arg0->unk150, &lbl_8_rodata_1BA0);
 		fn_80195790(
 		    &sp44, &lbl_80239984, lbl_8_rodata_1C04 - fn_800D7AE4(-arg0->unk150), temp_f31, 0);
-		fn_8019941C(&sp38, &sp38, 1, &sp44);
-		fn_801990E0(&sp38, &sp38);
+		fn_8019941C(sp38, sp38, 1, &sp44);
+		fn_801990E0(sp38, sp38);
 		sp2C    = M2C_FIELD(&lbl_8_rodata_1BAC, f32*, 0);
 		sp30    = M2C_FIELD(&lbl_8_rodata_1BAC, f32*, 4);
 		sp34    = M2C_FIELD(&lbl_8_rodata_1BAC, f32*, 8);
@@ -548,9 +546,9 @@ void fn_8_B321C(TObject* arg0, void* arg1, s32 arg2)
 		sp34    = temp_f1 - arg0->unk148;
 		sp30    = lbl_8_rodata_1BD0;
 		fn_801990E0(&sp2C, &sp2C, temp_f1);
-		sp20    = sp38;
-		sp24    = sp3C;
-		sp28    = sp40;
+		sp20    = sp38[0];
+		sp24    = sp38[1];
+		sp28    = sp38[2];
 		sp14    = sp2C;
 		sp18    = sp30;
 		sp1C    = sp34;
