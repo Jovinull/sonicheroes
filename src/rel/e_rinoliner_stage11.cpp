@@ -158,7 +158,7 @@ M2C_UNK fn_800A7088(void*, M2C_UNK);                                            
 M2C_UNK fn_800A714C();                                                            /* extern */
 s32 fn_800AF3AC(...);                                                             /* extern */
 M2C_UNK fn_800AFB50(...);                                                         /* extern */
-f32 fn_800D71DC(...);                                                             /* extern */
+f32 fn_800D71DC(void*, void*);                                                    /* extern */
 M2C_UNK fn_800D735C(M2C_UNK*, M2C_UNK, s32*);                                     /* extern */
 s32 fn_800D7920(f32*, f32*, f32*, f32);                                           /* extern */
 s32 fn_800D7A94(...);                                                             /* extern */
