@@ -45,7 +45,25 @@ static const char* lbl_8_data_15A14            = lbl_8_data_159FC;
 static M2C_UNK lbl_8_data_15A18; /* unable to generate initializer: unknown type */
 static char captureCollisionDisplayName[] = "CAPTURE COLLISION";
 static char captureCollisionFieldTypes[]  = "i";
-static M2C_UNK captureCollisionEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[12];            /* 0x2C */
+} ObjectEntry;               /* 0x38 */
+
+static ObjectEntry captureCollisionEntry;
 extern const f32 lbl_8_rodata_17BC[8] = { 0.0f, 0.0f, 1.5f, 0.0f, 0.0f, 0.0f, 1.5f, 0.0f };
 extern const f32 lbl_8_rodata_17DC[3] = { 0.0f, 0.0f, 0.0f };
 extern const s32 lbl_8_rodata_17E8[3] = { 0xDAE, 0xDAF, 0xDB0 };
@@ -100,7 +118,7 @@ void fn_8_9D45C(void* arg0)
 s32 fn_8_9D4A8(s32 arg0)
 {
 	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u8*)arg0 + 0x28)) != 0)) {
+	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		return 1;
 	}
 	return 0;
@@ -113,7 +131,7 @@ void fn_8_9D500(void* arg0)
 	s32 var_r0;
 
 	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u8*)arg0 + 0x28)) != 0)) {
+	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		var_r0 = 1;
 	} else {
 		var_r0 = 0;
@@ -281,30 +299,25 @@ void captureCollisionCreate(void)
 
 void captureCollisionRegister(void)
 {
-	const char* temp_r3;
-	s32 flags;
-
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x14)         = 0;
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x18)         = 0;
-	M2C_FIELD(&captureCollisionEntry, const char**, 0)    = captureCollisionDisplayName;
-	M2C_FIELD(&captureCollisionEntry, void (**)(), 4)     = captureCollisionLoad;
-	M2C_FIELD(&captureCollisionEntry, void (**)(), 8)     = captureCollisionUnload;
-	M2C_FIELD(&captureCollisionEntry, void (**)(), 0xC)   = captureCollisionCreate;
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x10)         = 0;
-	flags                                                 = 0x20000;
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x14)         = flags;
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x18)         = 0;
-	M2C_FIELD(&captureCollisionEntry, s8*, 0x20)          = 0x1E;
-	M2C_FIELD(&captureCollisionEntry, s16*, 0x1C)         = 0x65;
-	M2C_FIELD(&captureCollisionEntry, s16*, 0x1E)         = 4;
-	M2C_FIELD(&captureCollisionEntry, s8*, 0x21)          = 0;
-	temp_r3                                               = captureCollisionFieldTypes;
-	M2C_FIELD(&captureCollisionEntry, const char**, 0x24) = temp_r3;
-	M2C_FIELD(&captureCollisionEntry, M2C_UNK**, 0x28)    = &captureCollisionFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(&captureCollisionEntry, s32*, 0x14) = flags | 8;
-		return;
+	captureCollisionEntry.flags      = 0;
+	captureCollisionEntry.unk18      = 0;
+	captureCollisionEntry.name       = (const char*)captureCollisionDisplayName;
+	captureCollisionEntry.load       = (void (*)(void))captureCollisionLoad;
+	captureCollisionEntry.unload     = (void (*)(void))captureCollisionUnload;
+	captureCollisionEntry.create     = (void (*)(void))captureCollisionCreate;
+	captureCollisionEntry.unk10      = (void*)0;
+	captureCollisionEntry.flags      = 0x20000;
+	captureCollisionEntry.unk18      = 0;
+	captureCollisionEntry.unk20      = 0x1E;
+	captureCollisionEntry.unk1C      = 0x65;
+	captureCollisionEntry.unk1E      = 4;
+	captureCollisionEntry.unk21      = 0;
+	captureCollisionEntry.fieldTypes = (const char*)captureCollisionFieldTypes;
+	captureCollisionEntry.fieldNames = (const char**)&captureCollisionFieldNames;
+	if ((const char*)captureCollisionFieldTypes != NULL) {
+		captureCollisionEntry.flags |= 8;
+	} else {
+		captureCollisionEntry.flags &= ~8;
 	}
-	M2C_FIELD(&captureCollisionEntry, s32*, 0x14) = flags & ~8;
 }
 }

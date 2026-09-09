@@ -35,7 +35,7 @@ extern float lbl_8_rodata_CA0;
 extern float lbl_8_rodata_CA4;
 extern float lbl_8_rodata_CA8;
 
-void __dt__17PARTICLE_MATERIALFv(...);
+void __dt__17PARTICLE_MATERIALFv(s32, s32);
 void __ct__17PARTICLE_MATERIALF8Pt_FLAGSP11SPRITE_INFO(...);
 void __dl__FPv(void*);
 void* fn_80057644(u32);
@@ -62,7 +62,7 @@ static void destroyMaterial(void*& material)
 	if (material == NULL)
 		return;
 	field<void*>(material, 0x54) = lbl_8_data_4DF0;
-	__dt__17PARTICLE_MATERIALFv(material, 0);
+	__dt__17PARTICLE_MATERIALFv((int)material, 0);
 	__dl__FPv(material);
 	material = NULL;
 }

@@ -60,10 +60,10 @@ M2C_UNK fn_801197F4(void*, M2C_UNK);                   /* extern */
 u32 fn_80119A18(u32);                                  /* extern */
 M2C_UNK fn_8014FF2C(u32);                              /* extern */
 u32 fn_80150588(u32);                                  /* extern */
-M2C_UNK fn_80150958(...);                              /* extern */
+M2C_UNK fn_80150958(void*);                            /* extern */
 M2C_UNK fn_80194234(M2C_UNK, s32);                     /* extern */
 M2C_UNK fn_80194294(M2C_UNK, s32*);                    /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32); /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK); /* extern */
 M2C_UNK fn_8019E880(s32);                              /* extern */
 M2C_UNK fn_8019EB94(s32, s32*, ...);                   /* extern */
 M2C_UNK fn_801A4C84(u32);                              /* extern */
@@ -109,7 +109,25 @@ static M2C_UNK gap_04_0001821D_data;       /* unable to generate initializer: un
 static M2C_UNK s11spiderObjectFieldTypes;  /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018222_data;       /* unable to generate initializer: unknown type */
 static u32 lbl_8_bss_1BD0[4];
-static M2C_UNK s11spiderObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry s11spiderObjectEntry;
 extern const f32 lbl_8_rodata_1F08[1] = { 1.0f };
 extern const f32 lbl_8_rodata_1F0C[1] = { 3.0517578125e-05f };
 extern const f32 lbl_8_rodata_1F10[5] = { 176.0f, -0.0f, 0.0f, 1.5f, 0.0f };
@@ -141,8 +159,8 @@ void fn_8_C28D4(void* arg0)
 		sp10     = M2C_FIELD(arg0, s32*, 0xC0);
 		fn_8019EB94(temp_r27, (s32*)((u8*)arg0 + 0xB8), 0);
 		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r27 + 0x10, &lbl_80239984, 1,
-		    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30);
+		fn_80195790(temp_r27 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)),
+		    temp_f30, 1);
 		fn_8019E880(temp_r27);
 		var_r26 = 0;
 		var_r28 = arg0;
@@ -152,8 +170,8 @@ void fn_8_C28D4(void* arg0)
 			temp_r27_2 = M2C_FIELD(M2C_FIELD(var_r28, void**, 0xE8), s32*, 4);
 			fn_8019EB94(temp_r27_2, &sp8, 0, temp_f1);
 			temp_f30_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r27_2 + 0x10, &lbl_80239984, 1,
-			    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30_2);
+			fn_80195790(temp_r27_2 + 0x10, &lbl_80239984,
+			    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30_2, 1);
 			fn_8019E880(temp_r27_2);
 			var_r28 = (u8*)var_r28 + 4;
 			var_r26 += 1;
@@ -233,8 +251,10 @@ void fn_8_C2BD8(void* arg0)
 {
 	void* temp_r4;
 	void* temp_r4_2;
+	s32* temp_r5;
 
 	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
+	temp_r5                     = M2C_FIELD(temp_r4, s32**, 0x2C);
 	M2C_FIELD(arg0, f32*, 0xB8) = (f32)M2C_FIELD(temp_r4, f32*, 0);
 	M2C_FIELD(arg0, f32*, 0xBC) = (f32)M2C_FIELD(temp_r4, f32*, 4);
 	M2C_FIELD(arg0, f32*, 0xC0) = (f32)M2C_FIELD(temp_r4, f32*, 8);
@@ -244,7 +264,7 @@ void fn_8_C2BD8(void* arg0)
 	M2C_FIELD(arg0, s32*, 0xCC) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x14);
 	M2C_FIELD(arg0, s32*, 0xCC) = 0;
 	M2C_FIELD(arg0, s32*, 0xC4) = 0;
-	M2C_FIELD(arg0, s32*, 0xD0) = (s32)*M2C_FIELD(temp_r4, s32**, 0x2C);
+	M2C_FIELD(arg0, s32*, 0xD0) = (s32)*temp_r5;
 }
 
 void fn_8_C2C2C(void* arg0)
@@ -324,7 +344,7 @@ void fn_8_C2DE4(void* arg0)
 	void* var_r27;
 
 	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u8*)arg0 + 0x28)) != 0)) {
+	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -336,8 +356,8 @@ void fn_8_C2DE4(void* arg0)
 		sp10     = M2C_FIELD(arg0, s32*, 0xC0);
 		fn_8019EB94(temp_r28, (s32*)((u8*)arg0 + 0xB8), 0);
 		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984, 1,
-		    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30);
+		fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+		    lbl_8_rodata_1F08[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30, 1);
 		fn_8019E880(temp_r28);
 		var_r28 = 0;
 		var_r27 = arg0;
@@ -347,8 +367,8 @@ void fn_8_C2DE4(void* arg0)
 			temp_r26 = M2C_FIELD(M2C_FIELD(var_r27, void**, 0xE8), s32*, 4);
 			fn_8019EB94(temp_r26, &sp8, 0, temp_f1);
 			temp_f30_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r26 + 0x10, &lbl_80239984, 1,
-			    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30_2);
+			fn_80195790(temp_r26 + 0x10, &lbl_80239984,
+			    lbl_8_rodata_1F08[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30_2, 1);
 			fn_8019E880(temp_r26);
 			var_r27 = (u8*)var_r27 + 4;
 			var_r28 += 1;
@@ -375,6 +395,9 @@ void fn_8_C2DE4(void* arg0)
 			M2C_FIELD(arg0, f32*, 0xD8)
 			    = (f32)(lbl_8_data_181AC + (temp_f2 * (f32)(lbl_8_data_181A0 - temp_r6)));
 			return;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -510,7 +533,7 @@ void s11spiderObjectUnload(void)
 	var_r29 = 0;
 	var_r30 = lbl_8_bss_1BD0;
 	do {
-		fn_80150958(*var_r30);
+		fn_80150958((void*)*var_r30);
 		*var_r30 = 0U;
 		var_r30 += 1;
 		var_r29 += 1;
@@ -535,7 +558,7 @@ void s11spiderObjectLoad(M2C_UNK arg_sp0)
 	do {
 		*var_r28 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
 		    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29), &lbl_802FF5A0);
-		var_r29 += 4;
+		var_r29 += 1;
 		var_r28 += 1;
 		var_r27 += 1;
 	} while (var_r27 < 4);
@@ -617,29 +640,26 @@ void s11spiderObjectCreate(void)
 
 void s11spiderObjectRegister(void)
 {
-	s32 flags;
-
-	M2C_FIELD(&s11spiderObjectEntry, s32*, 0x14)            = 0;
-	M2C_FIELD(&s11spiderObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s11spiderObjectEntry, M2C_UNK**, 0)          = &s11spiderObjectDisplayName;
-	M2C_FIELD(&s11spiderObjectEntry, void (**)(M2C_UNK), 4) = s11spiderObjectLoad;
-	M2C_FIELD(&s11spiderObjectEntry, void (**)(), 8)        = s11spiderObjectUnload;
-	M2C_FIELD(&s11spiderObjectEntry, void (**)(), 0xC)      = s11spiderObjectCreate;
-	M2C_FIELD(&s11spiderObjectEntry, s32*, 0x10)            = 0;
-	flags                                                   = 0x20000;
-	M2C_FIELD(&s11spiderObjectEntry, s32*, 0x14)            = flags;
-	M2C_FIELD(&s11spiderObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&s11spiderObjectEntry, s8*, 0x20)             = 0x1E;
-	M2C_FIELD(&s11spiderObjectEntry, s16*, 0x1C)            = 0x1189;
-	M2C_FIELD(&s11spiderObjectEntry, s16*, 0x1E)            = 2;
-	M2C_FIELD(&s11spiderObjectEntry, s8*, 0x21)             = 0;
-	M2C_FIELD(&s11spiderObjectEntry, M2C_UNK**, 0x24)       = &s11spiderObjectFieldTypes;
-	M2C_FIELD(&s11spiderObjectEntry, M2C_UNK**, 0x28)       = &s11spiderObjectFieldNames;
-	if (&s11spiderObjectFieldTypes != NULL) {
-		M2C_FIELD(&s11spiderObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	s11spiderObjectEntry.flags      = 0;
+	s11spiderObjectEntry.unk18      = 0;
+	s11spiderObjectEntry.name       = (const char*)&s11spiderObjectDisplayName;
+	s11spiderObjectEntry.load       = (void (*)(void))s11spiderObjectLoad;
+	s11spiderObjectEntry.unload     = (void (*)(void))s11spiderObjectUnload;
+	s11spiderObjectEntry.create     = (void (*)(void))s11spiderObjectCreate;
+	s11spiderObjectEntry.unk10      = (void*)0;
+	s11spiderObjectEntry.flags      = 0x20000;
+	s11spiderObjectEntry.unk18      = 0;
+	s11spiderObjectEntry.unk20      = 0x1E;
+	s11spiderObjectEntry.unk1C      = 0x1189;
+	s11spiderObjectEntry.unk1E      = 2;
+	s11spiderObjectEntry.unk21      = 0;
+	s11spiderObjectEntry.fieldTypes = (const char*)&s11spiderObjectFieldTypes;
+	s11spiderObjectEntry.fieldNames = (const char**)&s11spiderObjectFieldNames;
+	if ((const char*)&s11spiderObjectFieldTypes != NULL) {
+		s11spiderObjectEntry.flags |= 8;
+	} else {
+		s11spiderObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&s11spiderObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const s11spiderObjectCtorEntry)(void) = s11spiderObjectRegister;

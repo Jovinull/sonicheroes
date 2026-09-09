@@ -131,7 +131,25 @@ static M2C_UNK flyerColObjectDisplayName; /* unable to generate initializer: unk
 static M2C_UNK gap_04_0001641D_data;      /* unable to generate initializer: unknown type */
 static M2C_UNK flyerColObjectFieldTypes;  /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001642A_data;      /* unable to generate initializer: unknown type */
-static M2C_UNK flyerColObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+	u8 pad2C[4];             /* 0x2C */
+} ObjectEntry;               /* 0x30 */
+
+static ObjectEntry flyerColObjectEntry;
 extern const f32 lbl_8_rodata_198C[1] = { 0.0f };
 extern const s32 lbl_8_rodata_1990[1] = { 0 };
 extern const s32 lbl_8_rodata_1994[4] = { 0x100, 0, 0x3FC00000, 0 };
@@ -164,7 +182,7 @@ s32 fn_8_A6DC4(void* arg0)
 	void* var_r3;
 	void* temp_r0;
 
-	if (fn_8005B8BC((u8*)arg0 + 0xB0) != 0) {
+	if (fn_8005B8BC((u8*)((u32)arg0 + 0xB0)) != 0) {
 		return 1;
 	}
 	temp_r0 = M2C_FIELD(
@@ -893,7 +911,7 @@ void fn_8_A7A10(void* arg0)
 	void* var_r3;
 	s32 var_r0;
 
-	if (fn_8005B8BC((u8*)arg0 + 0xB0) != 0) {
+	if (fn_8005B8BC((u8*)((u32)arg0 + 0xB0)) != 0) {
 		var_r0 = 1;
 	} else {
 		var_r3
@@ -918,7 +936,7 @@ void fn_8_A7A10(void* arg0)
 		return;
 	}
 	if (fn_8_A74CC(arg0) != 0) {
-		fn_8005BC04((u8*)arg0 + 0xB0);
+		fn_8005BC04((u8*)((u32)arg0 + 0xB0));
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -938,12 +956,14 @@ void fn_8_A7A10(void* arg0)
 
 void fn_8_A7B4C(void* arg0)
 {
+	void* temp_r4;
+
 	if ((void*)M2C_FIELD(arg0, void**, 0x38) != NULL) {
+		temp_r4                     = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
 		M2C_FIELD(arg0, f32*, 0x88) = (f32)M2C_FIELD(arg0, f32*, 0xB8);
 		M2C_FIELD(arg0, f32*, 0x8C) = (f32)M2C_FIELD(arg0, f32*, 0xBC);
 		M2C_FIELD(arg0, f32*, 0x90) = (f32)M2C_FIELD(arg0, f32*, 0xC0);
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0x38), f32*, 0x14)
-		    = (f32)M2C_FIELD(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C), f32*, 4);
+		M2C_FIELD(M2C_FIELD(arg0, void**, 0x38), f32*, 0x14) = (f32)M2C_FIELD(temp_r4, f32*, 4);
 	}
 	fn_80021384((u8*)arg0 + 0x28);
 }
@@ -996,6 +1016,7 @@ TObject* fn_8_A7C3C(TObject* arg0, s16 arg1)
 
 TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 {
+	void* temp_r3_4;
 	void* temp_r3;
 	void* temp_r3_2;
 	void* temp_r3_3;
@@ -1009,9 +1030,9 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	arg0->unk1E = 0xE4;
 	arg0->unkD0 = 0;
 	arg0->unkD4 = 0;
-	arg0->unkE0 = 0.0f;
-	arg0->unkDC = 0.0f;
-	arg0->unkD8 = 0.0f;
+	arg0->unkE0 = lbl_8_rodata_198C[0];
+	arg0->unkDC = lbl_8_rodata_198C[0];
+	arg0->unkD8 = lbl_8_rodata_198C[0];
 	temp_r3     = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
 	arg0->unkD0 = M2C_FIELD(temp_r3, u8*, 0);
 	arg0->unkD4 = M2C_FIELD(temp_r3, s32*, 0x14);
@@ -1028,11 +1049,11 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	arg0->unkCC = M2C_FIELD(temp_r3_3, s32*, 0x14);
 	fn_8003C200(&arg0->unk28, &lbl_8_data_162C8, 1, 4);
 	if ((void*)arg0->unk38 != NULL) {
-		arg0->unk88 = arg0->unkB8;
-		arg0->unk8C = arg0->unkBC;
-		arg0->unk90 = arg0->unkC0;
-		M2C_FIELD(arg0->unk38, f32*, 0x14)
-		    = (f32)M2C_FIELD(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C), f32*, 4);
+		temp_r3_4                          = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
+		arg0->unk88                        = arg0->unkB8;
+		arg0->unk8C                        = arg0->unkBC;
+		arg0->unk90                        = arg0->unkC0;
+		M2C_FIELD(arg0->unk38, f32*, 0x14) = (f32)M2C_FIELD(temp_r3_4, f32*, 4);
 	}
 	fn_80021384(&arg0->unk28);
 	return arg0;
@@ -1056,9 +1077,9 @@ TObject* fn_8_A7E24(void)
 		temp_r3->unk1E = 0xE4;
 		temp_r3->unkD0 = 0;
 		temp_r3->unkD4 = 0;
-		temp_r3->unkE0 = 0.0f;
-		temp_r3->unkDC = 0.0f;
-		temp_r3->unkD8 = 0.0f;
+		temp_r3->unkE0 = lbl_8_rodata_198C[0];
+		temp_r3->unkDC = lbl_8_rodata_198C[0];
+		temp_r3->unkD8 = lbl_8_rodata_198C[0];
 		temp_r3_2      = M2C_FIELD(M2C_FIELD(temp_r3, void**, 0xB0), void**, 0x2C);
 		temp_r3->unkD0 = M2C_FIELD(temp_r3_2, u8*, 0);
 		temp_r3->unkD4 = M2C_FIELD(temp_r3_2, s32*, 0x14);
@@ -1180,28 +1201,25 @@ void flyerColObjectCreate(void)
 
 void flyerColObjectRegister(void)
 {
-	s32 flags;
-
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14)       = 0;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&flyerColObjectEntry, M2C_UNK**, 0)     = &flyerColObjectDisplayName;
-	M2C_FIELD(&flyerColObjectEntry, void (**)(), 4)   = flyerColObjectLoad;
-	M2C_FIELD(&flyerColObjectEntry, void (**)(), 8)   = flyerColObjectUnload;
-	M2C_FIELD(&flyerColObjectEntry, void (**)(), 0xC) = flyerColObjectCreate;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x10)       = 0;
-	flags                                             = 0x20000;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x18)       = 0;
-	M2C_FIELD(&flyerColObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&flyerColObjectEntry, s16*, 0x1C)       = 0x63;
-	M2C_FIELD(&flyerColObjectEntry, s16*, 0x1E)       = 4;
-	M2C_FIELD(&flyerColObjectEntry, s8*, 0x21)        = 0;
-	M2C_FIELD(&flyerColObjectEntry, M2C_UNK**, 0x24)  = &flyerColObjectFieldTypes;
-	M2C_FIELD(&flyerColObjectEntry, M2C_UNK***, 0x28) = flyerColObjectFieldNames;
-	if (&flyerColObjectFieldTypes != NULL) {
-		M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	flyerColObjectEntry.flags      = 0;
+	flyerColObjectEntry.unk18      = 0;
+	flyerColObjectEntry.name       = (const char*)&flyerColObjectDisplayName;
+	flyerColObjectEntry.load       = (void (*)(void))flyerColObjectLoad;
+	flyerColObjectEntry.unload     = (void (*)(void))flyerColObjectUnload;
+	flyerColObjectEntry.create     = (void (*)(void))flyerColObjectCreate;
+	flyerColObjectEntry.unk10      = (void*)0;
+	flyerColObjectEntry.flags      = 0x20000;
+	flyerColObjectEntry.unk18      = 0;
+	flyerColObjectEntry.unk20      = 0x1E;
+	flyerColObjectEntry.unk1C      = 0x63;
+	flyerColObjectEntry.unk1E      = 4;
+	flyerColObjectEntry.unk21      = 0;
+	flyerColObjectEntry.fieldTypes = (const char*)&flyerColObjectFieldTypes;
+	flyerColObjectEntry.fieldNames = (const char**)flyerColObjectFieldNames;
+	if ((const char*)&flyerColObjectFieldTypes != NULL) {
+		flyerColObjectEntry.flags |= 8;
+	} else {
+		flyerColObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&flyerColObjectEntry, s32*, 0x14) = flags & ~8;
 }
 }

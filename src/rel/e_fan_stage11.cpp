@@ -40,7 +40,7 @@ void* fn_80150588(u32);                                /* extern */
 M2C_UNK fn_80150958(void*);                            /* extern */
 M2C_UNK fn_8015BB08(s32, void*);                       /* extern */
 M2C_UNK fn_8015BBF8(s32, void*);                       /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32); /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK); /* extern */
 M2C_UNK fn_8019E880(s32);                              /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);               /* extern */
 M2C_UNK fn_801A4C84(u32);                              /* extern */
@@ -55,7 +55,8 @@ extern s32 lbl_8042C148;
 extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-static s32 lbl_8_data_18228 = 0x444;
+extern const f32 lbl_8_rodata_1F24[1] = { 1.0f };
+static s32 lbl_8_data_18228           = 0x444;
 static M2C_UNK lbl_8_data_1822C;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018237_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_18238 = &lbl_8_data_1822C;
@@ -65,7 +66,24 @@ static M2C_UNK gap_04_00018283_data;    /* unable to generate initializer: unkno
 static M2C_UNK s12fanObjectDisplayName; /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018292_data;    /* unable to generate initializer: unknown type */
 static u32 lbl_8_bss_1C10;
-static M2C_UNK s12fanObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+} ObjectEntry;               /* 0x2C */
+
+static ObjectEntry s12fanObjectEntry;
 
 void fn_8_C37E0(s32 arg0)
 {
@@ -94,15 +112,15 @@ void fn_8_C3840(void* arg0)
 void fn_8_C38BC(void* arg0)
 {
 	f32 temp_f31;
-	s32 temp_r30;
 	s32 temp_r31;
+	s32 temp_r30;
 
 	temp_r30 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x3C), s32*, 4);
 	fn_8019EB94(temp_r30, (f32*)((u8*)arg0 + 0x30), 0);
 	temp_r31 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r31);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r31),
-	    temp_f31);
+	fn_80195790(temp_r30 + 0x10, &lbl_80239984,
+	    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r31), temp_f31, 1);
 	fn_8019E880(temp_r30);
 }
 
@@ -119,11 +137,11 @@ void fn_8_C3980(void* arg0)
 void fn_8_C39A0(void* arg0)
 {
 	f32 temp_f31;
-	s32 temp_r30;
 	s32 temp_r31;
+	s32 temp_r30;
 
 	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u8*)arg0 + 0x28)) != 0)) {
+	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -131,8 +149,8 @@ void fn_8_C39A0(void* arg0)
 	fn_8019EB94(temp_r31, (f32*)((u8*)arg0 + 0x30), 0);
 	temp_r30 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r30);
-	fn_80195790(temp_r31 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r30),
-	    temp_f31);
+	fn_80195790(temp_r31 + 0x10, &lbl_80239984,
+	    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r30), temp_f31, 1);
 	fn_8019E880(temp_r31);
 }
 
@@ -158,8 +176,9 @@ TObject* fn_8_C3A98(TObject* arg0, s16 arg1)
 TObject* fn_8_C3B54(TObject* arg0, TObject* arg1)
 {
 	f32 temp_f31;
-	s32 temp_r29;
 	s32 temp_r30;
+	s32 temp_r0;
+	s32 temp_r29;
 	void* temp_r3;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
@@ -176,15 +195,15 @@ TObject* fn_8_C3B54(TObject* arg0, TObject* arg1)
 	if ((void*)arg0->unk3C == NULL) {
 		arg0->unk3C = fn_80150588(lbl_8_bss_1C10);
 		fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), arg0->unk3C);
-		fn_8005D5C8(arg0->unk3C,
-		    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
+		temp_r0 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18);
+		fn_8005D5C8(arg0->unk3C, ((u32)(temp_r0 & 0x1C0000) >> 0x12U) + 4);
 	}
 	temp_r30 = M2C_FIELD(arg0->unk3C, s32*, 4);
 	fn_8019EB94(temp_r30, &arg0->unk30, 0);
 	temp_r29 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r29);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r29),
-	    temp_f31);
+	fn_80195790(temp_r30 + 0x10, &lbl_80239984,
+	    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r29), temp_f31, 1);
 	fn_8019E880(temp_r30);
 	return arg0;
 }
@@ -211,6 +230,7 @@ void s12fanObjectLoad(void)
 
 void s12fanObjectCreate(void)
 {
+	s32 temp_r0_mask;
 	TObject* temp_r3;
 	f32 temp_f31;
 	s32 temp_r30;
@@ -233,46 +253,41 @@ void s12fanObjectCreate(void)
 		if ((void*)temp_r3->unk3C == NULL) {
 			temp_r3->unk3C = fn_80150588(lbl_8_bss_1C10);
 			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), temp_r3->unk3C);
-			fn_8005D5C8(temp_r3->unk3C,
-			    ((u32)(M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
-			        + 4);
+			temp_r0_mask = M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18);
+			fn_8005D5C8(temp_r3->unk3C, ((u32)(temp_r0_mask & 0x1C0000) >> 0x12U) + 4);
 		}
 		temp_r30 = M2C_FIELD(temp_r3->unk3C, s32*, 4);
 		fn_8019EB94(temp_r30, &temp_r3->unk30, 0);
 		temp_r31 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 		temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r31);
-		fn_80195790(temp_r30 + 0x10, &lbl_80239984, 1,
-		    1.0f - fn_800D7AE4(lbl_8_data_18228 * temp_r31), temp_f31);
+		fn_80195790(temp_r30 + 0x10, &lbl_80239984,
+		    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r31), temp_f31, 1);
 		fn_8019E880(temp_r30);
 	}
 }
 
 void s12fanObjectRegister(void)
 {
-	s32 flags;
-	u32 fieldTypes = 0;
-
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x14)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x18)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, M2C_UNK**, 0)     = &s12fanObjectDisplayName;
-	M2C_FIELD(&s12fanObjectEntry, void (**)(), 4)   = s12fanObjectLoad;
-	M2C_FIELD(&s12fanObjectEntry, void (**)(), 8)   = s12fanObjectUnload;
-	M2C_FIELD(&s12fanObjectEntry, void (**)(), 0xC) = s12fanObjectCreate;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x10)       = fieldTypes;
-	flags                                           = 0x20000;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x14)       = flags;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x18)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s8*, 0x20)        = 0x1E;
-	M2C_FIELD(&s12fanObjectEntry, s16*, 0x1C)       = 0x1187;
-	M2C_FIELD(&s12fanObjectEntry, s16*, 0x1E)       = 2;
-	M2C_FIELD(&s12fanObjectEntry, s8*, 0x21)        = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x24)       = fieldTypes;
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x28)       = fieldTypes;
-	if (fieldTypes != 0) {
-		M2C_FIELD(&s12fanObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	s12fanObjectEntry.flags      = 0;
+	s12fanObjectEntry.unk18      = 0;
+	s12fanObjectEntry.name       = (const char*)&s12fanObjectDisplayName;
+	s12fanObjectEntry.load       = (void (*)(void))s12fanObjectLoad;
+	s12fanObjectEntry.unload     = (void (*)(void))s12fanObjectUnload;
+	s12fanObjectEntry.create     = (void (*)(void))s12fanObjectCreate;
+	s12fanObjectEntry.unk10      = NULL;
+	s12fanObjectEntry.flags      = 0x20000;
+	s12fanObjectEntry.unk18      = 0;
+	s12fanObjectEntry.unk20      = 0x1E;
+	s12fanObjectEntry.unk1C      = 0x1187;
+	s12fanObjectEntry.unk1E      = 2;
+	s12fanObjectEntry.unk21      = 0;
+	s12fanObjectEntry.fieldTypes = NULL;
+	s12fanObjectEntry.fieldNames = NULL;
+	if (s12fanObjectEntry.fieldTypes != NULL) {
+		s12fanObjectEntry.flags |= 8;
+	} else {
+		s12fanObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&s12fanObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const s12fanObjectCtorEntry)(void) = s12fanObjectRegister;

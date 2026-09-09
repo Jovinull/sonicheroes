@@ -25,7 +25,7 @@ extern void* lbl_8_bss_C08;
 extern void* lbl_8_bss_C0C;
 extern void* lbl_8_bss_C10;
 extern void* lbl_8_bss_C14;
-extern void* lbl_8_data_4FB8;
+extern void* lbl_8_data_4FB8[2];
 extern float lbl_8_rodata_CB0;
 extern float lbl_8_rodata_CD8;
 extern float lbl_8_rodata_CDC;
@@ -64,7 +64,7 @@ void fn_8005D5C8(...);
 void* fn_8005EA04(void*);
 void* fn_8005E410(void*, s32, void*);
 f32 fn_800D7328(f32, f32, f32);
-void fn_8_49630(...);
+void fn_8_49630();
 void fn_8_497B0(...);
 int fn_8005B9F0(void*);
 int fn_8005B8BC(void*);
@@ -215,13 +215,14 @@ extern "C" void fn_8_4AC70(void*, void* particle)
 
 extern "C" void fn_8_4AD0C(void* self, void* particle)
 {
+	void* tail;
 	void* first = field<void*>(self, 0x3C);
 	if (first == NULL) {
 		field<void*>(self, 0x3C)     = particle;
 		field<void*>(particle, 0x28) = NULL;
 		field<void*>(particle, 0x24) = particle;
 	} else {
-		void* tail                   = field<void*>(first, 0x24);
+		tail                         = field<void*>(first, 0x24);
 		field<void*>(tail, 0x28)     = particle;
 		field<void*>(first, 0x24)    = particle;
 		field<void*>(particle, 0x28) = NULL;
@@ -480,8 +481,12 @@ extern "C" void fn_8_4D37C() { }
 extern "C" void goalRingUnload()
 {
 	fn_8_49630();
-	lbl_8_bss_C08 = lbl_8_bss_C0C = lbl_8_bss_C10 = lbl_8_bss_C14 = NULL;
-	lbl_8_data_4FB8                                               = NULL;
+	lbl_8_bss_C08      = NULL;
+	lbl_8_bss_C0C      = NULL;
+	lbl_8_bss_C10      = NULL;
+	lbl_8_bss_C14      = NULL;
+	lbl_8_data_4FB8[0] = NULL;
+	lbl_8_data_4FB8[1] = NULL;
 }
 
 extern "C" void goalRingLoad()
@@ -491,7 +496,7 @@ extern "C" void goalRingLoad()
 	lbl_8_bss_C10 = fn_8005EA04(lbl_8_data_5088);
 	lbl_8_bss_C14 = fn_8005EA04(lbl_8_data_509C);
 	if (lbl_8_bss_C14 != NULL)
-		lbl_8_data_4FB8 = fn_8005E410(lbl_8_bss_C14, 0, 0);
+		lbl_8_data_4FB8[0] = fn_8005E410(lbl_8_bss_C14, 0, 0);
 	fn_8_497B0();
 }
 

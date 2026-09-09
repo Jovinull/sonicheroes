@@ -406,7 +406,7 @@ void fn_8_CC0F0(s32 arg0)
 	void* temp_r4;
 	void* var_r3;
 
-	if ((fn_8005B9F0(arg0 + 0x28) != 0) || (fn_8005B8BC(arg0 + 0x28) != 0)) {
+	if ((fn_8005B9F0(arg0 + 0x28) != 0) || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -835,7 +835,7 @@ void fn_8_CCDE4(s32 arg0)
 	void* var_r3;
 	void* var_r3_2;
 
-	if ((fn_8005B9F0(arg0 + 0x28) != 0) || (fn_8005B8BC(arg0 + 0x28) != 0)) {
+	if ((fn_8005B9F0(arg0 + 0x28) != 0) || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}

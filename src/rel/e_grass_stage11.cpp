@@ -68,56 +68,56 @@ struct _struct_lbl_8_data_18978_0x14 {
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(void*, void*);                      /* extern */
-void* __dt__7TObjectFv(void*, s32);                                /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                             /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                             /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                                /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                                     /* extern */
-M2C_UNK fn_8003BC38(M2C_UNK*);                                     /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);         /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                     /* extern */
-s32 fn_8005B8BC(void*);                                            /* extern */
-s32 fn_8005B8D8(void*);                                            /* extern */
-s32 fn_8005B9F0(void*);                                            /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                                     /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                   /* extern */
-M2C_UNK fn_800B4A38(M2C_UNK, f32*, M2C_UNK, M2C_UNK, s8, M2C_UNK); /* extern */
-u32 fn_800BB0D4(s32, s32, M2C_UNK*);                               /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                               /* extern */
-s32 fn_800BC6CC(s32, M2C_UNK*);                                    /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                                /* extern */
-f32 fn_800D7AE4(s32);                                              /* extern */
-f32 fn_800D7B00(s32);                                              /* extern */
-M2C_UNK fn_8013F3A4(void*);                                        /* extern */
-void* fn_8013F484(s32);                                            /* extern */
-M2C_UNK fn_8013FC30(void*);                                        /* extern */
-M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);          /* extern */
-void* fn_80150588(s32, s32);                                       /* extern */
-M2C_UNK fn_80150958(void*);                                        /* extern */
-M2C_UNK fn_8015BB08(s32, void*);                                   /* extern */
-M2C_UNK fn_8015BBF8(s32, void*);                                   /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32);             /* extern */
-M2C_UNK fn_8019E880(s32);                                          /* extern */
-M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);            /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                           /* extern */
-M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                           /* extern */
-M2C_UNK fn_801A4C84(u32);                                          /* extern */
-M2C_UNK fn_8020C2D8(void*, u32);                                   /* extern */
-M2C_UNK fn_8020C72C(void**, s32, s32);                             /* extern */
-M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                        /* extern */
-M2C_UNK fn_8020D02C(void**, M2C_UNK*, f32);                        /* extern */
-M2C_UNK fn_80226440(void*, s32);                                   /* extern */
-u32 fn_80226468(s32);                                              /* extern */
-M2C_UNK fn_8_C5C1C(s32);                                           /* extern */
-void fn_8_C606C(TObject* arg0, ...);                               /* static */
-TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1);                 /* static */
-void* fn_8_C7014(void* arg0, s32 arg1);                            /* static */
-s32 fn_8_C70C4(s32 arg0, void** arg1);                             /* static */
-void grassObjectCreate();                                          /* static */
-void grassObjectLoad(M2C_UNK arg_sp0);                             /* static */
-void grassObjectLoad(M2C_UNK arg_sp0);                             /* static */
-void grassObjectUnload(M2C_UNK arg_sp0);                           /* static */
+void* __ct__7TObjectFP7TObject(void*, void*);                   /* extern */
+void* __dt__7TObjectFv(void*, s32);                             /* extern */
+M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
+M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                          /* extern */
+M2C_UNK fn_800189A4(s32, TObject*);                             /* extern */
+u32 fn_80018A34(s32, M2C_UNK);                                  /* extern */
+M2C_UNK fn_8003BC38(M2C_UNK*);                                  /* extern */
+M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);      /* extern */
+M2C_UNK fn_8003C618(M2C_UNK*);                                  /* extern */
+s32 fn_8005B8BC(void*);                                         /* extern */
+s32 fn_8005B8D8(void*);                                         /* extern */
+s32 fn_8005B9F0(void*);                                         /* extern */
+M2C_UNK fn_8005BE6C(M2C_UNK*);                                  /* extern */
+M2C_UNK fn_8005D5C8(void*, s32);                                /* extern */
+M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32); /* extern */
+u32 fn_800BB0D4(s32, s32, M2C_UNK*);                            /* extern */
+u32 fn_800BB92C(s32, s32, M2C_UNK*);                            /* extern */
+s32 fn_800BC6CC(s32, M2C_UNK*);                                 /* extern */
+M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                             /* extern */
+f32 fn_800D7AE4(s32);                                           /* extern */
+f32 fn_800D7B00(s32);                                           /* extern */
+M2C_UNK fn_8013F3A4(void*);                                     /* extern */
+void* fn_8013F484(s32);                                         /* extern */
+M2C_UNK fn_8013FC30(void*);                                     /* extern */
+M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);       /* extern */
+void* fn_80150588(s32, s32);                                    /* extern */
+M2C_UNK fn_80150958(void*);                                     /* extern */
+M2C_UNK fn_8015BB08(s32, void*);                                /* extern */
+M2C_UNK fn_8015BBF8(s32, void*);                                /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);          /* extern */
+M2C_UNK fn_8019E880(s32);                                       /* extern */
+M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);         /* extern */
+M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                        /* extern */
+M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                        /* extern */
+M2C_UNK fn_801A4C84(u32);                                       /* extern */
+M2C_UNK fn_8020C2D8(void*, u32);                                /* extern */
+M2C_UNK fn_8020C72C(void**, s32, s32);                          /* extern */
+M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                     /* extern */
+M2C_UNK fn_8020D02C(void**, M2C_UNK*, f32);                     /* extern */
+M2C_UNK fn_80226440(void*, s32);                                /* extern */
+u32 fn_80226468(s32);                                           /* extern */
+M2C_UNK fn_8_C5C1C(s32);                                        /* extern */
+void fn_8_C606C(TObject* arg0, ...);                            /* static */
+TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1);              /* static */
+void* fn_8_C7014(void* arg0, s32 arg1);                         /* static */
+s32 fn_8_C70C4(s32 arg0, void** arg1);                          /* static */
+void grassObjectCreate();                                       /* static */
+void grassObjectLoad(M2C_UNK arg_sp0);                          /* static */
+void grassObjectLoad(M2C_UNK arg_sp0);                          /* static */
+void grassObjectUnload(M2C_UNK arg_sp0);                        /* static */
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_80239990;
 extern M2C_UNK lbl_802FF5A0;
@@ -218,7 +218,24 @@ static M2C_UNK gap_04_00018AA1_data; /* unable to generate initializer: unknown 
 static char grassObjectFieldTypes[] = "ccF";
 static u8 lbl_8_bss_1CA8;
 static M2C_UNK gap_05_00001CA9_bss;
-static M2C_UNK grassObjectEntry;
+typedef struct ObjectEntry {
+	const char* name;        /* 0x00 */
+	void (*load)(void);      /* 0x04 */
+	void (*unload)(void);    /* 0x08 */
+	void (*create)(void);    /* 0x0C */
+	void* unk10;             /* 0x10 */
+	u32 flags;               /* 0x14 */
+	u32 unk18;               /* 0x18 */
+	s16 unk1C;               /* 0x1C */
+	s16 unk1E;               /* 0x1E */
+	u8 unk20;                /* 0x20 */
+	u8 unk21;                /* 0x21 */
+	u8 pad22[2];             /* 0x22 */
+	const char* fieldTypes;  /* 0x24 */
+	const char** fieldNames; /* 0x28 */
+} ObjectEntry;               /* 0x2C */
+
+static ObjectEntry grassObjectEntry;
 static M2C_UNK lbl_8_bss_1CD8;
 static M2C_UNK lbl_8_bss_1CDC;
 static M2C_UNK lbl_8_bss_1CE0;
@@ -406,9 +423,7 @@ void fn_8_C6324(void* arg0)
 
 void fn_8_C63A0(TObject* arg0)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[3];
 	TObject* var_r27;
 	TObject* var_r27_2;
 	TObject* var_r27_3;
@@ -448,10 +463,11 @@ void fn_8_C63A0(TObject* arg0)
 	var_r27 = arg0;
 	do {
 		temp_r3  = M2C_FIELD(var_r27->unkFC, void***, 0x20);
-		temp_f31 = 60.0f * M2C_FIELD(*temp_r3, f32*, 0xC);
+		temp_f31 = lbl_8_rodata_1F68[0] * M2C_FIELD(*temp_r3, f32*, 0xC);
 		temp_r0  = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 		fn_8020D02C(temp_r3, lbl_8042C180,
-		    ((f32)temp_r0 - (temp_f31 * (f32)(s32)((f32)temp_r0 / temp_f31))) / 60.0f);
+		    ((f32)temp_r0 - (temp_f31 * (f32)(s32)((f32)temp_r0 / temp_f31)))
+		        / lbl_8_rodata_1F68[0]);
 		fn_8013FC30(var_r27->unkFC);
 		var_r27 = (TObject*)((u8*)var_r27 + 4);
 		var_r31 += 1;
@@ -460,10 +476,10 @@ void fn_8_C63A0(TObject* arg0)
 	var_r27_2 = arg0;
 	do {
 		temp_r3_2  = M2C_FIELD(var_r27_2->unk110, void***, 0x20);
-		temp_f31_2 = 60.0f * M2C_FIELD(*temp_r3_2, f32*, 0xC);
+		temp_f31_2 = lbl_8_rodata_1F68[0] * M2C_FIELD(*temp_r3_2, f32*, 0xC);
 		temp_r0_2  = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 		temp_f28   = (f32)temp_r0_2 - (temp_f31_2 * (f32)(s32)((f32)temp_r0_2 / temp_f31_2));
-		fn_8020D02C(temp_r3_2, lbl_8042C180, temp_f28 / 60.0f);
+		fn_8020D02C(temp_r3_2, lbl_8042C180, temp_f28 / lbl_8_rodata_1F68[0]);
 		fn_8013FC30(var_r27_2->unk110);
 		var_r27_2 = (TObject*)((u8*)var_r27_2 + 4);
 		var_r31_2 += 1;
@@ -483,7 +499,7 @@ void fn_8_C63A0(TObject* arg0)
 		arg0->unkC4 = 0;
 		arg0->unkD4 = (s32)(s8)M2C_FIELD(temp_r4, u8*, 1);
 		arg0->unkD8 = (s32)(s8)M2C_FIELD(temp_r4, u8*, 0);
-		arg0->unkD0 = 1.0f + M2C_FIELD(temp_r4, f32*, 4);
+		arg0->unkD0 = lbl_8_rodata_1F64[0] + M2C_FIELD(temp_r4, f32*, 4);
 		if ((s32)arg0->unkD8 != temp_r5) {
 			var_r28   = 0;
 			var_r27_3 = arg0;
@@ -510,25 +526,25 @@ void fn_8_C63A0(TObject* arg0)
 			fn_8_C606C(arg0);
 		}
 		temp_f0   = arg0->unkD0;
-		sp10      = temp_f0;
-		spC       = temp_f0;
-		sp8       = temp_f0;
+		sp8[2]    = temp_f0;
+		sp8[1]    = temp_f0;
+		sp8[0]    = temp_f0;
 		var_r29   = 0;
 		var_r27_5 = arg0;
 		do {
 			temp_r28 = M2C_FIELD(var_r27_5->unkDC, s32*, 4);
 			fn_8019EB94(temp_r28, &arg0->unkB8, 0);
 			temp_f30 = fn_800D7B00(arg0->unkC8);
-			fn_80195790(
-			    temp_r28 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f30);
+			fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+			    lbl_8_rodata_1F64[0] - fn_800D7AE4(arg0->unkC8), temp_f30, 1);
 			fn_8019E880(temp_r28);
 			if ((s32)arg0->unkD4 == 1) {
 				temp_f30_2 = fn_800D7B00(0x8000);
-				fn_80195790(
-				    temp_r28 + 0x10, &lbl_80239990, 1, 1.0f - fn_800D7AE4(0x8000), temp_f30_2);
+				fn_80195790(temp_r28 + 0x10, &lbl_80239990,
+				    lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000), temp_f30_2, 1);
 				fn_8019E880(temp_r28);
 			}
-			fn_8019EC30(temp_r28, &sp8, 1);
+			fn_8019EC30(temp_r28, sp8, 1);
 			var_r27_5 = (TObject*)((u8*)var_r27_5 + 4);
 			var_r29 += 1;
 		} while (var_r29 < 5);
@@ -538,24 +554,25 @@ void fn_8_C63A0(TObject* arg0)
 			temp_r28_2 = M2C_FIELD(var_r27_6->unkF0, s32*, 4);
 			fn_8019EB94(temp_r28_2, &arg0->unkB8, 0);
 			temp_f31_3 = fn_800D7B00(arg0->unkC8);
-			fn_80195790(
-			    temp_r28_2 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31_3);
+			fn_80195790(temp_r28_2 + 0x10, &lbl_80239984,
+			    lbl_8_rodata_1F64[0] - fn_800D7AE4(arg0->unkC8), temp_f31_3, 1);
 			fn_8019E880(temp_r28_2);
 			if ((s32)arg0->unkD4 == 1) {
 				temp_f31_4 = fn_800D7B00(0x8000);
-				fn_80195790(
-				    temp_r28_2 + 0x10, &lbl_80239990, 1, 1.0f - fn_800D7AE4(0x8000), temp_f31_4);
+				fn_80195790(temp_r28_2 + 0x10, &lbl_80239990,
+				    lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000), temp_f31_4, 1);
 				fn_8019E880(temp_r28_2);
 			}
-			fn_8019EC30(temp_r28_2, &sp8, 1);
+			fn_8019EC30(temp_r28_2, sp8, 1);
 			var_r27_6 = (TObject*)((u8*)var_r27_6 + 4);
 			var_r29_2 += 1;
 		} while (var_r29_2 < 3);
 		return;
 	}
 	if (temp_f28 < temp_f31_2) {
-		if ((temp_f31_2 <= (1.0f + temp_f28)) && ((u32)lbl_8042C388 != 0U)) {
-			fn_800B4A38(0x5A14, &arg0->unkB8, 0, 1, (s8)lbl_8_bss_1CA8, 0);
+		if ((temp_f31_2 <= (lbl_8_rodata_1F64[0] + temp_f28)) && ((u32)lbl_8042C388 != 0U)) {
+			fn_800B4A38(
+			    lbl_8042C388, 0x5A14, (void*)(&arg0->unkB8), (void*)(0), 1, (s8)lbl_8_bss_1CA8, 0);
 		}
 	}
 	arg0->unkAC = arg0->unk90;
@@ -572,9 +589,7 @@ void fn_8_C63A0(TObject* arg0)
 
 void fn_8_C6964(void* arg0)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[3];
 	f32 temp_f0;
 	f32 temp_f30;
 	f32 temp_f30_2;
@@ -588,24 +603,25 @@ void fn_8_C6964(void* arg0)
 	void* var_r29_2;
 
 	temp_f0 = M2C_FIELD(arg0, f32*, 0xD0);
-	sp10    = temp_f0;
-	spC     = temp_f0;
-	sp8     = temp_f0;
+	sp8[2]  = temp_f0;
+	sp8[1]  = temp_f0;
+	sp8[0]  = temp_f0;
 	var_r28 = 0;
 	var_r29 = arg0;
 	do {
 		temp_r27 = M2C_FIELD(M2C_FIELD(var_r29, void**, 0xDC), s32*, 4);
 		fn_8019EB94(temp_r27, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r27 + 0x10, &lbl_80239984, 1,
-		    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30);
+		fn_80195790(temp_r27 + 0x10, &lbl_80239984,
+		    lbl_8_rodata_1F64[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30, 1);
 		fn_8019E880(temp_r27);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 			temp_f30_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r27 + 0x10, &lbl_80239990, 1, 1.0f - fn_800D7AE4(0x8000), temp_f30_2);
+			fn_80195790(temp_r27 + 0x10, &lbl_80239990, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000),
+			    temp_f30_2, 1);
 			fn_8019E880(temp_r27);
 		}
-		fn_8019EC30(temp_r27, &sp8, 1);
+		fn_8019EC30(temp_r27, sp8, 1);
 		var_r29 = (u8*)var_r29 + 4;
 		var_r28 += 1;
 	} while (var_r28 < 5);
@@ -615,15 +631,16 @@ void fn_8_C6964(void* arg0)
 		temp_r28 = M2C_FIELD(M2C_FIELD(var_r29_2, void**, 0xF0), s32*, 4);
 		fn_8019EB94(temp_r28, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984, 1,
-		    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31);
+		fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+		    lbl_8_rodata_1F64[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
 		fn_8019E880(temp_r28);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239990, 1, 1.0f - fn_800D7AE4(0x8000), temp_f31_2);
+			fn_80195790(temp_r28 + 0x10, &lbl_80239990, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000),
+			    temp_f31_2, 1);
 			fn_8019E880(temp_r28);
 		}
-		fn_8019EC30(temp_r28, &sp8, 1);
+		fn_8019EC30(temp_r28, sp8, 1);
 		var_r29_2 = (u8*)var_r29_2 + 4;
 		var_r27 += 1;
 	} while (var_r27 < 3);
@@ -673,9 +690,7 @@ TObject* fn_8_C6B84(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 
 TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[3];
 	f32 temp_f0;
 	f32 temp_f30;
 	f32 temp_f30_2;
@@ -722,23 +737,23 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 	arg0->unkF8 = 0;
 	fn_8_C606C(arg0, 0, temp_r5, 1.0f);
 	temp_f0 = arg0->unkD0;
-	sp10    = temp_f0;
-	spC     = temp_f0;
-	sp8     = temp_f0;
+	sp8[2]  = temp_f0;
+	sp8[1]  = temp_f0;
+	sp8[0]  = temp_f0;
 	var_r29 = 0;
 	var_r27 = 0;
 	do {
 		temp_r28 = M2C_FIELD(M2C_FIELD(arg0, void**, var_r27 + 0xDC), s32*, 4);
 		fn_8019EB94(temp_r28, &arg0->unkB8, 0);
 		temp_f30 = fn_800D7B00(arg0->unkC8);
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f30);
+		fn_80195790(temp_r28 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f30, 1);
 		fn_8019E880(temp_r28);
 		if ((s32)arg0->unkD4 == 1) {
 			temp_f30_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239990, 1, 1.0f - fn_800D7AE4(0x8000), temp_f30_2);
+			fn_80195790(temp_r28 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f30_2, 1);
 			fn_8019E880(temp_r28);
 		}
-		fn_8019EC30(temp_r28, &sp8, 1);
+		fn_8019EC30(temp_r28, sp8, 1);
 		var_r27 += 4;
 		var_r29 += 1;
 	} while (var_r29 < 5);
@@ -748,14 +763,14 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 		temp_r29 = M2C_FIELD(M2C_FIELD(arg0, void**, var_r27_2 + 0xF0), s32*, 4);
 		fn_8019EB94(temp_r29, &arg0->unkB8, 0);
 		temp_f31 = fn_800D7B00(arg0->unkC8);
-		fn_80195790(temp_r29 + 0x10, &lbl_80239984, 1, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31);
+		fn_80195790(temp_r29 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
 		fn_8019E880(temp_r29);
 		if ((s32)arg0->unkD4 == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r29 + 0x10, &lbl_80239990, 1, 1.0f - fn_800D7AE4(0x8000), temp_f31_2);
+			fn_80195790(temp_r29 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r29);
 		}
-		fn_8019EC30(temp_r29, &sp8, 1);
+		fn_8019EC30(temp_r29, sp8, 1);
 		var_r27_2 += 4;
 		var_r28 += 1;
 	} while (var_r28 < 3);
@@ -977,31 +992,26 @@ void grassObjectCreate(void)
 
 void grassObjectRegister(void)
 {
-	M2C_UNK* temp_r3;
-	s32 flags;
-
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14)            = 0;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0)          = (M2C_UNK*)grassObjectDisplayName;
-	M2C_FIELD(&grassObjectEntry, void (**)(M2C_UNK), 4) = grassObjectLoad;
-	M2C_FIELD(&grassObjectEntry, void (**)(M2C_UNK), 8) = grassObjectUnload;
-	M2C_FIELD(&grassObjectEntry, void (**)(), 0xC)      = grassObjectCreate;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x10)            = 0;
-	flags                                               = 0x20000;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14)            = flags;
-	M2C_FIELD(&grassObjectEntry, s32*, 0x18)            = 0;
-	M2C_FIELD(&grassObjectEntry, s8*, 0x20)             = 0x1E;
-	M2C_FIELD(&grassObjectEntry, s16*, 0x1C)            = 0x118B;
-	M2C_FIELD(&grassObjectEntry, s16*, 0x1E)            = 2;
-	M2C_FIELD(&grassObjectEntry, s8*, 0x21)             = 0;
-	temp_r3                                             = (M2C_UNK*)grassObjectFieldTypes;
-	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0x24)       = temp_r3;
-	M2C_FIELD(&grassObjectEntry, M2C_UNK**, 0x28)       = &grassObjectFieldNames;
-	if (temp_r3 != NULL) {
-		M2C_FIELD(&grassObjectEntry, s32*, 0x14) = flags | 8;
-		return;
+	grassObjectEntry.flags      = 0;
+	grassObjectEntry.unk18      = 0;
+	grassObjectEntry.name       = (const char*)grassObjectDisplayName;
+	grassObjectEntry.load       = (void (*)(void))grassObjectLoad;
+	grassObjectEntry.unload     = (void (*)(void))grassObjectUnload;
+	grassObjectEntry.create     = (void (*)(void))grassObjectCreate;
+	grassObjectEntry.unk10      = (void*)0;
+	grassObjectEntry.flags      = 0x20000;
+	grassObjectEntry.unk18      = 0;
+	grassObjectEntry.unk20      = 0x1E;
+	grassObjectEntry.unk1C      = 0x118B;
+	grassObjectEntry.unk1E      = 2;
+	grassObjectEntry.unk21      = 0;
+	grassObjectEntry.fieldTypes = (const char*)grassObjectFieldTypes;
+	grassObjectEntry.fieldNames = (const char**)&grassObjectFieldNames;
+	if ((const char*)grassObjectFieldTypes != NULL) {
+		grassObjectEntry.flags |= 8;
+	} else {
+		grassObjectEntry.flags &= ~8;
 	}
-	M2C_FIELD(&grassObjectEntry, s32*, 0x14) = flags & ~8;
 }
 
 __declspec(section ".ctors") void (*const grassObjectCtorEntry)(void) = grassObjectRegister;
