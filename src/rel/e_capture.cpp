@@ -316,7 +316,7 @@ s32 fn_800D5A64(void*, void*, ...);                               /* extern */
 s32 fn_800D7A94(s32, s32, s32);                                   /* extern */
 f32 fn_800D7B00(s32, ...);                                        /* extern */
 f32 fn_800D8BC4(void*, s32*, M2C_UNK);                            /* extern */
-M2C_UNK fn_800E1208(s32, ...);                                    /* extern */
+M2C_UNK fn_800E1208(s32, s32, s32);                               /* extern */
 void** fn_800FD8A0(TObject*, s32);                                /* extern */
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                           /* extern */
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                           /* extern */
@@ -499,7 +499,7 @@ void fn_8_98060(void* arg0)
 					var_r0 = M2C_FIELD(temp_r3_2, s16*, 0x14E);
 				}
 				if ((var_r0 != -1) && ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1)) {
-					fn_800E1208(0xF, 0);
+					fn_800E1208(M2C_FIELD(arg0, s32*, 0x278), 0xF, 0);
 					M2C_FIELD(arg0, s32*, 0x278) = -1;
 				}
 			}
@@ -839,7 +839,7 @@ void fn_8_98918(void* arg0)
 void fn_8_9897C(void* arg0)
 {
 	if ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1) {
-		fn_800E1208(0xF, 0);
+		fn_800E1208(M2C_FIELD(arg0, s32*, 0x278), 0xF, 0);
 		M2C_FIELD(arg0, s32*, 0x278) = -1;
 	}
 }
@@ -1274,7 +1274,7 @@ void fn_8_99318(TObject* arg0)
 					var_r0_4 = M2C_FIELD(temp_r3_3, s16*, 0x14E);
 				}
 				if ((var_r0_4 != -1) && ((s32)arg0->unk278 != -1)) {
-					fn_800E1208(0xF, 0);
+					fn_800E1208(arg0->unk278, 0xF, 0);
 					arg0->unk278 = -1;
 				}
 			}
@@ -1648,7 +1648,7 @@ void fn_8_9A188(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			if ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1) {
-				fn_800E1208(0xF, 0);
+				fn_800E1208(M2C_FIELD(arg0, s32*, 0x278), 0xF, 0);
 				M2C_FIELD(arg0, s32*, 0x278) = -1;
 			}
 			((TRenderer*)arg0)->Slot3C();
@@ -1717,7 +1717,7 @@ void fn_8_9A2F4(void* arg0, s32 arg1)
 			    && ((s32)M2C_FIELD(arg0, s32*, 0x2A4) == 0)) {
 				M2C_FIELD(arg0, s32*, 0x2A4) = 1;
 				if ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1) {
-					fn_800E1208(0xF, 0);
+					fn_800E1208(M2C_FIELD(arg0, s32*, 0x278), 0xF, 0);
 					M2C_FIELD(arg0, s32*, 0x278) = -1;
 				}
 				temp_r3                        = M2C_FIELD(arg0, void**, 0x38);
@@ -2135,7 +2135,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 					    && ((s32)M2C_FIELD(arg0, s32*, 0x2A4) == 0)) {
 						M2C_FIELD(arg0, s32*, 0x2A4) = 1;
 						if ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1) {
-							fn_800E1208(0xF, 0);
+							fn_800E1208(M2C_FIELD(arg0, s32*, 0x278), 0xF, 0);
 							M2C_FIELD(arg0, s32*, 0x278) = -1;
 						}
 						temp_r3_3 = M2C_FIELD(arg0, void**, 0x38);
@@ -2158,7 +2158,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 			switch (arg2) { /* switch 5; irregular */
 				case 0:     /* switch 5 */
 					if ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1) {
-						fn_800E1208(0xF, 0);
+						fn_800E1208(M2C_FIELD(arg0, s32*, 0x278), 0xF, 0);
 						M2C_FIELD(arg0, s32*, 0x278) = -1;
 					}
 					((TRenderer*)arg0)->Slot3C();
