@@ -2,6 +2,10 @@
 
 typedef s32 M2C_UNK;
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
+
+typedef struct {
+	s32 words[3];
+} M2C_BLOCK12;
 #define M2C_ERROR(...)
 
 typedef struct TObject {
@@ -472,13 +476,11 @@ TObject* fn_8_A89D4(TObject* arg0, void* arg1, TObject* arg2)
 	arg0->unkD8 = M2C_FIELD(arg1, s32*, 0x28);
 	arg0->unkE4 = 0.0f;
 	fn_8003C200((void*)&arg0->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
-	arg0->unk88 = arg0->unkB0;
-	arg0->unk8C = arg0->unkB4;
-	arg0->unk90 = arg0->unkB8;
-	arg0->unkE8 = arg0->unkB0;
-	arg0->unkEC = 4.0f + fn_800D8BC4(&arg0->unkB0, &sp8, 1);
-	arg0->unkF0 = arg0->unkB8;
-	arg0->unkE0 = fn_80150588(lbl_8_bss_19B8.p);
+	M2C_FIELD(arg0, M2C_BLOCK12*, 0x88) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xb0);
+	arg0->unkE8                         = arg0->unkB0;
+	arg0->unkEC                         = 4.0f + fn_800D8BC4(&arg0->unkB0, &sp8, 1);
+	arg0->unkF0                         = arg0->unkB8;
+	arg0->unkE0                         = fn_80150588(lbl_8_bss_19B8.p);
 	return arg0;
 }
 
@@ -520,13 +522,11 @@ TObject* fn_8_A8B60(void* arg0)
 		temp_r3->unkD8 = M2C_FIELD(arg0, s32*, 0x28);
 		temp_r3->unkE4 = 0.0f;
 		fn_8003C200((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
-		temp_r3->unk88 = temp_r3->unkB0;
-		temp_r3->unk8C = temp_r3->unkB4;
-		temp_r3->unk90 = temp_r3->unkB8;
-		temp_r3->unkE8 = temp_r3->unkB0;
-		temp_r3->unkEC = 4.0f + fn_800D8BC4(&temp_r3->unkB0, &sp8, 1);
-		temp_r3->unkF0 = temp_r3->unkB8;
-		temp_r3->unkE0 = fn_80150588(lbl_8_bss_19B8.p);
+		M2C_FIELD(temp_r3, M2C_BLOCK12*, 0x88) = M2C_FIELD(temp_r3, M2C_BLOCK12*, 0xb0);
+		temp_r3->unkE8                         = temp_r3->unkB0;
+		temp_r3->unkEC                         = 4.0f + fn_800D8BC4(&temp_r3->unkB0, &sp8, 1);
+		temp_r3->unkF0                         = temp_r3->unkB8;
+		temp_r3->unkE0                         = fn_80150588(lbl_8_bss_19B8.p);
 	}
 	return temp_r3;
 }
@@ -993,9 +993,7 @@ TObject* fn_8_A9AF0(TObject* arg0, void* arg1, TObject* arg2)
 	arg0->unkE8 = M2C_FIELD(arg1, f32*, 0x38);
 	arg0->unkEC = M2C_FIELD(arg1, f32*, 0x3C);
 	fn_8003C200((void*)&arg0->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
-	arg0->unk88 = arg0->unkB0;
-	arg0->unk8C = arg0->unkB4;
-	arg0->unk90 = arg0->unkB8;
+	M2C_FIELD(arg0, M2C_BLOCK12*, 0x88) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xb0);
 	return arg0;
 }
 

@@ -2,6 +2,10 @@
 
 typedef s32 M2C_UNK;
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
+
+typedef struct {
+	s32 words[3];
+} M2C_BLOCK12;
 #define M2C_ERROR(...)
 #define M2C_BITWISE(type, value) (*(type*)&(value))
 
@@ -1105,23 +1109,19 @@ void fn_8_AC440(TObject* arg0, s32 arg1)
 										temp_r3_5->unk18 = &lbl_8_data_16900;
 										temp_r3_5->unk0  = lbl_8_data_168FC;
 										temp_r3_5->unk1E = 0x68;
-										temp_r3_5->unk28 = arg0->unk32C;
-										temp_r3_5->unk2C = arg0->unk330;
-										temp_r3_5->unk30 = arg0->unk334;
-										temp_r3_5->unk34 = arg0->unk338;
-										temp_r3_5->unk38 = arg0->unk33C;
-										temp_r3_5->unk3C = arg0->unk340;
-										temp_r3_5->unk40 = arg0->unk344;
-										temp_r3_5->unk44 = arg0->unk348;
-										temp_r3_5->unk48 = arg0->unk34C;
+										M2C_FIELD(temp_r3_5, M2C_BLOCK12*, 0x28)
+										    = M2C_FIELD(arg0, M2C_BLOCK12*, 0x32c);
+										M2C_FIELD(temp_r3_5, M2C_BLOCK12*, 0x34)
+										    = M2C_FIELD(arg0, M2C_BLOCK12*, 0x338);
+										M2C_FIELD(temp_r3_5, M2C_BLOCK12*, 0x40)
+										    = M2C_FIELD(arg0, M2C_BLOCK12*, 0x344);
 										temp_r3_5->unk48 = lbl_8_rodata_1ABC;
 										temp_r3_5->unk44 = lbl_8_rodata_1ABC;
 										temp_r3_5->unk40 = lbl_8_rodata_1ABC;
 										temp_r3_5->unk50 = lbl_8_rodata_1AC8;
 										temp_r3_5->unk64 = 0;
-										temp_r3_5->unk54 = temp_r3_5->unk28;
-										temp_r3_5->unk58 = temp_r3_5->unk2C;
-										temp_r3_5->unk5C = temp_r3_5->unk30;
+										M2C_FIELD(temp_r3_5, M2C_BLOCK12*, 0x54)
+										    = M2C_FIELD(temp_r3_5, M2C_BLOCK12*, 0x28);
 										temp_r3_5->unk60 = lbl_8_rodata_1AC8;
 										temp_r3_5->unk4C = NULL;
 										if ((u32)lbl_8_bss_1A48 != 0U) {
