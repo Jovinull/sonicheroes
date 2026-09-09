@@ -202,7 +202,7 @@ s32 fn_80103324(void*, void*, f32);           /* extern */
 s32 fn_8010AFB0(void);                        /* extern */
 M2C_UNK fn_8010AFF8(void*, s32);              /* extern */
 s32 fn_8010B074(void*);                       /* extern */
-s32 fn_8010B0AC(u32, s32, f32, f32);          /* extern */
+s32 fn_8010B0AC(u32, f32, f32, s32);          /* extern */
 M2C_UNK fn_8010B208(...);                     /* extern */
 s32 fn_8010B350(u32, void*, void*);           /* extern */
 M2C_UNK fn_80113874(...);                     /* extern */
@@ -402,7 +402,7 @@ s32 fn_8_AAF4C(void* arg0)
 		if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
 			if ((s32)M2C_FIELD(arg0, s32*, 0x19C) == 0x24) {
 				fn_8010B0AC(
-				    M2C_FIELD(arg0, u32*, 0x318), 0x5A, temp_f1, M2C_FIELD(arg0, f32*, 0x258));
+				    M2C_FIELD(arg0, u32*, 0x318), temp_f1, M2C_FIELD(arg0, f32*, 0x258), 0x5A);
 			} else {
 				fn_8010B208(M2C_FIELD(arg0, u32*, 0x318), temp_f1, M2C_FIELD(arg0, f32*, 0x258));
 			}
