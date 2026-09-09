@@ -437,6 +437,7 @@ TObject* fn_8_C99B4(TObject* arg0, s16 arg1)
 
 TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
 {
+	s32 temp_r0_mask;
 	f32 temp_f1;
 	f32 spC[3];
 	void* sp8;
@@ -481,9 +482,8 @@ TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
 		arg0->unkE0 = fn_80150588(lbl_8_data_18C8C[arg0->unkDC]);
 		if ((void*)arg0->unkE0 != NULL) {
 			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), arg0->unkE0);
-			fn_8005D5C8(arg0->unkE0,
-			    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
-			        + 4);
+			temp_r0_mask = M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18);
+			fn_8005D5C8(arg0->unkE0, ((u32)(temp_r0_mask & 0x1C0000) >> 0x12U) + 4);
 			temp_r30  = arg0->unkE0;
 			sp8       = NULL;
 			temp_r3_3 = fn_8013F484(M2C_FIELD(temp_r30, s32*, 4));

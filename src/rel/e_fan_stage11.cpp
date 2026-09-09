@@ -230,6 +230,7 @@ void s12fanObjectLoad(void)
 
 void s12fanObjectCreate(void)
 {
+	s32 temp_r0_mask;
 	TObject* temp_r3;
 	f32 temp_f31;
 	s32 temp_r30;
@@ -252,9 +253,8 @@ void s12fanObjectCreate(void)
 		if ((void*)temp_r3->unk3C == NULL) {
 			temp_r3->unk3C = fn_80150588(lbl_8_bss_1C10);
 			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), temp_r3->unk3C);
-			fn_8005D5C8(temp_r3->unk3C,
-			    ((u32)(M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
-			        + 4);
+			temp_r0_mask = M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18);
+			fn_8005D5C8(temp_r3->unk3C, ((u32)(temp_r0_mask & 0x1C0000) >> 0x12U) + 4);
 		}
 		temp_r30 = M2C_FIELD(temp_r3->unk3C, s32*, 4);
 		fn_8019EB94(temp_r30, &temp_r3->unk30, 0);
