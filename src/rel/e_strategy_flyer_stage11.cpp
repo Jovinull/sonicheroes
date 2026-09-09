@@ -148,7 +148,7 @@ s32 fn_800A2BE0(void*, u8);                                               /* ext
 M2C_UNK fn_800A31B8(void*, s32);                                          /* extern */
 M2C_UNK fn_800A3D48(void*);                                               /* extern */
 s32 fn_800A3ED4(void*);                                                   /* extern */
-s32 fn_800A5A54(...);                                                     /* extern */
+s32 fn_800A5A54(void*);                                                   /* extern */
 s32 fn_800A6334(void*);                                                   /* extern */
 M2C_UNK fn_800A7088(TObject*, M2C_UNK);                                   /* extern */
 M2C_UNK fn_800A714C();                                                    /* extern */
@@ -1252,7 +1252,7 @@ s32 fn_8_9F3F8(void* arg0)
 {
 	s32 temp_r31;
 
-	temp_r31                     = fn_800A5A54();
+	temp_r31                     = fn_800A5A54(arg0);
 	M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(
 	    M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 	if (temp_r31 < 0x80) {
@@ -1960,7 +1960,7 @@ void fn_8_A07B4(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x26C) = (s32)(M2C_FIELD(arg0, s32*, 0x26C) + 0x100);
 			temp_f1                      = 4.0f * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x26C));
 			M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + temp_f1);
-			fn_800A5A54(arg0, temp_f1);
+			fn_800A5A54(arg0);
 			M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
 			return;
 		case 1:
@@ -1982,7 +1982,7 @@ void fn_8_A07B4(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x26C) = (s32)(M2C_FIELD(arg0, s32*, 0x26C) + 0x100);
 				temp_f1_2                    = 4.0f * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x26C));
 				M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + temp_f1_2);
-				temp_r30                     = fn_800A5A54(arg0, temp_f1_2);
+				temp_r30                     = fn_800A5A54(arg0);
 				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r30 < 0x80) {

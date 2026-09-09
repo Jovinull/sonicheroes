@@ -60,7 +60,7 @@ M2C_UNK fn_801197F4(void*, M2C_UNK);                   /* extern */
 u32 fn_80119A18(u32);                                  /* extern */
 M2C_UNK fn_8014FF2C(u32);                              /* extern */
 u32 fn_80150588(u32);                                  /* extern */
-M2C_UNK fn_80150958(...);                              /* extern */
+M2C_UNK fn_80150958(void*);                            /* extern */
 M2C_UNK fn_80194234(M2C_UNK, s32);                     /* extern */
 M2C_UNK fn_80194294(M2C_UNK, s32*);                    /* extern */
 M2C_UNK fn_80195790(s32, M2C_UNK*, M2C_UNK, f32, f32); /* extern */
@@ -528,7 +528,7 @@ void s11spiderObjectUnload(void)
 	var_r29 = 0;
 	var_r30 = lbl_8_bss_1BD0;
 	do {
-		fn_80150958(*var_r30);
+		fn_80150958((void*)*var_r30);
 		*var_r30 = 0U;
 		var_r30 += 1;
 		var_r29 += 1;

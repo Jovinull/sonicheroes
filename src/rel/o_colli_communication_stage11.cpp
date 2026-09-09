@@ -176,7 +176,7 @@ s32 fn_8_B0A74(void* arg0)
 
 	temp_r0 = M2C_FIELD(arg0, s32*, 0x2CC);
 	if (temp_r0 != -1) {
-		temp_r3 = *(&lbl_802AD090 + (temp_r0 * 4));
+		temp_r3 = (&lbl_802AD090)[temp_r0];
 		if (temp_r3 != 0U) {
 			temp_f1 = fn_800D71DC((u8*)temp_r3 + 0x18, (u8*)arg0 + 0x140);
 			if (lbl_8_rodata_1BD4[0] <= temp_f1) {

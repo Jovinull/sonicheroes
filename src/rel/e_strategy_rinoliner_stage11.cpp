@@ -27,7 +27,7 @@ s32 fn_800A3ED4(void*);          /* extern */
 s32 fn_800A6334(void*);          /* extern */
 s32 fn_80137FE8(void*);          /* extern */
 s32 fn_8_AABC8(void*);           /* extern */
-s32 fn_8_AAE98(...);             /* extern */
+s32 fn_8_AAE98(void*);           /* extern */
 s32 fn_8_AAF4C(...);             /* extern */
 s32 fn_8_AB014();                /* extern */
 M2C_UNK fn_8_AF3E8(M2C_UNK);     /* extern */
@@ -322,7 +322,8 @@ void fn_8_B0178(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x36;
 			return;
 		case 1:
-			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U) && (fn_8_AAE98() == 0)) {
+			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U)
+			    && (fn_8_AAE98(M2C_FIELD(arg0, void**, 0x14)) == 0)) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 3;
