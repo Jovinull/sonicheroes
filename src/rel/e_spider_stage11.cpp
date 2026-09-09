@@ -553,7 +553,7 @@ void s11spiderObjectLoad(M2C_UNK arg_sp0)
 	do {
 		*var_r28 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
 		    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29), &lbl_802FF5A0);
-		var_r29 += 4;
+		var_r29 += 1;
 		var_r28 += 1;
 		var_r27 += 1;
 	} while (var_r27 < 4);

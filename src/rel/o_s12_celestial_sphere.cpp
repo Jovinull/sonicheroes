@@ -312,7 +312,7 @@ void s12celestialObjectUnload(void)
 	do {
 		fn_80150958(*var_r30);
 		*var_r30 = NULL;
-		var_r30 += 4;
+		var_r30 += 1;
 		var_r29 += 1;
 	} while (var_r29 < 2);
 }
@@ -340,7 +340,7 @@ void s12celestialObjectLoad(M2C_UNK arg_sp0)
 			fn_800BDF30();
 		}
 		var_r29 += 1;
-		var_r28 += 4;
+		var_r28 += 1;
 		var_r27 += 1;
 	} while (var_r27 < 2);
 	fn_800BE1F4(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));

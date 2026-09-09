@@ -456,7 +456,7 @@ void fn_8_B2BB4(void* arg0)
 							M2C_FIELD(arg0, s32*, 0x2B4) = 0;
 						}
 					}
-					var_r27 += 4;
+					var_r27 += 1;
 					goto loop_46;
 				}
 				var_r4 = var_r29;
@@ -476,7 +476,7 @@ void fn_8_B2BB4(void* arg0)
 							M2C_FIELD(arg0, s32*, 0x2B4) = 1;
 						}
 					}
-					var_r27_2 += 4;
+					var_r27_2 += 1;
 					goto loop_53;
 				}
 				var_r4 = var_r29_2;
@@ -1017,7 +1017,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 					arg0->unk2B4 = 0;
 				}
 			}
-			var_r28 += 4;
+			var_r28 += 1;
 			goto loop_29;
 		}
 		arg0->unk24C = var_r29;
@@ -1037,7 +1037,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 					arg0->unk2B4 = 1;
 				}
 			}
-			var_r27 += 4;
+			var_r27 += 1;
 			goto loop_36;
 		}
 		arg0->unk24C = var_r28_2;

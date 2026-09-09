@@ -442,7 +442,7 @@ loop_5:
 				var_f31 = sp8;
 			}
 		}
-		var_r29 += 4;
+		var_r29 += 1;
 		goto loop_5;
 	}
 	if (var_r28 != NULL) {
@@ -535,7 +535,7 @@ loop_5:
 				M2C_FIELD(arg0, s32*, 0x2B4) = 1;
 			}
 		}
-		var_r27 += 4;
+		var_r27 += 1;
 		goto loop_5;
 	}
 	M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
@@ -649,7 +649,7 @@ loop_10:
 				M2C_FIELD(arg0, s32*, 0x2B4) = 0;
 			}
 		}
-		var_r27 += 4;
+		var_r27 += 1;
 		goto loop_10;
 	}
 	return var_r31;
@@ -682,7 +682,7 @@ loop_7:
 				M2C_FIELD(arg0, s32*, 0x2B4) = 1;
 			}
 		}
-		var_r30 += 4;
+		var_r30 += 1;
 		goto loop_7;
 	}
 	return var_r29;
@@ -879,7 +879,7 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 								M2C_FIELD(arg0, s32*, 0x2B4) = 1;
 							}
 						}
-						var_r27 += 4;
+						var_r27 += 1;
 						goto loop_16;
 					}
 					M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
