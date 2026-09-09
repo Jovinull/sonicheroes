@@ -2851,7 +2851,7 @@ void* fn_8_9C4BC(void* arg0, s16 arg1)
 			fn_80150958((void*)M2C_FIELD(arg0, u32*, 0xE8));
 			M2C_FIELD(arg0, u32*, 0xE8) = 0U;
 		}
-		__dt__10HAnimClassFv((HAnimClass*)((u8*)arg0 + 0x240), 0);
+		__dt__10HAnimClassFv((HAnimClass*)((u8*)((u32)arg0 + 0x240)), 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
 			fn_800189A4(lbl_8042C148, arg0);

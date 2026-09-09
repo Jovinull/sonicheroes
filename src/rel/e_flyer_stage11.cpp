@@ -330,7 +330,7 @@ void fn_8_A25CC(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x26;
 			return;
 		case 1:
-			fn_80137FE8((u8*)arg0 + 0x18);
+			fn_80137FE8((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -365,7 +365,7 @@ void fn_8_A26B0(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x41;
 			return;
 		case 1:
-			fn_80137FE8((u8*)arg0 + 0x18);
+			fn_80137FE8((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -387,7 +387,7 @@ void fn_8_A2768(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x43;
 			return;
 		case 1:
-			fn_80137FE8((u8*)arg0 + 0x18);
+			fn_80137FE8((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -437,7 +437,7 @@ void fn_8_A2840(void* arg0, s32 arg1)
 					return;
 				}
 			}
-			fn_80137FE8((u8*)arg0 + 0x18);
+			fn_80137FE8((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -588,7 +588,7 @@ void fn_8_A2D48(void* arg0, u32 arg1, s32 arg2)
 							return;
 						}
 					}
-					fn_80137FE8((u8*)arg0 + 0x18);
+					fn_80137FE8((u8*)((u32)arg0 + 0x18));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 						M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
@@ -618,7 +618,7 @@ void fn_8_A2D48(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0x10) = 0x43;
 					return;
 				case 1: /* switch 3 */
-					fn_80137FE8((u8*)arg0 + 0x18);
+					fn_80137FE8((u8*)((u32)arg0 + 0x18));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 						M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
@@ -638,7 +638,7 @@ void fn_8_A2D48(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0x10) = 0x41;
 					return;
 				case 1: /* switch 4 */
-					fn_80137FE8((u8*)arg0 + 0x18);
+					fn_80137FE8((u8*)((u32)arg0 + 0x18));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 						M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
@@ -669,7 +669,7 @@ void fn_8_A2D48(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0x10) = 0x26;
 					return;
 				case 1: /* switch 5 */
-					fn_80137FE8((u8*)arg0 + 0x18);
+					fn_80137FE8((u8*)((u32)arg0 + 0x18));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 						M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
@@ -768,7 +768,7 @@ void fn_8_A325C(void* arg0)
 		temp_r3_3                        = M2C_FIELD(arg0, void**, 0xB0);
 		M2C_FIELD(temp_r3_3, s32*, 0x18) = (s32)(M2C_FIELD(temp_r3_3, s32*, 0x18) | 0x200);
 	}
-	fn_8005BC04((u8*)arg0 + 0xB0);
+	fn_8005BC04((u8*)((u32)arg0 + 0xB0));
 	((TRenderer*)arg0)->Slot40();
 	temp_r0_2 = M2C_FIELD(arg0, s32*, 0x230);
 	if (temp_r0_2 != -1) {
@@ -2303,7 +2303,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	void* temp_r4;
 
 	fn_800A714C();
-	__ct__10HAnimClassFv((u8*)arg0 + 0x240);
+	__ct__10HAnimClassFv((u8*)((u32)arg0 + 0x240));
 	M2C_FIELD(arg0, M2C_UNK**, 0x18) = &lbl_8_data_161C8;
 	M2C_FIELD(arg0, void**, 0xB4)    = (void*)((u8*)&lbl_8_data_161C8 + 0x2C);
 	M2C_FIELD(arg0, M2C_UNK**, 0)    = (M2C_UNK*)lbl_8_data_161C4;
@@ -2450,7 +2450,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 			fn_800B4A38(0x4016, (u8*)arg0 + 0x268, arg0, 3, 0, 2);
 		}
 	}
-	if (fn_8005B8D8((u8*)arg0 + 0xB0) == 0) {
+	if (fn_8005B8D8((u8*)((u32)arg0 + 0xB0)) == 0) {
 		fn_8003C200((u8*)arg0 + 0x28, &lbl_8_data_15FD8, 1, 3);
 		M2C_FIELD(arg0, f32*, 0x88) = (f32)M2C_FIELD(arg0, f32*, 0x140);
 		M2C_FIELD(arg0, f32*, 0x8C) = (f32)M2C_FIELD(arg0, f32*, 0x144);

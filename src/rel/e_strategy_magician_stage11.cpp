@@ -972,7 +972,7 @@ void fn_8_AC10C(void* arg0, s32 arg1)
 			if (var_r30 == 0) {
 				M2C_FIELD(arg0, s32*, 0x250) = 0x3B;
 			}
-			fn_80137FE8((u8*)arg0 + 0x274);
+			fn_80137FE8((u8*)((u32)arg0 + 0x274));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x274) < 0) {
 				M2C_FIELD(arg0, s32*, 0x250) = 0x3B;
 			}
@@ -1192,7 +1192,7 @@ void fn_8_AC9D8(void* arg0, s32 arg1)
 			}
 			return;
 		case 1:
-			fn_80137FE8((u8*)arg0 + 0x274);
+			fn_80137FE8((u8*)((u32)arg0 + 0x274));
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2E4) == 0)
 			    && ((s32)M2C_FIELD(arg0, s32*, 0x274) < 0)) {
 				M2C_FIELD(arg0, s32*, 0xD4)  = 1;
@@ -1244,7 +1244,7 @@ void fn_8_ACB0C(void* arg0, s32 arg1)
 		case 2:
 			return;
 		case 1:
-			fn_80137FE8((u8*)arg0 + 0x274);
+			fn_80137FE8((u8*)((u32)arg0 + 0x274));
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2E4) == 0)
 			    && ((s32)M2C_FIELD(arg0, s32*, 0x274) < 0)) {
 				M2C_FIELD(arg0, s32*, 0xD4)  = 2;

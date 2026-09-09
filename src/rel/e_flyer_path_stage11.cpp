@@ -604,7 +604,7 @@ void fn_8_A8FCC(void* arg0)
 	f32 temp_f30;
 	f32 temp_f31;
 
-	temp_f1 = fn_801991B4((u8*)arg0 + 0xBC);
+	temp_f1 = fn_801991B4((u8*)((u32)arg0 + 0xBC));
 	if (temp_f1 > 0.0f) {
 		temp_f31 = (f32)asin(-M2C_FIELD(arg0, f32*, 0xC0) / temp_f1);
 		temp_f30 = (f32)atan2(M2C_FIELD(arg0, f32*, 0xBC), M2C_FIELD(arg0, f32*, 0xC4));
@@ -666,7 +666,7 @@ void fn_8_A90C8(void* arg0)
 			M2C_FIELD(arg0, s32*, 0xE8) = 0;
 		}
 	}
-	temp_f1_4 = fn_801991B4((u8*)arg0 + 0xBC);
+	temp_f1_4 = fn_801991B4((u8*)((u32)arg0 + 0xBC));
 	if (temp_f1_4 > 0.0f) {
 		temp_f31 = (f32)asin(-M2C_FIELD(arg0, f32*, 0xC0) / temp_f1_4);
 		temp_f30 = (f32)atan2(M2C_FIELD(arg0, f32*, 0xBC), M2C_FIELD(arg0, f32*, 0xC4));
@@ -847,7 +847,7 @@ void fn_8_A945C(void* arg0)
 					M2C_FIELD(arg0, s32*, 0xE8) = 0;
 				}
 			}
-			temp_f1_6 = fn_801991B4((u8*)arg0 + 0xBC);
+			temp_f1_6 = fn_801991B4((u8*)((u32)arg0 + 0xBC));
 			if (temp_f1_6 > 0.0f) {
 				temp_f30_2 = (f32)asin(-M2C_FIELD(arg0, f32*, 0xC0) / temp_f1_6);
 				temp_f31_2 = (f32)atan2(M2C_FIELD(arg0, f32*, 0xBC), M2C_FIELD(arg0, f32*, 0xC4));
@@ -1121,7 +1121,7 @@ void fn_8_A9F88(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x20;
 			return;
 		case 1:
-			fn_80137FE8((u8*)arg0 + 0x18);
+			fn_80137FE8((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				temp_r31                 = M2C_FIELD(arg0, s32*, 8);
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -1281,7 +1281,7 @@ void fn_8_AA3B8(void* arg0, s32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0x10) = 0x20;
 					return;
 				case 1: /* switch 2 */
-					fn_80137FE8((u8*)arg0 + 0x18);
+					fn_80137FE8((u8*)((u32)arg0 + 0x18));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						temp_r31                 = M2C_FIELD(arg0, s32*, 8);
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
