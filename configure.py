@@ -1782,7 +1782,7 @@ config.libs = [
             Object(
                 NonMatching,
                 "rel/e_capture.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
                 Matching,
