@@ -113,7 +113,7 @@ M2C_UNK fn_8014FF2C(s32);                                       /* extern */
 void* fn_80150588(...);                                         /* extern */
 M2C_UNK fn_80150958(void*);                                     /* extern */
 M2C_UNK fn_801990E0(void*, void*, f32);                         /* extern */
-f32 fn_801991B4(...);                                           /* extern */
+f32 fn_801991B4(void*);                                         /* extern */
 M2C_UNK fn_8019941C(s32*, s32*, s32, s32);                      /* extern */
 s32 fn_8019CE34(s32, f32*);                                     /* extern */
 M2C_UNK fn_8019EB94(...);                                       /* extern */
@@ -704,7 +704,7 @@ void fn_8_A92E0(void* arg0)
 	M2C_FIELD(arg0, f32*, 0xB4) = (f32)(M2C_FIELD(arg0, f32*, 0xB4) + temp_f2);
 	temp_f1                     = M2C_FIELD(arg0, f32*, 0xB8);
 	M2C_FIELD(arg0, f32*, 0xB8) = (f32)(temp_f1 + sp10);
-	temp_f1_2                   = fn_801991B4((u8*)arg0 + 0xBC, temp_f1, temp_f2);
+	temp_f1_2                   = fn_801991B4((u8*)arg0 + 0xBC);
 	if (temp_f1_2 > 0.0f) {
 		temp_f31 = (f32)asin(-M2C_FIELD(arg0, f32*, 0xC0) / temp_f1_2);
 		temp_f30 = (f32)atan2(M2C_FIELD(arg0, f32*, 0xBC), M2C_FIELD(arg0, f32*, 0xC4));
@@ -792,7 +792,7 @@ void fn_8_A945C(void* arg0)
 			M2C_FIELD(arg0, f32*, 0xB4) = (f32)(M2C_FIELD(arg0, f32*, 0xB4) + temp_f2);
 			temp_f1                     = M2C_FIELD(arg0, f32*, 0xB8);
 			M2C_FIELD(arg0, f32*, 0xB8) = (f32)(temp_f1 + sp1C);
-			temp_f1_2                   = fn_801991B4((u8*)arg0 + 0xBC, temp_f1, temp_f2);
+			temp_f1_2                   = fn_801991B4((u8*)arg0 + 0xBC);
 			if (temp_f1_2 > 0.0f) {
 				temp_f31 = (f32)asin(-M2C_FIELD(arg0, f32*, 0xC0) / temp_f1_2);
 				temp_f30 = (f32)atan2(M2C_FIELD(arg0, f32*, 0xBC), M2C_FIELD(arg0, f32*, 0xC4));
