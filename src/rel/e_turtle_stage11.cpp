@@ -1395,7 +1395,7 @@ s32 fn_8_BED48(s32 arg0)
 	if (fn_800209C8((s32*)((u8*)arg0 + 0x28), 1) != 0U) {
 		return 1;
 	}
-	return fn_800207C4((s32*)((u8*)arg0 + 0x28), 0, 0xC) != 0U;
+	return fn_800207C4((s32*)(arg0 + 0x28), 0, 0xC) != 0U;
 }
 
 s32 fn_8_BEDA8(s32 arg0)
@@ -1694,8 +1694,7 @@ s32 fn_8_BF524(s32 arg0)
 	if (temp_r3 != -1) {
 		temp_r3_2 = *(&lbl_802AD090 + temp_r3);
 		if ((temp_r3_2 != 0U)
-		    && (fn_800D71DC((s32)(temp_r3_2 + 0x18), (s32)((u8*)arg0 + 0x140))
-		        < lbl_8_rodata_1E94[0])) {
+		    && (fn_800D71DC((s32)(temp_r3_2 + 0x18), arg0 + 0x140) < lbl_8_rodata_1E94[0])) {
 			return 1;
 		}
 	}
