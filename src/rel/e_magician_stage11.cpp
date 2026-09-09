@@ -193,7 +193,7 @@ M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                             /* exter
 s32 fn_800D7A94(s32, s32, s32);                                         /* extern */
 f32 fn_800D7B00(s32);                                                   /* extern */
 f32 fn_800D8BC4(void*, void*, s32);                                     /* extern */
-M2C_UNK fn_800E1208(s32, s32);                                          /* extern */
+M2C_UNK fn_800E1208(s32, s32, s32);                                     /* extern */
 u32 fn_800FD8A0(TEnemyParalysis*, s32);                                 /* extern */
 M2C_UNK fn_800FE248(s32, void*);                                        /* extern */
 M2C_UNK fn_800FE274(s32, void*);                                        /* extern */
@@ -1019,7 +1019,7 @@ void* fn_8_AEEE4(void* arg0, s16 arg1)
 		M2C_FIELD(arg0, M2C_UNK**, 0x18) = &lbl_8_data_16A40;
 		M2C_FIELD(arg0, void**, 0xB4)    = (void*)((u8*)&lbl_8_data_16A40 + 0x2C);
 		if ((s32)M2C_FIELD(arg0, s32*, 0x2D0) != -1) {
-			fn_800E1208(0xF, 0);
+			fn_800E1208(M2C_FIELD(arg0, s32*, 0x2D0), 0xF, 0);
 			M2C_FIELD(arg0, s32*, 0x2D0) = -1;
 		}
 		temp_r3 = M2C_FIELD(arg0, void**, 0x24C);

@@ -2993,7 +2993,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 
 	if (arg0 != NULL) {
 		M2C_FIELD(arg0, M2C_UNK**, 0x18) = (M2C_UNK*)lbl_8_data_17FA0;
-		M2C_FIELD(arg0, void**, 0xB4)    = (void*)((M2C_UNK*)lbl_8_data_17FA0 + 0x2C);
+		M2C_FIELD(arg0, void**, 0xB4)    = (void*)((u8*)&lbl_8_data_17FA0 + 0x2C);
 		temp_r3                          = M2C_FIELD(arg0, void**, 0x244);
 		if (temp_r3 != NULL) {
 			M2C_FIELD(temp_r3, u16*, 4)    = (u16)(M2C_FIELD(temp_r3, u16*, 4) | 1);
