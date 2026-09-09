@@ -152,6 +152,7 @@ extern const f64 lbl_8_rodata_2110[1] = { 4503601774854144.0 };
 
 void fn_8_C907C(s32 arg0)
 {
+	f32 temp_f1;
 	fn_8_C8C34(arg0 - 0x28);
 }
 
@@ -223,6 +224,7 @@ void fn_8_C9230(void* arg0)
 
 void fn_8_C92D0(void* arg0)
 {
+	f32 temp_f1;
 	void* temp_r5;
 	void* temp_r4;
 	void* temp_r4_2;
@@ -239,13 +241,15 @@ void fn_8_C92D0(void* arg0)
 	M2C_FIELD(arg0, s32*, 0xCC) = 0;
 	M2C_FIELD(arg0, s32*, 0xC4) = 0;
 	M2C_FIELD(arg0, s32*, 0xD8) = (s32)(s8)M2C_FIELD(temp_r5, u8*, 0xC);
-	M2C_FIELD(arg0, f32*, 0xD4) = (f32)(lbl_8_rodata_1F9C + M2C_FIELD(temp_r5, f32*, 4));
-	M2C_FIELD(arg0, f32*, 0xD0) = (f32)(lbl_8_rodata_1F9C + M2C_FIELD(temp_r5, f32*, 8));
+	temp_f1                     = lbl_8_rodata_1F9C;
+	M2C_FIELD(arg0, f32*, 0xD4) = (f32)(temp_f1 + M2C_FIELD(temp_r5, f32*, 4));
+	M2C_FIELD(arg0, f32*, 0xD0) = (f32)(temp_f1 + M2C_FIELD(temp_r5, f32*, 8));
 	M2C_FIELD(arg0, s32*, 0xDC) = (s32)M2C_FIELD(temp_r5, s32*, 0);
 }
 
 void fn_8_C9354(void* arg0)
 {
+	f32 temp_f1;
 	f32 sp14;
 	f32 sp10;
 	f32 spC;
@@ -293,8 +297,9 @@ void fn_8_C9354(void* arg0)
 		M2C_FIELD(arg0, s32*, 0xCC) = 0;
 		M2C_FIELD(arg0, s32*, 0xC4) = 0;
 		M2C_FIELD(arg0, s32*, 0xD8) = (s32)(s8)M2C_FIELD(temp_r4, u8*, 0xC);
-		M2C_FIELD(arg0, f32*, 0xD4) = (f32)(lbl_8_rodata_1F9C + M2C_FIELD(temp_r4, f32*, 4));
-		M2C_FIELD(arg0, f32*, 0xD0) = (f32)(lbl_8_rodata_1F9C + M2C_FIELD(temp_r4, f32*, 8));
+		temp_f1                     = lbl_8_rodata_1F9C;
+		M2C_FIELD(arg0, f32*, 0xD4) = (f32)(temp_f1 + M2C_FIELD(temp_r4, f32*, 4));
+		M2C_FIELD(arg0, f32*, 0xD0) = (f32)(temp_f1 + M2C_FIELD(temp_r4, f32*, 8));
 		M2C_FIELD(arg0, s32*, 0xDC) = (s32)M2C_FIELD(temp_r4, s32*, 0);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xDC) != temp_r5) {
 			if ((void*)M2C_FIELD(arg0, void**, 0xE0) != NULL) {
