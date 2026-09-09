@@ -409,6 +409,9 @@ void fn_8_9DA48(void* arg0, s32 arg1)
 				return;
 			}
 			break;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -443,6 +446,9 @@ void fn_8_9DB5C(void* arg0, s32 arg1)
 					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 					break;
 			}
+			break;
+		case 2:
+		case 3:
 			break;
 	}
 }

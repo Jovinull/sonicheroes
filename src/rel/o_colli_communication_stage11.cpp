@@ -1072,6 +1072,9 @@ void fn_8_B240C(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, f32*, 0x2FC) = (f32)lbl_8_rodata_1BD0[0];
 			}
 			break;
+		case 2:
+		case 3:
+			break;
 	}
 }
 

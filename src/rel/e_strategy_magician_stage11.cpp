@@ -860,6 +860,9 @@ void fn_8_ABCE4(void* arg0, s32 arg1)
 				    (int)lbl_8_rodata_1B08, M2C_FIELD(arg0, f32*, 0x2C0), 1.5f, 0.04f);
 			}
 			break;
+		case 2:
+		case 3:
+			break;
 	}
 }
 
@@ -1217,6 +1220,9 @@ void fn_8_AC9D8(void* arg0, s32 arg1)
 					M2C_FIELD(arg0, s32*, 0x2E8) = 1;
 				}
 			}
+			break;
+		case 2:
+		case 3:
 			break;
 	}
 }
