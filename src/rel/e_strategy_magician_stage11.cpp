@@ -226,7 +226,7 @@ M2C_UNK fn_8019941C(f32*, f32*, s32, void*);         /* extern */
 void* fn_8019E8EC(...);                              /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);             /* extern */
 M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);             /* extern */
-M2C_UNK fn_8019ED68(s32, s32*, s32, f32);            /* extern */
+M2C_UNK fn_8019ED68(s32, s32*, f32, s32);            /* extern */
 s32 fn_801C28D8(...);                                /* extern */
 s32 fn_8_90B10(s32);                                 /* extern */
 M2C_UNK fn_8_A504(...);                              /* extern */
@@ -1132,7 +1132,7 @@ void fn_8_AC440(TObject* arg0, s32 arg1)
 											temp_r29 = M2C_FIELD(temp_r3_6, s32*, 4);
 											fn_8019EC30(temp_r29, &temp_r3_5->unk40, 0);
 											fn_8019ED68(
-											    temp_r29, &lbl_80239984, 2, temp_r3_5->unk60);
+											    temp_r29, &lbl_80239984, temp_r3_5->unk60, 2);
 											fn_8019EB94(temp_r29, &temp_r3_5->unk54, 2);
 										}
 									}
