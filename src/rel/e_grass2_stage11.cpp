@@ -300,9 +300,7 @@ void fn_8_C5094(void* arg0)
 
 void fn_8_C5110(void* arg0)
 {
-	f32 sp14;
-	f32 sp10;
-	f32 spC;
+	f32 spC[3];
 	void* sp8;
 	f32 temp_f0;
 	f32 temp_f2;
@@ -420,9 +418,9 @@ void fn_8_C5110(void* arg0)
 			} while (var_r31_2 < 4);
 		}
 		temp_f0   = M2C_FIELD(arg0, f32*, 0xD0);
-		sp14      = temp_f0;
-		sp10      = temp_f0;
-		spC       = temp_f0;
+		spC[2]    = temp_f0;
+		spC[1]    = temp_f0;
+		spC[0]    = temp_f0;
 		var_r31_3 = 0;
 		var_r27_3 = arg0;
 		do {
@@ -438,7 +436,7 @@ void fn_8_C5110(void* arg0)
 				    temp_r30 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 				fn_8019E880(temp_r30);
 			}
-			fn_8019EC30(temp_r30, &spC, 1);
+			fn_8019EC30(temp_r30, spC, 1);
 			var_r27_3 = (u8*)var_r27_3 + 4;
 			var_r31_3 += 1;
 		} while (var_r31_3 < 4);
@@ -447,9 +445,7 @@ void fn_8_C5110(void* arg0)
 
 void fn_8_C555C(void* arg0)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[3];
 	f32 temp_f0;
 	f32 temp_f31;
 	f32 temp_f31_2;
@@ -458,9 +454,9 @@ void fn_8_C555C(void* arg0)
 	void* var_r30;
 
 	temp_f0 = M2C_FIELD(arg0, f32*, 0xD0);
-	sp10    = temp_f0;
-	spC     = temp_f0;
-	sp8     = temp_f0;
+	sp8[2]  = temp_f0;
+	sp8[1]  = temp_f0;
+	sp8[0]  = temp_f0;
 	var_r29 = 0;
 	var_r30 = arg0;
 	do {
@@ -475,7 +471,7 @@ void fn_8_C555C(void* arg0)
 			fn_80195790(temp_r28 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r28);
 		}
-		fn_8019EC30(temp_r28, &sp8, 1);
+		fn_8019EC30(temp_r28, sp8, 1);
 		var_r30 = (u8*)var_r30 + 4;
 		var_r29 += 1;
 	} while (var_r29 < 4);
@@ -513,9 +509,7 @@ TObject* fn_8_C569C(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 
 TObject* fn_8_C577C(TObject* arg0, TObject* arg1)
 {
-	f32 sp14;
-	f32 sp10;
-	f32 spC;
+	f32 spC[3];
 	void* sp8;
 	f32 temp_f0;
 	f32 temp_f31;
@@ -602,9 +596,9 @@ TObject* fn_8_C577C(TObject* arg0, TObject* arg1)
 		var_r31 += 1;
 	} while (var_r31 < 4);
 	temp_f0 = arg0->unkD0;
-	sp14    = temp_f0;
-	sp10    = temp_f0;
-	spC     = temp_f0;
+	spC[2]  = temp_f0;
+	spC[1]  = temp_f0;
+	spC[0]  = temp_f0;
 	var_r28 = 0;
 	var_r27 = 0;
 	do {
@@ -618,7 +612,7 @@ TObject* fn_8_C577C(TObject* arg0, TObject* arg1)
 			fn_80195790(temp_r31 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r31);
 		}
-		fn_8019EC30(temp_r31, &spC, 1);
+		fn_8019EC30(temp_r31, spC, 1);
 		var_r27 += 4;
 		var_r28 += 1;
 	} while (var_r28 < 4);

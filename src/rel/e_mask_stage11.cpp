@@ -250,9 +250,7 @@ void fn_8_C92D0(void* arg0)
 void fn_8_C9354(void* arg0)
 {
 	f32 temp_f1;
-	f32 sp14;
-	f32 sp10;
-	f32 spC;
+	f32 spC[3];
 	void* sp8;
 	f32 temp_f0;
 	f32 temp_f2;
@@ -343,9 +341,9 @@ void fn_8_C9354(void* arg0)
 		temp_r3_6 = M2C_FIELD(arg0, void**, 0xE0);
 		if (temp_r3_6 != NULL) {
 			temp_f0    = M2C_FIELD(arg0, f32*, 0xD4);
-			sp14       = temp_f0;
-			sp10       = temp_f0;
-			spC        = temp_f0;
+			spC[2]     = temp_f0;
+			spC[1]     = temp_f0;
+			spC[0]     = temp_f0;
 			temp_r30_2 = M2C_FIELD(temp_r3_6, s32*, 4);
 			fn_8019EB94(temp_r30_2, (f32*)((u8*)arg0 + 0xB8), 0);
 			temp_f31_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
@@ -363,7 +361,7 @@ void fn_8_C9354(void* arg0)
 				    lbl_8_rodata_1F9C - fn_800D7AE4(-0x4000), temp_f31_4, 1);
 				fn_8019E880(temp_r30_2);
 			}
-			fn_8019EC30(temp_r30_2, &spC, 1);
+			fn_8019EC30(temp_r30_2, spC, 1);
 		}
 	} else {
 		if (temp_f30 < temp_f31) {
@@ -382,9 +380,7 @@ void fn_8_C9354(void* arg0)
 
 void fn_8_C9858(void* arg0)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[3];
 	f32 temp_f0;
 	f32 temp_f31;
 	f32 temp_f31_2;
@@ -395,9 +391,9 @@ void fn_8_C9858(void* arg0)
 	temp_r3 = M2C_FIELD(arg0, void**, 0xE0);
 	if (temp_r3 != NULL) {
 		temp_f0  = M2C_FIELD(arg0, f32*, 0xD4);
-		sp10     = temp_f0;
-		spC      = temp_f0;
-		sp8      = temp_f0;
+		sp8[2]   = temp_f0;
+		sp8[1]   = temp_f0;
+		sp8[0]   = temp_f0;
 		temp_r31 = M2C_FIELD(temp_r3, s32*, 4);
 		fn_8019EB94(temp_r31, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
@@ -415,7 +411,7 @@ void fn_8_C9858(void* arg0)
 			    temp_f31_3, 1);
 			fn_8019E880(temp_r31);
 		}
-		fn_8019EC30(temp_r31, &sp8, 1);
+		fn_8019EC30(temp_r31, sp8, 1);
 	}
 }
 
@@ -442,9 +438,7 @@ TObject* fn_8_C99B4(TObject* arg0, s16 arg1)
 TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
 {
 	f32 temp_f1;
-	f32 sp14;
-	f32 sp10;
-	f32 spC;
+	f32 spC[3];
 	void* sp8;
 	f32 temp_f0;
 	f32 temp_f31;
@@ -513,9 +507,9 @@ TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
 	temp_r3_5 = arg0->unkE0;
 	if (temp_r3_5 != NULL) {
 		temp_f0    = arg0->unkD4;
-		sp14       = temp_f0;
-		sp10       = temp_f0;
-		spC        = temp_f0;
+		spC[2]     = temp_f0;
+		spC[1]     = temp_f0;
+		spC[0]     = temp_f0;
 		temp_r30_2 = M2C_FIELD(temp_r3_5, s32*, 4);
 		fn_8019EB94(temp_r30_2, &arg0->unkB8, 0);
 		temp_f31 = fn_800D7B00(arg0->unkC8);
@@ -533,7 +527,7 @@ TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
 			    temp_f31_3, 1);
 			fn_8019E880(temp_r30_2);
 		}
-		fn_8019EC30(temp_r30_2, &spC, 1);
+		fn_8019EC30(temp_r30_2, spC, 1);
 	}
 	fn_8005B8D8(&arg0->unk28);
 	return arg0;

@@ -578,9 +578,7 @@ loop_5:
 
 s32 fn_8_B154C(void* arg0)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[3];
 	f32 temp_f1;
 
 	M2C_FIELD(arg0, s32*, 0x27C) = (s32)(M2C_FIELD(arg0, s32*, 0x27C) + 0x250);
@@ -591,17 +589,16 @@ s32 fn_8_B154C(void* arg0)
 	    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
 	M2C_FIELD(arg0, s32*, 0x154)
 	    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
-	sp8  = M2C_FIELD(arg0, f32*, 0x140);
-	spC  = M2C_FIELD(arg0, f32*, 0x144);
-	sp10 = M2C_FIELD(arg0, f32*, 0x148);
+	sp8[0] = M2C_FIELD(arg0, f32*, 0x140);
+	sp8[1] = M2C_FIELD(arg0, f32*, 0x144);
+	sp8[2] = M2C_FIELD(arg0, f32*, 0x148);
 	M2C_FIELD(arg0, f32*, 0x140)
 	    = (f32)(M2C_FIELD(arg0, f32*, 0x260) + M2C_FIELD(arg0, f32*, 0x140));
 	M2C_FIELD(arg0, f32*, 0x144)
 	    = (f32)(M2C_FIELD(arg0, f32*, 0x264) + M2C_FIELD(arg0, f32*, 0x144));
 	temp_f1                      = M2C_FIELD(arg0, f32*, 0x268);
 	M2C_FIELD(arg0, f32*, 0x148) = (f32)(temp_f1 + M2C_FIELD(arg0, f32*, 0x148));
-	if (fn_800D7BD8((u8*)arg0 + 0x254, &sp8, (u8*)arg0 + 0x140, 0, temp_f1)
-	    < lbl_8_rodata_1BDC[0]) {
+	if (fn_800D7BD8((u8*)arg0 + 0x254, sp8, (u8*)arg0 + 0x140, 0, temp_f1) < lbl_8_rodata_1BDC[0]) {
 		M2C_FIELD(arg0, f32*, 0x140) = (f32)M2C_FIELD(arg0, f32*, 0x254);
 		M2C_FIELD(arg0, f32*, 0x144) = (f32)M2C_FIELD(arg0, f32*, 0x258);
 		M2C_FIELD(arg0, f32*, 0x148) = (f32)M2C_FIELD(arg0, f32*, 0x25C);
