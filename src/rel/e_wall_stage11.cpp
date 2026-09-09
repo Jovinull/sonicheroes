@@ -1613,10 +1613,7 @@ void fn_8_B8504(void* arg0)
 			sp18.z = M2C_FIELD(arg0, f32*, 0xB8);
 			sp18.w = lbl_8_rodata_1D60;
 			if (fn_8019CE34(*lbl_8042C9A4, &sp18.x) != 0) {
-				sp8.x = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 0);
-				sp8.y = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 4);
-				sp8.z = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 8);
-				sp8.w = M2C_FIELD(&lbl_8_rodata_1D1C, s32*, 0xC);
+				M2C_FIELD(&sp8, M2C_BLOCK16*, 0) = M2C_FIELD(&lbl_8_rodata_1D1C, M2C_BLOCK16*, 0);
 				fn_8005DABC(M2C_FIELD(arg0, s32**, 0xE0), (s32*)&sp8);
 				fn_80113874(M2C_FIELD(arg0, s32*, 0xD8));
 				fn_8014FF2C(M2C_FIELD(arg0, s32**, 0xE0));
