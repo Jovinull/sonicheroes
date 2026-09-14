@@ -45,6 +45,50 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### CRI RNARES translation unit
+
+`game/cri/rnares.c` retains a reviewed vendor C ABI boundary and compiles with
+`-lang=c++`. The original source language remains unproved. No RNARES counterpart
+was found in the inspected PS2 PAL symbol table; the GameCube-specific ARAM API
+and the GameCube object provide the evidence for this reconstruction.
+
+Five independent scalar globals followed by 32 twelve-byte resource handles
+reproduce CodeWarrior's native pooled BSS accesses. C mode emits these objects
+in first-reference order, placing the handle array first. C++ mode preserves
+declaration order, matching the reference count, external-allocation flag,
+handle count, ARAM size, ARAM address, and handle array at offsets 0, 4, 8, 12,
+16, and 20. These names describe observed accesses; they are not recovered
+historical names. A prefix structure suppresses native pooling and fails to
+reproduce the shared base addressing.
+
+The supported full boundary is `.text` `0x80224CD0`–`0x80225100`, encompassing
+six functions. The size getter, address getter, and handle destroy routine
+precede create, finish, and initialize. AXRNA calls even the tiny accessors out
+of line; RNARES finish instead inlines the same null-check-and-clear destroy
+operation. The contiguous API family follows AXRNA's error-callback adapter.
+Together these observations support moving the three accessors from the prior
+AXRNA carve into RNARES. This is a strong GameCube-supported inference, not a
+source-file marker or direct debug-metadata proof.
+
+All six functions, 1,072 bytes of text, 79 bytes of read-only data, and 404
+bytes of BSS match. The BSS pool anchor and first scalar have the same address;
+all 18 relocations have identical offsets, types, and resolved destinations.
+The one read-only byte and four BSS bytes before the following raster unit are
+linker alignment, excluded from the owned ranges rather than emitted as dummy
+objects. No additional helper, padding object, assembly, or instruction
+postprocessor is used. The initialization loop's signed index, unsigned
+`0x2000U` byte stride, and pointer increment in the loop update reproduce its
+native induction variables and register allocation.
+
+Validation passed for the sole configured release target, `G9SE8P`:
+`ninja all_source progress build/G9SE8P/report.json`, all 54 policy/postprocessor
+unit tests, both policy checkers, and all 18 artifact hashes. The link uses the
+reconstructed RNARES object. Independent ELF comparison also verifies every
+allocated section's type, flags, alignment, size and bytes, all 14 sized
+function/data symbols, and all 18 resolved relocations. The adjacent raster
+target object remains byte-identical. These checks do not establish runtime
+or hardware validation.
+
 ### AdvertiseD overlay
 
 PR #125 replaces the legacy AdvertiseD fragments with 21 C++ source objects

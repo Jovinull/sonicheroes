@@ -143,7 +143,7 @@ legacy paths in the policy file. The compiler already treats those files as
 C++; migration aligns the extension and build configuration with the effective
 language rather than rewriting working code.
 
-There are two reviewed exceptions. `movieD/cri/sfx.c` remains a C-path vendor
+Reviewed exceptions include `movieD/cri/sfx.c`, which remains a C-path vendor
 source while compiling in C++ mode. This CRI middleware unit exposes a C
 boundary and belongs beside the other `sfx*.c` sources, but the matching
 GameCube build requires CodeWarrior's C++ declaration-order `.bss` emission
@@ -153,8 +153,15 @@ instead of its C first-reference order.
 filename and language metadata, while its GameCube object requires
 CodeWarrior's C++ compilation path. The same evidence establishes that the
 previous state, DVD-status, accessor and file-system fragments are one source
-file. Both exceptions remain in `c_sources_compiled_as_cpp`, retain explicit
+file. These exceptions remain in `c_sources_compiled_as_cpp`, retain explicit
 `-lang=c++`, and are not part of the extension-migration queue.
+
+`game/cri/rnares.c` also retains its reviewed vendor C boundary while compiling
+in C++ mode. Its five independent scalar globals and handle array reproduce
+the native pooled BSS accesses only in declaration order; C mode instead emits
+them in first-reference order. The six-function GameCube object establishes
+the required compiler behavior, not the unavailable original source language.
+The classification and boundary evidence are recorded in the language audit.
 
 Migrate them in reviewable, module-sized batches:
 

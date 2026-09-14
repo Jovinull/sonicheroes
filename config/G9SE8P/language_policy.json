@@ -24,7 +24,6 @@
     "game/cri/gcci.c",
     "game/cri/lsc.c",
     "game/cri/mfci.c",
-    "game/cri/rnares.c",
     "game/cri/sj.c",
     "game/cri/sjcrs.c",
     "game/cri/sjmem.c",
@@ -49,6 +48,7 @@
     "autosaveD/window_input.c"
   ],
   "c_sources_compiled_as_cpp": [
+    "game/cri/rnares.c",
     "game/skyfs_adx.c",
     "movieD/cri/sfx.c"
   ],
