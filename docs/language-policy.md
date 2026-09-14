@@ -143,17 +143,23 @@ legacy paths in the policy file. The compiler already treats those files as
 C++; migration aligns the extension and build configuration with the effective
 language rather than rewriting working code.
 
-There are two reviewed exceptions. `movieD/cri/sfx.c` remains a C-path vendor
+There are three reviewed exceptions. `movieD/cri/sfx.c` remains a C-path vendor
 source while compiling in C++ mode. This CRI middleware unit exposes a C
 boundary and belongs beside the other `sfx*.c` sources, but the matching
 GameCube build requires CodeWarrior's C++ declaration-order `.bss` emission
 instead of its C first-reference order.
 
+`game/cri/svm.c` likewise retains its reviewed CRI C ABI boundary and C path
+while using C++ declaration-order `.bss` emission. Correlated PS2 scalar and
+callback symbols support the separate-global source structure; native GameCube
+code, data, and relocations establish the compiler-mode requirement. This is
+not evidence of a historical C++ source extension.
+
 `game/skyfs_adx.c` is positively identified as C by the PS2 beta DWARF
 filename and language metadata, while its GameCube object requires
 CodeWarrior's C++ compilation path. The same evidence establishes that the
 previous state, DVD-status, accessor and file-system fragments are one source
-file. Both exceptions remain in `c_sources_compiled_as_cpp`, retain explicit
+file. All three exceptions remain in `c_sources_compiled_as_cpp`, retain explicit
 `-lang=c++`, and are not part of the extension-migration queue.
 
 Migrate them in reviewable, module-sized batches:
