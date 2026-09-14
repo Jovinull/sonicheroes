@@ -940,3 +940,60 @@ type, flags and alignment), 33 sized symbols and 166 resolved relocations.
 The source-linked `G9SE8P` release/all-source build, 54 automated policy tests,
 both policy checkers and all eighteen artifact hashes pass. This is build and
 binary verification, not runtime or physical-hardware testing.
+
+### CRI SJ family boundary correction
+
+The previous `game/cri/sjrbf.c` fragment combined the preceding ring-buffer
+implementation's error callback, SJUNI initialization state, and shared SJ
+utilities. The corrected boundaries are inferred from GameCube code/data
+relationships, with limited corroborating PS2 symbol metadata; no SJ source
+filename marker was found. A shared version banner alone is not treated as
+evidence to merge the neighboring SJCRS and SJMEM objects.
+
+- `game/cri/sjrbf.c`, `0x80220BF0`–`0x80221574`: seventeen ring-buffer
+  functions, including the error callback installed by its creator. Its
+  256-entry, 64-byte object pool, reference count, UUID and vtable identify
+  this implementation. PS2 `sjrbf_obj` is likewise 16,384 bytes; the SJRBF
+  API and private data names corroborate these roles. The callback's error
+  string belongs here.
+- `game/cri/sjuni.c`, `0x80221574`–`0x80221610`: two surviving GameCube
+  initialization functions, owning a separate reference count and 3,072-byte
+  workspace. PS2 `sjuni_init_cnt` and `sjuni_obj` corroborate these objects.
+  GameCube references to this state occur only in these two functions; the
+  preceding ring-buffer vtable and pool are not SJUNI's. This does not
+  reconstruct or claim the presence of the other PS2 SJUNI methods.
+- `game/cri/sj.c`, `0x80221610`–`0x802218A8`: three shared tag-search,
+  chunk-split and error-dispatch functions. The search owns the 448-byte
+  hexadecimal lookup table, corroborated by `sj_hexstr_to_val_tbl` in PS2
+  metadata. Both SJMEM and SJRBF call the error dispatcher.
+
+The reviewed vendor C boundaries remain distinct from historical source
+language. SJRBF uses the existing GC/1.3.2 compiler in C++ mode: native C
+emits the object pool before the reference count, whereas C++ emits the
+declaration-order storage required by the GameCube references. The removed
+postprocessor had silently rewritten those symbol offsets. This is a
+compiler-mode exception, not proof of original C++ source. SJUNI and the
+shared SJ utilities retain C compilation.
+
+Natural buffer-address association and record-pointer advancement replace
+the instruction-reordering patches. The availability query uses explicit
+integer success/failure returns; implicit C++ Boolean conversion produces a
+different mask. No instruction patch, artificial storage pad, unused ordering
+helper or per-function optimization override remains in these three units.
+The four-byte gaps after SJRBF rodata and the two BSS groups are linker
+alignment, not owned source objects. The initializer's version-anchor read is
+observable in the native object; its historical qualifier remains unknown.
+
+The shared creator contract takes a buffer pointer, which the implementation
+stores and uses for byte-address arithmetic. Chunk addresses remain `void*`;
+no byte signedness is inferred from their representation. The corresponding
+AXRNA integer-address-to-pointer conversion preserves its complete native
+object, including all nineteen functions and 166 relocations.
+
+All twenty-two functions and all allocated sections are native-exact. The
+independent audit compares section bytes, size, type, flags and alignment,
+32 sized symbols and 79 normalized relocations across the three objects.
+The source-linked G9SE8P release/all-source build, 54 automated tests, both
+policy checks and all eighteen artifact hashes pass. Neighboring SJMEM and
+SJCRS target objects are unchanged and their configured builds remain exact.
+This is binary/build verification, not runtime or hardware testing.

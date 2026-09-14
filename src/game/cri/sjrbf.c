@@ -1,226 +1,347 @@
-#include "types.h"
+#include "cri/sjrbf.h"
+#include "cri/sjcrs.h"
+#include "MSL_C/string.h"
 
-// CRI SJRBF: parses named records from an in-memory SJ buffer. The complete
-// unit is the six-function run at 0x8022154C..0x802218A8 together with its
-// exclusive rodata, hexadecimal lookup table, and BSS workspace.
-// MATCHING: every function and owned section is byte-exact.
+// CRI ring-buffer stream implementation. Correlated API/data names identify
+// this seventeen-function run; its source boundary is inferred from the GC
+// callback, vtable and private storage relationships, not a source marker.
+// The vendor C boundary uses C++ mode for declaration-order private BSS.
 
-typedef struct SjRange {
-	s8* data;
-	s32 size;
-} SjRange;
+#define SJ_MAX_OBJ 256
+#define SJ_ERR_PRM (-3)
 
-void* memset(void* dst, s32 value, u32 size);
-s32 strncmp(const char* lhs, const char* rhs, u32 count);
-void fn_8022240C(const char* message);
-void fn_80221888(const char* message);
+typedef struct SjInterface {
+	void* queryInterface;
+	void* addRef;
+	void* release;
+	void (*destroy)(SjObj* sj);
+	const void* (*getUuid)(SjObj* sj);
+	void (*reset)(SjObj* sj);
+	void (*getChunk)(SjObj* sj, s32 id, s32 size, CriChunk* chunk);
+	void (*ungetChunk)(SjObj* sj, s32 id, CriChunk* chunk);
+	void (*putChunk)(SjObj* sj, s32 id, CriChunk* chunk);
+	s32 (*getNumData)(SjObj* sj, s32 id);
+	s32 (*isGetChunk)(SjObj* sj, s32 id, s32 size, s32* readSize);
+	void (*entryErrFunc)(SjObj* sj, SjErrorFunc callback, void* object);
+} SjInterface;
 
-static s32 lbl_804270A8;
-static u8 lbl_804270AC[0xC04];
-
-static const char lbl_8023FFB0[] = "SJRBF Error";
-const u32 gap_06_8023FFBC_rodata = 0;
-
-static s32 lbl_8029B888[0x70] = {
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	1,
-	2,
-	3,
-	4,
-	5,
-	6,
-	7,
-	8,
-	9,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	10,
-	11,
-	12,
-	13,
-	14,
-	15,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	10,
-	11,
-	12,
-	13,
-	14,
-	15,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
+struct SjObj {
+	const SjInterface* interface;
+	s32 used;
+	const void* uuid;
+	s32 numData1;
+	s32 numData0;
+	s32 offset0;
+	s32 offset1;
+	s8* buffer;
+	s32 bufferSize;
+	s32 margin;
+	s32 totals[2][2];
+	SjErrorFunc errorCallback;
+	void* errorObject;
 };
 
-static inline s32 sjrbf_DecodeLength(const s8* p)
+typedef struct SjUuid {
+	u32 data[4];
+} SjUuid;
+
+static const char lbl_8023FF70[]  = "\nSJ/GC Ver.6.14 Build:May  9 2003 17:10:13\n";
+static const char* const sj_build = lbl_8023FF70;
+static const SjUuid sjrbf_uuid    = {
+	{ 0x3B9A9E81, 0x0DBB11D2, 0xA6BF4445, 0x53540000 },
+};
+
+static const char lbl_8023FFB0[] = "SJRBF Error";
+
+static SjInterface sjrbf_vtbl = {
+	NULL,
+	NULL,
+	NULL,
+	fn_802212B0,
+	fn_802212A8,
+	fn_80221244,
+	fn_80221034,
+	fn_80220D2C,
+	fn_80220ED8,
+	fn_802211E8,
+	fn_80220C20,
+	fn_8022129C,
+};
+
+static s32 sjrbf_init_cnt;
+static SjObj sjrbf_obj[SJ_MAX_OBJ];
+
+s32 fn_80220BF0(SjObj* sj, s32 id, s32 index)
 {
-	s32 value = lbl_8029B888[p[8]];
-	value     = value * 16 + lbl_8029B888[p[9]];
-	value     = value * 16 + lbl_8029B888[p[10]];
-	value     = value * 16 + lbl_8029B888[p[11]];
-	value     = value * 16 + lbl_8029B888[p[12]];
-	value     = value * 16 + lbl_8029B888[p[13]];
-	return value * 16 + lbl_8029B888[p[14]];
+	return sj->totals[id][index];
 }
 
-void fn_8022154C(void)
+s32 fn_80220C08(SjObj* sj)
 {
-	fn_80221888(lbl_8023FFB0);
+	return sj->margin;
 }
 
-void fn_80221574(void)
+s32 fn_80220C10(SjObj* sj)
 {
-	lbl_804270A8--;
-	if (lbl_804270A8 == 0) {
-		memset(lbl_804270AC, 0, 0xC00);
+	return sj->bufferSize;
+}
+
+s8* fn_80220C18(SjObj* sj)
+{
+	return sj->buffer;
+}
+
+s32 fn_80220C20(SjObj* sj, s32 id, s32 size, s32* readSize)
+{
+	s32 available;
+
+	fn_80220590();
+	if (id == 0) {
+		available = sj->numData0 < sj->margin + (sj->bufferSize - sj->offset0)
+		    ? sj->numData0
+		    : sj->margin + (sj->bufferSize - sj->offset0);
+		available = available < size ? available : size;
+	} else if (id == 1) {
+		available = sj->numData1 < sj->margin + (sj->bufferSize - sj->offset1)
+		    ? sj->numData1
+		    : sj->margin + (sj->bufferSize - sj->offset1);
+		available = available < size ? available : size;
+	} else {
+		available = 0;
+		if (sj->errorCallback != NULL) {
+			sj->errorCallback(sj->errorObject, SJ_ERR_PRM);
+		}
 	}
+	*readSize = available;
+	fn_80220544();
+	if (available == size)
+		return 1;
+	return 0;
 }
 
-void fn_802215BC(void)
+void fn_80220D2C(SjObj* sj, s32 id, CriChunk* chunk)
 {
-	if (lbl_804270A8 == 0) {
-		memset(lbl_804270AC, 0, 0xC00);
+	s32 expected;
+	s32 actual;
+
+	if (chunk->size <= 0 || chunk->addr == NULL) {
+		return;
 	}
-	lbl_804270A8++;
+	fn_80220590();
+	if (id == 0) {
+		expected = (sj->offset0 + sj->bufferSize - chunk->size) % sj->bufferSize;
+		actual   = ((s8*)chunk->addr - sj->buffer) % sj->bufferSize;
+		if (expected == actual) {
+			sj->offset0 = expected;
+			sj->numData0 += chunk->size;
+		} else if (sj->errorCallback != NULL) {
+			sj->errorCallback(sj->errorObject, SJ_ERR_PRM);
+		}
+		sj->totals[0][0] -= chunk->size;
+	} else if (id == 1) {
+		expected = (sj->offset1 + sj->bufferSize - chunk->size) % sj->bufferSize;
+		actual   = ((s8*)chunk->addr - sj->buffer) % sj->bufferSize;
+		if (expected == actual) {
+			sj->offset1 = expected;
+			sj->numData1 += chunk->size;
+		} else if (sj->errorCallback != NULL) {
+			sj->errorCallback(sj->errorObject, SJ_ERR_PRM);
+		}
+		sj->totals[1][0] -= chunk->size;
+	} else {
+		chunk->size = 0;
+		chunk->addr = NULL;
+		if (sj->errorCallback != NULL) {
+			sj->errorCallback(sj->errorObject, SJ_ERR_PRM);
+		}
+	}
+	fn_80220544();
 }
 
-s8* fn_80221610(const SjRange* input, const char* name, const char* stop, SjRange* output)
+void fn_80220ED8(SjObj* sj, s32 id, CriChunk* chunk)
 {
-	s8* cursor;
-	s8* end;
+	s32 length;
 
-	output->data = NULL;
-	output->size = 0;
-	end          = input->data + input->size;
-	cursor       = input->data;
+	if (chunk->size <= 0 || chunk->addr == NULL) {
+		return;
+	}
+	fn_80220590();
+	if (id == 1) {
+		s32 offset;
 
-	while (cursor < end) {
-		if (strncmp((char*)cursor, name, 7) == 0) {
-			output->data = cursor + 0x10;
-			output->size = sjrbf_DecodeLength(cursor);
+		sj->numData1 += chunk->size;
+		offset = (s8*)chunk->addr - sj->buffer;
+		if (offset < sj->margin) {
+			length = sj->margin - offset;
+			if (chunk->size < length) {
+				length = chunk->size;
+			}
+			memcpy(sj->buffer + (sj->bufferSize + offset), chunk->addr, length);
+		}
+		if ((s8*)chunk->addr - sj->buffer + chunk->size > sj->bufferSize) {
+			length = (s8*)chunk->addr - sj->buffer + chunk->size - sj->bufferSize;
+			length = chunk->size < length ? chunk->size : length;
+			memcpy(sj->buffer, sj->buffer + ((s8*)chunk->addr - sj->buffer + chunk->size - length),
+			    length);
+		}
+		sj->totals[1][1] += chunk->size;
+	} else if (id == 0) {
+		sj->numData0 += chunk->size;
+		sj->totals[0][1] += chunk->size;
+	} else {
+		chunk->size = 0;
+		chunk->addr = NULL;
+		if (sj->errorCallback != NULL) {
+			sj->errorCallback(sj->errorObject, SJ_ERR_PRM);
+		}
+	}
+	fn_80220544();
+}
+
+void fn_80221034(SjObj* sj, s32 id, s32 size, CriChunk* chunk)
+{
+	s32 available;
+
+	fn_80220590();
+	if (id == 0) {
+		available   = sj->numData0 < sj->margin + (sj->bufferSize - sj->offset0)
+		    ? sj->numData0
+		    : sj->margin + (sj->bufferSize - sj->offset0);
+		chunk->size = available;
+		chunk->size = chunk->size < size ? chunk->size : size;
+		chunk->addr = sj->buffer + sj->offset0;
+		sj->offset0 = (sj->offset0 + chunk->size) % sj->bufferSize;
+		sj->numData0 -= chunk->size;
+		sj->totals[0][0] += chunk->size;
+	} else if (id == 1) {
+		available   = sj->numData1 < sj->margin + (sj->bufferSize - sj->offset1)
+		    ? sj->numData1
+		    : sj->margin + (sj->bufferSize - sj->offset1);
+		chunk->size = available;
+		chunk->size = chunk->size < size ? chunk->size : size;
+		chunk->addr = sj->buffer + sj->offset1;
+		sj->offset1 = (sj->offset1 + chunk->size) % sj->bufferSize;
+		sj->numData1 -= chunk->size;
+		sj->totals[1][0] += chunk->size;
+	} else {
+		chunk->size = 0;
+		chunk->addr = NULL;
+		if (sj->errorCallback != NULL) {
+			sj->errorCallback(sj->errorObject, SJ_ERR_PRM);
+		}
+	}
+	fn_80220544();
+}
+
+s32 fn_802211E8(SjObj* sj, s32 id)
+{
+	if (id == 1) {
+		return sj->numData1;
+	}
+	if (id == 0) {
+		return sj->numData0;
+	}
+	if (sj->errorCallback != NULL) {
+		sj->errorCallback(sj->errorObject, SJ_ERR_PRM);
+	}
+	return 0;
+}
+
+void fn_80221244(SjObj* sj)
+{
+	fn_80220590();
+	sj->numData1     = 0;
+	sj->numData0     = sj->bufferSize;
+	sj->offset0      = 0;
+	sj->offset1      = 0;
+	sj->totals[0][0] = 0;
+	sj->totals[0][1] = 0;
+	sj->totals[1][0] = 0;
+	sj->totals[1][1] = 0;
+	fn_80220544();
+}
+
+void fn_8022129C(SjObj* sj, SjErrorFunc callback, void* object)
+{
+	sj->errorCallback = callback;
+	sj->errorObject   = object;
+}
+
+const void* fn_802212A8(SjObj* sj)
+{
+	return sj->uuid;
+}
+
+void fn_802212B0(SjObj* sj)
+{
+	fn_80220590();
+	if (sj != NULL) {
+		memset(sj, 0, sizeof(*sj));
+		sj->used = 0;
+	}
+	fn_80220544();
+}
+
+CriStream* fn_80221300(void* buffer, s32 bufferSize, s32 margin)
+{
+	SjObj* sj;
+	s32 i;
+
+	fn_80220590();
+	for (i = 0; i < SJ_MAX_OBJ; i++) {
+		if (sjrbf_obj[i].used == 0) {
 			break;
 		}
-
-		if (stop != NULL && strncmp((char*)cursor, stop, 7) == 0) {
-			return NULL;
-		}
-
-		{
-			u32 length = lbl_8029B888[cursor[8]];
-			length     = length * 16 + lbl_8029B888[cursor[9]];
-			length     = length * 16 + lbl_8029B888[cursor[10]];
-			length     = length * 16 + lbl_8029B888[cursor[11]];
-			length     = length * 16 + lbl_8029B888[cursor[12]];
-			length     = length * 16 + lbl_8029B888[cursor[13]];
-			length     = length * 16 + lbl_8029B888[cursor[14]];
-			cursor     = length + cursor;
-			cursor += 0x10;
-		}
 	}
-
-	return cursor < end ? cursor : NULL;
-}
-
-void fn_80221824(const SjRange* input, s32 size, SjRange* first, SjRange* remainder)
-{
-	*first          = *input;
-	remainder->size = first->size;
-	if (first->size > size) {
-		first->size = size;
-	}
-	remainder->size -= first->size;
-	if (remainder->size == 0) {
-		remainder->data = NULL;
+	if (i == SJ_MAX_OBJ) {
+		sj = NULL;
 	} else {
-		remainder->data = first->data + first->size;
+		sj                = &sjrbf_obj[i];
+		sj->used          = 1;
+		sj->interface     = &sjrbf_vtbl;
+		sj->buffer        = (s8*)buffer;
+		sj->bufferSize    = bufferSize;
+		sj->margin        = margin;
+		sj->uuid          = &sjrbf_uuid;
+		sj->errorCallback = fn_8022154C;
+		sj->errorObject   = sj;
+		fn_80220590();
+		sj->numData1     = 0;
+		sj->numData0     = sj->bufferSize;
+		sj->offset0      = 0;
+		sj->offset1      = 0;
+		sj->totals[0][0] = 0;
+		sj->totals[0][1] = 0;
+		sj->totals[1][0] = 0;
+		sj->totals[1][1] = 0;
+		fn_80220544();
 	}
+	fn_80220544();
+	return (CriStream*)sj;
 }
 
-void fn_80221888(const char* message)
+void fn_80221498(void)
 {
-	fn_8022240C(message);
+	fn_80220590();
+	sjrbf_init_cnt--;
+	if (sjrbf_init_cnt == 0) {
+		memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
+	}
+	fn_80220544();
+}
+
+void fn_802214E8(void)
+{
+	(void)*(const char* volatile*)&sj_build;
+	fn_80220590();
+	if (sjrbf_init_cnt == 0) {
+		memset(sjrbf_obj, 0, sizeof(sjrbf_obj));
+	}
+	sjrbf_init_cnt++;
+	fn_80220544();
+}
+
+void fn_8022154C(void* object, s32 error)
+{
+	fn_80221888(lbl_8023FFB0);
 }
