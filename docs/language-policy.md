@@ -153,7 +153,10 @@ instead of its C first-reference order.
 filename and language metadata, while its GameCube object requires
 CodeWarrior's C++ compilation path. The same evidence establishes that the
 previous state, DVD-status, accessor and file-system fragments are one source
-file. These exceptions remain in `c_sources_compiled_as_cpp`, retain explicit
+file. `game/cri/axrna.c` likewise retains its reviewed CRI C boundary while
+using C++ declaration-order BSS emission; its GameCube-specific AX/ARAM APIs
+do not provide positive historical C++ source evidence. These exceptions
+remain in `c_sources_compiled_as_cpp`, retain explicit
 `-lang=c++`, and are not part of the extension-migration queue.
 
 `game/cri/rnares.c` also retains its reviewed vendor C boundary while compiling

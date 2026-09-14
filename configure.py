@@ -586,9 +586,12 @@ config.libs = [
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "game/cri/axrna.c",
-                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-bool off"],
+                extra_cflags=[
+                    "-sdata 0", "-sdata2 0", "-str reuse,readonly",
+                    "-use_lmw_stmw on", "-bool off", "-lang=c++",
+                ],
             ),
             Object(
                 Matching,
