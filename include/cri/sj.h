@@ -8,9 +8,10 @@ extern "C" {
 #endif
 
 typedef struct CriStream CriStream;
+typedef void (*SjErrorFunc)(void* object, s32 error);
 
 typedef struct CriChunk {
-	void* addr;
+	s8* addr;
 	s32 size;
 } CriChunk;
 
