@@ -9,16 +9,15 @@
 // the SDK's EXIBios.c, so the split now starts there. After the unit is
 // __OSEnableBarnacle, which belongs to OS.
 //
-// The public functions keep their dtk names until renamed with evidence, but
-// their SDK identities are clear from structure: fn_801FA768 is EXIImmEx,
-// fn_801FAB88 is EXISetExiCallback, fn_801FAD78 is EXIProbe, fn_801FADF8 is
-// EXIProbeEx, fn_801FAEAC is EXIAttach, fn_801FAFB8 is EXIDetach and
-// fn_801FBA04 is EXIGetState.
+// The public functions EXIImmEx, EXISetExiCallback, EXIProbe, EXIProbeEx,
+// EXIAttach, EXIDetach and EXIGetState were first identified by structure;
+// the CARD library (CARDBios.c, CARDMount.c) calls each of them by its SDK
+// name, which confirms the names.
 //
 // CompleteTransfer and __EXIAttach exist in the source but not in the binary:
 // each is a small static defined before every caller, so the compiler inlines
 // every call and emits no standalone body. That is why EXISync and
-// TCIntrruptHandler share their copy-out loop, and why fn_801FAEAC and
+// TCIntrruptHandler share their copy-out loop, and why EXIAttach and
 // EXIGetID share their attach sequence.
 //
 // EXISync carries a Sonic Heroes addition: after a transfer completes it
@@ -123,7 +122,7 @@ BOOL EXIDeselect(s32 chan);
 BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback);
 BOOL EXIUnlock(s32 chan);
 s32 EXIGetID(s32 chan, u32 dev, u32* id);
-BOOL fn_801FAD78(s32 chan);
+BOOL EXIProbe(s32 chan);
 static BOOL __EXIProbe(s32 chan);
 static void EXIIntrruptHandler(s16 interrupt, OSContext* context);
 static void TCIntrruptHandler(s16 interrupt, OSContext* context);
@@ -245,7 +244,7 @@ BOOL EXIImm(s32 chan, void* buf, s32 len, u32 type, EXICallback callback)
 #pragma opt_propagation on
 
 // EXIImmEx in the SDK: chops a buffer into four byte immediate transfers.
-BOOL fn_801FA768(s32 chan, void* buf, s32 len, u32 mode)
+BOOL EXIImmEx(s32 chan, void* buf, s32 len, u32 mode)
 {
 	s32 xLen;
 
@@ -356,7 +355,7 @@ u32 EXIClearInterrupts(s32 chan, BOOL exi, BOOL tc, BOOL ext)
 // EXISetExiCallback in the SDK: swaps in a new callback for the channel's own
 // interrupt and hands back the one that was there. Channel 2 has no mask of
 // its own, so the mask for channel 0 is what gets recomputed on its behalf.
-EXICallback fn_801FAB88(s32 chan, EXICallback exiCallback)
+EXICallback EXISetExiCallback(s32 chan, EXICallback exiCallback)
 {
 	EXIControl* exi = &Ecb[chan];
 	EXICallback prev;
@@ -432,7 +431,7 @@ static BOOL __EXIProbe(s32 chan)
 // EXIProbe in the SDK: answers whether something is attached and identified.
 // A probe on its own is not enough: a channel that has never reported an
 // identifier gets asked for one, and only a successful answer counts.
-BOOL fn_801FAD78(s32 chan)
+BOOL EXIProbe(s32 chan)
 {
 	EXIControl* exi = &Ecb[chan];
 	BOOL prb;
@@ -447,9 +446,9 @@ BOOL fn_801FAD78(s32 chan)
 
 // EXIProbeEx in the SDK: three answers instead of two. Zero means a device is
 // still settling in its debounce window, minus one means nothing there.
-s32 fn_801FADF8(s32 chan)
+s32 EXIProbeEx(s32 chan)
 {
-	if (fn_801FAD78(chan)) {
+	if (EXIProbe(chan)) {
 		return 1;
 	}
 	if (EXIProbeStartTime[chan] != 0) {
@@ -482,13 +481,13 @@ static inline BOOL __EXIAttach(s32 chan, EXICallback extCallback)
 }
 
 // EXIAttach in the SDK.
-BOOL fn_801FAEAC(s32 chan, EXICallback extCallback)
+BOOL EXIAttach(s32 chan, EXICallback extCallback)
 {
 	EXIControl* exi = &Ecb[chan];
 	BOOL enabled;
 	BOOL ret;
 
-	fn_801FAD78(chan);
+	EXIProbe(chan);
 
 	enabled = OSDisableInterrupts();
 	if (exi->idTime == 0) {
@@ -502,7 +501,7 @@ BOOL fn_801FAEAC(s32 chan, EXICallback extCallback)
 }
 
 // EXIDetach in the SDK.
-BOOL fn_801FAFB8(s32 chan)
+BOOL EXIDetach(s32 chan)
 {
 	EXIControl* exi = &Ecb[chan];
 	BOOL enabled;
@@ -798,7 +797,7 @@ BOOL EXIUnlock(s32 chan)
 }
 
 // EXIGetState in the SDK: hands back the channel's state word.
-u32 fn_801FBA04(s32 chan)
+u32 EXIGetState(s32 chan)
 {
 	EXIControl* exi = &Ecb[chan];
 
@@ -862,7 +861,7 @@ s32 EXIGetID(s32 chan, u32 dev, u32* id)
 	OSRestoreInterrupts(enabled);
 
 	if (chan < 2 && dev == 0) {
-		fn_801FAFB8(chan);
+		EXIDetach(chan);
 
 		enabled = OSDisableInterrupts();
 		err |= (EXIProbeStartTime[chan] != startTime);

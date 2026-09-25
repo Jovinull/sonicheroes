@@ -1,0 +1,411 @@
+#include "types.h"
+#include <dolphin/card.h>
+
+#include "__card.h"
+
+// CARDUnlock.c of the Dolphin SDK memory card library, 0x801EB830 to 0x801ECA90.
+// Boundaries: every function was matched by instruction shape against the
+// reference compiled with GC/1.2.5n, in the library's link order.
+// Reference: doldecomp/dolsdk2004 src/card/CARDUnlock.c (public reconstruction of the
+// Dolphin SDK); this DOL carries the Apr 17 2003 release build of CARD
+// ("<< Dolphin SDK - CARD ... Apr 17 2003 12:34:19 >>"). Compiled with
+// GC/1.2.5n like the other SDK units. The original linker smart-stripped
+// the functions nothing in the game calls; they are still defined here, as in
+// the SDK source, and the linker drops them again.
+//
+// In this build the CARDRand seed is volatile (every use reloads it) and
+// CARDRand computes its result into a local, which keeps an inline stack
+// slot in DummyLen and __CARDUnlock. OSRoundUp32B is the macro, not a call.
+
+// CardData is the 0x160-byte DSP program the unlock sequence uploads. It is
+// original Nintendo microcode, so it is not reproduced here: the bytes stay in
+// the extracted (unowned) .data split at 0x802981E0 and this unit refers to
+// them by name. The original declared it static in this file; the codegen for
+// the address load is the same either way.
+extern u8 CardData[352];
+
+static volatile u32 next = 1;
+
+// prototypes
+static u32 exnor_1st(u32 data, u32 rshift);
+static u32 exnor(u32 data, u32 lshift);
+static u32 bitrev(u32 data);
+static s32 ReadArrayUnlock(s32 chan, u32 data, void* rbuf, s32 rlen, int mode);
+static u32 GetInitVal(void);
+static s32 DummyLen(void);
+static void InitCallback(void* _task);
+static void DoneCallback(void* _task);
+
+static int CARDRand(void)
+{
+	int r;
+
+	next = (next * 0x41C64E6D) + 0x3039;
+	r    = (next / 0x10000) & 0x7FFF;
+	return r;
+}
+
+static void CARDSrand(unsigned int seed)
+{
+	next = seed;
+}
+
+static u32 exnor_1st(u32 data, u32 rshift)
+{
+	u32 wk;
+	u32 work;
+	u32 i;
+
+	work = data;
+	for (i = 0; i < rshift; i++) {
+		wk   = ~(work ^ (work >> 7) ^ (work >> 15) ^ (work >> 23));
+		work = (work >> 1) | ((wk << 30) & 0x40000000);
+	}
+
+	return work;
+}
+
+static u32 exnor(u32 data, u32 lshift)
+{
+	u32 wk;
+	u32 work;
+	u32 i;
+
+	work = data;
+	for (i = 0; i < lshift; i++) {
+		// 1bit Left Shift
+		wk   = ~(work ^ (work << 7) ^ (work << 15) ^ (work << 23));
+		work = (work << 1) | ((wk >> 30) & 0x00000002);
+	}
+
+	return work;
+}
+
+static u32 bitrev(u32 data)
+{
+	u32 wk;
+	u32 i;
+	u32 k = 0;
+	u32 j = 1;
+
+	wk = 0;
+	for (i = 0; i < 32; i++) {
+		if (i > 15) {
+			if (i == 31)
+				wk |= (((data & (0x01 << 31)) >> 31) & 0x01);
+			else {
+				wk |= ((data & (0x01 << i)) >> j);
+				j += 2;
+			}
+		} else {
+			wk |= ((data & (0x01 << i)) << (31 - i - k));
+			k++;
+		}
+	}
+
+	return wk;
+}
+
+#define SEC_AD1(x) ((u8)(((x) >> 29) & 0x03))
+#define SEC_AD2(x) ((u8)(((x) >> 21) & 0xff))
+#define SEC_AD3(x) ((u8)(((x) >> 19) & 0x03))
+#define SEC_BA(x)  ((u8)(((x) >> 12) & 0x7f))
+
+static s32 ReadArrayUnlock(s32 chan, u32 data, void* rbuf, s32 rlen, int mode)
+{
+	CARDControl* card;
+	BOOL err;
+	u8 cmd[5];
+
+	card = &__CARDBlock[chan];
+	if (!EXISelect(chan, 0, CARDFreq))
+		return CARD_RESULT_NOCARD;
+
+	data &= 0xfffff000;
+	memset(cmd, 0, 5);
+	cmd[0] = 0x52;
+	if (mode == 0) {
+		cmd[1] = SEC_AD1(data);
+		cmd[2] = SEC_AD2(data);
+		cmd[3] = SEC_AD3(data);
+		cmd[4] = SEC_BA(data);
+	} else {
+		cmd[1] = (u8)((data & 0xff000000) >> 24);
+		cmd[2] = (u8)((data & 0x00ff0000) >> 16);
+	}
+
+	err = FALSE;
+	err |= !EXIImmEx(chan, cmd, 5, 1);
+	err |= !EXIImmEx(chan, (u8*)card->workArea + (u32)sizeof(CARDID), card->latency, 1);
+	err |= !EXIImmEx(chan, rbuf, rlen, 0);
+	err |= !EXIDeselect(chan);
+
+	return err ? CARD_RESULT_NOCARD : CARD_RESULT_READY;
+}
+
+static u32 GetInitVal(void)
+{
+	u32 tmp;
+	u32 tick;
+
+	tick = OSGetTick();
+	CARDSrand(tick);
+	tmp = 0x7fec8000;
+	tmp |= CARDRand();
+	tmp &= 0xfffff000;
+	return tmp;
+}
+
+static s32 DummyLen(void)
+{
+	u32 tick;
+	u32 wk;
+	s32 tmp;
+	u32 max;
+
+	wk   = 1;
+	max  = 0;
+	tick = OSGetTick();
+	CARDSrand(tick);
+
+	tmp = CARDRand();
+	tmp &= 0x0000001f;
+	tmp += 1;
+	while ((tmp < 4) && (max < 10)) {
+		tick = OSGetTick();
+		tmp  = (s32)(tick << wk);
+		wk++;
+		if (wk > 16)
+			wk = 1;
+		CARDSrand((u32)tmp);
+		tmp = CARDRand();
+		tmp &= 0x0000001f;
+		tmp += 1;
+		max++;
+	}
+
+	if (tmp < 4)
+		tmp = 4;
+
+	return tmp;
+}
+
+s32 __CARDUnlock(s32 chan, u8 flashID[12])
+{
+	u32 init_val;
+	u32 data;
+
+	s32 dummy;
+	s32 rlen;
+	u32 rshift;
+
+	u8 fsts;
+	u32 wk, wk1;
+	u32 Ans1 = 0;
+	u32 Ans2 = 0;
+	u32* dp;
+	u8 rbuf[64];
+	u32 para1A = 0;
+	u32 para1B = 0;
+	u32 para2A = 0;
+	u32 para2B = 0;
+
+	CARDControl* card;
+	DSPTaskInfo* task;
+	CARDDecParam* param;
+	u8* input;
+	u8* output;
+
+	card   = &__CARDBlock[chan];
+	task   = &card->task;
+	param  = (CARDDecParam*)card->workArea;
+	input  = (u8*)((u8*)param + sizeof(CARDDecParam));
+	input  = (u8*)OSRoundUp32B(input);
+	output = input + 32;
+
+	fsts     = 0;
+	init_val = GetInitVal();
+
+	dummy = DummyLen();
+	rlen  = dummy;
+	if (ReadArrayUnlock(chan, init_val, rbuf, rlen, 0) < 0)
+		return CARD_RESULT_NOCARD;
+
+	rshift         = (u32)(dummy * 8 + 1);
+	wk             = exnor_1st(init_val, rshift);
+	wk1            = ~(wk ^ (wk >> 7) ^ (wk >> 15) ^ (wk >> 23));
+	card->scramble = (wk | ((wk1 << 31) & 0x80000000));
+	card->scramble = bitrev(card->scramble);
+	dummy          = DummyLen();
+	rlen           = 20 + dummy;
+	data           = 0;
+	if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0)
+		return CARD_RESULT_NOCARD;
+
+	dp             = (u32*)rbuf;
+	para1A         = *dp++;
+	para1B         = *dp++;
+	Ans1           = *dp++;
+	para2A         = *dp++;
+	para2B         = *dp++;
+	para1A         = (para1A ^ card->scramble);
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+	para1B         = (para1B ^ card->scramble);
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+	Ans1 ^= card->scramble;
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+	para2A         = (para2A ^ card->scramble);
+	rshift         = 32;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+	para2B         = (para2B ^ card->scramble);
+	rshift         = (u32)(dummy * 8);
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+	rshift         = 32 + 1;
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+	*(u32*)&input[0] = para2A;
+	*(u32*)&input[4] = para2B;
+
+	param->inputAddr   = input;
+	param->inputLength = 8;
+	param->outputAddr  = output;
+	param->aramAddr    = 0;
+
+	DCFlushRange(input, 8);
+	DCInvalidateRange(output, 4);
+	DCFlushRange(param, sizeof(CARDDecParam));
+
+	task->priority        = 255;
+	task->iram_mmem_addr  = (u16*)OSCachedToPhysical(CardData);
+	task->iram_length     = 0x160;
+	task->iram_addr       = 0;
+	task->dsp_init_vector = 0x10;
+	task->init_cb         = InitCallback;
+	task->res_cb          = NULL;
+	task->done_cb         = DoneCallback;
+	task->req_cb          = NULL;
+	DSPAddTask(task);
+
+	dp    = (u32*)flashID;
+	*dp++ = para1A;
+	*dp++ = para1B;
+	*dp   = Ans1;
+
+	return CARD_RESULT_READY;
+}
+
+static void InitCallback(void* _task)
+{
+	s32 chan;
+	CARDControl* card;
+	DSPTaskInfo* task;
+	CARDDecParam* param;
+
+	task = _task;
+	for (chan = 0; chan < 2; ++chan) {
+		card = &__CARDBlock[chan];
+		if ((DSPTaskInfo*)&card->task == task)
+			break;
+	}
+
+	param = (CARDDecParam*)card->workArea;
+
+	DSPSendMailToDSP(0xff000000);
+	while (DSPCheckMailToDSP())
+		;
+
+	DSPSendMailToDSP((u32)param);
+	while (DSPCheckMailToDSP())
+		;
+}
+
+static void DoneCallback(void* _task)
+{
+	u8 rbuf[64];
+	u32 data;
+	s32 dummy;
+	s32 rlen;
+	u32 rshift;
+
+	u8 unk;
+	u32 wk, wk1;
+	u32 Ans2;
+
+	s32 chan;
+	CARDControl* card;
+	s32 result;
+	DSPTaskInfo* task;
+	CARDDecParam* param;
+
+	u8* input;
+	u8* output;
+	task = _task;
+	for (chan = 0; chan < 2; ++chan) {
+		card = &__CARDBlock[chan];
+		if ((DSPTaskInfo*)&card->task == task)
+			break;
+	}
+
+	param  = (CARDDecParam*)card->workArea;
+	input  = (u8*)((u8*)param + sizeof(CARDDecParam));
+	input  = (u8*)OSRoundUp32B(input);
+	output = input + 32;
+
+	Ans2  = *(u32*)output;
+	dummy = DummyLen();
+	rlen  = dummy;
+	data  = ((Ans2 ^ card->scramble) & 0xffff0000);
+	if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
+		EXIUnlock(chan);
+		__CARDMountCallback(chan, CARD_RESULT_NOCARD);
+		return;
+	}
+
+	rshift         = (u32)((dummy + 4 + card->latency) * 8 + 1);
+	wk             = exnor(card->scramble, rshift);
+	wk1            = ~(wk ^ (wk << 7) ^ (wk << 15) ^ (wk << 23));
+	card->scramble = (wk | ((wk1 >> 31) & 0x00000001));
+
+	dummy = DummyLen();
+	rlen  = dummy;
+	data  = (((Ans2 << 16) ^ card->scramble) & 0xffff0000);
+	if (ReadArrayUnlock(chan, data, rbuf, rlen, 1) < 0) {
+		EXIUnlock(chan);
+		__CARDMountCallback(chan, CARD_RESULT_NOCARD);
+		return;
+	}
+
+	result = __CARDReadStatus(chan, &unk);
+	if (!EXIProbe(chan)) {
+		EXIUnlock(chan);
+		__CARDMountCallback(chan, CARD_RESULT_NOCARD);
+		return;
+	}
+
+	if (result == CARD_RESULT_READY && !(unk & 0x40)) {
+		EXIUnlock(chan);
+		result = CARD_RESULT_IOERROR;
+	}
+
+	__CARDMountCallback(chan, result);
+}
