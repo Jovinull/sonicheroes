@@ -5,6 +5,7 @@
 #include "MSL_C/string.h"
 #include "cri/sj.h"
 #include "dolphin/ax.h"
+#include "dolphin/mix.h"
 #include "dolphin/arq.h"
 #include "dolphin/os/OSCache.h"
 
@@ -42,7 +43,7 @@ struct AxRna {
 	/* 0x02 */ s8 nch;
 	/* 0x03 */ s8 idx;
 	/* 0x04 */ s32 loopReq;
-	/* 0x08 */ AxVoice* obj[2];
+	/* 0x08 */ AXVPB* obj[2];
 	/* 0x10 */ RnaResHandle* cb[2];
 	/* 0x18 */ s32 loopStart[2];
 	/* 0x20 */ s32 loopLen;
@@ -156,7 +157,7 @@ void fn_80223500(AxRna* p, s32 ch, s32 v)
 	p->pan[ch] = n;
 	fn_802234B0();
 	if (p->obj[ch] != NULL) {
-		fn_801E89CC(p->obj[ch], ax_PanTbl[n + 15]);
+		MIXSetPan(p->obj[ch], ax_PanTbl[n + 15]);
 	}
 	fn_80223490();
 }
@@ -179,28 +180,28 @@ void fn_802235B4(AxRna* p, s32 v)
 		fn_802234B0();
 		channelVolume = n;
 		if (p->obj[i] != NULL) {
-			fn_801E89A4(p->obj[i], channelVolume);
+			MIXSetInput(p->obj[i], channelVolume);
 		}
 		fn_80223490();
 	}
 }
 
-static inline void ax_ApplyVoiceRate(AxRna* p, s32 channel, AxVoiceRate* buf)
+static inline void ax_ApplyVoiceRate(AxRna* p, s32 channel, AXPBSRC* buf)
 {
-	buf->fraction   = 0;
-	buf->samples[0] = 0;
-	buf->samples[1] = 0;
-	buf->samples[2] = 0;
-	buf->samples[3] = 0;
-	fn_801E48D0(p->obj[channel], p->rateBias);
-	fn_801E4DF8(p->obj[channel], buf);
+	buf->currentAddressFrac = 0;
+	buf->last_samples[0]    = 0;
+	buf->last_samples[1]    = 0;
+	buf->last_samples[2]    = 0;
+	buf->last_samples[3]    = 0;
+	AXSetVoiceSrcType(p->obj[channel], p->rateBias);
+	AXSetVoiceSrc(p->obj[channel], buf);
 }
 
-static inline void ax_FillAdjustedRate(AxVoiceRate* buf, s32 rate)
+static inline void ax_FillAdjustedRate(AXPBSRC* buf, s32 rate)
 {
 	u32 unsignedRate = (u32)rate;
-	buf->ratioHigh   = unsignedRate / 32000;
-	buf->ratioLow    = (unsignedRate << 8) / 125;
+	buf->ratioHi     = unsignedRate / 32000;
+	buf->ratioLo     = (unsignedRate << 8) / 125;
 }
 void fn_80223660(AxRna* p, s32 v)
 {
@@ -219,7 +220,7 @@ void fn_80223660(AxRna* p, s32 v)
 	for (i = 0; i < p->nch; i++) {
 		fn_802234B0();
 		if (p->obj[i] != NULL) {
-			AxVoiceRate buf;
+			AXPBSRC buf;
 			if (p->rateMode == 1) {
 				if (v == 32000 && p->rateFlag == 0 && p != NULL) {
 					p->rateBias = 0;
@@ -227,8 +228,8 @@ void fn_80223660(AxRna* p, s32 v)
 				}
 				ax_FillAdjustedRate(&buf, adj);
 			} else {
-				buf.ratioHigh = whole;
-				buf.ratioLow  = frac;
+				buf.ratioHi = whole;
+				buf.ratioLo = frac;
 			}
 			ax_ApplyVoiceRate(p, i, &buf);
 		}
@@ -302,7 +303,7 @@ void fn_80223820(AxRna* p)
 		u8* reqp = (u8*)p;
 
 		for (i = 0; i < p->idx; objp += 4, bufp += 8, reqp += 0x20, i++) {
-			if (*(AxVoice**)(objp + 8) != NULL && *(s32*)(objp + 0x60) == 0) {
+			if (*(AXVPB**)(objp + 8) != NULL && *(s32*)(objp + 0x60) == 0) {
 				(*(CriStream**)(objp + 0x38))
 				    ->vtbl->read(*(CriStream**)(objp + 0x38), 0, 0x2000, &second);
 				(*(CriStream**)(objp + 0x30))
@@ -514,15 +515,15 @@ void fn_80223F2C(AxRna* p, s32 sw)
 				buf[5]      = endLo;
 				buf[6]      = (s16)(current >> 16);
 				buf[7]      = (s16)current;
-				fn_801E4C44(p->obj[i], buf);
-				fn_801E4994(p->obj[i], 1);
+				AXSetVoiceAddr(p->obj[i], (AXPBADDR*)buf);
+				AXSetVoiceState(p->obj[i], 1);
 			}
 		}
 		p->flags |= 2;
 	} else if (sw == 0) {
 		for (i = 0; i < p->idx; i++) {
 			if (p->obj[i] != NULL) {
-				fn_801E4994(p->obj[i], 0);
+				AXSetVoiceState(p->obj[i], 0);
 			}
 		}
 		for (i = 0; i < p->nch; i++) {
@@ -619,8 +620,8 @@ void fn_802242CC(AxRna* p)
 		}
 		fn_802234B0();
 		if (p->obj[i] != NULL) {
-			fn_801E8984(p->obj[i]);
-			fn_801E221C(p->obj[i]);
+			MIXReleaseChannel(p->obj[i]);
+			AXFreeVoice(p->obj[i]);
 		}
 		fn_80223490();
 	}
@@ -712,14 +713,14 @@ AxRna* fn_8022439C(CriStream** sj, s32 maxnch)
 				fn_802242CC(p);
 				return NULL;
 			}
-			if ((p->obj[i] = fn_801E229C(31, fn_80224A88, 0)) == NULL) {
+			if ((p->obj[i] = AXAcquireVoice(31, (void (*)(void*))fn_80224A88, 0)) == NULL) {
 				fn_80223424(rodata + 0x1D0);
 				fn_802242CC(p);
 				return NULL;
 			}
 			fn_802234B0();
 			if (p->obj[i] != NULL) {
-				fn_801E7B08(p->obj[i], 3, p->vol, p->voiceParam[1], p->voiceParam[2], 0x40,
+				MIXInitChannel(p->obj[i], 3, p->vol, p->voiceParam[1], p->voiceParam[2], 0x40,
 				    p->voiceParam[0], p->voiceParam[3]);
 			}
 			fn_80223490();
@@ -741,7 +742,7 @@ AxRna* fn_8022439C(CriStream** sj, s32 maxnch)
 	return p;
 }
 
-void fn_80224A88(AxVoice* obj)
+void fn_80224A88(AXVPB* obj)
 {
 	s32 i;
 	s32 j;
@@ -749,7 +750,7 @@ void fn_80224A88(AxVoice* obj)
 	for (i = 0; i < AX_RNA_MAX; i++) {
 		for (j = 0; j < 2; j++) {
 			if (obj == ax_Tbl[i].obj[j]) {
-				fn_801E8984(ax_Tbl[i].obj[j]);
+				MIXReleaseChannel(ax_Tbl[i].obj[j]);
 				ax_Tbl[i].obj[j] = NULL;
 				return;
 			}

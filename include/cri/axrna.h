@@ -27,7 +27,7 @@ void fn_80223F2C(AxRna* handle, s32 enabled);
 void fn_802240CC(AxRna* handle, s32 enabled);
 void fn_802242CC(AxRna* handle);
 AxRna* fn_8022439C(CriStream** streams, s32 channelCount);
-void fn_80224A88(AxVoice* voice);
+void fn_80224A88(AXVPB* voice);
 void fn_80224B1C(void);
 void fn_80224C3C(void);
 void fn_80224CB0(CriErrFunc function, void* object);
