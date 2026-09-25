@@ -852,6 +852,20 @@ dolphin/ar/arq.c:
 	.sdata      start:0x8042BFD0 end:0x8042BFD8
 	.sbss       start:0x8042CD68 end:0x8042CD90
 
+dolphin/dsp/dsp.c:
+	.text       start:0x801E9AB4 end:0x801E9D44
+	.data       start:0x80297FB0 end:0x80298030
+	.sdata      start:0x8042BFF0 end:0x8042BFF8
+	.sbss       start:0x8042CE78 end:0x8042CE80
+
+dolphin/dsp/dsp_debug.c:
+	.text       start:0x801E9D44 end:0x801E9D94
+
+dolphin/dsp/dsp_task.c:
+	.text       start:0x801E9D94 end:0x801EA618
+	.data       start:0x80298030 end:0x80298170
+	.sbss       start:0x8042CE80 end:0x8042CE98
+
 dolphin/gx/GXInit.c:
 	.text       start:0x801F0BE0 end:0x801F1F60
 	.data       start:0x80298380 end:0x802985C0
