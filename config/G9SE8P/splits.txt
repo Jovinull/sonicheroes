@@ -768,6 +768,10 @@ dolphin/os/OSTime.c:
 Runtime.PPCEABI.H/__ppc_eabi_init.c:
 	.text       start:0x801D762C end:0x801D76C4
 
+dolphin/mtx/mtx.c:
+	.text       start:0x801D76C4 end:0x801D7790
+	.sdata      start:0x8042BF50 end:0x8042BF58
+
 Runtime.PPCEABI.H/__mem.c:
 	.init       start:0x80003100 end:0x80003238
 
@@ -1072,6 +1076,10 @@ dolphin/exi/EXIBios.c:
 	.text       start:0x801FA418 end:0x801FBDF4
 	.bss        start:0x8040EA90 end:0x8040EB50
 	.sbss       start:0x8042CF30 end:0x8042CF34
+
+dolphin/exi/EXIUart.c:
+	.text       start:0x801FBDF4 end:0x801FC3C8
+	.sbss       start:0x8042CF38 end:0x8042CF48
 
 game/cri/gcci.c:
 	.text       start:0x8021E3D8 end:0x8021F410

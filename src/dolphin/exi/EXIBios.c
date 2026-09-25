@@ -7,7 +7,7 @@
 // of EXIGetID at 0x801FBDF4. The unit was previously split at EXIImm; the
 // 0xF4 bytes before it are SetExiInterruptMask, which is the first function of
 // the SDK's EXIBios.c, so the split now starts there. After the unit is
-// __OSEnableBarnacle, which belongs to OS.
+// EXIUart.c, starting with its static ProbeBarnacle.
 //
 // The public functions EXIImmEx, EXISetExiCallback, EXIProbe, EXIProbeEx,
 // EXIAttach, EXIDetach and EXIGetState were first identified by structure;

@@ -378,6 +378,7 @@ config.libs = [
             # exit returns collapse into bnelr, neither of which the original
             # has.
             Object(Matching, "dolphin/os/OS.c", extra_cflags=["-opt nopeephole"]),
+            Object(Matching, "dolphin/mtx/mtx.c", extra_cflags=["-char signed"]),
             Object(Matching, "dolphin/dvd/dvdlow.c"),
             Object(Matching, "dolphin/dvd/dvdfs.c"),
             Object(Matching, "dolphin/dvd/dvd.c"),
@@ -457,6 +458,7 @@ config.libs = [
                 ],
             ),
             Object(Matching, "dolphin/exi/EXIBios.c", extra_cflags=["-opt noschedule"]),
+            Object(Matching, "dolphin/exi/EXIUart.c"),
             Object(Matching, "dolphin/si/SIBios.c", extra_cflags=["-inline level=1"]),
             Object(Matching, "dolphin/si/SISamplingRate.c"),
             Object(Matching, "dolphin/os/OSInterrupt.c"),
