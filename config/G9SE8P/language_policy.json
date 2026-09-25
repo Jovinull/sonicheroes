@@ -28,7 +28,6 @@
     "game/cri/sj.c",
     "game/cri/sjcrs.c",
     "game/cri/sjuni.c",
-    "game/cri/svm.c",
     "game/rw_gcn_allinone.c",
     "game/rw_gcn_core.c",
     "game/rw_gcn_raster.c",
@@ -52,6 +51,7 @@
     "game/cri/rnares.c",
     "game/cri/sjmem.c",
     "game/cri/sjrbf.c",
+    "game/cri/svm.c",
     "game/skyfs_adx.c",
     "movieD/cri/sfx.c"
   ],

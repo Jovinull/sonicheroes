@@ -1,4 +1,6 @@
-#include "types.h"
+#include "cri/sfxahn.h"
+#include "MSL_C/string.h"
+#include "cri/sfxtables.h"
 
 // CRI SFX for GameCube: the alpha handle table.
 //
@@ -26,13 +28,13 @@
 // copy inside fn_17_E9C0. fn_17_EA40 and fn_17_EA80 really are the same
 // function twice.
 
-typedef struct SfxAHn {
-	s32 used;  // 0x00
-	s32 unk4;  // 0x04
-	s32 unk8;  // 0x08
-	s32 unkC;  // 0x0C
-	s32 unk10; // 0x10
-} SfxAHn;
+struct SfxAHn {
+	s32 used;     // 0x00
+	s32 unk_0x04; // 0x04
+	s32 unk_0x08; // 0x08
+	s32 unk_0x0C; // 0x0C
+	s32 unk_0x10; // 0x10
+};
 
 typedef struct SfxAGlobals {
 	s32 numHn;    // 0x00
@@ -40,31 +42,28 @@ typedef struct SfxAGlobals {
 	SfxAHn hn[8]; // 0x08
 } SfxAGlobals;
 
-extern void* memset(void* dst, int fill, u32 len);
-
-extern void fn_17_5CC3C(void*);
-extern void fn_17_5D4D0(s32, s32, s32, void*);
-
+/* Private binding is inferred from references confined to this unit, not
+ * recovered from an original symbol table. */
 static SfxAGlobals lbl_17_bss_588;
 
 void fn_17_E89C(SfxAHn* hn, s32* arg1, s32* arg2, s32* arg3)
 {
-	*arg3 = hn->unk8;
-	*arg1 = hn->unkC;
-	*arg2 = hn->unk10;
+	*arg3 = hn->unk_0x08;
+	*arg1 = hn->unk_0x0C;
+	*arg2 = hn->unk_0x10;
 }
 
 void fn_17_E8B8(SfxAHn* hn, s32 arg1, s32 arg2, s32 arg3)
 {
-	hn->unk8  = arg3;
-	hn->unkC  = arg1;
-	hn->unk10 = arg2;
-	hn->unk4  = 1;
+	hn->unk_0x08 = arg3;
+	hn->unk_0x0C = arg1;
+	hn->unk_0x10 = arg2;
+	hn->unk_0x04 = 1;
 }
 
 s32 fn_17_E8D0(SfxAHn* hn)
 {
-	return hn->unk4;
+	return hn->unk_0x04;
 }
 
 void fn_17_E8D8(SfxAHn* hn, s32 arg1, void* arg2)
@@ -74,8 +73,8 @@ void fn_17_E8D8(SfxAHn* hn, s32 arg1, void* arg2)
 
 void fn_17_E8FC(SfxAHn* hn, s32 arg1, void* arg2)
 {
-	fn_17_5D4D0(hn->unk8, hn->unkC, hn->unk10, arg2);
-	hn->unk4 = 0;
+	fn_17_5D4D0(hn->unk_0x08, hn->unk_0x0C, hn->unk_0x10, arg2);
+	hn->unk_0x04 = 0;
 }
 
 void fn_17_E940(SfxAHn* hn)
@@ -88,10 +87,10 @@ void fn_17_E940(SfxAHn* hn)
 
 void fn_17_E964(SfxAHn* hn)
 {
-	hn->unk8  = 0;
-	hn->unkC  = 0x1F;
-	hn->unk10 = 0x64;
-	hn->unk4  = 1;
+	hn->unk_0x08 = 0;
+	hn->unk_0x0C = 0x1F;
+	hn->unk_0x10 = 0x64;
+	hn->unk_0x04 = 1;
 }
 
 SfxAHn* fn_17_E988(void)

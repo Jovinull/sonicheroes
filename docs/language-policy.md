@@ -149,6 +149,12 @@ boundary and belongs beside the other `sfx*.c` sources, but the matching
 GameCube build requires CodeWarrior's C++ declaration-order `.bss` emission
 instead of its C first-reference order.
 
+`game/cri/svm.c` likewise retains its reviewed CRI C ABI boundary and C path
+while using C++ declaration-order `.bss` emission. Correlated PS2 scalar and
+callback symbols support the separate-global source structure; native GameCube
+code, data, and relocations establish the compiler-mode requirement. This is
+not evidence of a historical C++ source extension.
+
 `game/skyfs_adx.c` is positively identified as C by the PS2 beta DWARF
 filename and language metadata, while its GameCube object requires
 CodeWarrior's C++ compilation path. The same evidence establishes that the

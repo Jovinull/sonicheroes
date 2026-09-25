@@ -784,7 +784,7 @@ void fn_80224C3C(void)
 	ax_RefCnt++;
 }
 
-void fn_80224CB0(void* func, void* obj)
+void fn_80224CB0(CriErrFunc func, void* obj)
 {
 	fn_8022347C(func, obj);
 }
