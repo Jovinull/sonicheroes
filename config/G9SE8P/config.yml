@@ -35,6 +35,9 @@ force_active:
 block_relocations:
   - source: .data:0x8027D768
   - source: .data:0x80288154
+# A game-data word that happens to equal an address inside ansi_fp.c's
+# __two_exp jump table.
+  - source: .data:0x80287E54
 
 # 18 REL modules ship with main.dol. One per stage, plus advertise (attract
 # mode), autosave and movie.

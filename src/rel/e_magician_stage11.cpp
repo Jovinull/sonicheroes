@@ -216,7 +216,7 @@ void* fn_8019E8EC(void*);                                               /* exter
 M2C_UNK fn_8019EB94(void*, u8*, s32);                                   /* extern */
 M2C_UNK fn_8019EC30(void*, u8*, s32);                                   /* extern */
 M2C_UNK fn_8019ED68(...);                                               /* extern */
-s32 fn_801C28D8(...);                                                   /* extern */
+s32 rand(...);                                                          /* extern */
 M2C_UNK fn_8_B0300(TEnemyParalysis*);                                   /* extern */
 u32 fn_8_B08F0();                                                       /* extern */
 void fn_8_AE604(TEnemyParalysis* arg0);                                 /* static */
@@ -630,11 +630,11 @@ void fn_8_AD260(void* arg0, s32 arg1)
 					}
 				}
 				if (var_r30 == 0) {
-					sp8[0]  = lbl_8_rodata_1AC8;
-					sp8[1]  = lbl_8_rodata_1AC8;
-					sp8[2]  = M2C_FIELD(arg0, f32*, 0x25C);
-					temp_f3 = (lbl_8_rodata_1B38
-					              * (lbl_8_rodata_1ACC * (f32)fn_801C28D8(&lbl_8_rodata_1AC8)))
+					sp8[0] = lbl_8_rodata_1AC8;
+					sp8[1] = lbl_8_rodata_1AC8;
+					sp8[2] = M2C_FIELD(arg0, f32*, 0x25C);
+					temp_f3
+					    = (lbl_8_rodata_1B38 * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AC8)))
 					    - lbl_8_rodata_1B3C;
 					fn_80195A74(&sp14, &lbl_80239984, 0,
 					    lbl_8_rodata_1B30
@@ -746,7 +746,7 @@ void fn_8_AE4C0(void* arg0)
 	sp8[0]  = lbl_8_rodata_1AC8;
 	sp8[1]  = lbl_8_rodata_1AC8;
 	sp8[2]  = M2C_FIELD(arg0, f32*, 0x25C);
-	temp_f3 = (lbl_8_rodata_1B38 * (lbl_8_rodata_1ACC * (f32)fn_801C28D8(&lbl_8_rodata_1AC8)))
+	temp_f3 = (lbl_8_rodata_1B38 * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AC8)))
 	    - lbl_8_rodata_1B3C;
 	fn_80195A74(&sp14, &lbl_80239984, 0,
 	    lbl_8_rodata_1B30
@@ -949,9 +949,8 @@ void fn_8_AEB80(TEnemyParalysis* arg0)
 	sp8[0]       = lbl_8_rodata_1AC8;
 	sp8[1]       = lbl_8_rodata_1AC8;
 	sp8[2]       = arg0->unk25C;
-	temp_f3      = (lbl_8_rodata_1B38
-	                   * (lbl_8_rodata_1ACC
-	                       * (f32)fn_801C28D8(&lbl_8_rodata_1AE8, temp_r4, lbl_8_rodata_1AC8)))
+	temp_f3 = (lbl_8_rodata_1B38
+	              * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AE8, temp_r4, lbl_8_rodata_1AC8)))
 	    - lbl_8_rodata_1B3C;
 	fn_80195A74(&sp14, &lbl_80239984, 0,
 	    lbl_8_rodata_1B30 + (lbl_8_rodata_1B34 * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10)) + temp_f3,

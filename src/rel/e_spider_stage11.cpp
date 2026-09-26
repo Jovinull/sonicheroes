@@ -67,7 +67,7 @@ M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK); /* extern */
 M2C_UNK fn_8019E880(s32);                              /* extern */
 M2C_UNK fn_8019EB94(s32, s32*, ...);                   /* extern */
 M2C_UNK fn_801A4C84(u32);                              /* extern */
-s32 fn_801C28D8(f32*);                                 /* extern */
+s32 rand(f32*);                                        /* extern */
 M2C_UNK fn_8_C2398(s32);                               /* extern */
 void s11spiderObjectCreate();                          /* static */
 void s11spiderObjectLoad(M2C_UNK arg_sp0);             /* static */
@@ -381,8 +381,7 @@ void fn_8_C2DE4(void* arg0)
 		M2C_FIELD(arg0, s32*, 0xD4) = 0;
 		temp_f30_3                  = lbl_8_data_181A4;
 		M2C_FIELD(arg0, f32*, 0xDC) = (f32)(temp_f30_3
-		    - ((temp_f30_3 - lbl_8_data_181A8)
-		        * (0.000030517578f * (f32)fn_801C28D8(&lbl_8_data_181A4))));
+		    - ((temp_f30_3 - lbl_8_data_181A8) * (0.000030517578f * (f32)rand(&lbl_8_data_181A4))));
 	}
 	temp_r4 = (s32)M2C_FIELD(arg0, s32*, 0xD4) / (s32)lbl_8_data_181A0;
 	temp_r6 = M2C_FIELD(arg0, s32*, 0xD4) % lbl_8_data_181A0;

@@ -6,12 +6,16 @@ typedef void (*__ExitProc)(void);
 
 extern void __destroy_global_chain(void);
 extern __ExitProc _dtors[];
-extern __ExitProc __stdio_exit;
-extern __ExitProc __console_exit;
 extern void _ExitProcess(void);
-extern void fn_801C3940(s32 signal);
+extern void raise(s32 signal);
 
 static __ExitProc __atexit_funcs[64];
+
+// The stdio and console shutdown hooks are this unit's too: they sit in its
+// .sbss right after __atexit_curr_func. Small-data statics are laid out in
+// reverse declaration order, hence the order here.
+__ExitProc __console_exit;
+__ExitProc __stdio_exit;
 static s32 __atexit_curr_func;
 s32 __aborting;
 
@@ -45,7 +49,7 @@ void exit(int status)
 
 void abort(void)
 {
-	fn_801C3940(1);
+	raise(1);
 	__aborting = 1;
 
 	while (__atexit_curr_func > 0) {

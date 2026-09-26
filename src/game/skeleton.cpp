@@ -71,7 +71,7 @@ char* fn_80012EA0(const char*);
 void fn_80012E5C(void*);
 RsEventStatus AppEventHandler(int, void*);
 int fn_80012C08(int);
-int fn_801C3C04(void*, const char*);
+int strcmp(void*, const char*);
 int fn_801A0470(const char*, void*, int);
 void fn_80176DC8();
 void fn_801922D8();
@@ -258,7 +258,7 @@ extern "C" RsEventStatus RsEventHandler(int event, void* param)
 				break;
 			case 28:
 				int found;
-				if (fn_801C3C04(param, "-vms") == 0) {
+				if (strcmp(param, "-vms") == 0) {
 					sUseVideoMode = 0;
 					found         = 1;
 				} else {

@@ -89,7 +89,7 @@ extern void* lbl_8042C298;
 extern u8 lbl_8029C310[];
 extern char lbl_802FF5A0[];
 void fn_800BC9F4(void*, char*);
-s32 fn_801C3C04(char*, char*);
+s32 strcmp(char*, char*);
 char* strcpy(char*, const char*);
 s32 fn_800BC6CC(void*, s32);
 void* fn_800BB92C(void*, s32, char*);
@@ -299,7 +299,7 @@ extern "C" void initObjS01Stull()
 	}
 	if (entry->stage < 0)
 		entry = lbl_3_data_B4AC;
-	if (fn_801C3C04(entry->name, stullEmpty) == 0)
+	if (strcmp(entry->name, stullEmpty) == 0)
 		strcpy(entry->name, lbl_802FF5A0);
 	s32 asset     = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), entry->asset);
 	stullResource = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), asset, entry->name);

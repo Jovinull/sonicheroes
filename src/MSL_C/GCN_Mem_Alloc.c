@@ -37,7 +37,10 @@ static inline void InitDefaultHeap(void)
 	OSSetArenaLo(arenaHi);
 }
 
-void free(void* ptr)
+// The two system hooks under MSL's pool allocator (alloc.c), which is what
+// the game's malloc and free are. The names follow the MSL source; this file
+// first carried them as free and malloc.
+void __sys_free(void* ptr)
 {
 	if (__OSCurrHeap == -1)
 		InitDefaultHeap();
@@ -45,7 +48,7 @@ void free(void* ptr)
 	OSFreeToHeap(__OSCurrHeap, ptr);
 }
 
-void* malloc(u32 size)
+void* __sys_alloc(u32 size)
 {
 	if (__OSCurrHeap == -1)
 		InitDefaultHeap();

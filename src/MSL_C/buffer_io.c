@@ -25,8 +25,8 @@ enum {
 	__dont_align_buffer,
 };
 
-extern void fn_801BB540(void*);
-extern void* fn_801BB674(u32);
+extern void free(void*);
+extern void* malloc(u32);
 extern s32 fflush(FILE*);
 
 static inline void prep_buffer(FILE* file)
@@ -51,7 +51,7 @@ s32 setvbuf(FILE* file, char* buffer, s32 mode, u32 size)
 		return -1;
 
 	if (file->buffer != 0 && file->state.free_buffer)
-		fn_801BB540(file->buffer);
+		free(file->buffer);
 
 	file->mode.buffer_mode  = mode;
 	file->state.free_buffer = 0;
@@ -67,7 +67,7 @@ s32 setvbuf(FILE* file, char* buffer, s32 mode, u32 size)
 	}
 
 	if (buffer == 0) {
-		buffer = fn_801BB674(size);
+		buffer = malloc(size);
 		if (buffer == 0)
 			return -1;
 		file->state.free_buffer = 1;

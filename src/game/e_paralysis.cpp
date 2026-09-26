@@ -85,7 +85,7 @@ void fn_8019EB94(void*, const void*, s32);
 void fn_8019EC30(void*, const void*, s32);
 void fn_8019ED68(void*, const void*, f32, s32);
 s32 fn_8019CE34(void*, const void*);
-s32 fn_801C28D8();
+s32 rand();
 void fn_800B4A38(void*, s32, const void*, s32, s32, s32, s32);
 void fn_80113940();
 void fn_801138B4();
@@ -236,8 +236,8 @@ void TEnemyParalysis::Exec()
 	switch (state) {
 		case 0:
 			if (enabled != 0) {
-				velocity.x = lbl_8042E988 * (lbl_8042E98C * fn_801C28D8());
-				velocity.y = lbl_8042E988 * (lbl_8042E98C * fn_801C28D8());
+				velocity.x = lbl_8042E988 * (lbl_8042E98C * rand());
+				velocity.y = lbl_8042E988 * (lbl_8042E98C * rand());
 				velocity.z = lbl_8042E990;
 				state      = 1;
 				timer      = activeFrames;

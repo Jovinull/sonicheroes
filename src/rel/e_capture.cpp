@@ -358,7 +358,7 @@ M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                    /* extern */
 M2C_UNK fn_8019EC30(RwFrame*, f32*, M2C_UNK);                     /* extern */
 M2C_UNK fn_8019ECCC(RwFrame*, void*, M2C_UNK);                    /* extern */
 M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);                /* extern */
-s32 fn_801C28D8(void*, ...);                                      /* extern */
+s32 rand(void*, ...);                                             /* extern */
 M2C_UNK fn_8_90B10(s32);                                          /* extern */
 void** fn_8_9DCE8();                                              /* extern */
 M2C_UNK fn_8_9E43C(TObject*);                                     /* extern */
@@ -1922,11 +1922,10 @@ void fn_8_9A710(void* arg0, s32 arg1)
 					}
 				}
 				if (var_r30 != 0) {
-					sp8[0] = 0.0f;
-					sp8[1] = 0.0f;
-					sp8[2] = M2C_FIELD(arg0, f32*, 0x254);
-					temp_f3
-					    = (160.0f * (0.000030517578f * (f32)fn_801C28D8((void*)lbl_8_rodata_1704)))
+					sp8[0]  = 0.0f;
+					sp8[1]  = 0.0f;
+					sp8[2]  = M2C_FIELD(arg0, f32*, 0x254);
+					temp_f3 = (160.0f * (0.000030517578f * (f32)rand((void*)lbl_8_rodata_1704)))
 					    - 80.0f;
 					fn_80195A74(&sp14, &lbl_80239984, 0,
 					    180.0f
@@ -2424,7 +2423,7 @@ void fn_8_9B69C(void* arg0)
 	sp8[0]  = 0.0f;
 	sp8[1]  = 0.0f;
 	sp8[2]  = M2C_FIELD(arg0, f32*, 0x254);
-	temp_f3 = (160.0f * (0.000030517578f * (f32)fn_801C28D8((void*)lbl_8_rodata_1704))) - 80.0f;
+	temp_f3 = (160.0f * (0.000030517578f * (f32)rand((void*)lbl_8_rodata_1704))) - 80.0f;
 	fn_80195A74(&sp14, &lbl_80239984, 0,
 	    180.0f + (0.005493164f * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
 	        + temp_f3,
@@ -2687,8 +2686,7 @@ void fn_8_9C054(TObject* arg0)
 	sp8[1]       = 0.0f;
 	sp8[2]       = arg0->unk254;
 	temp_f3
-	    = (160.0f * (0.000030517578f * (f32)fn_801C28D8((void*)lbl_8_rodata_1710, temp_r4, 0.0f)))
-	    - 80.0f;
+	    = (160.0f * (0.000030517578f * (f32)rand((void*)lbl_8_rodata_1710, temp_r4, 0.0f))) - 80.0f;
 	fn_80195A74(&sp14, &lbl_80239984, 0,
 	    180.0f + (0.005493164f * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10)) + temp_f3, 180.0f,
 	    temp_f3);

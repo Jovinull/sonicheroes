@@ -196,7 +196,7 @@ M2C_UNK fn_8019EB94(s32, void*, M2C_UNK);                                 /* ext
 M2C_UNK fn_8019ECCC(s32, void*, M2C_UNK);                                 /* extern */
 M2C_UNK fn_8019ED68(...);                                                 /* extern */
 M2C_UNK fn_801B95EC(s32, struct _struct_lbl_8_data_15E0C_0xC (*)[], s32); /* extern */
-s32 fn_801C28D8();                                                        /* extern */
+s32 rand();                                                               /* extern */
 s32 fn_8_9832C(s32);                                                      /* extern */
 s32 fn_8_98464(u32);                                                      /* extern */
 M2C_UNK fn_8_98480(void*);                                                /* extern */
@@ -1862,7 +1862,7 @@ void fn_8_A04A8(void* arg0, s32 arg1)
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x274);
 			switch (temp_r0) { /* switch 2; irregular */
 				case 0:        /* switch 2 */
-					if ((0.000030517578f * (f32)fn_801C28D8()) < 0.5f) {
+					if ((0.000030517578f * (f32)rand()) < 0.5f) {
 						fn_8_D8E90(0x13, 0, -1);
 					} else {
 						fn_8_D8E90(0x14, 0, -1);
@@ -2104,7 +2104,7 @@ void fn_8_A0A30(void* arg0, s32 arg1, s32 arg2)
 					temp_r0 = M2C_FIELD(arg0, s32*, 0x274);
 					switch (temp_r0) { /* switch 4; irregular */
 						case 0:        /* switch 4 */
-							if ((0.000030517578f * (f32)fn_801C28D8()) < 0.5f) {
+							if ((0.000030517578f * (f32)rand()) < 0.5f) {
 								fn_8_D8E90(0x13, 0, -1);
 							} else {
 								fn_8_D8E90(0x14, 0, -1);

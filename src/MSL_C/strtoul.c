@@ -22,16 +22,16 @@ enum ScanState {
 #define FETCH()            (count++, read_proc(read_arg, 0, 0))
 #define UNFETCH(c)         read_proc(read_arg, (c), 1)
 
-extern u8 lbl_80291680[256];
-extern u8 lbl_80291880[256];
+extern u8 __ctype_map[256];
+extern u8 __upper_map[256];
 
-#define isalpha(c) (lbl_80291680[(u8)(c)] & 0xC0)
-#define isdigit(c) (lbl_80291680[(u8)(c)] & 0x10)
-#define isspace(c) (lbl_80291680[(u8)(c)] & 0x06)
-#define toupper(c) ((c) == -1 ? -1 : lbl_80291880[(u8)(c)])
+#define isalpha(c) (__ctype_map[(u8)(c)] & 0xC0)
+#define isdigit(c) (__ctype_map[(u8)(c)] & 0x10)
+#define isspace(c) (__ctype_map[(u8)(c)] & 0x06)
+#define toupper(c) ((c) == -1 ? -1 : __upper_map[(u8)(c)])
 
 extern s32 errno;
-extern s32 fn_801C29BC(void* arg, s32 c, s32 action);
+extern s32 __StringRead(void* arg, s32 c, s32 action);
 
 u64 __strtoull(s32 base, s32 max_width, ReadProc read_proc, void* read_arg, s32* consumed,
     s32* negative, s32* overflow);
@@ -49,7 +49,7 @@ s32 atoi(const char* str)
 	state.str = str;
 	state.pos = 0;
 
-	value = __strtoul(10, 0x7FFFFFFF, fn_801C29BC, &state, &count, &negative, &overflow);
+	value = __strtoul(10, 0x7FFFFFFF, __StringRead, &state, &count, &negative, &overflow);
 
 	if (overflow || (!negative && value > 0x7FFFFFFF) || (negative && value > 0x80000000U)) {
 		value = negative ? 0x80000000U : 0x7FFFFFFF;
@@ -72,7 +72,7 @@ u32 strtoul(const char* str, char** end, s32 base)
 	state.str = str;
 	state.pos = 0;
 
-	value = __strtoul(base, 0x7FFFFFFF, fn_801C29BC, &state, &count, &negative, &overflow);
+	value = __strtoul(base, 0x7FFFFFFF, __StringRead, &state, &count, &negative, &overflow);
 
 	if (end)
 		*end = (char*)str + count;
