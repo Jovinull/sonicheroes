@@ -621,6 +621,26 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/adx_mgc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_sugc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_gc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_rnaa.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
                 "game/cri/cri_cvfs.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
             ),

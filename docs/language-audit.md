@@ -1136,3 +1136,9 @@ depend on emission order keep the default CRI flags.
 - `game/cri/cri_cvfs.c`: CVFS, 12 surviving functions, owned `.rodata` and
   `.bss`, `-inline deferred`. The GCCI read callback directly above it
   belongs to `game/cri/gcci.c`, whose lower bound moves down by four bytes.
+- `game/cri/adx_mgc.c`, `game/cri/adx_sugc.c`, `game/cri/adx_gc.c` and
+  `game/cri/adx_rnaa.c`: the ADXGC 1.21 thread manager, the ADXGCSDK DVD
+  file-system glue, the sampling-rate switch and the nineteen ADXRNA wrappers
+  over AXRNA, `-inline deferred`. Each opens with its own banner or follows
+  the object order of the later CRI GameCube link map; all owned data is
+  referenced only from inside the unit.
