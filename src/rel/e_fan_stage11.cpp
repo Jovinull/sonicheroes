@@ -84,9 +84,9 @@ void* fn_800BB92C(void*, s32, void*);
 s32 fn_800BC6CC(void*, const char*);
 void fn_800BC9F4(void*, void*);
 
-void fn_3_1A9B0();
+void Disp__7TObjectFv();
 void fn_8005B8B8();
-void objDefaultTDisp();
+void TDisp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -296,8 +296,8 @@ extern "C" void* s12fanVtable[14]     = {
 	0,
 	(void*)__dt__10TObjS12FanFv,
 	(void*)Exec__10TObjS12FanFv,
-	(void*)fn_3_1A9B0,
-	(void*)objDefaultTDisp,
+	(void*)Disp__7TObjectFv,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

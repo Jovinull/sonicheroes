@@ -114,7 +114,7 @@ void dtor_8003C52C(void*, s32);
 void dtor_8005BD3C(void*, s32);
 void __dt__7TObjectFv(void*, s32);
 void fn_800189A4(void*, void*);
-void fn_3_1A9B0();
+void Disp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -373,7 +373,7 @@ void* stullVtable[15]   = {
 	NULL,
 	(void*)__dt__12TObjS01StullFv,
 	(void*)Exec__12TObjS01StullFv,
-	(void*)fn_3_1A9B0,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__12TObjS01StullFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,

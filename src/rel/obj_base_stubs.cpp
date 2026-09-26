@@ -14,7 +14,7 @@
 // calls into the sample's parameter guard, and a tail call is not something the
 // compiler emits from C.
 
-extern "C" void objDefaultTDisp(void) { }
+extern "C" void TDisp__7TObjectFv(void) { }
 
 extern "C" void PDisp__7TObjectFv(void) { }
 

@@ -14,7 +14,7 @@ SYMBOL_RENAMES = {
     "slot0__18AntennaPrimaryBaseFv": "antennaDtor",
     "slot1__18AntennaPrimaryBaseFv": "antennaExec",
     "slot2__18AntennaPrimaryBaseFv": "fn_9_1A9B4",
-    "slot3__18AntennaPrimaryBaseFv": "objDefaultTDisp",
+    "slot3__18AntennaPrimaryBaseFv": "TDisp__7TObjectFv",
     "slot4__18AntennaPrimaryBaseFv": "PDisp__7TObjectFv",
     "slot5__18AntennaPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",
     "slot6__18AntennaPrimaryBaseFv": "Debug__7TObjectFv",

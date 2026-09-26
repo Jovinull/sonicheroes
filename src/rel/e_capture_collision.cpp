@@ -85,7 +85,7 @@ void Exec__20TObjCaptureCollisionFv();
 void TDisp__20TObjCaptureCollisionFv();
 void EditOnChange__20TObjCaptureCollisionFP13SETDATA_PARAM(TObjCaptureCollision*, SETDATA_PARAM*);
 void TObjCaptureCollisionEditThunk();
-void fn_3_1A9B0();
+void Disp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -324,7 +324,7 @@ extern "C" void* TObjCaptureCollisionVtable[]     = {
 	0,
 	(void*)__dt__20TObjCaptureCollisionFv,
 	(void*)Exec__20TObjCaptureCollisionFv,
-	(void*)fn_3_1A9B0,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__20TObjCaptureCollisionFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,

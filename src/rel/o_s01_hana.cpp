@@ -356,7 +356,7 @@ extern "C" const char* flowerTypeNames[9] = {
 extern "C" char flowerClassNameString[] = "TObjS01Flower";
 extern "C" const char* flowerClassName  = flowerClassNameString;
 
-extern "C" void objDefaultTDisp();
+extern "C" void TDisp__7TObjectFv();
 extern "C" void PDisp__7TObjectFv();
 extern "C" void ImmAftSetRaster__7TObjectFv();
 extern "C" void Debug__7TObjectFv();
@@ -371,7 +371,7 @@ extern "C" void* flowerVtable[15] = {
 	(void*)flowerDtor,
 	(void*)flowerExec,
 	(void*)flowerDisp,
-	(void*)objDefaultTDisp,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

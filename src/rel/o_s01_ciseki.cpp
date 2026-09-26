@@ -105,7 +105,7 @@ void s01ObjectBaseUpdate(TObjS01Ciseki*);
 void s01ObjectBaseDtor(TObjS01Ciseki*, s16);
 void s01ObjectBaseCtor(TObjS01Ciseki*, void*);
 
-void fn_3_1A9B0();
+void Disp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -346,7 +346,7 @@ extern "C" void* cisekiVtable[18] = {
 	NULL,
 	(void*)__dt__13TObjS01CisekiFv,
 	(void*)Exec__13TObjS01CisekiFv,
-	(void*)fn_3_1A9B0,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__13TObjS01CisekiFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
