@@ -381,6 +381,15 @@ modules:
     - SetPosition__10TObjS12FanFv
     - SetParameter__10TObjS12FanFv
     - __ct__10TObjS12FanFP7TObject
+    # TObjS11Key's helpers and constructor are inlined into Exec and
+    # startObjS11Key, so nothing references the retained bodies.
+    - SearchCage__10TObjS11KeyFv
+    - Disappear__10TObjS11KeyFv
+    - CheckTouchedByLeader__10TObjS11KeyFv
+    - GetWaitAngY__10TObjS11KeyFv
+    - GetWaitPosY__10TObjS11KeyFv
+    - SetPosition__10TObjS11KeyFv
+    - __ct__10TObjS11KeyFP7TObject
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
   symbols: config/G9SE8P/stage13D/symbols.txt

@@ -110,6 +110,35 @@ Validation:
 - the language-policy check passes with `rel/o_spring.cpp` recorded as an
   approved deferred source.
 
+### Stage11 key object
+
+`rel/e_s11_key_stage11.cpp` reconstructs `TObjS11Key`, the Stage 11 goal key.
+
+Language evidence:
+
+- the corresponding PS2 symbol metadata names `TObjS11Key` and its C++ method
+  family (`SearchCage`, `Disappear`, `CheckTouchedByLeader`, `TDisp`, `Disp`,
+  `Exec`, `GetWaitAngY`, `GetWaitPosY`, `SetPosition`, destructor, `TObject*`
+  constructor) plus the `initObj`/`endObj`/`startObj` lifecycle functions, in
+  the same order as the GameCube text;
+- the GameCube two-base vtable, constructor and destructor independently
+  establish the same C++ object family.
+
+Validation:
+
+- `Exec` inlines `SetPosition`, `GetWaitPosY`, `GetWaitAngY` and
+  `CheckTouchedByLeader`, all of which retail emits after it, and
+  `startObjS11Key` inlines the constructor emitted before it. Under
+  `-inline auto` MWCC neither inlines a body defined after its caller nor emits
+  functions out of definition order, so no source order reproduces both the
+  retail inlining and the PS2/GameCube method order. `-inline deferred,auto`
+  inlines across the whole unit and emits in reverse definition order; with the
+  methods defined from the lifecycle functions back to `SearchCage` it
+  reproduces every function, relocation and owned section;
+- the inlined, otherwise unreferenced method bodies are retained by the
+  module's linker configuration;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and
@@ -483,9 +512,10 @@ After the GameCube platform-main decision:
   claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- five sources have reviewed deferred-inline modes:
+- six sources have reviewed deferred-inline modes:
   `game/skyfs_adx.c`, `game/modeswitch.cpp`, `game/e_paralysis.cpp`,
-  `advertiseD/adv_2p.cpp` and `advertiseD/adv_draw.cpp`.
+  `advertiseD/adv_2p.cpp`, `advertiseD/adv_draw.cpp` and
+  `rel/e_s11_key_stage11.cpp`.
 
 ### Reviewed inline exceptions
 

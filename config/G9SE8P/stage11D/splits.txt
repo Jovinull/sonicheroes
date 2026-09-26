@@ -671,30 +671,30 @@ rel/e_grass2_stage11.cpp:
 rel/e_grass_stage11.cpp:
 	.text       start:0x000C5FA4 end:0x000C7548
 	.ctors      start:0x00000154 end:0x00000158
-	.rodata     start:0x00001F60 end:0x00002010
+	.rodata     start:0x00001F60 end:0x00001F78
 	.data       start:0x00018778 end:0x00018AA8
 	.bss        start:0x00001CA8 end:0x00001CE8
 
 rel/e_s11_flag_stage11.cpp:
 	.text       start:0x000C7548 end:0x000C907C
 	.ctors      start:0x00000158 end:0x0000015C
-	.rodata     start:0x00002010 end:0x000020F0
+	.rodata     start:0x00001F78 end:0x00001F98
 	.data       start:0x00018AA8 end:0x00018C88
 	.bss        start:0x00001CE8 end:0x00001D18
 
 rel/e_mask_stage11.cpp:
-	.text       start:0x000C907C end:0x000CA210
+	.text       start:0x000C907C end:0x000CA218
 	.ctors      start:0x0000015C end:0x00000160
-	.rodata     start:0x000020F0 end:0x00002118
+	.rodata     start:0x00001F98 end:0x00001FB8
 	.data       start:0x00018C88 end:0x00018DF0
-	.bss        start:0x00001D18 end:0x00001D4C
+	.bss        start:0x00001D18 end:0x00001D48
 
 rel/e_s11_key_stage11.cpp:
-	.text       start:0x000CA210 end:0x000CBBB0
+	.text       start:0x000CA218 end:0x000CBBB0
 	.ctors      start:0x00000160 end:0x00000164
-	.rodata     start:0x00002118 end:0x0000211C
+	.rodata     start:0x00001FB8 end:0x00001FE0
 	.data       start:0x00018DF0 end:0x00018EA0
-	.bss        start:0x00001D4C end:0x00001D78
+	.bss        start:0x00001D48 end:0x00001D78
 
 rel/o_s11_bob.cpp:
 	.text       start:0x000CBBB0 end:0x000CBF20

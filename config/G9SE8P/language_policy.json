@@ -70,6 +70,7 @@
     "game/e_paralysis.cpp",
     "game/modeswitch.cpp",
     "game/skyfs_adx.c",
+    "rel/e_s11_key_stage11.cpp",
     "rel/o_spring.cpp"
   ]
 }

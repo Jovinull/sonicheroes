@@ -58,7 +58,6 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | `rel/e_turtle_stage11` | 86.83 | 364 | 49 | 3 | 312 | 5025 | 369 |
 | `rel/e_spider_stage11` | 85.75 | 252 | 30 | 166 | 56 | 965 | 109 |
 | `rel/e_capture` | 85.50 | 438 | 35 | 142 | 261 | 5335 | 358 |
-| `rel/e_s11_key_stage11` | 84.48 | 218 | 13 | 142 | 63 | 1640 | 226 |
 | `rel/e_rinoliner_stage11` | 84.09 | 77 | 13 | 0 | 64 | 1929 | 88 |
 | `rel/e_wall_stage11` | 83.81 | 467 | 49 | 39 | 379 | 6670 | 464 |
 | `game/rw_gcn_raster` | 82.07 | 480 | 162 | 291 | 27 | 3771 | 480 |
@@ -449,6 +448,17 @@ of virtual calls whose case order (0, 1, 2, 5, 3, 4, 6, ...) follows the
 target's block layout, a single-label `switch` gives the `beq`/`b` pair that an
 `if` does not, and the vtable is defined ahead of the functions so it precedes
 the dispatcher's jump table in `.data`.
+
+`rel/e_s11_key_stage11` is `Matching` again. Its split had the same borrowed
+thunk, and the stage11D `.rodata` splits from `e_grass_stage11` on were wrong:
+dtk had given the grass unit everything to `0x2010`, but the constants at
+`0x1F78`–`0x1FE0` are referenced only by the flag, mask and key units. The key
+unit owns `0x1FB8`–`0x1FE0`, and its `.bss` begins at its model pointer
+(`0x1D48`), not after it. Beyond the split, the unit is the PS2 method family
+under `-inline deferred,auto` (see `docs/language-audit.md`), with small inline
+`Motion` accessors that give `Exec` retail's re-derived `this + 0x28`, and a
+`sAngle` zero rather than a float vector so the copy stays in integer
+registers.
 
 ## The rules that now stop this
 
