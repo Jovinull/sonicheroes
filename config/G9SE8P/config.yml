@@ -390,6 +390,14 @@ modules:
     - GetWaitPosY__10TObjS11KeyFv
     - SetPosition__10TObjS11KeyFv
     - __ct__10TObjS11KeyFP7TObject
+    # TObjMask's inlined helpers, the unreferenced collision setup and the
+    # hierarchy lookup CloneClump inlines.
+    - DestroyClump__8TObjMaskFv
+    - CloneClump__8TObjMaskFv
+    - SetCollision__8TObjMaskFv
+    - SetParameter__8TObjMaskFv
+    - SetPosition__8TObjMaskFv
+    - GetHierarchy__FP7RpClump
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
   symbols: config/G9SE8P/stage13D/symbols.txt

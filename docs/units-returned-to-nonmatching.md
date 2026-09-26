@@ -45,7 +45,6 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | unit | objdiff | left | registers | other | length | size | previous |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `game/cri/axrna` | 97.44 | 48 | 20 | 11 | 17 | 1541 | 48 |
-| `rel/e_mask_stage11` | 94.36 | 145 | 16 | 111 | 18 | 1125 | 224 |
 | `game/cri/svm` | 94.24 | 50 | 0 | 24 | 26 | 1115 | 50 |
 | `rel/e_capture_collision_stage11` | 94.00 | 63 | 21 | 20 | 22 | 401 | 63 |
 | `rel/o_s12_celestial_sphere` | 92.72 | 154 | 24 | 106 | 24 | 799 | 142 |
@@ -403,7 +402,6 @@ went 84.65% to 87.48% with every register and content difference gone, and its
 The closest by objdiff percentage:
 
 - `game/cri/axrna` 97.44% (48 left; 20 registers, 11 other, 17 length)
-- `rel/e_mask_stage11` 94.36% (145, now mostly content)
 - `game/cri/svm` 94.24% (50; 24 other, 26 length)
 - `rel/e_capture_collision_stage11` 94.00% (63; 21 registers, 20 other, 22 length)
 - `rel/o_s12_celestial_sphere` 92.72% (154; 24 registers, 106 other, 24 length)
@@ -459,6 +457,31 @@ under `-inline deferred,auto` (see `docs/language-audit.md`), with small inline
 `Motion` accessors that give `Exec` retail's re-derived `this + 0x28`, and a
 `sAngle` zero rather than a float vector so the copy stays in integer
 registers.
+
+`rel/e_mask_stage11` is `Matching` again, and it is the first of these units
+whose own class ends in a secondary-base adjustor thunk (`subi r3, r3, 0x28;
+b EditOnChange`). A thunk has no C++ spelling; the compiler emits one only
+beside a vtable it generates itself. So the class is declared as a real
+two-base hierarchy (`TObject`, with its vptr at `0x18`, and `TObjSetObj`, with
+its `frame` at `0x28` and vptr at `0x2C`), and MWCC generates the retail
+vtable, byte for byte, together with its thunk. Three things make that
+possible without touching `main.dol` names:
+
+- the constructor and destructor are written as `extern "C"` functions against
+  the object's storage and store `__vt__8TObjMask` themselves, because a C++
+  constructor would call the `TObjSetObj` base by its mangled name where retail
+  calls `fn_8005BE6C`/`dtor_8005BD3C`; the destructor is declared `inline` in
+  the class, so the key function (and with it the vtable) falls to `Exec`;
+- the inherited slots need their C++ names: the stage modules' `fn_3_1A9B0` and
+  `objDefaultTDisp` are `Disp__7TObjectFv` and `TDisp__7TObjectFv` (slots 4 and
+  5, as the key object's `Disp`/`TDisp` overrides show);
+- `-inline deferred,auto` places the compiler vtable after the named data and
+  ahead of the string literals, exactly where retail has it.
+
+Renaming a `main.dol` symbol that stage code references (for example
+`fn_8005BE6C` to `__ct__10TObjSetObjFv`) makes `mwldeppc` abort with an
+internal error at `ELF_gen.c:2336`, which is why the base calls keep their
+address names.
 
 ## The rules that now stop this
 

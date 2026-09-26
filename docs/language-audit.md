@@ -139,6 +139,18 @@ Validation:
   module's linker configuration;
 - `config/G9SE8P/build.sha1` verified all 18 configured artifacts.
 
+### Stage11 mask object
+
+`rel/e_mask_stage11.cpp` reconstructs `TObjMask`. The PS2 symbol metadata names
+the class and its C++ method family (`DestroyClump`, `CloneClump`,
+`SetParameter`, `Exec`, `SetPosition`, destructor, `TObject*` constructor,
+`EditOnChange`, `initObj`/`endObj`/`startObj`), and the GameCube two-base
+vtable and adjustor thunk establish the same C++ class. `Exec` inlines
+`SetPosition` and `CloneClump` inlines `GetHierarchy`, both emitted after their
+callers, and the compiler-generated vtable must sit between the named data and
+the string literals; `-inline deferred,auto` with reverse definition order
+reproduces every function, relocation and owned section, and all 18 hashes.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and
@@ -512,10 +524,10 @@ After the GameCube platform-main decision:
   claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- six sources have reviewed deferred-inline modes:
+- seven sources have reviewed deferred-inline modes:
   `game/skyfs_adx.c`, `game/modeswitch.cpp`, `game/e_paralysis.cpp`,
-  `advertiseD/adv_2p.cpp`, `advertiseD/adv_draw.cpp` and
-  `rel/e_s11_key_stage11.cpp`.
+  `advertiseD/adv_2p.cpp`, `advertiseD/adv_draw.cpp`,
+  `rel/e_s11_key_stage11.cpp` and `rel/e_mask_stage11.cpp`.
 
 ### Reviewed inline exceptions
 
