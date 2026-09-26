@@ -1677,9 +1677,9 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_capture_collision_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-inline deferred,auto"],
             ),
             Object(
                 NonMatching,

@@ -241,7 +241,8 @@ Before enabling a deferred mode for a game-owned translation unit, document:
 The approved deferred list is deliberately narrow. At present it contains
 `game/skyfs_adx.c`, `game/modeswitch.cpp`, `advertiseD/adv_2p.cpp`,
 `advertiseD/adv_draw.cpp`, `rel/o_spring.cpp`, `rel/e_s11_key_stage11.cpp`,
-`rel/e_mask_stage11.cpp` and `rel/o_s12_celestial_sphere.cpp`. Natural PS2 symbol order and GameCube section
+`rel/e_mask_stage11.cpp`, `rel/o_s12_celestial_sphere.cpp` and
+`rel/e_capture_collision_stage11.cpp`. Natural PS2 symbol order and GameCube section
 adjacency establish the unified `skyfs_adx.c` unit order; `-inline auto`
 changes its accessor emission and call sites, while `-inline deferred`
 reproduces all 19 functions, relocations and owned sections byte-for-byte.
@@ -252,8 +253,8 @@ order and linked data layout. The unified spring unit requires deferred/auto
 emission to place its transform helper after `springExec`, matching all
 functions, relocations and owned sections. The Stage 11 key unit needs
 deferred/auto so `Exec` can inline helpers that retail emits after it; the
-Stage 11 mask and celestial-sphere units need it for the same reason and for
-their vtable placement. Each entry is justified in
+Stage 11 mask, celestial-sphere and capture-collision units need it for the
+same reason and for their vtable placement. Each entry is justified in
 `docs/language-audit.md`.
 
 A source must be added to `deferred_sources` in the policy file in the same

@@ -404,6 +404,12 @@ modules:
     - SetPosition__16TObjS12CelestialFv
     - SetParameter__16TObjS12CelestialFv
     - __ct__16TObjS12CelestialFP7TObject
+    # TObjCaptureCollision's inlined helpers and constructor.
+    - KillMyself__20TObjCaptureCollisionFv
+    - SetParameter__20TObjCaptureCollisionFv
+    - ResetVariable__20TObjCaptureCollisionFv
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - CreateInstance__20TObjCaptureCollisionFv
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
   symbols: config/G9SE8P/stage13D/symbols.txt

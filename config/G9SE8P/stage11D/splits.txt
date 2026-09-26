@@ -553,23 +553,23 @@ rel/o_s11_cloud.cpp:
 	.bss        start:0x00001708 end:0x00001780
 
 rel/e_capture.cpp:
-	.text       start:0x00098060 end:0x0009D3BC
+	.text       start:0x00098060 end:0x0009D4A8
 	.ctors      start:0x0000011C end:0x00000120
-	.rodata     start:0x000016A4 end:0x000017BC
+	.rodata     start:0x000016A4 end:0x000017B0
 	.data       start:0x000155B8 end:0x000159E8
 	.bss        start:0x00001780 end:0x00001870
 
 rel/e_capture_collision_stage11.cpp:
-	.text       start:0x0009D3BC end:0x0009DA00
+	.text       start:0x0009D4A8 end:0x0009DA08
 	.ctors      start:0x00000120 end:0x00000124
-	.rodata     start:0x000017BC end:0x000017F4
+	.rodata     start:0x000017B0 end:0x000017C0
 	.data       start:0x000159E8 end:0x00015A70
 	.bss        start:0x00001870 end:0x000018A8
 
 rel/e_strategy_flyer_stage11.cpp:
-	.text       start:0x0009DA00 end:0x000A2584
+	.text       start:0x0009DA08 end:0x000A2584
 	.ctors      start:0x00000124 end:0x00000128
-	.rodata     start:0x000017F4 end:0x000018B0
+	.rodata     start:0x000017C0 end:0x000018B0
 	.data       start:0x00015A70 end:0x00015F80
 	.bss        start:0x000018A8 end:0x00001948
 

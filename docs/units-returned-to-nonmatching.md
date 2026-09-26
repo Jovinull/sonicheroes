@@ -46,7 +46,6 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `game/cri/axrna` | 97.44 | 48 | 20 | 11 | 17 | 1541 | 48 |
 | `game/cri/svm` | 94.24 | 50 | 0 | 24 | 26 | 1115 | 50 |
-| `rel/e_capture_collision_stage11` | 94.00 | 63 | 21 | 20 | 22 | 401 | 63 |
 | `rel/e_s11_flag_stage11` | 91.27 | 53 | 4 | 9 | 40 | 1741 | 92 |
 | `rel/e_strategy_flyer_stage11` | 90.17 | 271 | 51 | 82 | 138 | 4833 | 334 |
 | `rel/e_grass_stage11` | 89.48 | 90 | 30 | 11 | 49 | 1385 | 89 |
@@ -402,7 +401,6 @@ The closest by objdiff percentage:
 
 - `game/cri/axrna` 97.44% (48 left; 20 registers, 11 other, 17 length)
 - `game/cri/svm` 94.24% (50; 24 other, 26 length)
-- `rel/e_capture_collision_stage11` 94.00% (63; 21 registers, 20 other, 22 length)
 
 `game/cri/rnares` has three functions and no wrong instruction at all — every
 one of its 55 is a length gap. It is also the clearest read of the `axrna`
@@ -492,6 +490,15 @@ more pieces of it generalise:
   with a destructor. When the object's constructor is the storage-level
   function, a same-sized stand-in whose base declares a destructor and whose
   default constructor forwards to it reproduces the shape.
+
+`rel/e_capture_collision_stage11` is `Matching` as well, with the PS2
+`TObjCaptureCollision` names. Its split started eight functions early: the
+`subi r3, r3, 0xB0` thunk and the two strategy helpers after it read
+`e_capture`'s constants, so the unit begins at `0x9D4A8`, and its `.rodata` is
+the header vector plus one `0.0f` (`0x17B0`–`0x17C0`). The zero lower bound that
+retail keeps in `.data` is `#pragma explicit_zero_data`, not a post-processed
+initializer, and `CreateInstance` keeps the allocation and the object in
+separate registers only under `#pragma optimization_level 3`.
 
 ## The rules that now stop this
 

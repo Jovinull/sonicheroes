@@ -70,6 +70,7 @@
     "game/e_paralysis.cpp",
     "game/modeswitch.cpp",
     "game/skyfs_adx.c",
+    "rel/e_capture_collision_stage11.cpp",
     "rel/e_mask_stage11.cpp",
     "rel/e_s11_key_stage11.cpp",
     "rel/o_s12_celestial_sphere.cpp",
