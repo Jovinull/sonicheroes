@@ -1221,6 +1221,12 @@ game/cri/adx_sfa.c:
 	.text       start:0x80213A5C end:0x80213A8C
 	.bss        start:0x804117A0 end:0x804117A8
 
+game/cri/adx_sje.c:
+	.text       start:0x80213A8C end:0x80216758
+	.rodata     start:0x8023E0E0 end:0x8023E0F8
+	.data       start:0x8029B778 end:0x8029B780
+	.bss        start:0x804117A8 end:0x804138F8
+
 game/cri/adx_stmc.c:
 	.text       start:0x80216758 end:0x80217BD8
 	.rodata     start:0x8023E0F8 end:0x8023E128

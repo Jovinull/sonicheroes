@@ -1157,3 +1157,6 @@ depend on emission order keep the default CRI flags.
   stubs and the stereo-as-mono decode switch, `-inline deferred`. `adx_lsc.c` keeps the linker-stripped
   `ADXT_StartFnameLp` (a PS2 symbol) because its inlined calls fix the order
   of the unit's string pool.
+- `game/cri/adx_sje.c`: the ADX encoder (ADXSJE), sixteen functions,
+  `-inline deferred`. The older 8.84 encoder has no CINF chunk and inlines
+  the header writer, which is why `adxsje_output_header` is 0x13E8 bytes.
