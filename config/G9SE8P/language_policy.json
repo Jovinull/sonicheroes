@@ -19,6 +19,7 @@
     "advertiseD/prolog.c",
     "autosaveD/prolog.c",
     "game/cri/adapter.c",
+    "game/cri/cri_cvfs.c",
     "game/cri/gcci.c",
     "game/cri/lsc.c",
     "game/cri/lsc_err.c",
@@ -70,6 +71,7 @@
   "deferred_sources": [
     "advertiseD/adv_2p.cpp",
     "advertiseD/adv_draw.cpp",
+    "game/cri/cri_cvfs.c",
     "game/e_paralysis.cpp",
     "game/modeswitch.cpp",
     "game/skyfs_adx.c",

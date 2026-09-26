@@ -621,6 +621,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/cri_cvfs.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
                 "game/cri/gcci.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),

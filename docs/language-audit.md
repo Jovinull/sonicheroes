@@ -527,9 +527,10 @@ After the GameCube platform-main decision:
   claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- five sources have reviewed deferred-inline modes:
-  `game/skyfs_adx.c`, `game/modeswitch.cpp`, `game/e_paralysis.cpp`,
-  `advertiseD/adv_2p.cpp` and `advertiseD/adv_draw.cpp`.
+- the reviewed deferred-inline modes are `game/skyfs_adx.c`,
+  `game/modeswitch.cpp`, `game/e_paralysis.cpp`, `advertiseD/adv_2p.cpp`,
+  `advertiseD/adv_draw.cpp` and the CRI ADX core units listed under
+  "CRI ADX core library units".
 
 ### Reviewed inline exceptions
 
@@ -1114,3 +1115,24 @@ symbols are audited too. The source-linked release, all-source build,
 [the LSC audit](cri-lsc-native-audit.md) for exact ownership, source-shape
 inferences, observable banner read, shared type evidence and residual boundary
 uncertainty.
+
+### CRI ADX core library units
+
+The CRI ADX core (ADXT/GC 8.84, ADXF/GC 7.07, SKG/GC 0.63, ADXGC 1.21,
+ADXGCSDK 05Sep2002Patch2, CVFS/GC 2.33) is middleware compiled from CRI's C
+sources. Its units are reviewed C boundaries: the exported API is plain C
+linkage and the correlated PS2 symbol metadata carries no source-file record,
+so no historical extension is claimed.
+
+The library was built with deferred inlining. Three independent observations
+agree for every unit that uses it: the GameCube text order is the exact
+reverse of the per-file function order in the PS2 symbol metadata; the
+string pools follow the GameCube (emission) order; and the uninitialised
+private `.bss` objects appear in reverse declaration order. Ordinary
+`-inline auto` reproduces none of these without invented helper code, while
+`-inline deferred` reproduces the complete owned sections. Units that do not
+depend on emission order keep the default CRI flags.
+
+- `game/cri/cri_cvfs.c`: CVFS, 12 surviving functions, owned `.rodata` and
+  `.bss`, `-inline deferred`. The GCCI read callback directly above it
+  belongs to `game/cri/gcci.c`, whose lower bound moves down by four bytes.
