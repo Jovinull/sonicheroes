@@ -47,7 +47,6 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | `game/cri/axrna` | 97.44 | 48 | 20 | 11 | 17 | 1541 | 48 |
 | `game/cri/svm` | 94.24 | 50 | 0 | 24 | 26 | 1115 | 50 |
 | `rel/e_capture_collision_stage11` | 94.00 | 63 | 21 | 20 | 22 | 401 | 63 |
-| `rel/o_s12_celestial_sphere` | 92.72 | 154 | 24 | 106 | 24 | 799 | 142 |
 | `rel/e_s11_flag_stage11` | 91.27 | 53 | 4 | 9 | 40 | 1741 | 92 |
 | `rel/e_strategy_flyer_stage11` | 90.17 | 271 | 51 | 82 | 138 | 4833 | 334 |
 | `rel/e_grass_stage11` | 89.48 | 90 | 30 | 11 | 49 | 1385 | 89 |
@@ -404,7 +403,6 @@ The closest by objdiff percentage:
 - `game/cri/axrna` 97.44% (48 left; 20 registers, 11 other, 17 length)
 - `game/cri/svm` 94.24% (50; 24 other, 26 length)
 - `rel/e_capture_collision_stage11` 94.00% (63; 21 registers, 20 other, 22 length)
-- `rel/o_s12_celestial_sphere` 92.72% (154; 24 registers, 106 other, 24 length)
 
 `game/cri/rnares` has three functions and no wrong instruction at all — every
 one of its 55 is a length gap. It is also the clearest read of the `axrna`
@@ -482,6 +480,18 @@ Renaming a `main.dol` symbol that stage code references (for example
 `fn_8005BE6C` to `__ct__10TObjSetObjFv`) makes `mwldeppc` abort with an
 internal error at `ELF_gen.c:2336`, which is why the base calls keep their
 address names.
+
+`rel/o_s12_celestial_sphere` follows the same recipe and is `Matching` too. Two
+more pieces of it generalise:
+
+- its `.rodata` opens on the same `{ 0.0f, 1.5f, 0.0f }` header vector, and
+  the vector at `0x1678` is the head of the next unit; the `0x1658` int-to-float
+  constant belongs to `o_s11_door`;
+- an allocation that retail null-checks through `r0` (`mr r0, r3; cmplwi r0, 0;
+  beq; mr r31, r0`) is a placement new-expression whose object has a subobject
+  with a destructor. When the object's constructor is the storage-level
+  function, a same-sized stand-in whose base declares a destructor and whose
+  default constructor forwards to it reproduces the shape.
 
 ## The rules that now stop this
 

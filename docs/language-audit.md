@@ -150,6 +150,10 @@ vtable and adjustor thunk establish the same C++ class. `Exec` inlines
 callers, and the compiler-generated vtable must sit between the named data and
 the string literals; `-inline deferred,auto` with reverse definition order
 reproduces every function, relocation and owned section, and all 18 hashes.
+`rel/o_s12_celestial_sphere.cpp` (`TObjS12Celestial`, PS2 method family
+`DestroyClump`, `CloneClump(int)`, `SetPosition`, `SetParameter`, `Disp`,
+`Exec`, destructor, constructor) needs the same mode for the same vtable
+placement, and matches the same way.
 
 ### Tri-spring and switch fragments
 
@@ -524,10 +528,11 @@ After the GameCube platform-main decision:
   claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- seven sources have reviewed deferred-inline modes:
+- eight sources have reviewed deferred-inline modes:
   `game/skyfs_adx.c`, `game/modeswitch.cpp`, `game/e_paralysis.cpp`,
   `advertiseD/adv_2p.cpp`, `advertiseD/adv_draw.cpp`,
-  `rel/e_s11_key_stage11.cpp` and `rel/e_mask_stage11.cpp`.
+  `rel/e_s11_key_stage11.cpp`, `rel/e_mask_stage11.cpp` and
+  `rel/o_s12_celestial_sphere.cpp`.
 
 ### Reviewed inline exceptions
 

@@ -2515,9 +2515,9 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/o_s12_celestial_sphere.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off"],
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),
             Object(
                 Matching,

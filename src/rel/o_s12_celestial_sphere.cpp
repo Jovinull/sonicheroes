@@ -1,432 +1,385 @@
 #include "types.h"
 
-typedef s32 M2C_UNK;
-#define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
+// Retained PS2 symbols name this object TObjS12Celestial and give its method
+// family in the order the GameCube text keeps: DestroyClump, CloneClump(int),
+// SetPosition, SetParameter, Disp, Exec, the destructor and the TObject*
+// constructor. The "TObjS12Celestial" class-name string in this unit's .data
+// correlates the GameCube object with that family.
+//
+// Like the other Stage 11 object units this one is built with deferred
+// inlining: the functions are emitted in reverse definition order, and the
+// compiler-generated vtable lands after the named data and ahead of the string
+// literals, where retail has it.
 
-typedef struct TObject {
-	/* 0x00 */ s32 unk0;        /* inferred */
-	/* 0x04 */ char pad4[0x14]; /* maybe part of unk0[6]? */
-	/* 0x18 */ M2C_UNK* unk18;  /* inferred */
-	/* 0x1C */ char pad1C[2];
-	/* 0x1E */ s16 unk1E;     /* inferred */
-	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
-	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x2C */ void* unk2C;   /* inferred */
-	/* 0x30 */ f32 unk30;     /* inferred */
-	/* 0x34 */ f32 unk34;     /* inferred */
-	/* 0x38 */ f32 unk38;     /* inferred */
-	/* 0x3C */ s32 unk3C;     /* inferred */
-	/* 0x40 */ s32 unk40;     /* inferred */
-	/* 0x44 */ s32 unk44;     /* inferred */
-	/* 0x48 */ s32 unk48;     /* inferred */
-	/* 0x4C */ s32 unk4C;     /* inferred */
-	/* 0x50 */ s32 unk50;     /* inferred */
-	/* 0x54 */ f32 unk54;     /* inferred */
-	/* 0x58 */ s32 unk58;     /* inferred */
-	/* 0x5C */ void* unk5C;   /* inferred */
-} TObject;                    /* size >= 0x60 */
+struct Vec3 {
+	f32 x;
+	f32 y;
+	f32 z;
+};
+
+/* An unreferenced vector every unit of this family carries at the head of its
+ * .rodata, the way an internal-linkage const from a shared header lands in
+ * each translation unit that includes it. Its name and home are unknown. */
+#pragma force_active on
+static const Vec3 lbl_8_rodata_1660 = { 0.0f, 1.5f, 0.0f };
+#pragma force_active reset
+
+struct CelestialParam {
+	s32 modelNo;
+	f32 rotateX;
+	f32 rotateY;
+	f32 rotateZ;
+	f32 scale;
+};
+
+struct SETDATA_PARAM {
+	Vec3 position;
+	s32 angleX;
+	s32 angleY;
+	s32 angleZ;
+	u32 flags;
+	u8 pad1C[0x10];
+	CelestialParam* params;
+};
+
+struct RwMatrix {
+	u8 data[0x40];
+};
+struct RwFrame {
+	u8 pad00[0x10];
+	RwMatrix modelling;
+};
+
+struct TObjectHdr {
+	const char* className;
+	u16 signal;
+	u8 pad06[0x12];
+};
+
+class TObject : public TObjectHdr
+{
+public:
+	virtual ~TObject();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void TDisp();
+	virtual void PDisp();
+	virtual void ImmAftSetRaster();
+	virtual void Debug();
+	virtual void Error(char*);
+	virtual void Render();
+
+	s16 pad1C;
+	s16 objectSize;
+	u8 pad20[8];
+};
+
+struct SetObjHdr {
+	SETDATA_PARAM* frame;
+};
 
 extern "C" {
+s32 fn_8005B8BC(void*);
+s32 fn_8005B9F0(void*);
+}
 
-void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
-void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                        /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                           /* extern */
-TObject* fn_80018A34(s32, M2C_UNK);                           /* extern */
-s32 fn_8005B8BC(s32);                                         /* extern */
-s32 fn_8005B9F0(s32);                                         /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
-M2C_UNK fn_8005D5C8(void*, M2C_UNK);                          /* extern */
-void* fn_800BB92C(s32, s32, M2C_UNK*);                        /* extern */
-s32 fn_800BC6CC(s32, s32);                                    /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                           /* extern */
-M2C_UNK fn_800BDF30();                                        /* extern */
-M2C_UNK fn_800BE1F4(u32);                                     /* extern */
-M2C_UNK fn_800BE274(u32);                                     /* extern */
-f32 fn_800D7AE4(s32);                                         /* extern */
-f32 fn_800D7B00(s32);                                         /* extern */
-void* fn_80150588(void*);                                     /* extern */
-M2C_UNK fn_80150958(void*);                                   /* extern */
-M2C_UNK fn_8015BB08(s32, void*);                              /* extern */
-M2C_UNK fn_8015BBF8(s32, void*);                              /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);        /* extern */
-M2C_UNK fn_8019E880(s32);                                     /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                      /* extern */
-M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                      /* extern */
-M2C_UNK fn_801A4C84(u32);                                     /* extern */
-M2C_UNK fn_8_964DC(s32);                                      /* extern */
-extern M2C_UNK lbl_80239978;
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
-extern M2C_UNK lbl_802FF5A0;
-extern TObject* lbl_8042C110;
-extern s32 lbl_8042C148;
+class TObjSetObj : public SetObjHdr
+{
+public:
+	virtual void EditOnChange(SETDATA_PARAM*);
+
+	s32 CheckMustKill() { return fn_8005B9F0(this); }
+	s32 CheckRangeOut() { return fn_8005B8BC(this); }
+};
+
+extern "C" {
+extern void* lbl_8042C110;
+extern void* lbl_8042C148;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern void* lbl_8_bss_16D0;
-extern s32 lbl_8_data_15370;
-extern s32 lbl_8_data_153EC;
-extern M2C_UNK lbl_8_data_153F0;
-extern f32 lbl_8_rodata_166C;
-extern f32 lbl_8_rodata_1670;
-static u32 s12celestialObjectDisplayName[5]
-    = { 0x53313243, 0x454C4553, 0x5449414C, 0x204F424A, 0x45435400 };
-typedef struct ObjectEntry {
-	const char* name;        /* 0x00 */
-	void (*load)(void);      /* 0x04 */
-	void (*unload)(void);    /* 0x08 */
-	void (*create)(void);    /* 0x0C */
-	void* unk10;             /* 0x10 */
-	u32 flags;               /* 0x14 */
-	u32 unk18;               /* 0x18 */
-	s16 unk1C;               /* 0x1C */
-	s16 unk1E;               /* 0x1E */
-	u8 unk20;                /* 0x20 */
-	u8 unk21;                /* 0x21 */
-	u8 pad22[2];             /* 0x22 */
-	const char* fieldTypes;  /* 0x24 */
-	const char** fieldNames; /* 0x28 */
-	u8 pad2C[4];             /* 0x2C */
-} ObjectEntry;               /* 0x30 */
+extern u8 lbl_80239978;
+extern u8 lbl_80239984;
+extern u8 lbl_80239990;
+extern u8 lbl_802FF5A0;
 
-extern ObjectEntry s12celestialObjectEntry;
-extern M2C_UNK s12celestialObjectFieldNames;
-extern M2C_UNK s12celestialObjectFieldTypes;
-
-void fn_8_96760(s32 arg0)
-{
-	fn_8_964DC(arg0 - 0x28);
+void __ct__7TObjectFP7TObject(void*, void*);
+void __dt__7TObjectFv(void*, s16);
+void dtor_8005BD3C(void*, s16);
+void* fn_80018A34(void*, u32);
+void fn_800189A4(void*, void*);
+void fn_8005BE6C(void*);
+void fn_8005D5C8(void*, u32);
+void* fn_800BB92C(void*, s32, void*);
+s32 fn_800BC6CC(void*, const char*);
+void fn_800BC9F4(void*, void*);
+void fn_800BDF30(void*);
+void fn_800BE1F4(void*);
+void fn_800BE274(void*);
+f32 fn_800D7AE4(s32);
+f32 fn_800D7B00(s32);
+void* fn_80150588(void*);
+void fn_80150958(void*);
+void fn_8015BB08(void*, void*);
+void fn_8015BBF8(void*, void*);
+void fn_80195790(RwMatrix*, void*, f32, f32, s32);
+void fn_8019E880(RwFrame*);
+void fn_8019EB94(RwFrame*, Vec3*, s32);
+void fn_8019EC30(RwFrame*, Vec3*, s32);
+void fn_801A4C84(void*);
 }
 
-void fn_8_96768(void* arg0)
+class TObjS12Celestial : public TObject, public TObjSetObj
 {
-	if ((void*)M2C_FIELD(arg0, void**, 0x5C) != NULL) {
-		fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0), M2C_FIELD(arg0, void**, 0x5C));
-		fn_80150958(M2C_FIELD(arg0, void**, 0x5C));
-		M2C_FIELD(arg0, void**, 0x5C) = NULL;
-	}
+public:
+	Vec3 position;
+	s32 angleX;
+	s32 angleY;
+	s32 angleZ;
+	s32 speedX;
+	s32 speedY;
+	s32 speedZ;
+	f32 scale;
+	s32 modelNo;
+	void* model;
+
+	void DestroyClump();
+	void CloneClump(s32);
+	void SetPosition();
+	void SetParameter();
+	virtual void Disp();
+	virtual void Exec();
+	inline virtual ~TObjS12Celestial();
+	virtual void EditOnChange(SETDATA_PARAM*);
+};
+
+// The constructor and destructor are written against the object's storage:
+// retail constructs and destroys the TObjSetObj base through out-of-line
+// functions that keep their address names, which a C++ base-class call would
+// rename. The compiler still generates the class vtable and its adjustor
+// thunk from the virtual declarations above.
+extern "C" {
+TObjS12Celestial* __ct__16TObjS12CelestialFP7TObject(TObjS12Celestial*, TObject*);
+TObjS12Celestial* __dt__16TObjS12CelestialFv(TObjS12Celestial*, s16);
+extern void* __vt__16TObjS12Celestial[];
 }
 
-void fn_8_967C0(void* arg0, s32 arg1)
-{
-	if ((void*)M2C_FIELD(arg0, void**, 0x5C) == NULL) {
-		M2C_FIELD(arg0, void**, 0x5C) = fn_80150588((&lbl_8_bss_16D0)[arg1]);
-		fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0), M2C_FIELD(arg0, void**, 0x5C));
-		fn_8005D5C8(M2C_FIELD(arg0, void**, 0x5C), 0x10);
-	}
+#define SETOBJ(self) ((void*)((u8*)(self) + 0x28))
+
+// The data names below are descriptive guesses.
+extern "C" {
+char* s12celestialModelNames[2] = { "s12_k_tikankyuu_1.dff", "s12_k_tikankyuu_2.dff" };
+char* s12celestialObjectFieldNames[5]
+    = { "model no.", "x rotate speed", "y rotate speed", "z rotate speed", "scale(def:1.0)" };
+char* CL_TObjS12Celestial = "TObjS12Celestial";
 }
 
-void fn_8_96830(void* arg0)
-{
-	f32 sp8[3];
-	f32 temp_f0;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	s32 temp_r31;
+struct SETOBJ_PARAM {
+	char* displayName;
+	void (*init)();
+	void (*end)();
+	void (*create)();
+	u32 field10;
+	u32 flags;
+	u32 field18;
+	u16 id;
+	u16 count;
+	u8 field20;
+	u8 field21;
+	u8 pad22[2];
+	char* fieldTypes;
+	void* fields;
+};
 
-	temp_f0  = M2C_FIELD(arg0, f32*, 0x54);
-	sp8[2]   = temp_f0;
-	sp8[1]   = temp_f0;
-	sp8[0]   = temp_f0;
-	temp_r31 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x5C), s32*, 4);
-	fn_8019EB94(temp_r31, (f32*)((u8*)arg0 + 0x30), 0);
-	temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x44));
-	fn_80195790(temp_r31 + 0x10, &lbl_80239990,
-	    lbl_8_rodata_166C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x44)), temp_f31, 1);
-	fn_8019E880(temp_r31);
-	temp_f31_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x40));
-	fn_80195790(temp_r31 + 0x10, &lbl_80239984,
-	    lbl_8_rodata_166C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x40)), temp_f31_2, 1);
-	fn_8019E880(temp_r31);
-	temp_f31_3 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x3C));
-	fn_80195790(temp_r31 + 0x10, &lbl_80239978,
-	    lbl_8_rodata_166C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x3C)), temp_f31_3, 1);
-	fn_8019E880(temp_r31);
-	fn_8019EC30(temp_r31, sp8, 1);
+extern "C" {
+void* s12celestialModels[2];
+SETOBJ_PARAM s12celestialObjectEntry;
+void endObjS12Celestial();
+void initObjS12Celestial();
+void startObjS12Celestial();
 }
 
-void fn_8_96974(void* arg0)
+extern "C" void s12celestialObjectRegister()
 {
-	void* temp_r5;
-	void* temp_r4;
-
-	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
-	temp_r5                     = M2C_FIELD(temp_r4, void**, 0x2C);
-	M2C_FIELD(arg0, f32*, 0x30) = (f32)M2C_FIELD(temp_r4, f32*, 0);
-	M2C_FIELD(arg0, f32*, 0x34) = (f32)M2C_FIELD(temp_r4, f32*, 4);
-	M2C_FIELD(arg0, f32*, 0x38) = (f32)M2C_FIELD(temp_r4, f32*, 8);
-	M2C_FIELD(arg0, s32*, 0x58) = (s32)M2C_FIELD(temp_r5, s32*, 0);
-	M2C_FIELD(arg0, s32*, 0x48) = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 4));
-	M2C_FIELD(arg0, s32*, 0x4C) = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 8));
-	M2C_FIELD(arg0, s32*, 0x50) = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 0xC));
-	M2C_FIELD(arg0, f32*, 0x54) = (f32)(lbl_8_rodata_166C + M2C_FIELD(temp_r5, f32*, 0x10));
-}
-
-void fn_8_96A14(void) { }
-
-void fn_8_96A18(void* arg0)
-{
-	f32 sp8[3];
-	f32 temp_f0;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	s32 temp_r30;
-
-	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
-		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
-		return;
-	}
-	M2C_FIELD(arg0, s32*, 0x3C) = (s32)(M2C_FIELD(arg0, s32*, 0x3C) + M2C_FIELD(arg0, s32*, 0x48));
-	M2C_FIELD(arg0, s32*, 0x40) = (s32)(M2C_FIELD(arg0, s32*, 0x40) + M2C_FIELD(arg0, s32*, 0x4C));
-	M2C_FIELD(arg0, s32*, 0x44) = (s32)(M2C_FIELD(arg0, s32*, 0x44) + M2C_FIELD(arg0, s32*, 0x50));
-	temp_f0                     = M2C_FIELD(arg0, f32*, 0x54);
-	sp8[2]                      = temp_f0;
-	sp8[1]                      = temp_f0;
-	sp8[0]                      = temp_f0;
-	temp_r30                    = M2C_FIELD(M2C_FIELD(arg0, void**, 0x5C), s32*, 4);
-	fn_8019EB94(temp_r30, (f32*)((u8*)arg0 + 0x30), 0);
-	temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x44));
-	fn_80195790(temp_r30 + 0x10, &lbl_80239990,
-	    lbl_8_rodata_166C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x44)), temp_f31, 1);
-	fn_8019E880(temp_r30);
-	temp_f31_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x40));
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984,
-	    lbl_8_rodata_166C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x40)), temp_f31_2, 1);
-	fn_8019E880(temp_r30);
-	temp_f31_3 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x3C));
-	fn_80195790(temp_r30 + 0x10, &lbl_80239978,
-	    lbl_8_rodata_166C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x3C)), temp_f31_3, 1);
-	fn_8019E880(temp_r30);
-	fn_8019EC30(temp_r30, sp8, 1);
-}
-
-TObject* fn_8_96BC0(TObject* arg0, s16 arg1)
-{
-	if (arg0 != NULL) {
-		arg0->unk18 = &lbl_8_data_153F0;
-		arg0->unk2C = (u8*)&lbl_8_data_153F0 + 0x2C;
-		if ((void*)arg0->unk5C != NULL) {
-			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0), arg0->unk5C);
-			fn_80150958(arg0->unk5C);
-			arg0->unk5C = NULL;
-		}
-		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
-		__dt__7TObjectFv(arg0, 0);
-		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
-		}
-	}
-	return arg0;
-}
-
-TObject* fn_8_96C7C(TObject* arg0, TObject* arg1)
-{
-	f32 sp8[3];
-	f32 temp_f0;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	s32 temp_r30;
-	void* temp_r3;
-	void* temp_r5;
-
-	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
-	arg0->unk18 = &lbl_8_data_153F0;
-	arg0->unk2C = (u8*)&lbl_8_data_153F0 + 0x2C;
-	arg0->unk0  = lbl_8_data_153EC;
-	arg0->unk1E = 0x60;
-	arg0->unk50 = 0;
-	arg0->unk4C = 0;
-	arg0->unk48 = 0;
-	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
-	temp_r5     = M2C_FIELD(temp_r3, void**, 0x2C);
-	arg0->unk30 = M2C_FIELD(temp_r3, f32*, 0);
-	arg0->unk34 = M2C_FIELD(temp_r3, f32*, 4);
-	arg0->unk38 = M2C_FIELD(temp_r3, f32*, 8);
-	arg0->unk58 = M2C_FIELD(temp_r5, s32*, 0);
-	arg0->unk48 = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 4));
-	arg0->unk4C = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 8));
-	arg0->unk50 = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 0xC));
-	arg0->unk54 = lbl_8_rodata_166C + M2C_FIELD(temp_r5, f32*, 0x10);
-	arg0->unk5C = NULL;
-	if ((void*)arg0->unk5C == NULL) {
-		arg0->unk5C = fn_80150588((&lbl_8_bss_16D0)[arg0->unk58]);
-		fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0), arg0->unk5C);
-		fn_8005D5C8(arg0->unk5C, 0x10);
-	}
-	temp_f0  = arg0->unk54;
-	sp8[2]   = temp_f0;
-	sp8[1]   = temp_f0;
-	sp8[0]   = temp_f0;
-	temp_r30 = M2C_FIELD(arg0->unk5C, s32*, 4);
-	fn_8019EB94(temp_r30, &arg0->unk30, 0);
-	temp_f31 = fn_800D7B00(arg0->unk44);
-	fn_80195790(
-	    temp_r30 + 0x10, &lbl_80239990, lbl_8_rodata_166C - fn_800D7AE4(arg0->unk44), temp_f31, 1);
-	fn_8019E880(temp_r30);
-	temp_f31_2 = fn_800D7B00(arg0->unk40);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984, lbl_8_rodata_166C - fn_800D7AE4(arg0->unk40),
-	    temp_f31_2, 1);
-	fn_8019E880(temp_r30);
-	temp_f31_3 = fn_800D7B00(arg0->unk3C);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239978, lbl_8_rodata_166C - fn_800D7AE4(arg0->unk3C),
-	    temp_f31_3, 1);
-	fn_8019E880(temp_r30);
-	fn_8019EC30(temp_r30, sp8, 1);
-	return arg0;
-}
-
-void fn_8_96EF0(void* arg0, void* arg1)
-{
-	s32* temp_r3;
-	s32 temp_r0;
-
-	temp_r3 = M2C_FIELD(arg1, s32**, 0x2C);
-	temp_r0 = *temp_r3;
-	if (temp_r0 < 0) {
-		*temp_r3 = 0;
-		return;
-	}
-	if (temp_r0 >= 2) {
-		*temp_r3 = 1;
-	}
-}
-
-void s12celestialObjectUnload(void)
-{
-	void** var_r30;
-	s32 var_r29;
-
-	var_r29 = 0;
-	var_r30 = &lbl_8_bss_16D0;
-	do {
-		fn_80150958(*var_r30);
-		*var_r30 = NULL;
-		var_r30 += 1;
-		var_r29 += 1;
-	} while (var_r29 < 2);
-}
-
-void s12celestialObjectLoad(M2C_UNK arg_sp0)
-{
-	s32* var_r29;
-	void** var_r28;
-	s32 var_r27;
-
-	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-	} else {
-		return;
-	}
-	fn_800BE274(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-	fn_800BC9F4(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
-	var_r27 = 0;
-	var_r29 = &lbl_8_data_15370;
-	var_r28 = &lbl_8_bss_16D0;
-	do {
-		*var_r28 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
-		    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29), &lbl_802FF5A0);
-		if ((void*)*var_r28 != NULL) {
-			fn_800BDF30();
-		}
-		var_r29 += 1;
-		var_r28 += 1;
-		var_r27 += 1;
-	} while (var_r27 < 2);
-	fn_800BE1F4(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-}
-
-void s12celestialObjectCreate(void)
-{
-	f32 sp8[3];
-	TObject* temp_r3;
-	f32 temp_f0;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	s32 temp_r30;
-	void* temp_r3_2;
-	void* temp_r5;
-
-	temp_r3 = fn_80018A34(lbl_8042C148, 0x60);
-	if (temp_r3 != NULL) {
-		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
-		fn_8005BE6C(&temp_r3->unk28);
-		temp_r3->unk18 = &lbl_8_data_153F0;
-		temp_r3->unk2C = (u8*)&lbl_8_data_153F0 + 0x2C;
-		temp_r3->unk0  = lbl_8_data_153EC;
-		temp_r3->unk1E = 0x60;
-		temp_r3->unk50 = 0;
-		temp_r3->unk4C = 0;
-		temp_r3->unk48 = 0;
-		temp_r3_2      = M2C_FIELD(temp_r3, void**, 0x28);
-		temp_r5        = M2C_FIELD(temp_r3_2, void**, 0x2C);
-		temp_r3->unk30 = M2C_FIELD(temp_r3_2, f32*, 0);
-		temp_r3->unk34 = M2C_FIELD(temp_r3_2, f32*, 4);
-		temp_r3->unk38 = M2C_FIELD(temp_r3_2, f32*, 8);
-		temp_r3->unk58 = M2C_FIELD(temp_r5, s32*, 0);
-		temp_r3->unk48 = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 4));
-		temp_r3->unk4C = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 8));
-		temp_r3->unk50 = (s32)(lbl_8_rodata_1670 * M2C_FIELD(temp_r5, f32*, 0xC));
-		temp_r3->unk54 = lbl_8_rodata_166C + M2C_FIELD(temp_r5, f32*, 0x10);
-		temp_r3->unk5C = NULL;
-		if ((void*)temp_r3->unk5C == NULL) {
-			temp_r3->unk5C = fn_80150588((&lbl_8_bss_16D0)[temp_r3->unk58]);
-			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x72A0), temp_r3->unk5C);
-			fn_8005D5C8(temp_r3->unk5C, 0x10);
-		}
-		temp_f0  = temp_r3->unk54;
-		sp8[2]   = temp_f0;
-		sp8[1]   = temp_f0;
-		sp8[0]   = temp_f0;
-		temp_r30 = M2C_FIELD(temp_r3->unk5C, s32*, 4);
-		fn_8019EB94(temp_r30, &temp_r3->unk30, 0);
-		temp_f31 = fn_800D7B00(temp_r3->unk44);
-		fn_80195790(temp_r30 + 0x10, &lbl_80239990, lbl_8_rodata_166C - fn_800D7AE4(temp_r3->unk44),
-		    temp_f31, 1);
-		fn_8019E880(temp_r30);
-		temp_f31_2 = fn_800D7B00(temp_r3->unk40);
-		fn_80195790(temp_r30 + 0x10, &lbl_80239984, lbl_8_rodata_166C - fn_800D7AE4(temp_r3->unk40),
-		    temp_f31_2, 1);
-		fn_8019E880(temp_r30);
-		temp_f31_3 = fn_800D7B00(temp_r3->unk3C);
-		fn_80195790(temp_r30 + 0x10, &lbl_80239978, lbl_8_rodata_166C - fn_800D7AE4(temp_r3->unk3C),
-		    temp_f31_3, 1);
-		fn_8019E880(temp_r30);
-		fn_8019EC30(temp_r30, sp8, 1);
-	}
-}
-
-void s12celestialObjectRegister(void)
-{
-	s12celestialObjectEntry.flags      = 0;
-	s12celestialObjectEntry.unk18      = 0;
-	s12celestialObjectEntry.name       = (const char*)s12celestialObjectDisplayName;
-	s12celestialObjectEntry.load       = (void (*)(void))s12celestialObjectLoad;
-	s12celestialObjectEntry.unload     = (void (*)(void))s12celestialObjectUnload;
-	s12celestialObjectEntry.create     = (void (*)(void))s12celestialObjectCreate;
-	s12celestialObjectEntry.unk10      = (void*)0;
-	s12celestialObjectEntry.flags      = 0x20000;
-	s12celestialObjectEntry.unk18      = 0;
-	s12celestialObjectEntry.unk20      = 0x1E;
-	s12celestialObjectEntry.unk1C      = 0x1181;
-	s12celestialObjectEntry.unk1E      = 2;
-	s12celestialObjectEntry.unk21      = 0;
-	s12celestialObjectEntry.fieldTypes = (const char*)&s12celestialObjectFieldTypes;
-	s12celestialObjectEntry.fieldNames = (const char**)&s12celestialObjectFieldNames;
-	if ((const char*)&s12celestialObjectFieldTypes != NULL) {
+	s12celestialObjectEntry.flags       = 0;
+	s12celestialObjectEntry.field18     = 0;
+	s12celestialObjectEntry.displayName = "S12CELESTIAL OBJECT";
+	s12celestialObjectEntry.init        = initObjS12Celestial;
+	s12celestialObjectEntry.end         = endObjS12Celestial;
+	s12celestialObjectEntry.create      = startObjS12Celestial;
+	s12celestialObjectEntry.field10     = 0;
+	s12celestialObjectEntry.flags       = 0x20000;
+	s12celestialObjectEntry.field18     = 0;
+	s12celestialObjectEntry.field20     = 0x1E;
+	s12celestialObjectEntry.id          = 0x1181;
+	s12celestialObjectEntry.count       = 2;
+	s12celestialObjectEntry.field21     = 0;
+	s12celestialObjectEntry.fieldTypes  = "iffff";
+	s12celestialObjectEntry.fields      = s12celestialObjectFieldNames;
+	if (s12celestialObjectEntry.fieldTypes != NULL)
 		s12celestialObjectEntry.flags |= 8;
-	} else {
+	else
 		s12celestialObjectEntry.flags &= ~8;
+}
+
+__declspec(section ".ctors") void (*const s12celestialObjectCtorEntry)()
+    = s12celestialObjectRegister;
+
+/* startObjS12Celestial is a placement new-expression in retail: the result of
+ * the allocation is null-checked through a compiler temporary, the shape MWCC
+ * gives a new-expression whose object has a subobject with a destructor (the
+ * TObject base). The object's real constructor is the storage-level function
+ * above, so the new-expression constructs this same-sized stand-in, whose
+ * default constructor forwards to it the way TObjS12Celestial() would. */
+struct ObjectStorage {
+	~ObjectStorage();
+};
+
+struct S12CelestialStorage : ObjectStorage {
+	u8 data[sizeof(TObjS12Celestial)];
+
+	S12CelestialStorage()
+	{
+		__ct__16TObjS12CelestialFP7TObject((TObjS12Celestial*)this, (TObject*)lbl_8042C110);
+	}
+	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+};
+
+extern "C" void startObjS12Celestial()
+{
+	new (lbl_8042C148) S12CelestialStorage();
+}
+
+#pragma opt_propagation on
+extern "C" void initObjS12Celestial()
+{
+	void* stage = *(void**)((u8*)lbl_8042C1D0 + 0x8C18);
+	if (!(stage != NULL && (fn_801A4C84(stage), 1)))
+		return;
+
+	fn_800BE274(*(void**)((u8*)lbl_8042C1D0 + 0x8C18));
+	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	s32 i;
+	for (i = 0; i < 2; i++) {
+		s12celestialModels[i] = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50),
+		    fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), s12celestialModelNames[i]),
+		    &lbl_802FF5A0);
+		if (s12celestialModels[i] != NULL) {
+			fn_800BDF30(s12celestialModels[i]);
+		}
+	}
+	fn_800BE1F4(*(void**)((u8*)lbl_8042C1D0 + 0x8C18));
+}
+
+extern "C" void endObjS12Celestial()
+{
+	s32 i;
+	for (i = 0; i < 2; i++) {
+		fn_80150958(s12celestialModels[i]);
+		s12celestialModels[i] = NULL;
+	}
+}
+#pragma opt_propagation reset
+
+void TObjS12Celestial::EditOnChange(SETDATA_PARAM* data)
+{
+	s32* modelNo = &data->params->modelNo;
+	if (*modelNo < 0) {
+		*modelNo = 0;
+	} else if (*modelNo >= 2) {
+		*modelNo = 1;
 	}
 }
 
-void fn_8_973D4(s32 arg0, void* arg1)
+extern "C" TObjS12Celestial* __ct__16TObjS12CelestialFP7TObject(
+    TObjS12Celestial* self, TObject* parent)
 {
-	fn_8_96EF0((void*)(arg0 - 0x28), arg1);
+	__ct__7TObjectFP7TObject(self, parent);
+	fn_8005BE6C(SETOBJ(self));
+	*(void***)((u8*)self + 0x18) = __vt__16TObjS12Celestial;
+	*(void***)((u8*)self + 0x2C) = __vt__16TObjS12Celestial + 11;
+	self->className              = CL_TObjS12Celestial;
+	self->objectSize             = sizeof(TObjS12Celestial);
+	self->speedX = self->speedY = self->speedZ = 0;
+	self->SetParameter();
+	self->model = NULL;
+	self->CloneClump(self->modelNo);
+	self->SetPosition();
+	return self;
 }
+
+extern "C" TObjS12Celestial* __dt__16TObjS12CelestialFv(TObjS12Celestial* self, s16 flags)
+{
+	if (self != NULL) {
+		*(void***)((u8*)self + 0x18) = __vt__16TObjS12Celestial;
+		*(void***)((u8*)self + 0x2C) = __vt__16TObjS12Celestial + 11;
+		self->DestroyClump();
+		dtor_8005BD3C(SETOBJ(self), 0);
+		__dt__7TObjectFv(self, 0);
+		if (flags > 0) {
+			fn_800189A4(lbl_8042C148, self);
+		}
+	}
+	return self;
+}
+
+void TObjS12Celestial::Exec()
+{
+	if (CheckMustKill() != 0 || CheckRangeOut() != 0) {
+		signal |= 1;
+		return;
+	}
+	angleX += speedX;
+	angleY += speedY;
+	angleZ += speedZ;
+	SetPosition();
+}
+
+void TObjS12Celestial::Disp() { }
+
+void TObjS12Celestial::SetParameter()
+{
+	SETDATA_PARAM* data    = frame;
+	CelestialParam* params = data->params;
+	position               = data->position;
+	modelNo                = params->modelNo;
+	speedX                 = 182.04445f * params->rotateX;
+	speedY                 = 182.04445f * params->rotateY;
+	speedZ                 = 182.04445f * params->rotateZ;
+	scale                  = 1.0f + params->scale;
+}
+
+void TObjS12Celestial::SetPosition()
+{
+	Vec3 size;
+	size.x = size.y = size.z = scale;
+	RwFrame* frame           = *(RwFrame**)((u8*)model + 4);
+	fn_8019EB94(frame, &position, 0);
+	f32 sine = fn_800D7B00(angleZ);
+	fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(angleZ), sine, 1);
+	fn_8019E880(frame);
+	sine = fn_800D7B00(angleY);
+	fn_80195790(&frame->modelling, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), sine, 1);
+	fn_8019E880(frame);
+	sine = fn_800D7B00(angleX);
+	fn_80195790(&frame->modelling, &lbl_80239978, 1.0f - fn_800D7AE4(angleX), sine, 1);
+	fn_8019E880(frame);
+	fn_8019EC30(frame, &size, 1);
+}
+
+void TObjS12Celestial::CloneClump(s32 index)
+{
+	if (model == NULL) {
+		model = fn_80150588(s12celestialModels[index]);
+		fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x72A0), model);
+		fn_8005D5C8(model, 0x10);
+	}
+}
+
+void TObjS12Celestial::DestroyClump()
+{
+	if (model != NULL) {
+		fn_8015BBF8(*(void**)((u8*)lbl_8042C1D0 + 0x72A0), model);
+		fn_80150958(model);
+		model = NULL;
+	}
 }
