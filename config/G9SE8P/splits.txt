@@ -654,6 +654,52 @@ dolphin/trk/nubinit.c:
 	.rodata     start:0x8023D340 end:0x8023D360
 	.bss        start:0x803EE0F0 end:0x803EE0F8
 
+dolphin/trk/msg.c:
+	.text       start:0x801C98B8 end:0x801C9A94
+
+dolphin/trk/msgbuf.c:
+	.text       start:0x801C9A94 end:0x801CA4C0
+	.rodata     start:0x8023D360 end:0x8023D380
+	.bss        start:0x803EE0F8 end:0x803EFAA8
+
+dolphin/trk/serpoll.c:
+	.text       start:0x801CA4C0 end:0x801CA88C
+	.bss        start:0x803EFAA8 end:0x803EFAC0
+
+dolphin/trk/usr_put.c:
+	.text       start:0x801CA88C end:0x801CA918
+
+dolphin/trk/dispatch.c:
+	.text       start:0x801CA918 end:0x801CA9B4
+	.data       start:0x80291D40 end:0x80291DC8
+	.bss        start:0x803EFAC0 end:0x803EFAC8
+
+dolphin/trk/msghndlr.c:
+	.text       start:0x801CA9B4 end:0x801CD214
+	.data       start:0x80291DC8 end:0x80291E00
+	.bss        start:0x803EFAC8 end:0x803EFAD0
+
+dolphin/trk/support.c:
+	.text       start:0x801CD214 end:0x801CDAD4
+
+dolphin/trk/mutex_TRK.c:
+	.text       start:0x801CDAD4 end:0x801CDAEC
+
+dolphin/trk/notify.c:
+	.text       start:0x801CDAEC end:0x801CDBC4
+
+dolphin/trk/flush_cache.c:
+	.text       start:0x801CDBC4 end:0x801CDBFC
+
+dolphin/trk/mem_TRK.c:
+	.text       start:0x801CDBFC end:0x801CDCB8
+
+dolphin/trk/targimpl_ppc.c:
+	.text       start:0x801CDCB8 end:0x801CF550
+	.rodata     start:0x8023D380 end:0x8023D408
+	.data       start:0x80291E00 end:0x80291E30
+	.bss        start:0x803EFAD0 end:0x803F0050
+
 dolphin/trk/targimpl.c:
 	.text       start:0x801CF550 end:0x801CFAF4
 	.bss        start:0x803F0050 end:0x803F005C
@@ -663,6 +709,16 @@ dolphin/trk/dolphin_trk.c:
 	.rodata     start:0x8023D408 end:0x8023D450
 	.data       start:0x80291E70 end:0x80291E90
 	.bss        start:0x803F0060 end:0x803F2288
+
+dolphin/trk/targcont.c:
+	.text       start:0x801CFF18 end:0x801CFF4C
+
+dolphin/trk/target_options.c:
+	.text       start:0x801CFF4C end:0x801CFF68
+	.bss        start:0x803F2288 end:0x803F22A0
+
+dolphin/trk/mslsupp.c:
+	.text       start:0x801CFF68 end:0x801D0518
 
 dolphin/base/PPCArch.c:
 	.text       start:0x801D0518 end:0x801D062C

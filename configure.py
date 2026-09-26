@@ -513,6 +513,42 @@ config.libs = [
         ],
     },
     {
+        # The rest of MetroTRK (TRK_MINNOW_DOLPHIN). Unlike the four units in the
+        # TRK entry above, these match Mario Party 4's public MetroTRK sources
+        # compiled with GC/1.3 and its MetroTRK flags; usr_put.c alone is 1.3.2.
+        "lib": "TRK_MINNOW_DOLPHIN",
+        "mw_version": "GC/1.3",
+        "cflags": [
+            *cflags_base,
+            "-use_lmw_stmw on",
+            "-str reuse,readonly",
+            "-common off",
+            "-sdata 0",
+            "-sdata2 0",
+            "-inline auto,deferred",
+            "-enum min",
+            "-sdatathreshold 0",
+        ],
+        "progress_category": "sdk",
+        "objects": [
+            Object(Matching, "dolphin/trk/msg.c"),
+            Object(Matching, "dolphin/trk/msgbuf.c"),
+            Object(Matching, "dolphin/trk/serpoll.c"),
+            Object(Matching, "dolphin/trk/usr_put.c", mw_version="GC/1.3.2"),
+            Object(Matching, "dolphin/trk/dispatch.c"),
+            Object(Matching, "dolphin/trk/msghndlr.c"),
+            Object(Matching, "dolphin/trk/support.c"),
+            Object(Matching, "dolphin/trk/mutex_TRK.c"),
+            Object(Matching, "dolphin/trk/notify.c"),
+            Object(Matching, "dolphin/trk/flush_cache.c"),
+            Object(Matching, "dolphin/trk/mem_TRK.c"),
+            Object(Matching, "dolphin/trk/targimpl_ppc.c"),
+            Object(Matching, "dolphin/trk/targcont.c"),
+            Object(Matching, "dolphin/trk/target_options.c"),
+            Object(Matching, "dolphin/trk/mslsupp.c"),
+        ],
+    },
+    {
         # Sonic Heroes' own code, as opposed to the SDK linked into it. Nothing
         # here is named yet: the disc ships no map, so every translation unit
         # boundary in this range has to be argued for from cross references.

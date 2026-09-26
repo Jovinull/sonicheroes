@@ -20,7 +20,7 @@
 // Functions are in the order the original emits them.
 
 extern void TRK_board_display(const char* msg);
-extern void fn_801CA4C0(void);
+extern void TRKTerminateSerialHandler(void);
 extern void usr_put_initialize(void);
 extern int TRKInitializeEventQueue(void);
 extern int TRKInitializeMessageBuffers(void);
@@ -62,7 +62,7 @@ void TRKNubWelcome(void)
 
 int TRKTerminateNub(void)
 {
-	fn_801CA4C0();
+	TRKTerminateSerialHandler();
 	return 0;
 }
 
