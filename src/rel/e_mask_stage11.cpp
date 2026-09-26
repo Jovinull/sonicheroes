@@ -5,7 +5,10 @@
 // the TObject* constructor, EditOnChange and the initObj/endObj/startObj
 // lifecycle functions. The same PS2 range holds the RenderWare helpers
 // SetHierarchyForSkinAtomic, GetHierarchy and GetChildFrameHierarchy, which
-// the GameCube unit emits between the constructor and EditOnChange. The
+// the GameCube unit emits between the constructor and EditOnChange. Other
+// Stage 11 units carry their own copies, so they are file-static; the module's
+// link script keeps this object whole (FORCEFILES) so the inlined, otherwise
+// unreferenced GetHierarchy copy survives as it does in retail. The
 // "TObjMask" class-name string in this unit's .data correlates the GameCube
 // object with that family.
 //
@@ -190,9 +193,9 @@ void fn_80226440(RpAtomic*, void*);
 u32 fn_80226468(void*);
 }
 
-RpAtomic* SetHierarchyForSkinAtomic(RpAtomic*, void*);
-RpHAnimHierarchy* GetHierarchy(RpClump*);
-RwFrame* GetChildFrameHierarchy(RwFrame*, void*);
+static RpAtomic* SetHierarchyForSkinAtomic(RpAtomic*, void*);
+static RpHAnimHierarchy* GetHierarchy(RpClump*);
+static RwFrame* GetChildFrameHierarchy(RwFrame*, void*);
 
 class TObjMask : public TObject, public TObjSetObj
 {
@@ -351,7 +354,7 @@ void TObjMask::EditOnChange(SETDATA_PARAM* data)
 	maskObjectFieldNames[3] = maskDirectionNames[params->direction];
 }
 
-RwFrame* GetChildFrameHierarchy(RwFrame* frame, void* data)
+static RwFrame* GetChildFrameHierarchy(RwFrame* frame, void* data)
 {
 	RpHAnimHierarchy* hierarchy = fn_8013F484(frame);
 	if (hierarchy == NULL) {
@@ -362,7 +365,7 @@ RwFrame* GetChildFrameHierarchy(RwFrame* frame, void* data)
 	return NULL;
 }
 
-RpHAnimHierarchy* GetHierarchy(RpClump* clump)
+static RpHAnimHierarchy* GetHierarchy(RpClump* clump)
 {
 	RpHAnimHierarchy* hierarchy = NULL;
 	hierarchy                   = fn_8013F484(*(RwFrame**)((u8*)clump + 4));
@@ -372,7 +375,7 @@ RpHAnimHierarchy* GetHierarchy(RpClump* clump)
 	return hierarchy;
 }
 
-RpAtomic* SetHierarchyForSkinAtomic(RpAtomic* atomic, void* data)
+static RpAtomic* SetHierarchyForSkinAtomic(RpAtomic* atomic, void* data)
 {
 	if (fn_80226468(*(void**)((u8*)atomic + 0x18)) != 0) {
 		fn_80226440(atomic, data);

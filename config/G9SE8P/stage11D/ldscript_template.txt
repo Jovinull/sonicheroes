@@ -1,0 +1,17 @@
+SECTIONS
+{
+    GROUP:
+    {
+        $SECTIONS
+    }
+}
+
+FORCEACTIVE
+{
+    $FORCEACTIVE
+}
+
+FORCEFILES
+{
+    e_mask_stage11.o
+}

@@ -333,6 +333,10 @@ modules:
   hash: 79a86badbc61416b3efc14802c536eeaef6cf0aa
   symbols: config/G9SE8P/stage11D/symbols.txt
   splits: config/G9SE8P/stage11D/splits.txt
+  # The Stage 11 object units keep file-static helpers (e.g. GetHierarchy)
+  # that are inlined everywhere and otherwise unreferenced; retail keeps their
+  # out-of-line copies, and a static symbol cannot be force-activated by name.
+  ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
     # This internal update helper has no relocation from outside its original
     # monolithic compiler atom, so retain it once that atom is reconstructed.
@@ -390,14 +394,12 @@ modules:
     - GetWaitPosY__10TObjS11KeyFv
     - SetPosition__10TObjS11KeyFv
     - __ct__10TObjS11KeyFP7TObject
-    # TObjMask's inlined helpers, the unreferenced collision setup and the
-    # hierarchy lookup CloneClump inlines.
+    # TObjMask's inlined helpers and the unreferenced collision setup.
     - DestroyClump__8TObjMaskFv
     - CloneClump__8TObjMaskFv
     - SetCollision__8TObjMaskFv
     - SetParameter__8TObjMaskFv
     - SetPosition__8TObjMaskFv
-    - GetHierarchy__FP7RpClump
     # TObjS12Celestial's inlined helpers and constructor.
     - DestroyClump__16TObjS12CelestialFv
     - CloneClump__16TObjS12CelestialFi
