@@ -17,11 +17,11 @@ static inline void lsc_StatRead(LscObj* lsc)
 		return;
 	}
 	stm  = &lsc->stm[lsc->head];
-	stat = fn_8021722C(lsc->stmhndl);
+	stat = ADXSTM_GetStat(lsc->stmhndl);
 	if (stat == 4) {
 		lsc->stat = 3;
 	} else if (stat == 2) {
-		stm->rdsct = fn_802171C0(lsc->stmhndl);
+		stm->rdsct = ADXSTM_Tell(lsc->stmhndl);
 	} else if (stat == 3) {
 		stm->rdsct = lsc->requestedSectors;
 		stm->stat  = 2;
@@ -60,9 +60,9 @@ static inline void lsc_StatEnd(LscObj* lsc)
 static inline void lsc_StartStream(LscObj* lsc)
 {
 	if (lsc->streamStarted == 0) {
-		fn_80216810(lsc->stmhndl, lsc->flowlimit, lsc->nsct);
-		fn_802171DC(lsc->stmhndl, 0);
-		fn_8021713C(lsc->stmhndl);
+		ADXSTM_SetBufSize(lsc->stmhndl, lsc->flowlimit, lsc->nsct);
+		ADXSTM_Seek(lsc->stmhndl, 0);
+		ADXSTM_Start(lsc->stmhndl);
 		lsc->streamStarted = 1;
 	}
 }
@@ -74,10 +74,10 @@ static inline void lsc_StatWait(LscObj* lsc)
 	if (lsc->numstm <= 0) {
 		return;
 	}
-	fn_80217044(lsc->stmhndl);
-	fn_80217434(lsc->stmhndl);
-	fn_80217584(lsc->stmhndl, stm->fname, stm->dir, stm->ofst, stm->numSectors);
-	fn_80216EC4(lsc->stmhndl, stm->numSectors);
+	ADXSTM_StopNw(lsc->stmhndl);
+	ADXSTM_ReleaseFileNw(lsc->stmhndl);
+	ADXSTM_BindFileNw(lsc->stmhndl, stm->fname, stm->dir, stm->ofst, stm->numSectors);
+	ADXSTM_SetEos(lsc->stmhndl, stm->numSectors);
 	lsc->requestedSectors = stm->numSectors;
 	stm->rdsct            = 0;
 	lsc->streamStarted    = 0;

@@ -1183,6 +1183,31 @@ dolphin/exi/EXIUart.c:
 	.text       start:0x801FBDF4 end:0x801FC3C8
 	.sbss       start:0x8042CF38 end:0x8042CF48
 
+game/cri/adx_stmc.c:
+	.text       start:0x80216758 end:0x80217BD8
+	.rodata     start:0x8023E0F8 end:0x8023E128
+	.data       start:0x8029B780 end:0x8029B790
+	.bss        start:0x804138F8 end:0x80414768
+
+game/cri/adx_tlk.c:
+	.text       start:0x80217BD8 end:0x80219778
+	.rodata     start:0x8023E128 end:0x8023E7D0
+	.data       start:0x8029B790 end:0x8029B798
+	.bss        start:0x80414768 end:0x804147A8
+
+game/cri/adx_tlk2.c:
+	.text       start:0x80219778 end:0x80219904
+	.rodata     start:0x8023E7D0 end:0x8023E850
+
+game/cri/adx_tsvr.c:
+	.text       start:0x80219904 end:0x8021A77C
+	.rodata     start:0x8023E850 end:0x8023E8E8
+	.bss        start:0x804147A8 end:0x804147B8
+
+game/cri/adx_xpnd.c:
+	.text       start:0x8021A77C end:0x8021ABC0
+	.bss        start:0x804147B8 end:0x80414B80
+
 game/cri/adx_mgc.c:
 	.text       start:0x8021ABC0 end:0x8021B274
 	.rodata     start:0x8023E8E8 end:0x8023E949

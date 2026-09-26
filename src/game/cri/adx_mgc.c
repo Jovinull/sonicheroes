@@ -50,7 +50,7 @@ extern s32 OSSuspendThread(OSThread* thread);
 extern BOOL OSSetThreadPriority(OSThread* thread, s32 prio);
 extern s32 OSGetThreadPriority(OSThread* thread);
 extern void VIWaitForRetrace(void);
-extern s32 lbl_8040EEB8; /* adxt_vsync_cnt */
+extern s32 adxt_vsync_cnt; /* adxt_vsync_cnt */
 
 typedef struct ADXM_TPRM {
 	s32 prio_lock;
@@ -197,7 +197,7 @@ void adxm_vsync_proc(void* arg)
 	while (adxm_vsync_act == 1) {
 		VIWaitForRetrace();
 		adxm_vsync_cnt++;
-		lbl_8040EEB8++;
+		adxt_vsync_cnt++;
 		fn_80221CAC();
 		if (adxm_mwidle_end == 0) {
 			OSResumeThread(&adxm_mwidle_thread);

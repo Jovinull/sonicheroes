@@ -22,7 +22,7 @@ extern void cvFsSetDefDev(const char* name);
 extern void* fn_80223410(void);                           /* mfCiGetInterface */
 extern void* fn_8021F398(void);                           /* gcCiGetInterface */
 extern void fn_8021F404(s32 a, s32 b, s32 c, s32 rdmode); /* gcCiSetRdMode */
-extern void fn_8021357C(const char* msg);                 /* ADXERR_CallErrFunc1 */
+extern void ADXERR_CallErrFunc1(const char* msg);         /* ADXERR_CallErrFunc1 */
 
 const char* const volatile adxgcsdk_build
     = "\nADXGCSDK Ver.05Sep2002Patch2 Build:May  9 2003 17:11:18\n";
@@ -31,7 +31,7 @@ void adxgc_err_dvd(void* obj, const char* msg, void* hn);
 
 void adxgc_err_dvd(void* obj, const char* msg, void* hn)
 {
-	fn_8021357C(msg);
+	ADXERR_CallErrFunc1(msg);
 }
 
 void ADXGC_SetupDvdFs(ADXGC_DVDFS_PRM* prm)

@@ -1142,3 +1142,11 @@ depend on emission order keep the default CRI flags.
   over AXRNA, `-inline deferred`. Each opens with its own banner or follows
   the object order of the later CRI GameCube link map; all owned data is
   referenced only from inside the unit.
+- `game/cri/adx_stmc.c`, `game/cri/adx_tlk.c`, `game/cri/adx_tlk2.c` and
+  `game/cri/adx_xpnd.c` use `-inline deferred`; `game/cri/adx_tsvr.c` keeps
+  the default CRI flags because its seven functions do not depend on emission
+  order. `adx_tlk.c` keeps eighteen linker-stripped API entry points as short
+  parameter-checking bodies: their messages survive in the retail string pool
+  interleaved with compiler-generated floating-point constants, which only
+  literal emission order reproduces. They are named from the PS2 symbol
+  metadata and do not reach the linked executable.

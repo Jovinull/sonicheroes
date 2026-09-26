@@ -184,7 +184,7 @@ static inline void lsc_Stop(LscObj* lsc)
 	}
 	lsc->stat = 0;
 	if (lsc->stmhndl != NULL && lsc->streamStarted == 1) {
-		fn_80216F18(lsc->stmhndl);
+		ADXSTM_Stop(lsc->stmhndl);
 		lsc->streamStarted = 0;
 	}
 	lsc->requestedSectors = 0;
