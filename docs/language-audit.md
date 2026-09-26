@@ -1150,3 +1150,10 @@ depend on emission order keep the default CRI flags.
   interleaved with compiler-generated floating-point constants, which only
   literal emission order reproduces. They are named from the PS2 symbol
   metadata and do not reach the linked executable.
+- `game/cri/adx_inis.c`, `adx_amp.c`, `adx_crs.c`, `adx_errs.c`,
+  `adx_fsvr.c`, `adx_insh.c`, `adx_lsc.c`, `adx_sfa.c` and `adx_dcd3.c` (all under
+  `game/cri/`): ADXT initialisation, amplitude meter, critical section, error
+  reporting, file server, SFA header insertion, seamless-entry API and SFA
+  stubs and the stereo-as-mono decode switch, `-inline deferred`. `adx_lsc.c` keeps the linker-stripped
+  `ADXT_StartFnameLp` (a PS2 symbol) because its inlined calls fix the order
+  of the unit's string pool.

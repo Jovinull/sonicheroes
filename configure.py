@@ -621,6 +621,51 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/adx_inis.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_amp.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_crs.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_dcd3.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_errs.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_fsvr.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_insh.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_lsc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_sfa.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
                 "game/cri/adx_stmc.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
             ),

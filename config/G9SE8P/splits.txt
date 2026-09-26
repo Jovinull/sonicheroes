@@ -1183,6 +1183,44 @@ dolphin/exi/EXIUart.c:
 	.text       start:0x801FBDF4 end:0x801FC3C8
 	.sbss       start:0x8042CF38 end:0x8042CF48
 
+game/cri/adx_inis.c:
+	.text       start:0x8020D1FC end:0x8020D4A8
+	.rodata     start:0x8023D648 end:0x8023D680
+	.data       start:0x8029B568 end:0x8029B570
+	.bss        start:0x8040EEA8 end:0x8040FAC0
+
+game/cri/adx_amp.c:
+	.text       start:0x802125A0 end:0x802127B0
+
+game/cri/adx_crs.c:
+	.text       start:0x802127B0 end:0x80212800
+	.bss        start:0x80411220 end:0x80411228
+
+game/cri/adx_dcd3.c:
+	.text       start:0x80213014 end:0x80213020
+	.bss        start:0x80411228 end:0x80411230
+
+game/cri/adx_errs.c:
+	.text       start:0x80213020 end:0x80213670
+	.rodata     start:0x8023DFD8 end:0x8023DFE0
+	.bss        start:0x80411230 end:0x80411358
+
+game/cri/adx_fsvr.c:
+	.text       start:0x80213670 end:0x802136F4
+	.bss        start:0x80411358 end:0x80411360
+
+game/cri/adx_insh.c:
+	.text       start:0x802136F4 end:0x8021389C
+	.bss        start:0x80411360 end:0x804117A0
+
+game/cri/adx_lsc.c:
+	.text       start:0x8021389C end:0x80213A5C
+	.rodata     start:0x8023DFE0 end:0x8023E0E0
+
+game/cri/adx_sfa.c:
+	.text       start:0x80213A5C end:0x80213A8C
+	.bss        start:0x804117A0 end:0x804117A8
+
 game/cri/adx_stmc.c:
 	.text       start:0x80216758 end:0x80217BD8
 	.rodata     start:0x8023E0F8 end:0x8023E128
