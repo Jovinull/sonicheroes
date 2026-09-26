@@ -63,7 +63,6 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | `rel/e_wall_stage11` | 83.81 | 467 | 49 | 39 | 379 | 6670 | 464 |
 | `game/rw_gcn_raster` | 82.07 | 480 | 162 | 291 | 27 | 3771 | 480 |
 | `rel/e_strategy_magician_stage11` | 81.82 | 218 | 3 | 94 | 121 | 2199 | 150 |
-| `rel/e_strategy_rinoliner_stage11` | 81.58 | 114 | 0 | 0 | 114 | 990 | 115 |
 | `rel/e_flyer_stage11` | 80.22 | 595 | 38 | 8 | 549 | 4582 | 641 |
 | `rel/e_rinoliner_collision_stage11` | 78.53 | 271 | 14 | 8 | 249 | 2574 | 276 |
 | `rel/e_flyer_collision_stage11` | 77.97 | 240 | 21 | 39 | 180 | 1377 | 232 |
@@ -442,6 +441,14 @@ facts decided it, and both repeat across the stage11 units:
   eight-aligned at `0x1F18`, and nothing needs its section alignment rewritten.
   The retail link keeps that vector and the inlined class methods, so the vector
   carries `#pragma force_active` and the methods are in `force_active`.
+
+`rel/e_strategy_rinoliner_stage11` is `Matching` again too. Its split likewise
+opened on `e_magician_stage11`'s thunk. The rest was source shape: the repeated
+mode change is one inline helper, the mode dispatcher is a fifteen-way `switch`
+of virtual calls whose case order (0, 1, 2, 5, 3, 4, 6, ...) follows the
+target's block layout, a single-label `switch` gives the `beq`/`b` pair that an
+`if` does not, and the vtable is defined ahead of the functions so it precedes
+the dispatcher's jump table in `.data`.
 
 ## The rules that now stop this
 

@@ -1707,7 +1707,7 @@ config.libs = [
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_strategy_rinoliner_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-bool off"],
             ),
