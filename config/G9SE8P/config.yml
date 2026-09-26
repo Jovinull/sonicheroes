@@ -374,6 +374,13 @@ modules:
     # The constructor is externally visible but has no in-module caller after
     # the allocation path inlines it, so retain the original public method.
     - __ct__10TObjS11BobFP7TObject
+    # TObjS12Fan's clump/position helpers and its constructor are inlined at
+    # every call site in the module, so nothing references the retained bodies.
+    - DestroyClump__10TObjS12FanFv
+    - CloneClump__10TObjS12FanFv
+    - SetPosition__10TObjS12FanFv
+    - SetParameter__10TObjS12FanFv
+    - __ct__10TObjS12FanFP7TObject
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
   symbols: config/G9SE8P/stage13D/symbols.txt

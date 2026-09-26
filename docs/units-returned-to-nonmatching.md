@@ -45,7 +45,6 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | unit | objdiff | left | registers | other | length | size | previous |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `game/cri/axrna` | 97.44 | 48 | 20 | 11 | 17 | 1541 | 48 |
-| `rel/e_fan_stage11` | 95.90 | 47 | 14 | 18 | 15 | 518 | 47 |
 | `rel/e_mask_stage11` | 94.36 | 145 | 16 | 111 | 18 | 1125 | 224 |
 | `game/cri/svm` | 94.24 | 50 | 0 | 24 | 26 | 1115 | 50 |
 | `rel/e_capture_collision_stage11` | 94.00 | 63 | 21 | 20 | 22 | 401 | 63 |
@@ -403,10 +402,9 @@ went 84.65% to 87.48% with every register and content difference gone, and its
 
 ## Where to start
 
-The six closest by objdiff percentage:
+The closest by objdiff percentage:
 
 - `game/cri/axrna` 97.44% (48 left; 20 registers, 11 other, 17 length)
-- `rel/e_fan_stage11` 95.90% (47; 14 registers, 18 other, 15 length)
 - `rel/e_mask_stage11` 94.36% (145, now mostly content)
 - `game/cri/svm` 94.24% (50; 24 other, 26 length)
 - `rel/e_capture_collision_stage11` 94.00% (63; 21 registers, 20 other, 22 length)
@@ -425,6 +423,25 @@ No pragma or flag tried so far reproduces it — `opt_unroll_loops`, `opt_unroll
 `optimization_level 4`, `-opt unroll`, `-opt speed`, `-inline all` all leave it.
 Worth knowing: `-O4,s` on that unit drops the rest of the gap from 31 differences
 to 11, so the unit flags are probably not right either.
+
+## Matched again
+
+`rel/e_fan_stage11` is `Matching` again: every function and owned section is
+100% and all eighteen hashes pass with no post-processor. Two stage11D layout
+facts decided it, and both repeat across the stage11 units:
+
+- **The first eight bytes of a unit's `.text` belong to its predecessor.** MWCC
+  emits a class's `@40@EditOnChange` adjustor thunk (`subi r3, r3, 0x28;
+  b ...`) after the last function of the translation unit that emits the
+  vtable, so a split that opens on one has taken its neighbour's thunk. The fan
+  split now starts at `0xC37E8` and the spider split keeps its thunk.
+- **A unit's `.rodata` opens on an unreferenced `{ 0.0f, 1.5f, 0.0f }` vector.**
+  An internal-linkage const is emitted ahead of the unit's literals whether or
+  not it is used, so the twelve bytes dtk gave to the end of the previous unit
+  are the head of the next one. With them in place the fan's `.rodata` starts
+  eight-aligned at `0x1F18`, and nothing needs its section alignment rewritten.
+  The retail link keeps that vector and the inlined class methods, so the vector
+  carries `#pragma force_active` and the methods are in `force_active`.
 
 ## The rules that now stop this
 
