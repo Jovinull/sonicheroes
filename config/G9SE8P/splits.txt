@@ -1196,6 +1196,10 @@ game/cri/adx_crs.c:
 	.text       start:0x802127B0 end:0x80212800
 	.bss        start:0x80411220 end:0x80411228
 
+game/cri/adx_dcd.c:
+	.text       start:0x80212800 end:0x80213014
+	.rodata     start:0x8023DF98 end:0x8023DFD8
+
 game/cri/adx_dcd3.c:
 	.text       start:0x80213014 end:0x80213020
 	.bss        start:0x80411228 end:0x80411230
@@ -1267,6 +1271,14 @@ game/cri/adx_gc.c:
 
 game/cri/adx_rnaa.c:
 	.text       start:0x8021B37C end:0x8021B5E8
+
+game/cri/adx_fini.c:
+	.text       start:0x8021BCF0 end:0x8021BE38
+	.rodata     start:0x8023E9D8 end:0x8023EA0C
+	.bss        start:0x8041C830 end:0x8041D1A8
+
+game/cri/adx_fcch.c:
+	.text       start:0x8021BE38 end:0x8021BE58
 
 game/cri/cri_cvfs.c:
 	.text       start:0x8021D480 end:0x8021E3D4
