@@ -4817,14 +4817,12 @@ s32 fn_80239290(s32 arg0, s32 arg1)
 s32* fn_802392DC(s32* arg0, s32 arg1, u8* arg2)
 {
 	s32 sp8;
-	s32 temp_r0;
 	s32 var_r30;
 
 	fn_80193884(arg0, &sp8, 4);
-	temp_r0                            = sp8 & 0xFFFFFF;
 	M2C_FIELD(lbl_8042AC68, u32*, 0xC) = (u32)((u32)sp8 >> 0x18U);
-	sp8                                = temp_r0;
-	if (temp_r0 > 0) {
+	sp8                                = (s32)((u32)sp8 & 0xFFFFFFU);
+	if (sp8 > 0) {
 		for (var_r30 = 0; var_r30 < sp8; var_r30 += 1) {
 			fn_802338B8(arg2, arg0);
 		}
