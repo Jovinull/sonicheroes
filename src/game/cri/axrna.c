@@ -706,7 +706,7 @@ AxRna* fn_8022439C(CriStream** sj, s32 maxnch)
 			}
 			p->loopStart[i] = fn_80224CE8(p->cb[i]);
 			p->loopLen      = fn_80224CD0(p->cb[i]);
-			p->strmB[i]     = fn_80221300(p->loopStart[i] * 2, p->loopLen * 2, 0);
+			p->strmB[i]     = fn_80221300((void*)(p->loopStart[i] * 2), p->loopLen * 2, 0);
 			if (p->strmB[i] == NULL) {
 				fn_80223424(rodata + 0x1B4);
 				fn_802242CC(p);

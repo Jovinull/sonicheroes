@@ -29,7 +29,9 @@ struct CriStream {
 	CriStreamVtable* vtbl;
 };
 
-CriStream* fn_80221300(s32 start, s32 length, s32 mode);
+CriStream* fn_80221300(void* buffer, s32 length, s32 margin);
+s8* fn_80221610(const CriChunk* input, const char* name, const char* stop, CriChunk* output);
+void fn_80221888(const char* message);
 void fn_80221824(CriChunk* source, s32 size, CriChunk* consumed, CriChunk* remaining);
 
 #ifdef __cplusplus

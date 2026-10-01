@@ -172,6 +172,13 @@ them in first-reference order. The six-function GameCube object establishes
 the required compiler behavior, not the unavailable original source language.
 The classification and boundary evidence are recorded in the language audit.
 
+`game/cri/sjrbf.c` likewise retains its reviewed vendor C boundary while
+compiling in C++ mode for native declaration-order private BSS. The corrected
+ring-buffer, SJUNI and shared SJ utility boundaries are inferred from
+GameCube code/data relationships, corroborated by PS2 symbol metadata, not
+direct source filename markers. The other two units retain C mode; see the
+SJ family boundary correction in the migration audit.
+
 Migrate them in reviewable, module-sized batches:
 
 1. record direct C++ evidence and inspect correlated PS2 symbol/source metadata
