@@ -97,14 +97,12 @@ extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 extern u32 lbl_8042C388;
 static u32 lbl_8_data_18298[2] = { 0U, 0U };
-static M2C_UNK lbl_8_data_182A0;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000182AF_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_182B0;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000182BF_data; /* unable to generate initializer: unknown type */
-static M2C_UNK treeObjectFieldNames; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_182C8;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_182A0[] = "scale(def:1.0)";
+static char lbl_8_data_182B0[] = "direction : up";
+static char* treeObjectFieldNames[2] = { lbl_8_data_182A0, lbl_8_data_182B0 };
+static char lbl_8_data_182C8[] = "direction : down";
 static M2C_UNK gap_04_000182D9_data; /* unable to generate initializer: unknown type */
-static M2C_UNK* lbl_8_data_182DC[2] = { &lbl_8_data_182B0, &lbl_8_data_182C8 };
+static char* lbl_8_data_182DC[2]     = { lbl_8_data_182B0, lbl_8_data_182C8 };
 static u32 lbl_8_data_182E4[12]     = { 0x0008FFE0, 0x00000002, 0x00000000, 0x418C0000, 0x00000000,
 	0x41700000, 0x418C0000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
 static M2C_UNK lbl_8_data_18314;     /* unable to generate initializer: unknown type */
