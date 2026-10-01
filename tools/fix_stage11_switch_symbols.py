@@ -14,6 +14,7 @@ SYMBOL_RENAMES = {
     ],
     "e_turtle_stage11.o": [
         ("@208", "jumptable_8_data_17BF0", 0x40),
+        ("@225", "jumptable_8_data_17C30", 0x28),
         # MWCC emits an anonymous copy of the shared integer-to-float bias.
         ("@372", "lbl_8_rodata_1E80", 0x8),
     ],
