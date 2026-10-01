@@ -525,7 +525,7 @@ extern "C" s32 fn_801306BC();
 extern "C" s32 fn_80138414(void*, s32);
 extern "C" s32 fn_801388C4(void*, s32);
 extern "C" s32 fn_80196D00();
-extern "C" s32 fn_801C3C04(u32, void*);
+extern "C" s32 strcmp(u32, void*);
 
 #define DAT_802408f8 lbl_802408F8[0]
 #define DAT_802408fc lbl_802408F8[1]
@@ -1707,7 +1707,7 @@ s32 ACTION::Loop()
 							}
 							index++;
 						} while (1);
-						iVar4 = fn_801C3C04((u32)stageSet, (void*)name);
+						iVar4 = strcmp((u32)stageSet, (void*)name);
 						if ((iVar4 != 0)
 						    || (iVar4 = fn_80138414(&lbl_8042C7E0, stageConnect[stageCount]),
 						        iVar4 != 0))
@@ -2548,7 +2548,7 @@ void ACTION::Entry2DFunc(RawCallback callback)
 {
 	*(RawCallback*)(lbl_8029C728 + 0x10) = callback;
 }
-extern "C" void fn_801C28D0(u32);
+extern "C" void srand(u32);
 extern "C" void fn_800C5BDC();
 extern "C" void fn_800CCEB0();
 extern "C" void fn_80066320();
@@ -2837,7 +2837,7 @@ void ACTION::subInit()
 	fn_80066ED8(&lbl_8042C308, 2);
 	*(s32*)((u8*)lbl_8042C180 + 0x30) = 0;
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
-	fn_801C28D0(0xDEAD0CAB);
+	srand(0xDEAD0CAB);
 	*(s32*)(lbl_8029BBD0 + 0x18) = 0;
 	*(s32*)(lbl_8029BBD0 + 0x1C) = 0;
 	*(s32*)(lbl_8029BBD0 + 0x20) = 0;

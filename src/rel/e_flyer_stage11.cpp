@@ -165,7 +165,7 @@ M2C_UNK fn_8019EB94(M2C_UNK*, void*, M2C_UNK);                                  
 M2C_UNK fn_8019ECCC(M2C_UNK*, void*, s32);                                       /* extern */
 M2C_UNK fn_8019ED68(M2C_UNK*, M2C_UNK*, f32, f32, ...);                          /* extern */
 M2C_UNK fn_8019EE04(s32);                                                        /* extern */
-s32 fn_801C28D8();                                                               /* extern */
+s32 rand();                                                                      /* extern */
 M2C_UNK fn_8_5EF94(u32, s32*);                                                   /* extern */
 M2C_UNK fn_8_5F048(u32, void*);                                                  /* extern */
 M2C_UNK fn_8_5F100(s32);                                                         /* extern */
@@ -421,7 +421,7 @@ void fn_8_A2840(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			M2C_FIELD(arg0, s32*, 0x18)
-			    = (s32)(lbl_8_rodata_18B0[0] * (0.000030517578f * (f32)fn_801C28D8()));
+			    = (s32)(lbl_8_rodata_18B0[0] * (0.000030517578f * (f32)rand()));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0x258) {
 				M2C_FIELD(arg0, s32*, 0x18) = 0x258;
 			}
@@ -570,7 +570,7 @@ void fn_8_A2D48(void* arg0, u32 arg1, s32 arg2)
 			switch (arg2) { /* switch 2; irregular */
 				case 0:     /* switch 2 */
 					M2C_FIELD(arg0, s32*, 0x18)
-					    = (s32)(lbl_8_rodata_18B0[0] * (0.000030517578f * (f32)fn_801C28D8()));
+					    = (s32)(lbl_8_rodata_18B0[0] * (0.000030517578f * (f32)rand()));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0x258) {
 						M2C_FIELD(arg0, s32*, 0x18) = 0x258;
 					}

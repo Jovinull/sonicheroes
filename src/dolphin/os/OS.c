@@ -198,7 +198,10 @@ static __OSExceptionHandler* OSExceptionTable;
 // original reaches the command block as base+0x20 off the same register it
 // used for the drive info, and the compiler only knows that offset for objects
 // whose .bss layout it decides itself.
-static DVDDriveInfo DriveInfo;
+// The drive inquiry DMAs straight into DriveInfo, so it sits on a 32 byte
+// boundary; the unit's .bss starts at 0x803F22A0 with target_options.c's one
+// byte flag 0x18 bytes before it.
+static DVDDriveInfo DriveInfo __attribute__((aligned(32)));
 static DVDCommandBlock DriveBlock;
 
 u32 OSGetConsoleType(void)

@@ -132,7 +132,7 @@ void Exec__22TObjSetDamageCollisionFv(void);
 void EndEffTornado__Fv(void);
 void InitEffTornado__Fv(void);
 void startObjSetDamageCollision__Fv(void);
-s32 fn_801C3C04(const char*, const char*);
+s32 strcmp(const char*, const char*);
 void fn_80150958(void*);
 void fn_8020C2D8(void*);
 void fn_8011B7CC(void*);
@@ -250,7 +250,7 @@ static inline s32 findResourceRequest(char* name)
 	u32 i   = 0;
 	request = lbl_803039F8;
 	while (i < 10) {
-		if (fn_801C3C04(request->name, name) == 0)
+		if (strcmp(request->name, name) == 0)
 			return i;
 		request++;
 		i++;
@@ -297,7 +297,7 @@ static inline s32 findResourceEntry(char* name)
 	s32 i = 0;
 	entry = lbl_802FF5E0;
 	while (i < 0x100) {
-		if (fn_801C3C04(entry->name, name) == 0)
+		if (strcmp(entry->name, name) == 0)
 			return i;
 		entry++;
 		i++;
@@ -452,7 +452,7 @@ extern "C" void fn_8005ED88(void)
 			if (strncmp(extension + 1, lbl_8042B228, 3) == 0) {
 				s32 special = FALSE;
 				for (u32 j = 0; j < 9; j++)
-					if (fn_801C3C04(lbl_802FF5E0[i].name, lbl_802434BC[j]) == 0) {
+					if (strcmp(lbl_802FF5E0[i].name, lbl_802434BC[j]) == 0) {
 						special = TRUE;
 						break;
 					}
@@ -467,7 +467,7 @@ extern "C" void fn_8005ED88(void)
 				} else {
 					lbl_802FF5E0[i].object = fn_800BC46C(archive, i, workspace);
 					for (u32 j = 0; j < 7; j++)
-						if (fn_801C3C04(lbl_802FF5E0[i].name, lbl_80243554[j]) == 0) {
+						if (strcmp(lbl_802FF5E0[i].name, lbl_80243554[j]) == 0) {
 							fn_8014FFBC(lbl_802FF5E0[i].object, (void*)fn_8005BEC4, 0);
 							break;
 						}

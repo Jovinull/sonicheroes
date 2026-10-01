@@ -84,6 +84,11 @@ static int TRK_mainError;
 // and traps rather than returning something wrong. Each one is a single
 // unconditional twi followed by blr, which has no C form.
 
+// The unit starts on a 16 byte boundary: the original has eight bytes of zero
+// padding after the preceding targimpl code (TRKValidMemory32 ends at
+// 0x801CF548). Aligning the first stub reproduces that padding without moving
+// anything inside this unit.
+#pragma function_align 16
 // clang-format off
 ASM void TRKAccessFile(void)
 {
@@ -94,6 +99,7 @@ ASM void TRKAccessFile(void)
 #endif
 } // clang-format on
 
+#pragma function_align 4
 // clang-format off
 ASM void TRKOpenFile(void)
 {

@@ -25,7 +25,7 @@ extern void __stdio_atexit(void);
 extern void* memcpy(void* dst, const void* src, u32 count);
 extern void* __memrchr(const void* buffer, s32 value, u32 count);
 extern s32 fseek(FILE* file, s32 offset, s32 mode);
-extern s32 fn_801BC864(void);
+extern s32 __flush_line_buffered_output_files(void);
 
 u32 __fwrite(const void* buffer, u32 memb_size, u32 num_memb, FILE* file)
 {
@@ -164,7 +164,7 @@ u32 __fread(void* buffer, u32 memb_size, u32 num_memb, FILE* file)
 		return 0;
 	}
 
-	if ((file->mode.buffer_mode & 1) && fn_801BC864() != 0) {
+	if ((file->mode.buffer_mode & 1) && __flush_line_buffered_output_files() != 0) {
 		file->state.error   = 1;
 		file->buffer_length = 0;
 		return 0;

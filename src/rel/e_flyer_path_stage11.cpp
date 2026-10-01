@@ -119,7 +119,7 @@ s32 fn_8019CE34(s32, f32*);                                     /* extern */
 M2C_UNK fn_8019EB94(...);                                       /* extern */
 M2C_UNK fn_8019EC30(s32, void*, s32);                           /* extern */
 M2C_UNK fn_8019ED68(...);                                       /* extern */
-s32 fn_801C28D8();                                              /* extern */
+s32 rand();                                                     /* extern */
 M2C_UNK fn_8_90B10(s32);                                        /* extern */
 M2C_UNK fn_8_A353C(void*);                                      /* extern */
 s32 fn_8_A35BC(M2C_UNK);                                        /* extern */
@@ -1527,7 +1527,7 @@ s32 fn_8_AABC8(void* arg0)
 	if (fn_80100BF8(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A)) == 0) {
 		return 0;
 	}
-	return ((lbl_8_rodata_1ACC * (f32)fn_801C28D8()) < lbl_8_rodata_1AD0) == 0;
+	return ((lbl_8_rodata_1ACC * (f32)rand()) < lbl_8_rodata_1AD0) == 0;
 }
 
 void fn_8_AAC6C(void* arg0, s32 arg1)

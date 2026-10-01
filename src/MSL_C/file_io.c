@@ -33,7 +33,7 @@ extern void clearerr(FILE* file);
 extern s32 fclose(FILE* file);
 extern s32 fflush(FILE* file);
 extern s32 fseek(FILE* file, s32 offset, s32 mode);
-extern void fn_801BB540(void* buffer);
+extern void free(void* buffer);
 extern s32 __flush_all(void);
 extern void __init_file(FILE* file, __file_modes modes, u8* buffer, u32 size);
 extern FILE* __find_unopened_file(void);
@@ -57,7 +57,7 @@ static inline s32 close_file(FILE* file)
 	file->handle         = 0;
 
 	if (file->state.free_buffer)
-		fn_801BB540(file->buffer);
+		free(file->buffer);
 
 	return (flush_result || close_result) ? -1 : 0;
 }
@@ -149,7 +149,7 @@ FILE* freopen(const char* name, const char* mode, FILE* file)
 	if (__open_file(name, modes, &file->handle) != 0) {
 		file->mode.file_kind = __closed_file;
 		if (file->state.free_buffer)
-			fn_801BB540(file->buffer);
+			free(file->buffer);
 		return 0;
 	}
 

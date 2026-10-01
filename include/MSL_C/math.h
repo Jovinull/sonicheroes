@@ -3,11 +3,11 @@
 
 #include "types.h"
 
-extern s32 lbl_8042BEE8[];
-extern s32 lbl_8042BEEC[];
+extern s32 __float_nan[];
+extern s32 __float_huge[];
 
-#define NAN       (*(float*)lbl_8042BEE8)
-#define HUGE_VALF (*(float*)lbl_8042BEEC)
+#define NAN       (*(float*)__float_nan)
+#define HUGE_VALF (*(float*)__float_huge)
 
 double __frsqrte(double x);
 double __fabs(double x);

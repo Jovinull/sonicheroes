@@ -476,7 +476,31 @@ MSL_C/GCN_Mem_Alloc.c:
 MSL_C/abort_exit.c:
 	.text       start:0x801BB2B8 end:0x801BB40C
 	.bss        start:0x803EDC78 end:0x803EDD78
-	.sbss       start:0x8042CAA0 end:0x8042CAA8
+	.sbss       start:0x8042CAA0 end:0x8042CAB0
+
+MSL_C/alloc.c:
+	.text       start:0x801BB40C end:0x801BC864
+	.rodata     start:0x8023CB10 end:0x8023CB28
+	.bss        start:0x803EDD78 end:0x803EDDB0
+	.sbss       start:0x8042CAB0 end:0x8042CAB8
+
+MSL_C/ansi_files.c:
+	.text       start:0x801BC864 end:0x801BCB64
+	.data       start:0x802913D8 end:0x80291518
+	.bss        start:0x803EDDB0 end:0x803EE0B0
+
+MSL_C/ansi_fp.c:
+	.text       start:0x801BCB64 end:0x801BE7D0
+	.rodata     start:0x8023CB28 end:0x8023CC08
+	.data       start:0x80291518 end:0x8029167C
+	.sdata2     start:0x8042F820 end:0x8042F850
+
+MSL_C/locale.c:
+	.rodata     start:0x8023CC08 end:0x8023CC10
+	.data       start:0x80291980 end:0x802919B8
+
+MSL_C/arith.c:
+	.text       start:0x801BE7D0 end:0x801BE838
 
 MSL_C/buffer_io.c:
 	.text       start:0x801BE838 end:0x801BEB44
@@ -504,10 +528,32 @@ MSL_C/misc_io.c:
 	.text       start:0x801C063C end:0x801C0664
 
 MSL_C/printf.c:
-	.text       start:0x801C0664 end:0x801C0A9C
+	.text       start:0x801C0664 end:0x801C2760
+	.rodata     start:0x8023CC10 end:0x8023CC38
+	.data       start:0x802919B8 end:0x80291BE8
+	.sdata      start:0x8042BED0 end:0x8042BED8
+	.sdata2     start:0x8042F858 end:0x8042F860
+
+MSL_C/qsort.c:
+	.text       start:0x801C2760 end:0x801C28D0
+
+MSL_C/rand.c:
+	.text       start:0x801C28D0 end:0x801C28F8
+	.sdata      start:0x8042BED8 end:0x8042BEE0
+
+MSL_C/scanf.c:
+	.text       start:0x801C28F8 end:0x801C3940
+	.rodata     start:0x8023CC38 end:0x8023CC60
+	.data       start:0x80291BE8 end:0x80291CB8
+
+MSL_C/signal.c:
+	.text       start:0x801C3940 end:0x801C39F0
+	.bss        start:0x803EE0B0 end:0x803EE0C8
 
 MSL_C/string.c:
-	.text       start:0x801C3D2C end:0x801C3EBC
+	.text       start:0x801C39F0 end:0x801C3EBC
+	.rodata     start:0x8023CC60 end:0x8023CFF0
+	.sdata      start:0x8042BEE0 end:0x8042BEE8
 
 MSL_C/strtold.c:
 	.text       start:0x801C3EBC end:0x801C5010
@@ -654,6 +700,52 @@ dolphin/trk/nubinit.c:
 	.rodata     start:0x8023D340 end:0x8023D360
 	.bss        start:0x803EE0F0 end:0x803EE0F8
 
+dolphin/trk/msg.c:
+	.text       start:0x801C98B8 end:0x801C9A94
+
+dolphin/trk/msgbuf.c:
+	.text       start:0x801C9A94 end:0x801CA4C0
+	.rodata     start:0x8023D360 end:0x8023D380
+	.bss        start:0x803EE0F8 end:0x803EFAA8
+
+dolphin/trk/serpoll.c:
+	.text       start:0x801CA4C0 end:0x801CA88C
+	.bss        start:0x803EFAA8 end:0x803EFAC0
+
+dolphin/trk/usr_put.c:
+	.text       start:0x801CA88C end:0x801CA918
+
+dolphin/trk/dispatch.c:
+	.text       start:0x801CA918 end:0x801CA9B4
+	.data       start:0x80291D40 end:0x80291DC8
+	.bss        start:0x803EFAC0 end:0x803EFAC8
+
+dolphin/trk/msghndlr.c:
+	.text       start:0x801CA9B4 end:0x801CD214
+	.data       start:0x80291DC8 end:0x80291E00
+	.bss        start:0x803EFAC8 end:0x803EFAD0
+
+dolphin/trk/support.c:
+	.text       start:0x801CD214 end:0x801CDAD4
+
+dolphin/trk/mutex_TRK.c:
+	.text       start:0x801CDAD4 end:0x801CDAEC
+
+dolphin/trk/notify.c:
+	.text       start:0x801CDAEC end:0x801CDBC4
+
+dolphin/trk/flush_cache.c:
+	.text       start:0x801CDBC4 end:0x801CDBFC
+
+dolphin/trk/mem_TRK.c:
+	.text       start:0x801CDBFC end:0x801CDCB8
+
+dolphin/trk/targimpl_ppc.c:
+	.text       start:0x801CDCB8 end:0x801CF550
+	.rodata     start:0x8023D380 end:0x8023D408
+	.data       start:0x80291E00 end:0x80291E30
+	.bss        start:0x803EFAD0 end:0x803F0050
+
 dolphin/trk/targimpl.c:
 	.text       start:0x801CF550 end:0x801CFAF4
 	.bss        start:0x803F0050 end:0x803F005C
@@ -663,6 +755,16 @@ dolphin/trk/dolphin_trk.c:
 	.rodata     start:0x8023D408 end:0x8023D450
 	.data       start:0x80291E70 end:0x80291E90
 	.bss        start:0x803F0060 end:0x803F2288
+
+dolphin/trk/targcont.c:
+	.text       start:0x801CFF18 end:0x801CFF4C
+
+dolphin/trk/target_options.c:
+	.text       start:0x801CFF4C end:0x801CFF68
+	.bss        start:0x803F2288 end:0x803F22A0
+
+dolphin/trk/mslsupp.c:
+	.text       start:0x801CFF68 end:0x801D0518
 
 dolphin/base/PPCArch.c:
 	.text       start:0x801D0518 end:0x801D062C

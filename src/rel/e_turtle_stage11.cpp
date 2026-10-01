@@ -441,7 +441,7 @@ void* fn_8019E8EC(u32);                                                         
 M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                                   /* extern */
 M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                                       /* extern */
 M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);                                  /* extern */
-s32 fn_801C28D8(f32*);                                                           /* extern */
+s32 rand(f32*);                                                                  /* extern */
 M2C_UNK fn_8_90B10(s32);                                                         /* extern */
 M2C_UNK fn_8_BD380(s32);                                                         /* extern */
 void fn_8_BDF6C(TObject* arg0, void* arg1);                                      /* static */
@@ -2416,11 +2416,10 @@ void fn_8_C08C8(void* arg0, s32 arg1)
 					}
 				}
 				if (var_r31 == 0) {
-					sp8.x = lbl_8_rodata_1E70[0];
-					sp8.y = lbl_8_rodata_1E70[0];
-					sp8.z = M2C_FIELD(arg0, f32*, 0x2A0);
-					temp_f3
-					    = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)fn_801C28D8(&sp8.x)))
+					sp8.x   = lbl_8_rodata_1E70[0];
+					sp8.y   = lbl_8_rodata_1E70[0];
+					sp8.z   = M2C_FIELD(arg0, f32*, 0x2A0);
+					temp_f3 = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)rand(&sp8.x)))
 					    - lbl_8_rodata_1ECC[0];
 					fn_80195A74((s32*)sp14, &lbl_80239984, 0,
 					    lbl_8_rodata_1EC0[0]
@@ -2901,7 +2900,7 @@ void fn_8_C1A88(void* arg0)
 	sp8.x   = lbl_8_rodata_1E70[0];
 	sp8.y   = lbl_8_rodata_1E70[0];
 	sp8.z   = M2C_FIELD(arg0, f32*, 0x2A0);
-	temp_f3 = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)fn_801C28D8(&sp8.x)))
+	temp_f3 = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)rand(&sp8.x)))
 	    - lbl_8_rodata_1ECC[0];
 	fn_80195A74((s32*)sp14, &lbl_80239984, 0,
 	    lbl_8_rodata_1EC0[0]
@@ -2959,7 +2958,7 @@ void fn_8_C1BCC(TObject* arg0)
 	sp8.x        = lbl_8_rodata_1E70[0];
 	sp8.y        = lbl_8_rodata_1E70[0];
 	sp8.z        = arg0->unk2A0;
-	temp_f3      = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)fn_801C28D8(&sp8.x)))
+	temp_f3      = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)rand(&sp8.x)))
 	    - lbl_8_rodata_1ECC[0];
 	fn_80195A74((s32*)sp14, &lbl_80239984, 0,
 	    lbl_8_rodata_1EC0[0] + (lbl_8_rodata_1E7C[0] * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10))

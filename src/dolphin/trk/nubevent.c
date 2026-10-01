@@ -38,11 +38,11 @@ typedef enum DSError {
 // address and are small enough to be lock or list primitives.
 TRKEventQueue lbl_803EE0C8;
 
-extern void fn_801CDAD4(void* queue);
-extern void fn_801CDADC(void* queue);
-extern void fn_801CDAE4(void* queue);
-extern void fn_801CA2F4(int buffer);
-extern void* fn_80003268(void* dst, const void* src, u32 size);
+extern void TRKReleaseMutex(void* queue);
+extern void TRKAcquireMutex(void* queue);
+extern void TRKInitializeMutex(void* queue);
+extern void TRKReleaseBuffer(int buffer);
+extern void* TRK_memcpy(void* dst, const void* src, u32 size);
 
 extern void* TRKGetBuffer(int buffer);
 extern void TRKDispatchMessage(void* buffer);
@@ -100,28 +100,28 @@ void TRKNubMainLoop(void)
 // the queue and gets reused.
 void TRKDestructEvent(TRKEvent* event)
 {
-	fn_801CA2F4(event->buffer);
+	TRKReleaseBuffer(event->buffer);
 }
 
 // Puts an event back into its empty state, with no buffer attached.
-void fn_801C9534(TRKEvent* event, u8 type)
+void TRKConstructEvent(TRKEvent* event, u8 type)
 {
 	event->type   = type;
 	event->unk04  = 0;
 	event->buffer = -1;
 }
 
-DSError fn_801C954C(TRKEvent* event)
+DSError TRKPostEvent(TRKEvent* event)
 {
 	DSError result = kNoError;
 	int slot;
 
-	fn_801CDADC(&lbl_803EE0C8);
+	TRKAcquireMutex(&lbl_803EE0C8);
 	if (lbl_803EE0C8.count == 2) {
 		result = kEventQueueFull;
 	} else {
 		slot = (lbl_803EE0C8.next + lbl_803EE0C8.count) % 2;
-		fn_80003268(&lbl_803EE0C8.events[slot], event, sizeof(TRKEvent));
+		TRK_memcpy(&lbl_803EE0C8.events[slot], event, sizeof(TRKEvent));
 		lbl_803EE0C8.events[slot].unk04 = lbl_803EE0C8.eventID;
 		lbl_803EE0C8.eventID++;
 		if (lbl_803EE0C8.eventID < 0x100) {
@@ -129,7 +129,7 @@ DSError fn_801C954C(TRKEvent* event)
 		}
 		lbl_803EE0C8.count++;
 	}
-	fn_801CDAD4(&lbl_803EE0C8);
+	TRKReleaseMutex(&lbl_803EE0C8);
 	return result;
 }
 
@@ -137,9 +137,9 @@ int TRKGetNextEvent(TRKEvent* event)
 {
 	int result = 0;
 
-	fn_801CDADC(&lbl_803EE0C8);
+	TRKAcquireMutex(&lbl_803EE0C8);
 	if (lbl_803EE0C8.count > 0) {
-		fn_80003268(event, &lbl_803EE0C8.events[lbl_803EE0C8.next], sizeof(TRKEvent));
+		TRK_memcpy(event, &lbl_803EE0C8.events[lbl_803EE0C8.next], sizeof(TRKEvent));
 		lbl_803EE0C8.count--;
 		lbl_803EE0C8.next++;
 		if (lbl_803EE0C8.next == 2) {
@@ -147,20 +147,20 @@ int TRKGetNextEvent(TRKEvent* event)
 		}
 		result = 1;
 	}
-	fn_801CDAD4(&lbl_803EE0C8);
+	TRKReleaseMutex(&lbl_803EE0C8);
 	return result;
 }
 
 int TRKInitializeEventQueue(void)
 {
-	fn_801CDAE4(&lbl_803EE0C8);
-	fn_801CDADC(&lbl_803EE0C8);
+	TRKInitializeMutex(&lbl_803EE0C8);
+	TRKAcquireMutex(&lbl_803EE0C8);
 
 	lbl_803EE0C8.count   = 0;
 	lbl_803EE0C8.next    = 0;
 	lbl_803EE0C8.eventID = 0x100;
 
-	fn_801CDAD4(&lbl_803EE0C8);
+	TRKReleaseMutex(&lbl_803EE0C8);
 
 	return 0;
 }

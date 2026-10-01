@@ -43,7 +43,7 @@ void* fn_8005FAE8(void*, void*);
 void fn_8005FA8C(void*, void*);
 void fn_8005E00C(void*, s32);
 void fn_80064380(void*);
-u32 fn_801C28D8();
+u32 rand();
 }
 
 template <typename T> static inline T& field(void* object, int offset)
@@ -138,7 +138,7 @@ static void* allocateParticle(void* material)
 
 static float randomSigned()
 {
-	u32 value = fn_801C28D8();
+	u32 value = rand();
 	return (float)((double)(s32)value - lbl_8_rodata_C90);
 }
 

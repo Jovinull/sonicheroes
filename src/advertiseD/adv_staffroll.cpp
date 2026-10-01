@@ -87,7 +87,7 @@ extern void fn_1_12690(Line* self, sSTAFFROLLLINES* line, char* src);
 s32 ADV_STAFFROLL_GetLineNum(Line* self, const char* str, s32 n);
 s32 fn_1_12474(Line* self, char* dst, const char* src, char delim);
 void ADV_STAFFROLL_StrCpy(Line* self, u16* dst, const char* src);
-extern s32 fn_801C3C04(const char* a, const char* b);
+extern s32 strcmp(const char* a, const char* b);
 extern s32 strlen(const char* s);
 extern u8 lbl_1_data_8494; // "SEGA"
 extern u8 lbl_1_data_849C; // "SONICTEAM"
@@ -422,20 +422,20 @@ void fn_1_12690(Line* self, sSTAFFROLLLINES* line, char* src)
 	}
 	if (count > 1) {
 		line->unk_0x10 = 128.0f;
-		if (fn_801C3C04(buf, (const char*)&lbl_1_data_8494) == 0) {
+		if (strcmp(buf, (const char*)&lbl_1_data_8494) == 0) {
 			line->Type = 2;
-		} else if (fn_801C3C04(buf, (const char*)&lbl_1_data_849C) == 0) {
+		} else if (strcmp(buf, (const char*)&lbl_1_data_849C) == 0) {
 			line->Type = 3;
-		} else if (fn_801C3C04(buf, (const char*)&lbl_1_data_84A8) == 0) {
+		} else if (strcmp(buf, (const char*)&lbl_1_data_84A8) == 0) {
 			line->Type = 5;
-		} else if (fn_801C3C04(buf, (const char*)&lbl_1_data_84B0) == 0) {
+		} else if (strcmp(buf, (const char*)&lbl_1_data_84B0) == 0) {
 			line->Type = 4;
-		} else if (fn_801C3C04(buf, (const char*)&lbl_1_data_84B4) == 0) {
+		} else if (strcmp(buf, (const char*)&lbl_1_data_84B4) == 0) {
 			line->Type = 6;
-		} else if (fn_801C3C04(buf, (const char*)&lbl_1_data_84B8) == 0) {
+		} else if (strcmp(buf, (const char*)&lbl_1_data_84B8) == 0) {
 			line->Type     = 7;
 			line->unk_0x10 = 256.0f;
-		} else if (fn_801C3C04(buf, (const char*)&lbl_1_data_84BC) == 0) {
+		} else if (strcmp(buf, (const char*)&lbl_1_data_84BC) == 0) {
 			line->Type     = 8;
 			line->unk_0x10 = 256.0f;
 		} else {

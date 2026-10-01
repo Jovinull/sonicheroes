@@ -66,7 +66,7 @@ void fn_8005FA8C(void*, void*);
 void fn_8005E00C(void*, s32);
 void copyVec3(RwV3d*, const RwV3d*);
 s32 fn_16_F20(void*, s32);
-u32 fn_801C28D8();
+u32 rand();
 u32 __cvt_fp2unsigned(f32);
 
 extern void* lbl_16_data_3D00[];
@@ -148,7 +148,7 @@ EfSparkle* lbl_16_bss_A2C;
 EfSparkle* lbl_16_bss_A30;
 void* lbl_16_bss_A34;
 
-#define RANDOM_UNIT() ((f32)(s32)fn_801C28D8())
+#define RANDOM_UNIT() ((f32)(s32)rand())
 
 void ReleaseTextureEfSparkle()
 {

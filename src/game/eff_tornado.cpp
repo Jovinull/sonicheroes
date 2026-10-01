@@ -241,7 +241,7 @@ struct HAnimClass {
 void fn_8020C72C(void*, void*);
 void fn_8013F3A4(void*);
 void fn_801491A8(void*);
-int fn_801C28D8();
+int rand();
 void* fn_80150588(void*);
 void dtor_8003C52C(C_COLLI*, s32);
 void __dt__7TObjectFv(TObject*, s32);
@@ -1095,7 +1095,7 @@ TObjEffTornadoSpin::TObjEffTornadoSpin(
 	result->position.z          = positionValue->z;
 	result->timer               = 0;
 	result->alpha               = lbl_8042DBB4;
-	result->angle               = (s16)(fn_801C28D8() * lbl_8042DC20 * lbl_8042DC1C);
+	result->angle               = (s16)(rand() * lbl_8042DC20 * lbl_8042DC1C);
 	result->state               = 1;
 	result->model               = fn_80150588(lbl_802532E8[1]);
 

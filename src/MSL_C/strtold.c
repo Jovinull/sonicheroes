@@ -78,25 +78,25 @@ enum hex_scan_states {
 	    & (leading_sig_zeroes | int_digit_loop | frac_digit_loop | leading_exp_zeroes              \
 	        | exp_digit_loop | finished))
 
-extern u8 lbl_80291680[256];
-extern u8 lbl_80291880[256];
-extern lconv lbl_80291980;
+extern u8 __ctype_map[256];
+extern u8 __upper_map[256];
+extern lconv __lconv;
 
-#define isalpha(c)  (lbl_80291680[(u8)(c)] & 0xC0)
-#define isdigit(c)  (lbl_80291680[(u8)(c)] & 0x10)
-#define isspace(c)  (lbl_80291680[(u8)(c)] & 0x06)
-#define isxdigit(c) (lbl_80291680[(u8)(c)] & 0x20)
-#define toupper(c)  ((c) == -1 ? -1 : lbl_80291880[(u8)(c)])
+#define isalpha(c)  (__ctype_map[(u8)(c)] & 0xC0)
+#define isdigit(c)  (__ctype_map[(u8)(c)] & 0x10)
+#define isspace(c)  (__ctype_map[(u8)(c)] & 0x06)
+#define isxdigit(c) (__ctype_map[(u8)(c)] & 0x20)
+#define toupper(c)  ((c) == -1 ? -1 : __upper_map[(u8)(c)])
 
-extern s32 lbl_8042BEE8[];
-extern s32 lbl_8042BEEC[];
+extern s32 __float_nan[];
+extern s32 __float_huge[];
 extern s32 lbl_8042BF00[];
 extern s32 lbl_8042BF08[];
 extern s32 lbl_8042BF10[];
-extern double fn_801BCB64(const decimal* value);
+extern double __dec2num(const decimal* value);
 
-#define FLOAT_NAN       (*(float*)lbl_8042BEE8)
-#define FLOAT_INFINITY  (*(float*)lbl_8042BEEC)
+#define FLOAT_NAN       (*(float*)__float_nan)
+#define FLOAT_INFINITY  (*(float*)__float_huge)
 #define DOUBLE_INFINITY (*(double*)lbl_8042BF00)
 #define LONG_DOUBLE_MIN (*(long double*)lbl_8042BF08)
 #define LONG_DOUBLE_MAX (*(long double*)lbl_8042BF10)
@@ -109,23 +109,21 @@ extern double __double_min;
 extern double __double_max;
 extern s32 errno;
 
-// The callback that feeds the scanner still belongs to an earlier uncarved TU.
+// The string reader state and callback live in scanf.c.
 typedef struct {
 	const char* str;
 	s32 pos;
-} __StringRead;
+} __InStrCtrl;
 
 typedef s32 (*ReadProc)(void* arg, s32 c, s32 action);
 
-long double fn_801C4004(
-    s32 max_width, ReadProc read_proc, void* read_arg, s32* consumed, s32* error);
-extern s32 fn_801C29BC(void* arg, s32 c, s32 action);
+long double __strtold(s32 max_width, ReadProc read_proc, void* read_arg, s32* consumed, s32* error);
+extern s32 __StringRead(void* arg, s32 c, s32 action);
 
 #define FETCH()    (count++, read_proc(read_arg, 0, 0))
 #define UNFETCH(c) read_proc(read_arg, (c), 1)
 
-long double fn_801C4004(
-    s32 max_width, ReadProc read_proc, void* read_arg, s32* consumed, s32* error)
+long double __strtold(s32 max_width, ReadProc read_proc, void* read_arg, s32* consumed, s32* error)
 {
 	s32 scan_state     = start;
 	s32 hex_scan_state = not_hex;
@@ -152,7 +150,7 @@ long double fn_801C4004(
 	s16 exponent        = 0;
 	s32 dot;
 
-	dot = *(u8*)lbl_80291980.decimal_point;
+	dot = *(u8*)__lconv.decimal_point;
 
 	*error = 0;
 	c      = FETCH();
@@ -565,7 +563,7 @@ long double fn_801C4004(
 
 		d.exp = exp_value;
 
-		result = fn_801BCB64(&d);
+		result = __dec2num(&d);
 
 		if (result != 0.0 && result < LONG_DOUBLE_MIN) {
 			*error = 1;
@@ -613,7 +611,7 @@ long double fn_801C4004(
 
 double strtod(const char* s, char** end)
 {
-	__StringRead state;
+	__InStrCtrl state;
 	s32 consumed;
 	s32 error;
 	long double value;
@@ -622,7 +620,7 @@ double strtod(const char* s, char** end)
 	state.str = s;
 	state.pos = 0;
 
-	value = fn_801C4004(0x7FFFFFFF, fn_801C29BC, &state, &consumed, &error);
+	value = __strtold(0x7FFFFFFF, __StringRead, &state, &consumed, &error);
 
 	if (end)
 		*end = (char*)s + consumed;
@@ -637,7 +635,7 @@ double strtod(const char* s, char** end)
 
 double atof(const char* s)
 {
-	__StringRead state;
+	__InStrCtrl state;
 	s32 error;
 	s32 consumed;
 	long double value;
@@ -646,7 +644,7 @@ double atof(const char* s)
 	state.str = s;
 	state.pos = 0;
 
-	value     = fn_801C4004(0x7FFFFFFF, fn_801C29BC, &state, &consumed, &error);
+	value     = __strtold(0x7FFFFFFF, __StringRead, &state, &consumed, &error);
 	magnitude = __fabs(value);
 
 	if (error != 0 || (value != 0.0 && (magnitude < __double_min || magnitude > __double_max)))
