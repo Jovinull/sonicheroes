@@ -1634,7 +1634,6 @@ f32 fn_8022AB3C(
 
 s32 fn_8022AE80(u8* arg0, s32 arg1)
 {
-	s32 temp_r29;
 	s32 temp_r3;
 
 	if (fn_8014535C(arg1) != 0) {
@@ -1645,11 +1644,11 @@ s32 fn_8022AE80(u8* arg0, s32 arg1)
 		if (temp_r3 == 1) {
 			fn_8015C394(0);
 		}
-		temp_r29 = fn_80227018(arg0, arg1);
+		arg0 = (u8*)fn_80227018(arg0, arg1);
 		if (temp_r3 == 1) {
 			fn_8015C394(1);
 		}
-		return temp_r29;
+		return (s32)arg0;
 	}
 	return fn_80227018(arg0, arg1);
 }
