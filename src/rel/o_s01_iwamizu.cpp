@@ -43,7 +43,7 @@ struct ObjectEntry {
 extern "C" {
 void* fn_3_81128(void*);
 void* fn_3_82320(void*);
-void objDefaultTDisp();
+void TDisp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -495,7 +495,7 @@ extern "C" void* IwamizuVtable[]     = {
 	(void*)__dt__14TObjS01IwamizuFv,
 	(void*)Exec__14TObjS01IwamizuFv,
 	(void*)Disp__14TObjS01IwamizuFv,
-	(void*)objDefaultTDisp,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

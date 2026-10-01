@@ -14,7 +14,7 @@ SYMBOL_RENAMES = {
     "slot0__21BlinkLightPrimaryBaseFv": "blinkLightDtor",
     "slot1__21BlinkLightPrimaryBaseFv": "blinkLightExec",
     "slot2__21BlinkLightPrimaryBaseFv": "fn_9_1A9B4",
-    "slot3__21BlinkLightPrimaryBaseFv": "objDefaultTDisp",
+    "slot3__21BlinkLightPrimaryBaseFv": "TDisp__7TObjectFv",
     "slot4__21BlinkLightPrimaryBaseFv": "PDisp__7TObjectFv",
     "slot5__21BlinkLightPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",
     "slot6__21BlinkLightPrimaryBaseFv": "Debug__7TObjectFv",

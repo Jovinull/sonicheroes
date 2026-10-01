@@ -1,5 +1,11 @@
 #include "types.h"
 
+// The rinoliner's mode-strategy object. The retained PS2 symbols have the same
+// shape as TEnemyRinoliner_Strategy (StrategyMode_* handlers, IsReqChangeMode,
+// ExecStrategyMode, SetUpFirst); this GameCube revision carries fifteen modes,
+// so the handlers keep their address names. Slot 4 (fn_8_B06EC) is the mode
+// dispatcher, slot 5 (fn_8_B0378) the change-request check.
+
 typedef s32 M2C_UNK;
 
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
@@ -17,7 +23,35 @@ public:
 	virtual void vslot2();
 	virtual void vslot3();
 	virtual void Release(s32, s32);
+	virtual s32 IsReqChangeMode();
+	/* The per-mode handlers, in vtable order. The dispatcher's case labels
+	 * reach them as 0, 1, 2, 5, 3, 4, 6, ..., 14. */
+	virtual void Mode00(s32);
+	virtual void Mode01(s32);
+	virtual void Mode02(s32);
+	virtual void Mode05(s32);
+	virtual void Mode03(s32);
+	virtual void Mode04(s32);
+	virtual void Mode06(s32);
+	virtual void Mode07(s32);
+	virtual void Mode08(s32);
+	virtual void Mode09(s32);
+	virtual void Mode10(s32);
+	virtual void Mode11(s32);
+	virtual void Mode12(s32);
+	virtual void Mode13(s32);
+	virtual void Mode14(s32);
 };
+
+/* The mode change every handler performs: remember the current mode, let it
+ * leave (phase 3), switch, and let the new one enter (phase 0). */
+static inline void ChangeMode(void* self, s32 next)
+{
+	M2C_FIELD(self, s32*, 8) = M2C_FIELD(self, s32*, 4);
+	((TObjectDispatch*)self)->Release(M2C_FIELD(self, s32*, 4), 3);
+	M2C_FIELD(self, s32*, 4) = next;
+	((TObjectDispatch*)self)->Release(M2C_FIELD(self, s32*, 4), 0);
+}
 
 extern "C" {
 
@@ -28,16 +62,54 @@ s32 fn_800A6334(void*);          /* extern */
 s32 fn_80137FE8(void*);          /* extern */
 s32 fn_8_AABC8(void*);           /* extern */
 s32 fn_8_AAE98(void*);           /* extern */
-s32 fn_8_AAF4C(...);             /* extern */
+s32 fn_8_AAF4C(void*);           /* extern */
 s32 fn_8_AB014(u32);             /* extern */
-M2C_UNK fn_8_AF3E8(M2C_UNK);     /* extern */
+void fn_8_AF86C();
 extern M2C_UNK lbl_8_data_16B98;
-static M2C_UNK lbl_8_data_16B08; /* unable to generate initializer: unknown type */
+M2C_UNK** fn_8_B088C(M2C_UNK** arg0, s16 arg1);
+void fn_8_B06EC(void* arg0, u32 arg1, s32 arg2);
+s32 fn_8_B0378(void* arg0);
+void fn_8_B02E0(void* arg0, s32 arg1);
+void fn_8_B022C(void* arg0, s32 arg1);
+void fn_8_B0178(void* arg0, s32 arg1);
+void fn_8_B0158(void* arg0, s32 arg1);
+void fn_8_AFF18(void* arg0, s32 arg1);
+void fn_8_AFEF8(void* arg0, s32 arg1);
+void fn_8_AFED8(void* arg0, s32 arg1);
+void fn_8_AFE20(void* arg0, s32 arg1);
+void fn_8_AFE00(void* arg0, s32 arg1);
+void fn_8_AFD40(void* arg0, s32 arg1);
+void fn_8_AFC80(void* arg0, s32 arg1);
+void fn_8_AFBC8(void* arg0, s32 arg1);
+void fn_8_AFB20(void* arg0, s32 arg1);
+void fn_8_AFA68(void* arg0, s32 arg1);
+void fn_8_AF9B4(void* arg0, s32 arg1);
 
-void fn_8_AF9AC(s32 arg0)
-{
-	fn_8_AF3E8(arg0 - 0xB0);
-}
+/* The strategy's vtable: destructor, a base-class slot, the mode dispatcher,
+ * the change-request check, then the fifteen mode handlers. */
+void* lbl_8_data_16B08[21] = {
+	0,
+	0,
+	(void*)fn_8_B088C,
+	(void*)fn_8_AF86C,
+	(void*)fn_8_B06EC,
+	(void*)fn_8_B0378,
+	(void*)fn_8_B02E0,
+	(void*)fn_8_B022C,
+	(void*)fn_8_B0178,
+	(void*)fn_8_B0158,
+	(void*)fn_8_AFF18,
+	(void*)fn_8_AFEF8,
+	(void*)fn_8_AFED8,
+	(void*)fn_8_AFE20,
+	(void*)fn_8_AFE00,
+	(void*)fn_8_AFD40,
+	(void*)fn_8_AFC80,
+	(void*)fn_8_AFBC8,
+	(void*)fn_8_AFB20,
+	(void*)fn_8_AFA68,
+	(void*)fn_8_AF9B4,
+};
 
 void fn_8_AF9B4(void* arg0, s32 arg1)
 {
@@ -268,27 +340,21 @@ void fn_8_AFF18(void* arg0, s32 arg1)
 					switch (temp_r3) { /* switch 2; irregular */
 						case 0:        /* switch 2 */
 							M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 3);
+							((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 							M2C_FIELD(arg0, s32*, 4) = 0xA;
-							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 0);
+							((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 							return;
 						case 1: /* switch 2 */
 							M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 3);
+							((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 							M2C_FIELD(arg0, s32*, 4) = 9;
-							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 0);
+							((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 							return;
 						case 2: /* switch 2 */
 							M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 3);
+							((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 							M2C_FIELD(arg0, s32*, 4) = 0xB;
-							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 0);
+							((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 							break;
 					}
 				}
@@ -386,141 +452,139 @@ void fn_8_B0300(void* arg0, u32 arg1)
 
 s32 fn_8_B0378(void* arg0)
 {
-	s32 temp_r30;
-	s32 temp_r30_2;
-	s32 temp_r4;
-	s32 var_r3;
-	void* temp_r3;
-	void* temp_r3_2;
-	s32 temp_r0;
-	s32 temp_r0_2;
+	s32 mode;
+	void* enemy;
+	u32 flags;
+	s32 command;
+	s32 result;
 
-	temp_r3  = M2C_FIELD(arg0, void**, 0x14);
-	temp_r30 = M2C_FIELD(temp_r3, s32*, 0x19C);
-	if (fn_8_AAF4C(temp_r3) != 0) {
-		if (temp_r30 != 0x1F) {
-			if (temp_r30 < 0x1F) {
-				if (temp_r30 != 2) {
-					goto block_6;
-				}
-				goto block_5;
-			}
-			goto block_6;
-		}
-	block_5:
-		M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
-		M2C_FIELD(arg0, s32*, 4) = 0xC;
-		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
-		return 1;
-	}
-block_6:
-	if ((fn_800A3ED4(M2C_FIELD(arg0, void**, 0x14)) != 0) && (temp_r30 != 0x1D)) {
-		M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
-		M2C_FIELD(arg0, s32*, 4) = 5;
-		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
-		return 1;
-	}
-	temp_r3_2 = M2C_FIELD(arg0, void**, 0x14);
-	temp_r0   = M2C_FIELD(temp_r3_2, s32*, 0x250);
-	if (temp_r0 != 0) {
-		var_r3 = 0;
-		switch (temp_r0) { /* irregular */
+	enemy = M2C_FIELD(arg0, void**, 0x14);
+	mode  = M2C_FIELD(enemy, s32*, 0x19C);
+	if (fn_8_AAF4C(enemy) != 0) {
+		switch (mode) {
+			case 2:
 			case 0x1F:
-				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
-				M2C_FIELD(arg0, s32*, 4) = 3;
-				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
-				var_r3 = 1;
+				ChangeMode(arg0, 0xC);
+				return 1;
+		}
+	}
+	if (fn_800A3ED4(M2C_FIELD(arg0, void**, 0x14)) != 0 && mode != 0x1D) {
+		ChangeMode(arg0, 5);
+		return 1;
+	}
+	enemy   = M2C_FIELD(arg0, void**, 0x14);
+	command = M2C_FIELD(enemy, s32*, 0x250);
+	if (command != 0) {
+		result = 0;
+		switch (command) {
+			case 0x1F:
+				ChangeMode(arg0, 3);
+				result = 1;
 				break;
 			case 0x3B:
-				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
-				M2C_FIELD(arg0, s32*, 4) = 0xD;
-				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
-				var_r3 = 1;
+				ChangeMode(arg0, 0xD);
+				result = 1;
 				break;
 		}
 		M2C_FIELD(M2C_FIELD(arg0, void**, 0x14), s32*, 0x250) = 0;
-		return var_r3;
+		return result;
 	}
-	temp_r4 = M2C_FIELD(temp_r3_2, s32*, 0x18C);
-	if ((u32)(temp_r4 & 0x1000) != 0) {
-		if (temp_r30 != 0x36) {
-			if (temp_r30 < 0x36) {
-				if (temp_r30 != 0x1F) {
-					if ((temp_r30 < 0x1F) && (temp_r30 < 3)) {
-						if (temp_r30 < 1) {
-							goto block_28;
-						}
-						goto block_27;
-					}
-					goto block_28;
-				}
-				goto block_27;
-			}
-			if (temp_r30 != 0x3A) {
-			block_28:
-				return 0;
-			}
-			goto block_27;
-		}
-	block_27:
-		M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
-		M2C_FIELD(arg0, s32*, 4) = 6;
-		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
-		return 1;
-	}
-	if (temp_r30 != 0x1A) {
-		if ((u32)(temp_r4 & 0x2000) != 0) {
-			temp_r0_2 = M2C_FIELD(temp_r3_2, s32*, 0x19C);
-			if (temp_r0_2 != 0x1F) {
-				if ((temp_r0_2 < 0x1F) && (temp_r0_2 < 3)) {
-					if (temp_r0_2 < 1) {
-						goto block_39;
-					}
-					goto block_38;
-				}
-			block_39:
-				return 0;
-			}
-		block_38:
-			M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-			((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
-			M2C_FIELD(arg0, s32*, 4) = 7;
-			((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
-			return 1;
+	flags = M2C_FIELD(enemy, s32*, 0x18C);
+	if (flags & 0x1000) {
+		switch (mode) {
+			case 1:
+			case 2:
+			case 0x1F:
+			case 0x36:
+			case 0x3A:
+				ChangeMode(arg0, 6);
+				return 1;
 		}
 		return 0;
 	}
-	temp_r30_2               = M2C_FIELD(arg0, s32*, 8);
-	M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
-	M2C_FIELD(arg0, s32*, 4) = temp_r30_2;
-	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
-	return 1;
+	switch (mode) {
+		case 0x1A:
+			ChangeMode(arg0, M2C_FIELD(arg0, s32*, 8));
+			return 1;
+	}
+	if (flags & 0x2000) {
+		switch (M2C_FIELD(enemy, s32*, 0x19C)) {
+			case 1:
+			case 2:
+			case 0x1F:
+				ChangeMode(arg0, 7);
+				return 1;
+		}
+		return 0;
+	}
+	return 0;
 }
 
-void fn_8_B06EC(void* arg0, u32 arg1, M2C_UNK arg2)
+void fn_8_B06EC(void* arg0, u32 arg1, s32 arg2)
 {
-	if (arg1 <= 14) {
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, M2C_UNK), 0x18 + arg1 * 4)(
-		    arg0, arg2);
+	TObjectDispatch* self = (TObjectDispatch*)arg0;
+
+	switch (arg1) {
+		case 0:
+			self->Mode00(arg2);
+			break;
+		case 1:
+			self->Mode01(arg2);
+			break;
+		case 2:
+			self->Mode02(arg2);
+			break;
+		case 5:
+			self->Mode05(arg2);
+			break;
+		case 3:
+			self->Mode03(arg2);
+			break;
+		case 4:
+			self->Mode04(arg2);
+			break;
+		case 6:
+			self->Mode06(arg2);
+			break;
+		case 7:
+			self->Mode07(arg2);
+			break;
+		case 8:
+			self->Mode08(arg2);
+			break;
+		case 9:
+			self->Mode09(arg2);
+			break;
+		case 10:
+			self->Mode10(arg2);
+			break;
+		case 11:
+			self->Mode11(arg2);
+			break;
+		case 12:
+			self->Mode12(arg2);
+			break;
+		case 13:
+			self->Mode13(arg2);
+			break;
+		case 14:
+			self->Mode14(arg2);
+			break;
+	}
+}
+
+static inline void DestroyStrategyBase(M2C_UNK** self)
+{
+	if (self != NULL) {
+		*self = &lbl_8_data_16B98;
 	}
 }
 
 M2C_UNK** fn_8_B088C(M2C_UNK** arg0, s16 arg1)
 {
-	s32 temp_cr0_eq;
-
-	temp_cr0_eq = arg0 == NULL;
-	if (temp_cr0_eq == 0) {
-		*arg0 = &lbl_8_data_16B08;
-		if (temp_cr0_eq == 0) {
-			*arg0 = &lbl_8_data_16B98;
-		}
+	if (arg0 != NULL) {
+		*arg0 = (M2C_UNK*)lbl_8_data_16B08;
+		DestroyStrategyBase(arg0);
 		if (arg1 > 0) {
 			__dl__FPv(arg0);
 		}
@@ -536,6 +600,6 @@ void fn_8_B08F0(void* arg0)
 	M2C_FIELD(arg0, s32*, 0xC)    = 0;
 	M2C_FIELD(arg0, s32*, 0x14)   = 0;
 	M2C_FIELD(arg0, s32*, 0x10)   = 0;
-	M2C_FIELD(arg0, M2C_UNK**, 0) = &lbl_8_data_16B08;
+	M2C_FIELD(arg0, M2C_UNK**, 0) = (M2C_UNK*)lbl_8_data_16B08;
 }
 }

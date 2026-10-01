@@ -154,6 +154,54 @@ Validation:
 - the language-policy check passes with `rel/o_spring.cpp` recorded as an
   approved deferred source.
 
+### Stage11 key object
+
+`rel/e_s11_key_stage11.cpp` reconstructs `TObjS11Key`, the Stage 11 goal key.
+
+Language evidence:
+
+- the corresponding PS2 symbol metadata names `TObjS11Key` and its C++ method
+  family (`SearchCage`, `Disappear`, `CheckTouchedByLeader`, `TDisp`, `Disp`,
+  `Exec`, `GetWaitAngY`, `GetWaitPosY`, `SetPosition`, destructor, `TObject*`
+  constructor) plus the `initObj`/`endObj`/`startObj` lifecycle functions, in
+  the same order as the GameCube text;
+- the GameCube two-base vtable, constructor and destructor independently
+  establish the same C++ object family.
+
+Validation:
+
+- `Exec` inlines `SetPosition`, `GetWaitPosY`, `GetWaitAngY` and
+  `CheckTouchedByLeader`, all of which retail emits after it, and
+  `startObjS11Key` inlines the constructor emitted before it. Under
+  `-inline auto` MWCC neither inlines a body defined after its caller nor emits
+  functions out of definition order, so no source order reproduces both the
+  retail inlining and the PS2/GameCube method order. `-inline deferred,auto`
+  inlines across the whole unit and emits in reverse definition order; with the
+  methods defined from the lifecycle functions back to `SearchCage` it
+  reproduces every function, relocation and owned section;
+- the inlined, otherwise unreferenced method bodies are retained by the
+  module's linker configuration;
+- `config/G9SE8P/build.sha1` verified all 18 configured artifacts.
+
+### Stage11 mask object
+
+`rel/e_mask_stage11.cpp` reconstructs `TObjMask`. The PS2 symbol metadata names
+the class and its C++ method family (`DestroyClump`, `CloneClump`,
+`SetParameter`, `Exec`, `SetPosition`, destructor, `TObject*` constructor,
+`EditOnChange`, `initObj`/`endObj`/`startObj`), and the GameCube two-base
+vtable and adjustor thunk establish the same C++ class. `Exec` inlines
+`SetPosition` and `CloneClump` inlines `GetHierarchy`, both emitted after their
+callers, and the compiler-generated vtable must sit between the named data and
+the string literals; `-inline deferred,auto` with reverse definition order
+reproduces every function, relocation and owned section, and all 18 hashes.
+`rel/o_s12_celestial_sphere.cpp` (`TObjS12Celestial`, PS2 method family
+`DestroyClump`, `CloneClump(int)`, `SetPosition`, `SetParameter`, `Disp`,
+`Exec`, destructor, constructor) needs the same mode for the same vtable
+placement, and matches the same way. So does
+`rel/e_capture_collision_stage11.cpp` (`TObjCaptureCollision`, PS2 family
+`KillMyself`, `TDisp`, `Exec`, `SetParameter`, `ResetVariable`, destructor,
+constructor, `CreateInstance`, `EditOnChange`).
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and
@@ -529,7 +577,9 @@ After the GameCube platform-main decision:
   migration candidate;
 - the reviewed deferred-inline modes are `game/skyfs_adx.c`,
   `game/modeswitch.cpp`, `game/e_paralysis.cpp`, `advertiseD/adv_2p.cpp`,
-  `advertiseD/adv_draw.cpp` and the CRI ADX core units listed under
+  `advertiseD/adv_draw.cpp`, `rel/e_s11_key_stage11.cpp`,
+  `rel/e_mask_stage11.cpp`, `rel/o_s12_celestial_sphere.cpp`,
+  `rel/e_capture_collision_stage11.cpp` and the CRI ADX core units listed under
   "CRI ADX core library units".
 
 ### Reviewed inline exceptions

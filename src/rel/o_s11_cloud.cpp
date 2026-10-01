@@ -112,7 +112,7 @@ void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void PDisp__7TObjectFv();
 void Render__7TObjectFv();
-void objDefaultTDisp();
+void TDisp__7TObjectFv();
 void Error__7TObjectFPc();
 }
 
@@ -482,7 +482,7 @@ extern "C" void* cloudVtable[15]   = {
 	(void*)__dt__12TObjS11CloudFv,
 	(void*)Exec__12TObjS11CloudFv,
 	(void*)Disp__12TObjS11CloudFv,
-	(void*)objDefaultTDisp,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

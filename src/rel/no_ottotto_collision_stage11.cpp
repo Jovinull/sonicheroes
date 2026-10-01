@@ -91,7 +91,7 @@ void fn_8_DCE3C(OttottoObject*);
 OttottoObject* fn_8_DCF34(OttottoObject*, s16);
 void fn_8_DD0D4(OttottoObject*, SetdataParam*);
 void fn_8_DCE38(void);
-void fn_3_1A9B0(void);
+void Disp__7TObjectFv(void);
 void PDisp__7TObjectFv(void);
 void ImmAftSetRaster__7TObjectFv(void);
 void Debug__7TObjectFv(void);
@@ -123,7 +123,7 @@ void* lbl_8_data_1A3F4[]     = {
 	NULL,
 	(void*)fn_8_DCF34,
 	(void*)fn_8_DCE3C,
-	(void*)fn_3_1A9B0,
+	(void*)Disp__7TObjectFv,
 	(void*)fn_8_DCE38,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,

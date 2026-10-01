@@ -206,7 +206,7 @@ void fn_8_CCDE4(s32);
 void fn_8_CCD98(void*);
 void fn_8_CCD4C(void*);
 void fn_8_CD730(void*, void*);
-void fn_3_1A9B0(...);
+void Disp__7TObjectFv(...);
 void PDisp__7TObjectFv(...);
 void ImmAftSetRaster__7TObjectFv(...);
 void Debug__7TObjectFv(...);
@@ -214,7 +214,7 @@ void Error__7TObjectFPc(...);
 void Render__7TObjectFv(...);
 
 void fn_8005B8B8(...);
-void objDefaultTDisp(...);
+void TDisp__7TObjectFv(...);
 void fn_8_CDCD4(...);
 extern HAnimClass HAnim;
 extern M2C_UNK lbl_80239978;
@@ -274,7 +274,7 @@ S12_DATA void* lbl_8_data_190FC[14]   = {
 	NULL,
 	(void*)fn_8_CC2F0,
 	(void*)fn_8_CC0F0,
-	(void*)fn_3_1A9B0,
+	(void*)Disp__7TObjectFv,
 	(void*)fn_8_CC0EC,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
@@ -291,7 +291,7 @@ S12_DATA void* lbl_8_data_19134[15] = {
 	(void*)fn_8_CD478,
 	(void*)fn_8_CCDE4,
 	(void*)fn_8_CCD98,
-	(void*)objDefaultTDisp,
+	(void*)TDisp__7TObjectFv,
 	(void*)fn_8_CCD4C,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

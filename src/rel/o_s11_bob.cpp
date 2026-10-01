@@ -33,14 +33,14 @@ void fn_800BC9F4(void*, void*);
 void fn_80150958(void*);
 void fn_801A4C84(void*);
 
-void fn_3_1A9B0();
+void Disp__7TObjectFv();
 void fn_8_8AA4C();
 void fn_8005B8B8();
 void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void PDisp__7TObjectFv();
 void Render__7TObjectFv();
-void objDefaultTDisp();
+void TDisp__7TObjectFv();
 void Error__7TObjectFPc();
 }
 
@@ -166,8 +166,8 @@ extern "C" void* bobVtable[14] = {
 	NULL,
 	(void*)__dt__10TObjS11BobFv,
 	(void*)fn_8_8AA4C,
-	(void*)fn_3_1A9B0,
-	(void*)objDefaultTDisp,
+	(void*)Disp__7TObjectFv,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

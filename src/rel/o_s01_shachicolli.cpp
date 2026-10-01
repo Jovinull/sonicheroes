@@ -107,7 +107,7 @@ void s01ObjectBaseUpdate(TObjS01ShachiColli*);
 void s01ObjectBaseDtor(TObjS01ShachiColli*, s16);
 void s01ObjectBaseCtor(TObjS01ShachiColli*, void*);
 
-void fn_3_1A9B0();
+void Disp__7TObjectFv();
 extern "C" void TDisp__13TObjS01CisekiFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -227,7 +227,7 @@ extern "C" void* shachiColliVtable[18] = {
 	NULL,
 	(void*)__dt__18TObjS01ShachiColliFv,
 	(void*)Exec__18TObjS01ShachiColliFv,
-	(void*)fn_3_1A9B0,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__13TObjS01CisekiFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,

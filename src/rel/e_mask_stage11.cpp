@@ -1,670 +1,549 @@
 #include "types.h"
 
-typedef s32 M2C_UNK;
-#define M2C_FIELD(base, type, offset) (*(type)((u8*)(u32)(base) + (offset)))
-#define M2C_ERROR(...)
-#define M2C_BITWISE(type, value) (*(type*)&(value))
+// Retained PS2 symbols name this object TObjMask and give its method family:
+// DestroyClump, CloneClump, SetParameter, Exec, SetPosition, the destructor,
+// the TObject* constructor, EditOnChange and the initObj/endObj/startObj
+// lifecycle functions. The same PS2 range holds the RenderWare helpers
+// SetHierarchyForSkinAtomic, GetHierarchy and GetChildFrameHierarchy, which
+// the GameCube unit emits between the constructor and EditOnChange. Other
+// Stage 11 units carry their own copies, so they are file-static; the module's
+// link script keeps this object whole (FORCEFILES) so the inlined, otherwise
+// unreferenced GetHierarchy copy survives as it does in retail. The
+// "TObjMask" class-name string in this unit's .data correlates the GameCube
+// object with that family.
+//
+// Exec inlines SetPosition and CloneClump inlines GetHierarchy although
+// retail emits both after their callers; like the Stage 11 key unit this one
+// is built with deferred inlining, which emits in reverse definition order, so
+// the source runs from the registration function back to DestroyClump. The
+// same mode places the compiler's vtable after the named data and ahead of
+// the string literals, where retail has it.
 
-typedef struct TObject {
-	/* 0x00 */ M2C_UNK* unk0;   /* inferred */
-	/* 0x04 */ char pad4[0x14]; /* maybe part of unk0[6]? */
-	/* 0x18 */ M2C_UNK* unk18;  /* inferred */
-	/* 0x1C */ char pad1C[2];
-	/* 0x1E */ s16 unk1E;     /* inferred */
-	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
-	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x2C */ void* unk2C;   /* inferred */
-	/* 0x30 */ M2C_UNK unk30; /* inferred */
-	/* 0x34 */ char pad34[0x84];
-	/* 0xB8 */ f32 unkB8;   /* inferred */
-	/* 0xBC */ f32 unkBC;   /* inferred */
-	/* 0xC0 */ f32 unkC0;   /* inferred */
-	/* 0xC4 */ s32 unkC4;   /* inferred */
-	/* 0xC8 */ s32 unkC8;   /* inferred */
-	/* 0xCC */ s32 unkCC;   /* inferred */
-	/* 0xD0 */ f32 unkD0;   /* inferred */
-	/* 0xD4 */ f32 unkD4;   /* inferred */
-	/* 0xD8 */ s32 unkD8;   /* inferred */
-	/* 0xDC */ s32 unkDC;   /* inferred */
-	/* 0xE0 */ void* unkE0; /* inferred */
-	/* 0xE4 */ void* unkE4; /* inferred */
-} TObject;                  /* size >= 0xE8 */
+struct Vec3 {
+	f32 x;
+	f32 y;
+	f32 z;
+};
+
+struct MaskParam {
+	s32 type;
+	f32 scale;
+	f32 speed;
+	s8 direction;
+};
+
+struct SETDATA_PARAM {
+	Vec3 position;
+	s32 angleX;
+	s32 angleY;
+	s32 angleZ;
+	u32 flags;
+	u8 pad1C[0x10];
+	MaskParam* params;
+};
+
+/* The collision shape description handed to the collision setup call. */
+struct CollisionDesc {
+	u32 flags;
+	u32 kind;
+	f32 f08;
+	f32 f0C;
+	f32 f10;
+	f32 f14;
+	f32 f18;
+	f32 f1C;
+	f32 f20;
+	s32 f24;
+	s32 f28;
+	s32 f2C;
+};
+
+struct CollisionShape {
+	u8 pad00[8];
+	f32 f08;
+	u8 pad0C[8];
+	f32 f14;
+	f32 f18;
+};
+
+struct MaskCollision {
+	u8 pad00[0x10];
+	CollisionShape* shape;
+	u8 pad14[0x74];
+};
+
+struct RpClump;
+struct RpAtomic;
+struct RwMatrix {
+	u8 data[0x40];
+};
+struct RwFrame {
+	u8 pad00[0x10];
+	RwMatrix modelling;
+};
+struct RtAnimAnimation {
+	u8 pad00[0xC];
+	f32 duration;
+};
+struct RtAnimInterpolator {
+	RtAnimAnimation* animation;
+};
+struct RpHAnimHierarchy {
+	u32 flags;
+	u8 pad04[0x1C];
+	RtAnimInterpolator* interpolator;
+};
+
+struct GameState {
+	u8 pad00[0x30];
+	s32 frame;
+};
+
+struct TObjectHdr {
+	const char* className;
+	u16 signal;
+	u8 pad06[0x12];
+};
+
+class TObject : public TObjectHdr
+{
+public:
+	virtual ~TObject();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void TDisp();
+	virtual void PDisp();
+	virtual void ImmAftSetRaster();
+	virtual void Debug();
+	virtual void Error(char*);
+	virtual void Render();
+
+	s16 pad1C;
+	s16 objectSize;
+	u8 pad20[8];
+};
+
+struct SetObjHdr {
+	SETDATA_PARAM* frame;
+};
 
 extern "C" {
+s32 fn_8005B8BC(void*);
+s32 fn_8005B8D8(void*);
+s32 fn_8005B9F0(void*);
+void fn_8005BE6C(void*);
+}
 
-void* __ct__7TObjectFP7TObject(void*, void*);                       /* extern */
-void* __dt__7TObjectFv(void*, s32);                                 /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                              /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                              /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                                 /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                                      /* extern */
-M2C_UNK fn_80021384(void*, void*, M2C_UNK*, f32);                   /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                      /* extern */
-s32 fn_8005B8BC(void*);                                             /* extern */
-s32 fn_8005B8D8(void*);                                             /* extern */
-s32 fn_8005B9F0(void*);                                             /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                                      /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                    /* extern */
-M2C_UNK fn_800B4A38(M2C_UNK, void*, M2C_UNK, M2C_UNK, s8, M2C_UNK); /* extern */
-u32 fn_800BB0D4(s32, s32, M2C_UNK*);                                /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                                /* extern */
-s32 fn_800BC6CC(s32, M2C_UNK*);                                     /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                                 /* extern */
-f32 fn_800D7AE4(s32);                                               /* extern */
-f32 fn_800D7B00(s32);                                               /* extern */
-M2C_UNK fn_8013F3A4(void*);                                         /* extern */
-void* fn_8013F484(s32);                                             /* extern */
-M2C_UNK fn_8013FC30(void*);                                         /* extern */
-M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);           /* extern */
-void* fn_80150588(u32);                                             /* extern */
-M2C_UNK fn_80150958(void*);                                         /* extern */
-M2C_UNK fn_8015BB08(s32, void*);                                    /* extern */
-M2C_UNK fn_8015BBF8(s32, void*);                                    /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);              /* extern */
-M2C_UNK fn_8019E880(s32);                                           /* extern */
-M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);             /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                            /* extern */
-M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                            /* extern */
-M2C_UNK fn_801A4C84(u32);                                           /* extern */
-M2C_UNK fn_8020C2D8(u32);                                           /* extern */
-M2C_UNK fn_8020C72C(void**, u32);                                   /* extern */
-M2C_UNK fn_8020CC18(void**, f32*, f32);                             /* extern */
-M2C_UNK fn_8020D02C(void**, const f32*, f32);                       /* extern */
-M2C_UNK fn_80226440(void*, s32);                                    /* extern */
-u32 fn_80226468(s32);                                               /* extern */
-M2C_UNK fn_8_C8C34(s32);                                            /* extern */
-TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1);                  /* static */
-void* fn_8_C9DCC(void* arg0, s32 arg1);                             /* static */
-s32 fn_8_C9E7C(s32 arg0, void** arg1);                              /* static */
-void maskObjectCreate();                                            /* static */
-void maskObjectLoad();                                              /* static */
-void maskObjectUnload();                                            /* static */
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
-extern M2C_UNK lbl_802FF5A0;
-extern TObject* lbl_8042C110;
-extern s32 lbl_8042C148;
-extern void* lbl_8042C180;
+class TObjSetObj : public SetObjHdr
+{
+public:
+	virtual void EditOnChange(SETDATA_PARAM*);
+
+	s32 CheckMustKill() { return fn_8005B9F0(this); }
+	s32 CheckRangeOut() { return fn_8005B8BC(this); }
+	s32 OnEdit() { return fn_8005B8D8(this); }
+};
+
+extern "C" {
+extern void* lbl_8042C110;
+extern void* lbl_8042C148;
+extern GameState* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern u32 lbl_8042C388;
-extern f32 lbl_8_rodata_1F98;
-extern f32 lbl_8_rodata_1F9C;
-extern f32 lbl_8_rodata_1FA0;
-extern f64 lbl_8_rodata_1FA8;
-static u8 lbl_8_data_18C88 = 0x20;
-static M2C_UNK gap_04_00018C89_data; /* unable to generate initializer: unknown type */
-static u32 lbl_8_data_18C8C[2] = { 0U, 0U };
-static u32 lbl_8_data_18C94[2] = { 0U, 0U };
-static M2C_UNK lbl_8_data_18C9C;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018CA1_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18CA4;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018CB3_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18CB4;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018CCD_data; /* unable to generate initializer: unknown type */
-static char lbl_8_data_18CD0[] = "direction : up";
-static M2C_UNK gap_04_00018CDF_data; /* unable to generate initializer: unknown type */
-static M2C_UNK maskObjectFieldNames; /* unable to generate initializer: unknown type */
-static char lbl_8_data_18CF0[] = "direction : down";
-static M2C_UNK gap_04_00018D01_data; /* unable to generate initializer: unknown type */
-static const char* lbl_8_data_18D04[2] = { lbl_8_data_18CD0, lbl_8_data_18CF0 };
-static u32 lbl_8_data_18D0C[12] = { 0x0003FFE3, 0x00000402, 0x42BE0000, 0x00000000, 0x00000000,
-	0x428C0000, 0x41200000, 0x00000000, 0x00000000, 0x00004000, 0x00000000, 0x00000000 };
-static char lbl_8_data_18D3C[]  = "TObjMask";
-static M2C_UNK gap_04_00018D45_data; /* unable to generate initializer: unknown type */
-static const char* lbl_8_data_18D48 = lbl_8_data_18D3C;
-static M2C_UNK lbl_8_data_18D4C; /* unable to generate initializer: unknown type */
-static char lbl_8_data_18D88[] = "s11_on_maska.dff";
-static M2C_UNK gap_04_00018D99_data; /* unable to generate initializer: unknown type */
-static char lbl_8_data_18D9C[] = "s11_on_maskb.dff";
-static M2C_UNK gap_04_00018DAD_data; /* unable to generate initializer: unknown type */
-static char lbl_8_data_18DB0[] = "s11_on_maska.anm";
-static M2C_UNK gap_04_00018DC1_data; /* unable to generate initializer: unknown type */
-static char lbl_8_data_18DC4[] = "s11_on_maskb.anm";
-static M2C_UNK gap_04_00018DD5_data; /* unable to generate initializer: unknown type */
-static char maskObjectDisplayName[] = "MASK OBJECT";
-static char maskObjectFieldTypes[]  = "iFFc";
-static M2C_UNK gap_04_00018DEC_data; /* unable to generate initializer: unknown type */
-typedef struct ObjectEntry {
-	const char* name;        /* 0x00 */
-	void (*load)(void);      /* 0x04 */
-	void (*unload)(void);    /* 0x08 */
-	void (*create)(void);    /* 0x0C */
-	void* unk10;             /* 0x10 */
-	u32 flags;               /* 0x14 */
-	u32 unk18;               /* 0x18 */
-	s16 unk1C;               /* 0x1C */
-	s16 unk1E;               /* 0x1E */
-	u8 unk20;                /* 0x20 */
-	u8 unk21;                /* 0x21 */
-	u8 pad22[2];             /* 0x22 */
-	const char* fieldTypes;  /* 0x24 */
-	const char** fieldNames; /* 0x28 */
-	u8 pad2C[4];             /* 0x2C */
-} ObjectEntry;               /* 0x30 */
+extern void* lbl_8042C388;
+extern u8 lbl_80239984;
+extern u8 lbl_80239990;
+extern u8 lbl_802FF5A0;
 
-static ObjectEntry maskObjectEntry;
-static M2C_UNK lbl_8_bss_1D48;
-extern const s32 lbl_8_rodata_20F0[5] = { 0x43300000, 0x80000000, 0x5, 0x2, 0x1 };
-extern const f32 lbl_8_rodata_2104[1] = { 0.0054931640625f };
-extern const f32 lbl_8_rodata_2108[1] = { 2.0f };
-extern const f64 lbl_8_rodata_2110[1] = { 4503601774854144.0 };
-
-void fn_8_C907C(s32 arg0)
-{
-	f32 temp_f1;
-	fn_8_C8C34(arg0 - 0x28);
+void __ct__7TObjectFP7TObject(void*, void*);
+void __dt__7TObjectFv(void*, s16);
+void dtor_8003C52C(void*, s16);
+void dtor_8005BD3C(void*, s16);
+void* fn_80018A34(void*, u32);
+void fn_800189A4(void*, void*);
+void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
+void fn_8003C618(void*);
+void fn_8005D5C8(RpClump*, u32);
+void fn_800B4A38(void*, s32, Vec3*, s32, s32, s32, s32);
+void* fn_800BB0D4(void*, s32, void*);
+void* fn_800BB92C(void*, s32, void*);
+s32 fn_800BC6CC(void*, const char*);
+void fn_800BC9F4(void*, void*);
+f32 fn_800D7AE4(s32);
+f32 fn_800D7B00(s32);
+void fn_8013F3A4(RpHAnimHierarchy*);
+RpHAnimHierarchy* fn_8013F484(RwFrame*);
+void fn_8013FC30(RpHAnimHierarchy*);
+void fn_8014FFBC(RpClump*, RpAtomic* (*)(RpAtomic*, void*), void*);
+RpClump* fn_80150588(void*);
+void fn_80150958(void*);
+void fn_8015BB08(void*, RpClump*);
+void fn_8015BBF8(void*, RpClump*);
+void fn_80195790(void*, void*, f32, f32, s32);
+void fn_8019E880(RwFrame*);
+void fn_8019EB10(RwFrame*, RwFrame* (*)(RwFrame*, void*), void*);
+void fn_8019EB94(RwFrame*, Vec3*, s32);
+void fn_8019EC30(RwFrame*, Vec3*, s32);
+void fn_801A4C84(void*);
+void fn_8020C2D8(void*);
+void fn_8020C72C(RtAnimInterpolator*, void*);
+void fn_8020CC18(RtAnimInterpolator*, f32);
+void fn_8020D02C(RtAnimInterpolator*, f32);
+void fn_80226440(RpAtomic*, void*);
+u32 fn_80226468(void*);
 }
 
-void fn_8_C9084(void* arg0)
+static RpAtomic* SetHierarchyForSkinAtomic(RpAtomic*, void*);
+static RpHAnimHierarchy* GetHierarchy(RpClump*);
+static RwFrame* GetChildFrameHierarchy(RwFrame*, void*);
+
+class TObjMask : public TObject, public TObjSetObj
 {
-	if ((void*)M2C_FIELD(arg0, void**, 0xE0) != NULL) {
-		fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0xE0));
-		fn_80150958(M2C_FIELD(arg0, void**, 0xE0));
-		M2C_FIELD(arg0, void**, 0xE0) = NULL;
-	}
+public:
+	MaskCollision collision;
+	Vec3 position;
+	s32 angleX;
+	s32 angleY;
+	s32 angleZ;
+	f32 speed;
+	f32 scale;
+	s32 direction;
+	s32 type;
+	RpClump* model;
+	RpHAnimHierarchy* hierarchy;
+
+	void DestroyClump();
+	void CloneClump();
+	void SetCollision();
+	void SetParameter();
+	virtual void Exec();
+	void SetPosition();
+	inline virtual ~TObjMask();
+	virtual void EditOnChange(SETDATA_PARAM*);
+};
+
+// The constructor and destructor are written against the object's storage:
+// retail constructs and destroys the TObjSetObj base through out-of-line
+// functions that keep their address names, which a C++ base-class call would
+// rename. The compiler still generates the class vtable and its adjustor
+// thunk from the virtual declarations above.
+extern "C" {
+TObjMask* __ct__8TObjMaskFP7TObject(TObjMask*, TObject*);
+TObjMask* __dt__8TObjMaskFv(TObjMask*, s16);
+extern void* __vt__8TObjMask[];
 }
 
-void fn_8_C90DC(void* arg0)
-{
-	void* sp8;
-	void* temp_r30;
-	void* temp_r3;
-	void* temp_r3_2;
+#define MOTION(self) ((void*)((u8*)(self) + 0x28))
 
-	if ((void*)M2C_FIELD(arg0, void**, 0xE0) == NULL) {
-		M2C_FIELD(arg0, void**, 0xE0) = fn_80150588(lbl_8_data_18C8C[M2C_FIELD(arg0, s32*, 0xDC)]);
-		if ((void*)M2C_FIELD(arg0, void**, 0xE0) != NULL) {
-			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0xE0));
-			fn_8005D5C8(M2C_FIELD(arg0, void**, 0xE0),
-			    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
-			        + 4);
-			temp_r30 = M2C_FIELD(arg0, void**, 0xE0);
-			sp8      = NULL;
-			temp_r3  = fn_8013F484(M2C_FIELD(temp_r30, s32*, 4));
-			sp8      = temp_r3;
-			if (temp_r3 == NULL) {
-				fn_8019EB10(M2C_FIELD(temp_r30, s32*, 4), fn_8_C9E7C, &sp8);
-			}
-			M2C_FIELD(arg0, void**, 0xE4) = sp8;
-			fn_8014FFBC(M2C_FIELD(arg0, void**, 0xE0), fn_8_C9DCC, M2C_FIELD(arg0, void**, 0xE4));
-			temp_r3_2                     = M2C_FIELD(arg0, void**, 0xE4);
-			M2C_FIELD(temp_r3_2, s32*, 0) = (s32)(M2C_FIELD(temp_r3_2, s32*, 0) | 0x3000);
-			fn_8020C72C(M2C_FIELD(M2C_FIELD(arg0, void**, 0xE4), void***, 0x20),
-			    lbl_8_data_18C94[M2C_FIELD(arg0, s32*, 0xDC)]);
-			fn_8013F3A4(M2C_FIELD(arg0, void**, 0xE4));
-			fn_8013FC30(M2C_FIELD(arg0, void**, 0xE4));
-			fn_8020D02C(M2C_FIELD(M2C_FIELD(arg0, void**, 0xE4), void***, 0x20), &lbl_8_rodata_1F98,
-			    lbl_8_rodata_1F98);
-			fn_8020CC18(M2C_FIELD(M2C_FIELD(arg0, void**, 0xE4), void***, 0x20), &lbl_8_rodata_1F98,
-			    lbl_8_rodata_1F98);
-		}
-	}
+// The model, animation and data names below are descriptive guesses.
+extern "C" {
+u8 maskSoundVolume      = 0x20;
+void* maskModels[2]     = { NULL, NULL };
+void* maskAnimations[2] = { NULL, NULL };
+char* maskObjectFieldNames[4]
+    = { "type", "scale(def:1.0)", "animation speed(def:1.0)", "direction : up" };
+char* maskDirectionNames[2] = { "direction : up", "direction : down" };
+CollisionDesc maskCollisionDesc
+    = { 0x3FFE3, 0x402, 95.0f, 0.0f, 0.0f, 70.0f, 10.0f, 0.0f, 0.0f, 0x4000, 0, 0 };
+char* CL_TObjMask = "TObjMask";
 }
 
-void fn_8_C9230(void* arg0)
-{
-	void* temp_r4;
+struct SETOBJ_PARAM {
+	char* displayName;
+	void (*init)();
+	void (*end)();
+	void (*create)();
+	u32 field10;
+	u32 flags;
+	u32 field18;
+	u16 id;
+	u16 count;
+	u8 field20;
+	u8 field21;
+	u8 pad22[2];
+	char* fieldTypes;
+	void* fields;
+};
 
-	if ((s32)M2C_FIELD(arg0, s32*, 0xD8) == 1) {
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0x40), f32*, 8)
-		    = (f32)(-M2C_FIELD(lbl_8_data_18D0C, f32*, 0xC) * M2C_FIELD(arg0, f32*, 0xD4));
-	} else {
-		M2C_FIELD(M2C_FIELD(arg0, void**, 0x40), f32*, 8)
-		    = (f32)(M2C_FIELD(lbl_8_data_18D0C, f32*, 0xC) * M2C_FIELD(arg0, f32*, 0xD4));
-	}
-	M2C_FIELD(M2C_FIELD(arg0, void**, 0x40), f32*, 0x14)
-	    = (f32)(M2C_FIELD(lbl_8_data_18D0C, f32*, 0x14) * M2C_FIELD(arg0, f32*, 0xD4));
-	temp_r4 = M2C_FIELD(arg0, void**, 0x40);
-	M2C_FIELD(temp_r4, f32*, 0x18)
-	    = (f32)(M2C_FIELD(lbl_8_data_18D0C, f32*, 0x18) * M2C_FIELD(arg0, f32*, 0xD4));
-	fn_80021384(
-	    (u8*)arg0 + 0x30, temp_r4, (int*)lbl_8_data_18D0C, M2C_FIELD(lbl_8_data_18D0C, f32*, 0x18));
+extern "C" {
+SETOBJ_PARAM maskObjectEntry;
+void endObjMask();
+void initObjMask();
+void startObjMask();
 }
 
-void fn_8_C92D0(void* arg0)
+extern "C" void maskObjectRegister()
 {
-	f32 temp_f1;
-	void* temp_r5;
-	void* temp_r4;
-	void* temp_r4_2;
-
-	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
-	temp_r5                     = M2C_FIELD(temp_r4, void**, 0x2C);
-	M2C_FIELD(arg0, f32*, 0xB8) = (f32)M2C_FIELD(temp_r4, f32*, 0);
-	M2C_FIELD(arg0, f32*, 0xBC) = (f32)M2C_FIELD(temp_r4, f32*, 4);
-	M2C_FIELD(arg0, f32*, 0xC0) = (f32)M2C_FIELD(temp_r4, f32*, 8);
-	temp_r4_2                   = M2C_FIELD(arg0, void**, 0x28);
-	M2C_FIELD(arg0, s32*, 0xC4) = (s32)M2C_FIELD(temp_r4_2, s32*, 0xC);
-	M2C_FIELD(arg0, s32*, 0xC8) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x10);
-	M2C_FIELD(arg0, s32*, 0xCC) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x14);
-	M2C_FIELD(arg0, s32*, 0xCC) = 0;
-	M2C_FIELD(arg0, s32*, 0xC4) = 0;
-	M2C_FIELD(arg0, s32*, 0xD8) = (s32)(s8)M2C_FIELD(temp_r5, u8*, 0xC);
-	temp_f1                     = lbl_8_rodata_1F9C;
-	M2C_FIELD(arg0, f32*, 0xD4) = (f32)(temp_f1 + M2C_FIELD(temp_r5, f32*, 4));
-	M2C_FIELD(arg0, f32*, 0xD0) = (f32)(temp_f1 + M2C_FIELD(temp_r5, f32*, 8));
-	M2C_FIELD(arg0, s32*, 0xDC) = (s32)M2C_FIELD(temp_r5, s32*, 0);
-}
-
-void fn_8_C9354(void* arg0)
-{
-	f32 temp_f1;
-	f32 spC[3];
-	void* sp8;
-	f32 temp_f0;
-	f32 temp_f2;
-	f32 temp_f30;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	f32 temp_f31_4;
-	f32 temp_f31_5;
-	s32 temp_r30_2;
-	s32 temp_r5;
-	void** temp_r3;
-	void* temp_r30;
-	void* temp_r3_2;
-	void* temp_r3_3;
-	void* temp_r3_4;
-	void* temp_r3_5;
-	void* temp_r3_6;
-	void* temp_r4;
-
-	if ((fn_8005B9F0((u8*)arg0 + 0x28) != 0) || (fn_8005B8BC((u8*)arg0 + 0x28) != 0)) {
-		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
-		return;
-	}
-	temp_r3  = M2C_FIELD(M2C_FIELD(arg0, void**, 0xE4), void***, 0x20);
-	temp_f31 = lbl_8_rodata_1FA0 * M2C_FIELD(*temp_r3, f32*, 0xC);
-	temp_f2  = M2C_FIELD(arg0, f32*, 0xD0) * (f32)M2C_FIELD(lbl_8042C180, s32*, 0x30);
-	temp_f30 = temp_f2 - (temp_f31 * (f32)(s32)(temp_f2 / temp_f31));
-	fn_8020D02C(temp_r3, &temp_f30, temp_f2);
-	fn_8013FC30(M2C_FIELD(arg0, void**, 0xE4));
-	if (fn_8005B8D8((u8*)arg0 + 0x28) != 0) {
-		temp_r5                     = M2C_FIELD(arg0, s32*, 0xDC);
-		temp_r3_2                   = M2C_FIELD(arg0, void**, 0x28);
-		temp_r4                     = M2C_FIELD(temp_r3_2, void**, 0x2C);
-		M2C_FIELD(arg0, f32*, 0xB8) = (f32)M2C_FIELD(temp_r3_2, f32*, 0);
-		M2C_FIELD(arg0, f32*, 0xBC) = (f32)M2C_FIELD(temp_r3_2, f32*, 4);
-		M2C_FIELD(arg0, f32*, 0xC0) = (f32)M2C_FIELD(temp_r3_2, f32*, 8);
-		temp_r3_3                   = M2C_FIELD(arg0, void**, 0x28);
-		M2C_FIELD(arg0, s32*, 0xC4) = (s32)M2C_FIELD(temp_r3_3, s32*, 0xC);
-		M2C_FIELD(arg0, s32*, 0xC8) = (s32)M2C_FIELD(temp_r3_3, s32*, 0x10);
-		M2C_FIELD(arg0, s32*, 0xCC) = (s32)M2C_FIELD(temp_r3_3, s32*, 0x14);
-		M2C_FIELD(arg0, s32*, 0xCC) = 0;
-		M2C_FIELD(arg0, s32*, 0xC4) = 0;
-		M2C_FIELD(arg0, s32*, 0xD8) = (s32)(s8)M2C_FIELD(temp_r4, u8*, 0xC);
-		temp_f1                     = lbl_8_rodata_1F9C;
-		M2C_FIELD(arg0, f32*, 0xD4) = (f32)(temp_f1 + M2C_FIELD(temp_r4, f32*, 4));
-		M2C_FIELD(arg0, f32*, 0xD0) = (f32)(temp_f1 + M2C_FIELD(temp_r4, f32*, 8));
-		M2C_FIELD(arg0, s32*, 0xDC) = (s32)M2C_FIELD(temp_r4, s32*, 0);
-		if ((s32)M2C_FIELD(arg0, s32*, 0xDC) != temp_r5) {
-			if ((void*)M2C_FIELD(arg0, void**, 0xE0) != NULL) {
-				fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0xE0));
-				fn_80150958(M2C_FIELD(arg0, void**, 0xE0));
-				M2C_FIELD(arg0, void**, 0xE0) = NULL;
-			}
-			if ((void*)M2C_FIELD(arg0, void**, 0xE0) == NULL) {
-				M2C_FIELD(arg0, void**, 0xE0)
-				    = fn_80150588(lbl_8_data_18C8C[M2C_FIELD(arg0, s32*, 0xDC)]);
-				if ((void*)M2C_FIELD(arg0, void**, 0xE0) != NULL) {
-					fn_8015BB08(
-					    M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0xE0));
-					fn_8005D5C8(M2C_FIELD(arg0, void**, 0xE0),
-					    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000)
-					        >> 0x12U)
-					        + 4);
-					temp_r30  = M2C_FIELD(arg0, void**, 0xE0);
-					sp8       = NULL;
-					temp_r3_4 = fn_8013F484(M2C_FIELD(temp_r30, s32*, 4));
-					sp8       = temp_r3_4;
-					if (temp_r3_4 == NULL) {
-						fn_8019EB10(M2C_FIELD(temp_r30, s32*, 4), fn_8_C9E7C, &sp8);
-					}
-					M2C_FIELD(arg0, void**, 0xE4) = sp8;
-					fn_8014FFBC(
-					    M2C_FIELD(arg0, void**, 0xE0), fn_8_C9DCC, M2C_FIELD(arg0, void**, 0xE4));
-					temp_r3_5                     = M2C_FIELD(arg0, void**, 0xE4);
-					M2C_FIELD(temp_r3_5, s32*, 0) = (s32)(M2C_FIELD(temp_r3_5, s32*, 0) | 0x3000);
-					fn_8020C72C(M2C_FIELD(M2C_FIELD(arg0, void**, 0xE4), void***, 0x20),
-					    lbl_8_data_18C94[M2C_FIELD(arg0, s32*, 0xDC)]);
-					fn_8013F3A4(M2C_FIELD(arg0, void**, 0xE4));
-					fn_8013FC30(M2C_FIELD(arg0, void**, 0xE4));
-					fn_8020D02C(M2C_FIELD(M2C_FIELD(arg0, void**, 0xE4), void***, 0x20),
-					    &lbl_8_rodata_1F98, lbl_8_rodata_1F98);
-					fn_8020CC18(M2C_FIELD(M2C_FIELD(arg0, void**, 0xE4), void***, 0x20),
-					    &lbl_8_rodata_1F98, lbl_8_rodata_1F98);
-				}
-			}
-		}
-		temp_r3_6 = M2C_FIELD(arg0, void**, 0xE0);
-		if (temp_r3_6 != NULL) {
-			temp_f0    = M2C_FIELD(arg0, f32*, 0xD4);
-			spC[2]     = temp_f0;
-			spC[1]     = temp_f0;
-			spC[0]     = temp_f0;
-			temp_r30_2 = M2C_FIELD(temp_r3_6, s32*, 4);
-			fn_8019EB94(temp_r30_2, (f32*)((u8*)arg0 + 0xB8), 0);
-			temp_f31_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r30_2 + 0x10, &lbl_80239984,
-			    lbl_8_rodata_1F9C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31_2, 1);
-			fn_8019E880(temp_r30_2);
-			if ((s32)M2C_FIELD(arg0, s32*, 0xD8) == 1) {
-				temp_f31_3 = fn_800D7B00(0x4000);
-				fn_80195790(temp_r30_2 + 0x10, &lbl_80239990,
-				    lbl_8_rodata_1F9C - fn_800D7AE4(0x4000), temp_f31_3, 1);
-				fn_8019E880(temp_r30_2);
-			} else {
-				temp_f31_4 = fn_800D7B00(-0x4000);
-				fn_80195790(temp_r30_2 + 0x10, &lbl_80239990,
-				    lbl_8_rodata_1F9C - fn_800D7AE4(-0x4000), temp_f31_4, 1);
-				fn_8019E880(temp_r30_2);
-			}
-			fn_8019EC30(temp_r30_2, spC, 1);
-		}
-	} else {
-		if (temp_f30 < temp_f31) {
-			if ((temp_f31 <= (lbl_8_rodata_1F9C + temp_f30)) && ((u32)lbl_8042C388 != 0U)) {
-				fn_800B4A38(0x5A18, (u8*)arg0 + 0xB8, 0, 1, (s8)lbl_8_data_18C88, 0);
-			}
-		}
-		temp_f31_5 = (f32)((f64)temp_f31 * lbl_8_rodata_1FA8);
-		if (temp_f30 < temp_f31_5) {
-			if ((temp_f31_5 <= (lbl_8_rodata_1F9C + temp_f30)) && ((u32)lbl_8042C388 != 0U)) {
-				fn_800B4A38(0x5A19, (u8*)arg0 + 0xB8, 0, 1, (s8)lbl_8_data_18C88, 0);
-			}
-		}
-	}
-}
-
-void fn_8_C9858(void* arg0)
-{
-	f32 sp8[3];
-	f32 temp_f0;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	s32 temp_r31;
-	void* temp_r3;
-
-	temp_r3 = M2C_FIELD(arg0, void**, 0xE0);
-	if (temp_r3 != NULL) {
-		temp_f0  = M2C_FIELD(arg0, f32*, 0xD4);
-		sp8[2]   = temp_f0;
-		sp8[1]   = temp_f0;
-		sp8[0]   = temp_f0;
-		temp_r31 = M2C_FIELD(temp_r3, s32*, 4);
-		fn_8019EB94(temp_r31, (f32*)((u8*)arg0 + 0xB8), 0);
-		temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r31 + 0x10, &lbl_80239984,
-		    lbl_8_rodata_1F9C - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
-		fn_8019E880(temp_r31);
-		if ((s32)M2C_FIELD(arg0, s32*, 0xD8) == 1) {
-			temp_f31_2 = fn_800D7B00(0x4000);
-			fn_80195790(temp_r31 + 0x10, &lbl_80239990, lbl_8_rodata_1F9C - fn_800D7AE4(0x4000),
-			    temp_f31_2, 1);
-			fn_8019E880(temp_r31);
-		} else {
-			temp_f31_3 = fn_800D7B00(-0x4000);
-			fn_80195790(temp_r31 + 0x10, &lbl_80239990, lbl_8_rodata_1F9C - fn_800D7AE4(-0x4000),
-			    temp_f31_3, 1);
-			fn_8019E880(temp_r31);
-		}
-		fn_8019EC30(temp_r31, sp8, 1);
-	}
-}
-
-TObject* fn_8_C99B4(TObject* arg0, s16 arg1)
-{
-	if (arg0 != NULL) {
-		arg0->unk18 = &lbl_8_data_18D4C;
-		arg0->unk2C = (u8*)&lbl_8_data_18D4C + 0x2C;
-		if ((void*)arg0->unkE0 != NULL) {
-			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), arg0->unkE0);
-			fn_80150958(arg0->unkE0);
-			arg0->unkE0 = NULL;
-		}
-		dtor_8003C52C((u8*)arg0 + 0x30, 0);
-		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
-		__dt__7TObjectFv(arg0, 0);
-		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
-		}
-	}
-	return arg0;
-}
-
-TObject* fn_8_C9A7C(TObject* arg0, TObject* arg1)
-{
-	s32 temp_r0_mask;
-	f32 temp_f1;
-	f32 spC[3];
-	void* sp8;
-	f32 temp_f0;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	s32 temp_r30_2;
-	void* temp_r30;
-	void* temp_r3;
-	void* temp_r3_2;
-	void* temp_r3_3;
-	void* temp_r3_4;
-	void* temp_r3_5;
-	void* temp_r5;
-
-	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
-	fn_8003C618(&arg0->unk30);
-	arg0->unk18 = &lbl_8_data_18D4C;
-	arg0->unk2C = (u8*)&lbl_8_data_18D4C + 0x2C;
-	arg0->unk0  = (M2C_UNK*)lbl_8_data_18D48;
-	arg0->unk1E = 0xE8;
-	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
-	temp_r5     = M2C_FIELD(temp_r3, void**, 0x2C);
-	arg0->unkB8 = M2C_FIELD(temp_r3, f32*, 0);
-	arg0->unkBC = M2C_FIELD(temp_r3, f32*, 4);
-	arg0->unkC0 = M2C_FIELD(temp_r3, f32*, 8);
-	temp_r3_2   = M2C_FIELD(arg0, void**, 0x28);
-	arg0->unkC4 = M2C_FIELD(temp_r3_2, s32*, 0xC);
-	arg0->unkC8 = M2C_FIELD(temp_r3_2, s32*, 0x10);
-	arg0->unkCC = M2C_FIELD(temp_r3_2, s32*, 0x14);
-	arg0->unkCC = 0;
-	arg0->unkC4 = 0;
-	arg0->unkD8 = (s32)(s8)M2C_FIELD(temp_r5, u8*, 0xC);
-	temp_f1     = lbl_8_rodata_1F9C;
-	arg0->unkD4 = temp_f1 + M2C_FIELD(temp_r5, f32*, 4);
-	arg0->unkD0 = temp_f1 + M2C_FIELD(temp_r5, f32*, 8);
-	arg0->unkDC = M2C_FIELD(temp_r5, s32*, 0);
-	arg0->unkE0 = NULL;
-	if ((void*)arg0->unkE0 == NULL) {
-		arg0->unkE0 = fn_80150588(lbl_8_data_18C8C[arg0->unkDC]);
-		if ((void*)arg0->unkE0 != NULL) {
-			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), arg0->unkE0);
-			temp_r0_mask = M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18);
-			fn_8005D5C8(arg0->unkE0, ((u32)(temp_r0_mask & 0x1C0000) >> 0x12U) + 4);
-			temp_r30  = arg0->unkE0;
-			sp8       = NULL;
-			temp_r3_3 = fn_8013F484(M2C_FIELD(temp_r30, s32*, 4));
-			sp8       = temp_r3_3;
-			if (temp_r3_3 == NULL) {
-				fn_8019EB10(M2C_FIELD(temp_r30, s32*, 4), fn_8_C9E7C, &sp8);
-			}
-			arg0->unkE4 = sp8;
-			fn_8014FFBC(arg0->unkE0, fn_8_C9DCC, arg0->unkE4);
-			temp_r3_4                     = arg0->unkE4;
-			M2C_FIELD(temp_r3_4, s32*, 0) = (s32)(M2C_FIELD(temp_r3_4, s32*, 0) | 0x3000);
-			fn_8020C72C(M2C_FIELD(arg0->unkE4, void***, 0x20), lbl_8_data_18C94[arg0->unkDC]);
-			fn_8013F3A4(arg0->unkE4);
-			fn_8013FC30(arg0->unkE4);
-			fn_8020D02C(
-			    M2C_FIELD(arg0->unkE4, void***, 0x20), &lbl_8_rodata_1F98, lbl_8_rodata_1F98);
-			fn_8020CC18(
-			    M2C_FIELD(arg0->unkE4, void***, 0x20), &lbl_8_rodata_1F98, lbl_8_rodata_1F98);
-		}
-	}
-	temp_r3_5 = arg0->unkE0;
-	if (temp_r3_5 != NULL) {
-		temp_f0    = arg0->unkD4;
-		spC[2]     = temp_f0;
-		spC[1]     = temp_f0;
-		spC[0]     = temp_f0;
-		temp_r30_2 = M2C_FIELD(temp_r3_5, s32*, 4);
-		fn_8019EB94(temp_r30_2, &arg0->unkB8, 0);
-		temp_f31 = fn_800D7B00(arg0->unkC8);
-		fn_80195790(temp_r30_2 + 0x10, &lbl_80239984, lbl_8_rodata_1F9C - fn_800D7AE4(arg0->unkC8),
-		    temp_f31, 1);
-		fn_8019E880(temp_r30_2);
-		if ((s32)arg0->unkD8 == 1) {
-			temp_f31_2 = fn_800D7B00(0x4000);
-			fn_80195790(temp_r30_2 + 0x10, &lbl_80239990, lbl_8_rodata_1F9C - fn_800D7AE4(0x4000),
-			    temp_f31_2, 1);
-			fn_8019E880(temp_r30_2);
-		} else {
-			temp_f31_3 = fn_800D7B00(-0x4000);
-			fn_80195790(temp_r30_2 + 0x10, &lbl_80239990, lbl_8_rodata_1F9C - fn_800D7AE4(-0x4000),
-			    temp_f31_3, 1);
-			fn_8019E880(temp_r30_2);
-		}
-		fn_8019EC30(temp_r30_2, spC, 1);
-	}
-	fn_8005B8D8(&arg0->unk28);
-	return arg0;
-}
-
-void* fn_8_C9DCC(void* arg0, s32 arg1)
-{
-	if (fn_80226468(M2C_FIELD(arg0, s32*, 0x18)) != 0U) {
-		fn_80226440(arg0, arg1);
-	}
-	return arg0;
-}
-
-void* fn_8_C9E20(void* arg0)
-{
-	void* sp8;
-	void* temp_r3;
-
-	sp8     = NULL;
-	temp_r3 = fn_8013F484(M2C_FIELD(arg0, s32*, 4));
-	sp8     = temp_r3;
-	if (temp_r3 == NULL) {
-		fn_8019EB10(M2C_FIELD(arg0, s32*, 4), fn_8_C9E7C, &sp8);
-	}
-	return sp8;
-}
-
-s32 fn_8_C9E7C(s32 arg0, void** arg1)
-{
-	void* temp_r3;
-
-	temp_r3 = fn_8013F484(arg0);
-	if (temp_r3 == NULL) {
-		fn_8019EB10(arg0, fn_8_C9E7C, arg1);
-		return arg0;
-	}
-	*arg1 = temp_r3;
-	return 0;
-}
-
-void fn_8_C9EE0(void* arg0, void* arg1)
-{
-	void* temp_r3;
-
-	temp_r3 = M2C_FIELD(arg1, void**, 0x2C);
-	if ((s32)M2C_FIELD(temp_r3, s32*, 0) < 0) {
-		M2C_FIELD(temp_r3, s32*, 0) = 0;
-	}
-	if ((s32)M2C_FIELD(temp_r3, s32*, 0) > 1) {
-		M2C_FIELD(temp_r3, s32*, 0) = 1;
-	}
-	if ((s8)M2C_FIELD(temp_r3, u8*, 0xC) < 0) {
-		M2C_FIELD(temp_r3, u8*, 0xC) = 0U;
-	}
-	if ((s8)M2C_FIELD(temp_r3, u8*, 0xC) > 1) {
-		M2C_FIELD(temp_r3, u8*, 0xC) = 1U;
-	}
-	M2C_FIELD(&maskObjectFieldNames, M2C_UNK**, 0xC)
-	    = (M2C_UNK*)lbl_8_data_18D04[(s8)M2C_FIELD(temp_r3, u8*, 0xC)];
-}
-
-void maskObjectUnload(void)
-{
-	u32* var_r30;
-	u32* var_r29;
-	s32 var_r28;
-
-	var_r28 = 0;
-	var_r30 = lbl_8_data_18C8C;
-	var_r29 = lbl_8_data_18C94;
-	do {
-		if ((u32)*var_r30 != 0U) {
-			fn_80150958((void*)*var_r30);
-			*var_r30 = 0U;
-		}
-		if ((u32)*var_r29 != 0U) {
-			fn_8020C2D8(*var_r29);
-			*var_r29 = 0U;
-		}
-		var_r30 += 1;
-		var_r29 += 1;
-		var_r28 += 1;
-	} while (var_r28 < 2);
-}
-
-void maskObjectLoad(void)
-{
-	s32 temp_r31;
-
-	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-	} else {
-		return;
-	}
-	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
-	M2C_FIELD(lbl_8_data_18C8C, u32*, 0)
-	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)lbl_8_data_18D88), &lbl_802FF5A0);
-	lbl_8_data_18C8C[1]
-	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)lbl_8_data_18D9C), &lbl_802FF5A0);
-	M2C_FIELD(lbl_8_data_18C94, u32*, 0)
-	    = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)lbl_8_data_18DB0), &lbl_802FF5A0);
-	lbl_8_data_18C94[1]
-	    = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, (M2C_UNK*)lbl_8_data_18DC4), &lbl_802FF5A0);
-}
-
-void maskObjectCreate(void)
-{
-	TObject* object = (TObject*)fn_80018A34(lbl_8042C148, 0xE8);
-	if (object != NULL) {
-		fn_8_C9A7C(object, lbl_8042C110);
-	}
-}
-
-void maskObjectRegister(void)
-{
-	maskObjectEntry.flags      = 0;
-	maskObjectEntry.unk18      = 0;
-	maskObjectEntry.name       = (const char*)maskObjectDisplayName;
-	maskObjectEntry.load       = (void (*)(void))maskObjectLoad;
-	maskObjectEntry.unload     = (void (*)(void))maskObjectUnload;
-	maskObjectEntry.create     = (void (*)(void))maskObjectCreate;
-	maskObjectEntry.unk10      = (void*)0;
-	maskObjectEntry.flags      = 0x20000;
-	maskObjectEntry.unk18      = 0;
-	maskObjectEntry.unk20      = 0x1E;
-	maskObjectEntry.unk1C      = 0x118D;
-	maskObjectEntry.unk1E      = 2;
-	maskObjectEntry.unk21      = 0;
-	maskObjectEntry.fieldTypes = (const char*)maskObjectFieldTypes;
-	maskObjectEntry.fieldNames = (const char**)&maskObjectFieldNames;
-	if ((const char*)maskObjectFieldTypes != NULL) {
+	maskObjectEntry.flags       = 0;
+	maskObjectEntry.field18     = 0;
+	maskObjectEntry.displayName = "MASK OBJECT";
+	maskObjectEntry.init        = initObjMask;
+	maskObjectEntry.end         = endObjMask;
+	maskObjectEntry.create      = startObjMask;
+	maskObjectEntry.field10     = 0;
+	maskObjectEntry.flags       = 0x20000;
+	maskObjectEntry.field18     = 0;
+	maskObjectEntry.field20     = 0x1E;
+	maskObjectEntry.id          = 0x118D;
+	maskObjectEntry.count       = 2;
+	maskObjectEntry.field21     = 0;
+	maskObjectEntry.fieldTypes  = "iFFc";
+	maskObjectEntry.fields      = maskObjectFieldNames;
+	if (maskObjectEntry.fieldTypes != NULL)
 		maskObjectEntry.flags |= 8;
-	} else {
+	else
 		maskObjectEntry.flags &= ~8;
+}
+
+__declspec(section ".ctors") void (*const maskObjectCtorEntry)() = maskObjectRegister;
+
+extern "C" void startObjMask()
+{
+	TObjMask* object = (TObjMask*)fn_80018A34(lbl_8042C148, sizeof(TObjMask));
+	if (object != NULL) {
+		__ct__8TObjMaskFP7TObject(object, (TObject*)lbl_8042C110);
 	}
 }
 
-__declspec(section ".ctors") void (*const maskObjectCtorEntry)(void) = maskObjectRegister;
+extern "C" void initObjMask()
+{
+	void* stage = *(void**)((u8*)lbl_8042C1D0 + 0x8C18);
+	if (!(stage != NULL && (fn_801A4C84(stage), 1)))
+		return;
+
+	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
+	fn_800BC9F4(archive, &lbl_802FF5A0);
+	maskModels[0] = fn_800BB92C(archive, fn_800BC6CC(archive, "s11_on_maska.dff"), &lbl_802FF5A0);
+	maskModels[1] = fn_800BB92C(archive, fn_800BC6CC(archive, "s11_on_maskb.dff"), &lbl_802FF5A0);
+	maskAnimations[0]
+	    = fn_800BB0D4(archive, fn_800BC6CC(archive, "s11_on_maska.anm"), &lbl_802FF5A0);
+	maskAnimations[1]
+	    = fn_800BB0D4(archive, fn_800BC6CC(archive, "s11_on_maskb.anm"), &lbl_802FF5A0);
+}
+
+// Retail builds both induction pointers straight into their registers here,
+// which this unit only reproduces with propagation enabled for the function.
+#pragma opt_propagation on
+extern "C" void endObjMask()
+{
+	s32 i;
+	for (i = 0; i < 2; i++) {
+		if (maskModels[i] != NULL) {
+			fn_80150958(maskModels[i]);
+			maskModels[i] = NULL;
+		}
+		if (maskAnimations[i] != NULL) {
+			fn_8020C2D8(maskAnimations[i]);
+			maskAnimations[i] = NULL;
+		}
+	}
+}
+#pragma opt_propagation reset
+
+void TObjMask::EditOnChange(SETDATA_PARAM* data)
+{
+	MaskParam* params = data->params;
+	if (params->type < 0)
+		params->type = 0;
+	if (params->type > 1)
+		params->type = 1;
+	if (params->direction < 0)
+		params->direction = 0;
+	if (params->direction > 1)
+		params->direction = 1;
+	maskObjectFieldNames[3] = maskDirectionNames[params->direction];
+}
+
+static RwFrame* GetChildFrameHierarchy(RwFrame* frame, void* data)
+{
+	RpHAnimHierarchy* hierarchy = fn_8013F484(frame);
+	if (hierarchy == NULL) {
+		fn_8019EB10(frame, GetChildFrameHierarchy, data);
+		return frame;
+	}
+	*(RpHAnimHierarchy**)data = hierarchy;
+	return NULL;
+}
+
+static RpHAnimHierarchy* GetHierarchy(RpClump* clump)
+{
+	RpHAnimHierarchy* hierarchy = NULL;
+	hierarchy                   = fn_8013F484(*(RwFrame**)((u8*)clump + 4));
+	if (hierarchy == NULL) {
+		fn_8019EB10(*(RwFrame**)((u8*)clump + 4), GetChildFrameHierarchy, &hierarchy);
+	}
+	return hierarchy;
+}
+
+static RpAtomic* SetHierarchyForSkinAtomic(RpAtomic* atomic, void* data)
+{
+	if (fn_80226468(*(void**)((u8*)atomic + 0x18)) != 0) {
+		fn_80226440(atomic, data);
+	}
+	return atomic;
+}
+
+extern "C" TObjMask* __ct__8TObjMaskFP7TObject(TObjMask* self, TObject* parent)
+{
+	__ct__7TObjectFP7TObject(self, parent);
+	fn_8005BE6C(MOTION(self));
+	fn_8003C618(&self->collision);
+	*(void***)((u8*)self + 0x18) = __vt__8TObjMask;
+	*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
+	self->className              = CL_TObjMask;
+	self->objectSize             = sizeof(TObjMask);
+	self->SetParameter();
+	self->model = NULL;
+	// Written out rather than calling CloneClump(): retail's constructor reads the
+	// frame flags before reloading the model, the reverse of the method's order.
+	if (self->model == NULL) {
+		self->model = fn_80150588(maskModels[self->type]);
+		if (self->model != NULL) {
+			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), self->model);
+			u32 flags = self->frame->flags;
+			fn_8005D5C8(self->model, ((flags & 0x1C0000) >> 18) + 4);
+			self->hierarchy = GetHierarchy(self->model);
+			fn_8014FFBC(self->model, SetHierarchyForSkinAtomic, self->hierarchy);
+			self->hierarchy->flags |= 0x3000;
+			fn_8020C72C(self->hierarchy->interpolator, maskAnimations[self->type]);
+			fn_8013F3A4(self->hierarchy);
+			fn_8013FC30(self->hierarchy);
+			fn_8020D02C(self->hierarchy->interpolator, 0.0f);
+			fn_8020CC18(self->hierarchy->interpolator, 0.0f);
+		}
+	}
+	self->SetPosition();
+	self->OnEdit();
+	return self;
+}
+
+extern "C" TObjMask* __dt__8TObjMaskFv(TObjMask* self, s16 flags)
+{
+	if (self != NULL) {
+		*(void***)((u8*)self + 0x18) = __vt__8TObjMask;
+		*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
+		self->DestroyClump();
+		dtor_8003C52C(&self->collision, 0);
+		dtor_8005BD3C(MOTION(self), 0);
+		__dt__7TObjectFv(self, 0);
+		if (flags > 0) {
+			fn_800189A4(lbl_8042C148, self);
+		}
+	}
+	return self;
+}
+
+void TObjMask::SetPosition()
+{
+	if (model != NULL) {
+		Vec3 size;
+		size.x = size.y = size.z = scale;
+		RwFrame* frame           = *(RwFrame**)((u8*)model + 4);
+		fn_8019EB94(frame, &position, 0);
+		f32 sine = fn_800D7B00(angleY);
+		fn_80195790(&frame->modelling, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), sine, 1);
+		fn_8019E880(frame);
+		if (direction == 1) {
+			sine = fn_800D7B00(0x4000);
+			fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(0x4000), sine, 1);
+			fn_8019E880(frame);
+		} else {
+			sine = fn_800D7B00(-0x4000);
+			fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(-0x4000), sine, 1);
+			fn_8019E880(frame);
+		}
+		fn_8019EC30(frame, &size, 1);
+	}
+}
+
+void TObjMask::Exec()
+{
+	if (CheckMustKill() != 0 || CheckRangeOut() != 0) {
+		signal |= 1;
+		return;
+	}
+	f32 duration = 60.0f * hierarchy->interpolator->animation->duration;
+	f32 frames   = speed * (f32)lbl_8042C180->frame;
+	f32 time     = frames - duration * (f32)(s32)(frames / duration);
+	fn_8020D02C(hierarchy->interpolator, time / 60.0f);
+	fn_8013FC30(hierarchy);
+	if (OnEdit() != 0) {
+		s32 oldType = type;
+		SetParameter();
+		if (type != oldType) {
+			DestroyClump();
+			CloneClump();
+		}
+		SetPosition();
+	} else {
+		if (time < duration && duration <= 1.0f + time && lbl_8042C388 != NULL) {
+			fn_800B4A38(lbl_8042C388, 0x5A18, &position, 0, 1, (s8)maskSoundVolume, 0);
+		}
+		duration *= 0.5;
+		if (time < duration && duration <= 1.0f + time && lbl_8042C388 != NULL) {
+			fn_800B4A38(lbl_8042C388, 0x5A19, &position, 0, 1, (s8)maskSoundVolume, 0);
+		}
+	}
+}
+
+void TObjMask::SetParameter()
+{
+	SETDATA_PARAM* data = frame;
+	MaskParam* params   = data->params;
+	position            = data->position;
+	data                = frame;
+	angleX              = data->angleX;
+	angleY              = data->angleY;
+	angleZ              = data->angleZ;
+	angleZ              = 0;
+	angleX              = 0;
+	direction           = params->direction;
+	scale               = 1.0f + params->scale;
+	speed               = 1.0f + params->speed;
+	type                = params->type;
+}
+
+// Guessed name: nothing in the unit calls it, and the PS2 family has no
+// counterpart. It scales the collision shape by the object's scale.
+void TObjMask::SetCollision()
+{
+	if (direction == 1) {
+		collision.shape->f08 = -maskCollisionDesc.f0C * scale;
+	} else {
+		collision.shape->f08 = maskCollisionDesc.f0C * scale;
+	}
+	collision.shape->f14  = maskCollisionDesc.f14 * scale;
+	f32 depth             = maskCollisionDesc.f18;
+	f32 scaled            = depth * scale;
+	CollisionShape* shape = collision.shape;
+	shape->f18            = scaled;
+	fn_80021384(&collision, shape, &maskCollisionDesc, depth);
+}
+
+void TObjMask::CloneClump()
+{
+	if (model == NULL) {
+		model = fn_80150588(maskModels[type]);
+		if (model != NULL) {
+			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), model);
+			fn_8005D5C8(model, ((frame->flags & 0x1C0000) >> 18) + 4);
+			hierarchy = GetHierarchy(model);
+			fn_8014FFBC(model, SetHierarchyForSkinAtomic, hierarchy);
+			hierarchy->flags |= 0x3000;
+			fn_8020C72C(hierarchy->interpolator, maskAnimations[type]);
+			fn_8013F3A4(hierarchy);
+			fn_8013FC30(hierarchy);
+			fn_8020D02C(hierarchy->interpolator, 0.0f);
+			fn_8020CC18(hierarchy->interpolator, 0.0f);
+		}
+	}
+}
+
+void TObjMask::DestroyClump()
+{
+	if (model != NULL) {
+		fn_8015BBF8(*(void**)((u8*)lbl_8042C1D0 + 0x725C), model);
+		fn_80150958(model);
+		model = NULL;
+	}
 }

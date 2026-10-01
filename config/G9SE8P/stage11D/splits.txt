@@ -532,16 +532,16 @@ rel/s12door_object_register.cpp:
 	.ctors      start:0x0000010C end:0x00000110
 
 rel/o_s11_door.cpp:
-	.text       start:0x00095240 end:0x00096760
+	.text       start:0x00095240 end:0x00096768
 	.ctors      start:0x00000110 end:0x00000114
-	.rodata     start:0x00001634 end:0x00001658
+	.rodata     start:0x00001634 end:0x00001660
 	.data       start:0x00015134 end:0x00015340
 	.bss        start:0x000016A0 end:0x000016D0
 
 rel/o_s12_celestial_sphere.cpp:
-	.text       start:0x00096760 end:0x000973DC
+	.text       start:0x00096768 end:0x000973DC
 	.ctors      start:0x00000114 end:0x00000118
-	.rodata     start:0x00001658 end:0x00001684
+	.rodata     start:0x00001660 end:0x00001678
 	.data       start:0x00015340 end:0x00015448
 	.bss        start:0x000016D0 end:0x00001708
 
@@ -553,23 +553,23 @@ rel/o_s11_cloud.cpp:
 	.bss        start:0x00001708 end:0x00001780
 
 rel/e_capture.cpp:
-	.text       start:0x00098060 end:0x0009D3BC
+	.text       start:0x00098060 end:0x0009D4A8
 	.ctors      start:0x0000011C end:0x00000120
-	.rodata     start:0x000016A4 end:0x000017BC
+	.rodata     start:0x000016A4 end:0x000017B0
 	.data       start:0x000155B8 end:0x000159E8
 	.bss        start:0x00001780 end:0x00001870
 
 rel/e_capture_collision_stage11.cpp:
-	.text       start:0x0009D3BC end:0x0009DA00
+	.text       start:0x0009D4A8 end:0x0009DA08
 	.ctors      start:0x00000120 end:0x00000124
-	.rodata     start:0x000017BC end:0x000017F4
+	.rodata     start:0x000017B0 end:0x000017C0
 	.data       start:0x000159E8 end:0x00015A70
 	.bss        start:0x00001870 end:0x000018A8
 
 rel/e_strategy_flyer_stage11.cpp:
-	.text       start:0x0009DA00 end:0x000A2584
+	.text       start:0x0009DA08 end:0x000A2584
 	.ctors      start:0x00000124 end:0x00000128
-	.rodata     start:0x000017F4 end:0x000018B0
+	.rodata     start:0x000017C0 end:0x000018B0
 	.data       start:0x00015A70 end:0x00015F80
 	.bss        start:0x000018A8 end:0x00001948
 
@@ -599,13 +599,13 @@ rel/e_strategy_magician_stage11.cpp:
 	.data       start:0x00016A30 end:0x00016B08
 
 rel/e_magician_stage11.cpp:
-	.text       start:0x000ACE24 end:0x000AF9AC
+	.text       start:0x000ACE24 end:0x000AF9B4
 	.ctors      start:0x00000130 end:0x00000134
 	.rodata     start:0x00001B70 end:0x00001BB8
 	.bss        start:0x000019D4 end:0x00001A48
 
 rel/e_strategy_rinoliner_stage11.cpp:
-	.text       start:0x000AF9AC end:0x000B0924
+	.text       start:0x000AF9B4 end:0x000B0924
 	.data       start:0x00016B08 end:0x00016B98
 
 rel/o_colli_communication_stage11.cpp:
@@ -642,16 +642,16 @@ rel/e_turtle_stage11.cpp:
 	.bss        start:0x00001B78 end:0x00001BD0
 
 rel/e_spider_stage11.cpp:
-	.text       start:0x000C28CC end:0x000C37E0
+	.text       start:0x000C28CC end:0x000C37E8
 	.ctors      start:0x00000144 end:0x00000148
-	.rodata     start:0x00001F08 end:0x00001F24
+	.rodata     start:0x00001F08 end:0x00001F18
 	.data       start:0x00018180 end:0x00018228
 	.bss        start:0x00001BD0 end:0x00001C10
 
 rel/e_fan_stage11.cpp:
-	.text       start:0x000C37E0 end:0x000C3FF8
+	.text       start:0x000C37E8 end:0x000C3FF8
 	.ctors      start:0x00000148 end:0x0000014C
-	.rodata     start:0x00001F24 end:0x00001F28
+	.rodata     start:0x00001F18 end:0x00001F28
 	.data       start:0x00018228 end:0x00018298
 	.bss        start:0x00001C10 end:0x00001C40
 
@@ -671,30 +671,30 @@ rel/e_grass2_stage11.cpp:
 rel/e_grass_stage11.cpp:
 	.text       start:0x000C5FA4 end:0x000C7548
 	.ctors      start:0x00000154 end:0x00000158
-	.rodata     start:0x00001F60 end:0x00002010
+	.rodata     start:0x00001F60 end:0x00001F78
 	.data       start:0x00018778 end:0x00018AA8
 	.bss        start:0x00001CA8 end:0x00001CE8
 
 rel/e_s11_flag_stage11.cpp:
-	.text       start:0x000C7548 end:0x000C907C
+	.text       start:0x000C7548 end:0x000C9084
 	.ctors      start:0x00000158 end:0x0000015C
-	.rodata     start:0x00002010 end:0x000020F0
+	.rodata     start:0x00001F78 end:0x00001F98
 	.data       start:0x00018AA8 end:0x00018C88
 	.bss        start:0x00001CE8 end:0x00001D18
 
 rel/e_mask_stage11.cpp:
-	.text       start:0x000C907C end:0x000CA210
+	.text       start:0x000C9084 end:0x000CA218
 	.ctors      start:0x0000015C end:0x00000160
-	.rodata     start:0x000020F0 end:0x00002118
+	.rodata     start:0x00001F98 end:0x00001FB8
 	.data       start:0x00018C88 end:0x00018DF0
-	.bss        start:0x00001D18 end:0x00001D4C
+	.bss        start:0x00001D18 end:0x00001D48
 
 rel/e_s11_key_stage11.cpp:
-	.text       start:0x000CA210 end:0x000CBBB0
+	.text       start:0x000CA218 end:0x000CBBB0
 	.ctors      start:0x00000160 end:0x00000164
-	.rodata     start:0x00002118 end:0x0000211C
+	.rodata     start:0x00001FB8 end:0x00001FE0
 	.data       start:0x00018DF0 end:0x00018EA0
-	.bss        start:0x00001D4C end:0x00001D78
+	.bss        start:0x00001D48 end:0x00001D78
 
 rel/o_s11_bob.cpp:
 	.text       start:0x000CBBB0 end:0x000CBF20

@@ -1,294 +1,311 @@
 #include "types.h"
 
-typedef s32 M2C_UNK;
-#define M2C_FIELD(base, type, offset) (*(type)((u8*)(u32)(base) + (offset)))
-#define M2C_ERROR(...)
-#define M2C_BITWISE(type, value) (*(type*)&(value))
+// Retained PS2 symbols name this object TObjS12Fan (o_s12_fan.cpp there) and
+// give its method family: DestroyClump, CloneClump, SetPosition, SetParameter,
+// Exec, the destructor, the TObject* constructor and the initObj/endObj/startObj
+// lifecycle functions. The "TObjS12Fan" class-name string in this unit's .data
+// independently correlates the GameCube object with that family.
 
-typedef struct TObject {
-	/* 0x00 */ M2C_UNK* unk0;   /* inferred */
-	/* 0x04 */ char pad4[0x14]; /* maybe part of unk0[6]? */
-	/* 0x18 */ M2C_UNK* unk18;  /* inferred */
-	/* 0x1C */ char pad1C[2];
-	/* 0x1E */ s16 unk1E;     /* inferred */
-	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
-	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x2C */ void* unk2C;   /* inferred */
-	/* 0x30 */ f32 unk30;     /* inferred */
-	/* 0x34 */ f32 unk34;     /* inferred */
-	/* 0x38 */ f32 unk38;     /* inferred */
-	/* 0x3C */ void* unk3C;   /* inferred */
-} TObject;                    /* size >= 0x40 */
+struct Vec3 {
+	f32 x;
+	f32 y;
+	f32 z;
+};
+
+struct SETDATA_PARAM {
+	Vec3 position;
+	s32 angleX;
+	s32 angleY;
+	s32 angleZ;
+	u32 flags;
+};
+
+// Retail emits this unreferenced vector at the head of the unit's .rodata, the
+// way an internal-linkage const from a shared header lands in every translation
+// unit that includes it. Its name and home header are unknown. The retail link
+// keeps it although nothing reads it; a local symbol cannot be listed in the
+// module's force_active set, so the object carries the flag itself.
+#pragma force_active on
+static const Vec3 lbl_8_rodata_1F18 = { 0.0f, 1.5f, 0.0f };
+#pragma force_active reset
+
+class TObject
+{
+public:
+	const char* className;
+	u16 signal;
+	u8 pad06[0x12];
+	void** vtable;
+	s16 pad1C;
+	s16 objectSize;
+	u8 pad20[8];
+
+	TObject(TObject*);
+	~TObject();
+};
 
 extern "C" {
+void dtor_8005BD3C(void*, s16);
+void fn_8005BE6C(void*);
+}
 
-void* __ct__7TObjectFP7TObject(void*, void*);          /* extern */
-void* __dt__7TObjectFv(void*, s32);                    /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                 /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                    /* extern */
-TObject* fn_80018A34(s32, M2C_UNK);                    /* extern */
-s32 fn_8005B8BC(s32);                                  /* extern */
-s32 fn_8005B9F0(s32);                                  /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                         /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                       /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                   /* extern */
-s32 fn_800BC6CC(s32, M2C_UNK*);                        /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                    /* extern */
-f32 fn_800D7AE4(s32);                                  /* extern */
-f32 fn_800D7B00(s32);                                  /* extern */
-void* fn_80150588(u32);                                /* extern */
-M2C_UNK fn_80150958(void*);                            /* extern */
-M2C_UNK fn_8015BB08(s32, void*);                       /* extern */
-M2C_UNK fn_8015BBF8(s32, void*);                       /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK); /* extern */
-M2C_UNK fn_8019E880(s32);                              /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);               /* extern */
-M2C_UNK fn_801A4C84(u32);                              /* extern */
-M2C_UNK fn_8_C33D0(s32);                               /* extern */
-void s12fanObjectCreate();                             /* static */
-void s12fanObjectLoad();                               /* static */
-void s12fanObjectUnload();                             /* static */
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_802FF5A0;
-extern TObject* lbl_8042C110;
-extern s32 lbl_8042C148;
+struct Motion {
+	SETDATA_PARAM* frame;
+	void** vtable;
+
+	Motion() { fn_8005BE6C(this); }
+};
+
+extern "C" {
+extern void* lbl_8042C110;
+extern void* lbl_8042C148;
 extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern const f32 lbl_8_rodata_1F24[1] = { 1.0f };
-static s32 lbl_8_data_18228           = 0x444;
-static M2C_UNK lbl_8_data_1822C;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018237_data; /* unable to generate initializer: unknown type */
-static M2C_UNK* lbl_8_data_18238 = &lbl_8_data_1822C;
-static M2C_UNK lbl_8_data_1823C;        /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_18274;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018283_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK s12fanObjectDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018292_data;    /* unable to generate initializer: unknown type */
-static u32 lbl_8_bss_1C10;
-typedef struct ObjectEntry {
-	const char* name;        /* 0x00 */
-	void (*load)(void);      /* 0x04 */
-	void (*unload)(void);    /* 0x08 */
-	void (*create)(void);    /* 0x0C */
-	void* unk10;             /* 0x10 */
-	u32 flags;               /* 0x14 */
-	u32 unk18;               /* 0x18 */
-	s16 unk1C;               /* 0x1C */
-	s16 unk1E;               /* 0x1E */
-	u8 unk20;                /* 0x20 */
-	u8 unk21;                /* 0x21 */
-	u8 pad22[2];             /* 0x22 */
-	const char* fieldTypes;  /* 0x24 */
-	const char** fieldNames; /* 0x28 */
-} ObjectEntry;               /* 0x2C */
+extern u8 lbl_80239984;
+extern u8 lbl_802FF5A0;
 
-static ObjectEntry s12fanObjectEntry;
+s32 fn_8005B8BC(Motion*);
+s32 fn_8005B9F0(Motion*);
+void fn_8005D5C8(void*, u32);
+f32 fn_800D7AE4(s32);
+f32 fn_800D7B00(s32);
+void* fn_80018A34(void*, u32);
+void fn_800189A4(void*, void*);
+void* fn_80150588(void*);
+void fn_80150958(void*);
+void fn_8015BB08(void*, void*);
+void fn_8015BBF8(void*, void*);
+void fn_80195790(void*, void*, f32, f32, s32);
+void fn_8019E880(void*);
+void fn_8019EB94(void*, Vec3*, s32);
+void fn_801A4C84(void*);
+void* fn_800BB92C(void*, s32, void*);
+s32 fn_800BC6CC(void*, const char*);
+void fn_800BC9F4(void*, void*);
 
-void fn_8_C37E0(s32 arg0)
-{
-	fn_8_C33D0(arg0 - 0x28);
+void Disp__7TObjectFv();
+void fn_8005B8B8();
+void TDisp__7TObjectFv();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
 }
 
-void fn_8_C37E8(void* arg0)
+class TObjS12Fan : public TObject, public Motion
 {
-	if ((void*)M2C_FIELD(arg0, void**, 0x3C) != NULL) {
-		fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0x3C));
-		fn_80150958(M2C_FIELD(arg0, void**, 0x3C));
-		M2C_FIELD(arg0, void**, 0x3C) = NULL;
+public:
+	Vec3 position;
+	void* model;
+
+	void DestroyClump();
+	void CloneClump();
+	void SetPosition();
+	void SetParameter();
+	void Exec();
+	TObjS12Fan();
+	TObjS12Fan(TObject*);
+	~TObjS12Fan();
+
+	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+};
+
+// The s12fan* data names and CL_TObjS12Fan (after o_s11_cloud's CL_TObjS11Cloud)
+// are descriptive guesses; the retail object carries no names for them.
+extern "C" {
+TObjS12Fan* __dt__10TObjS12FanFv(TObjS12Fan*, s16);
+void Exec__10TObjS12FanFv(TObjS12Fan*);
+extern void* s12fanVtable[14];
+extern char* CL_TObjS12Fan;
+extern s32 s12fanRotationSpeed;
+extern char s12fanModelName[];
+extern char s12fanObjectDisplayName[];
+}
+
+extern "C" void* s12fanModel;
+
+void TObjS12Fan::DestroyClump()
+{
+	if (model != NULL) {
+		void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
+		fn_8015BBF8(manager, model);
+		fn_80150958(model);
+		model = NULL;
 	}
 }
 
-void fn_8_C3840(void* arg0)
+void TObjS12Fan::CloneClump()
 {
-	if ((void*)M2C_FIELD(arg0, void**, 0x3C) == NULL) {
-		M2C_FIELD(arg0, void**, 0x3C) = fn_80150588(lbl_8_bss_1C10);
-		fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0x3C));
-		fn_8005D5C8(M2C_FIELD(arg0, void**, 0x3C),
-		    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
+	if (model == NULL) {
+		model         = fn_80150588(s12fanModel);
+		void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
+		fn_8015BB08(manager, model);
+		fn_8005D5C8(model, ((frame->flags & 0x1C0000) >> 18) + 4);
 	}
 }
 
-void fn_8_C38BC(void* arg0)
+void TObjS12Fan::SetPosition()
 {
-	f32 temp_f31;
-	s32 temp_r31;
-	s32 temp_r30;
-
-	temp_r30 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x3C), s32*, 4);
-	fn_8019EB94(temp_r30, (f32*)((u8*)arg0 + 0x30), 0);
-	temp_r31 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
-	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r31);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984,
-	    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r31), temp_f31, 1);
-	fn_8019E880(temp_r30);
+	s32 time;
+	void* atomic = *(void**)((u8*)model + 4);
+	fn_8019EB94(atomic, &position, 0);
+	time     = *(s32*)((u8*)lbl_8042C180 + 0x30);
+	f32 sine = fn_800D7B00(s12fanRotationSpeed * time);
+	fn_80195790(
+	    (u8*)atomic + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(s12fanRotationSpeed * time), sine, 1);
+	fn_8019E880(atomic);
 }
 
-void fn_8_C3980(void* arg0)
+void TObjS12Fan::SetParameter()
 {
-	void* temp_r4;
-
-	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
-	M2C_FIELD(arg0, f32*, 0x30) = (f32)M2C_FIELD(temp_r4, f32*, 0);
-	M2C_FIELD(arg0, f32*, 0x34) = (f32)M2C_FIELD(temp_r4, f32*, 4);
-	M2C_FIELD(arg0, f32*, 0x38) = (f32)M2C_FIELD(temp_r4, f32*, 8);
+	position = frame->position;
 }
 
-void fn_8_C39A0(void* arg0)
+#pragma opt_common_subs off
+void TObjS12Fan::Exec()
 {
-	f32 temp_f31;
-	s32 temp_r31;
-	s32 temp_r30;
-
-	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
-		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
+	if (fn_8005B9F0((Motion*)((u8*)this + 0x28)) != 0
+	    || fn_8005B8BC((Motion*)((u8*)this + 0x28)) != 0) {
+		signal |= 1;
 		return;
 	}
-	temp_r31 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x3C), s32*, 4);
-	fn_8019EB94(temp_r31, (f32*)((u8*)arg0 + 0x30), 0);
-	temp_r30 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
-	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r30);
-	fn_80195790(temp_r31 + 0x10, &lbl_80239984,
-	    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r30), temp_f31, 1);
-	fn_8019E880(temp_r31);
+	SetPosition();
+}
+#pragma opt_common_subs reset
+
+TObjS12Fan::~TObjS12Fan()
+{
+	TObject::vtable = s12fanVtable;
+	Motion::vtable  = s12fanVtable + 11;
+	DestroyClump();
+	dtor_8005BD3C((u8*)this + 0x28, 0);
 }
 
-TObject* fn_8_C3A98(TObject* arg0, s16 arg1)
+static inline void constructFan(TObjS12Fan* object)
 {
-	if (arg0 != NULL) {
-		arg0->unk18 = &lbl_8_data_1823C;
-		arg0->unk2C = (u8*)&lbl_8_data_1823C + 0x2C;
-		if ((void*)arg0->unk3C != NULL) {
-			fn_8015BBF8(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, void**, 0x3C));
-			fn_80150958(arg0->unk3C);
-			arg0->unk3C = NULL;
-		}
-		dtor_8005BD3C((void*)((u8*)arg0 + 0x28), 0);
-		__dt__7TObjectFv(arg0, 0);
-		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
-		}
+	object->TObject::vtable = s12fanVtable;
+	object->Motion::vtable  = s12fanVtable + 11;
+	object->className       = CL_TObjS12Fan;
+	object->objectSize      = sizeof(TObjS12Fan);
+	object->SetParameter();
+	object->model = NULL;
+	// Written out rather than calling CloneClump(): retail's constructor reads the
+	// frame flags before reloading the model, the reverse of the method's order.
+	if (object->model == NULL) {
+		object->model = fn_80150588(s12fanModel);
+		fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), object->model);
+		u32 flags = object->frame->flags;
+		fn_8005D5C8(object->model, ((flags & 0x1C0000) >> 18) + 4);
 	}
-	return arg0;
+	object->SetPosition();
 }
 
-TObject* fn_8_C3B54(TObject* arg0, TObject* arg1)
+TObjS12Fan::TObjS12Fan(TObject* parent)
+    : TObject(parent)
+    , Motion()
 {
-	f32 temp_f31;
-	s32 temp_r30;
-	s32 temp_r0;
-	s32 temp_r29;
-	void* temp_r3;
-
-	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
-	arg0->unk18 = &lbl_8_data_1823C;
-	arg0->unk2C = (u8*)&lbl_8_data_1823C + 0x2C;
-	arg0->unk0  = lbl_8_data_18238;
-	arg0->unk1E = 0x40;
-	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
-	arg0->unk30 = M2C_FIELD(temp_r3, f32*, 0);
-	arg0->unk34 = M2C_FIELD(temp_r3, f32*, 4);
-	arg0->unk38 = M2C_FIELD(temp_r3, f32*, 8);
-	arg0->unk3C = NULL;
-	if ((void*)arg0->unk3C == NULL) {
-		arg0->unk3C = fn_80150588(lbl_8_bss_1C10);
-		fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), arg0->unk3C);
-		temp_r0 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18);
-		fn_8005D5C8(arg0->unk3C, ((u32)(temp_r0 & 0x1C0000) >> 0x12U) + 4);
-	}
-	temp_r30 = M2C_FIELD(arg0->unk3C, s32*, 4);
-	fn_8019EB94(temp_r30, &arg0->unk30, 0);
-	temp_r29 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
-	temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r29);
-	fn_80195790(temp_r30 + 0x10, &lbl_80239984,
-	    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r29), temp_f31, 1);
-	fn_8019E880(temp_r30);
-	return arg0;
+	constructFan(this);
 }
 
-void s12fanObjectUnload(void)
+inline TObjS12Fan::TObjS12Fan()
+    : TObject((TObject*)lbl_8042C110)
+    , Motion()
 {
-	if ((u32)lbl_8_bss_1C10 != 0U) {
-		fn_80150958((void*)lbl_8_bss_1C10);
-		lbl_8_bss_1C10 = 0U;
+	constructFan(this);
+}
+
+extern "C" void endObjS12Fan()
+{
+	if (s12fanModel != NULL) {
+		fn_80150958(s12fanModel);
+		s12fanModel = NULL;
 	}
 }
 
-void s12fanObjectLoad(void)
+extern "C" void initObjS12Fan()
 {
-	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-	} else {
+	void* stage = *(void**)((u8*)lbl_8042C1D0 + 0x8C18);
+	if (!(stage != NULL && (fn_801A4C84(stage), 1)))
 		return;
-	}
-	fn_800BC9F4(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
-	lbl_8_bss_1C10 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
-	    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_8_data_18274), &lbl_802FF5A0);
+
+	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	s32 id      = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), s12fanModelName);
+	s12fanModel = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), id, &lbl_802FF5A0);
 }
 
-void s12fanObjectCreate(void)
+extern "C" void startObjS12Fan()
 {
-	s32 temp_r0_mask;
-	TObject* temp_r3;
-	f32 temp_f31;
-	s32 temp_r30;
-	s32 temp_r31;
-	void* temp_r3_2;
-
-	temp_r3 = fn_80018A34(lbl_8042C148, 0x40);
-	if (temp_r3 != NULL) {
-		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
-		fn_8005BE6C(&temp_r3->unk28);
-		temp_r3->unk18 = &lbl_8_data_1823C;
-		temp_r3->unk2C = (u8*)&lbl_8_data_1823C + 0x2C;
-		temp_r3->unk0  = lbl_8_data_18238;
-		temp_r3->unk1E = 0x40;
-		temp_r3_2      = M2C_FIELD(temp_r3, void**, 0x28);
-		temp_r3->unk30 = M2C_FIELD(temp_r3_2, f32*, 0);
-		temp_r3->unk34 = M2C_FIELD(temp_r3_2, f32*, 4);
-		temp_r3->unk38 = M2C_FIELD(temp_r3_2, f32*, 8);
-		temp_r3->unk3C = NULL;
-		if ((void*)temp_r3->unk3C == NULL) {
-			temp_r3->unk3C = fn_80150588(lbl_8_bss_1C10);
-			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), temp_r3->unk3C);
-			temp_r0_mask = M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18);
-			fn_8005D5C8(temp_r3->unk3C, ((u32)(temp_r0_mask & 0x1C0000) >> 0x12U) + 4);
-		}
-		temp_r30 = M2C_FIELD(temp_r3->unk3C, s32*, 4);
-		fn_8019EB94(temp_r30, &temp_r3->unk30, 0);
-		temp_r31 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
-		temp_f31 = fn_800D7B00(lbl_8_data_18228 * temp_r31);
-		fn_80195790(temp_r30 + 0x10, &lbl_80239984,
-		    lbl_8_rodata_1F24[0] - fn_800D7AE4(lbl_8_data_18228 * temp_r31), temp_f31, 1);
-		fn_8019E880(temp_r30);
-	}
+	new (lbl_8042C148) TObjS12Fan();
 }
 
-void s12fanObjectRegister(void)
+struct SETOBJ_PARAM {
+	char* displayName;
+	void (*init)();
+	void (*end)();
+	void (*create)();
+	u32 field10;
+	u32 flags;
+	u32 field18;
+	u16 id;
+	u16 count;
+	u8 field20;
+	u8 field21;
+	u8 pad22[2];
+	char* fieldTypes;
+	void* fields;
+};
+
+extern "C" {
+void* s12fanModel;
+SETOBJ_PARAM s12fanObjectEntry;
+}
+
+extern "C" void s12fanObjectRegister()
 {
-	s12fanObjectEntry.flags      = 0;
-	s12fanObjectEntry.unk18      = 0;
-	s12fanObjectEntry.name       = (const char*)&s12fanObjectDisplayName;
-	s12fanObjectEntry.load       = (void (*)(void))s12fanObjectLoad;
-	s12fanObjectEntry.unload     = (void (*)(void))s12fanObjectUnload;
-	s12fanObjectEntry.create     = (void (*)(void))s12fanObjectCreate;
-	s12fanObjectEntry.unk10      = NULL;
-	s12fanObjectEntry.flags      = 0x20000;
-	s12fanObjectEntry.unk18      = 0;
-	s12fanObjectEntry.unk20      = 0x1E;
-	s12fanObjectEntry.unk1C      = 0x1187;
-	s12fanObjectEntry.unk1E      = 2;
-	s12fanObjectEntry.unk21      = 0;
-	s12fanObjectEntry.fieldTypes = NULL;
-	s12fanObjectEntry.fieldNames = NULL;
-	if (s12fanObjectEntry.fieldTypes != NULL) {
+	s12fanObjectEntry.flags       = 0;
+	s12fanObjectEntry.field18     = 0;
+	s12fanObjectEntry.displayName = s12fanObjectDisplayName;
+	s12fanObjectEntry.init        = initObjS12Fan;
+	s12fanObjectEntry.end         = endObjS12Fan;
+	s12fanObjectEntry.create      = startObjS12Fan;
+	s12fanObjectEntry.field10     = 0;
+	s12fanObjectEntry.flags       = 0x20000;
+	s12fanObjectEntry.field18     = 0;
+	s12fanObjectEntry.field20     = 0x1E;
+	s12fanObjectEntry.id          = 0x1187;
+	s12fanObjectEntry.count       = 2;
+	s12fanObjectEntry.field21     = 0;
+	s12fanObjectEntry.fieldTypes  = NULL;
+	s12fanObjectEntry.fields      = NULL;
+	if (s12fanObjectEntry.fieldTypes != NULL)
 		s12fanObjectEntry.flags |= 8;
-	} else {
+	else
 		s12fanObjectEntry.flags &= ~8;
-	}
 }
 
-__declspec(section ".ctors") void (*const s12fanObjectCtorEntry)(void) = s12fanObjectRegister;
-}
+__declspec(section ".ctors") void (*const s12fanObjectCtorEntry)() = s12fanObjectRegister;
+
+extern "C" s32 s12fanRotationSpeed    = 0x444;
+extern "C" char TObjS12FanClassName[] = "TObjS12Fan";
+extern "C" char* CL_TObjS12Fan        = TObjS12FanClassName;
+extern "C" void* s12fanVtable[14]     = {
+	0,
+	0,
+	(void*)__dt__10TObjS12FanFv,
+	(void*)Exec__10TObjS12FanFv,
+	(void*)Disp__7TObjectFv,
+	(void*)TDisp__7TObjectFv,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
+	0,
+	0,
+	(void*)fn_8005B8B8,
+};
+extern "C" char s12fanModelName[]         = "s12_on_fan.dff";
+extern "C" char s12fanObjectDisplayName[] = "S12FAN OBJECT";

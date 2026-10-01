@@ -80,7 +80,7 @@ void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void PDisp__7TObjectFv();
 void Render__7TObjectFv();
-void objDefaultTDisp();
+void TDisp__7TObjectFv();
 void Error__7TObjectFPc();
 }
 
@@ -309,7 +309,7 @@ extern "C" void* rouletVtable[15] = {
 	(void*)__dt__13TObjS33RouletFv,
 	(void*)Exec__13TObjS33RouletFv,
 	(void*)Disp__13TObjS33RouletFv,
-	(void*)objDefaultTDisp,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

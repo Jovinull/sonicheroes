@@ -97,7 +97,7 @@ void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void PDisp__7TObjectFv();
 void Render__7TObjectFv();
-void objDefaultTDisp();
+void TDisp__7TObjectFv();
 void Error__7TObjectFPc();
 }
 
@@ -430,7 +430,7 @@ extern "C" void* slotVtable[15] = {
 	(void*)__dt__11TObjS33SlotFv,
 	(void*)Exec__11TObjS33SlotFv,
 	(void*)Disp__11TObjS33SlotFv,
-	(void*)objDefaultTDisp,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

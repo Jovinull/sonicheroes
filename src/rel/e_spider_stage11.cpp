@@ -130,7 +130,7 @@ typedef struct ObjectEntry {
 static ObjectEntry s11spiderObjectEntry;
 extern const f32 lbl_8_rodata_1F08[1] = { 1.0f };
 extern const f32 lbl_8_rodata_1F0C[1] = { 3.0517578125e-05f };
-extern const f32 lbl_8_rodata_1F10[5] = { 176.0f, -0.0f, 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_1F10[2] = { 176.0f, -0.0f };
 
 void fn_8_C28CC(s32 arg0)
 {

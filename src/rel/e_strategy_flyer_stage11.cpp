@@ -353,11 +353,6 @@ public:
 
 extern "C" {
 
-void fn_8_9DA00(s32 arg0)
-{
-	fn_8_9D81C(arg0 - 0x28);
-}
-
 void fn_8_9DA08(void* arg0, s32 arg1)
 {
 	switch (arg1) {

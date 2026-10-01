@@ -80,7 +80,7 @@ void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void PDisp__7TObjectFv();
 void Render__7TObjectFv();
-void objDefaultTDisp();
+void TDisp__7TObjectFv();
 void Error__7TObjectFPc();
 }
 
@@ -393,7 +393,7 @@ extern "C" void* diceVtable[15] = {
 	(void*)__dt__11TObjS33DiceFv,
 	(void*)Exec__11TObjS33DiceFv,
 	(void*)Disp__11TObjS33DiceFv,
-	(void*)objDefaultTDisp,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

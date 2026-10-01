@@ -159,7 +159,7 @@ extern "C" void fn_9_76448(ModelAsset*);
 extern "C" void fn_9_765CC(ModelAsset*, s32);
 
 extern "C" void fn_9_1A9B4(void);
-extern "C" void objDefaultTDisp(void);
+extern "C" void TDisp__7TObjectFv(void);
 extern "C" void objDefaultPDisp(void);
 extern "C" void objDefaultImmAftSetRaster(void);
 extern "C" void objDefaultDebug(void);

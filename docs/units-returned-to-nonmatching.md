@@ -45,11 +45,7 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | unit | objdiff | left | registers | other | length | size | previous |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | `game/cri/axrna` | 97.44 | 48 | 20 | 11 | 17 | 1541 | 48 |
-| `rel/e_fan_stage11` | 95.90 | 47 | 14 | 18 | 15 | 518 | 47 |
-| `rel/e_mask_stage11` | 94.36 | 145 | 16 | 111 | 18 | 1125 | 224 |
 | `game/cri/svm` | 94.24 | 50 | 0 | 24 | 26 | 1115 | 50 |
-| `rel/e_capture_collision_stage11` | 94.00 | 63 | 21 | 20 | 22 | 401 | 63 |
-| `rel/o_s12_celestial_sphere` | 92.72 | 154 | 24 | 106 | 24 | 799 | 142 |
 | `rel/e_s11_flag_stage11` | 91.27 | 53 | 4 | 9 | 40 | 1741 | 92 |
 | `rel/e_strategy_flyer_stage11` | 90.17 | 271 | 51 | 82 | 138 | 4833 | 334 |
 | `rel/e_grass_stage11` | 89.48 | 90 | 30 | 11 | 49 | 1385 | 89 |
@@ -59,12 +55,10 @@ decide whether a change helped with `build/G9SE8P/report.json`.
 | `rel/e_turtle_stage11` | 86.83 | 364 | 49 | 3 | 312 | 5025 | 369 |
 | `rel/e_spider_stage11` | 85.75 | 252 | 30 | 166 | 56 | 965 | 109 |
 | `rel/e_capture` | 85.50 | 438 | 35 | 142 | 261 | 5335 | 358 |
-| `rel/e_s11_key_stage11` | 84.48 | 218 | 13 | 142 | 63 | 1640 | 226 |
 | `rel/e_rinoliner_stage11` | 84.09 | 77 | 13 | 0 | 64 | 1929 | 88 |
 | `rel/e_wall_stage11` | 83.81 | 467 | 49 | 39 | 379 | 6670 | 464 |
 | `game/rw_gcn_raster` | 82.07 | 480 | 162 | 291 | 27 | 3771 | 480 |
 | `rel/e_strategy_magician_stage11` | 81.82 | 218 | 3 | 94 | 121 | 2199 | 150 |
-| `rel/e_strategy_rinoliner_stage11` | 81.58 | 114 | 0 | 0 | 114 | 990 | 115 |
 | `rel/e_flyer_stage11` | 80.22 | 595 | 38 | 8 | 549 | 4582 | 641 |
 | `rel/e_rinoliner_collision_stage11` | 78.53 | 271 | 14 | 8 | 249 | 2574 | 276 |
 | `rel/e_flyer_collision_stage11` | 77.97 | 240 | 21 | 39 | 180 | 1377 | 232 |
@@ -403,14 +397,10 @@ went 84.65% to 87.48% with every register and content difference gone, and its
 
 ## Where to start
 
-The six closest by objdiff percentage:
+The closest by objdiff percentage:
 
 - `game/cri/axrna` 97.44% (48 left; 20 registers, 11 other, 17 length)
-- `rel/e_fan_stage11` 95.90% (47; 14 registers, 18 other, 15 length)
-- `rel/e_mask_stage11` 94.36% (145, now mostly content)
 - `game/cri/svm` 94.24% (50; 24 other, 26 length)
-- `rel/e_capture_collision_stage11` 94.00% (63; 21 registers, 20 other, 22 length)
-- `rel/o_s12_celestial_sphere` 92.72% (154; 24 registers, 106 other, 24 length)
 
 `game/cri/rnares` has three functions and no wrong instruction at all — every
 one of its 55 is a length gap. It is also the clearest read of the `axrna`
@@ -425,6 +415,90 @@ No pragma or flag tried so far reproduces it — `opt_unroll_loops`, `opt_unroll
 `optimization_level 4`, `-opt unroll`, `-opt speed`, `-inline all` all leave it.
 Worth knowing: `-O4,s` on that unit drops the rest of the gap from 31 differences
 to 11, so the unit flags are probably not right either.
+
+## Matched again
+
+`rel/e_fan_stage11` is `Matching` again: every function and owned section is
+100% and all eighteen hashes pass with no post-processor. Two stage11D layout
+facts decided it, and both repeat across the stage11 units:
+
+- **The first eight bytes of a unit's `.text` belong to its predecessor.** MWCC
+  emits a class's `@40@EditOnChange` adjustor thunk (`subi r3, r3, 0x28;
+  b ...`) after the last function of the translation unit that emits the
+  vtable, so a split that opens on one has taken its neighbour's thunk. The fan
+  split now starts at `0xC37E8` and the spider split keeps its thunk.
+- **A unit's `.rodata` opens on an unreferenced `{ 0.0f, 1.5f, 0.0f }` vector.**
+  An internal-linkage const is emitted ahead of the unit's literals whether or
+  not it is used, so the twelve bytes dtk gave to the end of the previous unit
+  are the head of the next one. With them in place the fan's `.rodata` starts
+  eight-aligned at `0x1F18`, and nothing needs its section alignment rewritten.
+  The retail link keeps that vector and the inlined class methods, so the vector
+  carries `#pragma force_active` and the methods are in `force_active`.
+
+`rel/e_strategy_rinoliner_stage11` is `Matching` again too. Its split likewise
+opened on `e_magician_stage11`'s thunk. The rest was source shape: the repeated
+mode change is one inline helper, the mode dispatcher is a fifteen-way `switch`
+of virtual calls whose case order (0, 1, 2, 5, 3, 4, 6, ...) follows the
+target's block layout, a single-label `switch` gives the `beq`/`b` pair that an
+`if` does not, and the vtable is defined ahead of the functions so it precedes
+the dispatcher's jump table in `.data`.
+
+`rel/e_s11_key_stage11` is `Matching` again. Its split had the same borrowed
+thunk, and the stage11D `.rodata` splits from `e_grass_stage11` on were wrong:
+dtk had given the grass unit everything to `0x2010`, but the constants at
+`0x1F78`–`0x1FE0` are referenced only by the flag, mask and key units. The key
+unit owns `0x1FB8`–`0x1FE0`, and its `.bss` begins at its model pointer
+(`0x1D48`), not after it. Beyond the split, the unit is the PS2 method family
+under `-inline deferred,auto` (see `docs/language-audit.md`), with small inline
+`Motion` accessors that give `Exec` retail's re-derived `this + 0x28`, and a
+`sAngle` zero rather than a float vector so the copy stays in integer
+registers.
+
+`rel/e_mask_stage11` is `Matching` again, and it is the first of these units
+whose own class ends in a secondary-base adjustor thunk (`subi r3, r3, 0x28;
+b EditOnChange`). A thunk has no C++ spelling; the compiler emits one only
+beside a vtable it generates itself. So the class is declared as a real
+two-base hierarchy (`TObject`, with its vptr at `0x18`, and `TObjSetObj`, with
+its `frame` at `0x28` and vptr at `0x2C`), and MWCC generates the retail
+vtable, byte for byte, together with its thunk. Three things make that
+possible without touching `main.dol` names:
+
+- the constructor and destructor are written as `extern "C"` functions against
+  the object's storage and store `__vt__8TObjMask` themselves, because a C++
+  constructor would call the `TObjSetObj` base by its mangled name where retail
+  calls `fn_8005BE6C`/`dtor_8005BD3C`; the destructor is declared `inline` in
+  the class, so the key function (and with it the vtable) falls to `Exec`;
+- the inherited slots need their C++ names: the stage modules' `fn_3_1A9B0` and
+  `objDefaultTDisp` are `Disp__7TObjectFv` and `TDisp__7TObjectFv` (slots 4 and
+  5, as the key object's `Disp`/`TDisp` overrides show);
+- `-inline deferred,auto` places the compiler vtable after the named data and
+  ahead of the string literals, exactly where retail has it.
+
+Renaming a `main.dol` symbol that stage code references (for example
+`fn_8005BE6C` to `__ct__10TObjSetObjFv`) makes `mwldeppc` abort with an
+internal error at `ELF_gen.c:2336`, which is why the base calls keep their
+address names.
+
+`rel/o_s12_celestial_sphere` follows the same recipe and is `Matching` too. Two
+more pieces of it generalise:
+
+- its `.rodata` opens on the same `{ 0.0f, 1.5f, 0.0f }` header vector, and
+  the vector at `0x1678` is the head of the next unit; the `0x1658` int-to-float
+  constant belongs to `o_s11_door`;
+- an allocation that retail null-checks through `r0` (`mr r0, r3; cmplwi r0, 0;
+  beq; mr r31, r0`) is a placement new-expression whose object has a subobject
+  with a destructor. When the object's constructor is the storage-level
+  function, a same-sized stand-in whose base declares a destructor and whose
+  default constructor forwards to it reproduces the shape.
+
+`rel/e_capture_collision_stage11` is `Matching` as well, with the PS2
+`TObjCaptureCollision` names. Its split started eight functions early: the
+`subi r3, r3, 0xB0` thunk and the two strategy helpers after it read
+`e_capture`'s constants, so the unit begins at `0x9D4A8`, and its `.rodata` is
+the header vector plus one `0.0f` (`0x17B0`–`0x17C0`). The zero lower bound that
+retail keeps in `.data` is `#pragma explicit_zero_data`, not a post-processed
+initializer, and `CreateInstance` keeps the allocation and the object in
+separate registers only under `#pragma optimization_level 3`.
 
 ## The rules that now stop this
 

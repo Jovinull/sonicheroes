@@ -343,6 +343,10 @@ modules:
   hash: 79a86badbc61416b3efc14802c536eeaef6cf0aa
   symbols: config/G9SE8P/stage11D/symbols.txt
   splits: config/G9SE8P/stage11D/splits.txt
+  # The Stage 11 object units keep file-static helpers (e.g. GetHierarchy)
+  # that are inlined everywhere and otherwise unreferenced; retail keeps their
+  # out-of-line copies, and a static symbol cannot be force-activated by name.
+  ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
     # This internal update helper has no relocation from outside its original
     # monolithic compiler atom, so retain it once that atom is reconstructed.
@@ -384,6 +388,40 @@ modules:
     # The constructor is externally visible but has no in-module caller after
     # the allocation path inlines it, so retain the original public method.
     - __ct__10TObjS11BobFP7TObject
+    # TObjS12Fan's clump/position helpers and its constructor are inlined at
+    # every call site in the module, so nothing references the retained bodies.
+    - DestroyClump__10TObjS12FanFv
+    - CloneClump__10TObjS12FanFv
+    - SetPosition__10TObjS12FanFv
+    - SetParameter__10TObjS12FanFv
+    - __ct__10TObjS12FanFP7TObject
+    # TObjS11Key's helpers and constructor are inlined into Exec and
+    # startObjS11Key, so nothing references the retained bodies.
+    - SearchCage__10TObjS11KeyFv
+    - Disappear__10TObjS11KeyFv
+    - CheckTouchedByLeader__10TObjS11KeyFv
+    - GetWaitAngY__10TObjS11KeyFv
+    - GetWaitPosY__10TObjS11KeyFv
+    - SetPosition__10TObjS11KeyFv
+    - __ct__10TObjS11KeyFP7TObject
+    # TObjMask's inlined helpers and the unreferenced collision setup.
+    - DestroyClump__8TObjMaskFv
+    - CloneClump__8TObjMaskFv
+    - SetCollision__8TObjMaskFv
+    - SetParameter__8TObjMaskFv
+    - SetPosition__8TObjMaskFv
+    # TObjS12Celestial's inlined helpers and constructor.
+    - DestroyClump__16TObjS12CelestialFv
+    - CloneClump__16TObjS12CelestialFi
+    - SetPosition__16TObjS12CelestialFv
+    - SetParameter__16TObjS12CelestialFv
+    - __ct__16TObjS12CelestialFP7TObject
+    # TObjCaptureCollision's inlined helpers and constructor.
+    - KillMyself__20TObjCaptureCollisionFv
+    - SetParameter__20TObjCaptureCollisionFv
+    - ResetVariable__20TObjCaptureCollisionFv
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - CreateInstance__20TObjCaptureCollisionFv
 - object: files/stage13D.rel
   hash: c86851d0e26cfb3b9c639c33babfc7768868fab4
   symbols: config/G9SE8P/stage13D/symbols.txt
