@@ -2623,7 +2623,7 @@ void flyerObjectUnload(void)
 
 void flyerObjectLoad(void)
 {
-	M2C_UNK sp8;
+	char sp8[0x40];
 	s32 temp_r3;
 	u32 var_r0;
 
