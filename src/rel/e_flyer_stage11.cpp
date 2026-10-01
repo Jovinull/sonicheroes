@@ -5,6 +5,18 @@ typedef struct HAnimClass HAnimClass;
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
 #define M2C_ERROR(...)
 
+struct FlyerAnimRecord {
+	u32 unk0;
+	u32 unk4;
+	u32 unk8;
+	u32 unkC;
+	u32 unk10;
+	u32 unk14;
+	u32 unk18;
+	const char* name;
+	u32 unk20;
+}; /* size = 0x24 */
+
 /* Dispatch view of the object's vtable. The handler at vtable offset 0x10 is
  * reached through genuine virtual dispatch in retail: the target loads the
  * vtable through the already-materialised `this` in r3 and keeps the slot in
@@ -222,8 +234,16 @@ extern M2C_UNK lbl_8_rodata_18AC;
 static M2C_UNK lbl_8_data_15F80;      /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_15FBC;      /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_15FD8;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16018;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16070;      /* unable to generate initializer: unknown type */
+char lbl_8_data_16008[] = "en_flyer.anm";
+FlyerAnimRecord lbl_8_data_16018[2] = {
+	{ 0, 3, 0, 0, 0xBF800000, 0x3D800000, 0x3E4CCCCD, lbl_8_data_16008, 0xB },
+	{ 0, 0xE, 0, 0, 0, 0, 0, NULL, 0 },
+};
+char lbl_8_data_16060[] = "fly_mo_001.anm";
+FlyerAnimRecord lbl_8_data_16070[2] = {
+	{ 0, 3, 0, 0, 0xBF800000, 0x3D800000, 0x3E4CCCCD, lbl_8_data_16060, 0x10 },
+	{ 0, 0xE, 0, 0, 0, 0, 0, NULL, 0 },
+};
 static M2C_UNK flyerObjectFieldNames; /* unable to generate initializer: unknown type */
 static char lbl_8_data_16154[] = "NONE";
 static char lbl_8_data_1615C[] = "MACHINE GUN";
@@ -2435,7 +2455,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	}
 	fn_8005D5C8(M2C_FIELD(arg0, void**, 0xE8),
 	    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
-	M2C_FIELD(arg0, M2C_UNK**, 0xE4) = &lbl_8_data_16018;
+	M2C_FIELD(arg0, M2C_UNK**, 0xE4) = (M2C_UNK*)&lbl_8_data_16018[0];
 	M2C_FIELD(arg0, s32*, 0xD4)      = 0;
 	fn_800FE464((u8*)arg0 + 0xB8);
 	fn_8_A549C(arg0);
@@ -2609,8 +2629,8 @@ void flyerObjectUnload(void)
 	}
 	fn_8_A8D1C();
 	fn_8_A9E18();
-	fn_800FE248(5, &lbl_8_data_16070);
-	fn_800FE248(5, &lbl_8_data_16018);
+	fn_800FE248(5, (M2C_UNK*)&lbl_8_data_16070[0]);
+	fn_800FE248(5, (M2C_UNK*)&lbl_8_data_16018[0]);
 	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
 		fn_80100AAC();
 	}
@@ -2667,8 +2687,8 @@ void flyerObjectLoad(void)
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1948, u32*, 0xC) = fn_8010037C(lbl_8042C590, 5, 6);
-	fn_800FE274(5, &lbl_8_data_16018);
-	fn_800FE274(5, &lbl_8_data_16070);
+	fn_800FE274(5, (M2C_UNK*)&lbl_8_data_16018[0]);
+	fn_800FE274(5, (M2C_UNK*)&lbl_8_data_16070[0]);
 	fn_8_A9E2C();
 	fn_8_A8D30();
 	var_r0 = fn_80057644(0xC);
