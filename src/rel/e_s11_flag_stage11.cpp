@@ -153,7 +153,7 @@ static char lbl_8_data_18BBC[] = "direction : up";
 static M2C_UNK gap_04_00018BCB_data; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_18BCC;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018BDB_data; /* unable to generate initializer: unknown type */
-static M2C_UNK s11FlagFieldNames;    /* unable to generate initializer: unknown type */
+static M2C_UNK s11FlagFieldNames[3] = { 0, 0, 0 };
 static char lbl_8_data_18BEC[] = "type      : dark";
 static M2C_UNK gap_04_00018BFD_data; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_18C00[2] = { lbl_8_data_18BA0, lbl_8_data_18BEC };
