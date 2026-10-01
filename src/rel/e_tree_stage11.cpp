@@ -115,7 +115,7 @@ static M2C_UNK gap_04_00018381_data; /* unable to generate initializer: unknown 
 static M2C_UNK lbl_8_data_18384;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018395_data; /* unable to generate initializer: unknown type */
 static u32 treeObjectDisplayName[3] = { 0x54524545, 0x204F424A, 0x45435400 };
-static M2C_UNK treeObjectFieldTypes; /* unable to generate initializer: unknown type */
+static char treeObjectFieldTypes[3] = { 'F', 'c', '\0' };
 static M2C_UNK gap_04_000183A7_data; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_183A8;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_000183BD_data; /* unable to generate initializer: unknown type */
