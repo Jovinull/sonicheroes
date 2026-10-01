@@ -4366,6 +4366,12 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_stage11_switch_symbols.py", str(binutils_dir)],
         },
         {
+            "outputs": "build/G9SE8P/tree-switch-symbols.stamp",
+            "rule": "fix_stage11_switch_symbols",
+            "inputs": "build/G9SE8P/src/rel/e_tree_stage11.o",
+            "implicit": ["tools/fix_stage11_switch_symbols.py", str(binutils_dir)],
+        },
+        {
             "outputs": "build/G9SE8P/no-ottotto-collision-stage11-codegen.stamp",
             "rule": "fix_no_ottotto_collision_stage11_codegen",
             "inputs": "build/G9SE8P/src/rel/no_ottotto_collision_stage11.o",
