@@ -62,7 +62,7 @@ extern "C" {
 void InitPeripheral();
 void fn_80112DAC();
 void fn_80112F3C();
-void fn_801EB458();
+void CARDInit();
 void fn_80112F80();
 void fn_800B654C();
 void fn_8001D70C();
@@ -282,7 +282,7 @@ void MAIN::Init()
 	InitPeripheral();
 	fn_80112DAC();
 	fn_80112F3C();
-	fn_801EB458();
+	CARDInit();
 
 	while (lbl_8042C180 == 0) {
 		new TMainTask;

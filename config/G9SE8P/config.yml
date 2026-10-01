@@ -29,6 +29,13 @@ mw_comment_version: 10
 force_active:
   - lbl_8028D0F0
 
+# Two words of game data happen to look like pointers into AXVPB's static
+# __AXUpdates (0x80401A0C and the odd 0x80402FD5). They are not relocations:
+# nothing is aligned there, and the unit's arrays are file-static.
+block_relocations:
+  - source: .data:0x8027D768
+  - source: .data:0x80288154
+
 # 18 REL modules ship with main.dol. One per stage, plus advertise (attract
 # mode), autosave and movie.
 #

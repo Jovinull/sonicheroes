@@ -64,7 +64,7 @@ extern BOOL EXISelect(s32 chan, u32 dev, u32 freq);
 extern BOOL EXIDeselect(s32 chan);
 extern BOOL EXILock(s32 chan, u32 dev, EXICallback unlockedCallback);
 extern BOOL EXIUnlock(s32 chan);
-extern BOOL fn_801FA768(s32 chan, void* buf, s32 len, u32 mode);
+extern BOOL EXIImmEx(s32 chan, void* buf, s32 len, u32 mode);
 
 extern u16 OSGetGbsMode(void);
 extern void OSSetGbsMode(u16 mode);
@@ -106,7 +106,7 @@ static BOOL WriteSram(void* buffer, u32 offset, u32 size)
 	cmd = (offset + 0x100) | 0xA0000000;
 	err = !EXIImm(0, &cmd, 4, 1, NULL);
 	err |= !EXISync(0);
-	err |= !fn_801FA768(0, buffer, size, 1);
+	err |= !EXIImmEx(0, buffer, size, 1);
 	err |= !EXIDeselect(0);
 	EXIUnlock(0);
 
