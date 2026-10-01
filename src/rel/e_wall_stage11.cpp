@@ -2884,9 +2884,6 @@ void fn_8_BB180(void* arg0, s32 arg1)
 					fn_8010B208(temp_handle, lbl_8_rodata_1D80, lbl_8_rodata_1D80);
 					return;
 				}
-			} else {
-				case 2:
-					return;
 			}
 			break;
 		case 3:
@@ -2894,7 +2891,8 @@ void fn_8_BB180(void* arg0, s32 arg1)
 			if ((u32)M2C_FIELD(arg0, u32*, 0x268) != 0U) {
 				fn_8010B074(M2C_FIELD(arg0, u32*, 0x268));
 			}
-			break;
+		case 2:
+			return;
 	}
 }
 
