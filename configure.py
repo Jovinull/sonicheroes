@@ -4360,6 +4360,12 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {
+            "outputs": "build/G9SE8P/flyer-symbols.stamp",
+            "rule": "fix_stage11_symbols",
+            "inputs": "build/G9SE8P/src/rel/e_flyer_stage11.o",
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
+        },
+        {
             "outputs": "build/G9SE8P/wall-symbols.stamp",
             "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/e_wall_stage11.o",
