@@ -2,8 +2,8 @@
 
 // CRI AXRNA for GameCube.
 //
-// The unit runs from fn_80223500 at 0x80223500 to the end of fn_80224C3C at
-// 0x80224D14, and owns .rodata 0x80240400 to 0x802405F8, .data 0x8029BAB0 to
+// The unit runs from fn_80223500 at 0x80223500 to the end of fn_80224CB0 at
+// 0x80224CD0, and owns .rodata 0x80240400 to 0x802405F8, .data 0x8029BAB0 to
 // 0x8029BB30 and .bss 0x80428A78 to 0x8042A9D0. The disc ships no map, so the
 // bounds are argued rather than read:
 //
@@ -11,6 +11,9 @@
 //   Build:May  9 2003 17:10:58\n", followed by a pointer to it. It ends at
 //   0x802405F8, where the "RNARES handle" and "ADX buffer" messages start;
 //   those belong to fn_80224D14 and fn_80224E1C, which sit above this run.
+//   The preceding size/address/free handle API begins RNARES at 0x80224CD0:
+//   AXRNA calls these tiny routines out of line, while RNARES Finish inlines
+//   the same free operation. This boundary is a GameCube-supported inference.
 //
 //   Every .bss and .data block between 0x80428A78 and 0x8042A9D0, and between
 //   0x8029BAB0 and 0x8029BB30, is touched only by functions of this run.
@@ -896,28 +899,4 @@ void fn_80224C3C(void)
 void fn_80224CB0(void* func, void* obj)
 {
 	fn_8022347C(func, obj);
-}
-
-s32 fn_80224CD0(void* p)
-{
-	if (p == NULL) {
-		return 0;
-	}
-	return *(s32*)((s8*)p + 8);
-}
-
-s32 fn_80224CE8(void* p)
-{
-	if (p == NULL) {
-		return 0;
-	}
-	return *(s32*)((s8*)p + 4);
-}
-
-void fn_80224D00(void* p)
-{
-	if (p == NULL) {
-		return;
-	}
-	*(s32*)p = 0;
 }
