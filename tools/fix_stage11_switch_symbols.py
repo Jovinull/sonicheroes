@@ -7,9 +7,13 @@ import subprocess
 import sys
 from pathlib import Path
 
-TABLES = {
-    "e_wall_stage11.o": ("@292", "jumptable_8_data_17338"),
-    "e_turtle_stage11.o": ("@208", "jumptable_8_data_17BF0"),
+SYMBOL_RENAMES = {
+    "e_wall_stage11.o": [("@292", "jumptable_8_data_17338", 0x40)],
+    "e_turtle_stage11.o": [
+        ("@208", "jumptable_8_data_17BF0", 0x40),
+        # MWCC emits an anonymous copy of the shared integer-to-float bias.
+        ("@372", "lbl_8_rodata_1E80", 0x8),
+    ],
 }
 
 
@@ -27,37 +31,36 @@ def main() -> None:
         capture_output=True,
         text=True,
     ).stdout
-    table = TABLES.get(args.object.name)
-    if table is None:
+    renames = SYMBOL_RENAMES.get(args.object.name)
+    if renames is None:
         raise SystemExit(f"unexpected enemy object: {args.object.name}")
-    anonymous, retail = table
-    if f"00000040 {retail}" in symbols and anonymous not in symbols:
-        args.stamp.touch()
-        return
-    if f"00000040 {anonymous}" not in symbols or retail in symbols:
-        raise SystemExit(f"{args.object.name} dispatch table symbol layout changed")
 
     temporary = args.object.parent / (args.object.name + ".symbols.tmp")
-    subprocess.run(
-        [
-            str(args.objcopy),
-            "--redefine-sym",
-            f"{anonymous}={retail}",
-            str(args.object),
-            str(temporary),
-        ],
-        check=True,
-    )
-    shutil.copystat(args.object, temporary)
-    temporary.replace(args.object)
+    command = [str(args.objcopy)]
+    pending = []
+    for anonymous, retail, size in renames:
+        if anonymous in symbols:
+            if f"{size:08x} {anonymous}" not in symbols:
+                raise SystemExit(f"unexpected {anonymous} size in {args.object.name}")
+            pending.append((anonymous, retail, size))
+        elif f"{size:08x} {retail}" not in symbols:
+            raise SystemExit(f"missing {retail} in {args.object.name}")
+    for anonymous, retail, _size in pending:
+        command.extend(["--redefine-sym", f"{anonymous}={retail}"])
+    if pending:
+        subprocess.run(command + [str(args.object), str(temporary)], check=True)
+        shutil.copystat(args.object, temporary)
+        temporary.replace(args.object)
+
     updated = subprocess.run(
         [str(args.objdump), "-t", str(args.object)],
         check=True,
         capture_output=True,
         text=True,
     ).stdout
-    if f"00000040 {retail}" not in updated:
-        raise SystemExit(f"failed to rename {args.object.name} dispatch table")
+    for anonymous, retail, size in renames:
+        if anonymous in updated or f"{size:08x} {retail}" not in updated:
+            raise SystemExit(f"failed to rename {anonymous} in {args.object.name}")
     args.stamp.touch()
 
 
