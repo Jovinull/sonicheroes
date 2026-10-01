@@ -1096,3 +1096,21 @@ The source-linked G9SE8P release and all-source builds, 54 automated tests,
 both policy checks and all eighteen artifact hashes pass. The linker input
 query selects the reconstructed SJMEM source object. The only configured
 release target is G9SE8P; this is not runtime or physical-hardware validation.
+
+### Complete native LSC family correction
+
+The old error fragment and API slice are reconstructed as four coordinated
+LSC source groups, collectively covering all 26 surviving functions and their
+owned data. Independent state/constant atoms, public-call relationships and
+minimal correlated PS2 symbol ordering support the inferred boundaries; no
+source-file marker was found. All four remain reviewed CRI C boundaries,
+compiled as ordinary C with the existing default auto-inlining settings.
+No compiler/language exception or instruction postprocessor is introduced.
+
+The complete allocated sections, 44 meaningful symbols and 150 normalized
+relocations match. Undefined imports and defined zero-sized function/object
+symbols are audited too. The source-linked release, all-source build,
+54 tests, both policy checks and all eighteen hashes pass. See
+[the LSC audit](cri-lsc-native-audit.md) for exact ownership, source-shape
+inferences, observable banner read, shared type evidence and residual boundary
+uncertainty.

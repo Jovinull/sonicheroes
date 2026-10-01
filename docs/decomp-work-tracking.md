@@ -86,3 +86,15 @@ preserves the original linker inputs while keeping one authoritative
 - A file is complete only when all code and owned data report 100% in objdiff.
 - Do not add assembly implementations.
 - Do not run overlapping work without reserving the exact scope in this file.
+
+## Completed: native LSC family correction
+
+The coordinated `game/cri/lsc_err.c`, `lsc.c`, `lsc_ini.c` and
+`lsc_svr.c` correction covers all 26 functions at
+`0x8021F410–0x80220544`, with inferred original source boundaries and
+complete owned storage. All 44 meaningful symbols and 150 relocations match,
+without synthetic padding, per-function pragmas or an instruction patcher.
+All-source and source-linked G9SE8P release builds, 54 tests, both policies
+and all eighteen artifact hashes pass. See
+[the detailed audit](cri-lsc-native-audit.md). No subset of this boundary
+correction is claimed separately.

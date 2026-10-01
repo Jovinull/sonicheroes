@@ -547,7 +547,17 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "game/cri/fn_8021F410.c",
+                "game/cri/lsc_err.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/lsc_svr.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/lsc_ini.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
             Object(

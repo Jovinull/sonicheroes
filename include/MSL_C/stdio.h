@@ -2,6 +2,7 @@
 #define MSL_C_STDIO_H
 
 #include "Runtime.PPCEABI.H/__va_arg.h"
+#include "types.h"
 
 #ifdef __cplusplus
 extern "C" {
