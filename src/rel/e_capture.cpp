@@ -484,7 +484,7 @@ static u32 lbl_8_data_157C4[4] = { 0x41545441, 0x434B2049, 0x4E544552, 0x56414C0
 
 void fn_8_98060(void* arg0)
 {
-	s16 var_r0;
+	s32 var_r0;
 	s32 temp_r3;
 	void* temp_r3_2;
 
