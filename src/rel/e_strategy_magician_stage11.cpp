@@ -1196,10 +1196,10 @@ void fn_8_AC9D8(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x2E4) = 0;
 			M2C_FIELD(arg0, s32*, 0x2E8) = 0;
 			M2C_FIELD(arg0, s32*, 0x274) = 0x28;
-			if ((u32)lbl_8042C388 != 0U) {
-				fn_800B4A38(lbl_8042C388, 0x4046, (u8*)arg0 + 0x140, NULL, 1, 0, 0);
+			if ((u32)lbl_8042C388 == 0U) {
 				return;
 			}
+			fn_800B4A38(lbl_8042C388, 0x4046, (u8*)arg0 + 0x140, NULL, 1, 0, 0);
 			return;
 		case 1:
 			fn_80137FE8((u8*)((u32)arg0 + 0x274));
