@@ -758,6 +758,53 @@ Evidence and rationale:
 The policy therefore tracks it in `c_sources_compiled_as_cpp`. New game-owned
 sources may not use this exception as an escape hatch.
 
+### CRI SVM compiler-mode exception and complete unit
+
+`game/cri/svm.c` retains the reviewed CRI C ABI boundary and uses
+`-lang=c++`, following the same vendor exception as SFX. This does not claim
+that the unavailable original source had a C++ extension.
+
+The GameCube unit covers `.text` `0x802218A8`–`0x80222A14`, `.rodata`
+`0x8023FFC0`–`0x80240168`, and `.bss` `0x80427CB0`–`0x80427F78`.
+Its SVM/GC version string, diagnostic strings, callback tables, and private
+state correlate all 27 functions within the existing CRI middleware boundary.
+The following MFCI unit begins at those adjacent section boundaries.
+
+Minimal cross-platform evidence from a legally held PAL PS2 build:
+
+- ELF symbols name the individual `svm_init_level`, `svm_lock_level`, and
+  `svm_locking_type` globals, the `svm_tas_fptr` callback, and distinct
+  lock/unlock/error callbacks and server tables.
+- GameCube initialization, nested locking, callback dispatch, and test-and-set
+  accesses independently identify those same roles. The scalar state is not
+  an aggregate containing every subsequent global.
+- PS2 also names `svm_reset_variable` and `SVM_ExecSvrFunc`; shared inline
+  reset and dispatch helpers reproduce the repeated GameCube expansions.
+- These facts support names, source structure, and the middleware boundary;
+  they do not establish the historical source language. Only filtered symbol
+  metadata was inspected, with no imported code or published symbol dump.
+
+CodeWarrior C mode allocates tentative globals in first-reference order.
+C++ mode retains declaration order and pools their addresses, reproducing the
+observed independent callback/table bases and every scalar offset. The prior
+synthetic ordering function and out-of-bounds state overlays are removed.
+The 32-byte unreferenced BSS object and final read-only word remain explicit
+owned data, without inventing a purpose for them. Symbol sizes now distinguish
+the scalar state, callback tables, diagnostic strings, and version pointer;
+alignment bytes remain compiler-generated.
+
+All 27 functions and all three owned sections match natively, including
+relocations, with no object postprocessor or extra emitted function. The
+original callback-registration upper-bound test compares the callback ID,
+not the server type; this behavior is retained.
+
+Validation passed for G9SE8P, the only configured release target: all-source
+compilation, the complete linked build, 54 checker tests, both policy checks,
+and all 18 artifact hashes. Independent ELF comparison also verifies identical
+allocated section bytes/layout, all 117 normalized relocations, and all 27
+function offsets/sizes with no extras. PAL and Japanese builds remain planned,
+not configured. Compilation does not establish runtime or hardware validation.
+
 Update this file after every migration batch. A path leaves the queue only
 after its configured command, GameCube objdiff and final artifact hashes pass.
 
