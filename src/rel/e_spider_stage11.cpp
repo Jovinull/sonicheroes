@@ -72,6 +72,19 @@ M2C_UNK fn_8_C2398(s32);                               /* extern */
 void s11spiderObjectCreate();                          /* static */
 void s11spiderObjectLoad(M2C_UNK arg_sp0);             /* static */
 void s11spiderObjectUnload();                          /* static */
+TObject* fn_8_C30D8(TObject*, s16, M2C_UNK);
+void fn_8_C2DE4(void*);
+void fn_8_C2C2C(void*);
+void fn_8_C33D0(void*, void*);
+void fn_8_C37E0(void*, void*);
+extern "C" {
+void Disp__7TObjectFv(void);
+void PDisp__7TObjectFv(void);
+void ImmAftSetRaster__7TObjectFv(void);
+void Debug__7TObjectFv(void);
+void Error__7TObjectFPc(char*);
+void Render__7TObjectFv(void);
+}
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_802FF5A0;
 extern TObject* lbl_8042C110;
@@ -101,7 +114,23 @@ static char lbl_8_data_181B0[] = "type";
 static const char* s11spiderObjectFieldNames[1] = { lbl_8_data_181B0 };
 static char lbl_8_data_181BC[] = "TObjS11Spider";
 static M2C_UNK* lbl_8_data_181CC = (M2C_UNK*)&lbl_8_data_181BC;
-static M2C_UNK lbl_8_data_181D0[15] = { 0 };
+static void* lbl_8_data_181D0[15] = {
+	NULL,
+	NULL,
+	(void*)fn_8_C30D8,
+	(void*)fn_8_C2DE4,
+	(void*)Disp__7TObjectFv,
+	(void*)fn_8_C2C2C,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
+	NULL,
+	NULL,
+	(void*)fn_8_C37E0,
+	(void*)fn_8_C33D0,
+};
 static char s11spiderObjectDisplayName[] = "S11SPIDER OBJECT";
 static char s11spiderObjectFieldTypes[] = "i";
 static u32 lbl_8_bss_1BD0[4];
@@ -402,7 +431,7 @@ TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 	TObject* var_r28;
 
 	if (arg0 != NULL) {
-		arg0->unk18 = lbl_8_data_181D0;
+		arg0->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 		arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 		if ((u32)arg0->unkE4 != 0U) {
 			fn_801197F4((void*)arg0->unkE4, 1);
@@ -450,7 +479,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	fn_8005BE6C(&arg0->unk28);
 	fn_8003C618(&arg0->unk30);
-	arg0->unk18 = lbl_8_data_181D0;
+	arg0->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 	arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 	arg0->unk0  = lbl_8_data_181CC;
 	arg0->unk1E = 0x108;
@@ -576,7 +605,7 @@ void s11spiderObjectCreate(void)
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		fn_8005BE6C(&temp_r3->unk28);
 		fn_8003C618(&temp_r3->unk30);
-		temp_r3->unk18 = lbl_8_data_181D0;
+		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 		temp_r3->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_181CC;
 		temp_r3->unk1E = 0x108;
@@ -658,4 +687,14 @@ void s11spiderObjectRegister(void)
 }
 
 __declspec(section ".ctors") void (*const s11spiderObjectCtorEntry)(void) = s11spiderObjectRegister;
+
+#pragma dont_inline on
+void fn_8_C37E0(void* arg0, void* arg1)
+{
+	asm {
+		subi r3, r3, 0x28
+		b fn_8_C33D0
+	}
+}
+#pragma dont_inline reset
 }
