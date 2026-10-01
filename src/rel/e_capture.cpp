@@ -1729,7 +1729,6 @@ void fn_8_9A2F4(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4)  = 1;
 			if ((u32)lbl_8042C388 != 0U) {
 				fn_800B4A38(lbl_8042C388, 0x4013, (u8*)arg0 + 0x140, 0, 1, 0, 0);
-				return;
 			}
 		case 2:
 			return;
