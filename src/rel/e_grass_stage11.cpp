@@ -200,7 +200,7 @@ static char lbl_8_data_189B4[] = "direction : up";
 static M2C_UNK gap_04_000189C3_data;  /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_189C4;      /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_000189D3_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK grassObjectFieldNames; /* unable to generate initializer: unknown type */
+static M2C_UNK grassObjectFieldNames[2] = { 0, 0 };
 static char lbl_8_data_189E0[] = "type      : dark";
 static M2C_UNK gap_04_000189F1_data; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_189F4[2] = { lbl_8_data_189A0, lbl_8_data_189E0 };
