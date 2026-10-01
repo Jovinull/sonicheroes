@@ -1673,6 +1673,7 @@ void fn_8_B85E0(void* arg0)
 void fn_8_B8810(void* arg0)
 {
 	RwFrame* temp_r30;
+	f32 temp_f1;
 	f32 temp_f2;
 	u32 temp_r3_2;
 	void* temp_r3;
@@ -1688,7 +1689,8 @@ void fn_8_B8810(void* arg0)
 	}
 	M2C_FIELD(arg0, f32*, 0xB4) = (f32)(M2C_FIELD(arg0, f32*, 0xB4) + lbl_8_rodata_1D98);
 	temp_f2                     = M2C_FIELD(arg0, f32*, 0xC8);
-	if ((M2C_FIELD(arg0, f32*, 0xB4) - temp_f2) >= lbl_8_rodata_1D9C) {
+	temp_f1                     = M2C_FIELD(arg0, f32*, 0xB4) - temp_f2;
+	if (temp_f1 >= lbl_8_rodata_1D9C) {
 		M2C_FIELD(arg0, f32*, 0xB4) = (f32)(lbl_8_rodata_1D9C + temp_f2);
 	}
 	M2C_FIELD(arg0, u32*, 0xEC) = (u32)(M2C_FIELD(arg0, u32*, 0xEC) + 0x800);
