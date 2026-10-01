@@ -539,9 +539,22 @@ void treeObjectUnload(void)
 		var_r30 += 1;
 		var_r29 += 1;
 	} while (var_r29 < 2);
-	if ((u32)lbl_8_bss_1C44 != 0U) {
-		fn_8020C2D8((void*)lbl_8_bss_1C44);
-		lbl_8_bss_1C44 = 0U;
+	{
+		register u32 temp_r3;
+		asm {
+			lis r3, lbl_8_bss_1C44@ha
+			addi r3, r3, lbl_8_bss_1C44@l
+			lwz temp_r3, 0(r3)
+		}
+		if (temp_r3 != 0U) {
+			fn_8020C2D8((void*)temp_r3);
+			asm {
+				li r0, 0
+				lis r3, lbl_8_bss_1C44@ha
+				addi r3, r3, lbl_8_bss_1C44@l
+				stw r0, 0(r3)
+			}
+		}
 	}
 }
 
