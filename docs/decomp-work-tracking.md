@@ -98,3 +98,17 @@ All-source and source-linked G9SE8P release builds, 54 tests, both policies
 and all eighteen artifact hashes pass. See
 [the detailed audit](cri-lsc-native-audit.md). No subset of this boundary
 correction is claimed separately.
+
+## 2026-09-25 completed-branch consolidation
+
+Codex root owns `integrate-cri-complete-20260925`, based on upstream main
+`4243c6c`. It consolidates the nine already-completed CRI changes behind
+PRs #515–#523 into fourteen complete units. The older error-reporter partial
+is superseded by LSC's `lsc_err.c`; the stacked LSC ancestors are included
+once. Partial raster, GCCI, MFCI and RenderWare worktrees remain untouched.
+The integration also propagates the recovered adapter callback type through
+AXRNA and corrects ten private SVM constant bindings after a reference audit.
+See [the integration proof](cri-integration-20260925.md) for exact scope,
+duplicate handling, all-target verification and limits. This entry supersedes
+older completed-unit publication statuses above; it does not claim an upstream
+merge until the remote accepts it.

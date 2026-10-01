@@ -1,6 +1,7 @@
 #ifndef CRI_AXRNA_H
 #define CRI_AXRNA_H
 
+#include "cri/adapter.h"
 #include "cri/sj.h"
 #include "dolphin/ax.h"
 #include "types.h"
@@ -29,7 +30,7 @@ AxRna* fn_8022439C(CriStream** streams, s32 channelCount);
 void fn_80224A88(AxVoice* voice);
 void fn_80224B1C(void);
 void fn_80224C3C(void);
-void fn_80224CB0(void* function, void* object);
+void fn_80224CB0(CriErrFunc function, void* object);
 
 #ifdef __cplusplus
 }
