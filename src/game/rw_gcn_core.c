@@ -4688,7 +4688,6 @@ s32 fn_80238FF0(s32 arg0)
 	M2C_UNK* var_r30;
 	M2C_UNK* var_r28;
 	M2C_UNK* var_r27;
-	M2C_UNK* var_r30_2;
 	u8* var_r26;
 	u8* var_r27_2;
 
@@ -4705,10 +4704,10 @@ s32 fn_80238FF0(s32 arg0)
 		M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x64) = NULL;
 	}
 	if ((M2C_UNK**)M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60) != NULL) {
-		var_r30_2 = *M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60);
-		while (var_r30_2 != var_r28) {
-			var_r28   = var_r30_2;
-			var_r30_2 = (M2C_UNK*)*var_r30_2;
+		var_r30 = *M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60);
+		while (var_r30 != var_r28) {
+			var_r28   = var_r30;
+			var_r30 = (M2C_UNK*)*var_r30;
 			fn_80232288(var_r28);
 		}
 		M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60) = NULL;
