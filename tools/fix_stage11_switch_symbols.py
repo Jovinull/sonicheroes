@@ -8,7 +8,10 @@ import sys
 from pathlib import Path
 
 SYMBOL_RENAMES = {
-    "e_wall_stage11.o": [("@292", "jumptable_8_data_17338", 0x40)],
+    "e_wall_stage11.o": [
+        ("@292", "jumptable_8_data_17338", 0x40),
+        ("@407", "lbl_8_rodata_1D90", 0x8),
+    ],
     "e_turtle_stage11.o": [
         ("@208", "jumptable_8_data_17BF0", 0x40),
         # MWCC emits an anonymous copy of the shared integer-to-float bias.
