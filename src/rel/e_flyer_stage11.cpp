@@ -147,7 +147,7 @@ M2C_UNK fn_8011F8B0(s8);                                                        
 M2C_UNK fn_8011F900(M2C_UNK*, s8);                                               /* extern */
 M2C_UNK* fn_8011FA4C(M2C_UNK*, u32);                                             /* extern */
 M2C_UNK fn_8011FD94(M2C_UNK, M2C_UNK);                                           /* extern */
-u32 fn_8011FE0C(M2C_UNK);                                                        /* extern */
+u32 fn_8011FE0C(u32, u32);                                                   /* extern */
 M2C_UNK fn_80137FE8(void*);                                                      /* extern */
 M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
 void* fn_80150588(void*);                                                        /* extern */
@@ -2625,14 +2625,16 @@ void flyerObjectLoad(void)
 {
 	char sp8[0x40];
 	s32 temp_r3;
+	u32 temp_r5;
 	u32 var_r0;
 
 	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	fn_8010096C(lbl_8042C590, 5, lbl_8_data_1628C);
-	if (fn_800194C4(&lbl_8029C310) != 0U) {
-		temp_r3 = sprintf(&sp8, lbl_8_data_1629C);
+	temp_r5 = fn_800194C4(&lbl_8029C310);
+	if (temp_r5 != 0U) {
+		temp_r3 = sprintf(&sp8, lbl_8_data_1629C, temp_r5);
 		if ((temp_r3 >= 0) && (temp_r3 < 0x40)) {
 			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
 				fn_80100AAC();
@@ -2671,7 +2673,7 @@ void flyerObjectLoad(void)
 	fn_8_A8D30();
 	var_r0 = fn_80057644(0xC);
 	if (var_r0 != 0U) {
-		var_r0 = fn_8011FE0C(0xC);
+		var_r0 = fn_8011FE0C(var_r0, 0xC);
 	}
 	lbl_8_bss_1958 = var_r0;
 }
