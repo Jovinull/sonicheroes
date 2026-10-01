@@ -1022,19 +1022,19 @@ void fn_8_9EC40(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x2C) = 1;
 			return;
 		case 1:
-			if (fn_80100C88(M2C_FIELD(arg0, u8*, 0x34)) != 0) {
-				M2C_FIELD(arg0, u8*, 0x34)  = (u8)(M2C_FIELD(arg0, u8*, 0x34) + 1);
-				M2C_FIELD(arg0, s32*, 0x30) = 0xF0;
-				M2C_FIELD(arg0, s32*, 0x2C) = 2;
+			if (fn_80100C88(M2C_FIELD(arg0, u8*, 0x34)) == 0) {
 				return;
 			}
+			M2C_FIELD(arg0, u8*, 0x34)++;
+			M2C_FIELD(arg0, s32*, 0x30) = 0xF0;
+			M2C_FIELD(arg0, s32*, 0x2C) = 2;
 			return;
 		case 2:
 			fn_80137FE8((u8*)((u32)arg0 + 0x30));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x30) < 0) {
 				M2C_FIELD(arg0, s32*, 0x2C) = 0;
 			}
-			break;
+			return;
 	}
 }
 
