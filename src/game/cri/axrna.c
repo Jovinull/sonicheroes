@@ -786,7 +786,7 @@ void fn_80224C3C(void)
 
 void fn_80224CB0(void* func, void* obj)
 {
-	fn_8022347C(func, obj);
+	fn_8022347C((CriErrFunc)func, obj);
 }
 
 #ifdef __cplusplus
