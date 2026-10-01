@@ -1655,8 +1655,8 @@ s32 fn_8022AE80(u8* arg0, s32 arg1)
 
 u8* fn_8022AF34(u8* arg0, s32 arg1)
 {
-	u8* temp_r30;
 	u8* temp_r31;
+	u8* temp_r30;
 
 	if (fn_80227130() == 0U) {
 		return NULL;
