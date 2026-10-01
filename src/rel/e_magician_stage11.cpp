@@ -516,8 +516,9 @@ void fn_8_ACE24(void* arg0, s32 arg1)
 
 void fn_8_AD0EC(void* arg0, s32 arg1)
 {
-	f32 temp_f31;
-	f32 temp_f30;
+	register f32 temp_f31;
+	register f32 temp_f0;
+	register f32 temp_f30;
 	s32 temp_r0;
 	s32 temp_r30;
 	void* temp_r3;
@@ -553,8 +554,9 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 				temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-				temp_f30 = temp_f31
-				    + (lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2));
+				temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+				// Preserve the operand order emitted by the original GameCube build.
+				asm { fadds temp_f30, temp_f0, temp_f31 }
 				M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
 			}
 			return;
