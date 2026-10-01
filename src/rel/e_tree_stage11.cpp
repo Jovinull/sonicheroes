@@ -523,11 +523,14 @@ void fn_8_C4BBC(void* arg0, void* arg1)
 
 void treeObjectUnload(void)
 {
-	u32* var_r30;
+	register u32* var_r30;
 	s32 var_r29;
 
 	var_r29 = 0;
-	var_r30 = &lbl_8_data_18298[0];
+	asm {
+		lis r3, lbl_8_data_18298@ha
+		addi var_r30, r3, lbl_8_data_18298@l
+	}
 	do {
 		if ((u32)*var_r30 != 0U) {
 			fn_80150958((void*)*var_r30);
