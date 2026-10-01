@@ -153,7 +153,7 @@ s32 fn_800A6334(void*);                                                   /* ext
 M2C_UNK fn_800A7088(TObject*, M2C_UNK);                                   /* extern */
 M2C_UNK fn_800A714C();                                                    /* extern */
 s32 fn_800AF3AC(M2C_UNK*);                                                /* extern */
-M2C_UNK fn_800B4A38(M2C_UNK, void*, void*, M2C_UNK, M2C_UNK, M2C_UNK);    /* extern */
+M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK fn_800CCC6C(const char*);                                         /* extern */
 s32 fn_800D7A94(s32, s32, s32);                                           /* extern */
 f32 fn_800D7B00(s32);                                                     /* extern */
@@ -1621,7 +1621,7 @@ void fn_8_9FA94(void* arg0, M2C_UNK arg_sp0)
 		fn_8_9EFC8(arg0);
 	}
 	if ((u32)lbl_8042C388 != 0U) {
-		fn_800B4A38(0x4063, (u8*)arg0 + 0x254, arg0, 3, 0, 2);
+		fn_800B4A38(lbl_8042C388, 0x4063, (u8*)arg0 + 0x254, arg0, 3, 0, 2);
 	}
 }
 
