@@ -97,17 +97,13 @@ static s32 lbl_8_data_181A0 = 5;
 static f32 lbl_8_data_181A4 = 0.55f;
 static f32 lbl_8_data_181A8 = 0.4f;
 static f32 lbl_8_data_181AC = 0.35f;
-static M2C_UNK lbl_8_data_181B0;          /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000181B5_data;      /* unable to generate initializer: unknown type */
-static M2C_UNK s11spiderObjectFieldNames; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_181BC;          /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000181CA_data;      /* unable to generate initializer: unknown type */
-static M2C_UNK* lbl_8_data_181CC = &lbl_8_data_181BC;
-static M2C_UNK lbl_8_data_181D0;           /* unable to generate initializer: unknown type */
-static M2C_UNK s11spiderObjectDisplayName; /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001821D_data;       /* unable to generate initializer: unknown type */
-static M2C_UNK s11spiderObjectFieldTypes;  /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00018222_data;       /* unable to generate initializer: unknown type */
+static char lbl_8_data_181B0[] = "type";
+static const char* s11spiderObjectFieldNames[1] = { lbl_8_data_181B0 };
+static char lbl_8_data_181BC[] = "TObjS11Spider";
+static M2C_UNK* lbl_8_data_181CC = (M2C_UNK*)&lbl_8_data_181BC;
+static M2C_UNK lbl_8_data_181D0[15] = { 0 };
+static char s11spiderObjectDisplayName[] = "S11SPIDER OBJECT";
+static char s11spiderObjectFieldTypes[] = "i";
 static u32 lbl_8_bss_1BD0[4];
 typedef struct ObjectEntry {
 	const char* name;        /* 0x00 */
@@ -406,7 +402,7 @@ TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 	TObject* var_r28;
 
 	if (arg0 != NULL) {
-		arg0->unk18 = &lbl_8_data_181D0;
+		arg0->unk18 = lbl_8_data_181D0;
 		arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 		if ((u32)arg0->unkE4 != 0U) {
 			fn_801197F4((void*)arg0->unkE4, 1);
@@ -454,7 +450,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	fn_8005BE6C(&arg0->unk28);
 	fn_8003C618(&arg0->unk30);
-	arg0->unk18 = &lbl_8_data_181D0;
+	arg0->unk18 = lbl_8_data_181D0;
 	arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 	arg0->unk0  = lbl_8_data_181CC;
 	arg0->unk1E = 0x108;
@@ -580,7 +576,7 @@ void s11spiderObjectCreate(void)
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		fn_8005BE6C(&temp_r3->unk28);
 		fn_8003C618(&temp_r3->unk30);
-		temp_r3->unk18 = &lbl_8_data_181D0;
+		temp_r3->unk18 = lbl_8_data_181D0;
 		temp_r3->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_181CC;
 		temp_r3->unk1E = 0x108;
