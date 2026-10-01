@@ -3,8 +3,8 @@
 // CRI GCCI for GameCube: the file layer the stream controller sits on, wrapping
 // the Dolphin DVD calls behind CRI's handle and error conventions.
 //
-// The unit runs from fn_8021E3D8 at 0x8021E3D8 to the end of fn_8021F404 at
-// 0x8021F410, fifteen functions, and owns .rodata 0x8023FBC0 to 0x8023FDF8,
+// The unit runs from gcci_rd_cbfn at 0x8021E3D4 to the end of fn_8021F404 at
+// 0x8021F410, sixteen functions, and owns .rodata 0x8023FBC0 to 0x8023FDF8,
 // .data 0x8029B7B8 to 0x8029B828 and .bss 0x8041F6B8 to 0x80420770. The disc
 // ships no map, so the bounds are argued. Four lines agree:
 //
@@ -21,8 +21,10 @@
 //   All three data sections are contiguous and abut their neighbours exactly.
 //   The .rodata ends at 0x8023FDF8, which is where game/cri/lsc.c's begins.
 //
-//   The lower bound is the first cut where no data crosses; below it
-//   fn_8021E118 and fn_8021E3D8 share nothing. The upper bound is fn_8021F410,
+//   The lower bound is the empty DVD read callback gcci_rd_cbfn at 0x8021E3D4:
+//   only gcCiReqRd here takes its address, and the later CRI GCCI source
+//   reconstructed for Mortal Kombat: Deception defines gcci_rd_cbfn directly
+//   ahead of gcCiGetNumTr. Below it is cri_cvfs.c. The upper bound is fn_8021F410,
 //   the shared error reporter that lsc.c also calls, so it belongs to neither.
 //
 // Correcting what stood here: the messages DO carry function names, the same
@@ -106,7 +108,7 @@ extern u32 OSGetTick(void);
 extern s32 DVDReadAsyncPrio(DVDFileInfo* fileInfo, void* buffer, s32 length, s32 offset,
     DVDCallback callback, s32 priority);
 extern s32 DVDReadPrio(DVDFileInfo* fileInfo, void* buffer, s32 length, s32 offset, s32 priority);
-extern void fn_8021E3D4(s32 result, void* fileInfo);
+void gcci_rd_cbfn(s32 result, void* fileInfo);
 extern void DCInvalidateRange(void* ptr, u32 size);
 extern void DCStoreRange(void* ptr, u32 size);
 
@@ -447,6 +449,8 @@ static inline GcciObj* gcci_GetObjects(s32* reading)
 	return q;
 }
 
+void gcci_rd_cbfn(s32 result, void* fileInfo) { }
+
 s32 fn_8021E3D8(GcciObj* p)
 {
 	if (p == NULL) {
@@ -575,7 +579,7 @@ s32 fn_8021E780(void* obj, s32 nsct, void* buffer)
 	length = (length + 31) & ~31;
 	DCInvalidateRange(buffer, length);
 	if (gcci_ReadMode == 0) {
-		result = DVDReadAsyncPrio(&p->fileInfo, buffer, length, offset, fn_8021E3D4, 2);
+		result = DVDReadAsyncPrio(&p->fileInfo, buffer, length, offset, gcci_rd_cbfn, 2);
 	} else {
 		result = DVDReadPrio(&p->fileInfo, buffer, length, offset, 2);
 	}

@@ -1183,8 +1183,110 @@ dolphin/exi/EXIUart.c:
 	.text       start:0x801FBDF4 end:0x801FC3C8
 	.sbss       start:0x8042CF38 end:0x8042CF48
 
+game/cri/adx_inis.c:
+	.text       start:0x8020D1FC end:0x8020D4A8
+	.rodata     start:0x8023D648 end:0x8023D680
+	.data       start:0x8029B568 end:0x8029B570
+	.bss        start:0x8040EEA8 end:0x8040FAC0
+
+game/cri/adx_amp.c:
+	.text       start:0x802125A0 end:0x802127B0
+
+game/cri/adx_crs.c:
+	.text       start:0x802127B0 end:0x80212800
+	.bss        start:0x80411220 end:0x80411228
+
+game/cri/adx_dcd.c:
+	.text       start:0x80212800 end:0x80213014
+	.rodata     start:0x8023DF98 end:0x8023DFD8
+
+game/cri/adx_dcd3.c:
+	.text       start:0x80213014 end:0x80213020
+	.bss        start:0x80411228 end:0x80411230
+
+game/cri/adx_errs.c:
+	.text       start:0x80213020 end:0x80213670
+	.rodata     start:0x8023DFD8 end:0x8023DFE0
+	.bss        start:0x80411230 end:0x80411358
+
+game/cri/adx_fsvr.c:
+	.text       start:0x80213670 end:0x802136F4
+	.bss        start:0x80411358 end:0x80411360
+
+game/cri/adx_insh.c:
+	.text       start:0x802136F4 end:0x8021389C
+	.bss        start:0x80411360 end:0x804117A0
+
+game/cri/adx_lsc.c:
+	.text       start:0x8021389C end:0x80213A5C
+	.rodata     start:0x8023DFE0 end:0x8023E0E0
+
+game/cri/adx_sfa.c:
+	.text       start:0x80213A5C end:0x80213A8C
+	.bss        start:0x804117A0 end:0x804117A8
+
+game/cri/adx_sje.c:
+	.text       start:0x80213A8C end:0x80216758
+	.rodata     start:0x8023E0E0 end:0x8023E0F8
+	.data       start:0x8029B778 end:0x8029B780
+	.bss        start:0x804117A8 end:0x804138F8
+
+game/cri/adx_stmc.c:
+	.text       start:0x80216758 end:0x80217BD8
+	.rodata     start:0x8023E0F8 end:0x8023E128
+	.data       start:0x8029B780 end:0x8029B790
+	.bss        start:0x804138F8 end:0x80414768
+
+game/cri/adx_tlk.c:
+	.text       start:0x80217BD8 end:0x80219778
+	.rodata     start:0x8023E128 end:0x8023E7D0
+	.data       start:0x8029B790 end:0x8029B798
+	.bss        start:0x80414768 end:0x804147A8
+
+game/cri/adx_tlk2.c:
+	.text       start:0x80219778 end:0x80219904
+	.rodata     start:0x8023E7D0 end:0x8023E850
+
+game/cri/adx_tsvr.c:
+	.text       start:0x80219904 end:0x8021A77C
+	.rodata     start:0x8023E850 end:0x8023E8E8
+	.bss        start:0x804147A8 end:0x804147B8
+
+game/cri/adx_xpnd.c:
+	.text       start:0x8021A77C end:0x8021ABC0
+	.bss        start:0x804147B8 end:0x80414B80
+
+game/cri/adx_mgc.c:
+	.text       start:0x8021ABC0 end:0x8021B274
+	.rodata     start:0x8023E8E8 end:0x8023E949
+	.data       start:0x8029B798 end:0x8029B7B8
+	.bss        start:0x80414B80 end:0x8041C830
+
+game/cri/adx_sugc.c:
+	.text       start:0x8021B274 end:0x8021B358
+	.rodata     start:0x8023E950 end:0x8023E998
+
+game/cri/adx_gc.c:
+	.text       start:0x8021B358 end:0x8021B37C
+
+game/cri/adx_rnaa.c:
+	.text       start:0x8021B37C end:0x8021B5E8
+
+game/cri/adx_fini.c:
+	.text       start:0x8021BCF0 end:0x8021BE38
+	.rodata     start:0x8023E9D8 end:0x8023EA0C
+	.bss        start:0x8041C830 end:0x8041D1A8
+
+game/cri/adx_fcch.c:
+	.text       start:0x8021BE38 end:0x8021BE58
+
+game/cri/cri_cvfs.c:
+	.text       start:0x8021D480 end:0x8021E3D4
+	.rodata     start:0x8023F000 end:0x8023FBC0
+	.bss        start:0x8041F230 end:0x8041F6B8
+
 game/cri/gcci.c:
-	.text       start:0x8021E3D8 end:0x8021F410
+	.text       start:0x8021E3D4 end:0x8021F410
 	.rodata     start:0x8023FBC0 end:0x8023FDF8
 	.data       start:0x8029B7B8 end:0x8029B828
 	.bss        start:0x8041F6B8 end:0x80420770

@@ -25,8 +25,8 @@
 //
 //   The six functions after fn_8022347C touch no data at all, so they are
 //   placed by their neighbours rather than by ownership. They group here
-//   because the four final entrypoints are called only from fn_8021B37C,
-//   fn_8021B39C, fn_8021B3C4 and fn_8021B3E4 -- four thin wrappers sitting
+//   because the four final entrypoints are called only from ADXRNA_SetAdjsfreqFlg,
+//   ADXRNA_SetStmHdInfo, ADXRNA_DiscardData and ADXRNA_SetBitPerSmpl -- four thin wrappers sitting
 //   together in a single adapter layer, which is the shape this file serves.
 //
 // Nothing here is named: there is no version banner in the unit and no error

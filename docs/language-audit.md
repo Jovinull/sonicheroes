@@ -527,9 +527,10 @@ After the GameCube platform-main decision:
   claim a historical source extension;
 - `movieD/cri/sfx.c` is a reviewed C-path/C++-compiler-mode exception, not a
   migration candidate;
-- five sources have reviewed deferred-inline modes:
-  `game/skyfs_adx.c`, `game/modeswitch.cpp`, `game/e_paralysis.cpp`,
-  `advertiseD/adv_2p.cpp` and `advertiseD/adv_draw.cpp`.
+- the reviewed deferred-inline modes are `game/skyfs_adx.c`,
+  `game/modeswitch.cpp`, `game/e_paralysis.cpp`, `advertiseD/adv_2p.cpp`,
+  `advertiseD/adv_draw.cpp` and the CRI ADX core units listed under
+  "CRI ADX core library units".
 
 ### Reviewed inline exceptions
 
@@ -1114,3 +1115,48 @@ symbols are audited too. The source-linked release, all-source build,
 [the LSC audit](cri-lsc-native-audit.md) for exact ownership, source-shape
 inferences, observable banner read, shared type evidence and residual boundary
 uncertainty.
+
+### CRI ADX core library units
+
+The CRI ADX core (ADXT/GC 8.84, ADXF/GC 7.07, SKG/GC 0.63, ADXGC 1.21,
+ADXGCSDK 05Sep2002Patch2, CVFS/GC 2.33) is middleware compiled from CRI's C
+sources. Its units are reviewed C boundaries: the exported API is plain C
+linkage and the correlated PS2 symbol metadata carries no source-file record,
+so no historical extension is claimed.
+
+The library was built with deferred inlining. Three independent observations
+agree for every unit that uses it: the GameCube text order is the exact
+reverse of the per-file function order in the PS2 symbol metadata; the
+string pools follow the GameCube (emission) order; and the uninitialised
+private `.bss` objects appear in reverse declaration order. Ordinary
+`-inline auto` reproduces none of these without invented helper code, while
+`-inline deferred` reproduces the complete owned sections. Units that do not
+depend on emission order keep the default CRI flags.
+
+- `game/cri/cri_cvfs.c`: CVFS, 12 surviving functions, owned `.rodata` and
+  `.bss`, `-inline deferred`. The GCCI read callback directly above it
+  belongs to `game/cri/gcci.c`, whose lower bound moves down by four bytes.
+- `game/cri/adx_mgc.c`, `game/cri/adx_sugc.c`, `game/cri/adx_gc.c` and
+  `game/cri/adx_rnaa.c`: the ADXGC 1.21 thread manager, the ADXGCSDK DVD
+  file-system glue, the sampling-rate switch and the nineteen ADXRNA wrappers
+  over AXRNA, `-inline deferred`. Each opens with its own banner or follows
+  the object order of the later CRI GameCube link map; all owned data is
+  referenced only from inside the unit.
+- `game/cri/adx_stmc.c`, `game/cri/adx_tlk.c`, `game/cri/adx_tlk2.c` and
+  `game/cri/adx_xpnd.c` use `-inline deferred`; `game/cri/adx_tsvr.c` keeps
+  the default CRI flags because its seven functions do not depend on emission
+  order. `adx_tlk.c` keeps eighteen linker-stripped API entry points as short
+  parameter-checking bodies: their messages survive in the retail string pool
+  interleaved with compiler-generated floating-point constants, which only
+  literal emission order reproduces. They are named from the PS2 symbol
+  metadata and do not reach the linked executable.
+- `game/cri/adx_inis.c`, `adx_amp.c`, `adx_crs.c`, `adx_errs.c`,
+  `adx_fsvr.c`, `adx_insh.c`, `adx_lsc.c`, `adx_sfa.c` and `adx_dcd3.c` (all under
+  `game/cri/`): ADXT initialisation, amplitude meter, critical section, error
+  reporting, file server, SFA header insertion, seamless-entry API and SFA
+  stubs and the stereo-as-mono decode switch, `-inline deferred`. `adx_lsc.c` keeps the linker-stripped
+  `ADXT_StartFnameLp` (a PS2 symbol) because its inlined calls fix the order
+  of the unit's string pool.
+- `game/cri/adx_sje.c`: the ADX encoder (ADXSJE), sixteen functions,
+  `-inline deferred`. The older 8.84 encoder has no CINF chunk and inlines
+  the header writer, which is why `adxsje_output_header` is 0x13E8 bytes.

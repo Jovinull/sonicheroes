@@ -621,6 +621,122 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "game/cri/adx_inis.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_amp.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_crs.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_dcd.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+                mw_version="GC/1.3.2r",
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_dcd3.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_errs.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_fsvr.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_insh.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_lsc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_sfa.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_sje.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_stmc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_tlk.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_tlk2.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_tsvr.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_xpnd.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_mgc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_sugc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_gc.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_rnaa.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_fini.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/adx_fcch.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "game/cri/cri_cvfs.c",
+                extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on", "-inline deferred"],
+            ),
+            Object(
+                Matching,
                 "game/cri/gcci.c",
                 extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"],
             ),
