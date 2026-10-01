@@ -83,6 +83,18 @@ struct _struct_lbl_8_data_15E0C_0xC {
 	/* 0x8 */ s32 unk8; /* inferred */
 }; /* size = 0xC */
 
+struct Stage11AnimRecord {
+	u32 unk0;
+	u32 unk4;
+	u32 unk8;
+	u32 unkC;
+	u32 unk10;
+	u32 unk14;
+	u32 unk18;
+	const char* name;
+	u32 unk20;
+}; /* size = 0x24 */
+
 struct _struct_lbl_8_rodata_17F4_0xC {
 	/* 0x0 */ f32 unk0; /* inferred */
 	/* 0x4 */ f32 unk4; /* inferred */
@@ -233,8 +245,6 @@ static M2C_UNK lbl_8_data_15B0C; /* unable to generate initializer: unknown type
 static M2C_UNK lbl_8_data_15B24; /* unable to generate initializer: unknown type */
 static u32 lbl_8_data_15B78[6]
     = { 0x3F800000, 0x00000000, 0x00000000, 0x00000000, 0x00000001, 0x00000000 };
-static M2C_UNK lbl_8_data_15BF0; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_15D24; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_15DC0; /* unable to generate initializer: unknown type */
 static char lbl_8_data_15DC4[]      = "TObjEnemyEggMobile";
 static const char* lbl_8_data_15DD8 = lbl_8_data_15DC4;
@@ -275,7 +285,29 @@ static s32 lbl_8_bss_190C;
 static s32 lbl_8_bss_1910;
 static TObject* lbl_8_bss_1914;
 static u32 lbl_8_bss_1918[12];
-static u32 lbl_8_data_15B90[4] = { 0x6567676D, 0x6F76696C, 0x6530312E, 0x616E6D00 };
+char lbl_8_data_15B90[] = "eggmovile01.anm";
+char lbl_8_data_15BA0[] = "eggmovile_idle.anm";
+char lbl_8_data_15BB4[] = "en_eggmovile.anm";
+char lbl_8_data_15BC8[] = "en_bsz1_egmbl.anm";
+char lbl_8_data_15BDC[] = "en_bsz2_egmbl.anm";
+Stage11AnimRecord lbl_8_data_15BF0[7] = {
+	{ 0, 0xB, 3, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15B90, 2 },
+	{ 0, 4, 0, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15B90, 2 },
+	{ 0, 3, 3, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15BA0, 3 },
+	{ 0, 3, 3, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15BB4, 0xF },
+	{ 0, 5, 3, 0, 0x43B38000, 0x3F800000, 0x3F800000, lbl_8_data_15BC8, 5 },
+	{ 0, 5, 3, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15BDC, 8 },
+	{ 0, 0xE, 0, 0, 0, 0, 0, NULL, 0 },
+};
+char lbl_8_data_15CEC[] = "en_eggman.anm";
+char lbl_8_data_15CFC[] = "en_bsz1_eggman.anm";
+char lbl_8_data_15D10[] = "en_bsz2_eggman.anm";
+Stage11AnimRecord lbl_8_data_15D24[4] = {
+	{ 0, 3, 0, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15CEC, 0xC },
+	{ 0, 4, 0, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15CFC, 4 },
+	{ 0, 4, 0, 0, 0xBF800000, 0x3F800000, 0x3F800000, lbl_8_data_15D10, 7 },
+	{ 0, 0xE, 0, 0, 0, 0, 0, NULL, 0 },
+};
 extern const struct _struct_lbl_8_rodata_17F4_0xC lbl_8_rodata_17F4[6] = {
 	{ 0.0f, 0.0f, 0.0f },
 	{ 0.0f, 0.0f, 0.0f },
@@ -2435,7 +2467,7 @@ void fn_8_A13C0(void* arg0)
 		M2C_FIELD(arg0, void***, 0x2B0) = var_r0;
 		M2C_FIELD(M2C_FIELD(arg0, void***, 0x2B0), void**, 0x30)
 		    = (void*)M2C_FIELD(arg0, void**, 0x27C);
-		M2C_FIELD(M2C_FIELD(arg0, void***, 0x2B0), M2C_UNK**, 0x2C) = &lbl_8_data_15D24;
+		M2C_FIELD(M2C_FIELD(arg0, void***, 0x2B0), M2C_UNK**, 0x2C) = (M2C_UNK*)&lbl_8_data_15D24[0];
 		M2C_FIELD(M2C_FIELD(arg0, void***, 0x2B0), s32*, 0x1C)      = 0;
 	}
 }
@@ -2696,7 +2728,7 @@ TObject* fn_8_A18A0(TObject* arg0, M2C_UNK arg_sp0)
 		}
 		arg0->unk2B0                             = var_r0;
 		M2C_FIELD(arg0->unk2B0, void**, 0x30)    = (void*)arg0->unk27C;
-		M2C_FIELD(arg0->unk2B0, M2C_UNK**, 0x2C) = &lbl_8_data_15D24;
+		M2C_FIELD(arg0->unk2B0, M2C_UNK**, 0x2C) = (M2C_UNK*)&lbl_8_data_15D24[0];
 		M2C_FIELD(arg0->unk2B0, s32*, 0x1C)      = 0;
 	}
 	temp_r3_3 = arg0->unkE8;
@@ -2733,7 +2765,7 @@ TObject* fn_8_A18A0(TObject* arg0, M2C_UNK arg_sp0)
 			var_r29 += 1;
 		} while (var_r29 < 3);
 	}
-	arg0->unkE4 = &lbl_8_data_15BF0;
+	arg0->unkE4 = (M2C_UNK*)&lbl_8_data_15BF0[0];
 	arg0->unkD4 = 0;
 	temp_r0_2   = *M2C_FIELD(lbl_8042C380, u32**, 0x28);
 	if (temp_r0_2 != 0U) {
@@ -2782,8 +2814,8 @@ void fn_8_A1E98(void)
 void fn_8_A1EB8(void)
 {
 	lbl_8_bss_1910 = 0;
-	fn_800FE248(0xB, &lbl_8_data_15D24);
-	fn_800FE248(0xB, &lbl_8_data_15BF0);
+	fn_800FE248(0xB, (M2C_UNK*)&lbl_8_data_15D24[0]);
+	fn_800FE248(0xB, (M2C_UNK*)&lbl_8_data_15BF0[0]);
 	M2C_FIELD(&lbl_8_bss_18A8, s32*, 0)    = 0;
 	M2C_FIELD(&lbl_8_bss_18A8, s32*, 4)    = 0;
 	M2C_FIELD(&lbl_8_bss_18A8, s32*, 8)    = 0;
@@ -2872,8 +2904,8 @@ void fn_8_A1F68(M2C_UNK arg_sp0)
 		fn_8005BF5C((u32*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0xC));
 	}
 	lbl_8_bss_190C = 0;
-	fn_800FE274(0xB, &lbl_8_data_15BF0);
-	fn_800FE274(0xB, &lbl_8_data_15D24);
+	fn_800FE274(0xB, (M2C_UNK*)&lbl_8_data_15BF0[0]);
+	fn_800FE274(0xB, (M2C_UNK*)&lbl_8_data_15D24[0]);
 	lbl_8_bss_1910 = 0;
 }
 
