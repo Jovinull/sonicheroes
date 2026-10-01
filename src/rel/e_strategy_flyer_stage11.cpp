@@ -1918,7 +1918,7 @@ void fn_8_A0668(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x154) = (s32)M2C_FIELD(lbl_8_rodata_1854, s32*, 0x14);
 				return;
 			}
-			M2C_FIELD(arg0, f32*, 0x140) = 0.0f;
+			M2C_FIELD(arg0, f32*, 0x140) = (f32)M2C_FIELD(lbl_8_rodata_183C, f32*, 0);
 			M2C_FIELD(arg0, f32*, 0x144) = (f32)M2C_FIELD(lbl_8_rodata_183C, f32*, 4);
 			M2C_FIELD(arg0, f32*, 0x148) = (f32)M2C_FIELD(lbl_8_rodata_183C, f32*, 8);
 			M2C_FIELD(arg0, s32*, 0x14C) = (s32)M2C_FIELD(lbl_8_rodata_1854, s32*, 0);
