@@ -4005,6 +4005,14 @@ config.custom_build_rules = [
         "description": "FIX e_s12bone_stage11.cpp compiler-only codegen",
     },
     {
+        "name": "fix_wall_switch_symbols",
+        "command": (
+            f"$python tools/fix_wall_switch_symbols.py $in $out "
+            f"--objcopy {objcopy_path} --objdump {objdump_path}"
+        ),
+        "description": "FIX e_wall_stage11 switch-table symbol",
+    },
+    {
         "name": "fix_no_ottotto_collision_stage11_codegen",
         "command": "$python tools/fix_no_ottotto_collision_stage11_codegen.py $in $out",
         "description": "FIX no_ottotto_collision_stage11.cpp compiler-only codegen",
@@ -4344,6 +4352,12 @@ config.custom_build_steps = {
             "rule": "fix_e_s12bone_stage11_codegen",
             "inputs": "build/G9SE8P/src/rel/e_s12bone_stage11.o",
             "implicit": ["tools/fix_e_s12bone_stage11_codegen.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/wall-switch-symbols.stamp",
+            "rule": "fix_wall_switch_symbols",
+            "inputs": "build/G9SE8P/src/rel/e_wall_stage11.o",
+            "implicit": ["tools/fix_wall_switch_symbols.py", str(binutils_dir)],
         },
         {
             "outputs": "build/G9SE8P/no-ottotto-collision-stage11-codegen.stamp",
