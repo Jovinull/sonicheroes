@@ -1,57 +1,20 @@
-#include "types.h"
+#include "cri/sfxset.h"
 
-typedef struct SfxHandle {
-	u32 unk0;
-	u32 unk4;
-	u32 unk8;
-	u32 unkC;
-	s32 tag_valid;
-	s32 tag_x;
-	s32 tag_y;
-	u32 unk1C;
-	void* convert_handle;
-	u32 out_zoffset;
-	u32 out_zscale;
-	void* frame_handle;
-	u32 output_mode;
-	u32 max_alpha;
-	void* tables[10];
-	u32 unk60;
-	u32 unk64;
-} SfxHandle;
-
-typedef struct SfxFrameInfo {
-	u8 unk0[0x4C];
-	void* stream_info;
-} SfxFrameInfo;
-
-typedef struct SudPlane {
-	s32 address;
-	s32 stride;
-	s32 remaining;
-} SudPlane;
-
-typedef struct SudPlanes {
-	u32 unk0;
-	SudPlane y;
-	u32 unk10;
-	SudPlane u;
-	u32 unk20;
-	SudPlane v;
-} SudPlanes;
-
-extern void fn_17_E89C(void*);
-extern void fn_17_E8B8(void*);
-extern void fn_17_10664(void*, void*);
-extern void fn_17_EB0C(void*);
-extern void fn_17_EB50(void*);
-extern void fn_17_108A8(void*, s32, s32);
-extern void* fn_80221610(void*, const char*, const char*, void*);
+/*
+ * Reviewed CRI SFXSET boundary: all 29 functions at 0x8B98--0x8EA8 and
+ * the two format tags at rodata 0x408--0x418; no private mutable state.
+ * The first three helpers operate on the same Y/Cb/Cr frames consumed by
+ * SFXCNV. Correlated PS2 names include SFX_SetMaxRowToYccPln,
+ * sfxset_ShiftBufInfByLine and SFX_ShiftYccPtrByLine. Together with the
+ * adjacent SUD/version and SFXCNV/error-string families, this supports the
+ * vendor-unit boundary; no original GameCube map or source filename survives.
+ * C is the reviewed vendor ABI classification, not proof of historical language.
+ */
 
 const char lbl_17_rodata_408[5] = "SFXZ";
 const char lbl_17_rodata_410[8] = "SFXINFE";
 
-void fn_17_8B98(SudPlanes* planes, s32 width)
+void fn_17_8B98(SfxPlanes* planes, s32 width)
 {
 	s32 half = width / 2;
 	s32 even = half * 2;
@@ -62,18 +25,18 @@ void fn_17_8B98(SudPlanes* planes, s32 width)
 	planes->v.remaining = half;
 }
 
-void fn_17_8BC4(SudPlane* plane, s32 rows)
+void fn_17_8BC4(SfxPlane* plane, s32 rows)
 {
 	s32 stride    = plane->stride;
 	s32 remaining = plane->remaining;
 	s32 offset    = rows * stride;
-	s32 address   = plane->address;
+	u8* address   = plane->address;
 
 	plane->address   = address + offset;
 	plane->remaining = remaining - rows;
 }
 
-void fn_17_8BE8(SudPlanes* planes, s32 rows)
+void fn_17_8BE8(SfxPlanes* planes, s32 rows)
 {
 	s32 y_rows;
 	s32 chroma_rows;
@@ -88,22 +51,22 @@ void fn_17_8BE8(SudPlanes* planes, s32 rows)
 
 u32 fn_17_8C68(SfxHandle* handle)
 {
-	return handle->unk64;
+	return handle->unk_0x64;
 }
 
 void fn_17_8C70(SfxHandle* handle, u32 value)
 {
-	handle->unk64 = value;
+	handle->unk_0x64 = value;
 }
 
 u32 fn_17_8C78(SfxHandle* handle)
 {
-	return handle->unk60;
+	return handle->unk_0x60;
 }
 
 void fn_17_8C80(SfxHandle* handle, u32 value)
 {
-	handle->unk60 = value;
+	handle->unk_0x60 = value;
 }
 
 u32 fn_17_8C88(SfxHandle* handle)
@@ -116,29 +79,29 @@ void fn_17_8C90(SfxHandle* handle, u32 value)
 	handle->output_mode = value;
 }
 
-void fn_17_8C98(SfxHandle* handle)
+void fn_17_8C98(SfxHandle* handle, s32* first, s32* second, s32* mode)
 {
-	fn_17_E89C(handle->frame_handle);
+	fn_17_E89C(handle->frame_handle, first, second, mode);
 }
 
-void fn_17_8CBC(SfxHandle* handle)
+void fn_17_8CBC(SfxHandle* handle, s32 first, s32 second, s32 mode)
 {
-	fn_17_E8B8(handle->frame_handle);
+	fn_17_E8B8(handle->frame_handle, first, second, mode);
 }
 
-void fn_17_8CE0(SfxHandle* handle, SfxFrameInfo* frame)
+void fn_17_8CE0(SfxHandle* handle, SfxFrameInfo* frame, s32* first, s32* second)
 {
-	fn_17_10664(handle->convert_handle, frame->stream_info);
+	fn_17_10664(handle->convert_handle, frame->index, first, second);
 }
 
-void fn_17_8D08(SfxHandle* handle)
+void fn_17_8D08(SfxHandle* handle, float* near_z, float* far_z)
 {
-	fn_17_EB0C(handle->convert_handle);
+	fn_17_EB0C(handle->convert_handle, near_z, far_z);
 }
 
-void fn_17_8D2C(SfxHandle* handle)
+void fn_17_8D2C(SfxHandle* handle, float near_z, float far_z)
 {
-	fn_17_EB50(handle->convert_handle);
+	fn_17_EB50(handle->convert_handle, near_z, far_z);
 }
 
 u32 fn_17_8D50(SfxHandle* handle)
@@ -214,24 +177,24 @@ void fn_17_8E5C(SfxHandle* handle, s32 index, void* table)
 
 void fn_17_8E74(SfxHandle* handle, u32* a, u32* b)
 {
-	*a = handle->unk8;
-	*b = handle->unkC;
+	*a = handle->unk_0x08;
+	*b = handle->unk_0x0C;
 }
 
 void fn_17_8E88(SfxHandle* handle, u32 a, u32 b)
 {
-	handle->unk8 = a;
-	handle->unkC = b;
+	handle->unk_0x08 = a;
+	handle->unk_0x0C = b;
 }
 
 u32 fn_17_8E94(SfxHandle* handle)
 {
-	return handle->unk4;
+	return handle->unk_0x04;
 }
 
 void fn_17_8E9C(SfxHandle* handle, u32 value)
 {
-	handle->unk4 = value;
+	handle->unk_0x04 = value;
 }
 
 void fn_17_8EA4(void) { }
