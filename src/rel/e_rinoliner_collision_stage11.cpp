@@ -154,7 +154,7 @@ static M2C_UNK lbl_8_data_17168;        /* unable to generate initializer: unkno
 static M2C_UNK gap_04_00017171_data;    /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_17174;        /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001717D_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK rinoColObjectFieldNames; /* unable to generate initializer: unknown type */
+static M2C_UNK rinoColObjectFieldNames[2] = { 0, 0 };
 static char lbl_8_data_171A0[] = "START";
 static M2C_UNK gap_04_000171A6_data; /* unable to generate initializer: unknown type */
 static char lbl_8_data_171A8[] = "END";
