@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rename compiler-generated enemy state tables to their retail symbols."""
+"""Rename compiler-generated stage11 data symbols to their retail names."""
 
 import argparse
 import shutil
@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 SYMBOL_RENAMES = {
+    "e_capture.o": [("@507", "lbl_8_rodata_1748", 0x4)],
     "e_wall_stage11.o": [
         ("@292", "jumptable_8_data_17338", 0x40),
         ("@407", "lbl_8_rodata_1D90", 0x8),
@@ -24,7 +25,7 @@ SYMBOL_RENAMES = {
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("object", type=Path, help="compiled enemy REL object")
+    parser.add_argument("object", type=Path, help="compiled stage11 REL object")
     parser.add_argument("stamp", type=Path, help="stamp file to write on success")
     parser.add_argument("--objcopy", type=Path, required=True)
     parser.add_argument("--objdump", type=Path, required=True)

@@ -4005,12 +4005,12 @@ config.custom_build_rules = [
         "description": "FIX e_s12bone_stage11.cpp compiler-only codegen",
     },
     {
-        "name": "fix_stage11_switch_symbols",
+        "name": "fix_stage11_symbols",
         "command": (
-            f"$python tools/fix_stage11_switch_symbols.py $in $out "
+            f"$python tools/fix_stage11_symbols.py $in $out "
             f"--objcopy {objcopy_path} --objdump {objdump_path}"
         ),
-        "description": "FIX stage11 enemy switch-table symbols",
+        "description": "FIX stage11 compiler-generated data symbols",
     },
     {
         "name": "fix_no_ottotto_collision_stage11_codegen",
@@ -4354,22 +4354,28 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_e_s12bone_stage11_codegen.py"],
         },
         {
-            "outputs": "build/G9SE8P/wall-switch-symbols.stamp",
-            "rule": "fix_stage11_switch_symbols",
+            "outputs": "build/G9SE8P/capture-symbols.stamp",
+            "rule": "fix_stage11_symbols",
+            "inputs": "build/G9SE8P/src/rel/e_capture.o",
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/wall-symbols.stamp",
+            "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/e_wall_stage11.o",
-            "implicit": ["tools/fix_stage11_switch_symbols.py", str(binutils_dir)],
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {
-            "outputs": "build/G9SE8P/turtle-switch-symbols.stamp",
-            "rule": "fix_stage11_switch_symbols",
+            "outputs": "build/G9SE8P/turtle-symbols.stamp",
+            "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/e_turtle_stage11.o",
-            "implicit": ["tools/fix_stage11_switch_symbols.py", str(binutils_dir)],
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {
-            "outputs": "build/G9SE8P/tree-switch-symbols.stamp",
-            "rule": "fix_stage11_switch_symbols",
+            "outputs": "build/G9SE8P/tree-symbols.stamp",
+            "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/e_tree_stage11.o",
-            "implicit": ["tools/fix_stage11_switch_symbols.py", str(binutils_dir)],
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {
             "outputs": "build/G9SE8P/no-ottotto-collision-stage11-codegen.stamp",
