@@ -1168,7 +1168,7 @@ void fn_8_99318(TObject* arg0)
 	RwFrame* temp_r30_3;
 	RwFrame* temp_r30_4;
 	RwFrame* temp_r30_5;
-	s16 var_r0_4;
+	s32 var_r0_4;
 	s32 temp_r0;
 	s32 temp_r0_2;
 	s32 temp_r3_2;
