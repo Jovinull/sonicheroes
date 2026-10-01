@@ -601,8 +601,8 @@ void fn_8_A8F7C(void* arg0)
 void fn_8_A8FCC(void* arg0)
 {
 	f32 temp_f1;
-	f32 temp_f30;
 	f32 temp_f31;
+	f32 temp_f30;
 
 	temp_f1 = fn_801991B4((u8*)((u32)arg0 + 0xBC));
 	if (temp_f1 > 0.0f) {

@@ -54,7 +54,7 @@ s32 fn_8005B8D8(M2C_UNK*);                                         /* extern */
 s32 fn_8005B9F0(s32);                                              /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                                     /* extern */
 M2C_UNK fn_8005D5C8(s32, s32);                                     /* extern */
-M2C_UNK fn_800B4A38(M2C_UNK, f32*, M2C_UNK, M2C_UNK, s8, M2C_UNK); /* extern */
+M2C_UNK fn_800B4A38(u32, s32, f32*, M2C_UNK, M2C_UNK, s8, M2C_UNK); /* extern */
 u32 fn_800BB0D4(s32, s32, M2C_UNK*);                               /* extern */
 u32 fn_800BB92C(s32, s32, M2C_UNK*);                               /* extern */
 s32 fn_800BC6CC(s32, M2C_UNK*);                                    /* extern */
@@ -97,14 +97,12 @@ extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 extern u32 lbl_8042C388;
 static u32 lbl_8_data_18298[2] = { 0U, 0U };
-static M2C_UNK lbl_8_data_182A0;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000182AF_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_182B0;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000182BF_data; /* unable to generate initializer: unknown type */
-static M2C_UNK treeObjectFieldNames; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_182C8;     /* unable to generate initializer: unknown type */
+static char lbl_8_data_182A0[] = "scale(def:1.0)";
+static char lbl_8_data_182B0[] = "direction : up";
+static char* treeObjectFieldNames[2] = { lbl_8_data_182A0, lbl_8_data_182B0 };
+static char lbl_8_data_182C8[] = "direction : down";
 static M2C_UNK gap_04_000182D9_data; /* unable to generate initializer: unknown type */
-static M2C_UNK* lbl_8_data_182DC[2] = { &lbl_8_data_182B0, &lbl_8_data_182C8 };
+static char* lbl_8_data_182DC[2]     = { lbl_8_data_182B0, lbl_8_data_182C8 };
 static u32 lbl_8_data_182E4[12]     = { 0x0008FFE0, 0x00000002, 0x00000000, 0x418C0000, 0x00000000,
 	0x41700000, 0x418C0000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
 static M2C_UNK lbl_8_data_18314;     /* unable to generate initializer: unknown type */
@@ -277,7 +275,7 @@ void fn_8_C4108(void* arg0)
 			sp14[2] = M2C_FIELD(arg0, f32*, 0xC0);
 			sp14[1] += lbl_8_rodata_1F30[0] * M2C_FIELD(arg0, f32*, 0xD0);
 			if ((u32)lbl_8042C388 != 0U) {
-				fn_800B4A38(0x5A17, sp14, 0, 1, (s8)lbl_8_bss_1C40, 0);
+				fn_800B4A38(lbl_8042C388, 0x5A17, sp14, 0, 1, (s8)lbl_8_bss_1C40, 0);
 			}
 		}
 	}

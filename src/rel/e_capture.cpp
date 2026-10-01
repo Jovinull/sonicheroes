@@ -366,6 +366,44 @@ void** fn_8_9EB28();                                              /* extern */
 void captureObjectGlobalArrayDtor();                              /* static */
 void fn_8_9B920(TObject* arg0);                                   /* static */
 void fn_8_9C054(TObject* arg0);                                   /* static */
+void* fn_8_9C4BC(void*, s16);
+void* fn_8_9D3BC(void*, s16);
+void fn_8_9AB68(void*, u32, s32);
+void fn_8_99318(TObject*);
+void fn_8_992E4(TObject*);
+void fn_8_99254(void*);
+void fn_8_990C4(void*, M2C_UNK);
+void fn_8_98FAC(void*);
+void fn_8_98294(void*);
+void fn_8_980F8(void*, s32);
+void fn_8_981B8(void*, void*);
+void fn_8_9CAF0(void*, void*);
+void fn_8_33D90(void);
+void fn_8_33D94(void);
+void fn_8_33D98(void);
+void fn_8_33DA0(void);
+void fn_8_33DA4(void);
+void fn_800A6F38(void);
+void fn_800A6EA8(void);
+void fn_800A6DD4(void);
+void PDisp__7TObjectFv(void);
+void ImmAftSetRaster__7TObjectFv(void);
+void Debug__7TObjectFv(void);
+void Error__7TObjectFPc(void);
+void Render__7TObjectFv(void);
+void fn_800A3F60(void);
+void fn_800A2F88(void);
+void fn_800A2E24(void);
+void fn_800A327C(void);
+void fn_800A324C(void);
+void fn_800A321C(void);
+void fn_800A314C(void);
+void fn_800A6D60(void);
+void fn_800A6D58(void);
+void fn_800A3D6C(void);
+void fn_800A2C6C(void);
+void fn_800A31A0(void);
+void fn_800A3148(void);
 extern M2C_UNK fn_80113C2C;
 extern M2C_UNK fn_80113C7C;
 extern M2C_UNK fn_8_9D45C;
@@ -451,7 +489,19 @@ static u8 lbl_8_data_1583A             = 0;
 static u8 lbl_8_data_1583B             = 1;
 static char lbl_8_data_1583C[]         = "TObjEnemyCapture";
 static const char* lbl_8_data_15850    = lbl_8_data_1583C;
-static M2C_UNK lbl_8_data_15854; /* unable to generate initializer: unknown type */
+static M2C_UNK* lbl_8_data_15854[42] = {
+	NULL, NULL, (M2C_UNK*)fn_8_9C4BC, (M2C_UNK*)fn_800A6F38, (M2C_UNK*)fn_800A6EA8,
+	(M2C_UNK*)fn_800A6DD4, (M2C_UNK*)PDisp__7TObjectFv, (M2C_UNK*)ImmAftSetRaster__7TObjectFv,
+	(M2C_UNK*)Debug__7TObjectFv, (M2C_UNK*)Error__7TObjectFPc, (M2C_UNK*)Render__7TObjectFv,
+	NULL, NULL, (M2C_UNK*)fn_8_9D3BC, (M2C_UNK*)fn_800A3F60, (M2C_UNK*)fn_800A2F88,
+	(M2C_UNK*)fn_800A2E24, (M2C_UNK*)fn_800A327C, (M2C_UNK*)fn_800A324C, (M2C_UNK*)fn_800A321C,
+	(M2C_UNK*)fn_8_9AB68, (M2C_UNK*)fn_8_99318, (M2C_UNK*)fn_8_992E4, (M2C_UNK*)fn_8_99254,
+	(M2C_UNK*)fn_8_990C4, (M2C_UNK*)fn_8_98FAC, (M2C_UNK*)fn_8_33D90, (M2C_UNK*)fn_8_33D94,
+	(M2C_UNK*)fn_800A314C, (M2C_UNK*)fn_800A6D60, (M2C_UNK*)fn_800A6D58, (M2C_UNK*)fn_8_98294,
+	(M2C_UNK*)fn_800A3D6C, (M2C_UNK*)fn_800A2C6C, (M2C_UNK*)fn_8_980F8, (M2C_UNK*)fn_8_33D98,
+	(M2C_UNK*)fn_800A31A0, (M2C_UNK*)fn_8_981B8, (M2C_UNK*)fn_800A3148, (M2C_UNK*)fn_8_33DA0,
+	(M2C_UNK*)fn_8_33DA4, (M2C_UNK*)fn_8_9CAF0,
+};
 static char lbl_8_data_159BC[]         = "en_capture.one";
 static char captureObjectDisplayName[] = "CAPTURE OBJECT";
 static char captureObjectFieldTypes[]  = "ccccfffif";
@@ -484,7 +534,7 @@ static u32 lbl_8_data_157C4[4] = { 0x41545441, 0x434B2049, 0x4E544552, 0x56414C0
 
 void fn_8_98060(void* arg0)
 {
-	s16 var_r0;
+	s32 var_r0;
 	s32 temp_r3;
 	void* temp_r3_2;
 
@@ -1168,7 +1218,7 @@ void fn_8_99318(TObject* arg0)
 	RwFrame* temp_r30_3;
 	RwFrame* temp_r30_4;
 	RwFrame* temp_r30_5;
-	s16 var_r0_4;
+	s32 var_r0_4;
 	s32 temp_r0;
 	s32 temp_r0_2;
 	s32 temp_r3_2;
@@ -1729,7 +1779,6 @@ void fn_8_9A2F4(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4)  = 1;
 			if ((u32)lbl_8042C388 != 0U) {
 				fn_800B4A38(lbl_8042C388, 0x4013, (u8*)arg0 + 0x140, 0, 1, 0, 0);
-				return;
 			}
 		case 2:
 			return;
@@ -2817,7 +2866,7 @@ void* fn_8_9C4BC(void* arg0, s16 arg1)
 	void* temp_r3_2;
 
 	if (arg0 != NULL) {
-		M2C_FIELD(arg0, M2C_UNK**, 0x18) = &lbl_8_data_15854;
+		M2C_FIELD(arg0, M2C_UNK**, 0x18) = (M2C_UNK*)&lbl_8_data_15854;
 		M2C_FIELD(arg0, void**, 0xB4)    = (void*)((u8*)&lbl_8_data_15854 + 0x2C);
 		temp_r0                          = M2C_FIELD(arg0, s32*, 0x278);
 		if (temp_r0 != -1) {
@@ -2895,7 +2944,7 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 
 	fn_800A714C();
 	__ct__10HAnimClassFv((HAnimClass*)((u8*)arg0 + 0x240));
-	arg0->unk18 = &lbl_8_data_15854;
+	arg0->unk18 = (M2C_UNK*)&lbl_8_data_15854;
 	arg0->unkB4 = (u8*)&lbl_8_data_15854 + 0x2C;
 	__construct_array((M2C_UNK*)((u8*)arg0 + 0x330), &fn_8_9D45C, (M2C_UNK*)NULL, 0x24, 0x10);
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_15850;

@@ -430,7 +430,7 @@ void fn_8_A2840(void* arg0, s32 arg1)
 		case 1:
 			if ((s32)M2C_FIELD(&lbl_8029C310, s32*, 0x2C) == 0x15) {
 				temp_r0 = M2C_FIELD(arg0, s32*, 0x1C);
-				if ((temp_r0 < 4) && (fn_80100C88(*(&lbl_8_rodata_18AC + temp_r0)) == 1)) {
+				if ((temp_r0 < 4) && (fn_80100C88(*((u8*)&lbl_8_rodata_18AC + temp_r0)) == 1)) {
 					M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 					M2C_FIELD(arg0, s32*, 4) = 6;
@@ -579,7 +579,8 @@ void fn_8_A2D48(void* arg0, u32 arg1, s32 arg2)
 				case 1: /* switch 2 */
 					if ((s32)M2C_FIELD(&lbl_8029C310, s32*, 0x2C) == 0x15) {
 						temp_r0 = M2C_FIELD(arg0, s32*, 0x1C);
-						if ((temp_r0 < 4) && (fn_80100C88(*(&lbl_8_rodata_18AC + temp_r0)) == 1)) {
+						if ((temp_r0 < 4)
+						    && (fn_80100C88(*((u8*)&lbl_8_rodata_18AC + temp_r0)) == 1)) {
 							M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
 							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 3);
@@ -2622,7 +2623,7 @@ void flyerObjectUnload(void)
 
 void flyerObjectLoad(void)
 {
-	M2C_UNK sp8;
+	char sp8[0x40];
 	s32 temp_r3;
 	u32 var_r0;
 
