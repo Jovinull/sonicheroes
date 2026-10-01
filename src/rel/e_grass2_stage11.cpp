@@ -173,7 +173,7 @@ static M2C_UNK lbl_8_data_185BC;       /* unable to generate initializer: unknow
 static M2C_UNK gap_04_000185CB_data;   /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_185CC;       /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_000185DB_data;   /* unable to generate initializer: unknown type */
-static M2C_UNK grass2ObjectFieldNames; /* unable to generate initializer: unknown type */
+static M2C_UNK grass2ObjectFieldNames[3] = { 0, 0, 0 };
 static M2C_UNK lbl_8_data_185E8;       /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_000185F9_data;   /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_185FC[2] = { &lbl_8_data_185A8, &lbl_8_data_185E8 };
@@ -186,7 +186,7 @@ static M2C_UNK lbl_8_data_18650;     /* unable to generate initializer: unknown 
 static M2C_UNK gap_04_0001865B_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_1865C = &lbl_8_data_18650;
 static M2C_UNK lbl_8_data_18660;        /* unable to generate initializer: unknown type */
-static M2C_UNK grass2ObjectDisplayName; /* unable to generate initializer: unknown type */
+static char grass2ObjectDisplayName[] = "GRASS2 OBJECT";
 static M2C_UNK gap_04_000186AA_data;    /* unable to generate initializer: unknown type */
 static u32 grass2ObjectFieldTypes[1] = { 0x63634600 };
 static u32 lbl_8_data_186B0[5] = { 0x7331315F, 0x6F6E5F67, 0x72617373, 0x61316C2E, 0x616E6D00 };
