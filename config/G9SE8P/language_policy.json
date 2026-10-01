@@ -19,7 +19,6 @@
     "advertiseD/prolog.c",
     "autosaveD/prolog.c",
     "game/cri/adapter.c",
-    "game/cri/axrna.c",
     "game/cri/fn_8021F410.c",
     "game/cri/gcci.c",
     "game/cri/lsc.c",
@@ -47,6 +46,7 @@
     "autosaveD/window_input.c"
   ],
   "c_sources_compiled_as_cpp": [
+    "game/cri/axrna.c",
     "game/cri/rnares.c",
     "game/cri/svm.c",
     "game/skyfs_adx.c",

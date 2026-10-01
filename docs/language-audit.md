@@ -932,3 +932,58 @@ fragment, match byte-for-byte. GC/1.3.2 emits a duplicate weak copy of
 the post-compile normalizer removes that compiler-only atom and leaves
 exception cleanup bound to the existing retail `TObject` delete routine. It
 does not alter any retail function instruction bytes.
+
+### CRI AXRNA compiler-mode exception
+
+`game/cri/axrna.c` retains its reviewed vendor C boundary and explicitly uses
+the existing GC/1.3.2 compiler in C++ mode. The AXRNA 1.02 banner, CRI stream
+interfaces, adapter calls and GameCube AX/ARAM interfaces identify the module.
+No correlated PS2 source marker establishes the historical language of this
+GameCube-specific implementation; C linkage and compiler mode are separate
+conclusions.
+
+The seven private BSS objects are a reference count, aligned-buffer pointer,
+two-word configuration, scalar configuration, 32-word workspace, 4,160-byte
+buffer and sixteen 232-byte handles. Native C mode orders this storage by first
+reference. Native C++ mode emits the required declaration-order pool, without
+an unused ordering function or a postprocessor. The exception follows the
+already reviewed CRI SFX vendor-boundary policy rather than asserting C++
+source from a byte match. The signed `long` clamp/volume temporaries are 32-bit
+target values; their recovered code generation does not establish an original
+CRI typedef spelling.
+
+The nineteen-function boundary is `0x80223500` through `0x80224CD0`, ending
+with the error-callback setter. The following size/address getters and handle
+destructor are grouped with RNARES's allocator, shutdown and initialization
+by their GameCube data and call relationships. This is an inferred source
+boundary, not direct filename metadata. AXRNA owns 500 bytes of `.rodata`,
+128 bytes of `.data` and 8,020 bytes of `.bss`; the four bytes before the next
+rodata/BSS units are linker alignment, not synthetic source padding. Internal
+data names and local bindings record their recovered private roles, not
+historical symbol spellings.
+
+Chunk copies use CodeWarrior's `__memcpy` intrinsic for the actual eight-byte
+descriptor operation. It emits only the native loads/stores, with no runtime
+helper. Typed channel-array access and `slot * 2 + channel` let the compiler
+derive the original constructor induction variables. The AX sample-rate
+record contains the seven halfwords consumed by its native callee, and ARQ
+request/callback declarations agree with the existing ARQ implementation.
+
+The rate conversion uses a typed inline record-filling helper, with an explicit
+signed-to-unsigned conversion for the adjusted rate. Signed 32-bit `long`
+constants preserve the normal-rate calculation's native scheduling. This
+replaces the inherited per-function `opt_loop_invariants off` override; the
+completed unit needs no such optimization override or artificial barrier.
+
+Initialization deliberately reads the version-banner pointer before testing
+the reference count, even when already initialized. The value is subsequently
+discarded. Independent native LSC and SJ initializers likewise load their
+version anchors before initialization checks. The volatile pointer models this
+observable read; the original qualifier and source spelling remain unknown.
+It is not inferred to be mutable hardware state.
+
+Validation covers all nineteen functions, all four allocated sections (bytes,
+type, flags and alignment), 33 sized symbols and 166 resolved relocations.
+The source-linked `G9SE8P` release/all-source build, 54 automated policy tests,
+both policy checkers and all eighteen artifact hashes pass. This is build and
+binary verification, not runtime or physical-hardware testing.
