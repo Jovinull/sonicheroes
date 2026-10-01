@@ -244,7 +244,7 @@ FlyerAnimRecord lbl_8_data_16070[2] = {
 	{ 0, 3, 0, 0, 0xBF800000, 0x3D800000, 0x3E4CCCCD, lbl_8_data_16060, 0x10 },
 	{ 0, 0xE, 0, 0, 0, 0, 0, NULL, 0 },
 };
-static M2C_UNK flyerObjectFieldNames; /* unable to generate initializer: unknown type */
+static M2C_UNK flyerObjectFieldNames[3] = { 0, 0, 0 };
 static char lbl_8_data_16154[] = "NONE";
 static char lbl_8_data_1615C[] = "MACHINE GUN";
 static char lbl_8_data_16168[] = "MISSILE";
