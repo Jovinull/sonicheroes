@@ -1032,8 +1032,9 @@ alignment, not owned source objects. The initializer's version-anchor read is
 observable in the native object; its historical qualifier remains unknown.
 
 The shared creator contract takes a buffer pointer, which the implementation
-stores and uses for byte-address arithmetic. Chunk addresses remain `void*`;
-no byte signedness is inferred from their representation. The corresponding
+stores and uses for byte-address arithmetic. The initial correction retained
+`void*` chunk addresses; the subsequent SJMEM audit below supplies positive
+signed-byte type evidence. The corresponding
 AXRNA integer-address-to-pointer conversion preserves its complete native
 object, including all nineteen functions and 166 relocations.
 
@@ -1044,3 +1045,54 @@ The source-linked G9SE8P release/all-source build, 54 automated tests, both
 policy checks and all eighteen artifact hashes pass. Neighboring SJMEM and
 SJCRS target objects are unchanged and their configured builds remain exact.
 This is binary/build verification, not runtime or hardware testing.
+
+### CRI SJMEM native reconstruction audit
+
+The thirteen-function run `0x802205DC`–`0x80220BF0` is the memory-backed
+stream implementation. Its creator installs the final error callback at
+`0x80220BC8`; the UUID, twelve-slot vtable, reference count and 32-entry,
+36-byte object pool belong to this same family. Limited PS2 symbols
+corroborate `sjmem_uuid` (16 bytes), `sjmem_vtbl` (48 bytes), `sjmem_obj`
+(1,152 bytes) and `sjmem_init_cnt`. No direct SJMEM source filename marker
+has been established, so the boundary and historical language remain inferred.
+
+The GameCube references require the reference count before the object pool.
+Native C mode instead emits the pool at its first use, before the counter;
+the prior object patcher rewrote the resulting BSS symbol offsets. As with
+SJRBF, GC/1.3.2 C++ mode supplies declaration-order private BSS without
+changing the vendor C boundary. The four-byte gaps after the 28-byte rodata
+and 1,156-byte BSS regions are linker alignment, not synthetic source objects.
+
+A narrow local PS2 `SLES_519.50` DWARF query with `stdump symbols --section
+.debug dwarf` identifies `SJCK` at DIE `0x45bb75`: size eight, `data` at
+offset zero with `pointer_to,signed_char`, and `len` at offset four with
+`signed_integer`. `SJ_OBJ` at DIE `0x45b819` has size four and a vtable
+pointer at offset zero. These are type facts only, not source or code
+recovered from that platform. They support `CriChunk.addr` as `s8*` and
+`size` as `s32`; historical GameCube qualifiers are not independently proven.
+The corrected address type compiles throughout the source set and preserves
+all allocated sections, 32 sized symbols and 79 normalized relocations of
+the completed SJRBF, SJUNI and shared utility objects.
+
+UngetChunk saves the original position and chunk length, computes a working
+rewind value with compound subtraction, and selects that value only when the
+original position-minus-length is positive. Both the condition and the
+computed result participate in the stored position; there is no dead read,
+empty condition or unused assignment. The compiler merges the repeated
+subtraction. This expression shape is a reconstruction inference, not proven
+historical source. Simplifying it to a direct ternary, or testing only the
+working value, changes the native operand allocation or load ordering. Two
+search candidates requiring empty conditions were rejected, not incorporated.
+
+All thirteen functions now match natively. The independent whole-object
+audit compares every allocated section's bytes, size, type, flags and
+alignment: `.text` 1,556 bytes, `.rodata` 28, `.data` 48 and `.bss` 1,156.
+All eighteen sized function/object symbols and 43 normalized relocations
+match, with no extra emitted helper or import. The old instruction/symbol
+postprocessor and synthetic storage pads are removed. The completed three
+neighboring SJ units also pass their complete section/symbol/relocation audit.
+
+The source-linked G9SE8P release and all-source builds, 54 automated tests,
+both policy checks and all eighteen artifact hashes pass. The linker input
+query selects the reconstructed SJMEM source object. The only configured
+release target is G9SE8P; this is not runtime or physical-hardware validation.

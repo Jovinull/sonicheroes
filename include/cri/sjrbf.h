@@ -8,7 +8,6 @@ extern "C" {
 #endif
 
 typedef struct SjObj SjObj;
-typedef void (*SjErrorFunc)(void* object, s32 error);
 
 s32 fn_80220BF0(SjObj* stream, s32 id, s32 index);
 s32 fn_80220C08(SjObj* stream);
