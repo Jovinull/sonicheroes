@@ -246,7 +246,22 @@ static struct _struct_lbl_8_data_15E0C_0xC lbl_8_data_15E0C[4]
     = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
 static char lbl_8_data_15E3C[]      = "TZakoRushCtrl";
 static const char* lbl_8_data_15E4C = lbl_8_data_15E3C;
-static M2C_UNK lbl_8_data_15E50; /* unable to generate initializer: unknown type */
+extern "C" {
+void fn_8_9EDB0(void);
+void fn_8_9EDB4(void*);
+TObject* fn_8_9EE60(TObject*, s16);
+void Disp__7TObjectFv();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
+}
+__declspec(section ".data") void* lbl_8_data_15E50[11] = {
+	NULL, NULL, (void*)fn_8_9EE60, (void*)fn_8_9EDB4, (void*)Disp__7TObjectFv,
+	(void*)fn_8_9EDB0, (void*)PDisp__7TObjectFv, (void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv, (void*)Error__7TObjectFPc, (void*)Render__7TObjectFv,
+};
 static char lbl_8_data_15E7C[] = "SNG_STG22.adx";
 static char lbl_8_data_15E8C[] = "en_eggmobile_stg25.one";
 static char lbl_8_data_15EA4[] = "en_eggmobile_stg22.one";
@@ -1099,7 +1114,7 @@ void fn_8_9EDB4(void* arg0)
 TObject* fn_8_9EE60(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
-		arg0->unk18 = &lbl_8_data_15E50;
+		arg0->unk18 = (M2C_UNK*)&lbl_8_data_15E50[0];
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			fn_800189A4(lbl_8042C148, arg0);
@@ -1111,7 +1126,7 @@ TObject* fn_8_9EE60(TObject* arg0, s16 arg1)
 TObject* fn_8_9EED4(TObject* arg0, TObject* arg1)
 {
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	arg0->unk18 = &lbl_8_data_15E50;
+	arg0->unk18 = (M2C_UNK*)&lbl_8_data_15E50[0];
 	arg0->unk0  = lbl_8_data_15E4C;
 	arg0->unk1E = 0x38;
 	arg0->unk30 = 0;
@@ -1128,7 +1143,7 @@ void fn_8_9EF3C(void)
 	temp_r3 = fn_80018A34(lbl_8042C148, 0x38);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C0FC);
-		temp_r3->unk18 = &lbl_8_data_15E50;
+		temp_r3->unk18 = (M2C_UNK*)&lbl_8_data_15E50[0];
 		temp_r3->unk0  = lbl_8_data_15E4C;
 		temp_r3->unk1E = 0x38;
 		temp_r3->unk30 = 0;
@@ -1780,7 +1795,7 @@ void fn_8_A0078(void* arg0, s32 arg1)
 						temp_r3                      = fn_80018A34(lbl_8042C148, 0x38);
 						if (temp_r3 != NULL) {
 							__ct__7TObjectFP7TObject(temp_r3, lbl_8042C0FC);
-							temp_r3->unk18 = &lbl_8_data_15E50;
+							temp_r3->unk18 = (M2C_UNK*)&lbl_8_data_15E50[0];
 							temp_r3->unk0  = lbl_8_data_15E4C;
 							temp_r3->unk1E = 0x38;
 							temp_r3->unk30 = 0;

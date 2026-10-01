@@ -476,7 +476,6 @@ static u32 lbl_8_data_156BC[24] = { 0x0000FF21, 0x00000400, 0x00000000, 0x40A000
 	0x00000000, 0x00000000, 0x00000000 };
 static M2C_UNK lbl_8_data_1572C;        /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_1575C;        /* unable to generate initializer: unknown type */
-static M2C_UNK captureObjectFieldNames; /* unable to generate initializer: unknown type */
 static char lbl_8_data_15808[]         = "NORMAL";
 static char lbl_8_data_15810[]         = "SPECIAL";
 static const char* lbl_8_data_15818[2] = { lbl_8_data_15808, lbl_8_data_15810 };
@@ -528,9 +527,18 @@ typedef struct ObjectEntry {
 static ObjectEntry captureObjectEntry;
 static u32 lbl_8_data_1571C[2] = { 0x656E5F63, 0x61703000 };
 static u32 lbl_8_data_15724[2] = { 0x656E5F63, 0x61703100 };
-static u32 lbl_8_data_15784[3] = { 0x41505045, 0x41522054, 0x59504500 };
-static u32 lbl_8_data_157A8[3] = { 0x53434F50, 0x45205241, 0x4E474500 };
-static u32 lbl_8_data_157C4[4] = { 0x41545441, 0x434B2049, 0x4E544552, 0x56414C00 };
+char lbl_8_data_15774[] = "CAPTURE TYPE";
+char lbl_8_data_15784[] = "APPEAR TYPE";
+char lbl_8_data_15790[] = "Not in use";
+char lbl_8_data_1579C[] = "MOVE RANGE";
+char lbl_8_data_157A8[] = "SCOPE RANGE";
+char lbl_8_data_157B4[] = "SCOPE OFFSET";
+char lbl_8_data_157C4[] = "ATTACK INTERVAL";
+char lbl_8_data_157D4[] = "ATTACK SPEED";
+char* captureObjectFieldNames[9] = {
+	lbl_8_data_15774, lbl_8_data_15784, lbl_8_data_15790, lbl_8_data_15790, lbl_8_data_1579C,
+	lbl_8_data_157A8, lbl_8_data_157B4, lbl_8_data_157C4, lbl_8_data_157D4,
+};
 
 void fn_8_98060(void* arg0)
 {
@@ -3309,7 +3317,7 @@ void captureObjectRegister(void)
 	captureObjectEntry.unk1E      = 4;
 	captureObjectEntry.unk21      = 0;
 	captureObjectEntry.fieldTypes = (const char*)captureObjectFieldTypes;
-	captureObjectEntry.fieldNames = (const char**)&captureObjectFieldNames;
+	captureObjectEntry.fieldNames = (const char**)captureObjectFieldNames;
 	if ((const char*)captureObjectFieldTypes != NULL) {
 		captureObjectEntry.flags |= 8;
 	} else {
