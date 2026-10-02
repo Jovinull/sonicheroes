@@ -314,17 +314,14 @@ void fn_8_A82A0(s32 arg0)
 
 void fn_8_A82A8(void* arg0)
 {
-	f32 sp14;
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	f32 sp8[4];
 
 	if ((void*)M2C_FIELD(arg0, void**, 0xE0) != NULL) {
-		sp8  = M2C_FIELD(arg0, f32*, 0xB0);
-		spC  = M2C_FIELD(arg0, f32*, 0xB4);
-		sp10 = M2C_FIELD(arg0, f32*, 0xB8);
-		sp14 = 20.0f;
-		if (fn_8019CE34(*lbl_8042C9A4, &sp8) != 0) {
+		sp8[0] = M2C_FIELD(arg0, f32*, 0xB0);
+		sp8[1] = M2C_FIELD(arg0, f32*, 0xB4);
+		sp8[2] = M2C_FIELD(arg0, f32*, 0xB8);
+		sp8[3] = lbl_8_rodata_19A4[0];
+		if (fn_8019CE34(*lbl_8042C9A4, sp8) != 0) {
 			fn_80113874(M2C_FIELD(arg0, s32*, 0xD8));
 			fn_8014FF2C((int)M2C_FIELD(arg0, void**, 0xE0));
 		}
