@@ -1338,11 +1338,9 @@ void fn_8_AA3B8(void* arg0, s32 arg1, s32 arg2)
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						temp_r31                 = M2C_FIELD(arg0, s32*, 8);
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
-						M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-						    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 3);
+						((TObjectDispatch*)arg0)->Release(M2C_FIELD(arg0, s32*, 4), 3);
 						M2C_FIELD(arg0, s32*, 4) = temp_r31;
-						M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
-						    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 0);
+						((TObjectDispatch*)arg0)->Release(M2C_FIELD(arg0, s32*, 4), 0);
 						return;
 					}
 					break;
@@ -1372,12 +1370,9 @@ void fn_8_AA3B8(void* arg0, s32 arg1, s32 arg2)
 
 M2C_UNK** fn_8_AA528(M2C_UNK** arg0, s16 arg1)
 {
-	s32 temp_cr0_eq;
-
-	temp_cr0_eq = arg0 == NULL;
-	if (temp_cr0_eq == 0) {
+	if (arg0 != NULL) {
 		*arg0 = (M2C_UNK*)lbl_8_data_16520;
-		if (temp_cr0_eq == 0) {
+		if (arg0 != NULL) {
 			*arg0 = (M2C_UNK*)lbl_8_data_16538;
 		}
 		if (arg1 > 0) {
