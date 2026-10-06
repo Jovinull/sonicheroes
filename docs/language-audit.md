@@ -43,6 +43,46 @@ delete routine, RenderWare callbacks, `RsGlobal`, pathname helpers and endian
 converter. Replacing those aliases changed only source or ELF symbol names,
 not instructions; every matching source object remained complete in objdiff.
 
+## Whole-unit drafts
+
+### Octree collision queries (nonmatching)
+
+`game/octreeColli.cpp` reconstructs all nine surviving bodies in the inferred
+GameCube range `0x800546F4`–`0x800569BC`, replacing six address-named fragments
+and adding neighbor traversal, axis-Y collision and line collision. It remains
+`NonMatching`; release builds link the original whole object. The former two
+sphere-query instruction postprocessors are no longer configured on this draft.
+
+Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2, commit
+`c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section .debug dwarf`)
+identifies `octreeColli.cpp` as C++ and its `OCTREE` member interfaces, including
+`GetNextNeighborNode` and both polygon-query methods. Independent GameCube
+correlation uses the 0x18C-byte shared class layout, child and neighbor traversal,
+packed polygon-index encoding, flag buffers and calls into triangle collision.
+Several PS2 helper methods are inlined on GameCube. The next GameCube routine
+uses gameplay globals and object allocation rather than this query family;
+the boundary remains an inference. Only minimal metadata facts are recorded.
+
+The source uses the shared octree types and ordinary automatic inlining.
+All nine bodies compile. Surface pruning and both capsule-list routines match
+at 100%; moving sphere is 98.67876%, stationary sphere 98.58382%, recursive
+small sphere 99.57365%, neighbor traversal 99.27215%, axis-Y 97.0059%, and line
+collision 91.29915%. Neighbor traversal has identical instruction count with
+floating-register differences; its optional output retains the retail
+uninitialized Y store (the routine computes only X/Z). Small-sphere recursion
+currently adds one coordinate-index truncation. The two sphere-query bodies
+are respectively four and eight bytes shorter; axis-Y is four bytes shorter
+and line collision four bytes longer. Register allocation, branch/load shape,
+function emission order and exception relocations remain unresolved. An extra
+156-byte flag-clearing helper is emitted. These are not native-match claims.
+The 16-byte child mask and 24-byte numeric pool match exactly.
+
+G9SE8P, the sole supported release target, passed `all_source`, full linking and
+report generation, all 18 artifact hashes, 55 automated tests and both policy
+checks. This validates the draft's build integration with the original object
+linked; it does not validate the native candidate's runtime behavior. No
+physical-hardware testing was performed.
+
 ## Completed batches
 
 ### Octree and collision-list translation unit

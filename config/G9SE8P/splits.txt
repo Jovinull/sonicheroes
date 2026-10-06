@@ -153,35 +153,12 @@ game/octree.cpp:
 	.text       start:0x80053FB8 end:0x800546F4
 	.sdata2     start:0x8042D3A0 end:0x8042D3B8
 
-game/fn_800546F4.cpp:
-	extab       start:0x80006554 end:0x8000655C
-	extabindex  start:0x8000CF04 end:0x8000CF10
-	.text       start:0x800546F4 end:0x80054900
-
-game/fn_80054900.cpp:
-	extab       start:0x8000655C end:0x80006574
-	extabindex  start:0x8000CF10 end:0x8000CF1C
-	.text       start:0x80054900 end:0x80054F08
-
-game/fn_80054F08.cpp:
-	extab       start:0x80006574 end:0x8000658C
-	extabindex  start:0x8000CF1C end:0x8000CF28
-	.text       start:0x80054F08 end:0x80055470
-
-game/fn_80055470.cpp:
-	extab       start:0x8000658C end:0x80006594
-	extabindex  start:0x8000CF28 end:0x8000CF34
-	.text       start:0x80055470 end:0x800556A0
-
-game/fn_800556A0.cpp:
-	extab       start:0x80006594 end:0x8000659C
-	extabindex  start:0x8000CF34 end:0x8000CF40
-	.text       start:0x800556A0 end:0x80055874
-
-game/fn_80055874.cpp:
-	extab       start:0x8000659C end:0x800065A4
-	extabindex  start:0x8000CF40 end:0x8000CF4C
-	.text       start:0x80055874 end:0x80055C7C
+game/octreeColli.cpp:
+	extab       start:0x80006554 end:0x800065BC
+	extabindex  start:0x8000CF04 end:0x8000CF70
+	.text       start:0x800546F4 end:0x800569BC
+	.data       start:0x80242B28 end:0x80242B38
+	.sdata2     start:0x8042D3B8 end:0x8042D3D0
 
 game/fn_80057524.cpp:
 	extab       start:0x800065E4 end:0x800065EC
