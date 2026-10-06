@@ -380,7 +380,7 @@ extern "C" void fn_8012D97C();
 extern "C" void fn_800CD138();
 extern "C" void fn_8002171C(void*);
 extern "C" void fn_80042310(void*, void*);
-extern "C" void* fn_80018A34(void*, s32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, s32);
 extern "C" void fn_8009DFE0(void*, s32, s32, s32, s32, s32, void*);
 extern "C" void fn_80066B48(void*, s32, s32);
 extern "C" void fn_8004F0F8(s32);
@@ -2355,19 +2355,19 @@ void ACTION::subEnd()
 		if (*(s32*)((u8*)this + 0x23C + player * 4) != -1) {
 			if (lbl_80303DC8[player] == 0) {
 				if (lbl_8042C180->field1E == 0) {
-					void* task = fn_80018A34(lbl_8042C148, 0x280);
+					void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 					if (task != 0)
 						fn_8009DFE0(task, 1, player, *(s32*)((u8*)this + 0x23C + player * 4),
 						    player, 0, lbl_8042C108);
 				} else {
 					u32 buttons = *(u32*)(lbl_8029BBD0 + lbl_802408F8[player] * 0x4C + 0x48);
 					if ((buttons & 0x100) != 0 && (buttons & 0x800) != 0) {
-						void* task = fn_80018A34(lbl_8042C148, 0x280);
+						void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 						if (task != 0)
 							fn_8009DFE0(task, 1, player, *(s32*)((u8*)this + 0x23C + player * 4),
 							    player, 1, lbl_8042C108);
 					} else {
-						void* task = fn_80018A34(lbl_8042C148, 0x280);
+						void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 						if (task != 0)
 							fn_8009DFE0(task, 1, player, *(s32*)((u8*)this + 0x23C + player * 4),
 							    player, 0, lbl_8042C108);
@@ -2895,17 +2895,17 @@ void ACTION::subInit()
 	do {
 		if (*(s32*)(playerAction + 0x23C) != -1 && *taskBase == 0) {
 			if (*(s8*)((u8*)lbl_8042C180 + 0x1E) == 0) {
-				void* task = fn_80018A34(lbl_8042C148, 0x280);
+				void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 				if (task != 0)
 					fn_8009DFE0(task, 1, j, *(s32*)(playerAction + 0x23C), j, 0, lbl_8042C108);
 			} else {
 				u32 buttons = *(u32*)(lbl_8029BBD0 + lbl_802408F8[j] * 0x4C + 0x48);
 				if ((buttons & 0x100) != 0 && (buttons & 0x800) != 0) {
-					void* task = fn_80018A34(lbl_8042C148, 0x280);
+					void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 					if (task != 0)
 						fn_8009DFE0(task, 1, j, *(s32*)(playerAction + 0x23C), j, 1, lbl_8042C108);
 				} else {
-					void* task = fn_80018A34(lbl_8042C148, 0x280);
+					void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 					if (task != 0)
 						fn_8009DFE0(task, 1, j, *(s32*)(playerAction + 0x23C), j, 0, lbl_8042C108);
 				}

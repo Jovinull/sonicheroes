@@ -151,7 +151,7 @@ u64 OSGetTime();
 void fn_8005751C();
 void fn_80057574();
 void fn_80018AB0(THeapCtrl*, int);
-void* fn_80018A34(THeapCtrl*, u32);
+void* Malloc__9THeapCtrlFUi(THeapCtrl*, u32);
 void fn_80057520(char*);
 }
 
@@ -261,7 +261,7 @@ void TMainTask::Finalize()
 
 static inline TObject* makeRoot(TObject* parent)
 {
-	TObject* object = (TObject*)fn_80018A34(lbl_8042C148, 40);
+	TObject* object = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 40);
 	if (object != 0) {
 		*(void**)((u8*)object + 0x18) = __vt__7TObject;
 		object->flags                 = 0;

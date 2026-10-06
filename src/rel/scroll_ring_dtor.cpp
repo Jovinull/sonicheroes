@@ -30,7 +30,7 @@ extern "C" void dtor_8005BD3C(void* motion, s32 flags);
 extern "C" void __dt__7TObjectFv(void* object, s32 flags);
 extern "C" void __destroy_new_array(void* array, void (*destructor)(void*, int));
 extern "C" void scrollRingFieldDtor(void*, int);
-extern "C" void fn_800189A4(void* heap, void* object);
+extern "C" void Free__9THeapCtrlFPv(void* heap, void* object);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" void* scrollRingVtableA[];
@@ -73,7 +73,7 @@ extern "C" void* scrollRingDtor(void* object, s16 flags)
 		}
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 		}
 	}
 	return object;

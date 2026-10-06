@@ -58,7 +58,7 @@ extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_800189A4(void* heap, TObject* object);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 
 // Defined by each module, renamed to this name in its own symbols.txt.
 extern "C" void* s31bobObjectdummyVtable[];
@@ -73,7 +73,7 @@ extern "C" S31BobDummy* s31bobObjectdummyDtor(S31BobDummy* object, s16 flags)
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;

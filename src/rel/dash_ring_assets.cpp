@@ -34,7 +34,7 @@ typedef struct ObjectEntry {
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 
-extern "C" void* fn_80018A34(void* heap, u32 size);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" void* dashRingCtor(void* object, void* owner);
@@ -47,7 +47,7 @@ extern "C" const char* dashRingFieldNames[];
 
 extern "C" void dashRingCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, 0x6C);
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x6C);
 
 	if (memory != NULL) {
 		dashRingCtor(memory, lbl_8042C110);

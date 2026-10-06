@@ -72,8 +72,8 @@ void* __ct__7TObjectFP7TObject(void*, void*);                   /* extern */
 void* __dt__7TObjectFv(void*, s32);                             /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                          /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                             /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                                  /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                     /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                        /* extern */
 M2C_UNK fn_8003BC38(M2C_UNK*);                                  /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);      /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                                  /* extern */
@@ -197,11 +197,11 @@ static struct _struct_lbl_8_data_18978_0x14 lbl_8_data_18978[2] = { { 0U }, { 0U
 static char lbl_8_data_189A0[]                                  = "type      : light";
 static M2C_UNK gap_04_000189B2_data; /* unable to generate initializer: unknown type */
 static char lbl_8_data_189B4[] = "direction : up";
-static M2C_UNK gap_04_000189C3_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_189C4;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000189D3_data;  /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000189C3_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_189C4;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000189D3_data; /* unable to generate initializer: unknown type */
 static M2C_UNK grassObjectFieldNames[2] = { 0, 0 };
-static char lbl_8_data_189E0[] = "type      : dark";
+static char lbl_8_data_189E0[]          = "type      : dark";
 static M2C_UNK gap_04_000189F1_data; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_189F4[2] = { lbl_8_data_189A0, lbl_8_data_189E0 };
 static char lbl_8_data_189FC[]         = "direction : down";
@@ -682,7 +682,7 @@ TObject* fn_8_C6B84(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -984,7 +984,7 @@ void grassObjectLoad(M2C_UNK arg_sp0)
 
 void grassObjectCreate(void)
 {
-	TObject* object = (TObject*)fn_80018A34(lbl_8042C148, 0x11C);
+	TObject* object = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0x11C);
 	if (object != NULL) {
 		fn_8_C6CAC(object, lbl_8042C110);
 	}

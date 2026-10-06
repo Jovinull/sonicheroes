@@ -137,7 +137,7 @@ extern "C" u32 flagCollisionConfig[];
 extern "C" void* flagCallbackContext;
 extern "C" ObjectEntry flagEntry;
 extern "C" void* flagVtable[15];
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" FlagObject* flagCtor(FlagObject*, TObject*);
 extern "C" void fn_80150958(void*);
 extern "C" void* fn_80150588(void*);
@@ -150,7 +150,7 @@ extern "C" void __dl__FPv(void*);
 extern "C" void dtor_8003C52C(void*, s32);
 extern "C" void dtor_8005BD3C(void*, s32);
 extern "C" void __dt__7TObjectFv(void*, s32);
-extern "C" void fn_800189A4(void*, void*);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" const char* fn_800194C4(void*);
 extern "C" void fn_801A4C84(void*);
 extern "C" void fn_800BC9F4(void*, void*);
@@ -423,7 +423,7 @@ extern "C" FlagObject* flagDtor(FlagObject* object, s16 flags)
 		dtor_8005BD3C(&object->frame, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }
@@ -554,7 +554,7 @@ extern "C" void flagInit()
 
 extern "C" void flagCreate()
 {
-	void* object = fn_80018A34(lbl_8042C148, 0xD0);
+	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (object != NULL)
 		flagCtor((FlagObject*)object, (TObject*)lbl_8042C110);
 }

@@ -37,8 +37,8 @@ void fn_800CCC6C(char*);
 void fn_8012CC20(void*);
 void fn_8012CFA4(void*);
 void fn_8012D3A4(void*);
-void fn_800189A4(void*, void*);
-void* fn_80018A34(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, void*);
 void fn_80204144(void*, void*, void*);
 f32 fn_802012B0(void*);
 f32 fn_802012B8(void*);
@@ -398,13 +398,13 @@ void advE3Rom_setFlag(AdvE3Rom* self)
 // 0xAEC - register this task with the manager.
 void advE3Rom_pause(void* obj)
 {
-	fn_800189A4(lbl_8042C148, obj);
+	Free__9THeapCtrlFPv(lbl_8042C148, obj);
 }
 
 // 0xB1C - look a task up by id.
 void* advE3Rom_resume(s32 id)
 {
-	return fn_80018A34(lbl_8042C148, (void*)id);
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, (void*)id);
 }
 
 // 0xB4C - find the min stream L-volume flag.

@@ -117,8 +117,8 @@ extern "C" Vec3* lbl_8042C208;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
-extern "C" void fn_800189A4(void* heap, TObject* object);
-extern "C" void* fn_80018A34(void* heap, u32 size);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 extern "C" s32 fn_8005B8BC(Motion* motion);
 extern "C" s32 fn_8005B8D8(Motion* motion);
 extern "C" s32 fn_8005B9F0(Motion* motion);
@@ -158,7 +158,7 @@ extern "C" Sample2* sample2Dtor(Sample2* object, s16 flags)
 		dtor_8005BD3C(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;

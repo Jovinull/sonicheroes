@@ -167,8 +167,8 @@ void* __ct__10HAnimClassFv(void*);                                              
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
     void*, void*, void*);                                               /* extern */
 void* __dt__10HAnimClassFv(void*, s32);                                 /* extern */
-M2C_UNK fn_800189A4(s32, void*);                                        /* extern */
-TEnemyParalysis* fn_80018A34(M2C_UNK, M2C_UNK);                         /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);               /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);              /* extern */
 u32 __nw__FUl(M2C_UNK);                                                 /* extern */
 s32 fn_8005B8D8(void*);                                                 /* extern */
@@ -1078,7 +1078,7 @@ void* fn_8_AEEE4(void* arg0, s16 arg1)
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1166,7 +1166,7 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	arg0->unk31C = fn_8010B708(1);
 	arg0->unk318 = fn_8010B708(0);
 	arg0->unk320 = fn_8006298C(0xD, &arg0->unk140, &arg0->unk14C);
-	temp_r3      = fn_80018A34(lbl_8042C148, 0x74);
+	temp_r3      = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_3     = temp_r3;
 	if (var_r0_3 != NULL) {
 		var_r0_3 = __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(temp_r3, lbl_8042C10C, NULL);
@@ -1185,7 +1185,7 @@ TEnemyParalysis* fn_8_AF390(void)
 {
 	TEnemyParalysis* var_r0;
 
-	var_r0 = fn_80018A34(lbl_8042C148, 0x360);
+	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x360);
 	if (var_r0 != NULL) {
 		var_r0 = fn_8_AF05C((TEnemyParalysis*)1U, (s16)lbl_8042C10C, 0);
 	}
@@ -1334,7 +1334,7 @@ void magicianObjectLoad(void)
 
 void magicianObjectCreate(void)
 {
-	if (fn_80018A34(lbl_8042C148, 0x360) != NULL) {
+	if (Malloc__9THeapCtrlFUi(lbl_8042C148, 0x360) != NULL) {
 		fn_8_AF05C((TEnemyParalysis*)1U, (s16)lbl_8042C10C, 0);
 	}
 }

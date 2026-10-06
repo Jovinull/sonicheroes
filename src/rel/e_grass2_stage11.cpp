@@ -52,8 +52,8 @@ void* __ct__7TObjectFP7TObject(void*, void*);              /* extern */
 void* __dt__7TObjectFv(void*, s32);                        /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                     /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                     /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                        /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                             /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                   /* extern */
 M2C_UNK fn_8003BF04(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                             /* extern */
 s32 fn_8005B8BC(s32);                                      /* extern */
@@ -167,15 +167,15 @@ static M2C_UNK* lbl_8_data_18548[8] = {
 };
 static struct _struct_lbl_8_data_18568_0x10 lbl_8_data_18568[2] = { { 0U }, { 0U } };
 static struct _struct_lbl_8_data_18588_0x10 lbl_8_data_18588[2] = { { 0U }, { 0U } };
-static M2C_UNK lbl_8_data_185A8;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185BA_data;   /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_185BC;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185CB_data;   /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_185CC;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185DB_data;   /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185A8;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185BA_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185BC;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185CB_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185CC;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185DB_data; /* unable to generate initializer: unknown type */
 static M2C_UNK grass2ObjectFieldNames[3] = { 0, 0, 0 };
-static M2C_UNK lbl_8_data_185E8;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185F9_data;   /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185E8;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185F9_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_185FC[2] = { &lbl_8_data_185A8, &lbl_8_data_185E8 };
 static M2C_UNK lbl_8_data_18604;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018615_data; /* unable to generate initializer: unknown type */
@@ -185,9 +185,9 @@ static u32 lbl_8_data_18620[12]     = { 0x0000F0E0, 0x00000402, 0x00000000, 0x00
 static M2C_UNK lbl_8_data_18650;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001865B_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_1865C = &lbl_8_data_18650;
-static M2C_UNK lbl_8_data_18660;        /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18660; /* unable to generate initializer: unknown type */
 static char grass2ObjectDisplayName[] = "GRASS2 OBJECT";
-static M2C_UNK gap_04_000186AA_data;    /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000186AA_data; /* unable to generate initializer: unknown type */
 static u32 grass2ObjectFieldTypes[1] = { 0x63634600 };
 static u32 lbl_8_data_186B0[5] = { 0x7331315F, 0x6F6E5F67, 0x72617373, 0x61316C2E, 0x616E6D00 };
 static u32 lbl_8_data_186C4[5] = { 0x7331315F, 0x6F6E5F67, 0x72617373, 0x61326C2E, 0x616E6D00 };
@@ -502,7 +502,7 @@ TObject* fn_8_C569C(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 		dtor_8005BD3C((void*)((u8*)arg0 + 0x28), 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -783,7 +783,7 @@ void grass2ObjectLoad(M2C_UNK arg_sp0)
 
 void grass2ObjectCreate(void)
 {
-	TObject* object = (TObject*)fn_80018A34(lbl_8042C148, 0xFC);
+	TObject* object = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0xFC);
 	if (object != NULL) {
 		fn_8_C577C(object, lbl_8042C110);
 	}

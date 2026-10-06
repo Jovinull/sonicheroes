@@ -1,14 +1,17 @@
 #include "types.h"
 
 extern "C" void* __ct__7TObjectFP7TObject(void*, void*);
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void* lbl_8042C148;
 
 struct TObject {
 	u8 pad00[4];
 	u16 flags;
 	u8 pad06[0x12];
-	static void* operator new(unsigned long size) { return fn_80018A34(lbl_8042C148, size); }
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
 	static void operator delete(void*);
 
 	TObject(TObject* parent) { __ct__7TObjectFP7TObject(this, parent); }
@@ -172,9 +175,9 @@ extern DisplayState RsGlobal;
 
 void fn_8012CC20(void*);
 void* __ct__7TObjectFP7TObject(void*, void*);
-void* fn_80018A34(void*, u32);
+void* Malloc__9THeapCtrlFUi(void*, u32);
 void* __dt__7TObjectFv(void*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void* fn_8011EFB0(void*);
 void fn_80194294(s32, u32*);
 void fn_80194234(s32, u32);
@@ -255,11 +258,11 @@ extern u32 lbl_8042CFA8;
 extern u8 lbl_8042C0C0;
 
 void fn_80018984();
-void fn_80018988();
-void fn_80018950();
-void fn_80018954();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
 void Error__7TObjectFPc();
-void fn_80018958();
+void Render__7TObjectFv();
 
 void fn_800A8290(EasySelect*);
 void fn_800A8264(EasySelect*);
@@ -274,11 +277,11 @@ EasyVTable lbl_80253124 = { {
 	                            (void*)fn_800A8290,
 	                            (void*)fn_800A8264,
 	                            (void*)fn_80018984,
-	                            (void*)fn_80018988,
-	                            (void*)fn_80018950,
-	                            (void*)fn_80018954,
+	                            (void*)PDisp__7TObjectFv,
+	                            (void*)ImmAftSetRaster__7TObjectFv,
+	                            (void*)Debug__7TObjectFv,
 	                            (void*)Error__7TObjectFPc,
-	                            (void*)fn_80018958,
+	                            (void*)Render__7TObjectFv,
 	                        },
 	NULL, NULL };
 }
@@ -590,7 +593,7 @@ extern "C" EasySelect* fn_800A8620(EasySelect* self, s16 shouldDelete)
 			updateSelection(self->field40);
 		__dt__7TObjectFv(self, 0);
 		if (shouldDelete > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }

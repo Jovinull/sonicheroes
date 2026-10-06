@@ -105,8 +105,8 @@ extern u8 lbl_802FF5A0;
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
 void dtor_8005BD3C(void*, s16);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void fn_8005BE6C(void*);
 void fn_8005D5C8(void*, u32);
 void* fn_800BB92C(void*, s32, void*);
@@ -241,7 +241,10 @@ struct S12CelestialStorage : ObjectStorage {
 	{
 		__ct__16TObjS12CelestialFP7TObject((TObjS12Celestial*)this, (TObject*)lbl_8042C110);
 	}
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
 
 extern "C" void startObjS12Celestial()
@@ -316,7 +319,7 @@ extern "C" TObjS12Celestial* __dt__16TObjS12CelestialFv(TObjS12Celestial* self, 
 		dtor_8005BD3C(SETOBJ(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 		}
 	}
 	return self;

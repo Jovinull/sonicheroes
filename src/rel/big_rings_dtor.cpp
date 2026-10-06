@@ -52,7 +52,7 @@ extern "C" void* lbl_8042C148;
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void __destroy_new_array(void* array, void (*destructor)(void*, int));
 extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_800189A4(void* heap, TObject* object);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void fn_8005BC04(Motion* motion);
 extern "C" void bigRingsElementDtor(void*, int);
 
@@ -85,7 +85,7 @@ extern "C" BigRings* bigRingsDtor(BigRings* object, s16 flags)
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;

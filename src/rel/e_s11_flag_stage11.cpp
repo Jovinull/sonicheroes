@@ -56,8 +56,8 @@ void* __ct__7TObjectFP7TObject(void*, void*);                       /* extern */
 void* __dt__7TObjectFv(void*, s32);                                 /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                              /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                              /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                                 /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                                      /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                         /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                            /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                                      /* extern */
 s32 fn_8005B8BC(void*);                                             /* extern */
 s32 fn_8005B8D8(void*);                                             /* extern */
@@ -154,7 +154,7 @@ static M2C_UNK gap_04_00018BCB_data; /* unable to generate initializer: unknown 
 static M2C_UNK lbl_8_data_18BCC;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018BDB_data; /* unable to generate initializer: unknown type */
 static M2C_UNK s11FlagFieldNames[3] = { 0, 0, 0 };
-static char lbl_8_data_18BEC[] = "type      : dark";
+static char lbl_8_data_18BEC[]      = "type      : dark";
 static M2C_UNK gap_04_00018BFD_data; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_18C00[2] = { lbl_8_data_18BA0, lbl_8_data_18BEC };
 static char lbl_8_data_18C08[]         = "direction : down";
@@ -707,7 +707,7 @@ TObject* fn_8_C858C(TObject* arg0, s16 arg1)
 		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1004,7 +1004,7 @@ void s11FlagLoad(M2C_UNK arg_sp0)
 
 void s11FlagCreate(void)
 {
-	TObject* object = (TObject*)fn_80018A34(lbl_8042C148, 0xF0);
+	TObject* object = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF0);
 	if (object != NULL) {
 		fn_8_C8688(object, lbl_8042C110);
 	}

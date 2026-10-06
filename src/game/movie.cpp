@@ -13,8 +13,8 @@ struct TObjectBase {
 struct THeapCtrl;
 
 extern "C" {
-void* fn_80018A34(THeapCtrl*, u32);
-void fn_800189A4(THeapCtrl*, void*);
+void* Malloc__9THeapCtrlFUi(THeapCtrl*, u32);
+void Free__9THeapCtrlFPv(THeapCtrl*, void*);
 extern THeapCtrl* lbl_8042C148;
 }
 
@@ -37,8 +37,11 @@ struct TObject : public TObjectBase {
 	u16 field24;
 	u16 pad26;
 
-	static void* operator new(unsigned long size) { return fn_80018A34(lbl_8042C148, size); }
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 class MovieTask : public TObject

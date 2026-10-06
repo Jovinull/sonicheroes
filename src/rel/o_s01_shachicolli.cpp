@@ -32,7 +32,7 @@ struct Motion {
 
 class TObject;
 
-extern "C" void fn_800189A4(void*, void*);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" void* lbl_8042C148;
 
 class TObjS01ShachiColli
@@ -61,7 +61,7 @@ public:
 	void Exec();
 	TObjS01ShachiColli(TObject*);
 	~TObjS01ShachiColli();
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 struct ShachiColliDispatchPrefix {
@@ -101,8 +101,8 @@ void fn_8005BC04(Motion*);
 void fn_80021824(void*);
 void* fn_800211A8(void*);
 void fn_8003BC38(void*);
-void fn_800189A4(void*, void*);
-void* fn_80018A34(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
 void s01ObjectBaseUpdate(TObjS01ShachiColli*);
 void s01ObjectBaseDtor(TObjS01ShachiColli*, s16);
 void s01ObjectBaseCtor(TObjS01ShachiColli*, void*);
@@ -208,7 +208,7 @@ TObjS01ShachiColli::TObjS01ShachiColli(TObject* parent)
 extern "C" void startObj_S01_ShachiColli()
 {
 	TObjS01ShachiColli* object
-	    = (TObjS01ShachiColli*)fn_80018A34(lbl_8042C148, sizeof(TObjS01ShachiColli));
+	    = (TObjS01ShachiColli*)Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjS01ShachiColli));
 	if (object != NULL) {
 		s01ObjectBaseCtor(object, lbl_8042C110);
 		object->vtable        = shachiColliVtable;

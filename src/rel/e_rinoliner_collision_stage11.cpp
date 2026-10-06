@@ -84,8 +84,8 @@ void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);         /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                          /* extern */
 s32 fn_80017800(void*);                                         /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                             /* extern */
-TObject* fn_80018A34(s32, M2C_UNK);                             /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                     /* extern */
+TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                   /* extern */
 void* fn_800211A8(void*);                                       /* extern */
 M2C_UNK fn_80021384(M2C_UNK*);                                  /* extern */
 M2C_UNK fn_80021824(M2C_UNK*);                                  /* extern */
@@ -143,19 +143,19 @@ static u32 lbl_8_data_17100[12] = { 0x0000F000, 0x00708000, 0x00000000, 0x000000
 static M2C_UNK lbl_8_data_17130;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001713B_data; /* unable to generate initializer: unknown type */
 static char lbl_8_data_1713C[] = "SPEED CTRL";
-static M2C_UNK gap_04_00017147_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17148;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00017153_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17154;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001715B_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_1715C;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00017165_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17168;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00017171_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17174;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001717D_data;    /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017147_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17148;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017153_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17154;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_0001715B_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_1715C;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017165_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17168;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017171_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17174;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_0001717D_data; /* unable to generate initializer: unknown type */
 static M2C_UNK rinoColObjectFieldNames[2] = { 0, 0 };
-static char lbl_8_data_171A0[] = "START";
+static char lbl_8_data_171A0[]            = "START";
 static M2C_UNK gap_04_000171A6_data; /* unable to generate initializer: unknown type */
 static char lbl_8_data_171A8[] = "END";
 static char lbl_8_data_171AC[] = "CHANGE PATH";
@@ -475,7 +475,7 @@ TObject* fn_8_B4F70(TObject* arg0, s16 arg1)
 		dtor_8003C52C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -529,7 +529,7 @@ void fn_8_B5160(void* arg0)
 {
 	TObject* temp_r3;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0xF4);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);
@@ -1852,7 +1852,7 @@ TObject* fn_8_B6C04(TObject* arg0, s16 arg1)
 		dtor_8003C52C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1903,7 +1903,7 @@ TObject* fn_8_B6DC0(void)
 	f32 temp_r3_4;
 	void* temp_r3_2;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0xE0);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE0);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);
@@ -1993,7 +1993,7 @@ void rinoColObjectCreate(void)
 	f32 temp_r3_4;
 	void* temp_r3_2;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0xE0);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE0);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);

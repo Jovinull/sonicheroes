@@ -65,8 +65,8 @@ void fn_8005BE6C(void*);
 void fn_8003C618(void*);
 void fn_8003C200(void*, void*, int, int);
 void fn_80021384(void*);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 
 extern void* lbl_8042C298;
 extern void* lbl_8042C1A4;
@@ -101,7 +101,10 @@ class TObject
 public:
 	TObject(TObject*);
 	~TObject();
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
 
 struct TObjSetInvokeColli : TObject {
@@ -281,7 +284,7 @@ extern "C" void* __dt__18TObjSetInvokeColliFv(void* self, s16 flags)
 		dtor_8005BD3C((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }

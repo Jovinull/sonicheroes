@@ -144,8 +144,8 @@ void* __ct__10HAnimClassFv(void*);                                              
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(...);        /* extern */
 void* __ct__15sParalysisParamFv(void*);                                           /* extern */
 void* __dt__10HAnimClassFv(void*, s32);                                           /* extern */
-M2C_UNK fn_800189A4(s32, void*);                                                  /* extern */
-TEnemyParalysis* fn_80018A34(s32, M2C_UNK);                                       /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                          /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                             /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                        /* extern */
 M2C_UNK** __nw__FUl(M2C_UNK);                                                     /* extern */
 s32 fn_8005B8D8(void**);                                                          /* extern */
@@ -859,7 +859,7 @@ void* fn_8_B3CC4(void* arg0, s16 arg1)
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1052,7 +1052,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 	sp28      = lbl_8_rodata_1C40[0];
 	sp2C      = lbl_8_rodata_1C40[0];
 	sp30      = lbl_8_rodata_1C40[0];
-	temp_r3_7 = fn_80018A34(lbl_8042C148, 0x74);
+	temp_r3_7 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_2  = temp_r3_7;
 	if (var_r0_2 != NULL) {
 		var_r0_2
@@ -1072,7 +1072,7 @@ TEnemyParalysis* fn_8_B4394(void)
 {
 	TEnemyParalysis* var_r0;
 
-	var_r0 = fn_80018A34(lbl_8042C148, 0x320);
+	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (var_r0 != NULL) {
 		var_r0 = (TEnemyParalysis*)fn_8_B3E0C((TObject*)var_r0, lbl_8042C10C);
 	}
@@ -1264,7 +1264,7 @@ void rinolinerObjectCreate(void)
 {
 	TEnemyParalysis* temp_r3;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0x320);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (temp_r3 != NULL) {
 		fn_8_B3E0C((TObject*)temp_r3, lbl_8042C10C);
 	}

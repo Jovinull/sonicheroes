@@ -159,8 +159,8 @@ void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
 void dtor_8003C52C(void*, s16);
 void dtor_8005BD3C(void*, s16);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
 void fn_8003C618(void*);
 void fn_8005D5C8(RpClump*, u32);
@@ -299,7 +299,7 @@ __declspec(section ".ctors") void (*const maskObjectCtorEntry)() = maskObjectReg
 
 extern "C" void startObjMask()
 {
-	TObjMask* object = (TObjMask*)fn_80018A34(lbl_8042C148, sizeof(TObjMask));
+	TObjMask* object = (TObjMask*)Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjMask));
 	if (object != NULL) {
 		__ct__8TObjMaskFP7TObject(object, (TObject*)lbl_8042C110);
 	}
@@ -427,7 +427,7 @@ extern "C" TObjMask* __dt__8TObjMaskFv(TObjMask* self, s16 flags)
 		dtor_8005BD3C(MOTION(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 		}
 	}
 	return self;

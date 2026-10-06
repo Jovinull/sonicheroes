@@ -153,9 +153,9 @@ void fn_8003C200(void*, void*, s32, s32);
 void dtor_8003C52C(void*, s32);
 void dtor_8005BD3C(void*, s32);
 void __dt__7TObjectFv(void*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void __dl__FPv(void*);
-void* fn_80018A34(void*, s32);
+void* Malloc__9THeapCtrlFUi(void*, s32);
 void* fn_8_DCCAC(void*);
 
 void* fn_8_DCE30(void* object)
@@ -204,7 +204,7 @@ OttottoObject* fn_8_DCF34(OttottoObject* object, s16 flag)
 		dtor_8005BD3C(&object->transform, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flag > 0) {
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 		}
 	}
 	return object;
@@ -257,7 +257,7 @@ void fn_8_DD0D4(OttottoObject* object, SetdataParam* setdata)
 
 void noOttottoCollisionCreate(void)
 {
-	void* result = fn_80018A34(lbl_8042C148, 0xD0);
+	void* result = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (result != NULL) {
 		OttottoObject* object = (OttottoObject*)result;
 		__ct__7TObjectFP7TObject(object, lbl_8042C110);

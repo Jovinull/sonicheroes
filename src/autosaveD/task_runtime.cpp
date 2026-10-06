@@ -14,8 +14,8 @@ extern "C" void fn_80126254(void);
 extern "C" void fn_801262DC(void);
 extern "C" void fn_8012CA94(void* state);
 extern "C" void fn_8012CB70(void* state);
-extern "C" void fn_800189A4(void* heap, void* memory);
-extern "C" void* fn_80018A34(void* heap, u32 size);
+extern "C" void Free__9THeapCtrlFPv(void* heap, void* memory);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 
 extern "C" void fn_2_136C(void)
 {
@@ -48,10 +48,10 @@ extern "C" void fn_2_13E0(Task* task)
 
 extern "C" void fn_2_13F4(void* memory)
 {
-	fn_800189A4(lbl_8042C148, memory);
+	Free__9THeapCtrlFPv(lbl_8042C148, memory);
 }
 
 extern "C" void* fn_2_1424(u32 size)
 {
-	return fn_80018A34(lbl_8042C148, size);
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
 }

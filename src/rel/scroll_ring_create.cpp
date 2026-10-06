@@ -11,12 +11,12 @@
 extern "C" void* lbl_8042C148;
 extern "C" void* lbl_8042C110;
 
-extern "C" void* fn_80018A34(void* heap, s32 size);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, s32 size);
 extern "C" void scrollRingCtor(void* object, void* owner);
 
 extern "C" void scrollRingCreate(void)
 {
-	void* object = fn_80018A34(lbl_8042C148, 0xF8);
+	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF8);
 
 	if (object != NULL) {
 		scrollRingCtor(object, lbl_8042C110);

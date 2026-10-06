@@ -41,8 +41,8 @@ void* __ct__7TObjectFP7TObject(void*, void*);          /* extern */
 void* __dt__7TObjectFv(void*, s32);                    /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                 /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                 /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                    /* extern */
-TObject* fn_80018A34(s32, M2C_UNK);                    /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);            /* extern */
+TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);          /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                         /* extern */
 u32 __nw__FUl(M2C_UNK);                                /* extern */
 s32 fn_8005B8BC(s32);                                  /* extern */
@@ -459,7 +459,7 @@ TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -600,7 +600,7 @@ void s11spiderObjectCreate(void)
 	s32 temp_r0;
 	u32 var_r0;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0x108);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x108);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		fn_8005BE6C(&temp_r3->unk28);

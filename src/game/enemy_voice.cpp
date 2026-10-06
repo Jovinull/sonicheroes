@@ -100,8 +100,8 @@ extern GameModeState lbl_8029C310;
 
 void __dt__7TObjectFv(TObject*, s32);
 void __ct__7TObjectFP7TObject(TObject*, void*);
-void fn_800189A4(void*, void*);
-void* fn_80018A34(Heap*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void* Malloc__9THeapCtrlFUi(Heap*, u32);
 void* fn_800575C8(u32);
 void fn_80057578(void*);
 void fn_800B4A38(void*, u16, Vec3*, s32, s32, s32, s32);
@@ -109,18 +109,18 @@ void* memcpy(void*, const void*, u32);
 s32 fn_80103178(s32);
 void fn_80111260(AudioState*, s32, s32);
 void fn_801112F0(AudioState*, s32);
-void fn_8001898C();
+void Disp__7TObjectFv();
 void fn_80018984();
-void fn_80018988();
-void fn_80018950();
-void fn_80018954();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
 void Error__7TObjectFPc();
-void fn_80018958();
+void Render__7TObjectFv();
 }
 
 inline void* TObject::operator new(unsigned long size)
 {
-	return fn_80018A34(lbl_8042C148, size);
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
 }
 
 inline TEnemyVoiceCtrlEx::TEnemyVoiceCtrlEx(s32 mode_, u32 voice_, s32 capacity_)
@@ -239,7 +239,7 @@ extern "C" TEnemyVoiceCtrlEx* fn_801398E4(TEnemyVoiceCtrlEx* self, s16 flags)
 		self->mode     = 2;
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -297,7 +297,7 @@ extern "C" TEnemySELimit* fn_80139BB8(TEnemySELimit* self, s16 flags)
 		}
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -342,7 +342,7 @@ extern "C" TEnemyVoiceCtrl* fn_80139E54(TEnemyVoiceCtrl* self, s16 flags)
 		}
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -362,13 +362,13 @@ void* lbl_8028CFE4[] = {
 	NULL,
 	(void*)fn_801398E4,
 	(void*)fn_801397DC,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)fn_80018984,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 void* lbl_8028D010[] = {
@@ -376,13 +376,13 @@ void* lbl_8028D010[] = {
 	NULL,
 	(void*)fn_80139BB8,
 	(void*)fn_80139A24,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)fn_80018984,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 void* lbl_8028D03C[] = {
@@ -390,12 +390,12 @@ void* lbl_8028D03C[] = {
 	NULL,
 	(void*)fn_80139E54,
 	(void*)fn_80139D28,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)fn_80018984,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 }

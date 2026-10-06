@@ -157,8 +157,8 @@ void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                        /* extern */
 M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                        /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                           /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                                /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                   /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                      /* extern */
 void* fn_800211A8(s32);                                       /* extern */
 M2C_UNK fn_80021384(M2C_UNK*);                                /* extern */
 M2C_UNK fn_80021824(s32);                                     /* extern */
@@ -488,7 +488,7 @@ TObject* fn_8_CC2F0(TObject* arg0, s16 arg1)
 		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -550,7 +550,7 @@ void s12boneColliObjectCreate(void)
 	void* temp_r3_3;
 	void* temp_r4;
 
-	temp_r0 = fn_80018A34(lbl_8042C148, 0xD4);
+	temp_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD4);
 	if (temp_r0 != 0) {
 		temp_r3 = (TObject*)temp_r0;
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
@@ -1007,7 +1007,7 @@ TObject* fn_8_CD478(TObject* arg0, s16 arg1)
 		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1188,7 +1188,7 @@ void s12boneObjectCreate(void)
 	void* temp_r3_2;
 	void* temp_r3_3;
 
-	temp_r3 = (TObject*)fn_80018A34(lbl_8042C148, 0x98);
+	temp_r3 = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0x98);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		fn_8005BE6C(&temp_r3->unk28);
