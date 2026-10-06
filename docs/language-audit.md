@@ -45,6 +45,62 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### Light translation unit (nonmatching reconstruction)
+
+`game/light.cpp` reconstructs the 26 surviving functions at GameCube
+`0x80052184`–`0x80053FB8`, including both `RP_Light` constructors, allocation,
+world attachment, light properties, regular-table selection, loading and cleanup.
+The inferred unit owns 7,732 retail text bytes, 232 exception-table bytes,
+276 exception-index bytes, 144 data bytes, eight small-data bytes and 16
+small-constant bytes. The adjoining constructor-registration and octree routines
+are outside this boundary.
+
+PS2 PAL `SLES_519.50` DWARF metadata identifies `light.cpp` as C++ and supplies
+`CLIGHT`, `RP_Light`, `RP_LightInfo`, and `REGLIGHT_STRUCT` names and layouts.
+Only symbolic metadata was consulted from that executable. GameCube instructions
+corroborate the 0x40-byte light allocation, manager field offsets, 0x30-byte
+special-light records, 0x34-byte regular records, methods and file format string.
+`CLIGHT::SetRadius` and `CLIGHT::SetPosition` names are inferred from their
+GameCube behavior and corresponding `RP_Light` methods, rather than asserted
+as surviving PS2 manager symbols. SDK structures here are explicitly partial,
+pointer-only views; they are never allocated using those partial sizes.
+
+The loader retains defaults outside the available first 16 entries, copies at
+most 832 bytes, and preserves the executable's ignored file-read return value.
+Regular-light creation checks allocation of the wrapper rather than its SDK
+light; second-wrapper allocation failure destroys the first. Restore-all passes
+cached worlds directly, while individual restore requires a non-null cached
+world. Cleanup does not invent pointer resets absent from the executable.
+
+Deferred inlining with reverse definition order emits exactly the 26 retail
+function symbols in retail order, without extra out-of-line helper functions.
+Automatic emission kept definition order instead. This justifies the scoped
+deferred policy entry; it does not establish matching instruction bytes.
+Data pooling is disabled because retail addresses the individual globals.
+
+This remains a **nonmatching** whole-unit source candidate: the original
+object is linked. Independent ELF comparison verifies all 26 export offsets
+and sizes, all 263 normalized relocations, 232 exception-table bytes, 276
+exception-index bytes, eight small-data bytes and 16 small-constant bytes.
+Twenty-four functions are byte-exact. `EndIgnoreLight` has eight instructions
+with different GPR operands and `Init` has fourteen; the full text size is
+7,732 bytes. All 141 authored data bytes match; retail includes three trailing
+alignment bytes. The compiler uses its conventional writable flag for
+`.sdata2`, unlike the split reference's read-only section flag.
+
+Recovered function-scope pointer locals reproduce the color and position
+copies. Angle updates preserve the input arguments across rotation calls,
+instead of reloading cached fields after a call. Null destinations select the
+manager's table in the inlined load/assign paths. The helper structure and local
+names/types are corroborated by symbolic metadata; instruction behavior is
+checked against GameCube. No instruction patcher, inline assembly or synthetic
+padding code was added.
+
+The sole supported target, G9SE8P, passes the all-source/link/progress/report
+build, 55 automated tests, both policy checks and all 18 artifact hashes.
+These results are for the original-linked configuration and do not establish
+native replacement or runtime/hardware validation.
+
 ### GameCube ARAM pool translation unit
 
 `game/aram_pool.cpp` reconstructs the seven-function GameCube range

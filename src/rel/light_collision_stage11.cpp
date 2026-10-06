@@ -34,7 +34,7 @@ void dtor_8005BD3C(void*, s32);
 int fn_8005B9F0(void*);
 int fn_8005B8BC(void*);
 s32 fn_8005B8D8(void*);
-void fn_80052DAC(...);
+void SetCurrentNumPlayer__6CLIGHTFScSc(...);
 void fn_8014FFBC(s32, s32, s32);
 void fn_801527A4(void*, void*, void*);
 f32 fn_801991B4(void* v);
@@ -133,7 +133,7 @@ extern "C" void fn_8_4E338(void* self)
 	}
 	for (int i = 0; i < 8; i++) {
 		if (selected[i] != lbl_8_bss_D40[i * 2])
-			fn_80052DAC((int)lbl_802D5E80, i);
+			SetCurrentNumPlayer__6CLIGHTFScSc((int)lbl_802D5E80, i);
 		lbl_8_bss_D40[i * 2] = selected[i];
 	}
 }
@@ -143,7 +143,7 @@ extern "C" void* fn_8_4E588(void* self, s16 flags)
 	if (self != NULL) {
 		field<void*>(self, 0x18) = lbl_8_data_55CC;
 		for (int i = 0; i < 8; i++)
-			fn_80052DAC((int)lbl_802D5E80, i);
+			SetCurrentNumPlayer__6CLIGHTFScSc((int)lbl_802D5E80, i);
 		if (lbl_8_bss_D38 == self)
 			lbl_8_bss_D38 = NULL;
 		__dt__7TObjectFv(self, 0);

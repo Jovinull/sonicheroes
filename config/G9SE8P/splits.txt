@@ -147,6 +147,14 @@ game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
 
+game/light.cpp:
+	extab       start:0x80006424 end:0x8000650C
+	extabindex  start:0x8000CD84 end:0x8000CE98
+	.text       start:0x80052184 end:0x80053FB8
+	.data       start:0x80242A98 end:0x80242B28
+	.sdata      start:0x8042B160 end:0x8042B168
+	.sdata2     start:0x8042D390 end:0x8042D3A0
+
 game/fn_80053FB8.cpp:
 	extab       start:0x8000650C end:0x80006514
 	extabindex  start:0x8000CE98 end:0x8000CEA4

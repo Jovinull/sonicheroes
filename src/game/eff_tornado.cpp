@@ -338,8 +338,8 @@ extern PlayerColorSource* lbl_80303DC8[];
 
 void fn_80194294(s32, u32*);
 void fn_80194234(s32, u32);
-void fn_80053660(void*, s32);
-void fn_8005349C(void*, u8);
+void SetCurrentNum__6CLIGHTFSc(void*, s32);
+void SetLightRegular__6CLIGHTFSc(void*, u8);
 void fn_8014FF2C(void*);
 int fn_8005BB20(RwV3d*, f32);
 f32 fn_800D7328(f32, f32, f32);
@@ -764,8 +764,8 @@ void TObjEffTornado2::TDisp()
 	material->blue     = blue;
 	material->alpha    = alpha;
 
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	SetCurrentNum__6CLIGHTFSc(lbl_802D5E80, 16);
+	SetLightRegular__6CLIGHTFSc(lbl_802D5E80, lbl_802D5E80[0x4be]);
 
 	model = lbl_8042C350;
 	frame = tornadoFrameCounter();
@@ -1011,8 +1011,8 @@ extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 	material[6]      = ((u8*)&saved)[2];
 	material[7]      = ((u8*)&saved)[3];
 
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	SetCurrentNum__6CLIGHTFSc(lbl_802D5E80, 16);
+	SetLightRegular__6CLIGHTFSc(lbl_802D5E80, lbl_802D5E80[0x4be]);
 	fn_8014FF2C(effect->model);
 
 	fn_80194234(14, state14);
@@ -1231,8 +1231,8 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	material[6] = color.blue;
 	material[7] = color.alpha;
 
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	SetCurrentNum__6CLIGHTFSc(lbl_802D5E80, 16);
+	SetLightRegular__6CLIGHTFSc(lbl_802D5E80, lbl_802D5E80[0x4be]);
 
 	s32 angle = (s32)(lbl_8042DBC4 * effect->scale);
 	void** models;
