@@ -148,7 +148,7 @@ extern u8 lbl_8042C1A4;
 extern void* lbl_8042C1D0;
 extern ObjectManager* lbl_8042C298;
 extern void* lbl_8042C388;
-extern u8 lbl_80239984;
+extern u8 AxisY;
 extern u8 lbl_802FF5A0;
 extern PlayerInfo* lbl_802AD0D0[];
 extern TeamInfo* lbl_80303DC8[];
@@ -427,14 +427,14 @@ void TObjS11Key::SetPosition()
 			fn_8019EB94(atomic, &pos, 0);
 			s32 angY = GetWaitAngY();
 			f32 sine = fn_800D7B00(angY);
-			fn_80195790((u8*)atomic + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(angY), sine, 1);
+			fn_80195790((u8*)atomic + 0x10, &AxisY, 1.0f - fn_800D7AE4(angY), sine, 1);
 			fn_8019E880(atomic);
 		} else {
 			Vec3 size;
 			size.x = size.y = size.z = 1.0f + scale;
 			fn_8019EB94(atomic, &position, 0);
 			f32 sine = fn_800D7B00(angle);
-			fn_80195790((u8*)atomic + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(angle), sine, 1);
+			fn_80195790((u8*)atomic + 0x10, &AxisY, 1.0f - fn_800D7AE4(angle), sine, 1);
 			fn_8019E880(atomic);
 			fn_8019EC30(atomic, &size, 1);
 		}

@@ -113,8 +113,8 @@ typedef struct ObjectEntry {
 } ObjectEntry;               /* 0x30 */
 
 extern ObjectEntry grass2ObjectEntry;
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802FF5A0;
 extern TObject* lbl_8042C110;
 extern s32 lbl_8042C148;
@@ -167,15 +167,15 @@ static M2C_UNK* lbl_8_data_18548[8] = {
 };
 static struct _struct_lbl_8_data_18568_0x10 lbl_8_data_18568[2] = { { 0U }, { 0U } };
 static struct _struct_lbl_8_data_18588_0x10 lbl_8_data_18588[2] = { { 0U }, { 0U } };
-static M2C_UNK lbl_8_data_185A8;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185BA_data;   /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_185BC;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185CB_data;   /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_185CC;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185DB_data;   /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185A8;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185BA_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185BC;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185CB_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185CC;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185DB_data; /* unable to generate initializer: unknown type */
 static M2C_UNK grass2ObjectFieldNames[3] = { 0, 0, 0 };
-static M2C_UNK lbl_8_data_185E8;       /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000185F9_data;   /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_185E8;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000185F9_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_185FC[2] = { &lbl_8_data_185A8, &lbl_8_data_185E8 };
 static M2C_UNK lbl_8_data_18604;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_00018615_data; /* unable to generate initializer: unknown type */
@@ -185,9 +185,9 @@ static u32 lbl_8_data_18620[12]     = { 0x0000F0E0, 0x00000402, 0x00000000, 0x00
 static M2C_UNK lbl_8_data_18650;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001865B_data; /* unable to generate initializer: unknown type */
 static M2C_UNK* lbl_8_data_1865C = &lbl_8_data_18650;
-static M2C_UNK lbl_8_data_18660;        /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_18660; /* unable to generate initializer: unknown type */
 static char grass2ObjectDisplayName[] = "GRASS2 OBJECT";
-static M2C_UNK gap_04_000186AA_data;    /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000186AA_data; /* unable to generate initializer: unknown type */
 static u32 grass2ObjectFieldTypes[1] = { 0x63634600 };
 static u32 lbl_8_data_186B0[5] = { 0x7331315F, 0x6F6E5F67, 0x72617373, 0x61316C2E, 0x616E6D00 };
 static u32 lbl_8_data_186C4[5] = { 0x7331315F, 0x6F6E5F67, 0x72617373, 0x61326C2E, 0x616E6D00 };
@@ -427,13 +427,12 @@ void fn_8_C5110(void* arg0)
 			temp_r30 = M2C_FIELD(M2C_FIELD(var_r27_3, void**, 0xDC), s32*, 4);
 			fn_8019EB94(temp_r30, (f32*)((u8*)arg0 + 0xB8), 0);
 			temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r30 + 0x10, &lbl_80239984,
-			    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
+			fn_80195790(temp_r30 + 0x10, &AxisY, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)),
+			    temp_f31, 1);
 			fn_8019E880(temp_r30);
 			if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 				temp_f31_2 = fn_800D7B00(0x8000);
-				fn_80195790(
-				    temp_r30 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
+				fn_80195790(temp_r30 + 0x10, &AxisZ, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 				fn_8019E880(temp_r30);
 			}
 			fn_8019EC30(temp_r30, spC, 1);
@@ -463,13 +462,13 @@ void fn_8_C555C(void* arg0)
 		temp_r28 = M2C_FIELD(M2C_FIELD(var_r30, void**, 0xDC), s32*, 4);
 		fn_8019EB94(temp_r28, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+		fn_80195790(temp_r28 + 0x10, &AxisY,
 		    lbl_8_rodata_1F4C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
 		fn_8019E880(temp_r28);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239990, lbl_8_rodata_1F4C[0] - fn_800D7AE4(0x8000),
-			    temp_f31_2, 1);
+			fn_80195790(
+			    temp_r28 + 0x10, &AxisZ, lbl_8_rodata_1F4C[0] - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r28);
 		}
 		fn_8019EC30(temp_r28, sp8, 1);
@@ -606,11 +605,11 @@ TObject* fn_8_C577C(TObject* arg0, TObject* arg1)
 		temp_r31 = M2C_FIELD(M2C_FIELD(arg0, void**, var_r27 + 0xDC), s32*, 4);
 		fn_8019EB94(temp_r31, &arg0->unkB8, 0);
 		temp_f31 = fn_800D7B00(arg0->unkC8);
-		fn_80195790(temp_r31 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
+		fn_80195790(temp_r31 + 0x10, &AxisY, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
 		fn_8019E880(temp_r31);
 		if ((s32)arg0->unkD4 == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r31 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
+			fn_80195790(temp_r31 + 0x10, &AxisZ, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r31);
 		}
 		fn_8019EC30(temp_r31, spC, 1);

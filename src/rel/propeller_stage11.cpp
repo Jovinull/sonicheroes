@@ -67,9 +67,9 @@ extern char lbl_8_data_4CB8[];
 extern char lbl_8_data_4CDC[];
 extern char lbl_8_data_4D00[];
 extern char lbl_8_data_4D1C[];
-extern char lbl_80239978[];
-extern char lbl_80239990[];
-extern char lbl_80239984[];
+extern char AxisX[];
+extern char AxisZ[];
+extern char AxisY[];
 
 void* fn_8_46898(void*, void*);
 void fn_80150958(void*);
@@ -322,10 +322,10 @@ extern "C" void fn_8_47E9C(void* self)
 	fn_80196050(transform, lbl_8_rodata_BD8, 0);
 	float high = fn_800D7B00(field<int>(self, 0x108));
 	float low  = fn_800D7AE4(field<int>(self, 0x108));
-	fn_80195790(transform, lbl_80239978, lbl_8_rodata_BF0 - low, high, 2);
+	fn_80195790(transform, AxisX, lbl_8_rodata_BF0 - low, high, 2);
 	high = fn_800D7B00(field<int>(self, 0x110));
 	low  = fn_800D7AE4(field<int>(self, 0x110));
-	fn_80195790(transform, lbl_80239990, lbl_8_rodata_BF0 - low, high, 2);
+	fn_80195790(transform, AxisZ, lbl_8_rodata_BF0 - low, high, 2);
 	fn_80196050(transform, lbl_8_rodata_BE4, 2);
 	fn_80196050(transform, &field<float>(self, 0xFC), 2);
 	Vec3 scale = { lbl_8_rodata_BF8, lbl_8_rodata_BF4, lbl_8_rodata_BF8 };
@@ -390,27 +390,27 @@ extern "C" void fn_8_46C88(void* self)
 {
 	Vec3 scale  = { field<float>(self, 0xD8), field<float>(self, 0xD8), field<float>(self, 0xD8) };
 	void* model = field<void*>(field<void*>(self, 0x150), 4);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xD0), 0);
-	propellerSetRotation(model, lbl_80239978, field<int>(self, 0xCC), 2);
-	propellerSetRotation(model, lbl_80239990, field<int>(self, 0xD4), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xD0), 0);
+	propellerSetRotation(model, AxisX, field<int>(self, 0xCC), 2);
+	propellerSetRotation(model, AxisZ, field<int>(self, 0xD4), 2);
 	fn_8019EB94(model, &field<float>(self, 0xC0), 2);
 
 	model = field<void*>(field<void*>(self, 0x154), 4);
 	fn_8019EC30(model, &scale.x, 0);
 	fn_8019EB94(model, lbl_8_rodata_BD8, 2);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xF4), 2);
-	propellerSetRotation(model, lbl_80239978, field<int>(self, 0xF0), 2);
-	propellerSetRotation(model, lbl_80239990, field<int>(self, 0xF8), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xF4), 2);
+	propellerSetRotation(model, AxisX, field<int>(self, 0xF0), 2);
+	propellerSetRotation(model, AxisZ, field<int>(self, 0xF8), 2);
 	fn_8019EB94(model, lbl_8_rodata_BE4, 2);
 	fn_8019EB94(model, &field<float>(self, 0xE4), 2);
 
 	model = field<void*>(field<void*>(self, 0x158), 4);
 	fn_8019EC30(model, &scale.x, 0);
 	fn_8019EB94(model, lbl_8_rodata_BD8, 2);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xDC), 2);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xF4), 2);
-	propellerSetRotation(model, lbl_80239978, field<int>(self, 0xF0), 2);
-	propellerSetRotation(model, lbl_80239990, field<int>(self, 0xF8), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xDC), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xF4), 2);
+	propellerSetRotation(model, AxisX, field<int>(self, 0xF0), 2);
+	propellerSetRotation(model, AxisZ, field<int>(self, 0xF8), 2);
 	fn_8019EB94(model, lbl_8_rodata_BE4, 2);
 	fn_8019EB94(model, &field<float>(self, 0xE4), 2);
 }

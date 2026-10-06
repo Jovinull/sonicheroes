@@ -90,7 +90,7 @@ extern void* lbl_8042C388;
 extern void* lbl_8042C148;
 extern void* lbl_8042C110;
 extern void* lbl_802FF5A0;
-extern const f64 lbl_80239984;
+extern const f64 AxisY;
 
 void* fn_3_816D8(void*);
 void* fn_3_81858(void*);
@@ -277,7 +277,7 @@ static inline void SetIwamizuPosition(void* self)
 	*(f32*)&scale.y = value;
 	*(f32*)&scale.z = value;
 	fn_8019EC30(frame, (Vec3*)&scale, 0);
-	fn_8019ED68(frame, &lbl_80239984, IwamizuMinimum * (f32)(s32)WORD(PTR(self, 0x28), 0x10), 2);
+	fn_8019ED68(frame, &AxisY, IwamizuMinimum * (f32)(s32)WORD(PTR(self, 0x28), 0x10), 2);
 	fn_8019EB94(frame, PTR(self, 0x28), 2);
 }
 

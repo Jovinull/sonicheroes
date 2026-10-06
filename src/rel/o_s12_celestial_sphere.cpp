@@ -97,9 +97,9 @@ extern void* lbl_8042C110;
 extern void* lbl_8042C148;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern u8 lbl_80239978;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisX;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
@@ -355,13 +355,13 @@ void TObjS12Celestial::SetPosition()
 	RwFrame* frame           = *(RwFrame**)((u8*)model + 4);
 	fn_8019EB94(frame, &position, 0);
 	f32 sine = fn_800D7B00(angleZ);
-	fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(angleZ), sine, 1);
+	fn_80195790(&frame->modelling, &AxisZ, 1.0f - fn_800D7AE4(angleZ), sine, 1);
 	fn_8019E880(frame);
 	sine = fn_800D7B00(angleY);
-	fn_80195790(&frame->modelling, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), sine, 1);
+	fn_80195790(&frame->modelling, &AxisY, 1.0f - fn_800D7AE4(angleY), sine, 1);
 	fn_8019E880(frame);
 	sine = fn_800D7B00(angleX);
-	fn_80195790(&frame->modelling, &lbl_80239978, 1.0f - fn_800D7AE4(angleX), sine, 1);
+	fn_80195790(&frame->modelling, &AxisX, 1.0f - fn_800D7AE4(angleX), sine, 1);
 	fn_8019E880(frame);
 	fn_8019EC30(frame, &size, 1);
 }

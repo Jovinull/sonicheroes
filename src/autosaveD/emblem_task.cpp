@@ -106,8 +106,8 @@ extern "C" void** lbl_8042C9A4;
 extern "C" u8 lbl_80303EC8[];
 extern "C" u8 lbl_803E774C[];
 extern "C" u8 lbl_803E8150[];
-extern "C" const f32 lbl_80239978[];
-extern "C" const f32 lbl_80239984[];
+extern "C" const f32 AxisX[];
+extern "C" const f32 AxisY[];
 
 extern "C" void __construct_array(void* base, void* ctor, void* dtor, s32 size, s32 count);
 extern "C" void __destroy_arr(void* base, void* dtor, s32 size, s32 count);
@@ -321,7 +321,7 @@ extern "C" Emblem* fn_2_19D0(Emblem* emblem, void* arg)
 
 	emblem->anim[0] = fn_80150588(lbl_2_bss_14[0]);
 	if (emblem->anim[0] != NULL && emblem->anim[0]->motion != NULL) {
-		fn_8019ED68(emblem->anim[0]->motion, lbl_80239984, 180.0f, 0);
+		fn_8019ED68(emblem->anim[0]->motion, AxisY, 180.0f, 0);
 	}
 
 	emblem->anim[1] = fn_80150588(lbl_2_bss_14[1]);
@@ -331,7 +331,7 @@ extern "C" Emblem* fn_2_19D0(Emblem* emblem, void* arg)
 		if (motion != NULL) {
 			Vec3 offset = lbl_2_rodata_48;
 
-			fn_8019ED68(motion, lbl_80239978, -90.0f, 0);
+			fn_8019ED68(motion, AxisX, -90.0f, 0);
 			fn_8019EB94(motion, &offset, 2);
 		}
 	}

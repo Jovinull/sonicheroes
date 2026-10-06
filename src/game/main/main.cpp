@@ -66,7 +66,7 @@ void CARDInit();
 void fn_80112F80();
 void fn_800B654C();
 void fn_8001D70C();
-void fn_8001F4D8();
+void InitMatrix__Fv();
 void fn_8011253C();
 int DVDOpen(const char*, DVDFileInfo*);
 void* fn_80012994(u32);
@@ -291,7 +291,7 @@ void MAIN::Init()
 	fn_80112F80();
 	fn_800B654C();
 	fn_8001D70C();
-	fn_8001F4D8();
+	InitMatrix__Fv();
 	fn_8011253C();
 
 	DVDFileInfo file;

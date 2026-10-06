@@ -119,9 +119,9 @@ extern "C" void* lbl_8042C148;
 extern "C" void* lbl_8042C180;
 extern "C" void* lbl_8042C1D0;
 extern "C" void* lbl_8042C298;
-extern "C" Vec3 lbl_80239978;
-extern "C" Vec3 lbl_80239984;
-extern "C" Vec3 lbl_80239990;
+extern "C" Vec3 AxisX;
+extern "C" Vec3 AxisY;
+extern "C" Vec3 AxisZ;
 extern "C" char lbl_802FF5A0[];
 
 extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
@@ -192,17 +192,17 @@ extern "C" void antennaSetPosition(Antenna* object)
 
 	c = fn_800D7B00(object->motion.frame->angle.z);
 	s = antennaOne - fn_800D7AE4(object->motion.frame->angle.z);
-	fn_80195790(model + 0x10, &lbl_80239984, s, c, 0);
+	fn_80195790(model + 0x10, &AxisY, s, c, 0);
 	fn_8019E880(model);
 
 	c = fn_800D7B00(object->motion.frame->angle.y);
 	s = antennaOne - fn_800D7AE4(object->motion.frame->angle.y);
-	fn_80195790(model + 0x10, &lbl_80239978, s, c, 2);
+	fn_80195790(model + 0x10, &AxisX, s, c, 2);
 	fn_8019E880(model);
 
 	c = fn_800D7B00(object->motion.frame->angle.x);
 	s = antennaOne - fn_800D7AE4(object->motion.frame->angle.x);
-	fn_80195790(model + 0x10, &lbl_80239990, s, c, 2);
+	fn_80195790(model + 0x10, &AxisZ, s, c, 2);
 	fn_8019E880(model);
 	fn_8019EB94(model, object->motion.frame, 2);
 }

@@ -226,9 +226,9 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2); /* stati
 void magicianObjectCreate();                                            /* static */
 void magicianObjectLoad();                                              /* static */
 void magicianObjectUnload();                                            /* static */
-extern M2C_UNK lbl_80239978;
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+extern M2C_UNK AxisX;
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802AD090;
 extern TObject* lbl_8042C10C;
 extern s32 lbl_8042C148;
@@ -554,7 +554,7 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 				temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-				temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+				temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 				// Preserve the operand order emitted by the original GameCube build.
 				asm { fadds temp_f30, temp_f0, temp_f31 }
 				M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -640,7 +640,7 @@ void fn_8_AD260(void* arg0, s32 arg1)
 					temp_f3
 					    = (lbl_8_rodata_1B38 * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AC8)))
 					    - lbl_8_rodata_1B3C;
-					fn_80195A74(&sp14, &lbl_80239984, 0,
+					fn_80195A74(&sp14, &AxisY, 0,
 					    lbl_8_rodata_1B30
 					        + (lbl_8_rodata_1B34
 					            * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
@@ -710,7 +710,7 @@ void fn_8_AD670(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 				temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-				temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+				temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 				// Preserve the operand order emitted by the original GameCube build.
 				asm { fadds temp_f30, temp_f0, temp_f31 }
 				M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -740,7 +740,7 @@ void fn_8_AE428(void* arg0)
 	if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 		M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 		temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-		temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+		temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 		// Preserve the operand order emitted by the original GameCube build.
 		asm { fadds temp_f30, temp_f0, temp_f31 }
 		M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -758,7 +758,7 @@ void fn_8_AE4C0(void* arg0)
 	sp8[2]  = M2C_FIELD(arg0, f32*, 0x25C);
 	temp_f3 = (lbl_8_rodata_1B38 * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AC8)))
 	    - lbl_8_rodata_1B3C;
-	fn_80195A74(&sp14, &lbl_80239984, 0,
+	fn_80195A74(&sp14, &AxisY, 0,
 	    lbl_8_rodata_1B30
 	        + (lbl_8_rodata_1B34 * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
 	        + temp_f3,
@@ -801,9 +801,9 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 			Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(
 			    temp_r3_2, temp_r31, (RwOpCombineType)0);
 			fn_8019EC30(temp_r31, (u8*)arg0 + 0x2B8, 2);
-			fn_8019ED68(temp_r31, &lbl_80239990, 2, arg0->unk270);
-			fn_8019ED68(temp_r31, &lbl_80239978, 2, arg0->unk26C);
-			fn_8019ED68(temp_r31, &lbl_80239984, 2,
+			fn_8019ED68(temp_r31, &AxisZ, 2, arg0->unk270);
+			fn_8019ED68(temp_r31, &AxisX, 2, arg0->unk26C);
+			fn_8019ED68(temp_r31, &AxisY, 2,
 			    lbl_8_rodata_1B30 + (lbl_8_rodata_1B34 * (f32)arg0->unk150), lbl_8_rodata_1B34,
 			    lbl_8_rodata_1B30);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
@@ -811,9 +811,9 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 			    arg0->unk24C, (u8*)arg0 + 0x140, (u8*)arg0 + 0x14C);
 		} else {
 			fn_8019EC30(temp_r31, (u8*)arg0 + 0x2B8, 0);
-			fn_8019ED68(temp_r31, &lbl_80239990, 2, arg0->unk270);
-			fn_8019ED68(temp_r31, &lbl_80239978, 2, arg0->unk26C);
-			fn_8019ED68(temp_r31, &lbl_80239984, 2,
+			fn_8019ED68(temp_r31, &AxisZ, 2, arg0->unk270);
+			fn_8019ED68(temp_r31, &AxisX, 2, arg0->unk26C);
+			fn_8019ED68(temp_r31, &AxisY, 2,
 			    lbl_8_rodata_1B30 + (lbl_8_rodata_1B34 * (f32)arg0->unk150), lbl_8_rodata_1B34,
 			    lbl_8_rodata_1B30);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
@@ -962,7 +962,7 @@ void fn_8_AEB80(TEnemyParalysis* arg0)
 	temp_f3 = (lbl_8_rodata_1B38
 	              * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AE8, temp_r4, lbl_8_rodata_1AC8)))
 	    - lbl_8_rodata_1B3C;
-	fn_80195A74(&sp14, &lbl_80239984, 0,
+	fn_80195A74(&sp14, &AxisY, 0,
 	    lbl_8_rodata_1B30 + (lbl_8_rodata_1B34 * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10)) + temp_f3,
 	    lbl_8_rodata_1B30, temp_f3);
 	fn_80196050(&sp14, arg0->unkB0, 2);

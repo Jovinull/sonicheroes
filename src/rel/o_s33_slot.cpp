@@ -52,9 +52,9 @@ extern void* lbl_8042C1D0;
 extern void* lbl_8042C180;
 extern void* lbl_8042C298;
 
-extern u8 lbl_80239978;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisX;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
@@ -176,19 +176,19 @@ void TObjS33Slot::SetPosition()
 	f32 sine    = fn_800D7B00(angleZ);
 	f32 cosine  = fn_800D7AE4(angleZ);
 	f32 inverse = 1.0f - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239990, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisZ, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleX);
 	cosine  = fn_800D7AE4(angleX);
 	inverse = 1.0f - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239978, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisX, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleY);
 	cosine  = fn_800D7AE4(angleY);
 	inverse = 1.0f - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, inverse, sine, 1);
 	fn_8019E880(atomic);
 }
 #pragma opt_propagation reset
@@ -247,16 +247,13 @@ void TObjS33Slot::Exec()
 	carrier = (void**)*(void**)((u8*)model + 4);
 	fn_8019EB94(carrier, &position, 0);
 
-	fn_80195790(
-	    (u8*)carrier + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(angleZ), fn_800D7B00(angleZ), 1);
+	fn_80195790((u8*)carrier + 0x10, &AxisZ, 1.0f - fn_800D7AE4(angleZ), fn_800D7B00(angleZ), 1);
 	fn_8019E880(carrier);
 
-	fn_80195790(
-	    (u8*)carrier + 0x10, &lbl_80239978, 1.0f - fn_800D7AE4(angleX), fn_800D7B00(angleX), 1);
+	fn_80195790((u8*)carrier + 0x10, &AxisX, 1.0f - fn_800D7AE4(angleX), fn_800D7B00(angleX), 1);
 	fn_8019E880(carrier);
 
-	fn_80195790(
-	    (u8*)carrier + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), fn_800D7B00(angleY), 1);
+	fn_80195790((u8*)carrier + 0x10, &AxisY, 1.0f - fn_800D7AE4(angleY), fn_800D7B00(angleY), 1);
 	fn_8019E880(carrier);
 
 	if (fn_8005B8D8(&motion) != 0)

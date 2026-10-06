@@ -97,9 +97,9 @@ extern "C" u8* lbl_8042C1D0;
 extern "C" u8* lbl_8042C298;
 extern "C" u8 lbl_8029C310[];
 extern "C" u8 lbl_802FF5A0[];
-extern "C" Vec3 lbl_80239978;
-extern "C" Vec3 lbl_80239984;
-extern "C" Vec3 lbl_80239990;
+extern "C" Vec3 AxisX;
+extern "C" Vec3 AxisY;
+extern "C" Vec3 AxisZ;
 extern "C" s8 flowerTypeCount;
 extern "C" RpClump* flowerModels[9];
 extern "C" const char* flowerAssetNames[9];
@@ -156,9 +156,9 @@ static inline void setFlowerPosition(TObjS01Flower* object, const Vec3& zero)
 	scale.y = scale.x;
 	scale.z = scale.x;
 	fn_8019EC30(model, &scale, 0);
-	fn_8019ED68(model, &lbl_80239984, 0.0054931640625f * (f32)object->motion.frame->angleY, 2);
-	fn_8019ED68(model, &lbl_80239978, 0.0054931640625f * (f32)object->motion.frame->angleX, 2);
-	fn_8019ED68(model, &lbl_80239990, 0.0054931640625f * (f32)object->motion.frame->angleZ, 2);
+	fn_8019ED68(model, &AxisY, 0.0054931640625f * (f32)object->motion.frame->angleY, 2);
+	fn_8019ED68(model, &AxisX, 0.0054931640625f * (f32)object->motion.frame->angleX, 2);
+	fn_8019ED68(model, &AxisZ, 0.0054931640625f * (f32)object->motion.frame->angleZ, 2);
 	fn_8019EB94(model, object->motion.frame, 2);
 }
 

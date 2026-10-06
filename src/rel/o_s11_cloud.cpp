@@ -74,8 +74,8 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_8029C310;
 extern u8 lbl_802FF5A0;
 
@@ -191,11 +191,11 @@ void TObjS11Cloud::SetPosition()
 	void* atomic = *(void**)((u8*)model + 4);
 	fn_8019EB94(atomic, &position, 0);
 	f32 sine = fn_800D7B00(angleY);
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, cloudOne - fn_800D7AE4(angleY), sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, cloudOne - fn_800D7AE4(angleY), sine, 1);
 	fn_8019E880(atomic);
 	if (direction == 1) {
 		sine = fn_800D7B00(0x8000);
-		fn_80195790((u8*)atomic + 0x10, &lbl_80239990, cloudOne - fn_800D7AE4(0x8000), sine, 1);
+		fn_80195790((u8*)atomic + 0x10, &AxisZ, cloudOne - fn_800D7AE4(0x8000), sine, 1);
 		fn_8019E880(atomic);
 	}
 }

@@ -30,9 +30,9 @@ extern float lbl_8_rodata_BB0;
 extern float lbl_8_rodata_BC4;
 extern float lbl_8_rodata_BC8;
 extern double lbl_8_rodata_BD0;
-extern char lbl_80239978[];
-extern char lbl_80239984[];
-extern char lbl_80239990[];
+extern char AxisX[];
+extern char AxisY[];
+extern char AxisZ[];
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void fn_8005BE6C(void*);
@@ -130,13 +130,13 @@ extern "C" Signal* signalCtor(Signal* self, void* parent)
 	SignalModel* model = *(SignalModel**)((u8*)self->resource + 4);
 	float high         = fn_800D7B00(self->values[1]);
 	float low          = fn_800D7AE4(self->values[1]);
-	fn_80195790(model->transforms, lbl_80239984, lbl_8_rodata_BB0 - low, high, 0);
+	fn_80195790(model->transforms, AxisY, lbl_8_rodata_BB0 - low, high, 0);
 	high = fn_800D7B00(self->values[0]);
 	low  = fn_800D7AE4(self->values[0]);
-	fn_80195790(model->transforms, lbl_80239978, lbl_8_rodata_BB0 - low, high, 2);
+	fn_80195790(model->transforms, AxisX, lbl_8_rodata_BB0 - low, high, 2);
 	high = fn_800D7B00(self->values[2]);
 	low  = fn_800D7AE4(self->values[2]);
-	fn_80195790(model->transforms, lbl_80239990, lbl_8_rodata_BB0 - low, high, 2);
+	fn_80195790(model->transforms, AxisZ, lbl_8_rodata_BB0 - low, high, 2);
 	fn_8019EB94(model, self->position, 2);
 	fn_8003BF04(self->member30, lbl_8_data_4B3C, 1, 4);
 

@@ -85,7 +85,7 @@ void Debug__7TObjectFv(void);
 void Error__7TObjectFPc(char*);
 void Render__7TObjectFv(void);
 }
-extern M2C_UNK lbl_80239984;
+extern M2C_UNK AxisY;
 extern M2C_UNK lbl_802FF5A0;
 extern TObject* lbl_8042C110;
 extern s32 lbl_8042C148;
@@ -103,18 +103,18 @@ static M2C_UNK* lbl_8_data_18180[5] = {
 	&lbl_8_data_18168,
 	(M2C_UNK*)0x420C0000,
 };
-static f32 lbl_8_data_18194 = 0.6f;
-static f32 lbl_8_data_18198 = 0.8f;
-static f32 lbl_8_data_1819C = 0.5f;
-static s32 lbl_8_data_181A0 = 5;
-static f32 lbl_8_data_181A4 = 0.55f;
-static f32 lbl_8_data_181A8 = 0.4f;
-static f32 lbl_8_data_181AC = 0.35f;
-static char lbl_8_data_181B0[] = "type";
+static f32 lbl_8_data_18194                     = 0.6f;
+static f32 lbl_8_data_18198                     = 0.8f;
+static f32 lbl_8_data_1819C                     = 0.5f;
+static s32 lbl_8_data_181A0                     = 5;
+static f32 lbl_8_data_181A4                     = 0.55f;
+static f32 lbl_8_data_181A8                     = 0.4f;
+static f32 lbl_8_data_181AC                     = 0.35f;
+static char lbl_8_data_181B0[]                  = "type";
 static const char* s11spiderObjectFieldNames[1] = { lbl_8_data_181B0 };
-static char lbl_8_data_181BC[] = "TObjS11Spider";
-static M2C_UNK* lbl_8_data_181CC = (M2C_UNK*)&lbl_8_data_181BC;
-static void* lbl_8_data_181D0[15] = {
+static char lbl_8_data_181BC[]                  = "TObjS11Spider";
+static M2C_UNK* lbl_8_data_181CC                = (M2C_UNK*)&lbl_8_data_181BC;
+static void* lbl_8_data_181D0[15]               = {
 	NULL,
 	NULL,
 	(void*)fn_8_C30D8,
@@ -132,7 +132,7 @@ static void* lbl_8_data_181D0[15] = {
 	(void*)fn_8_C33D0,
 };
 static char s11spiderObjectDisplayName[] = "S11SPIDER OBJECT";
-static char s11spiderObjectFieldTypes[] = "i";
+static char s11spiderObjectFieldTypes[]  = "i";
 static u32 lbl_8_bss_1BD0[4];
 typedef struct ObjectEntry {
 	const char* name;        /* 0x00 */
@@ -184,8 +184,8 @@ void fn_8_C28D4(void* arg0)
 		sp10     = M2C_FIELD(arg0, s32*, 0xC0);
 		fn_8019EB94(temp_r27, (s32*)((u8*)arg0 + 0xB8), 0);
 		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r27 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)),
-		    temp_f30, 1);
+		fn_80195790(
+		    temp_r27 + 0x10, &AxisY, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30, 1);
 		fn_8019E880(temp_r27);
 		var_r26 = 0;
 		var_r28 = arg0;
@@ -195,8 +195,8 @@ void fn_8_C28D4(void* arg0)
 			temp_r27_2 = M2C_FIELD(M2C_FIELD(var_r28, void**, 0xE8), s32*, 4);
 			fn_8019EB94(temp_r27_2, &sp8, 0, temp_f1);
 			temp_f30_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r27_2 + 0x10, &lbl_80239984,
-			    1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30_2, 1);
+			fn_80195790(temp_r27_2 + 0x10, &AxisY, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)),
+			    temp_f30_2, 1);
 			fn_8019E880(temp_r27_2);
 			var_r28 = (u8*)var_r28 + 4;
 			var_r26 += 1;
@@ -381,7 +381,7 @@ void fn_8_C2DE4(void* arg0)
 		sp10     = M2C_FIELD(arg0, s32*, 0xC0);
 		fn_8019EB94(temp_r28, (s32*)((u8*)arg0 + 0xB8), 0);
 		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+		fn_80195790(temp_r28 + 0x10, &AxisY,
 		    lbl_8_rodata_1F08[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30, 1);
 		fn_8019E880(temp_r28);
 		var_r28 = 0;
@@ -392,7 +392,7 @@ void fn_8_C2DE4(void* arg0)
 			temp_r26 = M2C_FIELD(M2C_FIELD(var_r27, void**, 0xE8), s32*, 4);
 			fn_8019EB94(temp_r26, &sp8, 0, temp_f1);
 			temp_f30_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r26 + 0x10, &lbl_80239984,
+			fn_80195790(temp_r26 + 0x10, &AxisY,
 			    lbl_8_rodata_1F08[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30_2, 1);
 			fn_8019E880(temp_r26);
 			var_r27 = (u8*)var_r27 + 4;

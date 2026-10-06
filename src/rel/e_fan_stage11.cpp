@@ -62,7 +62,7 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern u8 lbl_80239984;
+extern u8 AxisY;
 extern u8 lbl_802FF5A0;
 
 s32 fn_8005B8BC(Motion*);
@@ -155,7 +155,7 @@ void TObjS12Fan::SetPosition()
 	time     = *(s32*)((u8*)lbl_8042C180 + 0x30);
 	f32 sine = fn_800D7B00(s12fanRotationSpeed * time);
 	fn_80195790(
-	    (u8*)atomic + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(s12fanRotationSpeed * time), sine, 1);
+	    (u8*)atomic + 0x10, &AxisY, 1.0f - fn_800D7AE4(s12fanRotationSpeed * time), sine, 1);
 	fn_8019E880(atomic);
 }
 

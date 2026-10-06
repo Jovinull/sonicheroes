@@ -407,9 +407,9 @@ void fn_800A3148(void);
 extern M2C_UNK fn_80113C2C;
 extern M2C_UNK fn_80113C7C;
 extern M2C_UNK fn_8_9D45C;
-extern M2C_UNK lbl_80239978;
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+extern M2C_UNK AxisX;
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802AD070;
 extern M2C_UNK lbl_802AD090;
 extern M2C_UNK lbl_802AD0D0;
@@ -474,8 +474,8 @@ static u32 lbl_8_data_156BC[24] = { 0x0000FF21, 0x00000400, 0x00000000, 0x40A000
 	0x41200000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000F021,
 	0x00000400, 0x00000000, 0xC1700000, 0x00000000, 0x41700000, 0x00000000, 0x00000000, 0x00000000,
 	0x00000000, 0x00000000, 0x00000000 };
-static M2C_UNK lbl_8_data_1572C;        /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_1575C;        /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_1572C; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_1575C; /* unable to generate initializer: unknown type */
 static char lbl_8_data_15808[]         = "NORMAL";
 static char lbl_8_data_15810[]         = "SPECIAL";
 static const char* lbl_8_data_15818[2] = { lbl_8_data_15808, lbl_8_data_15810 };
@@ -488,18 +488,49 @@ static u8 lbl_8_data_1583A             = 0;
 static u8 lbl_8_data_1583B             = 1;
 static char lbl_8_data_1583C[]         = "TObjEnemyCapture";
 static const char* lbl_8_data_15850    = lbl_8_data_1583C;
-static M2C_UNK* lbl_8_data_15854[42] = {
-	NULL, NULL, (M2C_UNK*)fn_8_9C4BC, (M2C_UNK*)fn_800A6F38, (M2C_UNK*)fn_800A6EA8,
-	(M2C_UNK*)fn_800A6DD4, (M2C_UNK*)PDisp__7TObjectFv, (M2C_UNK*)ImmAftSetRaster__7TObjectFv,
-	(M2C_UNK*)Debug__7TObjectFv, (M2C_UNK*)Error__7TObjectFPc, (M2C_UNK*)Render__7TObjectFv,
-	NULL, NULL, (M2C_UNK*)fn_8_9D3BC, (M2C_UNK*)fn_800A3F60, (M2C_UNK*)fn_800A2F88,
-	(M2C_UNK*)fn_800A2E24, (M2C_UNK*)fn_800A327C, (M2C_UNK*)fn_800A324C, (M2C_UNK*)fn_800A321C,
-	(M2C_UNK*)fn_8_9AB68, (M2C_UNK*)fn_8_99318, (M2C_UNK*)fn_8_992E4, (M2C_UNK*)fn_8_99254,
-	(M2C_UNK*)fn_8_990C4, (M2C_UNK*)fn_8_98FAC, (M2C_UNK*)fn_8_33D90, (M2C_UNK*)fn_8_33D94,
-	(M2C_UNK*)fn_800A314C, (M2C_UNK*)fn_800A6D60, (M2C_UNK*)fn_800A6D58, (M2C_UNK*)fn_8_98294,
-	(M2C_UNK*)fn_800A3D6C, (M2C_UNK*)fn_800A2C6C, (M2C_UNK*)fn_8_980F8, (M2C_UNK*)fn_8_33D98,
-	(M2C_UNK*)fn_800A31A0, (M2C_UNK*)fn_8_981B8, (M2C_UNK*)fn_800A3148, (M2C_UNK*)fn_8_33DA0,
-	(M2C_UNK*)fn_8_33DA4, (M2C_UNK*)fn_8_9CAF0,
+static M2C_UNK* lbl_8_data_15854[42]   = {
+	NULL,
+	NULL,
+	(M2C_UNK*)fn_8_9C4BC,
+	(M2C_UNK*)fn_800A6F38,
+	(M2C_UNK*)fn_800A6EA8,
+	(M2C_UNK*)fn_800A6DD4,
+	(M2C_UNK*)PDisp__7TObjectFv,
+	(M2C_UNK*)ImmAftSetRaster__7TObjectFv,
+	(M2C_UNK*)Debug__7TObjectFv,
+	(M2C_UNK*)Error__7TObjectFPc,
+	(M2C_UNK*)Render__7TObjectFv,
+	NULL,
+	NULL,
+	(M2C_UNK*)fn_8_9D3BC,
+	(M2C_UNK*)fn_800A3F60,
+	(M2C_UNK*)fn_800A2F88,
+	(M2C_UNK*)fn_800A2E24,
+	(M2C_UNK*)fn_800A327C,
+	(M2C_UNK*)fn_800A324C,
+	(M2C_UNK*)fn_800A321C,
+	(M2C_UNK*)fn_8_9AB68,
+	(M2C_UNK*)fn_8_99318,
+	(M2C_UNK*)fn_8_992E4,
+	(M2C_UNK*)fn_8_99254,
+	(M2C_UNK*)fn_8_990C4,
+	(M2C_UNK*)fn_8_98FAC,
+	(M2C_UNK*)fn_8_33D90,
+	(M2C_UNK*)fn_8_33D94,
+	(M2C_UNK*)fn_800A314C,
+	(M2C_UNK*)fn_800A6D60,
+	(M2C_UNK*)fn_800A6D58,
+	(M2C_UNK*)fn_8_98294,
+	(M2C_UNK*)fn_800A3D6C,
+	(M2C_UNK*)fn_800A2C6C,
+	(M2C_UNK*)fn_8_980F8,
+	(M2C_UNK*)fn_8_33D98,
+	(M2C_UNK*)fn_800A31A0,
+	(M2C_UNK*)fn_8_981B8,
+	(M2C_UNK*)fn_800A3148,
+	(M2C_UNK*)fn_8_33DA0,
+	(M2C_UNK*)fn_8_33DA4,
+	(M2C_UNK*)fn_8_9CAF0,
 };
 static char lbl_8_data_159BC[]         = "en_capture.one";
 static char captureObjectDisplayName[] = "CAPTURE OBJECT";
@@ -525,19 +556,26 @@ typedef struct ObjectEntry {
 } ObjectEntry;               /* 0x2C */
 
 static ObjectEntry captureObjectEntry;
-static u32 lbl_8_data_1571C[2] = { 0x656E5F63, 0x61703000 };
-static u32 lbl_8_data_15724[2] = { 0x656E5F63, 0x61703100 };
-char lbl_8_data_15774[] = "CAPTURE TYPE";
-char lbl_8_data_15784[] = "APPEAR TYPE";
-char lbl_8_data_15790[] = "Not in use";
-char lbl_8_data_1579C[] = "MOVE RANGE";
-char lbl_8_data_157A8[] = "SCOPE RANGE";
-char lbl_8_data_157B4[] = "SCOPE OFFSET";
-char lbl_8_data_157C4[] = "ATTACK INTERVAL";
-char lbl_8_data_157D4[] = "ATTACK SPEED";
+static u32 lbl_8_data_1571C[2]   = { 0x656E5F63, 0x61703000 };
+static u32 lbl_8_data_15724[2]   = { 0x656E5F63, 0x61703100 };
+char lbl_8_data_15774[]          = "CAPTURE TYPE";
+char lbl_8_data_15784[]          = "APPEAR TYPE";
+char lbl_8_data_15790[]          = "Not in use";
+char lbl_8_data_1579C[]          = "MOVE RANGE";
+char lbl_8_data_157A8[]          = "SCOPE RANGE";
+char lbl_8_data_157B4[]          = "SCOPE OFFSET";
+char lbl_8_data_157C4[]          = "ATTACK INTERVAL";
+char lbl_8_data_157D4[]          = "ATTACK SPEED";
 char* captureObjectFieldNames[9] = {
-	lbl_8_data_15774, lbl_8_data_15784, lbl_8_data_15790, lbl_8_data_15790, lbl_8_data_1579C,
-	lbl_8_data_157A8, lbl_8_data_157B4, lbl_8_data_157C4, lbl_8_data_157D4,
+	lbl_8_data_15774,
+	lbl_8_data_15784,
+	lbl_8_data_15790,
+	lbl_8_data_15790,
+	lbl_8_data_1579C,
+	lbl_8_data_157A8,
+	lbl_8_data_157B4,
+	lbl_8_data_157C4,
+	lbl_8_data_157D4,
 };
 
 void fn_8_98060(void* arg0)
@@ -1350,13 +1388,13 @@ void fn_8_99318(TObject* arg0)
 		temp_r3_4 = arg0->unk2DC;
 		if ((temp_r3_4 != NULL) && ((u32)arg0->unk268 != 0U)) {
 			temp_r30_3 = M2C_FIELD(temp_r3_4, RwFrame**, 4);
-			fn_8019ED68(temp_r30_3, &lbl_80239984, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_3, &AxisY, lbl_8_rodata_1744[0], 0);
 			fn_8019ECCC(temp_r30_3, fn_8019E8EC((void*)arg0->unk268), 2);
 		}
 		temp_r3_5 = arg0->unk2E0;
 		if ((temp_r3_5 != NULL) && ((u32)arg0->unk26C != 0U)) {
 			temp_r30_4 = M2C_FIELD(temp_r3_5, RwFrame**, 4);
-			fn_8019ED68(temp_r30_4, &lbl_80239984, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_4, &AxisY, lbl_8_rodata_1744[0], 0);
 			fn_8019ECCC(temp_r30_4, fn_8019E8EC((void*)arg0->unk26C), 2);
 		}
 		arg0->unk284 += 0x1000;
@@ -1984,7 +2022,7 @@ void fn_8_9A710(void* arg0, s32 arg1)
 					sp8[2]  = M2C_FIELD(arg0, f32*, 0x254);
 					temp_f3 = (160.0f * (0.000030517578f * (f32)rand((void*)lbl_8_rodata_1704)))
 					    - 80.0f;
-					fn_80195A74(&sp14, &lbl_80239984, 0,
+					fn_80195A74(&sp14, &AxisY, 0,
 					    180.0f
 					        + (0.005493164f
 					            * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
@@ -2481,7 +2519,7 @@ void fn_8_9B69C(void* arg0)
 	sp8[1]  = 0.0f;
 	sp8[2]  = M2C_FIELD(arg0, f32*, 0x254);
 	temp_f3 = (160.0f * (0.000030517578f * (f32)rand((void*)lbl_8_rodata_1704))) - 80.0f;
-	fn_80195A74(&sp14, &lbl_80239984, 0,
+	fn_80195A74(&sp14, &AxisY, 0,
 	    180.0f + (0.005493164f * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
 	        + temp_f3,
 	    180.0f, temp_f3);
@@ -2511,13 +2549,13 @@ void fn_8_9B7E0(void* arg0)
 		temp_r3 = M2C_FIELD(arg0, void**, 0x2DC);
 		if ((temp_r3 != NULL) && ((u32)M2C_FIELD(arg0, u32*, 0x268) != 0U)) {
 			temp_r30_2 = M2C_FIELD(temp_r3, RwFrame**, 4);
-			fn_8019ED68(temp_r30_2, &lbl_80239984, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_2, &AxisY, lbl_8_rodata_1744[0], 0);
 			fn_8019ECCC(temp_r30_2, fn_8019E8EC((void*)M2C_FIELD(arg0, u32*, 0x268)), 2);
 		}
 		temp_r3_2 = M2C_FIELD(arg0, void**, 0x2E0);
 		if ((temp_r3_2 != NULL) && ((u32)M2C_FIELD(arg0, u32*, 0x26C) != 0U)) {
 			temp_r30_3 = M2C_FIELD(temp_r3_2, RwFrame**, 4);
-			fn_8019ED68(temp_r30_3, &lbl_80239984, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_3, &AxisY, lbl_8_rodata_1744[0], 0);
 			fn_8019ECCC(temp_r30_3, fn_8019E8EC((void*)M2C_FIELD(arg0, u32*, 0x26C)), 2);
 		}
 		M2C_FIELD(arg0, s32*, 0x284) = (s32)(M2C_FIELD(arg0, s32*, 0x284) + 0x1000);
@@ -2558,22 +2596,22 @@ void fn_8_9B920(TObject* arg0)
 		if ((temp_r0 == 0x24) && (temp_r3_2 = arg0->unk244, ((temp_r3_2 == NULL) == 0))) {
 			Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(
 			    temp_r3_2, temp_r31, (RwOpCombineType)0);
-			fn_8019ED68(temp_r31, &lbl_80239990, arg0->unk298, 2);
-			fn_8019ED68(temp_r31, &lbl_80239978, arg0->unk294, 2);
-			fn_8019ED68(temp_r31, &lbl_80239984, 180.0f + (0.005493164f * (f32)arg0->unk150), 2);
+			fn_8019ED68(temp_r31, &AxisZ, arg0->unk298, 2);
+			fn_8019ED68(temp_r31, &AxisX, arg0->unk294, 2);
+			fn_8019ED68(temp_r31, &AxisY, 180.0f + (0.005493164f * (f32)arg0->unk150), 2);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
 			SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(
 			    arg0->unk244, (RwV3d*)((u8*)arg0 + 0x140), (sAngle*)((u8*)arg0 + 0x14C));
 		} else if (temp_r0 == 0x15) {
 			fn_8019EC30(temp_r31, (f32*)((u8*)arg0 + 0x2B8), 0);
-			fn_8019ED68(temp_r31, &lbl_80239990, arg0->unk298, 2);
-			fn_8019ED68(temp_r31, &lbl_80239978, arg0->unk294, 2);
-			fn_8019ED68(temp_r31, &lbl_80239984, 180.0f + (0.005493164f * (f32)arg0->unk150), 2);
+			fn_8019ED68(temp_r31, &AxisZ, arg0->unk298, 2);
+			fn_8019ED68(temp_r31, &AxisX, arg0->unk294, 2);
+			fn_8019ED68(temp_r31, &AxisY, 180.0f + (0.005493164f * (f32)arg0->unk150), 2);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
 		} else {
-			fn_8019ED68(temp_r31, &lbl_80239990, arg0->unk298, 0);
-			fn_8019ED68(temp_r31, &lbl_80239978, arg0->unk294, 2);
-			fn_8019ED68(temp_r31, &lbl_80239984, 180.0f + (0.005493164f * (f32)arg0->unk150), 2);
+			fn_8019ED68(temp_r31, &AxisZ, arg0->unk298, 0);
+			fn_8019ED68(temp_r31, &AxisX, arg0->unk294, 2);
+			fn_8019ED68(temp_r31, &AxisY, 180.0f + (0.005493164f * (f32)arg0->unk150), 2);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
 		}
 		if ((u32)arg0->unk2EC == 0U) {
@@ -2744,7 +2782,7 @@ void fn_8_9C054(TObject* arg0)
 	sp8[2]       = arg0->unk254;
 	temp_f3
 	    = (160.0f * (0.000030517578f * (f32)rand((void*)lbl_8_rodata_1710, temp_r4, 0.0f))) - 80.0f;
-	fn_80195A74(&sp14, &lbl_80239984, 0,
+	fn_80195A74(&sp14, &AxisY, 0,
 	    180.0f + (0.005493164f * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10)) + temp_f3, 180.0f,
 	    temp_f3);
 	fn_80196050(&sp14, arg0->unkB0, 2);

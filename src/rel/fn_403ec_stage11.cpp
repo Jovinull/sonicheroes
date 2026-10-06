@@ -188,8 +188,8 @@ extern u8 lbl_8042C1D0[];
 extern u8 lbl_8042C180[];
 extern u8 lbl_8042C298[];
 extern u8 lbl_8042C388[];
-extern u8 lbl_80239984[];
-extern u8 lbl_80239990[];
+extern u8 AxisY[];
+extern u8 AxisZ[];
 
 f32 fn_800D7B00(s32 range);
 u32 __cvt_fp2unsigned(f32 value);
@@ -360,7 +360,7 @@ extern "C" void fn_8_40868(RuntimeState* self)
 	u8* root   = *(u8**)((u8*)self->resource + 4);
 	f32 second = fn_800D7B00(*(s32*)((u8*)self + 0xD0));
 	f32 first  = lbl_8_rodata_A98 - fn_800D7AE4(*(s32*)((u8*)self + 0xD0));
-	fn_80195790(root + 0x10, lbl_80239984, first, second, 0);
+	fn_80195790(root + 0x10, AxisY, first, second, 0);
 	fn_8019E880(root);
 
 	Vec3 value;
@@ -373,7 +373,7 @@ extern "C" void fn_8_40868(RuntimeState* self)
 	if (self->type == 1) {
 		second = fn_800D7B00(0x8000);
 		first  = lbl_8_rodata_A98 - fn_800D7AE4(0x8000);
-		fn_80195790(root + 0x10, lbl_80239990, first, second, 1);
+		fn_80195790(root + 0x10, AxisZ, first, second, 1);
 		fn_8019E880(root);
 	}
 

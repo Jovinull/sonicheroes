@@ -93,9 +93,9 @@ extern "C" Actor* lbl_80303DC8[];
 extern "C" Player* lbl_802AD090[];
 extern "C" Team* lbl_802AD0D0[];
 
-extern "C" const Vec3 lbl_80239978; // {1, 0, 0}
-extern "C" const Vec3 lbl_80239984; // {0, 1, 0}
-extern "C" const Vec3 lbl_80239990; // {0, 0, 1}
+extern "C" const Vec3 AxisX; // {1, 0, 0}
+extern "C" const Vec3 AxisY; // {0, 1, 0}
+extern "C" const Vec3 AxisZ; // {0, 0, 1}
 
 extern "C" void fn_8001F674(s32 voice, s32 a, s32 b, s32 c);
 extern "C" s32 fn_8003E2E4(s32 player, s32 part, Vec3* out, s32 flags);
@@ -122,9 +122,9 @@ extern "C" void objBoxTrigger(Trigger* object)
 		object->matrix = fn_80057644(0x40);
 		matrix         = object->matrix;
 
-		fn_80195A74(build, &lbl_80239984, object->yaw, 0);
-		fn_80195A74(build, &lbl_80239978, object->pitch, 2);
-		fn_80195A74(build, &lbl_80239990, object->roll, 2);
+		fn_80195A74(build, &AxisY, object->yaw, 0);
+		fn_80195A74(build, &AxisX, object->pitch, 2);
+		fn_80195A74(build, &AxisZ, object->roll, 2);
 		fn_80196050(build, &object->position, 2);
 		fn_80195B5C(matrix, build);
 	}

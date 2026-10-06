@@ -579,6 +579,7 @@ config.libs = [
                 "game/hAnim.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"],
             ),
+            Object(Matching, "game/matrix.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(
                 Matching,
                 "game/vibration.cpp",

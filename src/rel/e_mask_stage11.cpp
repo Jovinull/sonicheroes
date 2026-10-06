@@ -151,8 +151,8 @@ extern GameState* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 extern void* lbl_8042C388;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
@@ -441,15 +441,15 @@ void TObjMask::SetPosition()
 		RwFrame* frame           = *(RwFrame**)((u8*)model + 4);
 		fn_8019EB94(frame, &position, 0);
 		f32 sine = fn_800D7B00(angleY);
-		fn_80195790(&frame->modelling, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), sine, 1);
+		fn_80195790(&frame->modelling, &AxisY, 1.0f - fn_800D7AE4(angleY), sine, 1);
 		fn_8019E880(frame);
 		if (direction == 1) {
 			sine = fn_800D7B00(0x4000);
-			fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(0x4000), sine, 1);
+			fn_80195790(&frame->modelling, &AxisZ, 1.0f - fn_800D7AE4(0x4000), sine, 1);
 			fn_8019E880(frame);
 		} else {
 			sine = fn_800D7B00(-0x4000);
-			fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(-0x4000), sine, 1);
+			fn_80195790(&frame->modelling, &AxisZ, 1.0f - fn_800D7AE4(-0x4000), sine, 1);
 			fn_8019E880(frame);
 		}
 		fn_8019EC30(frame, &size, 1);
