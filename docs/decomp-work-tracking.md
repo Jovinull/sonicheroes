@@ -4,6 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Codex 2026-10-06 | `game/mobject.cpp`, complete GameCube module support and default world/camera unit | Complete native object on `decomp/mobject-20261006`: 11/11 functions, owned data and 147 relocations exact; depends on linker metadata fix PR #550; full G9SE8P native-source release/all-source build, 55 tests and all 18 hashes pass |
 | Claude Code | GX graphics library | Active; reserved |
 | Codex | `game/cri/axrna.c` | Attempted; no net improvement after source-form and compiler-flag trials |
 | Codex | `game/cri/svm.c` | Attempted; BSS layout identified, but no net object improvement |

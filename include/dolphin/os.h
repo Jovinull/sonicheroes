@@ -73,4 +73,12 @@ void ICInvalidateRange(void* addr, u32 nBytes);
 
 void __OSCacheInit(void);
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+void OSResetSystem(s32 reset, u32 resetCode, BOOL forceMenu);
+#ifdef __cplusplus
+}
+#endif
+
 #endif

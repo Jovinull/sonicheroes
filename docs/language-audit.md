@@ -1210,3 +1210,37 @@ depend on emission order keep the default CRI flags.
 - `game/cri/adx_sje.c`: the ADX encoder (ADXSJE), sixteen functions,
   `-inline deferred`. The older 8.84 encoder has no CINF chunk and inlines
   the header writer, which is why `adxsje_output_header` is 0x13E8 bytes.
+
+### Complete MObject translation unit
+
+`game/mobject.cpp` reconstructs all eleven surviving GameCube functions for
+module access, reset/disc history, copy filters, default scene setup/teardown,
+and the camera/font leak workaround. Local European PS2 (`SLES_519.50`) CCC 2.2
+DWARF identifies `mobject.cpp` as C++, its `MObject` methods/static members and
+the three camera/world getters. GameCube global references, virtual-call context,
+RenderWare allocation/destruction and GX/DVD/OS calls independently correlate
+the unit. GameCube-only helper names remain address labels. The proposed unit
+boundary is inferred from that sequence; preceding enemy vtable stubs are
+excluded.
+
+The camera-creation helper carries frame-valid creation status through its
+pointer return. `DefaultSetUp` discards that return. With ordinary dead-store
+elimination the compiler removes the otherwise unused frame-null comparison;
+`-opt nodeadstore`, alongside the unit's existing noschedule/nopeephole settings,
+preserves the observed comparison and its two paths to the common view setup.
+This is an inferred source/optimization relationship, not proof of original
+compiler command-line options or of an independently emitted helper body.
+No artificial empty conditional, assembly or object postprocessor is used.
+
+Independent ELF checks establish exact bytes for all eleven functions (1,572
+bytes), exception tables (72 + 108 bytes), read-only data (16 bytes), data (176
+bytes), small data (11 bytes), small BSS (24 bytes) and constants (24 bytes).
+All native global definitions have exact offsets/sizes and all 147 normalized
+relocations match. As in other native MW objects, `.sdata2` has alloc/write flags
+where DTK's reference object has alloc-only flags; bytes, alignment, destinations
+and final release artifacts are checked independently.
+
+G9SE8P is the only currently supported target. Its full release/all-source build,
+55 tests, both policy checks and all eighteen hashes pass with the reconstructed
+MObject object linked. This verifies compilation and artifact identity, not
+runtime or physical-hardware behavior.
