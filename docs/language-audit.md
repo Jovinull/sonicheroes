@@ -956,6 +956,18 @@ Evidence and rationale:
   the same literal-byte, short-back-reference and long-back-reference forms;
 - the configured C++ object matches its complete text range byte-for-byte.
 
+The shared `game/expasm.h` declaration returns `s32`: PS2 symbolic metadata
+identifies a signed integer result, and the GameCube body returns the difference
+between the destination cursor and its starting address. The resource loader
+uses that byte count as the second word of its memory-stream descriptor, after
+the buffer pointer. Its previous pointer-return declaration and two-pointer
+array concealed these roles. Both source files now include the same C++ API,
+and the descriptor explicitly stores a pointer and an unsigned byte length.
+The complete 476-byte decompressor text and 2,216-byte caller-unit text remain
+exact (the caller retains its existing register postprocessor unchanged).
+G9SE8P all-source build, link/report, 55 tests, both policies and all 18 linked
+artifact hashes pass; no runtime or hardware validation is claimed.
+
 ### Movie playback controller
 
 Added `game/moviePlay.cpp` as a C++ translation unit.
