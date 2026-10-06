@@ -176,7 +176,7 @@ M2C_UNK fn_8005DABC(s32, s32*);                           /* extern */
 M2C_UNK fn_8005FD20(void*);                               /* extern */
 M2C_UNK fn_8005FD8C(void*, M2C_UNK);                      /* extern */
 void* fn_8006298C(s32, f32*, s32*);                       /* extern */
-M2C_UNK fn_80066D20(s32*, s32);                           /* extern */
+M2C_UNK setRingNum__10PARAM_RINGFii(s32*, s32);           /* extern */
 s32 fn_800A34D0(void*, void*, f32);                       /* extern */
 s32 fn_800A3D48(void*);                                   /* extern */
 s32 fn_800A4668(void*);                                   /* extern */
@@ -236,7 +236,7 @@ extern M2C_UNK fn_8005BF88;
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_802AD070;
 extern M2C_UNK lbl_802AD090;
-extern M2C_UNK lbl_80303D28;
+extern M2C_UNK num__10PARAM_RING;
 extern s32 lbl_8042C148;
 extern void* lbl_8042C180;
 extern u32 lbl_8042C388;
@@ -1095,7 +1095,7 @@ void fn_8_AC440(TObject* arg0, s32 arg1)
 							temp_r3_3 = *(void**)((u8*)&lbl_802AD070 + temp_r4);
 							if ((temp_r3_3 != NULL)
 							    && ((s32)
-							            * (&lbl_80303D28
+							            * (&num__10PARAM_RING
 							                + ((s8)M2C_FIELD(temp_r3_3, u8*, 0x9BC) * 4))
 							        != 0)) {
 								temp_r3_4 = *(void**)((u8*)&lbl_802AD090 + temp_r4);
@@ -1161,19 +1161,19 @@ void fn_8_AC440(TObject* arg0, s32 arg1)
 			if (temp_r0_3 != -1) {
 				temp_r3_7 = *(void**)((u8*)&lbl_802AD070 + (temp_r0_3 * 4));
 				if (temp_r3_7 != NULL) {
-					temp_r5 = *(&lbl_80303D28 + ((s8)M2C_FIELD(temp_r3_7, u8*, 0x9BC) * 4));
+					temp_r5 = *(&num__10PARAM_RING + ((s8)M2C_FIELD(temp_r3_7, u8*, 0x9BC) * 4));
 					if (temp_r5 != 0) {
 						if (temp_r5 >= 0x14) {
 							arg0->unk2D4 = 0x14;
 							arg0->unk2D8 = arg0->unk2D4;
-							fn_80066D20(&arg0->unk240, temp_r5 - 0x14);
+							setRingNum__10PARAM_RINGFii(&arg0->unk240, temp_r5 - 0x14);
 							if ((u32)lbl_8042C388 != 0U) {
 								fn_800B4A38(lbl_8042C388, 0x404B, &arg0->unk140, NULL, 1, 0, 0);
 							}
 						} else {
 							arg0->unk2D4 = temp_r5;
 							arg0->unk2D8 = arg0->unk2D4;
-							fn_80066D20(&arg0->unk240, 0);
+							setRingNum__10PARAM_RINGFii(&arg0->unk240, 0);
 							if ((u32)lbl_8042C388 != 0U) {
 								fn_800B4A38(lbl_8042C388, 0x404B, &arg0->unk140, NULL, 1, 0, 0);
 							}

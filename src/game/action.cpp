@@ -262,7 +262,7 @@ extern RwRGBA lbl_8042AEAC;
 extern u8 lbl_80240D0C[];
 extern StageNameEntry lbl_80240B10[];
 extern RawTask* lbl_80303DC8[];
-extern s32 lbl_80303D44[];
+extern s32 num__15PARAM_CHALLENGE[];
 extern void* lbl_8042C388;
 extern void* lbl_8042C6D0;
 extern u8 lbl_803E774C[];
@@ -322,8 +322,8 @@ inline void fn_8005A298(u32 object, s32 mode)
 {
 	fn_8005A298((void*)object, mode);
 }
-extern "C" void fn_80066ED8(void* object, s32 mode);
-extern "C" void fn_80066D68(void* object, u8 red, u8 green, u8 blue);
+extern "C" void InitGParam__7G_PARAMF11GPARAM_INIT(void* object, s32 mode);
+extern "C" void setSaveTime__18PARAM_SAVEPOSITIONFScScSc(void* object, u8 red, u8 green, u8 blue);
 extern "C" void fn_800B4684(void* object, s32 mode);
 inline void fn_800B4684(u32 object, s32 mode)
 {
@@ -331,12 +331,12 @@ inline void fn_800B4684(u32 object, s32 mode)
 }
 extern "C" void fn_800CB84C();
 extern "C" void fn_8001F600();
-extern "C" void fn_80066AFC(void* object, s32 stage, s32 value);
-inline void fn_80066AFC(u32 object, s32 stage, u32 value)
+extern "C" void addChallenge__15PARAM_CHALLENGEFii(void* object, s32 stage, s32 value);
+inline void addChallenge__15PARAM_CHALLENGEFii(u32 object, s32 stage, u32 value)
 {
-	fn_80066AFC((void*)object, stage, (s32)value);
+	addChallenge__15PARAM_CHALLENGEFii((void*)object, stage, (s32)value);
 }
-extern "C" void fn_80066EA0(void* object);
+extern "C" void InitSavePosition__7G_PARAMFv(void* object);
 extern "C" void fn_8011C6EC();
 extern "C" void fn_8011C0C4(void* object);
 extern "C" void* fn_80116D2C(void* object);
@@ -382,7 +382,7 @@ extern "C" void fn_8002171C(void*);
 extern "C" void fn_80042310(void*, void*);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, s32);
 extern "C" void fn_8009DFE0(void*, s32, s32, s32, s32, s32, void*);
-extern "C" void fn_80066B48(void*, s32, s32);
+extern "C" void setChallenge__15PARAM_CHALLENGEFii(void*, s32, s32);
 extern "C" void fn_8004F0F8(s32);
 extern "C" void fn_800C731C();
 extern "C" void MakeGameKeyData();
@@ -449,8 +449,8 @@ extern u8 lbl_802D5E80[];
 extern u8 lbl_803EDBD0[];
 extern s8 lbl_80240D00[];
 extern ExecTable lbl_802895B8[];
-extern "C" void fn_80066474(void* object, s32 mode);
-extern "C" void fn_80066454(s8* a, s8* b, s8* c);
+extern "C" void addFrm__10PARAM_TIMEFi(void* object, s32 mode);
+extern "C" void getGameTime__FPScPScPSc(s8* a, s8* b, s8* c);
 extern "C" s32 fn_8012DA08();
 extern "C" void* memcpy(void* destination, const void* source, unsigned long size);
 extern "C" s32 fn_800166E8(void*);
@@ -478,8 +478,8 @@ inline s32 fn_8005A5EC(u32 object)
 extern "C" s32 fn_8005B558();
 extern "C" s32 fn_8005E8EC();
 extern "C" s32 fn_800662BC();
-extern "C" s32 fn_80066D4C(void*, void*, void*, void*);
-extern "C" s32 fn_80066E80(void*);
+extern "C" s32 getSaveTime__18PARAM_SAVEPOSITIONFPScPScPSc(void*, void*, void*, void*);
+extern "C" s32 InitRing__7G_PARAMFv(void*);
 extern "C" s32 fn_8009C618(RawTask*);
 extern "C" s32 fn_8009C704(s32, s32);
 extern "C" void fn_8009250C(RawTask*);
@@ -540,7 +540,7 @@ extern "C" s32 strcmp(u32, void*);
 #define DAT_8029c330 (*(s32*)((u8*)&Action + 0x20))
 #define DAT_8029c344 ((u8*)Action.currentStage)
 #define DAT_802d5e80 lbl_802D5E80
-#define DAT_80303d44 lbl_80303D44[0]
+#define DAT_80303d44 num__15PARAM_CHALLENGE[0]
 #define DAT_80303dc8 (*(s32*)lbl_80303DC8)
 #define DAT_803e774c lbl_803E774C
 
@@ -676,7 +676,7 @@ s32 ACTION::restartStage()
 	fn_800215A8(&lbl_8042C1A4);
 	fn_8004ED48(lbl_8042C1F8);
 	fn_8005A298(lbl_8042C298, 0);
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 
 	processState = 2;
 	fn_80016BBC(lbl_8029C2E4);
@@ -698,10 +698,11 @@ s32 ACTION::restartStage()
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
 
 	if (stageNumber == 23)
-		fn_80066D68(lbl_8042C304, lbl_8042C304[0], lbl_8042C304[1], lbl_8042C304[2]);
+		setSaveTime__18PARAM_SAVEPOSITIONFScScSc(
+		    lbl_8042C304, lbl_8042C304[0], lbl_8042C304[1], lbl_8042C304[2]);
 
 	if (lbl_8042C180->field1E == 0 && lbl_8042C180->field18 == 0
-	    && lbl_80303D44[*(s8*)(*(u8**)lbl_80303DC8 + 56)] < 0) {
+	    && num__15PARAM_CHALLENGE[*(s8*)(*(u8**)lbl_80303DC8 + 56)] < 0) {
 		*(s32*)((u8*)this + 0x14) = 3;
 		return 0;
 	}
@@ -845,7 +846,7 @@ void ACTION::InitRestartStage()
 	mode       = 8;
 	transition = 2;
 	fn_800CB6EC();
-	fn_80066AFC(object, *(s8*)(*(u8**)lbl_80303DC8 + 56), -1);
+	addChallenge__15PARAM_CHALLENGEFii(object, *(s8*)(*(u8**)lbl_80303DC8 + 56), -1);
 }
 
 void ACTION::BackToBeginningOfStage()
@@ -853,7 +854,7 @@ void ACTION::BackToBeginningOfStage()
 	((EventManagerLate*)lbl_8042C170)->method54();
 	mode       = 8;
 	transition = 4;
-	fn_80066EA0(&lbl_8042C308);
+	InitSavePosition__7G_PARAMFv(&lbl_8042C308);
 	if (lbl_8042C6D0 == 0)
 		fn_8011C6EC();
 	if (lbl_8042C6D0 != 0)
@@ -890,7 +891,7 @@ void ACTION::StartPose()
 	if (lbl_8042C180->field1E == 0) {
 		s32 score;
 		s32 team     = teams[0];
-		score        = lbl_80303D44[0];
+		score        = num__15PARAM_CHALLENGE[0];
 		s32* scores  = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 60);
 		scores[team] = score;
 	}
@@ -934,7 +935,7 @@ void ACTION::SetGoalAction(s32 teamNo)
 	*(s32*)(lbl_8029BBD0 + 44) = 0;
 
 	if (lbl_8042C180->field1E == 0) {
-		s32 score         = lbl_80303D44[0];
+		s32 score         = num__15PARAM_CHALLENGE[0];
 		s32 teamIndex     = teams[0];
 		s32* scores       = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 60);
 		scores[teamIndex] = score;
@@ -1026,7 +1027,8 @@ void ACTION::EnterPauseMode()
 	        && (repCheck(GetPauseInput(1), 4, 12, 1) || ConvertBit_AD(GetPauseInput(1), 4)))) {
 		if (pauseChoice < 2) {
 			++pauseChoice;
-			if (lbl_8042C180->field1E == 0 && (lbl_80303D44[0] <= 0 || IsSpecialAndBonusStage())) {
+			if (lbl_8042C180->field1E == 0
+			    && (num__15PARAM_CHALLENGE[0] <= 0 || IsSpecialAndBonusStage())) {
 				if (pauseChoice == 1)
 					pauseChoice = 2;
 			}
@@ -1042,7 +1044,8 @@ void ACTION::EnterPauseMode()
 	        && (repCheck(GetPauseInput(1), 8, 12, 1) || ConvertBit_AD(GetPauseInput(1), 8)))) {
 		if (pauseChoice != 0) {
 			--pauseChoice;
-			if (lbl_8042C180->field1E == 0 && (lbl_80303D44[0] <= 0 || IsSpecialAndBonusStage())) {
+			if (lbl_8042C180->field1E == 0
+			    && (num__15PARAM_CHALLENGE[0] <= 0 || IsSpecialAndBonusStage())) {
 				if (pauseChoice == 1)
 					pauseChoice = 0;
 			}
@@ -1451,12 +1454,12 @@ exec_start_done:
 	    && *(s8*)((u8*)lbl_8042C180 + 31) == 0 && *(s8*)((u8*)lbl_8042C180 + 33) == 0
 	    && challengeState == 0) {
 		if (execCallback != 0) {
-			fn_80066474(&object, -1);
-			fn_80066454(&resultA, resultBPtr, resultCPtr);
+			addFrm__10PARAM_TIMEFi(&object, -1);
+			getGameTime__FPScPScPSc(&resultA, resultBPtr, resultCPtr);
 			if (resultA == 0 && resultB == 0 && resultC == 0)
 				execCallback();
 		} else {
-			fn_80066474(&object, 1);
+			addFrm__10PARAM_TIMEFi(&object, 1);
 		}
 	}
 #pragma opt_propagation reset
@@ -1689,7 +1692,7 @@ s32 ACTION::Loop()
 					fn_801388C4(&lbl_8042C7E0, stageConnect[stageCount]);
 				}
 				if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x28) == '\x02') {
-					iterator.count = lbl_80303D44[0];
+					iterator.count = num__15PARAM_CHALLENGE[0];
 					iVar4          = (s32)fn_80116D2C(&DAT_803e774c);
 					fn_801169A4(iVar4 + 0x6f8, iterator.count, 1);
 				}
@@ -1743,7 +1746,7 @@ s32 ACTION::Loop()
 						goto regularTransition;
 				specialTransition:
 					if (*(char*)(iVar4 + 0x28) == '\x02') {
-						iterator.count = lbl_80303D44[0];
+						iterator.count = num__15PARAM_CHALLENGE[0];
 						iVar4          = (s32)fn_80116D2C(&DAT_803e774c);
 						fn_801169A4(iVar4 + 0x6f8, iterator.count, 0);
 					}
@@ -1759,7 +1762,7 @@ s32 ACTION::Loop()
 				if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x28) == '\x02') {
 					if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x28) != '\x02')
 						goto regularTransitionCleanup;
-					iterator.count = lbl_80303D44[0];
+					iterator.count = num__15PARAM_CHALLENGE[0];
 					iVar4          = (s32)fn_80116D2C(&DAT_803e774c);
 					fn_801169A4(iVar4 + 0x6f8, iterator.count, 0);
 				regularTransitionCleanup:
@@ -1829,7 +1832,7 @@ s32 ACTION::Loop()
 						fn_800215A8((u8*)&lbl_8042C1A4);
 						fn_8004ED48(*(u32*)((u8*)&lbl_8042C1F8));
 						fn_8005A5EC(*(u32*)((u8*)&lbl_8042C298));
-						fn_80066ED8((u8*)&lbl_8042C308, 3);
+						InitGParam__7G_PARAMF11GPARAM_INIT((u8*)&lbl_8042C308, 3);
 						*(u32*)(param_1 + 0x18) = 1;
 						fn_80016BBC(&DAT_8029c2e4);
 						fn_800215A8((u8*)&lbl_8042C1A4);
@@ -1846,7 +1849,7 @@ s32 ACTION::Loop()
 						fn_8001F4E8(*(u32*)((u8*)&lbl_8042C180), 0x22, 0);
 						fn_8001F4E8(*(u32*)((u8*)&lbl_8042C180), 0x23, 0);
 						fn_8001F4E8(*(u32*)((u8*)&lbl_8042C180), 0x26, 1);
-						fn_80066E80((u8*)&lbl_8042C308);
+						InitRing__7G_PARAMFv((u8*)&lbl_8042C308);
 						if ((*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x1e) == '\0')
 						    && ((int)(&DAT_80303d44)[*(s8*)(*(u8**)lbl_80303DC8 + 0x38)] < 0)) {
 							*(u32*)(param_1 + 0x14)                          = 3;
@@ -2021,8 +2024,8 @@ s32 ACTION::Loop()
 								fn_8012C3E8();
 								goto goalDone;
 							}
-							fn_80066D4C((u8*)&lbl_8042C304, (u8*)&lbl_8042C304,
-							    (u8*)&lbl_8042C304 + 1, (u8*)&lbl_8042C304 + 2);
+							getSaveTime__18PARAM_SAVEPOSITIONFPScPScPSc((u8*)&lbl_8042C304,
+							    (u8*)&lbl_8042C304, (u8*)&lbl_8042C304 + 1, (u8*)&lbl_8042C304 + 2);
 							lbl_8042C170->method54();
 							*(u32*)(param_1 + 0xc) = 8;
 							fn_800CB6EC();
@@ -2064,8 +2067,8 @@ s32 ACTION::Loop()
 						*(u32*)(param_1 + 0xc)  = 8;
 						*(u32*)(param_1 + 0x14) = 2;
 						fn_800CB6EC();
-						fn_80066AFC(*(u32*)(param_1 + 4), (int)*(s8*)(*(u8**)lbl_80303DC8 + 0x38),
-						    0xffffffff);
+						addChallenge__15PARAM_CHALLENGEFii(*(u32*)(param_1 + 4),
+						    (int)*(s8*)(*(u8**)lbl_80303DC8 + 0x38), 0xffffffff);
 						if (lbl_8042C388 != 0) {
 							fn_800B52E8((s32)lbl_8042C388, 0xe008, 0, 0);
 						}
@@ -2134,7 +2137,7 @@ s32 ACTION::Loop()
 				*(u32*)(param_1 + 0xc)  = 8;
 				*(u32*)(param_1 + 0x14) = 2;
 				fn_800CB6EC();
-				fn_80066AFC(
+				addChallenge__15PARAM_CHALLENGEFii(
 				    *(u32*)(param_1 + 4), (int)*(char*)(*(s32*)lbl_80303DC8 + 0x38), 0xffffffff);
 			}
 			break;
@@ -2382,7 +2385,7 @@ void ACTION::subEnd()
 					if (*(s32*)(save + 0x6FC) <= 0)
 						*(s32*)((u8*)fn_80116D2C(lbl_803E774C) + 0x6FC) = 3;
 					save = (u8*)fn_80116D2C(lbl_803E774C);
-					fn_80066B48(object, 0, *(s32*)(save + 0x6FC));
+					setChallenge__15PARAM_CHALLENGEFii(object, 0, *(s32*)(save + 0x6FC));
 				} else {
 					s32* ranks = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 0x3C);
 					if (ReadSavedTeamRank(ranks, team) <= 3) {
@@ -2390,7 +2393,7 @@ void ACTION::subEnd()
 						WriteSavedTeamRank(ranks, team, 3);
 					}
 					ranks = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 0x3C);
-					fn_80066B48(object, 0, ReadSavedTeamRank(ranks, team));
+					setChallenge__15PARAM_CHALLENGEFii(object, 0, ReadSavedTeamRank(ranks, team));
 				}
 				*(s8*)((u8*)fn_80116D2C(lbl_803E774C) + 0x24) = (s8)team;
 			}
@@ -2403,7 +2406,7 @@ void ACTION::subEnd()
 	if (activeTeams == 2)
 		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 41, 0);
 	fn_8004F0F8(activeTeams);
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 	*(s32*)((u8*)lbl_8042C180 + 0x30) = 0;
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
 	if (*(s8*)((u8*)lbl_8042C180 + 0x27) != 0)
@@ -2462,7 +2465,7 @@ void ACTION::Init()
 	fn_800A7428();
 	fn_8005ED88();
 	fn_800B9408();
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 	fn_80112618(lbl_803E73B0);
 }
 
@@ -2834,7 +2837,7 @@ void ACTION::subInit()
 			break;
 	}
 
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 	*(s32*)((u8*)lbl_8042C180 + 0x30) = 0;
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
 	srand(0xDEAD0CAB);

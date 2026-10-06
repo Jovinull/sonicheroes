@@ -241,6 +241,14 @@ game/fn_8005E8EC.cpp:
 game/fn_8005F794.cpp:
 	.text       start:0x8005F794 end:0x8005F79C
 
+game/gParam.cpp:
+	extab       start:0x80006C40 end:0x80006C58
+	extabindex  start:0x8000D6A8 end:0x8000D6CC
+	.text       start:0x800663D0 end:0x80067050
+	.bss        start:0x80303D28 end:0x80303DB4
+	.sbss       start:0x8042C2F0 end:0x8042C308
+	.sdata2     start:0x8042D4F0 end:0x8042D508
+
 game/locateTable.cpp:
 	.text       start:0x800A2090 end:0x800A23CC
 	.data       start:0x8024FEB0 end:0x80252FA8

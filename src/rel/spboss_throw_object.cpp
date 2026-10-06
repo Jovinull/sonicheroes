@@ -22,7 +22,7 @@ void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
 void dtor_8003C52C(void*, s16);
 void fn_8003C618(void*);
-void fn_800668D0(void*, s32, s32);
+void addSomeonesScore__11PARAM_SCOREFii(void*, s32, s32);
 void fn_16_52528(s32, s32, s32, void*, s32, s32, u32, u8);
 void fn_16_5B4AC(s32, s32);
 void fn_16_57BAC(s32);
@@ -47,7 +47,7 @@ s32 throwTeamTable[4];
 extern "C" void fn_16_82624(ThrowObject* o, s32 player)
 {
 	s32 frames = o->kind == 1 ? 500 : 30;
-	fn_800668D0((u8*)o + 0xb0, player, frames);
+	addSomeonesScore__11PARAM_SCOREFii((u8*)o + 0xb0, player, frames);
 }
 extern "C" void fn_16_826B8(ThrowObject* o, u8 alpha)
 {
