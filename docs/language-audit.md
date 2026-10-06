@@ -1485,19 +1485,23 @@ scalar temporaries and control-flow labels await refinement.
 Local vector writes use the same separate component-store view as the adjacent
 collision reconstruction, preserving the stores observed in retail. Eight
 segment square-root results use volatile float storage to retain the observed
-single-precision rounding and store/reload sequence. Redundant returns and
-scalar caches were removed where the original field reads occur before calls.
+single-precision rounding and store/reload sequence. Scalar copies of local
+vector components and input fields were removed where their uses precede calls
+or writes that could change them. The triangle retains separate success and
+fallback returns where retail does; combining those returns changes register
+allocation across the routine.
 The triangle plane dot product is evaluated before the reciprocal-square-root
 call, as in GameCube. These are reconstruction choices, not claims about the
 original spelling or qualifiers.
 
 This is a **nonmatching draft** and retains the original linked object. The
 point routine and all 32 constant bytes match exactly; all 29 direct call target
-counts agree. The triangle routine is 4,964 native versus 4,928 retail bytes
-(approximately 94% object match), and the segment routine is 4,232 versus 4,240
-(approximately 97%). Stack/register allocation and triangle exception records
-still differ; the segment exception record now matches. No instruction patcher or inline assembly is
-introduced, and matching is not claimed for the two larger routines.
+counts agree. The triangle routine is 4,920 native versus 4,928 retail bytes
+(99.41% object match), and the segment routine is 4,232 versus 4,240 (98.94%).
+Both exception-table records and stack-frame sizes match. Instruction and
+register differences remain, along with the resulting exception-index offsets
+and sizes. No instruction patcher or inline assembly is introduced, and matching
+is not claimed for the two larger routines.
 
 Validation: G9SE8P, the sole supported target, passes the full all-source build,
 link and report generation. All 55 regression tests, both policy checks and
