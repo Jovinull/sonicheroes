@@ -1493,11 +1493,15 @@ allocation across the routine.
 The triangle plane dot product is evaluated before the reciprocal-square-root
 call, as in GameCube. These are reconstruction choices, not claims about the
 original spelling or qualifiers.
+The projection coefficient is expressed at its vector uses, reproducing the
+retail normal-component load before the multiply/negate sequence. Descriptive
+names for the Y bounds, plane distances and projection rates describe their
+GameCube computations; they do not assert original source spelling.
 
 This is a **nonmatching draft** and retains the original linked object. The
 point routine and all 32 constant bytes match exactly; all 29 direct call target
 counts agree. The triangle routine is 4,920 native versus 4,928 retail bytes
-(99.41% object match), and the segment routine is 4,232 versus 4,240 (98.94%).
+(99.54% object match), and the segment routine is 4,232 versus 4,240 (98.94%).
 Both exception-table records and stack-frame sizes match. Instruction and
 register differences remain, along with the resulting exception-index offsets
 and sizes. No instruction patcher or inline assembly is introduced, and matching
