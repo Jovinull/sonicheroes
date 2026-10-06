@@ -340,6 +340,12 @@ game/calc_colli.cpp:
 	.data       start:0x802558D0 end:0x802558EC
 	.sdata2     start:0x8042DFD0 end:0x8042DFE8
 
+game/calc_movcolli.cpp:
+	extab       start:0x80008BB0 end:0x80008BC0
+	extabindex  start:0x8000F268 end:0x8000F280
+	.text       start:0x800D2ED4 end:0x800D52AC
+	.sdata2     start:0x8042DFE8 end:0x8042E008
+
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 

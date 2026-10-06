@@ -82,8 +82,8 @@ extern "C" void fn_80054048(Fn80054900ContactList*, u16, const Fn80054900Vec*, c
     const Fn80054900Vec*, const s16*);
 extern "C" s32 clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
     const Fn80054900Vec*, f32, const Fn80054900Vec*, Fn80054900Vec*, Fn80054900Vec*);
-extern "C" s32 fn_800D2ED4(const Fn80054900Vec*, f32, Fn80054900Vec*, const Fn80054900Vec*,
-    Fn80054900Vec*, Fn80054900Vec*, s16*);
+extern "C" s32 clDetectMS2T__FPC5RwV3dfPC5RwV3dP5RwV3dP5RwV3dP5RwV3dPs(const Fn80054900Vec*, f32,
+    Fn80054900Vec*, const Fn80054900Vec*, Fn80054900Vec*, Fn80054900Vec*, s16*);
 extern "C" const f32 lbl_8042D3C0;
 extern "C" const f32 lbl_8042D3C4;
 
@@ -254,8 +254,9 @@ extern "C" Fn80054900ContactList* fn_80054900(Fn80054900Grid* grid, const Fn8005
 							}
 						} else {
 							s16 secondaryValue = 0;
-							s32 result         = fn_800D2ED4(point, radius, &remainingDirection,
-							    triangleVertices, &firstContact, &secondContact, &secondaryValue);
+							s32 result = clDetectMS2T__FPC5RwV3dfPC5RwV3dP5RwV3dP5RwV3dP5RwV3dPs(
+							    point, radius, &remainingDirection, triangleVertices, &firstContact,
+							    &secondContact, &secondaryValue);
 							if (result != 0) {
 								if (contacts == 0) {
 									contacts = new Fn80054900ContactList;
