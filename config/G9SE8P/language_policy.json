@@ -91,6 +91,7 @@
   "deferred_sources": [
     "advertiseD/adv_2p.cpp",
     "advertiseD/adv_draw.cpp",
+    "game/calc.cpp",
     "game/cri/adx_amp.c",
     "game/cri/adx_crs.c",
     "game/cri/adx_dcd.c",

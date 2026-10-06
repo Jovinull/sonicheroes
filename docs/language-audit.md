@@ -1390,3 +1390,33 @@ owned sections and 141 normalized relocations after excluding the 32-byte
 `setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
 post-processor and ELF metadata regression tests pass. This is compilation and
 binary verification; no runtime or hardware validation was performed.
+
+### calc.cpp reconstruction in progress
+
+The eight-function `game/calc.cpp` reconstruction is C++, based on correlated
+PS2 `calc.cpp` metadata and C++ signatures for the interpolation, angle, and
+matrix-rotation routines. The GameCube unit boundary is inferred from that
+sequence and its shared constants. The source is **NonMatching**: seven functions
+match, while `GetRotYXZ` differs only in ten operands that exchange floating-point
+registers 30 and 31. Its original object remains linked.
+
+Deferred inlining and reversed source definitions reproduce the GameCube
+function order and exception tables. A real, referenced zero constant is defined
+after the functions to preserve its leading position before the compiler's
+conversion bias and angle scale. The 20-byte constant pool is exact; it is not
+synthetic padding. No object postprocessor or assembly was added.
+
+The public declarations live in `include/game/calc.h`. The BlinkLight caller now
+uses the evidenced integer output pointers and integer angle storage rather
+than declaring the rotation routine's outputs as floats. The downstream particle
+factory receives that storage through an opaque pointer pending reconstruction
+of its interface.
+
+The ordinary-inline comparison emits `GetRotXYZ` first and `InterDivPosF` last;
+deferred mode gives the target's opposite order. Independent ELF validation
+finds exact export offsets/sizes, 56 bytes of exception data, 84 bytes of
+exception indices, the 20-byte constant pool and all 85 normalized relocations.
+The only ten differing instruction words lie inside `GetRotYXZ` and change
+register fields only. Full G9SE8P release and all-source builds, 55 tests, both
+policy checks and eighteen artifact hashes pass with the original calc object
+linked. This does not establish source matching or runtime validation.

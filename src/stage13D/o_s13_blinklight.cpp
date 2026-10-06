@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/calc.h"
 
 // The original object retains its standalone helpers and editor storage even
 // when no external relocation names them.
@@ -134,14 +135,13 @@ extern "C" void fn_8003BC38(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
 extern "C" void fn_8003C618(void*);
 extern "C" void dtor_8003C52C(void*, s32);
-extern "C" void* fn_800628D0(s32, const Vec3*, const Vec3*);
+extern "C" void* fn_800628D0(s32, const Vec3*, const void*);
 extern "C" s32 fn_8005B8BC(Motion*);
 extern "C" s32 fn_8005B8D8(Motion*);
 extern "C" s32 fn_8005B9F0(Motion*);
 extern "C" void dtor_8005BD3C(Motion*, s32);
 extern "C" void fn_8005BE6C(Motion*);
 extern "C" void fn_800BC9F4(void*, void*);
-extern "C" void fn_800D1108(void*, f32*, f32*, f32*);
 extern "C" f32 fn_800D7AE4(s32);
 extern "C" f32 fn_800D7B00(s32);
 extern "C" void fn_80195790(void*, const Vec3*, f32, f32, s32);
@@ -180,12 +180,14 @@ extern "C" void blinkLightCreateParticle(BlinkLight* object)
 	if (object->particle != NULL) {
 		void* transform = fn_8019E8EC(object->particle);
 		Vec3 position;
-		Vec3 angle;
+		struct {
+			s32 x, y, z;
+		} angle;
 
 		position.x = ((f32*)transform)[12];
 		position.y = ((f32*)transform)[13];
 		position.z = ((f32*)transform)[14];
-		fn_800D1108(transform, &angle.x, &angle.y, &angle.z);
+		GetRotYXZ((RwMatrixTag*)transform, &angle.x, &angle.y, &angle.z);
 		fn_800628D0(5, &position, &angle);
 	}
 }
