@@ -119,6 +119,7 @@
     "game/message.cpp",
     "game/modeswitch.cpp",
     "game/octree.cpp",
+    "game/octreeColli.cpp",
     "game/skyfs_adx.c",
     "rel/e_capture_collision_stage11.cpp",
     "rel/e_mask_stage11.cpp",

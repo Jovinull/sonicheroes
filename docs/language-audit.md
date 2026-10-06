@@ -63,19 +63,32 @@ Several PS2 helper methods are inlined on GameCube. The next GameCube routine
 uses gameplay globals and object allocation rather than this query family;
 the boundary remains an inference. Only minimal metadata facts are recorded.
 
-The source uses the shared octree types and ordinary automatic inlining.
-All nine bodies compile. Surface pruning and both capsule-list routines match
-at 100%; moving sphere is 98.67876%, stationary sphere 98.58382%, recursive
-small sphere 99.57365%, neighbor traversal 99.27215%, axis-Y 97.0059%, and line
-collision 91.29915%. Neighbor traversal has identical instruction count with
-floating-register differences; its optional output retains the retail
-uninitialized Y store (the routine computes only X/Z). Small-sphere recursion
-currently adds one coordinate-index truncation. The two sphere-query bodies
-are respectively four and eight bytes shorter; axis-Y is four bytes shorter
-and line collision four bytes longer. Register allocation, branch/load shape,
-function emission order and exception relocations remain unresolved. An extra
-156-byte flag-clearing helper is emitted. These are not native-match claims.
-The 16-byte child mask and 24-byte numeric pool match exactly.
+The source uses the shared octree types and the metadata-confirmed inline
+flag and polygon-index methods. Correcting the inherited flag-clearing loops
+is necessary for source-level behavior: they formerly advanced the pointer
+again after clearing an active block. Retail advances through an active block
+while clearing it, and skips 64 words only for an inactive block. The removed
+postprocessors' branch retargets had corrected this behavior in object code;
+the source now expresses the conditional advance directly. Both sphere-query
+bodies consequently have the correct instruction counts without patching.
+
+All nine bodies compile. Surface pruning, both capsule-list routines and
+neighbor traversal match at 100%; moving sphere is 98.96373%, stationary sphere
+99.21965%, recursive small sphere 99.57365%, axis-Y 98.74336%, and line collision
+98.068375%. Neighbor traversal uses a vector for its relative X/Z coordinates
+and retains the retail uninitialized Y store in its optional output. Small
+sphere adds one index truncation; axis-Y is four bytes longer and line collision
+twelve bytes longer. Register allocation and load/branch shape remain unresolved.
+The source remains nonmatching; these percentages do not prove runtime equivalence.
+
+The nine surviving methods follow the correlated PS2/GameCube order. Reverse
+source definitions with `-inline deferred` reproduce that order. A control build
+of the same source with ordinary automatic inlining emits line collision first
+and surface pruning last, in reverse retail order. Deferred emission preserves
+the per-function comparisons while placing all nine bodies in retail order.
+The former extra 156-byte flag-clearing helper is no longer emitted. Native
+text is 8,924 bytes versus 8,904 retail; exception data/relocations are not yet
+exact. The 16-byte child mask and 24-byte numeric pool match exactly.
 
 G9SE8P, the sole supported release target, passed `all_source`, full linking and
 report generation, all 18 artifact hashes, 55 automated tests and both policy

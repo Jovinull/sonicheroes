@@ -80,6 +80,13 @@ public:
 	~OCTREE();
 	void GetCenterPosition(const ONODE*, RwV3d*);
 	ONODE* GetNodeFromPosition(const RwV3d*);
+	s32 CheckPolygonFlag(u16) const;
+	s32 CheckNodeFlag(u16) const;
+	void SetPolygonFlag(u16);
+	void SetNodeFlag(u16);
+	s32 GetPolygonNoInTheNode(ONODE*, s32) const;
+	void ClearPolygonFlagAll();
+	void ClearNodeFlagAll();
 	void OmitSameSurfacePolygons(ColliPolyLinearList*);
 	ColliPolyLinearList* DetectMovingSphereCollisionWithPolygons(
 	    RwV3d*, f32, RwV3d*, ENUM_CL_MOVING*, s32 (*)(POLYDATA*));
