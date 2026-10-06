@@ -1390,3 +1390,34 @@ owned sections and 141 normalized relocations after excluding the 32-byte
 `setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
 post-processor and ELF metadata regression tests pass. This is compilation and
 binary verification; no runtime or hardware validation was performed.
+
+### miscs.cpp reconstruction in progress
+
+`game/miscs.cpp` is a complete eleven-function C++ reconstruction, currently
+**NonMatching**. Local European PS2 (`SLES_519.50`) CCC 2.2 metadata identifies
+`miscs.cpp` as C++ and supplies the correlated sine initialization, segment
+projection, projectile velocity, drawing, and angle-helper sequence. The
+GameCube boundary is inferred from that sequence and shared sine-table/data
+references, not from individual exception records.
+
+The former address-named sine initializer, segment-distance, and XZ-scale
+fragments are consolidated into this unit. The sine table is one 65,536-float
+array; references to former internal labels become offsets within that array.
+The initializer's split-object postprocessor is no longer scheduled.
+
+Deferred inlining with reversed external definitions reproduces the observed
+GameCube function order. Ordinary automatic inlining emits the drawing function
+after the later angle helpers instead. With numeric constants restored, all
+eleven functions have the target instruction bytes; the current 64-byte
+constant pool contains the right values in a different order, so relocation
+addresses and whole-object matching remain unresolved. No instruction patches
+are introduced, and original object code remains linked while this is pending.
+
+The correlated API names now use C++ linkage and shared declarations in
+`include/game/miscs.h`. The segment-distance interface takes four vector
+pointers; two existing nonmatching stage-11 callers no longer treat an incidental
+floating-point register value as a fifth argument. The three replaced fragments
+and their obsolete initializer postprocessor are removed. The full supported
+G9SE8P build, 55 tests, both policy checks and eighteen artifact hashes pass with
+the **original** miscs object still linked; these checks do not establish source
+matching or runtime validation for the new unit.

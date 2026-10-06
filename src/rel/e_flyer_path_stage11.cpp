@@ -1,3 +1,4 @@
+#include "game/miscs.h"
 #include "types.h"
 
 typedef s32 M2C_UNK;
@@ -97,7 +98,6 @@ M2C_UNK fn_800D5A64(void*, s32, void*, s32);                    /* extern */
 f32 fn_800D71DC(s32*, s32*);                                    /* extern */
 s32 fn_800D7A94(s32, s32, s32);                                 /* extern */
 f32 fn_800D7B00(s32);                                           /* extern */
-f32 fn_800D7BD8(u8*, f32*, u8*, s32, f32);                      /* extern */
 f32 fn_800D8BC4(...);                                           /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                             /* extern */
 void* fn_8010037C(M2C_UNK, M2C_UNK, M2C_UNK);                   /* extern */
@@ -714,7 +714,8 @@ void fn_8_A90C8(void* arg0)
 		    = (f32)(M2C_FIELD(arg0, f32*, 0xB4) + M2C_FIELD(arg0, f32*, 0xC0));
 		temp_f1_3                   = M2C_FIELD(arg0, f32*, 0xB8);
 		M2C_FIELD(arg0, f32*, 0xB8) = (f32)(temp_f1_3 + M2C_FIELD(arg0, f32*, 0xC4));
-		if (fn_800D7BD8((u8*)arg0 + 0xC8, &sp8, (u8*)arg0 + 0xB0, 0, temp_f1_3) < 2.0f) {
+		if (DistanceP2SegL((RwV3d*)((u8*)arg0 + 0xC8), (RwV3d*)&sp8, (RwV3d*)((u8*)arg0 + 0xB0), 0)
+		    < 2.0f) {
 			M2C_FIELD(arg0, s32*, 0xE8) = 0;
 		}
 	}
@@ -892,7 +893,9 @@ void fn_8_A945C(void* arg0)
 				    = (f32)(M2C_FIELD(arg0, f32*, 0xB4) + M2C_FIELD(arg0, f32*, 0xC0));
 				temp_f1_5                   = M2C_FIELD(arg0, f32*, 0xB8);
 				M2C_FIELD(arg0, f32*, 0xB8) = (f32)(temp_f1_5 + M2C_FIELD(arg0, f32*, 0xC4));
-				if (fn_800D7BD8((u8*)arg0 + 0xC8, &sp8, (u8*)arg0 + 0xB0, 0, temp_f1_5) < 2.0f) {
+				if (DistanceP2SegL(
+				        (RwV3d*)((u8*)arg0 + 0xC8), (RwV3d*)&sp8, (RwV3d*)((u8*)arg0 + 0xB0), 0)
+				    < 2.0f) {
 					M2C_FIELD(arg0, s32*, 0xE8) = 0;
 				}
 			}
