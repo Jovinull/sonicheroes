@@ -85,14 +85,14 @@ extern "C" s32 lbl_802408F8;
 extern "C" void fn_80194294(s32 id, u32* out);
 extern "C" void fn_80194234(s32 id, s32 val);
 extern "C" void fn_8014FF2C(void*);
-extern "C" s32 fn_800CF114(void*);
+extern "C" s32 GetPattern__7EffWinkCFv(void*);
 extern "C" void fn_800FE464(void*);
-extern "C" void fn_800CF224(void*);
-extern "C" void fn_800CF070(void*, void*);
-extern "C" void fn_800CF1F0(void*, s32);
-extern "C" void fn_800CF1E8(void*, f32);
-extern "C" void fn_800CF1D8(void*, s32);
-extern "C" void fn_800CF1B8(void*, u32, u32);
+extern "C" void Exec__7EffWinkFv(void*);
+extern "C" void SyncPattern__7EffWinkFP7EffWink(void*, void*);
+extern "C" void SetPatternMax__7EffWinkFi(void*, s32);
+extern "C" void SetPatternSpeed__7EffWinkFf(void*, f32);
+extern "C" void SetMode__7EffWinkF16Enum_EffWinkMode(void*, s32);
+extern "C" void SetModeNormal__7EffWinkFii(void*, u32, u32);
 extern "C" void* fn_1_5994(void* dst, const void* src);
 extern "C" void fn_1_5C1C(void* t, s32 code);
 extern "C" void fn_1_5510(void*);
@@ -108,10 +108,10 @@ extern "C" void __ct__7TObjectFP7TObject(void*, void*);
 extern "C" void __dt__7TObjectFv(void*, int);
 extern "C" void __destroy_arr(void*, void*, s32, s32);
 extern "C" void __construct_array(void*, void*, void*, s32, s32);
-extern "C" void dtor_800CF564();
+extern "C" void __dt__7EffWinkFv();
 extern "C" void dtor_800FE334();
 extern "C" void fn_800FE3FC();
-extern "C" void fn_800CF5A8();
+extern "C" void __ct__7EffWinkFv();
 extern "C" void* memset(void*, int, u32);
 extern "C" s32 fn_8005D9A0(s32, s32);
 extern "C" void* fn_801471DC(void);
@@ -189,9 +189,9 @@ extern "C" void fn_1_5CBC(void* t)
 	v = (u8*)t;
 	fn_8014FF2C(*(void**)(v + 0xc0));
 	if (w(0x134) && *(s32*)(v + 0x194) > 2) {
-		fn_8014FF2C(((void**)(v + 0xc4))[fn_800CF114(v + 0x140)]);
-		if (((void**)(v + 0xd8))[fn_800CF114((u8*)t + 0x168)])
-			fn_8014FF2C(((void**)(v + 0xd8))[fn_800CF114(v + 0x168)]);
+		fn_8014FF2C(((void**)(v + 0xc4))[GetPattern__7EffWinkCFv(v + 0x140)]);
+		if (((void**)(v + 0xd8))[GetPattern__7EffWinkCFv((u8*)t + 0x168)])
+			fn_8014FF2C(((void**)(v + 0xd8))[GetPattern__7EffWinkCFv(v + 0x168)]);
 	}
 	fn_80194234(8, s8);
 	fn_80194234(6, s6);
@@ -217,9 +217,9 @@ extern "C" void fn_1_5E8C(void* t)
 	fn_800FE464(v + 0x28);
 	if (*(u32*)(v + 0xec))
 		fn_800FE464(v + 0x74);
-	fn_800CF224(v + 0x140);
-	fn_800CF224(v + 0x168);
-	fn_800CF070(v + 0x168, v + 0x140);
+	Exec__7EffWinkFv(v + 0x140);
+	Exec__7EffWinkFv(v + 0x168);
+	SyncPattern__7EffWinkFP7EffWink(v + 0x168, v + 0x140);
 	fn_1_5764(t);
 	fn_1_5658(t);
 }
@@ -230,7 +230,7 @@ extern "C" void* fn_1_5F1C(void* t, s16 flag)
 	if (t) {
 		pp(0x18) = lbl_1_data_1BE4;
 		fn_1_5B9C(t);
-		__destroy_arr((u8*)t + 0x140, (void*)dtor_800CF564, 0x28, 2);
+		__destroy_arr((u8*)t + 0x140, (void*)__dt__7EffWinkFv, 0x28, 2);
 		__destroy_arr((u8*)t + 0x28, (void*)dtor_800FE334, 0x4c, 2);
 		__dt__7TObjectFv(t, 0);
 		if (flag > 0)
@@ -246,7 +246,7 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 	__ct__7TObjectFP7TObject(t, parent);
 	pp(0x18) = lbl_1_data_1BE4;
 	__construct_array((u8*)t + 0x28, (void*)fn_800FE3FC, (void*)dtor_800FE334, 0x4c, 2);
-	__construct_array((u8*)t + 0x140, (void*)fn_800CF5A8, (void*)dtor_800CF564, 0x28, 2);
+	__construct_array((u8*)t + 0x140, (void*)__ct__7EffWinkFv, (void*)__dt__7EffWinkFv, 0x28, 2);
 	uw(0)                  = lbl_1_data_11A4[0];
 	*(s16*)((u8*)t + 0x1e) = 0x19c;
 	memset((u8*)t + 0xc0, 0, 0x40);
@@ -333,17 +333,17 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 		for (i = 0; i != 2; i++) {
 			s32 offset = i * 0x28;
 			if (w(0x134))
-				fn_800CF1F0((u8*)t + 0x140 + offset, w(0x134) - 1);
+				SetPatternMax__7EffWinkFi((u8*)t + 0x140 + offset, w(0x134) - 1);
 			else
-				fn_800CF1F0((u8*)t + 0x140 + offset, 0);
-			fn_800CF1E8((u8*)t + 0x140 + offset, lbl_1_rodata_3A8[s->code]);
-			fn_800CF1B8(
+				SetPatternMax__7EffWinkFi((u8*)t + 0x140 + offset, 0);
+			SetPatternSpeed__7EffWinkFf((u8*)t + 0x140 + offset, lbl_1_rodata_3A8[s->code]);
+			SetModeNormal__7EffWinkFii(
 			    (pair = (u32*)((u8*)lbl_1_rodata_3D8 + s->code * 8), (u8*)t + 0x140 + offset),
 			    pair[0], pair[1]);
 			offset += 0x28;
 		}
 	}
-	fn_800CF1D8((u8*)t + 0x168, 3);
+	SetMode__7EffWinkF16Enum_EffWinkMode((u8*)t + 0x168, 3);
 	w(0x194) = 0;
 	w(0x198) = -1;
 	return t;

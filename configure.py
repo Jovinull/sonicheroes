@@ -1057,6 +1057,7 @@ config.libs = [
                     "-opt noschedule,nopeephole",
                 ],
             ),
+            Object(Matching, "game/eff_wink.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
             Object(Matching, "game/message.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-bool off", "-inline deferred"]),
             Object(
                 Matching,
