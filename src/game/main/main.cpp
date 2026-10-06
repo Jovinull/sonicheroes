@@ -89,7 +89,7 @@ void fn_800B6C64();
 void* fn_801784C8(void*, void*);
 void fn_8022CEB0();
 void fn_80016E88(void*);
-void fn_800CE010();
+void RemoveLangMessage__Fv();
 void fn_800D09C4();
 void fn_8004014C(void*);
 void __dt__10MODESWITCHFv(void*, int);
@@ -239,7 +239,7 @@ extern "C" RsEventStatus AppEventHandler(unsigned event, void* param)
 		case 13:
 			return Initialize3D(param) ? rsEVENTPROCESSED : rsEVENTERROR;
 		case 14:
-			fn_800CE010();
+			RemoveLangMessage__Fv();
 			fn_800D09C4();
 			fn_8004014C(&lbl_8042C1BC);
 			while (lbl_8042C180) {

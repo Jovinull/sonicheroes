@@ -44,7 +44,7 @@ M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                 /* extern */
 M2C_UNK fn_800189A4(s32, TObject*);                    /* extern */
 TObject* fn_80018A34(s32, M2C_UNK);                    /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                         /* extern */
-u32 fn_80057644(M2C_UNK);                              /* extern */
+u32 __nw__FUl(M2C_UNK);                                /* extern */
 s32 fn_8005B8BC(s32);                                  /* extern */
 s32 fn_8005B9F0(s32);                                  /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                         /* extern */
@@ -103,18 +103,18 @@ static M2C_UNK* lbl_8_data_18180[5] = {
 	&lbl_8_data_18168,
 	(M2C_UNK*)0x420C0000,
 };
-static f32 lbl_8_data_18194 = 0.6f;
-static f32 lbl_8_data_18198 = 0.8f;
-static f32 lbl_8_data_1819C = 0.5f;
-static s32 lbl_8_data_181A0 = 5;
-static f32 lbl_8_data_181A4 = 0.55f;
-static f32 lbl_8_data_181A8 = 0.4f;
-static f32 lbl_8_data_181AC = 0.35f;
-static char lbl_8_data_181B0[] = "type";
+static f32 lbl_8_data_18194                     = 0.6f;
+static f32 lbl_8_data_18198                     = 0.8f;
+static f32 lbl_8_data_1819C                     = 0.5f;
+static s32 lbl_8_data_181A0                     = 5;
+static f32 lbl_8_data_181A4                     = 0.55f;
+static f32 lbl_8_data_181A8                     = 0.4f;
+static f32 lbl_8_data_181AC                     = 0.35f;
+static char lbl_8_data_181B0[]                  = "type";
 static const char* s11spiderObjectFieldNames[1] = { lbl_8_data_181B0 };
-static char lbl_8_data_181BC[] = "TObjS11Spider";
-static M2C_UNK* lbl_8_data_181CC = (M2C_UNK*)&lbl_8_data_181BC;
-static void* lbl_8_data_181D0[15] = {
+static char lbl_8_data_181BC[]                  = "TObjS11Spider";
+static M2C_UNK* lbl_8_data_181CC                = (M2C_UNK*)&lbl_8_data_181BC;
+static void* lbl_8_data_181D0[15]               = {
 	NULL,
 	NULL,
 	(void*)fn_8_C30D8,
@@ -132,7 +132,7 @@ static void* lbl_8_data_181D0[15] = {
 	(void*)fn_8_C33D0,
 };
 static char s11spiderObjectDisplayName[] = "S11SPIDER OBJECT";
-static char s11spiderObjectFieldTypes[] = "i";
+static char s11spiderObjectFieldTypes[]  = "i";
 static u32 lbl_8_bss_1BD0[4];
 typedef struct ObjectEntry {
 	const char* name;        /* 0x00 */
@@ -246,7 +246,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 			M2C_FIELD(var_r31, u32*, 0xE0) = fn_80150588(arg1);
 			if ((u32)M2C_FIELD(var_r31, u32*, 0xE0) != 0U) {
 				fn_8005D5C8(0x10);
-				var_r0 = fn_80057644(0x14);
+				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
 					var_r0 = fn_80119A18(M2C_FIELD(var_r31, u32*, 0xE0));
 				}
@@ -259,7 +259,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 				M2C_FIELD(var_r31, u32*, 0xE8) = fn_80150588(arg1);
 				if ((u32)M2C_FIELD(var_r31, u32*, 0xE8) != 0U) {
 					fn_8005D5C8(0x10);
-					var_r0_2 = fn_80057644(0x14);
+					var_r0_2 = __nw__FUl(0x14);
 					if (var_r0_2 != 0U) {
 						var_r0_2 = fn_80119A18(M2C_FIELD(var_r31, u32*, 0xE8));
 					}
@@ -507,7 +507,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 			arg0->unkE0 = fn_80150588(temp_r29);
 			if ((u32)arg0->unkE0 != 0U) {
 				fn_8005D5C8(0x10);
-				var_r0 = fn_80057644(0x14);
+				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
 					var_r0 = fn_80119A18(arg0->unkE0);
 				}
@@ -522,7 +522,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 				*(u32*)((u8*)arg0 + temp_r0) = fn_80150588(temp_r29);
 				if (*(u32*)((u8*)arg0 + temp_r0) != 0U) {
 					fn_8005D5C8(0x10);
-					var_r4 = fn_80057644(0x14);
+					var_r4 = __nw__FUl(0x14);
 					if (var_r4 != 0U) {
 						var_r4 = fn_80119A18(*(u32*)((u8*)arg0 + var_r28 + 0xE8));
 					}
@@ -633,7 +633,7 @@ void s11spiderObjectCreate(void)
 				temp_r3->unkE0 = fn_80150588(temp_r29);
 				if ((u32)temp_r3->unkE0 != 0U) {
 					fn_8005D5C8(0x10);
-					var_r0 = fn_80057644(0x14);
+					var_r0 = __nw__FUl(0x14);
 					if (var_r0 != 0U) {
 						var_r0 = fn_80119A18(temp_r3->unkE0);
 					}
@@ -648,7 +648,7 @@ void s11spiderObjectCreate(void)
 					*(u32*)((u8*)temp_r3 + temp_r0) = fn_80150588(temp_r29);
 					if (*(u32*)((u8*)temp_r3 + temp_r0) != 0U) {
 						fn_8005D5C8(0x10);
-						var_r4 = fn_80057644(0x14);
+						var_r4 = __nw__FUl(0x14);
 						if (var_r4 != 0U) {
 							var_r4 = fn_80119A18(*(u32*)((u8*)temp_r3 + var_r28 + 0xE8));
 						}

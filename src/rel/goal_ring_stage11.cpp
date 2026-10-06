@@ -46,7 +46,7 @@ extern char lbl_80239984[];
 extern char lbl_80239990[];
 
 void* fn_80018A34(void*, u32);
-void* fn_80057644(u32);
+void* __nw__FUl(u32);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
 void __dl__FPv(void*);
@@ -141,7 +141,7 @@ extern "C" void fn_8_4A4CC(int group, int type, int subtype, void* data)
 		}
 	}
 	if (lbl_8_data_4E28[group] != NULL) {
-		void* particle = fn_80057644(0x3C);
+		void* particle = __nw__FUl(0x3C);
 		if (particle != NULL)
 			fn_8_4B14C(particle, 1, lbl_8_data_4E28[group], type, subtype, data);
 	}

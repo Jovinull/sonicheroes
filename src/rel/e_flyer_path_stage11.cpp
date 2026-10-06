@@ -85,7 +85,7 @@ M2C_UNK fn_8003BC38(void*);                                     /* extern */
 M2C_UNK fn_8003BE78(void*);                                     /* extern */
 M2C_UNK fn_8003C200(...);                                       /* extern */
 M2C_UNK fn_8003C618(...);                                       /* extern */
-void* fn_80057644(u32);                                         /* extern */
+void* __nw__FUl(u32);                                           /* extern */
 u32 fn_8005EA04(s32*);                                          /* extern */
 M2C_UNK fn_8005FC74(s32*, s32*);                                /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                /* extern */
@@ -590,7 +590,7 @@ void fn_8_A8D1C(void)
 
 void fn_8_A8D30(void)
 {
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	lbl_8_bss_19B8.p = fn_8010037C(lbl_8042C590, 5, 8);
@@ -1105,7 +1105,7 @@ void fn_8_A9E18(void)
 
 void fn_8_A9E2C(void)
 {
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	lbl_8_bss_19C0.p = fn_8010037C(lbl_8042C590, 5, 0xA);

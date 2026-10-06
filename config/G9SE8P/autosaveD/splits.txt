@@ -49,7 +49,7 @@ autosaveD/window_frame.c:
 autosaveD/window_input.c:
 	.text       start:0x000038F4 end:0x00003A70
 
-autosaveD/window_lifecycle.c:
+autosaveD/window_lifecycle.cpp:
 	.text       start:0x00003A70 end:0x00003FAC
 	.rodata     start:0x00000350 end:0x00000358
 

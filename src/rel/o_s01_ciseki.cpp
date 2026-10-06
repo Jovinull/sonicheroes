@@ -91,7 +91,7 @@ extern void* lbl_3_data_9F04[];
 extern void* lbl_3_data_9F0C;
 extern void* lbl_3_data_9F14;
 
-void* fn_80057644(u32);
+void* __nw__FUl(u32);
 s32 fn_8005B9F0(Motion*);
 s32 fn_8005B8BC(Motion*);
 s32 fn_8005B8D8(Motion*);
@@ -133,7 +133,7 @@ static inline void setCommunicationValue(void* object, s32 value)
 	if (storage != NULL) {
 		*storage = (void*)value;
 	} else {
-		storage = (void**)fn_80057644(4);
+		storage = (void**)__nw__FUl(4);
 		if (storage != NULL) {
 			*storage                       = (void*)value;
 			*(void***)((u8*)object + 0x30) = storage;

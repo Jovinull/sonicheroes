@@ -22,7 +22,7 @@ RENAMES = (
     ("mainRenderWareError", "lbl_802409F4"),
     ("mainRasterCharsetError", "lbl_80240A14"),
     ("mainStringTableName", "lbl_80240A80"),
-    ("__nw__9TMainTaskFUl", "fn_80057644"),
+    ("__nw__9TMainTaskFUl", "__nw__FUl"),
     ("__ct__9TMainTaskFv", "__ct__10MODESWITCHFv"),
     ("lbl_8029BB80", "RsGlobal"),
     ("fn_80011D64", "RsInitialize"),

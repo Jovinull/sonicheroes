@@ -76,7 +76,7 @@ extern "C" void fn_801990E0(Fn80054900Vec*, Fn80054900Vec*);
 extern "C" Fn80054900TraversalEntry* fn_800556A0(
     Fn80054900Grid*, const Fn80054900Vec*, const Fn80054900Vec*, f32);
 extern "C" void fn_80054230(Fn80054900TraversalEntry*);
-extern "C" void* fn_80057644(u32);
+extern "C" void* __nw__FUl(u32);
 extern "C" void fn_8005421C(Fn80054900ContactList*);
 extern "C" void fn_80054048(Fn80054900ContactList*, u16, const Fn80054900Vec*, const Fn80054900Vec*,
     const Fn80054900Vec*, const s16*);
@@ -94,7 +94,7 @@ inline Fn80054900ContactList::Fn80054900ContactList()
 
 inline void* Fn80054900ContactList::operator new(unsigned long size)
 {
-	return fn_80057644(size);
+	return __nw__FUl(size);
 }
 
 static inline f32 fn_80054900LengthSq(const Fn80054900Vec& value)

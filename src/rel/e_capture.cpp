@@ -280,7 +280,7 @@ M2C_UNK fn_8003BC38(M2C_UNK*);                                    /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);        /* extern */
 M2C_UNK fn_80043DEC();                                            /* extern */
 M2C_UNK fn_80043F28(u32);                                         /* extern */
-void** fn_80057644(M2C_UNK);                                      /* extern */
+void** __nw__FUl(M2C_UNK);                                        /* extern */
 s32 fn_8005B8D8(void**);                                          /* extern */
 M2C_UNK fn_8005BC04(void*);                                       /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                  /* extern */
@@ -474,8 +474,8 @@ static u32 lbl_8_data_156BC[24] = { 0x0000FF21, 0x00000400, 0x00000000, 0x40A000
 	0x41200000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000F021,
 	0x00000400, 0x00000000, 0xC1700000, 0x00000000, 0x41700000, 0x00000000, 0x00000000, 0x00000000,
 	0x00000000, 0x00000000, 0x00000000 };
-static M2C_UNK lbl_8_data_1572C;        /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_1575C;        /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_1572C; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_1575C; /* unable to generate initializer: unknown type */
 static char lbl_8_data_15808[]         = "NORMAL";
 static char lbl_8_data_15810[]         = "SPECIAL";
 static const char* lbl_8_data_15818[2] = { lbl_8_data_15808, lbl_8_data_15810 };
@@ -488,18 +488,49 @@ static u8 lbl_8_data_1583A             = 0;
 static u8 lbl_8_data_1583B             = 1;
 static char lbl_8_data_1583C[]         = "TObjEnemyCapture";
 static const char* lbl_8_data_15850    = lbl_8_data_1583C;
-static M2C_UNK* lbl_8_data_15854[42] = {
-	NULL, NULL, (M2C_UNK*)fn_8_9C4BC, (M2C_UNK*)fn_800A6F38, (M2C_UNK*)fn_800A6EA8,
-	(M2C_UNK*)fn_800A6DD4, (M2C_UNK*)PDisp__7TObjectFv, (M2C_UNK*)ImmAftSetRaster__7TObjectFv,
-	(M2C_UNK*)Debug__7TObjectFv, (M2C_UNK*)Error__7TObjectFPc, (M2C_UNK*)Render__7TObjectFv,
-	NULL, NULL, (M2C_UNK*)fn_8_9D3BC, (M2C_UNK*)fn_800A3F60, (M2C_UNK*)fn_800A2F88,
-	(M2C_UNK*)fn_800A2E24, (M2C_UNK*)fn_800A327C, (M2C_UNK*)fn_800A324C, (M2C_UNK*)fn_800A321C,
-	(M2C_UNK*)fn_8_9AB68, (M2C_UNK*)fn_8_99318, (M2C_UNK*)fn_8_992E4, (M2C_UNK*)fn_8_99254,
-	(M2C_UNK*)fn_8_990C4, (M2C_UNK*)fn_8_98FAC, (M2C_UNK*)fn_8_33D90, (M2C_UNK*)fn_8_33D94,
-	(M2C_UNK*)fn_800A314C, (M2C_UNK*)fn_800A6D60, (M2C_UNK*)fn_800A6D58, (M2C_UNK*)fn_8_98294,
-	(M2C_UNK*)fn_800A3D6C, (M2C_UNK*)fn_800A2C6C, (M2C_UNK*)fn_8_980F8, (M2C_UNK*)fn_8_33D98,
-	(M2C_UNK*)fn_800A31A0, (M2C_UNK*)fn_8_981B8, (M2C_UNK*)fn_800A3148, (M2C_UNK*)fn_8_33DA0,
-	(M2C_UNK*)fn_8_33DA4, (M2C_UNK*)fn_8_9CAF0,
+static M2C_UNK* lbl_8_data_15854[42]   = {
+	NULL,
+	NULL,
+	(M2C_UNK*)fn_8_9C4BC,
+	(M2C_UNK*)fn_800A6F38,
+	(M2C_UNK*)fn_800A6EA8,
+	(M2C_UNK*)fn_800A6DD4,
+	(M2C_UNK*)PDisp__7TObjectFv,
+	(M2C_UNK*)ImmAftSetRaster__7TObjectFv,
+	(M2C_UNK*)Debug__7TObjectFv,
+	(M2C_UNK*)Error__7TObjectFPc,
+	(M2C_UNK*)Render__7TObjectFv,
+	NULL,
+	NULL,
+	(M2C_UNK*)fn_8_9D3BC,
+	(M2C_UNK*)fn_800A3F60,
+	(M2C_UNK*)fn_800A2F88,
+	(M2C_UNK*)fn_800A2E24,
+	(M2C_UNK*)fn_800A327C,
+	(M2C_UNK*)fn_800A324C,
+	(M2C_UNK*)fn_800A321C,
+	(M2C_UNK*)fn_8_9AB68,
+	(M2C_UNK*)fn_8_99318,
+	(M2C_UNK*)fn_8_992E4,
+	(M2C_UNK*)fn_8_99254,
+	(M2C_UNK*)fn_8_990C4,
+	(M2C_UNK*)fn_8_98FAC,
+	(M2C_UNK*)fn_8_33D90,
+	(M2C_UNK*)fn_8_33D94,
+	(M2C_UNK*)fn_800A314C,
+	(M2C_UNK*)fn_800A6D60,
+	(M2C_UNK*)fn_800A6D58,
+	(M2C_UNK*)fn_8_98294,
+	(M2C_UNK*)fn_800A3D6C,
+	(M2C_UNK*)fn_800A2C6C,
+	(M2C_UNK*)fn_8_980F8,
+	(M2C_UNK*)fn_8_33D98,
+	(M2C_UNK*)fn_800A31A0,
+	(M2C_UNK*)fn_8_981B8,
+	(M2C_UNK*)fn_800A3148,
+	(M2C_UNK*)fn_8_33DA0,
+	(M2C_UNK*)fn_8_33DA4,
+	(M2C_UNK*)fn_8_9CAF0,
 };
 static char lbl_8_data_159BC[]         = "en_capture.one";
 static char captureObjectDisplayName[] = "CAPTURE OBJECT";
@@ -525,19 +556,26 @@ typedef struct ObjectEntry {
 } ObjectEntry;               /* 0x2C */
 
 static ObjectEntry captureObjectEntry;
-static u32 lbl_8_data_1571C[2] = { 0x656E5F63, 0x61703000 };
-static u32 lbl_8_data_15724[2] = { 0x656E5F63, 0x61703100 };
-char lbl_8_data_15774[] = "CAPTURE TYPE";
-char lbl_8_data_15784[] = "APPEAR TYPE";
-char lbl_8_data_15790[] = "Not in use";
-char lbl_8_data_1579C[] = "MOVE RANGE";
-char lbl_8_data_157A8[] = "SCOPE RANGE";
-char lbl_8_data_157B4[] = "SCOPE OFFSET";
-char lbl_8_data_157C4[] = "ATTACK INTERVAL";
-char lbl_8_data_157D4[] = "ATTACK SPEED";
+static u32 lbl_8_data_1571C[2]   = { 0x656E5F63, 0x61703000 };
+static u32 lbl_8_data_15724[2]   = { 0x656E5F63, 0x61703100 };
+char lbl_8_data_15774[]          = "CAPTURE TYPE";
+char lbl_8_data_15784[]          = "APPEAR TYPE";
+char lbl_8_data_15790[]          = "Not in use";
+char lbl_8_data_1579C[]          = "MOVE RANGE";
+char lbl_8_data_157A8[]          = "SCOPE RANGE";
+char lbl_8_data_157B4[]          = "SCOPE OFFSET";
+char lbl_8_data_157C4[]          = "ATTACK INTERVAL";
+char lbl_8_data_157D4[]          = "ATTACK SPEED";
 char* captureObjectFieldNames[9] = {
-	lbl_8_data_15774, lbl_8_data_15784, lbl_8_data_15790, lbl_8_data_15790, lbl_8_data_1579C,
-	lbl_8_data_157A8, lbl_8_data_157B4, lbl_8_data_157C4, lbl_8_data_157D4,
+	lbl_8_data_15774,
+	lbl_8_data_15784,
+	lbl_8_data_15790,
+	lbl_8_data_15790,
+	lbl_8_data_1579C,
+	lbl_8_data_157A8,
+	lbl_8_data_157B4,
+	lbl_8_data_157C4,
+	lbl_8_data_157D4,
 };
 
 void fn_8_98060(void* arg0)
@@ -3020,14 +3058,14 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 	temp_r0      = arg0->unk57C;
 	switch (temp_r0) { /* irregular */
 		case 0:
-			var_r0 = fn_80057644(0x1C);
+			var_r0 = __nw__FUl(0x1C);
 			if (var_r0 != NULL) {
 				var_r0 = fn_8_9EB28();
 			}
 			arg0->unk240 = var_r0;
 			break;
 		case 1:
-			var_r0_2 = fn_80057644(0x1C);
+			var_r0_2 = __nw__FUl(0x1C);
 			if (var_r0_2 != NULL) {
 				var_r0_2 = fn_8_9DCE8();
 			}
@@ -3054,7 +3092,7 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 	}
 	arg0->unk244 = var_r0_3;
 	arg0->unk13C = 1;
-	var_r0_4     = fn_80057644(0x20);
+	var_r0_4     = __nw__FUl(0x20);
 	if (var_r0_4 != NULL) {
 		var_r0_4 = fn_800FD8A0(arg0, arg0->unk13C);
 	}
@@ -3187,7 +3225,7 @@ void captureObjectUnload(void)
 		var_r30 -= 1;
 	} while (var_r30 >= 0);
 	fn_800FE248(7, &lbl_8_data_15608);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	fn_801007F4(lbl_8042C590, 7);
@@ -3197,11 +3235,11 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	fn_8010096C(lbl_8042C590, 7, lbl_8_data_159BC);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	temp_r3 = fn_80100328(lbl_8042C590, 7, 4);
@@ -3210,27 +3248,27 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0) = fn_8010037C(lbl_8042C590, 7, 3);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 4) = fn_8010037C(lbl_8042C590, 7, 9);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 8) = fn_8010037C(lbl_8042C590, 7, 0xA);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC) = fn_8010037C(lbl_8042C590, 7, 0xB);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0x10) = fn_8010037C(lbl_8042C590, 7, 0xC);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14) = fn_8010037C(lbl_8042C590, 7, 7);

@@ -170,7 +170,7 @@ void* __dt__10HAnimClassFv(void*, s32);                                 /* exter
 M2C_UNK fn_800189A4(s32, void*);                                        /* extern */
 TEnemyParalysis* fn_80018A34(M2C_UNK, M2C_UNK);                         /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);              /* extern */
-u32 fn_80057644(M2C_UNK);                                               /* extern */
+u32 __nw__FUl(M2C_UNK);                                                 /* extern */
 s32 fn_8005B8D8(void*);                                                 /* extern */
 M2C_UNK fn_8005BF5C(u32, unsigned int[17]);                             /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                        /* extern */
@@ -554,7 +554,7 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 				temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-				temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+				temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 				// Preserve the operand order emitted by the original GameCube build.
 				asm { fadds temp_f30, temp_f0, temp_f31 }
 				M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -710,7 +710,7 @@ void fn_8_AD670(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 				temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-				temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+				temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 				// Preserve the operand order emitted by the original GameCube build.
 				asm { fadds temp_f30, temp_f0, temp_f31 }
 				M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -740,7 +740,7 @@ void fn_8_AE428(void* arg0)
 	if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 		M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 		temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-		temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+		temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 		// Preserve the operand order emitted by the original GameCube build.
 		asm { fadds temp_f30, temp_f0, temp_f31 }
 		M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -1146,14 +1146,14 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	temp_r0      = arg0->unk350;
 	switch (temp_r0) { /* irregular */
 		case 0:
-			var_r0 = fn_80057644(0x1C);
+			var_r0 = __nw__FUl(0x1C);
 			if (var_r0 != 0U) {
 				var_r0 = fn_8_B08F0();
 			}
 			arg0->unk248 = var_r0;
 			break;
 		case 1:
-			var_r0_2 = fn_80057644(0x1C);
+			var_r0_2 = __nw__FUl(0x1C);
 			if (var_r0_2 != 0U) {
 				var_r0_2 = fn_8_B08F0();
 			}
@@ -1173,7 +1173,7 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	}
 	arg0->unk24C = var_r0_3;
 	arg0->unk13C = 1;
-	var_r0_4     = fn_80057644(0x20);
+	var_r0_4     = __nw__FUl(0x20);
 	if (var_r0_4 != 0U) {
 		var_r0_4 = fn_800FD8A0(arg0, arg0->unk13C);
 	}
@@ -1286,7 +1286,7 @@ void magicianObjectUnload(void)
 	lbl_8_bss_19D0                      = 0U;
 	M2C_FIELD(&lbl_8_bss_19C8, s32*, 4) = 0;
 	M2C_FIELD(&lbl_8_bss_19C8, s32*, 0) = 0;
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	fn_801007F4(lbl_8042C590, 0xA);
@@ -1296,11 +1296,11 @@ void magicianObjectLoad(void)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	fn_8010096C(lbl_8042C590, 0xA, &lbl_8_data_16A30);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	temp_r3 = fn_80100328(lbl_8042C590, 0xA, 5);
@@ -1309,16 +1309,16 @@ void magicianObjectLoad(void)
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_19C8, u32*, 0) = fn_8010037C(lbl_8042C590, 0xA, 4);
 	fn_8005D9F4((void*)M2C_FIELD(&lbl_8_bss_19C8, u32*, 0));
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) = fn_8010037C(lbl_8042C590, 0xA, 2);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	temp_r3        = fn_80100280(lbl_8042C590, 0xA, 3);

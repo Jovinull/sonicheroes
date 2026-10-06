@@ -62,7 +62,7 @@ struct GameSettings {
 	int screenMode;
 };
 extern "C" GameSettings* lbl_8042C180;
-extern "C" void* lbl_8042C478;
+extern "C" void* MessageEuc;
 
 extern "C" char lbl_8042BC88[] = "_j";
 extern "C" char lbl_8042BC8C[] = "_e";
@@ -145,14 +145,15 @@ extern "C" __declspec(section ".data") u8 moviePlaySubReportData[48] = {
 extern "C" __declspec(section ".data") char moviePlaySubScriptFormatData[14] = "event%04d.scr";
 extern "C" __declspec(section ".data") char moviePlaySubEventFormatData[12]  = "event%04d%s";
 
-extern "C" void fn_800CED64(void*, int);
+extern "C" void __dt__7MESSAGEFv(void*, int);
 extern "C" void fn_80042048(const char*, void*);
 extern "C" void fn_8004BEE0(void*, const char*, int);
 extern "C" void* memset(void*, int, u32);
 extern "C" int sprintf(char*, const char*, ...);
 extern "C" void fn_80194294(int, int*);
 extern "C" void fn_80194234(int, int);
-extern "C" void fn_800CE5F0(void*, void*, float, float, int, float, float);
+extern "C" void DisplayMessage__7MESSAGEFPcff21Rt2dJustificationTypeff(
+    void*, void*, float, float, int, float, float);
 extern "C" void OSReport(const char*, ...);
 #pragma bool off
 #pragma opt_propagation off
@@ -254,9 +255,11 @@ found_raster:
 
 	if (raster != 0) {
 		if (MovieSubResource != 0) {
-			fn_800CE5F0(MovieSubResource, raster, lbl_8042F15C, lbl_8042F160, 1, scaleX, scaleY);
+			DisplayMessage__7MESSAGEFPcff21Rt2dJustificationTypeff(
+			    MovieSubResource, raster, lbl_8042F15C, lbl_8042F160, 1, scaleX, scaleY);
 		} else {
-			fn_800CE5F0(lbl_8042C478, raster, lbl_8042F15C, lbl_8042F160, 1, scaleX, scaleY);
+			DisplayMessage__7MESSAGEFPcff21Rt2dJustificationTypeff(
+			    MessageEuc, raster, lbl_8042F15C, lbl_8042F160, 1, scaleX, scaleY);
 		}
 	} else {
 		OSReport((const char*)lbl_8028CF44);
@@ -267,9 +270,11 @@ found_raster:
 
 	if (raster != 0) {
 		if (MovieSubResource != 0) {
-			fn_800CE5F0(MovieSubResource, raster, lbl_8042F158, lbl_8042F164, 1, scaleX, scaleY);
+			DisplayMessage__7MESSAGEFPcff21Rt2dJustificationTypeff(
+			    MovieSubResource, raster, lbl_8042F158, lbl_8042F164, 1, scaleX, scaleY);
 		} else {
-			fn_800CE5F0(lbl_8042C478, raster, lbl_8042F158, lbl_8042F164, 1, scaleX, scaleY);
+			DisplayMessage__7MESSAGEFPcff21Rt2dJustificationTypeff(
+			    MessageEuc, raster, lbl_8042F158, lbl_8042F164, 1, scaleX, scaleY);
 		}
 	} else {
 		OSReport((const char*)lbl_8028CF44);
@@ -284,7 +289,7 @@ found_raster:
 extern "C" void FinalizeMoviePlaySub()
 {
 	if (MovieSubResource != 0) {
-		fn_800CED64(MovieSubResource, 1);
+		__dt__7MESSAGEFv(MovieSubResource, 1);
 		MovieSubResource = 0;
 	}
 

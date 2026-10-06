@@ -81,7 +81,7 @@ public:
 
 extern "C" {
 void copyVec3(RwV3d* destination, RwV3d* source);
-void* fn_80057644(u32 size);
+void* __nw__FUl(u32 size);
 void* fn_8005FAE8(char* filename, TEXTURE_LIST* textureList);
 void fn_8005FA8C(void* dictionary, TEXTURE_LIST* textureList);
 void __dl__FPv(void* object);
@@ -208,7 +208,7 @@ void LoadTextureRain()
 	rainInfo.texture = pRainTex;
 
 	if (pEfRain.value == 0) {
-		EfRain* rain = (EfRain*)fn_80057644(sizeof(EfRain));
+		EfRain* rain = (EfRain*)__nw__FUl(sizeof(EfRain));
 		if (rain != 0) {
 			rain = __ct__6EfRainFv(rain);
 		}

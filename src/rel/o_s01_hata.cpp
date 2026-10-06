@@ -174,7 +174,7 @@ extern "C" void fn_8005BE6C(void*);
 extern "C" void fn_8003C618(void*);
 extern "C" void* fn_8005E394(void*, s32);
 extern "C" void fn_8014F854(void*);
-extern "C" void* fn_80057644(u32);
+extern "C" void* __nw__FUl(u32);
 extern "C" void fn_8005F50C(void*, void*, s32);
 extern "C" void fn_8003C200(void*, void*, s32, s32);
 extern "C" s32 fn_8005B9F0(void*);
@@ -469,7 +469,7 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 		};
 		*(Sphere*)((u8*)atomic + 0x1C) = *(Sphere*)((u8*)primary + 0x1C);
 		*(void**)((u8*)object + 0xC8)  = &flagCallbackContext;
-		object->allocatedCC            = fn_80057644(20);
+		object->allocatedCC            = __nw__FUl(20);
 		if (object->allocatedCC != NULL) {
 			((void**)object->allocatedCC)[0] = object->frame;
 			((void**)object->allocatedCC)[1] = (u8*)object->frame + 0xC;

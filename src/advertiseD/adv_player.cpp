@@ -124,7 +124,7 @@ extern "C" void fn_80197ED8(void*, s32);
 extern "C" void fn_8020C2D8(void*);
 extern "C" void fn_80150958(void*);
 extern "C" void fn_801A46D0(void*);
-extern "C" void* fn_80057644(s32);
+extern "C" void* __nw__FUl(s32);
 extern "C" void* fn_800BCC84(void*, s32, s32);
 extern "C" void* fn_80012994(s32);
 extern "C" void fn_800D0624(void*, void*, void*);
@@ -482,7 +482,7 @@ extern "C" void fn_1_65BC(void)
 		s32 k;
 		void* d18;
 		void* d17;
-		obj.value = fn_80057644(0x58);
+		obj.value = __nw__FUl(0x58);
 		if (obj.value)
 			obj.value = fn_800BCC84(obj.value, 0, 0);
 		d18 = fn_80012994(0x7d000);

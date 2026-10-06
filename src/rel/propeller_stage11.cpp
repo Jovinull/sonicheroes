@@ -96,7 +96,7 @@ void fn_8019EB94(void*, const float*, int);
 void fn_8019EC30(void*, const float*, int);
 void fn_8014D308(void*, int, float, Vec3*, int);
 void* fn_80058FDC(void*, char*, Vec3*, int, int);
-void* fn_80057644(int);
+void* __nw__FUl(int);
 int fn_800D7A80(int, int);
 void fn_8005F194(void*, int, int, void*, void*);
 void fn_800E0E98(float, float, float);
@@ -616,7 +616,7 @@ extern "C" int fn_8_4936C(u32 value1, u32 value2)
 			position.y -= lbl_8_rodata_C48;
 			PropellerEntry* entry
 			    = (PropellerEntry*)fn_80058FDC(lbl_8042C298, propellerEntry, &position, 0, 1);
-			entry->info = (PropellerEntryInfo*)fn_80057644(8);
+			entry->info = (PropellerEntryInfo*)__nw__FUl(8);
 			if (entry->info == NULL) {
 				for (;;) {
 				}

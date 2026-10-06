@@ -165,7 +165,7 @@ M2C_UNK fn_80021824(s32);                                     /* extern */
 M2C_UNK fn_8003BC38(void*);                                   /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);    /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                                /* extern */
-s32* fn_80057644(M2C_UNK);                                    /* extern */
+s32* __nw__FUl(M2C_UNK);                                      /* extern */
 s32 fn_8005B8BC(s32);                                         /* extern */
 s32 fn_8005B9F0(s32);                                         /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
@@ -527,7 +527,7 @@ TObject* fn_8_CC388(TObject* arg0, TObject* arg1)
 	M2C_FIELD(arg0->unk40, f32*, 0x1C) = (f32)arg0->unkCC;
 	fn_80021384(&arg0->unk30);
 	if ((s32*)M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32**, 0x30) == NULL) {
-		temp_r3_3                                             = fn_80057644(4);
+		temp_r3_3                                             = __nw__FUl(4);
 		M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32**, 0x30) = temp_r3_3;
 		*temp_r3_3                                            = 0;
 	}
@@ -579,7 +579,7 @@ void s12boneColliObjectCreate(void)
 		M2C_FIELD(temp_r3->unk40, f32*, 0x1C) = (f32)temp_r3->unkCC;
 		fn_80021384(&temp_r3->unk30);
 		if ((s32*)M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32**, 0x30) == NULL) {
-			temp_r3_4                                                = fn_80057644(4);
+			temp_r3_4                                                = __nw__FUl(4);
 			M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32**, 0x30) = temp_r3_4;
 			*temp_r3_4                                               = 0;
 		}

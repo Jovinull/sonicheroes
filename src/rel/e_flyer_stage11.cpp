@@ -105,7 +105,7 @@ u32 fn_800194C4(M2C_UNK*);                                                      
 M2C_UNK fn_8001F404(void*);                                                      /* extern */
 M2C_UNK fn_8003BC38(void*);                                                      /* extern */
 M2C_UNK fn_8003C200(void*, M2C_UNK*, M2C_UNK, M2C_UNK);                          /* extern */
-u32 fn_80057644(M2C_UNK);                                                        /* extern */
+u32 __nw__FUl(M2C_UNK);                                                          /* extern */
 s32 fn_8005B8D8(void*);                                                          /* extern */
 M2C_UNK fn_8005BC04(void*);                                                      /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                                 /* extern */
@@ -159,7 +159,7 @@ M2C_UNK fn_8011F8B0(s8);                                                        
 M2C_UNK fn_8011F900(M2C_UNK*, s8);                                               /* extern */
 M2C_UNK* fn_8011FA4C(M2C_UNK*, u32);                                             /* extern */
 M2C_UNK fn_8011FD94(M2C_UNK, M2C_UNK);                                           /* extern */
-u32 fn_8011FE0C(u32, u32);                                                   /* extern */
+u32 fn_8011FE0C(u32, u32);                                                       /* extern */
 M2C_UNK fn_80137FE8(void*);                                                      /* extern */
 M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
 void* fn_80150588(void*);                                                        /* extern */
@@ -231,25 +231,25 @@ extern u32 lbl_8042C388;
 extern u32 lbl_8042C590;
 extern u32 lbl_8042C6D0;
 extern M2C_UNK lbl_8_rodata_18AC;
-static M2C_UNK lbl_8_data_15F80;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_15FBC;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_15FD8;      /* unable to generate initializer: unknown type */
-char lbl_8_data_16008[] = "en_flyer.anm";
+static M2C_UNK lbl_8_data_15F80; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_15FBC; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_15FD8; /* unable to generate initializer: unknown type */
+char lbl_8_data_16008[]             = "en_flyer.anm";
 FlyerAnimRecord lbl_8_data_16018[2] = {
 	{ 0, 3, 0, 0, 0xBF800000, 0x3D800000, 0x3E4CCCCD, lbl_8_data_16008, 0xB },
 	{ 0, 0xE, 0, 0, 0, 0, 0, NULL, 0 },
 };
-char lbl_8_data_16060[] = "fly_mo_001.anm";
+char lbl_8_data_16060[]             = "fly_mo_001.anm";
 FlyerAnimRecord lbl_8_data_16070[2] = {
 	{ 0, 3, 0, 0, 0xBF800000, 0x3D800000, 0x3E4CCCCD, lbl_8_data_16060, 0x10 },
 	{ 0, 0xE, 0, 0, 0, 0, 0, NULL, 0 },
 };
 static M2C_UNK flyerObjectFieldNames[3] = { 0, 0, 0 };
-static char lbl_8_data_16154[] = "NONE";
-static char lbl_8_data_1615C[] = "MACHINE GUN";
-static char lbl_8_data_16168[] = "MISSILE";
-static char lbl_8_data_16170[] = "PAWN";
-static char lbl_8_data_16178[] = "BOMB";
+static char lbl_8_data_16154[]          = "NONE";
+static char lbl_8_data_1615C[]          = "MACHINE GUN";
+static char lbl_8_data_16168[]          = "MISSILE";
+static char lbl_8_data_16170[]          = "PAWN";
+static char lbl_8_data_16178[]          = "BOMB";
 static const char* lbl_8_data_16180[5]
     = { lbl_8_data_16154, lbl_8_data_1615C, lbl_8_data_16168, lbl_8_data_16170, lbl_8_data_16178 };
 static char lbl_8_data_16194[]         = "ONE SHOT";
@@ -924,7 +924,7 @@ void fn_8_A35DC(void* arg0)
 				fn_800B4A38(lbl_8042C388, 0xE017, (void*)(&sp20), (void*)(NULL), 1, 2, 0);
 			}
 			fn_8006298C(0xF, &sp20, &sp14);
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			if (fn_8010037C(lbl_8042C590, 0, 5) != 0U) {
@@ -2165,19 +2165,19 @@ void fn_8_A5A8C(void* arg0)
 		case 0:
 			break;
 		case 1:
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			var_r3 = fn_8010037C(lbl_8042C590, 5, 9);
 			break;
 		case 2:
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			var_r3 = fn_8010037C(lbl_8042C590, 5, 0xA);
 			break;
 		case 4:
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			var_r3 = fn_8010037C(lbl_8042C590, 5, 8);
@@ -2428,19 +2428,19 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 		case 0:
 			break;
 		case 1:
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			var_r3 = fn_8010037C(lbl_8042C590, 5, 9);
 			break;
 		case 2:
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			var_r3 = fn_8010037C(lbl_8042C590, 5, 0xA);
 			break;
 		case 4:
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			var_r3 = fn_8010037C(lbl_8042C590, 5, 8);
@@ -2485,7 +2485,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	}
 	M2C_FIELD(arg0, f32*, 0x130) = 12.0f;
 	M2C_FIELD(arg0, f32*, 0x134) = 0.8f;
-	var_r0                       = fn_80057644(0x1C);
+	var_r0                       = __nw__FUl(0x1C);
 	if (var_r0 != 0U) {
 		var_r0 = fn_8_AA58C();
 	}
@@ -2495,7 +2495,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	}
 	M2C_FIELD(arg0, s32*, 0x3B8) = fn_8010B708(0);
 	M2C_FIELD(arg0, s32*, 0x13C) = 1;
-	var_r0_2                     = fn_80057644(0x20);
+	var_r0_2                     = __nw__FUl(0x20);
 	if (var_r0_2 != 0U) {
 		var_r0_2 = fn_800FD8A0(arg0, M2C_FIELD(arg0, s32*, 0x13C));
 	}
@@ -2631,11 +2631,11 @@ void flyerObjectUnload(void)
 	fn_8_A9E18();
 	fn_800FE248(5, (M2C_UNK*)&lbl_8_data_16070[0]);
 	fn_800FE248(5, (M2C_UNK*)&lbl_8_data_16018[0]);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	fn_801007F4(lbl_8042C590, 0xC);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	fn_801007F4(lbl_8042C590, 5);
@@ -2648,7 +2648,7 @@ void flyerObjectLoad(void)
 	u32 temp_r5;
 	u32 var_r0;
 
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	fn_8010096C(lbl_8042C590, 5, lbl_8_data_1628C);
@@ -2656,13 +2656,13 @@ void flyerObjectLoad(void)
 	if (temp_r5 != 0U) {
 		temp_r3 = sprintf(&sp8, lbl_8_data_1629C, temp_r5);
 		if ((temp_r3 >= 0) && (temp_r3 < 0x40)) {
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 				fn_80100AAC();
 			}
 			fn_8010096C(lbl_8042C590, 0xC, &sp8);
 		}
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	temp_r3 = fn_80100328(lbl_8042C590, 5, 0xD);
@@ -2671,19 +2671,19 @@ void flyerObjectLoad(void)
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1948, u32*, 0) = fn_8010037C(lbl_8042C590, 5, 0xC);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1948, u32*, 4) = fn_8010037C(lbl_8042C590, 5, 0xF);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1948, u32*, 8) = fn_8010037C(lbl_8042C590, 5, 0xE);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1948, u32*, 0xC) = fn_8010037C(lbl_8042C590, 5, 6);
@@ -2691,7 +2691,7 @@ void flyerObjectLoad(void)
 	fn_800FE274(5, (M2C_UNK*)&lbl_8_data_16070[0]);
 	fn_8_A9E2C();
 	fn_8_A8D30();
-	var_r0 = fn_80057644(0xC);
+	var_r0 = __nw__FUl(0xC);
 	if (var_r0 != 0U) {
 		var_r0 = fn_8011FE0C(var_r0, 0xC);
 	}
