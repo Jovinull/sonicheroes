@@ -6,20 +6,23 @@
 // adjacent initializer arrays and singleton are private data owned by the same
 // unit.
 //
-// The retail setter deliberately accepts four more byte indices than the
-// values-array layout would suggest, so the byte and word views overlap. This
-// is also why flags has the PS2-era 0x28-byte shape while the constructor
-// copies the full 0x2C-byte retail initializer.
+// The GameCube constructor copies 0x2C flag bytes followed by six words, so
+// this class is 0x44 bytes. The PS2 metadata's 0x28-byte flags describe a
+// different platform layout and must not determine the GameCube object size.
+// The retail setter also accepts the boundary index 0x2C, addressing the final
+// four flag bytes as a word; its guard/index behavior is preserved below.
 enum MODESWITCH_ENUM { };
 
 struct MODESWITCH {
-	s8 flags[0x28];
+	s8 flags[0x2C];
 	s32 values[6];
 
 	MODESWITCH();
 	~MODESWITCH();
 	void SetModeSwitch(MODESWITCH_ENUM, int);
 };
+
+typedef char ModeSwitchSizeCheck[(sizeof(MODESWITCH) == 0x44) ? 1 : -1];
 
 extern "C" {
 extern MODESWITCH* lbl_8042C180[2];
@@ -34,8 +37,8 @@ void* memcpy(void*, const void*, u32);
 
 MODESWITCH::MODESWITCH()
 {
-	memcpy(flags, lbl_802412C0, 0x2C);
-	memcpy((u8*)this + 0x2C, lbl_802412EC, 0x18);
+	memcpy(flags, lbl_802412C0, sizeof(flags));
+	memcpy(values, lbl_802412EC, sizeof(values));
 
 	if (lbl_8042C180[0] == NULL) {
 		lbl_8042C180[0] = this;
@@ -61,7 +64,7 @@ void MODESWITCH::SetModeSwitch(MODESWITCH_ENUM index, int value)
 			fn_8011273C(value);
 		}
 	} else if (index < 0x33) {
-		values[index - 0x2C] = value;
+		values[index - 0x2D] = value;
 	}
 }
 

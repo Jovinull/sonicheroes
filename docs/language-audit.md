@@ -607,6 +607,17 @@ initializer arrays must remain writable at the same time: const qualification
 under deferred emission moves them to `.rodata`, whereas the writable
 declarations reproduce the target `.data` byte-for-byte.
 
+The GameCube class layout is 0x44 bytes: 0x2C byte flags followed by six words.
+The constructor's two copies and the GameCube main-task layout establish this;
+the PS2 metadata's 0x28 flag bytes describe that platform's smaller class.
+The corrected members and `sizeof` copies preserve every instruction and all
+18 normalized relocations. The setter retains the retail boundary-index quirk:
+index 0x2C addresses the last four flag bytes, while word indices begin at 0x2D.
+A compile-time size check prevents reintroducing the undersized class. The full
+supported G9SE8P release/all-source build, 54 policy tests, both policy checks and
+all eighteen artifact hashes pass; this is not runtime/hardware validation.
+
+
 `game/e_paralysis.cpp` keeps an object-level `-inline deferred` override for the
 same reason. The PS2 beta debug symbols name the original translation unit and
 its `TEnemyParalysis` and `sParalysisParam` methods, and the GameCube vtable,
