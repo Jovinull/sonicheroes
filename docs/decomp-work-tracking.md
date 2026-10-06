@@ -4,7 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
-| Codex 2026-10-06 | `game/octreeColli.cpp`, complete collision-query unit | Active on `decomp/octree-colli-20261006`; draft PR #562; nine bodies in retail order, four native matches, five remaining above 98%; original object stays linked |
+| Codex 2026-10-06 | `game/octreeColli.cpp`, complete collision-query unit | Active on `decomp/octree-colli-20261006`; PR #562 ready: all nine native functions, owned sections and 103 relocations exact; native G9SE8P build, 18 hashes, 55 tests and policies pass |
 | Codex 2026-10-06 | `game/octree.cpp`, complete octree and collision-list unit | Ready on `decomp/octree-20261006`; all ten functions and owned sections native-match, 37 relocations exact; full G9SE8P build, 18 hashes, 55 tests and policies pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |

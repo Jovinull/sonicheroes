@@ -79,12 +79,12 @@ inline void OCTREE::ClearNodeFlagAll()
 	nodeFlagBlock = 0;
 }
 
-static inline f32 fn_80054900LengthSq(const RwV3d& value)
+static inline f32 LengthSquared(const RwV3d& value)
 {
 	return value.x * value.x + value.y * value.y + value.z * value.z;
 }
 
-static inline f32 fn_80054900Square(f32 value)
+static inline f32 Square(f32 value)
 {
 	return value * value;
 }
@@ -105,13 +105,43 @@ static inline void SetNeighborPolygonFlags(OCTREE* tree, POLYDATA* polygon, u32&
 	}
 }
 
+inline MiniLinearList* OCTREE::MakeIntersectionNodeListWithSmallSphere(
+    const RwV3d* point, f32 radius)
+{
+	ONODE* cell;
+	RwV3d upper, lower, center;
+	f32 extent;
+	ClearNodeFlagAll();
+
+	upper.x = point->x + radius;
+	upper.z = point->z + radius;
+	lower.x = point->x - radius;
+	lower.z = point->z - radius;
+
+	cell = GetNodeFromPosition(point);
+	GetCenterPosition(cell, &center);
+	extent = nodeHalfLengthEachDepth[cell->depth];
+	MiniLinearList* selectedTraversal;
+	if (upper.x < center.x + extent && center.x - extent < lower.x && upper.z < center.z + extent
+	    && center.z - extent < lower.z) {
+		selectedTraversal = AddNode_MiniLinearList(0, cell->nodeNo);
+	} else {
+		selectedTraversal
+		    = MakeIntersectionNodeListWithSmallSphere_Sub(0, cell, point, radius, &upper, &lower);
+	}
+	return selectedTraversal;
+}
 POLYDATA* OCTREE::DetectLineCollisionWithPolygons(
     const RwV3d* start, const RwV3d* direction, RwV3d* result, s32 (*predicate)(POLYDATA*))
 {
+	ONODE* node;
+	ONODE* next;
+	s32 slot;
+	POLYDATA* polygon;
 	POLYDATA* collision = 0;
 	f32 dx = direction->x, dy = direction->y, dz = direction->z;
 	ClearPolygonFlagAll();
-	ONODE* node = GetNodeFromPosition(start);
+	node = GetNodeFromPosition(start);
 	if (!node)
 		return 0;
 	RwV3d contact, end, boundary, movement, vertices[3];
@@ -119,56 +149,53 @@ POLYDATA* OCTREE::DetectLineCollisionWithPolygons(
 		end.x        = start->x + dx;
 		end.y        = start->y + dy;
 		end.z        = start->z + dz;
-		ONODE* next  = GetNextNeighborNode(node, start, &end, &boundary);
+		next         = GetNextNeighborNode(node, start, &end, &boundary);
 		movement.x   = dx;
 		movement.y   = dy;
 		movement.z   = dz;
 		f32 lengthSq = direction->z * direction->z
 		    + (direction->x * direction->x + direction->y * direction->y);
-		for (s32 slot = 0; slot < node->numPoly; slot++) {
-			u32 raw  = GetPolygonNoInTheNode(node, slot);
-			u16 no   = raw;
-			u32 mask = 1 << (no & 31);
-			s32 word = no >> 5;
-			if ((s32)(polygonFlagBuff[word] & mask) == 0) {
-				POLYDATA* polygon = &polygonData[raw];
-				u32 flags         = 0x80;
+		for (slot = 0; slot < node->numPoly; slot++) {
+			u32 raw = GetPolygonNoInTheNode(node, slot);
+			u16 no  = raw;
+			if (CheckPolygonFlag(no) == 0) {
+				polygon   = &polygonData[raw];
+				u32 flags = 0x80;
 				if (!predicate || predicate(polygon)) {
 					vertices[0] = vertexData[polygon->vertexIndexNo[0]];
 					vertices[1] = vertexData[polygon->vertexIndexNo[1]];
 					vertices[2] = vertexData[polygon->vertexIndexNo[2]];
-					f32 reach   = fn_80054900Square(vertices[1].x - vertices[0].x);
-					f32 other   = fn_80054900Square(vertices[0].x - vertices[2].x);
-					reach += fn_80054900Square(vertices[1].y - vertices[0].y);
-					other += fn_80054900Square(vertices[0].y - vertices[2].y);
-					reach += fn_80054900Square(vertices[1].z - vertices[0].z);
-					other += fn_80054900Square(vertices[0].z - vertices[2].z);
+					f32 reach   = Square(vertices[1].x - vertices[0].x);
+					f32 other   = Square(vertices[0].x - vertices[2].x);
+					reach += Square(vertices[1].y - vertices[0].y);
+					other += Square(vertices[0].y - vertices[2].y);
+					reach += Square(vertices[1].z - vertices[0].z);
+					other += Square(vertices[0].z - vertices[2].z);
 					if (reach < other)
 						reach = other;
 					reach += lengthSq;
-					reach -= fn_80054900Square(vertices[0].x - start->x);
+					reach -= Square(vertices[0].x - start->x);
 					s32 inReach = 0;
 					if (reach > 0.0f) {
-						reach -= fn_80054900Square(vertices[0].y - start->y);
+						reach -= Square(vertices[0].y - start->y);
 						if (reach > 0.0f) {
-							reach -= fn_80054900Square(vertices[0].z - start->z);
+							reach -= Square(vertices[0].z - start->z);
 							if (reach > 0.0f)
 								inReach = 1;
 						}
 					}
 					if (inReach && fn_800D1CE0(start, &movement, vertices, &contact, &flags)) {
 						end        = contact;
-						dx         = contact.x - start->x;
-						dy         = contact.y - start->y;
-						dz         = contact.z - start->z;
+						dx         = end.x - start->x;
+						dy         = end.y - start->y;
+						dz         = end.z - start->z;
 						movement.x = dx;
 						movement.y = dy;
 						movement.z = dz;
 						collision  = polygon;
 					}
 				}
-				polygonFlagBuff[word] |= mask;
-				polyFlagBlock |= 1 << (no >> 11);
+				SetPolygonFlag(no);
 				SetNeighborPolygonFlags(this, polygon, flags);
 			}
 		}
@@ -183,31 +210,33 @@ POLYDATA* OCTREE::DetectLineCollisionWithPolygons(
 POLYDATA* OCTREE::DetectAxisYCollisionWithPolygons(
     const RwV3d* start, f32 distance, RwV3d* result, s32 (*predicate)(POLYDATA*))
 {
+	ONODE* node;
+	ONODE* next;
+	s32 slot;
+	POLYDATA* polygon;
 	POLYDATA* collision = 0;
 	f32 dx              = lbl_80239984.x * distance;
 	f32 dz              = lbl_80239984.z * distance;
 	f32 dy              = lbl_80239984.y * distance;
 	ClearPolygonFlagAll();
-	ONODE* node = GetNodeFromPosition(start);
+	node = GetNodeFromPosition(start);
 	if (!node)
 		return 0;
 	RwV3d contact, end, boundary, movement, vertices[3];
 	do {
-		end.x       = start->x;
-		end.y       = start->y + dy;
-		end.z       = start->z;
-		ONODE* next = GetNextNeighborNode(node, start, &end, &boundary);
-		movement.x  = dx;
-		movement.y  = dy;
-		movement.z  = dz;
-		for (s32 slot = 0; slot < node->numPoly; slot++) {
-			u32 raw  = GetPolygonNoInTheNode(node, slot);
-			u16 no   = raw;
-			u32 mask = 1 << (no & 31);
-			s32 word = no >> 5;
-			if ((s32)(polygonFlagBuff[word] & mask) == 0) {
-				POLYDATA* polygon = &polygonData[raw];
-				u32 flags         = 0x80;
+		end.x      = start->x;
+		end.y      = start->y + dy;
+		end.z      = start->z;
+		next       = GetNextNeighborNode(node, start, &end, &boundary);
+		movement.x = dx;
+		movement.y = dy;
+		movement.z = dz;
+		for (slot = 0; slot < node->numPoly; slot++) {
+			u32 raw = GetPolygonNoInTheNode(node, slot);
+			u16 no  = raw;
+			if (CheckPolygonFlag(no) == 0) {
+				polygon   = &polygonData[raw];
+				u32 flags = 0x80;
 				if (!predicate || predicate(polygon)) {
 					vertices[0] = vertexData[polygon->vertexIndexNo[0]];
 					vertices[1] = vertexData[polygon->vertexIndexNo[1]];
@@ -223,13 +252,12 @@ POLYDATA* OCTREE::DetectAxisYCollisionWithPolygons(
 					}
 					if (outside != 1 && fn_800D1C04(start, &movement, vertices, &contact, &flags)) {
 						end        = contact;
-						dy         = contact.y - start->y;
+						dy         = end.y - start->y;
 						movement.y = dy;
 						collision  = polygon;
 					}
 				}
-				polygonFlagBuff[word] |= mask;
-				polyFlagBlock |= 1 << (no >> 11);
+				SetPolygonFlag(no);
 				SetNeighborPolygonFlags(this, polygon, flags);
 			}
 		}
@@ -334,6 +362,7 @@ MiniLinearList* OCTREE::MakeIntersectionNodeListWithSmallSphere_Sub(MiniLinearLi
 			}
 		}
 	} else if (node->numPoly != 0) {
+
 		f32 leafExtent = grid->nodeHalfLengthEachDepth[node->depth];
 		s32 region     = 0;
 		f32 deltaX;
@@ -379,7 +408,7 @@ MiniLinearList* OCTREE::MakeIntersectionNodeListWithSmallSphere_Sub(MiniLinearLi
 	}
 
 	for (neighbourIndex = 0; neighbourIndex <= 3; neighbourIndex++) {
-		u16 neighbour = node->neighborNo[neighbourIndex];
+		s32 neighbour = node->neighborNo[neighbourIndex];
 		if ((s32)neighbour != 0 && CheckNodeFlag(neighbour) == 0) {
 			switch (neighbourIndex) {
 				case 0:
@@ -501,9 +530,6 @@ ColliPolyLinearList* OCTREE::DetectSphereCollisionWithPolygons(
 {
 	OCTREE* grid = this;
 	u32 rawTriangleIndex;
-	s32 visitedWord;
-	u32 visitedMask;
-	ONODE* cell;
 	ONODE* currentCell;
 	s32 triangleSlot;
 	POLYDATA* triangle;
@@ -514,31 +540,9 @@ ColliPolyLinearList* OCTREE::DetectSphereCollisionWithPolygons(
 	RwV3d surfacePoint;
 	RwV3d correction;
 	RwV3d resolvedPoint;
-	RwV3d center;
-	RwV3d lower;
-	RwV3d upper;
-	f32 extent;
 	contacts = 0;
 	ClearPolygonFlagAll();
-	ClearNodeFlagAll();
-
-	upper.x = point->x + radius;
-	upper.z = point->z + radius;
-	lower.x = point->x - radius;
-	lower.z = point->z - radius;
-
-	cell = GetNodeFromPosition(point);
-	GetCenterPosition(cell, &center);
-	extent = grid->nodeHalfLengthEachDepth[cell->depth];
-	MiniLinearList* selectedTraversal;
-	if (upper.x < extent + center.x && center.x - extent < lower.x && upper.z < extent + center.z
-	    && center.z - extent < lower.z) {
-		selectedTraversal = AddNode_MiniLinearList(0, cell->nodeNo);
-	} else {
-		selectedTraversal
-		    = MakeIntersectionNodeListWithSmallSphere_Sub(0, cell, point, radius, &upper, &lower);
-	}
-	traversal = selectedTraversal;
+	traversal = MakeIntersectionNodeListWithSmallSphere(point, radius);
 	if (traversal == 0)
 		return 0;
 
@@ -549,9 +553,7 @@ ColliPolyLinearList* OCTREE::DetectSphereCollisionWithPolygons(
 			rawTriangleIndex  = GetPolygonNoInTheNode(currentCell, triangleSlot);
 			u16 triangleIndex = (u16)rawTriangleIndex;
 
-			visitedMask = 1 << (triangleIndex & 31);
-			visitedWord = triangleIndex >> 5;
-			if ((s32)(grid->polygonFlagBuff[visitedWord] & visitedMask) == 0) {
+			if (CheckPolygonFlag(triangleIndex) == 0) {
 				triangle = &grid->polygonData[rawTriangleIndex];
 				if (predicate == 0 || predicate(triangle) != 0) {
 					triangleVertices[0] = grid->vertexData[triangle->vertexIndexNo[0]];
@@ -595,8 +597,7 @@ ColliPolyLinearList* OCTREE::DetectSphereCollisionWithPolygons(
 						}
 					}
 				}
-				grid->polygonFlagBuff[visitedWord] |= visitedMask;
-				grid->polyFlagBlock |= 1 << (triangleIndex >> 11);
+				SetPolygonFlag(triangleIndex);
 			}
 		}
 		next = traversal->nextNode;
@@ -611,8 +612,6 @@ ColliPolyLinearList* OCTREE::DetectMovingSphereCollisionWithPolygons(RwV3d* poin
 	OCTREE* grid    = this;
 	RwV3d* movement = direction;
 	u32 rawTriangleIndex;
-	s32 visitedMask;
-	s32 visitedWord;
 	ONODE* cell;
 	s32 triangleSlot;
 	RwV3d secondContact;
@@ -622,6 +621,9 @@ ColliPolyLinearList* OCTREE::DetectMovingSphereCollisionWithPolygons(RwV3d* poin
 	RwV3d surfacePoint;
 	RwV3d correction;
 	RwV3d resolvedPoint;
+	POLYDATA* triangle;
+	MiniLinearList* traversal;
+	MiniLinearList* next;
 	ColliPolyLinearList* contacts = 0;
 	if (fn_801991B4(movement) > 0.0f) {
 		fn_801990E0(&normalizedDirection, movement);
@@ -639,22 +641,20 @@ ColliPolyLinearList* OCTREE::DetectMovingSphereCollisionWithPolygons(RwV3d* poin
 
 	ClearPolygonFlagAll();
 
-	MiniLinearList* traversal = MakeIntersectionNodeListWithCapsule(point, movement, radius);
+	traversal = MakeIntersectionNodeListWithCapsule(point, movement, radius);
 	if (traversal == 0)
 		return 0;
 
-	f32 reachSq = radius * radius + fn_80054900LengthSq(*movement);
+	f32 reachSq = radius * radius + LengthSquared(*movement);
 	while (traversal != 0) {
 		cell = &grid->nodeData[traversal->no];
 		for (triangleSlot = 0; triangleSlot < cell->numPoly; triangleSlot++) {
 			rawTriangleIndex  = GetPolygonNoInTheNode(cell, triangleSlot);
 			u16 triangleIndex = (u16)rawTriangleIndex;
 
-			visitedMask = 1 << (triangleIndex & 31);
-			visitedWord = triangleIndex >> 5;
-			if ((s32)(grid->polygonFlagBuff[visitedWord] & visitedMask) == 0) {
-				POLYDATA* triangle = &grid->polygonData[rawTriangleIndex];
-				f32 facing         = normalizedDirection.x * triangle->norm.x
+			if (CheckPolygonFlag(triangleIndex) == 0) {
+				triangle   = &grid->polygonData[rawTriangleIndex];
+				f32 facing = normalizedDirection.x * triangle->norm.x
 				    + normalizedDirection.y * triangle->norm.y
 				    + normalizedDirection.z * triangle->norm.z;
 				s32 facingAccepted = 0;
@@ -666,18 +666,12 @@ ColliPolyLinearList* OCTREE::DetectMovingSphereCollisionWithPolygons(RwV3d* poin
 					triangleVertices[1] = grid->vertexData[triangle->vertexIndexNo[1]];
 					triangleVertices[2] = grid->vertexData[triangle->vertexIndexNo[2]];
 
-					f32 triangleReachSq
-					    = fn_80054900Square(triangleVertices[1].x - triangleVertices[0].x);
-					f32 alternateReachSq
-					    = fn_80054900Square(triangleVertices[0].x - triangleVertices[2].x);
-					triangleReachSq
-					    += fn_80054900Square(triangleVertices[1].y - triangleVertices[0].y);
-					alternateReachSq
-					    += fn_80054900Square(triangleVertices[0].y - triangleVertices[2].y);
-					triangleReachSq
-					    += fn_80054900Square(triangleVertices[1].z - triangleVertices[0].z);
-					alternateReachSq
-					    += fn_80054900Square(triangleVertices[0].z - triangleVertices[2].z);
+					f32 triangleReachSq  = Square(triangleVertices[1].x - triangleVertices[0].x);
+					f32 alternateReachSq = Square(triangleVertices[0].x - triangleVertices[2].x);
+					triangleReachSq += Square(triangleVertices[1].y - triangleVertices[0].y);
+					alternateReachSq += Square(triangleVertices[0].y - triangleVertices[2].y);
+					triangleReachSq += Square(triangleVertices[1].z - triangleVertices[0].z);
+					alternateReachSq += Square(triangleVertices[0].z - triangleVertices[2].z);
 					if (triangleReachSq < alternateReachSq)
 						triangleReachSq = alternateReachSq;
 					triangleReachSq += reachSq;
@@ -729,7 +723,7 @@ ColliPolyLinearList* OCTREE::DetectMovingSphereCollisionWithPolygons(RwV3d* poin
 										*contactType       = CL_MOVING_COLLISION;
 										remainingDirection = firstContact;
 									}
-								} else if (fn_80054900LengthSq(remainingDirection) > 0.0f) {
+								} else if (LengthSquared(remainingDirection) > 0.0f) {
 									contacts->Insert((u16)rawTriangleIndex, &firstContact,
 									    &secondContact, 0, &secondaryValue);
 									*contactType = CL_MOVING_COLLISION;
@@ -742,11 +736,10 @@ ColliPolyLinearList* OCTREE::DetectMovingSphereCollisionWithPolygons(RwV3d* poin
 						}
 					}
 				}
-				grid->polygonFlagBuff[visitedWord] |= visitedMask;
-				grid->polyFlagBlock |= 1 << (triangleIndex >> 11);
+				SetPolygonFlag(triangleIndex);
 			}
 		}
-		MiniLinearList* next = traversal->nextNode;
+		next = traversal->nextNode;
 		DeleteNode_MiniLinearList(traversal);
 		traversal = next;
 	}

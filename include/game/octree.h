@@ -94,6 +94,7 @@ public:
 	MiniLinearList* MakeIntersectionNodeListWithCapsule_Sub(
 	    MiniLinearList*, const ONODE*, const RwV3d*, const RwV3d*);
 	MiniLinearList* MakeIntersectionNodeListWithCapsule(const RwV3d*, const RwV3d*, f32);
+	MiniLinearList* MakeIntersectionNodeListWithSmallSphere(const RwV3d*, f32);
 	MiniLinearList* MakeIntersectionNodeListWithSmallSphere_Sub(
 	    MiniLinearList*, const ONODE*, const RwV3d*, f32, const RwV3d*, const RwV3d*);
 	ONODE* GetNextNeighborNode(const ONODE*, const RwV3d*, const RwV3d*, RwV3d*);

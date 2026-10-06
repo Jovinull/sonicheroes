@@ -43,60 +43,58 @@ delete routine, RenderWare callbacks, `RsGlobal`, pathname helpers and endian
 converter. Replacing those aliases changed only source or ELF symbol names,
 not instructions; every matching source object remained complete in objdiff.
 
-## Whole-unit drafts
+## Completed batches
 
-### Octree collision queries (nonmatching)
+### Octree collision queries
 
 `game/octreeColli.cpp` reconstructs all nine surviving bodies in the inferred
 GameCube range `0x800546F4`–`0x800569BC`, replacing six address-named fragments
-and adding neighbor traversal, axis-Y collision and line collision. It remains
-`NonMatching`; release builds link the original whole object. The former two
-sphere-query instruction postprocessors are no longer configured on this draft.
+and adding neighbor traversal, axis-Y collision and line collision. The complete
+unit is `Matching` and release builds link its native C++ object. The former
+two sphere-query instruction postprocessors are no longer configured.
 
 Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2, commit
 `c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section .debug dwarf`)
 identifies `octreeColli.cpp` as C++ and its `OCTREE` member interfaces, including
-`GetNextNeighborNode` and both polygon-query methods. Independent GameCube
-correlation uses the 0x18C-byte shared class layout, child and neighbor traversal,
-packed polygon-index encoding, flag buffers and calls into triangle collision.
-Several PS2 helper methods are inlined on GameCube. The next GameCube routine
-uses gameplay globals and object allocation rather than this query family;
-the boundary remains an inference. Only minimal metadata facts are recorded.
+`GetNextNeighborNode`, `MakeIntersectionNodeListWithSmallSphere` and the
+polygon-query methods. Independent GameCube correlation uses the shared
+0x18C-byte class layout, child and neighbor traversal, packed polygon indices,
+flag buffers and triangle-collision calls. Several PS2 helpers are inlined on
+GameCube. The next GameCube routine accesses gameplay globals and allocates
+objects rather than belonging to this query family; the whole-unit boundary
+remains an inference. Only minimal symbolic facts are recorded.
 
-The source uses the shared octree types and the metadata-confirmed inline
-flag and polygon-index methods. Correcting the inherited flag-clearing loops
-is necessary for source-level behavior: they formerly advanced the pointer
-again after clearing an active block. Retail advances through an active block
-while clearing it, and skips 64 words only for an inactive block. The removed
-postprocessors' branch retargets had corrected this behavior in object code;
-the source now expresses the conditional advance directly. Both sphere-query
-bodies consequently have the correct instruction counts without patching.
+The source uses shared octree types, native member calls and inline flag/index
+methods. Flag clearing advances through an active block while clearing it and
+skips 64 words only for an inactive block. The inherited fragment source had
+advanced again after an active block; the old patchers' branch retargets had
+corrected that behavior in object code. The C++ now expresses it directly.
+The stationary sphere query inlines the recovered small-sphere list helper.
+The recursive query retains a full-width neighbor index for node addressing
+and narrows only the flag-helper argument. Neighbor traversal computes X/Z and
+preserves the retail uninitialized Y store in its optional output. Successful
+line/axis queries calculate movement from the updated endpoint, preserving the
+retail reuse of copied coordinates.
 
-All nine bodies compile. Surface pruning, both capsule-list routines and
-neighbor traversal match at 100%; moving sphere is 98.96373%, stationary sphere
-99.21965%, recursive small sphere 99.57365%, axis-Y 98.74336%, and line collision
-98.068375%. Neighbor traversal uses a vector for its relative X/Z coordinates
-and retains the retail uninitialized Y store in its optional output. Small
-sphere adds one index truncation; axis-Y is four bytes longer and line collision
-twelve bytes longer. Register allocation and load/branch shape remain unresolved.
-The source remains nonmatching; these percentages do not prove runtime equivalence.
+Reverse source definitions with `-inline deferred` reproduce the correlated
+PS2/GameCube function sequence and numeric-pool order. A control build of the
+same final source with automatic inlining emits line collision first and
+surface pruning last. Only the capsule subroutine and recursive small-sphere
+routine compare at 100%; the other functions range from 99.841774% to
+99.985756%. Exception sections compare at
+60.000004%/62.222225% and the literal pool at 33.333336%. Deferred emission makes
+all nine functions and all owned sections exact, without extra helper bodies,
+assembly or postprocessing.
 
-The nine surviving methods follow the correlated PS2/GameCube order. Reverse
-source definitions with `-inline deferred` reproduce that order. A control build
-of the same source with ordinary automatic inlining emits line collision first
-and surface pruning last, in reverse retail order. Deferred emission preserves
-the per-function comparisons while placing all nine bodies in retail order.
-The former extra 156-byte flag-clearing helper is no longer emitted. Native
-text is 8,924 bytes versus 8,904 retail; exception data/relocations are not yet
-exact. The 16-byte child mask and 24-byte numeric pool match exactly.
-
-G9SE8P, the sole supported release target, passed `all_source`, full linking and
-report generation, all 18 artifact hashes, 55 automated tests and both policy
-checks. This validates the draft's build integration with the original object
-linked; it does not validate the native candidate's runtime behavior. No
-physical-hardware testing was performed.
-
-## Completed batches
+Independent ELF comparison verifies 8,904 text bytes, 104 exception bytes,
+108 exception-index bytes, 16 child-mask bytes and 24 numeric-pool bytes;
+all nine function offsets/sizes, all native global definitions and 103
+normalized relocations match. Section types, sizes and alignment agree;
+`.sdata2` has the usual DTK alloc-only versus Metrowerks alloc/write flag
+difference. G9SE8P, the sole supported release target, passed the native
+all-source/link/report build, all 18 artifact hashes, 55 automated tests and
+both policy checkers. The final linker input was confirmed to select native
+`octreeColli.o`. Runtime and physical-hardware validation were not performed.
 
 ### Octree and collision-list translation unit
 
