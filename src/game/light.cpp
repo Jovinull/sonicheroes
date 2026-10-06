@@ -213,8 +213,7 @@ inline s32 CLIGHT::LoadLightData(REGLIGHT_STRUCT* data, char* filename)
 {
 	s32 size;
 	void* buffer;
-	if (!data)
-		data = reglight_struct;
+	data = data ? data : reglight_struct;
 	size = fn_80042554(filename);
 	if (size > 0) {
 		buffer = lbl_8042C9A4->allocate(size);

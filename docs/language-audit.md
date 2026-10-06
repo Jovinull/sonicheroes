@@ -83,7 +83,7 @@ object is linked. Independent ELF comparison verifies all 26 export offsets
 and sizes, all 263 normalized relocations, 232 exception-table bytes, 276
 exception-index bytes, eight small-data bytes and 16 small-constant bytes.
 Twenty-four functions are byte-exact. `EndIgnoreLight` has eight instructions
-with different GPR operands and `Init` has fourteen; the full text size is
+with different GPR operands and `Init` has seven; the full text size is
 7,732 bytes. All 141 authored data bytes match; retail includes three trailing
 alignment bytes. The compiler uses its conventional writable flag for
 `.sdata2`, unlike the split reference's read-only section flag.
