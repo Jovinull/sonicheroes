@@ -1482,11 +1482,21 @@ layouts are not emitted as source padding. Correlated vector names describe
 the triangle edges, cross product, projection and contact state. Remaining
 scalar temporaries and control-flow labels await refinement.
 
+Local vector writes use the same separate component-store view as the adjacent
+collision reconstruction, preserving the stores observed in retail. Eight
+segment square-root results use volatile float storage to retain the observed
+single-precision rounding and store/reload sequence. Redundant returns and
+scalar caches were removed where the original field reads occur before calls.
+The triangle plane dot product is evaluated before the reciprocal-square-root
+call, as in GameCube. These are reconstruction choices, not claims about the
+original spelling or qualifiers.
+
 This is a **nonmatching draft** and retains the original linked object. The
 point routine and all 32 constant bytes match exactly; all 29 direct call target
-counts agree. The triangle routine is 4,940 native versus 4,928 retail bytes,
-and the segment routine is 4,036 versus 4,240. Stack/register allocation and
-exception records still differ. No instruction patcher or inline assembly is
+counts agree. The triangle routine is 4,964 native versus 4,928 retail bytes
+(approximately 94% object match), and the segment routine is 4,232 versus 4,240
+(approximately 97%). Stack/register allocation and triangle exception records
+still differ; the segment exception record now matches. No instruction patcher or inline assembly is
 introduced, and matching is not claimed for the two larger routines.
 
 Validation: G9SE8P, the sole supported target, passes the full all-source build,

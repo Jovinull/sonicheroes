@@ -2,6 +2,10 @@
 // Complete GameCube moving-collision unit, 0x800D2ED4--0x800D52AC.
 // NonMatching: typed control-flow reconstruction under native comparison.
 // Names and signatures correlated with C++ symbolic metadata; behavior is GameCube.
+// Separate component-store view, as used in the neighboring collision unit.
+struct VectorComponents {
+	f32 x, y, z;
+};
 extern "C" f32 fn_801991B4(const RwV3d*);
 extern "C" f32 fn_80199248(f32);
 extern "C" f64 __fabs(f64);
@@ -61,9 +65,7 @@ enum ENUM_CL_MOVING clDetectMS2T(const RwV3d* sphere_pos, f32 sphere_rad, const 
 	f32 temp_f0_7;
 	f32 temp_f0_8;
 	f32 temp_f0_9;
-	f32 temp_f10;
 	f32 temp_f10_2;
-	f32 temp_f11;
 	f32 temp_f11_2;
 	f32 temp_f12;
 	f32 temp_f13;
@@ -76,34 +78,27 @@ enum ENUM_CL_MOVING clDetectMS2T(const RwV3d* sphere_pos, f32 sphere_rad, const 
 	f32 temp_f1_7;
 	f32 temp_f1_8;
 	f32 temp_f29;
-	f32 temp_f2;
 	f32 temp_f2_2;
 	f32 temp_f2_3;
 	f32 temp_f30;
-	f32 temp_f3;
 	f32 temp_f3_2;
 	f32 temp_f3_3;
 	f32 temp_f3_4;
 	f32 temp_f3_5;
 	f32 temp_f3_6;
-	f32 temp_f4;
 	f32 temp_f4_2;
 	f32 temp_f4_3;
 	f32 temp_f4_4;
 	f32 temp_f4_5;
 	f32 temp_f4_6;
-	f32 temp_f5;
 	f32 temp_f5_2;
 	f32 temp_f5_3;
 	f32 temp_f5_4;
 	f32 temp_f6;
 	f32 temp_f6_2;
 	f32 temp_f6_3;
-	f32 temp_f7;
 	f32 temp_f7_2;
-	f32 temp_f8;
 	f32 temp_f8_2;
-	f32 temp_f9;
 	f32 temp_f9_2;
 	f32 var_f2;
 	f32 var_f3;
@@ -182,52 +177,43 @@ block_18:
 		}
 		return CL_MOVING_NONE;
 	}
-	temp_f11  = tri_vertex->x;
-	temp_f10  = tri_vertex[1].x - temp_f11;
-	vec_ab.x  = temp_f10;
-	temp_f9   = tri_vertex->y;
-	temp_f8   = tri_vertex[1].y - temp_f9;
-	vec_ab.y  = temp_f8;
-	temp_f7   = tri_vertex->z;
-	temp_f5   = tri_vertex[1].z - temp_f7;
-	vec_ab.z  = temp_f5;
-	temp_f4   = tri_vertex[2].x - temp_f11;
-	vec_ac.x  = temp_f4;
-	temp_f3   = tri_vertex[2].y - temp_f9;
-	vec_ac.y  = temp_f3;
-	temp_f2   = tri_vertex[2].z - temp_f7;
-	vec_ac.z  = temp_f2;
-	temp_f6   = (temp_f8 * temp_f2) - (temp_f5 * temp_f3);
-	crsP.x    = temp_f6;
-	temp_f5_2 = (temp_f5 * temp_f4) - (temp_f10 * temp_f2);
-	crsP.y    = temp_f5_2;
-	temp_f4_2 = (temp_f10 * temp_f3) - (temp_f8 * temp_f4);
-	crsP.z    = temp_f4_2;
-	temp_f1_2 = sphere_pos->x - temp_f11;
-	vec_ao.x  = temp_f1_2;
-	temp_f3_2 = sphere_pos->y - temp_f9;
-	vec_ao.y  = temp_f3_2;
-	temp_f0_8 = sphere_pos->z - temp_f7;
-	vec_ao.z  = temp_f0_8;
+	((VectorComponents*)&vec_ab)->x = tri_vertex[1].x - tri_vertex->x;
+	((VectorComponents*)&vec_ab)->y = tri_vertex[1].y - tri_vertex->y;
+	((VectorComponents*)&vec_ab)->z = tri_vertex[1].z - tri_vertex->z;
+	((VectorComponents*)&vec_ac)->x = tri_vertex[2].x - tri_vertex->x;
+	((VectorComponents*)&vec_ac)->y = tri_vertex[2].y - tri_vertex->y;
+	((VectorComponents*)&vec_ac)->z = tri_vertex[2].z - tri_vertex->z;
+	temp_f6                         = (vec_ab.y * vec_ac.z) - (vec_ab.z * vec_ac.y);
+	((VectorComponents*)&crsP)->x   = temp_f6;
+	temp_f5_2                       = (vec_ab.z * vec_ac.x) - (vec_ab.x * vec_ac.z);
+	((VectorComponents*)&crsP)->y   = temp_f5_2;
+	temp_f4_2                       = (vec_ab.x * vec_ac.y) - (vec_ab.y * vec_ac.x);
+	((VectorComponents*)&crsP)->z   = temp_f4_2;
+	temp_f1_2                       = sphere_pos->x - tri_vertex->x;
+	((VectorComponents*)&vec_ao)->x = temp_f1_2;
+	temp_f3_2                       = sphere_pos->y - tri_vertex->y;
+	((VectorComponents*)&vec_ao)->y = temp_f3_2;
+	temp_f0_8                       = sphere_pos->z - tri_vertex->z;
+	((VectorComponents*)&vec_ao)->z = temp_f0_8;
+	f32 AOAN = (temp_f0_8 * temp_f4_2) + ((temp_f1_2 * temp_f6) + (temp_f3_2 * temp_f5_2));
 	temp_f1_3
 	    = fn_80199248((temp_f4_2 * temp_f4_2) + ((temp_f6 * temp_f6) + (temp_f5_2 * temp_f5_2)));
-	temp_f3_3
-	    = ((temp_f0_8 * temp_f4_2) + ((temp_f1_2 * temp_f6) + (temp_f3_2 * temp_f5_2))) * temp_f1_3;
+	temp_f3_3 = AOAN * temp_f1_3;
 	if (temp_f3_3 <= -sphere_rad) {
 		return CL_MOVING_NONE;
 	}
-	temp_f4_3 = -(temp_f1_3 * temp_f3_3);
-	temp_f2_2 = crsP.x * temp_f4_3;
-	vec_oq.x  = temp_f2_2;
-	temp_f1_4 = crsP.y * temp_f4_3;
-	vec_oq.y  = temp_f1_4;
-	temp_f0_9 = crsP.z * temp_f4_3;
-	vec_oq.z  = temp_f0_9;
-	temp_f29  = (f32)__fabs(temp_f3_3);
+	temp_f4_3                       = -(temp_f1_3 * temp_f3_3);
+	temp_f2_2                       = crsP.x * temp_f4_3;
+	((VectorComponents*)&vec_oq)->x = temp_f2_2;
+	temp_f1_4                       = crsP.y * temp_f4_3;
+	((VectorComponents*)&vec_oq)->y = temp_f1_4;
+	temp_f0_9                       = crsP.z * temp_f4_3;
+	((VectorComponents*)&vec_oq)->z = temp_f0_9;
+	temp_f29                        = (f32)__fabs(temp_f3_3);
 	if (temp_f29 <= temp_f30) {
-		vec_aq.x = vec_ao.x + temp_f2_2;
-		vec_aq.y = vec_ao.y + temp_f1_4;
-		vec_aq.z = vec_ao.z + temp_f0_9;
+		((VectorComponents*)&vec_aq)->x = vec_ao.x + temp_f2_2;
+		((VectorComponents*)&vec_aq)->y = vec_ao.y + temp_f1_4;
+		((VectorComponents*)&vec_aq)->z = vec_ao.z + temp_f0_9;
 		clGetTriangleVectorCoef_CrsP(&vec_ab, &vec_ac, &vec_aq, &crsP, &s, &t);
 		if ((s >= lbl_8042DFEC) && (t >= lbl_8042DFEC) && ((s + t) <= lbl_8042DFF0)) {
 			if (coli_pos != NULL) {
@@ -263,46 +249,46 @@ block_18:
 	if (temp_f29 < lbl_8042DFE8) {
 		return CL_MOVING_NONE;
 	}
-	temp_f3_4  = (temp_f29 - sphere_rad) / temp_f29;
-	temp_f11_2 = temp_f2_2 * temp_f3_4;
-	vec_oq_.x  = temp_f11_2;
-	temp_f10_2 = temp_f1_4 * temp_f3_4;
-	vec_oq_.y  = temp_f10_2;
-	temp_f9_2  = temp_f0_9 * temp_f3_4;
-	vec_oq_.z  = temp_f9_2;
-	temp_f8_2  = sphere_vec->z;
-	temp_f12   = sphere_vec->x;
-	temp_f7_2  = sphere_vec->y;
-	temp_f13   = (temp_f9_2 * temp_f8_2) + ((temp_f11_2 * temp_f12) + (temp_f10_2 * temp_f7_2));
-	temp_f4_4  = (temp_f9_2 * temp_f9_2) + ((temp_f11_2 * temp_f11_2) + (temp_f10_2 * temp_f10_2));
+	temp_f3_4                        = (temp_f29 - sphere_rad) / temp_f29;
+	temp_f11_2                       = temp_f2_2 * temp_f3_4;
+	((VectorComponents*)&vec_oq_)->x = temp_f11_2;
+	temp_f10_2                       = temp_f1_4 * temp_f3_4;
+	((VectorComponents*)&vec_oq_)->y = temp_f10_2;
+	temp_f9_2                        = temp_f0_9 * temp_f3_4;
+	((VectorComponents*)&vec_oq_)->z = temp_f9_2;
+	temp_f8_2                        = sphere_vec->z;
+	temp_f12                         = sphere_vec->x;
+	temp_f7_2                        = sphere_vec->y;
+	temp_f13  = (temp_f9_2 * temp_f8_2) + ((temp_f11_2 * temp_f12) + (temp_f10_2 * temp_f7_2));
+	temp_f4_4 = (temp_f9_2 * temp_f9_2) + ((temp_f11_2 * temp_f11_2) + (temp_f10_2 * temp_f10_2));
 	if (temp_f13 <= lbl_8042DFF4) {
 		return CL_MOVING_NONE;
 	}
 	if (temp_f4_4 >= (lbl_8042DFE8 + temp_f13)) {
 		return CL_MOVING_NONE;
 	}
-	temp_f3_5  = temp_f4_4 / temp_f13;
-	temp_f6_2  = temp_f12 * temp_f3_5;
-	vec_ov_.x  = temp_f6_2;
-	temp_f5_3  = temp_f7_2 * temp_f3_5;
-	vec_ov_.y  = temp_f5_3;
-	temp_f4_5  = temp_f8_2 * temp_f3_5;
-	vec_ov_.z  = temp_f4_5;
-	temp_f6_3  = vec_ao.x + temp_f6_2;
-	vec_av_.x  = temp_f6_3;
-	temp_f5_4  = vec_ao.y + temp_f5_3;
-	vec_av_.y  = temp_f5_4;
-	temp_f4_6  = vec_ao.z + temp_f4_5;
-	vec_av_.z  = temp_f4_6;
-	temp_f3_6  = temp_f2_2 - temp_f11_2;
-	vec_q_q.x  = temp_f3_6;
-	temp_f2_3  = temp_f1_4 - temp_f10_2;
-	vec_q_q.y  = temp_f2_3;
-	temp_f1_7  = temp_f0_9 - temp_f9_2;
-	vec_q_q.z  = temp_f1_7;
-	vec_av__.x = temp_f6_3 + temp_f3_6;
-	vec_av__.y = temp_f5_4 + temp_f2_3;
-	vec_av__.z = temp_f4_6 + temp_f1_7;
+	temp_f3_5                         = temp_f4_4 / temp_f13;
+	temp_f6_2                         = temp_f12 * temp_f3_5;
+	((VectorComponents*)&vec_ov_)->x  = temp_f6_2;
+	temp_f5_3                         = temp_f7_2 * temp_f3_5;
+	((VectorComponents*)&vec_ov_)->y  = temp_f5_3;
+	temp_f4_5                         = temp_f8_2 * temp_f3_5;
+	((VectorComponents*)&vec_ov_)->z  = temp_f4_5;
+	temp_f6_3                         = vec_ao.x + temp_f6_2;
+	((VectorComponents*)&vec_av_)->x  = temp_f6_3;
+	temp_f5_4                         = vec_ao.y + temp_f5_3;
+	((VectorComponents*)&vec_av_)->y  = temp_f5_4;
+	temp_f4_6                         = vec_ao.z + temp_f4_5;
+	((VectorComponents*)&vec_av_)->z  = temp_f4_6;
+	temp_f3_6                         = temp_f2_2 - temp_f11_2;
+	((VectorComponents*)&vec_q_q)->x  = temp_f3_6;
+	temp_f2_3                         = temp_f1_4 - temp_f10_2;
+	((VectorComponents*)&vec_q_q)->y  = temp_f2_3;
+	temp_f1_7                         = temp_f0_9 - temp_f9_2;
+	((VectorComponents*)&vec_q_q)->z  = temp_f1_7;
+	((VectorComponents*)&vec_av__)->x = temp_f6_3 + temp_f3_6;
+	((VectorComponents*)&vec_av__)->y = temp_f5_4 + temp_f2_3;
+	((VectorComponents*)&vec_av__)->z = temp_f4_6 + temp_f1_7;
 	clGetTriangleVectorCoef_CrsP(&vec_ab, &vec_ac, &vec_av__, &crsP, &s, &t);
 	if ((s >= lbl_8042DFEC) && (t >= lbl_8042DFEC) && ((s + t) <= lbl_8042DFF0)) {
 		if (coli_pos != NULL) {
@@ -354,7 +340,6 @@ block_61:
 				}
 				if (pOn_Edge != NULL) {
 					*pOn_Edge |= 0x40;
-					return var_r3;
 				}
 				return var_r3;
 			}
@@ -408,18 +393,17 @@ block_61:
 			}
 			if (pOn_Edge != NULL) {
 				*pOn_Edge |= 0x40;
-				return var_r3;
 			}
 			return var_r3;
 		}
 		if ((s + t) > lbl_8042DFF0) {
-			temp_f1_8 = vec_ac.x;
-			vec_ab.x  = vec_ab.x - temp_f1_8;
-			vec_ab.y -= vec_ac.y;
-			vec_ab.z -= vec_ac.z;
-			vec_ao.x = vec_ao.x - temp_f1_8;
-			vec_ao.y -= vec_ac.y;
-			vec_ao.z -= vec_ac.z;
+			temp_f1_8                       = vec_ac.x;
+			((VectorComponents*)&vec_ab)->x = vec_ab.x - temp_f1_8;
+			((VectorComponents*)&vec_ab)->y -= vec_ac.y;
+			((VectorComponents*)&vec_ab)->z -= vec_ac.z;
+			((VectorComponents*)&vec_ao)->x = vec_ao.x - temp_f1_8;
+			((VectorComponents*)&vec_ao)->y -= vec_ac.y;
+			((VectorComponents*)&vec_ao)->z -= vec_ac.z;
 			temp_r3_2 = clDetectMS2LS_(
 			    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ab, &crsP, &sp4C, &sp34);
 			if (temp_r3_2 == CL_MOVING_INTERSECTION) {
@@ -438,10 +422,10 @@ block_61:
 				}
 				return temp_r3_2;
 			}
-			vec_ac.x = -vec_ac.x;
-			vec_ac.y = -vec_ac.y;
-			vec_ac.z = -vec_ac.z;
-			var_r3   = clDetectMS2LS_(
+			((VectorComponents*)&vec_ac)->x = -vec_ac.x;
+			((VectorComponents*)&vec_ac)->y = -vec_ac.y;
+			((VectorComponents*)&vec_ac)->z = -vec_ac.z;
+			var_r3                          = clDetectMS2LS_(
 			    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ac, &crsP, &sp40, coli_pos);
 			if ((var_r3 == CL_MOVING_INTERSECTION)
 			    || ((temp_r3_2 == CL_MOVING_NONE) && (var_r3 == CL_MOVING_COLLISION))) {
@@ -457,7 +441,6 @@ block_61:
 				}
 				if (pOn_Edge != NULL) {
 					*pOn_Edge |= 0x40;
-					return var_r3;
 				}
 				return var_r3;
 			}
@@ -511,7 +494,6 @@ block_61:
 			}
 			if (pOn_Edge != NULL) {
 				*pOn_Edge |= 0x40;
-				return var_r3;
 			}
 			return var_r3;
 		}
@@ -526,18 +508,17 @@ block_61:
 			if (pOn_Edge != NULL) {
 				*pOn_Edge |= 0x40;
 			}
-			return var_r3;
 		}
 		return var_r3;
 	}
 	if (t < lbl_8042DFEC) {
 		if ((s + t) > lbl_8042DFF0) {
-			vec_ac.x -= vec_ab.x;
-			vec_ac.y -= vec_ab.y;
-			vec_ac.z -= vec_ab.z;
-			vec_ao.x -= vec_ab.x;
-			vec_ao.y -= vec_ab.y;
-			vec_ao.z -= vec_ab.z;
+			((VectorComponents*)&vec_ac)->x -= vec_ab.x;
+			((VectorComponents*)&vec_ac)->y -= vec_ab.y;
+			((VectorComponents*)&vec_ac)->z -= vec_ab.z;
+			((VectorComponents*)&vec_ao)->x -= vec_ab.x;
+			((VectorComponents*)&vec_ao)->y -= vec_ab.y;
+			((VectorComponents*)&vec_ao)->z -= vec_ab.z;
 			temp_r3 = clDetectMS2LS_(
 			    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ac, &crsP, &sp28, &sp10);
 			if (temp_r3 == CL_MOVING_INTERSECTION) {
@@ -556,10 +537,10 @@ block_61:
 				}
 				return temp_r3;
 			}
-			vec_ab.x = -vec_ab.x;
-			vec_ab.y = -vec_ab.y;
-			vec_ab.z = -vec_ab.z;
-			var_r3   = clDetectMS2LS_(
+			((VectorComponents*)&vec_ab)->x = -vec_ab.x;
+			((VectorComponents*)&vec_ab)->y = -vec_ab.y;
+			((VectorComponents*)&vec_ab)->z = -vec_ab.z;
+			var_r3                          = clDetectMS2LS_(
 			    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ab, &crsP, &sp1C, coli_pos);
 			if ((var_r3 == CL_MOVING_INTERSECTION)
 			    || ((temp_r3 == CL_MOVING_NONE) && (var_r3 == CL_MOVING_COLLISION))) {
@@ -575,7 +556,6 @@ block_61:
 				}
 				if (pOn_Edge != NULL) {
 					*pOn_Edge |= 0x10;
-					return var_r3;
 				}
 				return var_r3;
 			}
@@ -629,7 +609,6 @@ block_61:
 			}
 			if (pOn_Edge != NULL) {
 				*pOn_Edge |= 0x10;
-				return var_r3;
 			}
 			return var_r3;
 		}
@@ -644,17 +623,16 @@ block_61:
 			if (pOn_Edge != NULL) {
 				*pOn_Edge |= 0x10;
 			}
-			return var_r3;
 		}
 		return var_r3;
 	}
 	if ((s + t) > lbl_8042DFF0) {
-		vec_ac.x -= vec_ab.x;
-		vec_ac.y -= vec_ab.y;
-		vec_ac.z -= vec_ab.z;
-		vec_ao.x -= vec_ab.x;
-		vec_ao.y -= vec_ab.y;
-		vec_ao.z -= vec_ab.z;
+		((VectorComponents*)&vec_ac)->x -= vec_ab.x;
+		((VectorComponents*)&vec_ac)->y -= vec_ab.y;
+		((VectorComponents*)&vec_ac)->z -= vec_ab.z;
+		((VectorComponents*)&vec_ao)->x -= vec_ab.x;
+		((VectorComponents*)&vec_ao)->y -= vec_ab.y;
+		((VectorComponents*)&vec_ao)->z -= vec_ab.z;
 		var_r3 = clDetectMS2LS_(
 		    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ac, &crsP, ans_vec, coli_pos);
 		if (var_r3 != CL_MOVING_NONE) {
@@ -666,7 +644,6 @@ block_61:
 			if (pOn_Edge != NULL) {
 				*pOn_Edge |= 0x20;
 			}
-			return var_r3;
 		}
 		return var_r3;
 	}
@@ -692,14 +669,14 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	RwV3d sp40;
 	RwV3d sp34;
 	RwV3d sp28;
-	f32 sp24;
-	f32 sp20;
-	f32 sp1C;
-	f32 sp18;
-	f32 sp14;
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	volatile f32 sp24;
+	volatile f32 sp20;
+	volatile f32 sp1C;
+	volatile f32 sp18;
+	volatile f32 sp14;
+	volatile f32 sp10;
+	volatile f32 spC;
+	volatile f32 sp8;
 	enum ENUM_CL_MOVING var_r31;
 	enum ENUM_CL_MOVING var_r3;
 	f32 temp_f0_16;
@@ -718,14 +695,10 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	f32 temp_f0_7;
 	f32 temp_f0_8;
 	f32 temp_f0_9;
-	f32 temp_f10;
 	f32 temp_f10_2;
 	f32 temp_f10_3;
-	f32 temp_f11;
 	f32 temp_f11_2;
-	f32 temp_f12;
 	f32 temp_f12_2;
-	f32 temp_f13;
 	f32 temp_f13_2;
 	f32 temp_f1;
 	f32 temp_f1_10;
@@ -748,21 +721,14 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	f32 temp_f27;
 	f32 temp_f28;
 	f32 temp_f29;
-	f32 temp_f2;
-	f32 temp_f2_2;
-	f32 temp_f2_3;
 	f32 temp_f2_4;
 	f32 temp_f2_5;
 	f32 temp_f2_6;
 	f32 temp_f30;
-	f32 temp_f3;
-	f32 temp_f3_2;
-	f32 temp_f3_3;
 	f32 temp_f3_4;
 	f32 temp_f3_5;
 	f32 temp_f3_6;
 	f32 temp_f3_7;
-	f32 temp_f4;
 	f32 temp_f4_10;
 	f32 temp_f4_11;
 	f32 temp_f4_12;
@@ -778,20 +744,13 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	f32 temp_f5_2;
 	f32 temp_f6;
 	f32 temp_f6_2;
-	f32 temp_f7;
-	f32 temp_f7_2;
-	f32 temp_f7_3;
 	f32 temp_f7_4;
 	f32 temp_f7_5;
 	f32 temp_f7_6;
 	f32 temp_f7_7;
-	f32 temp_f8;
-	f32 temp_f8_2;
 	f32 temp_f8_3;
 	f32 temp_f8_4;
 	f32 temp_f8_5;
-	f32 temp_f9;
-	f32 temp_f9_2;
 	f32 temp_f9_3;
 	f32 var_f1;
 	f32 var_f1_2;
@@ -828,52 +787,37 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	s32 ignoreDetectCylinderFlag;
 
 	ignoreDetectCylinderFlag = 0;
-	temp_f4                  = detect_vec->z;
-	temp_f3                  = detect_vec->x;
-	temp_f2                  = detect_vec->y;
-	temp_f6                  = (temp_f4 * temp_f4) + ((temp_f3 * temp_f3) + (temp_f2 * temp_f2));
+	temp_f6                  = (detect_vec->z * detect_vec->z)
+	    + ((detect_vec->x * detect_vec->x) + (detect_vec->y * detect_vec->y));
 	if (temp_f6 < lbl_8042DFE8) {
 		var_r3 = clDetectMS2P_(sphere_pos, sphere_rad, sphere_vec, safe_vec, ans_vec);
 		if ((var_r3 != CL_MOVING_NONE) && (coli_pos != NULL)) {
 			coli_pos->z = lbl_8042DFEC;
 			coli_pos->y = lbl_8042DFEC;
 			coli_pos->x = lbl_8042DFEC;
-			return var_r3;
 		}
-
 		return var_r3;
 	}
-	temp_f9    = sphere_vec->z;
-	temp_f8    = sphere_vec->y;
-	temp_f10   = (temp_f2 * temp_f9) - (temp_f4 * temp_f8);
-	crsP.x     = temp_f10;
-	temp_f7    = sphere_vec->x;
-	temp_f9_2  = (temp_f4 * temp_f7) - (temp_f3 * temp_f9);
-	crsP.y     = temp_f9_2;
-	temp_f8_2  = (temp_f3 * temp_f8) - (temp_f2 * temp_f7);
-	crsP.z     = temp_f8_2;
-	temp_f13   = sphere_pos->z;
-	temp_f12   = sphere_pos->x;
-	temp_f11   = sphere_pos->y;
-	temp_f1    = (temp_f8_2 * temp_f13) + ((temp_f10 * temp_f12) + (temp_f9_2 * temp_f11));
-	temp_f10_2 = (temp_f8_2 * temp_f8_2) + ((temp_f10 * temp_f10) + (temp_f9_2 * temp_f9_2));
+	((VectorComponents*)&crsP)->x
+	    = (detect_vec->y * sphere_vec->z) - (detect_vec->z * sphere_vec->y);
+	((VectorComponents*)&crsP)->y
+	    = (detect_vec->z * sphere_vec->x) - (detect_vec->x * sphere_vec->z);
+	((VectorComponents*)&crsP)->z
+	    = (detect_vec->x * sphere_vec->y) - (detect_vec->y * sphere_vec->x);
+	temp_f1    = (crsP.z * sphere_pos->z) + ((crsP.x * sphere_pos->x) + (crsP.y * sphere_pos->y));
+	temp_f10_2 = (crsP.z * crsP.z) + ((crsP.x * crsP.x) + (crsP.y * crsP.y));
 	temp_f5    = sphere_rad * sphere_rad;
 	if (temp_f10_2 < lbl_8042DFE8) {
-		temp_f8_3
-		    = ((temp_f4 * temp_f13) + ((temp_f3 * temp_f12) + (temp_f2 * temp_f11))) / temp_f6;
-		temp_f3_2 = temp_f3 * temp_f8_3;
-		spAC.x    = temp_f3_2;
-		temp_f7_2 = temp_f2 * temp_f8_3;
-		spAC.y    = temp_f7_2;
-		temp_f2_2 = temp_f4 * temp_f8_3;
-		spAC.z    = temp_f2_2;
-		temp_f3_3 = temp_f12 - temp_f3_2;
-		spA0.x    = temp_f3_3;
-		temp_f7_3 = temp_f11 - temp_f7_2;
-		spA0.y    = temp_f7_3;
-		temp_f2_3 = temp_f13 - temp_f2_2;
-		spA0.z    = temp_f2_3;
-		temp_f4_2 = (temp_f2_3 * temp_f2_3) + ((temp_f3_3 * temp_f3_3) + (temp_f7_3 * temp_f7_3));
+		temp_f8_3 = ((detect_vec->z * sphere_pos->z)
+		                + ((detect_vec->x * sphere_pos->x) + (detect_vec->y * sphere_pos->y)))
+		    / temp_f6;
+		((VectorComponents*)&spAC)->x = detect_vec->x * temp_f8_3;
+		((VectorComponents*)&spAC)->y = detect_vec->y * temp_f8_3;
+		((VectorComponents*)&spAC)->z = detect_vec->z * temp_f8_3;
+		((VectorComponents*)&spA0)->x = sphere_pos->x - spAC.x;
+		((VectorComponents*)&spA0)->y = sphere_pos->y - spAC.y;
+		((VectorComponents*)&spA0)->z = sphere_pos->z - spAC.z;
+		temp_f4_2                     = (spA0.z * spA0.z) + ((spA0.x * spA0.x) + (spA0.y * spA0.y));
 		if (temp_f4_2 > temp_f5) {
 			return CL_MOVING_NONE;
 		}
@@ -929,23 +873,19 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 				coli_pos->z = lbl_8042DFEC;
 				coli_pos->y = lbl_8042DFEC;
 				coli_pos->x = lbl_8042DFEC;
-				return var_r3;
 			}
-
 			return var_r3;
 		}
 		if (temp_f8_3 > lbl_8042DFEC) {
-			sp94.x = sphere_pos->x - detect_vec->x;
-			sp94.y = sphere_pos->y - detect_vec->y;
-			sp94.z = sphere_pos->z - detect_vec->z;
+			((VectorComponents*)&sp94)->x = sphere_pos->x - detect_vec->x;
+			((VectorComponents*)&sp94)->y = sphere_pos->y - detect_vec->y;
+			((VectorComponents*)&sp94)->z = sphere_pos->z - detect_vec->z;
 			var_r3 = clDetectMS2P_(&sp94, sphere_rad, sphere_vec, safe_vec, ans_vec);
 			if ((var_r3 != CL_MOVING_NONE) && (coli_pos != NULL)) {
 				coli_pos->x = detect_vec->x;
 				coli_pos->y = detect_vec->y;
 				coli_pos->z = detect_vec->z;
-				return var_r3;
 			}
-
 			return var_r3;
 		}
 		goto block_30;
@@ -956,12 +896,12 @@ block_30:
 	if (temp_f7_4 > temp_f5) {
 		return CL_MOVING_NONE;
 	}
-	temp_f3_4   = sphere_pos->x - (crsP.x * temp_f4_3);
-	circlePos.x = temp_f3_4;
-	temp_f2_4   = sphere_pos->y - (crsP.y * temp_f4_3);
-	circlePos.y = temp_f2_4;
-	temp_f1_5   = sphere_pos->z - (crsP.z * temp_f4_3);
-	circlePos.z = temp_f1_5;
+	temp_f3_4                          = sphere_pos->x - (crsP.x * temp_f4_3);
+	((VectorComponents*)&circlePos)->x = temp_f3_4;
+	temp_f2_4                          = sphere_pos->y - (crsP.y * temp_f4_3);
+	((VectorComponents*)&circlePos)->y = temp_f2_4;
+	temp_f1_5                          = sphere_pos->z - (crsP.z * temp_f4_3);
+	((VectorComponents*)&circlePos)->z = temp_f1_5;
 	if (temp_f7_4 == temp_f5) {
 		if (clIsCrossLS2VonPlane(&circlePos, sphere_vec, detect_vec, &coliPos) != 0) {
 			if (coli_pos != NULL) {
@@ -985,18 +925,18 @@ block_30:
 	temp_f28   = (temp_f30 * temp_f1_5) + ((temp_f29 * temp_f3_4) + (temp_f13_2 * temp_f2_4));
 	temp_f27   = temp_f28 / temp_f6;
 	temp_f12_2 = temp_f29 * temp_f27;
-	sp88.x     = temp_f12_2;
-	temp_f11_2 = temp_f13_2 * temp_f27;
-	sp88.y     = temp_f11_2;
-	temp_f10_3 = temp_f30 * temp_f27;
-	sp88.z     = temp_f10_3;
-	temp_f9_3  = temp_f12_2 - temp_f3_4;
-	sp70.x     = temp_f9_3;
-	temp_f8_4  = temp_f11_2 - temp_f2_4;
-	sp70.y     = temp_f8_4;
-	temp_f7_5  = temp_f10_3 - temp_f1_5;
-	sp70.z     = temp_f7_5;
-	temp_f5_2  = (temp_f7_5 * temp_f7_5) + ((temp_f9_3 * temp_f9_3) + (temp_f8_4 * temp_f8_4));
+	((VectorComponents*)&sp88)->x = temp_f12_2;
+	temp_f11_2                    = temp_f13_2 * temp_f27;
+	((VectorComponents*)&sp88)->y = temp_f11_2;
+	temp_f10_3                    = temp_f30 * temp_f27;
+	((VectorComponents*)&sp88)->z = temp_f10_3;
+	temp_f9_3                     = temp_f12_2 - temp_f3_4;
+	((VectorComponents*)&sp70)->x = temp_f9_3;
+	temp_f8_4                     = temp_f11_2 - temp_f2_4;
+	((VectorComponents*)&sp70)->y = temp_f8_4;
+	temp_f7_5                     = temp_f10_3 - temp_f1_5;
+	((VectorComponents*)&sp70)->z = temp_f7_5;
+	temp_f5_2 = (temp_f7_5 * temp_f7_5) + ((temp_f9_3 * temp_f9_3) + (temp_f8_4 * temp_f8_4));
 	if (temp_f28 <= lbl_8042DFEC) {
 		temp_f7_6 = (temp_f1_5 * temp_f1_5) + ((temp_f3_4 * temp_f3_4) + (temp_f2_4 * temp_f2_4));
 		if (temp_f7_6 <= (lbl_8042DFE8 + temp_f4_4)) {
@@ -1093,12 +1033,12 @@ block_30:
 		goto block_120;
 	}
 	if (temp_f27 >= lbl_8042DFF0) {
-		temp_f8_5 = temp_f29 - temp_f3_4;
-		sp64.x    = temp_f8_5;
-		temp_f7_7 = temp_f13_2 - temp_f2_4;
-		sp64.y    = temp_f7_7;
-		temp_f6_2 = temp_f30 - temp_f1_5;
-		sp64.z    = temp_f6_2;
+		temp_f8_5                     = temp_f29 - temp_f3_4;
+		((VectorComponents*)&sp64)->x = temp_f8_5;
+		temp_f7_7                     = temp_f13_2 - temp_f2_4;
+		((VectorComponents*)&sp64)->y = temp_f7_7;
+		temp_f6_2                     = temp_f30 - temp_f1_5;
+		((VectorComponents*)&sp64)->z = temp_f6_2;
 		temp_f2_5 = (temp_f6_2 * temp_f6_2) + ((temp_f8_5 * temp_f8_5) + (temp_f7_7 * temp_f7_7));
 		if (temp_f2_5 <= (lbl_8042DFE8 + temp_f4_4)) {
 			if (coli_pos != NULL) {
@@ -1115,13 +1055,13 @@ block_30:
 				return CL_MOVING_COLLISION;
 			}
 			if (ans_vec != NULL) {
-				temp_f4_7  = sphere_pos->x - detect_vec->x;
-				sp58.x     = temp_f4_7;
-				temp_f3_5  = sphere_pos->y - detect_vec->y;
-				sp58.y     = temp_f3_5;
-				temp_f0_16 = sphere_pos->z - detect_vec->z;
-				sp58.z     = temp_f0_16;
-				temp_f4_8  = (temp_f0_16 * temp_f0_16)
+				temp_f4_7                     = sphere_pos->x - detect_vec->x;
+				((VectorComponents*)&sp58)->x = temp_f4_7;
+				temp_f3_5                     = sphere_pos->y - detect_vec->y;
+				((VectorComponents*)&sp58)->y = temp_f3_5;
+				temp_f0_16                    = sphere_pos->z - detect_vec->z;
+				((VectorComponents*)&sp58)->z = temp_f0_16;
+				temp_f4_8                     = (temp_f0_16 * temp_f0_16)
 				    + ((temp_f4_7 * temp_f4_7) + (temp_f3_5 * temp_f3_5));
 				if (temp_f4_8 < lbl_8042DFE8) {
 					temp_f0_17 = sphere_vec->z;
@@ -1211,12 +1151,12 @@ block_30:
 			return CL_MOVING_COLLISION;
 		}
 		if (ans_vec != NULL) {
-			temp_f4_10 = sphere_pos->x - sp88.x;
-			sp4C.x     = temp_f4_10;
-			temp_f3_6  = sphere_pos->y - sp88.y;
-			sp4C.y     = temp_f3_6;
-			temp_f0_26 = sphere_pos->z - sp88.z;
-			sp4C.z     = temp_f0_26;
+			temp_f4_10                    = sphere_pos->x - sp88.x;
+			((VectorComponents*)&sp4C)->x = temp_f4_10;
+			temp_f3_6                     = sphere_pos->y - sp88.y;
+			((VectorComponents*)&sp4C)->y = temp_f3_6;
+			temp_f0_26                    = sphere_pos->z - sp88.z;
+			((VectorComponents*)&sp4C)->z = temp_f0_26;
 			temp_f4_11
 			    = (temp_f0_26 * temp_f0_26) + ((temp_f4_10 * temp_f4_10) + (temp_f3_6 * temp_f3_6));
 			if (temp_f4_11 < lbl_8042DFE8) {
@@ -1304,15 +1244,15 @@ block_120:
 		        * (lbl_8042E000 - ((f64)var_f4_2 * (temp_f0_38 * temp_f0_38)))));
 		var_f4_2 = sp8;
 	}
-	temp_f3_7  = sp70.x * var_f4_2;
-	sp70.x     = temp_f3_7;
-	temp_f2_6  = sp70.y * var_f4_2;
-	sp70.y     = temp_f2_6;
-	temp_f1_18 = sp70.z * var_f4_2;
-	sp70.z     = temp_f1_18;
-	sp7C.x     = circlePos.x + temp_f3_7;
-	sp7C.y     = circlePos.y + temp_f2_6;
-	sp7C.z     = circlePos.z + temp_f1_18;
+	temp_f3_7                     = sp70.x * var_f4_2;
+	((VectorComponents*)&sp70)->x = temp_f3_7;
+	temp_f2_6                     = sp70.y * var_f4_2;
+	((VectorComponents*)&sp70)->y = temp_f2_6;
+	temp_f1_18                    = sp70.z * var_f4_2;
+	((VectorComponents*)&sp70)->z = temp_f1_18;
+	((VectorComponents*)&sp7C)->x = circlePos.x + temp_f3_7;
+	((VectorComponents*)&sp7C)->y = circlePos.y + temp_f2_6;
+	((VectorComponents*)&sp7C)->z = circlePos.z + temp_f1_18;
 	if ((ignoreDetectCylinderFlag == 0)
 	    && (clIsCrossLS2VonPlane(&sp7C, sphere_vec, detect_vec, &coliPos) != 0)) {
 		if (coli_pos != NULL) {
@@ -1328,10 +1268,10 @@ block_120:
 		return CL_MOVING_COLLISION;
 	}
 	var_r31 = clDetectMS2P_(sphere_pos, sphere_rad, sphere_vec, safe_vec, &sp34);
-	sp40.x  = sphere_pos->x - detect_vec->x;
-	sp40.y  = sphere_pos->y - detect_vec->y;
-	sp40.z  = sphere_pos->z - detect_vec->z;
-	var_r3  = clDetectMS2P_(&sp40, sphere_rad, sphere_vec, safe_vec, &sp28);
+	((VectorComponents*)&sp40)->x = sphere_pos->x - detect_vec->x;
+	((VectorComponents*)&sp40)->y = sphere_pos->y - detect_vec->y;
+	((VectorComponents*)&sp40)->z = sphere_pos->z - detect_vec->z;
+	var_r3                        = clDetectMS2P_(&sp40, sphere_rad, sphere_vec, safe_vec, &sp28);
 	if ((var_r31 != CL_MOVING_NONE) && (var_r3 != CL_MOVING_NONE)) {
 		if ((var_r31 == CL_MOVING_INTERSECTION) && (var_r3 != CL_MOVING_INTERSECTION)) {
 			var_r3 = CL_MOVING_NONE;
@@ -1371,9 +1311,7 @@ block_120:
 			coli_pos->x = detect_vec->x;
 			coli_pos->y = detect_vec->y;
 			coli_pos->z = detect_vec->z;
-			return var_r3;
 		}
-
 		return var_r3;
 	}
 	var_r3 = CL_MOVING_NONE;
