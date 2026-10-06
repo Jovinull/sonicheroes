@@ -39,7 +39,8 @@ struct Fn800546F4Context {
 };
 
 extern "C" f64 lbl_8042D3B8;
-extern "C" void fn_80053FB8(Fn800546F4List*, Fn800546F4Node*);
+extern "C" void Delete__19ColliPolyLinearListFP23ColliPolyLinearListNode(
+    Fn800546F4List*, Fn800546F4Node*);
 extern "C" f64 __fabs(f64);
 
 extern "C" void fn_800546F4(Fn800546F4Context* context, Fn800546F4List* list)
@@ -85,10 +86,10 @@ extern "C" void fn_800546F4(Fn800546F4Context* context, Fn800546F4List* list)
 				removeCandidate:
 					if (candidate == next)
 						next = candidateNext;
-					fn_80053FB8(list, candidate);
+					Delete__19ColliPolyLinearListFP23ColliPolyLinearListNode(list, candidate);
 					goto nextCandidate;
 				removeCurrent:
-					fn_80053FB8(list, current);
+					Delete__19ColliPolyLinearListFP23ColliPolyLinearListNode(list, current);
 					break;
 				}
 			}

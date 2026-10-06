@@ -147,49 +147,11 @@ game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
 
-game/fn_80053FB8.cpp:
-	extab       start:0x8000650C end:0x80006514
-	extabindex  start:0x8000CE98 end:0x8000CEA4
-	.text       start:0x80053FB8 end:0x80054048
-
-game/fn_80054048.cpp:
-	extab       start:0x80006514 end:0x8000651C
-	extabindex  start:0x8000CEA4 end:0x8000CEB0
-	.text       start:0x80054048 end:0x80054158
-
-game/fn_80054158.cpp:
-	extab       start:0x8000651C end:0x80006524
-	extabindex  start:0x8000CEB0 end:0x8000CEBC
-	.text       start:0x80054158 end:0x8005421C
-
-game/fn_8005421C.cpp:
-	.text       start:0x8005421C end:0x80054230
-
-game/fn_80054230.cpp:
-	extab       start:0x80006524 end:0x8000652C
-	extabindex  start:0x8000CEBC end:0x8000CEC8
-	.text       start:0x80054230 end:0x8005428C
-
-game/fn_8005428C.cpp:
-	extab       start:0x8000652C end:0x80006534
-	extabindex  start:0x8000CEC8 end:0x8000CED4
-	.text       start:0x8005428C end:0x8005430C
-
-game/fn_8005438C.cpp:
-	extab       start:0x8000653C end:0x80006544
-	extabindex  start:0x8000CEE0 end:0x8000CEEC
-	.text       start:0x8005438C end:0x8005446C
-
-game/fn_8005446C.cpp:
-	extab       start:0x80006544 end:0x8000654C
-	extabindex  start:0x8000CEEC end:0x8000CEF8
-	.text       start:0x8005446C end:0x80054524
-
-game/fn_80054524.cpp:
-	extab       start:0x8000654C end:0x80006554
-	extabindex  start:0x8000CEF8 end:0x8000CF04
-	.text       start:0x80054524 end:0x800546F4
-	.sdata2     start:0x8042D3B0 end:0x8042D3B8
+game/octree.cpp:
+	extab       start:0x8000650C end:0x80006554
+	extabindex  start:0x8000CE98 end:0x8000CF04
+	.text       start:0x80053FB8 end:0x800546F4
+	.sdata2     start:0x8042D3A0 end:0x8042D3B8
 
 game/fn_800546F4.cpp:
 	extab       start:0x80006554 end:0x8000655C

@@ -31,8 +31,9 @@ struct Fn80055470Grid {
 };
 
 extern "C" u32 lbl_80242B28[4];
-extern "C" void fn_8005430C(Fn80055470Grid*, const Fn80055470Node*, Fn80055470Vec*);
-extern "C" Fn80055470Result* fn_8005428C(Fn80055470Result*, u16);
+extern "C" void GetCenterPosition__6OCTREEFPC5ONODEP5RwV3d(
+    Fn80055470Grid*, const Fn80055470Node*, Fn80055470Vec*);
+extern "C" Fn80055470Result* AddNode_MiniLinearList__FP14MiniLinearListUs(Fn80055470Result*, u16);
 
 extern "C" Fn80055470Result* fn_80055470(Fn80055470Grid* grid, Fn80055470Result* result,
     Fn80055470Node* node, const Fn80055470Vec* upper, const Fn80055470Vec* lower)
@@ -41,7 +42,7 @@ extern "C" Fn80055470Result* fn_80055470(Fn80055470Grid* grid, Fn80055470Result*
 	Fn80055470Vec maximum;
 	Fn80055470Vec minimum;
 	f32 extent = grid->cellExtents[node->level];
-	fn_8005430C(grid, node, &center);
+	GetCenterPosition__6OCTREEFPC5ONODEP5RwV3d(grid, node, &center);
 	maximum.x = center.x + extent;
 	maximum.z = center.z + extent;
 	minimum.x = center.x - extent;
@@ -50,7 +51,7 @@ extern "C" Fn80055470Result* fn_80055470(Fn80055470Grid* grid, Fn80055470Result*
 	if (lower->x <= minimum.x && maximum.x <= upper->x && lower->z <= minimum.z
 	    && maximum.z <= upper->z) {
 		if (node->count != 0)
-			result = fn_8005428C(result, node->value);
+			result = AddNode_MiniLinearList__FP14MiniLinearListUs(result, node->value);
 		return result;
 	}
 	if (node->firstChild != 0) {
@@ -73,7 +74,7 @@ extern "C" Fn80055470Result* fn_80055470(Fn80055470Grid* grid, Fn80055470Result*
 		        || (minimum.x <= lower->x && lower->x <= maximum.x))
 		    && ((lower->z <= minimum.z && minimum.z <= upper->z)
 		        || (minimum.z <= lower->z && lower->z <= maximum.z)))
-			result = fn_8005428C(result, node->value);
+			result = AddNode_MiniLinearList__FP14MiniLinearListUs(result, node->value);
 	}
 	return result;
 }
