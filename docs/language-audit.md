@@ -1390,3 +1390,29 @@ owned sections and 141 normalized relocations after excluding the 32-byte
 `setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
 post-processor and ELF metadata regression tests pass. This is compilation and
 binary verification; no runtime or hardware validation was performed.
+
+## locateTable.cpp
+
+European PS2 debug metadata identifies `locateTable.cpp` as C++ and supplies
+the five function names and locator/timer record layouts. GameCube's contiguous
+five-function range at `0x800A2090`–`0x800A23CC` independently correlates through
+stage lookup, team selection and timer callback access. Table lengths and values
+come from GameCube: the other platform's counts are not substituted.
+
+The unit owns 828 bytes of code, 12,536 bytes of initialized locator/timer data
+and 112 bytes of demo locator BSS. The spurious interior symbol at `0x80252411`
+is folded into the complete two-player locator array beginning at `0x8025240C`.
+Private views of external action, mode and team state describe only accessed
+prefixes and are never allocated as complete objects. The multiplayer search
+preserves the original stage index lifetime across teams.
+
+Default automatic inlining and `-pooldata off` reproduce the separate table
+addresses. All five functions, seven data definitions, section bytes and 43
+normalized relocations match without instruction post-processing, assembly,
+unused helper bodies or synthetic padding.
+
+Validation: the supported G9SE8P all-source build and native link pass, as do
+the main DOL and seventeen REL hashes, all 55 regression tests and both policy
+checks. The existing Peripheral demo loader now refers to the canonical table
+symbol. PAL, Japan and PS2 are not configured build targets. No runtime or
+physical-hardware validation was performed.
