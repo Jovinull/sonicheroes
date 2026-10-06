@@ -1390,3 +1390,65 @@ owned sections and 141 normalized relocations after excluding the 32-byte
 `setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
 post-processor and ELF metadata regression tests pass. This is compilation and
 binary verification; no runtime or hardware validation was performed.
+
+### misc.cpp boundary and reconstruction inventory
+
+The next whole-unit reconstruction covers GameCube `0x800D5844`–`0x800D7B18`:
+30 functions and 8,916 text bytes. This is `misc.cpp`, distinct from the
+following eleven-function `miscs.cpp` draft. Local PS2 symbolic metadata marks
+`misc.cpp` as C++ and supplies the ordered camera-position, printing, geometry
+and angle API sequence. GameCube's `ClosePositionToCamera` candidate reads the
+camera-position global and moves the supplied point toward it; the following
+empty spline-display body and relative-point helper support the start boundary.
+The existing `miscs.cpp` investigation places sine-table initialization at
+`0x800D7B18`, fixing the other boundary. Exception tables span
+`0x80008BD0`–`0x80008C68`, and their index spans `0x8000F298`–`0x8000F37C`.
+The shared constant range is `0x8042E008`–`0x8042E040`.
+
+The ordered working inventory is below. Names are metadata correlations;
+parameter and return types still require checking against each GameCube body.
+The two final table lookups are GameCube-specific inventory entries, without
+an asserted original source spelling.
+
+| GameCube address | Correlated operation |
+| --- | --- |
+| `800D5844` | `ClosePositionToCamera` |
+| `800D5938` | `DisplayRpSpline` |
+| `800D593C` | `RelativeCalcPoint` |
+| `800D5A64` | `AdjustPoint` |
+| `800D5B8C` | `njPrintColor` |
+| `800D5C08` | `njPrint2` |
+| `800D5CB0` | `njPrint` |
+| `800D5D5C` | `DistanceL2PL` |
+| `800D605C` | `DistanceL2L` |
+| `800D67D4` | `RoundOff` |
+| `800D6818` | `CrossProduct` |
+| `800D689C` | `DistancePL2PL`, vector overload |
+| `800D6958` | `DistancePL2PL`, line overload |
+| `800D6E0C` | `DistanceP2PL`, vector overload |
+| `800D6F0C` | `DistanceP2PL`, line overload |
+| `800D7044` | `DistanceP2L` |
+| `800D71DC` | `Distance2P2P` |
+| `800D7218` | `DistanceP2P` |
+| `800D72C0` | `SubVectorReturnToVector` |
+| `800D72F4` | `AddVectorReturnToVector` |
+| `800D7328` | `AdjustFloat` |
+| `800D735C` | `GetZYAngleForTheTargetPoint` |
+| `800D7564` | `GetFloatMod` |
+| `800D75CC` | `VectorAngleOnPlane` |
+| `800D7920` | `VectorAngle` |
+| `800D7A54` | `DiffAngle` |
+| `800D7A80` | `SubAngle` |
+| `800D7A94` | `AdjustAngle` |
+| `800D7AE4` | cosine-table lookup |
+| `800D7B00` | sine-table lookup |
+
+The address-named fragments are not a completed reconstruction of this unit.
+In particular, `fn_800D6818.cpp` is not a separate file: its current body lives
+in `fn_800D67D4.cpp`, declares a void result and calls the vector-length SDK
+function. The metadata identifies `CrossProduct` as returning a float, and the
+GameCube sequence preserves the SDK result in `f1` through its epilogue. Its
+return contract must be corrected during consolidation. Existing instruction
+postprocessors on other fragments must be audited rather than silently carried
+into a newly claimed native whole-unit match. No new source matching or build
+validation is claimed by this inventory-only update.
