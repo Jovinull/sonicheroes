@@ -45,6 +45,31 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### CLASS_LINK translation unit
+
+`game/link.cpp` reconstructs the complete six-method unit at GameCube
+`0x800D03A0`–`0x800D0624`. Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2,
+commit `c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section
+.debug dwarf`) identifies `link.cpp` as `C_PLUS_PLUS`, the `CLASS_LINK` and
+`CLASS_LINK_MANAGER` layouts, their constructors/destructors and both link
+operations. `link.h` metadata corroborates the pointer accessors. The six
+methods occur in the same order in the GameCube build. They form a separate
+unit from the preceding invincibility effect and following ARAM operations.
+
+Ordinary automatic inlining reproduces the unlink operation inside both
+destructors. Its two function-scope temporary pointers and inline accessors
+reproduce the native register allocation. No deferred override, assembly or
+object postprocessor is required. The head's previous pointer stores the tail;
+the list is otherwise terminated by a null next pointer. Destruction unlinks
+members without destroying their payloads, and leaves `pData` untouched.
+
+Independent ELF comparison verifies all three allocated sections, including
+section types/flags/alignment: 644 text bytes, 16 exception-table bytes and
+24 exception-index bytes. All six function symbols and all six normalized
+relocations match. The sole supported release target, G9SE8P, passed the full
+`all_source`, `progress` and report builds, all 18 artifact hashes, 55 tests,
+and both policy checkers. Runtime/hardware behavior has not been tested.
+
 ### EffWink translation unit
 
 `game/eff_wink.cpp` reconstructs all ten surviving methods at GameCube
