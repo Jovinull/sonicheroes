@@ -1468,7 +1468,7 @@ single-precision store/reload rounding. Existing source forms for the angle
 helpers are retained where they improve native correspondence.
 
 Twenty-six functions currently have exact native instruction bytes. Four geometry
-helpers remain nonmatching. Native text is 8,960 bytes including a generated
+helpers remain nonmatching. Native text is 8,972 bytes including a generated
 helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes). The exception table is
 byte-exact; the index has one function-size difference, as detailed below. The 52
 native constant bytes equal the retail prefix; the retail range includes four
@@ -1615,3 +1615,17 @@ The GameCube instruction sequence remains the behavioral authority; metadata
 supplies only names/types. All 26 exact functions and the established object
 metadata checks remain intact. Full supported G9SE8P build/report, 55 tests,
 both policies and 18 original-linked hashes pass.
+
+The projected-angle metadata identifies `NJS_LINE pl` and `RwV3d v1s/v2s`,
+with parameters `v1/v2/vn`. The source now constructs that plane and invokes
+the recovered line-overload `DistanceP2PL` twice. This replaces the private
+projection and normal-dot reconstruction helpers; both real API calls inline.
+The retail register operands are reproduced, including the previously missing
+zero reload and second-offset addition order. Two extra rounded-result loads
+remain from the inlined square-root return values, making this body 860 bytes
+versus 852 retail (98.96% versus the previous 99.25%). This is accepted as a
+better-grounded source reconstruction, not an increased binary match score.
+The exception-index size word is correspondingly 860; whole native text is
+8,972 bytes. All 26 exact functions, 34 direct-call counts, exception-table
+bytes and index relocation targets remain verified. Full supported G9SE8P
+build/report, 55 tests, both policies and 18 original-linked hashes pass.

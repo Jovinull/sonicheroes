@@ -847,54 +847,27 @@ static inline f32 fn_800D75CCDot(const RwV3d& left, const RwV3d& right)
 	return left.x * right.x + left.y * right.y + left.z * right.z;
 }
 
-static inline f32 fn_800D75CCDotNormal(const RwV3d& value, f32 normalX, f32 normalY, f32 normalZ)
+s32 VectorAngleOnPlane(RwV3d* v1, RwV3d* v2, RwV3d* vn)
 {
-	return normalX * value.x + normalY * value.y + normalZ * value.z;
-}
+	NJS_LINE pl;
+	RwV3d v1s;
+	RwV3d v2s;
+	pl.v   = *vn;
+	pl.p.x = pl.p.y = pl.p.z = lbl_8042E008;
+	DistanceP2PL(v1, &pl, &v1s);
+	DistanceP2PL(v2, &pl, &v2s);
 
-static inline f32 fn_800D75CCProject(const RwV3d& value, f32 normalX, f32 normalY, f32 normalZ,
-    f32 numerator, f32 lengthSq, RwV3d* result)
-{
-	if (result != 0) {
-		f32 scale = -numerator / lengthSq;
-		result->x = value.x + normalX * scale;
-		result->y = value.y + normalY * scale;
-		result->z = value.z + normalZ * scale;
-	}
-	f32 zero = lbl_8042E008;
-	return MiscSqrt(lengthSq, zero);
-}
-
-s32 VectorAngleOnPlane(RwV3d* first, RwV3d* second, RwV3d* planeNormal)
-{
-	RwV3d projectedFirst;
-	RwV3d projectedSecond;
-	f32 normalX        = planeNormal->x;
-	f32 normalY        = planeNormal->y;
-	f32 normalZ        = planeNormal->z;
-	f32 initialZero    = lbl_8042E008;
-	f32 planeOffset    = -(normalX * initialZero + normalY * initialZero + normalZ * initialZero);
-	f32 firstDot       = fn_800D75CCDotNormal(*first, normalX, normalY, normalZ);
-	f32 firstNumerator = planeOffset + firstDot;
-	f32 lengthSq       = normalX * normalX + normalY * normalY + normalZ * normalZ;
-	fn_800D75CCProject(
-	    *first, normalX, normalY, normalZ, firstNumerator, lengthSq, &projectedFirst);
-	f32 secondNumerator = fn_800D75CCDotNormal(*second, normalX, normalY, normalZ);
-	secondNumerator += planeOffset;
-	fn_800D75CCProject(
-	    *second, normalX, normalY, normalZ, secondNumerator, lengthSq, &projectedSecond);
-
-	if (fn_800D75CCDot(projectedFirst, projectedFirst) <= lbl_8042E034) {
+	if (fn_800D75CCDot(v1s, v1s) <= lbl_8042E034) {
 		return -1;
 	}
-	if (fn_800D75CCDot(projectedSecond, projectedSecond) <= lbl_8042E034) {
+	if (fn_800D75CCDot(v2s, v2s) <= lbl_8042E034) {
 		return -1;
 	}
 
-	fn_801990E0(&projectedFirst, &projectedFirst);
-	fn_801990E0(&projectedSecond, &projectedSecond);
+	fn_801990E0(&v1s, &v1s);
+	fn_801990E0(&v2s, &v2s);
 
-	f32 dot = fn_800D75CCDot(projectedFirst, projectedSecond);
+	f32 dot = fn_800D75CCDot(v1s, v2s);
 	if (dot <= lbl_8042E038)
 		return 0x8000;
 	if (dot >= lbl_8042E00C)
@@ -902,11 +875,11 @@ s32 VectorAngleOnPlane(RwV3d* first, RwV3d* second, RwV3d* planeNormal)
 
 	s32 angle = (s32)(lbl_8042E030 * (f32)acos(dot));
 	RwV3d cross;
-	cross.x = projectedFirst.y * projectedSecond.z - projectedFirst.z * projectedSecond.y;
-	cross.y = projectedFirst.z * projectedSecond.x - projectedFirst.x * projectedSecond.z;
-	cross.z = projectedFirst.x * projectedSecond.y - projectedFirst.y * projectedSecond.x;
-	if (planeNormal != 0) {
-		if (lbl_8042E008 > fn_800D75CCDot(*planeNormal, cross)) {
+	cross.x = v1s.y * v2s.z - v1s.z * v2s.y;
+	cross.y = v1s.z * v2s.x - v1s.x * v2s.z;
+	cross.z = v1s.x * v2s.y - v1s.y * v2s.x;
+	if (vn != 0) {
+		if (lbl_8042E008 > fn_800D75CCDot(*vn, cross)) {
 			angle = 0x10000 - angle;
 		}
 	}
