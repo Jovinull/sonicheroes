@@ -573,6 +573,9 @@ f32 DistancePL2PL(const NJS_LINE* pl1, const NJS_LINE* pl2, NJS_LINE* l)
 	if ((f32)__fabs(((pl1->v.z * pl2->v.z) + ((pl1->v.x * pl2->v.x) + (pl1->v.y * pl2->v.y)))
 	        / (var_f0 * var_f8))
 	    > lbl_8042E02C) {
+		p.x = pl1->p.x;
+		p.y = pl1->p.y;
+		p.z = pl1->p.z;
 		if (l != NULL) {
 			l->p.x = lbl_8042E008;
 			l->p.y = lbl_8042E008;
@@ -582,10 +585,13 @@ f32 DistancePL2PL(const NJS_LINE* pl1, const NJS_LINE* pl2, NJS_LINE* l)
 			l->v.z = lbl_8042E008;
 		}
 
-		temp_f4
-		    = (f32)__fabs(-((pl2->v.z * pl2->p.z) + ((pl2->v.x * pl2->p.x) + (pl2->v.y * pl2->p.y)))
-		        + ((pl2->v.z * pl1->p.z) + ((pl2->v.x * pl1->p.x) + (pl2->v.y * pl1->p.y))));
-		var_f5 = (pl2->v.z * pl2->v.z) + ((pl2->v.x * pl2->v.x) + (pl2->v.y * pl2->v.y));
+		f32 normalY      = pl2->v.y;
+		f32 normalX      = pl2->v.x;
+		f32 normalZ      = pl2->v.z;
+		f32 signedOffset = (-((normalZ * pl2->p.z) + ((normalX * pl2->p.x) + (normalY * pl2->p.y)))
+		    + ((normalZ * p.z) + ((normalX * p.x) + (normalY * p.y))));
+		var_f5           = (normalZ * normalZ) + ((normalX * normalX) + (normalY * normalY));
+		temp_f4          = (f32)__fabs(signedOffset);
 		if (var_f5 > lbl_8042E008) {
 			temp_f0_5 = __frsqrte(var_f5);
 			temp_f0_6 = lbl_8042E018 * temp_f0_5

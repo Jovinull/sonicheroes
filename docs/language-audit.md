@@ -1640,3 +1640,16 @@ separate determinant temporaries did not improve correspondence and was not
 retained. All 26 exact functions and object-audit invariants pass, as do the
 full supported G9SE8P build/report, 55 tests, both policies and 18
 original-linked artifact hashes.
+
+The parallel-plane branch now snapshots `pl1->p` into local `p` before clearing
+`l`, as shown by the retail three point loads preceding the six output stores.
+The previous candidate read that point after clearing the output, producing a
+different distance when `l == pl1`. Plane-normal reads remain after the clear,
+preserving the separate alias behavior when `l == pl2`. The signed offset,
+normal magnitude and absolute-value calculations are separated, with the
+normal components captured in their observed order. The native function now
+matches 94.90%, retains its exact 1,204-byte size, and has exact relocation
+offsets and targets. All 26 exact functions remain exact. Full supported
+G9SE8P build/report, 55 tests, both policies, object audit and 18 original-linked
+hashes pass. The alias correction is established from load/store order; no
+candidate runtime or hardware validation is claimed.
