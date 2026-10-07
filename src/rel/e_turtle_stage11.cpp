@@ -415,49 +415,50 @@ M2C_UNK fn_8010B208(u32, f32, f32);                                             
 M2C_UNK fn_8010B350(u32, void*, void*);                                          /* extern */
 s32 fn_8010B708(M2C_UNK);                                                        /* extern */
 M2C_UNK fn_80113874();                                                           /* extern */
-M2C_UNK fn_8011398C(M2C_UNK*, s32);                                              /* extern */
-M2C_UNK fn_80113A68(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_80113AA8(M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
-M2C_UNK fn_80113C7C(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_801140DC(f32*, f32);                                                  /* extern */
-M2C_UNK fn_80114394(f32*);                                                       /* extern */
-M2C_UNK fn_8011C13C(u32);                                                        /* extern */
-M2C_UNK fn_8011C188(u32, s32);                                                   /* extern */
-M2C_UNK fn_8011C1C0(u32, s32);                                                   /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
-M2C_UNK fn_8011C6EC();                                                           /* extern */
-M2C_UNK fn_80139784(void*, TObject*, f32*);                                      /* extern */
-void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                                    /* extern */
-M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
-void* fn_80150588(u32);                                                          /* extern */
-M2C_UNK fn_80150958(void*);                                                      /* extern */
-M2C_UNK fn_80195790(M2C_UNK*, RwFrame*, f32, f32, M2C_UNK);                      /* extern */
-M2C_UNK fn_80195A74(M2C_UNK*, RwFrame*, M2C_UNK, f32, f32, f32);                 /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                                   /* extern */
-M2C_UNK fn_801990E0(f32*, f32*);                                                 /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                              /* extern */
-s32 fn_8019CE34(s32, f32*);                                                      /* extern */
-void* fn_8019E8EC(u32);                                                          /* extern */
-M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                                   /* extern */
-M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                                       /* extern */
-M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);                                  /* extern */
-s32 rand(f32*);                                                                  /* extern */
-M2C_UNK fn_8_90B10(s32);                                                         /* extern */
-M2C_UNK fn_8_BD380(s32);                                                         /* extern */
-void fn_8_BDF6C(TObject* arg0, void* arg1);                                      /* static */
-void fn_8_BE528(void* arg0);                                                     /* static */
-s32 fn_8_BF340(void* arg0);                                                      /* static */
-s32 fn_8_BF524(s32 arg0);                                                        /* static */
-s32 fn_8_BF5AC(void* arg0);                                                      /* static */
-void fn_8_BFF94(void* arg0, s32 arg1);                                           /* static */
-void fn_8_C08C8(void* arg0, s32 arg1);                                           /* static */
-void fn_8_C14B4(TObject* arg0);                                                  /* static */
-void fn_8_C1BCC(TObject* arg0);                                                  /* static */
-TObject* fn_8_C2018(TObject* arg0);                                              /* static */
-void turtleObjectCreate();                                                       /* static */
-void turtleObjectLoad();                                                         /* static */
-void turtleObjectUnload();                                                       /* static */
-extern M2C_UNK fn_80113C2C;
+M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                            /* extern */
+M2C_UNK End__16TEnemyMatTextureFv(M2C_UNK*);                                     /* extern */
+M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+    M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
+M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);                    /* extern */
+M2C_UNK fn_801140DC(f32*, f32);                                  /* extern */
+M2C_UNK fn_80114394(f32*);                                       /* extern */
+M2C_UNK fn_8011C13C(u32);                                        /* extern */
+M2C_UNK fn_8011C188(u32, s32);                                   /* extern */
+M2C_UNK fn_8011C1C0(u32, s32);                                   /* extern */
+M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                          /* extern */
+M2C_UNK fn_8011C6EC();                                           /* extern */
+M2C_UNK fn_80139784(void*, TObject*, f32*);                      /* extern */
+void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                    /* extern */
+M2C_UNK fn_8014FF2C(s32);                                        /* extern */
+void* fn_80150588(u32);                                          /* extern */
+M2C_UNK fn_80150958(void*);                                      /* extern */
+M2C_UNK fn_80195790(M2C_UNK*, RwFrame*, f32, f32, M2C_UNK);      /* extern */
+M2C_UNK fn_80195A74(M2C_UNK*, RwFrame*, M2C_UNK, f32, f32, f32); /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                   /* extern */
+M2C_UNK fn_801990E0(f32*, f32*);                                 /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);              /* extern */
+s32 fn_8019CE34(s32, f32*);                                      /* extern */
+void* fn_8019E8EC(u32);                                          /* extern */
+M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                   /* extern */
+M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                       /* extern */
+M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);                  /* extern */
+s32 rand(f32*);                                                  /* extern */
+M2C_UNK fn_8_90B10(s32);                                         /* extern */
+M2C_UNK fn_8_BD380(s32);                                         /* extern */
+void fn_8_BDF6C(TObject* arg0, void* arg1);                      /* static */
+void fn_8_BE528(void* arg0);                                     /* static */
+s32 fn_8_BF340(void* arg0);                                      /* static */
+s32 fn_8_BF524(s32 arg0);                                        /* static */
+s32 fn_8_BF5AC(void* arg0);                                      /* static */
+void fn_8_BFF94(void* arg0, s32 arg1);                           /* static */
+void fn_8_C08C8(void* arg0, s32 arg1);                           /* static */
+void fn_8_C14B4(TObject* arg0);                                  /* static */
+void fn_8_C1BCC(TObject* arg0);                                  /* static */
+TObject* fn_8_C2018(TObject* arg0);                              /* static */
+void turtleObjectCreate();                                       /* static */
+void turtleObjectLoad();                                         /* static */
+void turtleObjectUnload();                                       /* static */
+extern M2C_UNK __dt__16TEnemyMatTextureFv;
 extern RwFrame lbl_80239978;
 extern RwFrame lbl_80239984;
 extern RwFrame lbl_80239990;
@@ -1841,7 +1842,7 @@ void fn_8_BF9A8(void* arg0)
 {
 	((TRenderer*)arg0)->Slot90();
 	fn_80113874();
-	fn_8011398C(turtleObjectGlobalA, M2C_FIELD(arg0, s32*, 0x310));
+	PreDisp__16TEnemyMatTextureFi(turtleObjectGlobalA, M2C_FIELD(arg0, s32*, 0x310));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 }
 
@@ -3257,7 +3258,7 @@ void turtleObjectUnload(void)
 		M2C_FIELD(lbl_8_bss_1B9C, u16*, 4) = (u16)(M2C_FIELD(lbl_8_bss_1B9C, u16*, 4) | 1);
 		lbl_8_bss_1B9C                     = NULL;
 	}
-	fn_80113A68(turtleObjectGlobalA);
+	End__16TEnemyMatTextureFv(turtleObjectGlobalA);
 	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17DC8);
 	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17CD8);
 	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
@@ -3289,7 +3290,8 @@ void turtleObjectLoad(void)
 	lbl_8_bss_1B78 = fn_8010037C(lbl_8042C590, 4, 4);
 	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17CD8);
 	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17DC8);
-	fn_80113AA8(turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);
 	lbl_8_bss_1B9C = fn_80139984(0, 0x402D, 4);
 }
 
@@ -3303,8 +3305,8 @@ void turtleObjectCreate(void)
 
 void turtleObjectRegister(void)
 {
-	__register_global_object((void*)fn_80113C7C(turtleObjectGlobalA), (void*)&fn_80113C2C,
-	    (void*)turtleObjectGlobalAChain);
+	__register_global_object((void*)__ct__16TEnemyMatTextureFv(turtleObjectGlobalA),
+	    (void*)&__dt__16TEnemyMatTextureFv, (void*)turtleObjectGlobalAChain);
 
 	turtleObjectEntry.flags      = 0;
 	turtleObjectEntry.unk18      = 0;

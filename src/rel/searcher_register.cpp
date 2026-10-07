@@ -38,8 +38,8 @@ typedef struct ObjectEntry {
 } ObjectEntry;               // 0x2C
 
 extern "C" {
-void* fn_80113C7C(void*);
-void fn_80113C2C(void*, s16);
+void* __ct__16TEnemyMatTextureFv(void*);
+void __dt__16TEnemyMatTextureFv(void*, s16);
 void __register_global_object(void*, void*, void*);
 }
 
@@ -58,11 +58,11 @@ extern "C" u8 searcherObjectGlobalBChain[];
 
 extern "C" void searcherObjectRegister(void)
 {
-	void* a = fn_80113C7C(searcherObjectGlobalA);
-	__register_global_object(a, (void*)fn_80113C2C, searcherObjectGlobalAChain);
+	void* a = __ct__16TEnemyMatTextureFv(searcherObjectGlobalA);
+	__register_global_object(a, (void*)__dt__16TEnemyMatTextureFv, searcherObjectGlobalAChain);
 
-	void* b = fn_80113C7C(searcherObjectGlobalB);
-	__register_global_object(b, (void*)fn_80113C2C, searcherObjectGlobalBChain);
+	void* b = __ct__16TEnemyMatTextureFv(searcherObjectGlobalB);
+	__register_global_object(b, (void*)__dt__16TEnemyMatTextureFv, searcherObjectGlobalBChain);
 
 	searcherObjectEntry.flags = 0;
 	searcherObjectEntry.unk18 = 0;

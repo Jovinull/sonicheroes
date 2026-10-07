@@ -33,8 +33,8 @@ typedef struct ObjectEntry {
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" {
-void* fn_80113C7C(void*);
-void fn_80113C2C(void*, s16);
+void* __ct__16TEnemyMatTextureFv(void*);
+void __dt__16TEnemyMatTextureFv(void*, s16);
 void __register_global_object(void*, void*, void*);
 }
 
@@ -50,8 +50,8 @@ extern "C" const char* wallObjectFieldNames[];
 
 extern "C" void wallObjectRegister(void)
 {
-	void* a = fn_80113C7C(wallObjectGlobalA);
-	__register_global_object(a, (void*)fn_80113C2C, wallObjectGlobalAChain);
+	void* a = __ct__16TEnemyMatTextureFv(wallObjectGlobalA);
+	__register_global_object(a, (void*)__dt__16TEnemyMatTextureFv, wallObjectGlobalAChain);
 
 	wallObjectEntry.flags = 0;
 	wallObjectEntry.unk18 = 0;

@@ -1445,3 +1445,14 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## enemy/e_material.cpp
+
+Symbolic C++ class/callback metadata and GameCube texture/material operations
+establish the complete six-body TEnemyMatTexture unit, distinct from DealMaterial.
+All 832 text bytes match directly with ordinary automatic inlining. Clear()
+inlines; the callback is local; the vtable contains only the virtual destructor.
+Native End/destructor/Init lifecycle distinctions and the strict-greater-than
+PreDisp index check are preserved. Genuine array new/delete use metadata-backed
+C++ operator identities. No deferred override or object normalizer is used.
+See `e-material-unit-evidence.md` for section ownership and validation.
