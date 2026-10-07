@@ -117,6 +117,7 @@
     "game/e_paralysis.cpp",
     "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
+    "game/effect/eff_dush.cpp",
     "game/message.cpp",
     "game/modeswitch.cpp",
     "game/skyfs_adx.c",

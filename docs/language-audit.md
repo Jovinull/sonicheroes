@@ -1445,3 +1445,16 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## effect/eff_dush.cpp
+
+Positive symbolic metadata identifies eleven definitions in this complete C++
+unit. GameCube code confirms the EffDash/EffDush class layouts and seven
+surviving functions; four ordinary methods inline into callers. The runtime
+TObjEffDash string is independent of the authentic C++ type names. The preceding
+hierarchy utility and following database method are excluded. No PS2
+instructions were inspected. All seven bodies, nine owned sections and 154
+relocations match directly from source with whole-unit deferred inlining and
+no object normalizer. All eighteen supported output hashes and 62 tests pass;
+see `eff-dush-unit-evidence.md`.
