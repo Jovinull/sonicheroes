@@ -1522,3 +1522,14 @@ shared helper trial changed the instruction sequence. These changes raise the
 native exact count to 26 of 30 without changing whole-unit text size. The
 full supported G9SE8P build/report, 55 tests, both policies and 18
 original-linked artifact hashes pass; candidate runtime remains unvalidated.
+
+`DistanceL2L` improves from 89.51% to 92.56%. Its nearest-point stack storage is
+represented as a vector instead of three disconnected scalars; the existing
+volatile accesses and retained null-output branch preserve observed stores,
+reloads and control flow. Volatile is a reconstruction aid, not a claim about
+the original declaration. Redundant direction caches and local-vector store
+copies are folded into their expressions. Position snapshots that remain live
+across potentially aliasing output writes are retained. Its native body is
+1,916 bytes versus 1,912 retail bytes; the other 26 exact functions remain
+exact. Full G9SE8P build/report, 55 tests, both policies and all 18
+original-linked hashes pass after this refinement.

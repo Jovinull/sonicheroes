@@ -268,32 +268,18 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 	NJS_LINE sp58;
 	NJS_LINE sp40;
 	NJS_LINE sp28;
-	volatile f32 sp24;
-	volatile f32 sp20;
-	volatile f32 sp1C;
+	volatile RwV3d nearestPoint;
 	volatile f32 sp18;
 	volatile f32 sp14;
 	volatile f32 sp10;
 	volatile f32 spC;
 	volatile f32 sp8;
-	f32 temp_f0;
-	f32 temp_f0_10;
-	f32 temp_f0_14;
 	f32 temp_f0_18;
 	f32 temp_f0_2;
 	f32 temp_f0_3;
 	f32 temp_f0_4;
 	f32 temp_f0_5;
 	f32 temp_f0_6;
-	f32 temp_f10;
-	f32 temp_f10_2;
-	f32 temp_f10_3;
-	f32 temp_f11;
-	f32 temp_f11_2;
-	f32 temp_f12;
-	f32 temp_f12_2;
-	f32 temp_f13;
-	f32 temp_f1;
 	f32 temp_f1_10;
 	f32 temp_f1_11;
 	f32 temp_f1_12;
@@ -307,43 +293,25 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 	f32 temp_f1_7;
 	f32 temp_f1_8;
 	f32 temp_f1_9;
-	f32 temp_f2;
 	f32 temp_f2_2;
 	f32 temp_f2_3;
-	f32 temp_f2_4;
 	f32 temp_f2_5;
 	f32 temp_f2_6;
-	f32 temp_f3;
-	f32 temp_f3_2;
-	f32 temp_f3_3;
 	f32 temp_f3_4;
 	f32 temp_f3_5;
 	f32 temp_f3_6;
 	f32 temp_f4;
 	f32 temp_f4_2;
-	f32 temp_f4_3;
-	f32 temp_f4_4;
 	f32 temp_f4_5;
 	f32 temp_f4_6;
-	f32 temp_f5;
 	f32 temp_f5_2;
 	f32 temp_f6;
-	f32 temp_f6_2;
-	f32 temp_f6_3;
 	f32 temp_f6_4;
 	f32 temp_f6_5;
 	f32 temp_f6_6;
-	f32 temp_f7;
-	f32 temp_f7_2;
 	f32 temp_f7_3;
 	f32 temp_f7_4;
-	f32 temp_f8;
-	f32 temp_f8_2;
 	f32 temp_f8_3;
-	f32 temp_f8_4;
-	f32 temp_f9;
-	f32 temp_f9_2;
-	f32 temp_f9_3;
 	f32 var_f1;
 	f32 var_f4;
 	f32 var_f4_2;
@@ -364,38 +332,25 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 	f64 temp_f4_7;
 	f64 temp_f4_8;
 	f64 temp_f4_9;
-
-	temp_f10 = arg0->v.z;
-	temp_f9  = arg1->v.z;
-	temp_f3  = arg0->v.x;
-	temp_f1  = arg1->v.x;
-	temp_f2  = arg0->v.y;
-	temp_f0  = arg1->v.y;
-	temp_f4  = (temp_f10 * temp_f9) + ((temp_f3 * temp_f1) + (temp_f2 * temp_f0));
+	temp_f4 = (arg0->v.z * arg1->v.z) + ((arg0->v.x * arg1->v.x) + (arg0->v.y * arg1->v.y));
 	if ((f32)__fabs((temp_f4 * temp_f4)
-	        / (((temp_f10 * temp_f10) + ((temp_f3 * temp_f3) + (temp_f2 * temp_f2)))
-	            * ((temp_f9 * temp_f9) + ((temp_f1 * temp_f1) + (temp_f0 * temp_f0)))))
+	        / (((arg0->v.z * arg0->v.z) + ((arg0->v.x * arg0->v.x) + (arg0->v.y * arg0->v.y)))
+	            * ((arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y)))))
 	    > lbl_8042E02C) {
 		if (arg2 != NULL) {
 			arg2->x = arg0->p.x;
 			arg2->y = arg0->p.y;
 			arg2->z = arg0->p.z;
 		}
-		temp_f0_2  = arg0->p.x;
-		temp_f1_2  = arg0->p.y;
-		temp_f6    = arg0->p.z;
-		temp_f7    = arg1->v.y;
-		temp_f8    = arg1->v.x;
-		temp_f9_2  = arg1->v.z;
-		temp_f12   = arg1->p.z;
-		temp_f10_2 = arg1->p.x;
-		temp_f11   = arg1->p.y;
+		temp_f0_2 = arg0->p.x;
+		temp_f1_2 = arg0->p.y;
+		temp_f6   = arg0->p.z;
 		temp_f4_2
-		    = ((temp_f9_2 * (temp_f6 - temp_f12))
-		          + ((temp_f8 * (temp_f0_2 - temp_f10_2)) + (temp_f7 * (temp_f1_2 - temp_f11))))
-		    / ((temp_f9_2 * temp_f9_2) + ((temp_f8 * temp_f8) + (temp_f7 * temp_f7)));
+		    = ((arg1->v.z * (temp_f6 - arg1->p.z))
+		          + ((arg1->v.x * (temp_f0_2 - arg1->p.x)) + (arg1->v.y * (temp_f1_2 - arg1->p.y))))
+		    / ((arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y)));
 		if (arg3 != NULL) {
-			arg3->x   = temp_f10_2 + (temp_f8 * temp_f4_2);
+			arg3->x   = arg1->p.x + (arg1->v.x * temp_f4_2);
 			arg3->y   = arg1->p.y + (arg1->v.y * temp_f4_2);
 			arg3->z   = arg1->p.z + (arg1->v.z * temp_f4_2);
 			temp_f2_2 = temp_f6 - arg3->z;
@@ -403,9 +358,9 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 			temp_f0_4 = temp_f1_2 - arg3->y;
 			var_f1 = (temp_f2_2 * temp_f2_2) + ((temp_f0_3 * temp_f0_3) + (temp_f0_4 * temp_f0_4));
 		} else {
-			temp_f2_3 = temp_f6 - (temp_f12 + (temp_f9_2 * temp_f4_2));
-			temp_f0_5 = temp_f0_2 - (temp_f10_2 + (temp_f8 * temp_f4_2));
-			temp_f0_6 = temp_f1_2 - (temp_f11 + (temp_f7 * temp_f4_2));
+			temp_f2_3 = temp_f6 - (arg1->p.z + (arg1->v.z * temp_f4_2));
+			temp_f0_5 = temp_f0_2 - (arg1->p.x + (arg1->v.x * temp_f4_2));
+			temp_f0_6 = temp_f1_2 - (arg1->p.y + (arg1->v.y * temp_f4_2));
 			var_f1 = (temp_f2_3 * temp_f2_3) + ((temp_f0_5 * temp_f0_5) + (temp_f0_6 * temp_f0_6));
 		}
 		if (var_f1 < lbl_8042E028) {
@@ -425,16 +380,13 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 		/* Duplicate return node #31. Try simplifying control flow for better match */
 		return var_f1;
 	}
-	sp58.p.x   = arg0->p.x;
-	sp58.p.y   = arg0->p.y;
-	sp58.p.z   = arg0->p.z;
-	temp_f6_2  = (temp_f2 * temp_f9) - (temp_f10 * temp_f0);
-	sp58.v.x   = temp_f6_2;
-	temp_f4_3  = (temp_f10 * temp_f1) - (temp_f3 * temp_f9);
-	sp58.v.y   = temp_f4_3;
-	temp_f0_10 = (temp_f3 * temp_f0) - (temp_f2 * temp_f1);
-	sp58.v.z   = temp_f0_10;
-	var_f4     = (temp_f0_10 * temp_f0_10) + ((temp_f6_2 * temp_f6_2) + (temp_f4_3 * temp_f4_3));
+	sp58.p.x = arg0->p.x;
+	sp58.p.y = arg0->p.y;
+	sp58.p.z = arg0->p.z;
+	sp58.v.x = (arg0->v.y * arg1->v.z) - (arg0->v.z * arg1->v.y);
+	sp58.v.y = (arg0->v.z * arg1->v.x) - (arg0->v.x * arg1->v.z);
+	sp58.v.z = (arg0->v.x * arg1->v.y) - (arg0->v.y * arg1->v.x);
+	var_f4   = (sp58.v.z * sp58.v.z) + ((sp58.v.x * sp58.v.x) + (sp58.v.y * sp58.v.y));
 	if (var_f4 > lbl_8042E008) {
 		temp_f0_11 = __frsqrte(var_f4);
 		temp_f0_12 = lbl_8042E018 * temp_f0_11
@@ -446,26 +398,17 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 		        * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_13 * temp_f0_13)))));
 		var_f4 = sp18;
 	}
-	temp_f1_3  = lbl_8042E00C / var_f4;
-	temp_f8_2  = sp58.v.x * temp_f1_3;
-	sp58.v.x   = temp_f8_2;
-	temp_f7_2  = sp58.v.y * temp_f1_3;
-	sp58.v.y   = temp_f7_2;
-	temp_f6_3  = sp58.v.z * temp_f1_3;
-	sp58.v.z   = temp_f6_3;
-	sp40.p.x   = arg1->p.x;
-	sp40.p.y   = arg1->p.y;
-	sp40.p.z   = arg1->p.z;
-	temp_f3_2  = arg1->v.z;
-	temp_f5    = arg1->v.y;
-	temp_f4_4  = (temp_f7_2 * temp_f3_2) - (temp_f6_3 * temp_f5);
-	sp40.v.x   = temp_f4_4;
-	temp_f2_4  = arg1->v.x;
-	temp_f3_3  = (temp_f6_3 * temp_f2_4) - (temp_f8_2 * temp_f3_2);
-	sp40.v.y   = temp_f3_3;
-	temp_f0_14 = (temp_f8_2 * temp_f5) - (temp_f7_2 * temp_f2_4);
-	sp40.v.z   = temp_f0_14;
-	var_f4_2   = (temp_f0_14 * temp_f0_14) + ((temp_f4_4 * temp_f4_4) + (temp_f3_3 * temp_f3_3));
+	temp_f1_3 = lbl_8042E00C / var_f4;
+	sp58.v.x  = sp58.v.x * temp_f1_3;
+	sp58.v.y  = sp58.v.y * temp_f1_3;
+	sp58.v.z  = sp58.v.z * temp_f1_3;
+	sp40.p.x  = arg1->p.x;
+	sp40.p.y  = arg1->p.y;
+	sp40.p.z  = arg1->p.z;
+	sp40.v.x  = (sp58.v.y * arg1->v.z) - (sp58.v.z * arg1->v.y);
+	sp40.v.y  = (sp58.v.z * arg1->v.x) - (sp58.v.x * arg1->v.z);
+	sp40.v.z  = (sp58.v.x * arg1->v.y) - (sp58.v.y * arg1->v.x);
+	var_f4_2  = (sp40.v.z * sp40.v.z) + ((sp40.v.x * sp40.v.x) + (sp40.v.y * sp40.v.y));
 	if (var_f4_2 > lbl_8042E008) {
 		temp_f0_15 = __frsqrte(var_f4_2);
 		temp_f0_16 = lbl_8042E018 * temp_f0_15
@@ -505,31 +448,25 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 	temp_f0_18 = arg0->p.x + (arg0->v.x * var_f4_3);
 	temp_f2_6  = arg0->p.y + (arg0->v.y * var_f4_3);
 	temp_f3_6  = arg0->p.z + (arg0->v.z * var_f4_3);
-	temp_f8_4  = arg1->v.y;
-	temp_f9_3  = arg1->v.x;
-	temp_f10_3 = arg1->v.z;
-	temp_f13   = arg1->p.z;
-	temp_f11_2 = arg1->p.x;
-	temp_f12_2 = arg1->p.y;
 	temp_f7_4
-	    = ((temp_f10_3 * (temp_f3_6 - temp_f13))
-	          + ((temp_f9_3 * (temp_f0_18 - temp_f11_2)) + (temp_f8_4 * (temp_f2_6 - temp_f12_2))))
-	    / ((temp_f10_3 * temp_f10_3) + ((temp_f9_3 * temp_f9_3) + (temp_f8_4 * temp_f8_4)));
-	if (&sp1C != NULL) {
-		temp_f4_5 = temp_f11_2 + (temp_f9_3 * temp_f7_4);
-		sp1C      = temp_f4_5;
-		temp_f6_5 = temp_f12_2 + (temp_f8_4 * temp_f7_4);
-		sp20      = temp_f6_5;
-		temp_f1_6 = temp_f13 + (temp_f10_3 * temp_f7_4);
-		sp24      = temp_f1_6;
-		temp_f1_7 = temp_f3_6 - temp_f1_6;
-		temp_f1_8 = temp_f0_18 - temp_f4_5;
-		temp_f1_9 = temp_f2_6 - temp_f6_5;
-		var_f7    = (temp_f1_7 * temp_f1_7) + ((temp_f1_8 * temp_f1_8) + (temp_f1_9 * temp_f1_9));
+	    = ((arg1->v.z * (temp_f3_6 - arg1->p.z))
+	          + ((arg1->v.x * (temp_f0_18 - arg1->p.x)) + (arg1->v.y * (temp_f2_6 - arg1->p.y))))
+	    / ((arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y)));
+	if (&nearestPoint != NULL) {
+		temp_f4_5      = arg1->p.x + (arg1->v.x * temp_f7_4);
+		nearestPoint.x = temp_f4_5;
+		temp_f6_5      = arg1->p.y + (arg1->v.y * temp_f7_4);
+		nearestPoint.y = temp_f6_5;
+		temp_f1_6      = arg1->p.z + (arg1->v.z * temp_f7_4);
+		nearestPoint.z = temp_f1_6;
+		temp_f1_7      = temp_f3_6 - temp_f1_6;
+		temp_f1_8      = temp_f0_18 - temp_f4_5;
+		temp_f1_9      = temp_f2_6 - temp_f6_5;
+		var_f7 = (temp_f1_7 * temp_f1_7) + ((temp_f1_8 * temp_f1_8) + (temp_f1_9 * temp_f1_9));
 	} else {
-		temp_f1_10 = temp_f3_6 - (temp_f13 + (temp_f10_3 * temp_f7_4));
-		temp_f1_11 = temp_f0_18 - (temp_f11_2 + (temp_f9_3 * temp_f7_4));
-		temp_f1_12 = temp_f2_6 - (temp_f12_2 + (temp_f8_4 * temp_f7_4));
+		temp_f1_10 = temp_f3_6 - (arg1->p.z + (arg1->v.z * temp_f7_4));
+		temp_f1_11 = temp_f0_18 - (arg1->p.x + (arg1->v.x * temp_f7_4));
+		temp_f1_12 = temp_f2_6 - (arg1->p.y + (arg1->v.y * temp_f7_4));
 		var_f7
 		    = (temp_f1_10 * temp_f1_10) + ((temp_f1_11 * temp_f1_11) + (temp_f1_12 * temp_f1_12));
 	}
@@ -543,9 +480,9 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 		    * (lbl_8042E018 * temp_f1_15
 		        * (lbl_8042E020 - ((f64)var_f7 * (temp_f1_15 * temp_f1_15)))));
 	}
-	temp_f4_6  = temp_f0_18 - sp1C;
-	temp_f6_6  = temp_f2_6 - sp20;
-	temp_f1_16 = temp_f3_6 - sp24;
+	temp_f4_6  = temp_f0_18 - nearestPoint.x;
+	temp_f6_6  = temp_f2_6 - nearestPoint.y;
+	temp_f1_16 = temp_f3_6 - nearestPoint.z;
 	var_f1     = (temp_f1_16 * temp_f1_16) + ((temp_f4_6 * temp_f4_6) + (temp_f6_6 * temp_f6_6));
 	if (var_f1 > lbl_8042E008) {
 		temp_f4_7 = __frsqrte(var_f1);
@@ -565,9 +502,9 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 		arg2->z = temp_f3_6;
 	}
 	if (arg3 != NULL) {
-		arg3->x = sp1C;
-		arg3->y = sp20;
-		arg3->z = sp24;
+		arg3->x = nearestPoint.x;
+		arg3->y = nearestPoint.y;
+		arg3->z = nearestPoint.z;
 	}
 	return var_f1;
 }
