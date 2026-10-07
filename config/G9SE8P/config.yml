@@ -38,6 +38,10 @@ block_relocations:
 # A game-data word that happens to equal an address inside ansi_fp.c's
 # __two_exp jump table.
   - source: .data:0x80287E54
+# Literal data words mistaken for pointers into eff_crash3d exception rows:
+# encoded blob word 0x8000FF16 and Chaotix spotlight RGBA 0x8000FF40.
+  - source: .data:0x8027D5A4
+  - source: .data:0x80289CDC
 
 # 18 REL modules ship with main.dol. One per stage, plus advertise (attract
 # mode), autosave and movie.

@@ -1445,3 +1445,16 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## effect/eff_crash3d.cpp
+
+Positive symbolic metadata identifies 25 C++ file-origin definitions; GameCube
+adds a light-selection factory overload. Twenty metadata functions and that
+overload survive at 0x80100D4C–0x80103178; five ordinary methods inline. The
+GameCube child constructor also takes an added signed-short light parameter.
+All seven owned ranges are inventoried. No PS2 instructions were inspected.
+All 21 surviving bodies and 504 relocations match. A guarded existing-literal
+rotation corrects only pool order; instructions and relocation bytes remain
+native compiler output. All eighteen output hashes and 76 tests pass. The
+complete unit is enabled as Matching.
+See `eff-crash3d-unit-evidence.md`.

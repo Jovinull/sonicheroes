@@ -395,6 +395,15 @@ game/texture.cpp:
 	extabindex  start:0x8000F3D0 end:0x8000F3DC
 	.text       start:0x800D8B48 end:0x800D8BC4
 
+game/effect/eff_crash3d.cpp:
+	extab       start:0x80009894 end:0x80009A10
+	extabindex  start:0x8000FEA4 end:0x8000FF88
+	.text       start:0x80100D4C end:0x80103178
+	.data       start:0x8025A970 end:0x8025AA48
+	.sdata      start:0x8042B778 end:0x8042B790
+	.sbss       start:0x8042C598 end:0x8042C5A0
+	.sdata2     start:0x8042E6D0 end:0x8042E738
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C
