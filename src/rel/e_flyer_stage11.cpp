@@ -106,8 +106,8 @@ M2C_UNK fn_8001F404(void*);                                                     
 M2C_UNK fn_8003BC38(void*);                                                      /* extern */
 M2C_UNK fn_8003C200(void*, M2C_UNK*, M2C_UNK, M2C_UNK);                          /* extern */
 u32 __nw__FUl(M2C_UNK);                                                          /* extern */
-s32 fn_8005B8D8(void*);                                                          /* extern */
-M2C_UNK fn_8005BC04(void*);                                                      /* extern */
+s32 OnEdit__10TObjSetObjFv(void*);                                               /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                           /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                                 /* extern */
 s32 fn_8005D9A0(void*, M2C_UNK);                                                 /* extern */
 M2C_UNK* fn_8005DEEC(M2C_UNK*, M2C_UNK);                                         /* extern */
@@ -790,7 +790,7 @@ void fn_8_A325C(void* arg0)
 		temp_r3_3                        = M2C_FIELD(arg0, void**, 0xB0);
 		M2C_FIELD(temp_r3_3, s32*, 0x18) = (s32)(M2C_FIELD(temp_r3_3, s32*, 0x18) | 0x200);
 	}
-	fn_8005BC04((u8*)((u32)arg0 + 0xB0));
+	SetEnd__10TObjSetObjFv((u8*)((u32)arg0 + 0xB0));
 	((TRenderer*)arg0)->Slot40();
 	temp_r0_2 = M2C_FIELD(arg0, s32*, 0x230);
 	if (temp_r0_2 != -1) {
@@ -2477,7 +2477,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 			fn_800B4A38(lbl_8042C388, 0x4016, (void*)((u8*)arg0 + 0x268), (void*)(arg0), 3, 0, 2);
 		}
 	}
-	if (fn_8005B8D8((u8*)((u32)arg0 + 0xB0)) == 0) {
+	if (OnEdit__10TObjSetObjFv((u8*)((u32)arg0 + 0xB0)) == 0) {
 		fn_8003C200((u8*)arg0 + 0x28, &lbl_8_data_15FD8, 1, 3);
 		M2C_FIELD(arg0, f32*, 0x88) = (f32)M2C_FIELD(arg0, f32*, 0x140);
 		M2C_FIELD(arg0, f32*, 0x8C) = (f32)M2C_FIELD(arg0, f32*, 0x144);

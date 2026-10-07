@@ -35,7 +35,7 @@ extern char lbl_80239984[];
 extern char lbl_80239990[];
 
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
+void __ct__10TObjSetObjFv(void*);
 void fn_8003C618(void*);
 void* fn_80150588(void*);
 float fn_800D7B00(int);
@@ -107,7 +107,7 @@ static inline float signalIntToScaledFloat(int value)
 extern "C" Signal* signalCtor(Signal* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(&self->placement);
+	__ct__10TObjSetObjFv(&self->placement);
 	fn_8003C618(self->member30);
 	self->vtable          = signalVtable;
 	self->secondaryVtable = signalVtable + 11;

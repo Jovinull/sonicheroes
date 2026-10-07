@@ -350,7 +350,7 @@ M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                      
 s32 fn_80041AB0(s32);                                                            /* extern */
 s32 fn_80041B64(s32);                                                            /* extern */
 void** __nw__FUl(M2C_UNK);                                                       /* extern */
-s32 fn_8005B8D8(void**);                                                         /* extern */
+s32 OnEdit__10TObjSetObjFv(void**);                                              /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                                 /* extern */
 s32 fn_8005D9A0(void*, M2C_UNK);                                                 /* extern */
 M2C_UNK fn_8005E00C(u32, M2C_UNK);                                               /* extern */
@@ -3125,7 +3125,7 @@ TObject* fn_8_C2018(TObject* arg0)
 	arg0->unk2E4 = 0;
 	fn_800FE464((void**)&arg0->unkB8);
 	fn_8_C14B4(arg0);
-	if (fn_8005B8D8(&arg0->unkB0) == 0) {
+	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
 		fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_17E34, 2, 3);
 		arg0->unk88 = arg0->unk140;
 		arg0->unk8C = arg0->unk144;

@@ -74,7 +74,7 @@ void* fn_80020BD8(void*, s32);                            /* extern */
 void fn_80021824(void*);                                  /* extern */
 M2C_UNK fn_8003BC38(void*);                               /* extern */
 M2C_UNK fn_8003BE78(void*);                               /* extern */
-int fn_8005B8BC(void*);                                   /* extern */
+int CheckMustKill__10TObjSetObjFv(void*);                 /* extern */
 M2C_UNK fn_8006298C(s32, void*, void*);                   /* extern */
 M2C_UNK fn_800A3D48(s32);                                 /* extern */
 s32 fn_800A3F60(void*);                                   /* extern */
@@ -210,7 +210,7 @@ void fn_8_B0B00(void* arg0)
 
 s32 fn_8_B0B64(s32 arg0)
 {
-	return fn_8005B8BC((u8*)arg0 + 0xB0) != 0;
+	return CheckMustKill__10TObjSetObjFv((u8*)arg0 + 0xB0) != 0;
 }
 
 s32 fn_8_B0B94(void* arg0)

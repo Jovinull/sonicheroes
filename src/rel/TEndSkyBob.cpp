@@ -114,10 +114,10 @@ void fn_16_93BE8(void*, int);
 void fn_16_93C3C(void*);
 int fn_16_93ACC(void*, SETDATA_PARAM*, f32);
 
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
-int fn_8005B9F0(void*);
-void fn_8005BC04(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+void SetEnd__10TObjSetObjFv(void*);
 void fn_8003C200(void*, void*, int, int);
 void fn_80021384(void*);
 void fn_80021824(void*);
@@ -190,15 +190,15 @@ void TEndSkyBob::Exec()
 
 	if (!fn_16_93ACC(
 	        updater, *(SETDATA_PARAM**)(((RawTEndSkyBob*)this)->base + 0x28), TEndSkyBobHundred)) {
-		fn_8005BC04(((RawTEndSkyBob*)this)->base + 0x28);
+		SetEnd__10TObjSetObjFv(((RawTEndSkyBob*)this)->base + 0x28);
 		markSampleForDeletion(this);
 		return;
 	}
-	if (fn_8005B9F0(((RawTEndSkyBob*)this)->base + 0x28) && finished) {
+	if (CheckRangeOut__10TObjSetObjFv(((RawTEndSkyBob*)this)->base + 0x28) && finished) {
 		markSampleForDeletion(this);
 		return;
 	}
-	if (fn_8005B8BC(((RawTEndSkyBob*)this)->base + 0x28)) {
+	if (CheckMustKill__10TObjSetObjFv(((RawTEndSkyBob*)this)->base + 0x28)) {
 		markSampleForDeletion(this);
 		return;
 	}
@@ -208,7 +208,7 @@ void TEndSkyBob::Exec()
 	if (fn_16_F20(lbl_8042C180, 0x1F))
 		return;
 
-	if (fn_8005B8D8(((RawTEndSkyBob*)this)->base + 0x28)) {
+	if (OnEdit__10TObjSetObjFv(((RawTEndSkyBob*)this)->base + 0x28)) {
 		scale = *member;
 		if (distance <= TEndSkyBobZero) {
 			member[1].x = distance = fn_16_59490(TEndSkyBobPath, &position);
@@ -235,7 +235,7 @@ void TEndSkyBob::Exec()
 		fn_80021384(((RawTEndSkyBob*)this)->base + 0x30);
 		fn_16_DB4(((RawTEndSkyBob*)this)->base + 0x30);
 	}
-	if (!fn_8005B8D8(((RawTEndSkyBob*)this)->base + 0x28)) {
+	if (!OnEdit__10TObjSetObjFv(((RawTEndSkyBob*)this)->base + 0x28)) {
 		fn_80021824(lbl_8042C1A4);
 		if (fn_16_D10(((RawTEndSkyBob*)this)->base + 0x30))
 			fn_16_753C4();

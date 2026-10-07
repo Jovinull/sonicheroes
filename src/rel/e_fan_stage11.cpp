@@ -45,15 +45,15 @@ public:
 };
 
 extern "C" {
-void dtor_8005BD3C(void*, s16);
-void fn_8005BE6C(void*);
+void __dt__10TObjSetObjFv(void*, s16);
+void __ct__10TObjSetObjFv(void*);
 }
 
 struct Motion {
 	SETDATA_PARAM* frame;
 	void** vtable;
 
-	Motion() { fn_8005BE6C(this); }
+	Motion() { __ct__10TObjSetObjFv(this); }
 };
 
 extern "C" {
@@ -65,8 +65,8 @@ extern void* lbl_8042C298;
 extern u8 lbl_80239984;
 extern u8 lbl_802FF5A0;
 
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B9F0(Motion*);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
 void fn_8005D5C8(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
@@ -85,7 +85,7 @@ s32 fn_800BC6CC(void*, const char*);
 void fn_800BC9F4(void*, void*);
 
 void Disp__7TObjectFv();
-void fn_8005B8B8();
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
 void TDisp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -170,8 +170,8 @@ void TObjS12Fan::SetParameter()
 #pragma opt_common_subs off
 void TObjS12Fan::Exec()
 {
-	if (fn_8005B9F0((Motion*)((u8*)this + 0x28)) != 0
-	    || fn_8005B8BC((Motion*)((u8*)this + 0x28)) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0
+	    || CheckMustKill__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0) {
 		signal |= 1;
 		return;
 	}
@@ -184,7 +184,7 @@ TObjS12Fan::~TObjS12Fan()
 	TObject::vtable = s12fanVtable;
 	Motion::vtable  = s12fanVtable + 11;
 	DestroyClump();
-	dtor_8005BD3C((u8*)this + 0x28, 0);
+	__dt__10TObjSetObjFv((u8*)this + 0x28, 0);
 }
 
 static inline void constructFan(TObjS12Fan* object)
@@ -308,7 +308,7 @@ extern "C" void* s12fanVtable[14]     = {
 	(void*)Render__7TObjectFv,
 	0,
 	0,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 extern "C" char s12fanModelName[]         = "s12_on_fan.dff";
 extern "C" char s12fanObjectDisplayName[] = "S12FAN OBJECT";

@@ -341,7 +341,7 @@ void fn_80194234(s32, u32);
 void fn_80053660(void*, s32);
 void fn_8005349C(void*, u8);
 void fn_8014FF2C(void*);
-int fn_8005BB20(RwV3d*, f32);
+int setobjCheckRangeOut2__FPC5RwV3df(RwV3d*, f32);
 f32 fn_800D7328(f32, f32, f32);
 void fn_80021824(void*);
 CollisionSearchResult* fn_80020BD8(void*, s32);
@@ -847,7 +847,7 @@ void TObjEffTornado2::TDisp()
 
 void TObjEffTornado2::Exec()
 {
-	if (fn_8005BB20(&this->position, lbl_8042DBE0) != 0) {
+	if (setobjCheckRangeOut2__FPC5RwV3df(&this->position, lbl_8042DBE0) != 0) {
 		this->flags |= 1;
 		return;
 	}
@@ -1023,7 +1023,8 @@ extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 
 extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 {
-	if (fn_8005BB20(&effect->direction, lbl_8042DBE0) != 0 || *(s32*)(lbl_8029C310 + 0x18) != 0) {
+	if (setobjCheckRangeOut2__FPC5RwV3df(&effect->direction, lbl_8042DBE0) != 0
+	    || *(s32*)(lbl_8029C310 + 0x18) != 0) {
 		effect->flags |= 1;
 		return;
 	}
@@ -1369,7 +1370,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 
 extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 {
-	if (fn_8005BB20(&effect->position, lbl_8042DBE0) != 0) {
+	if (setobjCheckRangeOut2__FPC5RwV3df(&effect->position, lbl_8042DBE0) != 0) {
 		effect->flags |= 1;
 		return;
 	}

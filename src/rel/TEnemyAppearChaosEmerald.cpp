@@ -99,10 +99,10 @@ int fn_16_93ACC(void* controller, SETDATA_PARAM* setData, f32 value);
 void fn_16_93BE8(void* controller, int flags);
 void fn_16_93C3C(void* controller);
 
-int fn_8005B8BC(void* motion);
-int fn_8005B8D8(void* motion);
-int fn_8005B9F0(void* motion);
-void fn_8005BC04(void* motion);
+int CheckMustKill__10TObjSetObjFv(void* motion);
+int OnEdit__10TObjSetObjFv(void* motion);
+int CheckRangeOut__10TObjSetObjFv(void* motion);
+void SetEnd__10TObjSetObjFv(void* motion);
 void fn_80021824(void* collision);
 
 extern GameState* lbl_8042C180;
@@ -144,12 +144,13 @@ void TEnemyAppearChaosEmerald::Exec()
 	AppearChaosEmeraldParam* volatile member = frame->member;
 
 	if (!fn_16_93ACC(controller, frame, lbl_16_rodata_1738)) {
-		fn_8005BC04((void*)&frame);
+		SetEnd__10TObjSetObjFv((void*)&frame);
 		markSampleForDeletion(this);
 		return;
 	}
 
-	if (fn_8005B9F0((void*)&frame) || fn_8005B8BC((void*)&frame)) {
+	if (CheckRangeOut__10TObjSetObjFv((void*)&frame)
+	    || CheckMustKill__10TObjSetObjFv((void*)&frame)) {
 		markSampleForDeletion(this);
 		return;
 	}
@@ -158,7 +159,7 @@ void TEnemyAppearChaosEmerald::Exec()
 		return;
 
 	fn_16_5F3C8(this);
-	if (fn_8005B8D8((void*)&frame))
+	if (OnEdit__10TObjSetObjFv((void*)&frame))
 		return;
 
 	fn_80021824(lbl_8042C1A4);

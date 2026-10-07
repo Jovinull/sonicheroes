@@ -68,11 +68,11 @@ extern "C" void fn_8003BC38(void*);
 extern "C" void fn_8003C200(void*, DamageVolume*, s32, s32);
 extern "C" void dtor_8003C52C(void*, s32);
 extern "C" void fn_8003C618(void*);
-extern "C" s32 fn_8005B8BC(Motion*);
-extern "C" s32 fn_8005B8D8(Motion*);
-extern "C" s32 fn_8005B9F0(Motion*);
-extern "C" void dtor_8005BD3C(Motion*, s32);
-extern "C" void fn_8005BE6C(Motion*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+extern "C" void __dt__10TObjSetObjFv(Motion*, s32);
+extern "C" void __ct__10TObjSetObjFv(Motion*);
 
 extern "C" void Disp__7TObjectFv(void);
 extern "C" void PDisp__7TObjectFv(void);
@@ -86,9 +86,10 @@ extern "C" void setDamageCollisionTDisp(TObjSetDamageCollision*) { }
 extern "C" void setDamageCollisionExec(TObjSetDamageCollision* object)
 {
 	Frame* frame;
-	if (fn_8005B9F0(&object->motion) || fn_8005B8BC(&object->motion)) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion)
+	    || CheckMustKill__10TObjSetObjFv(&object->motion)) {
 		object->base.signal |= 1;
-	} else if (fn_8005B8D8(&object->motion)) {
+	} else if (OnEdit__10TObjSetObjFv(&object->motion)) {
 		frame              = object->motion.frame;
 		object->position.x = frame->pos.x;
 		object->position.y = frame->pos.y;
@@ -118,7 +119,7 @@ extern "C" TObjSetDamageCollision* setDamageCollisionDtor(TObjSetDamageCollision
 		object->base.vtable   = setDamageCollisionVtable;
 		object->motion.vtable = setDamageCollisionVtable + 11;
 		dtor_8003C52C(object->collision, 0);
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
@@ -136,7 +137,7 @@ extern "C" TObjSetDamageCollision* setDamageCollisionCtor(
     TObjSetDamageCollision* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	fn_8003C618(object->collision);
 	object->base.vtable                      = setDamageCollisionVtable;
 	object->motion.vtable                    = setDamageCollisionVtable + 11;

@@ -76,9 +76,9 @@ extern "C" const Vec3 lbl_80239990;
 extern "C" World* lbl_8042C1D0;
 
 extern "C" s32 fn_8003BC38(void* collision);
-extern "C" s32 fn_8005B8BC(void* motion);
-extern "C" s32 fn_8005B8D8(void* motion);
-extern "C" s32 fn_8005B9F0(void* motion);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(void* motion);
+extern "C" s32 OnEdit__10TObjSetObjFv(void* motion);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(void* motion);
 extern "C" f32 fn_800D7AE4(s32 angle);
 extern "C" f32 fn_800D7B00(s32 angle);
 extern "C" void fn_8015BB08(void* scene, ModelRef* model);
@@ -134,12 +134,12 @@ extern "C" void Exec__11SpringClassFv(SpringRuntime* object)
 {
 	register SpringMember* member = object->frame->member;
 
-	if (fn_8005B9F0(&object->frame) || fn_8005B8BC(&object->frame)) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->frame) || CheckMustKill__10TObjSetObjFv(&object->frame)) {
 		object->flags |= 1;
 		return;
 	}
 
-	if (fn_8005B8D8(&object->frame)) {
+	if (OnEdit__10TObjSetObjFv(&object->frame)) {
 		object->position   = object->frame->position;
 		SpringFrame* frame = object->frame;
 		object->angleX     = frame->angleX;

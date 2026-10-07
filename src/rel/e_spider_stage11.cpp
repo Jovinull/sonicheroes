@@ -40,14 +40,14 @@ extern "C" {
 void* __ct__7TObjectFP7TObject(void*, void*);          /* extern */
 void* __dt__7TObjectFv(void*, s32);                    /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                 /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                 /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);          /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);            /* extern */
 TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);          /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                         /* extern */
 u32 __nw__FUl(M2C_UNK);                                /* extern */
-s32 fn_8005B8BC(s32);                                  /* extern */
-s32 fn_8005B9F0(s32);                                  /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                         /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                /* extern */
+s32 CheckRangeOut__10TObjSetObjFv(s32);                /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                /* extern */
 M2C_UNK fn_8005D5C8(M2C_UNK);                          /* extern */
 u32 fn_800BB92C(s32, s32, M2C_UNK*);                   /* extern */
 s32 fn_800BC6CC(s32, M2C_UNK*);                        /* extern */
@@ -368,8 +368,8 @@ void fn_8_C2DE4(void* arg0)
 	void* temp_r3;
 	void* var_r27;
 
-	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
+	if ((CheckRangeOut__10TObjSetObjFv((s32)((u8*)arg0 + 0x28)) != 0)
+	    || (CheckMustKill__10TObjSetObjFv((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -456,7 +456,7 @@ TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 			var_r29 += 1;
 		} while (var_r29 < 4);
 		dtor_8003C52C((u8*)arg0 + 0x30, 0);
-		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -477,7 +477,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 	u32 var_r0;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
+	__ct__10TObjSetObjFv(&arg0->unk28);
 	fn_8003C618(&arg0->unk30);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 	arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
@@ -603,7 +603,7 @@ void s11spiderObjectCreate(void)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x108);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
-		fn_8005BE6C(&temp_r3->unk28);
+		__ct__10TObjSetObjFv(&temp_r3->unk28);
 		fn_8003C618(&temp_r3->unk30);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 		temp_r3->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;

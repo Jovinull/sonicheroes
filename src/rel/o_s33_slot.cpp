@@ -59,11 +59,11 @@ extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8005BD3C(Motion*, s16);
-void fn_8005BE6C(Motion*);
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B8D8(Motion*);
-s32 fn_8005B9F0(Motion*);
+void __dt__10TObjSetObjFv(Motion*, s16);
+void __ct__10TObjSetObjFv(Motion*);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 OnEdit__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
 void fn_8005D5C8(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
@@ -215,12 +215,13 @@ void TObjS33Slot::Exec()
 	s32 i;
 	f32 speed;
 
-	if (fn_8005B9F0(&motion) != 0 || fn_8005B8BC(&motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&motion) != 0) {
 		signal |= 1;
 		return;
 	}
 
-	if (fn_8005B8D8(&motion) != 0) {
+	if (OnEdit__10TObjSetObjFv(&motion) != 0) {
 		s32 previous = modelIndex;
 		SetParameter();
 		if (previous != modelIndex) {
@@ -259,7 +260,7 @@ void TObjS33Slot::Exec()
 	    (u8*)carrier + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), fn_800D7B00(angleY), 1);
 	fn_8019E880(carrier);
 
-	if (fn_8005B8D8(&motion) != 0)
+	if (OnEdit__10TObjSetObjFv(&motion) != 0)
 		return;
 }
 #pragma opt_propagation reset
@@ -274,14 +275,14 @@ TObjS33Slot::~TObjS33Slot()
 		fn_8015BBF8(manager, model);
 		fn_80150958(model);
 	}
-	dtor_8005BD3C(&motion, 0);
+	__dt__10TObjSetObjFv(&motion, 0);
 	__dt__7TObjectFv(this, 0);
 }
 
 static inline void constructSlot(TObjS33Slot* object, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(object, parent);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = slotVtable;
 	object->motion.vtable = slotVtable + 11;
 	object->className     = CL_TObjS33Slot;
@@ -308,7 +309,7 @@ static inline void initializeSlot(SlotInitializer* self)
 {
 	TObjS33Slot* object = (TObjS33Slot*)self;
 	__ct__7TObjectFP7TObject(object, lbl_8042C110);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = slotVtable;
 	object->motion.vtable = slotVtable + 11;
 	object->className     = CL_TObjS33Slot;

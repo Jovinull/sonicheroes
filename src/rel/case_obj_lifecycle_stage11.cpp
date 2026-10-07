@@ -36,7 +36,7 @@ void* fn_801A4BBC(void* context, const char* name);
 void* fn_8005EA04(const char* name);
 void* fn_8005E410(void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
-void fn_8005BE6C(void* controller);
+void __ct__10TObjSetObjFv(void* controller);
 void fn_8003C618(void* object);
 s32 objGroupAllActive(s32 index);
 s32 fn_80100C88(s32 index);
@@ -96,7 +96,7 @@ struct CaseObject {
 extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(&self->placement);
+	__ct__10TObjSetObjFv(&self->placement);
 	fn_8003C618(self->controller);
 	*(void**)((u8*)self + 0x18) = caseObjVtable;
 	*(void**)((u8*)self + 0x2C) = (u8*)caseObjVtable + 0x2C;

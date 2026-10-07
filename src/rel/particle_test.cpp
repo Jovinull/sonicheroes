@@ -25,13 +25,13 @@ void* __nw__10TObjSampleFUl(u32);
 void __dl__10TObjSampleFPv(void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void fn_8005BE6C(void*);
-void dtor_8005BD3C(void*, s16);
+void __ct__10TObjSetObjFv(void*);
+void __dt__10TObjSetObjFv(void*, s16);
 void* setupObjClass(
     void*, char*, void*, void*, void*, void*, u32, u32, u8, u16, u16, u8, char*, char**);
 void* fn_16_528A4(s32, s32, void*, void*, s32, s32, s32);
 void fn_16_52D08(void*);
-s32 fn_8005B8D8(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
 u32 fn_16_52464(u32);
 void fn_16_5247C(u32, u8);
 void fn_16_523BC(u32);
@@ -116,7 +116,7 @@ extern "C" void fn_16_817C8(Object* o)
 			o->timer = 0;
 		}
 	}
-	if (!fn_8005B8D8(&o->motion))
+	if (!OnEdit__10TObjSetObjFv(&o->motion))
 		markSampleForDeletion(o);
 	o->timer++;
 }
@@ -139,7 +139,7 @@ extern "C" Object* fn_16_819A8(Object* o, s16 f)
 {
 	if (o) {
 		fn_16_81A30(o);
-		dtor_8005BD3C(&o->motion, 0);
+		__dt__10TObjSetObjFv(&o->motion, 0);
 		__dt__7TObjectFv(o, 0);
 		if (f > 0)
 			__dl__10TObjSampleFPv(o);
@@ -198,7 +198,7 @@ extern "C" void fn_16_81DEC(Object* o)
 extern "C" Object* fn_16_81EE4(Object* o, void* owner)
 {
 	__ct__7TObjectFP7TObject(o, owner);
-	fn_8005BE6C(&o->motion);
+	__ct__10TObjSetObjFv(&o->motion);
 	fn_16_817B0(o);
 	Params* p = get(o);
 	if (!p->count) {

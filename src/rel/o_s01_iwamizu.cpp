@@ -59,17 +59,17 @@ void fn_8019EB94(void*, void*, int);
 void fn_8011B844(void*, f32);
 void fn_8005BF88();
 void fn_8014FFBC(void*, void*, int);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
 void fn_800B4A38(void*, int, void*, void*, int, int, int);
 void fn_8015BBF8(void*, void*);
 void fn_80150958(void*);
-void dtor_8005BD3C(void*, int);
+void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
 void Free__9THeapCtrlFPv(void*, void*);
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
+void __ct__10TObjSetObjFv(void*);
 void* fn_80150588(void*);
 void fn_8015BB08(void*, void*);
 void fn_8011B7CC(void*);
@@ -303,10 +303,11 @@ extern "C" void Disp__14TObjS01IwamizuFv(void* self)
 extern "C" void Exec__14TObjS01IwamizuFv(void* self)
 {
 	s8 pan;
-	if (fn_8005B9F0((u8*)self + 0x28) || fn_8005B8BC((u8*)self + 0x28)) {
+	if (CheckRangeOut__10TObjSetObjFv((u8*)self + 0x28)
+	    || CheckMustKill__10TObjSetObjFv((u8*)self + 0x28)) {
 		HALF(self, 4) |= 1;
 	} else {
-		if (fn_8005B8D8((u8*)self + 0x28)) {
+		if (OnEdit__10TObjSetObjFv((u8*)self + 0x28)) {
 			SetIwamizuPosition(self);
 		} else {
 			if (SBYTE(lbl_8042C180, 0x1F) == 0) {
@@ -332,7 +333,7 @@ extern "C" void* __dt__14TObjS01IwamizuFv(void* self, s16 flags)
 			fn_80150958(PTR(self, 0x30));
 			PTR(self, 0x30) = 0;
 		}
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
@@ -347,13 +348,13 @@ inline TObject::TObject(TObject* parent)
 
 static inline void InitializeIwamizuBody(void* self)
 {
-	fn_8005BE6C((u8*)self + 0x28);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
 	WORD(self, 0x18) = (u32)IwamizuVtable;
 	WORD(self, 0x2C) = (u32)IwamizuVtable + 0x2C;
 	f32* values      = *(f32**)((u8*)PTR(self, 0x28) + 0x2C);
 	PTR(self, 0)     = IwamizuClassNamePtr;
 	HALF(self, 0x1E) = 0x38;
-	if (fn_8005B8D8((u8*)self + 0x28)) {
+	if (OnEdit__10TObjSetObjFv((u8*)self + 0x28)) {
 		if (IwamizuZero == *values)
 			*values = IwamizuOne;
 		if (*(s8*)((u8*)values + 8) < 0 || *(s8*)((u8*)values + 8) >= 4)

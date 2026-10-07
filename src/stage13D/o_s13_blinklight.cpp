@@ -135,11 +135,11 @@ extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
 extern "C" void fn_8003C618(void*);
 extern "C" void dtor_8003C52C(void*, s32);
 extern "C" void* fn_800628D0(s32, const Vec3*, const Vec3*);
-extern "C" s32 fn_8005B8BC(Motion*);
-extern "C" s32 fn_8005B8D8(Motion*);
-extern "C" s32 fn_8005B9F0(Motion*);
-extern "C" void dtor_8005BD3C(Motion*, s32);
-extern "C" void fn_8005BE6C(Motion*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+extern "C" void __dt__10TObjSetObjFv(Motion*, s32);
+extern "C" void __ct__10TObjSetObjFv(Motion*);
 extern "C" void fn_800BC9F4(void*, void*);
 extern "C" void fn_800D1108(void*, f32*, f32*, f32*);
 extern "C" f32 fn_800D7AE4(s32);
@@ -228,7 +228,8 @@ extern "C" void blinkLightExec(BlinkLight* object)
 {
 	f32 duration = ((f32*)&blinkLightAsset)[7];
 
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal |= 1;
 		return;
 	}
@@ -244,7 +245,7 @@ extern "C" void blinkLightExec(BlinkLight* object)
 		return;
 	}
 
-	if (fn_8005B8D8(&object->motion) != 0) {
+	if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		blinkLightSetPosition(object);
 	} else {
 		object->phase += 0.0166667f;
@@ -276,7 +277,7 @@ extern "C" BlinkLight* blinkLightDtor(BlinkLight* object, s16 flags)
 		object->motion.vtable = blinkLightVtable + 11;
 		fn_9_75888(&object->model);
 		dtor_8003C52C(&object->transform, 0);
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
@@ -288,7 +289,7 @@ extern "C" BlinkLight* blinkLightDtor(BlinkLight* object, s16 flags)
 extern "C" BlinkLight* blinkLightCtor(BlinkLight* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	fn_8003C618(&object->transform);
 
 	object->base.vtable     = blinkLightVtable;

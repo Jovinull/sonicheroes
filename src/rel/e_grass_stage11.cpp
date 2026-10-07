@@ -71,16 +71,16 @@ extern "C" {
 void* __ct__7TObjectFP7TObject(void*, void*);                   /* extern */
 void* __dt__7TObjectFv(void*, s32);                             /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                          /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                   /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                     /* extern */
 u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                        /* extern */
 M2C_UNK fn_8003BC38(M2C_UNK*);                                  /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);      /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                                  /* extern */
-s32 fn_8005B8BC(void*);                                         /* extern */
-s32 fn_8005B8D8(void*);                                         /* extern */
-s32 fn_8005B9F0(void*);                                         /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                                  /* extern */
+s32 CheckMustKill__10TObjSetObjFv(void*);                       /* extern */
+s32 OnEdit__10TObjSetObjFv(void*);                              /* extern */
+s32 CheckRangeOut__10TObjSetObjFv(void*);                       /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                         /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                /* extern */
 M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32); /* extern */
 u32 fn_800BB0D4(s32, s32, M2C_UNK*);                            /* extern */
@@ -455,7 +455,8 @@ void fn_8_C63A0(TObject* arg0)
 	void* temp_r3_4;
 	void* temp_r4;
 
-	if ((fn_8005B9F0((u8*)arg0 + 0x28) != 0) || (fn_8005B8BC((u8*)arg0 + 0x28) != 0)) {
+	if ((CheckRangeOut__10TObjSetObjFv((u8*)arg0 + 0x28) != 0)
+	    || (CheckMustKill__10TObjSetObjFv((u8*)arg0 + 0x28) != 0)) {
 		arg0->unk4 |= 1;
 		return;
 	}
@@ -484,7 +485,7 @@ void fn_8_C63A0(TObject* arg0)
 		var_r27_2 = (TObject*)((u8*)var_r27_2 + 4);
 		var_r31_2 += 1;
 	} while (var_r31_2 < 3);
-	if (fn_8005B8D8((u8*)arg0 + 0x28) != 0) {
+	if (OnEdit__10TObjSetObjFv((u8*)arg0 + 0x28) != 0) {
 		temp_r5     = arg0->unkD8;
 		temp_r3_3   = M2C_FIELD(arg0, void**, 0x28);
 		temp_r4     = M2C_FIELD(temp_r3_3, void**, 0x2C);
@@ -679,7 +680,7 @@ TObject* fn_8_C6B84(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 			var_r27_2 += 1;
 		} while (var_r27_2 < 3);
 		dtor_8003C52C((u8*)arg0 + 0x30, 0);
-		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -707,7 +708,7 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 	void* temp_r5;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
+	__ct__10TObjSetObjFv(&arg0->unk28);
 	fn_8003C618(&arg0->unk30);
 	arg0->unk18 = &lbl_8_data_18A58;
 	arg0->unk2C = (u8*)&lbl_8_data_18A58 + 0x2C;

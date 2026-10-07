@@ -148,7 +148,7 @@ extern "C" void fn_8013BD74(void*);
 extern "C" void flagInit();
 extern "C" void __dl__FPv(void*);
 extern "C" void dtor_8003C52C(void*, s32);
-extern "C" void dtor_8005BD3C(void*, s32);
+extern "C" void __dt__10TObjSetObjFv(void*, s32);
 extern "C" void __dt__7TObjectFv(void*, s32);
 extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" const char* fn_800194C4(void*);
@@ -170,16 +170,16 @@ extern "C" Vec3 lbl_80239990;
 extern "C" void fn_8013D344(void*, void*);
 extern "C" void fn_8013D5C8(void*, f32);
 extern "C" void __ct__7TObjectFP7TObject(void*, TObject*);
-extern "C" void fn_8005BE6C(void*);
+extern "C" void __ct__10TObjSetObjFv(void*);
 extern "C" void fn_8003C618(void*);
 extern "C" void* fn_8005E394(void*, s32);
 extern "C" void fn_8014F854(void*);
 extern "C" void* __nw__FUl(u32);
 extern "C" void fn_8005F50C(void*, void*, s32);
 extern "C" void fn_8003C200(void*, void*, s32, s32);
-extern "C" s32 fn_8005B9F0(void*);
-extern "C" s32 fn_8005B8BC(void*);
-extern "C" s32 fn_8005B8D8(void*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(void*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(void*);
+extern "C" s32 OnEdit__10TObjSetObjFv(void*);
 extern "C" void fn_8003BC38(void*);
 extern "C" void* lbl_8042C180;
 extern "C" void TDisp__7TObjectFv();
@@ -339,7 +339,8 @@ static inline void copyFlagFrame(FlagObject* object)
 
 extern "C" void flagExec(FlagObject* object)
 {
-	if (fn_8005B9F0(&object->frame) || fn_8005B8BC(&object->frame)) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->frame)
+	    || CheckMustKill__10TObjSetObjFv(&object->frame)) {
 		*(u16*)((u8*)object + 4) |= 1;
 		return;
 	}
@@ -347,7 +348,7 @@ extern "C" void flagExec(FlagObject* object)
 		copyFlagFrame(object);
 		return;
 	}
-	if (fn_8005B8D8(&object->frame))
+	if (OnEdit__10TObjSetObjFv(&object->frame))
 		setFlagPosition(object);
 	if (*(f32**)((u8*)object + 0xC8) != NULL && flagAnimationState == NULL) {
 		**(f32**)((u8*)object + 0xC8) += flagAnimationStep;
@@ -357,7 +358,7 @@ extern "C" void flagExec(FlagObject* object)
 		flagAnimationState      = 1;
 		flagPositionInitialized = 0;
 	}
-	if (fn_8005B8D8(&object->frame))
+	if (OnEdit__10TObjSetObjFv(&object->frame))
 		setFlagPosition(object);
 	else
 		copyFlagFrame(object);
@@ -420,7 +421,7 @@ extern "C" FlagObject* flagDtor(FlagObject* object, s16 flags)
 			object->modelBC = NULL;
 		}
 		dtor_8003C52C((u8*)object + 0x30, 0);
-		dtor_8005BD3C(&object->frame, 0);
+		__dt__10TObjSetObjFv(&object->frame, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, object);
@@ -432,7 +433,7 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 {
 	void* collision;
 	__ct__7TObjectFP7TObject(object, parent);
-	fn_8005BE6C(&object->frame);
+	__ct__10TObjSetObjFv(&object->frame);
 	fn_8003C618(object->pad30);
 	object->vtable              = flagVtable;
 	object->motionVtable        = flagVtable + 11;

@@ -36,7 +36,7 @@ extern "C" void* lbl_8042C148;
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void dtor_8003C52C(void* part, s32 flags);
-extern "C" void dtor_8005BD3C(void* motion, s32 flags);
+extern "C" void __dt__10TObjSetObjFv(void* motion, s32 flags);
 extern "C" void fn_80150958(void* model);
 extern "C" void fn_8015BBF8(void* scene, void* model);
 extern "C" void* fn_8015BD78(void* model);
@@ -57,7 +57,7 @@ extern "C" Spring* Destroy__11SpringClassFs(Spring* object, s16 flags)
 		object->model = NULL;
 
 		dtor_8003C52C(&object->unk30, 0);
-		dtor_8005BD3C(&object->unk28, 0);
+		__dt__10TObjSetObjFv(&object->unk28, 0);
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {

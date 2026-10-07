@@ -116,11 +116,11 @@ extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" void* Malloc__9THeapCtrlFUi(THeapCtrl*, u32);
 extern "C" const char* fn_800194C4(void*);
-extern "C" s32 fn_8005B8BC(Motion*);
-extern "C" s32 fn_8005B8D8(Motion*);
-extern "C" s32 fn_8005B9F0(Motion*);
-extern "C" void dtor_8005BD3C(Motion*, s32);
-extern "C" void fn_8005BE6C(Motion*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+extern "C" void __dt__10TObjSetObjFv(Motion*, s32);
+extern "C" void __ct__10TObjSetObjFv(Motion*);
 extern "C" void* fn_800BC6CC(void*, const char*);
 extern "C" RpClump* fn_800BB92C(void*, void*, void*);
 extern "C" void fn_800BC9F4(void*, void*);
@@ -173,10 +173,10 @@ extern "C" void flowerDisp() { }
 
 extern "C" void flowerExec(TObjS01Flower* object)
 {
-	s32 result = fn_8005B9F0(&object->motion);
-	if (result != 0 || fn_8005B8BC(&object->motion) != 0) {
+	s32 result = CheckRangeOut__10TObjSetObjFv(&object->motion);
+	if (result != 0 || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->signal |= 1;
-	} else if (fn_8005B8D8(&object->motion) != 0) {
+	} else if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		setFlowerPosition(object, *(const Vec3*)&flowerZeroConstants[0]);
 	}
 }
@@ -193,7 +193,7 @@ extern "C" TObjS01Flower* flowerDtor(TObjS01Flower* object, s16 flags)
 			fn_80150958(object->clump);
 			object->clump = NULL;
 		}
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, object);
@@ -206,7 +206,7 @@ TObjS01Flower::TObjS01Flower(TObject* parent)
     : TObject(parent)
 {
 	TObjS01Flower* object = this;
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	vtable                = flowerVtable;
 	object->motion.vtable = flowerVtable + 11;
 	FlowerParams& params  = *(FlowerParams*)object->motion.frame->params;
