@@ -1467,7 +1467,7 @@ inferred register-save pseudocode. Scalar square-root intermediates retain
 single-precision store/reload rounding. Existing source forms for the angle
 helpers are retained where they improve native correspondence.
 
-Twenty-three functions currently have exact native instruction bytes. Seven geometry
+Twenty-six functions currently have exact native instruction bytes. Four geometry
 helpers remain nonmatching. Native text is 8,980 bytes including a generated
 helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes),
 but metadata content and relocations still require a complete audit. The 52
@@ -1511,3 +1511,14 @@ square-root sequences remain: sharing `MiscSqrt` here introduced extra branches
 and register moves. The other 23 exact functions remain exact. The full
 supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
 hashes pass for this refinement.
+
+Both `DistanceP2PL` overloads now match their complete 256/312-byte retail
+bodies. An explicit double-precision absolute-value intermediate followed by
+the existing float conversion reproduces the two previously differing `fabs`
+and `frsp` register operands. `GetZYAngleForTheTargetPoint` also matches all
+520 bytes after folding four redundant input-component copies into their
+squared-length expressions. Its explicit square-root sequences remain; the
+shared helper trial changed the instruction sequence. These changes raise the
+native exact count to 26 of 30 without changing whole-unit text size. The
+full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked artifact hashes pass; candidate runtime remains unvalidated.

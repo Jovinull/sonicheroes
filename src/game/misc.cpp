@@ -801,7 +801,8 @@ f32 DistanceP2PL(const RwV3d* arg0, const RwV3d* arg1, RwV3d* arg2)
 		arg2->y   = arg0->y + (arg1->y * temp_f3_2);
 		arg2->z   = arg0->z + (arg1->z * temp_f3_2);
 	}
-	temp_f5 = (f32)__fabs(temp_f7);
+	f64 absolute = __fabs(temp_f7);
+	temp_f5      = (f32)absolute;
 	return temp_f5 / MiscSqrt(var_f0, lbl_8042E008);
 }
 
@@ -821,7 +822,8 @@ f32 DistanceP2PL(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 		arg2->y   = arg0->y + (arg1->v.y * temp_f4_2);
 		arg2->z   = arg0->z + (arg1->v.z * temp_f4_2);
 	}
-	temp_f5 = (f32)__fabs(temp_f3);
+	f64 absolute = __fabs(temp_f3);
+	temp_f5      = (f32)absolute;
 	return temp_f5 * (lbl_8042E00C / MiscSqrt(temp_f0, lbl_8042E008));
 }
 
@@ -935,10 +937,6 @@ void GetZYAngleForTheTargetPoint(const RwV3d* arg0, const RwV3d* arg1, s32* arg2
 {
 	volatile f32 spC;
 	volatile f32 sp8;
-	f32 temp_f0;
-	f32 temp_f0_2;
-	f32 temp_f0_6;
-	f32 temp_f0_7;
 	f32 var_f31;
 	f32 var_f31_2;
 	f64 temp_f0_10;
@@ -947,10 +945,7 @@ void GetZYAngleForTheTargetPoint(const RwV3d* arg0, const RwV3d* arg1, s32* arg2
 	f64 temp_f0_5;
 	f64 temp_f0_8;
 	f64 temp_f0_9;
-
-	temp_f0   = arg0->x;
-	temp_f0_2 = arg0->z;
-	var_f31   = (temp_f0 * temp_f0) + (temp_f0_2 * temp_f0_2);
+	var_f31 = (arg0->x * arg0->x) + (arg0->z * arg0->z);
 	if (var_f31 > lbl_8042E008) {
 		temp_f0_3 = __frsqrte(var_f31);
 		temp_f0_4
@@ -965,9 +960,7 @@ void GetZYAngleForTheTargetPoint(const RwV3d* arg0, const RwV3d* arg1, s32* arg2
 	arg2[1] = (s32)(lbl_8042E030 * (f32)atan2((f64)arg0->x, -arg0->z));
 	arg2[2] = (s32)(lbl_8042E030 * (f32)atan2(-arg0->y, (f64)var_f31));
 	if (arg1 != NULL) {
-		temp_f0_6 = arg1->x;
-		temp_f0_7 = arg1->z;
-		var_f31_2 = (temp_f0_6 * temp_f0_6) + (temp_f0_7 * temp_f0_7);
+		var_f31_2 = (arg1->x * arg1->x) + (arg1->z * arg1->z);
 		if (var_f31_2 > lbl_8042E008) {
 			temp_f0_8 = __frsqrte(var_f31_2);
 			temp_f0_9 = lbl_8042E018 * temp_f0_8
