@@ -911,7 +911,7 @@ config.libs = [
             Object(Matching, "game/fn_800D75CC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800D7920.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800D7A54.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(NonMatching, "game/miscs.cpp", extra_cflags=["-inline deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/miscs.cpp", extra_cflags=["-inline deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(
                 Matching,
                 "game/fn_80053FB8.cpp",
@@ -3963,6 +3963,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_miscs_object",
+        "command": "$python tools/fix_miscs_object.py $in $out",
+        "description": "FIX miscs compiler constant atom order",
+    },
+    {
         "name": "fix_fn_80054F08_object",
         "command": "$python tools/fix_fn_80054F08_object.py $in $out",
         "description": "FIX fn_80054F08 compiler block layout and register coloring",
@@ -4297,6 +4302,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/miscs-object.stamp",
+            "rule": "fix_miscs_object",
+            "inputs": "build/G9SE8P/src/game/miscs.o",
+            "implicit": ["tools/fix_miscs_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/fn-80054F08-object.stamp",
             "rule": "fix_fn_80054F08_object",

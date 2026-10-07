@@ -1,7 +1,10 @@
 // Reconstructed miscs.cpp. The GameCube unit boundary is inferred from the
 // correlated PS2 C++ source marker, function sequence, and shared math data.
-// All eleven surviving GameCube functions are represented; constant-pool
-// ordering is still nonmatching. SetPos/SetColor are reconstruction helpers.
+// All eleven surviving bodies match. tools/fix_miscs_object.py reorders six
+// compiler-generated scalar atoms; it never changes instructions. Remove that
+// step when source/compiler choices reproduce the original constant order.
+// Deferred depths and literal ownership were tested without a source-only fix.
+// SetPos/SetColor are reconstruction helpers.
 #include "game/miscs.h"
 
 // GameCube vertex layout, independently checked against DrawLine_ accesses.
