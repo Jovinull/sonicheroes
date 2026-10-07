@@ -420,6 +420,13 @@ game/SeqFlagCtrl.cpp:
 	.text       start:0x801143E0 end:0x801144E0
 	.bss        start:0x803E75E8 end:0x803E7668
 
+game/material.cpp:
+	extab       start:0x8000AA64 end:0x8000AB24
+	extabindex  start:0x80010B1C end:0x80010C3C
+	.text       start:0x80119588 end:0x80119FE8
+	.sbss       start:0x8042C6A0 end:0x8042C6A8
+	.sdata2     start:0x8042EAA8 end:0x8042EAB0
+
 game/eventCore.cpp:
 	.text       start:0x8011E5A4 end:0x8011E5F0
 	.rodata     start:0x8023AAB0 end:0x8023ACB0
