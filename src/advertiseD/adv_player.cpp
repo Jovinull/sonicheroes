@@ -86,7 +86,7 @@ extern "C" void fn_80194294(s32 id, u32* out);
 extern "C" void fn_80194234(s32 id, s32 val);
 extern "C" void fn_8014FF2C(void*);
 extern "C" s32 GetPattern__7EffWinkCFv(void*);
-extern "C" void fn_800FE464(void*);
+extern "C" void UpdateMotion__11ENEMYMTNMANFv(void*);
 extern "C" void Exec__7EffWinkFv(void*);
 extern "C" void SyncPattern__7EffWinkFP7EffWink(void*, void*);
 extern "C" void SetPatternMax__7EffWinkFi(void*, s32);
@@ -109,8 +109,8 @@ extern "C" void __dt__7TObjectFv(void*, int);
 extern "C" void __destroy_arr(void*, void*, s32, s32);
 extern "C" void __construct_array(void*, void*, void*, s32, s32);
 extern "C" void __dt__7EffWinkFv();
-extern "C" void dtor_800FE334();
-extern "C" void fn_800FE3FC();
+extern "C" void __dt__11ENEMYMTNMANFv();
+extern "C" void __ct__11ENEMYMTNMANFv();
 extern "C" void __ct__7EffWinkFv();
 extern "C" void* memset(void*, int, u32);
 extern "C" s32 fn_8005D9A0(s32, s32);
@@ -214,9 +214,9 @@ extern "C" void fn_1_5E8C(void* t)
 	fn_1_59B0(t);
 	fn_1_5B08(t);
 	v = (u8*)t;
-	fn_800FE464(v + 0x28);
+	UpdateMotion__11ENEMYMTNMANFv(v + 0x28);
 	if (*(u32*)(v + 0xec))
-		fn_800FE464(v + 0x74);
+		UpdateMotion__11ENEMYMTNMANFv(v + 0x74);
 	Exec__7EffWinkFv(v + 0x140);
 	Exec__7EffWinkFv(v + 0x168);
 	SyncPattern__7EffWinkFP7EffWink(v + 0x168, v + 0x140);
@@ -231,7 +231,7 @@ extern "C" void* fn_1_5F1C(void* t, s16 flag)
 		pp(0x18) = lbl_1_data_1BE4;
 		fn_1_5B9C(t);
 		__destroy_arr((u8*)t + 0x140, (void*)__dt__7EffWinkFv, 0x28, 2);
-		__destroy_arr((u8*)t + 0x28, (void*)dtor_800FE334, 0x4c, 2);
+		__destroy_arr((u8*)t + 0x28, (void*)__dt__11ENEMYMTNMANFv, 0x4c, 2);
 		__dt__7TObjectFv(t, 0);
 		if (flag > 0)
 			advE3Rom_pause(t);
@@ -245,7 +245,8 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 {
 	__ct__7TObjectFP7TObject(t, parent);
 	pp(0x18) = lbl_1_data_1BE4;
-	__construct_array((u8*)t + 0x28, (void*)fn_800FE3FC, (void*)dtor_800FE334, 0x4c, 2);
+	__construct_array(
+	    (u8*)t + 0x28, (void*)__ct__11ENEMYMTNMANFv, (void*)__dt__11ENEMYMTNMANFv, 0x4c, 2);
 	__construct_array((u8*)t + 0x140, (void*)__ct__7EffWinkFv, (void*)__dt__7EffWinkFv, 0x28, 2);
 	uw(0)                  = lbl_1_data_11A4[0];
 	*(s16*)((u8*)t + 0x1e) = 0x19c;

@@ -112,8 +112,8 @@ extern "C" const f32 lbl_80239984[];
 extern "C" void __construct_array(void* base, void* ctor, void* dtor, s32 size, s32 count);
 extern "C" void __destroy_arr(void* base, void* dtor, s32 size, s32 count);
 extern "C" void __dt__7TObjectFv(Emblem* emblem, s32 flag);
-extern "C" void dtor_800FE334(void);
-extern "C" void fn_800FE3FC(void);
+extern "C" void __dt__11ENEMYMTNMANFv(void);
+extern "C" void __ct__11ENEMYMTNMANFv(void);
 extern "C" void Error__7TObjectFPc(void);
 extern "C" void __ct__7TObjectFP7TObject(Emblem* emblem);
 extern "C" s32 fn_800A8BF8(void* settings);
@@ -123,7 +123,7 @@ extern "C" void* fn_800BC46C(void* archive, s32 index, void* heap);
 extern "C" void* fn_800BC580(void* archive, s32 index, void* heap);
 extern "C" void fn_800BCBD4(void* archive, s32 flag);
 extern "C" void* fn_800BCC84(void* archive, const char* path, s32 flag);
-extern "C" void* fn_800FE464(Task* task);
+extern "C" void* UpdateMotion__11ENEMYMTNMANFv(Task* task);
 extern "C" void* __nw__FUl(s32 size);
 extern "C" SaveState* fn_80116D2C(void* state);
 extern "C" void fn_80130464(s32 type);
@@ -275,7 +275,7 @@ extern "C" void fn_2_1844(Emblem* emblem)
 	} else {
 		f32 step;
 
-		fn_800FE464(emblem->parts);
+		UpdateMotion__11ENEMYMTNMANFv(emblem->parts);
 		if (emblem->anim[1] != NULL) {
 			step = 0.00833335f;
 			fn_8014FFBC(emblem->anim[1], (void*)fn_80239798, &step);
@@ -300,7 +300,7 @@ extern "C" Emblem* fn_2_1914(Emblem* emblem, s16 free)
 			fn_80150958(emblem->anim[i]);
 		}
 		fn_80130464(1);
-		__destroy_arr(emblem->parts, (void*)dtor_800FE334, 0x4C, 2);
+		__destroy_arr(emblem->parts, (void*)__dt__11ENEMYMTNMANFv, 0x4C, 2);
 		__dt__7TObjectFv(emblem, 0);
 		if (free > 0) {
 			fn_2_13F4(emblem);
@@ -315,7 +315,8 @@ extern "C" Emblem* fn_2_19D0(Emblem* emblem, void* arg)
 
 	__ct__7TObjectFP7TObject(emblem);
 	emblem->vtable = lbl_2_data_244;
-	__construct_array(emblem->parts, (void*)fn_800FE3FC, (void*)dtor_800FE334, 0x4C, 2);
+	__construct_array(
+	    emblem->parts, (void*)__ct__11ENEMYMTNMANFv, (void*)__dt__11ENEMYMTNMANFv, 0x4C, 2);
 	emblem->name  = lbl_2_data_1A4;
 	emblem->unk1E = 0xE0;
 
@@ -339,7 +340,7 @@ extern "C" Emblem* fn_2_19D0(Emblem* emblem, void* arg)
 	fn_2_1EE4(emblem->parts, emblem->anim[0]);
 	fn_2_1EDC(emblem->parts, &lbl_2_data_1B4);
 	fn_2_1ED4(emblem->parts, NULL);
-	fn_800FE464(emblem->parts);
+	UpdateMotion__11ENEMYMTNMANFv(emblem->parts);
 
 	emblem->timer = 0;
 	state         = fn_80116D2C(lbl_803E774C);

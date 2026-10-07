@@ -329,80 +329,82 @@ s32 SetPosition__18TObjEffTornadoSpinFv(void*);                                 
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(void*, void*, s32); /* extern */
 void* __ct__10HAnimClassFv(void*);                                                /* extern */
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
-    void*, void*, void*);                                                        /* extern */
-void* __ct__15sParalysisParamFv(void*);                                          /* extern */
-M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
-void* __dt__10HAnimClassFv(void*, s32);                                          /* extern */
-M2C_UNK __register_global_object(void*, void*, void*);                           /* extern */
-M2C_UNK dtor_800FE334(void*, M2C_UNK);                                           /* extern */
-s32 fn_80017800(void*);                                                          /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                         /* extern */
-TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                            /* extern */
-u32 fn_800207C4(M2C_UNK*, M2C_UNK, M2C_UNK);                                     /* extern */
-u32 fn_800209C8(M2C_UNK*, M2C_UNK);                                              /* extern */
-void* fn_80020D1C(M2C_UNK*);                                                     /* extern */
-M2C_UNK fn_80020EEC(M2C_UNK*);                                                   /* extern */
-void* fn_800210C4(M2C_UNK*);                                                     /* extern */
-void* fn_800211A8(M2C_UNK*);                                                     /* extern */
-M2C_UNK fn_80021824(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_8003BC38(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                       /* extern */
-s32 fn_80041AB0(s32);                                                            /* extern */
-s32 fn_80041B64(s32);                                                            /* extern */
-void** __nw__FUl(M2C_UNK);                                                       /* extern */
-s32 OnEdit__10TObjSetObjFv(void**);                                              /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                                 /* extern */
-s32 fn_8005D9A0(void*, M2C_UNK);                                                 /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                               /* extern */
-M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                             /* extern */
-void* fn_800627BC(M2C_UNK, void*, void*);                                        /* extern */
-M2C_UNK fn_8006298C(M2C_UNK, f32*, s32*);                                        /* extern */
-M2C_UNK fn_800667B4(M2C_UNK*, f32);                                              /* extern */
-s32 fn_8009278C(M2C_UNK, s32);                                                   /* extern */
-s32 fn_800A2B78(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                       /* extern */
-s32 fn_800A2D90(s32);                                                            /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                                                 /* extern */
-s32 fn_800A37A4();                                                               /* extern */
-M2C_UNK fn_800A3CBC(void*);                                                      /* extern */
-M2C_UNK fn_800A3D48(TObject*);                                                   /* extern */
-s32 fn_800A3E10(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                       /* extern */
-s32 fn_800A3ED4(void*);                                                          /* extern */
-M2C_UNK fn_800A4630(TObjEffTornadoSpin*, s32);                                   /* extern */
-M2C_UNK fn_800A4668(void*);                                                      /* extern */
-M2C_UNK fn_800A4A8C(void*, M2C_UNK*, f32);                                       /* extern */
-s32 fn_800A5888(void*, M2C_UNK*, f32);                                           /* extern */
-s32 fn_800A5998(void*);                                                          /* extern */
-s32 fn_800A5A54(void*);                                                          /* extern */
-f32 fn_800A5AC0();                                                               /* extern */
-M2C_UNK fn_800A5B34(TObject*);                                                   /* extern */
-M2C_UNK fn_800A5B50(void*, M2C_UNK);                                             /* extern */
-M2C_UNK fn_800A5C6C(void*, M2C_UNK);                                             /* extern */
-s32 fn_800A6334(void*);                                                          /* extern */
-M2C_UNK fn_800A7088(void*, M2C_UNK);                                             /* extern */
-M2C_UNK fn_800A714C();                                                           /* extern */
-s32 fn_800AAFEC(M2C_UNK*, s32*);                                                 /* extern */
-s32 fn_800AB104(s32);                                                            /* extern */
-M2C_UNK fn_800B4A38(u32, M2C_UNK, s32*, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK);     /* extern */
-M2C_UNK fn_800B7514(void*, void*, f32*, f32);                                    /* extern */
-M2C_UNK fn_800B7820();                                                           /* extern */
-M2C_UNK fn_800B7864(M2C_UNK);                                                    /* extern */
-f32 fn_800D71DC(s32, s32);                                                       /* extern */
-f32 fn_800D7218(void*, void*);                                                   /* extern */
-s32 fn_800D7920(f32*, f32*, M2C_UNK*);                                           /* extern */
-s32 fn_800D7A94(s32, s32, s32);                                                  /* extern */
-f32 fn_800D7AE4(s32);                                                            /* extern */
-f32 fn_800D7B00(s32);                                                            /* extern */
-f32 fn_800D8BC4(void*, s32*, M2C_UNK);                                           /* extern */
-void** fn_800FD8A0(TObject*, s32);                                               /* extern */
-M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                          /* extern */
-M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                          /* extern */
-void** fn_800FE3FC(void*);                                                       /* extern */
-M2C_UNK fn_800FE464(void**);                                                     /* extern */
+    void*, void*, void*);                                                    /* extern */
+void* __ct__15sParalysisParamFv(void*);                                      /* extern */
+M2C_UNK __dl__FPv(void* arg0);                                               /* extern */
+void* __dt__10HAnimClassFv(void*, s32);                                      /* extern */
+M2C_UNK __register_global_object(void*, void*, void*);                       /* extern */
+M2C_UNK __dt__11ENEMYMTNMANFv(void*, M2C_UNK);                               /* extern */
+s32 fn_80017800(void*);                                                      /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                     /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                        /* extern */
+u32 fn_800207C4(M2C_UNK*, M2C_UNK, M2C_UNK);                                 /* extern */
+u32 fn_800209C8(M2C_UNK*, M2C_UNK);                                          /* extern */
+void* fn_80020D1C(M2C_UNK*);                                                 /* extern */
+M2C_UNK fn_80020EEC(M2C_UNK*);                                               /* extern */
+void* fn_800210C4(M2C_UNK*);                                                 /* extern */
+void* fn_800211A8(M2C_UNK*);                                                 /* extern */
+M2C_UNK fn_80021824(M2C_UNK*);                                               /* extern */
+M2C_UNK fn_8003BC38(M2C_UNK*);                                               /* extern */
+M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                   /* extern */
+s32 fn_80041AB0(s32);                                                        /* extern */
+s32 fn_80041B64(s32);                                                        /* extern */
+void** __nw__FUl(M2C_UNK);                                                   /* extern */
+s32 OnEdit__10TObjSetObjFv(void**);                                          /* extern */
+M2C_UNK fn_8005D5C8(void*, s32);                                             /* extern */
+s32 fn_8005D9A0(void*, M2C_UNK);                                             /* extern */
+M2C_UNK fn_8005E00C(u32, M2C_UNK);                                           /* extern */
+M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                         /* extern */
+void* fn_800627BC(M2C_UNK, void*, void*);                                    /* extern */
+M2C_UNK fn_8006298C(M2C_UNK, f32*, s32*);                                    /* extern */
+M2C_UNK fn_800667B4(M2C_UNK*, f32);                                          /* extern */
+s32 fn_8009278C(M2C_UNK, s32);                                               /* extern */
+s32 fn_800A2B78(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                   /* extern */
+s32 fn_800A2D90(s32);                                                        /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                             /* extern */
+s32 fn_800A37A4();                                                           /* extern */
+M2C_UNK fn_800A3CBC(void*);                                                  /* extern */
+M2C_UNK fn_800A3D48(TObject*);                                               /* extern */
+s32 fn_800A3E10(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                   /* extern */
+s32 fn_800A3ED4(void*);                                                      /* extern */
+M2C_UNK fn_800A4630(TObjEffTornadoSpin*, s32);                               /* extern */
+M2C_UNK fn_800A4668(void*);                                                  /* extern */
+M2C_UNK fn_800A4A8C(void*, M2C_UNK*, f32);                                   /* extern */
+s32 fn_800A5888(void*, M2C_UNK*, f32);                                       /* extern */
+s32 fn_800A5998(void*);                                                      /* extern */
+s32 fn_800A5A54(void*);                                                      /* extern */
+f32 fn_800A5AC0();                                                           /* extern */
+M2C_UNK fn_800A5B34(TObject*);                                               /* extern */
+M2C_UNK fn_800A5B50(void*, M2C_UNK);                                         /* extern */
+M2C_UNK fn_800A5C6C(void*, M2C_UNK);                                         /* extern */
+s32 fn_800A6334(void*);                                                      /* extern */
+M2C_UNK fn_800A7088(void*, M2C_UNK);                                         /* extern */
+M2C_UNK fn_800A714C();                                                       /* extern */
+s32 fn_800AAFEC(M2C_UNK*, s32*);                                             /* extern */
+s32 fn_800AB104(s32);                                                        /* extern */
+M2C_UNK fn_800B4A38(u32, M2C_UNK, s32*, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK fn_800B7514(void*, void*, f32*, f32);                                /* extern */
+M2C_UNK fn_800B7820();                                                       /* extern */
+M2C_UNK fn_800B7864(M2C_UNK);                                                /* extern */
+f32 fn_800D71DC(s32, s32);                                                   /* extern */
+f32 fn_800D7218(void*, void*);                                               /* extern */
+s32 fn_800D7920(f32*, f32*, M2C_UNK*);                                       /* extern */
+s32 fn_800D7A94(s32, s32, s32);                                              /* extern */
+f32 fn_800D7AE4(s32);                                                        /* extern */
+f32 fn_800D7B00(s32);                                                        /* extern */
+f32 fn_800D8BC4(void*, s32*, M2C_UNK);                                       /* extern */
+void** fn_800FD8A0(TObject*, s32);                                           /* extern */
+M2C_UNK ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*); /* extern */
+M2C_UNK LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*);                                                          /* extern */
+void** __ct__11ENEMYMTNMANFv(void*);                                             /* extern */
+M2C_UNK UpdateMotion__11ENEMYMTNMANFv(void**);                                   /* extern */
 u32 fn_80100328(u32, M2C_UNK, M2C_UNK);                                          /* extern */
 u32 fn_8010037C(u32, M2C_UNK, M2C_UNK);                                          /* extern */
 M2C_UNK fn_801007F4(u32, M2C_UNK);                                               /* extern */
 M2C_UNK fn_8010096C(u32, M2C_UNK, M2C_UNK*);                                     /* extern */
-M2C_UNK fn_80100AAC();                                                           /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv();                                              /* extern */
 M2C_UNK fn_80102C50(s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32); /* extern */
 s32 fn_801031D8(s32);                                                            /* extern */
 s32 fn_80103324(void*, M2C_UNK*, f32);                                           /* extern */
@@ -469,7 +471,7 @@ extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
 extern s32 lbl_8042C2A0;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern u32 lbl_8042C6D0;
 extern s32* lbl_8042C9A4;
 /* forward declarations for the dispatch tables below */
@@ -1334,10 +1336,10 @@ void fn_8_BE978(void* arg0)
 				fn_800B4A38(lbl_8042C388, 0xE017, (s32*)&sp20, 0, 1, 2, 0);
 			}
 			fn_8006298C(0xF, &sp20.x, &sp14.x);
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			if (fn_8010037C(lbl_8042C590, 0, 5) != 0U) {
+			if (fn_8010037C(mpDataBase__14TEnemyDataBase, 0, 5) != 0U) {
 				sp8  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 0);
 				spC  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 4);
 				sp10 = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 8);
@@ -1922,7 +1924,7 @@ void fn_8_BFA30(TObject* arg0)
 		}
 	}
 	if (((s32)arg0->unk2C4 != 0) && ((s32)arg0->unk24C != -1)) {
-		fn_800FE464(arg0->unk250);
+		UpdateMotion__11ENEMYMTNMANFv(arg0->unk250);
 	}
 	if ((fn_80017800(arg0) != 0) && ((u32)arg0->unk38 != 0U)) {
 		arg0->unkA4 = arg0->unk88;
@@ -3042,7 +3044,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, void***, 0x240) = NULL;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x250) != 0U) {
-			dtor_800FE334((void*)M2C_FIELD(arg0, u32*, 0x250), 1);
+			__dt__11ENEMYMTNMANFv((void*)M2C_FIELD(arg0, u32*, 0x250), 1);
 			M2C_FIELD(arg0, u32*, 0x250) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0xE8) != 0U) {
@@ -3116,14 +3118,14 @@ TObject* fn_8_C2018(TObject* arg0)
 	arg0->unkE8 = fn_80150588(lbl_8_bss_1B78);
 	var_r0      = __nw__FUl(0x4C);
 	if (var_r0 != NULL) {
-		var_r0 = fn_800FE3FC((void*)var_r0);
+		var_r0 = __ct__11ENEMYMTNMANFv((void*)var_r0);
 	}
 	arg0->unk250 = var_r0;
 	fn_8005D5C8(arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	arg0->unkE4  = (M2C_UNK*)lbl_8_data_17CD8;
 	arg0->unkD4  = 0;
 	arg0->unk2E4 = 0;
-	fn_800FE464((void**)&arg0->unkB8);
+	UpdateMotion__11ENEMYMTNMANFv((void**)&arg0->unkB8);
 	fn_8_C14B4(arg0);
 	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
 		fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_17E34, 2, 3);
@@ -3258,37 +3260,41 @@ void turtleObjectUnload(void)
 		lbl_8_bss_1B9C                     = NULL;
 	}
 	fn_80113A68(turtleObjectGlobalA);
-	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17DC8);
-	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17CD8);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17DC8);
+	ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17CD8);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 4);
+	fn_801007F4(mpDataBase__14TEnemyDataBase, 4);
 }
 
 void turtleObjectLoad(void)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 4, (M2C_UNK*)lbl_8_data_180F4);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	fn_8010096C(mpDataBase__14TEnemyDataBase, 4, (M2C_UNK*)lbl_8_data_180F4);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 4, 5);
+	temp_r3 = fn_80100328(mpDataBase__14TEnemyDataBase, 4, 5);
 	if (temp_r3 != 0U) {
 		fn_8005E00C(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	lbl_8_bss_1B78 = fn_8010037C(lbl_8042C590, 4, 4);
-	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17CD8);
-	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17DC8);
+	lbl_8_bss_1B78 = fn_8010037C(mpDataBase__14TEnemyDataBase, 4, 4);
+	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17CD8);
+	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17DC8);
 	fn_80113AA8(turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);
 	lbl_8_bss_1B9C = fn_80139984(0, 0x402D, 4);
 }

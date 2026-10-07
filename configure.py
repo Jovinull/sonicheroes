@@ -566,6 +566,7 @@ config.libs = [
         "cflags": cflags_base,
         "progress_category": "game",
         "objects": [
+            Object(Matching, "game/enemy/e_motion.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
@@ -4056,6 +4057,11 @@ config.custom_build_rules = [
         "description": "FIX ef_sparkle compiler-owned atom order",
     },
     {
+        "name": "fix_e_motion_registers",
+        "command": "$python tools/fix_e_motion_registers.py $in $out",
+        "description": "FIX enemy motion captured-request register allocation",
+    },
+    {
         "name": "fix_c_colli_react_object",
         "command": "$python tools/fix_c_colli_react_object.py $in $out",
         "description": "FIX collision reactor weak inline atom order",
@@ -4312,6 +4318,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/e-motion-registers.stamp",
+            "rule": "fix_e_motion_registers",
+            "inputs": "build/G9SE8P/src/game/enemy/e_motion.o",
+            "implicit": ["tools/fix_e_motion_registers.py"],
+        },
         {
             "outputs": "build/G9SE8P/c-colli-react-object.stamp",
             "rule": "fix_c_colli_react_object",
