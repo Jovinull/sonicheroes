@@ -278,9 +278,7 @@ f32 DistanceL2L(const NJS_LINE* l1, const NJS_LINE* l2, RwV3d* p1, RwV3d* p2)
 	f32 temp_f1_2;
 	f32 temp_f1_3;
 	f32 temp_f1_4;
-	f32 temp_f1_5;
 	f32 temp_f1_6;
-	f32 temp_f2_5;
 	f32 temp_f3_4;
 	f32 temp_f4;
 	f32 temp_f4_2;
@@ -408,20 +406,19 @@ f32 DistanceL2L(const NJS_LINE* l1, const NJS_LINE* l2, RwV3d* p1, RwV3d* p2)
 	DistancePL2PL(&pl1, &pl2, &tl);
 	temp_f7_3 = l1->v.x;
 	p.y       = -tl.v.y;
-	temp_f1_5 = l1->v.y;
+	temp_f3_4 = temp_f7_3 * p.y;
 	p.x       = -tl.v.x;
-	temp_f3_4 = (temp_f7_3 * p.y) - (temp_f1_5 * p.x);
+	temp_f3_4 -= l1->v.y * p.x;
 	if ((f32)__fabs(temp_f3_4) > lbl_8042E028) {
 		u = ((p.y * (tl.p.x - l1->p.x)) - (p.x * (tl.p.y - l1->p.y))) / temp_f3_4;
 	} else {
 		p.z       = -tl.v.z;
-		temp_f2_5 = l1->v.z;
-		temp_f8_3 = (temp_f1_5 * p.z) - (temp_f2_5 * p.y);
+		temp_f8_3 = (l1->v.y * p.z) - (l1->v.z * p.y);
 		if ((f32)__fabs(temp_f8_3) > lbl_8042E028) {
 			u = ((p.z * (tl.p.y - l1->p.y)) - (p.y * (tl.p.z - l1->p.z))) / temp_f8_3;
 		} else {
 			u = ((p.z * (tl.p.x - l1->p.x)) - (p.x * (tl.p.z - l1->p.z)))
-			    / ((temp_f7_3 * p.z) - (temp_f2_5 * p.x));
+			    / ((temp_f7_3 * p.z) - (l1->v.z * p.x));
 		}
 	}
 	tp1.x     = l1->p.x + (l1->v.x * u);

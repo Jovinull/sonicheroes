@@ -1653,3 +1653,11 @@ offsets and targets. All 26 exact functions remain exact. Full supported
 G9SE8P build/report, 55 tests, both policies, object audit and 18 original-linked
 hashes pass. The alias correction is established from load/store order; no
 candidate runtime or hardware validation is claimed.
+
+The line-to-line determinant path now reads two direction components at their
+uses and evaluates the first determinant product before loading the negated
+X component. This follows the retail sequence without changing the products
+or subtraction. Native correspondence improves to 97.04%, retaining the exact
+1,912-byte size and relocation layout. All 26 exact functions remain exact;
+full supported G9SE8P build/report, 55 tests, both policies, object audit and
+18 original-linked hashes pass.
