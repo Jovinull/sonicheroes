@@ -43,7 +43,7 @@ float fn_800D7AE4(int);
 void fn_80195790(void*, char*, float, float, int);
 void fn_8019EB94(void*, void*, int);
 void fn_8003BF04(void*, char*, int, int);
-float fn_800D8BC4(void*, int*, int);
+float GetShadowPos__FP5RwV3dP6sAnglei(void*, int*, int);
 void fn_8005D5C8(void*, int);
 void* fn_8005E1DC(void*, int, char*);
 int* fn_8005F490();
@@ -143,7 +143,7 @@ extern "C" Signal* signalCtor(Signal* self, void* parent)
 	self->fieldE8 = lbl_8_rodata_BA8;
 	if ((self->placement->flags & 0x20000) != 0) {
 		int result[3];
-		self->fieldE8 = fn_800D8BC4(self->position, result, 1);
+		self->fieldE8 = GetShadowPos__FP5RwV3dP6sAnglei(self->position, result, 1);
 		if (self->fieldE8 != lbl_8_rodata_BA8) {
 			self->fieldE4 = self->position[0];
 			self->fieldE8 += lbl_8_rodata_BC4;

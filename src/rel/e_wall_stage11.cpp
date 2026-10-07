@@ -412,7 +412,7 @@ f32 fn_800D71DC(void*, s32);                                                    
 f32 fn_800D7218(f32*, M2C_UNK*);                                                 /* extern */
 s32 fn_800D7A94(s32, s32, s32);                                                  /* extern */
 f32 fn_800D7B00(u32);                                                            /* extern */
-f32 fn_800D8BC4(f32*, s32*, M2C_UNK);                                            /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(f32*, s32*, M2C_UNK);                        /* extern */
 void** fn_800FD8A0(TObject*, s32);                                               /* extern */
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                          /* extern */
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                          /* extern */
@@ -1903,7 +1903,7 @@ TObject* fn_8_B8FD0(TObject* arg0, TObject* arg1, void* arg2)
 	arg0->unkF4                         = temp_f0;
 	arg0->unkF0                         = temp_f0;
 	arg0->unkE4                         = lbl_8_rodata_1D5C;
-	arg0->unkC8                         = fn_800D8BC4(&arg0->unkB0, &sp8, 1);
+	arg0->unkC8                         = GetShadowPos__FP5RwV3dP6sAnglei(&arg0->unkB0, &sp8, 1);
 	arg0->unkE0                         = fn_80150588(lbl_8_bss_1AC8[2]);
 	fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_17994, 1, 3);
 	arg0->unk88 = arg0->unkB0;
@@ -1957,7 +1957,7 @@ static inline TObject* wallCreateObject(void* arg0)
 		temp_r3->unkF4                 = temp_f1;
 		temp_r3->unkF0                 = temp_f1;
 		temp_r3->unkE4                 = lbl_8_rodata_1D5C;
-		temp_r3->unkC8                 = fn_800D8BC4(&temp_r3->unkB0, &sp8, 1);
+		temp_r3->unkC8                 = GetShadowPos__FP5RwV3dP6sAnglei(&temp_r3->unkB0, &sp8, 1);
 		temp_r3->unkE0                 = fn_80150588(lbl_8_bss_1AC8[2]);
 		fn_8003C200(&temp_r3->unk28, (M2C_UNK*)lbl_8_data_17994, 1, 3);
 		temp_r3->unk88 = temp_r3->unkB0;
@@ -2839,7 +2839,7 @@ void fn_8_BAF00(TObject* arg0, s32 arg1)
 					sp8[0]    = M2C_FIELD(temp_r3_2, f32*, 0x30);
 					sp8[1]    = M2C_FIELD(temp_r3_2, f32*, 0x34);
 					sp8[2]    = M2C_FIELD(temp_r3_2, f32*, 0x38);
-					sp8[1]    = fn_800D8BC4(sp8, NULL, 1);
+					sp8[1]    = GetShadowPos__FP5RwV3dP6sAnglei(sp8, NULL, 1);
 					fn_8011B418(sp8);
 					arg0->unk274 = 2;
 				}
@@ -3559,7 +3559,7 @@ void fn_8_BC2CC(TObject* arg0)
 			arg0->unk300 = arg0->unk120;
 			arg0->unk2D8 = lbl_8_rodata_1DE8 + arg0->unk144;
 		} else {
-			temp_f1      = fn_800D8BC4((f32*)((u8*)((u32)arg0 + 0x140)), &sp8, 1);
+			temp_f1 = GetShadowPos__FP5RwV3dP6sAnglei((f32*)((u8*)((u32)arg0 + 0x140)), &sp8, 1);
 			arg0->unk2D8 = temp_f1;
 			if (lbl_8_rodata_1DEC != temp_f1) {
 				arg0->unk2D4 = arg0->unk140;

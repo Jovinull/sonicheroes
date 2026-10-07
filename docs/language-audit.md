@@ -1445,3 +1445,10 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## vertical_colli.cpp
+
+Local symbolic metadata identifies the whole three-function vertical collision
+unit as C++. GameCube call ABI, POLYDATA fields, and callback references
+corroborate it. The reconstruction uses C++ and canonical mangled symbols.
+See [the unit evidence](vertical-colli-unit-evidence.md).

@@ -392,7 +392,7 @@ s32 fn_800D7920(f32*, f32*, M2C_UNK*);                                          
 s32 fn_800D7A94(s32, s32, s32);                                                  /* extern */
 f32 fn_800D7AE4(s32);                                                            /* extern */
 f32 fn_800D7B00(s32);                                                            /* extern */
-f32 fn_800D8BC4(void*, s32*, M2C_UNK);                                           /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, s32*, M2C_UNK);                       /* extern */
 void** fn_800FD8A0(TObject*, s32);                                               /* extern */
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                          /* extern */
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                          /* extern */
@@ -2858,7 +2858,7 @@ void fn_8_C14B4(TObject* arg0)
 			arg0->unk30C = arg0->unk120;
 			arg0->unk2FC = lbl_8_rodata_1ED0[0] + arg0->unk144;
 		} else {
-			temp_f1      = fn_800D8BC4((f32*)((u8*)arg0 + 0x140), &sp8, 1);
+			temp_f1      = GetShadowPos__FP5RwV3dP6sAnglei((f32*)((u8*)arg0 + 0x140), &sp8, 1);
 			arg0->unk2FC = temp_f1;
 			if (temp_f1 != lbl_8_rodata_1EAC[0]) {
 				arg0->unk2F8 = arg0->unk140;

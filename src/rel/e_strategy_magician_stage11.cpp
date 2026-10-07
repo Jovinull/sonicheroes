@@ -168,70 +168,70 @@ public:
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(void*, void*);             /* extern */
-s32 fn_80017800(void*);                                   /* extern */
-TObject* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);         /* extern */
-M2C_UNK fn_8003BC38(void*);                               /* extern */
-M2C_UNK fn_8005DABC(s32, s32*);                           /* extern */
-M2C_UNK fn_8005FD20(void*);                               /* extern */
-M2C_UNK fn_8005FD8C(void*, M2C_UNK);                      /* extern */
-void* fn_8006298C(s32, f32*, s32*);                       /* extern */
-M2C_UNK fn_80066D20(s32*, s32);                           /* extern */
-s32 fn_800A34D0(void*, void*, f32);                       /* extern */
-s32 fn_800A3D48(void*);                                   /* extern */
-s32 fn_800A4668(void*);                                   /* extern */
-M2C_UNK fn_800A4A8C(void*, f32);                          /* extern */
-s32 fn_800A5888(void*, void*, f32);                       /* extern */
-s32 fn_800A5A54();                                        /* extern */
-f32 fn_800A5AC0(...);                                     /* extern */
-s32 fn_800A5B34(void*);                                   /* extern */
-s32 fn_800A5B50(void*, s32);                              /* extern */
-s32 fn_800A5C6C(void*, s32);                              /* extern */
-s32 fn_800A6334(void*);                                   /* extern */
-s32 fn_800AB104(s32);                                     /* extern */
-M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32); /* extern */
-s32 fn_800B7514(void*, void*, void*, f32);                /* extern */
-s32 fn_800B7820(void);                                    /* extern */
-s32 fn_800B7864(s32);                                     /* extern */
-f32 fn_800D71DC(s32*, s32*);                              /* extern */
-f32 fn_800D7328(s32, f32, f32, f32);                      /* extern */
-s32 fn_800D7A94(s32, s32, s32);                           /* extern */
-f32 fn_800D7B00(s32);                                     /* extern */
-f32 fn_800D8BC4(s32*, s32*, s32, f32);                    /* extern */
-M2C_UNK fn_800E1208(s32, s32, s32);                       /* extern */
-s32 fn_80100BF8(s32);                                     /* extern */
-M2C_UNK fn_80100CFC(s8*);                                 /* extern */
-M2C_UNK fn_80103214(void*, void*, s32, s32);              /* extern */
-s32 fn_80103324(void*, void*, f32);                       /* extern */
-s32 fn_8010AFB0(u32);                                     /* extern */
-M2C_UNK fn_8010AFF8(void*, s32);                          /* extern */
-s32 fn_8010B074(void*);                                   /* extern */
-s32 fn_8010B0AC(u32, f32, f32, s32);                      /* extern */
-M2C_UNK fn_8010B208(...);                                 /* extern */
-s32 fn_8010B350(u32, void*, void*);                       /* extern */
-M2C_UNK fn_80113874(...);                                 /* extern */
-M2C_UNK fn_801138B4();                                    /* extern */
-M2C_UNK fn_801138F4();                                    /* extern */
-M2C_UNK fn_80113940();                                    /* extern */
-M2C_UNK fn_8011B844(u32, f32*, f32);                      /* extern */
-s32 fn_8011C188(s32, s32);                                /* extern */
-M2C_UNK fn_8011C6EC();                                    /* extern */
-s32 fn_80130B40(s32);                                     /* extern */
-s32 fn_80137FE8(void*);                                   /* extern */
-M2C_UNK fn_8014FF2C(M2C_UNK);                             /* extern */
-M2C_UNK fn_8014FFBC(s32, s32*, s32*);                     /* extern */
-void* fn_80150588();                                      /* extern */
-void fn_801990E0(void* dst, void* src);                   /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, s32, void*);              /* extern */
-void* fn_8019E8EC(...);                                   /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                  /* extern */
-M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                  /* extern */
-M2C_UNK fn_8019ED68(s32, s32*, f32, s32);                 /* extern */
-s32 rand(...);                                            /* extern */
-s32 fn_8_90B10(s32);                                      /* extern */
-M2C_UNK fn_8_A504(...);                                   /* extern */
-void fn_8_AE604(void*);                                   /* extern */
-M2C_UNK fn_8_AEB80();                                     /* extern */
+void* __ct__7TObjectFP7TObject(void*, void*);              /* extern */
+s32 fn_80017800(void*);                                    /* extern */
+TObject* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);          /* extern */
+M2C_UNK fn_8003BC38(void*);                                /* extern */
+M2C_UNK fn_8005DABC(s32, s32*);                            /* extern */
+M2C_UNK fn_8005FD20(void*);                                /* extern */
+M2C_UNK fn_8005FD8C(void*, M2C_UNK);                       /* extern */
+void* fn_8006298C(s32, f32*, s32*);                        /* extern */
+M2C_UNK fn_80066D20(s32*, s32);                            /* extern */
+s32 fn_800A34D0(void*, void*, f32);                        /* extern */
+s32 fn_800A3D48(void*);                                    /* extern */
+s32 fn_800A4668(void*);                                    /* extern */
+M2C_UNK fn_800A4A8C(void*, f32);                           /* extern */
+s32 fn_800A5888(void*, void*, f32);                        /* extern */
+s32 fn_800A5A54();                                         /* extern */
+f32 fn_800A5AC0(...);                                      /* extern */
+s32 fn_800A5B34(void*);                                    /* extern */
+s32 fn_800A5B50(void*, s32);                               /* extern */
+s32 fn_800A5C6C(void*, s32);                               /* extern */
+s32 fn_800A6334(void*);                                    /* extern */
+s32 fn_800AB104(s32);                                      /* extern */
+M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32);  /* extern */
+s32 fn_800B7514(void*, void*, void*, f32);                 /* extern */
+s32 fn_800B7820(void);                                     /* extern */
+s32 fn_800B7864(s32);                                      /* extern */
+f32 fn_800D71DC(s32*, s32*);                               /* extern */
+f32 fn_800D7328(s32, f32, f32, f32);                       /* extern */
+s32 fn_800D7A94(s32, s32, s32);                            /* extern */
+f32 fn_800D7B00(s32);                                      /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(s32*, s32*, s32, f32); /* extern */
+M2C_UNK fn_800E1208(s32, s32, s32);                        /* extern */
+s32 fn_80100BF8(s32);                                      /* extern */
+M2C_UNK fn_80100CFC(s8*);                                  /* extern */
+M2C_UNK fn_80103214(void*, void*, s32, s32);               /* extern */
+s32 fn_80103324(void*, void*, f32);                        /* extern */
+s32 fn_8010AFB0(u32);                                      /* extern */
+M2C_UNK fn_8010AFF8(void*, s32);                           /* extern */
+s32 fn_8010B074(void*);                                    /* extern */
+s32 fn_8010B0AC(u32, f32, f32, s32);                       /* extern */
+M2C_UNK fn_8010B208(...);                                  /* extern */
+s32 fn_8010B350(u32, void*, void*);                        /* extern */
+M2C_UNK fn_80113874(...);                                  /* extern */
+M2C_UNK fn_801138B4();                                     /* extern */
+M2C_UNK fn_801138F4();                                     /* extern */
+M2C_UNK fn_80113940();                                     /* extern */
+M2C_UNK fn_8011B844(u32, f32*, f32);                       /* extern */
+s32 fn_8011C188(s32, s32);                                 /* extern */
+M2C_UNK fn_8011C6EC();                                     /* extern */
+s32 fn_80130B40(s32);                                      /* extern */
+s32 fn_80137FE8(void*);                                    /* extern */
+M2C_UNK fn_8014FF2C(M2C_UNK);                              /* extern */
+M2C_UNK fn_8014FFBC(s32, s32*, s32*);                      /* extern */
+void* fn_80150588();                                       /* extern */
+void fn_801990E0(void* dst, void* src);                    /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, s32, void*);               /* extern */
+void* fn_8019E8EC(...);                                    /* extern */
+M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                   /* extern */
+M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                   /* extern */
+M2C_UNK fn_8019ED68(s32, s32*, f32, s32);                  /* extern */
+s32 rand(...);                                             /* extern */
+s32 fn_8_90B10(s32);                                       /* extern */
+M2C_UNK fn_8_A504(...);                                    /* extern */
+void fn_8_AE604(void*);                                    /* extern */
+M2C_UNK fn_8_AEB80();                                      /* extern */
 extern M2C_UNK fn_8005BF88;
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_802AD070;
@@ -1048,7 +1048,7 @@ void fn_8_AC440(TObject* arg0, s32 arg1)
 			fn_80103214((void*)&arg0->unk140, (void*)&arg0->unk2C4, (int)lbl_8_rodata_1B14, 1e8f);
 			temp_f1      = arg0->unk2C8;
 			arg0->unk2C8 = temp_f1 + 100.0f;
-			arg0->unk2C8 = fn_800D8BC4(&arg0->unk2C4, &sp8, 1, temp_f1);
+			arg0->unk2C8 = GetShadowPos__FP5RwV3dP6sAnglei(&arg0->unk2C4, &sp8, 1, temp_f1);
 			if ((u32)arg0->unk2DC != 0U) {
 				temp_r3      = fn_8019E8EC();
 				arg0->unk338 = M2C_FIELD(temp_r3, f32*, 0x30);
