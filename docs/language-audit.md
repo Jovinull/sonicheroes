@@ -1544,3 +1544,11 @@ changes remove an extra saved floating-point register and bring whole-unit
 native text to 8,964 bytes. All 26 exact functions remain exact. The full
 supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
 hashes pass; the unit remains nonmatching and candidate runtime unvalidated.
+
+The parallel-plane branch now evaluates its plane offset before the normal's
+squared length, matching retail load/arithmetic order. This brings the
+line-based plane intersection to 84.12%, retaining its exact 1,204-byte size.
+The determinant and three plane offsets also receive descriptive local names.
+Broader normal-cache removal introduced additional loads and was reverted.
+All 26 exact functions remain exact; full supported G9SE8P build/report,
+55 tests, both policies and 18 original-linked hashes pass.

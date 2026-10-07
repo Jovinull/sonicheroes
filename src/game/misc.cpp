@@ -553,11 +553,11 @@ f32 DistancePL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, NJS_LINE* arg2)
 	f32 temp_f0_4;
 	f32 temp_f0_8;
 	f32 temp_f1_10;
-	f32 temp_f27;
-	f32 temp_f28;
-	f32 temp_f29;
+	f32 inverseDeterminant;
+	f32 intersectionPlaneOffset;
+	f32 secondPlaneOffset;
 	f32 temp_f2_2;
-	f32 temp_f30;
+	f32 firstPlaneOffset;
 	f32 temp_f3_2;
 	f32 temp_f4;
 	f32 temp_f4_2;
@@ -612,10 +612,11 @@ f32 DistancePL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, NJS_LINE* arg2)
 			arg2->v.y = lbl_8042E008;
 			arg2->v.z = lbl_8042E008;
 		}
-		var_f5  = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
+
 		temp_f4 = (f32)__fabs(
 		    -((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
 		    + ((arg1->v.z * arg0->p.z) + ((arg1->v.x * arg0->p.x) + (arg1->v.y * arg0->p.y))));
+		var_f5 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
 		if (var_f5 > lbl_8042E008) {
 			temp_f0_5 = __frsqrte(var_f5);
 			temp_f0_6 = lbl_8042E018 * temp_f0_5
@@ -636,17 +637,20 @@ f32 DistancePL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, NJS_LINE* arg2)
 		temp_f7_3  = arg0->v.z;
 		temp_f4_2  = arg0->v.x;
 		temp_f1_10 = arg0->v.y;
-		temp_f30   = (temp_f7_3 * arg0->p.z) + ((temp_f4_2 * arg0->p.x) + (temp_f1_10 * arg0->p.y));
-		temp_f0_8  = arg1->v.z;
-		temp_f8_2  = arg1->v.x;
-		temp_f3_2  = arg1->v.y;
-		temp_f29   = (temp_f0_8 * arg1->p.z) + ((temp_f8_2 * arg1->p.x) + (temp_f3_2 * arg1->p.y));
-		temp_f5    = arg2->v.z;
-		temp_f2_2  = arg2->v.x;
-		temp_f6_2  = arg2->v.y;
-		temp_f28   = (temp_f5 * arg1->p.z) + ((temp_f2_2 * arg1->p.x) + (temp_f6_2 * arg1->p.y));
+		firstPlaneOffset
+		    = (temp_f7_3 * arg0->p.z) + ((temp_f4_2 * arg0->p.x) + (temp_f1_10 * arg0->p.y));
+		temp_f0_8 = arg1->v.z;
+		temp_f8_2 = arg1->v.x;
+		temp_f3_2 = arg1->v.y;
+		secondPlaneOffset
+		    = (temp_f0_8 * arg1->p.z) + ((temp_f8_2 * arg1->p.x) + (temp_f3_2 * arg1->p.y));
+		temp_f5   = arg2->v.z;
+		temp_f2_2 = arg2->v.x;
+		temp_f6_2 = arg2->v.y;
+		intersectionPlaneOffset
+		    = (temp_f5 * arg1->p.z) + ((temp_f2_2 * arg1->p.x) + (temp_f6_2 * arg1->p.y));
 
-		temp_f27 = lbl_8042E00C
+		inverseDeterminant = lbl_8042E00C
 		    / (((((temp_f8_2 * (temp_f7_3 * temp_f6_2))
 		             + ((temp_f5 * (temp_f4_2 * temp_f3_2))
 		                 + (temp_f2_2 * (temp_f1_10 * temp_f0_8))))
@@ -654,27 +658,27 @@ f32 DistancePL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, NJS_LINE* arg2)
 		           - (temp_f5 * (temp_f1_10 * temp_f8_2)))
 		        - (temp_f0_8 * (temp_f4_2 * temp_f6_2)));
 
-		f32 numeratorZ = (((((temp_f8_2 * (temp_f30 * temp_f6_2))
-		                        + ((temp_f28 * (temp_f4_2 * temp_f3_2))
-		                            + (temp_f2_2 * (temp_f1_10 * temp_f29))))
-		                       - (temp_f2_2 * (temp_f30 * temp_f3_2)))
-		                      - (temp_f28 * (temp_f1_10 * temp_f8_2)))
-		    - (temp_f29 * (temp_f4_2 * temp_f6_2)));
-		arg2->p.x
-		    = (((((temp_f29 * (temp_f7_3 * temp_f6_2))
-		             + ((temp_f5 * (temp_f30 * temp_f3_2)) + (temp_f28 * (temp_f1_10 * temp_f0_8))))
-		            - (temp_f28 * (temp_f7_3 * temp_f3_2)))
-		           - (temp_f5 * (temp_f1_10 * temp_f29)))
-		          - (temp_f0_8 * (temp_f30 * temp_f6_2)))
-		    * temp_f27;
-		arg2->p.y
-		    = (((((temp_f8_2 * (temp_f7_3 * temp_f28))
-		             + ((temp_f5 * (temp_f4_2 * temp_f29)) + (temp_f2_2 * (temp_f30 * temp_f0_8))))
-		            - (temp_f2_2 * (temp_f7_3 * temp_f29)))
-		           - (temp_f5 * (temp_f30 * temp_f8_2)))
-		          - (temp_f0_8 * (temp_f4_2 * temp_f28)))
-		    * temp_f27;
-		arg2->p.z = numeratorZ * temp_f27;
+		f32 numeratorZ = (((((temp_f8_2 * (firstPlaneOffset * temp_f6_2))
+		                        + ((intersectionPlaneOffset * (temp_f4_2 * temp_f3_2))
+		                            + (temp_f2_2 * (temp_f1_10 * secondPlaneOffset))))
+		                       - (temp_f2_2 * (firstPlaneOffset * temp_f3_2)))
+		                      - (intersectionPlaneOffset * (temp_f1_10 * temp_f8_2)))
+		    - (secondPlaneOffset * (temp_f4_2 * temp_f6_2)));
+		arg2->p.x      = (((((secondPlaneOffset * (temp_f7_3 * temp_f6_2))
+		                        + ((temp_f5 * (firstPlaneOffset * temp_f3_2))
+		                            + (intersectionPlaneOffset * (temp_f1_10 * temp_f0_8))))
+		                       - (intersectionPlaneOffset * (temp_f7_3 * temp_f3_2)))
+		                      - (temp_f5 * (temp_f1_10 * secondPlaneOffset)))
+		                     - (temp_f0_8 * (firstPlaneOffset * temp_f6_2)))
+		    * inverseDeterminant;
+		arg2->p.y = (((((temp_f8_2 * (temp_f7_3 * intersectionPlaneOffset))
+		                   + ((temp_f5 * (temp_f4_2 * secondPlaneOffset))
+		                       + (temp_f2_2 * (firstPlaneOffset * temp_f0_8))))
+		                  - (temp_f2_2 * (temp_f7_3 * secondPlaneOffset)))
+		                 - (temp_f5 * (firstPlaneOffset * temp_f8_2)))
+		                - (temp_f0_8 * (temp_f4_2 * intersectionPlaneOffset)))
+		    * inverseDeterminant;
+		arg2->p.z = numeratorZ * inverseDeterminant;
 	}
 	return lbl_8042E008;
 }
