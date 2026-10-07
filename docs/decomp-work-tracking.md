@@ -4,6 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Codex 2026-10-07 | `game/locateTable.cpp`, complete locator and timer unit | Complete on `decomp/locate-table-20261007`; five functions, all tables/DemoLocator and 43 relocations source-exact; all 18 native hashes and 62 tests pass |
 | Codex 2026-10-06 | `game/setObj.cpp`, complete set-object base unit | Complete on `decomp/setobj-20261006`; nine bodies and all owned sections exact; byte-identical native DOL, no object normalizer |
 | Codex 2026-10-06 | `game/c_colli_react.cpp`, complete collision reactor unit | Complete Matching C++ reconstruction; 42 bodies, all owned sections and linked image exact with documented single-inline-atom normalization; PR preparation |
 | Codex 2026-10-06 | `game/scanpath.cpp`, complete path scanning/manager unit | Reserved on `decomp/scanpath-20261006`; sixteen surviving bodies at `0x800AEE80–0x800B13EC`, plus six inlined metadata methods; owned sections and reconstruction pending |

@@ -1445,3 +1445,15 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## locateTable.cpp complete-unit reconstruction
+
+Positive `C_PLUS_PLUS` metadata names the complete five-function locator unit,
+four locator tables, DemoLocator and two timer tables. GameCube behavior and
+initializer data establish the final-release counts and layout. All five native
+bodies, three owned sections and 43 effective relocations match without a
+normalizer or deferred inlining. See [the unit evidence](locate-table-unit-evidence.md).
+Independent whole-object, field/layout, control-flow and consumer-rename
+reviews pass. All-source compilation of the supported G9SE8P main DOL and seventeen RELs
+passes; all eighteen reference hashes, 62 automated tests and both policies
+pass. No runtime or physical-hardware validation is claimed.
