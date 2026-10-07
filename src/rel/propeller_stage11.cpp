@@ -97,7 +97,7 @@ void fn_8019EC30(void*, const float*, int);
 void fn_8014D308(void*, int, float, Vec3*, int);
 void* fn_80058FDC(void*, char*, Vec3*, int, int);
 void* __nw__FUl(int);
-int fn_800D7A80(int, int);
+int SubAngle__Fii(int, int);
 void fn_8005F194(void*, int, int, void*, void*);
 void fn_800E0E98(float, float, float);
 void fn_8_48FD8();
@@ -122,13 +122,13 @@ void fn_800BC9F4(void*, void*);
 void* fn_800BC6CC(void*, char*);
 void* fn_800BB92C(void*, void*, void*);
 void* fn_800BB664(void*, void*, void*);
-int fn_800D7A94(int, int, int);
-float fn_800D7328(float, float, float);
+int AdjustAngle__Fiii(int, int, int);
+float AdjustFloat__Ffff(float, float, float);
 void fn_800B4A38(void*, int, void*, void*, int, int, int);
 int fn_8005B9F0(void*);
 int fn_8005B8BC(void*);
 int fn_8005B8D8(void*);
-void fn_800D5CB0(int, void*);
+void njPrint__FiPCce(int, void*);
 double atan2(double, double);
 void _savegpr_21();
 void _restgpr_21();
@@ -243,14 +243,14 @@ extern "C" void fn_8_47414(void* self)
 				field<int>(self, 0xE0) = lbl_8_data_4C4C;
 		}
 		field<int>(self, 0x108)
-		    = fn_800D7A94(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
 		field<int>(self, 0x10C)
-		    = fn_800D7A94(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
 		field<int>(self, 0x110)
-		    = fn_800D7A94(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
 		field<int>(self, 0x114) = field<int>(self, 0x118) = field<int>(self, 0x11C) = 0;
 		field<float>(self, 0xD8)
-		    = fn_800D7328(field<float>(self, 0xD8), lbl_8_rodata_BF0, lbl_8_rodata_C00);
+		    = AdjustFloat__Ffff(field<float>(self, 0xD8), lbl_8_rodata_BF0, lbl_8_rodata_C00);
 		field<float>(self, 0x144) = lbl_8_rodata_BF8;
 	} else if (state == 1 && active) {
 		if (--field<int>(self, 0x14C) < 1) {
@@ -287,11 +287,11 @@ extern "C" void fn_8_47414(void* self)
 		field<int>(self, 0x10C) += field<int>(self, 0x118);
 		field<int>(self, 0x110) += field<int>(self, 0x11C);
 		field<int>(self, 0x118)
-		    += fn_800D7A80(field<int>(self, 0x10C), field<int>(self, 0x124)) >> 8;
+		    += SubAngle__Fii(field<int>(self, 0x10C), field<int>(self, 0x124)) >> 8;
 		field<int>(self, 0x114)
-		    += fn_800D7A80(field<int>(self, 0x108), field<int>(self, 0x120)) >> 9;
+		    += SubAngle__Fii(field<int>(self, 0x108), field<int>(self, 0x120)) >> 9;
 		field<int>(self, 0x11C)
-		    += fn_800D7A80(field<int>(self, 0x110), field<int>(self, 0x128)) >> 9;
+		    += SubAngle__Fii(field<int>(self, 0x110), field<int>(self, 0x128)) >> 9;
 		field<int>(self, 0xE0) += lbl_8_data_4C50;
 		if (field<int>(self, 0xE0) >= lbl_8_data_4C48)
 			field<int>(self, 0xE0) = lbl_8_data_4C48;
@@ -300,11 +300,11 @@ extern "C" void fn_8_47414(void* self)
 	} else if (state >= 2 && state < 4) {
 		field<float>(self, 0x100) += lbl_8_rodata_C24;
 		field<int>(self, 0x108)
-		    = fn_800D7A94(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
 		field<int>(self, 0x10C)
-		    = fn_800D7A94(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
 		field<int>(self, 0x110)
-		    = fn_800D7A94(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
 		field<float>(self, 0xD8) -= lbl_8_rodata_BF0 / lbl_8_data_4C64;
 		if (--field<int>(self, 0x148) < 1) {
 			field<int>(self, 0xB8)  = 0;
@@ -354,11 +354,11 @@ extern "C" void fn_8_47FBC(void* self)
 		field<Vec3>(self, 0xC0)  = field<Vec3>(placement, 0);
 		field<IVec3>(self, 0xCC) = field<IVec3>(placement, 0xC);
 		field<Vec3>(self, 0xE4)  = field<Vec3>(self, 0xC0);
-		fn_800D5CB0(0x240015, lbl_8_data_4CA0);
-		fn_800D5CB0(0x240016, lbl_8_data_4CB8);
-		fn_800D5CB0(0x240018, lbl_8_bss_AC8 ? (void*)lbl_8_data_4CDC : (void*)lbl_8_data_4D00);
+		njPrint__FiPCce(0x240015, lbl_8_data_4CA0);
+		njPrint__FiPCce(0x240016, lbl_8_data_4CB8);
+		njPrint__FiPCce(0x240018, lbl_8_bss_AC8 ? (void*)lbl_8_data_4CDC : (void*)lbl_8_data_4D00);
 		if (!lbl_8_bss_AC8)
-			fn_800D5CB0(0x240019, lbl_8_data_4D1C);
+			njPrint__FiPCce(0x240019, lbl_8_data_4D1C);
 		else
 			fn_8_46C88(self);
 		return;

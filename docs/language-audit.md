@@ -1454,10 +1454,10 @@ into a newly claimed native whole-unit match. No new source matching or build
 validation is claimed by this inventory-only update.
 
 The first whole-unit candidate now compiles all 30 bodies in `game/misc.cpp`.
-It replaces four address-named source fragments and unschedules the former
-angle-helper instruction patch step. Address-based linkage is retained during
-this initial validation pass; recovered C++ API declarations and caller updates
-are still pending. No new instruction postprocessor is introduced.
+It replaces four address-named source fragments and removes the former
+angle-helper instruction patch step and tool. The 28 metadata-backed APIs now use C++ linkage and declarations in
+`game/misc.h`; their callers use the corresponding recovered linker names.
+The two GameCube-only table lookups retain provisional names. No new instruction postprocessor is introduced.
 
 Initial control-flow recovery used m2c `708d2d2cb2698f091a92492b328f73b24209f72d`
 on GameCube assembly. Typed analysis-only stack layouts establish actual vector
@@ -1483,3 +1483,13 @@ The vector-overload plane intersection also matches after removing premature
 input caches. Three square-root paths now reload their rounded stack result
 instead of retaining the pre-store temporary. These refinements bring the
 native function count to 22 exact; the whole unit remains nonmatching.
+
+The shared API distinguishes the vector and line overloads, restores const input
+pointers, and declares `CrossProduct` with its observed floating-point result.
+GameCube's angle-difference and adjustment bodies explicitly narrow their
+results to 16 bits; the header retains those return types while using the
+metadata-backed integer parameter types. Caller edits outside this unit are
+linker-name substitutions and preserve their existing private type boundaries.
+All 34 direct-call target counts agree with the original object. Following the
+API edits, all 22 exact functions remain exact, the complete supported build
+passes, and all 55 tests and 18 original-linked output hashes pass.

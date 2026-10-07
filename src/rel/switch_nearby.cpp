@@ -42,7 +42,7 @@ typedef struct Switch {
 extern "C" Manager* lbl_8042C298;
 extern "C" const f32 switchNearbyRange;
 
-extern "C" f32 fn_800D71DC(SetEntry* from, SetEntry* to);
+extern "C" f32 Distance2P2P__FPC5RwV3dPC5RwV3d(SetEntry* from, SetEntry* to);
 
 extern "C" void switchActivateNearby(Switch* object)
 {
@@ -51,7 +51,8 @@ extern "C" void switchActivateNearby(Switch* object)
 		f32 range           = switchNearbyRange;
 
 		while (candidate != NULL) {
-			if (candidate->kind == 0x24 && fn_800D71DC(object->entry, candidate) < range) {
+			if (candidate->kind == 0x24
+			    && Distance2P2P__FPC5RwV3dPC5RwV3d(object->entry, candidate) < range) {
 				object->entry->target->sentinel = 0x12345678;
 				Target* target;
 				SetEntry* entry;

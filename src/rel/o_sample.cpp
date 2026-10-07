@@ -157,7 +157,8 @@ s32 fn_8005B8D8(TMotion* motion);
 s32 fn_8005B9F0(TMotion* motion);
 void dtor_8005BD3C(TMotion* motion, s16 flags);
 void fn_8005BE6C(TMotion* motion);
-void fn_800D72F4(const Vec3* first, const Vec3* second, Vec3* result);
+void AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+    const Vec3* first, const Vec3* second, Vec3* result);
 void __ct__7TObjectFP7TObject(TObject* object, TObject* owner);
 void __dt__7TObjectFv(TObject* object, s16 flags);
 
@@ -225,7 +226,7 @@ void TObjSample::Exec()
 		rotation.x = rotation.z = 0;
 		rotation.y              = angle;
 		fn_80051EF0(lbl_8042B088, &offset, &rotation);
-		fn_800D72F4(&frame->position, &offset, &position);
+		AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(&frame->position, &offset, &position);
 		timer++;
 		if (timer > 600) {
 			setFlagBits((FlagWord*)&frame->flags, 0x10000);

@@ -124,7 +124,7 @@ M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32);                 
 M2C_UNK fn_800B719C(void*, void*, s32*, f32);                                    /* extern */
 M2C_UNK fn_800B7820();                                                           /* extern */
 M2C_UNK fn_800B7864(M2C_UNK);                                                    /* extern */
-s32 fn_800D7A54(s32, s32);                                                       /* extern */
+s32 DiffAngle__Fii(s32, s32);                                                    /* extern */
 f32 fn_800D7AE4(s32);                                                            /* extern */
 f32 fn_800D7B00(s32);                                                            /* extern */
 f32 fn_800D8BC4(void*, s32*, M2C_UNK);                                           /* extern */
@@ -1583,8 +1583,8 @@ void fn_8_A4830(void* arg0, void* arg1, void* arg2)
 	}
 	temp_r30 = M2C_FIELD(arg2, s32*, 0);
 	temp_r28 = M2C_FIELD(arg2, s32*, 8);
-	fn_800D7A54(M2C_FIELD(arg0, s32*, 0x274), temp_r30);
-	if (fn_800D7A54(M2C_FIELD(arg0, s32*, 0x27C), temp_r28) > 0x4000) {
+	DiffAngle__Fii(M2C_FIELD(arg0, s32*, 0x274), temp_r30);
+	if (DiffAngle__Fii(M2C_FIELD(arg0, s32*, 0x27C), temp_r28) > 0x4000) {
 		M2C_FIELD(arg2, s32*, 8) = (s32)(temp_r28 - 0x8000);
 		M2C_FIELD(arg2, s32*, 0) = (s32)(0x8000 - temp_r30);
 	}

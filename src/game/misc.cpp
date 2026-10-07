@@ -1,19 +1,10 @@
 // Complete GameCube misc.cpp candidate, 0x800D5844--0x800D7B18.
 // NonMatching. Initial GameCube control flow recovered with m2c 708d2d2.
-#include "types.h"
+#include "game/misc.h"
 #include "Runtime.PPCEABI.H/__va_arg.h"
-struct RwV3d {
-	f32 x, y, z;
-};
 // Word-copy view preserves the observed 12-byte vector copy.
 struct VectorCopyWords {
 	u32 words[3];
-};
-struct NJS_LINE {
-	RwV3d p, v;
-};
-struct sAngle {
-	s32 x, y, z;
 };
 extern "C" {
 f32 fn_801991B4(const RwV3d*);
@@ -51,38 +42,9 @@ extern const __declspec(section ".sdata2") f32 lbl_8042E02C;
 extern const __declspec(section ".sdata2") f32 lbl_8042E030;
 extern const __declspec(section ".sdata2") f32 lbl_8042E034;
 extern const __declspec(section ".sdata2") f32 lbl_8042E038;
-void fn_800D5844(RwV3d* arg0, f32 farg0);
-void fn_800D5938(void* arg0);
-void fn_800D593C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2, sAngle* arg3);
-s32 fn_800D5A64(RwV3d* arg0, RwV3d* arg1, f32 farg0);
-void fn_800D5B8C(u32 arg0);
-void fn_800D5C08(s32 position, const char* format, ...);
-void fn_800D5CB0(s32 position, const char* format, ...);
-f32 fn_800D5D5C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2);
-f32 fn_800D605C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2, RwV3d* arg3);
-f32 fn_800D67D4(f32 farg0);
-f32 fn_800D6818(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2);
-f32 fn_800D689C(RwV3d* arg0, RwV3d* arg1, NJS_LINE* arg2);
-f32 fn_800D6958(NJS_LINE* arg0, NJS_LINE* arg1, NJS_LINE* arg2);
-f32 fn_800D6E0C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2);
-f32 fn_800D6F0C(RwV3d* arg0, NJS_LINE* arg1, RwV3d* arg2);
-f32 fn_800D7044(RwV3d* arg0, NJS_LINE* arg1, RwV3d* arg2);
-f32 fn_800D71DC(RwV3d* arg0, RwV3d* arg1);
-f32 fn_800D7218(RwV3d* arg0, RwV3d* arg1);
-void fn_800D72C0(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2);
-void fn_800D72F4(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2);
-f32 fn_800D7328(f32 farg0, f32 farg1, f32 farg2);
-void fn_800D735C(RwV3d* arg0, RwV3d* arg1, s32* arg2);
-f32 fn_800D7564(f32 farg0, f32 farg1);
-s32 fn_800D75CC(const RwV3d* first, const RwV3d* second, const RwV3d* planeNormal);
-s32 fn_800D7920(const RwV3d* first, const RwV3d* second, const RwV3d* orientation);
-u16 fn_800D7A54(u32 first, u32 second);
-s16 fn_800D7A80(u32 first, u32 second);
-u16 fn_800D7A94(u32 first, u32 second, s32 limit);
-f32 fn_800D7AE4(s32 arg0);
-f32 fn_800D7B00(u16 arg0);
+}
 
-void fn_800D5844(RwV3d* arg0, f32 farg0)
+void ClosePositionToCamera(RwV3d* arg0, f32 farg0)
 {
 	RwV3d delta;
 	f32 z, y, x;
@@ -103,9 +65,9 @@ void fn_800D5844(RwV3d* arg0, f32 farg0)
 	arg0->z += delta.z;
 }
 
-void fn_800D5938(void* arg0) { }
+void DisplayRpSpline(RpSpline* arg0) { }
 
-void fn_800D593C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2, sAngle* arg3)
+void RelativeCalcPoint(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2, sAngle* arg3)
 {
 	RwV3d sp14;
 	RwV3d sp8; /* compiler-managed */
@@ -134,7 +96,7 @@ void fn_800D593C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2, sAngle* arg3)
 	fn_8001F2D4();
 }
 
-s32 fn_800D5A64(RwV3d* arg0, RwV3d* arg1, f32 farg0)
+s32 AdjustPoint(RwV3d* arg0, const RwV3d* arg1, f32 farg0)
 {
 	RwV3d sp8; /* compiler-managed */
 	f32 temp_f0;
@@ -164,7 +126,7 @@ s32 fn_800D5A64(RwV3d* arg0, RwV3d* arg1, f32 farg0)
 	return 0;
 }
 
-void fn_800D5B8C(u32 arg0)
+void njPrintColor(u32 arg0)
 {
 	s32 sp10;
 	s32 spC;
@@ -181,7 +143,7 @@ void fn_800D5B8C(u32 arg0)
 	fn_80194234(8, spC);
 }
 
-void fn_800D5C08(s32 position, const char* format, ...)
+void njPrint2(s32 position, const char* format, ...)
 {
 	__va_list args;
 	char buffer[64];
@@ -190,7 +152,7 @@ void fn_800D5C08(s32 position, const char* format, ...)
 	RsCameraSize(lbl_8042C0F0, buffer, position >> 16, (u16)position, 5);
 }
 
-void fn_800D5CB0(s32 position, const char* format, ...)
+void njPrint(s32 position, const char* format, ...)
 {
 	__va_list args;
 	char buffer[64];
@@ -199,7 +161,7 @@ void fn_800D5CB0(s32 position, const char* format, ...)
 	RsCameraSize(lbl_8042C0F0, buffer, position >> 16, (u16)position + 6, 5);
 }
 
-f32 fn_800D5D5C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2)
+f32 DistanceL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 {
 	volatile f32 sp10;
 	volatile f32 spC;
@@ -311,7 +273,7 @@ f32 fn_800D5D5C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2)
 	return lbl_8042E008;
 }
 
-f32 fn_800D605C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2, RwV3d* arg3)
+f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* arg3)
 {
 	NJS_LINE sp58;
 	NJS_LINE sp40;
@@ -529,7 +491,7 @@ f32 fn_800D605C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2, RwV3d* arg3)
 	sp40.v.x  = sp40.v.x * temp_f1_4;
 	sp40.v.y *= temp_f1_4;
 	sp40.v.z *= temp_f1_4;
-	fn_800D6958(&sp58, &sp40, &sp28);
+	DistancePL2PL(&sp58, &sp40, &sp28);
 	temp_f7_3 = arg0->v.x;
 	temp_f6_4 = -sp28.v.y;
 	temp_f1_5 = arg0->v.y;
@@ -620,7 +582,7 @@ f32 fn_800D605C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2, RwV3d* arg3)
 	return var_f1;
 }
 
-f32 fn_800D67D4(f32 farg0)
+f32 RoundOff(f32 farg0)
 {
 	if (farg0 < lbl_8042E008) {
 		return -(f32)floor(-farg0);
@@ -628,7 +590,7 @@ f32 fn_800D67D4(f32 farg0)
 	return (f32)floor((f64)farg0);
 }
 
-f32 fn_800D6818(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
+f32 CrossProduct(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
 {
 	arg2->x = (arg0->y * arg1->z) - (arg0->z * arg1->y);
 	arg2->y = (arg0->z * arg1->x) - (arg0->x * arg1->z);
@@ -636,7 +598,7 @@ f32 fn_800D6818(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
 	return fn_801991B4(arg2);
 }
 
-f32 fn_800D689C(RwV3d* arg0, RwV3d* arg1, NJS_LINE* arg2)
+f32 DistancePL2PL(const RwV3d* arg0, const RwV3d* arg1, NJS_LINE* arg2)
 {
 
 	if (arg2 != NULL) {
@@ -656,7 +618,7 @@ f32 fn_800D689C(RwV3d* arg0, RwV3d* arg1, NJS_LINE* arg2)
 	return lbl_8042E008;
 }
 
-f32 fn_800D6958(NJS_LINE* arg0, NJS_LINE* arg1, NJS_LINE* arg2)
+f32 DistancePL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, NJS_LINE* arg2)
 {
 	volatile f32 sp10;
 	volatile f32 spC;
@@ -834,7 +796,7 @@ f32 fn_800D6958(NJS_LINE* arg0, NJS_LINE* arg1, NJS_LINE* arg2)
 	return lbl_8042E008;
 }
 
-f32 fn_800D6E0C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
+f32 DistanceP2PL(const RwV3d* arg0, const RwV3d* arg1, RwV3d* arg2)
 {
 	volatile f32 sp8;
 	f32 temp_f0;
@@ -869,7 +831,7 @@ f32 fn_800D6E0C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
 	return temp_f5 / var_f0;
 }
 
-f32 fn_800D6F0C(RwV3d* arg0, NJS_LINE* arg1, RwV3d* arg2)
+f32 DistanceP2PL(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 {
 	volatile f32 sp8;
 	f32 temp_f0;
@@ -906,7 +868,7 @@ f32 fn_800D6F0C(RwV3d* arg0, NJS_LINE* arg1, RwV3d* arg2)
 	return temp_f5 * (lbl_8042E00C / var_f1);
 }
 
-f32 fn_800D7044(RwV3d* arg0, NJS_LINE* arg1, RwV3d* arg2)
+f32 DistanceP2L(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 {
 	volatile f32 sp8;
 	f32 temp_f0;
@@ -973,7 +935,7 @@ f32 fn_800D7044(RwV3d* arg0, NJS_LINE* arg1, RwV3d* arg2)
 	return var_f4;
 }
 
-f32 fn_800D71DC(RwV3d* arg0, RwV3d* arg1)
+f32 Distance2P2P(const RwV3d* arg0, const RwV3d* arg1)
 {
 	f32 temp_f0;
 	f32 temp_f3;
@@ -985,7 +947,7 @@ f32 fn_800D71DC(RwV3d* arg0, RwV3d* arg1)
 	return (temp_f0 * temp_f0) + ((temp_f3 * temp_f3) + (temp_f4 * temp_f4));
 }
 
-f32 fn_800D7218(RwV3d* arg0, RwV3d* arg1)
+f32 DistanceP2P(const RwV3d* arg0, const RwV3d* arg1)
 {
 	volatile f32 sp8;
 	f32 temp_f0;
@@ -1014,21 +976,21 @@ f32 fn_800D7218(RwV3d* arg0, RwV3d* arg1)
 	return var_f1;
 }
 
-void fn_800D72C0(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
+void SubVectorReturnToVector(const RwV3d* arg0, const RwV3d* arg1, RwV3d* arg2)
 {
 	arg2->x = arg0->x - arg1->x;
 	arg2->y = arg0->y - arg1->y;
 	arg2->z = arg0->z - arg1->z;
 }
 
-void fn_800D72F4(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
+void AddVectorReturnToVector(const RwV3d* arg0, const RwV3d* arg1, RwV3d* arg2)
 {
 	arg2->x = arg0->x + arg1->x;
 	arg2->y = arg0->y + arg1->y;
 	arg2->z = arg0->z + arg1->z;
 }
 
-f32 fn_800D7328(f32 farg0, f32 farg1, f32 farg2)
+f32 AdjustFloat(f32 farg0, f32 farg1, f32 farg2)
 {
 	f32 var_f1;
 
@@ -1050,7 +1012,7 @@ f32 fn_800D7328(f32 farg0, f32 farg1, f32 farg2)
 	return var_f1;
 }
 
-void fn_800D735C(RwV3d* arg0, RwV3d* arg1, s32* arg2)
+void GetZYAngleForTheTargetPoint(const RwV3d* arg0, const RwV3d* arg1, s32* arg2)
 {
 	volatile f32 spC;
 	volatile f32 sp8;
@@ -1103,7 +1065,7 @@ void fn_800D735C(RwV3d* arg0, RwV3d* arg1, s32* arg2)
 	}
 }
 
-f32 fn_800D7564(f32 farg0, f32 farg1)
+f32 GetFloatMod(f32 farg0, f32 farg1)
 {
 	if (lbl_8042E008 == farg1) {
 		return lbl_8042E008;
@@ -1147,7 +1109,7 @@ static inline f32 fn_800D75CCProject(const RwV3d& value, f32 normalX, f32 normal
 	return fn_800D75CCSqrt(lengthSq, zero);
 }
 
-s32 fn_800D75CC(const RwV3d* first, const RwV3d* second, const RwV3d* planeNormal)
+s32 VectorAngleOnPlane(RwV3d* first, RwV3d* second, RwV3d* planeNormal)
 {
 	RwV3d projectedFirst;
 	RwV3d projectedSecond;
@@ -1200,7 +1162,7 @@ static f32 fn_800D7920Dot(const RwV3d& left, const RwV3d& right)
 	return left.x * right.x + left.y * right.y + left.z * right.z;
 }
 
-s32 fn_800D7920(const RwV3d* first, const RwV3d* second, const RwV3d* orientation)
+s32 VectorAngle(RwV3d* first, RwV3d* second, RwV3d* orientation)
 {
 	f32 dot = fn_800D7920Dot(*first, *second);
 	if (dot <= lbl_8042E038)
@@ -1219,7 +1181,7 @@ s32 fn_800D7920(const RwV3d* first, const RwV3d* second, const RwV3d* orientatio
 	return angle;
 }
 
-u16 fn_800D7A54(u32 first, u32 second)
+u16 DiffAngle(s32 first, s32 second)
 {
 	u16 firstAngle  = (u16)first;
 	u16 secondAngle = (u16)second;
@@ -1233,14 +1195,14 @@ u16 fn_800D7A54(u32 first, u32 second)
 	return (u16)(s16)result;
 }
 
-s16 fn_800D7A80(u32 first, u32 second)
+s16 SubAngle(s32 first, s32 second)
 {
 	u16 firstAngle  = (u16)first;
 	u16 secondAngle = (u16)second;
 	return (s16)(secondAngle - firstAngle);
 }
 
-u16 fn_800D7A94(u32 first, u32 second, s32 limit)
+u16 AdjustAngle(s32 first, s32 second, s32 limit)
 {
 	u16 firstAngle = (u16)first;
 	first          = (u16)second;
@@ -1266,7 +1228,6 @@ f32 fn_800D7AE4(s32 arg0)
 f32 fn_800D7B00(u16 arg0)
 {
 	return lbl_803A7028[arg0];
-}
 }
 
 extern "C" {

@@ -83,7 +83,7 @@ extern "C" Fn80054F08TraversalEntry* fn_8005428C(Fn80054F08TraversalEntry*, u16)
 extern "C" Fn80054F08TraversalEntry* fn_80055874(Fn80054F08Grid*, Fn80054F08TraversalEntry*,
     Fn80054F08Cell*, const Fn80054F08Vec*, f32, const Fn80054F08Vec*, const Fn80054F08Vec*);
 extern "C" void fn_80054230(Fn80054F08TraversalEntry*);
-extern "C" f32 fn_800D71DC(const Fn80054F08Vec*, const Fn80054F08Vec*);
+extern "C" f32 Distance2P2P__FPC5RwV3dPC5RwV3d(const Fn80054F08Vec*, const Fn80054F08Vec*);
 extern "C" s32 fn_800D218C(
     const Fn80054F08Vec*, f32, const Fn80054F08Vec*, Fn80054F08Vec*, Fn80054F08Vec*);
 extern "C" void* __nw__FUl(u32);
@@ -195,8 +195,10 @@ extern "C" Fn80054F08ContactList* fn_80054F08(Fn80054F08Grid* grid, const Fn8005
 					triangleVertices[1] = grid->vertices[triangle->vertex[1]];
 					triangleVertices[2] = grid->vertices[triangle->vertex[2]];
 
-					f32 reachSq          = fn_800D71DC(&triangleVertices[1], &triangleVertices[0]);
-					f32 alternateReachSq = fn_800D71DC(&triangleVertices[2], &triangleVertices[0]);
+					f32 reachSq = Distance2P2P__FPC5RwV3dPC5RwV3d(
+					    &triangleVertices[1], &triangleVertices[0]);
+					f32 alternateReachSq = Distance2P2P__FPC5RwV3dPC5RwV3d(
+					    &triangleVertices[2], &triangleVertices[0]);
 					if (reachSq < alternateReachSq)
 						reachSq = alternateReachSq;
 					reachSq += radiusSq;

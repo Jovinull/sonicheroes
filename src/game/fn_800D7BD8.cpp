@@ -12,7 +12,8 @@ struct Fn800D7BD8Segment {
 };
 
 extern "C" f64 __frsqrte(f64);
-extern "C" f32 fn_800D7044(const Fn800D7BD8Vec*, const Fn800D7BD8Segment*, Fn800D7BD8Vec*);
+extern "C" f32 DistanceP2L__FPC5RwV3dPC8NJS_LINEP5RwV3d(
+    const Fn800D7BD8Vec*, const Fn800D7BD8Segment*, Fn800D7BD8Vec*);
 extern "C" const f32 lbl_8042E060;
 extern "C" const f32 lbl_8042E064;
 extern "C" const f64 lbl_8042E068;
@@ -104,5 +105,5 @@ extern "C" f32 fn_800D7BD8(const Fn800D7BD8Vec* point, const Fn800D7BD8Vec* firs
 	segment.direction.x = directionX;
 	segment.direction.y = directionY;
 	segment.direction.z = directionZ;
-	return fn_800D7044(point, &segment, closest);
+	return DistanceP2L__FPC5RwV3dPC8NJS_LINEP5RwV3d(point, &segment, closest);
 }

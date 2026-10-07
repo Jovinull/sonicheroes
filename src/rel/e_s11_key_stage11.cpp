@@ -172,7 +172,7 @@ void fn_800B52E8(void*, s32, s32, s32);
 void* fn_800BB92C(void*, s32, void*);
 s32 fn_800BC6CC(void*, const char*);
 void fn_800BC9F4(void*, void*);
-f32 fn_800D71DC(SETDATA_PARAM*, SetObjNode*);
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(SETDATA_PARAM*, SetObjNode*);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void fn_80119618(void*);
@@ -602,7 +602,7 @@ void TObjS11Key::SearchCage()
 		SetObjNode* node = lbl_8042C298->lists[frame->group];
 		f32 range        = 100.0f;
 		for (; node != NULL; node = node->next) {
-			if (node->type == 0x24 && fn_800D71DC(frame, node) < range) {
+			if (node->type == 0x24 && Distance2P2P__FPC5RwV3dPC5RwV3d(frame, node) < range) {
 				frame->cage           = (KeyCage*)__nw__FUl(0x14);
 				frame->cage->magic    = 0x12345678;
 				frame->cage->position = frame->position;

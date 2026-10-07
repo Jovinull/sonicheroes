@@ -114,7 +114,8 @@ extern "C" s32 fn_8005B8D8(Motion* motion);
 extern "C" s32 fn_8005B9F0(Motion* motion);
 extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
 extern "C" void fn_8005BE6C(Motion* motion);
-extern "C" void fn_800D72F4(const Vec3* a, const Vec3* b, Vec3* out);
+extern "C" void AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+    const Vec3* a, const Vec3* b, Vec3* out);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" Sample1Defaults sample1Defaults;
@@ -148,7 +149,8 @@ extern "C" void sample1Exec(Sample1* object)
 		rotation.y = object->angle;
 
 		fn_80051EF0(lbl_8042B088, &offset, &rotation);
-		fn_800D72F4(&object->motion.frame->position, &offset, &object->position);
+		AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+		    &object->motion.frame->position, &offset, &object->position);
 
 		object->timer++;
 		if (object->timer > 600) {

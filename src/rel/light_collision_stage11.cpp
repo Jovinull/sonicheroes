@@ -38,7 +38,7 @@ void fn_80052DAC(...);
 void fn_8014FFBC(s32, s32, s32);
 void fn_801527A4(void*, void*, void*);
 f32 fn_801991B4(void* v);
-f32 fn_800D7218(void*, void*);
+f32 DistanceP2P__FPC5RwV3dPC5RwV3d(void*, void*);
 }
 
 template <typename T> static inline T& field(void* object, int offset)
@@ -176,7 +176,7 @@ extern "C" int fn_8_4E704(void* self, int player)
 	if (collision == NULL)
 		return 0;
 	Vec3 extent = { field<float>(config, 4), field<float>(config, 8), field<float>(config, 0xC) };
-	float distance = fn_800D7218((u8*)collision + 8, placement);
+	float distance = DistanceP2P__FPC5RwV3dPC5RwV3d((u8*)collision + 8, placement);
 	float radius   = field<float>(collision, 0x14);
 	if (config[2] == 0)
 		return fn_801991B4(&extent) + radius >= distance;

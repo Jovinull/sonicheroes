@@ -63,7 +63,7 @@ void fn_80150958(void*);
 void fn_8005D5C8(...);
 void* fn_8005EA04(void*);
 void* fn_8005E410(void*, s32, void*);
-f32 fn_800D7328(f32, f32, f32);
+f32 AdjustFloat__Ffff(f32, f32, f32);
 void fn_8_49630();
 void fn_8_497B0(...);
 int fn_8005B9F0(void*);
@@ -190,7 +190,7 @@ extern "C" void fn_8_4AAE8(void* self)
 			field<int>(self, 0x28) = 2;
 	} else if (state == 2) {
 		field<float>(self, 0x34)
-		    = fn_800D7328(field<float>(self, 0x34), lbl_8_rodata_CDC, lbl_8_rodata_CE0);
+		    = AdjustFloat__Ffff(field<float>(self, 0x34), lbl_8_rodata_CDC, lbl_8_rodata_CE0);
 		if (field<float>(self, 0x34) <= lbl_8_rodata_CDC)
 			field<int>(self, 0x28) = 3;
 	} else if (state == 3) {
@@ -418,7 +418,7 @@ extern "C" void fn_8_4BD90(void* self)
 			field<float>(self, 0xE8) += lbl_8_rodata_CF0;
 		}
 		field<float>(self, 0xD8)
-		    = fn_800D7328(field<float>(self, 0xD8), lbl_8_rodata_CE8, lbl_8_rodata_D10);
+		    = AdjustFloat__Ffff(field<float>(self, 0xD8), lbl_8_rodata_CE8, lbl_8_rodata_D10);
 	}
 	drawGoalRingModel(self);
 }

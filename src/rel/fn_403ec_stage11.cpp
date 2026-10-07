@@ -212,7 +212,7 @@ s32 fn_8005B8D8(void* object);
 s32 objGroupAllActive(s32 index);
 s32 fn_80100C88(s32 index);
 void fn_800B4A38(void* sound, s32 id, Vec3* position, s32, s32, s32, s32);
-f32 fn_800D7328(f32 value, f32 target, f32 step);
+f32 AdjustFloat__Ffff(f32 value, f32 target, f32 step);
 void fn_8003BC38(void* object);
 }
 
@@ -310,18 +310,18 @@ extern "C" void fn_8_40554(RuntimeState* self)
 		}
 		case 2: {
 			*(f32*)((u8*)self + 0xE8)
-			    = fn_800D7328(*(f32*)((u8*)self + 0xE8), lbl_8_rodata_A94, lbl_8_data_43C0);
+			    = AdjustFloat__Ffff(*(f32*)((u8*)self + 0xE8), lbl_8_rodata_A94, lbl_8_data_43C0);
 			f32 target  = lbl_8_rodata_A94;
 			f32 current = *(f32*)((u8*)self + 0xE8);
 			if (target == current) {
-				*(f32*)((u8*)self + 0xEC)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xEC), lbl_8_rodata_A94, lbl_8_data_43B0);
-				*(f32*)((u8*)self + 0xF0)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xF0), lbl_8_rodata_A94, lbl_8_data_43B4);
-				*(f32*)((u8*)self + 0xF4)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xF4), lbl_8_rodata_A94, lbl_8_data_43B8);
-				*(f32*)((u8*)self + 0xF8)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xF8), lbl_8_rodata_A94, lbl_8_data_43BC);
+				*(f32*)((u8*)self + 0xEC) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xEC), lbl_8_rodata_A94, lbl_8_data_43B0);
+				*(f32*)((u8*)self + 0xF0) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xF0), lbl_8_rodata_A94, lbl_8_data_43B4);
+				*(f32*)((u8*)self + 0xF4) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xF4), lbl_8_rodata_A94, lbl_8_data_43B8);
+				*(f32*)((u8*)self + 0xF8) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xF8), lbl_8_rodata_A94, lbl_8_data_43BC);
 				if (lbl_8_rodata_A94
 				    == *(f32*)((u8*)self + 0xEC) + *(f32*)((u8*)self + 0xF0)
 				        + *(f32*)((u8*)self + 0xF4) + *(f32*)((u8*)self + 0xF8))
