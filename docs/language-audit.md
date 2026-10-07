@@ -1502,3 +1502,12 @@ three reciprocal-square-root refinements and rounded float store/reload.
 Sharing it also brings the line-based point-to-plane overload to 99.87%; the
 vector overload remains 99.84%. The full supported build, 55 tests, both policy
 checks and 18 original-linked hashes pass after these changes.
+
+`DistanceL2PL` improves from 88.66% to 94.69% native correspondence while
+retaining the exact 768-byte retail function size. Eleven redundant scalar
+input caches are folded into their expressions; all affected reads occur
+before any potentially aliasing output write. The original three explicit
+square-root sequences remain: sharing `MiscSqrt` here introduced extra branches
+and register moves. The other 23 exact functions remain exact. The full
+supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
+hashes pass for this refinement.

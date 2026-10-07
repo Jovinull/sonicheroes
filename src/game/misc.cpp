@@ -179,23 +179,12 @@ f32 DistanceL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 	volatile f32 sp10;
 	volatile f32 spC;
 	volatile f32 sp8;
-	f32 temp_f0;
-	f32 temp_f0_13;
-	f32 temp_f0_2;
-	f32 temp_f0_3;
-	f32 temp_f0_7;
-	f32 temp_f0_8;
-	f32 temp_f0_9;
-	f32 temp_f1;
-	f32 temp_f2;
 	f32 temp_f2_2;
-	f32 temp_f3;
 	f32 temp_f3_2;
 	f32 temp_f3_3;
 	f32 temp_f4;
 	f32 temp_f4_2;
 	f32 temp_f6;
-	f32 temp_f6_2;
 	f32 temp_f7;
 	f32 temp_f9;
 	f32 var_f4;
@@ -210,11 +199,7 @@ f32 DistanceL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 	f64 temp_f0_4;
 	f64 temp_f0_5;
 	f64 temp_f0_6;
-
-	temp_f0   = arg0->v.z;
-	temp_f0_2 = arg0->v.x;
-	temp_f0_3 = arg0->v.y;
-	var_f4    = (temp_f0 * temp_f0) + ((temp_f0_2 * temp_f0_2) + (temp_f0_3 * temp_f0_3));
+	var_f4 = (arg0->v.z * arg0->v.z) + ((arg0->v.x * arg0->v.x) + (arg0->v.y * arg0->v.y));
 	if (var_f4 > lbl_8042E008) {
 		temp_f0_4 = __frsqrte(var_f4);
 		temp_f0_5
@@ -226,10 +211,7 @@ f32 DistanceL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 		        * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_6 * temp_f0_6)))));
 		var_f4 = sp10;
 	}
-	temp_f0_7 = arg1->v.z;
-	temp_f0_8 = arg1->v.x;
-	temp_f0_9 = arg1->v.y;
-	var_f8    = (temp_f0_7 * temp_f0_7) + ((temp_f0_8 * temp_f0_8) + (temp_f0_9 * temp_f0_9));
+	var_f8 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
 	if (var_f8 > lbl_8042E008) {
 		temp_f0_10 = __frsqrte(var_f8);
 		temp_f0_11 = lbl_8042E018 * temp_f0_10
@@ -241,21 +223,17 @@ f32 DistanceL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 		        * (lbl_8042E020 - ((f64)var_f8 * (temp_f0_12 * temp_f0_12)))));
 		var_f8 = spC;
 	}
-	temp_f3    = arg1->v.z;
-	temp_f2    = arg0->v.x;
-	temp_f1    = arg1->v.x;
-	temp_f0_13 = arg1->v.y;
-	temp_f7    = (arg0->v.z * temp_f3) + ((temp_f2 * temp_f1) + (arg0->v.y * temp_f0_13));
+	temp_f7 = (arg0->v.z * arg1->v.z) + ((arg0->v.x * arg1->v.x) + (arg0->v.y * arg1->v.y));
 	if ((f32)__fabs(temp_f7 / (var_f4 * var_f8)) < lbl_8042E028) {
 		temp_f9   = arg0->p.x;
 		temp_f2_2 = arg0->p.y;
 		temp_f4_2 = arg0->p.z;
-		temp_f6   = -((temp_f3 * arg1->p.z) + ((temp_f1 * arg1->p.x) + (temp_f0_13 * arg1->p.y)))
-		    + ((temp_f3 * temp_f4_2) + ((temp_f1 * temp_f9) + (temp_f0_13 * temp_f2_2)));
-		var_f5 = (temp_f3 * temp_f3) + ((temp_f1 * temp_f1) + (temp_f0_13 * temp_f0_13));
+		temp_f6   = -((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
+		    + ((arg1->v.z * temp_f4_2) + ((arg1->v.x * temp_f9) + (arg1->v.y * temp_f2_2)));
+		var_f5 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
 		if (arg2 != NULL) {
 			temp_f3_2 = -temp_f6 / var_f5;
-			arg2->x   = temp_f9 + (temp_f1 * temp_f3_2);
+			arg2->x   = temp_f9 + (arg1->v.x * temp_f3_2);
 			arg2->y   = temp_f2_2 + (arg1->v.y * temp_f3_2);
 			arg2->z   = temp_f4_2 + (arg1->v.z * temp_f3_2);
 		}
@@ -274,12 +252,11 @@ f32 DistanceL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 		return temp_f4 * (lbl_8042E00C / var_f5);
 	}
 	if (arg2 != NULL) {
-		temp_f6_2 = arg0->p.x;
 		temp_f3_3
-		    = -(-((temp_f3 * arg1->p.z) + ((temp_f1 * arg1->p.x) + (temp_f0_13 * arg1->p.y)))
-		          + ((temp_f3 * arg0->p.z) + ((temp_f1 * temp_f6_2) + (temp_f0_13 * arg0->p.y))))
+		    = -(-((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
+		          + ((arg1->v.z * arg0->p.z) + ((arg1->v.x * arg0->p.x) + (arg1->v.y * arg0->p.y))))
 		    / temp_f7;
-		arg2->x = temp_f6_2 + (temp_f2 * temp_f3_3);
+		arg2->x = arg0->p.x + (arg0->v.x * temp_f3_3);
 		arg2->y = arg0->p.y + (arg0->v.y * temp_f3_3);
 		arg2->z = arg0->p.z + (arg0->v.z * temp_f3_3);
 	}
