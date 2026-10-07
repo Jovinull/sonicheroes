@@ -21,11 +21,13 @@
 // uses it for both lookups, and reloads switchModel from memory for each call
 // rather than keeping it live.
 
-extern "C" void* fn_8005EC0C(void);
+extern "C" void* objRwTexDictionaryGetPointer__Fv(void);
 extern "C" void* fn_801A4BBC(void* heap, const char* name);
-extern "C" void* fn_8005E1DC(void* model, s32 index, const char* name);
-extern "C" void* fn_8005E410(void* model, s32 index, const char* name);
-extern "C" void* fn_8005EA04(const char* name);
+extern "C" void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+    void* model, s32 index, const char* name);
+extern "C" void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+    void* model, s32 index, const char* name);
+extern "C" void* objPointerReadFromClumpAnim__FPc(const char* name);
 
 extern "C" const char* switchStateNames[6];
 extern "C" char switchPanelNodeName[];
@@ -47,7 +49,7 @@ extern "C" void* switchOff3Handle;
 
 extern "C" void switchLoad(void)
 {
-	void* heap = fn_8005EC0C();
+	void* heap = objRwTexDictionaryGetPointer__Fv();
 
 	switchOnHandle   = fn_801A4BBC(heap, switchStateNames[0]);
 	switchOn2Handle  = fn_801A4BBC(heap, switchStateNames[1]);
@@ -56,18 +58,23 @@ extern "C" void switchLoad(void)
 	switchOff2Handle = fn_801A4BBC(heap, switchStateNames[4]);
 	switchOff3Handle = fn_801A4BBC(heap, switchStateNames[5]);
 
-	switchModel         = fn_8005EA04(switchModelName);
+	switchModel         = objPointerReadFromClumpAnim__FPc(switchModelName);
 	switchStateMaterial = NULL;
 
 	if (switchModel != NULL) {
 		for (s32 i = 0; switchStateMaterial == NULL; i++) {
 			const char* name = switchStateNames[i];
 
-			switchStateDraw     = fn_8005E1DC(switchModel, 0, name);
-			switchStateMaterial = fn_8005E410(switchModel, 0, name);
+			switchStateDraw
+			    = objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(switchModel, 0, name);
+			switchStateMaterial
+			    = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+			        switchModel, 0, name);
 		}
 
-		switchPanelDraw     = fn_8005E1DC(switchModel, 0, switchPanelNodeName);
-		switchPanelMaterial = fn_8005E410(switchModel, 0, switchPanelMaterialName);
+		switchPanelDraw = objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+		    switchModel, 0, switchPanelNodeName);
+		switchPanelMaterial = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    switchModel, 0, switchPanelMaterialName);
 	}
 }

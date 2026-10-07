@@ -61,7 +61,7 @@ void __ct__10TObjSetObjFv(Motion*);
 s32 CheckMustKill__10TObjSetObjFv(Motion*);
 s32 OnEdit__10TObjSetObjFv(Motion*);
 s32 CheckRangeOut__10TObjSetObjFv(Motion*);
-void fn_8005D5C8(void*, u32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void* Malloc__9THeapCtrlFUi(void*, u32);
@@ -236,7 +236,8 @@ static inline void constructChip(TObjS33Chip* object, TObject* parent)
 	void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
 	fn_8015BB08(manager, object->model);
 	u32 flags = object->motion.frame->flags;
-	fn_8005D5C8(object->model, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->model, ((flags & 0x1C0000) >> 18) + 4);
 	object->rotation = 0;
 }
 
@@ -263,7 +264,8 @@ static inline void initializeChip(ChipInitializer* self)
 	void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
 	fn_8015BB08(manager, object->model);
 	u32 flags = object->motion.frame->flags;
-	fn_8005D5C8(object->model, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->model, ((flags & 0x1C0000) >> 18) + 4);
 	object->rotation = 0;
 }
 

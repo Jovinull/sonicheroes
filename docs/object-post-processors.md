@@ -120,14 +120,16 @@ is right, and `build.sha1` is a test of the source. A step that injects retail
 instruction bytes makes the gate test source-plus-patch instead, and a patch
 that carries the answer can never fail in a way that teaches anything.
 
-The cost is concrete. `fn_8005EA04` in `game/fn_8005E8EC.cpp` differed from
-retail by six register fields, and patching those six fields would have closed
-it. The actual cause was that retail's source wrote two conditions as one
-short-circuit `&&`, which emits a `bne`/`b` pair where a single `if` folds to
-one `beq`. Writing it that way made the function byte-exact from source, and the
-rule generalises to every folded branch pair in the tree. Had the six fields
-been patched first, the unit would have read `Matching` and nobody would have
-gone looking.
+The resource loader illustrates why source work must precede normalization.
+Short-circuit source expressions recovered its folded branch pairs. That did
+not settle every allocation difference: the complete `object.cpp`
+reconstruction still has two scan cursors allocated to `r31` rather than `r27`.
+Its register-liveness audit establishes a narrow ten-field remainder across six
+instructions. Recovering the real `ONEFILE` constructor eliminated the older
+fragment's much larger constructor-register and exception-cleanup adjustment.
+The [whole-unit evidence](object-unit-evidence.md) distinguishes those source
+improvements from the remaining register-normalization step.
+
 
 `NonMatching` with the finding written down is worth more than `Matching` with
 the answer hidden in a `.py`. The first is an open problem someone solves; the

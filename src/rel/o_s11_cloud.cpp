@@ -83,10 +83,10 @@ void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
 s32 CheckMustKill__10TObjSetObjFv(Motion*);
 s32 CheckRangeOut__10TObjSetObjFv(Motion*);
-void fn_8005C014(void*, void*);
-void fn_8005D5C8(void*, u32);
-void* fn_8005E394(void*, s32);
-void fn_8005BF88();
+void AtomicSetCustomFXTexture__FP8RpAtomicPv(void*, void*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
+void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, s32);
+void SetAtomicCustomFXData__FP8RpAtomicPv();
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void* Malloc__9THeapCtrlFUi(void*, u32);
@@ -184,7 +184,7 @@ void TObjS11Cloud::CloneClump(s32 index)
 		model         = fn_80150588(cloudModels[index]);
 		void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x72A0);
 		fn_8015BB08(manager, model);
-		fn_8005D5C8(model, 0x10);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(model, 0x10);
 	}
 }
 
@@ -231,7 +231,7 @@ void TObjS11Cloud::Disp()
 		if (cloudLastFrame != frame) {
 			f32 time = speed * (cloudHalf * (f32)(frame - cloudLastFrame));
 			fn_8011B844(cloudUvResource, time);
-			fn_8014FFBC(model, (void*)fn_8005BF88, cloudUvState);
+			fn_8014FFBC(model, (void*)SetAtomicCustomFXData__FP8RpAtomicPv, cloudUvState);
 			cloudLastFrame = frame;
 		}
 	}
@@ -267,7 +267,7 @@ static inline void constructCloud(TObjS11Cloud* object)
 	object->SetParameter();
 	object->model = NULL;
 	object->CloneClump(object->modelNo);
-	fn_8005E394(object->model, 0);
+	objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(object->model, 0);
 	fn_801491A8();
 	object->SetPosition();
 }
@@ -371,8 +371,8 @@ static inline void loadCloudModels(
 		s32 id        = fn_800BC6CC(archive, *name);
 		archive       = *(void**)((u8*)*archiveRoot + 0xA50);
 		*model        = fn_800BB92C(archive, id, context);
-		void* result  = fn_8005E394(*model, 0);
-		fn_8005C014(result, uvState);
+		void* result  = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(*model, 0);
+		AtomicSetCustomFXTexture__FP8RpAtomicPv(result, uvState);
 		name++;
 		model++;
 		index++;

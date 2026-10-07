@@ -163,7 +163,7 @@ void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
 void fn_8003C618(void*);
-void fn_8005D5C8(RpClump*, u32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(RpClump*, u32);
 void fn_800B4A38(void*, s32, Vec3*, s32, s32, s32, s32);
 void* fn_800BB0D4(void*, s32, void*);
 void* fn_800BB92C(void*, s32, void*);
@@ -401,7 +401,8 @@ extern "C" TObjMask* __ct__8TObjMaskFP7TObject(TObjMask* self, TObject* parent)
 		if (self->model != NULL) {
 			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), self->model);
 			u32 flags = self->frame->flags;
-			fn_8005D5C8(self->model, ((flags & 0x1C0000) >> 18) + 4);
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    self->model, ((flags & 0x1C0000) >> 18) + 4);
 			self->hierarchy = GetHierarchy(self->model);
 			fn_8014FFBC(self->model, SetHierarchyForSkinAtomic, self->hierarchy);
 			self->hierarchy->flags |= 0x3000;
@@ -526,7 +527,8 @@ void TObjMask::CloneClump()
 		model = fn_80150588(maskModels[type]);
 		if (model != NULL) {
 			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), model);
-			fn_8005D5C8(model, ((frame->flags & 0x1C0000) >> 18) + 4);
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    model, ((frame->flags & 0x1C0000) >> 18) + 4);
 			hierarchy = GetHierarchy(model);
 			fn_8014FFBC(model, SetHierarchyForSkinAtomic, hierarchy);
 			hierarchy->flags |= 0x3000;

@@ -108,7 +108,7 @@ void __dt__10TObjSetObjFv(void*, s16);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 void __ct__10TObjSetObjFv(void*);
-void fn_8005D5C8(void*, u32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 void* fn_800BB92C(void*, s32, void*);
 s32 fn_800BC6CC(void*, const char*);
 void fn_800BC9F4(void*, void*);
@@ -374,7 +374,7 @@ void TObjS12Celestial::CloneClump(s32 index)
 	if (model == NULL) {
 		model = fn_80150588(s12celestialModels[index]);
 		fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x72A0), model);
-		fn_8005D5C8(model, 0x10);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(model, 0x10);
 	}
 }
 

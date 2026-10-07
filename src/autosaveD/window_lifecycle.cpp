@@ -69,7 +69,7 @@ extern "C" void fn_2_4074(Selector* selector, s32 index);
 extern "C" AutosaveWindow* fn_2_1424(u32 size);
 extern "C" void fn_2_3D64(AutosaveState* destination, const AutosaveState* source);
 extern "C" Resource* __nw__FUl(u32 size);
-extern "C" Resource* fn_800BCC84(Resource* resource, const char* path, s32 flags);
+extern "C" Resource* __ct__7ONEFILEFPci(Resource* resource, const char* path, s32 flags);
 extern "C" void* fn_80012994(u32 size);
 extern "C" Archive* fn_800BC580(Resource* resource, s32 type, void* buffer);
 extern "C" void* fn_801A4BBC(Archive* archive, const char* name);
@@ -95,7 +95,7 @@ static inline Resource* create_resource(void)
 {
 	Resource* resource = __nw__FUl(0x58);
 	if (resource != NULL) {
-		resource = fn_800BCC84(resource, lbl_2_data_468, 0);
+		resource = __ct__7ONEFILEFPci(resource, lbl_2_data_468, 0);
 	}
 	return resource;
 }

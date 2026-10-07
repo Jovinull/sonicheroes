@@ -92,26 +92,27 @@ public:
 
 extern "C" {
 
-void* __ct__10HAnimClassFv(void* self);                                          /* extern */
-M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
-void* __dt__10HAnimClassFv(void* self, s16 destroyFlag);                         /* extern */
-f64 asin(f32);                                                                   /* extern */
-f64 atan2(void*, f32, f32);                                                      /* extern */
-f64 fabs(f64);                                                                   /* extern */
-s32 fn_80017800(M2C_UNK*);                                                       /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                         /* extern */
-M2C_UNK* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                    /* extern */
-u32 fn_800194C4(M2C_UNK*);                                                       /* extern */
-M2C_UNK fn_8001F404(void*);                                                      /* extern */
-M2C_UNK fn_8003BC38(void*);                                                      /* extern */
-M2C_UNK fn_8003C200(void*, M2C_UNK*, M2C_UNK, M2C_UNK);                          /* extern */
-u32 __nw__FUl(M2C_UNK);                                                          /* extern */
-s32 OnEdit__10TObjSetObjFv(void*);                                               /* extern */
-M2C_UNK SetEnd__10TObjSetObjFv(void*);                                           /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                                 /* extern */
-s32 fn_8005D9A0(void*, M2C_UNK);                                                 /* extern */
-M2C_UNK* fn_8005DEEC(M2C_UNK*, M2C_UNK);                                         /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                               /* extern */
+void* __ct__10HAnimClassFv(void* self);                                                 /* extern */
+M2C_UNK __dl__FPv(void* arg0);                                                          /* extern */
+void* __dt__10HAnimClassFv(void* self, s16 destroyFlag);                                /* extern */
+f64 asin(f32);                                                                          /* extern */
+f64 atan2(void*, f32, f32);                                                             /* extern */
+f64 fabs(f64);                                                                          /* extern */
+s32 fn_80017800(M2C_UNK*);                                                              /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                                /* extern */
+M2C_UNK* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                           /* extern */
+u32 fn_800194C4(M2C_UNK*);                                                              /* extern */
+M2C_UNK fn_8001F404(void*);                                                             /* extern */
+M2C_UNK fn_8003BC38(void*);                                                             /* extern */
+M2C_UNK fn_8003C200(void*, M2C_UNK*, M2C_UNK, M2C_UNK);                                 /* extern */
+u32 __nw__FUl(M2C_UNK);                                                                 /* extern */
+s32 OnEdit__10TObjSetObjFv(void*);                                                      /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                                  /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, s32); /* extern */
+s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(void*, M2C_UNK);      /* extern */
+M2C_UNK* objRwFrameGetFrame__FP7RwFramei(M2C_UNK*, M2C_UNK);                            /* extern */
+M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
+    u32, M2C_UNK);                                                               /* extern */
 M2C_UNK fn_8006298C(M2C_UNK, s32*, s32*);                                        /* extern */
 s32 fn_800A2D50();                                                               /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                                 /* extern */
@@ -2011,7 +2012,8 @@ void fn_8_A549C(void* arg0, ...)
 	if ((u32)M2C_FIELD(arg0, u32*, 0x288) == 0U) {
 		temp_r30_2 = M2C_FIELD(arg0, void**, 0xEC);
 		if (temp_r30_2 != NULL) {
-			temp_r3_4 = fn_8005D9A0(temp_r30_2, 0x3F2);
+			temp_r3_4
+			    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(temp_r30_2, 0x3F2);
 			if (temp_r3_4 != -1) {
 				M2C_FIELD(arg0, u32*, 0x288) = (u32)M2C_FIELD(
 				    (M2C_FIELD(temp_r30_2, s32*, 0x10) + (temp_r3_4 * 0x10)), u32*, 0xC);
@@ -2021,8 +2023,9 @@ void fn_8_A549C(void* arg0, ...)
 	if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x290) == NULL) {
 		temp_r3_5 = M2C_FIELD(arg0, void**, 0x2A0);
 		if (temp_r3_5 != NULL) {
-			M2C_FIELD(arg0, M2C_UNK**, 0x290) = fn_8005DEEC(M2C_FIELD(temp_r3_5, M2C_UNK**, 4), 1);
-			temp_r4                           = M2C_FIELD(arg0, M2C_UNK**, 0x290);
+			M2C_FIELD(arg0, M2C_UNK**, 0x290)
+			    = objRwFrameGetFrame__FP7RwFramei(M2C_FIELD(temp_r3_5, M2C_UNK**, 4), 1);
+			temp_r4 = M2C_FIELD(arg0, M2C_UNK**, 0x290);
 			if (temp_r4 != NULL) {
 				M2C_FIELD(arg0, s32*, 0x308) = (s32)M2C_FIELD(temp_r4, s32*, 0x10);
 				M2C_FIELD(arg0, s32*, 0x30C) = (s32)M2C_FIELD(temp_r4, s32*, 0x14);
@@ -2046,7 +2049,8 @@ void fn_8_A549C(void* arg0, ...)
 	if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x28C) == NULL) {
 		temp_r3_6 = M2C_FIELD(arg0, void**, 0x2A0);
 		if (temp_r3_6 != NULL) {
-			M2C_FIELD(arg0, M2C_UNK**, 0x28C) = fn_8005DEEC(M2C_FIELD(temp_r3_6, M2C_UNK**, 4), 2);
+			M2C_FIELD(arg0, M2C_UNK**, 0x28C)
+			    = objRwFrameGetFrame__FP7RwFramei(M2C_FIELD(temp_r3_6, M2C_UNK**, 4), 2);
 		}
 	}
 	if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x290) != NULL) {
@@ -2074,7 +2078,8 @@ void fn_8_A549C(void* arg0, ...)
 	if ((u32)M2C_FIELD(arg0, u32*, 0x280) == 0U) {
 		temp_r30_5 = M2C_FIELD(arg0, void**, 0xEC);
 		if (temp_r30_5 != NULL) {
-			temp_r3_7 = fn_8005D9A0(temp_r30_5, 0x3EA);
+			temp_r3_7
+			    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(temp_r30_5, 0x3EA);
 			if (temp_r3_7 != -1) {
 				M2C_FIELD(arg0, u32*, 0x280) = (u32)M2C_FIELD(
 				    (M2C_FIELD(temp_r30_5, s32*, 0x10) + (temp_r3_7 * 0x10)), u32*, 0xC);
@@ -2084,7 +2089,8 @@ void fn_8_A549C(void* arg0, ...)
 	if ((u32)M2C_FIELD(arg0, u32*, 0x284) == 0U) {
 		temp_r30_6 = M2C_FIELD(arg0, void**, 0xEC);
 		if (temp_r30_6 != NULL) {
-			temp_r3_8 = fn_8005D9A0(temp_r30_6, 0x3EB);
+			temp_r3_8
+			    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(temp_r30_6, 0x3EB);
 			if (temp_r3_8 != -1) {
 				M2C_FIELD(arg0, u32*, 0x284) = (u32)M2C_FIELD(
 				    (M2C_FIELD(temp_r30_6, s32*, 0x10) + (temp_r3_8 * 0x10)), u32*, 0xC);
@@ -2453,7 +2459,8 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	if (temp_r3_3 != NULL) {
 		fn_8019EE04(M2C_FIELD(temp_r3_3, s32*, 4));
 	}
-	fn_8005D5C8(M2C_FIELD(arg0, void**, 0xE8),
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    M2C_FIELD(arg0, void**, 0xE8),
 	    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	M2C_FIELD(arg0, M2C_UNK**, 0xE4) = (M2C_UNK*)&lbl_8_data_16018[0];
 	M2C_FIELD(arg0, s32*, 0xD4)      = 0;
@@ -2667,7 +2674,7 @@ void flyerObjectLoad(void)
 	}
 	temp_r3 = fn_80100328(lbl_8042C590, 5, 0xD);
 	if (temp_r3 != 0U) {
-		fn_8005E00C(temp_r3, 6);
+		objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(temp_r3, 6);
 	} else {
 		return;
 	}

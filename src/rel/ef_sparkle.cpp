@@ -63,7 +63,7 @@ void* __nw__FUl(u32);
 void __dl__FPv(void*);
 void* fn_8005FAE8(const char*, void*);
 void fn_8005FA8C(void*, void*);
-void fn_8005E00C(void*, s32);
+void objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(void*, s32);
 void copyVec3(RwV3d*, const RwV3d*);
 s32 fn_16_F20(void*, s32);
 u32 rand();
@@ -182,7 +182,7 @@ void LoadTextureEfSparkle()
 
 	lbl_16_bss_A20                          = *(void**)*(void**)&lbl_16_data_3CF8;
 	*(void**)((u8*)&lbl_16_data_3CD0 + 0xC) = lbl_16_bss_A20;
-	fn_8005E00C(lbl_16_bss_A34, 2);
+	objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(lbl_16_bss_A34, 2);
 
 	if (lbl_16_bss_A24 == 0) {
 		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);

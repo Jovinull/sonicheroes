@@ -51,7 +51,7 @@ extern "C" World* lbl_8042C1D0;
 extern "C" void* fn_80150588(void* source);
 extern "C" void* fn_8015BD78(void* mesh);
 extern "C" void fn_8015BB08(void* scene, void* mesh);
-extern "C" void fn_8005E394(void* mesh, s32 flags);
+extern "C" void objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void* mesh, s32 flags);
 extern "C" void fn_8015BBF8(void* scene, void* mesh);
 extern "C" void fn_80150958(void* mesh);
 
@@ -77,5 +77,5 @@ extern "C" void s01ObjectBaseCreateMesh(S01ObjectBase* object)
 	object->volume.mesh = fn_80150588(s01ObjectBaseMeshTable[object->volume.kind]);
 
 	fn_8015BB08(lbl_8042C1D0->collisionScene, object->volume.mesh);
-	fn_8005E394(object->volume.mesh, 0);
+	objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(object->volume.mesh, 0);
 }

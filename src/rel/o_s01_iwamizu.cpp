@@ -57,7 +57,7 @@ void fn_8019EC30(void*, Vec3*, int);
 void fn_8019ED68(void*, const void*, f32, int);
 void fn_8019EB94(void*, void*, int);
 void fn_8011B844(void*, f32);
-void fn_8005BF88();
+void SetAtomicCustomFXData__FP8RpAtomicPv();
 void fn_8014FFBC(void*, void*, int);
 int CheckRangeOut__10TObjSetObjFv(void*);
 int CheckMustKill__10TObjSetObjFv(void*);
@@ -78,9 +78,9 @@ void fn_801A4C84(void*);
 void fn_800BC9F4(void*, void*);
 void* fn_800BC6CC(void*, const char*);
 void* fn_800BB92C(void*, void*, void*);
-void* fn_8005E394(void*, int);
+void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, int);
 void* fn_800BAE0C(void*, void*, void*);
-void fn_8005C014(void*, void*);
+void AtomicSetCustomFXTexture__FP8RpAtomicPv(void*, void*);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 
 extern void* lbl_8042C1D0;
@@ -293,7 +293,8 @@ extern "C" void Disp__14TObjS01IwamizuFv(void* self)
 {
 	if (IwamizuDispInitialized == 0) {
 		fn_8011B844(IwamizuClump, IwamizuSoundVolume);
-		fn_8014FFBC(PTR(self, 0x30), (void*)fn_8005BF88, (int)IwamizuRenderState);
+		fn_8014FFBC(
+		    PTR(self, 0x30), (void*)SetAtomicCustomFXData__FP8RpAtomicPv, (int)IwamizuRenderState);
 		IwamizuDispInitialized = 1;
 	}
 }
@@ -424,12 +425,13 @@ extern "C" void initObjS01Iwamizu()
 	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
 	void* model      = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuModelName);
 	IwamizuAnimation = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), model, &lbl_802FF5A0);
-	IwamizuAnimationCallback = fn_8005E394(IwamizuAnimation, 0);
+	IwamizuAnimationCallback = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(IwamizuAnimation, 0);
 	void* animation = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuAnimationName);
 	IwamizuClump    = fn_800BAE0C(*(void**)((u8*)lbl_8042C298 + 0xA50), animation, &lbl_802FF5A0);
 	if (IwamizuAnimation != 0 && IwamizuClump != 0) {
 		*(void**)IwamizuRenderState = IwamizuClump;
-		fn_8005C014(fn_8005E394(IwamizuAnimation, 0), IwamizuRenderState);
+		AtomicSetCustomFXTexture__FP8RpAtomicPv(
+		    objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(IwamizuAnimation, 0), IwamizuRenderState);
 	}
 }
 #pragma optimization_level 2

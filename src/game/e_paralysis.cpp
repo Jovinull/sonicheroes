@@ -97,10 +97,10 @@ void fn_8014FFBC(void*, void*, void*);
 void fn_8014FF2C(void*);
 void fn_80113838(s32);
 void fn_801138F4();
-void* fn_8005EC0C();
-void* fn_8005EA04(char*);
-void fn_8005BF5C(void*);
-void fn_8005BF88();
+void* objRwTexDictionaryGetPointer__Fv();
+void* objPointerReadFromClumpAnim__FPc(char*);
+void SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(void*);
+void SetAtomicCustomFXData__FP8RpAtomicPv();
 void fn_80113AA8(void*, void*, void*, void*, s32);
 void fn_80113A68(void*);
 void* fn_80113C7C(void*);
@@ -178,12 +178,12 @@ sParalysisParam::sParalysisParam()
 
 void TEnemyParalysis::Initialize()
 {
-	void* heap   = fn_8005EC0C();
-	lbl_8042C648 = fn_8005EA04(lbl_80288CCC);
-	lbl_8042C64C = fn_8005EA04(lbl_80288CDC);
+	void* heap   = objRwTexDictionaryGetPointer__Fv();
+	lbl_8042C648 = objPointerReadFromClumpAnim__FPc(lbl_80288CCC);
+	lbl_8042C64C = objPointerReadFromClumpAnim__FPc(lbl_80288CDC);
 	if (lbl_8042C648 != NULL && lbl_8042C64C != NULL) {
 		*(void**)lbl_803E7538 = lbl_8042C64C;
-		fn_8005BF5C(lbl_8042C648);
+		SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(lbl_8042C648);
 	}
 	fn_80113AA8(lbl_803E7588, heap, lbl_8042C648, lbl_80288C24, 9);
 	lbl_8042C650[0] = 0;
@@ -300,7 +300,8 @@ void TEnemyParalysis::TDisp()
 			s32 value = *(s32*)((u8*)lbl_8042C180 + 0x30);
 			if (lbl_8042C650[0] != value) {
 				fn_8011B844(lbl_8042C64C, lbl_8042E984);
-				fn_8014FFBC(lbl_8042C648, (void*)fn_8005BF88, lbl_803E7538);
+				fn_8014FFBC(
+				    lbl_8042C648, (void*)SetAtomicCustomFXData__FP8RpAtomicPv, lbl_803E7538);
 				lbl_8042C650[0] = value;
 			}
 			fn_8014FF2C(effect);

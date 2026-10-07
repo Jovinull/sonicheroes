@@ -41,7 +41,7 @@ void __dl__FPv(void*);
 void* __nw__FUl(u32);
 void* fn_8005FAE8(void*, void*);
 void fn_8005FA8C(void*, void*);
-void fn_8005E00C(void*, s32);
+void objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(void*, s32);
 void fn_80064380(void*);
 u32 rand();
 }
@@ -118,7 +118,7 @@ extern "C" void fn_8_497B0()
 	if (lbl_8_bss_BA4 == NULL)
 		lbl_8_bss_BA4 = fn_8005FAE8(lbl_8_data_4E10, &lbl_8_data_4DE8);
 	lbl_8_bss_B90 = lbl_8_data_4DE8;
-	fn_8005E00C(lbl_8_bss_BA4, 2);
+	objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(lbl_8_bss_BA4, 2);
 	void** materials[4] = { &lbl_8_bss_B94, &lbl_8_bss_B98, &lbl_8_bss_B9C, &lbl_8_bss_BA0 };
 	for (int type = 0; type < 4; type++) {
 		if (*materials[type] == NULL) {

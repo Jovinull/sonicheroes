@@ -113,7 +113,7 @@ extern "C" void dtor_800FE334();
 extern "C" void fn_800FE3FC();
 extern "C" void __ct__7EffWinkFv();
 extern "C" void* memset(void*, int, u32);
-extern "C" s32 fn_8005D9A0(s32, s32);
+extern "C" s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(s32, s32);
 extern "C" void* fn_801471DC(void);
 extern "C" void fn_801471C8(void*);
 extern "C" void fn_8014705C(void*);
@@ -125,7 +125,7 @@ extern "C" void fn_8020C2D8(void*);
 extern "C" void fn_80150958(void*);
 extern "C" void fn_801A46D0(void*);
 extern "C" void* __nw__FUl(s32);
-extern "C" void* fn_800BCC84(void*, s32, s32);
+extern "C" void* __ct__7ONEFILEFPci(void*, s32, s32);
 extern "C" void* fn_80012994(s32);
 extern "C" void fn_800D0624(void*, void*, void*);
 extern "C" void fn_800BA7F8(void*, void*, void*);
@@ -316,7 +316,8 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 		case 7:
 		case 9:
 		case 10: {
-			w(0x138) = fn_8005D9A0(fn_1_6AF4((u8*)t + 0x28), 1);
+			w(0x138) = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(
+			    fn_1_6AF4((u8*)t + 0x28), 1);
 			break;
 		}
 		case 2:
@@ -484,7 +485,7 @@ extern "C" void fn_1_65BC(void)
 		void* d17;
 		obj.value = __nw__FUl(0x58);
 		if (obj.value)
-			obj.value = fn_800BCC84(obj.value, 0, 0);
+			obj.value = __ct__7ONEFILEFPci(obj.value, 0, 0);
 		d18 = fn_80012994(0x7d000);
 		d17 = fn_80012994(p140.value->size + 0x40);
 		if (d17)

@@ -122,7 +122,7 @@ extern "C" void* fn_800BBF20(void* archive, s32 index, void* heap);
 extern "C" void* fn_800BC46C(void* archive, s32 index, void* heap);
 extern "C" void* fn_800BC580(void* archive, s32 index, void* heap);
 extern "C" void fn_800BCBD4(void* archive, s32 flag);
-extern "C" void* fn_800BCC84(void* archive, const char* path, s32 flag);
+extern "C" void* __ct__7ONEFILEFPci(void* archive, const char* path, s32 flag);
 extern "C" void* fn_800FE464(Task* task);
 extern "C" void* __nw__FUl(s32 size);
 extern "C" SaveState* fn_80116D2C(void* state);
@@ -416,7 +416,7 @@ extern "C" void fn_2_1CE4(void)
 
 	archive = __nw__FUl(0x58);
 	if (archive != NULL) {
-		archive = fn_800BCC84(archive, lbl_2_data_288, 0);
+		archive = __ct__7ONEFILEFPci(archive, lbl_2_data_288, 0);
 	}
 	if (archive != NULL) {
 		void* heap = ((void* (*)(s32))lbl_8042C9A4[0x134 / 4])(0x7D000);

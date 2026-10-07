@@ -21,8 +21,9 @@ extern void* lbl_8_bss_9E0;
 extern void* lbl_8_bss_9E4;
 extern void* lbl_8_bss_9E8;
 
-void* fn_8005EA04(const char* name);
-void* fn_8005E410(void* resource, s32 index, const char* name);
+void* objPointerReadFromClumpAnim__FPc(const char* name);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+    void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
 void __ct__10TObjSetObjFv(void* placement);
 void fn_8003C618(void* controller);
@@ -33,8 +34,8 @@ f32 fn_800D7AE4(s32 angle);
 void fn_80195790(void* object, const void* axis, f32 first, f32 second, s32 mode);
 void fn_8019EB94(void* object, const void* vector, s32 mode);
 void fn_8019EC30(void* object, const void* vector, s32 mode);
-void* fn_8005DF98(void* object, s32 index);
-void fn_8005D5C8(void* resource, s32 index);
+void* objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(void* object, s32 index);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void* resource, s32 index);
 void fn_8003C200(void* controller, const void* data, s32 count, s32 type);
 void fn_80021384(void* controller);
 extern u8 lbl_8042C1D0[];
@@ -112,9 +113,9 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	Vec3 zero;
 	zero.x = zero.y = zero.z = lbl_8_data_4618;
 	fn_8019EC30(firstModel, &zero, 1);
-	void* part     = fn_8005DF98(firstModel, 0);
-	part           = fn_8005DF98(part, 0);
-	part           = fn_8005DF98(part, 0);
+	void* part     = objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(firstModel, 0);
+	part           = objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(part, 0);
+	part           = objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(part, 0);
 	u8* secondPart = (u8*)part;
 	partPosition   = *(Vec3*)(secondPart + 0x40);
 	s32 extraAngle = (s32)(lbl_8_rodata_B10 * *(f32*)(object + 0xE4));
@@ -134,7 +135,8 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 		fn_80195790(secondModel + 0x10, lbl_80239984, lbl_8_rodata_B14, lbl_8_rodata_AEC, 1);
 
 	u32 flags = *(u32*)(*(u8**)(object + 0x28) + 0x18);
-	fn_8005D5C8(*(void**)(object + 0xEC), ((flags & 0x001C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    *(void**)(object + 0xEC), ((flags & 0x001C0000) >> 18) + 4);
 	fn_8003C200(object + 0x30, lbl_8_data_4664, 2, 4);
 
 	s32 fieldOffset = 0;
@@ -196,8 +198,9 @@ extern "C" void rollDoorUnload()
 
 extern "C" void rollDoorLoad()
 {
-	lbl_8_bss_9E0 = fn_8005EA04(lbl_8_data_4714);
-	lbl_8_bss_9E4 = fn_8005EA04(lbl_8_data_4728);
+	lbl_8_bss_9E0 = objPointerReadFromClumpAnim__FPc(lbl_8_data_4714);
+	lbl_8_bss_9E4 = objPointerReadFromClumpAnim__FPc(lbl_8_data_4728);
 	if (lbl_8_bss_9E4 != NULL)
-		lbl_8_bss_9E8 = fn_8005E410(lbl_8_bss_9E4, 0, NULL);
+		lbl_8_bss_9E8 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8_bss_9E4, 0, NULL);
 }

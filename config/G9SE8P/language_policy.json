@@ -119,6 +119,7 @@
     "game/eff_wink.cpp",
     "game/message.cpp",
     "game/modeswitch.cpp",
+    "game/object.cpp",
     "game/skyfs_adx.c",
     "rel/e_capture_collision_stage11.cpp",
     "rel/e_mask_stage11.cpp",

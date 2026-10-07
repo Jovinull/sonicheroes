@@ -16,8 +16,9 @@ extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 
 extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
-extern "C" u8* fn_8005E410(void* model, s32 index, const char* name);
-extern "C" void* fn_8005EA04(const char* name);
+extern "C" u8* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+    void* model, s32 index, const char* name);
+extern "C" void* objPointerReadFromClumpAnim__FPc(const char* name);
 
 // The record the module registers the class with. The editor reads the last two
 // fields to lay out the class's parameters: one character per field saying what
@@ -95,11 +96,12 @@ extern "C" void springCreate(void)
 
 extern "C" void springLoad(void)
 {
-	void* model = fn_8005EA04(springModelName);
+	void* model = objPointerReadFromClumpAnim__FPc(springModelName);
 
 	springModel = model;
 	if (model != NULL) {
-		springMaterial = fn_8005E410(model, 0, springTextureName);
+		springMaterial = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    model, 0, springTextureName);
 	}
 }
 

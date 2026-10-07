@@ -98,7 +98,8 @@ void fn_8014D308(void*, int, float, Vec3*, int);
 void* fn_80058FDC(void*, char*, Vec3*, int, int);
 void* __nw__FUl(int);
 int fn_800D7A80(int, int);
-void fn_8005F194(void*, int, int, void*, void*);
+void objSetPlayerHandlingPosition__17OBJ_ReplacePlayerFiUcP5RwV3dP6sAngle(
+    void*, int, int, void*, void*);
 void fn_800E0E98(float, float, float);
 void fn_8_48FD8();
 void fn_801A4C84(void*);
@@ -648,7 +649,8 @@ extern "C" void fn_8_4726C(void* self)
 				return;
 			IVec3 angle = field<IVec3>(self, 0x108);
 			angle.y     = 0x4000 - angle.y;
-			fn_8005F194((u8*)self + 0xB8, field<s8>(self, 0xBC), 0, (u8*)self + 0x12C, &angle);
+			objSetPlayerHandlingPosition__17OBJ_ReplacePlayerFiUcP5RwV3dP6sAngle(
+			    (u8*)self + 0xB8, field<s8>(self, 0xBC), 0, (u8*)self + 0x12C, &angle);
 			flags |= 0x10;
 			return;
 		}

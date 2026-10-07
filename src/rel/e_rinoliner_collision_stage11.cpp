@@ -96,7 +96,7 @@ M2C_UNK fn_8003C618(M2C_UNK*);                                  /* extern */
 s32 CheckMustKill__10TObjSetObjFv(s32);                         /* extern */
 M2C_UNK SetEnd__10TObjSetObjFv(void*);                          /* extern */
 M2C_UNK __ct__10TObjSetObjFv(f32*);                             /* extern */
-void* fn_8005EA04(const char*);                                 /* extern */
+void* objPointerReadFromClumpAnim__FPc(const char*);            /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                /* extern */
 s32 fn_800A3ED4(void*);                                         /* extern */
 M2C_UNK fn_800D5A64(void*, f32*, M2C_UNK*, f32);                /* extern */
@@ -580,7 +580,7 @@ void fn_8_B52F4(void)
 
 void fn_8_B5308(void)
 {
-	lbl_8_bss_1A90.p = fn_8005EA04(lbl_8_data_1704C);
+	lbl_8_bss_1A90.p = objPointerReadFromClumpAnim__FPc(lbl_8_data_1704C);
 }
 
 void fn_8_B533C(void* arg0, s32 arg1)

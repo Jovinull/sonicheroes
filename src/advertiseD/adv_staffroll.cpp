@@ -130,7 +130,7 @@ extern const f32 lbl_1_rodata_1A4C; // 60.0
 extern void fn_801301C8(void* tag);
 extern void fn_8012ED38(void);
 extern void* __nw__FUl(s32 size);
-extern void* fn_800BCC84(void* obj, void* name, s32 flag);
+extern void* __ct__7ONEFILEFPci(void* obj, void* name, s32 flag);
 extern void* fn_80012994(s32 size);
 extern void* fn_800BC580(void* obj, s32 mode, void* buf);
 extern void** fn_801A4BBC(void* archive, void* name);
@@ -866,7 +866,7 @@ void fn_1_13510(void)
 
 	loader.value = __nw__FUl(0x58);
 	if (loader.value != 0) {
-		loader.value = fn_800BCC84(loader.value, &lbl_1_data_84C4, 0);
+		loader.value = __ct__7ONEFILEFPci(loader.value, &lbl_1_data_84C4, 0);
 	}
 	if (loader.value != 0) {
 		scratch = fn_80012994(0x96000);
@@ -895,7 +895,7 @@ void fn_1_13510(void)
 	void* scratch2;
 	loader2.value = __nw__FUl(0x58);
 	if (loader2.value != 0) {
-		loader2.value = fn_800BCC84(loader2.value, buf, 0);
+		loader2.value = __ct__7ONEFILEFPci(loader2.value, buf, 0);
 	}
 	if (loader2.value != 0) {
 		scratch2 = fn_80012994(0x96000);

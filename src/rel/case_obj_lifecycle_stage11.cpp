@@ -31,10 +31,11 @@ extern f32 lbl_8_rodata_AB0;
 extern u8 lbl_8042C1D0[];
 extern u8 lbl_8042C298[];
 
-void* fn_8005EC0C();
+void* objRwTexDictionaryGetPointer__Fv();
 void* fn_801A4BBC(void* context, const char* name);
-void* fn_8005EA04(const char* name);
-void* fn_8005E410(void* resource, s32 index, const char* name);
+void* objPointerReadFromClumpAnim__FPc(const char* name);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+    void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
 void __ct__10TObjSetObjFv(void* controller);
 void fn_8003C618(void* object);
@@ -45,9 +46,10 @@ void fn_80150958(void* resource);
 void* fn_80150588(void* resource);
 void fn_8015BB08(void* manager, void* resource);
 void fn_8_40868(void* self);
-void* fn_8005E1DC(void* resource, s32 index, const char* name);
+void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+    void* resource, s32 index, const char* name);
 void fn_801491A8();
-void fn_8005D5C8(void* resource, s32 index);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void* resource, s32 index);
 void* RpAtomicMCCGetCustomRenderCallBack(void* resource);
 void fn_8003C200(void* object, void* data, s32 count, s32 type);
 void fn_8_40B34(void* self);
@@ -154,15 +156,16 @@ extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 	fn_8015BB08(manager, self->resource);
 	fn_8_40868(self);
 
-	fn_8005E1DC(self->resource, 0, lbl_8_data_45D4);
+	objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(self->resource, 0, lbl_8_data_45D4);
 	fn_801491A8();
 	u32 flags = *(u32*)((u8*)self->placement + 0x18);
-	fn_8005D5C8(self->resource, ((flags & 0x001C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    self->resource, ((flags & 0x001C0000) >> 18) + 4);
 
 	void* found = NULL;
 	char** name = lbl_8_data_4398;
 	while (found == NULL) {
-		found = fn_8005E1DC(self->resource, 0, *name);
+		found = objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(self->resource, 0, *name);
 		++name;
 	}
 	void* model  = RpAtomicMCCGetCustomRenderCallBack(found);
@@ -203,7 +206,7 @@ extern "C" void fn_8_412E4(void*, CasePlacement* placement)
 
 extern "C" void caseObjLoad()
 {
-	void* context = fn_8005EC0C();
+	void* context = objRwTexDictionaryGetPointer__Fv();
 	lbl_8_bss_998 = fn_801A4BBC(context, lbl_8_data_4398[0]);
 	lbl_8_bss_99C = fn_801A4BBC(context, lbl_8_data_4398[1]);
 	lbl_8_bss_9A0 = fn_801A4BBC(context, lbl_8_data_4398[2]);
@@ -211,14 +214,16 @@ extern "C" void caseObjLoad()
 	lbl_8_bss_9A8 = fn_801A4BBC(context, lbl_8_data_4398[4]);
 	lbl_8_bss_9AC = fn_801A4BBC(context, lbl_8_data_4398[5]);
 
-	lbl_8_bss_988        = fn_8005EA04(lbl_8_data_45E0);
+	lbl_8_bss_988        = objPointerReadFromClumpAnim__FPc(lbl_8_data_45E0);
 	lbl_8_bss_98C        = NULL;
 	register char** name = lbl_8_data_4398;
 	while (lbl_8_bss_98C == NULL) {
-		lbl_8_bss_98C = fn_8005E410(lbl_8_bss_988, 0, *name);
+		lbl_8_bss_98C = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8_bss_988, 0, *name);
 		++name;
 	}
 
-	lbl_8_bss_994 = (u32)fn_8005EA04(lbl_8_data_45F0);
-	lbl_8_bss_990 = (u32)fn_8005E410(lbl_8_bss_988, 0, lbl_8_data_45D4);
+	lbl_8_bss_994 = (u32)objPointerReadFromClumpAnim__FPc(lbl_8_data_45F0);
+	lbl_8_bss_990 = (u32)objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+	    lbl_8_bss_988, 0, lbl_8_data_45D4);
 }

@@ -168,11 +168,12 @@ public:
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(void*, void*);             /* extern */
-s32 fn_80017800(void*);                                   /* extern */
-TObject* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);         /* extern */
-M2C_UNK fn_8003BC38(void*);                               /* extern */
-M2C_UNK fn_8005DABC(s32, s32*);                           /* extern */
+void* __ct__7TObjectFP7TObject(void*, void*);     /* extern */
+s32 fn_80017800(void*);                           /* extern */
+TObject* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK fn_8003BC38(void*);                       /* extern */
+M2C_UNK objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
+    s32, s32*);                                           /* extern */
 M2C_UNK fn_8005FD20(void*);                               /* extern */
 M2C_UNK fn_8005FD8C(void*, M2C_UNK);                      /* extern */
 void* fn_8006298C(s32, f32*, s32*);                       /* extern */
@@ -232,7 +233,7 @@ s32 fn_8_90B10(s32);                                      /* extern */
 M2C_UNK fn_8_A504(...);                                   /* extern */
 void fn_8_AE604(void*);                                   /* extern */
 M2C_UNK fn_8_AEB80();                                     /* extern */
-extern M2C_UNK fn_8005BF88;
+extern M2C_UNK SetAtomicCustomFXData__FP8RpAtomicPv;
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_802AD070;
 extern M2C_UNK lbl_802AD090;
@@ -636,7 +637,8 @@ void fn_8_AB654(void* arg0)
 			sp10 = M2C_FIELD(&lbl_8_rodata_1A38, s32*, 8);
 			sp14 = M2C_FIELD(&lbl_8_rodata_1A38, f32*, 0xC);
 			sp14 = M2C_FIELD(arg0, f32*, 0x2B4);
-			fn_8005DABC(M2C_FIELD(arg0, s32*, 0xE8), &sp8);
+			objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
+			    M2C_FIELD(arg0, s32*, 0xE8), &sp8);
 			fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 			fn_801138F4();
 		}
@@ -645,7 +647,8 @@ void fn_8_AB654(void* arg0)
 			if ((s32)lbl_8_bss_1A18 != temp_r4) {
 				lbl_8_bss_1A18 = temp_r4;
 				fn_8011B844(lbl_8_bss_19D0, &lbl_8_rodata_1ABC, lbl_8_rodata_1ABC);
-				fn_8014FFBC(M2C_FIELD(&lbl_8_bss_19C8, s32*, 4), &fn_8005BF88, &lbl_8_bss_19D4);
+				fn_8014FFBC(M2C_FIELD(&lbl_8_bss_19C8, s32*, 4),
+				    &SetAtomicCustomFXData__FP8RpAtomicPv, &lbl_8_bss_19D4);
 			}
 			fn_80113940();
 			fn_801138B4();
@@ -671,7 +674,8 @@ void fn_8_AB7AC(void* arg0)
 			spC  = M2C_FIELD(&lbl_8_rodata_1A84, s32*, 4);
 			sp10 = M2C_FIELD(&lbl_8_rodata_1A84, s32*, 8);
 			sp14 = M2C_FIELD(&lbl_8_rodata_1A84, s32*, 0xC);
-			fn_8005DABC(M2C_FIELD(arg0, s32*, 0xE8), &sp8);
+			objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
+			    M2C_FIELD(arg0, s32*, 0xE8), &sp8);
 			fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 		}
 	}
