@@ -1445,3 +1445,13 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## enemy/e_utility_hierarchy.cpp
+
+C++ metadata supplies the complete three-function nHierarchy inventory, with
+native motion-manager callers and recursive callback addresses confirming the
+correlation. All 276 text bytes, 24 exception bytes and 36 exception-index bytes
+belong to this unit; no data ownership is inferred from metadata declarations.
+All three functions match with ordinary automatic inlining, without a deferred
+override or object normalizer. The frame-hierarchy API is correctly typed as
+returning RpHAnimHierarchy*. See `e-utility-hierarchy-unit-evidence.md`.

@@ -4,6 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Codex 2026-10-07 | `game/enemy/e_utility_hierarchy.cpp`, complete three-function hierarchy utility unit | Complete on `decomp/e-utility-hierarchy-20261007`; all three bodies and owned sections source-exact; 16 relocations, 18 hashes and 62 tests pass |
 | Codex 2026-10-06 | `game/setObj.cpp`, complete set-object base unit | Complete on `decomp/setobj-20261006`; nine bodies and all owned sections exact; byte-identical native DOL, no object normalizer |
 | Codex 2026-10-06 | `game/c_colli_react.cpp`, complete collision reactor unit | Complete Matching C++ reconstruction; 42 bodies, all owned sections and linked image exact with documented single-inline-atom normalization; PR preparation |
 | Codex 2026-10-06 | `game/scanpath.cpp`, complete path scanning/manager unit | Reserved on `decomp/scanpath-20261006`; sixteen surviving bodies at `0x800AEE80–0x800B13EC`, plus six inlined metadata methods; owned sections and reconstruction pending |
