@@ -1604,3 +1604,14 @@ Matching setting was reverted; a full supported G9SE8P all-source build and
 link/report then passed with the original object, alongside 55 tests, both
 policies and all 18 original-linked artifact hashes. No diagnostic binary or
 configuration change is retained.
+
+Symbolic metadata for the line-based plane intersection identifies a local
+`RwV3d p`, three float plane terms `d1`, `d2`, `d3`, and reciprocal determinant
+`oodet`, with parameters `pl1`, `pl2`, `l`. Reconstructing that local point lets
+the determinant expressions read normals directly before the output-point
+stores, preserving the observed order without extra reloads. This raises the
+native match from 84.12% to 94.24%, retaining the exact 1,204-byte function size.
+The GameCube instruction sequence remains the behavioral authority; metadata
+supplies only names/types. All 26 exact functions and the established object
+metadata checks remain intact. Full supported G9SE8P build/report, 55 tests,
+both policies and 18 original-linked hashes pass.
