@@ -1467,8 +1467,8 @@ inferred register-save pseudocode. Scalar square-root intermediates retain
 single-precision store/reload rounding. Existing source forms for the angle
 helpers are retained where they improve native correspondence.
 
-Twenty-two functions currently have exact native instruction bytes. Eight geometry
-helpers remain nonmatching. Native text is 8,972 bytes including a generated
+Twenty-three functions currently have exact native instruction bytes. Seven geometry
+helpers remain nonmatching. Native text is 8,980 bytes including a generated
 helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes),
 but metadata content and relocations still require a complete audit. The 52
 native constant bytes equal the retail prefix; the retail range includes four
@@ -1493,3 +1493,12 @@ linker-name substitutions and preserve their existing private type boundaries.
 All 34 direct-call target counts agree with the original object. Following the
 API edits, all 22 exact functions remain exact, the complete supported build
 passes, and all 55 tests and 18 original-linked output hashes pass.
+
+`DistanceP2L` now matches all 408 bytes. Input-field and squared-distance
+expressions follow the retail evaluation order, and the existing square-root
+helper is shared with this function and both point-to-plane overloads. The
+private helper is named `MiscSqrt` as a reconstruction aid. It preserves the
+three reciprocal-square-root refinements and rounded float store/reload.
+Sharing it also brings the line-based point-to-plane overload to 99.87%; the
+vector overload remains 99.84%. The full supported build, 55 tests, both policy
+checks and 18 original-linked hashes pass after these changes.

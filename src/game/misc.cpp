@@ -44,6 +44,19 @@ extern const __declspec(section ".sdata2") f32 lbl_8042E034;
 extern const __declspec(section ".sdata2") f32 lbl_8042E038;
 }
 
+static inline f32 MiscSqrt(f32 value, f32 zero)
+{
+	if (value > zero) {
+		f64 estimate = __frsqrte(value);
+		estimate     = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
+		estimate     = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
+		estimate     = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
+		volatile f32 result = (f32)(value * estimate);
+		return result;
+	}
+	return value;
+}
+
 void ClosePositionToCamera(RwV3d* arg0, f32 farg0)
 {
 	RwV3d delta;
@@ -798,15 +811,10 @@ f32 DistancePL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, NJS_LINE* arg2)
 
 f32 DistanceP2PL(const RwV3d* arg0, const RwV3d* arg1, RwV3d* arg2)
 {
-	volatile f32 sp8;
-	f32 temp_f0;
 	f32 temp_f3_2;
 	f32 temp_f5;
 	f32 temp_f7;
 	f32 var_f0;
-	f64 temp_f1;
-	f64 temp_f1_2;
-	f64 temp_f1_3;
 
 	temp_f7 = (arg1->z * arg0->z) + ((arg1->x * arg0->x) + (arg1->y * arg0->y));
 	var_f0  = (arg1->z * arg1->z) + ((arg1->x * arg1->x) + (arg1->y * arg1->y));
@@ -817,31 +825,15 @@ f32 DistanceP2PL(const RwV3d* arg0, const RwV3d* arg1, RwV3d* arg2)
 		arg2->z   = arg0->z + (arg1->z * temp_f3_2);
 	}
 	temp_f5 = (f32)__fabs(temp_f7);
-	if (var_f0 > lbl_8042E008) {
-		temp_f1   = __frsqrte(var_f0);
-		temp_f1_2 = lbl_8042E018 * temp_f1 * (lbl_8042E020 - ((f64)var_f0 * (temp_f1 * temp_f1)));
-		temp_f1_3
-		    = lbl_8042E018 * temp_f1_2 * (lbl_8042E020 - ((f64)var_f0 * (temp_f1_2 * temp_f1_2)));
-		temp_f0 = (f32)((f64)var_f0
-		    * (lbl_8042E018 * temp_f1_3
-		        * (lbl_8042E020 - ((f64)var_f0 * (temp_f1_3 * temp_f1_3)))));
-		sp8     = temp_f0;
-		var_f0  = sp8;
-	}
-	return temp_f5 / var_f0;
+	return temp_f5 / MiscSqrt(var_f0, lbl_8042E008);
 }
 
 f32 DistanceP2PL(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 {
-	volatile f32 sp8;
 	f32 temp_f0;
 	f32 temp_f3;
 	f32 temp_f4_2;
 	f32 temp_f5;
-	f32 var_f1;
-	f64 temp_f1;
-	f64 temp_f1_2;
-	f64 temp_f1_3;
 
 	temp_f3 = -((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
 	    + ((arg1->v.z * arg0->z) + ((arg1->v.x * arg0->x) + (arg1->v.y * arg0->y)));
@@ -853,86 +845,36 @@ f32 DistanceP2PL(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 		arg2->z   = arg0->z + (arg1->v.z * temp_f4_2);
 	}
 	temp_f5 = (f32)__fabs(temp_f3);
-	if (temp_f0 > lbl_8042E008) {
-		temp_f1   = __frsqrte(temp_f0);
-		temp_f1_2 = lbl_8042E018 * temp_f1 * (lbl_8042E020 - ((f64)temp_f0 * (temp_f1 * temp_f1)));
-		temp_f1_3
-		    = lbl_8042E018 * temp_f1_2 * (lbl_8042E020 - ((f64)temp_f0 * (temp_f1_2 * temp_f1_2)));
-		sp8    = (f32)((f64)temp_f0
-		    * (lbl_8042E018 * temp_f1_3
-		        * (lbl_8042E020 - ((f64)temp_f0 * (temp_f1_3 * temp_f1_3)))));
-		var_f1 = sp8;
-	} else {
-		var_f1 = temp_f0;
-	}
-	return temp_f5 * (lbl_8042E00C / var_f1);
+	return temp_f5 * (lbl_8042E00C / MiscSqrt(temp_f0, lbl_8042E008));
 }
 
 f32 DistanceP2L(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 {
-	volatile f32 sp8;
-	f32 temp_f0;
-	f32 temp_f0_2;
-	f32 temp_f0_3;
-	f32 temp_f0_4;
-	f32 temp_f0_5;
-	f32 temp_f0_6;
-	f32 temp_f10;
-	f32 temp_f11;
-	f32 temp_f12;
 	f32 temp_f3;
-	f32 temp_f4;
-	f32 temp_f5;
-	f32 temp_f6;
-	f32 temp_f7;
-	f32 temp_f8;
-	f32 temp_f9;
 	f32 var_f4;
-	f64 temp_f0_7;
-	f64 temp_f0_8;
-	f64 temp_f0_9;
 
-	temp_f4  = arg1->v.y;
-	temp_f5  = arg1->v.x;
-	temp_f6  = arg1->v.z;
-	temp_f12 = arg0->z;
-	temp_f11 = arg1->p.z;
-	temp_f10 = arg0->x;
-	temp_f7  = arg1->p.x;
-	temp_f9  = arg0->y;
-	temp_f8  = arg1->p.y;
-	temp_f3  = ((temp_f6 * (temp_f12 - temp_f11))
-	               + ((temp_f5 * (temp_f10 - temp_f7)) + (temp_f4 * (temp_f9 - temp_f8))))
-	    / ((temp_f6 * temp_f6) + ((temp_f5 * temp_f5) + (temp_f4 * temp_f4)));
+	temp_f3 = ((arg1->v.z * (arg0->z - arg1->p.z))
+	              + ((arg1->v.x * (arg0->x - arg1->p.x)) + (arg1->v.y * (arg0->y - arg1->p.y))))
+	    / ((arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y)));
 	if (arg2 != NULL) {
-		arg2->x   = temp_f7 + (temp_f5 * temp_f3);
-		arg2->y   = arg1->p.y + (arg1->v.y * temp_f3);
-		arg2->z   = arg1->p.z + (arg1->v.z * temp_f3);
-		temp_f0   = arg0->z - arg2->z;
-		temp_f0_2 = arg0->x - arg2->x;
-		temp_f0_3 = arg0->y - arg2->y;
-		var_f4    = (temp_f0 * temp_f0) + ((temp_f0_2 * temp_f0_2) + (temp_f0_3 * temp_f0_3));
+		arg2->x = arg1->p.x + (arg1->v.x * temp_f3);
+		arg2->y = arg1->p.y + (arg1->v.y * temp_f3);
+		arg2->z = arg1->p.z + (arg1->v.z * temp_f3);
+		var_f4  = ((arg0->z - arg2->z) * (arg0->z - arg2->z))
+		    + (((arg0->x - arg2->x) * (arg0->x - arg2->x))
+		        + ((arg0->y - arg2->y) * (arg0->y - arg2->y)));
 	} else {
-		temp_f0_4 = temp_f12 - (temp_f11 + (temp_f6 * temp_f3));
-		temp_f0_5 = temp_f10 - (temp_f7 + (temp_f5 * temp_f3));
-		temp_f0_6 = temp_f9 - (temp_f8 + (temp_f4 * temp_f3));
-		var_f4    = (temp_f0_4 * temp_f0_4) + ((temp_f0_5 * temp_f0_5) + (temp_f0_6 * temp_f0_6));
+		var_f4 = ((arg0->z - (arg1->p.z + (arg1->v.z * temp_f3)))
+		             * (arg0->z - (arg1->p.z + (arg1->v.z * temp_f3))))
+		    + (((arg0->x - (arg1->p.x + (arg1->v.x * temp_f3)))
+		           * (arg0->x - (arg1->p.x + (arg1->v.x * temp_f3))))
+		        + ((arg0->y - (arg1->p.y + (arg1->v.y * temp_f3)))
+		            * (arg0->y - (arg1->p.y + (arg1->v.y * temp_f3)))));
 	}
 	if (var_f4 < lbl_8042E028) {
 		return lbl_8042E008;
 	}
-	if (var_f4 > lbl_8042E008) {
-		temp_f0_7 = __frsqrte(var_f4);
-		temp_f0_8
-		    = lbl_8042E018 * temp_f0_7 * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_7 * temp_f0_7)));
-		temp_f0_9
-		    = lbl_8042E018 * temp_f0_8 * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_8 * temp_f0_8)));
-		sp8 = (f32)((f64)var_f4
-		    * (lbl_8042E018 * temp_f0_9
-		        * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_9 * temp_f0_9)))));
-		return sp8;
-	}
-	return var_f4;
+	return MiscSqrt(var_f4, lbl_8042E008);
 }
 
 f32 Distance2P2P(const RwV3d* arg0, const RwV3d* arg1)
@@ -1073,19 +1015,6 @@ f32 GetFloatMod(f32 farg0, f32 farg1)
 	return farg0 - (farg1 * (f32)floor((f64)(farg0 / farg1)));
 }
 
-static inline f32 fn_800D75CCSqrt(f32 value, f32 zero)
-{
-	if (value > zero) {
-		f64 estimate = __frsqrte(value);
-		estimate     = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
-		estimate     = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
-		estimate     = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
-		volatile f32 result = (f32)(value * estimate);
-		return result;
-	}
-	return value;
-}
-
 static inline f32 fn_800D75CCDot(const RwV3d& left, const RwV3d& right)
 {
 	return left.x * right.x + left.y * right.y + left.z * right.z;
@@ -1106,7 +1035,7 @@ static inline f32 fn_800D75CCProject(const RwV3d& value, f32 normalX, f32 normal
 		result->z = value.z + normalZ * scale;
 	}
 	f32 zero = lbl_8042E008;
-	return fn_800D75CCSqrt(lengthSq, zero);
+	return MiscSqrt(lengthSq, zero);
 }
 
 s32 VectorAngleOnPlane(RwV3d* first, RwV3d* second, RwV3d* planeNormal)
