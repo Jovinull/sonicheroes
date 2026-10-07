@@ -108,7 +108,7 @@ M2C_UNK fn_8010AFF8(void*, s32);                                /* extern */
 s32 fn_8010B074(void*);                                         /* extern */
 M2C_UNK fn_8010B208(u32, f32*, f32, f32);                       /* extern */
 M2C_UNK fn_80113874(s32);                                       /* extern */
-s32 fn_80137FE8(void*);                                         /* extern */
+s32 DecreaseTimer__7nSystemFRi(void*);                          /* extern */
 M2C_UNK fn_8014FF2C(s32);                                       /* extern */
 void* fn_80150588(...);                                         /* extern */
 M2C_UNK fn_80150958(void*);                                     /* extern */
@@ -1168,7 +1168,7 @@ void fn_8_A9F88(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x20;
 			return;
 		case 1:
-			fn_80137FE8((u8*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				temp_r31                 = M2C_FIELD(arg0, s32*, 8);
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -1328,7 +1328,7 @@ void fn_8_AA3B8(void* arg0, s32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0x10) = 0x20;
 					return;
 				case 1: /* switch 2 */
-					fn_80137FE8((u8*)((u32)arg0 + 0x18));
+					DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						temp_r31                 = M2C_FIELD(arg0, s32*, 8);
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);

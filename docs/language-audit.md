@@ -1445,3 +1445,14 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## enemy/e_utility_system.cpp
+
+Symbolic metadata establishes two C++ namespace functions taking signed integer
+references. Native enemy timer callers and paired +/-1 operations corroborate
+the full 208-byte inventory. Both functions and the inlined three-mode predicate
+match directly with ordinary automatic inlining; no owned data or exception
+records exist. The original predicate name is unconfirmed, so the source
+explicitly labels its private helper/view names as reconstructed. Native signed
+mode bytes at 0x1F/0x20/0x21 are preserved. No deferred override or object
+normalizer is used. See `e-utility-system-unit-evidence.md`.

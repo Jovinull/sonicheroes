@@ -428,6 +428,9 @@ game/GetSpParam.cpp:
 	.bss        start:0x803EA488 end:0x803EA4B8
 	.sdata2     start:0x8042EE88 end:0x8042EEA8
 
+game/enemy/e_utility_system.cpp:
+	.text       start:0x80137FE8 end:0x801380B8
+
 game/voice_sequence.cpp:
 	extab       start:0x8000B908 end:0x8000B940
 	extabindex  start:0x80011974 end:0x800119C8
