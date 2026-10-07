@@ -246,7 +246,7 @@ void fn_8013F3A4(void*);
 void fn_801491A8(void*);
 int rand();
 void* fn_80150588(void*);
-void dtor_8003C52C(C_COLLI*, s32);
+void __dt__7C_COLLIFv(C_COLLI*, s32);
 void __dt__7TObjectFv(TObject*, s32);
 TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado*, s32);
 void Free__9THeapCtrlFPv(void*, void*);
@@ -353,7 +353,7 @@ void fn_80195790(void*, RwV3d*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, RwV3d*, s32);
 void fn_8003BC38(C_COLLI*);
-void fn_8003BE78(C_COLLI*);
+void ClearInfo__7C_COLLIFv(C_COLLI*);
 void GXSetBlendMode(s32, s32, s32, s32);
 void fn_8011B844(f32);
 void fn_8014FFBC(void*, void*, void*);
@@ -619,7 +619,7 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 		effect->vtable = lbl_802534E4;
 		if (effect != 0) {
 			effect->vtable = lbl_8025361C;
-			dtor_8003C52C(&effect->effectModel, 0);
+			__dt__7C_COLLIFv(&effect->effectModel, 0);
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
@@ -930,7 +930,7 @@ void TObjEffTornado2::Exec()
 			*(sAngle*)&this->effectModel.data[0x6c] = this->rotation;
 			fn_8003BC38(&this->effectModel);
 		} else {
-			fn_8003BE78(&this->effectModel);
+			ClearInfo__7C_COLLIFv(&this->effectModel);
 		}
 	}
 }
@@ -941,7 +941,7 @@ extern "C" TObjEffTornado2* __dt__15TObjEffTornado2Fv(TObjEffTornado2* effect, s
 		effect->vtable = lbl_802535C4;
 		if (effect != 0) {
 			effect->vtable = lbl_8025361C;
-			dtor_8003C52C(&effect->effectModel, 0);
+			__dt__7C_COLLIFv(&effect->effectModel, 0);
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
@@ -1425,10 +1425,10 @@ extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 			*(s32*)((u8*)effect + 0x9c) = effect->rotation.z;
 			fn_8003BC38(&effect->effectModel);
 		} else {
-			fn_8003BE78(&effect->effectModel);
+			ClearInfo__7C_COLLIFv(&effect->effectModel);
 		}
 	} else {
-		fn_8003BE78(&effect->effectModel);
+		ClearInfo__7C_COLLIFv(&effect->effectModel);
 	}
 }
 
@@ -1436,7 +1436,7 @@ extern "C" TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado* effect, s32 
 {
 	if (effect != 0) {
 		effect->vtable = lbl_8025361C;
-		dtor_8003C52C(&effect->effectModel, 0);
+		__dt__7C_COLLIFv(&effect->effectModel, 0);
 		__dt__7TObjectFv(effect, 0);
 		if ((s16)shouldDelete > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, effect);

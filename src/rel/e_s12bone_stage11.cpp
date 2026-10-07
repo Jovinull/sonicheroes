@@ -155,7 +155,7 @@ M2C_UNK SetHierarchyForAtomic__10HAnimClassFP7RpClumpP16RpHAnimHierarchy(
     HAnimClass* self, RpClump* arg0, RpHAnimHierarchy* arg1); /* extern */
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                        /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                     /* extern */
 M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                 /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                   /* extern */
 u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                      /* extern */
@@ -164,7 +164,7 @@ M2C_UNK fn_80021384(M2C_UNK*);                                /* extern */
 M2C_UNK fn_80021824(s32);                                     /* extern */
 M2C_UNK fn_8003BC38(void*);                                   /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                           /* extern */
 s32* __nw__FUl(M2C_UNK);                                      /* extern */
 s32 CheckMustKill__10TObjSetObjFv(s32);                       /* extern */
 s32 CheckRangeOut__10TObjSetObjFv(s32);                       /* extern */
@@ -485,7 +485,7 @@ TObject* fn_8_CC2F0(TObject* arg0, s16 arg1)
 	if (arg0 != NULL) {
 		arg0->unk18 = (M2C_UNK*)lbl_8_data_190FC;
 		arg0->unk2C = (u8*)lbl_8_data_190FC + 0x2C;
-		dtor_8003C52C((u8*)arg0 + 0x30, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x30, 0);
 		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
@@ -504,7 +504,7 @@ TObject* fn_8_CC388(TObject* arg0, TObject* arg1)
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	__ct__10TObjSetObjFv(&arg0->unk28);
-	fn_8003C618(&arg0->unk30);
+	__ct__7C_COLLIFv(&arg0->unk30);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_190FC;
 	arg0->unk2C = (u8*)lbl_8_data_190FC + 0x2C;
 	arg0->unk0  = lbl_8_data_190F8;
@@ -556,7 +556,7 @@ void s12boneColliObjectCreate(void)
 		temp_r3 = (TObject*)temp_r0;
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		__ct__10TObjSetObjFv(&temp_r3->unk28);
-		fn_8003C618(&temp_r3->unk30);
+		__ct__7C_COLLIFv(&temp_r3->unk30);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_190FC;
 		temp_r3->unk2C = (u8*)lbl_8_data_190FC + 0x2C;
 		temp_r3->unk0  = lbl_8_data_190F8;

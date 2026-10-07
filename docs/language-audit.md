@@ -1445,3 +1445,18 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## effect/eff_bomb.cpp
+
+Positive symbolic metadata identifies the complete bomb-effect translation unit
+as C++ with eleven file-origin definitions. GameCube code confirms the
+0x100-byte TObject/C_COLLI-derived class, nine surviving functions, and owned
+storage. Two ordinary methods inline into their callers; the local atomic
+render callback retains its one-argument signature. GameCube effect value four
+is labeled provisionally because its original name is unknown. No PS2
+instructions were inspected. Eight bodies match directly; the constructor has
+a documented eight-register-field permutation across six instructions. All owned
+sections and 209 relocations match after this compiler-output normalization;
+all eighteen supported output hashes and 77 tests pass. See
+`eff-bomb-unit-evidence.md` for the remaining allocation gap and path out.

@@ -134,7 +134,7 @@ def main() -> None:
     if struct.unpack_from(">I", blob, comment_alignment)[0] != 8:
         raise SystemExit("unexpected compiler sbss alignment metadata")
     struct.pack_into(">I", blob, comment_alignment, 4)
-    dtor_index = symbols["dtor_8003C52C"][0]
+    dtor_index = symbols["__dt__7C_COLLIFv"][0]
     delete_index = symbols["__dl__FPv"][0]
     constructor_symbol_offset = symbols["__ct__7C_COLLIFv"][1]
     class_delete_index = symtab[5] // symtab[9]
@@ -176,7 +176,7 @@ def main() -> None:
             shoff += len(data)
 
     class_delete_name = b"__dl__7TObjectFPv\0"
-    constructor_name = b"fn_8003C618\0"
+    constructor_name = b"__ct__7C_COLLIFv\0"
     class_delete_name_offset = strtab[5]
     constructor_name_offset = class_delete_name_offset + len(class_delete_name)
     names_to_add = class_delete_name + constructor_name
