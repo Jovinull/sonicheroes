@@ -1468,7 +1468,7 @@ single-precision store/reload rounding. Existing source forms for the angle
 helpers are retained where they improve native correspondence.
 
 Twenty-six functions currently have exact native instruction bytes. Four geometry
-helpers remain nonmatching. Native text is 8,980 bytes including a generated
+helpers remain nonmatching. Native text is 8,964 bytes including a generated
 helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes),
 but metadata content and relocations still require a complete audit. The 52
 native constant bytes equal the retail prefix; the retail range includes four
@@ -1533,3 +1533,14 @@ across potentially aliasing output writes are retained. Its native body is
 1,916 bytes versus 1,912 retail bytes; the other 26 exact functions remain
 exact. Full G9SE8P build/report, 55 tests, both policies and all 18
 original-linked hashes pass after this refinement.
+
+The line-based `DistancePL2PL` improves from 74.24% to 80.91% and now has the
+exact 1,204-byte retail size. Sixteen redundant input-component caches and nine
+product temporaries are folded into expressions without changing arithmetic
+association. The Z-coordinate numerator is evaluated before the X/Y output
+stores, following the retail sequence, while its final multiplication and store
+remain last. Input snapshots used across output writes remain intact. These
+changes remove an extra saved floating-point register and bring whole-unit
+native text to 8,964 bytes. All 26 exact functions remain exact. The full
+supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
+hashes pass; the unit remains nonmatching and candidate runtime unvalidated.
