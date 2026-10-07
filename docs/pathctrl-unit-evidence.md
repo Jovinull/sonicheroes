@@ -50,18 +50,18 @@ The four larger functions still have nonmatching object comparisons:
 
 | Function | Retail bytes | Native bytes | objdiff match |
 | --- | ---: | ---: | ---: |
-| pathSpin1D | 784 | 784 | 98.85% |
+| pathSpin1D | 784 | 784 | 96.76% |
 | pathGliding | 388 | 388 | 99.85% |
 | pathGlidingReg | 2008 | 2016 | 95.45% |
-| pathSeeingPath | 1244 | 1240 | 91.67% |
+| pathSeeingPath | 1244 | 1240 | 91.55% |
 
 Gliding now has byte-exact instructions; its constant relocation offsets still
 differ because the unit constant pool is not yet ordered correctly.
 
 Spin now uses a direct timer increment, a whole-vector position copy and
 a combined flag/mask expression. These improve native instruction selection;
-its remaining instruction difference is the player-index argument setup for
-`fn_800DFD08`. Constant relocation offsets also differ.
+its remaining instruction differences concern the promoted player index and
+register allocation. Constant relocation offsets also differ.
 
 Seeing uses direct floating-point predicates instead of comparing boolean
 results against zero. This removes three redundant condition-register extraction
@@ -93,3 +93,19 @@ ordinary `memcpy` introduced a call. Neither alternative was retained.
 Temporary compiler experiments found that deferred inlining, including reversed
 definition order, does not repair the constant pool and changes the constructor
 size. The unit retains automatic inlining and its original definition order.
+
+## Player-path API parameter evidence
+
+The symbolic metadata identifies `SpinAlongPathP__FiP7PATHTAG` and
+`RunWithSeeingPathP__FiP7PATHTAG`, both returning signed int and accepting a
+signed-int player number followed by PATHTAG*. Their GameCube counterparts at
+`0x800DFD08` and `0x800DFB88` index the task/player tables directly using the
+full incoming register, check path-control flags, compare previous/current
+path distances and update the active tag. Their ordering and behavior correlate
+with the metadata APIs. The provisional declarations now use s32, replacing
+the earlier u8 inference from the caller's local variable.
+
+This correction introduces a compiler-held promoted player index in Spin and
+changes caller register allocation, reducing its current objdiff score. That
+remaining source-form work does not justify retaining the narrower provisional
+API. The player loop itself is still u8, as independently recorded in metadata.
