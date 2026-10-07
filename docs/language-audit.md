@@ -1445,3 +1445,14 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## effect/eff_ball.cpp
+
+Positive symbolic metadata identifies eleven C++ definitions, all surviving at
+0x800C8EA0–0x800C99F8. The six-slot resource graph and nonpolymorphic 0x1C class
+layout independently agree with GameCube behavior. All eight owned ranges are
+inventoried. No PS2 instructions were inspected. All eleven native bodies,
+eight sections and 176 relocations match using ordinary reversed definitions
+and whole-unit auto,deferred, without an object normalizer. All eighteen
+output hashes and 62 tests pass; the complete unit is enabled as Matching.
+See `eff-ball-unit-evidence.md`.
