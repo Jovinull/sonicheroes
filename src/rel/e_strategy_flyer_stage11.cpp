@@ -189,7 +189,7 @@ M2C_UNK fn_80113874(M2C_UNK);                                               /* e
 M2C_UNK fn_801138B4(void*);                                                 /* extern */
 M2C_UNK fn_801138F4();                                                      /* extern */
 M2C_UNK fn_80113940();                                                      /* extern */
-u32 fn_8011B5A8(s32, s32);                                                  /* extern */
+u32 SearchFrameFromFrameID__11nRenderWareFP7RwFramei(s32, s32);             /* extern */
 M2C_UNK fn_8011B844(u32, void*, f32);                                       /* extern */
 M2C_UNK fn_8012D9D0();                                                      /* extern */
 s32 fn_8012DA08();                                                          /* extern */
@@ -1548,13 +1548,15 @@ void fn_8_9F83C(void* arg0)
 		}
 		fn_8019EB94(temp_r31, var_r30 + 0x140, 2);
 		if ((u32)M2C_FIELD(var_r30, u32*, 0x288) == 0U) {
-			M2C_FIELD(var_r30, u32*, 0x288) = fn_8011B5A8(temp_r31, 0xC1D);
+			M2C_FIELD(var_r30, u32*, 0x288)
+			    = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r31, 0xC1D);
 		}
 		var_r29 = 0;
 		var_r28 = &lbl_8_rodata_17E8;
 		do {
 			if ((u32)M2C_FIELD(var_r30, u32*, 0x298) == 0U) {
-				M2C_FIELD(var_r30, u32*, 0x298) = fn_8011B5A8(temp_r31, *var_r28);
+				M2C_FIELD(var_r30, u32*, 0x298)
+				    = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r31, *var_r28);
 			}
 			var_r30 += 4;
 			var_r28 += 1;
@@ -1625,14 +1627,16 @@ void fn_8_9FA94(void* arg0, M2C_UNK arg_sp0)
 		}
 		fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
 		if ((u32)M2C_FIELD(arg0, u32*, 0x288) == 0U) {
-			M2C_FIELD(arg0, u32*, 0x288) = fn_8011B5A8(temp_r31, 0xC1D);
+			M2C_FIELD(arg0, u32*, 0x288)
+			    = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r31, 0xC1D);
 		}
 		var_r29 = 0;
 		var_r28 = (u8*)arg0;
 		var_r27 = &lbl_8_rodata_17E8;
 		do {
 			if ((u32)M2C_FIELD(var_r28, u32*, 0x298) == 0U) {
-				M2C_FIELD(var_r28, u32*, 0x298) = fn_8011B5A8(temp_r31, *var_r27);
+				M2C_FIELD(var_r28, u32*, 0x298)
+				    = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r31, *var_r27);
 			}
 			var_r28 += 1;
 			var_r27 += 1;
@@ -2361,13 +2365,15 @@ void fn_8_A114C(void* arg0)
 		}
 		fn_8019EB94(temp_r31, var_r30 + 0x140, 2);
 		if ((u32)M2C_FIELD(var_r30, u32*, 0x288) == 0U) {
-			M2C_FIELD(var_r30, u32*, 0x288) = fn_8011B5A8(temp_r31, 0xC1D);
+			M2C_FIELD(var_r30, u32*, 0x288)
+			    = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r31, 0xC1D);
 		}
 		var_r28 = 0;
 		var_r29 = &lbl_8_rodata_17E8;
 		do {
 			if ((u32)M2C_FIELD(var_r30, u32*, 0x298) == 0U) {
-				M2C_FIELD(var_r30, u32*, 0x298) = fn_8011B5A8(temp_r31, *var_r29);
+				M2C_FIELD(var_r30, u32*, 0x298)
+				    = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r31, *var_r29);
 			}
 			var_r30 += 4;
 			var_r29 += 1;
@@ -2760,14 +2766,15 @@ TObject* fn_8_A18A0(TObject* arg0, M2C_UNK arg_sp0)
 		}
 		fn_8019EB94(temp_r30, (u8*)arg0 + 0x140, 2);
 		if ((u32)arg0->unk288 == 0U) {
-			arg0->unk288 = fn_8011B5A8(temp_r30, 0xC1D);
+			arg0->unk288 = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r30, 0xC1D);
 		}
 		var_r29 = 0;
 		var_r28 = 0;
 		var_r27 = &lbl_8_rodata_17E8;
 		do {
 			if (((u32*)((u8*)arg0 + 0x298))[var_r28 >> 2] == 0U) {
-				((u32*)((u8*)arg0 + 0x298))[var_r28 >> 2] = fn_8011B5A8(temp_r30, *var_r27);
+				((u32*)((u8*)arg0 + 0x298))[var_r28 >> 2]
+				    = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r30, *var_r27);
 			}
 			var_r28 += 1;
 			var_r27 += 1;

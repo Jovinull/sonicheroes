@@ -1445,3 +1445,21 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## Enemy RenderWare utility whole-unit reconstruction (2026-10-07)
+
+Positive C++ unit and subprogram metadata identifies enemy/e_utility_rw.cpp,
+its public frame-ID search and static recursive callback. Both surviving
+GameCube bodies and exception sections are reconstructed together. The scratch
+record preserves its pointer/signed-ID layout; parent-frame exclusion and the
+callback's always-return-input contract follow GameCube behavior. No PS2
+instructions were inspected.
+
+Both functions match directly on the first complete compile, without object
+normalization or deferred inlining. See `e-utility-rw-unit-evidence.md` for
+complete ownership and recursion details.
+
+The supported G9SE8P main DOL and all seventeen RELs compile and pass all
+eighteen reference hashes. All 62 automated tests, both policies and independent
+whole-object/source/caller reviews pass. No runtime validation is claimed.
