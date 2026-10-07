@@ -423,7 +423,7 @@ M2C_UNK fn_801007F4(u32, M2C_UNK);                                              
 M2C_UNK fn_8010096C(u32, M2C_UNK, M2C_UNK*);                                     /* extern */
 M2C_UNK fn_80100AAC();                                                           /* extern */
 M2C_UNK fn_80102C50(s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32); /* extern */
-s32 fn_80103324(void*, f32*, f32);                                               /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32);            /* extern */
 s32 fn_8010AFB0(u32);                                                            /* extern */
 M2C_UNK fn_8010AFE4(void*);                                                      /* extern */
 M2C_UNK fn_8010AFF8(u32, s32);                                                   /* extern */
@@ -2971,8 +2971,8 @@ void fn_8_BB5E4(TObject* arg0, s32 arg1)
 			break;
 		case 1:
 			if ((s32)arg0->unk294 != 0) {
-				arg0->unk270
-				    = fn_80103324((u8*)arg0 + 0x140, &lbl_8_rodata_1DD0, lbl_8_rodata_1DD0);
+				arg0->unk270 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+				    (u8*)arg0 + 0x140, &lbl_8_rodata_1DD0, lbl_8_rodata_1DD0);
 				temp_r0 = arg0->unk270;
 				if (temp_r0 != -1) {
 					temp_r3 = (void*)(u32) * (&lbl_802AD090 + temp_r0);

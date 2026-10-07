@@ -68,37 +68,37 @@ public:
 
 extern "C" {
 
-M2C_UNK __dl__FPv(void*);                                 /* extern */
-s32 fn_80017800(void*);                                   /* extern */
-void* fn_80020BD8(void*, s32);                            /* extern */
-void fn_80021824(void*);                                  /* extern */
-M2C_UNK fn_8003BC38(void*);                               /* extern */
-M2C_UNK fn_8003BE78(void*);                               /* extern */
-int CheckMustKill__10TObjSetObjFv(void*);                 /* extern */
-M2C_UNK fn_8006298C(s32, void*, void*);                   /* extern */
-M2C_UNK fn_800A3D48(s32);                                 /* extern */
-s32 fn_800A3F60(void*);                                   /* extern */
-M2C_UNK fn_800A5B34(s32);                                 /* extern */
-s32 fn_800A6D60(s32, s32, s32);                           /* extern */
-f32 fn_800AEF48(void*, void*, void*, s32);                /* extern */
-s32 fn_800AF3AC(s16*, void*);                             /* extern */
-M2C_UNK fn_800AFB50(...);                                 /* extern */
-M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32); /* extern */
-f32 fn_800D71DC(void*, void*);                            /* extern */
-M2C_UNK fn_800D735C(void*, s32, void*);                   /* extern */
-s32 fn_800D7A94(s32, s32, s32);                           /* extern */
-f32 fn_800D7B00(s32);                                     /* extern */
-f32 fn_800D7BD8(void*, void*, void*, s32, f32);           /* extern */
-s32 fn_80103324(void*, f32*, f32);                        /* extern */
-M2C_UNK fn_80113874();                                    /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                   /* extern */
-M2C_UNK fn_8011C6EC();                                    /* extern */
-M2C_UNK fn_8014FF2C(s32);                                 /* extern */
-M2C_UNK fn_801990E0(void*, void*, f32);                   /* extern */
-M2C_UNK fn_8_90B10(s32);                                  /* extern */
-M2C_UNK fn_8_B5160(void*);                                /* extern */
-M2C_UNK fn_8_B2BB4(...);                                  /* static */
-M2C_UNK fn_8_B3598(...);                                  /* static */
+M2C_UNK __dl__FPv(void*);                                             /* extern */
+s32 fn_80017800(void*);                                               /* extern */
+void* fn_80020BD8(void*, s32);                                        /* extern */
+void fn_80021824(void*);                                              /* extern */
+M2C_UNK fn_8003BC38(void*);                                           /* extern */
+M2C_UNK fn_8003BE78(void*);                                           /* extern */
+int CheckMustKill__10TObjSetObjFv(void*);                             /* extern */
+M2C_UNK fn_8006298C(s32, void*, void*);                               /* extern */
+M2C_UNK fn_800A3D48(s32);                                             /* extern */
+s32 fn_800A3F60(void*);                                               /* extern */
+M2C_UNK fn_800A5B34(s32);                                             /* extern */
+s32 fn_800A6D60(s32, s32, s32);                                       /* extern */
+f32 fn_800AEF48(void*, void*, void*, s32);                            /* extern */
+s32 fn_800AF3AC(s16*, void*);                                         /* extern */
+M2C_UNK fn_800AFB50(...);                                             /* extern */
+M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32);             /* extern */
+f32 fn_800D71DC(void*, void*);                                        /* extern */
+M2C_UNK fn_800D735C(void*, s32, void*);                               /* extern */
+s32 fn_800D7A94(s32, s32, s32);                                       /* extern */
+f32 fn_800D7B00(s32);                                                 /* extern */
+f32 fn_800D7BD8(void*, void*, void*, s32, f32);                       /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32); /* extern */
+M2C_UNK fn_80113874();                                                /* extern */
+M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                               /* extern */
+M2C_UNK fn_8011C6EC();                                                /* extern */
+M2C_UNK fn_8014FF2C(s32);                                             /* extern */
+M2C_UNK fn_801990E0(void*, void*, f32);                               /* extern */
+M2C_UNK fn_8_90B10(s32);                                              /* extern */
+M2C_UNK fn_8_B5160(void*);                                            /* extern */
+M2C_UNK fn_8_B2BB4(...);                                              /* static */
+M2C_UNK fn_8_B3598(...);                                              /* static */
 extern M2C_UNK lbl_802AD090;
 extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
@@ -233,7 +233,8 @@ s32 fn_8_B0B94(void* arg0)
 	if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) == NULL) {
 		return 2;
 	}
-	temp_r3 = fn_80103324((u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
+	temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+	    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
 	if (temp_r3 != -1) {
 		temp_r31 = (void*)*(&lbl_802AD090 + (temp_r3 * 4));
 		if ((temp_r31 != NULL)
@@ -297,8 +298,8 @@ void fn_8_B0D34(void* arg0)
 			if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) == NULL) {
 				var_r0 = 2;
 			} else {
-				temp_r3
-				    = fn_80103324((u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
+				temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+				    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
 				if ((temp_r3 != -1)
 				    && (temp_r30 = (void*)*(&lbl_802AD090 + (temp_r3 * 4)),
 				        ((temp_r30 == NULL) == 0))

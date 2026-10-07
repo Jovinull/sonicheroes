@@ -395,6 +395,11 @@ game/texture.cpp:
 	extabindex  start:0x8000F3D0 end:0x8000F3DC
 	.text       start:0x800D8B48 end:0x800D8BC4
 
+game/enemy/e_utility_search.cpp:
+	extab       start:0x80009A10 end:0x80009A28
+	extabindex  start:0x8000FF88 end:0x8000FFAC
+	.text       start:0x80103178 end:0x8010346C
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C

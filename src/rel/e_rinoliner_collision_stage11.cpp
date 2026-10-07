@@ -78,39 +78,39 @@ public:
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);   /* extern */
-M2C_UNK __dl__FPv(void* arg0);                                  /* extern */
-void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);         /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
-M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                   /* extern */
-s32 fn_80017800(void*);                                         /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                     /* extern */
-TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                   /* extern */
-void* fn_800211A8(void*);                                       /* extern */
-M2C_UNK fn_80021384(M2C_UNK*);                                  /* extern */
-M2C_UNK fn_80021824(M2C_UNK*);                                  /* extern */
-M2C_UNK fn_8003BC38(void*);                                     /* extern */
-M2C_UNK fn_8003BE78(void*);                                     /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK, ...); /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                  /* extern */
-s32 CheckMustKill__10TObjSetObjFv(s32);                         /* extern */
-M2C_UNK SetEnd__10TObjSetObjFv(void*);                          /* extern */
-M2C_UNK __ct__10TObjSetObjFv(f32*);                             /* extern */
-void* fn_8005EA04(const char*);                                 /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                                /* extern */
-s32 fn_800A3ED4(void*);                                         /* extern */
-M2C_UNK fn_800D5A64(void*, f32*, M2C_UNK*, f32);                /* extern */
-f32 fn_800D71DC(void*, s32);                                    /* extern */
-M2C_UNK fn_80100D24(s8*, ...);                                  /* extern */
-s32 fn_80103324(void*, M2C_UNK*, f32);                          /* extern */
-M2C_UNK fn_80113874(s32);                                       /* extern */
-M2C_UNK fn_8014FF2C(void*);                                     /* extern */
-M2C_UNK fn_801990E0(f32*, f32*, f32);                           /* extern */
-s32 fn_8019CE34(s32, f32*);                                     /* extern */
-M2C_UNK fn_8019EB94(s32, void*, M2C_UNK);                       /* extern */
-M2C_UNK fn_8019ED68(s32, M2C_UNK*, f32, s32);                   /* extern */
-s32 fn_8_B0A74(void*);                                          /* extern */
-M2C_UNK fn_8_B43E8(s32);                                        /* extern */
+void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);             /* extern */
+M2C_UNK __dl__FPv(void* arg0);                                            /* extern */
+void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);                   /* extern */
+M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                    /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                             /* extern */
+s32 fn_80017800(void*);                                                   /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                               /* extern */
+TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                             /* extern */
+void* fn_800211A8(void*);                                                 /* extern */
+M2C_UNK fn_80021384(M2C_UNK*);                                            /* extern */
+M2C_UNK fn_80021824(M2C_UNK*);                                            /* extern */
+M2C_UNK fn_8003BC38(void*);                                               /* extern */
+M2C_UNK fn_8003BE78(void*);                                               /* extern */
+M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK, ...);           /* extern */
+M2C_UNK fn_8003C618(M2C_UNK*);                                            /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                                   /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                    /* extern */
+M2C_UNK __ct__10TObjSetObjFv(f32*);                                       /* extern */
+void* fn_8005EA04(const char*);                                           /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                          /* extern */
+s32 fn_800A3ED4(void*);                                                   /* extern */
+M2C_UNK fn_800D5A64(void*, f32*, M2C_UNK*, f32);                          /* extern */
+f32 fn_800D71DC(void*, s32);                                              /* extern */
+M2C_UNK fn_80100D24(s8*, ...);                                            /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, M2C_UNK*, f32); /* extern */
+M2C_UNK fn_80113874(s32);                                                 /* extern */
+M2C_UNK fn_8014FF2C(void*);                                               /* extern */
+M2C_UNK fn_801990E0(f32*, f32*, f32);                                     /* extern */
+s32 fn_8019CE34(s32, f32*);                                               /* extern */
+M2C_UNK fn_8019EB94(s32, void*, M2C_UNK);                                 /* extern */
+M2C_UNK fn_8019ED68(s32, M2C_UNK*, f32, s32);                             /* extern */
+s32 fn_8_B0A74(void*);                                                    /* extern */
+M2C_UNK fn_8_B43E8(s32);                                                  /* extern */
 void fn_8_B4B9C(void* arg0);
 s32 fn_8_B63E4(void* arg0);
 void rinoColObjectCreate(); /* static */
@@ -359,7 +359,8 @@ void fn_8_B4B9C(void* arg0)
 		return;
 	}
 	if ((s32)M2C_FIELD(arg0, s32*, 0xDC) != 0) {
-		temp_r3 = fn_80103324((u8*)arg0 + 0xB0, (s32*)lbl_8_rodata_1C74, 1e8f);
+		temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+		    (u8*)arg0 + 0xB0, (s32*)lbl_8_rodata_1C74, 1e8f);
 		if (temp_r3 != -1) {
 			temp_r30 = *(void**)((u8*)&lbl_802AD090 + (temp_r3 * 4));
 			if (temp_r30 != NULL) {
