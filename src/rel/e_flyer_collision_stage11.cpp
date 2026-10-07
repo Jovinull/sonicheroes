@@ -67,7 +67,7 @@ s32 CheckMustKill__10TObjSetObjFv(void*);                     /* extern */
 M2C_UNK SetEnd__10TObjSetObjFv(void*);                        /* extern */
 M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                       /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                              /* extern */
-M2C_UNK fn_80100D24(s8*, void*, ...);                         /* extern */
+M2C_UNK Send__13sEnemyCommandFv(s8*, void*, ...);             /* extern */
 M2C_UNK fn_8_A6728(s32);                                      /* extern */
 void flyerColObjectCreate();                                  /* static */
 void flyerColObjectLoad();                                    /* static */
@@ -302,7 +302,7 @@ s32 fn_8_A6F28(void* arg0)
 			sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 			sp9  = M2C_FIELD(temp_r6, u8*, 0x2A);
 			spC  = 6;
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -360,7 +360,7 @@ s32 fn_8_A700C(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 5);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 5);
 		}
 	}
 	return var_r31;
@@ -418,7 +418,7 @@ s32 fn_8_A7104(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -476,7 +476,7 @@ s32 fn_8_A7200(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -527,7 +527,7 @@ s32 fn_8_A72FC(void* arg0)
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 			spC  = 2;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -578,7 +578,7 @@ s32 fn_8_A73E4(void* arg0)
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 			spC  = 1;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -696,7 +696,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp81 = M2C_FIELD(temp_r5, u8*, 0x2A);
 					sp94 = M2C_FIELD(arg0, s32*, 0xD4);
 					sp84 = 1;
-					fn_80100D24(&sp80, NULL);
+					Send__13sEnemyCommandFv(&sp80, NULL);
 				}
 			}
 			return var_r30;
@@ -732,7 +732,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp69 = M2C_FIELD(temp_r5_2, u8*, 0x2A);
 					sp7C = M2C_FIELD(arg0, s32*, 0xD4);
 					sp6C = 2;
-					fn_80100D24(&sp68, NULL);
+					Send__13sEnemyCommandFv(&sp68, NULL);
 				}
 			}
 			return var_r30_2;
@@ -773,7 +773,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp58 = M2C_FIELD(arg0, f32*, 0xD8);
 					sp5C = M2C_FIELD(arg0, f32*, 0xDC);
 					sp60 = M2C_FIELD(arg0, f32*, 0xE0);
-					fn_80100D24(&sp50, NULL);
+					Send__13sEnemyCommandFv(&sp50, NULL);
 				}
 			}
 			return var_r30_3;
@@ -814,7 +814,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp40 = M2C_FIELD(arg0, f32*, 0xD8);
 					sp44 = M2C_FIELD(arg0, f32*, 0xDC);
 					sp48 = M2C_FIELD(arg0, f32*, 0xE0);
-					fn_80100D24(&sp38, NULL);
+					Send__13sEnemyCommandFv(&sp38, NULL);
 				}
 			}
 			return var_r30_4;
@@ -855,7 +855,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp28 = M2C_FIELD(arg0, f32*, 0xD8);
 					sp2C = M2C_FIELD(arg0, f32*, 0xDC);
 					sp30 = M2C_FIELD(arg0, f32*, 0xE0);
-					fn_80100D24(&sp20, (M2C_UNK*)5);
+					Send__13sEnemyCommandFv(&sp20, (M2C_UNK*)5);
 				}
 			}
 			return var_r30_5;
@@ -893,7 +893,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 					sp9  = M2C_FIELD(temp_r5_6, u8*, 0x2A);
 					spC  = 6;
-					fn_80100D24(&sp8, NULL);
+					Send__13sEnemyCommandFv(&sp8, NULL);
 				}
 			}
 			return var_r30_6;

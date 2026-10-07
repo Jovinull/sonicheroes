@@ -102,7 +102,7 @@ f32 fn_800D8BC4(...);                                           /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                             /* extern */
 void* fn_8010037C(M2C_UNK, M2C_UNK, M2C_UNK);                   /* extern */
 M2C_UNK fn_80100AAC();                                          /* extern */
-s32 fn_80100BF8(s32);                                           /* extern */
+s32 IsExistSummonEnemy__19nEnemyCommunicationFUc(s32);          /* extern */
 s32 fn_80103324(void*, f32*, f32);                              /* extern */
 M2C_UNK fn_8010AFF8(void*, s32);                                /* extern */
 s32 fn_8010B074(void*);                                         /* extern */
@@ -1568,7 +1568,9 @@ s32 fn_8_AABC8(void* arg0)
 	if ((s32)M2C_FIELD(arg0, s32*, 0x350) == 1) {
 		return 2;
 	}
-	if (fn_80100BF8(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A)) == 0) {
+	if (IsExistSummonEnemy__19nEnemyCommunicationFUc(
+	        M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A))
+	    == 0) {
 		return 0;
 	}
 	return ((lbl_8_rodata_1ACC * (f32)rand()) < lbl_8_rodata_1AD0) == 0;

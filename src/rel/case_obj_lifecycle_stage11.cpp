@@ -39,7 +39,7 @@ void __ct__7TObjectFP7TObject(void* self, void* parent);
 void __ct__10TObjSetObjFv(void* controller);
 void fn_8003C618(void* object);
 s32 objGroupAllActive(s32 index);
-s32 fn_80100C88(s32 index);
+s32 IsAnnihilated__19nEnemyCommunicationFUc(s32 index);
 void fn_8015BBF8(void* manager, void* resource);
 void fn_80150958(void* resource);
 void* fn_80150588(void* resource);
@@ -131,7 +131,7 @@ extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 	s32 groupOffset = index << 2;
 	groups += groupOffset;
 	if ((*(void**)(groups + 0x30) == NULL || objGroupAllActive(index) != 0)
-	    && fn_80100C88(self->index) != 0) {
+	    && IsAnnihilated__19nEnemyCommunicationFUc(self->index) != 0) {
 		self->state   = 3;
 		f32 zero      = lbl_8_rodata_A94;
 		self->valueE8 = zero;

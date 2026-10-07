@@ -1445,3 +1445,23 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## Enemy communication whole-unit reconstruction (2026-10-07)
+
+Symbolic metadata explicitly classifies enemy/e_communication.cpp as C++ and
+identifies three namespace functions plus two command methods. All five bodies,
+both writable UID tables and exception sections are reconstructed together.
+GameCube table lengths and values take precedence over different PS2 arrays;
+no PS2 instructions were inspected. The command records preserve public
+inheritance and the four-byte/20-byte native layouts.
+
+The metadata-backed inline list getter reproduces the pointer copies that a
+direct field expression omitted. All 548 text bytes match directly, with no
+normalizer or deferred-inlining override. See `e-communication-unit-evidence.md`
+for complete ownership, sentinel and removal-order contracts.
+
+The complete G9SE8P main DOL and seventeen RELs compile and pass all eighteen
+reference hashes. All 62 automated tests and both policies pass. Independent
+ELF, layout/control-flow and caller-substitution reviews pass. No runtime or
+physical-hardware validation is claimed.

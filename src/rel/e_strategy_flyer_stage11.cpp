@@ -181,8 +181,8 @@ u32 fn_8010037C(u32, M2C_UNK, M2C_UNK);                                     /* e
 M2C_UNK fn_801007F4(u32, M2C_UNK);                                          /* extern */
 M2C_UNK fn_8010096C(u32, M2C_UNK, const void*);                             /* extern */
 M2C_UNK fn_80100AAC();                                                      /* extern */
-s32 fn_80100BF8(u8);                                                        /* extern */
-s32 fn_80100C88(u8);                                                        /* extern */
+s32 IsExistSummonEnemy__19nEnemyCommunicationFUc(u8);                       /* extern */
+s32 IsAnnihilated__19nEnemyCommunicationFUc(u8);                            /* extern */
 s32 fn_80103178(M2C_UNK);                                                   /* extern */
 M2C_UNK fn_80111260(void*, M2C_UNK, M2C_UNK);                               /* extern */
 M2C_UNK fn_80113874(M2C_UNK);                                               /* extern */
@@ -1068,7 +1068,7 @@ void fn_8_9EC40(void* arg0, s32 arg1)
 {
 	switch (arg1) { /* irregular */
 		case 0:
-			if (fn_80100BF8(M2C_FIELD(arg0, u8*, 0x34)) == 0) {
+			if (IsExistSummonEnemy__19nEnemyCommunicationFUc(M2C_FIELD(arg0, u8*, 0x34)) == 0) {
 				M2C_FIELD(arg0, s32*, 0x28) = 3;
 				M2C_FIELD(arg0, s32*, 0x2C) = 0;
 				return;
@@ -1077,7 +1077,7 @@ void fn_8_9EC40(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x2C) = 1;
 			return;
 		case 1:
-			if (fn_80100C88(M2C_FIELD(arg0, u8*, 0x34)) == 0) {
+			if (IsAnnihilated__19nEnemyCommunicationFUc(M2C_FIELD(arg0, u8*, 0x34)) == 0) {
 				return;
 			}
 			M2C_FIELD(arg0, u8*, 0x34)++;
@@ -1220,7 +1220,7 @@ void fn_8_9EFC8(void* arg0)
 		var_r29 = (u8*)lbl_8_rodata_186C;
 	}
 	if (((u32)(M2C_FIELD(arg0, s32*, 0x278) & 8) == 0)
-	    && (fn_80100C88(M2C_FIELD(var_r29, u8*, 0)) != 0)) {
+	    && (IsAnnihilated__19nEnemyCommunicationFUc(M2C_FIELD(var_r29, u8*, 0)) != 0)) {
 		M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) | 8);
 		temp_r3_2                    = fn_80103178(0);
 		if (temp_r3_2 != -1) {
@@ -1232,7 +1232,7 @@ void fn_8_9EFC8(void* arg0)
 		}
 	}
 	if (((u32)(M2C_FIELD(arg0, s32*, 0x278) & 0x10) == 0)
-	    && (fn_80100C88(M2C_FIELD(var_r29, u8*, 1)) != 0)) {
+	    && (IsAnnihilated__19nEnemyCommunicationFUc(M2C_FIELD(var_r29, u8*, 1)) != 0)) {
 		M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) | 0x10);
 		temp_r3_2                    = fn_80103178(0);
 		if (temp_r3_2 != -1) {
