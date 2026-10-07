@@ -6,7 +6,7 @@ This file records active ownership so parallel decompilation work does not overl
 | --- | --- | --- |
 | Codex 2026-10-06 | `game/setObj.cpp`, complete set-object base unit | Complete on `decomp/setobj-20261006`; nine bodies and all owned sections exact; byte-identical native DOL, no object normalizer |
 | Codex 2026-10-06 | `game/c_colli_react.cpp`, complete collision reactor unit | Complete Matching C++ reconstruction; 42 bodies, all owned sections and linked image exact with documented single-inline-atom normalization; PR preparation |
-| Codex 2026-10-06 | `game/scanpath.cpp`, complete path scanning/manager unit | Reserved on `decomp/scanpath-20261006`; sixteen surviving bodies at `0x800AEE80–0x800B13EC`, plus six inlined metadata methods; owned sections and reconstruction pending |
+| Codex 2026-10-06 | `game/scanpath.cpp`, complete path scanning/manager unit | Complete on `decomp/scanpath-complete-20261007`; sixteen surviving bodies at `0x800AEE80–0x800B13EC`, plus six inlined metadata methods; fifteen source-exact, four register fields across two instructions normalized; native main DOL plus 17 REL hashes and 68 tests pass |
 | Codex 2026-10-06 | `game/pathctrl.cpp`, complete CLASS_PATH control unit | Active on `decomp/pathctrl-20261006`; eight surviving GameCube bodies at `0x800ADC3C–0x800AEE80`; all eight bodies reconstructed, four lifecycle bodies exact; draft NonMatching, full supported build, 18 hashes and 55 tests pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |

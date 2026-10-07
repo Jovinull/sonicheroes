@@ -486,7 +486,7 @@ extern "C" void fn_8009250C(RawTask*);
 extern "C" void fn_8009D2E0(RawTask*);
 extern "C" s32 fn_800A7338();
 extern "C" u32 fn_800A7648();
-extern "C" s32 fn_800B113C();
+extern "C" s32 EndPath__Fv();
 extern "C" s32 fn_800B44A0(void*);
 extern "C" s32 fn_800B48B8(void*);
 extern "C" s32 fn_800B603C(void*);
@@ -1645,7 +1645,7 @@ s32 ACTION::Loop()
 			}
 			break;
 		case 10:
-			fn_800B113C();
+			EndPath__Fv();
 			fn_8005E8EC();
 			{
 				s32 count = 0;

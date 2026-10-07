@@ -68,37 +68,37 @@ public:
 
 extern "C" {
 
-M2C_UNK __dl__FPv(void*);                                 /* extern */
-s32 fn_80017800(void*);                                   /* extern */
-void* fn_80020BD8(void*, s32);                            /* extern */
-void fn_80021824(void*);                                  /* extern */
-M2C_UNK fn_8003BC38(void*);                               /* extern */
-M2C_UNK fn_8003BE78(void*);                               /* extern */
-int CheckMustKill__10TObjSetObjFv(void*);                 /* extern */
-M2C_UNK fn_8006298C(s32, void*, void*);                   /* extern */
-M2C_UNK fn_800A3D48(s32);                                 /* extern */
-s32 fn_800A3F60(void*);                                   /* extern */
-M2C_UNK fn_800A5B34(s32);                                 /* extern */
-s32 fn_800A6D60(s32, s32, s32);                           /* extern */
-f32 fn_800AEF48(void*, void*, void*, s32);                /* extern */
-s32 fn_800AF3AC(s16*, void*);                             /* extern */
-M2C_UNK fn_800AFB50(...);                                 /* extern */
-M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32); /* extern */
-f32 fn_800D71DC(void*, void*);                            /* extern */
-M2C_UNK fn_800D735C(void*, s32, void*);                   /* extern */
-s32 fn_800D7A94(s32, s32, s32);                           /* extern */
-f32 fn_800D7B00(s32);                                     /* extern */
-f32 fn_800D7BD8(void*, void*, void*, s32, f32);           /* extern */
-s32 fn_80103324(void*, f32*, f32);                        /* extern */
-M2C_UNK fn_80113874();                                    /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                   /* extern */
-M2C_UNK fn_8011C6EC();                                    /* extern */
-M2C_UNK fn_8014FF2C(s32);                                 /* extern */
-M2C_UNK fn_801990E0(void*, void*, f32);                   /* extern */
-M2C_UNK fn_8_90B10(s32);                                  /* extern */
-M2C_UNK fn_8_B5160(void*);                                /* extern */
-M2C_UNK fn_8_B2BB4(...);                                  /* static */
-M2C_UNK fn_8_B3598(...);                                  /* static */
+M2C_UNK __dl__FPv(void*);                                                        /* extern */
+s32 fn_80017800(void*);                                                          /* extern */
+void* fn_80020BD8(void*, s32);                                                   /* extern */
+void fn_80021824(void*);                                                         /* extern */
+M2C_UNK fn_8003BC38(void*);                                                      /* extern */
+M2C_UNK fn_8003BE78(void*);                                                      /* extern */
+int CheckMustKill__10TObjSetObjFv(void*);                                        /* extern */
+M2C_UNK fn_8006298C(s32, void*, void*);                                          /* extern */
+M2C_UNK fn_800A3D48(s32);                                                        /* extern */
+s32 fn_800A3F60(void*);                                                          /* extern */
+M2C_UNK fn_800A5B34(s32);                                                        /* extern */
+s32 fn_800A6D60(s32, s32, s32);                                                  /* extern */
+f32 SCPathPntNearToOnpos__FP7PATHTAGP5RwV3dP5RwV3dPff(void*, void*, void*, s32); /* extern */
+s32 GetStatusOnPath__FP7PATHTAGP8PATHINFO(s16*, void*);                          /* extern */
+M2C_UNK GetPointDataOnPath__FP7PATHTAGiP5RwV3d(...);                             /* extern */
+M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32);                        /* extern */
+f32 fn_800D71DC(void*, void*);                                                   /* extern */
+M2C_UNK fn_800D735C(void*, s32, void*);                                          /* extern */
+s32 fn_800D7A94(s32, s32, s32);                                                  /* extern */
+f32 fn_800D7B00(s32);                                                            /* extern */
+f32 fn_800D7BD8(void*, void*, void*, s32, f32);                                  /* extern */
+s32 fn_80103324(void*, f32*, f32);                                               /* extern */
+M2C_UNK fn_80113874();                                                           /* extern */
+M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
+M2C_UNK fn_8011C6EC();                                                           /* extern */
+M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
+M2C_UNK fn_801990E0(void*, void*, f32);                                          /* extern */
+M2C_UNK fn_8_90B10(s32);                                                         /* extern */
+M2C_UNK fn_8_B5160(void*);                                                       /* extern */
+M2C_UNK fn_8_B2BB4(...);                                                         /* static */
+M2C_UNK fn_8_B3598(...);                                                         /* static */
 extern M2C_UNK lbl_802AD090;
 extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
@@ -244,7 +244,7 @@ s32 fn_8_B0B94(void* arg0)
 			sp1C    = temp_f1 - M2C_FIELD(arg0, f32*, 0x148);
 			fn_801990E0(&sp14, &sp14, temp_f1);
 			sp30 = M2C_FIELD(arg0, f32*, 0x248);
-			if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 0) {
+			if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 0) {
 				return 2;
 			}
 			sp8  = sp58;
@@ -310,7 +310,8 @@ void fn_8_B0D34(void* arg0)
 					sp10    = temp_f1 - M2C_FIELD(arg0, f32*, 0x148);
 					fn_801990E0(&sp8, &sp8, temp_f1);
 					sp30 = M2C_FIELD(arg0, f32*, 0x248);
-					if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 0) {
+					if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp20)
+					    == 0) {
 						var_r0 = 2;
 					} else {
 						sp14 = sp58;
@@ -435,7 +436,8 @@ loop_5:
 	temp_r3 = *var_r29;
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
-			temp_f1 = fn_800AEF48((u8*)arg0 + 0x254, &sp24, &sp8, lbl_8_rodata_1BD0[0]);
+			temp_f1 = SCPathPntNearToOnpos__FP7PATHTAGP5RwV3dP5RwV3dPff(
+			    (u8*)arg0 + 0x254, &sp24, &sp8, lbl_8_rodata_1BD0[0]);
 			if (temp_f1 < var_f30) {
 				var_f30 = temp_f1;
 				var_r28 = *var_r29;
@@ -448,7 +450,7 @@ loop_5:
 	if (var_r28 != NULL) {
 		M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 		sp40                          = var_f31;
-		if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp30) == 1) {
+		if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp30) == 1) {
 			sp18 = sp44 - M2C_FIELD(arg0, f32*, 0x140);
 			sp1C = sp48 - M2C_FIELD(arg0, f32*, 0x144);
 			sp20 = sp4C - M2C_FIELD(arg0, f32*, 0x148);
@@ -527,7 +529,7 @@ loop_5:
 	temp_r3 = *var_r27;
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
-			fn_800AFB50(NULL, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
 			temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
@@ -541,7 +543,7 @@ loop_5:
 	M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 	if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) != NULL) {
 		sp30 = lbl_8_rodata_1BD0[0];
-		if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 1) {
+		if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 1) {
 			sp14 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 			sp18 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 			sp1C = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);
@@ -630,7 +632,7 @@ loop_10:
 	temp_r3 = *var_r27;
 	if (temp_r3 != NULL) {
 		if ((temp_r3 != (void*)arg2) && ((s16)M2C_FIELD(temp_r3, s16*, 0) == 1)) {
-			fn_800AFB50(NULL, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
 			temp_f1 = fn_800D71DC(arg1, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
@@ -638,7 +640,8 @@ loop_10:
 				M2C_FIELD(arg0, s32*, 0x2B4) = 1;
 			}
 			temp_r3_2 = *var_r27;
-			fn_800AFB50(temp_r3_2, M2C_FIELD(temp_r3_2, s16*, 2) - 1, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(
+			    temp_r3_2, M2C_FIELD(temp_r3_2, s16*, 2) - 1, &sp8);
 			temp_f1_2 = fn_800D71DC(arg1, &sp8);
 			if (temp_f1_2 < var_f31) {
 				var_f31                      = temp_f1_2;
@@ -671,7 +674,7 @@ loop_7:
 	temp_r3 = *var_r30;
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
-			fn_800AFB50(NULL, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
 			temp_f1 = fn_800D71DC(arg1, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
@@ -871,7 +874,7 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 					temp_r3 = *var_r27;
 					if (temp_r3 != NULL) {
 						if ((s16)*temp_r3 == 1) {
-							fn_800AFB50(NULL, &sp8);
+							GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
 							temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, &sp8);
 							if (temp_f1 < var_f31) {
 								var_f31                      = temp_f1;
@@ -885,7 +888,9 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 					M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 					if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) != NULL) {
 						sp3C = lbl_8_rodata_1BD0[0];
-						if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp2C) == 1) {
+						if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(
+						        M2C_FIELD(arg0, s16**, 0x24C), &sp2C)
+						    == 1) {
 							sp20 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 							sp24 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 							sp28 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);

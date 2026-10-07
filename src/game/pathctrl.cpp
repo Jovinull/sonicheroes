@@ -1,4 +1,4 @@
-#include "game/pathctrl.h"
+#include "game/scanpath.h"
 
 // GameCube external object views: named fields follow metadata where corroborated;
 // unnamed gaps and field offsets describe only the observed GameCube layout.
@@ -41,19 +41,6 @@ typedef struct TObjTeam {
 	u8 pad113[0x1FC - 0x113];
 	s16 field1FC;
 } TObjTeam;
-typedef struct PATHINFO {
-	s32 slangx, slangz, slangax, slangaz;
-	f32 onpathpos;
-	RwV3d pos, normal, normala, front;
-} PATHINFO;
-typedef struct TObjPathManage {
-	u8 object[0x28];
-	PATHTAG** tagTblTopPtr;
-	CLASS_PATH* pPath;
-	NJS_LINE l_pl_Temp[8];
-	RwV3d pos_pl_Last[8], diff_pl_Temp[8], dir_pl_Temp[8];
-	f32 dist_pl_Temp[8];
-} TObjPathManage;
 
 extern "C" {
 extern TObjOldPlayer* lbl_802AD070[8];
@@ -64,9 +51,6 @@ extern TObjTeam* lbl_80303DC8[4];
 extern TObjPathManage* lbl_8042C380;
 extern RwV3d lbl_80242B38;
 
-f32 fn_800AEF48(PATHTAG*, RwV3d*, RwV3d*, f32*, f32);
-s32 fn_800AF2E4(PATHTAG*, s32*, f32);
-s32 fn_800AF3AC(PATHTAG*, PATHINFO*);
 s32 fn_800DFD08(s32, PATHTAG*);
 s32 fn_800DFB88(s32, PATHTAG*);
 s32 fn_800DFA68(s32, PATHTAG*, f32);
@@ -88,7 +72,7 @@ static void pathGlidingReg(CLASS_PATH*);
 static inline void pathCalcRoughArea(CLASS_PATH* pathwp)
 {
 	PATHTAG* pttp    = pathwp->tagptr;
-	PATHTBL_P* ppp   = pttp->pathtbl;
+	PATHTBL_P* ppp   = (PATHTBL_P*)pttp->pathtbl;
 	pathwp->minpos.x = pathwp->maxpos.x = ppp->pos.x;
 	pathwp->minpos.y = pathwp->maxpos.y = ppp->pos.y;
 	pathwp->minpos.z = pathwp->maxpos.z = ppp->pos.z;
@@ -167,7 +151,8 @@ void pathSpin1D(CLASS_PATH* pathwp)
 								    && !(positionX < pathwp->minpos.x)
 								    && !(pos_Temp.y < pathwp->minpos.y)
 								    && !(pos_Temp.z < pathwp->minpos.z)
-								    && (fn_800AEF48(tag, &pos_Temp, &pos_Temp2, &hpos, 0.0f)
+								    && (SCPathPntNearToOnpos(
+								            tag, &pos_Temp, &pos_Temp2, &hpos, 0.0f)
 								        < 15.0f)
 								    && (fn_800DFD08(player, tag) != 0)) {
 									pathwp->flag = (u8)pathwp->flag | playerMask;
@@ -327,11 +312,11 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 										temp_f1_3 = temp_r20->pos.y;
 										if (!(temp_f1_3 > pathwp->maxpos.y)
 										    && !(temp_f1_3 < pathwp->minpos.y)) {
-											var_f31 = fn_800AEF48(
+											var_f31 = SCPathPntNearToOnpos(
 											    temp_r31, &temp_r20->pos, &pos, &hpos, 0.0f);
 											if (!(var_f31 > 30.0f)) {
 												pi_Temp.onpathpos = hpos;
-												if (fn_800AF3AC(temp_r31, &pi_Temp) != 0) {
+												if (GetStatusOnPath(temp_r31, &pi_Temp) != 0) {
 													if ((hpos >= (temp_r31->totallen - 0.1f))
 													    || (hpos <= 0.1f)) {
 														__memcpy(&vFace_Player, &temp_r19->spd,
@@ -553,8 +538,8 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 											pos2.x    = temp_f4_2 - (9.0f * lbl_80242B38.x);
 											pos2.y    = temp_f3_2 - (9.0f * lbl_80242B38.y);
 											pos2.z    = temp_f2_3 - (9.0f * lbl_80242B38.z);
-											if (!(4.0f < fn_800AEF48(temp_r31, (RwV3d*)&pos2,
-											          &pos_Temp2, &hpos2, 0.0f))) {
+											if (!(4.0f < SCPathPntNearToOnpos(temp_r31,
+											          (RwV3d*)&pos2, &pos_Temp2, &hpos2, 0.0f))) {
 												fn_800DF9F0(var_r25_2, temp_r31, hpos2);
 												pathwp->flag = (u8)pathwp->flag | temp_r22_2;
 											}
@@ -589,10 +574,10 @@ static inline s32 pathCheckRangeWithinArea2(
 	    || pltwp->pos.z > pathwp->maxpos.z || pltwp->pos.x < pathwp->minpos.x
 	    || pltwp->pos.y < pathwp->minpos.y || pltwp->pos.z < pathwp->minpos.z)
 		return 0;
-	if (fn_800AEF48(pttp, &pltwp->pos, &pos, &h, 0.0f) > catch_dist)
+	if (SCPathPntNearToOnpos(pttp, &pltwp->pos, &pos, &h, 0.0f) > catch_dist)
 		return 0;
 	if (p_point)
-		fn_800AF2E4(pttp, p_point, h);
+		SCPathOnposToPntnmb(pttp, h, (u32*)p_point);
 	return 1;
 }
 
@@ -676,7 +661,7 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 											} else {
 												temp_r5_2 = lbl_802AD0B0[(u8)(s8)temp_r0_2];
 												temp_r4_3 = pathwp->tagptr;
-												temp_r3_2 = temp_r4_3->pathtbl;
+												temp_r3_2 = (PATHTBL_P*)temp_r4_3->pathtbl;
 												temp_r4_4 = temp_r4_3->points;
 												if (temp_r4_4 >= 2) {
 													if (point == 0) {

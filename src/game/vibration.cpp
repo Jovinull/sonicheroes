@@ -59,7 +59,7 @@ void fn_8001F674(s32, s32, s32, s32, s32, s32);
 void fn_8001F894(VibrationTask*);
 VibrationTask* fn_8001F92C(VibrationTask*, s32);
 void Disp__7TObjectFv();
-void fn_80018984();
+void TDisp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -91,7 +91,7 @@ void* lbl_80241328[12]         = {
 	(void*)fn_8001F92C,
 	(void*)fn_8001F894,
 	(void*)Disp__7TObjectFv,
-	(void*)fn_80018984,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,
