@@ -444,10 +444,10 @@ M2C_UNK fn_8011B418(f32*);                                                      
 M2C_UNK fn_8011B594(f32*);                                                       /* extern */
 M2C_UNK fn_8011B844(u32, f32*, f32);                                             /* extern */
 M2C_UNK fn_8011C0E8(u32);                                                        /* extern */
-M2C_UNK fn_8011C188(u32, s32);                                                   /* extern */
-M2C_UNK fn_8011C1DC(u32, s32);                                                   /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
-M2C_UNK fn_8011C6EC();                                                           /* extern */
+M2C_UNK ParalyzeEnemy__14TEnemyScoreManFi(u32, s32);                             /* extern */
+M2C_UNK DestroyEnemy__14TEnemyScoreManFi(u32, s32);                              /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);                        /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                                    /* extern */
 M2C_UNK fn_8011C9A0(void*, s8);                                                  /* extern */
 M2C_UNK fn_8011CE44();                                                           /* extern */
 M2C_UNK fn_80137FE8(s32*);                                                       /* extern */
@@ -503,7 +503,7 @@ extern s32 lbl_8042C208;
 extern s32 lbl_8042C2A0;
 extern u32 lbl_8042C388;
 extern u32 lbl_8042C590;
-extern u32 lbl_8042C6D0;
+extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern s32* lbl_8042C9A4;
 extern M2C_UNK lbl_8_rodata_1CB8;
 extern M2C_UNK lbl_8_rodata_1CC4;
@@ -2071,15 +2071,16 @@ void fn_8_B956C(void* arg0)
 		}
 	}
 	if ((s32)M2C_FIELD(arg0, s32*, 0x230) != -1) {
-		if ((u32)lbl_8042C6D0 == 0U) {
-			fn_8011C6EC();
+		if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+			CreateInstance__14TEnemyScoreManFv();
 		}
-		fn_8011C1DC(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230));
+		DestroyEnemy__14TEnemyScoreManFi(
+		    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230));
 	}
-	if ((u32)lbl_8042C6D0 == 0U) {
-		fn_8011C6EC();
+	if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+		CreateInstance__14TEnemyScoreManFv();
 	}
-	fn_8011C0E8(lbl_8042C6D0);
+	fn_8011C0E8(EnemyScoreMan__14TEnemyScoreMan);
 }
 
 void fn_8_B9724(void* arg0, void* arg1)
@@ -2139,16 +2140,18 @@ void fn_8_B97C0(void* arg0, void* arg1)
 void fn_8_B986C(void* arg0)
 {
 	if ((s32)M2C_FIELD(arg0, s32*, 0x304) == 0) {
-		if ((u32)lbl_8042C6D0 == 0U) {
-			fn_8011C6EC();
+		if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+			CreateInstance__14TEnemyScoreManFv();
 		}
-		fn_8011C1F8(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230), 0x1F4);
+		AddScore__14TEnemyScoreManFii(
+		    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0x1F4);
 		return;
 	}
-	if ((u32)lbl_8042C6D0 == 0U) {
-		fn_8011C6EC();
+	if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+		CreateInstance__14TEnemyScoreManFv();
 	}
-	fn_8011C1F8(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230), 0x3E8);
+	AddScore__14TEnemyScoreManFii(
+	    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0x3E8);
 }
 
 void fn_8_B9904(TObject* arg0, s32 arg1)
@@ -2864,10 +2867,11 @@ void fn_8_BB180(void* arg0, s32 arg1)
 		case 0:
 			M2C_FIELD(arg0, s32*, 0x274) = 0x5A;
 			M2C_FIELD(arg0, s32*, 0xD4)  = 0xC;
-			if ((u32)lbl_8042C6D0 == 0U) {
-				fn_8011C6EC();
+			if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+				CreateInstance__14TEnemyScoreManFv();
 			}
-			fn_8011C188(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x238));
+			ParalyzeEnemy__14TEnemyScoreManFi(
+			    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x238));
 			M2C_FIELD(arg0, u16*, 0x30) = (u16)(M2C_FIELD(arg0, u16*, 0x30) | 0x200);
 			return;
 		case 1:
@@ -3187,10 +3191,11 @@ void fn_8_BBAD0(void* arg0, u32 arg1, s32 arg2)
 				case 0:     /* switch 4 */
 					M2C_FIELD(arg0, s32*, 0x274) = 0x5A;
 					M2C_FIELD(arg0, s32*, 0xD4)  = 0xC;
-					if ((u32)lbl_8042C6D0 == 0U) {
-						fn_8011C6EC();
+					if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+						CreateInstance__14TEnemyScoreManFv();
 					}
-					fn_8011C188(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x238));
+					ParalyzeEnemy__14TEnemyScoreManFi(
+					    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x238));
 					M2C_FIELD(arg0, u16*, 0x30) = (u16)(M2C_FIELD(arg0, u16*, 0x30) | 0x200);
 					return;
 				case 1: /* switch 4 */

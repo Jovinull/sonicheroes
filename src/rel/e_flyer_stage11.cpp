@@ -149,9 +149,9 @@ M2C_UNK fn_801138B4();                                                          
 M2C_UNK fn_801138F4();                                                           /* extern */
 M2C_UNK fn_80113940();                                                           /* extern */
 M2C_UNK fn_8011C0E8(u32);                                                        /* extern */
-M2C_UNK fn_8011C1DC(u32, s32);                                                   /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
-M2C_UNK fn_8011C6EC();                                                           /* extern */
+M2C_UNK DestroyEnemy__14TEnemyScoreManFi(u32, s32);                              /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);                        /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                                    /* extern */
 M2C_UNK fn_8011CB64(void*, s8);                                                  /* extern */
 M2C_UNK fn_8011CE44();                                                           /* extern */
 u32 fn_8011F894(void*);                                                          /* extern */
@@ -229,7 +229,7 @@ extern void* lbl_8042C180;
 extern s32 lbl_8042C2A0;
 extern u32 lbl_8042C388;
 extern u32 lbl_8042C590;
-extern u32 lbl_8042C6D0;
+extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern M2C_UNK lbl_8_rodata_18AC;
 static M2C_UNK lbl_8_data_15F80; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_15FBC; /* unable to generate initializer: unknown type */
@@ -807,16 +807,17 @@ void fn_8_A325C(void* arg0)
 		}
 	}
 	if ((s32)M2C_FIELD(arg0, s32*, 0x230) != -1) {
-		if ((u32)lbl_8042C6D0 == 0U) {
-			fn_8011C6EC();
+		if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+			CreateInstance__14TEnemyScoreManFv();
 		}
-		fn_8011C1DC(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230));
+		DestroyEnemy__14TEnemyScoreManFi(
+		    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230));
 	}
 	if ((s32)M2C_FIELD(arg0, s32*, 0x3A8) == 0) {
-		if ((u32)lbl_8042C6D0 == 0U) {
-			fn_8011C6EC();
+		if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+			CreateInstance__14TEnemyScoreManFv();
 		}
-		fn_8011C0E8(lbl_8042C6D0);
+		fn_8011C0E8(EnemyScoreMan__14TEnemyScoreMan);
 	}
 }
 
@@ -827,10 +828,11 @@ void fn_8_A3420(void* arg0, s32 arg1)
 
 void fn_8_A3444(void* arg0)
 {
-	if ((u32)lbl_8042C6D0 == 0U) {
-		fn_8011C6EC();
+	if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+		CreateInstance__14TEnemyScoreManFv();
 	}
-	fn_8011C1F8(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
+	AddScore__14TEnemyScoreManFii(
+	    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
 }
 
 void fn_8_A349C(void* arg0, void* arg1)

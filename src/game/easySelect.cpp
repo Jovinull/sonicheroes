@@ -257,7 +257,7 @@ extern u32 lbl_8042CFA4;
 extern u32 lbl_8042CFA8;
 extern u8 lbl_8042C0C0;
 
-void fn_80018984();
+void TDisp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -276,7 +276,7 @@ EasyVTable lbl_80253124 = { {
 	                            (void*)fn_800A8620,
 	                            (void*)fn_800A8290,
 	                            (void*)fn_800A8264,
-	                            (void*)fn_80018984,
+	                            (void*)TDisp__7TObjectFv,
 	                            (void*)PDisp__7TObjectFv,
 	                            (void*)ImmAftSetRaster__7TObjectFv,
 	                            (void*)Debug__7TObjectFv,
