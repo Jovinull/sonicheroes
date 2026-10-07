@@ -7,7 +7,7 @@
 typedef void (*Constructor)(void*, int);
 typedef void (*Destructor)(void*, int);
 
-extern "C" void fn_80057578(void*);
+extern "C" void __dla__FPv(void*);
 extern "C" void abort(void);
 extern "C" void __dl__FPv(void*);
 
@@ -78,7 +78,7 @@ extern "C" void __destroy_new_array(void* array, Destructor destructor)
 				i++;
 			}
 		}
-		fn_80057578((char*)array - 16);
+		__dla__FPv((char*)array - 16);
 	}
 }
 

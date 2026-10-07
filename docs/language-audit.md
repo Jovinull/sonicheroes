@@ -1445,3 +1445,16 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## enemy/e_mtnpath.cpp
+
+Symbolic C++ metadata, GameCube class/vtable references and all ten method
+roles identify this complete 1,464-byte unit. The data getters inline into the
+path constructor. Native multiple-inheritance offsets and the four-aligned
+matrix establish a 0xD0 GameCube object, rather than the other platform's 0xE0
+extent. The motion manager and array operators use metadata-backed C++
+interfaces, with callers' symbol references propagated consistently.
+All ten bodies match with ordinary automatic inlining and genuine constructor,
+destructor and exception cleanup emission. No deferred override or object
+normalizer is introduced. See `e-mtnpath-unit-evidence.md` for ownership and
+verification.

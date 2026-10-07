@@ -420,6 +420,14 @@ game/eventCore.cpp:
 	.text       start:0x8011E5A4 end:0x8011E5F0
 	.rodata     start:0x8023AAB0 end:0x8023ACB0
 
+game/enemy/e_mtnpath.cpp:
+	extab       start:0x8000AF1C end:0x8000AF94
+	extabindex  start:0x80010F3C end:0x80010F9C
+	.text       start:0x8011F894 end:0x8011FE4C
+	.data       start:0x80289A78 end:0x80289AB8
+	.sdata      start:0x8042B8F8 end:0x8042B900
+	.sdata2     start:0x8042EBE0 end:0x8042EBF0
+
 game/GetSpParam.cpp:
 	extab       start:0x8000B698 end:0x8000B6A8
 	extabindex  start:0x8001165C end:0x80011674
