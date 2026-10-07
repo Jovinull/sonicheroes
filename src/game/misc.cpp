@@ -174,91 +174,87 @@ void njPrint(s32 position, const char* format, ...)
 	RsCameraSize(lbl_8042C0F0, buffer, position >> 16, (u16)position + 6, 5);
 }
 
-f32 DistanceL2PL(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2)
+f32 DistanceL2PL(const NJS_LINE* line, const NJS_LINE* plane, RwV3d* nearestPoint)
 {
-	volatile f32 sp10;
-	volatile f32 spC;
-	volatile f32 sp8;
-	f32 temp_f2_2;
-	f32 temp_f3_2;
-	f32 temp_f3_3;
-	f32 temp_f4;
-	f32 temp_f4_2;
-	f32 temp_f6;
-	f32 temp_f7;
-	f32 temp_f9;
-	f32 var_f4;
-	f32 var_f5;
-	f32 var_f8;
-	f64 temp_f0_10;
-	f64 temp_f0_11;
-	f64 temp_f0_12;
-	f64 temp_f0_14;
-	f64 temp_f0_15;
-	f64 temp_f0_16;
-	f64 temp_f0_4;
-	f64 temp_f0_5;
-	f64 temp_f0_6;
-	var_f4 = (arg0->v.z * arg0->v.z) + ((arg0->v.x * arg0->v.x) + (arg0->v.y * arg0->v.y));
-	if (var_f4 > lbl_8042E008) {
-		temp_f0_4 = __frsqrte(var_f4);
-		temp_f0_5
-		    = lbl_8042E018 * temp_f0_4 * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_4 * temp_f0_4)));
-		temp_f0_6
-		    = lbl_8042E018 * temp_f0_5 * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_5 * temp_f0_5)));
-		sp10   = (f32)((f64)var_f4
-		    * (lbl_8042E018 * temp_f0_6
-		        * (lbl_8042E020 - ((f64)var_f4 * (temp_f0_6 * temp_f0_6)))));
-		var_f4 = sp10;
+	volatile f32 roundedLineLength;
+	volatile f32 roundedPlaneLength;
+	volatile f32 roundedNormalLength;
+	f32 pointY;
+	f32 projectionScale;
+	f32 intersectionRate;
+	f32 absoluteOffset;
+	f32 pointZ;
+	f32 signedOffset;
+	f32 directionDotNormal;
+	f32 pointX;
+	f32 lineLength;
+	f32 normalMagnitude;
+	f32 planeLength;
+	lineLength = (line->v.z * line->v.z) + ((line->v.x * line->v.x) + (line->v.y * line->v.y));
+	if (lineLength > lbl_8042E008) {
+		f64 estimate = __frsqrte(lineLength);
+		estimate
+		    = lbl_8042E018 * estimate * (lbl_8042E020 - (f64)lineLength * (estimate * estimate));
+		estimate
+		    = lbl_8042E018 * estimate * (lbl_8042E020 - (f64)lineLength * (estimate * estimate));
+		estimate
+		    = lbl_8042E018 * estimate * (lbl_8042E020 - (f64)lineLength * (estimate * estimate));
+		roundedLineLength = (f32)((f64)lineLength * estimate);
+		lineLength        = roundedLineLength;
 	}
-	var_f8 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
-	if (var_f8 > lbl_8042E008) {
-		temp_f0_10 = __frsqrte(var_f8);
-		temp_f0_11 = lbl_8042E018 * temp_f0_10
-		    * (lbl_8042E020 - ((f64)var_f8 * (temp_f0_10 * temp_f0_10)));
-		temp_f0_12 = lbl_8042E018 * temp_f0_11
-		    * (lbl_8042E020 - ((f64)var_f8 * (temp_f0_11 * temp_f0_11)));
-		spC    = (f32)((f64)var_f8
-		    * (lbl_8042E018 * temp_f0_12
-		        * (lbl_8042E020 - ((f64)var_f8 * (temp_f0_12 * temp_f0_12)))));
-		var_f8 = spC;
+	planeLength
+	    = (plane->v.z * plane->v.z) + ((plane->v.x * plane->v.x) + (plane->v.y * plane->v.y));
+	if (planeLength > lbl_8042E008) {
+		f64 estimate = __frsqrte(planeLength);
+		estimate
+		    = lbl_8042E018 * estimate * (lbl_8042E020 - (f64)planeLength * (estimate * estimate));
+		estimate
+		    = lbl_8042E018 * estimate * (lbl_8042E020 - (f64)planeLength * (estimate * estimate));
+		estimate
+		    = lbl_8042E018 * estimate * (lbl_8042E020 - (f64)planeLength * (estimate * estimate));
+		roundedPlaneLength = (f32)((f64)planeLength * estimate);
+		planeLength        = roundedPlaneLength;
 	}
-	temp_f7 = (arg0->v.z * arg1->v.z) + ((arg0->v.x * arg1->v.x) + (arg0->v.y * arg1->v.y));
-	if ((f32)__fabs(temp_f7 / (var_f4 * var_f8)) < lbl_8042E028) {
-		temp_f9   = arg0->p.x;
-		temp_f2_2 = arg0->p.y;
-		temp_f4_2 = arg0->p.z;
-		temp_f6   = -((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
-		    + ((arg1->v.z * temp_f4_2) + ((arg1->v.x * temp_f9) + (arg1->v.y * temp_f2_2)));
-		var_f5 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
-		if (arg2 != NULL) {
-			temp_f3_2 = -temp_f6 / var_f5;
-			arg2->x   = temp_f9 + (arg1->v.x * temp_f3_2);
-			arg2->y   = temp_f2_2 + (arg1->v.y * temp_f3_2);
-			arg2->z   = temp_f4_2 + (arg1->v.z * temp_f3_2);
+	directionDotNormal
+	    = (line->v.z * plane->v.z) + ((line->v.x * plane->v.x) + (line->v.y * plane->v.y));
+	if ((f32)__fabs(directionDotNormal / (lineLength * planeLength)) < lbl_8042E028) {
+		pointX = line->p.x;
+		pointY = line->p.y;
+		pointZ = line->p.z;
+		signedOffset
+		    = -((plane->v.z * plane->p.z) + ((plane->v.x * plane->p.x) + (plane->v.y * plane->p.y)))
+		    + ((plane->v.z * pointZ) + ((plane->v.x * pointX) + (plane->v.y * pointY)));
+		normalMagnitude
+		    = (plane->v.z * plane->v.z) + ((plane->v.x * plane->v.x) + (plane->v.y * plane->v.y));
+		if (nearestPoint != NULL) {
+			projectionScale = -signedOffset / normalMagnitude;
+			nearestPoint->x = pointX + (plane->v.x * projectionScale);
+			nearestPoint->y = pointY + (plane->v.y * projectionScale);
+			nearestPoint->z = pointZ + (plane->v.z * projectionScale);
 		}
-		temp_f4 = (f32)__fabs(temp_f6);
-		if (var_f5 > lbl_8042E008) {
-			temp_f0_14 = __frsqrte(var_f5);
-			temp_f0_15 = lbl_8042E018 * temp_f0_14
-			    * (lbl_8042E020 - ((f64)var_f5 * (temp_f0_14 * temp_f0_14)));
-			temp_f0_16 = lbl_8042E018 * temp_f0_15
-			    * (lbl_8042E020 - ((f64)var_f5 * (temp_f0_15 * temp_f0_15)));
-			sp8    = (f32)((f64)var_f5
-			    * (lbl_8042E018 * temp_f0_16
-			        * (lbl_8042E020 - ((f64)var_f5 * (temp_f0_16 * temp_f0_16)))));
-			var_f5 = sp8;
+		absoluteOffset = (f32)__fabs(signedOffset);
+		if (normalMagnitude > lbl_8042E008) {
+			f64 estimate = __frsqrte(normalMagnitude);
+			estimate     = lbl_8042E018 * estimate
+			    * (lbl_8042E020 - (f64)normalMagnitude * (estimate * estimate));
+			estimate = lbl_8042E018 * estimate
+			    * (lbl_8042E020 - (f64)normalMagnitude * (estimate * estimate));
+			estimate = lbl_8042E018 * estimate
+			    * (lbl_8042E020 - (f64)normalMagnitude * (estimate * estimate));
+			roundedNormalLength = (f32)((f64)normalMagnitude * estimate);
+			normalMagnitude     = roundedNormalLength;
 		}
-		return temp_f4 * (lbl_8042E00C / var_f5);
+		return absoluteOffset * (lbl_8042E00C / normalMagnitude);
 	}
-	if (arg2 != NULL) {
-		temp_f3_3
-		    = -(-((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
-		          + ((arg1->v.z * arg0->p.z) + ((arg1->v.x * arg0->p.x) + (arg1->v.y * arg0->p.y))))
-		    / temp_f7;
-		arg2->x = arg0->p.x + (arg0->v.x * temp_f3_3);
-		arg2->y = arg0->p.y + (arg0->v.y * temp_f3_3);
-		arg2->z = arg0->p.z + (arg0->v.z * temp_f3_3);
+	if (nearestPoint != NULL) {
+		intersectionRate = -(-((plane->v.z * plane->p.z)
+		                         + ((plane->v.x * plane->p.x) + (plane->v.y * plane->p.y)))
+		                       + ((plane->v.z * line->p.z)
+		                           + ((plane->v.x * line->p.x) + (plane->v.y * line->p.y))))
+		    / directionDotNormal;
+		nearestPoint->x = line->p.x + (line->v.x * intersectionRate);
+		nearestPoint->y = line->p.y + (line->v.y * intersectionRate);
+		nearestPoint->z = line->p.z + (line->v.z * intersectionRate);
 	}
 	return lbl_8042E008;
 }

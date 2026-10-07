@@ -1577,3 +1577,12 @@ removal has not been verified because the original object remains linked.
 These outstanding details prevent a whole-object matching claim. This audit
 changes documentation only; the preceding full build and checks remain the
 validation for the unchanged source.
+
+The line-to-plane body now names its line/plane inputs, projection scale,
+intersection rate, captured point coordinates and dot/offset values directly.
+Each of its three square-root blocks uses one scoped estimate for the three
+Newton refinements instead of register-derived intermediate names. A fresh
+before/after compilation confirms identical native text, constants, exception
+bytes and normalized relocations throughout the object. The match count stays
+26/30. Full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked hashes pass for this source simplification.
