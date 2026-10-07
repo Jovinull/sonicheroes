@@ -81,7 +81,7 @@ extern void* lbl_80239990;
 void fn_80150958(void*);
 void* __ct__7TObjectFP7TObject(void*, void*);
 void __ct__10TObjSetObjFv(void*);
-void fn_8003C618(void*);
+void __ct__7C_COLLIFv(void*);
 void* fn_80150588(void*);
 extern void* lbl_8042C1D0;
 void fn_8015BB08(void*, void*);
@@ -113,7 +113,7 @@ void fn_800B85D8(void*);
 void fn_8005CE4C(void*);
 void* fn_8015BD78(void*);
 void fn_8015BBF8(void*, void*);
-void dtor_8003C52C(void*, s32);
+void __dt__7C_COLLIFv(void*, s32);
 void __dt__10TObjSetObjFv(void*, s32);
 void __dt__7TObjectFv(void*, s32);
 void Free__9THeapCtrlFPv(void*, void*);
@@ -233,7 +233,7 @@ extern "C" TObjS01Stull* __dt__12TObjS01StullFv(TObjS01Stull* object, s16 flags)
 			fn_80150958(object->resource);
 			object->resource = NULL;
 		}
-		dtor_8003C52C(object->collision, 0);
+		__dt__7C_COLLIFv(object->collision, 0);
 		__dt__10TObjSetObjFv(object->motion, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
@@ -245,7 +245,7 @@ TObjS01Stull::TObjS01Stull(TObject* parent)
     : TObject(parent)
 {
 	__ct__10TObjSetObjFv(motion);
-	fn_8003C618(collision);
+	__ct__7C_COLLIFv(collision);
 	vtable                    = stullVtable;
 	*(void***)(motion + 4)    = stullVtable + 11;
 	f32* params               = *(f32**)(*(u8**)motion + 0x2C);

@@ -25,7 +25,7 @@
 
 extern "C" void* lbl_8042C148;
 
-extern "C" void dtor_8003C52C(void* volume, s32 flags);
+extern "C" void __dt__7C_COLLIFv(void* volume, s32 flags);
 extern "C" void __dt__10TObjSetObjFv(void* motion, s32 flags);
 extern "C" void __dt__7TObjectFv(void* object, s32 flags);
 extern "C" void __destroy_new_array(void* array, void (*destructor)(void*, int));
@@ -45,7 +45,7 @@ extern "C" void* scrollRingDtor(void* object, s16 flags)
 		*(void**)(base + 0x18) = scrollRingVtableA;
 		*(void**)(base + 0x54) = scrollRingVtableA + 0xC;
 
-		dtor_8003C52C(base + 0x58, 0);
+		__dt__7C_COLLIFv(base + 0x58, 0);
 
 		if (object != NULL) {
 			*(void**)(base + 0x18) = scrollRingVtableB;

@@ -399,10 +399,10 @@ M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                         
 void** fn_800FE3FC(void*);                                                       /* extern */
 M2C_UNK fn_800FE464(void**);                                                     /* extern */
 u32 fn_80100328(u32, M2C_UNK, M2C_UNK);                                          /* extern */
-u32 fn_8010037C(u32, M2C_UNK, M2C_UNK);                                          /* extern */
+u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);     /* extern */
 M2C_UNK fn_801007F4(u32, M2C_UNK);                                               /* extern */
 M2C_UNK fn_8010096C(u32, M2C_UNK, M2C_UNK*);                                     /* extern */
-M2C_UNK fn_80100AAC();                                                           /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv();                                              /* extern */
 M2C_UNK fn_80102C50(s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32); /* extern */
 s32 fn_801031D8(s32);                                                            /* extern */
 s32 fn_80103324(void*, M2C_UNK*, f32);                                           /* extern */
@@ -469,7 +469,7 @@ extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
 extern s32 lbl_8042C2A0;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern u32 lbl_8042C6D0;
 extern s32* lbl_8042C9A4;
 /* forward declarations for the dispatch tables below */
@@ -1334,10 +1334,11 @@ void fn_8_BE978(void* arg0)
 				fn_800B4A38(lbl_8042C388, 0xE017, (s32*)&sp20, 0, 1, 2, 0);
 			}
 			fn_8006298C(0xF, &sp20.x, &sp14.x);
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			if (fn_8010037C(lbl_8042C590, 0, 5) != 0U) {
+			if (SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0, 5)
+			    != 0U) {
 				sp8  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 0);
 				spC  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 4);
 				sp10 = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 8);
@@ -3260,33 +3261,34 @@ void turtleObjectUnload(void)
 	fn_80113A68(turtleObjectGlobalA);
 	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17DC8);
 	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17CD8);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 4);
+	fn_801007F4(mpDataBase__14TEnemyDataBase, 4);
 }
 
 void turtleObjectLoad(void)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 4, (M2C_UNK*)lbl_8_data_180F4);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	fn_8010096C(mpDataBase__14TEnemyDataBase, 4, (M2C_UNK*)lbl_8_data_180F4);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 4, 5);
+	temp_r3 = fn_80100328(mpDataBase__14TEnemyDataBase, 4, 5);
 	if (temp_r3 != 0U) {
 		fn_8005E00C(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	lbl_8_bss_1B78 = fn_8010037C(lbl_8042C590, 4, 4);
+	lbl_8_bss_1B78
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 4, 4);
 	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17CD8);
 	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17DC8);
 	fn_80113AA8(turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);

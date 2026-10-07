@@ -129,7 +129,7 @@ RENAMES = {
     "ImmAftSetRaster__7TObjectFv": "ImmAftSetRaster__7TObjectFv",
     "Debug__7TObjectFv": "Debug__7TObjectFv",
     "Render__7TObjectFv": "Render__7TObjectFv",
-    "TDisp__7TObjectFv": "fn_80018984",
+    "TDisp__7TObjectFv": "TDisp__7TObjectFv",
     "PDisp__7TObjectFv": "PDisp__7TObjectFv",
     "Disp__7TObjectFv": "Disp__7TObjectFv",
     "Kill__7TObjectFv": "fn_80018990",
