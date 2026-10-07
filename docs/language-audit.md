@@ -1445,3 +1445,19 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## enemy/e_shockwave.cpp
+
+Positive symbolic metadata identifies this complete unit as C++ with thirteen
+file-origin definitions. GameCube accesses and allocation establish its 0x9C
+class size, instead of the older platform's 0xA0-byte metadata size. All eight
+surviving bodies and 297 effective relocations match directly from source.
+Whole-unit deferred inlining with reversed ordinary definitions reconstructs
+forward constructor inlining and native emission order. A read-only timer
+alias restores four loads while preserving branch semantics; its asymmetric
+spelling is a reconstruction choice, not a claimed original local. No object
+normalizer or PS2 instructions are used. Independent final ELF/map review
+verifies all owned bytes and accounts for unused helpers and exception records.
+All eighteen supported output hashes and 62 tests pass. The complete unit is
+enabled as Matching; see `e-shockwave-unit-evidence.md`.

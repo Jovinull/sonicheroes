@@ -110,7 +110,7 @@ s32 fn_80103178(s32);
 void fn_80111260(AudioState*, s32, s32);
 void fn_801112F0(AudioState*, s32);
 void Disp__7TObjectFv();
-void fn_80018984();
+void TDisp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -363,7 +363,7 @@ void* lbl_8028CFE4[] = {
 	(void*)fn_801398E4,
 	(void*)fn_801397DC,
 	(void*)Disp__7TObjectFv,
-	(void*)fn_80018984,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,
@@ -377,7 +377,7 @@ void* lbl_8028D010[] = {
 	(void*)fn_80139BB8,
 	(void*)fn_80139A24,
 	(void*)Disp__7TObjectFv,
-	(void*)fn_80018984,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,
@@ -391,7 +391,7 @@ void* lbl_8028D03C[] = {
 	(void*)fn_80139E54,
 	(void*)fn_80139D28,
 	(void*)Disp__7TObjectFv,
-	(void*)fn_80018984,
+	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
 	(void*)ImmAftSetRaster__7TObjectFv,
 	(void*)Debug__7TObjectFv,

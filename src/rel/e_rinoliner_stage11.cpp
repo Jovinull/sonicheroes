@@ -168,10 +168,10 @@ M2C_UNK** fn_800FD8A0(TObject*, s32);                                           
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                           /* extern */
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                           /* extern */
 u32 fn_80100328(u32, M2C_UNK, M2C_UNK);                                           /* extern */
-s32 fn_8010037C(u32, M2C_UNK, M2C_UNK);                                           /* extern */
+s32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);      /* extern */
 M2C_UNK fn_801007F4(u32, M2C_UNK);                                                /* extern */
 M2C_UNK fn_8010096C(u32, M2C_UNK, const char*);                                   /* extern */
-M2C_UNK fn_80100AAC();                                                            /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv();                                               /* extern */
 s32 fn_80103324(void*, f32*, f32);                                                /* extern */
 M2C_UNK fn_80139784(void*, void*, void*);                                         /* extern */
 void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                                     /* extern */
@@ -199,7 +199,7 @@ extern M2C_UNK lbl_802AD090;
 extern TObject* lbl_8042C10C;
 extern s32 lbl_8042C148;
 extern void* lbl_8042C380;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern s32 lbl_8_bss_1030;
 extern M2C_UNK lbl_8_bss_1A50;
 extern void* lbl_8_bss_1A5C;
@@ -1221,40 +1221,43 @@ void rinolinerObjectUnload(void)
 	}
 	fn_8_B52F4();
 	fn_800FE248(3, &lbl_8_data_16C18);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 3);
+	fn_801007F4(mpDataBase__14TEnemyDataBase, 3);
 }
 
 void rinolinerObjectLoad(void)
 {
 	u32 temp_r3;
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 3, lbl_8_data_16FA0);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	fn_8010096C(mpDataBase__14TEnemyDataBase, 3, lbl_8_data_16FA0);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 3, 8);
+	temp_r3 = fn_80100328(mpDataBase__14TEnemyDataBase, 3, 8);
 	if (temp_r3 != 0U) {
 		fn_8005E00C(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1A50, s32*, 0) = fn_8010037C(lbl_8042C590, 3, 5);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_1A50, s32*, 0)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 3, 5);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1A50, s32*, 4) = fn_8010037C(lbl_8042C590, 3, 3);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_1A50, s32*, 4)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 3, 3);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1A50, s32*, 8) = fn_8010037C(lbl_8042C590, 3, 2);
+	M2C_FIELD(&lbl_8_bss_1A50, s32*, 8)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 3, 2);
 	fn_800FE274(3, &lbl_8_data_16C18);
 	fn_8_B5308();
 	lbl_8_bss_1A5C = fn_80139984(1, 0x4037, 4);
