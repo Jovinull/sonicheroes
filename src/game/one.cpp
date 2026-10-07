@@ -63,8 +63,7 @@ inline u32 ONEFILE::OpenData(u32 id, void* buffer)
 	stream = fn_80198000(3, 1, &memInfo);
 	if (fn_80192F38(stream, id, 0, 0)) {
 		fn_80193968(stream, &chunkInfo);
-		retVal
-		    = Expand2(stream->Type.memory.memBlock + (stream->Type.memory.position - 12), buffer);
+		retVal = Expand2(stream->Type.memory.memBlock + stream->Type.memory.position - 12, buffer);
 	}
 	fn_80197ED8(stream, 0);
 	return retVal;
@@ -228,7 +227,7 @@ extern "C" u32 fn_800BC370(ONEFILE* archive, u32 id, void*, u32* size)
 		alignedSize = (*size + 31) & ~31;
 		address     = fn_800D082C(alignedSize);
 		buffer      = fn_80012994(*size);
-		memcpy(buffer, stream->Type.memory.memBlock + (stream->Type.memory.position - 12), *size);
+		memcpy(buffer, stream->Type.memory.memBlock + stream->Type.memory.position - 12, *size);
 		fn_800D06C0(buffer, address, alignedSize);
 		*size = alignedSize;
 		fn_800126C8(buffer);

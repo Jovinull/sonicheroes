@@ -4,7 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
-| Codex 2026-10-06 | `game/one.cpp`, complete ONEFILE archive unit | Active on `decomp/one-20261006`; 25 GameCube bodies at `0x800BA7F8–0x800BCE78`, including two platform-specific methods; all bodies reconstructed, eight exact; 422 relocations and exception metadata exact; remaining instruction differences under review |
+| Codex 2026-10-06 | `game/one.cpp`, complete ONEFILE archive unit | Complete on `decomp/one-20261006`; 25 GameCube bodies at `0x800BA7F8–0x800BCE78`, including two platform-specific methods; all 25 bodies source-exact, with 422 relocations and exception metadata exact; all 18 native image hashes and 55 tests pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |
 | Codex | `game/cri/axrna.c` | Attempted; no net improvement after source-form and compiler-flag trials |

@@ -1421,10 +1421,16 @@ text extent, 192 exception-table bytes and 288 exception-index bytes. In
 particular those four functions become the observed 480, 500, 176 and 236 bytes.
 Definitions are reversed to reproduce the compiler's deferred emission order.
 
-The unit remains NonMatching. Eight bodies are byte-exact. All seventeen remaining bodies
-share four differing instructions in the archive chunk address calculation.
+All 25 bodies now match directly from C++. Reassociating the shared chunk
+address as `memBlock + position - 12` recovers the original load order and
+register allocation in all seventeen formerly differing bodies.
 The ARAM loader's register allocation matches after grouping the aligned size
 before the stream and allocated address locals. All 422
 normalized relocations agree, and 45 native data bytes agree with the retail
 48-byte extent including three trailing alignment bytes. No instruction patches,
 assembly implementations or synthetic padding are introduced.
+
+The native G9SE8P main DOL plus all seventeen RELs compile and all eighteen
+retail image hashes pass. All-source compilation, progress/report generation,
+55 tests, both policies and formatting pass. See `one-unit-evidence.md`; no
+runtime or physical-hardware validation was performed.

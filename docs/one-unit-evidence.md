@@ -30,22 +30,38 @@ bytes. No synthetic padding is emitted.
 
 This branch depends on the canonical Expand2 interface correction in PR #567.
 Only symbolic PS2 metadata is used; implementation behavior comes from the
-GameCube target. All 25 bodies are reconstructed. Native comparison finds eight exact functions
-and 17 with instruction differences; all function sizes, exception records and
-422 normalized relocations are exact. The unit remains NonMatching. No runtime
-or hardware validation is claimed.
+GameCube target. All 25 bodies are reconstructed and now match directly from
+C++, together with every function offset and size and all 422 normalized
+relocations. No instruction postprocessor is required.
 
+## Chunk-address expression
 
-Verification for this reconstruction: the G9SE8P all-source release build and
-normal link pass, together with 55 automated tests and both language and
-post-processor policy checks. All 18 normal-link hashes pass. Since `one.cpp`
-is NonMatching, the normal link retains its original object; those hashes do
-not establish an exact native replacement or runtime behavior.
+The shared OpenData helper and the ARAM resource loader compute the address of
+the chunk header after reading it. The previous expression grouped the integer
+offset subtraction first: `memBlock + (position - 12)`. Reassociating it as
+`memBlock + position - 12` reproduces the original load order and temporary
+register allocation. It removes four instruction differences in each of the
+seventeen affected bodies, including the inlined extended loaders.
 
+The base is a byte pointer, so both offsets are measured in bytes. On a valid
+stream after a successful header read, the current position is at least twelve
+and within the allocation (possibly one past its end). Forming the current
+pointer before subtracting the header size stays within that allocation. The
+source does not form a pointer before the beginning of the allocation and adds
+no load, barrier, artificial use or padding. Invalid stream behavior is not
+used to infer a new input-validation contract.
 
-A diagnostic link using the native ONEFILE object preserves the entire DOL
-length and 256-byte header. Exactly 68 aligned instruction words differ from
-the normal original-object link, all inside this unit (four in each of the
-17 remaining functions). Every byte outside those words matches, including
-the data strings and their trailing alignment. The diagnostic Matching override
-was reverted; the published configuration remains NonMatching.
+An isolated whole-object comparison with the configured compiler options
+verifies all 9,856 text bytes, 192 exception-table bytes, 288 exception-index
+bytes, all 422 relocations and the 45 string-data bytes plus three natural
+alignment bytes. The baseline comparison was eight exact bodies; after this
+single shared expression fix, all 25 are exact.
+
+## Verification
+
+A fresh native build with ONEFILE marked Matching compiles G9SE8P main DOL
+and all seventeen RELs; all eighteen retail image hashes pass. All-source
+compilation, progress/report generation, 55 automated tests, both policies
+and formatting pass. A second independent review confirms the built object
+and byte-pointer arithmetic. No runtime or physical-hardware validation was
+performed.
