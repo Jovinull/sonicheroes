@@ -646,11 +646,10 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 							if (temp_r26 != NULL) {
 								temp_r4 = temp_r26->flag & 0x2000;
 								if (temp_r4 == 0) {
-									temp_r27 = 1 << (u8)(s8)temp_r0_2;
-									if ((s32)((s8)(u8)pathwp->flag & temp_r27) == 0) {
+									if ((pathwp->flag & (temp_r27 = 1 << (u8)(s8)temp_r0_2)) == 0) {
 										temp_r3 = pathwp->player[(u8)(s8)temp_r0_2];
 										if (temp_r3 < 0x3C) {
-											pathwp->player[(u8)(s8)temp_r0_2] = temp_r3 + 1;
+											++pathwp->player[(u8)(s8)temp_r0_2];
 										} else if ((fn_800892B0(lbl_802AD070[(u8)(s8)temp_r0_2])
 										               != 0)
 										    || ((s16)temp_r22->field1FC != 0)
@@ -667,9 +666,9 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 												temp_f1_7 = temp_r4_2->pos.x;
 												if ((temp_f1_7 > pathwp->maxpos.x)
 												    || (temp_f2 = temp_r4_2->pos.y,
-												        ((temp_f2 > pathwp->maxpos.y) != 0))
+												        (temp_f2 > pathwp->maxpos.y))
 												    || (temp_f3 = temp_r4_2->pos.z,
-												        ((temp_f3 > pathwp->maxpos.z) != 0))
+												        (temp_f3 > pathwp->maxpos.z))
 												    || (temp_f1_7 < pathwp->minpos.x)
 												    || (temp_f2 < pathwp->minpos.y)
 												    || (temp_f3 < pathwp->minpos.z)) {
@@ -719,8 +718,7 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 													                  + ((temp_r3_3->pos.y
 													                         - temp_r3_3[-1].pos.y)
 													                      * temp_r5_2->spd.y)))
-													             > 0.0f)
-													            != 0))) {
+													            > 0.0f)))) {
 														var_r0_2 = 0;
 													} else {
 														goto block_56;

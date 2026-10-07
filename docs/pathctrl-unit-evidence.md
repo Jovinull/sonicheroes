@@ -53,7 +53,7 @@ The four larger functions still have nonmatching object comparisons:
 | pathSpin1D | 784 | 772 | 92.30% |
 | pathGliding | 388 | 388 | 99.85% |
 | pathGlidingReg | 2008 | 2024 | 90.92% |
-| pathSeeingPath | 1244 | 1280 | 87.00% |
+| pathSeeingPath | 1244 | 1240 | 91.67% |
 
 Gliding now has byte-exact instructions; its constant relocation offsets still
 differ because the unit constant pool is not yet ordered correctly.
@@ -61,6 +61,10 @@ differ because the unit constant pool is not yet ordered correctly.
 Spin now uses a direct timer increment, a whole-vector position assignment and
 a combined flag/mask expression. These improve native instruction selection;
 its vector-copy loads and register allocation still differ from retail.
+
+Seeing uses direct floating-point predicates instead of comparing boolean
+results against zero. This removes three redundant condition-register extraction
+sequences. Its direct timer increment also removes an extra sign extension.
 
 Every direct game/SDK call target and its per-function count agrees with retail.
 The three role integers match. All fourteen floating-point constants match
