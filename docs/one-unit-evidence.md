@@ -41,3 +41,11 @@ normal link pass, together with 55 automated tests and both language and
 post-processor policy checks. All 18 normal-link hashes pass. Since `one.cpp`
 is NonMatching, the normal link retains its original object; those hashes do
 not establish an exact native replacement or runtime behavior.
+
+
+A diagnostic link using the native ONEFILE object preserves the entire DOL
+length and 256-byte header. Exactly 68 aligned instruction words differ from
+the normal original-object link, all inside this unit (four in each of the
+17 remaining functions). Every byte outside those words matches, including
+the data strings and their trailing alignment. The diagnostic Matching override
+was reverted; the published configuration remains NonMatching.
