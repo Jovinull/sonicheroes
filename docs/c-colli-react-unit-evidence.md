@@ -77,7 +77,9 @@ owned ranges. Full linked-image comparison confirms the ranges below.
 | .data | `0x80253698` | `0x802537E0` | 328 |
 | .sdata2 | `0x8042DCA0` | `0x8042DCD0` | 48 |
 
-The following function changes to editor display work; it is excluded.
+The following function switches to audio-handle processing and does not belong
+to the reactor classes; it is excluded. Its full translation-unit ownership
+is still under investigation.
 All 42 bodies are reconstructed in ordinary C++, together with the inlined
 constructors, CheckReactor and reference-count methods. The compiler emits all
 14 virtual-base thunks; no thunk implementation is written in assembly.
