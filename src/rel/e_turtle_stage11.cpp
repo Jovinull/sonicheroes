@@ -414,7 +414,7 @@ M2C_UNK fn_8010B0AC(u32, f32, f32, s32);                                        
 M2C_UNK fn_8010B208(u32, f32, f32);                                              /* extern */
 M2C_UNK fn_8010B350(u32, void*, void*);                                          /* extern */
 s32 fn_8010B708(M2C_UNK);                                                        /* extern */
-M2C_UNK fn_80113874();                                                           /* extern */
+M2C_UNK SetLightNum__7nRenderFUi();                                              /* extern */
 M2C_UNK fn_8011398C(M2C_UNK*, s32);                                              /* extern */
 M2C_UNK fn_80113A68(M2C_UNK*);                                                   /* extern */
 M2C_UNK fn_80113AA8(M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
@@ -1840,7 +1840,7 @@ void fn_8_BF9A4(void) { }
 void fn_8_BF9A8(void* arg0)
 {
 	((TRenderer*)arg0)->Slot90();
-	fn_80113874();
+	SetLightNum__7nRenderFUi();
 	fn_8011398C(turtleObjectGlobalA, M2C_FIELD(arg0, s32*, 0x310));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 }

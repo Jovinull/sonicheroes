@@ -103,7 +103,7 @@ M2C_UNK fn_800D5A64(void*, f32*, M2C_UNK*, f32);                /* extern */
 f32 fn_800D71DC(void*, s32);                                    /* extern */
 M2C_UNK fn_80100D24(s8*, ...);                                  /* extern */
 s32 fn_80103324(void*, M2C_UNK*, f32);                          /* extern */
-M2C_UNK fn_80113874(s32);                                       /* extern */
+M2C_UNK SetLightNum__7nRenderFUi(s32);                          /* extern */
 M2C_UNK fn_8014FF2C(void*);                                     /* extern */
 M2C_UNK fn_801990E0(f32*, f32*, f32);                           /* extern */
 s32 fn_8019CE34(s32, f32*);                                     /* extern */
@@ -325,7 +325,7 @@ void fn_8_B4A7C(void* arg0)
 			fn_8019ED68(temp_r30, &lbl_80239978, M2C_FIELD(arg0, f32*, 0xE8), 2);
 			fn_8019ED68(temp_r30, &lbl_80239984, M2C_FIELD(arg0, f32*, 0xEC), 2);
 			fn_8019EB94(temp_r30, (u8*)arg0 + 0xB0, 2);
-			fn_80113874(M2C_FIELD(arg0, s32*, 0xE0));
+			SetLightNum__7nRenderFUi(M2C_FIELD(arg0, s32*, 0xE0));
 			fn_8014FF2C(lbl_8_bss_1A90.p);
 		}
 	}

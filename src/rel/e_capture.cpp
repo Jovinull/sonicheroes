@@ -336,10 +336,10 @@ M2C_UNK fn_8010B0AC(u32, f32, f32, s32);                          /* extern */
 M2C_UNK fn_8010B208(u32, f32, f32);                               /* extern */
 M2C_UNK fn_8010B350(u32, void*, void*);                           /* extern */
 u32 fn_8010B708(M2C_UNK);                                         /* extern */
-M2C_UNK fn_80113874(...);                                         /* extern */
-M2C_UNK fn_801138B4();                                            /* extern */
-M2C_UNK fn_801138F4();                                            /* extern */
-M2C_UNK fn_80113940();                                            /* extern */
+M2C_UNK SetLightNum__7nRenderFUi(...);                            /* extern */
+M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                  /* extern */
+M2C_UNK LoadRenderState__7nRenderFv();                            /* extern */
+M2C_UNK SaveRenderState__7nRenderFv();                            /* extern */
 M2C_UNK fn_8011398C(M2C_UNK*, s32);                               /* extern */
 M2C_UNK fn_80113A68(void*);                                       /* extern */
 M2C_UNK fn_80113AA8(M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);       /* extern */
@@ -1184,10 +1184,10 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 
 	if ((s32)M2C_FIELD(arg0, s32*, 0x28C) != 0) {
 		((TRenderer*)arg0)->Slot90();
-		fn_80113874();
-		fn_80113940();
-		fn_801138B4();
-		fn_80113874(0x10);
+		SetLightNum__7nRenderFUi();
+		SaveRenderState__7nRenderFv();
+		SetRenderStateForBlendAdd__7nRenderFv();
+		SetLightNum__7nRenderFUi(0x10);
 		sp14                        = *(const struct _rodata_16BC*)lbl_8_rodata_16BC;
 		M2C_FIELD(&sp14, f32*, 0xC) = M2C_FIELD(arg0, f32*, 0x288);
 		fn_8005DABC(M2C_FIELD(arg0, u32*, 0x2D8), (s32*)&sp14);
@@ -1225,7 +1225,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 			var_r27 += 1;
 			goto loop_11;
 		}
-		fn_801138F4();
+		LoadRenderState__7nRenderFv();
 	}
 }
 
@@ -1242,7 +1242,7 @@ void fn_8_99254(void* arg0)
 		var_r30 += 1;
 	} while (var_r30 < 2);
 	((TRenderer*)arg0)->Slot90();
-	fn_80113874();
+	SetLightNum__7nRenderFUi();
 	fn_8014FF2C(M2C_FIELD(arg0, void**, 0xE8));
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2E8) != 0U) {
 		fn_8014FF2C(arg0);

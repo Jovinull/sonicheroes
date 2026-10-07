@@ -185,10 +185,10 @@ s32 fn_80100BF8(u8);                                                        /* e
 s32 fn_80100C88(u8);                                                        /* extern */
 s32 fn_80103178(M2C_UNK);                                                   /* extern */
 M2C_UNK fn_80111260(void*, M2C_UNK, M2C_UNK);                               /* extern */
-M2C_UNK fn_80113874(M2C_UNK);                                               /* extern */
-M2C_UNK fn_801138B4(void*);                                                 /* extern */
-M2C_UNK fn_801138F4();                                                      /* extern */
-M2C_UNK fn_80113940();                                                      /* extern */
+M2C_UNK SetLightNum__7nRenderFUi(M2C_UNK);                                  /* extern */
+M2C_UNK SetRenderStateForBlendAdd__7nRenderFv(void*);                       /* extern */
+M2C_UNK LoadRenderState__7nRenderFv();                                      /* extern */
+M2C_UNK SaveRenderState__7nRenderFv();                                      /* extern */
 u32 fn_8011B5A8(s32, s32);                                                  /* extern */
 M2C_UNK fn_8011B844(u32, void*, f32);                                       /* extern */
 M2C_UNK fn_8012D9D0();                                                      /* extern */
@@ -1444,15 +1444,15 @@ void fn_8_9F6E8(void* arg0)
 {
 	s32 temp_r4;
 
-	fn_80113940();
+	SaveRenderState__7nRenderFv();
 	if ((u32)M2C_FIELD(arg0, u32*, 0x280) != 0U) {
 		fn_80194234(0x14, 1);
-		fn_80113874(4);
+		SetLightNum__7nRenderFUi(4);
 		fn_8014FF2C(M2C_FIELD(arg0, u32*, 0x280));
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x284) != 0U) {
-		fn_801138B4((void*)M2C_FIELD(arg0, u32*, 0x284));
-		fn_80113874(0x10);
+		SetRenderStateForBlendAdd__7nRenderFv((void*)M2C_FIELD(arg0, u32*, 0x284));
+		SetLightNum__7nRenderFUi(0x10);
 		temp_r4 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 		if ((s32)lbl_8_bss_190C != temp_r4) {
 			lbl_8_bss_190C = temp_r4;
@@ -1461,7 +1461,7 @@ void fn_8_9F6E8(void* arg0)
 		}
 		fn_8014FF2C(M2C_FIELD(arg0, u32*, 0x284));
 	}
-	fn_801138F4();
+	LoadRenderState__7nRenderFv();
 }
 
 void fn_8_9F7BC(void* arg0)
@@ -1470,7 +1470,7 @@ void fn_8_9F7BC(void* arg0)
 	s32 var_r30;
 
 	var_r31 = (u8*)arg0;
-	fn_80113874(4);
+	SetLightNum__7nRenderFUi(4);
 	fn_8014FF2C(M2C_FIELD(var_r31, u32*, 0xE8));
 	if (((u32)M2C_FIELD(var_r31, u32*, 0x27C) != 0U)
 	    && ((s32)M2C_FIELD(var_r31, s32*, 0x19C) != 0x42)) {

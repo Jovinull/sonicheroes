@@ -1445,3 +1445,14 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## Enemy render utility (`enemy/e_utility_render.cpp`)
+
+Positive symbolic metadata identifies the complete eight-function `nRender`
+unit as `C_PLUS_PLUS`. GC fog/light/state calls and four private saved-state
+words independently establish ownership: text `0x801137AC–0x8011398C`, all
+exception records, and `.sbss` `0x8042C658–0x8042C668`. Standard whole-unit
+C++ automatic inlining produces eight exact bodies and all 51 effective
+relocations, with no object postprocessor. The accessed external object views
+use GC offsets and do not import PS2 alignment or layout. See
+[e-utility-render-unit-evidence.md](e-utility-render-unit-evidence.md).

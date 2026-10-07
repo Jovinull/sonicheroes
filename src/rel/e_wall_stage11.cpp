@@ -432,10 +432,10 @@ M2C_UNK fn_8010B0AC(u32, f32, f32, s32);                                        
 M2C_UNK fn_8010B208(u32, f32, f32);                                              /* extern */
 M2C_UNK fn_8010B350(u32, void*, void*);                                          /* extern */
 u32 fn_8010B708(M2C_UNK);                                                        /* extern */
-M2C_UNK fn_80113874(s32);                                                        /* extern */
-M2C_UNK fn_801138B4();                                                           /* extern */
-M2C_UNK fn_801138F4();                                                           /* extern */
-M2C_UNK fn_80113940();                                                           /* extern */
+M2C_UNK SetLightNum__7nRenderFUi(s32);                                           /* extern */
+M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                                 /* extern */
+M2C_UNK LoadRenderState__7nRenderFv();                                           /* extern */
+M2C_UNK SaveRenderState__7nRenderFv();                                           /* extern */
 M2C_UNK fn_8011398C(M2C_UNK*, s32);                                              /* extern */
 M2C_UNK fn_80113A68(M2C_UNK*);                                                   /* extern */
 M2C_UNK fn_80113AA8(M2C_UNK*, s32, void*, M2C_UNK*, M2C_UNK);                    /* extern */
@@ -1562,11 +1562,11 @@ void fn_8_B82CC(void* arg0)
 				M2C_FIELD(&sp40, M2C_BLOCK16*, 0) = M2C_FIELD(&lbl_8_rodata_1D2C, M2C_BLOCK16*, 0);
 				sp40.w                            = M2C_FIELD(arg0, f32*, 0xE4);
 				fn_8005DABC(M2C_FIELD(arg0, s32**, 0xE0), (s32*)&sp40);
-				fn_80113940();
-				fn_801138B4();
-				fn_80113874(M2C_FIELD(arg0, s32*, 0xD8));
+				SaveRenderState__7nRenderFv();
+				SetRenderStateForBlendAdd__7nRenderFv();
+				SetLightNum__7nRenderFUi(M2C_FIELD(arg0, s32*, 0xD8));
 				fn_8014FF2C(M2C_FIELD(arg0, s32**, 0xE0));
-				fn_801138F4();
+				LoadRenderState__7nRenderFv();
 			}
 		} else {
 			M2C_FIELD(&sp34, M2C_BLOCK12*, 0) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xB0);
@@ -1615,7 +1615,7 @@ void fn_8_B8504(void* arg0)
 			if (fn_8019CE34(*lbl_8042C9A4, &sp18.x) != 0) {
 				M2C_FIELD(&sp8, M2C_BLOCK16*, 0) = M2C_FIELD(&lbl_8_rodata_1D1C, M2C_BLOCK16*, 0);
 				fn_8005DABC(M2C_FIELD(arg0, s32**, 0xE0), (s32*)&sp8);
-				fn_80113874(M2C_FIELD(arg0, s32*, 0xD8));
+				SetLightNum__7nRenderFUi(M2C_FIELD(arg0, s32*, 0xD8));
 				fn_8014FF2C(M2C_FIELD(arg0, s32**, 0xE0));
 			}
 		}
@@ -2475,9 +2475,9 @@ void fn_8_BA1EC(void* arg0)
 	s32 temp_r4;
 
 	if ((s32)M2C_FIELD(arg0, s32*, 0x29C) == 1) {
-		fn_80113940();
-		fn_801138B4();
-		fn_80113874(((TRenderer*)arg0)->Slot90());
+		SaveRenderState__7nRenderFv();
+		SetRenderStateForBlendAdd__7nRenderFv();
+		SetLightNum__7nRenderFUi(((TRenderer*)arg0)->Slot90());
 		temp_r4 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
 		if ((s32)lbl_8_bss_1B24 != temp_r4) {
 			lbl_8_bss_1B24 = temp_r4;
@@ -2485,7 +2485,7 @@ void fn_8_BA1EC(void* arg0)
 			fn_8014FFBC(lbl_8_bss_1AC8[4], &fn_8005BF88, lbl_8_bss_1AE0);
 		}
 		fn_8014FF2C(M2C_FIELD(arg0, s32**, 0x2D0));
-		fn_801138F4();
+		LoadRenderState__7nRenderFv();
 	}
 }
 
@@ -2493,7 +2493,7 @@ void fn_8_BA2B0(void* arg0)
 {
 	sVec4i sp8;
 
-	fn_80113874(((TRenderer*)arg0)->Slot90());
+	SetLightNum__7nRenderFUi(((TRenderer*)arg0)->Slot90());
 	fn_8014FF2C(M2C_FIELD(arg0, s32**, 0xE8));
 	if (((s32)M2C_FIELD(arg0, s32*, 0x288) != 0) && ((s32*)M2C_FIELD(arg0, s32**, 0x2C8) != NULL)) {
 		M2C_FIELD(&sp8, M2C_BLOCK16*, 0) = M2C_FIELD(&lbl_8_rodata_1D00, M2C_BLOCK16*, 0);
@@ -2501,7 +2501,7 @@ void fn_8_BA2B0(void* arg0)
 		fn_8014FF2C(M2C_FIELD(arg0, s32**, 0x2C8));
 	}
 	if ((s32*)M2C_FIELD(arg0, s32**, 0x2CC) != NULL) {
-		fn_80113874(0x10);
+		SetLightNum__7nRenderFUi(0x10);
 		fn_8011398C(wallObjectGlobalA, M2C_FIELD(arg0, s32*, 0x290));
 		fn_8014FF2C(M2C_FIELD(arg0, s32**, 0x2CC));
 	}

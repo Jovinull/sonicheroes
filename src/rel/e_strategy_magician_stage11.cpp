@@ -209,10 +209,10 @@ s32 fn_8010B074(void*);                                   /* extern */
 s32 fn_8010B0AC(u32, f32, f32, s32);                      /* extern */
 M2C_UNK fn_8010B208(...);                                 /* extern */
 s32 fn_8010B350(u32, void*, void*);                       /* extern */
-M2C_UNK fn_80113874(...);                                 /* extern */
-M2C_UNK fn_801138B4();                                    /* extern */
-M2C_UNK fn_801138F4();                                    /* extern */
-M2C_UNK fn_80113940();                                    /* extern */
+M2C_UNK SetLightNum__7nRenderFUi(...);                    /* extern */
+M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();          /* extern */
+M2C_UNK LoadRenderState__7nRenderFv();                    /* extern */
+M2C_UNK SaveRenderState__7nRenderFv();                    /* extern */
 M2C_UNK fn_8011B844(u32, f32*, f32);                      /* extern */
 s32 fn_8011C188(s32, s32);                                /* extern */
 M2C_UNK fn_8011C6EC();                                    /* extern */
@@ -628,9 +628,9 @@ void fn_8_AB654(void* arg0)
 	if (M2C_FIELD(arg0, f32*, 0x2B8) > lbl_8_rodata_1AC8) {
 		temp_f1 = M2C_FIELD(arg0, f32*, 0x2B4);
 		if ((temp_f1 > 0.2f) && (temp_f1 < lbl_8_rodata_1ABC)) {
-			fn_80113940();
-			fn_801138B4();
-			fn_80113874(0x10);
+			SaveRenderState__7nRenderFv();
+			SetRenderStateForBlendAdd__7nRenderFv();
+			SetLightNum__7nRenderFUi(0x10);
 			sp8  = M2C_FIELD(&lbl_8_rodata_1A38, s32*, 0);
 			spC  = M2C_FIELD(&lbl_8_rodata_1A38, s32*, 4);
 			sp10 = M2C_FIELD(&lbl_8_rodata_1A38, s32*, 8);
@@ -638,7 +638,7 @@ void fn_8_AB654(void* arg0)
 			sp14 = M2C_FIELD(arg0, f32*, 0x2B4);
 			fn_8005DABC(M2C_FIELD(arg0, s32*, 0xE8), &sp8);
 			fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
-			fn_801138F4();
+			LoadRenderState__7nRenderFv();
 		}
 		if ((s32)M2C_FIELD(arg0, s32*, 0x2F8) != 0) {
 			temp_r4 = M2C_FIELD(lbl_8042C180, s32*, 0x30);
@@ -647,11 +647,11 @@ void fn_8_AB654(void* arg0)
 				fn_8011B844(lbl_8_bss_19D0, &lbl_8_rodata_1ABC, lbl_8_rodata_1ABC);
 				fn_8014FFBC(M2C_FIELD(&lbl_8_bss_19C8, s32*, 4), &fn_8005BF88, &lbl_8_bss_19D4);
 			}
-			fn_80113940();
-			fn_801138B4();
-			fn_80113874(0x10);
+			SaveRenderState__7nRenderFv();
+			SetRenderStateForBlendAdd__7nRenderFv();
+			SetLightNum__7nRenderFUi(0x10);
 			fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x2FC));
-			fn_801138F4();
+			LoadRenderState__7nRenderFv();
 		}
 	}
 }
@@ -666,7 +666,7 @@ void fn_8_AB7AC(void* arg0)
 	if (M2C_FIELD(arg0, f32*, 0x2B8) > lbl_8_rodata_1AC8) {
 		if (M2C_FIELD(arg0, f32*, 0x2B4) >= lbl_8_rodata_1ABC) {
 			((TRenderer*)arg0)->Slot90();
-			fn_80113874();
+			SetLightNum__7nRenderFUi();
 			sp8  = M2C_FIELD(&lbl_8_rodata_1A84, s32*, 0);
 			spC  = M2C_FIELD(&lbl_8_rodata_1A84, s32*, 4);
 			sp10 = M2C_FIELD(&lbl_8_rodata_1A84, s32*, 8);

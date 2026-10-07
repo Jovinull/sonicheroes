@@ -412,6 +412,12 @@ game/e_paralysis.cpp:
 	.sbss       start:0x8042C648 end:0x8042C658
 	.sdata2     start:0x8042E980 end:0x8042E9B4
 
+game/enemy/e_utility_render.cpp:
+	extab       start:0x8000A7F0 end:0x8000A830
+	extabindex  start:0x800108DC end:0x8001093C
+	.text       start:0x801137AC end:0x8011398C
+	.sbss       start:0x8042C658 end:0x8042C668
+
 game/SeqFlagCtrl.cpp:
 	.text       start:0x801143E0 end:0x801144E0
 	.bss        start:0x803E75E8 end:0x803E7668

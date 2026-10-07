@@ -90,7 +90,7 @@ s32 fn_800D7A94(s32, s32, s32);                           /* extern */
 f32 fn_800D7B00(s32);                                     /* extern */
 f32 fn_800D7BD8(void*, void*, void*, s32, f32);           /* extern */
 s32 fn_80103324(void*, f32*, f32);                        /* extern */
-M2C_UNK fn_80113874();                                    /* extern */
+M2C_UNK SetLightNum__7nRenderFUi();                       /* extern */
 M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                   /* extern */
 M2C_UNK fn_8011C6EC();                                    /* extern */
 M2C_UNK fn_8014FF2C(s32);                                 /* extern */
@@ -698,7 +698,7 @@ void fn_8_B1A90(void) { }
 void fn_8_B1A94(void* arg0)
 {
 	((TRenderer*)arg0)->Slot90();
-	fn_80113874();
+	SetLightNum__7nRenderFUi();
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x310));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x314));

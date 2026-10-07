@@ -144,10 +144,10 @@ M2C_UNK fn_8010AFE4(void*);                                                     
 M2C_UNK fn_8010B208(u32, f32, f32);                                              /* extern */
 M2C_UNK fn_8010B350(u32, void*, void*);                                          /* extern */
 s32 fn_8010B708(M2C_UNK);                                                        /* extern */
-M2C_UNK fn_80113874();                                                           /* extern */
-M2C_UNK fn_801138B4();                                                           /* extern */
-M2C_UNK fn_801138F4();                                                           /* extern */
-M2C_UNK fn_80113940();                                                           /* extern */
+M2C_UNK SetLightNum__7nRenderFUi();                                              /* extern */
+M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                                 /* extern */
+M2C_UNK LoadRenderState__7nRenderFv();                                           /* extern */
+M2C_UNK SaveRenderState__7nRenderFv();                                           /* extern */
 M2C_UNK fn_8011C0E8(u32);                                                        /* extern */
 M2C_UNK fn_8011C1DC(u32, s32);                                                   /* extern */
 M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
@@ -1003,18 +1003,18 @@ void fn_8_A38F8(void* arg0)
 void fn_8_A39C8(void* arg0)
 {
 	((TRenderer*)arg0)->Slot90();
-	fn_80113874();
-	fn_80113940();
-	fn_801138B4();
+	SetLightNum__7nRenderFUi();
+	SaveRenderState__7nRenderFv();
+	SetRenderStateForBlendAdd__7nRenderFv();
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x294));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x298));
-	fn_801138F4();
+	LoadRenderState__7nRenderFv();
 }
 
 void fn_8_A3A20(void* arg0)
 {
 	((TRenderer*)arg0)->Slot90();
-	fn_80113874();
+	SetLightNum__7nRenderFUi();
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 	if (((s32)M2C_FIELD(arg0, s32*, 0x2E4) != 0) && ((u32)M2C_FIELD(arg0, u32*, 0x2A0) != 0U)) {
 		fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x2A0));
