@@ -194,7 +194,7 @@ s32 fn_800D7A94(s32, s32, s32);                                         /* exter
 f32 fn_800D7B00(s32);                                                   /* extern */
 f32 fn_800D8BC4(void*, void*, s32);                                     /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                                     /* extern */
-u32 fn_800FD8A0(TEnemyParalysis*, s32);                                 /* extern */
+u32 __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(TEnemyParalysis*, s32);    /* extern */
 M2C_UNK fn_800FE248(s32, void*);                                        /* extern */
 M2C_UNK fn_800FE274(s32, void*);                                        /* extern */
 u32 fn_80100280(s32, s32, s32);                                         /* extern */
@@ -1175,7 +1175,7 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	arg0->unk13C = 1;
 	var_r0_4     = __nw__FUl(0x20);
 	if (var_r0_4 != 0U) {
-		var_r0_4 = fn_800FD8A0(arg0, arg0->unk13C);
+		var_r0_4 = __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(arg0, arg0->unk13C);
 	}
 	arg0->unk228 = var_r0_4;
 	return arg0;

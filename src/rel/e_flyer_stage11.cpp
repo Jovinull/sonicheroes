@@ -128,7 +128,7 @@ s32 fn_800D7A54(s32, s32);                                                      
 f32 fn_800D7AE4(s32);                                                            /* extern */
 f32 fn_800D7B00(s32);                                                            /* extern */
 f32 fn_800D8BC4(void*, s32*, M2C_UNK);                                           /* extern */
-u32 fn_800FD8A0(M2C_UNK*, s32);                                                  /* extern */
+u32 __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(M2C_UNK*, s32);                     /* extern */
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                          /* extern */
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                          /* extern */
 M2C_UNK fn_800FE464(void*);                                                      /* extern */
@@ -2497,7 +2497,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	M2C_FIELD(arg0, s32*, 0x13C) = 1;
 	var_r0_2                     = __nw__FUl(0x20);
 	if (var_r0_2 != 0U) {
-		var_r0_2 = fn_800FD8A0(arg0, M2C_FIELD(arg0, s32*, 0x13C));
+		var_r0_2 = __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(arg0, M2C_FIELD(arg0, s32*, 0x13C));
 	}
 	M2C_FIELD(arg0, u32*, 0x228) = var_r0_2;
 	if ((s8)M2C_FIELD(arg0, u8*, 0x245) == 1) {

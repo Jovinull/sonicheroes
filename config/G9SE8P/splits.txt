@@ -395,6 +395,15 @@ game/texture.cpp:
 	extabindex  start:0x8000F3D0 end:0x8000F3DC
 	.text       start:0x800D8B48 end:0x800D8BC4
 
+game/enemy/e_link.cpp:
+	extab       start:0x80009768 end:0x800097B8
+	extabindex  start:0x8000FD60 end:0x8000FDC0
+	.text       start:0x800FD6F0 end:0x800FE248
+	.rodata     start:0x8023A760 end:0x8023A770
+	.data       start:0x8025A850 end:0x8025A890
+	.sdata      start:0x8042B728 end:0x8042B730
+	.sbss       start:0x8042C578 end:0x8042C580
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C

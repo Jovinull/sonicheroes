@@ -1445,3 +1445,18 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## enemy/e_link.cpp
+
+Positive symbolic metadata identifies all eighteen file-origin definitions as
+C++, with a 32-byte ObjEnemyKey and 44-byte TObjEnemyMan. Ten bodies survive;
+the other list helpers and manager constructor inline into their callers.
+GameCube accesses establish the partial external enemy layout and virtual
+slots. Public manager commands are static void methods. No PS2 instructions
+were inspected. Whole-unit automatic inlining is used without a per-function
+language switch. All ten surviving bodies and sixty effective relocations match directly from
+source, with no object normalizer. The final map accounts for eight unused
+method copies and a duplicate weak delete. Every supported target builds and
+all eighteen output hashes and 62 tests pass. The unit is enabled as Matching;
+see `e-link-unit-evidence.md` for ownership and validation.
