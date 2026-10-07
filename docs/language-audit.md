@@ -1398,7 +1398,8 @@ Symbolic PS2 metadata positively identifies this whole translation unit as C++
 and describes CLASS_PATH methods and private path-control helpers. GameCube
 member accesses independently establish the 88-byte class and callback ABI.
 All eight surviving GameCube bodies are reconstructed together; the metadata-named pathCalcRoughArea helper inlines into its three callers.
-Other private helper operations remain inside their surviving callers.
+The metadata-named pathCheckRangeWithinArea2 also inlines into Seeing.
+The remaining private range-helper operations stay inside their caller.
 
 The unit uses ordinary C++ methods and default automatic inlining. Exception
 handling is enabled for its six owned exception records; separate multiply/add

@@ -53,7 +53,7 @@ The four larger functions still have nonmatching object comparisons:
 | pathSpin1D | 784 | 784 | 96.76% |
 | pathGliding | 388 | 388 | 99.85% |
 | pathGlidingReg | 2008 | 2016 | 95.45% |
-| pathSeeingPath | 1244 | 1240 | 91.55% |
+| pathSeeingPath | 1244 | 1244 | 92.22% |
 
 Gliding now has byte-exact instructions; its constant relocation offsets still
 differ because the unit constant pool is not yet ordered correctly.
@@ -109,3 +109,11 @@ This correction introduces a compiler-held promoted player index in Spin and
 changes caller register allocation, reducing its current objdiff score. That
 remaining source-form work does not justify retaining the narrower provisional
 API. The player loop itself is still u8, as independently recorded in metadata.
+
+`pathCheckRangeWithinArea2(CLASS_PATH*, int, int*, float)` is restored under
+its metadata name and inlines into Seeing. It rejects a missing player, tests
+the six bounds in retail order, compares distance with the supplied catch
+distance and optionally writes the path point. Its explicit comparisons retain
+the original unordered-floating-point behavior. Restoring the helper removes
+decompiler temporaries and the artificial-looking check of a local variable's
+address, while retaining the real optional output-pointer test in the helper.

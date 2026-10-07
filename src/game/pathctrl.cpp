@@ -576,24 +576,38 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 	}
 }
 
+static inline s32 pathCheckRangeWithinArea2(
+    CLASS_PATH* pathwp, s32 pl, s32* p_point, f32 catch_dist)
+{
+	RwV3d pos;
+	f32 h;
+	PATHTAG* pttp = pathwp->tagptr;
+	TASKWK* pltwp = lbl_802AD090[pl];
+	if (!pltwp)
+		return 0;
+	if (pltwp->pos.x > pathwp->maxpos.x || pltwp->pos.y > pathwp->maxpos.y
+	    || pltwp->pos.z > pathwp->maxpos.z || pltwp->pos.x < pathwp->minpos.x
+	    || pltwp->pos.y < pathwp->minpos.y || pltwp->pos.z < pathwp->minpos.z)
+		return 0;
+	if (fn_800AEF48(pttp, &pltwp->pos, &pos, &h, 0.0f) > catch_dist)
+		return 0;
+	if (p_point)
+		fn_800AF2E4(pttp, p_point, h);
+	return 1;
+}
+
 void pathSeeingPath(CLASS_PATH* pathwp)
 {
 	RwV3d pos;
 	s32 point;
-	f32 h;
 	MOTIONWK* temp_r5_2;
 	PATHTAG* temp_r25;
-	PATHTAG* temp_r26_2;
 	PATHTAG* temp_r4_3;
 	PATHTBL_P* temp_r3_2;
 	PATHTBL_P* temp_r3_3;
 	TASKWK* temp_r26;
-	TASKWK* temp_r4_2;
 	TObjTeam** var_r30;
 	TObjTeam* temp_r22;
-	f32 temp_f1_7;
-	f32 temp_f2;
-	f32 temp_f3;
 	s16 temp_r3;
 	s16 temp_r4_4;
 	s32* var_r31;
@@ -655,32 +669,8 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 										        != 0)
 										    || ((s16)lbl_802AD0D0[(u8)(s8)temp_r0_2]->nocontimer
 										        != 0)) {
-											temp_r26_2 = pathwp->tagptr;
-											temp_r4_2  = lbl_802AD090[(u8)(s8)temp_r0_2];
-											if (temp_r4_2 == NULL) {
-												var_r0 = 0;
-											} else {
-												temp_f1_7 = temp_r4_2->pos.x;
-												if ((temp_f1_7 > pathwp->maxpos.x)
-												    || (temp_f2 = temp_r4_2->pos.y,
-												        (temp_f2 > pathwp->maxpos.y))
-												    || (temp_f3 = temp_r4_2->pos.z,
-												        (temp_f3 > pathwp->maxpos.z))
-												    || (temp_f1_7 < pathwp->minpos.x)
-												    || (temp_f2 < pathwp->minpos.y)
-												    || (temp_f3 < pathwp->minpos.z)) {
-													var_r0 = 0;
-												} else if (fn_800AEF48(temp_r26_2, &temp_r4_2->pos,
-												               &pos, &h, 0.0f)
-												    > 40.0f) {
-													var_r0 = 0;
-												} else {
-													if (&point != NULL) {
-														fn_800AF2E4(temp_r26_2, &point, h);
-													}
-													var_r0 = 1;
-												}
-											}
+											var_r0 = pathCheckRangeWithinArea2(
+											    pathwp, (u8)(s8)temp_r0_2, &point, 40.0f);
 											if (var_r0 == 0) {
 												var_r0_2 = 0;
 											} else {
