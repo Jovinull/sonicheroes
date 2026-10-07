@@ -101,12 +101,12 @@ f32 fn_800D7BD8(u8*, f32*, u8*, s32, f32);                      /* extern */
 f32 fn_800D8BC4(...);                                           /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                             /* extern */
 void* fn_8010037C(M2C_UNK, M2C_UNK, M2C_UNK);                   /* extern */
-M2C_UNK fn_80100AAC();                                          /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv();                             /* extern */
 s32 fn_80100BF8(s32);                                           /* extern */
 s32 fn_80103324(void*, f32*, f32);                              /* extern */
-M2C_UNK fn_8010AFF8(void*, s32);                                /* extern */
-s32 fn_8010B074(void*);                                         /* extern */
-M2C_UNK fn_8010B208(u32, f32*, f32, f32);                       /* extern */
+M2C_UNK Change__13TEnemyIconManF10eEnemyIcon(void*, s32);       /* extern */
+s32 Off__13TEnemyIconManFv(void*);                              /* extern */
+M2C_UNK On__13TEnemyIconManFff(u32, f32*, f32, f32);            /* extern */
 M2C_UNK fn_80113874(s32);                                       /* extern */
 s32 fn_80137FE8(void*);                                         /* extern */
 M2C_UNK fn_8014FF2C(s32);                                       /* extern */
@@ -154,7 +154,7 @@ extern s32 lbl_8042C148;
 extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern s32* lbl_8042C9A4;
 extern u32 lbl_8_bss_1A48;
 extern f32 lbl_8_rodata_1AAC;
@@ -590,10 +590,10 @@ void fn_8_A8D1C(void)
 
 void fn_8_A8D30(void)
 {
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	lbl_8_bss_19B8.p = fn_8010037C(lbl_8042C590, 5, 8);
+	lbl_8_bss_19B8.p = fn_8010037C(mpDataBase__14TEnemyDataBase, 5, 8);
 }
 
 s32 fn_8_A8D98(void* arg0)
@@ -1105,10 +1105,10 @@ void fn_8_A9E18(void)
 
 void fn_8_A9E2C(void)
 {
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	lbl_8_bss_19C0.p = fn_8010037C(lbl_8042C590, 5, 0xA);
+	lbl_8_bss_19C0.p = fn_8010037C(mpDataBase__14TEnemyDataBase, 5, 0xA);
 }
 
 void fn_8_A9E94(void* arg0, s32 arg1)
@@ -1593,11 +1593,11 @@ void fn_8_AAC90(void* arg0, void* arg1)
 	M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f1;
 	M2C_FIELD(arg0, f32*, 0x254) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-		fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x318));
+		Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x318));
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-		fn_8010AFF8((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
-		fn_8010B208(
+		Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
+		On__13TEnemyIconManFff(
 		    M2C_FIELD(arg0, u32*, 0x31C), &lbl_8_rodata_1AC8, lbl_8_rodata_1AC8, lbl_8_rodata_1AC8);
 	}
 }
@@ -1619,11 +1619,11 @@ void fn_8_AAD2C(void* arg0, void* arg1)
 	M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f0;
 	M2C_FIELD(arg0, f32*, 0x254) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-		fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x318));
+		Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x318));
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-		fn_8010AFF8((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
-		fn_8010B208(
+		Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
+		On__13TEnemyIconManFff(
 		    M2C_FIELD(arg0, u32*, 0x31C), &lbl_8_rodata_1AC8, lbl_8_rodata_1AC8, lbl_8_rodata_1AC8);
 	}
 }

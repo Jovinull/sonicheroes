@@ -50,7 +50,7 @@ public:
 extern "C" void* lbl_8042C148;
 
 extern "C" void pawnReleaseBuffer(void* buffer);
-extern "C" void fn_8010AFE4(void* object);
+extern "C" void Close__13TEnemyIconManFv(void* object);
 extern "C" void dtor_800FE334(void* object, s32 flags);
 extern "C" void fn_80150958(void* mesh);
 extern "C" void __dt__10HAnimClassFv(void* hAnim, s32 flags);
@@ -79,12 +79,12 @@ extern "C" void* pawnDtor(void* object, s16 flags)
 		}
 
 		if (*(void**)(base + 0x2DC) != NULL) {
-			fn_8010AFE4(*(void**)(base + 0x2DC));
+			Close__13TEnemyIconManFv(*(void**)(base + 0x2DC));
 			*(void**)(base + 0x2DC) = NULL;
 		}
 
 		if (*(void**)(base + 0x2D8) != NULL) {
-			fn_8010AFE4(*(void**)(base + 0x2D8));
+			Close__13TEnemyIconManFv(*(void**)(base + 0x2D8));
 			*(void**)(base + 0x2D8) = NULL;
 		}
 
