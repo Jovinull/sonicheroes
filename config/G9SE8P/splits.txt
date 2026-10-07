@@ -280,6 +280,14 @@ game/pathctrl.cpp:
 	.data       start:0x80253648 end:0x80253658
 	.sdata2     start:0x8042DC28 end:0x8042DC60
 
+game/c_colli_react.cpp:
+	extab       start:0x80007F68 end:0x80008000
+	extabindex  start:0x8000E560 end:0x8000E5E4
+	.text       start:0x800B13EC end:0x800B2110
+	.rodata     start:0x80239F70 end:0x80239F80
+	.data       start:0x80253698 end:0x802537E0
+	.sdata2     start:0x8042DCA0 end:0x8042DCD0
+
 game/hAnim.cpp:
 	extab       start:0x80008300 end:0x80008348
 	extabindex  start:0x8000EA10 end:0x8000EA7C
