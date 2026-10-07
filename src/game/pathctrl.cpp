@@ -113,6 +113,7 @@ void pathSpin1D(CLASS_PATH* pathwp)
 	RwV3d pos_Temp;
 	RwV3d pos_Temp2;
 	f32 hpos;
+	s32 playerMask;
 	u8 player;
 	PATHTAG* tag;
 	POSITION_REF* positionSource;
@@ -120,7 +121,6 @@ void pathSpin1D(CLASS_PATH* pathwp)
 	f32 positionX;
 	s16 submode;
 	s16 timer;
-	s32 playerMask;
 	u8 mode;
 
 	tag  = pathwp->tagptr;
@@ -159,8 +159,8 @@ void pathSpin1D(CLASS_PATH* pathwp)
 							if (((submode >= 0x41) || (submode < 0x3F))
 							    && ((s16)playerObject->task.mode != 0x12)) {
 								positionSource = playerObject->positionSource;
-								pos_Temp       = positionSource->pos;
-								positionX      = pos_Temp.x;
+								__memcpy(&pos_Temp, &positionSource->pos, sizeof(pos_Temp));
+								positionX = pos_Temp.x;
 								if (!(positionX > pathwp->maxpos.x)
 								    && !(pos_Temp.y > pathwp->maxpos.y)
 								    && !(pos_Temp.z > pathwp->maxpos.z)
@@ -334,9 +334,8 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 												if (fn_800AF3AC(temp_r31, &pi_Temp) != 0) {
 													if ((hpos >= (temp_r31->totallen - 0.1f))
 													    || (hpos <= 0.1f)) {
-														vFace_Player.x = temp_r19->spd.x;
-														vFace_Player.y = temp_r19->spd.y;
-														vFace_Player.z = temp_r19->spd.z;
+														__memcpy(&vFace_Player, &temp_r19->spd,
+														    sizeof(vFace_Player));
 														vFace_Player.y = 0.0f;
 														if (fn_801991B4(&vFace_Player) < 0.25f) {
 															vFace_Player.x = 1.0f;

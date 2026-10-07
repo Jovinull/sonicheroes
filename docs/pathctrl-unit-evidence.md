@@ -50,17 +50,18 @@ The four larger functions still have nonmatching object comparisons:
 
 | Function | Retail bytes | Native bytes | objdiff match |
 | --- | ---: | ---: | ---: |
-| pathSpin1D | 784 | 772 | 92.30% |
+| pathSpin1D | 784 | 784 | 98.85% |
 | pathGliding | 388 | 388 | 99.85% |
-| pathGlidingReg | 2008 | 2016 | 93.04% |
+| pathGlidingReg | 2008 | 2016 | 95.45% |
 | pathSeeingPath | 1244 | 1240 | 91.67% |
 
 Gliding now has byte-exact instructions; its constant relocation offsets still
 differ because the unit constant pool is not yet ordered correctly.
 
-Spin now uses a direct timer increment, a whole-vector position assignment and
+Spin now uses a direct timer increment, a whole-vector position copy and
 a combined flag/mask expression. These improve native instruction selection;
-its vector-copy loads and register allocation still differ from retail.
+its remaining instruction difference is the player-index argument setup for
+`fn_800DFD08`. Constant relocation offsets also differ.
 
 Seeing uses direct floating-point predicates instead of comparing boolean
 results against zero. This removes three redundant condition-register extraction
@@ -82,3 +83,13 @@ build, including main and all seventeen RELs. All eighteen normal-link hashes,
 this unit is NonMatching, normal linking still uses its retail object; the
 hashes do not validate the candidate implementation. No runtime or hardware
 validation was performed.
+
+The position copy in Spin and facing-vector copy in GlidingReg use CodeWarrior's
+`__memcpy` builtin, already used elsewhere in the project. Each emits the
+retail integer-word loads/stores without an external call, preserving the
+vector's bits. Ordinary field/aggregate assignment produced float operations;
+ordinary `memcpy` introduced a call. Neither alternative was retained.
+
+Temporary compiler experiments found that deferred inlining, including reversed
+definition order, does not repair the constant pool and changes the constructor
+size. The unit retains automatic inlining and its original definition order.
