@@ -113,19 +113,19 @@ void pathSpin1D(CLASS_PATH* pathwp)
 	RwV3d pos_Temp;
 	RwV3d pos_Temp2;
 	f32 hpos;
-	PATHTAG* temp_r28;
-	POSITION_REF* temp_r4;
-	TObjOldPlayer* temp_r6;
-	f32 temp_f1_7;
-	s16 temp_r0_2;
-	s16 temp_r3;
-	s32 temp_r30;
-	u8 temp_r0;
-	u8 var_r29;
+	u8 player;
+	PATHTAG* tag;
+	POSITION_REF* positionSource;
+	TObjOldPlayer* playerObject;
+	f32 positionX;
+	s16 submode;
+	s16 timer;
+	s32 playerMask;
+	u8 mode;
 
-	temp_r28 = pathwp->tagptr;
-	temp_r0  = (u8)pathwp->mode;
-	switch ((s8)temp_r0) {
+	tag  = pathwp->tagptr;
+	mode = (u8)pathwp->mode;
+	switch ((s8)mode) {
 		case 0:
 			pathwp->flag      = 0;
 			pathwp->player[0] = 0x14;
@@ -146,43 +146,40 @@ void pathSpin1D(CLASS_PATH* pathwp)
 			pathwp->mode = 1;
 			return;
 		case 1:
-			var_r29 = 0;
-			while (var_r29 < 8U) {
-				temp_r6 = lbl_802AD070[var_r29];
-				if (temp_r6 != NULL) {
-					temp_r30 = 1 << var_r29;
-					if ((s32)((s8)(u8)pathwp->flag & temp_r30) == 0) {
-						temp_r3 = pathwp->player[var_r29];
-						if (temp_r3 < 0x14) {
-							pathwp->player[var_r29] = temp_r3 + 1;
+			player = 0;
+			while (player < 8U) {
+				playerObject = lbl_802AD070[player];
+				if (playerObject != NULL) {
+					if ((pathwp->flag & (playerMask = 1 << player)) == 0) {
+						timer = pathwp->player[player];
+						if (timer < 0x14) {
+							++pathwp->player[player];
 						} else {
-							temp_r0_2 = temp_r6->task.smode;
-							if (((temp_r0_2 >= 0x41) || (temp_r0_2 < 0x3F))
-							    && ((s16)temp_r6->task.mode != 0x12)) {
-								temp_r4    = temp_r6->positionSource;
-								pos_Temp.x = temp_r4->pos.x;
-								pos_Temp.y = temp_r4->pos.y;
-								pos_Temp.z = temp_r4->pos.z;
-								temp_f1_7  = pos_Temp.x;
-								if (!(temp_f1_7 > pathwp->maxpos.x)
+							submode = playerObject->task.smode;
+							if (((submode >= 0x41) || (submode < 0x3F))
+							    && ((s16)playerObject->task.mode != 0x12)) {
+								positionSource = playerObject->positionSource;
+								pos_Temp       = positionSource->pos;
+								positionX      = pos_Temp.x;
+								if (!(positionX > pathwp->maxpos.x)
 								    && !(pos_Temp.y > pathwp->maxpos.y)
 								    && !(pos_Temp.z > pathwp->maxpos.z)
-								    && !(temp_f1_7 < pathwp->minpos.x)
+								    && !(positionX < pathwp->minpos.x)
 								    && !(pos_Temp.y < pathwp->minpos.y)
 								    && !(pos_Temp.z < pathwp->minpos.z)
-								    && (fn_800AEF48(temp_r28, &pos_Temp, &pos_Temp2, &hpos, 0.0f)
+								    && (fn_800AEF48(tag, &pos_Temp, &pos_Temp2, &hpos, 0.0f)
 								        < 15.0f)
-								    && (fn_800DFD08(var_r29, temp_r28) != 0)) {
-									pathwp->flag = (u8)pathwp->flag | temp_r30;
+								    && (fn_800DFD08(player, tag) != 0)) {
+									pathwp->flag = (u8)pathwp->flag | playerMask;
 								}
 							}
 						}
-					} else if ((s32)(temp_r6->task.flag & 0x2000) == 0) {
-						pathwp->player[var_r29] = 0;
-						pathwp->flag            = (u8)pathwp->flag & ~temp_r30;
+					} else if ((s32)(playerObject->task.flag & 0x2000) == 0) {
+						pathwp->player[player] = 0;
+						pathwp->flag           = (u8)pathwp->flag & ~playerMask;
 					}
 				}
-				var_r29 += 1;
+				player += 1;
 			}
 			return;
 	}
