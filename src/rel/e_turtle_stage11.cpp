@@ -399,10 +399,10 @@ M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                         
 void** fn_800FE3FC(void*);                                                       /* extern */
 M2C_UNK fn_800FE464(void**);                                                     /* extern */
 u32 fn_80100328(u32, M2C_UNK, M2C_UNK);                                          /* extern */
-u32 fn_8010037C(u32, M2C_UNK, M2C_UNK);                                          /* extern */
+u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);     /* extern */
 M2C_UNK fn_801007F4(u32, M2C_UNK);                                               /* extern */
 M2C_UNK fn_8010096C(u32, M2C_UNK, M2C_UNK*);                                     /* extern */
-M2C_UNK fn_80100AAC();                                                           /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv();                                              /* extern */
 M2C_UNK fn_80102C50(s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32); /* extern */
 s32 fn_801031D8(s32);                                                            /* extern */
 s32 fn_80103324(void*, M2C_UNK*, f32);                                           /* extern */
@@ -419,8 +419,8 @@ M2C_UNK fn_8011398C(M2C_UNK*, s32);                                             
 M2C_UNK fn_80113A68(M2C_UNK*);                                                   /* extern */
 M2C_UNK fn_80113AA8(M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
 M2C_UNK fn_80113C7C(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_801140DC(f32*, f32);                                                  /* extern */
-M2C_UNK fn_80114394(f32*);                                                       /* extern */
+M2C_UNK Create__18TObjEnemyRingLaserFPC15sRingLaserParam(f32*, f32);             /* extern */
+M2C_UNK __ct__15sRingLaserParamFv(f32*);                                         /* extern */
 M2C_UNK fn_8011C13C(u32);                                                        /* extern */
 M2C_UNK fn_8011C188(u32, s32);                                                   /* extern */
 M2C_UNK fn_8011C1C0(u32, s32);                                                   /* extern */
@@ -469,7 +469,7 @@ extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
 extern s32 lbl_8042C2A0;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern u32 lbl_8042C6D0;
 extern s32* lbl_8042C9A4;
 /* forward declarations for the dispatch tables below */
@@ -1334,10 +1334,11 @@ void fn_8_BE978(void* arg0)
 				fn_800B4A38(lbl_8042C388, 0xE017, (s32*)&sp20, 0, 1, 2, 0);
 			}
 			fn_8006298C(0xF, &sp20.x, &sp14.x);
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			if (fn_8010037C(lbl_8042C590, 0, 5) != 0U) {
+			if (SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0, 5)
+			    != 0U) {
 				sp8  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 0);
 				spC  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 4);
 				sp10 = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 8);
@@ -1670,7 +1671,7 @@ void fn_8_BF3CC(void* arg0)
 	void* temp_r3;
 
 	if ((u32)M2C_FIELD(arg0, u32*, 0x254) != 0U) {
-		fn_80114394(&sp48.x);
+		__ct__15sRingLaserParamFv(&sp48.x);
 		temp_r3   = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x254));
 		sp48.x    = M2C_FIELD(temp_r3, f32*, 0x30);
 		sp48.y    = M2C_FIELD(temp_r3, f32*, 0x34);
@@ -1687,7 +1688,7 @@ void fn_8_BF3CC(void* arg0)
 		sp54.x *= temp_f1;
 		sp54.y *= temp_f1;
 		sp54.z *= temp_f1;
-		fn_801140DC(&sp48.x, temp_f1);
+		Create__18TObjEnemyRingLaserFPC15sRingLaserParam(&sp48.x, temp_f1);
 		if ((u32)lbl_8042C388 != 0U) {
 			fn_800B4A38(lbl_8042C388, 0x402E, (s32*)((u8*)arg0 + 0x140), 0, 1, 0, 0);
 		}
@@ -2141,7 +2142,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 				}
 			} else if ((s32)M2C_FIELD(arg0, s32*, 0x2C8) == 0) {
 				if ((u32)M2C_FIELD(arg0, u32*, 0x254) != 0U) {
-					fn_80114394(&sp2C.x);
+					__ct__15sRingLaserParamFv(&sp2C.x);
 					temp_r3_4  = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x254));
 					sp2C.x     = M2C_FIELD(temp_r3_4, f32*, 0x30);
 					sp2C.y     = M2C_FIELD(temp_r3_4, f32*, 0x34);
@@ -2158,7 +2159,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 					sp38.x *= temp_f1_2;
 					sp38.y *= temp_f1_2;
 					sp38.z *= temp_f1_2;
-					fn_801140DC(&sp2C.x, temp_f1_2);
+					Create__18TObjEnemyRingLaserFPC15sRingLaserParam(&sp2C.x, temp_f1_2);
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(lbl_8042C388, 0x402E, (s32*)((u8*)arg0 + 0x140), 0, 1, 0, 0);
 					}
@@ -3260,33 +3261,34 @@ void turtleObjectUnload(void)
 	fn_80113A68(turtleObjectGlobalA);
 	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17DC8);
 	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17CD8);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 4);
+	fn_801007F4(mpDataBase__14TEnemyDataBase, 4);
 }
 
 void turtleObjectLoad(void)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 4, (M2C_UNK*)lbl_8_data_180F4);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	fn_8010096C(mpDataBase__14TEnemyDataBase, 4, (M2C_UNK*)lbl_8_data_180F4);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 4, 5);
+	temp_r3 = fn_80100328(mpDataBase__14TEnemyDataBase, 4, 5);
 	if (temp_r3 != 0U) {
 		fn_8005E00C(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	lbl_8_bss_1B78 = fn_8010037C(lbl_8042C590, 4, 4);
+	lbl_8_bss_1B78
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 4, 4);
 	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17CD8);
 	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17DC8);
 	fn_80113AA8(turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);

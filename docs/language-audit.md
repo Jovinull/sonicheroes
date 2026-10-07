@@ -1445,3 +1445,20 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## enemy/e_ringlaser.cpp
+
+Positive symbolic metadata identifies this whole translation unit as C++ and
+fourteen file-origin methods. GameCube vtable and field accesses establish the
+TObject/C_COLLI inheritance and 0xE4-byte ring-laser object; the 0x30-byte
+parameter type is also corroborated. UV state uses the GameCube matrix offset
+four, rather than the older platform's aligned offset sixteen. No PS2
+instructions were inspected. All methods and owned sections are reconstructed
+together. Whole-TU deferred inlining with reversed ordinary definitions restores
+forward inlining and native function/constant emission order; historical flags
+and original source order remain unproven. All seven surviving bodies and 110
+effective relocations match with no normalizer. Independent final-link review
+accounts for unused helpers and exception records. All eighteen supported
+output hashes and 62 tests pass; the whole unit is enabled as Matching.
+See `e-ringlaser-unit-evidence.md`.

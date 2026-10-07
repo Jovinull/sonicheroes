@@ -133,10 +133,10 @@ M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                         
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                          /* extern */
 M2C_UNK fn_800FE464(void*);                                                      /* extern */
 u32 fn_80100328(u32, M2C_UNK, M2C_UNK);                                          /* extern */
-u32 fn_8010037C(u32, M2C_UNK, M2C_UNK);                                          /* extern */
+u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);     /* extern */
 M2C_UNK fn_801007F4(u32, M2C_UNK);                                               /* extern */
 M2C_UNK fn_8010096C(u32, M2C_UNK, const void*);                                  /* extern */
-M2C_UNK fn_80100AAC();                                                           /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv();                                              /* extern */
 s32 fn_80100C88(u8);                                                             /* extern */
 M2C_UNK fn_80100D24(s8*, ...);                                                   /* extern */
 M2C_UNK fn_80102C50(s32, s32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32); /* extern */
@@ -228,7 +228,7 @@ extern s32 lbl_8042C148;
 extern void* lbl_8042C180;
 extern s32 lbl_8042C2A0;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern u32 lbl_8042C6D0;
 extern M2C_UNK lbl_8_rodata_18AC;
 static M2C_UNK lbl_8_data_15F80; /* unable to generate initializer: unknown type */
@@ -924,10 +924,11 @@ void fn_8_A35DC(void* arg0)
 				fn_800B4A38(lbl_8042C388, 0xE017, (void*)(&sp20), (void*)(NULL), 1, 2, 0);
 			}
 			fn_8006298C(0xF, &sp20, &sp14);
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			if (fn_8010037C(lbl_8042C590, 0, 5) != 0U) {
+			if (SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0, 5)
+			    != 0U) {
 				sp8  = M2C_FIELD(lbl_8_rodata_18C0, s32*, 0);
 				spC  = M2C_FIELD(lbl_8_rodata_18C0, s32*, 4);
 				sp10 = M2C_FIELD(lbl_8_rodata_18C0, s32*, 8);
@@ -2165,22 +2166,25 @@ void fn_8_A5A8C(void* arg0)
 		case 0:
 			break;
 		case 1:
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			var_r3 = fn_8010037C(lbl_8042C590, 5, 9);
+			var_r3 = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(
+			    mpDataBase__14TEnemyDataBase, 5, 9);
 			break;
 		case 2:
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			var_r3 = fn_8010037C(lbl_8042C590, 5, 0xA);
+			var_r3 = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(
+			    mpDataBase__14TEnemyDataBase, 5, 0xA);
 			break;
 		case 4:
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			var_r3 = fn_8010037C(lbl_8042C590, 5, 8);
+			var_r3 = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(
+			    mpDataBase__14TEnemyDataBase, 5, 8);
 			break;
 	}
 	if (var_r3 != 0U) {
@@ -2428,22 +2432,25 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 		case 0:
 			break;
 		case 1:
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			var_r3 = fn_8010037C(lbl_8042C590, 5, 9);
+			var_r3 = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(
+			    mpDataBase__14TEnemyDataBase, 5, 9);
 			break;
 		case 2:
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			var_r3 = fn_8010037C(lbl_8042C590, 5, 0xA);
+			var_r3 = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(
+			    mpDataBase__14TEnemyDataBase, 5, 0xA);
 			break;
 		case 4:
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			var_r3 = fn_8010037C(lbl_8042C590, 5, 8);
+			var_r3 = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(
+			    mpDataBase__14TEnemyDataBase, 5, 8);
 			break;
 	}
 	if (var_r3 != 0U) {
@@ -2631,14 +2638,14 @@ void flyerObjectUnload(void)
 	fn_8_A9E18();
 	fn_800FE248(5, (M2C_UNK*)&lbl_8_data_16070[0]);
 	fn_800FE248(5, (M2C_UNK*)&lbl_8_data_16018[0]);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 0xC);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	fn_801007F4(mpDataBase__14TEnemyDataBase, 0xC);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 5);
+	fn_801007F4(mpDataBase__14TEnemyDataBase, 5);
 }
 
 void flyerObjectLoad(void)
@@ -2648,45 +2655,49 @@ void flyerObjectLoad(void)
 	u32 temp_r5;
 	u32 var_r0;
 
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 5, lbl_8_data_1628C);
+	fn_8010096C(mpDataBase__14TEnemyDataBase, 5, lbl_8_data_1628C);
 	temp_r5 = fn_800194C4(&lbl_8029C310);
 	if (temp_r5 != 0U) {
 		temp_r3 = sprintf(&sp8, lbl_8_data_1629C, temp_r5);
 		if ((temp_r3 >= 0) && (temp_r3 < 0x40)) {
-			if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			fn_8010096C(lbl_8042C590, 0xC, &sp8);
+			fn_8010096C(mpDataBase__14TEnemyDataBase, 0xC, &sp8);
 		}
 	}
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 5, 0xD);
+	temp_r3 = fn_80100328(mpDataBase__14TEnemyDataBase, 5, 0xD);
 	if (temp_r3 != 0U) {
 		fn_8005E00C(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1948, u32*, 0) = fn_8010037C(lbl_8042C590, 5, 0xC);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_1948, u32*, 0)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 5, 0xC);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1948, u32*, 4) = fn_8010037C(lbl_8042C590, 5, 0xF);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_1948, u32*, 4)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 5, 0xF);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1948, u32*, 8) = fn_8010037C(lbl_8042C590, 5, 0xE);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_1948, u32*, 8)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 5, 0xE);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1948, u32*, 0xC) = fn_8010037C(lbl_8042C590, 5, 6);
+	M2C_FIELD(&lbl_8_bss_1948, u32*, 0xC)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 5, 6);
 	fn_800FE274(5, (M2C_UNK*)&lbl_8_data_16018[0]);
 	fn_800FE274(5, (M2C_UNK*)&lbl_8_data_16070[0]);
 	fn_8_A9E2C();
