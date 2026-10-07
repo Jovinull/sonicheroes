@@ -1469,8 +1469,8 @@ helpers are retained where they improve native correspondence.
 
 Twenty-six functions currently have exact native instruction bytes. Four geometry
 helpers remain nonmatching. Native text is 8,960 bytes including a generated
-helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes),
-but metadata content and relocations still require a complete audit. The 52
+helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes). The exception table is
+byte-exact; the index has one function-size difference, as detailed below. The 52
 native constant bytes equal the retail prefix; the retail range includes four
 trailing zero bytes. The candidate remains **NonMatching** and links the
 original object. The full supported G9SE8P all-source build and link/report,
@@ -1560,3 +1560,20 @@ parallel branch's square-root return paths removes the extra branch. The
 volatile nearest-point reloads remain unchanged. All 26 exact functions stay
 exact; whole-unit native text is now 8,960 bytes. Full supported G9SE8P
 build/report, 55 tests, both policies and 18 original-linked hashes pass.
+
+A whole-object audit at `470642f` confirms that all 26 byte-exact functions also
+have exact relocations after normalizing defined targets by section/offset or
+function identity. Both line-distance routines have exact relocation offsets
+and targets despite their remaining instruction differences. The line-based
+plane intersection and projected-vector angle still differ in both instructions
+and relocation placement. All 34 direct-call target counts agree.
+
+All 152 exception-table bytes match. All 38 exception-index relocations match;
+the only index data difference is the `VectorAngleOnPlane` function-size word
+at index offset 208 (retail 852, native 848). The native 52-byte constant section
+matches the retail prefix; retail has four additional trailing zero bytes.
+The native object also contains a 48-byte static dot helper whose final linker
+removal has not been verified because the original object remains linked.
+These outstanding details prevent a whole-object matching claim. This audit
+changes documentation only; the preceding full build and checks remain the
+validation for the unchanged source.
