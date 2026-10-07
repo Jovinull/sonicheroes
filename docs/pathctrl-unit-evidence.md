@@ -52,7 +52,7 @@ The four larger functions still have nonmatching object comparisons:
 | --- | ---: | ---: | ---: |
 | pathSpin1D | 784 | 772 | 92.30% |
 | pathGliding | 388 | 388 | 99.85% |
-| pathGlidingReg | 2008 | 2024 | 90.92% |
+| pathGlidingReg | 2008 | 2016 | 93.04% |
 | pathSeeingPath | 1244 | 1240 | 91.67% |
 
 Gliding now has byte-exact instructions; its constant relocation offsets still

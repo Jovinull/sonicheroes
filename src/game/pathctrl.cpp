@@ -256,8 +256,8 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 	f32 temp_f8;
 	f32 temp_f9;
 	f32 var_f1;
-	f32 var_f30;
 	f32 var_f31;
+	f32 var_f30;
 	f32 var_f3;
 	f32 var_f4;
 	s16 temp_r0_2;
@@ -300,11 +300,10 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 				temp_r20 = *var_r29;
 				if (temp_r20 != NULL) {
 					temp_r19 = *var_r28;
-					temp_r22 = 1 << var_r21;
-					if ((s32)((s8)(u8)pathwp->flag & temp_r22) == 0) {
+					if ((pathwp->flag & (temp_r22 = 1 << var_r21)) == 0) {
 						temp_r3 = *var_r27;
 						if (temp_r3 < 0xC) {
-							*var_r27 = temp_r3 + 1;
+							++*var_r27;
 							if ((s16)*var_r27 >= 4) {
 								var_f30 = 0.0f;
 								goto block_17;
@@ -530,11 +529,10 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 			do {
 				temp_r4 = *var_r23_2;
 				if (temp_r4 != NULL) {
-					temp_r22_2 = 1 << var_r25_2;
-					if ((s32)((s8)(u8)pathwp->flag & temp_r22_2) == 0) {
+					if ((pathwp->flag & (temp_r22_2 = 1 << var_r25_2)) == 0) {
 						temp_r3_6 = *var_r24_2;
 						if (temp_r3_6 < 0xC) {
-							*var_r24_2 = temp_r3_6 + 1;
+							++*var_r24_2;
 						} else {
 							*var_r24_2 = 0xC;
 							temp_r0_3  = (*var_r23_2)->smode;
