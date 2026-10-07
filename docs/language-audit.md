@@ -1445,3 +1445,15 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## player/player_barrier.cpp
+
+Positive symbolic metadata identifies seven C++ definitions, including a
+constructor inlined into the factory. Six surviving GameCube functions occupy
+0x8010C220–0x8010CACC. The vtable, allocation size and exclusive storage references
+independently establish the complete unit. No PS2 instructions were inspected.
+All six surviving bodies, eight owned sections and 132 relocations match from
+source with whole-unit automatic deferred inlining and reversed ordinary
+definitions. No object normalizer is needed. The DOL plus all seventeen RELs
+compile, all eighteen hashes match, and 62 automated tests pass.
+See `player-barrier-unit-evidence.md`.

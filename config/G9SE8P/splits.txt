@@ -395,6 +395,16 @@ game/texture.cpp:
 	extabindex  start:0x8000F3D0 end:0x8000F3DC
 	.text       start:0x800D8B48 end:0x800D8BC4
 
+game/player/player_barrier.cpp:
+	extab       start:0x8000A334 end:0x8000A380
+	extabindex  start:0x800104F8 end:0x80010534
+	.text       start:0x8010C220 end:0x8010CACC
+	.data       start:0x8025B0F0 end:0x8025B238
+	.bss        start:0x803E72B0 end:0x803E72F8
+	.sdata      start:0x8042B7B8 end:0x8042B7C8
+	.sbss       start:0x8042C5D8 end:0x8042C5E8
+	.sdata2     start:0x8042E830 end:0x8042E860
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C
