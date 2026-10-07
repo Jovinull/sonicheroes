@@ -1586,3 +1586,21 @@ before/after compilation confirms identical native text, constants, exception
 bytes and normalized relocations throughout the object. The match count stays
 26/30. Full supported G9SE8P build/report, 55 tests, both policies and 18
 original-linked hashes pass for this source simplification.
+
+A diagnostic native link of the unchanged `50f307c` candidate resolves the
+helper and constant-tail questions. The link command contains the compiled
+`src/game/misc.o` and excludes the original object. Its map marks the 48-byte
+`fn_800D7920Dot` helper `UNUSED`. The linked bytes from `0x8042E008` through
+`0x8042E03F` equal the complete 56-byte retail constant range: the native
+52-byte contribution is followed by four normal linker-alignment bytes, and
+the next contribution remains at `0x8042E040`. No source padding is needed.
+
+The first subsequent function, `VectorAngle`, links at `0x800D791C` rather than
+`0x800D7920`, consistent with the four-byte-short projected-angle routine.
+Thus the remaining barriers are the four instruction bodies and the associated
+size/relocation differences, not the unused helper or constant alignment.
+This diagnostic is not a matching release or runtime validation. The temporary
+Matching setting was reverted; a full supported G9SE8P all-source build and
+link/report then passed with the original object, alongside 55 tests, both
+policies and all 18 original-linked artifact hashes. No diagnostic binary or
+configuration change is retained.
