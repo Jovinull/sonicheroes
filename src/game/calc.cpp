@@ -2,7 +2,11 @@
 
 // calc.cpp: C++ file/function identities corroborated by PS2 DWARF.
 // The GameCube unit boundary is inferred from the correlated function sequence.
-// GetRotYXZ still differs in floating-point register allocation.
+// Seven bodies match directly. GetRotYXZ retains ten f30/f31 register fields
+// across ten instructions; tools/fix_calc_registers.py bounds that permutation.
+// Local declarations, expression lifetimes, helper expansion and compiler
+// choices have not reproduced the allocation. See docs/calc-register-evidence.md.
+// Remove the normalizer when a source spelling reproduces these fields.
 struct RwV3d {
 	f32 x, y, z;
 };
