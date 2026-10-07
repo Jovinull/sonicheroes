@@ -172,10 +172,10 @@ M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
 M2C_UNK fn_8005D5C8(RpClump*, s32);                           /* extern */
 s32 fn_80091FAC(s32);                                         /* extern */
 s32 fn_80096A98(s32);                                         /* extern */
-s32 fn_800BB0D4(s32, s32, M2C_UNK*);                          /* extern */
-s32 fn_800BB92C(s32, s32, M2C_UNK*);                          /* extern */
-s32 fn_800BC6CC(s32, const void*);                            /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                           /* extern */
+s32 LoadHAnimationEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);      /* extern */
+s32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);           /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, const void*);               /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);              /* extern */
 f32 fn_800D7AE4(s32);                                         /* extern */
 f32 fn_800D7B00(s32);                                         /* extern */
 M2C_UNK fn_8013F3A4(RpHAnimHierarchy*);                       /* extern */
@@ -1144,13 +1144,13 @@ end:
 	return;
 body: {
 	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(temp_r31, &lbl_802FF5A0);
 	var_r25       = 0;
 	var_r29.value = lbl_8_data_18F58;
 	var_r28.value = lbl_8_bss_1DB0;
 	do {
-		*var_r28.value
-		    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, *var_r29.value), &lbl_802FF5A0);
+		*var_r28.value = LoadClumpEx__7ONEFILEFUiPc(
+		    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, *var_r29.value), &lbl_802FF5A0);
 		var_r29.value += 1;
 		var_r28.value += 1;
 		var_r25 += 1;
@@ -1163,7 +1163,8 @@ body: {
 		var_r28_2 = var_r27.value;
 		var_r29_2 = var_r26.value;
 	loop_7:
-		*var_r29_2 = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, *var_r28_2), &lbl_802FF5A0);
+		*var_r29_2 = LoadHAnimationEx__7ONEFILEFUiPc(
+		    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, *var_r28_2), &lbl_802FF5A0);
 		var_r28_2 += 1;
 		var_r29_2 += 1;
 		var_r24 += 1;

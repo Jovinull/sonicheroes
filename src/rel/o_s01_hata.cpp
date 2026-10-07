@@ -153,10 +153,10 @@ extern "C" void __dt__7TObjectFv(void*, s32);
 extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" const char* fn_800194C4(void*);
 extern "C" void fn_801A4C84(void*);
-extern "C" void fn_800BC9F4(void*, void*);
-extern "C" void* fn_800BC6CC(void*, const char*);
-extern "C" void* fn_800BB92C(void*, void*, void*);
-extern "C" void* fn_800BB39C(void*, void*, void*);
+extern "C" void LoadOneFile__7ONEFILEFPc(void*, void*);
+extern "C" void* CheckFileID__7ONEFILEFPc(void*, const char*);
+extern "C" void* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
+extern "C" void* LoadDeltaMorphEx__7ONEFILEFUiPc(void*, void*, void*);
 extern "C" void fn_8014FFBC(void*, void*, void*);
 extern "C" f32 GetTotalFrame__10DAnimClassFP17RpDMorphAnimation(void*, void*);
 extern "C" s32 sprintf(char*, const char*, ...);
@@ -534,19 +534,19 @@ extern "C" void flagInit()
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	for (s32 i = 0; i < modelCount; ++i) {
 		sprintf(modelPath, flagAssetFormat, stageName, flagAssetNames[i]);
-		flagModels[i] = fn_800BB92C(*(void**)(lbl_8042C298 + 0xA50),
-		    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), modelPath), lbl_802FF5A0);
+		flagModels[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), modelPath), lbl_802FF5A0);
 	}
 	sprintf(path, flagModelFormat, stageName);
-	flagSecondaryModel = fn_800BB92C(*(void**)(lbl_8042C298 + 0xA50),
-	    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
+	flagSecondaryModel = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+	    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
 	fn_8014FFBC(flagSecondaryModel, (void*)flagCaptureRenderCallback, &flagPrimaryModel);
 	sprintf(path, flagAnimationFormat, stageName);
-	flagAnimation = fn_800BB39C(*(void**)(lbl_8042C298 + 0xA50),
-	    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
+	flagAnimation = LoadDeltaMorphEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+	    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
 	if (flagAnimation != NULL)
 		flagUnknownFloat
 		    = GetTotalFrame__10DAnimClassFP17RpDMorphAnimation(lbl_8042C340, flagAnimation);

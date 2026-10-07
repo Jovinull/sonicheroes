@@ -80,9 +80,9 @@ void fn_80195790(void*, void*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, Vec3*, s32);
 void fn_801A4C84(void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 
 void Disp__7TObjectFv();
 void fn_8005B8B8();
@@ -234,9 +234,10 @@ extern "C" void initObjS12Fan()
 	if (!(stage != NULL && (fn_801A4C84(stage), 1)))
 		return;
 
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
-	s32 id      = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), s12fanModelName);
-	s12fanModel = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), id, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	s32 id = CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), s12fanModelName);
+	s12fanModel
+	    = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50), id, &lbl_802FF5A0);
 }
 
 extern "C" void startObjS12Fan()

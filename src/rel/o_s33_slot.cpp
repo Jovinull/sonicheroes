@@ -69,9 +69,9 @@ f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 void* fn_80150588(void*);
 void fn_80150958(void*);
 void fn_8015BB08(void*, void*);
@@ -91,7 +91,7 @@ void fn_8020CC18(void*, f32);
 void fn_8020C2D8(void*);
 void* fn_80226468(void*);
 void fn_80226440(void*, void*);
-void* fn_800BB0D4(void*, s32, void*);
+void* LoadHAnimationEx__7ONEFILEFUiPc(void*, s32, void*);
 
 void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -383,13 +383,13 @@ extern "C" void initObjS33Slot()
 		return;
 	s32 i;
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
 	for (i = 0; i < 3; ++i) {
-		s32 id           = fn_800BC6CC(archive, slotModelNames[i]);
-		slotResources[i] = fn_800BB92C(archive, id, &lbl_802FF5A0);
+		s32 id           = CheckFileID__7ONEFILEFPc(archive, slotModelNames[i]);
+		slotResources[i] = LoadClumpEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
 	}
-	s32 id        = fn_800BC6CC(archive, slotAnimationName);
-	slotAnimation = fn_800BB0D4(archive, id, &lbl_802FF5A0);
+	s32 id        = CheckFileID__7ONEFILEFPc(archive, slotAnimationName);
+	slotAnimation = LoadHAnimationEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
 }
 
 #pragma optimization_level 2

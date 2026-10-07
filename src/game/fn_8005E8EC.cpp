@@ -69,7 +69,7 @@
 //   -- the idiom in adv_staffroll.cpp and ef_sparkle.cpp -- emits identical
 //   instructions and no exception table at all, which leaves the linked DOL
 //   thirty-two bytes short with every function reading 100%. So __nw__FUl is
-//   spelled as the class's own operator new and fn_800BCC84 as its constructor.
+//   spelled as the class's own operator new and __ct__7ONEFILEFPci as its constructor.
 //   Two details cost an afternoon each: operator new must take `unsigned long`
 //   (`u32` is rejected as "illegal 'operator' declaration"), and the class needs
 //   a 0x58-byte body or `sizeof` is 1 and the allocation asks for one byte.
@@ -156,14 +156,14 @@ void fn_801A4778(void*, void*, s32);
 void* fn_80041FF4(char*);
 void* fn_80146EA8(void*);
 void* __nw__FUl(u32);
-void fn_800BCC84(void*, char*, s32);
-void* fn_800BC694(void*, u32);
+void __ct__7ONEFILEFPci(void*, char*, s32);
+void* CheckFileName__7ONEFILEFi(void*, u32);
 void fn_80112718(void);
 void* fn_800BC370(void*, u32, void*, void*);
-void* fn_800BC46C(void*, u32, void*);
-void* fn_800BBF20(void*, u32, void*);
-void* fn_800BBE0C(void*, u32, void*);
-void fn_800BCBD4(void*, s32);
+void* OneFileLoadClump__7ONEFILEFUiPv(void*, u32, void*);
+void* OneFileLoadHAnimation__7ONEFILEFUiPv(void*, u32, void*);
+void* OneFileLoadUVAnim__7ONEFILEFUiPv(void*, u32, void*);
+void __dt__7ONEFILEFv(void*, s32);
 void fn_8005D498(void);
 void fn_8005BEC4(void);
 void fn_8005E03C(void);
@@ -240,7 +240,7 @@ class ResourceArchive
 	u8 body[0x58];
 
 public:
-	ResourceArchive(char* name, s32 flags) { fn_800BCC84(this, name, flags); }
+	ResourceArchive(char* name, s32 flags) { __ct__7ONEFILEFPci(this, name, flags); }
 	static void* operator new(unsigned long size) { return __nw__FUl(size); }
 };
 
@@ -441,7 +441,7 @@ extern "C" void fn_8005ED88(void)
 			request[i].data = NULL;
 		request = lbl_803039F8;
 		for (i = 0; i < 0x100; i++) {
-			char* source = (char*)fn_800BC694(archive, i);
+			char* source = (char*)CheckFileName__7ONEFILEFi(archive, i);
 			if (source == NULL) {
 				memset(&lbl_802FF5E0[i], 0, 0x40);
 				lbl_802FF5E0[i].object = NULL;
@@ -468,7 +468,7 @@ extern "C" void fn_8005ED88(void)
 					request->dictionary     = lbl_8042C2A8;
 					request++;
 				} else {
-					lbl_802FF5E0[i].object = fn_800BC46C(archive, i, workspace);
+					lbl_802FF5E0[i].object = OneFileLoadClump__7ONEFILEFUiPv(archive, i, workspace);
 					for (u32 j = 0; j < 7; j++)
 						if (strcmp(lbl_802FF5E0[i].name, lbl_80243554[j]) == 0) {
 							fn_8014FFBC(lbl_802FF5E0[i].object, (void*)fn_8005BEC4, 0);
@@ -478,15 +478,16 @@ extern "C" void fn_8005ED88(void)
 				if (lbl_802FF5E0[i].object != NULL)
 					fn_8014FFBC(lbl_802FF5E0[i].object, (void*)fn_8005D498, 0);
 			} else if (strncmp(extension + 1, lbl_8042B22C, 3) == 0)
-				lbl_802FF5E0[i].object = fn_800BBF20(archive, i, workspace);
+				lbl_802FF5E0[i].object
+				    = OneFileLoadHAnimation__7ONEFILEFUiPv(archive, i, workspace);
 			else if (strncmp(extension + 1, lbl_8042B230, 3) == 0)
-				lbl_802FF5E0[i].object = fn_800BBE0C(archive, i, workspace);
+				lbl_802FF5E0[i].object = OneFileLoadUVAnim__7ONEFILEFUiPv(archive, i, workspace);
 			else
 				lbl_802FF5E0[i].object = NULL;
 		}
 		if (workspace != NULL)
 			fn_800126C8(workspace);
-		fn_800BCBD4(archive, 1);
+		__dt__7ONEFILEFv(archive, 1);
 	} else
 		memset(lbl_802FF5E0, 0, 0x4400);
 	InitEffTornado__Fv();

@@ -1402,3 +1402,28 @@ owned sections and 141 normalized relocations after excluding the 32-byte
 `setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
 post-processor and ELF metadata regression tests pass. This is compilation and
 binary verification; no runtime or hardware validation was performed.
+
+
+## ONEFILE whole-unit reconstruction (2026-10-06)
+
+Symbolic metadata explicitly identifies `one.cpp` as C++ and names its class,
+fields and methods. GameCube callers independently establish a 0x58-byte class,
+without the PS2-only stream member. The complete GameCube unit has 25 functions,
+including a memory-stream setter and an ARAM resource loader absent from the
+available PS2 method inventory. See `one-unit-evidence.md` for boundaries.
+
+Deferred inlining is required by the observed caller/callee relationships.
+With default automatic inlining, the whole native text is 9,116 bytes:
+`LoadOneFile` is 316 bytes, the constructor 100, destructor 88 and `SetOneFile`
+148. These leave nested ownership and loading operations as calls. Deferred
+emission produces all 25 retail function sizes and offsets, the exact 9,856-byte
+text extent, 192 exception-table bytes and 288 exception-index bytes. In
+particular those four functions become the observed 480, 500, 176 and 236 bytes.
+Definitions are reversed to reproduce the compiler's deferred emission order.
+
+The unit remains NonMatching. Eight bodies are byte-exact. Sixteen bodies
+share four differing instructions in the inlined archive decompression address
+calculation; the ARAM loader has fourteen instruction differences. All 422
+normalized relocations agree, and 45 native data bytes agree with the retail
+48-byte extent including three trailing alignment bytes. No instruction patches,
+assembly implementations or synthetic padding are introduced.

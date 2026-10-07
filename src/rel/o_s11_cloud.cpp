@@ -103,10 +103,10 @@ void fn_80195790(void*, void*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, Vec3*, s32);
 void fn_801A4C84(void*);
-void* fn_800BAE0C(void*, s32, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadUVAnimationEx__7ONEFILEFUiPc(void*, s32, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 
 void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -368,9 +368,9 @@ static inline void loadCloudModels(
 	model = cloudModels;
 	while (index < count) {
 		void* archive = *(void**)((u8*)*archiveRoot + 0xA50);
-		s32 id        = fn_800BC6CC(archive, *name);
+		s32 id        = CheckFileID__7ONEFILEFPc(archive, *name);
 		archive       = *(void**)((u8*)*archiveRoot + 0xA50);
-		*model        = fn_800BB92C(archive, id, context);
+		*model        = LoadClumpEx__7ONEFILEFUiPc(archive, id, context);
 		void* result  = fn_8005E394(*model, 0);
 		fn_8005C014(result, uvState);
 		name++;
@@ -387,11 +387,11 @@ extern "C" void initObjS11Cloud()
 		return;
 
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
 	archive               = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	s32 id                = fn_800BC6CC(archive, cloudUvName);
+	s32 id                = CheckFileID__7ONEFILEFPc(archive, cloudUvName);
 	archive               = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	cloudUvResource       = fn_800BAE0C(archive, id, &lbl_802FF5A0);
+	cloudUvResource       = LoadUVAnimationEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
 	*(void**)cloudUvState = cloudUvResource;
 
 	s32 count = *(s32*)((u8*)&lbl_8029C310 + 0x2C) == 0x15 ? 3 : 6;

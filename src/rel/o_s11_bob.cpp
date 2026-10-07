@@ -27,9 +27,9 @@ void dtor_8005BD3C(Motion*, s16);
 void fn_8005BE6C(Motion*);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 void fn_80150958(void*);
 void fn_801A4C84(void*);
 
@@ -122,11 +122,11 @@ extern "C" void initObjS11Bob()
 	if (!(stage != NULL && (fn_801A4C84(stage), true)))
 		return;
 
-	fn_800BC9F4(stageArchive(), &lbl_802FF5A0);
-	s32 id           = fn_800BC6CC(stageArchive(), bobModelName);
-	bobResource      = fn_800BB92C(stageArchive(), id, &lbl_802FF5A0);
-	id               = fn_800BC6CC(stageArchive(), bobLightModelName);
-	bobLightResource = fn_800BB92C(stageArchive(), id, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(stageArchive(), &lbl_802FF5A0);
+	s32 id           = CheckFileID__7ONEFILEFPc(stageArchive(), bobModelName);
+	bobResource      = LoadClumpEx__7ONEFILEFUiPc(stageArchive(), id, &lbl_802FF5A0);
+	id               = CheckFileID__7ONEFILEFPc(stageArchive(), bobLightModelName);
+	bobLightResource = LoadClumpEx__7ONEFILEFUiPc(stageArchive(), id, &lbl_802FF5A0);
 }
 
 struct BobInitializer {

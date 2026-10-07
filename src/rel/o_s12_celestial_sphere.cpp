@@ -109,9 +109,9 @@ void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 void fn_8005BE6C(void*);
 void fn_8005D5C8(void*, u32);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 void fn_800BDF30(void*);
 void fn_800BE1F4(void*);
 void fn_800BE274(void*);
@@ -260,11 +260,12 @@ extern "C" void initObjS12Celestial()
 		return;
 
 	fn_800BE274(*(void**)((u8*)lbl_8042C1D0 + 0x8C18));
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
 	s32 i;
 	for (i = 0; i < 2; i++) {
-		s12celestialModels[i] = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50),
-		    fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), s12celestialModelNames[i]),
+		s12celestialModels[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(
+		        *(void**)((u8*)lbl_8042C298 + 0xA50), s12celestialModelNames[i]),
 		    &lbl_802FF5A0);
 		if (s12celestialModels[i] != NULL) {
 			fn_800BDF30(s12celestialModels[i]);

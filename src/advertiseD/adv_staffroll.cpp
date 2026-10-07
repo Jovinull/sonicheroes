@@ -130,12 +130,12 @@ extern const f32 lbl_1_rodata_1A4C; // 60.0
 extern void fn_801301C8(void* tag);
 extern void fn_8012ED38(void);
 extern void* __nw__FUl(s32 size);
-extern void* fn_800BCC84(void* obj, void* name, s32 flag);
+extern void* __ct__7ONEFILEFPci(void* obj, void* name, s32 flag);
 extern void* fn_80012994(s32 size);
-extern void* fn_800BC580(void* obj, s32 mode, void* buf);
+extern void* OneFileLoadTextureDictionay__7ONEFILEFUiPv(void* obj, s32 mode, void* buf);
 extern void** fn_801A4BBC(void* archive, void* name);
 extern void fn_800126C8(void* p);
-extern void fn_800BCBD4(void* obj, s32 flag);
+extern void __dt__7ONEFILEFv(void* obj, s32 flag);
 extern s32 fn_1_12138(void);
 extern s32 sprintf(char* buf, const char* fmt, ...);
 extern void* fn_800426E0(void* name, void* countOut);
@@ -866,12 +866,12 @@ void fn_1_13510(void)
 
 	loader.value = __nw__FUl(0x58);
 	if (loader.value != 0) {
-		loader.value = fn_800BCC84(loader.value, &lbl_1_data_84C4, 0);
+		loader.value = __ct__7ONEFILEFPci(loader.value, &lbl_1_data_84C4, 0);
 	}
 	if (loader.value != 0) {
 		scratch = fn_80012994(0x96000);
 		if (scratch != 0) {
-			lbl_1_bss_7F4 = fn_800BC580(loader.value, 2, scratch);
+			lbl_1_bss_7F4 = OneFileLoadTextureDictionay__7ONEFILEFUiPv(loader.value, 2, scratch);
 			if (lbl_1_bss_7F4 != 0) {
 				for (i = 0; i != 9; i++) {
 					found = fn_801A4BBC(lbl_1_bss_7F4, lbl_1_data_82A8[i]);
@@ -882,7 +882,7 @@ void fn_1_13510(void)
 			}
 			fn_800126C8(scratch);
 		}
-		fn_800BCBD4(loader.value, 1);
+		__dt__7ONEFILEFv(loader.value, 1);
 	}
 
 	region = fn_1_12A0(lbl_8042C180, 0x13);
@@ -895,12 +895,12 @@ void fn_1_13510(void)
 	void* scratch2;
 	loader2.value = __nw__FUl(0x58);
 	if (loader2.value != 0) {
-		loader2.value = fn_800BCC84(loader2.value, buf, 0);
+		loader2.value = __ct__7ONEFILEFPci(loader2.value, buf, 0);
 	}
 	if (loader2.value != 0) {
 		scratch2 = fn_80012994(0x96000);
 		if (scratch2 != 0) {
-			lbl_1_bss_81C = fn_800BC580(loader2.value, 2, scratch2);
+			lbl_1_bss_81C = OneFileLoadTextureDictionay__7ONEFILEFUiPv(loader2.value, 2, scratch2);
 			if (lbl_1_bss_81C != 0) {
 				found = fn_801A4BBC(lbl_1_bss_81C, lbl_1_data_83EC[fn_1_12138()]);
 				if (found != 0) {
@@ -909,7 +909,7 @@ void fn_1_13510(void)
 			}
 			fn_800126C8(scratch2);
 		}
-		fn_800BCBD4(loader2.value, 1);
+		__dt__7ONEFILEFv(loader2.value, 1);
 	}
 
 	lbl_1_bss_7E8 = fn_800426E0(&lbl_1_data_84E4, &lbl_1_bss_7EC);

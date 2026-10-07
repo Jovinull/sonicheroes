@@ -140,7 +140,7 @@ extern "C" s32 fn_8005B8D8(Motion*);
 extern "C" s32 fn_8005B9F0(Motion*);
 extern "C" void dtor_8005BD3C(Motion*, s32);
 extern "C" void fn_8005BE6C(Motion*);
-extern "C" void fn_800BC9F4(void*, void*);
+extern "C" void LoadOneFile__7ONEFILEFPc(void*, void*);
 extern "C" void fn_800D1108(void*, f32*, f32*, f32*);
 extern "C" f32 fn_800D7AE4(s32);
 extern "C" f32 fn_800D7B00(s32);
@@ -322,7 +322,7 @@ extern "C" void blinkLightInit(void)
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	ModelAsset* asset = &blinkLightAsset;
 	for (u8 i = 0; i < 1; i++) {
 		fn_9_765CC(asset, 0);

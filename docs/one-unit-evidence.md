@@ -25,9 +25,19 @@ The retail exception index associates 24 non-leaf methods with contiguous
 `extab` entries at `0x80008240–0x80008300` and index entries at
 `0x8000E8F0–0x8000EA10`. `CheckFileName` is the sole leaf method.
 Two archive ownership marker strings start at `0x80253C00` and `0x80253C18`;
-remaining data ownership and alignment must be audited before completion.
+the complete native string data is 45 bytes, followed by three retail alignment
+bytes. No synthetic padding is emitted.
 
 This branch depends on the canonical Expand2 interface correction in PR #567.
 Only symbolic PS2 metadata is used; implementation behavior comes from the
-GameCube target. Reconstruction, native object comparison and the full supported
-build matrix remain required. No runtime or hardware validation is claimed.
+GameCube target. All 25 bodies are reconstructed. Native comparison finds eight exact functions
+and 17 with instruction differences; all function sizes, exception records and
+422 normalized relocations are exact. The unit remains NonMatching. No runtime
+or hardware validation is claimed.
+
+
+Verification for this reconstruction: the G9SE8P all-source release build and
+normal link pass, together with 55 automated tests and both language and
+post-processor policy checks. All 18 normal-link hashes pass. Since `one.cpp`
+is NonMatching, the normal link retains its original object; those hashes do
+not establish an exact native replacement or runtime behavior.

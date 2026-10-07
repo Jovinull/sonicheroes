@@ -165,10 +165,10 @@ void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
 void fn_8003C618(void*);
 void fn_8005D5C8(RpClump*, u32);
 void fn_800B4A38(void*, s32, Vec3*, s32, s32, s32, s32);
-void* fn_800BB0D4(void*, s32, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadHAnimationEx__7ONEFILEFUiPc(void*, s32, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void fn_8013F3A4(RpHAnimHierarchy*);
@@ -312,13 +312,15 @@ extern "C" void initObjMask()
 		return;
 
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
-	maskModels[0] = fn_800BB92C(archive, fn_800BC6CC(archive, "s11_on_maska.dff"), &lbl_802FF5A0);
-	maskModels[1] = fn_800BB92C(archive, fn_800BC6CC(archive, "s11_on_maskb.dff"), &lbl_802FF5A0);
-	maskAnimations[0]
-	    = fn_800BB0D4(archive, fn_800BC6CC(archive, "s11_on_maska.anm"), &lbl_802FF5A0);
-	maskAnimations[1]
-	    = fn_800BB0D4(archive, fn_800BC6CC(archive, "s11_on_maskb.anm"), &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
+	maskModels[0] = LoadClumpEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maska.dff"), &lbl_802FF5A0);
+	maskModels[1] = LoadClumpEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maskb.dff"), &lbl_802FF5A0);
+	maskAnimations[0] = LoadHAnimationEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maska.anm"), &lbl_802FF5A0);
+	maskAnimations[1] = LoadHAnimationEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maskb.anm"), &lbl_802FF5A0);
 }
 
 // Retail builds both induction pointers straight into their registers here,

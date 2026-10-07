@@ -61,10 +61,10 @@ s32 fn_8005B8D8(void*);                                    /* extern */
 s32 fn_8005B9F0(s32);                                      /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                             /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                           /* extern */
-u32 fn_800BB0D4(s32, s32, M2C_UNK*);                       /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                       /* extern */
-s32 fn_800BC6CC(s32, M2C_UNK*);                            /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                        /* extern */
+u32 LoadHAnimationEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);   /* extern */
+u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);        /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);               /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);           /* extern */
 f32 fn_800D7AE4(s32);                                      /* extern */
 f32 fn_800D7B00(s32);                                      /* extern */
 M2C_UNK fn_8013F3A4(void*);                                /* extern */
@@ -744,7 +744,7 @@ void grass2ObjectLoad(M2C_UNK arg_sp0)
 		return;
 	}
 	temp_r30 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-	fn_800BC9F4(temp_r30, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(temp_r30, &lbl_802FF5A0);
 	var_r31 = 0;
 	var_r26 = lbl_8_data_18548;
 	var_r25 = lbl_8_data_18568;
@@ -755,7 +755,8 @@ void grass2ObjectLoad(M2C_UNK arg_sp0)
 		var_r28 = var_r26;
 		var_r27 = (void**)var_r25;
 	loop_5:
-		*var_r27 = (void*)fn_800BB92C(temp_r30, fn_800BC6CC(temp_r30, *var_r28), &lbl_802FF5A0);
+		*var_r27 = (void*)LoadClumpEx__7ONEFILEFUiPc(
+		    temp_r30, CheckFileID__7ONEFILEFPc(temp_r30, *var_r28), &lbl_802FF5A0);
 		var_r28 += 1;
 		var_r27 += 1;
 		var_r22 += 1;
@@ -766,7 +767,8 @@ void grass2ObjectLoad(M2C_UNK arg_sp0)
 		var_r27_2 = var_r24;
 		var_r28_2 = (void**)var_r23;
 	loop_7:
-		*var_r28_2 = (void*)fn_800BB0D4(temp_r30, fn_800BC6CC(temp_r30, *var_r27_2), &lbl_802FF5A0);
+		*var_r28_2 = (void*)LoadHAnimationEx__7ONEFILEFUiPc(
+		    temp_r30, CheckFileID__7ONEFILEFPc(temp_r30, *var_r27_2), &lbl_802FF5A0);
 		var_r27_2 += 1;
 		var_r28_2 += 1;
 		var_r22_2 += 1;

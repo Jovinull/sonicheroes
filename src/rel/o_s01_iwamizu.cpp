@@ -75,11 +75,11 @@ void fn_8015BB08(void*, void*);
 void fn_8011B7CC(void*);
 void __dl__FPv(void*);
 void fn_801A4C84(void*);
-void fn_800BC9F4(void*, void*);
-void* fn_800BC6CC(void*, const char*);
-void* fn_800BB92C(void*, void*, void*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
+void* CheckFileID__7ONEFILEFPc(void*, const char*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
 void* fn_8005E394(void*, int);
-void* fn_800BAE0C(void*, void*, void*);
+void* LoadUVAnimationEx__7ONEFILEFUiPc(void*, void*, void*);
 void fn_8005C014(void*, void*);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 
@@ -420,12 +420,15 @@ extern "C" void initObjS01Iwamizu()
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
-	void* model      = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuModelName);
-	IwamizuAnimation = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), model, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	void* model = CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuModelName);
+	IwamizuAnimation
+	    = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50), model, &lbl_802FF5A0);
 	IwamizuAnimationCallback = fn_8005E394(IwamizuAnimation, 0);
-	void* animation = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuAnimationName);
-	IwamizuClump    = fn_800BAE0C(*(void**)((u8*)lbl_8042C298 + 0xA50), animation, &lbl_802FF5A0);
+	void* animation
+	    = CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuAnimationName);
+	IwamizuClump = LoadUVAnimationEx__7ONEFILEFUiPc(
+	    *(void**)((u8*)lbl_8042C298 + 0xA50), animation, &lbl_802FF5A0);
 	if (IwamizuAnimation != 0 && IwamizuClump != 0) {
 		*(void**)IwamizuRenderState = IwamizuClump;
 		fn_8005C014(fn_8005E394(IwamizuAnimation, 0), IwamizuRenderState);

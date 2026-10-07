@@ -125,16 +125,16 @@ extern "C" void fn_8020C2D8(void*);
 extern "C" void fn_80150958(void*);
 extern "C" void fn_801A46D0(void*);
 extern "C" void* __nw__FUl(s32);
-extern "C" void* fn_800BCC84(void*, s32, s32);
+extern "C" void* __ct__7ONEFILEFPci(void*, s32, s32);
 extern "C" void* fn_80012994(s32);
 extern "C" void fn_800D0624(void*, void*, void*);
 extern "C" void fn_800BA7F8(void*, void*, void*);
-extern "C" void* fn_800BC580(void*, void*, void*);
+extern "C" void* OneFileLoadTextureDictionay__7ONEFILEFUiPv(void*, void*, void*);
 extern "C" void fn_801A4C84(void*);
-extern "C" void* fn_800BC46C(void*, void*, void*);
-extern "C" void* fn_800BBF20(void*, void*, void*);
+extern "C" void* OneFileLoadClump__7ONEFILEFUiPv(void*, void*, void*);
+extern "C" void* OneFileLoadHAnimation__7ONEFILEFUiPv(void*, void*, void*);
 extern "C" void* fn_8022CF5C(void*);
-extern "C" void fn_800BCBD4(void*, s32);
+extern "C" void __dt__7ONEFILEFv(void*, s32);
 extern "C" void fn_800126C8(void*);
 extern "C" void fn_800D075C(void*);
 extern "C" void fn_8012C840(void*);
@@ -423,7 +423,7 @@ extern "C" u32 lbl_1_rodata_198[];
 extern "C" s32 lbl_1_rodata_1C8[];
 extern "C" s32 lbl_1_rodata_2B8[];
 extern "C" s32 lbl_1_rodata_5B8[];
-extern "C" void* fn_800BC580(void*, void*, void*);
+extern "C" void* OneFileLoadTextureDictionay__7ONEFILEFUiPv(void*, void*, void*);
 
 static inline u32* advPlayerIdentity(u32* p)
 {
@@ -484,17 +484,19 @@ extern "C" void fn_1_65BC(void)
 		void* d17;
 		obj.value = __nw__FUl(0x58);
 		if (obj.value)
-			obj.value = fn_800BCC84(obj.value, 0, 0);
+			obj.value = __ct__7ONEFILEFPci(obj.value, 0, 0);
 		d18 = fn_80012994(0x7d000);
 		d17 = fn_80012994(p140.value->size + 0x40);
 		if (d17)
 			fn_800D0624(d17, p140.value->p, (void*)p140.value->size);
 		if (obj.value && d18 && d17) {
 			fn_800BA7F8(obj.value, d17, (void*)p140.value->size);
-			*p200.value = (u32)fn_800BC580(obj.value, (void*)*a588, d18);
+			*p200.value
+			    = (u32)OneFileLoadTextureDictionay__7ONEFILEFUiPv(obj.value, (void*)*a588, d18);
 			if (*p200.value) {
 				fn_801A4C84((void*)*p200.value);
-				((Blk230*)lbl_1_bss_230)[i].w[0] = (u32)fn_800BC46C(obj.value, (void*)*a198, d18);
+				((Blk230*)lbl_1_bss_230)[i].w[0]
+				    = (u32)OneFileLoadClump__7ONEFILEFUiPv(obj.value, (void*)*a198, d18);
 				{
 					b1C8 = (Row5*)lbl_1_rodata_1C8;
 					b2B8 = (Row5*)lbl_1_rodata_2B8;
@@ -504,9 +506,11 @@ extern "C" void fn_1_65BC(void)
 					w2b8 = b2B8[i];
 					do {
 						if (*w1c8 != -1)
-							w230[1] = (u32)fn_800BC46C(obj.value, (void*)*w1c8, d18);
+							w230[1] = (u32)OneFileLoadClump__7ONEFILEFUiPv(
+							    obj.value, (void*)*w1c8, d18);
 						if (*w2b8 != -1)
-							w230[6] = (u32)fn_800BC46C(obj.value, (void*)*w2b8, d18);
+							w230[6] = (u32)OneFileLoadClump__7ONEFILEFUiPv(
+							    obj.value, (void*)*w2b8, d18);
 						w1c8++;
 						w230++;
 						w2b8++;
@@ -517,7 +521,7 @@ extern "C" void fn_1_65BC(void)
 					s32* w438 = ((Row2*)lbl_1_rodata_438)[i];
 					if (*w438 != -1)
 						((Blk230*)lbl_1_bss_230)[i].w[11]
-						    = (u32)fn_800BC46C(obj.value, (void*)*w438, d18);
+						    = (u32)OneFileLoadClump__7ONEFILEFUiPv(obj.value, (void*)*w438, d18);
 				}
 				{
 					b5B8       = (Row5*)lbl_1_rodata_5B8;
@@ -526,7 +530,8 @@ extern "C" void fn_1_65BC(void)
 					w470.value = ((Blk470*)lbl_1_bss_470)[i].w;
 					do {
 						if (*w5b8.value != -1) {
-							void* tex = fn_800BBF20(obj.value, (void*)*w5b8.value, d18);
+							void* tex = OneFileLoadHAnimation__7ONEFILEFUiPv(
+							    obj.value, (void*)*w5b8.value, d18);
 							if (tex) {
 								void* alt = fn_8022CF5C(tex);
 								fn_8020C2D8(tex);
@@ -542,7 +547,7 @@ extern "C" void fn_1_65BC(void)
 			}
 		}
 		if (obj.value)
-			fn_800BCBD4(obj.value, 1);
+			__dt__7ONEFILEFv(obj.value, 1);
 		if (d18)
 			fn_800126C8(d18);
 		if (d17)

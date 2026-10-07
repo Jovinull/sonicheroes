@@ -69,12 +69,13 @@ extern "C" void fn_2_4074(Selector* selector, s32 index);
 extern "C" AutosaveWindow* fn_2_1424(u32 size);
 extern "C" void fn_2_3D64(AutosaveState* destination, const AutosaveState* source);
 extern "C" Resource* __nw__FUl(u32 size);
-extern "C" Resource* fn_800BCC84(Resource* resource, const char* path, s32 flags);
+extern "C" Resource* __ct__7ONEFILEFPci(Resource* resource, const char* path, s32 flags);
 extern "C" void* fn_80012994(u32 size);
-extern "C" Archive* fn_800BC580(Resource* resource, s32 type, void* buffer);
+extern "C" Archive* OneFileLoadTextureDictionay__7ONEFILEFUiPv(
+    Resource* resource, s32 type, void* buffer);
 extern "C" void* fn_801A4BBC(Archive* archive, const char* name);
 extern "C" void fn_800126C8(void* buffer);
-extern "C" void fn_800BCBD4(Resource* resource, s32 free);
+extern "C" void __dt__7ONEFILEFv(Resource* resource, s32 free);
 extern "C" void fn_801A46D0(Archive* archive);
 
 static inline void copy_pair(Pair* destination, const volatile Pair* source)
@@ -95,7 +96,7 @@ static inline Resource* create_resource(void)
 {
 	Resource* resource = __nw__FUl(0x58);
 	if (resource != NULL) {
-		resource = fn_800BCC84(resource, lbl_2_data_468, 0);
+		resource = __ct__7ONEFILEFPci(resource, lbl_2_data_468, 0);
 	}
 	return resource;
 }
@@ -228,7 +229,7 @@ extern "C" void fn_2_3EC0(void)
 	if (resource != NULL) {
 		buffer = fn_80012994(0x300000);
 		if (buffer != NULL) {
-			lbl_2_bss_50 = fn_800BC580(resource, 2, buffer);
+			lbl_2_bss_50 = OneFileLoadTextureDictionay__7ONEFILEFUiPv(resource, 2, buffer);
 			if (lbl_2_bss_50 != NULL) {
 				for (i = 0; i != 5; i++) {
 					void* entry = fn_801A4BBC(lbl_2_bss_50, lbl_2_data_418[i]);
@@ -239,6 +240,6 @@ extern "C" void fn_2_3EC0(void)
 			}
 			fn_800126C8(buffer);
 		}
-		fn_800BCBD4(resource, 1);
+		__dt__7ONEFILEFv(resource, 1);
 	}
 }
