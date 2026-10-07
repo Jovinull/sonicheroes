@@ -1445,3 +1445,21 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## Enemy gadget complete C++ unit (2026-10-07)
+
+Positive e_gadget.cpp and header metadata, GameCube constructor/field accesses
+and the complete vtable establish fourteen emitted bodies and all owned
+sections. Real inheritance, virtual dispatch, inline destruction and nested
+gadget-mode enum reproduce every function body directly. Two GameCube-only
+virtual names remain explicit provisional reconstructions, with their exact
+slots and caller ABI documented in `e-gadget-unit-evidence.md`.
+
+Automatic and out-of-class-inline trials change emitted function and exception
+order. Whole-unit auto,deferred plus reversed out-of-line definitions retains
+all exact bodies and exception records, leaving only two text blocks and one
+exception-index row to move intact. The original source line order is unknown.
+The guarded atom permutation passes independent object and byte-preservation
+review. All eighteen G9SE8P artifact hashes, 69 tests and both policies pass.
+See the detailed unit evidence for verification scope and provisional names.
