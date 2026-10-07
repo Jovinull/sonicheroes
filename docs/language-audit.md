@@ -1397,8 +1397,8 @@ binary verification; no runtime or hardware validation was performed.
 Symbolic PS2 metadata positively identifies this whole translation unit as C++
 and describes CLASS_PATH methods and private path-control helpers. GameCube
 member accesses independently establish the 88-byte class and callback ABI.
-All eight surviving GameCube bodies are reconstructed together; private helper
-operations with no surviving standalone bodies remain in their callers.
+All eight surviving GameCube bodies are reconstructed together; the metadata-named pathCalcRoughArea helper inlines into its three callers.
+Other private helper operations remain inside their surviving callers.
 
 The unit uses ordinary C++ methods and default automatic inlining. Exception
 handling is enabled for its six owned exception records; separate multiply/add
@@ -1406,6 +1406,7 @@ instructions motivate disabling floating-point contraction. Scheduling and
 peephole optimization are disabled for the current native comparison, and
 constant pooling is disabled. These settings remain subject to matching work.
 No deferred-inline override, assembly stub or instruction patcher is used.
-Four lifecycle bodies are exact; the four larger routines, constant order and
+Four lifecycle bodies and Gliding instruction bytes are exact; three larger
+routines, constant relocation offsets, constant order and
 exception metadata remain NonMatching. See `pathctrl-unit-evidence.md` for
 whole-unit boundaries, comparison results and complete build verification.

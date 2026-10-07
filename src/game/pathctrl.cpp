@@ -85,30 +85,41 @@ s32 lbl_80253648[3] = { 0, 1, 2 };
 }
 static void pathGlidingReg(CLASS_PATH*);
 
+static inline void pathCalcRoughArea(CLASS_PATH* pathwp)
+{
+	PATHTAG* pttp    = pathwp->tagptr;
+	PATHTBL_P* ppp   = pttp->pathtbl;
+	pathwp->minpos.x = pathwp->maxpos.x = ppp->pos.x;
+	pathwp->minpos.y = pathwp->maxpos.y = ppp->pos.y;
+	pathwp->minpos.z = pathwp->maxpos.z = ppp->pos.z;
+	for (s32 i = 0; i < pttp->points; ++ppp, ++i) {
+		if (ppp->pos.x > pathwp->maxpos.x)
+			pathwp->maxpos.x = ppp->pos.x;
+		if (ppp->pos.y > pathwp->maxpos.y)
+			pathwp->maxpos.y = ppp->pos.y;
+		if (ppp->pos.z > pathwp->maxpos.z)
+			pathwp->maxpos.z = ppp->pos.z;
+		if (ppp->pos.x < pathwp->minpos.x)
+			pathwp->minpos.x = ppp->pos.x;
+		if (ppp->pos.y < pathwp->minpos.y)
+			pathwp->minpos.y = ppp->pos.y;
+		if (ppp->pos.z < pathwp->minpos.z)
+			pathwp->minpos.z = ppp->pos.z;
+	}
+}
+
 void pathSpin1D(CLASS_PATH* pathwp)
 {
 	RwV3d pos_Temp;
 	RwV3d pos_Temp2;
 	f32 hpos;
 	PATHTAG* temp_r28;
-	PATHTAG* temp_r5;
-	PATHTBL_P* var_r4;
 	POSITION_REF* temp_r4;
 	TObjOldPlayer* temp_r6;
-	f32 temp_f0;
-	f32 temp_f0_2;
-	f32 temp_f0_3;
-	f32 temp_f1;
-	f32 temp_f1_2;
-	f32 temp_f1_3;
-	f32 temp_f1_4;
-	f32 temp_f1_5;
-	f32 temp_f1_6;
 	f32 temp_f1_7;
 	s16 temp_r0_2;
 	s16 temp_r3;
 	s32 temp_r30;
-	s32 var_r3;
 	u8 temp_r0;
 	u8 var_r29;
 
@@ -116,7 +127,6 @@ void pathSpin1D(CLASS_PATH* pathwp)
 	temp_r0  = (u8)pathwp->mode;
 	switch ((s8)temp_r0) {
 		case 0:
-			var_r3            = 0;
 			pathwp->flag      = 0;
 			pathwp->player[0] = 0x14;
 			pathwp->player[1] = 0x14;
@@ -126,45 +136,7 @@ void pathSpin1D(CLASS_PATH* pathwp)
 			pathwp->player[5] = 0x14;
 			pathwp->player[6] = 0x14;
 			pathwp->player[7] = 0x14;
-			temp_r5           = pathwp->tagptr;
-			var_r4            = temp_r5->pathtbl;
-			temp_f0           = var_r4->pos.x;
-			pathwp->maxpos.x  = temp_f0;
-			pathwp->minpos.x  = temp_f0;
-			temp_f0_2         = var_r4->pos.y;
-			pathwp->maxpos.y  = temp_f0_2;
-			pathwp->minpos.y  = temp_f0_2;
-			temp_f0_3         = var_r4->pos.z;
-			pathwp->maxpos.z  = temp_f0_3;
-			pathwp->minpos.z  = temp_f0_3;
-			while (var_r3 < (s16)temp_r5->points) {
-				temp_f1 = var_r4->pos.x;
-				if (temp_f1 > pathwp->maxpos.x) {
-					pathwp->maxpos.x = temp_f1;
-				}
-				temp_f1_2 = var_r4->pos.y;
-				if (temp_f1_2 > pathwp->maxpos.y) {
-					pathwp->maxpos.y = temp_f1_2;
-				}
-				temp_f1_3 = var_r4->pos.z;
-				if (temp_f1_3 > pathwp->maxpos.z) {
-					pathwp->maxpos.z = temp_f1_3;
-				}
-				temp_f1_4 = var_r4->pos.x;
-				if (temp_f1_4 < pathwp->minpos.x) {
-					pathwp->minpos.x = temp_f1_4;
-				}
-				temp_f1_5 = var_r4->pos.y;
-				if (temp_f1_5 < pathwp->minpos.y) {
-					pathwp->minpos.y = temp_f1_5;
-				}
-				temp_f1_6 = var_r4->pos.z;
-				if (temp_f1_6 < pathwp->minpos.z) {
-					pathwp->minpos.z = temp_f1_6;
-				}
-				var_r4++;
-				var_r3 += 1;
-			}
+			pathCalcRoughArea(pathwp);
 			pathwp->maxpos.x += 15.0f;
 			pathwp->maxpos.y += 15.0f;
 			pathwp->maxpos.z += 15.0f;
@@ -218,24 +190,11 @@ void pathSpin1D(CLASS_PATH* pathwp)
 
 void pathGliding(CLASS_PATH* pathwp)
 {
-	PATHTAG* temp_r6;
-	PATHTBL_P* var_r5;
-	f32 temp_f0;
-	f32 temp_f0_2;
-	f32 temp_f0_3;
-	f32 temp_f1;
-	f32 temp_f1_2;
-	f32 temp_f1_3;
-	f32 temp_f1_4;
-	f32 temp_f1_5;
-	f32 temp_f1_6;
-	s32 var_r4;
 
 	if ((s8)(u8)pathwp->mode != 0) {
 		pathGlidingReg(pathwp);
 		return;
 	}
-	var_r4            = 0;
 	pathwp->flag      = 0;
 	pathwp->player[0] = 0xC;
 	pathwp->player[1] = 0xC;
@@ -245,45 +204,7 @@ void pathGliding(CLASS_PATH* pathwp)
 	pathwp->player[5] = 0xC;
 	pathwp->player[6] = 0xC;
 	pathwp->player[7] = 0xC;
-	temp_r6           = pathwp->tagptr;
-	var_r5            = temp_r6->pathtbl;
-	temp_f0           = var_r5->pos.x;
-	pathwp->maxpos.x  = temp_f0;
-	pathwp->minpos.x  = temp_f0;
-	temp_f0_2         = var_r5->pos.y;
-	pathwp->maxpos.y  = temp_f0_2;
-	pathwp->minpos.y  = temp_f0_2;
-	temp_f0_3         = var_r5->pos.z;
-	pathwp->maxpos.z  = temp_f0_3;
-	pathwp->minpos.z  = temp_f0_3;
-	while (var_r4 < (s16)temp_r6->points) {
-		temp_f1 = var_r5->pos.x;
-		if (temp_f1 > pathwp->maxpos.x) {
-			pathwp->maxpos.x = temp_f1;
-		}
-		temp_f1_2 = var_r5->pos.y;
-		if (temp_f1_2 > pathwp->maxpos.y) {
-			pathwp->maxpos.y = temp_f1_2;
-		}
-		temp_f1_3 = var_r5->pos.z;
-		if (temp_f1_3 > pathwp->maxpos.z) {
-			pathwp->maxpos.z = temp_f1_3;
-		}
-		temp_f1_4 = var_r5->pos.x;
-		if (temp_f1_4 < pathwp->minpos.x) {
-			pathwp->minpos.x = temp_f1_4;
-		}
-		temp_f1_5 = var_r5->pos.y;
-		if (temp_f1_5 < pathwp->minpos.y) {
-			pathwp->minpos.y = temp_f1_5;
-		}
-		temp_f1_6 = var_r5->pos.z;
-		if (temp_f1_6 < pathwp->minpos.z) {
-			pathwp->minpos.z = temp_f1_6;
-		}
-		var_r5++;
-		var_r4 += 1;
-	}
+	pathCalcRoughArea(pathwp);
 	pathwp->maxpos.x += 50.0f;
 	pathwp->maxpos.y += 50.0f;
 	pathwp->maxpos.z += 50.0f;
@@ -670,23 +591,12 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 	PATHTAG* temp_r25;
 	PATHTAG* temp_r26_2;
 	PATHTAG* temp_r4_3;
-	PATHTAG* temp_r5;
 	PATHTBL_P* temp_r3_2;
 	PATHTBL_P* temp_r3_3;
-	PATHTBL_P* var_r4;
 	TASKWK* temp_r26;
 	TASKWK* temp_r4_2;
 	TObjTeam** var_r30;
 	TObjTeam* temp_r22;
-	f32 temp_f0;
-	f32 temp_f0_2;
-	f32 temp_f0_3;
-	f32 temp_f1;
-	f32 temp_f1_2;
-	f32 temp_f1_3;
-	f32 temp_f1_4;
-	f32 temp_f1_5;
-	f32 temp_f1_6;
 	f32 temp_f1_7;
 	f32 temp_f2;
 	f32 temp_f3;
@@ -698,7 +608,6 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 	s32 var_r0;
 	s32 var_r0_2;
 	s32 var_r24;
-	s32 var_r3;
 	u32 var_r23;
 	u8 temp_r0;
 	u8 temp_r0_2;
@@ -707,7 +616,6 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 	temp_r0  = (u8)pathwp->mode;
 	switch ((s8)temp_r0) {
 		case 0:
-			var_r3            = 0;
 			pathwp->flag      = 0;
 			pathwp->player[0] = 0x3C;
 			pathwp->player[1] = 0x3C;
@@ -717,45 +625,7 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 			pathwp->player[5] = 0x3C;
 			pathwp->player[6] = 0x3C;
 			pathwp->player[7] = 0x3C;
-			temp_r5           = pathwp->tagptr;
-			var_r4            = temp_r5->pathtbl;
-			temp_f0           = var_r4->pos.x;
-			pathwp->maxpos.x  = temp_f0;
-			pathwp->minpos.x  = temp_f0;
-			temp_f0_2         = var_r4->pos.y;
-			pathwp->maxpos.y  = temp_f0_2;
-			pathwp->minpos.y  = temp_f0_2;
-			temp_f0_3         = var_r4->pos.z;
-			pathwp->maxpos.z  = temp_f0_3;
-			pathwp->minpos.z  = temp_f0_3;
-			while (var_r3 < (s16)temp_r5->points) {
-				temp_f1 = var_r4->pos.x;
-				if (temp_f1 > pathwp->maxpos.x) {
-					pathwp->maxpos.x = temp_f1;
-				}
-				temp_f1_2 = var_r4->pos.y;
-				if (temp_f1_2 > pathwp->maxpos.y) {
-					pathwp->maxpos.y = temp_f1_2;
-				}
-				temp_f1_3 = var_r4->pos.z;
-				if (temp_f1_3 > pathwp->maxpos.z) {
-					pathwp->maxpos.z = temp_f1_3;
-				}
-				temp_f1_4 = var_r4->pos.x;
-				if (temp_f1_4 < pathwp->minpos.x) {
-					pathwp->minpos.x = temp_f1_4;
-				}
-				temp_f1_5 = var_r4->pos.y;
-				if (temp_f1_5 < pathwp->minpos.y) {
-					pathwp->minpos.y = temp_f1_5;
-				}
-				temp_f1_6 = var_r4->pos.z;
-				if (temp_f1_6 < pathwp->minpos.z) {
-					pathwp->minpos.z = temp_f1_6;
-				}
-				var_r4++;
-				var_r3 += 1;
-			}
+			pathCalcRoughArea(pathwp);
 			pathwp->maxpos.x += 40.0f;
 			pathwp->maxpos.y += 40.0f;
 			pathwp->maxpos.z += 40.0f;

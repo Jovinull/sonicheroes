@@ -23,7 +23,9 @@ slots at 0x04–0x13, and clears the tag and list pointers at 0x44/0x4c/0x50.
 Those accesses independently match the metadata's 0x58-byte CLASS_PATH layout.
 The destructor clears the list links and conditionally calls operator delete.
 The private range-check and rough-area helpers have no standalone bodies in
-this GameCube range; their operations are reconstructed inside the surviving callers.
+this GameCube range; their operations are reconstructed inside the surviving callers. The shared
+`pathCalcRoughArea` helper is restored under its metadata name and inlines into
+Spin, Gliding and Seeing; its path-table walk computes the common bounds.
 
 The next function, `0x800AEE80`, merges two null-terminated pointer lists into a
 new allocation, independently correlating with the following `scanpath.cpp`
@@ -44,14 +46,17 @@ The unit remains `NonMatching`; no instruction post-processor is used.
 ## Native verification
 
 The constructor, destructor, Reset and Exec have byte-exact instruction bodies.
-The four larger functions remain nonmatching:
+The four larger functions still have nonmatching object comparisons:
 
 | Function | Retail bytes | Native bytes | objdiff match |
 | --- | ---: | ---: | ---: |
-| pathSpin1D | 784 | 780 | 88.00% |
-| pathGliding | 388 | 392 | 98.40% |
+| pathSpin1D | 784 | 776 | 88.71% |
+| pathGliding | 388 | 388 | 99.85% |
 | pathGlidingReg | 2008 | 2024 | 90.92% |
-| pathSeeingPath | 1244 | 1284 | 86.55% |
+| pathSeeingPath | 1244 | 1280 | 87.00% |
+
+Gliding now has byte-exact instructions; its constant relocation offsets still
+differ because the unit constant pool is not yet ordered correctly.
 
 Every direct game/SDK call target and its per-function count agrees with retail.
 The three role integers match. All fourteen floating-point constants match
