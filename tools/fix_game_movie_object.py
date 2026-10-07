@@ -13,7 +13,7 @@ from fix_sp_adv_stg_failed_object import cstring, fix_object
 
 
 SYMBOL_RENAMES = {
-    "Exec__7TObjectFv": "fn_80018984",
+    "Exec__7TObjectFv": "TDisp__7TObjectFv",
     "Disp__7TObjectFv": "PDisp__7TObjectFv",
     "ImmAftSetRaster__7TObjectFv": "ImmAftSetRaster__7TObjectFv",
     "Debug__7TObjectFv": "Debug__7TObjectFv",

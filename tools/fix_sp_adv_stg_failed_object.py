@@ -14,7 +14,7 @@ SYMBOL_RENAMES = {
     "ImmAftSetRaster__7TObjectFv": "ImmAftSetRaster__7TObjectFv",
     "Debug__7TObjectFv": "Debug__7TObjectFv",
     "Render__7TObjectFv": "Render__7TObjectFv",
-    "Exec__7TObjectFv": "fn_80018984",
+    "Exec__7TObjectFv": "TDisp__7TObjectFv",
     "Disp__7TObjectFv": "PDisp__7TObjectFv",
     "Virtual1__7TObjectFv": "Disp__7TObjectFv",
     "FreeHeap": "Free__9THeapCtrlFPv",

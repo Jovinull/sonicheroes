@@ -193,7 +193,7 @@ u32 fn_8011B5A8(s32, s32);                                                  /* e
 M2C_UNK fn_8011B844(u32, void*, f32);                                       /* extern */
 M2C_UNK fn_8012D9D0();                                                      /* extern */
 s32 fn_8012DA08();                                                          /* extern */
-M2C_UNK fn_80130B40(u8);                                                    /* extern */
+M2C_UNK Create__12TEnemySummonFUc(u8);                                      /* extern */
 f32 fn_80132958(M2C_UNK);                                                   /* extern */
 M2C_UNK fn_801329AC();                                                      /* extern */
 M2C_UNK fn_80133090(M2C_UNK*, M2C_UNK*);                                    /* extern */
@@ -1073,7 +1073,7 @@ void fn_8_9EC40(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 0x2C) = 0;
 				return;
 			}
-			fn_80130B40(M2C_FIELD(arg0, u8*, 0x34));
+			Create__12TEnemySummonFUc(M2C_FIELD(arg0, u8*, 0x34));
 			M2C_FIELD(arg0, s32*, 0x2C) = 1;
 			return;
 		case 1:

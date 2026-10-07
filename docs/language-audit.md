@@ -1445,3 +1445,17 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## Enemy summoning complete C++ unit (2026-10-07)
+
+Positive e_summon.cpp metadata supplies six methods and the class layout.
+Three bodies survive; the constructor and two helpers inline. Genuine C++
+inheritance, new-expression exception cleanup and virtual destruction produce
+all three bodies exactly. A local ACTIONMODE_TURN snapshot preserves the retail
+integer predicate lowering; no deferred mode or object normalizer is used.
+Two discarded helper return values and one inlined helper boundary are
+explicit reconstruction uncertainties. The weak delete duplicate resolves to
+the existing Task.cpp implementation through normal linker selection. See
+`e-summon-unit-evidence.md` for full ownership and verification scope.
+The final linker map confirms duplicate deletion and exception-record discard;
+all eighteen supported artifacts, 62 tests and both policies pass.
