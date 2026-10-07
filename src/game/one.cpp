@@ -214,10 +214,10 @@ RpClump* ONEFILE::OneFileLoadClump(u32 id, void* buffer)
 
 extern "C" u32 fn_800BC370(ONEFILE* archive, u32 id, void*, u32* size)
 {
+	u32 alignedSize;
 	RwStream* stream;
 	RwChunkHeaderInfo chunkInfo;
 	u32 address;
-	u32 alignedSize;
 	void* buffer;
 	if (!archive->Exist())
 		return 0;

@@ -1421,9 +1421,10 @@ text extent, 192 exception-table bytes and 288 exception-index bytes. In
 particular those four functions become the observed 480, 500, 176 and 236 bytes.
 Definitions are reversed to reproduce the compiler's deferred emission order.
 
-The unit remains NonMatching. Eight bodies are byte-exact. Sixteen bodies
-share four differing instructions in the inlined archive decompression address
-calculation; the ARAM loader has fourteen instruction differences. All 422
+The unit remains NonMatching. Eight bodies are byte-exact. All seventeen remaining bodies
+share four differing instructions in the archive chunk address calculation.
+The ARAM loader's register allocation matches after grouping the aligned size
+before the stream and allocated address locals. All 422
 normalized relocations agree, and 45 native data bytes agree with the retail
 48-byte extent including three trailing alignment bytes. No instruction patches,
 assembly implementations or synthetic padding are introduced.
