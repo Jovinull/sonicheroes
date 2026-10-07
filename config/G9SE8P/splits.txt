@@ -420,6 +420,12 @@ game/eventCore.cpp:
 	.text       start:0x8011E5A4 end:0x8011E5F0
 	.rodata     start:0x8023AAB0 end:0x8023ACB0
 
+game/game2pTable.cpp:
+	extab       start:0x8000AEFC end:0x8000AF1C
+	extabindex  start:0x80010F0C end:0x80010F3C
+	.text       start:0x8011F3B0 end:0x8011F894
+	.data       start:0x80289930 end:0x80289A78
+
 game/GetSpParam.cpp:
 	extab       start:0x8000B698 end:0x8000B6A8
 	extabindex  start:0x8001165C end:0x80011674

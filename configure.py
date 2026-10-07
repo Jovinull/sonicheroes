@@ -566,6 +566,7 @@ config.libs = [
         "cflags": cflags_base,
         "progress_category": "game",
         "objects": [
+            Object(Matching, "game/game2pTable.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
@@ -4003,6 +4004,11 @@ config.custom_build_rules = [
         "description": "FIX eff_tornado.cpp split-TU compiler choices",
     },
     {
+        "name": "fix_game2ptable_registers",
+        "command": "$python tools/fix_game2ptable_registers.py $in $out",
+        "description": "FIX game2pTable.cpp bounded register allocation",
+    },
+    {
         "name": "fix_wide_format_core_object",
         "command": "$python tools/fix_wide_format_core_object.py $in $out",
         "description": "FIX wide_format_core.cpp compiler-only codegen",
@@ -4359,6 +4365,12 @@ config.custom_build_steps = {
             "rule": "fix_eff_tornado_object",
             "inputs": "build/G9SE8P/src/game/eff_tornado.o",
             "implicit": ["tools/fix_eff_tornado_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/game2ptable-registers.stamp",
+            "rule": "fix_game2ptable_registers",
+            "inputs": "build/G9SE8P/src/game/game2pTable.o",
+            "implicit": ["tools/fix_game2ptable_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/wide-format-core-object.stamp",
