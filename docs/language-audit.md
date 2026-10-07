@@ -1467,8 +1467,8 @@ inferred register-save pseudocode. Scalar square-root intermediates retain
 single-precision store/reload rounding. Existing source forms for the angle
 helpers are retained where they improve native correspondence.
 
-Twenty functions currently have exact native instruction bytes. Ten geometry
-helpers remain nonmatching. Native text is 8,936 bytes including a generated
+Twenty-two functions currently have exact native instruction bytes. Eight geometry
+helpers remain nonmatching. Native text is 8,972 bytes including a generated
 helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes),
 but metadata content and relocations still require a complete audit. The 52
 native constant bytes equal the retail prefix; the retail range includes four
@@ -1476,3 +1476,10 @@ trailing zero bytes. The candidate remains **NonMatching** and links the
 original object. The full supported G9SE8P all-source build and link/report,
 55 tests, both policies and 18 original-linked artifact hashes pass. These do
 not validate candidate runtime behavior or establish whole-object matching.
+
+`AdjustPoint` now reproduces the retail three-word vector copy through a private
+word-copy view, then reads the scaled vector components at their observed uses.
+The vector-overload plane intersection also matches after removing premature
+input caches. Three square-root paths now reload their rounded stack result
+instead of retaining the pre-store temporary. These refinements bring the
+native function count to 22 exact; the whole unit remains nonmatching.

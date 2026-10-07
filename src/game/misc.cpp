@@ -5,6 +5,10 @@
 struct RwV3d {
 	f32 x, y, z;
 };
+// Word-copy view preserves the observed 12-byte vector copy.
+struct VectorCopyWords {
+	u32 words[3];
+};
 struct NJS_LINE {
 	RwV3d p, v;
 };
@@ -134,21 +138,16 @@ s32 fn_800D5A64(RwV3d* arg0, RwV3d* arg1, f32 farg0)
 {
 	RwV3d sp8; /* compiler-managed */
 	f32 temp_f0;
-	f32 temp_f0_2;
-	f32 temp_f0_3;
-	f32 temp_f1;
 	f32 temp_f3;
 	f32 temp_f4;
 
-	sp8.x   = arg1->x;
-	sp8.y   = arg1->y;
-	sp8.z   = arg1->z;
-	temp_f4 = sp8.x - arg0->x;
-	sp8.x   = temp_f4;
-	temp_f3 = sp8.y - arg0->y;
-	sp8.y   = temp_f3;
-	temp_f0 = sp8.z - arg0->z;
-	sp8.z   = temp_f0;
+	*(VectorCopyWords*)&sp8 = *(const VectorCopyWords*)arg1;
+	temp_f4                 = sp8.x - arg0->x;
+	sp8.x                   = temp_f4;
+	temp_f3                 = sp8.y - arg0->y;
+	sp8.y                   = temp_f3;
+	temp_f0                 = sp8.z - arg0->z;
+	sp8.z                   = temp_f0;
 	if (((temp_f0 * temp_f0) + ((temp_f4 * temp_f4) + (temp_f3 * temp_f3))) <= (farg0 * farg0)) {
 		arg0->x = arg1->x;
 		arg0->y = arg1->y;
@@ -156,15 +155,12 @@ s32 fn_800D5A64(RwV3d* arg0, RwV3d* arg1, f32 farg0)
 		return 1;
 	}
 	fn_801990E0((RwV3d*)&sp8, (RwV3d*)&sp8);
-	temp_f1   = sp8.x * farg0;
-	sp8.x     = temp_f1;
-	temp_f0_2 = sp8.y * farg0;
-	sp8.y     = temp_f0_2;
-	temp_f0_3 = sp8.z * farg0;
-	sp8.z     = temp_f0_3;
-	arg0->x += temp_f1;
-	arg0->y += temp_f0_2;
-	arg0->z += temp_f0_3;
+	sp8.x *= farg0;
+	sp8.y *= farg0;
+	sp8.z *= farg0;
+	arg0->x += sp8.x;
+	arg0->y += sp8.y;
+	arg0->z += sp8.z;
 	return 0;
 }
 
@@ -609,7 +605,7 @@ f32 fn_800D605C(NJS_LINE* arg0, NJS_LINE* arg1, RwV3d* arg2, RwV3d* arg3)
 		    * (lbl_8042E018 * temp_f4_9
 		        * (lbl_8042E020 - ((f64)var_f1 * (temp_f4_9 * temp_f4_9)))));
 		sp8        = temp_f1_17;
-		var_f1     = temp_f1_17;
+		var_f1     = sp8;
 	}
 	if (arg2 != NULL) {
 		arg2->x = temp_f0_18;
@@ -642,22 +638,14 @@ f32 fn_800D6818(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
 
 f32 fn_800D689C(RwV3d* arg0, RwV3d* arg1, NJS_LINE* arg2)
 {
-	f32 temp_f3;
-	f32 temp_f4;
-	f32 temp_f5;
-	f32 temp_f6;
 
 	if (arg2 != NULL) {
-		temp_f3 = arg0->z;
-		temp_f5 = arg1->z;
-		temp_f6 = arg0->y;
-		temp_f4 = arg1->y;
-		if (((temp_f3 * temp_f5) + ((arg0->x * arg1->x) + (temp_f6 * temp_f4))) > lbl_8042E02C) {
+		if (((arg0->z * arg1->z) + ((arg0->x * arg1->x) + (arg0->y * arg1->y))) > lbl_8042E02C) {
 			arg2->v.x = lbl_8042E008;
 			arg2->v.y = lbl_8042E008;
 			arg2->v.z = lbl_8042E008;
 		} else {
-			arg2->v.x = (temp_f6 * temp_f5) - (temp_f4 * temp_f3);
+			arg2->v.x = (arg0->y * arg1->z) - (arg1->y * arg0->z);
 			arg2->v.y = (arg0->z * arg1->x) - (arg1->z * arg0->x);
 			arg2->v.z = (arg0->x * arg1->y) - (arg1->x * arg0->y);
 		}
@@ -739,7 +727,7 @@ f32 fn_800D6958(NJS_LINE* arg0, NJS_LINE* arg1, NJS_LINE* arg2)
 		    * (lbl_8042E018 * temp_f1_3
 		        * (lbl_8042E020 - ((f64)var_f0 * (temp_f1_3 * temp_f1_3)))));
 		sp10      = temp_f0_4;
-		var_f0    = temp_f0_4;
+		var_f0    = sp10;
 	}
 	temp_f1_4 = arg1->v.z;
 	temp_f1_5 = arg1->v.x;
@@ -850,27 +838,19 @@ f32 fn_800D6E0C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
 {
 	volatile f32 sp8;
 	f32 temp_f0;
-	f32 temp_f3;
 	f32 temp_f3_2;
-	f32 temp_f4;
 	f32 temp_f5;
-	f32 temp_f5_2;
-	f32 temp_f6;
 	f32 temp_f7;
 	f32 var_f0;
 	f64 temp_f1;
 	f64 temp_f1_2;
 	f64 temp_f1_3;
 
-	temp_f5_2 = arg1->z;
-	temp_f4   = arg1->x;
-	temp_f6   = arg0->x;
-	temp_f3   = arg1->y;
-	temp_f7   = (temp_f5_2 * arg0->z) + ((temp_f4 * temp_f6) + (temp_f3 * arg0->y));
-	var_f0    = (temp_f5_2 * temp_f5_2) + ((temp_f4 * temp_f4) + (temp_f3 * temp_f3));
+	temp_f7 = (arg1->z * arg0->z) + ((arg1->x * arg0->x) + (arg1->y * arg0->y));
+	var_f0  = (arg1->z * arg1->z) + ((arg1->x * arg1->x) + (arg1->y * arg1->y));
 	if (arg2 != NULL) {
 		temp_f3_2 = -temp_f7 / var_f0;
-		arg2->x   = temp_f6 + (temp_f4 * temp_f3_2);
+		arg2->x   = arg0->x + (arg1->x * temp_f3_2);
 		arg2->y   = arg0->y + (arg1->y * temp_f3_2);
 		arg2->z   = arg0->z + (arg1->z * temp_f3_2);
 	}
@@ -884,7 +864,7 @@ f32 fn_800D6E0C(RwV3d* arg0, RwV3d* arg1, RwV3d* arg2)
 		    * (lbl_8042E018 * temp_f1_3
 		        * (lbl_8042E020 - ((f64)var_f0 * (temp_f1_3 * temp_f1_3)))));
 		sp8     = temp_f0;
-		var_f0  = temp_f0;
+		var_f0  = sp8;
 	}
 	return temp_f5 / var_f0;
 }
@@ -894,27 +874,19 @@ f32 fn_800D6F0C(RwV3d* arg0, NJS_LINE* arg1, RwV3d* arg2)
 	volatile f32 sp8;
 	f32 temp_f0;
 	f32 temp_f3;
-	f32 temp_f4;
 	f32 temp_f4_2;
 	f32 temp_f5;
-	f32 temp_f5_2;
-	f32 temp_f6;
-	f32 temp_f7;
 	f32 var_f1;
 	f64 temp_f1;
 	f64 temp_f1_2;
 	f64 temp_f1_3;
 
-	temp_f4   = arg1->v.y;
-	temp_f5_2 = arg1->v.x;
-	temp_f6   = arg1->v.z;
-	temp_f7   = arg0->x;
-	temp_f3   = -((temp_f6 * arg1->p.z) + ((temp_f5_2 * arg1->p.x) + (temp_f4 * arg1->p.y)))
-	    + ((temp_f6 * arg0->z) + ((temp_f5_2 * temp_f7) + (temp_f4 * arg0->y)));
-	temp_f0 = (temp_f6 * temp_f6) + ((temp_f5_2 * temp_f5_2) + (temp_f4 * temp_f4));
+	temp_f3 = -((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
+	    + ((arg1->v.z * arg0->z) + ((arg1->v.x * arg0->x) + (arg1->v.y * arg0->y)));
+	temp_f0 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
 	if (arg2 != NULL) {
 		temp_f4_2 = -temp_f3 / temp_f0;
-		arg2->x   = temp_f7 + (temp_f5_2 * temp_f4_2);
+		arg2->x   = arg0->x + (arg1->v.x * temp_f4_2);
 		arg2->y   = arg0->y + (arg1->v.y * temp_f4_2);
 		arg2->z   = arg0->z + (arg1->v.z * temp_f4_2);
 	}
