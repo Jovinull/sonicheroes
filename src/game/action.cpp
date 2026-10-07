@@ -287,7 +287,7 @@ extern void* lbl_8042C1FC;
 extern s32 lbl_8042C200;
 extern s32 lbl_8042C710;
 extern EventManager* lbl_8042C760;
-extern u8 lbl_8042C7E0;
+extern u8 StoryManage;
 extern void* lbl_8042C148;
 extern void* lbl_8042C108;
 extern u8 lbl_8029C728[];
@@ -522,8 +522,8 @@ extern "C" s32 fn_8012DAA0();
 extern "C" s32 fn_80130484();
 extern "C" s32 fn_8013057C();
 extern "C" s32 fn_801306BC();
-extern "C" s32 fn_80138414(void*, s32);
-extern "C" s32 fn_801388C4(void*, s32);
+extern "C" s32 MustExit__11STORYMANAGEF18ACTIONSTAGE_NUMBER(void*, s32);
+extern "C" s32 StepStageSeq__11STORYMANAGEF18ACTIONSTAGE_NUMBER(void*, s32);
 extern "C" s32 fn_80196D00();
 extern "C" s32 strcmp(u32, void*);
 
@@ -1686,7 +1686,8 @@ s32 ACTION::Loop()
 			fn_80016BBC(&DAT_8029c2e4);
 			if (*(s32*)(param_1 + 0x14) != 3) {
 				if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x27) != '\0') {
-					fn_801388C4(&lbl_8042C7E0, stageConnect[stageCount]);
+					StepStageSeq__11STORYMANAGEF18ACTIONSTAGE_NUMBER(
+					    &StoryManage, stageConnect[stageCount]);
 				}
 				if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x28) == '\x02') {
 					iterator.count = lbl_80303D44[0];
@@ -1709,7 +1710,8 @@ s32 ACTION::Loop()
 						} while (1);
 						iVar4 = strcmp((u32)stageSet, (void*)name);
 						if ((iVar4 != 0)
-						    || (iVar4 = fn_80138414(&lbl_8042C7E0, stageConnect[stageCount]),
+						    || (iVar4 = MustExit__11STORYMANAGEF18ACTIONSTAGE_NUMBER(
+						            &StoryManage, stageConnect[stageCount]),
 						        iVar4 != 0))
 							goto LAB_8001b690;
 						stageNumber  = stageConnect[stageCount];
@@ -1749,7 +1751,8 @@ s32 ACTION::Loop()
 					}
 					fn_80116B84(&DAT_803e774c);
 					if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x27) != '\0') {
-						fn_801388C4(&lbl_8042C7E0, stageConnect[stageCount]);
+						StepStageSeq__11STORYMANAGEF18ACTIONSTAGE_NUMBER(
+						    &StoryManage, stageConnect[stageCount]);
 					}
 					*(u32*)(param_1 + 0xc)  = 0xd;
 					*(u32*)(param_1 + 0x10) = 0xb;

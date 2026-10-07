@@ -1090,9 +1090,8 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "game/voice_sequence.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
-                data_section_alignment=4,
+                "game/storyTable.cpp",
+                extra_cflags=["-bool off", "-Cpp_exceptions on", "-inline auto,deferred", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"],
             ),
             Object(
                 Matching,

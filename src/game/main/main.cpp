@@ -117,8 +117,8 @@ void fn_800A92CC(void*, int, int);
 void fn_800B429C(void*);
 void fn_800CD528();
 void fn_800A74BC(int);
-int fn_801386C4(void*);
-int fn_80138664(void*);
+int CheckCurrentSeqType__11STORYMANAGEFv(void*);
+int CurrentMovieNumber__11STORYMANAGEFv(void*);
 extern TMainTask* lbl_8042C180;
 extern char lbl_803E774C[];
 extern char lbl_8042C1BC;
@@ -132,7 +132,7 @@ extern Module* lbl_80253068[];
 extern int lbl_8042B320;
 extern Module* lbl_8042C338;
 extern void* lbl_8042C388;
-extern char lbl_8042C7E0;
+extern char StoryManage;
 extern RsGlobal lbl_8029BB80;
 extern char lbl_802409C8[];
 extern char lbl_802409F4[];
@@ -332,7 +332,7 @@ static inline void runModule(Module* module, int& result, bool withExtraService)
 
 static inline void setSpecialMode()
 {
-	switch (fn_801386C4(&lbl_8042C7E0)) {
+	switch (CheckCurrentSeqType__11STORYMANAGEFv(&StoryManage)) {
 		case 0:
 			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 			break;
@@ -341,7 +341,7 @@ static inline void setSpecialMode()
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x26, 1);
 			} else {
-				*(int*)(lbl_803EC340 + 4) = fn_80138664(&lbl_8042C7E0);
+				*(int*)(lbl_803EC340 + 4) = CurrentMovieNumber__11STORYMANAGEFv(&StoryManage);
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 5);
 			}
 			break;
