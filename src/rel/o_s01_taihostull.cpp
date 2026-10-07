@@ -68,7 +68,7 @@ struct TObjS01Stull : TObject {
 extern "C" {
 void* S01RenderCallback(void*);
 void* fn_8014F1B0(void*);
-RenderDescriptor* fn_8005F490(void*);
+RenderDescriptor* RpAtomicMCCGetCustomRenderCallBack(void*);
 s32 fn_8005D3DC(void*, f32);
 void fn_800B864C(void*);
 void fn_8019EC30(void*, Vec3*, s32);
@@ -146,7 +146,7 @@ extern "C" void S01SetRenderCallback(RenderObject* object)
 
 extern "C" void* S01RenderCallback(void* object)
 {
-	RenderDescriptor* descriptor = fn_8005F490(object);
+	RenderDescriptor* descriptor = RpAtomicMCCGetCustomRenderCallBack(object);
 	if (fn_8005D3DC(object, descriptor->index) == 1)
 		return object;
 	fn_800B864C(object);

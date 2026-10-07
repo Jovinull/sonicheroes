@@ -245,8 +245,12 @@ game/fn_8005E8EC.cpp:
 	.sdata      start:0x8042B228 end:0x8042B234
 	.sbss       start:0x8042C2A8 end:0x8042C2AC
 
-game/fn_8005F794.cpp:
-	.text       start:0x8005F794 end:0x8005F79C
+game/plugin/materialcolorchange.cpp:
+	extab       start:0x800069E4 end:0x80006A04
+	extabindex  start:0x8000D438 end:0x8000D468
+	.text       start:0x8005F490 end:0x8005FA0C
+	.sdata      start:0x8042B238 end:0x8042B240
+	.sbss2      start:0x804302A8 end:0x804302B0
 
 game/dAnim.cpp:
 	extab       start:0x80007B40 end:0x80007B70

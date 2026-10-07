@@ -113,7 +113,7 @@ extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
 extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 extern "C" void fn_8005D5C8(void* model, s32 slot);
 extern "C" void fn_8005E1DC(void* model, s32 a, const char* texture);
-extern "C" s32* fn_8005F490(void);
+extern "C" s32* RpAtomicMCCGetCustomRenderCallBack(void);
 extern "C" void* fn_80150588(void* source);
 extern "C" void fn_8015BB08(void* scene, void* model);
 
@@ -180,7 +180,7 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 	fn_8005D5C8(object->model, ((springFlags(object) & 0x001C0000) >> 18) + 4);
 	fn_8005E1DC(object->model, 0, springTextureName);
 
-	handle  = fn_8005F490();
+	handle  = RpAtomicMCCGetCustomRenderCallBack();
 	*handle = 0x10;
 
 	if (object->state != 3 || OnEdit__10TObjSetObjFv(&object->motion) != 0) {

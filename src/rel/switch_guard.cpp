@@ -22,7 +22,7 @@ typedef struct DrawRecord {
 
 extern "C" u8 lbl_802D5E80[];
 
-extern "C" void* fn_8005F6D4(void* object);
+extern "C" void* RpAtomicMCCGetMaterialPointer(void* object);
 extern "C" void fn_8015498C(void* material, void* source);
 extern "C" void fn_80053660(void* raster, s32 mode);
 extern "C" void fn_8005349C(void* raster, u8 level);
@@ -33,7 +33,7 @@ extern "C" void* switchStateDraw;
 
 extern "C" void* switchGuard(void* object)
 {
-	fn_8015498C(switchStateMaterial, fn_8005F6D4(object));
+	fn_8015498C(switchStateMaterial, RpAtomicMCCGetMaterialPointer(object));
 
 	fn_80053660(lbl_802D5E80, 16);
 	fn_8005349C(lbl_802D5E80, lbl_802D5E80[1214]);

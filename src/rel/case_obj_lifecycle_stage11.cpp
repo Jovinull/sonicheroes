@@ -48,7 +48,7 @@ void fn_8_40868(void* self);
 void* fn_8005E1DC(void* resource, s32 index, const char* name);
 void fn_801491A8();
 void fn_8005D5C8(void* resource, s32 index);
-void* fn_8005F490(void* resource);
+void* RpAtomicMCCGetCustomRenderCallBack(void* resource);
 void fn_8003C200(void* object, void* data, s32 count, s32 type);
 void fn_8_40B34(void* self);
 }
@@ -165,7 +165,7 @@ extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 		found = fn_8005E1DC(self->resource, 0, *name);
 		++name;
 	}
-	void* model  = fn_8005F490(found);
+	void* model  = RpAtomicMCCGetCustomRenderCallBack(found);
 	*(u32*)model = 0x10;
 	fn_8003C200(self->controller, lbl_8_data_4434, 7, 5);
 	fn_8_40B34(self);

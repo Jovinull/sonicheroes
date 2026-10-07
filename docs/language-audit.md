@@ -1445,3 +1445,17 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## Material color change plugin (2026-10-06)
+
+`src/plugin/materialcolorchange.c` is explicitly `C_PLUS_PLUS` in PS2 symbolic
+metadata despite its suffix. The complete reconstruction uses
+`game/plugin/materialcolorchange.cpp`, retaining C linkage for the public
+`RpAtomicMCC*` API and C++ linkage for its local callbacks. The sixteen-function
+GameCube extent is `0x8005F490..0x8005FA0C`; plugin registration and its six
+callback pointers positively establish the unit inventory and 32-byte payload.
+All bodies and normalized relocations match under whole-unit `-inline auto`,
+`-bool off`, `-Cpp_exceptions on`, and `-opt noschedule,nopeephole`. No object
+normalizer is added. All eighteen supported artifact hashes, 62 tests, and
+language/object policy checks pass. See
+[the unit evidence](materialcolorchange-unit-evidence.md).

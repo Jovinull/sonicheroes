@@ -46,7 +46,7 @@ void fn_8003BF04(void*, char*, int, int);
 float fn_800D8BC4(void*, int*, int);
 void fn_8005D5C8(void*, int);
 void* fn_8005E1DC(void*, int, char*);
-int* fn_8005F490();
+int* RpAtomicMCCGetCustomRenderCallBack();
 void* fn_8005EC0C();
 void* fn_801A4BBC(void*, char*);
 void* fn_8005EA04(char*);
@@ -161,7 +161,7 @@ extern "C" Signal* signalCtor(Signal* self, void* parent)
 		found = fn_8005E1DC(self->resource, 0, *name);
 		name++;
 	}
-	int* state = fn_8005F490();
+	int* state = RpAtomicMCCGetCustomRenderCallBack();
 	*state     = 16;
 	return self;
 }

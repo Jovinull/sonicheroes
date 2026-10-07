@@ -87,7 +87,7 @@ extern "C" u8 lbl_8042C1A4[];
 extern "C" void fn_80021824(void* world);
 extern "C" Hit* fn_80020BD8(Collider* collision, s32 kind);
 extern "C" Hit* fn_800211A8(Collider* collision);
-extern "C" Draw* fn_8005F490(void* model);
+extern "C" Draw* RpAtomicMCCGetCustomRenderCallBack(void* model);
 extern "C" void fn_800B52E8(void* handle, s32 sound, s32 a, s32 b);
 
 static inline u32 switchHitCount(Hit* hit)
@@ -106,16 +106,16 @@ static inline void switchApplyDrawMode(Switch* object)
 
 	switch (object->state) {
 		case 0:
-			draw       = fn_8005F490(object->model0);
+			draw       = RpAtomicMCCGetCustomRenderCallBack(object->model0);
 			draw->mode = ((object->entry->flags & 0x1C0000) >> 18) + 4;
-			draw       = fn_8005F490(object->model1);
+			draw       = RpAtomicMCCGetCustomRenderCallBack(object->model1);
 			draw->mode = ((object->entry->flags & 0x1C0000) >> 18) + 4;
 			break;
 		case 1:
 		case 2:
-			draw       = fn_8005F490(object->model0);
+			draw       = RpAtomicMCCGetCustomRenderCallBack(object->model0);
 			draw->mode = 0x10;
-			draw       = fn_8005F490(object->model1);
+			draw       = RpAtomicMCCGetCustomRenderCallBack(object->model1);
 			draw->mode = 0x10;
 			break;
 	}
