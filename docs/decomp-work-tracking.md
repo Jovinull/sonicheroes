@@ -4,6 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Codex 2026-10-07 | `game/enemy/e_database.cpp`, complete twelve-function enemy resource database | Complete on `decomp/e-database-20261007`; twelve source-exact methods, 2,380 text bytes, 67 exact relocations and all owned sections; all 18 native image hashes and 55 tests pass |
 | Codex 2026-10-06 | `game/one.cpp`, complete ONEFILE archive unit | Complete on `decomp/one-20261006`; 25 GameCube bodies at `0x800BA7F8–0x800BCE78`, including two platform-specific methods; all 25 bodies source-exact, with 422 relocations and exception metadata exact; all 18 native image hashes and 55 tests pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |

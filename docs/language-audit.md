@@ -1434,3 +1434,21 @@ The native G9SE8P main DOL plus all seventeen RELs compile and all eighteen
 retail image hashes pass. All-source compilation, progress/report generation,
 55 tests, both policies and formatting pass. See `one-unit-evidence.md`; no
 runtime or physical-hardware validation was performed.
+
+
+## Enemy database whole-unit reconstruction (2026-10-07)
+
+Positive C++ compilation-unit and class metadata identifies enemy/e_database.cpp.
+All twelve GameCube methods, fourteen-record layout, singleton, extension
+strings and exception sections are reconstructed together. Resource ownership
+is explicit: Delete releases loaded objects, while the destructor only clears
+records. The completed ONEFILE interface supplies archive loading and real C++
+construction/destruction. No PS2 instructions were inspected.
+
+All 2,380 text bytes match directly, without a normalizer or deferred-inlining
+override. All 67 effective relocations and owned data/exception sections match,
+allowing only natural tail alignment in small-data sections. Canonical method,
+singleton and array-operator renames are propagated through existing callers.
+The G9SE8P main DOL and seventeen RELs compile and pass all eighteen hashes;
+55 automated tests and both policies pass. See `e-database-unit-evidence.md`
+for boundaries and lifecycle details. No runtime validation is claimed.

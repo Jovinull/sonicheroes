@@ -102,8 +102,8 @@ void __dt__7TObjectFv(TObject*, s32);
 void __ct__7TObjectFP7TObject(TObject*, void*);
 void Free__9THeapCtrlFPv(void*, void*);
 void* Malloc__9THeapCtrlFUi(Heap*, u32);
-void* fn_800575C8(u32);
-void fn_80057578(void*);
+void* __nwa__FUl(u32);
+void __dla__FPv(void*);
 void fn_800B4A38(void*, u16, Vec3*, s32, s32, s32, s32);
 void* memcpy(void*, const void*, u32);
 s32 fn_80103178(s32);
@@ -133,7 +133,7 @@ inline TEnemyVoiceCtrlEx::TEnemyVoiceCtrlEx(s32 mode_, u32 voice_, s32 capacity_
 	count      = 0;
 	voice      = voice_;
 	mode       = mode_;
-	entries    = (VoiceEntry*)fn_800575C8(capacity * sizeof(VoiceEntry));
+	entries    = (VoiceEntry*)__nwa__FUl(capacity * sizeof(VoiceEntry));
 }
 
 inline TEnemySELimit::TEnemySELimit(void* owner, const SEEntry* source)
@@ -153,7 +153,7 @@ inline TEnemySELimit::TEnemySELimit(void* owner, const SEEntry* source)
 		count++;
 	}
 	if (count > 0) {
-		entries = (SEEntry*)fn_800575C8(count * sizeof(SEEntry));
+		entries = (SEEntry*)__nwa__FUl(count * sizeof(SEEntry));
 		memcpy(entries, source, count * sizeof(SEEntry));
 	}
 }
@@ -175,7 +175,7 @@ inline TEnemyVoiceCtrl::TEnemyVoiceCtrl(void* owner, const s32* source)
 		count++;
 	}
 	if (count > 0) {
-		entries = (s32*)fn_800575C8(count * sizeof(s32));
+		entries = (s32*)__nwa__FUl(count * sizeof(s32));
 		memcpy(entries, source, count * sizeof(s32));
 	}
 }
@@ -230,7 +230,7 @@ extern "C" TEnemyVoiceCtrlEx* fn_801398E4(TEnemyVoiceCtrlEx* self, s16 flags)
 	if (self != NULL) {
 		self->vtable = lbl_8028CFE4;
 		if (self->entries != NULL) {
-			fn_80057578(self->entries);
+			__dla__FPv(self->entries);
 			self->entries = NULL;
 		}
 		self->voice    = 0;
@@ -292,7 +292,7 @@ extern "C" TEnemySELimit* fn_80139BB8(TEnemySELimit* self, s16 flags)
 	if (self != NULL) {
 		self->vtable = lbl_8028D010;
 		if (self->entries != NULL) {
-			fn_80057578(self->entries);
+			__dla__FPv(self->entries);
 			self->entries = NULL;
 		}
 		__dt__7TObjectFv(self, 0);
@@ -337,7 +337,7 @@ extern "C" TEnemyVoiceCtrl* fn_80139E54(TEnemyVoiceCtrl* self, s16 flags)
 	if (self != NULL) {
 		self->vtable = lbl_8028D03C;
 		if (self->entries != NULL) {
-			fn_80057578(self->entries);
+			__dla__FPv(self->entries);
 			self->entries = NULL;
 		}
 		__dt__7TObjectFv(self, 0);
