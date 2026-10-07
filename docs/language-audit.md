@@ -1629,3 +1629,14 @@ The exception-index size word is correspondingly 860; whole native text is
 8,972 bytes. All 26 exact functions, 34 direct-call counts, exception-table
 bytes and index relocation targets remain verified. Full supported G9SE8P
 build/report, 55 tests, both policies and 18 original-linked hashes pass.
+
+`DistanceL2L` now represents the recovered temporary direction `p` and first
+nearest point `tp1` as vectors rather than disconnected component scalars.
+The line/plane locals and arguments use the metadata-backed `pl1`, `pl2`,
+`tl`, `tp2`, `l1/l2`, `p1/p2` and parameter `u` names. Component evaluation order,
+conditional Z access and existing volatile nearest-point loads are preserved.
+The routine remains 96.54% with its exact 1,912-byte size. Consolidating the
+separate determinant temporaries did not improve correspondence and was not
+retained. All 26 exact functions and object-audit invariants pass, as do the
+full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked artifact hashes.
