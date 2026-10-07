@@ -45,7 +45,7 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
-### Light translation unit (nonmatching reconstruction)
+### Light translation unit
 
 `game/light.cpp` reconstructs the 26 surviving functions at GameCube
 `0x80052184`–`0x80053FB8`, including both `RP_Light` constructors, allocation,
@@ -78,28 +78,32 @@ Automatic emission kept definition order instead. This justifies the scoped
 deferred policy entry; it does not establish matching instruction bytes.
 Data pooling is disabled because retail addresses the individual globals.
 
-This remains a **nonmatching** whole-unit source candidate: the original
-object is linked. Independent ELF comparison verifies all 26 export offsets
-and sizes, all 263 normalized relocations, 232 exception-table bytes, 276
-exception-index bytes, eight small-data bytes and 16 small-constant bytes.
-Twenty-four functions are byte-exact. `EndIgnoreLight` has eight instructions
-with different GPR operands and `Init` has seven; the full text size is
-7,732 bytes. All 141 authored data bytes match; retail includes three trailing
-alignment bytes. The compiler uses its conventional writable flag for
-`.sdata2`, unlike the split reference's read-only section flag.
+The whole-unit source produces 25 exact bodies. Expanding the existing eight-light
+restoration loop directly in EndIgnoreLight fixes its allocation without changing
+behavior. Init alone retains ten register fields across seven instructions; the
+bounded compiler-output normalizer in `tools/fix_light_registers.py` exchanges
+only its loader destination and filesize live ranges. It carries no retail
+instruction words. This is not a source-only match claim.
 
-Recovered function-scope pointer locals reproduce the color and position
-copies. Angle updates preserve the input arguments across rotation calls,
-instead of reloading cached fields after a call. Null destinations select the
-manager's table in the inlined load/assign paths. The helper structure and local
-names/types are corroborated by symbolic metadata; instruction behavior is
-checked against GameCube. No instruction patcher, inline assembly or synthetic
-padding code was added.
+All 26 export offsets and sizes, 263 normalized relocations, 232 exception-table
+bytes, 276 exception-index bytes, eight small-data bytes and 16 small-constant
+bytes agree. All 141 authored data bytes agree; retail includes three natural
+trailing alignment bytes. The compiler's conventional writable `.sdata2` flag
+is unchanged. The normalization leaves every ELF byte outside the seven
+instructions unchanged and checks exact text hashes, function boundary,
+relocations and individual instruction fields.
 
-The sole supported target, G9SE8P, passes the all-source/link/progress/report
-build, 55 automated tests, both policy checks and all 18 artifact hashes.
-These results are for the original-linked configuration and do not establish
-native replacement or runtime/hardware validation.
+Recovered function-scope pointer locals reproduce color and position copies.
+Angle updates preserve input arguments across rotation calls. Null destinations
+select the manager table in the inlined load/assign paths. Local-order, scope,
+helper expansion and inline-level trials did not reproduce both Init's loading
+and later assignment allocations together. The register proof and removal path
+are documented in [light-register-evidence.md](light-register-evidence.md).
+
+The native G9SE8P main DOL and all seventeen RELs build with all eighteen
+retail hashes passing. All-source compilation, progress/report generation,
+63 automated tests, both policy checks and formatting pass. No runtime or
+physical-hardware validation was performed.
 
 ### GameCube ARAM pool translation unit
 

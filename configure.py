@@ -1058,7 +1058,7 @@ config.libs = [
                 ],
             ),
             Object(Matching, "game/eff_muteki.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
-            Object(NonMatching, "game/light.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
+            Object(Matching, "game/light.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/aram_pool.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/link.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/eff_wink.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
@@ -3966,6 +3966,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_light_registers",
+        "command": "$python tools/fix_light_registers.py $in $out",
+        "description": "FIX light loader destination and size registers",
+    },
+    {
         "name": "fix_fn_80054F08_object",
         "command": "$python tools/fix_fn_80054F08_object.py $in $out",
         "description": "FIX fn_80054F08 compiler block layout and register coloring",
@@ -4305,6 +4310,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/light-registers.stamp",
+            "rule": "fix_light_registers",
+            "inputs": "build/G9SE8P/src/game/light.o",
+            "implicit": ["tools/fix_light_registers.py"],
+        },
         {
             "outputs": "build/G9SE8P/fn-80054F08-object.stamp",
             "rule": "fix_fn_80054F08_object",

@@ -1,6 +1,12 @@
 #include "game/light.h"
 // Whole-unit reconstruction, GameCube 0x80052184--0x80053FB8.
-// Nonmatching: remaining GPR allocation differences are documented in language-audit.md.
+// Native remainder: Init's loader destination/filesize exchange r28/r29 across
+// seven words (ten register fields); tools/fix_light_registers.py bounds the
+// permutation to those live ranges and guards the complete compiler text.
+// Direct EndIgnoreLight restoration matches its original allocation. Loader
+// declaration orders, direct bodies, scopes and whole-TU inline/lifetime options
+// did not reproduce both Init loader and later AssignData allocation together.
+// Remove the normalization when source/compiler choices reproduce both ranges.
 // C++ names/layouts correlated with PS2 metadata. No PS2 instructions used.
 // Pointer-only prefix view of the SDK light object; SDK allocation owns its size.
 struct RpLight {
@@ -504,7 +510,14 @@ void CLIGHT::EndIgnoreLight(RpWorld*)
 	SetLightRegular(current_num);
 	if (rpLight[0])
 		rpLight[0]->SetFlag(3);
-	RestoreAll();
+	s8 i;
+	RP_Light* light;
+	for (i = 0; i < 8; i++) {
+		light = rpLight[i];
+		if (light) {
+			light->Enable(light->CurrWorld);
+		}
+	}
 }
 
 extern "C" const f32 lbl_8042D390 = 1.0f;

@@ -4,7 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
-| Codex 2026-10-06 | `game/light.cpp`, complete CLIGHT/RP_Light unit | Active on `decomp/light-20261006`; all 26 surviving bodies reconstructed at 0x80052184–0x80053FB8; native matching and layout audit in progress |
+| Codex 2026-10-06 | `game/light.cpp`, complete CLIGHT/RP_Light unit | Complete on `decomp/light-20261006`; all 26 surviving bodies reconstructed at 0x80052184–0x80053FB8; 25 source-exact, ten register fields across seven Init instructions normalized; all 18 native image hashes and 63 tests pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |
 | Codex | `game/cri/axrna.c` | Attempted; no net improvement after source-form and compiler-flag trials |
