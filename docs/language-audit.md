@@ -1468,7 +1468,7 @@ single-precision store/reload rounding. Existing source forms for the angle
 helpers are retained where they improve native correspondence.
 
 Twenty-six functions currently have exact native instruction bytes. Four geometry
-helpers remain nonmatching. Native text is 8,964 bytes including a generated
+helpers remain nonmatching. Native text is 8,960 bytes including a generated
 helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes),
 but metadata content and relocations still require a complete audit. The 52
 native constant bytes equal the retail prefix; the retail range includes four
@@ -1552,3 +1552,11 @@ The determinant and three plane offsets also receive descriptive local names.
 Broader normal-cache removal introduced additional loads and was reverted.
 All 26 exact functions remain exact; full supported G9SE8P build/report,
 55 tests, both policies and 18 original-linked hashes pass.
+
+`DistanceL2L` now reaches 96.54% and the exact 1,912-byte retail size. Twelve
+squared-distance intermediates are folded into their expressions, preserving
+arithmetic association and the existing captured positions. Combining the
+parallel branch's square-root return paths removes the extra branch. The
+volatile nearest-point reloads remain unchanged. All 26 exact functions stay
+exact; whole-unit native text is now 8,960 bytes. Full supported G9SE8P
+build/report, 55 tests, both policies and 18 original-linked hashes pass.

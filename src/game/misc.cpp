@@ -276,13 +276,6 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 	volatile f32 sp8;
 	f32 temp_f0_18;
 	f32 temp_f0_2;
-	f32 temp_f0_3;
-	f32 temp_f0_4;
-	f32 temp_f0_5;
-	f32 temp_f0_6;
-	f32 temp_f1_10;
-	f32 temp_f1_11;
-	f32 temp_f1_12;
 	f32 temp_f1_16;
 	f32 temp_f1_17;
 	f32 temp_f1_2;
@@ -290,11 +283,6 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 	f32 temp_f1_4;
 	f32 temp_f1_5;
 	f32 temp_f1_6;
-	f32 temp_f1_7;
-	f32 temp_f1_8;
-	f32 temp_f1_9;
-	f32 temp_f2_2;
-	f32 temp_f2_3;
 	f32 temp_f2_5;
 	f32 temp_f2_6;
 	f32 temp_f3_4;
@@ -350,18 +338,21 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 		          + ((arg1->v.x * (temp_f0_2 - arg1->p.x)) + (arg1->v.y * (temp_f1_2 - arg1->p.y))))
 		    / ((arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y)));
 		if (arg3 != NULL) {
-			arg3->x   = arg1->p.x + (arg1->v.x * temp_f4_2);
-			arg3->y   = arg1->p.y + (arg1->v.y * temp_f4_2);
-			arg3->z   = arg1->p.z + (arg1->v.z * temp_f4_2);
-			temp_f2_2 = temp_f6 - arg3->z;
-			temp_f0_3 = temp_f0_2 - arg3->x;
-			temp_f0_4 = temp_f1_2 - arg3->y;
-			var_f1 = (temp_f2_2 * temp_f2_2) + ((temp_f0_3 * temp_f0_3) + (temp_f0_4 * temp_f0_4));
+			arg3->x = arg1->p.x + (arg1->v.x * temp_f4_2);
+			arg3->y = arg1->p.y + (arg1->v.y * temp_f4_2);
+			arg3->z = arg1->p.z + (arg1->v.z * temp_f4_2);
+
+			var_f1 = ((temp_f6 - arg3->z) * (temp_f6 - arg3->z))
+			    + (((temp_f0_2 - arg3->x) * (temp_f0_2 - arg3->x))
+			        + ((temp_f1_2 - arg3->y) * (temp_f1_2 - arg3->y)));
 		} else {
-			temp_f2_3 = temp_f6 - (arg1->p.z + (arg1->v.z * temp_f4_2));
-			temp_f0_5 = temp_f0_2 - (arg1->p.x + (arg1->v.x * temp_f4_2));
-			temp_f0_6 = temp_f1_2 - (arg1->p.y + (arg1->v.y * temp_f4_2));
-			var_f1 = (temp_f2_3 * temp_f2_3) + ((temp_f0_5 * temp_f0_5) + (temp_f0_6 * temp_f0_6));
+
+			var_f1 = ((temp_f6 - (arg1->p.z + (arg1->v.z * temp_f4_2)))
+			             * (temp_f6 - (arg1->p.z + (arg1->v.z * temp_f4_2))))
+			    + (((temp_f0_2 - (arg1->p.x + (arg1->v.x * temp_f4_2)))
+			           * (temp_f0_2 - (arg1->p.x + (arg1->v.x * temp_f4_2))))
+			        + ((temp_f1_2 - (arg1->p.y + (arg1->v.y * temp_f4_2)))
+			            * (temp_f1_2 - (arg1->p.y + (arg1->v.y * temp_f4_2)))));
 		}
 		if (var_f1 < lbl_8042E028) {
 			return lbl_8042E008;
@@ -372,12 +363,11 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 			    * (lbl_8042E020 - ((f64)var_f1 * (temp_f0_7 * temp_f0_7)));
 			temp_f0_9 = lbl_8042E018 * temp_f0_8
 			    * (lbl_8042E020 - ((f64)var_f1 * (temp_f0_8 * temp_f0_8)));
-			sp10 = (f32)((f64)var_f1
+			sp10   = (f32)((f64)var_f1
 			    * (lbl_8042E018 * temp_f0_9
 			        * (lbl_8042E020 - ((f64)var_f1 * (temp_f0_9 * temp_f0_9)))));
-			return sp10;
+			var_f1 = sp10;
 		}
-		/* Duplicate return node #31. Try simplifying control flow for better match */
 		return var_f1;
 	}
 	sp58.p.x = arg0->p.x;
@@ -459,16 +449,18 @@ f32 DistanceL2L(const NJS_LINE* arg0, const NJS_LINE* arg1, RwV3d* arg2, RwV3d* 
 		nearestPoint.y = temp_f6_5;
 		temp_f1_6      = arg1->p.z + (arg1->v.z * temp_f7_4);
 		nearestPoint.z = temp_f1_6;
-		temp_f1_7      = temp_f3_6 - temp_f1_6;
-		temp_f1_8      = temp_f0_18 - temp_f4_5;
-		temp_f1_9      = temp_f2_6 - temp_f6_5;
-		var_f7 = (temp_f1_7 * temp_f1_7) + ((temp_f1_8 * temp_f1_8) + (temp_f1_9 * temp_f1_9));
+
+		var_f7 = ((temp_f3_6 - temp_f1_6) * (temp_f3_6 - temp_f1_6))
+		    + (((temp_f0_18 - temp_f4_5) * (temp_f0_18 - temp_f4_5))
+		        + ((temp_f2_6 - temp_f6_5) * (temp_f2_6 - temp_f6_5)));
 	} else {
-		temp_f1_10 = temp_f3_6 - (arg1->p.z + (arg1->v.z * temp_f7_4));
-		temp_f1_11 = temp_f0_18 - (arg1->p.x + (arg1->v.x * temp_f7_4));
-		temp_f1_12 = temp_f2_6 - (arg1->p.y + (arg1->v.y * temp_f7_4));
-		var_f7
-		    = (temp_f1_10 * temp_f1_10) + ((temp_f1_11 * temp_f1_11) + (temp_f1_12 * temp_f1_12));
+
+		var_f7 = ((temp_f3_6 - (arg1->p.z + (arg1->v.z * temp_f7_4)))
+		             * (temp_f3_6 - (arg1->p.z + (arg1->v.z * temp_f7_4))))
+		    + (((temp_f0_18 - (arg1->p.x + (arg1->v.x * temp_f7_4)))
+		           * (temp_f0_18 - (arg1->p.x + (arg1->v.x * temp_f7_4))))
+		        + ((temp_f2_6 - (arg1->p.y + (arg1->v.y * temp_f7_4)))
+		            * (temp_f2_6 - (arg1->p.y + (arg1->v.y * temp_f7_4)))));
 	}
 	if (!(var_f7 < lbl_8042E028) && (var_f7 > lbl_8042E008)) {
 		temp_f1_13 = __frsqrte(var_f7);
