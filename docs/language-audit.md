@@ -1452,3 +1452,27 @@ return contract must be corrected during consolidation. Existing instruction
 postprocessors on other fragments must be audited rather than silently carried
 into a newly claimed native whole-unit match. No new source matching or build
 validation is claimed by this inventory-only update.
+
+The first whole-unit candidate now compiles all 30 bodies in `game/misc.cpp`.
+It replaces four address-named source fragments and unschedules the former
+angle-helper instruction patch step. Address-based linkage is retained during
+this initial validation pass; recovered C++ API declarations and caller updates
+are still pending. No new instruction postprocessor is introduced.
+
+Initial control-flow recovery used m2c `708d2d2cb2698f091a92492b328f73b24209f72d`
+on GameCube assembly. Typed analysis-only stack layouts establish actual vector
+and line objects; no analysis padding is emitted in source. The two print
+functions use `__builtin_va_info` and a 64-byte formatting buffer rather than
+inferred register-save pseudocode. Scalar square-root intermediates retain
+single-precision store/reload rounding. Existing source forms for the angle
+helpers are retained where they improve native correspondence.
+
+Twenty functions currently have exact native instruction bytes. Ten geometry
+helpers remain nonmatching. Native text is 8,936 bytes including a generated
+helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes),
+but metadata content and relocations still require a complete audit. The 52
+native constant bytes equal the retail prefix; the retail range includes four
+trailing zero bytes. The candidate remains **NonMatching** and links the
+original object. The full supported G9SE8P all-source build and link/report,
+55 tests, both policies and 18 original-linked artifact hashes pass. These do
+not validate candidate runtime behavior or establish whole-object matching.

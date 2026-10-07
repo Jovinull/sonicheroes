@@ -907,10 +907,7 @@ config.libs = [
             Object(Matching, "game/fn_80055874.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800546F4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_8005438C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(Matching, "game/fn_800D67D4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(Matching, "game/fn_800D75CC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(Matching, "game/fn_800D7920.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(Matching, "game/fn_800D7A54.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(NonMatching, "game/misc.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/fn_800D7B18.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800D7BD8.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_800D7E5C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
@@ -3975,11 +3972,6 @@ config.custom_build_rules = [
         "description": "FIX fn_80054900 compiler block layout and register coloring",
     },
     {
-        "name": "fix_fn_800D75CC_object",
-        "command": "$python tools/fix_fn_800D75CC_object.py $in $out",
-        "description": "FIX fn_800D75CC compiler register coloring",
-    },
-    {
         "name": "fix_fn_800d7b18_object",
         "command": f"$python tools/fix_fn_800d7b18_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX fn_800D7B18 split-TU conversion literal",
@@ -4315,12 +4307,6 @@ config.custom_build_steps = {
             "rule": "fix_fn_80054900_object",
             "inputs": "build/G9SE8P/src/game/fn_80054900.o",
             "implicit": ["tools/fix_fn_80054900_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/fn-800D75CC-object.stamp",
-            "rule": "fix_fn_800D75CC_object",
-            "inputs": "build/G9SE8P/src/game/fn_800D75CC.o",
-            "implicit": ["tools/fix_fn_800D75CC_object.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-800d7b18-object.stamp",
