@@ -1445,3 +1445,17 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+
+## effect/eff_footprints.cpp
+
+Positive symbolic metadata identifies fourteen C++ definitions. Seven survive
+in GameCube code and seven ordinary helpers inline into them. Both footprint
+classes and all owned sections are independently correlated; neighboring
+receiver/singleton helpers are excluded. GameCube immediate vertex layout takes
+precedence over the older platform's metadata layout. No PS2 instructions were
+inspected. Six bodies match directly from source; the display method retains
+a documented twelve-register-field permutation across eleven instructions.
+All seven bodies, owned sections and 155 relocations match after normalization.
+All eighteen supported output hashes and 77 tests pass; see
+`eff-footprints-unit-evidence.md` for the remaining allocation gap and path out.
