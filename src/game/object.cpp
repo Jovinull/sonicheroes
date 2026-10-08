@@ -70,10 +70,10 @@ void fn_800FAB00(void);
 void fn_800F6FDC(void);
 void fn_800F45A8(void);
 void EndEffMuteki__Fv(void);
-void fn_800C968C(void);
+void EndEffBall__Fv(void);
 void EndEffBomb__Fv(void);
 void InitEffBomb__Fv(void);
-void fn_800C9894(void);
+void InitEffBall__Fv(void);
 void InitEffMuteki__Fv(void);
 void fn_800F45C8(void);
 void fn_800F7038(void);
@@ -531,7 +531,7 @@ void objLoadCommonObjectTextures(void)
 		memset(lbl_802FF5E0, 0, 0x4400);
 	InitEffTornado__Fv();
 	InitEffBomb__Fv();
-	fn_800C9894();
+	InitEffBall__Fv();
 	InitEffMuteki__Fv();
 	fn_800F45C8();
 	fn_800F7038();
@@ -558,7 +558,7 @@ void objReleaseCommonObjectTextures(void)
 	fn_800F6FDC();
 	fn_800F45A8();
 	EndEffMuteki__Fv();
-	fn_800C968C();
+	EndEffBall__Fv();
 	EndEffBomb__Fv();
 	EndEffTornado__Fv();
 	for (s32 i = 0; i < 0x100; i++) {
