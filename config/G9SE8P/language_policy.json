@@ -131,6 +131,7 @@
     "game/octreeColli.cpp",
     "game/one.cpp",
     "game/skyfs_adx.c",
+    "game/storyTable.cpp",
     "rel/e_capture_collision_stage11.cpp",
     "rel/e_mask_stage11.cpp",
     "rel/e_s11_key_stage11.cpp",

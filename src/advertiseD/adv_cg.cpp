@@ -204,7 +204,7 @@ void fn_8019930C(void* dst, void* src);
 void fn_8012CC0C(void* spr, void* pos);
 void fn_8012CEF0(void* spr, f32 frame);
 void fn_8012CC20(void* spr);
-int fn_80138994(void* cat, int idx, int c);
+int CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(void* cat, int idx, int c);
 int fn_800A9398(void* p, int a);
 void fn_800A8174(void* self, int a);
 void fn_800A8264(void* self);
@@ -237,7 +237,7 @@ extern void* MoviePlay[];
 extern void* lbl_8042C180;
 extern u8 lbl_8042C1C0[];
 extern void* lbl_8042C388;
-extern u8 lbl_8042C7E0[];
+extern u8 StoryManage[];
 extern u8 lbl_80303EC8[];
 
 extern const s32 lbl_1_rodata_1410[14];
@@ -498,11 +498,11 @@ void fn_1_E1F4(void* dst, const sADV_CG_LIST* src)
 void fn_1_E230(ADV_CG* self)
 {
 	self->avail[0] = 1;
-	self->avail[1] = fn_80138994(lbl_8042C7E0, 0, 0) == 0x64;
-	self->avail[2] = fn_80138994(lbl_8042C7E0, 1, 0) == 0x64;
-	self->avail[3] = fn_80138994(lbl_8042C7E0, 2, 0) == 0x64;
-	self->avail[4] = fn_80138994(lbl_8042C7E0, 3, 0) == 0x64;
-	self->avail[5] = fn_80138994(lbl_8042C7E0, 4, 0) == 0x64;
+	self->avail[1] = CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 0, 0) == 0x64;
+	self->avail[2] = CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 1, 0) == 0x64;
+	self->avail[3] = CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 2, 0) == 0x64;
+	self->avail[4] = CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 3, 0) == 0x64;
+	self->avail[5] = CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 4, 0) == 0x64;
 }
 
 void fn_1_E328(ADV_CG* self, s32 v)

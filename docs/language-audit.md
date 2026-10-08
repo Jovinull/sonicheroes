@@ -2434,3 +2434,19 @@ Independent whole-object, field/layout, control-flow and consumer-rename
 reviews pass. All-source compilation of the supported G9SE8P main DOL and seventeen RELs
 passes; all eighteen reference hashes, 62 automated tests and both policies
 pass. No runtime or physical-hardware validation is claimed.
+
+## storyTable.cpp complete C++ consolidation
+
+Positive C_PLUS_PLUS metadata and the correlated thirteen-body retail cluster
+establish complete story management ownership. This absorbs the provisional
+eight-body voice_sequence.cpp split, all five sequence tables and singleton.
+Four GC-only bodies retain address names; revised GC signatures are documented.
+All per-function language/optimization pragmas are removed. A reviewed whole-TU
+`-bool off -inline auto,deferred` mode restores the metadata helper expansions,
+full native body order and all 200 relocations; ordinary auto alternatives
+change emitted helper inventory and body sizes. Original source line order is
+not claimed. See [the complete evidence](story-table-unit-evidence.md).
+The supported G9SE8P main DOL and all seventeen RELs compile and link with
+the reconstructed source, passing all eighteen hashes. All 62 automated tests,
+both policies and independent whole-object/control-flow/consumer reviews pass.
+No runtime or physical-hardware validation is claimed.

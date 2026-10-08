@@ -490,11 +490,12 @@ game/GetSpParam.cpp:
 game/enemy/e_utility_system.cpp:
 	.text       start:0x80137FE8 end:0x801380B8
 
-game/voice_sequence.cpp:
-	extab       start:0x8000B908 end:0x8000B940
-	extabindex  start:0x80011974 end:0x800119C8
-	.text       start:0x80138664 end:0x80138ECC
-	.data       start:0x8028C964 end:0x8028CA70
+game/storyTable.cpp:
+	extab       start:0x8000B8F0 end:0x8000B940
+	extabindex  start:0x80011950 end:0x800119C8
+	.text       start:0x801380B8 end:0x80138ECC
+	.data       start:0x8028C448 end:0x8028CA70
+	.sbss       start:0x8042C7E0 end:0x8042C7E8
 
 game/movie.cpp:
 	extab       start:0x8000B940 end:0x8000B97C

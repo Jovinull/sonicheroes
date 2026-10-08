@@ -96,7 +96,7 @@ extern "C" f32 lbl_1_rodata_1404;
 extern "C" f32 lbl_1_rodata_1408;
 
 extern "C" u8 lbl_80303EC8[];
-extern "C" u8 lbl_8042C7E0[];
+extern "C" u8 StoryManage[];
 extern "C" u8 lbl_803E774C[];
 
 // --- functions in other TUs of this module (or base class) ---
@@ -143,7 +143,7 @@ extern "C" void fn_80126254(void);
 extern "C" void fn_8013BBE0(void);
 extern "C" void fn_80196D00(void);
 extern "C" void fn_800CD138(void);
-extern "C" s32 fn_80138994(void* a, s32 b, s32 c);
+extern "C" s32 CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(void* a, s32 b, s32 c);
 extern "C" void* fn_80116D2C(void* a);
 extern "C" void fn_80116E3C(void* h, void* str);
 extern "C" s32 fn_80116F5C(void* h, void* v);
@@ -373,15 +373,15 @@ extern "C" void fn_1_D758(void)
 	fn_1_10FB0();
 	fn_80196D00();
 	fn_800CD138();
-	if (fn_80138994(lbl_8042C7E0, 0, 0) == 0x64)
+	if (CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 0, 0) == 0x64)
 		fn_80116E3C(fn_80116D2C(lbl_803E774C), lbl_1_data_59B4);
-	if (fn_80138994(lbl_8042C7E0, 1, 0) == 0x64)
+	if (CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 1, 0) == 0x64)
 		fn_80116E3C(fn_80116D2C(lbl_803E774C), lbl_1_data_59C4);
-	if (fn_80138994(lbl_8042C7E0, 2, 0) == 0x64)
+	if (CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 2, 0) == 0x64)
 		fn_80116E3C(fn_80116D2C(lbl_803E774C), lbl_1_data_59D4);
-	if (fn_80138994(lbl_8042C7E0, 3, 0) == 0x64)
+	if (CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 3, 0) == 0x64)
 		fn_80116E3C(fn_80116D2C(lbl_803E774C), lbl_1_data_59E4);
-	if (fn_80138994(lbl_8042C7E0, 4, 0) == 0x64) {
+	if (CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 4, 0) == 0x64) {
 		fn_80116E3C(fn_80116D2C(lbl_803E774C), lbl_1_data_5604);
 		fn_80116E3C(fn_80116D2C(lbl_803E774C), lbl_1_data_5620);
 		fn_80116E3C(fn_80116D2C(lbl_803E774C), lbl_1_data_563C);
