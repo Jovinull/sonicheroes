@@ -3482,11 +3482,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/damage_collision_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/egghawk_colli_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

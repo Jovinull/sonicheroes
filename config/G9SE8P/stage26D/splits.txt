@@ -382,9 +382,11 @@ rel/hintring_register.cpp:
 	.text       start:0x0005BED4 end:0x0005BFA8
 	.ctors      start:0x000000B0 end:0x000000B4
 
-rel/damage_collision_register.cpp:
-	.text       start:0x0005C448 end:0x0005C4E0
+rel/o_setDamegeCollision.cpp:
+	.text       start:0x0005BFB0 end:0x0005C4E8
 	.ctors      start:0x000000B4 end:0x000000B8
+	.data       start:0x00005894 end:0x00005978
+	.bss        start:0x00000E10 end:0x00000E40
 
 rel/obj_set_particle_register.cpp:
 	.text       start:0x0005CADC end:0x0005CB78

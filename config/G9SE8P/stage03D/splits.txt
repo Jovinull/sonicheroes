@@ -414,9 +414,11 @@ rel/hintring_register.cpp:
 	.text       start:0x000707DC end:0x000708B0
 	.ctors      start:0x000000B8 end:0x000000BC
 
-rel/damage_collision_register.cpp:
-	.text       start:0x00070D50 end:0x00070DE8
+rel/o_setDamegeCollision.cpp:
+	.text       start:0x000708B8 end:0x00070DF0
 	.ctors      start:0x000000BC end:0x000000C0
+	.data       start:0x00007184 end:0x00007268
+	.bss        start:0x000010A8 end:0x000010D8
 
 rel/s03_aircar_register.cpp:
 	.text       start:0x00073650 end:0x000736FC
