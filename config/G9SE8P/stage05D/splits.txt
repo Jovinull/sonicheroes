@@ -603,6 +603,9 @@ rel/x_sign_register.cpp:
 	.text       start:0x0009E204 end:0x0009E2B4
 	.ctors      start:0x00000138 end:0x0000013C
 
+rel/xxx_sign_create.cpp:
+	.text       start:0x0009EA04 end:0x0009EB2C
+
 rel/xxxsign_register.cpp:
 	.text       start:0x0009EB2C end:0x0009EBDC
 	.ctors      start:0x0000013C end:0x00000140
