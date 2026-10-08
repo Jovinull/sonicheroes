@@ -663,6 +663,9 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000AD260 end:0x000AD2F8
 	.ctors      start:0x00000180 end:0x00000184
 
+rel/rain_collision_create.cpp:
+	.text       start:0x000B3F90 end:0x000B4098
+
 rel/raincollision_register.cpp:
 	.text       start:0x000B4098 end:0x000B4148
 	.ctors      start:0x00000188 end:0x0000018C

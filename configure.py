@@ -2489,6 +2489,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rain_collision_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/raincollision_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
