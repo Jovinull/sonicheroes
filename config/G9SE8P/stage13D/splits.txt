@@ -393,6 +393,9 @@ rel/chao_register.cpp:
 	.text       start:0x0006C964 end:0x0006CA14
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/warp_create.cpp:
+	.text       start:0x0006CFFC end:0x0006D0B8
+
 rel/warp_register.cpp:
 	.text       start:0x0006D0B8 end:0x0006D164
 	.ctors      start:0x000000CC end:0x000000D0

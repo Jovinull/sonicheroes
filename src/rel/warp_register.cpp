@@ -3,8 +3,8 @@
 // The record that registers WARP with the editor.
 //
 // The claim is .text 0xBE134 to 0xBE1E0 and the .ctors word at 0x148 that names
-// it. Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the hooks it points at are reached by the names
+// each module's symbols.txt gives them. The factory is rel/warp_create.cpp.
 //
 // The object's name is the display string the record itself installs, which is
 // what names every symbol here, and each hook is named from the entry offset it

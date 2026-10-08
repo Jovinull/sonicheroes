@@ -438,6 +438,9 @@ rel/king_pawn_register.cpp:
 	.text       start:0x0006B1F0 end:0x0006B29C
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/warp_create.cpp:
+	.text       start:0x0006D2C0 end:0x0006D37C
+
 rel/warp_register.cpp:
 	.text       start:0x0006D37C end:0x0006D428
 	.ctors      start:0x000000CC end:0x000000D0
