@@ -579,6 +579,7 @@ config.libs = [
             Object(Matching, "game/rankTable.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/enemy/e_utility_rw.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/locateTable.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/enemy/e_gadget.cpp", extra_cflags=["-Cpp_exceptions on", "-inline auto,deferred", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/scanpath.cpp", extra_cflags=["-O3,p", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
@@ -4038,6 +4039,11 @@ config.custom_build_rules = [
         "description": "FIX ef_sparkle compiler-owned atom order",
     },
     {
+        "name": "fix_e_gadget_object",
+        "command": "$python tools/fix_e_gadget_object.py $in $out",
+        "description": "FIX enemy gadget compiler atom order",
+    },
+    {
         "name": "fix_c_colli_react_object",
         "command": "$python tools/fix_c_colli_react_object.py $in $out",
         "description": "FIX collision reactor weak inline atom order",
@@ -4299,6 +4305,12 @@ config.custom_build_steps = {
             "rule": "fix_scanpath_registers",
             "inputs": "build/G9SE8P/src/game/scanpath.o",
             "implicit": ["tools/fix_scanpath_registers.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/e-gadget-object.stamp",
+            "rule": "fix_e_gadget_object",
+            "inputs": "build/G9SE8P/src/game/enemy/e_gadget.o",
+            "implicit": ["tools/fix_e_gadget_object.py"],
         },
         {
             "outputs": "build/G9SE8P/c-colli-react-object.stamp",
