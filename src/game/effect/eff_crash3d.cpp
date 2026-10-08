@@ -107,7 +107,8 @@ static RpAtomic* SearchAtomicFromFrameCallBack(RpAtomic*, void*);
 extern "C" {
 extern TObject* lbl_8042C2A0;
 extern TObject* lbl_8042C110;
-s32 fn_80017830(TObject*); // GC return observed, metadata method name not established here.
+s32 GetChildCount__7TObjectFv(
+    TObject*); // GC return observed, metadata method name not established here.
 
 s32 fn_80150958(RpClump*);
 }
@@ -207,7 +208,7 @@ void TObjEffCrash3D::Exec()
 {
 	if (setobjCheckRangeOut2(&pos, 225000000.0f))
 		Signal |= 1;
-	else if (!fn_80017830(this))
+	else if (!GetChildCount__7TObjectFv(this))
 		Signal |= 1;
 }
 TObjEffCrash3DChildObj::TObjEffCrash3DChildObj(TObject* ptp, RwV3d* pPos, sAngle* pAng, f32 spd0,
@@ -478,7 +479,7 @@ void TObjEffCrash3DR::Exec()
 		Signal |= 1;
 	else if (setobjCheckRangeOut2(&pos, 225000000.0f))
 		Signal |= 1;
-	else if (!fn_80017830(this))
+	else if (!GetChildCount__7TObjectFv(this))
 		Signal |= 1;
 }
 void TObjEffCrash3DR::Disp()

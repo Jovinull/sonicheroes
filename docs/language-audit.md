@@ -2705,3 +2705,14 @@ retail expansion; unknown original spelling and target-specific color narrowing
 are documented explicitly. All eighteen output hashes and 82 tests pass; the
 complete unit is enabled as Matching.
 See `eff-brim-unit-evidence.md`.
+
+## effect/eff_rocketaxel.cpp
+
+Positive symbolic metadata identifies 21 C++ definitions: seventeen GameCube
+survivors at 0x800F3134–0x800F46B0 and four ordinary constructors that inline.
+Four named class/vtable/resource graphs and allocation sizes corroborate the
+complete unit. Eight owned ranges and 375 relocations are inventoried. No
+PS2 instructions were inspected. All seventeen native bodies, 375 relocations
+and eight sections match with reversed ordinary definitions and whole-unit
+auto,deferred; no normalizer is needed. All eighteen output hashes and 62 tests
+pass; the complete unit is enabled as Matching. See `eff-rocketaxel-unit-evidence.md`.

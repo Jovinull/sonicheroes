@@ -420,6 +420,16 @@ game/vertical_colli.cpp:
 	.text       start:0x800D8BC4 end:0x800D8D2C
 	.sdata2     start:0x8042E080 end:0x8042E090
 
+game/effect/eff_rocketaxel.cpp:
+	extab       start:0x80008FE8 end:0x80009140
+	extabindex  start:0x8000F8BC end:0x8000F97C
+	.text       start:0x800F3134 end:0x800F46B0
+	.rodata     start:0x8023A640 end:0x8023A680
+	.data       start:0x80259AD8 end:0x80259C08
+	.sdata      start:0x8042B6D0 end:0x8042B6E0
+	.sbss       start:0x8042C4A8 end:0x8042C4C0
+	.sdata2     start:0x8042E490 end:0x8042E4E0
+
 game/enemy/e_gadget.cpp:
 	extab       start:0x80009738 end:0x80009768
 	extabindex  start:0x8000FD18 end:0x8000FD60
