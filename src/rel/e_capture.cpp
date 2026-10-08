@@ -342,32 +342,33 @@ M2C_UNK SetLightNum__7nRenderFUi(...);                                          
 M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                                    /* extern */
 M2C_UNK LoadRenderState__7nRenderFv();                                              /* extern */
 M2C_UNK SaveRenderState__7nRenderFv();                                              /* extern */
-M2C_UNK fn_8011398C(M2C_UNK*, s32);                                                 /* extern */
-M2C_UNK fn_80113A68(void*);                                                         /* extern */
-M2C_UNK fn_80113AA8(M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                         /* extern */
-u32 fn_8011B5A8(RwFrame*, M2C_UNK);                                                 /* extern */
-M2C_UNK fn_8011C188(u32, s32);                                                      /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                             /* extern */
-M2C_UNK fn_8011C6EC();                                                              /* extern */
-M2C_UNK fn_8014FF2C(void*);                                                         /* extern */
-void* fn_80150588(s32);                                                             /* extern */
-M2C_UNK fn_80150958(void*);                                                         /* extern */
-M2C_UNK fn_80195A74(M2C_UNK*, M2C_UNK*, M2C_UNK, f32, f32, f32);                    /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                                      /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                                 /* extern */
-void* fn_8019E8EC(void*);                                                           /* extern */
-M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                                      /* extern */
-M2C_UNK fn_8019EC30(RwFrame*, f32*, M2C_UNK);                                       /* extern */
-M2C_UNK fn_8019ECCC(RwFrame*, void*, M2C_UNK);                                      /* extern */
-M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);                                  /* extern */
-s32 rand(void*, ...);                                                               /* extern */
-M2C_UNK fn_8_90B10(s32);                                                            /* extern */
-void** fn_8_9DCE8();                                                                /* extern */
-M2C_UNK fn_8_9E43C(TObject*);                                                       /* extern */
-void** fn_8_9EB28();                                                                /* extern */
-void captureObjectGlobalArrayDtor();                                                /* static */
-void fn_8_9B920(TObject* arg0);                                                     /* static */
-void fn_8_9C054(TObject* arg0);                                                     /* static */
+M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                               /* extern */
+M2C_UNK End__16TEnemyMatTextureFv(void*);                                           /* extern */
+M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+    M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
+u32 fn_8011B5A8(RwFrame*, M2C_UNK);                              /* extern */
+M2C_UNK fn_8011C188(u32, s32);                                   /* extern */
+M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                          /* extern */
+M2C_UNK fn_8011C6EC();                                           /* extern */
+M2C_UNK fn_8014FF2C(void*);                                      /* extern */
+void* fn_80150588(s32);                                          /* extern */
+M2C_UNK fn_80150958(void*);                                      /* extern */
+M2C_UNK fn_80195A74(M2C_UNK*, M2C_UNK*, M2C_UNK, f32, f32, f32); /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                   /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);              /* extern */
+void* fn_8019E8EC(void*);                                        /* extern */
+M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                   /* extern */
+M2C_UNK fn_8019EC30(RwFrame*, f32*, M2C_UNK);                    /* extern */
+M2C_UNK fn_8019ECCC(RwFrame*, void*, M2C_UNK);                   /* extern */
+M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);               /* extern */
+s32 rand(void*, ...);                                            /* extern */
+M2C_UNK fn_8_90B10(s32);                                         /* extern */
+void** fn_8_9DCE8();                                             /* extern */
+M2C_UNK fn_8_9E43C(TObject*);                                    /* extern */
+void** fn_8_9EB28();                                             /* extern */
+void captureObjectGlobalArrayDtor();                             /* static */
+void fn_8_9B920(TObject* arg0);                                  /* static */
+void fn_8_9C054(TObject* arg0);                                  /* static */
 void* fn_8_9C4BC(void*, s16);
 void* fn_8_9D3BC(void*, s16);
 void fn_8_9AB68(void*, u32, s32);
@@ -406,8 +407,8 @@ void fn_800A3D6C(void);
 void fn_800A2C6C(void);
 void fn_800A31A0(void);
 void fn_800A3148(void);
-extern M2C_UNK fn_80113C2C;
-extern M2C_UNK fn_80113C7C;
+extern M2C_UNK __dt__16TEnemyMatTextureFv;
+extern M2C_UNK __ct__16TEnemyMatTextureFv;
 extern M2C_UNK fn_8_9D45C;
 extern M2C_UNK AxisX;
 extern M2C_UNK AxisY;
@@ -1201,7 +1202,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 		var_r29 = 2;
 		var_r30 = (u8*)&captureObjectGlobalArray + 0x28;
 		do {
-			fn_8011398C((s32*)var_r30, M2C_FIELD(arg0, s32*, 0x57C));
+			PreDisp__16TEnemyMatTextureFi((s32*)var_r30, M2C_FIELD(arg0, s32*, 0x57C));
 			var_r30 += 0x14;
 			var_r29 += 1;
 		} while (var_r29 < 8);
@@ -1242,7 +1243,7 @@ void fn_8_99254(void* arg0)
 	var_r30 = 0;
 	var_r31 = (int*)&captureObjectGlobalArray;
 	do {
-		fn_8011398C(var_r31, M2C_FIELD(arg0, s32*, 0x57C));
+		PreDisp__16TEnemyMatTextureFi(var_r31, M2C_FIELD(arg0, s32*, 0x57C));
 		var_r31 += 0x14;
 		var_r30 += 1;
 	} while (var_r30 < 2);
@@ -3234,7 +3235,7 @@ void captureObjectUnload(void)
 	var_r30 = 7;
 	var_r31 = (u8*)&captureObjectGlobalArray + 0x8C;
 	do {
-		fn_80113A68(var_r31);
+		End__16TEnemyMatTextureFv(var_r31);
 		var_r31 -= 0x14;
 		var_r30 -= 1;
 	} while (var_r30 >= 0);
@@ -3303,21 +3304,29 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14));
 	}
 	fn_800FE274(7, &lbl_8_data_15608);
-	fn_80113AA8((int*)&captureObjectGlobalArray, temp_r3, M2C_FIELD(&lbl_8_bss_1780, u32*, 0),
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (int*)&captureObjectGlobalArray, temp_r3, M2C_FIELD(&lbl_8_bss_1780, u32*, 0),
 	    &lbl_8_data_1572C, 2);
-	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x14), temp_r3,
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x14), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0), &lbl_8_data_1575C, 2);
-	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x28), temp_r3,
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x28), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 4), &lbl_8_data_1572C, 2);
-	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x3C), temp_r3,
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x3C), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 4), &lbl_8_data_1575C, 2);
-	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x50), temp_r3,
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x50), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 8), &lbl_8_data_1572C, 2);
-	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x64), temp_r3,
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x64), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 8), &lbl_8_data_1575C, 2);
-	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x78), temp_r3,
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x78), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC), &lbl_8_data_1572C, 2);
-	fn_80113AA8((M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x8C), temp_r3,
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x8C), temp_r3,
 	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC), &lbl_8_data_1575C, 2);
 }
 
@@ -3362,7 +3371,8 @@ void fn_8_9D23C(void* arg0)
 
 void captureObjectRegister(void)
 {
-	__construct_array((int*)&captureObjectGlobalArray, &fn_80113C7C, &fn_80113C2C, 0x14, 8);
+	__construct_array((int*)&captureObjectGlobalArray, &__ct__16TEnemyMatTextureFv,
+	    &__dt__16TEnemyMatTextureFv, 0x14, 8);
 	__register_global_object(0, captureObjectGlobalArrayDtor, (int*)&captureObjectGlobalArrayChain);
 
 	captureObjectEntry.flags      = 0;
@@ -3389,6 +3399,6 @@ void captureObjectRegister(void)
 
 void captureObjectGlobalArrayDtor(void)
 {
-	__destroy_arr((int*)&captureObjectGlobalArray, &fn_80113C2C, 0x14, 8);
+	__destroy_arr((int*)&captureObjectGlobalArray, &__dt__16TEnemyMatTextureFv, 0x14, 8);
 }
 }

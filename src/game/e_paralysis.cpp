@@ -91,7 +91,7 @@ void SaveRenderState__7nRenderFv();
 void SetRenderStateForBlendAdd__7nRenderFv();
 void DisableLight__7nRenderFi(s32);
 void FogDisable__7nRenderFv();
-void fn_8011398C(void*, s32);
+void PreDisp__16TEnemyMatTextureFi(void*, s32);
 void fn_8011B844(void*, f32);
 void fn_8014FFBC(void*, void*, void*);
 void fn_8014FF2C(void*);
@@ -101,10 +101,11 @@ void* objRwTexDictionaryGetPointer__Fv();
 void* objPointerReadFromClumpAnim__FPc(char*);
 void SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(void*);
 void SetAtomicCustomFXData__FP8RpAtomicPv();
-void fn_80113AA8(void*, void*, void*, void*, s32);
-void fn_80113A68(void*);
-void* fn_80113C7C(void*);
-void fn_80113C2C(void*, s16);
+void Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+    void*, void*, void*, void*, s32);
+void End__16TEnemyMatTextureFv(void*);
+void* __ct__16TEnemyMatTextureFv(void*);
+void __dt__16TEnemyMatTextureFv(void*, s16);
 void __register_global_object(void*, void*, void*);
 f64 __fabs(f64);
 
@@ -160,8 +161,8 @@ static const f32 lbl_8042E9B0 = 8.0f;
 
 void __sinit_e_paralysis_cpp()
 {
-	void* object = fn_80113C7C(lbl_803E7588);
-	__register_global_object(object, (void*)fn_80113C2C, lbl_803E757C);
+	void* object = __ct__16TEnemyMatTextureFv(lbl_803E7588);
+	__register_global_object(object, (void*)__dt__16TEnemyMatTextureFv, lbl_803E757C);
 }
 // An explicit .ctors entry rather than #pragma startup: the pragma leaves the
 // static initializer out of the section, which drops the 4-byte slot the retail
@@ -185,13 +186,14 @@ void TEnemyParalysis::Initialize()
 		*(void**)lbl_803E7538 = lbl_8042C64C;
 		SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(lbl_8042C648);
 	}
-	fn_80113AA8(lbl_803E7588, heap, lbl_8042C648, lbl_80288C24, 9);
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    lbl_803E7588, heap, lbl_8042C648, lbl_80288C24, 9);
 	lbl_8042C650[0] = 0;
 }
 
 void TEnemyParalysis::Finalize()
 {
-	fn_80113A68(lbl_803E7588);
+	End__16TEnemyMatTextureFv(lbl_803E7588);
 }
 
 TEnemyParalysis::TEnemyParalysis(TObject* parent, sParalysisParam* param)
@@ -296,7 +298,7 @@ void TEnemyParalysis::TDisp()
 			SetRenderStateForBlendAdd__7nRenderFv();
 			DisableLight__7nRenderFi(0x15);
 			FogDisable__7nRenderFv();
-			fn_8011398C(lbl_803E7588, frame);
+			PreDisp__16TEnemyMatTextureFi(lbl_803E7588, frame);
 			s32 value = *(s32*)((u8*)lbl_8042C180 + 0x30);
 			if (lbl_8042C650[0] != value) {
 				fn_8011B844(lbl_8042C64C, lbl_8042E984);

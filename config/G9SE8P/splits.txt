@@ -429,6 +429,12 @@ game/enemy/e_utility_render.cpp:
 	.text       start:0x801137AC end:0x8011398C
 	.sbss       start:0x8042C658 end:0x8042C668
 
+game/enemy/e_material.cpp:
+	extab       start:0x8000A830 end:0x8000A850
+	extabindex  start:0x8001093C end:0x8001096C
+	.text       start:0x8011398C end:0x80113CCC
+	.data       start:0x80288CF0 end:0x80288D00
+
 game/SeqFlagCtrl.cpp:
 	.text       start:0x801143E0 end:0x801144E0
 	.bss        start:0x803E75E8 end:0x803E7668

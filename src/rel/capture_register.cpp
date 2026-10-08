@@ -41,8 +41,8 @@ typedef struct ObjectEntry {
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" {
-void* fn_80113C7C(void*);
-void fn_80113C2C(void*, s16);
+void* __ct__16TEnemyMatTextureFv(void*);
+void __dt__16TEnemyMatTextureFv(void*, s16);
 void __construct_array(void*, void*, void*, s32, s32);
 void __register_global_object(void*, void*, void*);
 }
@@ -60,7 +60,8 @@ extern "C" const char* captureObjectFieldNames[];
 
 extern "C" void captureObjectRegister(void)
 {
-	__construct_array(captureObjectGlobalArray, (void*)fn_80113C7C, (void*)fn_80113C2C, 0x14, 8);
+	__construct_array(captureObjectGlobalArray, (void*)__ct__16TEnemyMatTextureFv,
+	    (void*)__dt__16TEnemyMatTextureFv, 0x14, 8);
 	__register_global_object(
 	    NULL, (void*)captureObjectGlobalArrayDtor, captureObjectGlobalArrayChain);
 
