@@ -628,6 +628,9 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000CED18 end:0x000CEDC0
 	.ctors      start:0x00000174 end:0x00000178
 
+rel/no_ottotto_collision_create.cpp:
+	.text       start:0x000D1498 end:0x000D15C8
+
 rel/no_ottotto_collision_register.cpp:
 	.text       start:0x000D15C8 end:0x000D1660
 	.ctors      start:0x00000178 end:0x0000017C

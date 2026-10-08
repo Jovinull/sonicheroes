@@ -1761,6 +1761,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/no_ottotto_collision_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/no_ottotto_collision_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
