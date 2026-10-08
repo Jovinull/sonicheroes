@@ -120,7 +120,7 @@ extern "C" void fn_800191F8(void* a, s32 b, s32 c);
 extern "C" void fn_8001934C(void* a, s32 b, s32 c);
 extern "C" void fn_8001936C(void* a, s32 b, s32 c);
 extern "C" void fn_8001938C(void* a);
-extern "C" void fn_8006642C(void* a, s32 b, s32 c);
+extern "C" void setVictory__13PARAM_VICTORYFii(void* a, s32 b, s32 c);
 extern "C" void __ct__10DAnimClassFv(void* t, s32 v);
 extern "C" void fn_800A80E0(void* t, void* tbl, s32 idx);
 extern "C" void fn_800A8120(void* t);
@@ -727,8 +727,8 @@ extern "C" void fn_1_F454(void* t)
 	fn_800A96B0(lbl_80303EC8, 0x18, 0);
 	fn_8001934C(lbl_8029C310, 0, w(0x234));
 	fn_8001934C(lbl_8029C310, 1, w(0x238));
-	fn_8006642C((void*)((SMenu*)t)->sub80, 0, 0);
-	fn_8006642C((char*)((SMenu*)t) + 0x80, 1, 0);
+	setVictory__13PARAM_VICTORYFii((void*)((SMenu*)t)->sub80, 0, 0);
+	setVictory__13PARAM_VICTORYFii((char*)((SMenu*)t) + 0x80, 1, 0);
 	s32 st = w(0x230);
 	if (st == 0) {
 		for (s32 i = 0; i != 3; i++)

@@ -118,6 +118,7 @@
     "game/e_paralysis.cpp",
     "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
+    "game/gParam.cpp",
     "game/light.cpp",
     "game/message.cpp",
     "game/miscs.cpp",

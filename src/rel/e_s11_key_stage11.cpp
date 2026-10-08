@@ -166,7 +166,7 @@ void* __nw__FUl(u32);
 void fn_8005BC04(Motion*);
 void fn_8005D5C8(void*, u32);
 void fn_800628D0(s32, Vec3*, s32);
-void fn_80066988(void*, s32, s32);
+void addPlayerScore__11PARAM_SCOREFii(void*, s32, s32);
 void fn_80090B00(TeamInfo*);
 void fn_800B52E8(void*, s32, s32, s32);
 void* fn_800BB92C(void*, s32, void*);
@@ -476,7 +476,7 @@ void TObjS11Key::Exec()
 				state = 2;
 				frame->flags |= 0x10000;
 				s32 leader = lbl_80303DC8[team]->members[lbl_80303DC8[team]->leader];
-				fn_80066988(&collision, leader, 100);
+				addPlayerScore__11PARAM_SCOREFii(&collision, leader, 100);
 				if (lbl_8042C388 != NULL) {
 					fn_800B52E8(lbl_8042C388, 0x1020, 0, 0);
 				}

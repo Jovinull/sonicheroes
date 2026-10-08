@@ -1037,6 +1037,7 @@ config.libs = [
             Object(Matching, "game/light.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/aram_pool.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/calc.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
+            Object(Matching, "game/gParam.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pooldata off", "-inline deferred"]),
             Object(Matching, "game/locateTable.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-pooldata off"]),
             Object(Matching, "game/link.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/eff_wink.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),

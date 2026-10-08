@@ -1801,3 +1801,45 @@ the main DOL and seventeen REL hashes, all 55 regression tests and both policy
 checks. The existing Peripheral demo loader now refers to the canonical table
 symbol. PAL, Japan and PS2 are not configured build targets. No runtime or
 physical-hardware validation was performed.
+
+## gParam.cpp
+
+European PS2 debug metadata identifies `gParam.cpp` as C++ and names the
+parameter classes, static fields and game-state APIs. GameCube's 27 contiguous
+functions at `0x800663D0`–`0x80067050` independently correlate victory counts,
+timers, team/member scores, challenge counts, rings and checkpoint state. The
+preceding thunk/stubs and following player-state method are outside this unit.
+GameCube has additional saved-time methods and initialization behavior; their
+descriptive names are inferred from this platform's code.
+
+The unit preserves double clamping through inlined setters, ring threshold
+rewards, trigger-dependent SFA updates, and checkpoint time restoration only
+in single-player mode. Its checkpoint getter tests the angle output pointer
+before writing either output, including the position: this retail quirk is
+retained. The seconds helper loops on underflow but carries overflow only once.
+The stage-24 three-byte saved timer remains under its address-based symbol.
+External object declarations describe accessed prefixes only and are never
+allocated here; shared static-state helpers do not assume a class hierarchy.
+
+Deferred inlining with reverse function definitions reproduces the 27 exported
+functions in retail order and inlines the victory, score and ring setters into
+their callers. Default automatic inlining leaves calls and extra exception
+records, producing 3,016 instead of 3,200 text bytes. This caller/callee evidence
+justifies the scoped deferred policy entry. `-pooldata off` retains independent
+static-state addresses. No assembly, instruction patcher or synthetic padding
+is used.
+
+The exact object comparison covers all 3,200 text bytes, 24 exception-table
+bytes, 36 exception-index bytes, 140 BSS bytes, 24 constant-pool bytes and 191
+normalized relocations. The native small BSS has 23 bytes plus one trailing
+link-alignment byte in the reference; every named data object's offset and size
+matches. The compiler's writable `.sdata2` flag differs from the split object's
+read-only convention. Corrected symbol extents describe four victory bytes,
+three saved-timer bytes and the 16-byte TB array. Existing callers retain their
+ABI while referring to the recovered names.
+
+Validation: the sole supported target, G9SE8P, passes the complete all-source
+build, progress/report generation and native link. The source object is present
+in the main link inputs. The main DOL and all seventeen REL hashes pass, as do
+all 55 regression tests and both policy checks. PAL, Japan and PS2 are not
+configured build targets. No runtime or physical-hardware testing was performed.

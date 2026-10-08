@@ -357,7 +357,7 @@ M2C_UNK fn_8005E00C(u32, M2C_UNK);                                              
 M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                             /* extern */
 void* fn_800627BC(M2C_UNK, void*, void*);                                        /* extern */
 M2C_UNK fn_8006298C(M2C_UNK, f32*, s32*);                                        /* extern */
-M2C_UNK fn_800667B4(M2C_UNK*, f32);                                              /* extern */
+M2C_UNK addSFA__9PARAM_SFAFif(M2C_UNK*, f32);                                    /* extern */
 s32 fn_8009278C(M2C_UNK, s32);                                                   /* extern */
 s32 fn_800A2B78(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                       /* extern */
 s32 fn_800A2D90(s32);                                                            /* extern */
@@ -1629,7 +1629,7 @@ block_24:
 						var_f30 = lbl_8_rodata_1E70[0];
 					}
 					if (fn_801031D8(arg0->unk230) != -1) {
-						fn_800667B4(&arg0->unk13C, var_f30);
+						addSFA__9PARAM_SFAFif(&arg0->unk13C, var_f30);
 					}
 				}
 			} else {

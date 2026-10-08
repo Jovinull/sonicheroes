@@ -70,8 +70,8 @@ extern "C" void fn_80021824(void* query);
 extern "C" Overlap* fn_800211A8(ScrollRing* object);
 extern "C" s32 fn_80041B64(void* body);
 extern "C" Player* fn_800924E4(s32 player);
-extern "C" void fn_80066B74(void* emitter, s32 slot, s32 mode);
-extern "C" void fn_800668D0(void* award, s32 player, s32 count);
+extern "C" void addRingNum__10PARAM_RINGFii(void* emitter, s32 slot, s32 mode);
+extern "C" void addSomeonesScore__11PARAM_SCOREFii(void* award, s32 player, s32 count);
 extern "C" void objEmitBurst(void* transform, void* animation, f32 amount);
 extern "C" void fn_800B4984(void* handle, s32 sound);
 
@@ -104,10 +104,10 @@ extern "C" void scrollRingTouch(ScrollRing* object)
 	}
 
 	Player* winner = fn_800924E4(player);
-	fn_80066B74(object->emitter, winner->slot, 1);
+	addRingNum__10PARAM_RINGFii(object->emitter, winner->slot, 1);
 
 	if (object->record != NULL && object->record->state != 4) {
-		fn_800668D0(object->award, player, 10);
+		addSomeonesScore__11PARAM_SCOREFii(object->award, player, 10);
 	}
 
 	u32* collected = ((RecordOwner*)object->record)->collected();

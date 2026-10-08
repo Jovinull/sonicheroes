@@ -76,7 +76,7 @@ void OSSetStringTable(void*);
 void DVDClose(DVDFileInfo*);
 void fn_80116D30(void*);
 void fn_80040198(void*);
-void fn_80066ED8(void*, int);
+void InitGParam__7G_PARAMF11GPARAM_INIT(void*, int);
 void fn_800D0AA8();
 void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(TMainTask*, int, int);
 void fn_800A7614();
@@ -306,7 +306,7 @@ void MAIN::Init()
 	njInitSinTable();
 	fn_80116D30(lbl_803E774C);
 	fn_80040198(&lbl_8042C1BC);
-	fn_80066ED8(&lbl_8042C308, 0);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 0);
 	fn_800D0AA8();
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x13, ((s8*)lbl_8042C180)[0x13]);
 	fn_800A7614();
