@@ -15,8 +15,8 @@ from pathlib import Path
 import struct
 import tempfile
 
-INPUT_SHA256 = '119debc444b35837218dd67c0ca511325245af52408394b75c28672cf9b3e3e4'
-OUTPUT_SHA256 = 'ec950fe5394a3d5c818f9b73dc2d62057e82dea455c926c4c3d6072977c605e9'
+INPUT_SHA256 = 'e76e1c8b660fb9d341cd5983bad8d36f6188525941110869bf06a7d9fae57994'
+OUTPUT_SHA256 = '0a702ee83e6115dedcd0d6707863e6c4bdbf8ace37106eb2089ef8f391fb5ce4'
 ATOMS = {
     '.sdata2': {
         '@335': (0, 0, 8),
