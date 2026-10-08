@@ -605,6 +605,9 @@ rel/trainchangeswitch_register.cpp:
 	.text       start:0x00092B1C end:0x00092BBC
 	.ctors      start:0x0000014C end:0x00000150
 
+rel/train_collision_create.cpp:
+	.text       start:0x0009304C end:0x0009313C
+
 rel/traincollision_register.cpp:
 	.text       start:0x0009313C end:0x000931EC
 	.ctors      start:0x00000150 end:0x00000154
