@@ -625,6 +625,9 @@ rel/traintrain_register.cpp:
 	.text       start:0x0009533C end:0x000953DC
 	.ctors      start:0x00000154 end:0x00000158
 
+rel/train_top_create.cpp:
+	.text       start:0x00095F18 end:0x00096040
+
 rel/traintop_register.cpp:
 	.text       start:0x00096040 end:0x000960E0
 	.ctors      start:0x0000015C end:0x00000160
