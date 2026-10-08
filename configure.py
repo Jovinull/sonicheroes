@@ -2569,6 +2569,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/roulette_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roulette_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
