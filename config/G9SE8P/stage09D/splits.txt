@@ -553,6 +553,9 @@ rel/spring_mush_register.cpp:
 	.text       start:0x0008CD4C end:0x0008CDFC
 	.ctors      start:0x00000118 end:0x0000011C
 
+rel/stop_rain_create.cpp:
+	.text       start:0x0008D274 end:0x0008D390
+
 rel/stoprain_register.cpp:
 	.text       start:0x0008D390 end:0x0008D430
 	.ctors      start:0x0000011C end:0x00000120
