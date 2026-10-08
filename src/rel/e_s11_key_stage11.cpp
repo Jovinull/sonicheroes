@@ -160,7 +160,7 @@ void Free__9THeapCtrlFPv(void*, void*);
 HitNode* fn_80020BD8(void*, s32);
 HitNode* fn_800211A8(void*);
 void fn_80021824(void*);
-void fn_8003BC38(void*);
+void Entry__7C_COLLIFv(void*);
 void fn_8003BF04(void*, void*, s32, s32);
 void* __nw__FUl(u32);
 void SetEnd__10TObjSetObjFv(Motion*);
@@ -491,7 +491,7 @@ void TObjS11Key::Exec()
 				collision.previous = collision.position;
 				collision.position = position;
 				collision.angle    = zero;
-				fn_8003BC38(&collision);
+				Entry__7C_COLLIFv(&collision);
 			}
 			break;
 		}

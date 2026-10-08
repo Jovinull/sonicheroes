@@ -102,9 +102,9 @@ extern TObject* lbl_8042C2A0;
 extern RwV3d AxisY;
 s32 setobjCheckRangeOut2__FPC5RwV3df(const RwV3d*, f32);
 f32 AdjustFloat__Ffff(f32, f32, f32);
-void fn_80021384(C_COLLI*);
-s32 fn_8003C200(C_COLLI*, CCL_INFO*, s32, u8);
-s32 fn_8003BC38(C_COLLI*);
+void CalcRange__7C_COLLIFv(C_COLLI*);
+s32 Init__7C_COLLIFP8CCL_INFOiUc(C_COLLI*, CCL_INFO*, s32, u8);
+s32 Entry__7C_COLLIFv(C_COLLI*);
 RwFrame* objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(RwFrame*, RwFrame*);
 RwFrame* fn_8019EB94(RwFrame*, const RwV3d*, s32);
 RwFrame* fn_8019EC30(RwFrame*, const RwV3d*, s32);
@@ -271,13 +271,13 @@ TObjEffBomb::TObjEffBomb(TObject* ptp, s32 teamNo_Current, RwV3d* pPosition0, sA
 	switch (type) {
 		case ENUM_EFF_BOMB_TYPE_SBOMB:
 		case ENUM_EFF_BOMB_TYPE_LBOMB:
-			fn_8003C200(&static_cast<C_COLLI&>(*this), ci_bomb, 1, 1);
+			Init__7C_COLLIFP8CCL_INFOiUc(&static_cast<C_COLLI&>(*this), ci_bomb, 1, 1);
 			SetCollisionParameter();
 			if (teamNo != -1)
 				strength = 3;
 			break;
 		case ENUM_EFF_BOMB_TYPE_GC4:
-			fn_8003C200(&static_cast<C_COLLI&>(*this), ci_bomb, 1, 1);
+			Init__7C_COLLIFP8CCL_INFOiUc(&static_cast<C_COLLI&>(*this), ci_bomb, 1, 1);
 			SetCollisionParameter();
 			if (teamNo != -1) {
 				strength   = 9;
@@ -292,7 +292,7 @@ void TObjEffBomb::SetCollisionParameter()
 	character_id = GetCCLCharacterIdFromTeamNoOfBomb(teamNo);
 	if (info) {
 		info->a = 20.0f * scale[2];
-		fn_80021384(&static_cast<C_COLLI&>(*this));
+		CalcRange__7C_COLLIFv(&static_cast<C_COLLI&>(*this));
 	}
 }
 
@@ -369,7 +369,7 @@ void TObjEffBomb::Exec()
 			C_COLLI::pre_pos = C_COLLI::pos;
 			C_COLLI::pos     = pos;
 			C_COLLI::ang     = ang;
-			fn_8003BC38(&static_cast<C_COLLI&>(*this));
+			Entry__7C_COLLIFv(&static_cast<C_COLLI&>(*this));
 		} else
 			ClearInfo();
 	}

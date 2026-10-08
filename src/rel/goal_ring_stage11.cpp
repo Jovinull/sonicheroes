@@ -69,7 +69,7 @@ void fn_8_497B0(...);
 int CheckRangeOut__10TObjSetObjFv(void*);
 int CheckMustKill__10TObjSetObjFv(void*);
 s32 OnEdit__10TObjSetObjFv(void*);
-void fn_8003BC38(...);
+void Entry__7C_COLLIFv(...);
 void fn_8019ED68(...);
 void fn_8019EC30(...);
 void fn_8019EB94(...);
@@ -407,7 +407,7 @@ extern "C" void fn_8_4BD90(void* self)
 		field<Vec3>(self, 0xAC) = field<Vec3>(self, 0x90);
 		field<Vec3>(self, 0x90) = field<Vec3>(self, 0xBC);
 		field<Vec3>(self, 0x9C) = field<Vec3>(self, 0xC8);
-		fn_8003BC38((u8*)self + 0x30);
+		Entry__7C_COLLIFv((u8*)self + 0x30);
 	} else if (state == 2) {
 		if (field<float>(self, 0xD8) <= lbl_8_rodata_CE8)
 			return;

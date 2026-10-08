@@ -97,7 +97,7 @@ extern u8 lbl_8042C1A4;
 extern RwCamera** lbl_8042C9A4;
 s32 rand();
 s32 fn_80091FAC(PowerTeamView*);
-s32 fn_8003C200(C_COLLI*, CCL_INFO*, s32, u8);
+s32 Init__7C_COLLIFP8CCL_INFOiUc(C_COLLI*, CCL_INFO*, s32, u8);
 f32 GetShadowPos__FP5RwV3dP6sAnglei(RwV3d*, s32, s32);
 RpClump* fn_80150588(RpClump*);
 s32 fn_80150958(RpClump*);
@@ -118,7 +118,7 @@ s32 fn_80090790(PowerTeamView*, s32, s32);
 void addScore__11PARAM_SCOREFiii(PARAM_SCORE*, s32, s32, s32);
 RwFrame* fn_8019EB94(RwFrame*, const RwV3d*, s32);
 s32 fn_80017800(TObject*);
-s32 fn_8003BC38(C_COLLI*);
+s32 Entry__7C_COLLIFv(C_COLLI*);
 void objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(RpClump*);
 void SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(RpClump*, UVFXInfo*);
 }
@@ -166,7 +166,7 @@ inline TEnemyPowerCore::TEnemyPowerCore(TObject* ptp, const sEnemyPowerCore* par
 	mMode      = 0;
 	mPlayerID  = NO_CHARACTER_ID;
 	CloneClump();
-	fn_8003C200(&static_cast<C_COLLI&>(*this), ci_powercore, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&static_cast<C_COLLI&>(*this), ci_powercore, 1, 4);
 	mTimer    = 25;
 	RwV3d pos = mParam.pos;
 	pos.y += 10.0f;
@@ -277,7 +277,7 @@ void TEnemyPowerCore::Exec()
 		pre_pos      = pos;
 		pos          = mParam.pos;
 		ang          = angle;
-		fn_8003BC38(&static_cast<C_COLLI&>(*this));
+		Entry__7C_COLLIFv(&static_cast<C_COLLI&>(*this));
 	}
 }
 void TEnemyPowerCore::Disp()

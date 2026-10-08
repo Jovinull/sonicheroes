@@ -345,8 +345,8 @@ M2C_UNK fn_80020EEC(M2C_UNK*);                                                  
 void* fn_800210C4(M2C_UNK*);                                                            /* extern */
 void* fn_800211A8(M2C_UNK*);                                                            /* extern */
 M2C_UNK fn_80021824(M2C_UNK*);                                                          /* extern */
-M2C_UNK fn_8003BC38(M2C_UNK*);                                                          /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                              /* extern */
+M2C_UNK Entry__7C_COLLIFv(M2C_UNK*);                                                    /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);             /* extern */
 s32 fn_80041AB0(s32);                                                                   /* extern */
 s32 fn_80041B64(s32);                                                                   /* extern */
 void** __nw__FUl(M2C_UNK);                                                              /* extern */
@@ -1950,7 +1950,7 @@ void fn_8_BFA30(TObject* arg0)
 		arg0->unk94 = arg0->unk14C;
 		arg0->unk98 = arg0->unk150;
 		arg0->unk9C = arg0->unk154;
-		fn_8003BC38(&arg0->unk28);
+		Entry__7C_COLLIFv(&arg0->unk28);
 	}
 }
 
@@ -3161,7 +3161,7 @@ TObject* fn_8_C2018(TObject* arg0)
 	UpdateMotion__11ENEMYMTNMANFv((void**)&arg0->unkB8);
 	fn_8_C14B4(arg0);
 	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
-		fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_17E34, 2, 3);
+		Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk28, (M2C_UNK*)lbl_8_data_17E34, 2, 3);
 		arg0->unk88 = arg0->unk140;
 		arg0->unk8C = arg0->unk144;
 		arg0->unk90 = arg0->unk148;

@@ -51,7 +51,7 @@ void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
 void fn_801491A8();
 void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void* resource, s32 index);
 void* RpAtomicMCCGetCustomRenderCallBack(void* resource);
-void fn_8003C200(void* object, void* data, s32 count, s32 type);
+void Init__7C_COLLIFP8CCL_INFOiUc(void* object, void* data, s32 count, s32 type);
 void fn_8_40B34(void* self);
 }
 
@@ -170,7 +170,7 @@ extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 	}
 	void* model  = RpAtomicMCCGetCustomRenderCallBack(found);
 	*(u32*)model = 0x10;
-	fn_8003C200(self->controller, lbl_8_data_4434, 7, 5);
+	Init__7C_COLLIFP8CCL_INFOiUc(self->controller, lbl_8_data_4434, 7, 5);
 	fn_8_40B34(self);
 	return self;
 }

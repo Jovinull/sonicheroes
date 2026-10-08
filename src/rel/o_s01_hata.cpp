@@ -176,11 +176,11 @@ extern "C" void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, s32);
 extern "C" void fn_8014F854(void*);
 extern "C" void* __nw__FUl(u32);
 extern "C" void RpAtomicMCCSetUsrData(void*, void*, s32);
-extern "C" void fn_8003C200(void*, void*, s32, s32);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
 extern "C" s32 CheckRangeOut__10TObjSetObjFv(void*);
 extern "C" s32 CheckMustKill__10TObjSetObjFv(void*);
 extern "C" s32 OnEdit__10TObjSetObjFv(void*);
-extern "C" void fn_8003BC38(void*);
+extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void* lbl_8042C180;
 extern "C" void TDisp__7TObjectFv();
 extern "C" void PDisp__7TObjectFv();
@@ -334,7 +334,7 @@ static inline void copyFlagFrame(FlagObject* object)
 	*(s32*)((u8*)object + 0x9C)  = frame->angleX;
 	*(s32*)((u8*)object + 0xA0)  = frame->angleY;
 	*(s32*)((u8*)object + 0xA4)  = frame->angleZ;
-	fn_8003BC38((u8*)object + 0x30);
+	Entry__7C_COLLIFv((u8*)object + 0x30);
 }
 
 extern "C" void flagExec(FlagObject* object)
@@ -493,9 +493,9 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 		collision = object->pad30;
 	s8 type = *(s8*)((u8*)object + 0xB8);
 	if (type < 4 || type > 7)
-		fn_8003C200(object->pad30, flagCollisionConfig, 3, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->pad30, flagCollisionConfig, 3, 4);
 	else
-		fn_8003C200(object->pad30, flagCollisionConfig, 2, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->pad30, flagCollisionConfig, 2, 4);
 	*(u16*)((u8*)collision + 8) &= ~0x40;
 	return object;
 }

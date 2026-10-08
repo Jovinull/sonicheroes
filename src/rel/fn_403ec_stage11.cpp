@@ -199,7 +199,7 @@ void fn_8015BBF8(void* manager, void* resource);
 void fn_80150958(void* resource);
 void* fn_80150588(void* descriptor);
 void fn_8015BB08(void* manager, void* resource);
-void fn_80021384(void* object);
+void CalcRange__7C_COLLIFv(void* object);
 void fn_80195790(void* transform, void* matrix, f32 first, f32 second, s32 axis);
 void fn_8019E880(void* object);
 void fn_8019EC30(void* object, Vec3* value, s32 mode);
@@ -213,7 +213,7 @@ s32 objGroupAllActive(s32 index);
 s32 IsAnnihilated__19nEnemyCommunicationFUc(s32 index);
 void fn_800B4A38(void* sound, s32 id, Vec3* position, s32, s32, s32, s32);
 f32 AdjustFloat__Ffff(f32 value, f32 target, f32 step);
-void fn_8003BC38(void* object);
+void Entry__7C_COLLIFv(void* object);
 }
 
 extern "C" void fn_8_403EC(RuntimeState* self)
@@ -346,7 +346,7 @@ extern "C" void fn_8_40554(RuntimeState* self)
 			*(Vec3*)((u8*)self + 0xAC)   = *(Vec3*)((u8*)self + 0x90);
 			*(Vec3*)((u8*)self + 0x90)   = self->position;
 			*(Angle3*)((u8*)self + 0x9C) = self->rotation;
-			fn_8003BC38((u8*)self + 0x30);
+			Entry__7C_COLLIFv((u8*)self + 0x30);
 			break;
 		default:
 			break;
@@ -491,7 +491,7 @@ extern "C" void fn_8_40B34(RuntimeState* self)
 			break;
 		}
 	}
-	fn_80021384((u8*)self + 0x30);
+	CalcRange__7C_COLLIFv((u8*)self + 0x30);
 #undef MODEL
 }
 

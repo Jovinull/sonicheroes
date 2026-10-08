@@ -82,7 +82,7 @@ void __ct__7C_COLLIFv(void*);
 void* fn_80150588(void*);
 void fn_8015BB08(void*, void*);
 void fn_8015BBF8(void*, void*);
-void fn_8003C200(void*, char*, int, int);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, char*, int, int);
 void __dt__7C_COLLIFv(void*, int);
 void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
@@ -118,7 +118,7 @@ void fn_800E1208(int, int, int);
 void* DetectSphereCollisionWithPolygons__6OCTREEFP5RwV3dfPFP8POLYDATA_i(void*, void*, float, int);
 void fn_8001F674(int, int, int, int);
 void __dt__19ColliPolyLinearListFv(void*, int);
-void fn_8003BC38(void*);
+void Entry__7C_COLLIFv(void*);
 void LoadOneFile__7ONEFILEFPc(void*, void*);
 void* CheckFileID__7ONEFILEFPc(void*, char*);
 void* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
@@ -443,7 +443,7 @@ extern "C" void* fn_8_48B4C(void* self, void* parent)
 		resource++;
 		offset += 4;
 	}
-	fn_8003C200((u8*)self + 0x30, lbl_8_data_4C00, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc((u8*)self + 0x30, lbl_8_data_4C00, 1, 4);
 	field<u16>(self, 0x38) |= 0x40;
 	field<float>(self, 0x138)  = lbl_8_rodata_BFC;
 	field<float>(self, 0x144)  = lbl_8_rodata_BF8;
@@ -714,7 +714,7 @@ extern "C" void fn_8_46FEC(void* self)
 	field<Vec3>(self, 0xAC)  = field<Vec3>(self, 0x90);
 	field<Vec3>(self, 0x90)  = field<Vec3>(self, 0xC0);
 	field<IVec3>(self, 0x9C) = field<IVec3>(self, 0xCC);
-	fn_8003BC38((u8*)self + 0x30);
+	Entry__7C_COLLIFv((u8*)self + 0x30);
 }
 
 extern "C" void propellerReset() { }

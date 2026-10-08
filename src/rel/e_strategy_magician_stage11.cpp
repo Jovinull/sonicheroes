@@ -171,7 +171,7 @@ extern "C" {
 void* __ct__7TObjectFP7TObject(void*, void*);     /* extern */
 s32 fn_80017800(void*);                           /* extern */
 TObject* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK); /* extern */
-M2C_UNK fn_8003BC38(void*);                       /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                 /* extern */
 M2C_UNK objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
     s32, s32*);                                            /* extern */
 M2C_UNK fn_8005FD20(void*);                                /* extern */
@@ -740,7 +740,7 @@ void fn_8_AB890(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0x14C);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0x150);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0x154);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 

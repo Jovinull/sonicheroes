@@ -131,7 +131,7 @@ extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void Error__7TObjectFPc(void);
 extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
-extern "C" void fn_8003BC38(void*);
+extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
 extern "C" void __ct__7C_COLLIFv(void*);
 extern "C" void __dt__7C_COLLIFv(void*, s32);
@@ -243,7 +243,7 @@ extern "C" void blinkLightExec(BlinkLight* object)
 		object->transform.angleY           = frame->angleY;
 		object->transform.angleZ           = frame->angleZ;
 		object->transform.angleX           = frame->angleX;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 		return;
 	}
 
@@ -266,7 +266,7 @@ extern "C" void blinkLightExec(BlinkLight* object)
 		object->transform.angleY           = frame->angleY;
 		object->transform.angleZ           = frame->angleZ;
 		object->transform.angleX           = frame->angleX;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 	}
 }
 

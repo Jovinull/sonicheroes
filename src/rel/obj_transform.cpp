@@ -62,7 +62,7 @@ typedef struct Object {
 	Vec3 scale;     // 0xD8
 } Object;
 
-extern "C" void fn_80021384(void* part);
+extern "C" void CalcRange__7C_COLLIFv(void* part);
 
 extern "C" void objPushScale(Object* object)
 {
@@ -70,7 +70,7 @@ extern "C" void objPushScale(Object* object)
 		object->part->scale.x = object->scale.x;
 		object->part->scale.y = object->scale.y;
 		object->part->scale.z = object->scale.z;
-		fn_80021384(&object->unk30);
+		CalcRange__7C_COLLIFv(&object->unk30);
 	}
 }
 

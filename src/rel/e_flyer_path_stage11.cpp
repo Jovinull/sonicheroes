@@ -82,9 +82,9 @@ M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                       /* extern */
 TObject* Malloc__9THeapCtrlFUi(...);                              /* extern */
 void* fn_800211A8(void*);                                         /* extern */
 void fn_80021824(void*);                                          /* extern */
-M2C_UNK fn_8003BC38(void*);                                       /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                                 /* extern */
 M2C_UNK ClearInfo__7C_COLLIFv(void*);                             /* extern */
-M2C_UNK fn_8003C200(...);                                         /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(...);                        /* extern */
 M2C_UNK __ct__7C_COLLIFv(...);                                    /* extern */
 void* __nw__FUl(u32);                                             /* extern */
 u32 objPointerReadFromClumpAnim__FPc(s32*);                       /* extern */
@@ -475,7 +475,7 @@ void fn_8_A8590(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0xC8);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0xCC);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0xD0);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 
@@ -530,7 +530,7 @@ TObject* fn_8_A89D4(TObject* arg0, void* arg1, TObject* arg2)
 	arg0->unkD4 = M2C_FIELD(arg1, f32*, 0x24);
 	arg0->unkD8 = M2C_FIELD(arg1, s32*, 0x28);
 	arg0->unkE4 = 0.0f;
-	fn_8003C200((void*)&arg0->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
+	Init__7C_COLLIFP8CCL_INFOiUc((void*)&arg0->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
 	M2C_FIELD(arg0, M2C_BLOCK12*, 0x88) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xb0);
 	arg0->unkE8                         = arg0->unkB0;
 	arg0->unkEC = 4.0f + GetShadowPos__FP5RwV3dP6sAnglei(&arg0->unkB0, &sp8, 1);
@@ -576,7 +576,7 @@ TObject* fn_8_A8B60(void* arg0)
 		temp_r3->unkD4 = M2C_FIELD(arg0, f32*, 0x24);
 		temp_r3->unkD8 = M2C_FIELD(arg0, s32*, 0x28);
 		temp_r3->unkE4 = 0.0f;
-		fn_8003C200((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
+		Init__7C_COLLIFP8CCL_INFOiUc((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
 		M2C_FIELD(temp_r3, M2C_BLOCK12*, 0x88) = M2C_FIELD(temp_r3, M2C_BLOCK12*, 0xb0);
 		temp_r3->unkE8                         = temp_r3->unkB0;
 		temp_r3->unkEC = 4.0f + GetShadowPos__FP5RwV3dP6sAnglei(&temp_r3->unkB0, &sp8, 1);
@@ -992,7 +992,7 @@ void fn_8_A9874(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0xD8);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0xDC);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0xE0);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 
@@ -1049,7 +1049,7 @@ TObject* fn_8_A9AF0(TObject* arg0, void* arg1, TObject* arg2)
 	arg0->unkE4 = M2C_FIELD(arg1, f32*, 0x34);
 	arg0->unkE8 = M2C_FIELD(arg1, f32*, 0x38);
 	arg0->unkEC = M2C_FIELD(arg1, f32*, 0x3C);
-	fn_8003C200((void*)&arg0->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc((void*)&arg0->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
 	M2C_FIELD(arg0, M2C_BLOCK12*, 0x88) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xb0);
 	return arg0;
 }
@@ -1098,7 +1098,7 @@ TObject* fn_8_A9C6C(void* arg0)
 		temp_r3->unkE4 = M2C_FIELD(arg0, f32*, 0x34);
 		temp_r3->unkE8 = M2C_FIELD(arg0, f32*, 0x38);
 		temp_r3->unkEC = M2C_FIELD(arg0, f32*, 0x3C);
-		fn_8003C200((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
 		temp_r3->unk88 = temp_r3->unkB0;
 		temp_r3->unk8C = temp_r3->unkB4;
 		temp_r3->unk90 = temp_r3->unkB8;

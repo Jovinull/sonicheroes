@@ -72,8 +72,8 @@ extern RingModeView* lbl_8042C180;
 extern TObject* lbl_8042C10C;
 extern RwCamera** lbl_8042C9A4;
 extern RwV3d AxisY;
-s32 fn_8003C200(C_COLLI*, CCL_INFO*, s32, u8);
-s32 fn_8003BC38(C_COLLI*);
+s32 Init__7C_COLLIFP8CCL_INFOiUc(C_COLLI*, CCL_INFO*, s32, u8);
+s32 Entry__7C_COLLIFv(C_COLLI*);
 s32 fn_80017800(TObject*);
 s32 fn_8019CE34(RwCamera*, const RwSphere*);
 RwFrame* fn_8019EC30(RwFrame*, const RwV3d*, s32);
@@ -163,7 +163,7 @@ TObjEnemyRingLaser::TObjEnemyRingLaser(TObject* parent, const sRingLaserParam* p
 		info->a = 30.0f * mParam.scl;
 		info->c = 20.0f * mParam.scl;
 	}
-	fn_8003C200(&static_cast<C_COLLI&>(*this), ci_ringlaser, 1, 3);
+	Init__7C_COLLIFP8CCL_INFOiUc(&static_cast<C_COLLI&>(*this), ci_ringlaser, 1, 3);
 	flag &= ~0x40;
 }
 
@@ -191,7 +191,7 @@ void TObjEnemyRingLaser::SetPosition()
 		ang.x     = mParam.ang.x;
 		ang.y     = mParam.ang.y;
 		ang.z     = mParam.ang.z;
-		fn_8003BC38(&static_cast<C_COLLI&>(*this));
+		Entry__7C_COLLIFv(&static_cast<C_COLLI&>(*this));
 	}
 }
 

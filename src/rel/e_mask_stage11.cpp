@@ -161,7 +161,7 @@ void __dt__7C_COLLIFv(void*, s16);
 void __dt__10TObjSetObjFv(void*, s16);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
-void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
+void CalcRange__7C_COLLIFv(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
 void __ct__7C_COLLIFv(void*);
 void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(RpClump*, u32);
 void fn_800B4A38(void*, s32, Vec3*, s32, s32, s32, s32);
@@ -520,7 +520,7 @@ void TObjMask::SetCollision()
 	f32 scaled            = depth * scale;
 	CollisionShape* shape = collision.shape;
 	shape->f18            = scaled;
-	fn_80021384(&collision, shape, &maskCollisionDesc, depth);
+	CalcRange__7C_COLLIFv(&collision, shape, &maskCollisionDesc, depth);
 }
 
 void TObjMask::CloneClump()

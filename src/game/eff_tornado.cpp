@@ -223,8 +223,8 @@ extern "C" {
 void TDisp__14TObjEffTornadoFv(TObjEffTornado*);
 void Exec__14TObjEffTornadoFv(TObjEffTornado*);
 int fn_80017800(void*);
-void fn_8003C200(void*, void*, s32, s32);
-void fn_80021384(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
+void CalcRange__7C_COLLIFv(void*);
 void* fn_8006298C(s32, RwV3d*, sAngle*);
 void* objPointerReadFromClumpAnim__FPc(const char*);
 void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(void*, s32, const void*);
@@ -352,7 +352,7 @@ f32 fn_800D7AE4(s32);
 void fn_80195790(void*, RwV3d*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, RwV3d*, s32);
-void fn_8003BC38(C_COLLI*);
+void Entry__7C_COLLIFv(C_COLLI*);
 void ClearInfo__7C_COLLIFv(C_COLLI*);
 void GXSetBlendMode(s32, s32, s32, s32);
 void fn_8011B844(f32);
@@ -655,7 +655,7 @@ TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngl
 	base->kind       = kind;
 	base->active     = 1;
 	base->timer      = 0;
-	fn_8003C200(&base->effectModel, lbl_8025333C, 1, 1);
+	Init__7C_COLLIFP8CCL_INFOiUc(&base->effectModel, lbl_8025333C, 1, 1);
 
 	s32 effectType;
 	switch (base->kind) {
@@ -690,7 +690,7 @@ TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngl
 		((RwV3d*)((u8*)model + 8))->z = base->position.z;
 		model                         = *(void**)&base->effectModel.data[0x10];
 		((RwV3d*)((u8*)model + 8))->y += lbl_8042DBB8;
-		fn_80021384(&base->effectModel);
+		CalcRange__7C_COLLIFv(&base->effectModel);
 	}
 }
 
@@ -928,7 +928,7 @@ void TObjEffTornado2::Exec()
 			*(RwV3d*)&this->effectModel.data[0x7c]  = *(RwV3d*)&this->effectModel.data[0x60];
 			*(RwV3d*)&this->effectModel.data[0x60]  = this->position;
 			*(sAngle*)&this->effectModel.data[0x6c] = this->rotation;
-			fn_8003BC38(&this->effectModel);
+			Entry__7C_COLLIFv(&this->effectModel);
 		} else {
 			ClearInfo__7C_COLLIFv(&this->effectModel);
 		}
@@ -1423,7 +1423,7 @@ extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 			*(s32*)((u8*)effect + 0x94) = effect->rotation.x;
 			*(s32*)((u8*)effect + 0x98) = effect->rotation.y;
 			*(s32*)((u8*)effect + 0x9c) = effect->rotation.z;
-			fn_8003BC38(&effect->effectModel);
+			Entry__7C_COLLIFv(&effect->effectModel);
 		} else {
 			ClearInfo__7C_COLLIFv(&effect->effectModel);
 		}

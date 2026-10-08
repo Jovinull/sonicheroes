@@ -132,9 +132,9 @@ extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion* motion);
 extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
 extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion* motion);
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, TObject* parent);
-extern "C" void fn_8003C200(Volume* volume, u32* entry, s32 kind, s32 count);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(Volume* volume, u32* entry, s32 kind, s32 count);
 extern "C" void __ct__7C_COLLIFv(Volume* volume);
-extern "C" void fn_80021384(Volume* volume);
+extern "C" void CalcRange__7C_COLLIFv(Volume* volume);
 extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 
 // Defined by the module, renamed to this name in its own symbols.txt.
@@ -212,7 +212,7 @@ extern "C" S01ObjectBase* s01ObjectBaseCtor(S01ObjectBase* object, TObject* pare
 	object->unkBC  = lbl_3_data_A170[0];
 	object->handle = NULL;
 
-	fn_8003C200(&object->volume, cisekiEntry, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&object->volume, cisekiEntry, 1, 4);
 
 	body = object->volume.body;
 
@@ -220,7 +220,7 @@ extern "C" S01ObjectBase* s01ObjectBaseCtor(S01ObjectBase* object, TObject* pare
 	body->scale.y = 0.5f * object->position.y;
 	body->scale.z = 0.5f * object->position.z;
 
-	fn_80021384(&object->volume);
+	CalcRange__7C_COLLIFv(&object->volume);
 
 	object->volume.flags = object->volume.flags & ~0x40;
 

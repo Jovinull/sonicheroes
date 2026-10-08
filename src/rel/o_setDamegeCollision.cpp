@@ -64,8 +64,8 @@ extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
-extern "C" void fn_8003BC38(void*);
-extern "C" void fn_8003C200(void*, DamageVolume*, s32, s32);
+extern "C" void Entry__7C_COLLIFv(void*);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(void*, DamageVolume*, s32, s32);
 extern "C" void __dt__7C_COLLIFv(void*, s32);
 extern "C" void __ct__7C_COLLIFv(void*);
 extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
@@ -108,7 +108,7 @@ extern "C" void setDamageCollisionExec(TObjSetDamageCollision* object)
 		object->previousRx    = object->rx;
 		object->previousRy    = object->ry;
 		object->previousRz    = object->rz;
-		fn_8003BC38(object->collision);
+		Entry__7C_COLLIFv(object->collision);
 	}
 }
 
@@ -155,7 +155,7 @@ extern "C" TObjSetDamageCollision* setDamageCollisionCtor(
 	setDamageCollisionVolumes[param->slot].x = param->x;
 	setDamageCollisionVolumes[param->slot].y = param->y;
 	setDamageCollisionVolumes[param->slot].z = param->z;
-	fn_8003C200(object->collision, &setDamageCollisionVolumes[param->slot], 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(object->collision, &setDamageCollisionVolumes[param->slot], 1, 4);
 	return object;
 }
 
@@ -171,7 +171,8 @@ extern "C" void setDamageCollisionEditOnChange(TObjSetDamageCollision* object, F
 		setDamageCollisionVolumes[param->slot].x = param->x;
 		setDamageCollisionVolumes[param->slot].y = param->y;
 		setDamageCollisionVolumes[param->slot].z = param->z;
-		fn_8003C200(object->collision, &setDamageCollisionVolumes[param->slot], 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(
+		    object->collision, &setDamageCollisionVolumes[param->slot], 1, 4);
 	}
 }
 

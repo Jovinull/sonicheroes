@@ -36,8 +36,8 @@ void fn_8019EB94(void* object, const void* vector, s32 mode);
 void fn_8019EC30(void* object, const void* vector, s32 mode);
 void* objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(void* object, s32 index);
 void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void* resource, s32 index);
-void fn_8003C200(void* controller, const void* data, s32 count, s32 type);
-void fn_80021384(void* controller);
+void Init__7C_COLLIFP8CCL_INFOiUc(void* controller, const void* data, s32 count, s32 type);
+void CalcRange__7C_COLLIFv(void* controller);
 extern u8 lbl_8042C1D0[];
 extern f32 AxisX[];
 extern f32 AxisY[];
@@ -137,7 +137,7 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	u32 flags = *(u32*)(*(u8**)(object + 0x28) + 0x18);
 	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
 	    *(void**)(object + 0xEC), ((flags & 0x001C0000) >> 18) + 4);
-	fn_8003C200(object + 0x30, lbl_8_data_4664, 2, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(object + 0x30, lbl_8_data_4664, 2, 4);
 
 	s32 fieldOffset = 0;
 	for (s32 i = 0; i < 2; ++i) {
@@ -153,7 +153,7 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 			*(f32*)(entry + 0x18) *= lbl_8_data_4618;
 		fieldOffset += 0x30;
 	}
-	fn_80021384(object + 0x30);
+	CalcRange__7C_COLLIFv(object + 0x30);
 	return self;
 }
 #pragma opt_common_subs reset

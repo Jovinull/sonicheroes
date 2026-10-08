@@ -596,6 +596,7 @@ config.libs = [
             Object(Matching, "game/player/player_barrier.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_crash3d.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_ball.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/effect/eff_brim.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/scanpath.cpp", extra_cflags=["-O3,p", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
@@ -3997,6 +3998,11 @@ config.custom_build_rules = [
         "description": "FIX crash effect compiler literal order",
     },
     {
+        "name": "fix_eff_brim_layout",
+        "command": "$python tools/fix_eff_brim_layout.py $in $out",
+        "description": "FIX brim compiler literal and exception atom order",
+    },
+    {
         "name": "fix_eff_tornado_object",
         "command": "$python tools/fix_eff_tornado_object.py $in $out",
         "description": "FIX eff_tornado.cpp split-TU compiler choices",
@@ -4336,6 +4342,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/eff-brim-layout.stamp",
+            "rule": "fix_eff_brim_layout",
+            "inputs": "build/G9SE8P/src/game/effect/eff_brim.o",
+            "implicit": ["tools/fix_eff_brim_layout.py"],
+        },
         {
             "outputs": "build/G9SE8P/eff-crash3d-pool.stamp",
             "rule": "fix_eff_crash3d_pool",

@@ -177,10 +177,10 @@ extern "C" void Error__7TObjectFPc(void);
 extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" IteratorResult* fn_800211A8(Transform*);
-extern "C" void fn_80021384(Transform*);
+extern "C" void CalcRange__7C_COLLIFv(Transform*);
 extern "C" void fn_80021824(void*);
-extern "C" void fn_8003BC38(Transform*);
-extern "C" void fn_8003C200(Transform*, const void*, s32, s32);
+extern "C" void Entry__7C_COLLIFv(Transform*);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(Transform*, const void*, s32, s32);
 extern "C" void __dt__7C_COLLIFv(Transform*, s32);
 extern "C" void __ct__7C_COLLIFv(Transform*);
 extern "C" s32 fn_80041B64(void*);
@@ -331,7 +331,7 @@ extern "C" void collisionExec(CollisionObject* object)
 	object->transform.angle.y          = ((Frame*)frame)->angle.y;
 	object->transform.angle.z          = ((Frame*)frame)->angle.z;
 	object->transform.angle.x          = ((Frame*)frame)->angle.x;
-	fn_8003BC38(&object->transform);
+	Entry__7C_COLLIFv(&object->transform);
 }
 
 extern "C" CollisionObject* collisionDtor(CollisionObject* object, s16 flags)
@@ -372,13 +372,13 @@ extern "C" CollisionObject* collisionCtor(CollisionObject* object, void* owner)
 	object->scale              = *(Vec3*)&params->scaleX;
 	object->color              = collisionDescriptor.colors[params->color];
 	object->allocatedCollision = NULL;
-	fn_8003C200(&object->transform, collisionShape, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&object->transform, collisionShape, 1, 4);
 
 	f32* size = (f32*)((u8*)object->transform.collision + 0x14);
 	size[0]   = collisionHalf * object->scale.x;
 	size[1]   = collisionHalf * object->scale.y;
 	size[2]   = collisionHalf * object->scale.z;
-	fn_80021384(&object->transform);
+	CalcRange__7C_COLLIFv(&object->transform);
 	*(u16*)((u8*)&object->transform + 8) &= ~0x40;
 	return object;
 }

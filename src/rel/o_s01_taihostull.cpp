@@ -101,9 +101,9 @@ extern void* lbl_8042C110;
 int CheckRangeOut__10TObjSetObjFv(void*);
 int CheckMustKill__10TObjSetObjFv(void*);
 int OnEdit__10TObjSetObjFv(void*);
-void fn_8003C200(void*, void*, s32, s32);
-void fn_80021384(void*);
-void fn_8003BC38(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
+void CalcRange__7C_COLLIFv(void*);
+void Entry__7C_COLLIFv(void*);
 extern void* lbl_8042C180;
 extern void* lbl_802D5E80;
 extern void* lbl_8042C148;
@@ -196,7 +196,7 @@ extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 	} else {
 		if (*(void**)((u8*)object + 0x40) == NULL && stullClump != NULL
 		    && *(void**)((u8*)stullClump + 0x28) != NULL) {
-			fn_8003C200(object->collision, *(void**)((u8*)stullClump + 0x28),
+			Init__7C_COLLIFP8CCL_INFOiUc(object->collision, *(void**)((u8*)stullClump + 0x28),
 			    *(s8*)((u8*)stullClump + 0x2C), 4);
 			*(u16*)((u8*)object + 0x38) &= ~0x40;
 			for (s8 i = 0; i < *(s8*)((u8*)stullClump + 0x2C); i++) {
@@ -205,7 +205,7 @@ extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 				vertex[6] *= params[0];
 				vertex[7] *= params[0];
 			}
-			fn_80021384(object->collision);
+			CalcRange__7C_COLLIFv(object->collision);
 		}
 
 		u8* frame                   = *(u8**)object->motion;
@@ -218,7 +218,7 @@ extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 		*(u32*)((u8*)object + 0x9C) = *(u32*)(frame + 0x0C);
 		*(u32*)((u8*)object + 0xA0) = *(u32*)(frame + 0x10);
 		*(u32*)((u8*)object + 0xA4) = *(u32*)(frame + 0x14);
-		fn_8003BC38(object->collision);
+		Entry__7C_COLLIFv(object->collision);
 	}
 }
 extern "C" TObjS01Stull* __dt__12TObjS01StullFv(TObjS01Stull* object, s16 flags)
