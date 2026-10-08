@@ -235,6 +235,9 @@ rel/fn_403ec_stage11.cpp:
 	.data       start:0x000043F4 end:0x00004614
 	.bss        start:0x00000988 end:0x000009E0
 
+rel/case_obj_lifecycle_stage11.cpp:
+	.text       start:0x00041018 end:0x00041594
+
 rel/case_obj_register.cpp:
 	.text       start:0x000415DC end:0x00041684
 	.ctors      start:0x00000074 end:0x00000078

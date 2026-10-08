@@ -297,6 +297,9 @@ rel/fn_403ec_stage11.cpp:
 rel/case_obj_dtor.cpp:
 	.text       start:0x00039B2C end:0x00039BFC
 
+rel/case_obj_lifecycle_stage11.cpp:
+	.text       start:0x00039BFC end:0x0003A178
+
 rel/case_obj_register.cpp:
 	.text       start:0x0003A1C0 end:0x0003A268
 	.ctors      start:0x00000070 end:0x00000074
