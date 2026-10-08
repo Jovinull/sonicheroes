@@ -84,7 +84,7 @@ extern "C" Fn80054F08TraversalEntry* fn_80055874(Fn80054F08Grid*, Fn80054F08Trav
     Fn80054F08Cell*, const Fn80054F08Vec*, f32, const Fn80054F08Vec*, const Fn80054F08Vec*);
 extern "C" void fn_80054230(Fn80054F08TraversalEntry*);
 extern "C" f32 fn_800D71DC(const Fn80054F08Vec*, const Fn80054F08Vec*);
-extern "C" s32 fn_800D218C(
+extern "C" s32 clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
     const Fn80054F08Vec*, f32, const Fn80054F08Vec*, Fn80054F08Vec*, Fn80054F08Vec*);
 extern "C" void* __nw__FUl(u32);
 extern "C" void fn_8005421C(Fn80054F08ContactList*);
@@ -219,7 +219,8 @@ extern "C" Fn80054F08ContactList* fn_80054F08(Fn80054F08Grid* grid, const Fn8005
 						inReach = 1;
 				reachTest:
 					if (inReach != 0) {
-						if (fn_800D218C(point, radius, triangleVertices, &surfacePoint, &correction)
+						if (clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
+						        point, radius, triangleVertices, &surfacePoint, &correction)
 						    != 0) {
 							resolvedPoint.x = point->x + correction.x;
 							resolvedPoint.y = point->y + correction.y;

@@ -344,6 +344,13 @@ game/aram_pool.cpp:
 	.sbss       start:0x8042C488 end:0x8042C494
 	.sbss       start:0x8042C494 end:0x8042C498 skip
 
+game/calc_colli.cpp:
+	extab       start:0x80008B78 end:0x80008BB0
+	extabindex  start:0x8000F214 end:0x8000F268
+	.text       start:0x800D1408 end:0x800D2ED4
+	.data       start:0x802558D0 end:0x802558EC
+	.sdata2     start:0x8042DFD0 end:0x8042DFE8
+
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 

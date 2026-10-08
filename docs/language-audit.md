@@ -1438,3 +1438,67 @@ owned sections and 141 normalized relocations after excluding the 32-byte
 `setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
 post-processor and ELF metadata regression tests pass. This is compilation and
 binary verification; no runtime or hardware validation was performed.
+
+## calc_colli.cpp (non-matching reconstruction)
+
+European PS2 DWARF identifies `calc_colli.cpp` as `C_PLUS_PLUS`, with named
+point/line-distance, coplanar-segment and triangle-intersection functions.
+The metadata was inspected locally with CCC v2.2 (`c025ca94735d75cd366b29a10f924010ce43353d`).
+The GameCube argument layouts, projection arithmetic, region classification,
+call relationships and function order independently correlate those identities.
+The two triangle-intersection helpers are file-local in the PS2 metadata.
+This does not establish identical platform implementations.
+
+The proposed GameCube unit owns eight surviving functions at
+`0x800D1408`–`0x800D2ED4`, exception records at `0x80008B78`–`0x80008BB0`,
+exception indexes at `0x8000F214`–`0x8000F268`, the seven-entry switch table at
+`0x802558D0`–`0x802558EC`, and constants at `0x8042DFD0`–`0x8042DFE8`.
+The succeeding moving-collision functions begin a separate pool with duplicate
+threshold/zero/one values. PS2's succeeding `calc_movcolli.cpp` source marker
+corroborates that boundary; the GameCube boundary remains an inference.
+
+All eight functions have C++ bodies. The two point/vector helpers identified
+in PS2 are inlined into the GameCube sphere routine. Its seven cases distinguish
+face, three edge and three vertex contacts. Observed degenerate-input loops,
+null-output behavior, comparison direction and calls are preserved. The local
+`VectorComponents` storage view is a reconstruction aid for retained vector
+writes and pointer comparisons, not a recovered original type name.
+
+This unit uses `-inline deferred,noauto` as an explicitly provisional compiler
+configuration. Natural function order from metadata is distance, coefficient
+solver, coplanar intersection, public intersection wrappers, private triangle
+helpers, then sphere contact. Default auto mode emits definitions in source
+order and can fold the private helpers into their callers. Deferred mode emits
+the reversed definitions in the observed object order; noauto preserves those
+calls while explicitly inline point/vector helpers expand in the sphere routine.
+Deferred emission also permits opaque constant declarations before the functions
+and definitions afterwards, reproducing the pool and repeated threshold loads
+without an object patcher. Thus this configuration addresses calls and data
+access as well as order. It is not proof of a finished match or the original
+source arrangement.
+
+Native G9SE8P objdiff results at the draft checkpoint:
+
+| Function | Match | Remaining work |
+| --- | ---: | --- |
+| `clDistanceP2L2` | 97.27% | Floating-point register allocation; 300-byte size matches |
+| `clGetTriangleVectorCoef_CrsP` | 100% | Whole-object audit still pending |
+| `clIsCrossLS2VonPlane` | 96.03% | Seven missing loads; 1160 bytes versus 1188 |
+| `clDetectLSY2T` | 100% | Whole-object audit still pending |
+| `clDetectLS2T` | 100% | Whole-object audit still pending |
+| `clIntersectTriangleY` | 100% | Whole-object audit still pending |
+| `clIntersectTriangle` | 100% | Whole-object audit still pending |
+| `clDetectS2T` | 98.96% | Floating-point register allocation; 3400-byte size matches |
+
+Constant-pool and exception-table bytes match. Exception-index sizes and switch
+relocation offsets are not yet a whole-object match because the coplanar routine
+is short. No instruction post-processor or assembly substitute is used.
+`configure.py` deliberately keeps this unit `NonMatching`; the linked image
+continues to use its original object. Matching the remainder, auditing every
+owned section/relocation and revalidating the build are required before changing
+that status.
+
+The supported G9SE8P all-source build, all eighteen output hashes and 55 language,
+post-processor and metadata regression tests pass at this checkpoint. Passing
+hashes validate the surrounding split/caller changes, not a source-linked
+collision unit. Runtime and physical-hardware behavior have not been validated.

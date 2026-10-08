@@ -80,7 +80,7 @@ extern "C" void* __nw__FUl(u32);
 extern "C" void fn_8005421C(Fn80054900ContactList*);
 extern "C" void fn_80054048(Fn80054900ContactList*, u16, const Fn80054900Vec*, const Fn80054900Vec*,
     const Fn80054900Vec*, const s16*);
-extern "C" s32 fn_800D218C(
+extern "C" s32 clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
     const Fn80054900Vec*, f32, const Fn80054900Vec*, Fn80054900Vec*, Fn80054900Vec*);
 extern "C" s32 fn_800D2ED4(const Fn80054900Vec*, f32, Fn80054900Vec*, const Fn80054900Vec*,
     Fn80054900Vec*, Fn80054900Vec*, s16*);
@@ -243,7 +243,7 @@ extern "C" Fn80054900ContactList* fn_80054900(Fn80054900Grid* grid, const Fn8005
 				reachTest:
 					if (inReach != 0) {
 						if (grid->contactMode == 1 && *contactType == 2) {
-							if (fn_800D218C(
+							if (clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
 							        point, radius, triangleVertices, &surfacePoint, &correction)
 							    != 0) {
 								resolvedPoint.x = point->x + correction.x;
