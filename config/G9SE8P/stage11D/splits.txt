@@ -572,6 +572,9 @@ rel/s12wall_object_register.cpp:
 	.text       start:0x000930BC end:0x00093164
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/s12_door_range_colli_create.cpp:
+	.text       start:0x00093690 end:0x000937A0
+
 rel/s12_door_object_dtor.cpp:
 	.text       start:0x00094A38 end:0x00094B18
 
