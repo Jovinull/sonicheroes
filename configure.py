@@ -2644,6 +2644,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04_ball_colli_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04_ball_colli_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
