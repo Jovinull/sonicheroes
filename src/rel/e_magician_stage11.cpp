@@ -165,74 +165,74 @@ M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(void*, void*, void*);    
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(void*, void*, s32); /* extern */
 void* __ct__10HAnimClassFv(void*);                                                /* extern */
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
-    void*, void*, void*);                                               /* extern */
-void* __dt__10HAnimClassFv(void*, s32);                                 /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                /* extern */
-TEnemyParalysis* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);               /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);              /* extern */
-u32 __nw__FUl(M2C_UNK);                                                 /* extern */
-s32 fn_8005B8D8(void*);                                                 /* extern */
-M2C_UNK fn_8005BF5C(u32, unsigned int[17]);                             /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                        /* extern */
-s32 fn_8005D9A0(void*, M2C_UNK);                                        /* extern */
-M2C_UNK fn_8005D9F4(void*);                                             /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                      /* extern */
-s32 fn_8005EA04(void*);                                                 /* extern */
-M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                    /* extern */
-void* fn_8006298C(s32, f32*, s32*);                                     /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                                        /* extern */
-M2C_UNK fn_800A4668(void*);                                             /* extern */
-M2C_UNK fn_800A4A8C(TObject*, f32);                                     /* extern */
-s32 fn_800A5888(void*, void*, f32);                                     /* extern */
-s32 fn_800A5A54(void*);                                                 /* extern */
-f32 fn_800A5AC0(void*);                                                 /* extern */
-M2C_UNK fn_800A5B50(void*, s32);                                        /* extern */
-M2C_UNK fn_800A5C6C(void*, s32);                                        /* extern */
-M2C_UNK fn_800A7088(void*, M2C_UNK);                                    /* extern */
-M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                             /* extern */
-s32 fn_800D7A94(s32, s32, s32);                                         /* extern */
-f32 fn_800D7B00(s32);                                                   /* extern */
-f32 fn_800D8BC4(void*, void*, s32);                                     /* extern */
-M2C_UNK fn_800E1208(s32, s32, s32);                                     /* extern */
-u32 fn_800FD8A0(TEnemyParalysis*, s32);                                 /* extern */
-M2C_UNK fn_800FE248(s32, void*);                                        /* extern */
-M2C_UNK fn_800FE274(s32, void*);                                        /* extern */
-u32 fn_80100280(s32, s32, s32);                                         /* extern */
-u32 fn_80100328(s32, s32, s32);                                         /* extern */
-u32 fn_8010037C(s32, s32, s32);                                         /* extern */
-M2C_UNK fn_801007F4(s32, s32);                                          /* extern */
-M2C_UNK fn_8010096C(s32, s32, void*);                                   /* extern */
-M2C_UNK fn_80100AAC(void);                                              /* extern */
-s32 fn_80103324(void*, void*, f32);                                     /* extern */
-M2C_UNK fn_8010AFE4(void*);                                             /* extern */
-s32 fn_8010B708(s32);                                                   /* extern */
-void* fn_80150588(M2C_UNK);                                             /* extern */
-M2C_UNK fn_80150958(void*);                                             /* extern */
-M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, s32);            /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                          /* extern */
-void fn_801990E0(void* dst, void* src);                                 /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                     /* extern */
-void* fn_8019E8EC(void*);                                               /* extern */
-M2C_UNK fn_8019EB94(void*, u8*, s32);                                   /* extern */
-M2C_UNK fn_8019EC30(void*, u8*, s32);                                   /* extern */
-M2C_UNK fn_8019ED68(...);                                               /* extern */
-s32 rand(...);                                                          /* extern */
-M2C_UNK fn_8_B0300(TEnemyParalysis*);                                   /* extern */
-u32 fn_8_B08F0();                                                       /* extern */
-void fn_8_AE604(TEnemyParalysis* arg0);                                 /* static */
-void fn_8_AEB80(TEnemyParalysis* arg0);                                 /* static */
-void fn_8_AEE04(TEnemyParalysis* arg0);                                 /* static */
-TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2); /* static */
-void magicianObjectCreate();                                            /* static */
-void magicianObjectLoad();                                              /* static */
-void magicianObjectUnload();                                            /* static */
+    void*, void*, void*);                                                   /* extern */
+void* __dt__10HAnimClassFv(void*, s32);                                     /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                    /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);                   /* extern */
+M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                  /* extern */
+u32 __nw__FUl(M2C_UNK);                                                     /* extern */
+s32 fn_8005B8D8(void*);                                                     /* extern */
+M2C_UNK fn_8005BF5C(u32, unsigned int[17]);                                 /* extern */
+M2C_UNK fn_8005D5C8(void*, s32);                                            /* extern */
+s32 fn_8005D9A0(void*, M2C_UNK);                                            /* extern */
+M2C_UNK fn_8005D9F4(void*);                                                 /* extern */
+M2C_UNK fn_8005E00C(u32, M2C_UNK);                                          /* extern */
+s32 fn_8005EA04(void*);                                                     /* extern */
+M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                        /* extern */
+void* fn_8006298C(s32, f32*, s32*);                                         /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                            /* extern */
+M2C_UNK fn_800A4668(void*);                                                 /* extern */
+M2C_UNK fn_800A4A8C(TObject*, f32);                                         /* extern */
+s32 fn_800A5888(void*, void*, f32);                                         /* extern */
+s32 fn_800A5A54(void*);                                                     /* extern */
+f32 fn_800A5AC0(void*);                                                     /* extern */
+M2C_UNK fn_800A5B50(void*, s32);                                            /* extern */
+M2C_UNK fn_800A5C6C(void*, s32);                                            /* extern */
+M2C_UNK fn_800A7088(void*, M2C_UNK);                                        /* extern */
+M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                                 /* extern */
+s32 fn_800D7A94(s32, s32, s32);                                             /* extern */
+f32 fn_800D7B00(s32);                                                       /* extern */
+f32 fn_800D8BC4(void*, void*, s32);                                         /* extern */
+M2C_UNK fn_800E1208(s32, s32, s32);                                         /* extern */
+u32 fn_800FD8A0(TEnemyParalysis*, s32);                                     /* extern */
+M2C_UNK fn_800FE248(s32, void*);                                            /* extern */
+M2C_UNK fn_800FE274(s32, void*);                                            /* extern */
+u32 SearchUVAnim__14TEnemyDataBaseF14eEnemyDataBaseUi(s32, s32, s32);       /* extern */
+u32 SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(s32, s32, s32); /* extern */
+u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(s32, s32, s32);        /* extern */
+M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(s32, s32);                /* extern */
+M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(s32, s32, void*);          /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv(void);                                     /* extern */
+s32 fn_80103324(void*, void*, f32);                                         /* extern */
+M2C_UNK fn_8010AFE4(void*);                                                 /* extern */
+s32 fn_8010B708(s32);                                                       /* extern */
+void* fn_80150588(M2C_UNK);                                                 /* extern */
+M2C_UNK fn_80150958(void*);                                                 /* extern */
+M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, s32);                /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                              /* extern */
+void fn_801990E0(void* dst, void* src);                                     /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                         /* extern */
+void* fn_8019E8EC(void*);                                                   /* extern */
+M2C_UNK fn_8019EB94(void*, u8*, s32);                                       /* extern */
+M2C_UNK fn_8019EC30(void*, u8*, s32);                                       /* extern */
+M2C_UNK fn_8019ED68(...);                                                   /* extern */
+s32 rand(...);                                                              /* extern */
+M2C_UNK fn_8_B0300(TEnemyParalysis*);                                       /* extern */
+u32 fn_8_B08F0();                                                           /* extern */
+void fn_8_AE604(TEnemyParalysis* arg0);                                     /* static */
+void fn_8_AEB80(TEnemyParalysis* arg0);                                     /* static */
+void fn_8_AEE04(TEnemyParalysis* arg0);                                     /* static */
+TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2);     /* static */
+void magicianObjectCreate();                                                /* static */
+void magicianObjectLoad();                                                  /* static */
+void magicianObjectUnload();                                                /* static */
 extern M2C_UNK AxisX;
 extern M2C_UNK AxisY;
 extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802AD090;
 extern TObject* lbl_8042C10C;
 extern s32 lbl_8042C148;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern M2C_UNK lbl_8_bss_19C8;
 extern u32 lbl_8_bss_19D0;
 extern s32 lbl_8_bss_1A48;
@@ -1286,42 +1286,46 @@ void magicianObjectUnload(void)
 	lbl_8_bss_19D0                      = 0U;
 	M2C_FIELD(&lbl_8_bss_19C8, s32*, 4) = 0;
 	M2C_FIELD(&lbl_8_bss_19C8, s32*, 0) = 0;
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 0xA);
+	Delete__14TEnemyDataBaseF14eEnemyDataBase(mpDataBase__14TEnemyDataBase, 0xA);
 }
 
 void magicianObjectLoad(void)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 0xA, &lbl_8_data_16A30);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	Add__14TEnemyDataBaseF14eEnemyDataBasePc(mpDataBase__14TEnemyDataBase, 0xA, &lbl_8_data_16A30);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 0xA, 5);
+	temp_r3 = SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(
+	    mpDataBase__14TEnemyDataBase, 0xA, 5);
 	if (temp_r3 != 0U) {
 		fn_8005E00C(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_19C8, u32*, 0) = fn_8010037C(lbl_8042C590, 0xA, 4);
+	M2C_FIELD(&lbl_8_bss_19C8, u32*, 0)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0xA, 4);
 	fn_8005D9F4((void*)M2C_FIELD(&lbl_8_bss_19C8, u32*, 0));
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) = fn_8010037C(lbl_8042C590, 0xA, 2);
-	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != 0U)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_19C8, u32*, 4)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0xA, 2);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3        = fn_80100280(lbl_8042C590, 0xA, 3);
+	temp_r3
+	    = SearchUVAnim__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0xA, 3);
 	lbl_8_bss_19D0 = temp_r3;
 	if (((u32)M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) != 0U) && (temp_r3 != 0U)) {
 		*lbl_8_bss_19D4 = temp_r3;

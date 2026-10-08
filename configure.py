@@ -566,6 +566,7 @@ config.libs = [
         "cflags": cflags_base,
         "progress_category": "game",
         "objects": [
+            Object(Matching, "game/enemy/e_database.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/one.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/object_defaults.cpp"),
             Object(Matching, "game/fn_8003F300.cpp"),
