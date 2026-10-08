@@ -160,7 +160,7 @@ extern "C" void* LoadDeltaMorphEx__7ONEFILEFUiPc(void*, void*, void*);
 extern "C" void fn_8014FFBC(void*, void*, void*);
 extern "C" f32 GetTotalFrame__10DAnimClassFP17RpDMorphAnimation(void*, void*);
 extern "C" s32 sprintf(char*, const char*, ...);
-extern "C" FlagMotion* fn_8005F4E8();
+extern "C" FlagMotion* RpAtomicMCCGetUsrData();
 extern "C" void fn_8019EC30(void*, const Vec3*, s32);
 extern "C" void fn_8019ED68(void*, const Vec3*, f32, s32);
 extern "C" void fn_8019EB94(void*, const Vec3*, s32);
@@ -175,7 +175,7 @@ extern "C" void fn_8003C618(void*);
 extern "C" void* fn_8005E394(void*, s32);
 extern "C" void fn_8014F854(void*);
 extern "C" void* __nw__FUl(u32);
-extern "C" void fn_8005F50C(void*, void*, s32);
+extern "C" void RpAtomicMCCSetUsrData(void*, void*, s32);
 extern "C" void fn_8003C200(void*, void*, s32, s32);
 extern "C" s32 CheckRangeOut__10TObjSetObjFv(void*);
 extern "C" s32 CheckMustKill__10TObjSetObjFv(void*);
@@ -267,7 +267,7 @@ extern "C" RpAtomic* flagCaptureRenderCallback(RpAtomic* atomic, RpAtomic** resu
 
 extern "C" RpAtomic* flagRenderCallback(RpAtomic* atomic)
 {
-	FlagMotion* motion = fn_8005F4E8();
+	FlagMotion* motion = RpAtomicMCCGetUsrData();
 	void* model        = *(void**)((u8*)flagPrimaryModel + 4);
 	Vec3 scale         = flagZeroVector;
 	scale.x            = *motion->frame->scale;
@@ -477,7 +477,7 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 			((void**)object->allocatedCC)[2] = (u8*)params + 4;
 			((void**)object->allocatedCC)[3] = *(void**)((u8*)object + 0xC8);
 			((void**)object->allocatedCC)[4] = (u8*)params + 8;
-			fn_8005F50C(object->modelC4, &object->allocatedCC, 4);
+			RpAtomicMCCSetUsrData(object->modelC4, &object->allocatedCC, 4);
 		}
 	} else {
 		object->modelC0               = NULL;

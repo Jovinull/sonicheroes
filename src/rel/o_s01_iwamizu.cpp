@@ -49,8 +49,8 @@ void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
 void Error__7TObjectFPc();
 void Render__7TObjectFv();
-void fn_8005F4B4(void*, void*);
-void* fn_8005F490();
+void RpAtomicMCCSetCustomRenderCallBack(void*, void*);
+void* RpAtomicMCCGetCustomRenderCallBack();
 int fn_8004A5B8(void*, int, int);
 void fn_8014F1B0();
 void fn_8019EC30(void*, Vec3*, int);
@@ -152,7 +152,7 @@ extern "C" void* SetIwamizuCallback(IwamizuCallback* callback, void* argument)
 		return callback;
 	} else {
 		savedArgument = argument;
-		fn_8005F4B4(callback, (void*)&savedArgument);
+		RpAtomicMCCSetCustomRenderCallBack(callback, (void*)&savedArgument);
 		callback->function = (void (*)())fn_3_816D8;
 		if (callback->function == 0)
 			callback->function = fn_8014F1B0;
@@ -169,7 +169,7 @@ struct CallbackState {
 #pragma opt_common_subs off
 extern "C" void* fn_3_816D8(void* argument)
 {
-	CallbackState* state = (CallbackState*)fn_8005F490();
+	CallbackState* state = (CallbackState*)RpAtomicMCCGetCustomRenderCallBack();
 	int invoke           = 0;
 	switch (state->mode) {
 		case 1:

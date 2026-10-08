@@ -103,7 +103,7 @@ int fn_80159FB8();
 int fn_8013ECE0();
 int fn_80226338();
 int fn_80149018();
-int fn_8005F710();
+int RpAtomicMCCPluginAttach();
 int fn_8014DB38();
 int fn_801FC470();
 int fn_8013D78C();
@@ -169,7 +169,7 @@ static inline int AttachPlugins()
 		return MAIN_FALSE;
 	if (!fn_80149018())
 		return MAIN_FALSE;
-	if (!fn_8005F710())
+	if (!RpAtomicMCCPluginAttach())
 		return MAIN_FALSE;
 	if (!fn_8014DB38())
 		return MAIN_FALSE;

@@ -65,8 +65,8 @@ s32 CheckRangeOut__10TObjSetObjFv(void*);                               /* exter
 M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                 /* extern */
 M2C_UNK fn_8005D5C8(void*, M2C_UNK);                                    /* extern */
 void* fn_8005E394(void*, M2C_UNK);                                      /* extern */
-void** fn_8005F4E8();                                                   /* extern */
-M2C_UNK fn_8005F50C(void*, void***, M2C_UNK);                           /* extern */
+void** RpAtomicMCCGetUsrData();                                         /* extern */
+M2C_UNK RpAtomicMCCSetUsrData(void*, void***, M2C_UNK);                 /* extern */
 RpDMorphAnimation* LoadDeltaMorphEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*); /* extern */
 void* LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                   /* extern */
 s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);                            /* extern */
@@ -253,7 +253,7 @@ s32 fn_8_C7580(s32 arg0)
 	void* temp_r31;
 	void* temp_r4;
 
-	temp_r31 = *fn_8005F4E8();
+	temp_r31 = *RpAtomicMCCGetUsrData();
 	if (temp_r31 == NULL) {
 		return arg0;
 	}
@@ -378,7 +378,7 @@ void fn_8_C7A90(void* arg0)
 	M2C_FIELD(arg0, void**, 0xDC) = (u8*)arg0 + 0xB8;
 	M2C_FIELD(arg0, void**, 0xE0) = (u8*)arg0 + 0xE4;
 	sp8                           = (void**)((u8*)arg0 + 0xCC);
-	fn_8005F50C(M2C_FIELD(arg0, void**, 0xC4), &sp8, 4);
+	RpAtomicMCCSetUsrData(M2C_FIELD(arg0, void**, 0xC4), &sp8, 4);
 }
 
 void fn_8_C7AF8(void* arg0)
@@ -597,7 +597,7 @@ void fn_8_C7EBC(void* arg0)
 				M2C_FIELD(arg0, void**, 0xDC) = (u8*)arg0 + 0xB8;
 				M2C_FIELD(arg0, void**, 0xE0) = (u8*)arg0 + 0xE4;
 				sp8                           = (void**)((u8*)arg0 + 0xCC);
-				fn_8005F50C(M2C_FIELD(arg0, void**, 0xC4), &sp8, 4);
+				RpAtomicMCCSetUsrData(M2C_FIELD(arg0, void**, 0xC4), &sp8, 4);
 			}
 			temp_r3_3 = M2C_FIELD(arg0, void**, 0xBC);
 			if (temp_r3_3 != NULL) {
@@ -795,7 +795,7 @@ TObject* fn_8_C8688(TObject* arg0, TObject* arg1)
 	arg0->unkDC = &arg0->unkB8;
 	arg0->unkE0 = &arg0->unkE4;
 	sp8         = &arg0->unkCC;
-	fn_8005F50C(arg0->unkC4, &sp8, 4);
+	RpAtomicMCCSetUsrData(arg0->unkC4, &sp8, 4);
 	temp_r3_3 = arg0->unkBC;
 	if (temp_r3_3 != NULL) {
 		temp_r31_2 = M2C_FIELD(temp_r3_3, s32*, 4);
