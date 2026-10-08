@@ -107,8 +107,8 @@ void fn_8003BC38(void*);
 extern void* lbl_8042C180;
 extern void* lbl_802D5E80;
 extern void* lbl_8042C148;
-void fn_8005303C(void*);
-void fn_80053114(void*);
+void DisableAll__6CLIGHTFv(void*);
+void RestoreAll__6CLIGHTFv(void*);
 void fn_800B85D8(void*);
 void fn_8005CE4C(void*);
 void* fn_8015BD78(void*);
@@ -176,10 +176,10 @@ extern "C" void SetPosition__12TObjS01StullFv(TObjS01Stull* object)
 extern "C" void TDisp__12TObjS01StullFv(TObjS01Stull* object)
 {
 	if (*(s8*)((u8*)lbl_8042C180 + 0x20) == 0) {
-		fn_8005303C(&lbl_802D5E80);
+		DisableAll__6CLIGHTFv(&lbl_802D5E80);
 		fn_800B85D8(object->resource);
 		fn_8005CE4C(object->resource);
-		fn_80053114(&lbl_802D5E80);
+		RestoreAll__6CLIGHTFv(&lbl_802D5E80);
 	}
 }
 extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)

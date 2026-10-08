@@ -135,6 +135,66 @@ report build with the native octree object linked. All 18 artifact hashes,
 55 automated tests and both policy checkers passed. No runtime or physical
 hardware validation was performed.
 
+### Light translation unit
+
+`game/light.cpp` reconstructs the 26 surviving functions at GameCube
+`0x80052184`–`0x80053FB8`, including both `RP_Light` constructors, allocation,
+world attachment, light properties, regular-table selection, loading and cleanup.
+The inferred unit owns 7,732 retail text bytes, 232 exception-table bytes,
+276 exception-index bytes, 144 data bytes, eight small-data bytes and 16
+small-constant bytes. The adjoining constructor-registration and octree routines
+are outside this boundary.
+
+PS2 PAL `SLES_519.50` DWARF metadata identifies `light.cpp` as C++ and supplies
+`CLIGHT`, `RP_Light`, `RP_LightInfo`, and `REGLIGHT_STRUCT` names and layouts.
+Only symbolic metadata was consulted from that executable. GameCube instructions
+corroborate the 0x40-byte light allocation, manager field offsets, 0x30-byte
+special-light records, 0x34-byte regular records, methods and file format string.
+`CLIGHT::SetRadius` and `CLIGHT::SetPosition` names are inferred from their
+GameCube behavior and corresponding `RP_Light` methods, rather than asserted
+as surviving PS2 manager symbols. SDK structures here are explicitly partial,
+pointer-only views; they are never allocated using those partial sizes.
+
+The loader retains defaults outside the available first 16 entries, copies at
+most 832 bytes, and preserves the executable's ignored file-read return value.
+Regular-light creation checks allocation of the wrapper rather than its SDK
+light; second-wrapper allocation failure destroys the first. Restore-all passes
+cached worlds directly, while individual restore requires a non-null cached
+world. Cleanup does not invent pointer resets absent from the executable.
+
+Deferred inlining with reverse definition order emits exactly the 26 retail
+function symbols in retail order, without extra out-of-line helper functions.
+Automatic emission kept definition order instead. This justifies the scoped
+deferred policy entry; it does not establish matching instruction bytes.
+Data pooling is disabled because retail addresses the individual globals.
+
+The whole-unit source produces 25 exact bodies. Expanding the existing eight-light
+restoration loop directly in EndIgnoreLight fixes its allocation without changing
+behavior. Init alone retains ten register fields across seven instructions; the
+bounded compiler-output normalizer in `tools/fix_light_registers.py` exchanges
+only its loader destination and filesize live ranges. It carries no retail
+instruction words. This is not a source-only match claim.
+
+All 26 export offsets and sizes, 263 normalized relocations, 232 exception-table
+bytes, 276 exception-index bytes, eight small-data bytes and 16 small-constant
+bytes agree. All 141 authored data bytes agree; retail includes three natural
+trailing alignment bytes. The compiler's conventional writable `.sdata2` flag
+is unchanged. The normalization leaves every ELF byte outside the seven
+instructions unchanged and checks exact text hashes, function boundary,
+relocations and individual instruction fields.
+
+Recovered function-scope pointer locals reproduce color and position copies.
+Angle updates preserve input arguments across rotation calls. Null destinations
+select the manager table in the inlined load/assign paths. Local-order, scope,
+helper expansion and inline-level trials did not reproduce both Init's loading
+and later assignment allocations together. The register proof and removal path
+are documented in [light-register-evidence.md](light-register-evidence.md).
+
+The native G9SE8P main DOL and all seventeen RELs build with all eighteen
+retail hashes passing. All-source compilation, progress/report generation,
+63 automated tests, both policy checks and formatting pass. No runtime or
+physical-hardware validation was performed.
+
 ### GameCube ARAM pool translation unit
 
 `game/aram_pool.cpp` reconstructs the seven-function GameCube range

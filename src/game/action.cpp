@@ -434,7 +434,7 @@ extern "C" s32 fn_8004A5B8(void* object, s32 index, void* filter);
 extern "C" void fn_8011253C();
 extern "C" void fn_800C4C18();
 extern "C" void fn_800B6E64();
-extern "C" void fn_80052DD4(void* object, void* world);
+extern "C" void ChangeWorld__6CLIGHTFP7RpWorld(void* object, void* world);
 extern "C" void fn_8004D678(void* object);
 extern "C" void fn_8004D650(void* object);
 extern "C" void fn_801AFFB0(s32, s32, s32, s32, s32);
@@ -464,7 +464,7 @@ inline s32 fn_8004B144(u32 object)
 	return fn_8004B144((void*)object);
 }
 extern "C" s32 fn_8004EF98();
-extern "C" s32 fn_80053B9C(void*);
+extern "C" s32 End__6CLIGHTFv(void*);
 extern "C" s32 fn_8005952C(void*);
 extern "C" s32 fn_8005A5EC(void*);
 inline s32 fn_8005952C(u32 object)
@@ -1195,10 +1195,10 @@ void ACTION::dispAlpha(void* world, BitFlag option)
 
 	if ((option.bits & 1) != 0) {
 		*(s32*)((u8*)world + 8) = flags | 0x30;
-		fn_80052DD4(lbl_802D5E80, world);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, world);
 	} else {
 		*(s32*)((u8*)world + 8) = flags & ~0x30;
-		fn_80052DD4(lbl_802D5E80, 0);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, 0);
 	}
 
 	if ((option.bits & 8) != 0)
@@ -1252,10 +1252,10 @@ void ACTION::dispPunch(void* world, BitFlag option)
 
 	if ((option.bits & 1) != 0) {
 		*(s32*)((u8*)world + 8) = flags | 0x30;
-		fn_80052DD4(lbl_802D5E80, world);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, world);
 	} else {
 		*(s32*)((u8*)world + 8) = flags & ~0x30;
-		fn_80052DD4(lbl_802D5E80, 0);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, 0);
 	}
 
 	if ((option.bits & 8) != 0)
@@ -1309,10 +1309,10 @@ void ACTION::dispOpeq(void* world, BitFlag option)
 
 	if ((option.bits & 1) != 0) {
 		*(s32*)((u8*)world + 8) = flags | 0x30;
-		fn_80052DD4(lbl_802D5E80, world);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, world);
 	} else {
 		*(s32*)((u8*)world + 8) = flags & ~0x30;
-		fn_80052DD4(lbl_802D5E80, 0);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, 0);
 	}
 
 	if ((option.bits & 8) != 0)
@@ -1662,7 +1662,7 @@ s32 ACTION::Loop()
 			}
 			fn_8005B558();
 			fn_800B7B30();
-			fn_80053B9C(&DAT_802d5e80);
+			End__6CLIGHTFv(&DAT_802d5e80);
 			fn_800C59C4();
 			if (*(void**)((u8*)lbl_8042C1D0 + 0x7250) != 0) {
 				fn_80194234(8, 1);
@@ -2560,7 +2560,7 @@ extern "C" void fn_800BF794();
 extern "C" s32 fn_8004B308(void*, u32);
 extern "C" s32 fn_8004B9D4(void*, u32);
 extern "C" void RsErrorMessage(void*);
-extern "C" void fn_80053D58(void*);
+extern "C" void Init__6CLIGHTFv(void*);
 extern "C" void fn_8005B5B8(void*, u32);
 extern "C" void fn_8009250C(RawTask*);
 extern "C" void fn_8009D2E0(RawTask*);
@@ -2881,7 +2881,7 @@ void ACTION::subInit()
 		for (;;) {
 		}
 	}
-	fn_80053D58(lbl_802D5E80);
+	Init__6CLIGHTFv(lbl_802D5E80);
 	stageObject = currentStage != 0 ? *(u32*)currentStage : 0;
 	fn_8005B5B8(*(void**)((u8*)this + 0x38), stageObject);
 	RawCallback callback = *(RawCallback*)((u8*)currentStage + 8);
