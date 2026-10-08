@@ -482,6 +482,9 @@ rel/key_register.cpp:
 rel/s31_bob_dummy_dtor.cpp:
 	.text       start:0x0007C104 end:0x0007C190
 
+rel/s31bob_create.cpp:
+	.text       start:0x0007C338 end:0x0007C3C4
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0007EE48 end:0x0007EEE0
 	.ctors      start:0x000000E0 end:0x000000E4

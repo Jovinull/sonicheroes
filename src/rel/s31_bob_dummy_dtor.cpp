@@ -61,13 +61,13 @@ extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 
 // Defined by each module, renamed to this name in its own symbols.txt.
-extern "C" void* s31bobObjectdummyVtable[];
+extern "C" void* __vt__10TObjS31Bob[];
 
 extern "C" S31BobDummy* s31bobObjectdummyDtor(S31BobDummy* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = s31bobObjectdummyVtable;
-		object->motion.vtable = s31bobObjectdummyVtable + 0xB;
+		object->base.vtable   = __vt__10TObjS31Bob;
+		object->motion.vtable = __vt__10TObjS31Bob + 0xB;
 
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);

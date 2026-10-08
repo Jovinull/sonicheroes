@@ -518,6 +518,9 @@ rel/s11fire_object_register.cpp:
 rel/s31_bob_dummy_dtor.cpp:
 	.text       start:0x00087C70 end:0x00087CFC
 
+rel/s31bob_create.cpp:
+	.text       start:0x00087EA4 end:0x00087F30
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0008A9B4 end:0x0008AA4C
 	.ctors      start:0x000000F0 end:0x000000F4
