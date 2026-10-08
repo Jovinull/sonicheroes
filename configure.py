@@ -3224,6 +3224,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/unbreakable_container_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/unbreakable_container_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
