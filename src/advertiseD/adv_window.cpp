@@ -88,7 +88,7 @@ void fn_1_119BC(void* p, int n);
 void* advE3Rom_resume(s32 id);
 ADV_WINDOW* fn_1_14DA4(ADV_WINDOW* self, void* parent, const sADV_WINDOW_PARAM* param);
 void fn_801A46D0(void*);
-void* fn_80057644(int size);
+void* __nw__FUl(int size);
 void* fn_800BCC84(void* h, void* name, int a);
 void* fn_80012994(int size);
 void* fn_800BC580(void* h, int a, void* buf);
@@ -396,7 +396,7 @@ void fn_1_1517C(void)
 	int i;
 	void* res;
 
-	h.value = fn_80057644(0x58);
+	h.value = __nw__FUl(0x58);
 	if (h.value) {
 		h.value = fn_800BCC84(h.value, lbl_1_data_8578, 0);
 	}

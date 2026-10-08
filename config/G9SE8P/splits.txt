@@ -303,6 +303,17 @@ game/perf.cpp:
 	.bss        start:0x803A6690 end:0x803A6FE0
 	.sdata      start:0x8042B648 end:0x8042B650
 
+game/message.cpp:
+	extab       start:0x800089C8 end:0x80008A20
+	extabindex  start:0x8000F028 end:0x8000F094
+	.text       start:0x800CE010 end:0x800CF070
+	.data       start:0x80255738 end:0x802557C0
+	.sdata      start:0x8042B650 end:0x8042B670
+	.sbss       start:0x8042C478 end:0x8042C47C
+	.sbss       start:0x8042C47C end:0x8042C480 skip
+	.sdata2     start:0x8042DF20 end:0x8042DF48
+	.sbss2      start:0x804302B8 end:0x804302C0
+
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 

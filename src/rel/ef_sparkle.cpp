@@ -59,7 +59,7 @@ EfSparkle* __ct__9EfSparkleFUi(EfSparkle*, u32);
 void fn_800657EC(void*, s32, const void*);
 void dtor_800654F4(void*, s16);
 void fn_80064380(void*);
-void* fn_80057644(u32);
+void* __nw__FUl(u32);
 void __dl__FPv(void*);
 void* fn_8005FAE8(const char*, void*);
 void fn_8005FA8C(void*, void*);
@@ -185,28 +185,28 @@ void LoadTextureEfSparkle()
 	fn_8005E00C(lbl_16_bss_A34, 2);
 
 	if (lbl_16_bss_A24 == 0) {
-		EfSparkle* sparkle = (EfSparkle*)fn_80057644(0x80);
+		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
 		if (sparkle != 0)
 			sparkle = __ct__9EfSparkleFUi(sparkle, 0);
 		lbl_16_bss_A24 = sparkle;
 	}
 
 	if (lbl_16_bss_A28 == 0) {
-		EfSparkle* sparkle = (EfSparkle*)fn_80057644(0x80);
+		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
 		if (sparkle != 0)
 			sparkle = __ct__9EfSparkleFUi(sparkle, 1);
 		lbl_16_bss_A28 = sparkle;
 	}
 
 	if (lbl_16_bss_A2C == 0) {
-		EfSparkle* sparkle = (EfSparkle*)fn_80057644(0x80);
+		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
 		if (sparkle != 0)
 			sparkle = __ct__9EfSparkleFUi(sparkle, 2);
 		lbl_16_bss_A2C = sparkle;
 	}
 
 	if (lbl_16_bss_A30 == 0) {
-		EfSparkle* sparkle = (EfSparkle*)fn_80057644(0x80);
+		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
 		if (sparkle != 0)
 			sparkle = __ct__9EfSparkleFUi(sparkle, 3);
 		lbl_16_bss_A30 = sparkle;

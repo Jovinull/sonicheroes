@@ -87,8 +87,7 @@
     "autosaveD/task_object.c",
     "autosaveD/task_runtime.c",
     "autosaveD/task_system.c",
-    "autosaveD/window_frame.c",
-    "autosaveD/window_lifecycle.c"
+    "autosaveD/window_frame.c"
   ],
   "deferred_sources": [
     "advertiseD/adv_2p.cpp",
@@ -116,6 +115,7 @@
     "game/cri/adx_xpnd.c",
     "game/cri/cri_cvfs.c",
     "game/e_paralysis.cpp",
+    "game/message.cpp",
     "game/modeswitch.cpp",
     "game/skyfs_adx.c",
     "rel/e_capture_collision_stage11.cpp",

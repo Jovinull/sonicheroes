@@ -38,7 +38,7 @@ extern float lbl_8_rodata_CA8;
 void __dt__17PARTICLE_MATERIALFv(s32, s32);
 void __ct__17PARTICLE_MATERIALF8Pt_FLAGSP11SPRITE_INFO(...);
 void __dl__FPv(void*);
-void* fn_80057644(u32);
+void* __nw__FUl(u32);
 void* fn_8005FAE8(void*, void*);
 void fn_8005FA8C(void*, void*);
 void fn_8005E00C(void*, s32);
@@ -122,7 +122,7 @@ extern "C" void fn_8_497B0()
 	void** materials[4] = { &lbl_8_bss_B94, &lbl_8_bss_B98, &lbl_8_bss_B9C, &lbl_8_bss_BA0 };
 	for (int type = 0; type < 4; type++) {
 		if (*materials[type] == NULL) {
-			void* material = fn_80057644(0x80);
+			void* material = __nw__FUl(0x80);
 			if (material != NULL)
 				*materials[type] = fn_8_4A354(material, type);
 		}

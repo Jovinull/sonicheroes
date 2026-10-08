@@ -1058,6 +1058,7 @@ config.libs = [
                     "-opt noschedule,nopeephole",
                 ],
             ),
+            Object(Matching, "game/message.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-bool off", "-inline deferred"]),
             Object(
                 Matching,
                 "game/perf.cpp",
@@ -1311,7 +1312,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "autosaveD/window_lifecycle.c",
+                "autosaveD/window_lifecycle.cpp",
                 extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(

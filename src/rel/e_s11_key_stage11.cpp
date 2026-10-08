@@ -162,7 +162,7 @@ HitNode* fn_800211A8(void*);
 void fn_80021824(void*);
 void fn_8003BC38(void*);
 void fn_8003BF04(void*, void*, s32, s32);
-void* fn_80057644(u32);
+void* __nw__FUl(u32);
 void fn_8005BC04(Motion*);
 void fn_8005D5C8(void*, u32);
 void fn_800628D0(s32, Vec3*, s32);
@@ -360,7 +360,7 @@ static inline void constructKey(TObjS11Key* object)
 	object->model           = fn_80150588(s11keyModel);
 	if (object->model != NULL) {
 		fn_8005D5C8(object->model, ((object->frame->flags & 0x1C0000) >> 18) + 4);
-		void* anim = fn_80057644(0x14);
+		void* anim = __nw__FUl(0x14);
 		if (anim != NULL) {
 			anim = fn_80119A18(anim, object->model);
 		}
@@ -600,7 +600,7 @@ void TObjS11Key::SearchCage()
 		f32 range        = 100.0f;
 		for (; node != NULL; node = node->next) {
 			if (node->type == 0x24 && fn_800D71DC(frame, node) < range) {
-				frame->cage           = (KeyCage*)fn_80057644(0x14);
+				frame->cage           = (KeyCage*)__nw__FUl(0x14);
 				frame->cage->magic    = 0x12345678;
 				frame->cage->position = frame->position;
 				return;

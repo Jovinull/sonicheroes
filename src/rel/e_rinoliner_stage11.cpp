@@ -147,7 +147,7 @@ void* __dt__10HAnimClassFv(void*, s32);                                         
 M2C_UNK fn_800189A4(s32, void*);                                                  /* extern */
 TEnemyParalysis* fn_80018A34(s32, M2C_UNK);                                       /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                        /* extern */
-M2C_UNK** fn_80057644(M2C_UNK);                                                   /* extern */
+M2C_UNK** __nw__FUl(M2C_UNK);                                                     /* extern */
 s32 fn_8005B8D8(void**);                                                          /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                                  /* extern */
 s32 fn_8005D9A0(void*, M2C_UNK);                                                  /* extern */
@@ -971,14 +971,14 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 	temp_r0      = arg0->unk2E8;
 	switch (temp_r0) { /* irregular */
 		case 0:
-			var_r0 = fn_80057644(0x20);
+			var_r0 = __nw__FUl(0x20);
 			if (var_r0 != NULL) {
 				var_r0 = fn_8_B5B3C();
 			}
 			arg0->unk244 = var_r0;
 			break;
 		case 1:
-			temp_r3_2 = fn_80057644(0x20);
+			temp_r3_2 = __nw__FUl(0x20);
 			if (temp_r3_2 != NULL) {
 				fn_8_B5B3C();
 				*temp_r3_2 = &lbl_8_data_17060;
@@ -1059,7 +1059,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 	}
 	arg0->unk2D0 = var_r0_2;
 	arg0->unk13C = 1;
-	var_r0_3     = fn_80057644(0x20);
+	var_r0_3     = __nw__FUl(0x20);
 	if (var_r0_3 != NULL) {
 		var_r0_3 = fn_800FD8A0(arg0, arg0->unk13C);
 	}
@@ -1220,7 +1220,7 @@ void rinolinerObjectUnload(void)
 	}
 	fn_8_B52F4();
 	fn_800FE248(3, &lbl_8_data_16C18);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	fn_801007F4(lbl_8042C590, 3);
@@ -1229,11 +1229,11 @@ void rinolinerObjectUnload(void)
 void rinolinerObjectLoad(void)
 {
 	u32 temp_r3;
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	fn_8010096C(lbl_8042C590, 3, lbl_8_data_16FA0);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	temp_r3 = fn_80100328(lbl_8042C590, 3, 8);
@@ -1242,15 +1242,15 @@ void rinolinerObjectLoad(void)
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1A50, s32*, 0) = fn_8010037C(lbl_8042C590, 3, 5);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1A50, s32*, 4) = fn_8010037C(lbl_8042C590, 3, 3);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1A50, s32*, 8) = fn_8010037C(lbl_8042C590, 3, 2);

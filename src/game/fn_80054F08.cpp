@@ -86,7 +86,7 @@ extern "C" void fn_80054230(Fn80054F08TraversalEntry*);
 extern "C" f32 fn_800D71DC(const Fn80054F08Vec*, const Fn80054F08Vec*);
 extern "C" s32 fn_800D218C(
     const Fn80054F08Vec*, f32, const Fn80054F08Vec*, Fn80054F08Vec*, Fn80054F08Vec*);
-extern "C" void* fn_80057644(u32);
+extern "C" void* __nw__FUl(u32);
 extern "C" void fn_8005421C(Fn80054F08ContactList*);
 extern "C" void fn_80054048(Fn80054F08ContactList*, u16, const Fn80054F08Vec*, const Fn80054F08Vec*,
     const Fn80054F08Vec*, const s16*);
@@ -99,7 +99,7 @@ inline Fn80054F08ContactList::Fn80054F08ContactList()
 
 inline void* Fn80054F08ContactList::operator new(unsigned long size)
 {
-	return fn_80057644(size);
+	return __nw__FUl(size);
 }
 
 static void fn_80054F08ClearVisited(s32 wordCount, u32 activeBlocks, u32* visited)

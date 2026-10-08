@@ -280,7 +280,7 @@ M2C_UNK fn_8003BC38(M2C_UNK*);                                    /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);        /* extern */
 M2C_UNK fn_80043DEC();                                            /* extern */
 M2C_UNK fn_80043F28(u32);                                         /* extern */
-void** fn_80057644(M2C_UNK);                                      /* extern */
+void** __nw__FUl(M2C_UNK);                                        /* extern */
 s32 fn_8005B8D8(void**);                                          /* extern */
 M2C_UNK fn_8005BC04(void*);                                       /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                  /* extern */
@@ -3058,14 +3058,14 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 	temp_r0      = arg0->unk57C;
 	switch (temp_r0) { /* irregular */
 		case 0:
-			var_r0 = fn_80057644(0x1C);
+			var_r0 = __nw__FUl(0x1C);
 			if (var_r0 != NULL) {
 				var_r0 = fn_8_9EB28();
 			}
 			arg0->unk240 = var_r0;
 			break;
 		case 1:
-			var_r0_2 = fn_80057644(0x1C);
+			var_r0_2 = __nw__FUl(0x1C);
 			if (var_r0_2 != NULL) {
 				var_r0_2 = fn_8_9DCE8();
 			}
@@ -3092,7 +3092,7 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 	}
 	arg0->unk244 = var_r0_3;
 	arg0->unk13C = 1;
-	var_r0_4     = fn_80057644(0x20);
+	var_r0_4     = __nw__FUl(0x20);
 	if (var_r0_4 != NULL) {
 		var_r0_4 = fn_800FD8A0(arg0, arg0->unk13C);
 	}
@@ -3225,7 +3225,7 @@ void captureObjectUnload(void)
 		var_r30 -= 1;
 	} while (var_r30 >= 0);
 	fn_800FE248(7, &lbl_8_data_15608);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	fn_801007F4(lbl_8042C590, 7);
@@ -3235,11 +3235,11 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	fn_8010096C(lbl_8042C590, 7, lbl_8_data_159BC);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	temp_r3 = fn_80100328(lbl_8042C590, 7, 4);
@@ -3248,27 +3248,27 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0) = fn_8010037C(lbl_8042C590, 7, 3);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 4) = fn_8010037C(lbl_8042C590, 7, 9);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 8) = fn_8010037C(lbl_8042C590, 7, 0xA);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC) = fn_8010037C(lbl_8042C590, 7, 0xB);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0x10) = fn_8010037C(lbl_8042C590, 7, 0xC);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
+	if (((u32)lbl_8042C590 == 0U) && (__nw__FUl(0x70) != NULL)) {
 		fn_80100AAC();
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14) = fn_8010037C(lbl_8042C590, 7, 7);

@@ -44,7 +44,7 @@ M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                 /* extern */
 M2C_UNK fn_800189A4(s32, TObject*);                    /* extern */
 TObject* fn_80018A34(s32, M2C_UNK);                    /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                         /* extern */
-u32 fn_80057644(M2C_UNK);                              /* extern */
+u32 __nw__FUl(M2C_UNK);                                /* extern */
 s32 fn_8005B8BC(s32);                                  /* extern */
 s32 fn_8005B9F0(s32);                                  /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                         /* extern */
@@ -246,7 +246,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 			M2C_FIELD(var_r31, u32*, 0xE0) = fn_80150588(arg1);
 			if ((u32)M2C_FIELD(var_r31, u32*, 0xE0) != 0U) {
 				fn_8005D5C8(0x10);
-				var_r0 = fn_80057644(0x14);
+				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
 					var_r0 = fn_80119A18(M2C_FIELD(var_r31, u32*, 0xE0));
 				}
@@ -259,7 +259,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 				M2C_FIELD(var_r31, u32*, 0xE8) = fn_80150588(arg1);
 				if ((u32)M2C_FIELD(var_r31, u32*, 0xE8) != 0U) {
 					fn_8005D5C8(0x10);
-					var_r0_2 = fn_80057644(0x14);
+					var_r0_2 = __nw__FUl(0x14);
 					if (var_r0_2 != 0U) {
 						var_r0_2 = fn_80119A18(M2C_FIELD(var_r31, u32*, 0xE8));
 					}
@@ -507,7 +507,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 			arg0->unkE0 = fn_80150588(temp_r29);
 			if ((u32)arg0->unkE0 != 0U) {
 				fn_8005D5C8(0x10);
-				var_r0 = fn_80057644(0x14);
+				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
 					var_r0 = fn_80119A18(arg0->unkE0);
 				}
@@ -522,7 +522,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 				*(u32*)((u8*)arg0 + temp_r0) = fn_80150588(temp_r29);
 				if (*(u32*)((u8*)arg0 + temp_r0) != 0U) {
 					fn_8005D5C8(0x10);
-					var_r4 = fn_80057644(0x14);
+					var_r4 = __nw__FUl(0x14);
 					if (var_r4 != 0U) {
 						var_r4 = fn_80119A18(*(u32*)((u8*)arg0 + var_r28 + 0xE8));
 					}
@@ -633,7 +633,7 @@ void s11spiderObjectCreate(void)
 				temp_r3->unkE0 = fn_80150588(temp_r29);
 				if ((u32)temp_r3->unkE0 != 0U) {
 					fn_8005D5C8(0x10);
-					var_r0 = fn_80057644(0x14);
+					var_r0 = __nw__FUl(0x14);
 					if (var_r0 != 0U) {
 						var_r0 = fn_80119A18(temp_r3->unkE0);
 					}
@@ -648,7 +648,7 @@ void s11spiderObjectCreate(void)
 					*(u32*)((u8*)temp_r3 + temp_r0) = fn_80150588(temp_r29);
 					if (*(u32*)((u8*)temp_r3 + temp_r0) != 0U) {
 						fn_8005D5C8(0x10);
-						var_r4 = fn_80057644(0x14);
+						var_r4 = __nw__FUl(0x14);
 						if (var_r4 != 0U) {
 							var_r4 = fn_80119A18(*(u32*)((u8*)temp_r3 + var_r28 + 0xE8));
 						}

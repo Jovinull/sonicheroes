@@ -67,7 +67,7 @@
 //   the raw allocation if the constructor throws. Writing the two calls by hand
 //   -- the idiom in adv_staffroll.cpp and ef_sparkle.cpp -- emits identical
 //   instructions and no exception table at all, which leaves the linked DOL
-//   thirty-two bytes short with every function reading 100%. So fn_80057644 is
+//   thirty-two bytes short with every function reading 100%. So __nw__FUl is
 //   spelled as the class's own operator new and fn_800BCC84 as its constructor.
 //   Two details cost an afternoon each: operator new must take `unsigned long`
 //   (`u32` is rejected as "illegal 'operator' declaration"), and the class needs
@@ -155,7 +155,7 @@ void* texLoadTexDictionaryFile__FPc(char*);
 void fn_801A4778(void*, void*, s32);
 void* fn_80041FF4(char*);
 void* fn_80146EA8(void*);
-void* fn_80057644(u32);
+void* __nw__FUl(u32);
 void fn_800BCC84(void*, char*, s32);
 void* fn_800BC694(void*, u32);
 void fn_80112718(void);
@@ -241,7 +241,7 @@ class ResourceArchive
 
 public:
 	ResourceArchive(char* name, s32 flags) { fn_800BCC84(this, name, flags); }
-	static void* operator new(unsigned long size) { return fn_80057644(size); }
+	static void* operator new(unsigned long size) { return __nw__FUl(size); }
 };
 
 static inline s32 findResourceRequest(char* name)

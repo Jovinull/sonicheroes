@@ -5,6 +5,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Owner | Scope | Status |
 | --- | --- | --- |
 | Codex 2026-10-06 | `game/matrix.cpp`, recovered matrix API declarations and symbol names | Complete locally on `decomp/whole-tu-20261006`: 16 functions, all seven owned sections and 104 relocations exact; full G9SE8P release and 18 hashes pass; publication pending |
+| Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |
 | Codex | `game/cri/axrna.c` | Attempted; no net improvement after source-form and compiler-flag trials |
 | Codex | `game/cri/svm.c` | Attempted; BSS layout identified, but no net object improvement |

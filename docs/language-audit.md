@@ -1258,3 +1258,44 @@ Verification against upstream `ba1a6be`:
   anonymous fragment entries; their contents are now in the complete unit.
 
 This establishes source and binary matching, not runtime or hardware validation.
+
+## message.cpp
+
+The European PS2 debug metadata identifies `message.cpp` as C++ and gives the
+`MESSAGE` class, font members, constructor/destructor and language-change APIs.
+The GameCube member offsets, font paths, table lookup and call relationships
+independently correlate the nine surviving functions at `0x800CE010`–`0x800CF070`.
+The next function operates on an unrelated interpolation structure. GameCube's
+`DisplayMessage` has two additional floating-point offset arguments; the PS2
+signature is not substituted for this platform's ABI.
+
+The source groups construction, destruction, font loading/release, rendering,
+conversion and language-change entry points. Default `-inline auto` emits them
+in source order and leaves the destructor out of the language-change paths.
+`-inline deferred` reverses their emission into the observed GameCube order
+and reproduces the inlined destructor/release loops and their exception records.
+This is a caller/callee and exception-handling requirement, not just a function
+permutation. Separate multiply/add instructions and the full-width comparison
+result in the rendering code establish `-fp_contract off` and `-bool off`.
+
+All nine surviving functions, exception records, relocation targets and owned
+data now match natively in objdiff. `setupBBox` is an ordinary method whose
+call is inlined and whose unused out-of-line body is stripped at link time;
+retaining its definition also reproduces the original floating-point constant
+order. Explicitly marking it inline instead places the constructor's height
+constant before the bounding-box constants.
+
+The language-change allocation uses global `operator new`. The existing subtitle
+constructor mapping already identified the same allocation entry point, paired
+with global `operator delete` and using the RenderWare allocator callback. Its
+canonical name is now `__nw__FUl`; keeping a provisional class-specific wrapper
+introduced an extra temporary register move. Existing callers and metadata
+renames follow the canonical global symbol. No instruction post-processor is
+used for message.cpp.
+
+Validation for message.cpp: the native G9SE8P all-source build passes, including
+the main DOL and all seventeen REL hashes. The object audit matches all eight
+owned sections and 141 normalized relocations after excluding the 32-byte
+`setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
+post-processor and ELF metadata regression tests pass. This is compilation and
+binary verification; no runtime or hardware validation was performed.
