@@ -3234,6 +3234,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s12_thunder_range_colli_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s12thunder_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
