@@ -431,6 +431,17 @@ game/enemy/e_utility_hierarchy.cpp:
 	extabindex  start:0x8000FDE4 end:0x8000FE08
 	.text       start:0x800FF8B8 end:0x800FF9CC
 
+game/effect/eff_dush.cpp:
+	extab       start:0x800097F8 end:0x8000984C
+	extabindex  start:0x8000FE08 end:0x8000FE50
+	.text       start:0x800FF9CC end:0x801001DC
+	.rodata     start:0x8023A770 end:0x8023A780
+	.data       start:0x8025A8C0 end:0x8025A940
+	.bss        start:0x803E71F0 end:0x803E7238
+	.sdata      start:0x8042B730 end:0x8042B740
+	.sbss       start:0x8042C580 end:0x8042C590
+	.sdata2     start:0x8042E6A0 end:0x8042E6D0
+
 game/enemy/e_database.cpp:
 	extab       start:0x8000984C end:0x8000987C
 	extabindex  start:0x8000FE50 end:0x8000FE80

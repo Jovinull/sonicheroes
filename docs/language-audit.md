@@ -2617,3 +2617,16 @@ a documented eight-register-field permutation across six instructions. All owned
 sections and 209 relocations match after this compiler-output normalization;
 all eighteen supported output hashes and 77 tests pass. See
 `eff-bomb-unit-evidence.md` for the remaining allocation gap and path out.
+
+
+## effect/eff_dush.cpp
+
+Positive symbolic metadata identifies eleven definitions in this complete C++
+unit. GameCube code confirms the EffDash/EffDush class layouts and seven
+surviving functions; four ordinary methods inline into callers. The runtime
+TObjEffDash string is independent of the authentic C++ type names. The preceding
+hierarchy utility and following database method are excluded. No PS2
+instructions were inspected. All seven bodies, nine owned sections and 154
+relocations match directly from source with whole-unit deferred inlining and
+no object normalizer. All eighteen supported output hashes and 62 tests pass;
+see `eff-dush-unit-evidence.md`.

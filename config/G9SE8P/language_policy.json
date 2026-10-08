@@ -120,6 +120,7 @@
     "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
     "game/effect/eff_bomb.cpp",
+    "game/effect/eff_dush.cpp",
     "game/enemy/e_gadget.cpp",
     "game/enemy/e_iconman.cpp",
     "game/enemy/e_powercore.cpp",
