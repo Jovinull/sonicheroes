@@ -1831,6 +1831,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sample2_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sample2_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

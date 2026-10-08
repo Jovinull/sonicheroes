@@ -26,6 +26,9 @@ rel/obj_base_stubs.cpp:
 rel/sample2_object.cpp:
 	.text       start:0x00000564 end:0x00000740
 
+rel/sample2_create.cpp:
+	.text       start:0x00000740 end:0x00000804
+
 rel/sample2_register.cpp:
 	.text       start:0x00000804 end:0x0000088C
 	.ctors      start:0x00000004 end:0x00000008
