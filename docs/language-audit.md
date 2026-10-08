@@ -1445,3 +1445,15 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## effect/eff_thunderbomb.cpp
+
+Positive symbolic metadata identifies eighteen C++ definitions, ten surviving
+at 0x8010B84C–0x8010C220 and eight ordinary definitions that inline. Class/vtable
+and texture-resource graphs corroborate all eight owned ranges and 185
+relocations; adjacent completed units establish both boundaries. No PS2
+instructions were inspected. All ten native bodies, 185 relocations, eight
+sections and thirteen named-object contracts match using reversed ordinary
+definitions and whole-unit auto,deferred, without an object normalizer. All
+eighteen output hashes and 62 tests pass; the complete unit is enabled as
+Matching. See `eff-thunderbomb-unit-evidence.md`.

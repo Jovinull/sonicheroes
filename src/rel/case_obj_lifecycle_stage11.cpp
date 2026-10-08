@@ -37,7 +37,7 @@ void* fn_8005EA04(const char* name);
 void* fn_8005E410(void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
 void __ct__10TObjSetObjFv(void* controller);
-void fn_8003C618(void* object);
+void __ct__7C_COLLIFv(void* object);
 s32 objGroupAllActive(s32 index);
 s32 fn_80100C88(s32 index);
 void fn_8015BBF8(void* manager, void* resource);
@@ -49,7 +49,7 @@ void* fn_8005E1DC(void* resource, s32 index, const char* name);
 void fn_801491A8();
 void fn_8005D5C8(void* resource, s32 index);
 void* fn_8005F490(void* resource);
-void fn_8003C200(void* object, void* data, s32 count, s32 type);
+void Init__7C_COLLIFP8CCL_INFOiUc(void* object, void* data, s32 count, s32 type);
 void fn_8_40B34(void* self);
 }
 
@@ -97,7 +97,7 @@ extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv(&self->placement);
-	fn_8003C618(self->controller);
+	__ct__7C_COLLIFv(self->controller);
 	*(void**)((u8*)self + 0x18) = caseObjVtable;
 	*(void**)((u8*)self + 0x2C) = (u8*)caseObjVtable + 0x2C;
 	*(u32*)((u8*)self + 0x00)   = lbl_8_data_4590[0];
@@ -167,7 +167,7 @@ extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 	}
 	void* model  = fn_8005F490(found);
 	*(u32*)model = 0x10;
-	fn_8003C200(self->controller, lbl_8_data_4434, 7, 5);
+	Init__7C_COLLIFP8CCL_INFOiUc(self->controller, lbl_8_data_4434, 7, 5);
 	fn_8_40B34(self);
 	return self;
 }

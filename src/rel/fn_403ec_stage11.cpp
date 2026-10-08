@@ -213,7 +213,7 @@ s32 objGroupAllActive(s32 index);
 s32 fn_80100C88(s32 index);
 void fn_800B4A38(void* sound, s32 id, Vec3* position, s32, s32, s32, s32);
 f32 fn_800D7328(f32 value, f32 target, f32 step);
-void fn_8003BC38(void* object);
+void Entry__7C_COLLIFv(void* object);
 }
 
 extern "C" void fn_8_403EC(RuntimeState* self)
@@ -346,7 +346,7 @@ extern "C" void fn_8_40554(RuntimeState* self)
 			*(Vec3*)((u8*)self + 0xAC)   = *(Vec3*)((u8*)self + 0x90);
 			*(Vec3*)((u8*)self + 0x90)   = self->position;
 			*(Angle3*)((u8*)self + 0x9C) = self->rotation;
-			fn_8003BC38((u8*)self + 0x30);
+			Entry__7C_COLLIFv((u8*)self + 0x30);
 			break;
 		default:
 			break;

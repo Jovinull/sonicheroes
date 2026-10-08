@@ -75,7 +75,7 @@ extern "C" const Vec3 lbl_80239984;
 extern "C" const Vec3 lbl_80239990;
 extern "C" World* lbl_8042C1D0;
 
-extern "C" s32 fn_8003BC38(void* collision);
+extern "C" s32 Entry__7C_COLLIFv(void* collision);
 extern "C" s32 CheckMustKill__10TObjSetObjFv(void* motion);
 extern "C" s32 OnEdit__10TObjSetObjFv(void* motion);
 extern "C" s32 CheckRangeOut__10TObjSetObjFv(void* motion);
@@ -134,7 +134,8 @@ extern "C" void Exec__11SpringClassFv(SpringRuntime* object)
 {
 	register SpringMember* member = object->frame->member;
 
-	if (CheckRangeOut__10TObjSetObjFv(&object->frame) || CheckMustKill__10TObjSetObjFv(&object->frame)) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->frame)
+	    || CheckMustKill__10TObjSetObjFv(&object->frame)) {
 		object->flags |= 1;
 		return;
 	}
@@ -215,7 +216,7 @@ extern "C" void Exec__11SpringClassFv(SpringRuntime* object)
 	object->lastAngleX       = object->angleX;
 	object->lastAngleY       = object->angleY;
 	object->lastAngleZ       = object->angleZ;
-	fn_8003BC38(object->collision);
+	Entry__7C_COLLIFv(object->collision);
 }
 
 #pragma opt_common_subs reset

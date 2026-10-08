@@ -78,12 +78,12 @@ void* Malloc__9THeapCtrlFUi(void*, int);
 void* fn_8_48B4C(void*, void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __ct__10TObjSetObjFv(void*);
-void fn_8003C618(void*);
+void __ct__7C_COLLIFv(void*);
 void* fn_80150588(void*);
 void fn_8015BB08(void*, void*);
 void fn_8015BBF8(void*, void*);
-void fn_8003C200(void*, char*, int, int);
-void dtor_8003C52C(void*, int);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, char*, int, int);
+void __dt__7C_COLLIFv(void*, int);
 void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
 void Free__9THeapCtrlFPv(void*, void*);
@@ -108,7 +108,7 @@ void* fn_80042118(char*);
 void fn_8014D208(void*, int, Vec3*);
 float fn_801991B4(Vec3*);
 int sprintf(char*, const char*, ...);
-void fn_8003BE78(void*);
+void ClearInfo__7C_COLLIFv(void*);
 void fn_80021824(void*);
 int fn_80020BD8(void*, int);
 void* fn_800211A8(void*);
@@ -117,7 +117,7 @@ void fn_800E1208(int, int, int);
 void* fn_80054F08(void*, void*, float, int);
 void fn_8001F674(int, int, int, int);
 void fn_80054158(void*, int);
-void fn_8003BC38(void*);
+void Entry__7C_COLLIFv(void*);
 void fn_800BC9F4(void*, void*);
 void* fn_800BC6CC(void*, char*);
 void* fn_800BB92C(void*, void*, void*);
@@ -419,7 +419,7 @@ extern "C" void* fn_8_48B4C(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv((u8*)self + 0x28);
-	fn_8003C618((u8*)self + 0x30);
+	__ct__7C_COLLIFv((u8*)self + 0x30);
 	field<void*>(self, 0x18)  = lbl_8_data_4C68;
 	field<void*>(self, 0x2C)  = lbl_8_data_4C68 + 11;
 	field<void*>(self, 0)     = lbl_8_data_4C40[0];
@@ -442,7 +442,7 @@ extern "C" void* fn_8_48B4C(void* self, void* parent)
 		resource++;
 		offset += 4;
 	}
-	fn_8003C200((u8*)self + 0x30, lbl_8_data_4C00, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc((u8*)self + 0x30, lbl_8_data_4C00, 1, 4);
 	field<u16>(self, 0x38) |= 0x40;
 	field<float>(self, 0x138)  = lbl_8_rodata_BFC;
 	field<float>(self, 0x144)  = lbl_8_rodata_BF8;
@@ -479,7 +479,7 @@ extern "C" void* fn_8_48A6C(void* self, s16 flags)
 			}
 			cursor = (u8*)cursor + 4;
 		}
-		dtor_8003C52C((u8*)self + 0x30, 0);
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
 		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
@@ -668,7 +668,7 @@ extern "C" void fn_8_46FEC(void* self)
 	int state = field<int>(self, 0xB8);
 	if (state == 0) {
 		if (field<float>(self, 0xD8) < lbl_8_rodata_BF0) {
-			fn_8003BE78((u8*)self + 0x30);
+			ClearInfo__7C_COLLIFv((u8*)self + 0x30);
 			return;
 		}
 		fn_80021824(&lbl_8042C1A4);
@@ -711,7 +711,7 @@ extern "C" void fn_8_46FEC(void* self)
 	field<Vec3>(self, 0xAC)  = field<Vec3>(self, 0x90);
 	field<Vec3>(self, 0x90)  = field<Vec3>(self, 0xC0);
 	field<IVec3>(self, 0x9C) = field<IVec3>(self, 0xCC);
-	fn_8003BC38((u8*)self + 0x30);
+	Entry__7C_COLLIFv((u8*)self + 0x30);
 }
 
 extern "C" void propellerReset() { }

@@ -103,8 +103,8 @@ M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                        
 M2C_UNK* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                    /* extern */
 u32 fn_800194C4(M2C_UNK*);                                                       /* extern */
 M2C_UNK fn_8001F404(void*);                                                      /* extern */
-M2C_UNK fn_8003BC38(void*);                                                      /* extern */
-M2C_UNK fn_8003C200(void*, M2C_UNK*, M2C_UNK, M2C_UNK);                          /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                                                /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(void*, M2C_UNK*, M2C_UNK, M2C_UNK);         /* extern */
 u32 __nw__FUl(M2C_UNK);                                                          /* extern */
 s32 OnEdit__10TObjSetObjFv(void*);                                               /* extern */
 M2C_UNK SetEnd__10TObjSetObjFv(void*);                                           /* extern */
@@ -1254,7 +1254,7 @@ void fn_8_A3C88(M2C_UNK* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0x14C);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0x150);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0x154);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 
@@ -2478,7 +2478,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 		}
 	}
 	if (OnEdit__10TObjSetObjFv((u8*)((u32)arg0 + 0xB0)) == 0) {
-		fn_8003C200((u8*)arg0 + 0x28, &lbl_8_data_15FD8, 1, 3);
+		Init__7C_COLLIFP8CCL_INFOiUc((u8*)arg0 + 0x28, &lbl_8_data_15FD8, 1, 3);
 		M2C_FIELD(arg0, f32*, 0x88) = (f32)M2C_FIELD(arg0, f32*, 0x140);
 		M2C_FIELD(arg0, f32*, 0x8C) = (f32)M2C_FIELD(arg0, f32*, 0x144);
 		M2C_FIELD(arg0, f32*, 0x90) = (f32)M2C_FIELD(arg0, f32*, 0x148);

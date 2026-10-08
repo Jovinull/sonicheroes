@@ -129,10 +129,10 @@ extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void Error__7TObjectFPc(void);
 extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
-extern "C" void fn_8003BC38(void*);
+extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
-extern "C" void fn_8003C618(void*);
-extern "C" void dtor_8003C52C(void*, s32);
+extern "C" void __ct__7C_COLLIFv(void*);
+extern "C" void __dt__7C_COLLIFv(void*, s32);
 extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
 extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
 extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
@@ -224,7 +224,7 @@ extern "C" void antennaExec(Antenna* object)
 		object->transform.angleY           = frame->angle.y;
 		object->transform.angleZ           = frame->angle.z;
 		object->transform.angleX           = frame->angle.x;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 		return;
 	}
 
@@ -245,7 +245,7 @@ extern "C" void antennaExec(Antenna* object)
 		object->transform.angleY           = angles.y;
 		object->transform.angleZ           = angles.z;
 		object->transform.angleX           = angles.x;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 	}
 }
 
@@ -257,7 +257,7 @@ extern "C" Antenna* antennaDtor(Antenna* object, s16 flags)
 		object->base.vtable   = antennaVtable;
 		object->motion.vtable = antennaVtable + 11;
 		fn_9_75888(&object->model);
-		dtor_8003C52C(&object->transform, 0);
+		__dt__7C_COLLIFv(&object->transform, 0);
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -271,7 +271,7 @@ extern "C" Antenna* antennaCtor(Antenna* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
-	fn_8003C618(&object->transform);
+	__ct__7C_COLLIFv(&object->transform);
 
 	object->base.vtable     = antennaVtable;
 	object->motion.vtable   = antennaVtable + 11;

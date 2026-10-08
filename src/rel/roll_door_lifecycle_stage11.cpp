@@ -25,7 +25,7 @@ void* fn_8005EA04(const char* name);
 void* fn_8005E410(void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
 void __ct__10TObjSetObjFv(void* placement);
-void fn_8003C618(void* controller);
+void __ct__7C_COLLIFv(void* controller);
 void* fn_80150588(void* resource);
 void fn_8015BB08(void* manager, void* resource);
 f32 fn_800D7B00(s32 angle);
@@ -35,7 +35,7 @@ void fn_8019EB94(void* object, const void* vector, s32 mode);
 void fn_8019EC30(void* object, const void* vector, s32 mode);
 void* fn_8005DF98(void* object, s32 index);
 void fn_8005D5C8(void* resource, s32 index);
-void fn_8003C200(void* controller, const void* data, s32 count, s32 type);
+void Init__7C_COLLIFP8CCL_INFOiUc(void* controller, const void* data, s32 count, s32 type);
 void fn_80021384(void* controller);
 extern u8 lbl_8042C1D0[];
 extern f32 lbl_80239978[];
@@ -74,7 +74,7 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	u8* object = (u8*)self;
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv(object + 0x28);
-	fn_8003C618(object + 0x30);
+	__ct__7C_COLLIFv(object + 0x30);
 	*(void**)(object + 0x18) = rollDoorVtable;
 	*(void**)(object + 0x2C) = (u8*)rollDoorVtable + 0x2C;
 	*(u32*)(object + 0x00)   = lbl_8_data_46D4;
@@ -135,7 +135,7 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 
 	u32 flags = *(u32*)(*(u8**)(object + 0x28) + 0x18);
 	fn_8005D5C8(*(void**)(object + 0xEC), ((flags & 0x001C0000) >> 18) + 4);
-	fn_8003C200(object + 0x30, lbl_8_data_4664, 2, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(object + 0x30, lbl_8_data_4664, 2, 4);
 
 	s32 fieldOffset = 0;
 	for (s32 i = 0; i < 2; ++i) {

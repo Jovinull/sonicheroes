@@ -364,7 +364,7 @@ M2C_UNK __dl__FPv(void* arg0);                                                  
 void* __dt__10HAnimClassFv(void*, s32);                                          /* extern */
 void* __dt__7TObjectFv(void*, s32);                                              /* extern */
 M2C_UNK __register_global_object(void*, void*, void*);                           /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                           /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                        /* extern */
 s32 fn_80017800(TObject*);                                                       /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                      /* extern */
 TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                    /* extern */
@@ -372,10 +372,10 @@ u32 fn_800209C8(void*, M2C_UNK);                                                
 u32 fn_80020BD8(void*, M2C_UNK);                                                 /* extern */
 M2C_UNK fn_80021384(void*);                                                      /* extern */
 M2C_UNK fn_80021824(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_8003BC38(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_8003BE78(void*);                                                      /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                       /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                                   /* extern */
+M2C_UNK Entry__7C_COLLIFv(M2C_UNK*);                                             /* extern */
+M2C_UNK ClearInfo__7C_COLLIFv(void*);                                            /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);      /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                              /* extern */
 M2C_UNK fn_8004D5F4(s32, f32, M2C_UNK);                                          /* extern */
 void** __nw__FUl(M2C_UNK);                                                       /* extern */
 s32 OnEdit__10TObjSetObjFv(f32*);                                                /* extern */
@@ -1756,7 +1756,7 @@ void fn_8_B8970(TObject* arg0)
 		var_r0 = 1;
 	}
 	if (var_r0 == 0) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		return;
 	}
 	temp_r0 = arg0->unkE8;
@@ -1847,7 +1847,7 @@ void fn_8_B8970(TObject* arg0)
 		arg0->unk94 = arg0->unkBC;
 		arg0->unk98 = arg0->unkC0;
 		arg0->unk9C = arg0->unkC4;
-		fn_8003BC38(&arg0->unk28);
+		Entry__7C_COLLIFv(&arg0->unk28);
 	}
 }
 
@@ -1859,7 +1859,7 @@ TObject* fn_8_B8F34(TObject* arg0, s16 arg1)
 			fn_80150958((void*)arg0->unkE0);
 			arg0->unkE0 = NULL;
 		}
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -1874,7 +1874,7 @@ TObject* fn_8_B8FD0(TObject* arg0, TObject* arg1, void* arg2)
 	f32 temp_f0;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8003C618(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk28);
 	temp_f0                             = lbl_8_rodata_1D80;
 	arg0->unk18                         = (M2C_UNK*)lbl_8_data_179DC;
 	temp_f0                             = lbl_8_rodata_1D80;
@@ -1905,7 +1905,7 @@ TObject* fn_8_B8FD0(TObject* arg0, TObject* arg1, void* arg2)
 	arg0->unkE4                         = lbl_8_rodata_1D5C;
 	arg0->unkC8                         = fn_800D8BC4(&arg0->unkB0, &sp8, 1);
 	arg0->unkE0                         = fn_80150588(lbl_8_bss_1AC8[2]);
-	fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_17994, 1, 3);
+	Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk28, (M2C_UNK*)lbl_8_data_17994, 1, 3);
 	arg0->unk88 = arg0->unkB0;
 	arg0->unk8C = arg0->unkB4;
 	arg0->unk90 = arg0->unkB8;
@@ -1923,7 +1923,7 @@ static inline TObject* wallCreateObject(void* arg0)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF8);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		temp_f1                        = lbl_8_rodata_1D80;
 		temp_r3->unk18                 = (M2C_UNK*)lbl_8_data_179DC;
 		temp_r3->unkB8                 = temp_f1;
@@ -1959,7 +1959,7 @@ static inline TObject* wallCreateObject(void* arg0)
 		temp_r3->unkE4                 = lbl_8_rodata_1D5C;
 		temp_r3->unkC8                 = fn_800D8BC4(&temp_r3->unkB0, &sp8, 1);
 		temp_r3->unkE0                 = fn_80150588(lbl_8_bss_1AC8[2]);
-		fn_8003C200(&temp_r3->unk28, (M2C_UNK*)lbl_8_data_17994, 1, 3);
+		Init__7C_COLLIFP8CCL_INFOiUc(&temp_r3->unk28, (M2C_UNK*)lbl_8_data_17994, 1, 3);
 		temp_r3->unk88 = temp_r3->unkB0;
 		temp_r3->unk8C = temp_r3->unkB4;
 		temp_r3->unk90 = temp_r3->unkB8;
@@ -2620,7 +2620,7 @@ void fn_8_BA3A4(TObject* arg0)
 		arg0->unk94 = arg0->unk14C;
 		arg0->unk98 = arg0->unk150;
 		arg0->unk9C = arg0->unk154;
-		fn_8003BC38(&arg0->unk28);
+		Entry__7C_COLLIFv(&arg0->unk28);
 	}
 }
 
@@ -3898,7 +3898,7 @@ TObject* fn_8_BCF88(TObject* arg0, TObject* arg1)
 	M2C_FIELD(arg0, u32*, 0xE4) = (u32)lbl_8_data_17484;
 	M2C_FIELD(arg0, s32*, 0xD4) = 1;
 	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
-		fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_1767C, 0xA, 3);
+		Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk28, (M2C_UNK*)lbl_8_data_1767C, 0xA, 3);
 		arg0->unk88 = arg0->unk140;
 		arg0->unk8C = arg0->unk144;
 		arg0->unk90 = arg0->unk148;

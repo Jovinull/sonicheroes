@@ -179,10 +179,10 @@ extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" IteratorResult* fn_800211A8(Transform*);
 extern "C" void fn_80021384(Transform*);
 extern "C" void fn_80021824(void*);
-extern "C" void fn_8003BC38(Transform*);
-extern "C" void fn_8003C200(Transform*, const void*, s32, s32);
-extern "C" void dtor_8003C52C(Transform*, s32);
-extern "C" void fn_8003C618(Transform*);
+extern "C" void Entry__7C_COLLIFv(Transform*);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(Transform*, const void*, s32, s32);
+extern "C" void __dt__7C_COLLIFv(Transform*, s32);
+extern "C" void __ct__7C_COLLIFv(Transform*);
 extern "C" s32 fn_80041B64(void*);
 extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
 extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
@@ -331,7 +331,7 @@ extern "C" void collisionExec(CollisionObject* object)
 	object->transform.angle.y          = ((Frame*)frame)->angle.y;
 	object->transform.angle.z          = ((Frame*)frame)->angle.z;
 	object->transform.angle.x          = ((Frame*)frame)->angle.x;
-	fn_8003BC38(&object->transform);
+	Entry__7C_COLLIFv(&object->transform);
 }
 
 extern "C" CollisionObject* collisionDtor(CollisionObject* object, s16 flags)
@@ -343,7 +343,7 @@ extern "C" CollisionObject* collisionDtor(CollisionObject* object, s16 flags)
 		if ((object->motion.frame->flags & 0x10000) != 0) {
 			SetEnd__10TObjSetObjFv(&object->motion);
 		}
-		dtor_8003C52C(&object->transform, 0);
+		__dt__7C_COLLIFv(&object->transform, 0);
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -357,7 +357,7 @@ extern "C" CollisionObject* collisionCtor(CollisionObject* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
-	fn_8003C618(&object->transform);
+	__ct__7C_COLLIFv(&object->transform);
 	object->base.vtable   = collisionVtable;
 	object->motion.vtable = collisionVtable + 11;
 
@@ -372,7 +372,7 @@ extern "C" CollisionObject* collisionCtor(CollisionObject* object, void* owner)
 	object->scale              = *(Vec3*)&params->scaleX;
 	object->color              = collisionDescriptor.colors[params->color];
 	object->allocatedCollision = NULL;
-	fn_8003C200(&object->transform, collisionShape, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&object->transform, collisionShape, 1, 4);
 
 	f32* size = (f32*)((u8*)object->transform.collision + 0x14);
 	size[0]   = collisionHalf * object->scale.x;

@@ -145,12 +145,12 @@ extern void* lbl_8042C110;
 s32 CheckRangeOut__10TObjSetObjFv(void*);
 s32 CheckMustKill__10TObjSetObjFv(void*);
 s32 OnEdit__10TObjSetObjFv(void*);
-void fn_8003BC38(void*);
+void Entry__7C_COLLIFv(void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __ct__10TObjSetObjFv(void*);
-void fn_8003C618(void*);
-void fn_8003C200(void*, void*, s32, s32);
-void dtor_8003C52C(void*, s32);
+void __ct__7C_COLLIFv(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
+void __dt__7C_COLLIFv(void*, s32);
 void __dt__10TObjSetObjFv(void*, s32);
 void __dt__7TObjectFv(void*, s32);
 void Free__9THeapCtrlFPv(void*, void*);
@@ -192,7 +192,7 @@ void fn_8_DCE3C(OttottoObject* object)
 		object->previousRotX = object->currentRotX;
 		object->previousRotY = object->currentRotY;
 		object->previousRotZ = object->currentRotZ;
-		fn_8003BC38(object->collision);
+		Entry__7C_COLLIFv(object->collision);
 	}
 }
 
@@ -201,7 +201,7 @@ OttottoObject* fn_8_DCF34(OttottoObject* object, s16 flag)
 	if (object != NULL) {
 		object->vtable  = lbl_8_data_1A3F4;
 		object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
-		dtor_8003C52C(object->collision, 0);
+		__dt__7C_COLLIFv(object->collision, 0);
 		__dt__10TObjSetObjFv(&object->transform, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flag > 0) {
@@ -215,7 +215,7 @@ OttottoObject* fn_8_DCFCC(OttottoObject* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(object, owner);
 	__ct__10TObjSetObjFv(&object->transform);
-	fn_8003C618(object->collision);
+	__ct__7C_COLLIFv(object->collision);
 	object->vtable  = lbl_8_data_1A3F4;
 	object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
 	object->field00 = (u32)lbl_8_data_1A3F0;
@@ -234,7 +234,7 @@ OttottoObject* fn_8_DCFCC(OttottoObject* object, void* owner)
 	lbl_8_data_1A374[param->index].x = param->x;
 	lbl_8_data_1A374[param->index].y = param->y;
 	lbl_8_data_1A374[param->index].z = param->z;
-	fn_8003C200(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
 	return object;
 }
 
@@ -252,7 +252,7 @@ void fn_8_DD0D4(OttottoObject* object, SetdataParam* setdata)
 		lbl_8_data_1A374[param->index].x = param->x;
 		lbl_8_data_1A374[param->index].y = param->y;
 		lbl_8_data_1A374[param->index].z = param->z;
-		fn_8003C200(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
 	}
 }
 
@@ -263,7 +263,7 @@ void noOttottoCollisionCreate(void)
 		OttottoObject* object = (OttottoObject*)result;
 		__ct__7TObjectFP7TObject(object, lbl_8042C110);
 		__ct__10TObjSetObjFv(&object->transform);
-		fn_8003C618(object->collision);
+		__ct__7C_COLLIFv(object->collision);
 		object->vtable  = lbl_8_data_1A3F4;
 		object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
 		object->field00 = (u32)lbl_8_data_1A3F0;
@@ -282,7 +282,7 @@ void noOttottoCollisionCreate(void)
 		lbl_8_data_1A374[param->index].x = param->x;
 		lbl_8_data_1A374[param->index].y = param->y;
 		lbl_8_data_1A374[param->index].z = param->z;
-		fn_8003C200(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
 	}
 }
 

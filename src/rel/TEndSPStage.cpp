@@ -124,7 +124,7 @@ void fn_16_93C3C(void* object);
 
 int CheckMustKill__10TObjSetObjFv(void* motion);
 int OnEdit__10TObjSetObjFv(void* motion);
-void fn_8003C200(void* collision, void* info, int one, int four);
+void Init__7C_COLLIFP8CCL_INFOiUc(void* collision, void* info, int one, int four);
 void fn_80019898(void* stage, int value);
 void fn_80021384(void* collision);
 void fn_80021824(void* collision);
@@ -255,7 +255,7 @@ void TEndSPStage::Exec()
 	}
 
 	if (fn_16_7738(((RawTEndSPStage*)this)->base + 0x30, 0) == 0) {
-		fn_8003C200(((RawTEndSPStage*)this)->base + 0x30, sColInfo, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(((RawTEndSPStage*)this)->base + 0x30, sColInfo, 1, 4);
 		info          = fn_16_7738(((RawTEndSPStage*)this)->base + 0x30, 0);
 		info->scale.x = TEndSPStageConstants[0] * ringScale.x;
 		info->scale.y = TEndSPStageConstants[0] * ringScale.y;

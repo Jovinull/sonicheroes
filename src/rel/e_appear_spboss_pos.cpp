@@ -89,7 +89,7 @@ void fn_16_DB4(void*);
 int CheckMustKill__10TObjSetObjFv(void*);
 int OnEdit__10TObjSetObjFv(void*);
 int CheckRangeOut__10TObjSetObjFv(void*);
-void fn_8003C200(void*, void*, int, int);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, int, int);
 void fn_80021384(void*);
 
 extern void* lbl_8042C180;
@@ -167,7 +167,7 @@ void TEnemyAppearSPBossPos::Exec()
 	}
 
 	if (fn_16_7738(AUX_OBJECT, 0) == 0) {
-		fn_8003C200(AUX_OBJECT, TEnemyAppearSPBossPosResourceParams, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(AUX_OBJECT, TEnemyAppearSPBossPosResourceParams, 1, 4);
 		register void* handle       = fn_16_7738(AUX_OBJECT, 0);
 		*(f32*)((u8*)handle + 0x14) = TEnemyAppearSPBossPosHalf * CURRENT_POS.x;
 		*(f32*)((u8*)handle + 0x18) = TEnemyAppearSPBossPosHalf * CURRENT_POS.y;

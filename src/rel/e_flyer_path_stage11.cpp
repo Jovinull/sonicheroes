@@ -75,16 +75,16 @@ M2C_UNK __dl__FPv(void*);                                       /* extern */
 void* __dt__7TObjectFv(void*, s32);                             /* extern */
 f64 asin(f32);                                                  /* extern */
 double atan2(double, double);                                   /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                       /* extern */
 s32 fn_80017800(void*);                                         /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                     /* extern */
 TObject* Malloc__9THeapCtrlFUi(...);                            /* extern */
 void* fn_800211A8(void*);                                       /* extern */
 void fn_80021824(void*);                                        /* extern */
-M2C_UNK fn_8003BC38(void*);                                     /* extern */
-M2C_UNK fn_8003BE78(void*);                                     /* extern */
-M2C_UNK fn_8003C200(...);                                       /* extern */
-M2C_UNK fn_8003C618(...);                                       /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                               /* extern */
+M2C_UNK ClearInfo__7C_COLLIFv(void*);                           /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(...);                      /* extern */
+M2C_UNK __ct__7C_COLLIFv(...);                                  /* extern */
 void* __nw__FUl(u32);                                           /* extern */
 u32 fn_8005EA04(s32*);                                          /* extern */
 M2C_UNK fn_8005FC74(s32*, s32*);                                /* extern */
@@ -414,7 +414,7 @@ void fn_8_A8590(void* arg0)
 		var_r0 = 1;
 	}
 	if (var_r0 == 0) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		return;
 	}
 	temp_r0 = M2C_FIELD(arg0, s32*, 0xDC);
@@ -472,7 +472,7 @@ void fn_8_A8590(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0xC8);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0xCC);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0xD0);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 
@@ -484,7 +484,7 @@ TObject* fn_8_A8938(TObject* arg0, s16 arg1)
 			fn_80150958((void*)arg0->unkE0);
 			arg0->unkE0 = NULL;
 		}
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -498,7 +498,7 @@ TObject* fn_8_A89D4(TObject* arg0, void* arg1, TObject* arg2)
 	M2C_UNK sp8;
 
 	__ct__7TObjectFP7TObject(arg0, arg2);
-	fn_8003C618(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk28);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_1647C;
 	arg0->unkB8 = 0.0f;
 	arg0->unkB4 = 0.0f;
@@ -527,7 +527,7 @@ TObject* fn_8_A89D4(TObject* arg0, void* arg1, TObject* arg2)
 	arg0->unkD4 = M2C_FIELD(arg1, f32*, 0x24);
 	arg0->unkD8 = M2C_FIELD(arg1, s32*, 0x28);
 	arg0->unkE4 = 0.0f;
-	fn_8003C200((void*)&arg0->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
+	Init__7C_COLLIFP8CCL_INFOiUc((void*)&arg0->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
 	M2C_FIELD(arg0, M2C_BLOCK12*, 0x88) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xb0);
 	arg0->unkE8                         = arg0->unkB0;
 	arg0->unkEC                         = 4.0f + fn_800D8BC4(&arg0->unkB0, &sp8, 1);
@@ -544,7 +544,7 @@ TObject* fn_8_A8B60(void* arg0)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_1647C;
 		temp_r3->unkB8 = 0.0f;
 		temp_r3->unkB4 = 0.0f;
@@ -573,7 +573,7 @@ TObject* fn_8_A8B60(void* arg0)
 		temp_r3->unkD4 = M2C_FIELD(arg0, f32*, 0x24);
 		temp_r3->unkD8 = M2C_FIELD(arg0, s32*, 0x28);
 		temp_r3->unkE4 = 0.0f;
-		fn_8003C200((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
+		Init__7C_COLLIFP8CCL_INFOiUc((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
 		M2C_FIELD(temp_r3, M2C_BLOCK12*, 0x88) = M2C_FIELD(temp_r3, M2C_BLOCK12*, 0xb0);
 		temp_r3->unkE8                         = temp_r3->unkB0;
 		temp_r3->unkEC                         = 4.0f + fn_800D8BC4(&temp_r3->unkB0, &sp8, 1);
@@ -954,7 +954,7 @@ void fn_8_A9874(void* arg0)
 		var_r0 = 1;
 	}
 	if (var_r0 == 0) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		return;
 	}
 	temp_r0 = M2C_FIELD(arg0, s32*, 0xF0);
@@ -984,7 +984,7 @@ void fn_8_A9874(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0xD8);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0xDC);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0xE0);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 
@@ -992,7 +992,7 @@ TObject* fn_8_A9A6C(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
 		arg0->unk18 = (M2C_UNK*)lbl_8_data_164F4;
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -1004,7 +1004,7 @@ TObject* fn_8_A9A6C(TObject* arg0, s16 arg1)
 TObject* fn_8_A9AF0(TObject* arg0, void* arg1, TObject* arg2)
 {
 	__ct__7TObjectFP7TObject(arg0, arg2);
-	fn_8003C618(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk28);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_164F4;
 	arg0->unkB8 = 0.0f;
 	arg0->unkB4 = 0.0f;
@@ -1041,7 +1041,7 @@ TObject* fn_8_A9AF0(TObject* arg0, void* arg1, TObject* arg2)
 	arg0->unkE4 = M2C_FIELD(arg1, f32*, 0x34);
 	arg0->unkE8 = M2C_FIELD(arg1, f32*, 0x38);
 	arg0->unkEC = M2C_FIELD(arg1, f32*, 0x3C);
-	fn_8003C200((void*)&arg0->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc((void*)&arg0->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
 	M2C_FIELD(arg0, M2C_BLOCK12*, 0x88) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xb0);
 	return arg0;
 }
@@ -1053,7 +1053,7 @@ TObject* fn_8_A9C6C(void* arg0)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x104);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_164F4;
 		temp_r3->unkB8 = 0.0f;
 		temp_r3->unkB4 = 0.0f;
@@ -1090,7 +1090,7 @@ TObject* fn_8_A9C6C(void* arg0)
 		temp_r3->unkE4 = M2C_FIELD(arg0, f32*, 0x34);
 		temp_r3->unkE8 = M2C_FIELD(arg0, f32*, 0x38);
 		temp_r3->unkEC = M2C_FIELD(arg0, f32*, 0x3C);
-		fn_8003C200((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_164A8, 1, 4);
 		temp_r3->unk88 = temp_r3->unkB0;
 		temp_r3->unk8C = temp_r3->unkB4;
 		temp_r3->unk90 = temp_r3->unkB8;

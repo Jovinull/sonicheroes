@@ -68,56 +68,56 @@ struct _struct_lbl_8_data_18978_0x14 {
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(void*, void*);                   /* extern */
-void* __dt__7TObjectFv(void*, s32);                             /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
-M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                   /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                     /* extern */
-u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                        /* extern */
-M2C_UNK fn_8003BC38(M2C_UNK*);                                  /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);      /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                  /* extern */
-s32 CheckMustKill__10TObjSetObjFv(void*);                       /* extern */
-s32 OnEdit__10TObjSetObjFv(void*);                              /* extern */
-s32 CheckRangeOut__10TObjSetObjFv(void*);                       /* extern */
-M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                         /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                /* extern */
-M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32); /* extern */
-u32 fn_800BB0D4(s32, s32, M2C_UNK*);                            /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                            /* extern */
-s32 fn_800BC6CC(s32, M2C_UNK*);                                 /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                             /* extern */
-f32 fn_800D7AE4(s32);                                           /* extern */
-f32 fn_800D7B00(s32);                                           /* extern */
-M2C_UNK fn_8013F3A4(void*);                                     /* extern */
-void* fn_8013F484(s32);                                         /* extern */
-M2C_UNK fn_8013FC30(void*);                                     /* extern */
-M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);       /* extern */
-void* fn_80150588(s32, s32);                                    /* extern */
-M2C_UNK fn_80150958(void*);                                     /* extern */
-M2C_UNK fn_8015BB08(s32, void*);                                /* extern */
-M2C_UNK fn_8015BBF8(s32, void*);                                /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);          /* extern */
-M2C_UNK fn_8019E880(s32);                                       /* extern */
-M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);         /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                        /* extern */
-M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                        /* extern */
-M2C_UNK fn_801A4C84(u32);                                       /* extern */
-M2C_UNK fn_8020C2D8(void*, u32);                                /* extern */
-M2C_UNK fn_8020C72C(void**, s32, s32);                          /* extern */
-M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                     /* extern */
-M2C_UNK fn_8020D02C(void**, M2C_UNK*, f32);                     /* extern */
-M2C_UNK fn_80226440(void*, s32);                                /* extern */
-u32 fn_80226468(s32);                                           /* extern */
-M2C_UNK fn_8_C5C1C(s32);                                        /* extern */
-void fn_8_C606C(TObject* arg0, ...);                            /* static */
-TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1);              /* static */
-void* fn_8_C7014(void* arg0, s32 arg1);                         /* static */
-s32 fn_8_C70C4(s32 arg0, void** arg1);                          /* static */
-void grassObjectCreate();                                       /* static */
-void grassObjectLoad(M2C_UNK arg_sp0);                          /* static */
-void grassObjectLoad(M2C_UNK arg_sp0);                          /* static */
-void grassObjectUnload(M2C_UNK arg_sp0);                        /* static */
+void* __ct__7TObjectFP7TObject(void*, void*);                               /* extern */
+void* __dt__7TObjectFv(void*, s32);                                         /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                   /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                               /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                 /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                    /* extern */
+M2C_UNK Entry__7C_COLLIFv(M2C_UNK*);                                        /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                         /* extern */
+s32 CheckMustKill__10TObjSetObjFv(void*);                                   /* extern */
+s32 OnEdit__10TObjSetObjFv(void*);                                          /* extern */
+s32 CheckRangeOut__10TObjSetObjFv(void*);                                   /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                     /* extern */
+M2C_UNK fn_8005D5C8(void*, s32);                                            /* extern */
+M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32);             /* extern */
+u32 fn_800BB0D4(s32, s32, M2C_UNK*);                                        /* extern */
+u32 fn_800BB92C(s32, s32, M2C_UNK*);                                        /* extern */
+s32 fn_800BC6CC(s32, M2C_UNK*);                                             /* extern */
+M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                                         /* extern */
+f32 fn_800D7AE4(s32);                                                       /* extern */
+f32 fn_800D7B00(s32);                                                       /* extern */
+M2C_UNK fn_8013F3A4(void*);                                                 /* extern */
+void* fn_8013F484(s32);                                                     /* extern */
+M2C_UNK fn_8013FC30(void*);                                                 /* extern */
+M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);                   /* extern */
+void* fn_80150588(s32, s32);                                                /* extern */
+M2C_UNK fn_80150958(void*);                                                 /* extern */
+M2C_UNK fn_8015BB08(s32, void*);                                            /* extern */
+M2C_UNK fn_8015BBF8(s32, void*);                                            /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);                      /* extern */
+M2C_UNK fn_8019E880(s32);                                                   /* extern */
+M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);                     /* extern */
+M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                                    /* extern */
+M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                                    /* extern */
+M2C_UNK fn_801A4C84(u32);                                                   /* extern */
+M2C_UNK fn_8020C2D8(void*, u32);                                            /* extern */
+M2C_UNK fn_8020C72C(void**, s32, s32);                                      /* extern */
+M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                                 /* extern */
+M2C_UNK fn_8020D02C(void**, M2C_UNK*, f32);                                 /* extern */
+M2C_UNK fn_80226440(void*, s32);                                            /* extern */
+u32 fn_80226468(s32);                                                       /* extern */
+M2C_UNK fn_8_C5C1C(s32);                                                    /* extern */
+void fn_8_C606C(TObject* arg0, ...);                                        /* static */
+TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1);                          /* static */
+void* fn_8_C7014(void* arg0, s32 arg1);                                     /* static */
+s32 fn_8_C70C4(s32 arg0, void** arg1);                                      /* static */
+void grassObjectCreate();                                                   /* static */
+void grassObjectLoad(M2C_UNK arg_sp0);                                      /* static */
+void grassObjectLoad(M2C_UNK arg_sp0);                                      /* static */
+void grassObjectUnload(M2C_UNK arg_sp0);                                    /* static */
 extern M2C_UNK lbl_80239984;
 extern M2C_UNK lbl_80239990;
 extern M2C_UNK lbl_802FF5A0;
@@ -585,7 +585,7 @@ void fn_8_C63A0(TObject* arg0)
 	arg0->unk9C = arg0->unkC4;
 	arg0->unkA0 = arg0->unkC8;
 	arg0->unkA4 = arg0->unkCC;
-	fn_8003BC38(&arg0->unk30);
+	Entry__7C_COLLIFv(&arg0->unk30);
 }
 
 void fn_8_C6964(void* arg0)
@@ -679,7 +679,7 @@ TObject* fn_8_C6B84(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 			var_r26_2 = (TObject*)((u8*)var_r26_2 + 4);
 			var_r27_2 += 1;
 		} while (var_r27_2 < 3);
-		dtor_8003C52C((u8*)arg0 + 0x30, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x30, 0);
 		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
@@ -709,7 +709,7 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	__ct__10TObjSetObjFv(&arg0->unk28);
-	fn_8003C618(&arg0->unk30);
+	__ct__7C_COLLIFv(&arg0->unk30);
 	arg0->unk18 = &lbl_8_data_18A58;
 	arg0->unk2C = (u8*)&lbl_8_data_18A58 + 0x2C;
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_18A54;
@@ -775,7 +775,7 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 		var_r27_2 += 4;
 		var_r28 += 1;
 	} while (var_r28 < 3);
-	fn_8003C200(&arg0->unk30, (int*)lbl_8_data_18A18, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk30, (int*)lbl_8_data_18A18, 1, 4);
 	M2C_FIELD(arg0->unk40, f32*, 0x14)
 	    = (f32)(M2C_FIELD(lbl_8_data_18A18, f32*, 0x14) * arg0->unkD0);
 	M2C_FIELD(arg0->unk40, f32*, 0xC) = (f32)(M2C_FIELD(lbl_8_data_18A18, f32*, 0xC) * arg0->unkD0);

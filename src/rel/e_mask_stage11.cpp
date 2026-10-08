@@ -157,12 +157,12 @@ extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8003C52C(void*, s16);
+void __dt__7C_COLLIFv(void*, s16);
 void __dt__10TObjSetObjFv(void*, s16);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
-void fn_8003C618(void*);
+void __ct__7C_COLLIFv(void*);
 void fn_8005D5C8(RpClump*, u32);
 void fn_800B4A38(void*, s32, Vec3*, s32, s32, s32, s32);
 void* fn_800BB0D4(void*, s32, void*);
@@ -387,7 +387,7 @@ extern "C" TObjMask* __ct__8TObjMaskFP7TObject(TObjMask* self, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv(MOTION(self));
-	fn_8003C618(&self->collision);
+	__ct__7C_COLLIFv(&self->collision);
 	*(void***)((u8*)self + 0x18) = __vt__8TObjMask;
 	*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
 	self->className              = CL_TObjMask;
@@ -423,7 +423,7 @@ extern "C" TObjMask* __dt__8TObjMaskFv(TObjMask* self, s16 flags)
 		*(void***)((u8*)self + 0x18) = __vt__8TObjMask;
 		*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
 		self->DestroyClump();
-		dtor_8003C52C(&self->collision, 0);
+		__dt__7C_COLLIFv(&self->collision, 0);
 		__dt__10TObjSetObjFv(MOTION(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {

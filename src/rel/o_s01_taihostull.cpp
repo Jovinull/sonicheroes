@@ -81,7 +81,7 @@ extern void* lbl_80239990;
 void fn_80150958(void*);
 void* __ct__7TObjectFP7TObject(void*, void*);
 void __ct__10TObjSetObjFv(void*);
-void fn_8003C618(void*);
+void __ct__7C_COLLIFv(void*);
 void* fn_80150588(void*);
 extern void* lbl_8042C1D0;
 void fn_8015BB08(void*, void*);
@@ -101,9 +101,9 @@ extern void* lbl_8042C110;
 int CheckRangeOut__10TObjSetObjFv(void*);
 int CheckMustKill__10TObjSetObjFv(void*);
 int OnEdit__10TObjSetObjFv(void*);
-void fn_8003C200(void*, void*, s32, s32);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
 void fn_80021384(void*);
-void fn_8003BC38(void*);
+void Entry__7C_COLLIFv(void*);
 extern void* lbl_8042C180;
 extern void* lbl_802D5E80;
 extern void* lbl_8042C148;
@@ -113,7 +113,7 @@ void fn_800B85D8(void*);
 void fn_8005CE4C(void*);
 void* fn_8015BD78(void*);
 void fn_8015BBF8(void*, void*);
-void dtor_8003C52C(void*, s32);
+void __dt__7C_COLLIFv(void*, s32);
 void __dt__10TObjSetObjFv(void*, s32);
 void __dt__7TObjectFv(void*, s32);
 void Free__9THeapCtrlFPv(void*, void*);
@@ -196,7 +196,7 @@ extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 	} else {
 		if (*(void**)((u8*)object + 0x40) == NULL && stullClump != NULL
 		    && *(void**)((u8*)stullClump + 0x28) != NULL) {
-			fn_8003C200(object->collision, *(void**)((u8*)stullClump + 0x28),
+			Init__7C_COLLIFP8CCL_INFOiUc(object->collision, *(void**)((u8*)stullClump + 0x28),
 			    *(s8*)((u8*)stullClump + 0x2C), 4);
 			*(u16*)((u8*)object + 0x38) &= ~0x40;
 			for (s8 i = 0; i < *(s8*)((u8*)stullClump + 0x2C); i++) {
@@ -218,7 +218,7 @@ extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 		*(u32*)((u8*)object + 0x9C) = *(u32*)(frame + 0x0C);
 		*(u32*)((u8*)object + 0xA0) = *(u32*)(frame + 0x10);
 		*(u32*)((u8*)object + 0xA4) = *(u32*)(frame + 0x14);
-		fn_8003BC38(object->collision);
+		Entry__7C_COLLIFv(object->collision);
 	}
 }
 extern "C" TObjS01Stull* __dt__12TObjS01StullFv(TObjS01Stull* object, s16 flags)
@@ -233,7 +233,7 @@ extern "C" TObjS01Stull* __dt__12TObjS01StullFv(TObjS01Stull* object, s16 flags)
 			fn_80150958(object->resource);
 			object->resource = NULL;
 		}
-		dtor_8003C52C(object->collision, 0);
+		__dt__7C_COLLIFv(object->collision, 0);
 		__dt__10TObjSetObjFv(object->motion, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
@@ -245,7 +245,7 @@ TObjS01Stull::TObjS01Stull(TObject* parent)
     : TObject(parent)
 {
 	__ct__10TObjSetObjFv(motion);
-	fn_8003C618(collision);
+	__ct__7C_COLLIFv(collision);
 	vtable                    = stullVtable;
 	*(void***)(motion + 4)    = stullVtable + 11;
 	f32* params               = *(f32**)(*(u8**)motion + 0x2C);
