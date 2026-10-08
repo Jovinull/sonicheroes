@@ -297,6 +297,16 @@ game/hAnim.cpp:
 	.sbss       start:0x8042C3D0 end:0x8042C3D8
 	.sdata2     start:0x8042DDB0 end:0x8042DDC8
 
+game/effect/eff_bomb.cpp:
+	extab       start:0x80008348 end:0x800083B8
+	extabindex  start:0x8000EA7C end:0x8000EAD0
+	.text       start:0x800BD1E8 end:0x800BDF30
+	.data       start:0x80253C30 end:0x80253CC0
+	.bss        start:0x803041E0 end:0x80304228
+	.sdata      start:0x8042B3A8 end:0x8042B3B8
+	.sbss       start:0x8042C3D8 end:0x8042C3E8
+	.sdata2     start:0x8042DDC8 end:0x8042DE28
+
 game/perf.cpp:
 	extab       start:0x800089A0 end:0x800089C8
 	extabindex  start:0x8000EFEC end:0x8000F028

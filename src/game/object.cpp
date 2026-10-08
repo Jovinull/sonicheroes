@@ -71,8 +71,8 @@ void fn_800F6FDC(void);
 void fn_800F45A8(void);
 void EndEffMuteki__Fv(void);
 void fn_800C968C(void);
-void fn_800BDD5C(void);
-void fn_800BDDA0(void);
+void EndEffBomb__Fv(void);
+void InitEffBomb__Fv(void);
 void fn_800C9894(void);
 void InitEffMuteki__Fv(void);
 void fn_800F45C8(void);
@@ -530,7 +530,7 @@ void objLoadCommonObjectTextures(void)
 	} else
 		memset(lbl_802FF5E0, 0, 0x4400);
 	InitEffTornado__Fv();
-	fn_800BDDA0();
+	InitEffBomb__Fv();
 	fn_800C9894();
 	InitEffMuteki__Fv();
 	fn_800F45C8();
@@ -559,7 +559,7 @@ void objReleaseCommonObjectTextures(void)
 	fn_800F45A8();
 	EndEffMuteki__Fv();
 	fn_800C968C();
-	fn_800BDD5C();
+	EndEffBomb__Fv();
 	EndEffTornado__Fv();
 	for (s32 i = 0; i < 0x100; i++) {
 		char* extension = strchr(lbl_802FF5E0[i].name, '.');

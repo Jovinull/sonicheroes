@@ -71,29 +71,30 @@ public:
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(void*, void*);                                      /* extern */
-M2C_UNK __dl__FPv(void*);                                                          /* extern */
-void* __dt__7TObjectFv(void*, s32);                                                /* extern */
-f64 asin(f32);                                                                     /* extern */
-double atan2(double, double);                                                      /* extern */
-M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                          /* extern */
-s32 fn_80017800(void*);                                                            /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                        /* extern */
-TObject* Malloc__9THeapCtrlFUi(...);                                               /* extern */
-void* fn_800211A8(void*);                                                          /* extern */
-void fn_80021824(void*);                                                           /* extern */
-M2C_UNK fn_8003BC38(void*);                                                        /* extern */
-M2C_UNK ClearInfo__7C_COLLIFv(void*);                                              /* extern */
-M2C_UNK fn_8003C200(...);                                                          /* extern */
-M2C_UNK __ct__7C_COLLIFv(...);                                                     /* extern */
-void* __nw__FUl(u32);                                                              /* extern */
-u32 objPointerReadFromClumpAnim__FPc(s32*);                                        /* extern */
-M2C_UNK fn_8005FC74(s32*, s32*);                                                   /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                                                   /* extern */
-s32 fn_800A3ED4(void*);                                                            /* extern */
-M2C_UNK GetPointDataOnPath__FP7PATHTAGiP5RwV3d(void*, s32, s32*);                  /* extern */
-M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32);                    /* extern */
-M2C_UNK fn_800BDEA0(s32, u8*, s32, s32, s32);                                      /* extern */
+void* __ct__7TObjectFP7TObject(void*, void*);                     /* extern */
+M2C_UNK __dl__FPv(void*);                                         /* extern */
+void* __dt__7TObjectFv(void*, s32);                               /* extern */
+f64 asin(f32);                                                    /* extern */
+double atan2(double, double);                                     /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                         /* extern */
+s32 fn_80017800(void*);                                           /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                       /* extern */
+TObject* Malloc__9THeapCtrlFUi(...);                              /* extern */
+void* fn_800211A8(void*);                                         /* extern */
+void fn_80021824(void*);                                          /* extern */
+M2C_UNK fn_8003BC38(void*);                                       /* extern */
+M2C_UNK ClearInfo__7C_COLLIFv(void*);                             /* extern */
+M2C_UNK fn_8003C200(...);                                         /* extern */
+M2C_UNK __ct__7C_COLLIFv(...);                                    /* extern */
+void* __nw__FUl(u32);                                             /* extern */
+u32 objPointerReadFromClumpAnim__FPc(s32*);                       /* extern */
+M2C_UNK fn_8005FC74(s32*, s32*);                                  /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                  /* extern */
+s32 fn_800A3ED4(void*);                                           /* extern */
+M2C_UNK GetPointDataOnPath__FP7PATHTAGiP5RwV3d(void*, s32, s32*); /* extern */
+M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32);   /* extern */
+M2C_UNK SetEffectBomb__FP7TObjectP5RwV3dP6sAngle18ENUM_EFF_BOMB_TYPEi(
+    s32, u8*, s32, s32, s32);                                                      /* extern */
 M2C_UNK AdjustPoint__FP5RwV3dPC5RwV3df(void*, s32, void*, s32);                    /* extern */
 f32 Distance2P2P__FPC5RwV3dPC5RwV3d(s32*, s32*);                                   /* extern */
 s32 AdjustAngle__Fiii(s32, s32, s32);                                              /* extern */
@@ -330,7 +331,7 @@ void fn_8_A82A8(void* arg0)
 
 void fn_8_A8334(void* arg0)
 {
-	fn_800BDEA0(0, (u8*)arg0 + 0xB0, 0, 1, -1);
+	SetEffectBomb__FP7TObjectP5RwV3dP6sAngle18ENUM_EFF_BOMB_TYPEi(0, (u8*)arg0 + 0xB0, 0, 1, -1);
 	M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 }
 
@@ -459,7 +460,8 @@ void fn_8_A8590(void* arg0)
 			}
 			break;
 		case 2:
-			fn_800BDEA0(0, (u8*)arg0 + 0xB0, 0, 1, -1);
+			SetEffectBomb__FP7TObjectP5RwV3dP6sAngle18ENUM_EFF_BOMB_TYPEi(
+			    0, (u8*)arg0 + 0xB0, 0, 1, -1);
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			break;
 	}
@@ -648,7 +650,7 @@ void fn_8_A8E0C(void* arg0)
 
 void fn_8_A8F7C(void* arg0)
 {
-	fn_800BDEA0(0, (u8*)arg0 + 0xB0, 0, 1, -1);
+	SetEffectBomb__FP7TObjectP5RwV3dP6sAngle18ENUM_EFF_BOMB_TYPEi(0, (u8*)arg0 + 0xB0, 0, 1, -1);
 	M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 }
 
@@ -975,7 +977,8 @@ void fn_8_A9874(void* arg0)
 			fn_8_A945C(arg0);
 			break;
 		case 2:
-			fn_800BDEA0(0, (u8*)arg0 + 0xB0, 0, 1, -1);
+			SetEffectBomb__FP7TObjectP5RwV3dP6sAngle18ENUM_EFF_BOMB_TYPEi(
+			    0, (u8*)arg0 + 0xB0, 0, 1, -1);
 			M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			break;
 	}

@@ -2602,3 +2602,18 @@ normalizer or PS2 instructions are used. Independent final ELF/map review
 verifies all owned bytes and accounts for unused helpers and exception records.
 All eighteen supported output hashes and 62 tests pass. The complete unit is
 enabled as Matching; see `e-shockwave-unit-evidence.md`.
+
+
+## effect/eff_bomb.cpp
+
+Positive symbolic metadata identifies the complete bomb-effect translation unit
+as C++ with eleven file-origin definitions. GameCube code confirms the
+0x100-byte TObject/C_COLLI-derived class, nine surviving functions, and owned
+storage. Two ordinary methods inline into their callers; the local atomic
+render callback retains its one-argument signature. GameCube effect value four
+is labeled provisionally because its original name is unknown. No PS2
+instructions were inspected. Eight bodies match directly; the constructor has
+a documented eight-register-field permutation across six instructions. All owned
+sections and 209 relocations match after this compiler-output normalization;
+all eighteen supported output hashes and 77 tests pass. See
+`eff-bomb-unit-evidence.md` for the remaining allocation gap and path out.
