@@ -293,6 +293,9 @@ rel/item_box_assets.cpp:
 rel/itembaloon_object_dtor.cpp:
 	.text       start:0x0003CDB0 end:0x0003CE58
 
+rel/itembaloon_create.cpp:
+	.text       start:0x0003D0B8 end:0x0003D244
+
 rel/itembaloon_register.cpp:
 	.text       start:0x0003D244 end:0x0003D390
 	.ctors      start:0x00000068 end:0x0000006C

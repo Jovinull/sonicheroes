@@ -79,6 +79,7 @@ public:
 	~C_COLLI();
 	void ClearInfo();
 	void Init(CCL_INFO*, int, u8);
+	void CalcRange();
 	u16 id;
 	s16 nbHit, strength, vitality;
 	u16 flag, nbInfo;

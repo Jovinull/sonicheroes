@@ -71,13 +71,13 @@ typedef struct ItembaloonObject {
 } ItembaloonObject; // 0xF4
 
 // Defined by each module, renamed to this name in its own symbols.txt.
-extern "C" void* itembaloonObjectVtable[];
+extern "C" void* __vt__14TObjItembaloon[];
 
 extern "C" ItembaloonObject* itembaloonObjectDtor(ItembaloonObject* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = itembaloonObjectVtable;
-		object->motion.vtable = itembaloonObjectVtable + 0xB;
+		object->base.vtable   = __vt__14TObjItembaloon;
+		object->motion.vtable = __vt__14TObjItembaloon + 0xB;
 
 		fn_80150958(object->model);
 		object->model = NULL;
