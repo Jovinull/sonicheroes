@@ -116,7 +116,7 @@ RENAMES = {
     "Initialize__9TMainTaskFv": "fn_80016E88",
     "__dt__9TMainTaskFv": "fn_8001766C",
     "CheckAlive__7TObjectFv": "fn_80017800",
-    "GetChildCount__7TObjectFv": "fn_80017830",
+    "GetChildCount__7TObjectFv": "GetChildCount__7TObjectFv",
     "ImmAftSetRasterChild__7TObjectFv": "fn_80017878",
     "TDispChild__7TObjectFv": "fn_80017AEC",
     "PDispChild__7TObjectFv": "fn_80017DF0",

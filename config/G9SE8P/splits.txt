@@ -395,6 +395,16 @@ game/texture.cpp:
 	extabindex  start:0x8000F3D0 end:0x8000F3DC
 	.text       start:0x800D8B48 end:0x800D8BC4
 
+game/effect/eff_rocketaxel.cpp:
+	extab       start:0x80008FE8 end:0x80009140
+	extabindex  start:0x8000F8BC end:0x8000F97C
+	.text       start:0x800F3134 end:0x800F46B0
+	.rodata     start:0x8023A640 end:0x8023A680
+	.data       start:0x80259AD8 end:0x80259C08
+	.sdata      start:0x8042B6D0 end:0x8042B6E0
+	.sbss       start:0x8042C4A8 end:0x8042C4C0
+	.sdata2     start:0x8042E490 end:0x8042E4E0
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C
