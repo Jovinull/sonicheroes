@@ -111,9 +111,9 @@ f64 __fabs(f64);
 extern void* lbl_8042C180;
 extern void* lbl_8042C388;
 extern void** lbl_8042C9A4;
-extern u8 lbl_80239978[];
-extern u8 lbl_80239984[];
-extern u8 lbl_80239990[];
+extern u8 AxisX[];
+extern u8 AxisY[];
+extern u8 AxisZ[];
 extern u8 lbl_80288C24[];
 }
 
@@ -272,9 +272,9 @@ void TEnemyParalysis::Exec()
 	if (enabled != 0 && effect != NULL && state == 1) {
 		void* frame = *(void**)((u8*)effect + 4);
 		fn_8019EC30(frame, &offset, 0);
-		fn_8019ED68(frame, lbl_80239990, lbl_8042E9A0 * angle.z, 2);
-		fn_8019ED68(frame, lbl_80239978, lbl_8042E9A0 * angle.x, 2);
-		fn_8019ED68(frame, lbl_80239984, lbl_8042E9A0 * angle.y, 2);
+		fn_8019ED68(frame, AxisZ, lbl_8042E9A0 * angle.z, 2);
+		fn_8019ED68(frame, AxisX, lbl_8042E9A0 * angle.x, 2);
+		fn_8019ED68(frame, AxisY, lbl_8042E9A0 * angle.y, 2);
 		fn_8019EB94(frame, &position, 2);
 		++this->frame;
 		if (this->frame > 8)

@@ -41,9 +41,9 @@ extern float lbl_8_rodata_D04;
 extern float lbl_8_rodata_D08;
 extern float lbl_8_rodata_D0C;
 extern float lbl_8_rodata_D10;
-extern char lbl_80239978[];
-extern char lbl_80239984[];
-extern char lbl_80239990[];
+extern char AxisX[];
+extern char AxisY[];
+extern char AxisZ[];
 
 void* fn_80018A34(void*, u32);
 void* fn_80057644(u32);
@@ -375,7 +375,7 @@ static void drawGoalRingModel(void* self)
 	if (resource == NULL)
 		return;
 	void* model = field<void*>(resource, 4);
-	fn_8019ED68(field<float>(self, 0xDC), model, lbl_80239984, 0);
+	fn_8019ED68(field<float>(self, 0xDC), model, AxisY, 0);
 	Vec3 scale = { field<float>(self, 0xD8), lbl_8_rodata_CF0, field<float>(self, 0xD8) };
 	fn_8019EC30(model, &scale, 2);
 	fn_8019EB94(model, (u8*)self + 0xBC, 2);

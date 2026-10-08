@@ -4,7 +4,7 @@ extern "C" {
 extern void* lbl_8042C110;
 extern void* lbl_8042C118;
 extern void* lbl_8042C148;
-extern void* lbl_8042C178;
+extern void* pCurrentMatrix;
 extern u8 lbl_802D5E80[];
 extern void* lbl_802AD070[];
 extern void* lbl_8_bss_D38;

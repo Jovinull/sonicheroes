@@ -1210,3 +1210,51 @@ depend on emission order keep the default CRI flags.
 - `game/cri/adx_sje.c`: the ADX encoder (ADXSJE), sixteen functions,
   `-inline deferred`. The older 8.84 encoder has no CINF chunk and inlines
   the header writer, which is why `adxsje_output_header` is 0x13E8 bytes.
+
+
+### Complete matrix.cpp reconstruction (2026-10-06)
+
+A local PS2 `SLES_519.50` DWARF query with `stdump` identifies `matrix.cpp`
+as `C_PLUS_PLUS`, with the sixteen functions from `ProjectScreen` through
+`InitMatrix`, `pCurrentMatrix`, `MatrixStack[64]`, and `AxisX/Y/Z`. The
+GameCube independently has the same ordered API at `0x8001EED8–0x8001F4E8`:
+point/vector transformations and matrix inversion call the corresponding
+RenderWare operations, the three rotations use their own axis vectors, and
+the stack operations advance or retreat by the 64-byte matrix size. Shared
+stack storage and constants establish the enclosing unit; the exception
+records corroborate function ranges rather than proving the file boundary.
+
+The unit is native C++ with recovered C++ function linkage. Existing callers
+retain their ABI and use the recovered linker names; the signal lifecycle
+postprocessor's three axis relocation names receive the same mechanical
+rename. Its transformation logic and instruction hashes are unchanged.
+The canonical API and matrix/vector layouts are declared in
+`include/game/matrix.h`. Camera field names in this unit are descriptive;
+only the GameCube-accessed offsets are represented. Original statement
+spelling and the identity-assignment expansion are reconstruction inferences.
+
+The 4-byte tails after `AxisZ` and `pCurrentMatrix` are linker alignment,
+not members of those objects. No padding object, assembly implementation,
+new global compiler override, or matrix postprocessor is used. The compiler uses
+the established game release settings with exceptions on and scheduling/
+peephole optimization off; ordinary auto inlining suffices.
+
+Verification against upstream `ba1a6be`:
+
+- All 16 functions and all seven allocated sections report 100% in objdiff:
+  1,552 code bytes and 4,312 data bytes including exception metadata and BSS.
+- Independent ELF comparison confirms section bytes, types, sizes and
+  alignments, 21 named global exports and all 104 normalized relocations.
+  The compiler marks `.sdata2` writable while the reconstructed target
+  metadata marks it read-only; this conventional object flag difference
+  does not change any bytes or the final link. This is not a claim of
+  byte-identical ELF files. Compiler-generated constant labels also differ.
+- G9SE8P release `all_source`, full link, progress and report generation pass;
+  all eighteen DOL/REL hashes match. PAL and Japanese releases are not
+  configured targets, and PS2 is an evidence source only.
+- All 54 checker tests and both language/postprocessor policy checks pass.
+  Every retained unit preserves matched code, data and function counts.
+  The raw report comparison flags vacuous percentages on two deleted
+  anonymous fragment entries; their contents are now in the complete unit.
+
+This establishes source and binary matching, not runtime or hardware validation.

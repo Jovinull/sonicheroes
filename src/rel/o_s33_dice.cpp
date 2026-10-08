@@ -47,9 +47,9 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 
-extern u8 lbl_80239978;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisX;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
@@ -137,19 +137,19 @@ static inline void setDiceModelPosition(TObjS33Dice* object, void* model)
 	f32 sine    = fn_800D7B00(object->angleZ);
 	f32 cosine  = fn_800D7AE4(object->angleZ);
 	f32 inverse = diceOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239990, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisZ, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(object->angleX);
 	cosine  = fn_800D7AE4(object->angleX);
 	inverse = diceOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239978, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisX, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(object->angleY + object->rotation);
 	cosine  = fn_800D7AE4(object->angleY + object->rotation);
 	inverse = diceOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, inverse, sine, 1);
 	fn_8019E880(atomic);
 }
 

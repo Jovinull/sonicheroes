@@ -118,8 +118,8 @@ void grassObjectCreate();                                       /* static */
 void grassObjectLoad(M2C_UNK arg_sp0);                          /* static */
 void grassObjectLoad(M2C_UNK arg_sp0);                          /* static */
 void grassObjectUnload(M2C_UNK arg_sp0);                        /* static */
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802FF5A0;
 extern TObject* lbl_8042C110;
 extern s32 lbl_8042C148;
@@ -197,11 +197,11 @@ static struct _struct_lbl_8_data_18978_0x14 lbl_8_data_18978[2] = { { 0U }, { 0U
 static char lbl_8_data_189A0[]                                  = "type      : light";
 static M2C_UNK gap_04_000189B2_data; /* unable to generate initializer: unknown type */
 static char lbl_8_data_189B4[] = "direction : up";
-static M2C_UNK gap_04_000189C3_data;  /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_189C4;      /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000189D3_data;  /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000189C3_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_189C4;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_000189D3_data; /* unable to generate initializer: unknown type */
 static M2C_UNK grassObjectFieldNames[2] = { 0, 0 };
-static char lbl_8_data_189E0[] = "type      : dark";
+static char lbl_8_data_189E0[]          = "type      : dark";
 static M2C_UNK gap_04_000189F1_data; /* unable to generate initializer: unknown type */
 static const char* lbl_8_data_189F4[2] = { lbl_8_data_189A0, lbl_8_data_189E0 };
 static char lbl_8_data_189FC[]         = "direction : down";
@@ -535,13 +535,13 @@ void fn_8_C63A0(TObject* arg0)
 			temp_r28 = M2C_FIELD(var_r27_5->unkDC, s32*, 4);
 			fn_8019EB94(temp_r28, &arg0->unkB8, 0);
 			temp_f30 = fn_800D7B00(arg0->unkC8);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239984,
-			    lbl_8_rodata_1F64[0] - fn_800D7AE4(arg0->unkC8), temp_f30, 1);
+			fn_80195790(temp_r28 + 0x10, &AxisY, lbl_8_rodata_1F64[0] - fn_800D7AE4(arg0->unkC8),
+			    temp_f30, 1);
 			fn_8019E880(temp_r28);
 			if ((s32)arg0->unkD4 == 1) {
 				temp_f30_2 = fn_800D7B00(0x8000);
-				fn_80195790(temp_r28 + 0x10, &lbl_80239990,
-				    lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000), temp_f30_2, 1);
+				fn_80195790(temp_r28 + 0x10, &AxisZ, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000),
+				    temp_f30_2, 1);
 				fn_8019E880(temp_r28);
 			}
 			fn_8019EC30(temp_r28, sp8, 1);
@@ -554,13 +554,13 @@ void fn_8_C63A0(TObject* arg0)
 			temp_r28_2 = M2C_FIELD(var_r27_6->unkF0, s32*, 4);
 			fn_8019EB94(temp_r28_2, &arg0->unkB8, 0);
 			temp_f31_3 = fn_800D7B00(arg0->unkC8);
-			fn_80195790(temp_r28_2 + 0x10, &lbl_80239984,
-			    lbl_8_rodata_1F64[0] - fn_800D7AE4(arg0->unkC8), temp_f31_3, 1);
+			fn_80195790(temp_r28_2 + 0x10, &AxisY, lbl_8_rodata_1F64[0] - fn_800D7AE4(arg0->unkC8),
+			    temp_f31_3, 1);
 			fn_8019E880(temp_r28_2);
 			if ((s32)arg0->unkD4 == 1) {
 				temp_f31_4 = fn_800D7B00(0x8000);
-				fn_80195790(temp_r28_2 + 0x10, &lbl_80239990,
-				    lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000), temp_f31_4, 1);
+				fn_80195790(temp_r28_2 + 0x10, &AxisZ, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000),
+				    temp_f31_4, 1);
 				fn_8019E880(temp_r28_2);
 			}
 			fn_8019EC30(temp_r28_2, sp8, 1);
@@ -612,13 +612,13 @@ void fn_8_C6964(void* arg0)
 		temp_r27 = M2C_FIELD(M2C_FIELD(var_r29, void**, 0xDC), s32*, 4);
 		fn_8019EB94(temp_r27, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r27 + 0x10, &lbl_80239984,
+		fn_80195790(temp_r27 + 0x10, &AxisY,
 		    lbl_8_rodata_1F64[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30, 1);
 		fn_8019E880(temp_r27);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 			temp_f30_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r27 + 0x10, &lbl_80239990, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000),
-			    temp_f30_2, 1);
+			fn_80195790(
+			    temp_r27 + 0x10, &AxisZ, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000), temp_f30_2, 1);
 			fn_8019E880(temp_r27);
 		}
 		fn_8019EC30(temp_r27, sp8, 1);
@@ -631,13 +631,13 @@ void fn_8_C6964(void* arg0)
 		temp_r28 = M2C_FIELD(M2C_FIELD(var_r29_2, void**, 0xF0), s32*, 4);
 		fn_8019EB94(temp_r28, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+		fn_80195790(temp_r28 + 0x10, &AxisY,
 		    lbl_8_rodata_1F64[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
 		fn_8019E880(temp_r28);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239990, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000),
-			    temp_f31_2, 1);
+			fn_80195790(
+			    temp_r28 + 0x10, &AxisZ, lbl_8_rodata_1F64[0] - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r28);
 		}
 		fn_8019EC30(temp_r28, sp8, 1);
@@ -746,11 +746,11 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 		temp_r28 = M2C_FIELD(M2C_FIELD(arg0, void**, var_r27 + 0xDC), s32*, 4);
 		fn_8019EB94(temp_r28, &arg0->unkB8, 0);
 		temp_f30 = fn_800D7B00(arg0->unkC8);
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f30, 1);
+		fn_80195790(temp_r28 + 0x10, &AxisY, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f30, 1);
 		fn_8019E880(temp_r28);
 		if ((s32)arg0->unkD4 == 1) {
 			temp_f30_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f30_2, 1);
+			fn_80195790(temp_r28 + 0x10, &AxisZ, 1.0f - fn_800D7AE4(0x8000), temp_f30_2, 1);
 			fn_8019E880(temp_r28);
 		}
 		fn_8019EC30(temp_r28, sp8, 1);
@@ -763,11 +763,11 @@ TObject* fn_8_C6CAC(TObject* arg0, TObject* arg1)
 		temp_r29 = M2C_FIELD(M2C_FIELD(arg0, void**, var_r27_2 + 0xF0), s32*, 4);
 		fn_8019EB94(temp_r29, &arg0->unkB8, 0);
 		temp_f31 = fn_800D7B00(arg0->unkC8);
-		fn_80195790(temp_r29 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
+		fn_80195790(temp_r29 + 0x10, &AxisY, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
 		fn_8019E880(temp_r29);
 		if ((s32)arg0->unkD4 == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r29 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
+			fn_80195790(temp_r29 + 0x10, &AxisZ, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r29);
 		}
 		fn_8019EC30(temp_r29, sp8, 1);

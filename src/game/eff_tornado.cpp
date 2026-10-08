@@ -59,8 +59,8 @@
 //   which costs three more instructions; declaring the three loops' pointers
 //   inside their blocks instead of sharing the outer declarations, same three;
 //   every permutation tried of the eight assignments that open the first loop;
-//   dropping the firstAxis and secondAxis locals and passing &lbl_80239978 and
-//   &lbl_80239984 straight to the call, which changes nothing because the
+//   dropping the firstAxis and secondAxis locals and passing &AxisX and
+//   &AxisY straight to the call, which changes nothing because the
 //   address is loop-invariant and gets hoisted back into a register anyway; and
 //   ten optimiser pragmas layered on top of opt_common_subs off -- lifetimes,
 //   dead_assignments, loop_invariants, strength_reduction, unroll_loops,
@@ -323,8 +323,8 @@ extern u8 lbl_8029C310[];
 extern u8 lbl_802D5E80[];
 extern void* lbl_802AD070[];
 extern u8 lbl_8042C1A4;
-extern RwV3d lbl_80239978;
-extern RwV3d lbl_80239984;
+extern RwV3d AxisX;
+extern RwV3d AxisY;
 extern void* lbl_802535F0[];
 extern RwV3d lbl_8025337C[];
 extern RwV3d lbl_802533DC[];
@@ -803,7 +803,7 @@ void TObjEffTornado2::TDisp()
 		s32 angle         = (s32)(lbl_8042DBC4 * this->scale);
 		f32 sine          = fn_800D7B00(angle);
 		f32 inverseCosine = lbl_8042DBC0 - fn_800D7AE4((s32)(lbl_8042DBC4 * this->scale));
-		fn_80195790((u8*)frameObject + 0x10, &lbl_80239984, inverseCosine, sine, 2);
+		fn_80195790((u8*)frameObject + 0x10, &AxisY, inverseCosine, sine, 2);
 		fn_8019E880(frameObject);
 		fn_8019EB94(frameObject, &position, 2);
 		fn_8014FF2C(model);
@@ -827,7 +827,7 @@ void TObjEffTornado2::TDisp()
 		s32 angle         = (s32)(lbl_8042DBC4 * this->scale);
 		f32 sine          = fn_800D7B00(angle);
 		f32 inverseCosine = lbl_8042DBC0 - fn_800D7AE4((s32)(lbl_8042DBC4 * this->scale));
-		fn_80195790((u8*)frameObject + 0x10, &lbl_80239984, inverseCosine, sine, 2);
+		fn_80195790((u8*)frameObject + 0x10, &AxisY, inverseCosine, sine, 2);
 		fn_8019E880(frameObject);
 		f32 height = lbl_8042DBC8 * (lbl_8042DBC0 - this->verticalScale);
 		position.y = position.y + height;
@@ -1057,7 +1057,7 @@ extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 	fn_8019EC30(frame, &effect->position, 0);
 	f32 sine   = fn_800D7B00(effect->angle);
 	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(effect->angle);
-	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+	fn_80195790((u8*)frame + 0x10, &AxisY, cosine, sine, 2);
 	fn_8019E880(frame);
 	fn_8019EB94(frame, &effect->direction, 2);
 }
@@ -1103,7 +1103,7 @@ TObjEffTornadoSpin::TObjEffTornadoSpin(
 	fn_8019EC30(frame, &result->position, 0);
 	f32 sine   = fn_800D7B00(result->angle);
 	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(result->angle);
-	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+	fn_80195790((u8*)frame + 0x10, &AxisY, cosine, sine, 2);
 	fn_8019E880(frame);
 	fn_8019EB94(frame, &result->direction, 2);
 }
@@ -1246,10 +1246,10 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		positions       = lbl_8025337C;
 		directions      = lbl_802533DC;
 		rotations       = lbl_8025343C;
-		firstAxis.value = &lbl_80239978;
+		firstAxis.value = &AxisX;
 		f32 one         = lbl_8042DBC0;
 		angleOffsets    = lbl_8025347C;
-		secondAxis      = &lbl_80239984;
+		secondAxis      = &AxisY;
 		f32 sine;
 		f32 increment = lbl_8042DC24;
 		f32 limit     = lbl_8042DBB8;
@@ -1286,10 +1286,10 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		positions       = lbl_8025337C;
 		directions      = lbl_802533DC;
 		rotations       = lbl_8025343C;
-		firstAxis.value = &lbl_80239978;
+		firstAxis.value = &AxisX;
 		f32 one         = lbl_8042DBC0;
 		angleOffsets    = lbl_8025347C;
-		secondAxis      = &lbl_80239984;
+		secondAxis      = &AxisY;
 		f32 sine;
 		f32 limit;
 		f32 increment = lbl_8042DC24;
@@ -1327,7 +1327,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		positions       = lbl_8025337C;
 		directions      = lbl_802533DC;
 		rotations       = lbl_8025343C;
-		firstAxis.value = &lbl_80239978;
+		firstAxis.value = &AxisX;
 		f32 sine;
 		f32 one      = lbl_8042DBC0;
 		angleOffsets = lbl_8025347C;
@@ -1346,7 +1346,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			vectorOffset = tableIndex * sizeof(s32);
 			sine         = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
 			f32 cosine   = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
-			fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+			fn_80195790((u8*)frame + 0x10, &AxisY, cosine, sine, 2);
 			RwV3d position = effect->position;
 			position.y += height;
 			fn_8019EB94(frame, &position, 2);

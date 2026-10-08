@@ -116,9 +116,9 @@ s32 fn_8_B63E4(void* arg0);
 void rinoColObjectCreate(); /* static */
 void rinoColObjectLoad();   /* static */
 void rinoColObjectUnload(); /* static */
-extern M2C_UNK lbl_80239978;
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+extern M2C_UNK AxisX;
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_8029C310;
 extern M2C_UNK lbl_802AD090;
 extern TObject* lbl_8042C10C;
@@ -143,19 +143,19 @@ static u32 lbl_8_data_17100[12] = { 0x0000F000, 0x00708000, 0x00000000, 0x000000
 static M2C_UNK lbl_8_data_17130;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001713B_data; /* unable to generate initializer: unknown type */
 static char lbl_8_data_1713C[] = "SPEED CTRL";
-static M2C_UNK gap_04_00017147_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17148;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00017153_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17154;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001715B_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_1715C;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00017165_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17168;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00017171_data;    /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_17174;        /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001717D_data;    /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017147_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17148;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017153_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17154;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_0001715B_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_1715C;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017165_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17168;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_00017171_data; /* unable to generate initializer: unknown type */
+static M2C_UNK lbl_8_data_17174;     /* unable to generate initializer: unknown type */
+static M2C_UNK gap_04_0001717D_data; /* unable to generate initializer: unknown type */
 static M2C_UNK rinoColObjectFieldNames[2] = { 0, 0 };
-static char lbl_8_data_171A0[] = "START";
+static char lbl_8_data_171A0[]            = "START";
 static M2C_UNK gap_04_000171A6_data; /* unable to generate initializer: unknown type */
 static char lbl_8_data_171A8[] = "END";
 static char lbl_8_data_171AC[] = "CHANGE PATH";
@@ -321,9 +321,9 @@ void fn_8_B4A7C(void* arg0)
 		sp14 = 20.0f;
 		if (fn_8019CE34(*lbl_8042C9A4, &sp8) != 0) {
 			temp_r30 = M2C_FIELD(lbl_8_bss_1A90.p, s32*, 4);
-			fn_8019ED68(temp_r30, &lbl_80239990, M2C_FIELD(arg0, f32*, 0xF0), 0);
-			fn_8019ED68(temp_r30, &lbl_80239978, M2C_FIELD(arg0, f32*, 0xE8), 2);
-			fn_8019ED68(temp_r30, &lbl_80239984, M2C_FIELD(arg0, f32*, 0xEC), 2);
+			fn_8019ED68(temp_r30, &AxisZ, M2C_FIELD(arg0, f32*, 0xF0), 0);
+			fn_8019ED68(temp_r30, &AxisX, M2C_FIELD(arg0, f32*, 0xE8), 2);
+			fn_8019ED68(temp_r30, &AxisY, M2C_FIELD(arg0, f32*, 0xEC), 2);
 			fn_8019EB94(temp_r30, (u8*)arg0 + 0xB0, 2);
 			fn_80113874(M2C_FIELD(arg0, s32*, 0xE0));
 			fn_8014FF2C(lbl_8_bss_1A90.p);

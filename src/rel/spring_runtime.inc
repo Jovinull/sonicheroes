@@ -70,9 +70,9 @@ struct World {
 	void* scene;
 };
 
-extern "C" const Vec3 lbl_80239978;
-extern "C" const Vec3 lbl_80239984;
-extern "C" const Vec3 lbl_80239990;
+extern "C" const Vec3 AxisX;
+extern "C" const Vec3 AxisY;
+extern "C" const Vec3 AxisZ;
 extern "C" World* lbl_8042C1D0;
 
 extern "C" s32 fn_8003BC38(void* collision);
@@ -103,19 +103,18 @@ extern "C" void springLaunch(SpringRuntime* object);
 	} while (0)
 
 #define SET_SPRING_TRANSFORM()                                                                     \
-	SCALE_VECTOR(&scale, &lbl_80239984, object->scaleY);                                           \
-	SCALE_VECTOR(&add, &lbl_80239978, object->scaleXZ);                                            \
+	SCALE_VECTOR(&scale, &AxisY, object->scaleY);                                                  \
+	SCALE_VECTOR(&add, &AxisX, object->scaleXZ);                                                   \
 	ADD_VECTOR(&scale, &scale, &add);                                                              \
-	SCALE_VECTOR(&add, &lbl_80239990, object->scaleXZ);                                            \
+	SCALE_VECTOR(&add, &AxisZ, object->scaleXZ);                                                   \
 	ADD_VECTOR(&scale, &scale, &add);                                                              \
 	fn_8019EC30(model, &scale, 0);                                                                 \
 	sine = fn_800D7B00(object->angleY);                                                            \
-	fn_80195790(matrix.bytes + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(object->angleY), sine, 2);  \
+	fn_80195790(matrix.bytes + 0x10, &AxisY, 1.0f - fn_800D7AE4(object->angleY), sine, 2);         \
 	sine = fn_800D7B00(object->angleX);                                                            \
-	fn_80195790(matrix.words + 4, &lbl_80239978, 1.0f - fn_800D7AE4(object->angleX), sine, 2);     \
+	fn_80195790(matrix.words + 4, &AxisX, 1.0f - fn_800D7AE4(object->angleX), sine, 2);            \
 	sine = fn_800D7B00(object->angleZ);                                                            \
-	fn_80195790(                                                                                   \
-	    (u8*)matrix.value + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(object->angleZ), sine, 2);     \
+	fn_80195790((u8*)matrix.value + 0x10, &AxisZ, 1.0f - fn_800D7AE4(object->angleZ), sine, 2);    \
 	fn_8019EB94(model, &object->position, 2)
 
 #pragma opt_common_subs on

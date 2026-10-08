@@ -147,7 +147,7 @@ extern void* lbl_1_data_10D4;
 extern void* lbl_1_rodata_6A8[];
 extern s32 lbl_1_rodata_6D8[][2];
 extern void* lbl_8042C180;
-extern u8 lbl_80239984[];
+extern u8 AxisY[];
 extern void* lbl_1_bss_230[];
 extern const f32 lbl_1_rodata_738; // 0.001
 extern const f32 lbl_1_rodata_73C; // 5.0
@@ -686,7 +686,7 @@ void fn_1_5B08(ADV_MAINMENU* obj)
 		if (o != 0) {
 			void* c = *(void**)((char*)o + 4);
 			if (c != 0) {
-				fn_8019ED68(c, (void*)lbl_80239984, obj->unk_0x124, 0);
+				fn_8019ED68(c, (void*)AxisY, obj->unk_0x124, 0);
 				fn_8019EB94(c, &obj->vec_0x100, 2);
 			}
 		}

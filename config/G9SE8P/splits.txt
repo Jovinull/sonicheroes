@@ -123,6 +123,17 @@ game/action_cont4.cpp:
 game/object_defaults.cpp:
 	.text       start:0x8001ED40 end:0x8001ED60
 
+game/matrix.cpp:
+	extab       start:0x80005B68 end:0x80005BA8
+	extabindex  start:0x8000C244 end:0x8000C2A4
+	.text       start:0x8001EED8 end:0x8001F4E8
+	.rodata     start:0x80239978 end:0x8023999C
+	.rodata     start:0x8023999C end:0x802399A0 skip
+	.bss        start:0x8029C740 end:0x8029D740
+	.sbss       start:0x8042C178 end:0x8042C17C
+	.sbss       start:0x8042C17C end:0x8042C180 skip
+	.sdata2     start:0x8042D028 end:0x8042D038
+
 game/modeswitch.cpp:
 	extab       start:0x80005BA8 end:0x80005BC0
 	extabindex  start:0x8000C2A4 end:0x8000C2C8

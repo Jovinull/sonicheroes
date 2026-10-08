@@ -71,9 +71,9 @@ void fn_800B864C(void*);
 void fn_8019EC30(void*, Vec3*, s32);
 void fn_8019ED68(void*, void*, f32, s32);
 void fn_8019EB94(void*, void*, s32);
-extern void* lbl_80239978;
-extern void* lbl_80239984;
-extern void* lbl_80239990;
+extern void* AxisX;
+extern void* AxisY;
+extern void* AxisZ;
 
 void fn_80150958(void*);
 void* __ct__7TObjectFP7TObject(void*, void*);
@@ -160,9 +160,9 @@ static inline void SetStullPosition(TObjS01Stull* object)
 	scale.y      = params[0];
 	scale.z      = params[0];
 	fn_8019EC30(atomic, &scale, 0);
-	fn_8019ED68(atomic, &lbl_80239984, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x10), 2);
-	fn_8019ED68(atomic, &lbl_80239978, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x0C), 2);
-	fn_8019ED68(atomic, &lbl_80239990, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x14), 2);
+	fn_8019ED68(atomic, &AxisY, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x10), 2);
+	fn_8019ED68(atomic, &AxisX, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x0C), 2);
+	fn_8019ED68(atomic, &AxisZ, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x14), 2);
 	fn_8019EB94(atomic, *(u8**)object->motion, 2);
 }
 

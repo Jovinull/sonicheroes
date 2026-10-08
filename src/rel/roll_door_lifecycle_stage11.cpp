@@ -38,9 +38,9 @@ void fn_8005D5C8(void* resource, s32 index);
 void fn_8003C200(void* controller, const void* data, s32 count, s32 type);
 void fn_80021384(void* controller);
 extern u8 lbl_8042C1D0[];
-extern f32 lbl_80239978[];
-extern f32 lbl_80239984[];
-extern f32 lbl_80239990[];
+extern f32 AxisX[];
+extern f32 AxisY[];
+extern f32 AxisZ[];
 }
 
 struct RollDoorInfo {
@@ -102,9 +102,9 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	*(void**)(object + 0xF0) = fn_80150588(lbl_8_bss_9E4);
 
 	u8* firstModel = *(u8**)(*(u8**)(object + 0xEC) + 4);
-	SET_ROTATION(firstModel, lbl_80239984, *(s32*)(object + 0xD0) + 0x8000, 0);
-	SET_ROTATION(firstModel, lbl_80239978, *(s32*)(object + 0xCC), 2);
-	SET_ROTATION(firstModel, lbl_80239990, *(s32*)(object + 0xD4), 2);
+	SET_ROTATION(firstModel, AxisY, *(s32*)(object + 0xD0) + 0x8000, 0);
+	SET_ROTATION(firstModel, AxisX, *(s32*)(object + 0xCC), 2);
+	SET_ROTATION(firstModel, AxisZ, *(s32*)(object + 0xD4), 2);
 	fn_8019EB94(firstModel, object + 0xC0, 2);
 
 	Vec3 unit;
@@ -118,20 +118,20 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	u8* secondPart = (u8*)part;
 	partPosition   = *(Vec3*)(secondPart + 0x40);
 	s32 extraAngle = (s32)(lbl_8_rodata_B10 * *(f32*)(object + 0xE4));
-	SET_ROTATION(secondPart, lbl_80239978, extraAngle, 0);
+	SET_ROTATION(secondPart, AxisX, extraAngle, 0);
 	fn_8019EB94(secondPart, &partPosition, 2);
 
 	u8* secondModel = *(u8**)(*(u8**)(object + 0xF0) + 4);
-	SET_ROTATION(secondModel, lbl_80239984, *(s32*)(object + 0xD0) + 0x8000, 0);
-	SET_ROTATION(secondModel, lbl_80239978, *(s32*)(object + 0xCC), 2);
-	SET_ROTATION(secondModel, lbl_80239990, *(s32*)(object + 0xD4), 2);
+	SET_ROTATION(secondModel, AxisY, *(s32*)(object + 0xD0) + 0x8000, 0);
+	SET_ROTATION(secondModel, AxisX, *(s32*)(object + 0xCC), 2);
+	SET_ROTATION(secondModel, AxisZ, *(s32*)(object + 0xD4), 2);
 	fn_8019EB94(secondModel, object + 0xC0, 2);
 	fn_8019EC30(secondModel, &zero, 1);
 	*(RawVec3*)&unit = *(RawVec3*)lbl_8_rodata_AC0;
 	fn_8019EB94(secondModel, &unit, 1);
-	SET_ROTATION(secondModel, lbl_80239978, extraAngle, 1);
+	SET_ROTATION(secondModel, AxisX, extraAngle, 1);
 	if (*(f32*)(object + 0xE8) < lbl_8_rodata_AEC)
-		fn_80195790(secondModel + 0x10, lbl_80239984, lbl_8_rodata_B14, lbl_8_rodata_AEC, 1);
+		fn_80195790(secondModel + 0x10, AxisY, lbl_8_rodata_B14, lbl_8_rodata_AEC, 1);
 
 	u32 flags = *(u32*)(*(u8**)(object + 0x28) + 0x18);
 	fn_8005D5C8(*(void**)(object + 0xEC), ((flags & 0x001C0000) >> 18) + 4);

@@ -35,9 +35,9 @@ typedef struct Object {
 	Handle* handle; // 0x60
 } Object;
 
-extern "C" const Vec3 lbl_80239978; // {1, 0, 0}
-extern "C" const Vec3 lbl_80239984; // {0, 1, 0}
-extern "C" const Vec3 lbl_80239990; // {0, 0, 1}
+extern "C" const Vec3 AxisX; // {1, 0, 0}
+extern "C" const Vec3 AxisY; // {0, 1, 0}
+extern "C" const Vec3 AxisZ; // {0, 0, 1}
 
 extern "C" void fn_8019EB94(void* model, const Vec3* position, s32 mode);
 extern "C" void fn_8019ED68(void* model, const Vec3* axis, f32 angle, s32 mode);
@@ -46,8 +46,8 @@ extern "C" void objApplyTransform(Object* object)
 {
 	void* model = object->handle->model;
 
-	fn_8019ED68(model, &lbl_80239984, object->yaw, 0);
-	fn_8019ED68(model, &lbl_80239978, object->pitch, 2);
-	fn_8019ED68(model, &lbl_80239990, object->roll, 2);
+	fn_8019ED68(model, &AxisY, object->yaw, 0);
+	fn_8019ED68(model, &AxisX, object->pitch, 2);
+	fn_8019ED68(model, &AxisZ, object->roll, 2);
 	fn_8019EB94(model, &object->position, 2);
 }

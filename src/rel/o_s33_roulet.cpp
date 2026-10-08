@@ -47,9 +47,9 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 
-extern u8 lbl_80239978;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisX;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
@@ -137,19 +137,19 @@ void TObjS33Roulet::SetPosition()
 	f32 sine    = fn_800D7B00(angleZ);
 	f32 cosine  = fn_800D7AE4(angleZ);
 	f32 inverse = rouletOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239990, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisZ, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleX);
 	cosine  = fn_800D7AE4(angleX);
 	inverse = rouletOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239978, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisX, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleY + rotation);
 	cosine  = fn_800D7AE4(angleY + rotation);
 	inverse = rouletOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, inverse, sine, 1);
 	fn_8019E880(atomic);
 }
 #pragma opt_propagation reset
@@ -186,19 +186,19 @@ void TObjS33Roulet::Exec()
 	f32 sine    = fn_800D7B00(angleZ);
 	f32 cosine  = fn_800D7AE4(angleZ);
 	f32 inverse = rouletOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239990, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisZ, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleX);
 	cosine  = fn_800D7AE4(angleX);
 	inverse = rouletOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239978, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisX, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleY + rotation);
 	cosine  = fn_800D7AE4(angleY + rotation);
 	inverse = rouletOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, inverse, sine, 1);
 	fn_8019E880(atomic);
 	if (fn_8005B8D8(&motion) != 0)
 		return;

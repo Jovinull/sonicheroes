@@ -164,9 +164,9 @@ extern "C" FlagMotion* fn_8005F4E8();
 extern "C" void fn_8019EC30(void*, const Vec3*, s32);
 extern "C" void fn_8019ED68(void*, const Vec3*, f32, s32);
 extern "C" void fn_8019EB94(void*, const Vec3*, s32);
-extern "C" Vec3 lbl_80239978;
-extern "C" Vec3 lbl_80239984;
-extern "C" Vec3 lbl_80239990;
+extern "C" Vec3 AxisX;
+extern "C" Vec3 AxisY;
+extern "C" Vec3 AxisZ;
 extern "C" void fn_8013D344(void*, void*);
 extern "C" void fn_8013D5C8(void*, f32);
 extern "C" void __ct__7TObjectFP7TObject(void*, TObject*);
@@ -274,10 +274,10 @@ extern "C" RpAtomic* flagRenderCallback(RpAtomic* atomic)
 	scale.y            = scale.x;
 	scale.z            = scale.x;
 	fn_8019EC30(model, &scale, 0);
-	fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)*motion->frame->angleY, 2);
-	fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)motion->frame->anglesXZ[1], 2);
-	fn_8019ED68(model, &lbl_80239978, flagAngleFactor * (f32)motion->frame->anglesXZ[0], 2);
-	fn_8019ED68(model, &lbl_80239990, flagAngleFactor * (f32)motion->frame->anglesXZ[2], 2);
+	fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)*motion->frame->angleY, 2);
+	fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)motion->frame->anglesXZ[1], 2);
+	fn_8019ED68(model, &AxisX, flagAngleFactor * (f32)motion->frame->anglesXZ[0], 2);
+	fn_8019ED68(model, &AxisZ, flagAngleFactor * (f32)motion->frame->anglesXZ[2], 2);
 	fn_8019EB94(model, motion->frame->position, 2);
 	if (flagPositionInitialized == 0) {
 		fn_8013D344(flagPrimaryModel, flagAnimation);
@@ -302,18 +302,18 @@ static inline void setFlagPosition(FlagObject* object)
 		scale.y          = scale.x;
 		scale.z          = scale.x;
 		fn_8019EC30(model, &scale, 0);
-		fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)object->frame->angleY, 2);
-		fn_8019ED68(model, &lbl_80239978, flagAngleFactor * (f32)object->frame->angleX, 2);
-		fn_8019ED68(model, &lbl_80239990, flagAngleFactor * (f32)object->frame->angleZ, 2);
+		fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)object->frame->angleY, 2);
+		fn_8019ED68(model, &AxisX, flagAngleFactor * (f32)object->frame->angleX, 2);
+		fn_8019ED68(model, &AxisZ, flagAngleFactor * (f32)object->frame->angleZ, 2);
 		fn_8019EB94(model, &object->frame->position, 2);
 		if (object->modelC0 != NULL) {
 			model = *(void**)((u8*)object->modelC0 + 4);
 			fn_8019EC30(model, &scale, 0);
 			fn_8019EC30(model, &scale, 0);
-			fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)params->angle, 2);
-			fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)object->frame->angleY, 2);
-			fn_8019ED68(model, &lbl_80239978, flagAngleFactor * (f32)object->frame->angleX, 2);
-			fn_8019ED68(model, &lbl_80239990, flagAngleFactor * (f32)object->frame->angleZ, 2);
+			fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)params->angle, 2);
+			fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)object->frame->angleY, 2);
+			fn_8019ED68(model, &AxisX, flagAngleFactor * (f32)object->frame->angleX, 2);
+			fn_8019ED68(model, &AxisZ, flagAngleFactor * (f32)object->frame->angleZ, 2);
 			fn_8019EB94(model, &object->frame->position, 2);
 		}
 	}
