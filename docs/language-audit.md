@@ -2716,3 +2716,15 @@ PS2 instructions were inspected. All seventeen native bodies, 375 relocations
 and eight sections match with reversed ordinary definitions and whole-unit
 auto,deferred; no normalizer is needed. All eighteen output hashes and 62 tests
 pass; the complete unit is enabled as Matching. See `eff-rocketaxel-unit-evidence.md`.
+
+## effect/eff_thunderbomb.cpp
+
+Positive symbolic metadata identifies eighteen C++ definitions, ten surviving
+at 0x8010B84C–0x8010C220 and eight ordinary definitions that inline. Class/vtable
+and texture-resource graphs corroborate all eight owned ranges and 185
+relocations; adjacent completed units establish both boundaries. No PS2
+instructions were inspected. All ten native bodies, 185 relocations, eight
+sections and thirteen named-object contracts match using reversed ordinary
+definitions and whole-unit auto,deferred, without an object normalizer. All
+eighteen output hashes and 62 tests pass; the complete unit is enabled as
+Matching. See `eff-thunderbomb-unit-evidence.md`.

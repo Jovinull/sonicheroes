@@ -62,7 +62,7 @@ void fn_8015C720(void*, s32);
 
 void EndEffBrim__Fv(void);
 void EndPlayerBarrier__Fv(void);
-void fn_8010C0C0(void);
+void EndEffThunderBomb__Fv(void);
 void fn_8010AD10(void);
 void fn_801043EC(void);
 void EndEffDush__Fv(void);
@@ -81,7 +81,7 @@ void fn_800FAB54(void);
 void InitEffDush__Fv(void);
 void fn_80104410(void);
 void fn_8010AD48(void);
-void fn_8010C108(void);
+void InitEffThunderBomb__Fv(void);
 void InitPlayerBarrier__Fv(void);
 void InitEffBrim__Fv(void);
 
@@ -539,7 +539,7 @@ void objLoadCommonObjectTextures(void)
 	InitEffDush__Fv();
 	fn_80104410();
 	fn_8010AD48();
-	fn_8010C108();
+	InitEffThunderBomb__Fv();
 	InitPlayerBarrier__Fv();
 	InitEffBrim__Fv();
 	startObjSetDamageCollision__Fv();
@@ -550,7 +550,7 @@ void objReleaseCommonObjectTextures(void)
 	Exec__22TObjSetDamageCollisionFv();
 	EndEffBrim__Fv();
 	EndPlayerBarrier__Fv();
-	fn_8010C0C0();
+	EndEffThunderBomb__Fv();
 	fn_8010AD10();
 	fn_801043EC();
 	EndEffDush__Fv();
