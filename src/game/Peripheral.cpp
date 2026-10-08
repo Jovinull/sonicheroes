@@ -55,7 +55,7 @@ extern u8 lbl_8029C1D4[48];
 extern u32 lbl_80240910[4];
 extern u32 lbl_80240920[4];
 extern char lbl_8042AD88[7];
-extern u8 lbl_80303E48[112];
+extern u8 DemoLocator[112];
 extern const float lbl_8042CFAC;
 extern const float lbl_8042CFB0;
 extern const double lbl_8042CFB8;
@@ -266,7 +266,7 @@ s32 LoadDemoData(const char* filename)
 	sprintf(path, lbl_8042AD88, filename);
 	s32 result;
 	if (fn_80042048(path, lbl_8042AD80.aligned) != 0) {
-		memcpy(lbl_80303E48, lbl_8042AD80.aligned + 20, 112);
+		memcpy(DemoLocator, lbl_8042AD80.aligned + 20, 112);
 		result = 1;
 	} else {
 		result = 0;

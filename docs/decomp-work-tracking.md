@@ -11,6 +11,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex 2026-10-06 | `game/octreeColli.cpp`, complete collision-query unit | Active on `decomp/octree-colli-20261006`; PR #562 ready: all nine native functions, owned sections and 103 relocations exact; native G9SE8P build, 18 hashes, 55 tests and policies pass |
 | Codex 2026-10-06 | `game/octree.cpp`, complete octree and collision-list unit | Ready on `decomp/octree-20261006`; all ten functions and owned sections native-match, 37 relocations exact; full G9SE8P build, 18 hashes, 55 tests and policies pass |
 | Codex 2026-10-06 | `game/light.cpp`, complete CLIGHT/RP_Light unit | Complete on `decomp/light-20261006`; all 26 surviving bodies reconstructed at 0x80052184–0x80053FB8; 25 source-exact, ten register fields across seven Init instructions normalized; all 18 native image hashes and 63 tests pass |
+| Codex 2026-10-06 | `game/locateTable.cpp`, five functions and owned locator/timer tables | Active on `decomp/locate-table-20261006`; complete: five functions, owned data and 43 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |
 | Codex | `game/cri/axrna.c` | Attempted; no net improvement after source-form and compiler-flag trials |
