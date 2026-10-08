@@ -244,6 +244,13 @@ game/eff_tornado.cpp:
 	.sbss       start:0x8042C34C end:0x8042C380
 	.sdata2     start:0x8042DBD0 end:0x8042DBE0
 
+game/pathctrl.cpp:
+	extab       start:0x80007E84 end:0x80007EB4
+	extabindex  start:0x8000E488 end:0x8000E4D0
+	.text       start:0x800ADC3C end:0x800AEE80
+	.data       start:0x80253648 end:0x80253658
+	.sdata2     start:0x8042DC28 end:0x8042DC60
+
 game/one.cpp:
 	extab       start:0x80008240 end:0x80008300
 	extabindex  start:0x8000E8F0 end:0x8000EA10
