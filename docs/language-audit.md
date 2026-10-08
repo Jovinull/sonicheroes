@@ -1905,3 +1905,274 @@ singleton and array-operator renames are propagated through existing callers.
 The G9SE8P main DOL and seventeen RELs compile and pass all eighteen hashes;
 55 automated tests and both policies pass. See `e-database-unit-evidence.md`
 for boundaries and lifecycle details. No runtime validation is claimed.
+
+### misc.cpp boundary and reconstruction inventory
+
+The next whole-unit reconstruction covers GameCube `0x800D5844`–`0x800D7B18`:
+30 functions and 8,916 text bytes. This is `misc.cpp`, distinct from the
+following eleven-function `miscs.cpp` draft. Local PS2 symbolic metadata marks
+`misc.cpp` as C++ and supplies the ordered camera-position, printing, geometry
+and angle API sequence. GameCube's `ClosePositionToCamera` candidate reads the
+camera-position global and moves the supplied point toward it; the following
+empty spline-display body and relative-point helper support the start boundary.
+The existing `miscs.cpp` investigation places sine-table initialization at
+`0x800D7B18`, fixing the other boundary. Exception tables span
+`0x80008BD0`–`0x80008C68`, and their index spans `0x8000F298`–`0x8000F37C`.
+The shared constant range is `0x8042E008`–`0x8042E040`.
+
+The ordered working inventory is below. Names are metadata correlations;
+parameter and return types still require checking against each GameCube body.
+The two final table lookups are GameCube-specific inventory entries, without
+an asserted original source spelling.
+
+| GameCube address | Correlated operation |
+| --- | --- |
+| `800D5844` | `ClosePositionToCamera` |
+| `800D5938` | `DisplayRpSpline` |
+| `800D593C` | `RelativeCalcPoint` |
+| `800D5A64` | `AdjustPoint` |
+| `800D5B8C` | `njPrintColor` |
+| `800D5C08` | `njPrint2` |
+| `800D5CB0` | `njPrint` |
+| `800D5D5C` | `DistanceL2PL` |
+| `800D605C` | `DistanceL2L` |
+| `800D67D4` | `RoundOff` |
+| `800D6818` | `CrossProduct` |
+| `800D689C` | `DistancePL2PL`, vector overload |
+| `800D6958` | `DistancePL2PL`, line overload |
+| `800D6E0C` | `DistanceP2PL`, vector overload |
+| `800D6F0C` | `DistanceP2PL`, line overload |
+| `800D7044` | `DistanceP2L` |
+| `800D71DC` | `Distance2P2P` |
+| `800D7218` | `DistanceP2P` |
+| `800D72C0` | `SubVectorReturnToVector` |
+| `800D72F4` | `AddVectorReturnToVector` |
+| `800D7328` | `AdjustFloat` |
+| `800D735C` | `GetZYAngleForTheTargetPoint` |
+| `800D7564` | `GetFloatMod` |
+| `800D75CC` | `VectorAngleOnPlane` |
+| `800D7920` | `VectorAngle` |
+| `800D7A54` | `DiffAngle` |
+| `800D7A80` | `SubAngle` |
+| `800D7A94` | `AdjustAngle` |
+| `800D7AE4` | cosine-table lookup |
+| `800D7B00` | sine-table lookup |
+
+The address-named fragments are not a completed reconstruction of this unit.
+In particular, `fn_800D6818.cpp` is not a separate file: its current body lives
+in `fn_800D67D4.cpp`, declares a void result and calls the vector-length SDK
+function. The metadata identifies `CrossProduct` as returning a float, and the
+GameCube sequence preserves the SDK result in `f1` through its epilogue. Its
+return contract must be corrected during consolidation. Existing instruction
+postprocessors on other fragments must be audited rather than silently carried
+into a newly claimed native whole-unit match. No new source matching or build
+validation is claimed by this inventory-only update.
+
+The first whole-unit candidate now compiles all 30 bodies in `game/misc.cpp`.
+It replaces four address-named source fragments and removes the former
+angle-helper instruction patch step and tool. The 28 metadata-backed APIs now use C++ linkage and declarations in
+`game/misc.h`; their callers use the corresponding recovered linker names.
+The two GameCube-only table lookups retain provisional names. No new instruction postprocessor is introduced.
+
+Initial control-flow recovery used m2c `708d2d2cb2698f091a92492b328f73b24209f72d`
+on GameCube assembly. Typed analysis-only stack layouts establish actual vector
+and line objects; no analysis padding is emitted in source. The two print
+functions use `__builtin_va_info` and a 64-byte formatting buffer rather than
+inferred register-save pseudocode. Scalar square-root intermediates retain
+single-precision store/reload rounding. Existing source forms for the angle
+helpers are retained where they improve native correspondence.
+
+Twenty-six functions currently have exact native instruction bytes. Four geometry
+helpers remain nonmatching. Native text is 8,972 bytes including a generated
+helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes). The exception table is
+byte-exact; the index has one function-size difference, as detailed below. The 52
+native constant bytes equal the retail prefix; the retail range includes four
+trailing zero bytes. The candidate remains **NonMatching** and links the
+original object. The full supported G9SE8P all-source build and link/report,
+55 tests, both policies and 18 original-linked artifact hashes pass. These do
+not validate candidate runtime behavior or establish whole-object matching.
+
+`AdjustPoint` now reproduces the retail three-word vector copy through a private
+word-copy view, then reads the scaled vector components at their observed uses.
+The vector-overload plane intersection also matches after removing premature
+input caches. Three square-root paths now reload their rounded stack result
+instead of retaining the pre-store temporary. These refinements bring the
+native function count to 22 exact; the whole unit remains nonmatching.
+
+The shared API distinguishes the vector and line overloads, restores const input
+pointers, and declares `CrossProduct` with its observed floating-point result.
+GameCube's angle-difference and adjustment bodies explicitly narrow their
+results to 16 bits; the header retains those return types while using the
+metadata-backed integer parameter types. Caller edits outside this unit are
+linker-name substitutions and preserve their existing private type boundaries.
+All 34 direct-call target counts agree with the original object. Following the
+API edits, all 22 exact functions remain exact, the complete supported build
+passes, and all 55 tests and 18 original-linked output hashes pass.
+
+`DistanceP2L` now matches all 408 bytes. Input-field and squared-distance
+expressions follow the retail evaluation order, and the existing square-root
+helper is shared with this function and both point-to-plane overloads. The
+private helper is named `MiscSqrt` as a reconstruction aid. It preserves the
+three reciprocal-square-root refinements and rounded float store/reload.
+Sharing it also brings the line-based point-to-plane overload to 99.87%; the
+vector overload remains 99.84%. The full supported build, 55 tests, both policy
+checks and 18 original-linked hashes pass after these changes.
+
+`DistanceL2PL` improves from 88.66% to 94.69% native correspondence while
+retaining the exact 768-byte retail function size. Eleven redundant scalar
+input caches are folded into their expressions; all affected reads occur
+before any potentially aliasing output write. The original three explicit
+square-root sequences remain: sharing `MiscSqrt` here introduced extra branches
+and register moves. The other 23 exact functions remain exact. The full
+supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
+hashes pass for this refinement.
+
+Both `DistanceP2PL` overloads now match their complete 256/312-byte retail
+bodies. An explicit double-precision absolute-value intermediate followed by
+the existing float conversion reproduces the two previously differing `fabs`
+and `frsp` register operands. `GetZYAngleForTheTargetPoint` also matches all
+520 bytes after folding four redundant input-component copies into their
+squared-length expressions. Its explicit square-root sequences remain; the
+shared helper trial changed the instruction sequence. These changes raise the
+native exact count to 26 of 30 without changing whole-unit text size. The
+full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked artifact hashes pass; candidate runtime remains unvalidated.
+
+`DistanceL2L` improves from 89.51% to 92.56%. Its nearest-point stack storage is
+represented as a vector instead of three disconnected scalars; the existing
+volatile accesses and retained null-output branch preserve observed stores,
+reloads and control flow. Volatile is a reconstruction aid, not a claim about
+the original declaration. Redundant direction caches and local-vector store
+copies are folded into their expressions. Position snapshots that remain live
+across potentially aliasing output writes are retained. Its native body is
+1,916 bytes versus 1,912 retail bytes; the other 26 exact functions remain
+exact. Full G9SE8P build/report, 55 tests, both policies and all 18
+original-linked hashes pass after this refinement.
+
+The line-based `DistancePL2PL` improves from 74.24% to 80.91% and now has the
+exact 1,204-byte retail size. Sixteen redundant input-component caches and nine
+product temporaries are folded into expressions without changing arithmetic
+association. The Z-coordinate numerator is evaluated before the X/Y output
+stores, following the retail sequence, while its final multiplication and store
+remain last. Input snapshots used across output writes remain intact. These
+changes remove an extra saved floating-point register and bring whole-unit
+native text to 8,964 bytes. All 26 exact functions remain exact. The full
+supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
+hashes pass; the unit remains nonmatching and candidate runtime unvalidated.
+
+The parallel-plane branch now evaluates its plane offset before the normal's
+squared length, matching retail load/arithmetic order. This brings the
+line-based plane intersection to 84.12%, retaining its exact 1,204-byte size.
+The determinant and three plane offsets also receive descriptive local names.
+Broader normal-cache removal introduced additional loads and was reverted.
+All 26 exact functions remain exact; full supported G9SE8P build/report,
+55 tests, both policies and 18 original-linked hashes pass.
+
+`DistanceL2L` now reaches 96.54% and the exact 1,912-byte retail size. Twelve
+squared-distance intermediates are folded into their expressions, preserving
+arithmetic association and the existing captured positions. Combining the
+parallel branch's square-root return paths removes the extra branch. The
+volatile nearest-point reloads remain unchanged. All 26 exact functions stay
+exact; whole-unit native text is now 8,960 bytes. Full supported G9SE8P
+build/report, 55 tests, both policies and 18 original-linked hashes pass.
+
+A whole-object audit at `470642f` confirms that all 26 byte-exact functions also
+have exact relocations after normalizing defined targets by section/offset or
+function identity. Both line-distance routines have exact relocation offsets
+and targets despite their remaining instruction differences. The line-based
+plane intersection and projected-vector angle still differ in both instructions
+and relocation placement. All 34 direct-call target counts agree.
+
+All 152 exception-table bytes match. All 38 exception-index relocations match;
+the only index data difference is the `VectorAngleOnPlane` function-size word
+at index offset 208 (retail 852, native 848). The native 52-byte constant section
+matches the retail prefix; retail has four additional trailing zero bytes.
+The native object also contains a 48-byte static dot helper whose final linker
+removal has not been verified because the original object remains linked.
+These outstanding details prevent a whole-object matching claim. This audit
+changes documentation only; the preceding full build and checks remain the
+validation for the unchanged source.
+
+The line-to-plane body now names its line/plane inputs, projection scale,
+intersection rate, captured point coordinates and dot/offset values directly.
+Each of its three square-root blocks uses one scoped estimate for the three
+Newton refinements instead of register-derived intermediate names. A fresh
+before/after compilation confirms identical native text, constants, exception
+bytes and normalized relocations throughout the object. The match count stays
+26/30. Full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked hashes pass for this source simplification.
+
+A diagnostic native link of the unchanged `50f307c` candidate resolves the
+helper and constant-tail questions. The link command contains the compiled
+`src/game/misc.o` and excludes the original object. Its map marks the 48-byte
+`fn_800D7920Dot` helper `UNUSED`. The linked bytes from `0x8042E008` through
+`0x8042E03F` equal the complete 56-byte retail constant range: the native
+52-byte contribution is followed by four normal linker-alignment bytes, and
+the next contribution remains at `0x8042E040`. No source padding is needed.
+
+The first subsequent function, `VectorAngle`, links at `0x800D791C` rather than
+`0x800D7920`, consistent with the four-byte-short projected-angle routine.
+Thus the remaining barriers are the four instruction bodies and the associated
+size/relocation differences, not the unused helper or constant alignment.
+This diagnostic is not a matching release or runtime validation. The temporary
+Matching setting was reverted; a full supported G9SE8P all-source build and
+link/report then passed with the original object, alongside 55 tests, both
+policies and all 18 original-linked artifact hashes. No diagnostic binary or
+configuration change is retained.
+
+Symbolic metadata for the line-based plane intersection identifies a local
+`RwV3d p`, three float plane terms `d1`, `d2`, `d3`, and reciprocal determinant
+`oodet`, with parameters `pl1`, `pl2`, `l`. Reconstructing that local point lets
+the determinant expressions read normals directly before the output-point
+stores, preserving the observed order without extra reloads. This raises the
+native match from 84.12% to 94.24%, retaining the exact 1,204-byte function size.
+The GameCube instruction sequence remains the behavioral authority; metadata
+supplies only names/types. All 26 exact functions and the established object
+metadata checks remain intact. Full supported G9SE8P build/report, 55 tests,
+both policies and 18 original-linked hashes pass.
+
+The projected-angle metadata identifies `NJS_LINE pl` and `RwV3d v1s/v2s`,
+with parameters `v1/v2/vn`. The source now constructs that plane and invokes
+the recovered line-overload `DistanceP2PL` twice. This replaces the private
+projection and normal-dot reconstruction helpers; both real API calls inline.
+The retail register operands are reproduced, including the previously missing
+zero reload and second-offset addition order. Two extra rounded-result loads
+remain from the inlined square-root return values, making this body 860 bytes
+versus 852 retail (98.96% versus the previous 99.25%). This is accepted as a
+better-grounded source reconstruction, not an increased binary match score.
+The exception-index size word is correspondingly 860; whole native text is
+8,972 bytes. All 26 exact functions, 34 direct-call counts, exception-table
+bytes and index relocation targets remain verified. Full supported G9SE8P
+build/report, 55 tests, both policies and 18 original-linked hashes pass.
+
+`DistanceL2L` now represents the recovered temporary direction `p` and first
+nearest point `tp1` as vectors rather than disconnected component scalars.
+The line/plane locals and arguments use the metadata-backed `pl1`, `pl2`,
+`tl`, `tp2`, `l1/l2`, `p1/p2` and parameter `u` names. Component evaluation order,
+conditional Z access and existing volatile nearest-point loads are preserved.
+The routine remains 96.54% with its exact 1,912-byte size. Consolidating the
+separate determinant temporaries did not improve correspondence and was not
+retained. All 26 exact functions and object-audit invariants pass, as do the
+full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked artifact hashes.
+
+The parallel-plane branch now snapshots `pl1->p` into local `p` before clearing
+`l`, as shown by the retail three point loads preceding the six output stores.
+The previous candidate read that point after clearing the output, producing a
+different distance when `l == pl1`. Plane-normal reads remain after the clear,
+preserving the separate alias behavior when `l == pl2`. The signed offset,
+normal magnitude and absolute-value calculations are separated, with the
+normal components captured in their observed order. The native function now
+matches 94.90%, retains its exact 1,204-byte size, and has exact relocation
+offsets and targets. All 26 exact functions remain exact. Full supported
+G9SE8P build/report, 55 tests, both policies, object audit and 18 original-linked
+hashes pass. The alias correction is established from load/store order; no
+candidate runtime or hardware validation is claimed.
+
+The line-to-line determinant path now reads two direction components at their
+uses and evaluates the first determinant product before loading the negated
+X component. This follows the retail sequence without changing the products
+or subtraction. Native correspondence improves to 97.04%, retaining the exact
+1,912-byte size and relocation layout. All 26 exact functions remain exact;
+full supported G9SE8P build/report, 55 tests, both policies, object audit and
+18 original-linked hashes pass.

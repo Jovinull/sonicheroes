@@ -69,36 +69,36 @@ public:
 
 extern "C" {
 
-M2C_UNK __dl__FPv(void*);                                 /* extern */
-s32 fn_80017800(void*);                                   /* extern */
-void* fn_80020BD8(void*, s32);                            /* extern */
-void fn_80021824(void*);                                  /* extern */
-M2C_UNK fn_8003BC38(void*);                               /* extern */
-M2C_UNK fn_8003BE78(void*);                               /* extern */
-int fn_8005B8BC(void*);                                   /* extern */
-M2C_UNK fn_8006298C(s32, void*, void*);                   /* extern */
-M2C_UNK fn_800A3D48(s32);                                 /* extern */
-s32 fn_800A3F60(void*);                                   /* extern */
-M2C_UNK fn_800A5B34(s32);                                 /* extern */
-s32 fn_800A6D60(s32, s32, s32);                           /* extern */
-f32 fn_800AEF48(void*, void*, void*, s32);                /* extern */
-s32 fn_800AF3AC(s16*, void*);                             /* extern */
-M2C_UNK fn_800AFB50(...);                                 /* extern */
-M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32); /* extern */
-f32 fn_800D71DC(void*, void*);                            /* extern */
-M2C_UNK fn_800D735C(void*, s32, void*);                   /* extern */
-s32 fn_800D7A94(s32, s32, s32);                           /* extern */
-f32 fn_800D7B00(s32);                                     /* extern */
-s32 fn_80103324(void*, f32*, f32);                        /* extern */
-M2C_UNK fn_80113874();                                    /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                   /* extern */
-M2C_UNK fn_8011C6EC();                                    /* extern */
-M2C_UNK fn_8014FF2C(s32);                                 /* extern */
-M2C_UNK fn_801990E0(void*, void*, f32);                   /* extern */
-M2C_UNK fn_8_90B10(s32);                                  /* extern */
-M2C_UNK fn_8_B5160(void*);                                /* extern */
-M2C_UNK fn_8_B2BB4(...);                                  /* static */
-M2C_UNK fn_8_B3598(...);                                  /* static */
+M2C_UNK __dl__FPv(void*);                                                    /* extern */
+s32 fn_80017800(void*);                                                      /* extern */
+void* fn_80020BD8(void*, s32);                                               /* extern */
+void fn_80021824(void*);                                                     /* extern */
+M2C_UNK fn_8003BC38(void*);                                                  /* extern */
+M2C_UNK fn_8003BE78(void*);                                                  /* extern */
+int fn_8005B8BC(void*);                                                      /* extern */
+M2C_UNK fn_8006298C(s32, void*, void*);                                      /* extern */
+M2C_UNK fn_800A3D48(s32);                                                    /* extern */
+s32 fn_800A3F60(void*);                                                      /* extern */
+M2C_UNK fn_800A5B34(s32);                                                    /* extern */
+s32 fn_800A6D60(s32, s32, s32);                                              /* extern */
+f32 fn_800AEF48(void*, void*, void*, s32);                                   /* extern */
+s32 fn_800AF3AC(s16*, void*);                                                /* extern */
+M2C_UNK fn_800AFB50(...);                                                    /* extern */
+M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32);                    /* extern */
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, void*);                           /* extern */
+M2C_UNK GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(void*, s32, void*); /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                        /* extern */
+f32 fn_800D7B00(s32);                                                        /* extern */
+s32 fn_80103324(void*, f32*, f32);                                           /* extern */
+M2C_UNK fn_80113874();                                                       /* extern */
+M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                      /* extern */
+M2C_UNK fn_8011C6EC();                                                       /* extern */
+M2C_UNK fn_8014FF2C(s32);                                                    /* extern */
+M2C_UNK fn_801990E0(void*, void*, f32);                                      /* extern */
+M2C_UNK fn_8_90B10(s32);                                                     /* extern */
+M2C_UNK fn_8_B5160(void*);                                                   /* extern */
+M2C_UNK fn_8_B2BB4(...);                                                     /* static */
+M2C_UNK fn_8_B3598(...);                                                     /* static */
 extern M2C_UNK lbl_802AD090;
 extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
@@ -178,7 +178,7 @@ s32 fn_8_B0A74(void* arg0)
 	if (temp_r0 != -1) {
 		temp_r3 = (&lbl_802AD090)[temp_r0];
 		if (temp_r3 != 0U) {
-			temp_f1 = fn_800D71DC((u8*)temp_r3 + 0x18, (u8*)arg0 + 0x140);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)temp_r3 + 0x18, (u8*)arg0 + 0x140);
 			if (lbl_8_rodata_1BD4[0] <= temp_f1) {
 				if (temp_f1 <= lbl_8_rodata_1BD8[0]) {
 					return 1;
@@ -237,7 +237,8 @@ s32 fn_8_B0B94(void* arg0)
 	if (temp_r3 != -1) {
 		temp_r31 = (void*)*(&lbl_802AD090 + (temp_r3 * 4));
 		if ((temp_r31 != NULL)
-		    && (fn_800D71DC((u8*)temp_r31 + 0x18, (u8*)arg0 + 0x140) > lbl_8_rodata_1BE8[0])) {
+		    && (Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)temp_r31 + 0x18, (u8*)arg0 + 0x140)
+		        > lbl_8_rodata_1BE8[0])) {
 			sp14    = M2C_FIELD(temp_r31, f32*, 0x18) - M2C_FIELD(arg0, f32*, 0x140);
 			sp18    = M2C_FIELD(temp_r31, f32*, 0x1C) - M2C_FIELD(arg0, f32*, 0x144);
 			temp_f1 = M2C_FIELD(temp_r31, f32*, 0x20);
@@ -302,7 +303,7 @@ void fn_8_B0D34(void* arg0)
 				if ((temp_r3 != -1)
 				    && (temp_r30 = (void*)*(&lbl_802AD090 + (temp_r3 * 4)),
 				        ((temp_r30 == NULL) == 0))
-				    && (fn_800D71DC((u8*)temp_r30 + 0x18, (u8*)arg0 + 0x140)
+				    && (Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)temp_r30 + 0x18, (u8*)arg0 + 0x140)
 				        > lbl_8_rodata_1BE8[0])) {
 					sp8     = M2C_FIELD(temp_r30, f32*, 0x18) - M2C_FIELD(arg0, f32*, 0x140);
 					spC     = M2C_FIELD(temp_r30, f32*, 0x1C) - M2C_FIELD(arg0, f32*, 0x144);
@@ -461,7 +462,7 @@ loop_5:
 				M2C_FIELD(arg0, f32*, 0x248) = var_f31;
 			}
 			spC = 0;
-			fn_800D735C(&sp68, 0, &spC);
+			GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp68, 0, &spC);
 			if ((s32)M2C_FIELD(arg0, s32*, 0x2B4) != 0) {
 				M2C_FIELD(arg0, f32*, 0x254) = sp44;
 				M2C_FIELD(arg0, f32*, 0x258) = sp48;
@@ -528,7 +529,7 @@ loop_5:
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
 			fn_800AFB50(NULL, &sp8);
-			temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, &sp8);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0x140, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
 				var_r28                      = *var_r27;
@@ -545,7 +546,7 @@ loop_5:
 			sp14 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 			sp18 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 			sp1C = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);
-			fn_800D735C(&sp58, 0, &sp14);
+			GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp58, 0, &sp14);
 			M2C_FIELD(arg0, f32*, 0x254) = sp34;
 			M2C_FIELD(arg0, f32*, 0x258) = sp38;
 			M2C_FIELD(arg0, f32*, 0x25C) = sp3C;
@@ -586,9 +587,9 @@ s32 fn_8_B154C(void* arg0)
 	    = (f32)(lbl_8_rodata_1BFC[0] * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x27C)));
 	M2C_FIELD(arg0, s32*, 0x14C) = (s32)M2C_FIELD(arg0, s32*, 0x26C);
 	M2C_FIELD(arg0, s32*, 0x150)
-	    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
+	    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
 	M2C_FIELD(arg0, s32*, 0x154)
-	    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
+	    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
 	sp8[0] = M2C_FIELD(arg0, f32*, 0x140);
 	sp8[1] = M2C_FIELD(arg0, f32*, 0x144);
 	sp8[2] = M2C_FIELD(arg0, f32*, 0x148);
@@ -632,7 +633,7 @@ loop_10:
 	if (temp_r3 != NULL) {
 		if ((temp_r3 != (void*)arg2) && ((s16)M2C_FIELD(temp_r3, s16*, 0) == 1)) {
 			fn_800AFB50(NULL, &sp8);
-			temp_f1 = fn_800D71DC(arg1, &sp8);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d(arg1, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
 				var_r31                      = *var_r27;
@@ -640,7 +641,7 @@ loop_10:
 			}
 			temp_r3_2 = *var_r27;
 			fn_800AFB50(temp_r3_2, M2C_FIELD(temp_r3_2, s16*, 2) - 1, &sp8);
-			temp_f1_2 = fn_800D71DC(arg1, &sp8);
+			temp_f1_2 = Distance2P2P__FPC5RwV3dPC5RwV3d(arg1, &sp8);
 			if (temp_f1_2 < var_f31) {
 				var_f31                      = temp_f1_2;
 				var_r31                      = *var_r27;
@@ -673,7 +674,7 @@ loop_7:
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
 			fn_800AFB50(NULL, &sp8);
-			temp_f1 = fn_800D71DC(arg1, &sp8);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d(arg1, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
 				var_r29                      = *var_r30;
@@ -688,7 +689,7 @@ loop_7:
 
 s32 fn_8_B1A0C(s32 arg0, s32 arg1, f32 farg0)
 {
-	if (fn_800D71DC(lbl_8042C208, (void*)arg1) > lbl_8_rodata_1C00[0]) {
+	if (Distance2P2P__FPC5RwV3dPC5RwV3d(lbl_8042C208, (void*)arg1) > lbl_8_rodata_1C00[0]) {
 		return 0;
 	}
 	return fn_800A6D60(arg0, arg1, farg0);
@@ -873,7 +874,7 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 					if (temp_r3 != NULL) {
 						if ((s16)*temp_r3 == 1) {
 							fn_800AFB50(NULL, &sp8);
-							temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, &sp8);
+							temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0x140, &sp8);
 							if (temp_f1 < var_f31) {
 								var_f31                      = temp_f1;
 								var_r28                      = *var_r27;
@@ -890,7 +891,7 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 							sp20 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 							sp24 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 							sp28 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);
-							fn_800D735C(&sp64, 0, &sp20);
+							GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp64, 0, &sp20);
 							M2C_FIELD(arg0, f32*, 0x254) = sp40;
 							M2C_FIELD(arg0, f32*, 0x258) = sp44;
 							M2C_FIELD(arg0, f32*, 0x25C) = sp48;
@@ -935,10 +936,10 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, f32*, 0x278)
 			    = (f32)(lbl_8_rodata_1BFC[0] * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x27C)));
 			M2C_FIELD(arg0, s32*, 0x14C) = (s32)M2C_FIELD(arg0, s32*, 0x26C);
-			M2C_FIELD(arg0, s32*, 0x150)
-			    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
-			M2C_FIELD(arg0, s32*, 0x154)
-			    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
+			M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(
+			    M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
+			M2C_FIELD(arg0, s32*, 0x154) = AdjustAngle__Fiii(
+			    M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
 			sp14 = M2C_FIELD(arg0, f32*, 0x140);
 			sp18 = M2C_FIELD(arg0, f32*, 0x144);
 			sp1C = M2C_FIELD(arg0, f32*, 0x148);

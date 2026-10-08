@@ -342,7 +342,7 @@ void SetCurrentNum__6CLIGHTFSc(void*, s32);
 void SetLightRegular__6CLIGHTFSc(void*, u8);
 void fn_8014FF2C(void*);
 int fn_8005BB20(RwV3d*, f32);
-f32 fn_800D7328(f32, f32, f32);
+f32 AdjustFloat__Ffff(f32, f32, f32);
 void fn_80021824(void*);
 CollisionSearchResult* fn_80020BD8(void*, s32);
 void fn_80150958(void*);
@@ -855,9 +855,9 @@ void TObjEffTornado2::Exec()
 	switch (this->active) {
 		case 1:
 			if (this->direction != 0) {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBC0, lbl_8042DBE4);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBC0, lbl_8042DBE4);
 			} else {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBC0, lbl_8042DBE8);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBC0, lbl_8042DBE8);
 			}
 			if (this->alpha >= lbl_8042DBC0) {
 				this->active = 2;
@@ -888,9 +888,9 @@ void TObjEffTornado2::Exec()
 
 		case 3:
 			if (this->direction != 0) {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBB4, lbl_8042DBE4);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBB4, lbl_8042DBE4);
 			} else {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBB4, lbl_8042DBE8);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBB4, lbl_8042DBE8);
 			}
 			if (this->alpha <= lbl_8042DBB4) {
 				this->active = 4;
@@ -908,8 +908,8 @@ void TObjEffTornado2::Exec()
 	}
 
 	this->scale += lbl_8042DBF4;
-	this->swirlScale    = fn_800D7328(this->swirlScale, lbl_8042DBC0, lbl_8042DBF8);
-	this->verticalScale = fn_800D7328(this->verticalScale, lbl_8042DBFC, lbl_8042DC00);
+	this->swirlScale    = AdjustFloat__Ffff(this->swirlScale, lbl_8042DBC0, lbl_8042DBF8);
+	this->verticalScale = AdjustFloat__Ffff(this->verticalScale, lbl_8042DBFC, lbl_8042DC00);
 
 	if (this->swirlScale >= lbl_8042DC04) {
 		s32 opacity = this->opacity;
@@ -1030,7 +1030,7 @@ extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 
 	switch (effect->state) {
 		case 1:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
 			if (effect->alpha >= lbl_8042DBC0) {
 				effect->state = 2;
 				effect->timer = 0;
@@ -1045,7 +1045,7 @@ extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 			break;
 		}
 		case 3:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
 			if (effect->alpha <= lbl_8042DBB4) {
 				effect->state = 4;
 			}
@@ -1376,7 +1376,7 @@ extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 
 	switch (effect->active) {
 		case 1:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
 			if (effect->alpha >= lbl_8042DBC0) {
 				effect->active = 2;
 				effect->state  = 0;
@@ -1396,7 +1396,7 @@ extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 			break;
 		}
 		case 3:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
 			if (effect->alpha <= lbl_8042DBB4) {
 				effect->active = 4;
 			}

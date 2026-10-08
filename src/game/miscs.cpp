@@ -45,7 +45,7 @@ f64 __frsqrte(f64);
 f64 __fabs(f64);
 f64 sin(f64);
 f64 atan2(f64, f64);
-f32 fn_800D7044(const RwV3d*, const MiscsSegment*, RwV3d*);
+f32 DistanceP2L__FPC5RwV3dPC8NJS_LINEP5RwV3d(const RwV3d*, const MiscsSegment*, RwV3d*);
 void* fn_801B2934(MiscsVertex*, u32, void*, u32);
 s32 fn_801B2C00(s32);
 s32 fn_801B2A14();
@@ -273,7 +273,7 @@ f32 DistanceP2SegL(RwV3d* point, RwV3d* first, RwV3d* second, RwV3d* closest)
 	segment.direction.x = directionX;
 	segment.direction.y = directionY;
 	segment.direction.z = directionZ;
-	return fn_800D7044(point, &segment, closest);
+	return DistanceP2L__FPC5RwV3dPC8NJS_LINEP5RwV3d(point, &segment, closest);
 }
 
 void njInitSinTable()

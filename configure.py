@@ -901,10 +901,7 @@ config.libs = [
             ),
             Object(Matching, "game/octreeColli.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
             Object(Matching, "game/octree.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
-            Object(Matching, "game/fn_800D67D4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(Matching, "game/fn_800D75CC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(Matching, "game/fn_800D7920.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
-            Object(Matching, "game/fn_800D7A54.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(NonMatching, "game/misc.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/miscs.cpp", extra_cflags=["-inline deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/fn_80057524.cpp", extra_cflags=["-Cpp_exceptions on"]),
             Object(Matching, "game/fn_8005776C.cpp"),
@@ -3962,11 +3959,6 @@ config.custom_build_rules = [
         "description": "FIX calc sine and cosine register allocation",
     },
     {
-        "name": "fix_fn_800D75CC_object",
-        "command": "$python tools/fix_fn_800D75CC_object.py $in $out",
-        "description": "FIX fn_800D75CC compiler register coloring",
-    },
-    {
         "name": "fix_fn_8005E8EC_object",
         "command": "$python tools/fix_fn_8005E8EC_object.py $in $out",
         "description": "FIX fn_8005E8EC.cpp split-TU compiler details",
@@ -4298,12 +4290,6 @@ config.custom_build_steps = {
             "rule": "fix_calc_registers",
             "inputs": "build/G9SE8P/src/game/calc.o",
             "implicit": ["tools/fix_calc_registers.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/fn-800D75CC-object.stamp",
-            "rule": "fix_fn_800D75CC_object",
-            "inputs": "build/G9SE8P/src/game/fn_800D75CC.o",
-            "implicit": ["tools/fix_fn_800D75CC_object.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-8005E8EC-object.stamp",

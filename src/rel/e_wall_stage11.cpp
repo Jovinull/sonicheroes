@@ -408,9 +408,9 @@ M2C_UNK fn_800B4A38(u32, M2C_UNK, f32*, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK);    
 M2C_UNK fn_800B7514(f32*, s32*, f32*, f32);                                         /* extern */
 M2C_UNK fn_800B7820();                                                              /* extern */
 M2C_UNK fn_800B7864(M2C_UNK);                                                       /* extern */
-f32 fn_800D71DC(void*, s32);                                                        /* extern */
-f32 fn_800D7218(f32*, M2C_UNK*);                                                    /* extern */
-s32 fn_800D7A94(s32, s32, s32);                                                     /* extern */
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, s32);                                    /* extern */
+f32 DistanceP2P__FPC5RwV3dPC5RwV3d(f32*, M2C_UNK*);                                 /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                               /* extern */
 f32 fn_800D7B00(u32);                                                               /* extern */
 f32 fn_800D8BC4(f32*, s32*, M2C_UNK);                                               /* extern */
 void** fn_800FD8A0(TObject*, s32);                                                  /* extern */
@@ -1736,7 +1736,7 @@ void fn_8_B8970(TObject* arg0)
 		return;
 	}
 	if ((s32)arg0->unkE8 != 3) {
-		if (fn_800D71DC((u8*)arg0 + 0xB0, lbl_8042C208) > lbl_8_rodata_1DA0) {
+		if (Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0xB0, lbl_8042C208) > lbl_8_rodata_1DA0) {
 			arg0->unkE8 = 3;
 		}
 		fn_80137FE8((M2C_UNK*)((u8*)arg0 + 0xDC));
@@ -2334,7 +2334,7 @@ s32 fn_8_B9CD4(void* arg0)
 	if (temp_r0 != -1) {
 		temp_r4 = *(&lbl_802AD090 + temp_r0);
 		if (temp_r4 != 0U) {
-			temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, temp_r4 + 0x18);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0x140, temp_r4 + 0x18);
 			if (temp_f1 <= lbl_8_rodata_1DB0) {
 				return 1;
 			}
@@ -2365,7 +2365,7 @@ s32 fn_8_B9D6C(TObject* arg0)
 		return 0;
 	}
 	temp_r31     = fn_800A5A54(arg0);
-	arg0->unk150 = fn_800D7A94(arg0->unk150, arg0->unk174, arg0->unk180);
+	arg0->unk150 = AdjustAngle__Fiii(arg0->unk150, arg0->unk174, arg0->unk180);
 	if (temp_r31 < 0x80) {
 		arg0->unk150 = arg0->unk174;
 		return 1;
@@ -2410,7 +2410,7 @@ s32 fn_8_B9ECC(TObject* arg0, f32 farg0, f32 farg1)
 	}
 	if (var_r0 != 0) {
 		temp_r29     = fn_800A5A54(arg0);
-		arg0->unk150 = fn_800D7A94(arg0->unk150, arg0->unk174, arg0->unk180);
+		arg0->unk150 = AdjustAngle__Fiii(arg0->unk150, arg0->unk174, arg0->unk180);
 		if (temp_r29 < 0x80) {
 			arg0->unk150 = arg0->unk174;
 		}
@@ -2429,7 +2429,8 @@ s32 fn_8_B9ECC(TObject* arg0, f32 farg0, f32 farg1)
 	if (fn_800A5888(arg0, &lbl_8_rodata_1DA8, lbl_8_rodata_1DA8) != 0) {
 		var_r31 = 0;
 	} else if ((((s32)(arg0->unk106 & 4) != 0)
-	               || (fn_800D7218(&arg0->unk140, &arg0->unk1E4) < lbl_8_rodata_1D78))
+	               || (DistanceP2P__FPC5RwV3dPC5RwV3d(&arg0->unk140, &arg0->unk1E4)
+	                   < lbl_8_rodata_1D78))
 	    && (fn_800A5998(arg0) <= 0)) {
 		var_r31 = 0;
 	}
@@ -2812,7 +2813,7 @@ void fn_8_BAF00(TObject* arg0, s32 arg1)
 					}
 					if (var_r0 != 0) {
 						temp_r30     = fn_800A5A54(arg0);
-						arg0->unk150 = fn_800D7A94(arg0->unk150, arg0->unk174, arg0->unk180);
+						arg0->unk150 = AdjustAngle__Fiii(arg0->unk150, arg0->unk174, arg0->unk180);
 						if (temp_r30 < 0x80) {
 							arg0->unk150 = arg0->unk174;
 						}
@@ -3019,7 +3020,7 @@ void fn_8_BB5E4(TObject* arg0, s32 arg1)
 					}
 					if (var_r0 != 0) {
 						temp_r30     = fn_800A5A54(arg0);
-						arg0->unk150 = fn_800D7A94(arg0->unk150, arg0->unk174, arg0->unk180);
+						arg0->unk150 = AdjustAngle__Fiii(arg0->unk150, arg0->unk174, arg0->unk180);
 						if (temp_r30 < 0x80) {
 							arg0->unk150 = arg0->unk174;
 						}
@@ -3037,7 +3038,8 @@ void fn_8_BB5E4(TObject* arg0, s32 arg1)
 					}
 					if ((fn_800A5888(arg0, &lbl_8_rodata_1DA8, lbl_8_rodata_1DA8) == 0)
 					    && (((s32)(arg0->unk106 & 4) != 0)
-					        || (fn_800D7218(&arg0->unk140, &arg0->unk1E4) < lbl_8_rodata_1D78))) {
+					        || (DistanceP2P__FPC5RwV3dPC5RwV3d(&arg0->unk140, &arg0->unk1E4)
+					            < lbl_8_rodata_1D78))) {
 						fn_800A5998(arg0);
 					}
 				}

@@ -333,23 +333,11 @@ game/calc_movcolli.cpp:
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 
-game/fn_800D67D4.cpp:
-	extab       start:0x80008C10 end:0x80008C20
-	extabindex  start:0x8000F2F8 end:0x8000F310
-	.text       start:0x800D67D4 end:0x800D689C
-
-game/fn_800D75CC.cpp:
-	extab       start:0x80008C58 end:0x80008C60
-	extabindex  start:0x8000F364 end:0x8000F370
-	.text       start:0x800D75CC end:0x800D7920
-
-game/fn_800D7920.cpp:
-	extab       start:0x80008C60 end:0x80008C68
-	extabindex  start:0x8000F370 end:0x8000F37C
-	.text       start:0x800D7920 end:0x800D7A54
-
-game/fn_800D7A54.cpp:
-	.text       start:0x800D7A54 end:0x800D7B18
+game/misc.cpp:
+	extab       start:0x80008BD0 end:0x80008C68
+	extabindex  start:0x8000F298 end:0x8000F37C
+	.text       start:0x800D5844 end:0x800D7B18
+	.sdata2     start:0x8042E008 end:0x8042E040
 
 game/miscs.cpp:
 	extab       start:0x80008C68 end:0x80008CA0

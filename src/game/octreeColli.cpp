@@ -8,7 +8,7 @@ u32 lbl_80242B28[4] = { 1, 2, 4, 8 };
 }
 extern "C" f32 fn_801991B4(RwV3d*);
 extern "C" void fn_801990E0(RwV3d*, RwV3d*);
-extern "C" f32 fn_800D71DC(const RwV3d*, const RwV3d*);
+extern "C" f32 Distance2P2P__FPC5RwV3dPC5RwV3d(const RwV3d*, const RwV3d*);
 extern "C" s32 clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
     const RwV3d*, f32, const RwV3d*, RwV3d*, RwV3d*);
 extern "C" s32 clDetectMS2T__FPC5RwV3dfPC5RwV3dP5RwV3dP5RwV3dP5RwV3dPs(
@@ -568,8 +568,10 @@ ColliPolyLinearList* OCTREE::DetectSphereCollisionWithPolygons(
 					triangleVertices[1] = grid->vertexData[triangle->vertexIndexNo[1]];
 					triangleVertices[2] = grid->vertexData[triangle->vertexIndexNo[2]];
 
-					f32 reachSq          = fn_800D71DC(&triangleVertices[1], &triangleVertices[0]);
-					f32 alternateReachSq = fn_800D71DC(&triangleVertices[2], &triangleVertices[0]);
+					f32 reachSq = Distance2P2P__FPC5RwV3dPC5RwV3d(
+					    &triangleVertices[1], &triangleVertices[0]);
+					f32 alternateReachSq = Distance2P2P__FPC5RwV3dPC5RwV3d(
+					    &triangleVertices[2], &triangleVertices[0]);
 					if (reachSq < alternateReachSq)
 						reachSq = alternateReachSq;
 					reachSq += radiusSq;

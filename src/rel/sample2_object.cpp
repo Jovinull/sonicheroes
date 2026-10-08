@@ -124,7 +124,8 @@ extern "C" s32 fn_8005B8D8(Motion* motion);
 extern "C" s32 fn_8005B9F0(Motion* motion);
 extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
 extern "C" void fn_8005BE6C(Motion* motion);
-extern "C" void fn_800D72C0(const Vec3* a, const Vec3* b, Vec3* out);
+extern "C" void SubVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+    const Vec3* a, const Vec3* b, Vec3* out);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* sample2ClassName;
@@ -146,7 +147,8 @@ extern "C" void sample2Exec(Sample2* object)
 		object->position.z = frame->position.z;
 	} else {
 		object->rotation.y += 0x38E;
-		fn_800D72C0(lbl_8042C208, &object->motion.frame->position, &delta);
+		SubVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+		    lbl_8042C208, &object->motion.frame->position, &delta);
 	}
 }
 

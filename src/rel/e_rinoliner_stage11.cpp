@@ -158,10 +158,10 @@ M2C_UNK fn_800A7088(void*, M2C_UNK);                                            
 M2C_UNK fn_800A714C();                                                              /* extern */
 s32 fn_800AF3AC(...);                                                               /* extern */
 M2C_UNK fn_800AFB50(...);                                                           /* extern */
-f32 fn_800D71DC(void*, void*);                                                      /* extern */
-M2C_UNK fn_800D735C(M2C_UNK*, M2C_UNK, s32*);                                       /* extern */
-s32 fn_800D7920(f32*, f32*, f32*, f32);                                             /* extern */
-s32 fn_800D7A94(...);                                                               /* extern */
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, void*);                                  /* extern */
+M2C_UNK GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(M2C_UNK*, M2C_UNK, s32*);  /* extern */
+s32 VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(f32*, f32*, f32*, f32);                     /* extern */
+s32 AdjustAngle__Fiii(...);                                                         /* extern */
 f32 fn_800D7AE4(s32);                                                               /* extern */
 f32 fn_800D7B00(...);                                                               /* extern */
 M2C_UNK** fn_800FD8A0(TObject*, s32);                                               /* extern */
@@ -341,7 +341,7 @@ void fn_8_B2BB4(void* arg0)
 				M2C_FIELD(arg0, f32*, 0x144) = spEC;
 				M2C_FIELD(arg0, f32*, 0x148) = spF0;
 				sp44                         = 0;
-				fn_800D735C(&sp10C, 0, &sp44);
+				GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp10C, 0, &sp44);
 				if ((s32)M2C_FIELD(arg0, s32*, 0x2B4) != 0) {
 					M2C_FIELD(arg0, s32*, 0x14C) = sp44;
 					M2C_FIELD(arg0, s32*, 0x150) = sp48;
@@ -357,18 +357,18 @@ void fn_8_B2BB4(void* arg0)
 			M2C_FIELD(arg0, f32*, 0x144) = spEC;
 			M2C_FIELD(arg0, f32*, 0x148) = spF0;
 			sp38                         = 0;
-			fn_800D735C(&sp10C, 0, &sp38);
+			GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp10C, 0, &sp38);
 			if ((s32)M2C_FIELD(arg0, s32*, 0x2B4) != 0) {
 				M2C_FIELD(arg0, s32*, 0x14C) = sp38;
-				M2C_FIELD(arg0, s32*, 0x150)
-				    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150), sp3C, M2C_FIELD(arg0, s32*, 0x2B8));
-				M2C_FIELD(arg0, s32*, 0x154)
-				    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x154), sp40, M2C_FIELD(arg0, s32*, 0x2BC));
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(
+				    M2C_FIELD(arg0, s32*, 0x150), sp3C, M2C_FIELD(arg0, s32*, 0x2B8));
+				M2C_FIELD(arg0, s32*, 0x154) = AdjustAngle__Fiii(
+				    M2C_FIELD(arg0, s32*, 0x154), sp40, M2C_FIELD(arg0, s32*, 0x2BC));
 			} else {
 				M2C_FIELD(arg0, s32*, 0x14C) = sp38;
-				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 				    (s32)(u16)(sp3C + 0x8000), M2C_FIELD(arg0, s32*, 0x2B8));
-				M2C_FIELD(arg0, s32*, 0x154) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x154),
+				M2C_FIELD(arg0, s32*, 0x154) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x154),
 				    (s32)(u16)(sp40 * -1), M2C_FIELD(arg0, s32*, 0x2BC));
 			}
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2C8) != 0)
@@ -441,7 +441,7 @@ void fn_8_B2BB4(void* arg0)
 				if (temp_r3_3 != NULL) {
 					if ((temp_r3_3 != temp_r28) && ((s16)M2C_FIELD(temp_r3_3, s16*, 0) == 1)) {
 						fn_800AFB50(NULL, &sp14);
-						temp_f1 = fn_800D71DC(temp_r30, &sp14);
+						temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d(temp_r30, &sp14);
 						if (temp_f1 < var_f31) {
 							var_f31                      = temp_f1;
 							var_r29                      = *var_r27;
@@ -449,7 +449,7 @@ void fn_8_B2BB4(void* arg0)
 						}
 						temp_r3_4 = *var_r27;
 						fn_800AFB50(temp_r3_4, M2C_FIELD(temp_r3_4, s16*, 2) - 1, &sp14);
-						temp_f1_2 = fn_800D71DC(temp_r30, &sp14);
+						temp_f1_2 = Distance2P2P__FPC5RwV3dPC5RwV3d(temp_r30, &sp14);
 						if (temp_f1_2 < var_f31) {
 							var_f31                      = temp_f1_2;
 							var_r29                      = *var_r27;
@@ -469,7 +469,7 @@ void fn_8_B2BB4(void* arg0)
 				if (temp_r3_5 != NULL) {
 					if ((s16)*temp_r3_5 == 1) {
 						fn_800AFB50(NULL, &sp8);
-						temp_f1_3 = fn_800D71DC((u8*)arg0 + 0x140, &sp8);
+						temp_f1_3 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0x140, &sp8);
 						if (temp_f1_3 < var_f31_2) {
 							var_f31_2                    = temp_f1_3;
 							var_r29_2                    = *var_r27_2;
@@ -556,9 +556,9 @@ void fn_8_B321C(TObject* arg0, void* arg1, s32 arg2)
 		sp8     = lbl_8_rodata_1BD0;
 		spC     = lbl_8_rodata_1C04;
 		sp10    = lbl_8_rodata_1BD0;
-		temp_r4 = fn_800D7920(&sp20, &sp14, &sp8, lbl_8_rodata_1BD0);
+		temp_r4 = VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(&sp20, &sp14, &sp8, lbl_8_rodata_1BD0);
 		if (arg2 != 0) {
-			arg0->unk28C = fn_800D7A94(arg0->unk28C, 0x200);
+			arg0->unk28C = AdjustAngle__Fiii(arg0->unk28C, 0x200);
 		} else {
 			arg0->unk28C = temp_r4;
 		}
@@ -999,7 +999,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 		if (temp_r3_3 != NULL) {
 			if ((temp_r3_3 != NULL) && ((s16)M2C_FIELD(temp_r3_3, s16*, 0) == 1)) {
 				fn_800AFB50(NULL, &sp14);
-				temp_f1 = fn_800D71DC(temp_r30_2, &sp14);
+				temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d(temp_r30_2, &sp14);
 				if (temp_f1 < var_f31) {
 					var_f31      = temp_f1;
 					var_r29      = *var_r28;
@@ -1007,7 +1007,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 				}
 				temp_r3_4 = *var_r28;
 				fn_800AFB50(temp_r3_4, M2C_FIELD(temp_r3_4, s16*, 2) - 1, &sp14);
-				temp_f1_2 = fn_800D71DC(temp_r30_2, &sp14);
+				temp_f1_2 = Distance2P2P__FPC5RwV3dPC5RwV3d(temp_r30_2, &sp14);
 				if (temp_f1_2 < var_f31) {
 					var_f31      = temp_f1_2;
 					var_r29      = *var_r28;
@@ -1027,7 +1027,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 		if (temp_r3_5 != NULL) {
 			if ((s16)*temp_r3_5 == 1) {
 				fn_800AFB50(NULL, &sp8);
-				temp_f1_3 = fn_800D71DC(&arg0->unk140, &sp8);
+				temp_f1_3 = Distance2P2P__FPC5RwV3dPC5RwV3d(&arg0->unk140, &sp8);
 				if (temp_f1_3 < var_f31_2) {
 					var_f31_2    = temp_f1_3;
 					var_r28_2    = *var_r27;

@@ -167,7 +167,7 @@ M2C_UNK fn_800A714C();                                                          
 s32 fn_800AF3AC(M2C_UNK*);                                                          /* extern */
 M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, M2C_UNK, M2C_UNK, M2C_UNK);         /* extern */
 M2C_UNK fn_800CCC6C(const char*);                                                   /* extern */
-s32 fn_800D7A94(s32, s32, s32);                                                     /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                               /* extern */
 f32 fn_800D7B00(s32);                                                               /* extern */
 M2C_UNK fn_800F46B0(void*);                                                         /* extern */
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                             /* extern */
@@ -1332,7 +1332,7 @@ s32 fn_8_9F3F8(void* arg0)
 	s32 temp_r31;
 
 	temp_r31                     = fn_800A5A54(arg0);
-	M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(
+	M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(
 	    M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 	if (temp_r31 < 0x80) {
 		M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -2074,7 +2074,7 @@ void fn_8_A07B4(void* arg0, s32 arg1)
 				temp_f1_2 = lbl_8_rodata_1878[0] * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x26C));
 				M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + temp_f1_2);
 				temp_r30                     = fn_800A5A54(arg0);
-				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r30 < 0x80) {
 					M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
