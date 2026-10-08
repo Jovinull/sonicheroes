@@ -1592,3 +1592,36 @@ and their obsolete initializer postprocessor are removed. Independent exact
 section and relocation checks now include the constant pool without a
 permutation exception. Native supported-matrix validation is recorded in the
 normalization evidence; compilation does not establish runtime validation.
+
+### calc.cpp reconstruction
+
+The eight-function `game/calc.cpp` reconstruction is C++, based on correlated
+PS2 `calc.cpp` metadata and C++ signatures for the interpolation, angle, and
+matrix-rotation routines. The GameCube unit boundary is inferred from that
+sequence and its shared constants. Seven functions match directly. `GetRotYXZ` retains ten fields that exchange
+floating-point registers 30 and 31; a bounded compiler-output normalizer
+substitutes those fields alone. This is not a source-only match claim.
+
+Deferred inlining and reversed source definitions reproduce the GameCube
+function order and exception tables. A real, referenced zero constant is defined
+after the functions to preserve its leading position before the compiler's
+conversion bias and angle scale. The 20-byte constant pool is exact; it is not
+synthetic padding. No assembly implementation or layout normalizer is used.
+
+The public declarations live in `include/game/calc.h`. The BlinkLight caller now
+uses the evidenced integer output pointers and integer angle storage rather
+than declaring the rotation routine's outputs as floats. The downstream particle
+factory receives that storage through an opaque pointer pending reconstruction
+of its interface.
+
+The ordinary-inline comparison emits `GetRotXYZ` first and `InterDivPosF` last;
+deferred mode gives the target's opposite order. Independent ELF validation
+finds exact export offsets/sizes, 56 bytes of exception data, 84 bytes of
+exception indices, the 20-byte constant pool and all 85 normalized relocations.
+The only ten differing instruction words lie inside `GetRotYXZ` and change
+register fields only. The complete liveness proof, source trials, guards and
+removal path are recorded in [calc-register-evidence.md](calc-register-evidence.md).
+A fresh native G9SE8P main DOL and all seventeen RELs compile and all eighteen
+retail hashes pass. All-source compilation, progress/report generation, 63
+tests, both policies and formatting pass. No runtime or physical-hardware
+validation was performed.

@@ -1060,6 +1060,7 @@ config.libs = [
             Object(NonMatching, "game/calc_movcolli.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline auto", "-pooldata off"]),
             Object(NonMatching, "game/calc_colli.cpp", extra_cflags=["-inline deferred,noauto", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/aram_pool.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
+            Object(Matching, "game/calc.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
             Object(Matching, "game/link.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/eff_wink.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
             Object(Matching, "game/message.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-bool off", "-inline deferred"]),
@@ -3971,6 +3972,11 @@ config.custom_build_rules = [
         "description": "FIX miscs compiler constant atom order",
     },
     {
+        "name": "fix_calc_registers",
+        "command": "$python tools/fix_calc_registers.py $in $out",
+        "description": "FIX calc sine and cosine register allocation",
+    },
+    {
         "name": "fix_fn_80054F08_object",
         "command": "$python tools/fix_fn_80054F08_object.py $in $out",
         "description": "FIX fn_80054F08 compiler block layout and register coloring",
@@ -4310,6 +4316,12 @@ config.custom_build_steps = {
             "rule": "fix_miscs_object",
             "inputs": "build/G9SE8P/src/game/miscs.o",
             "implicit": ["tools/fix_miscs_object.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/calc-registers.stamp",
+            "rule": "fix_calc_registers",
+            "inputs": "build/G9SE8P/src/game/calc.o",
+            "implicit": ["tools/fix_calc_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/fn-80054F08-object.stamp",
