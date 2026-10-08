@@ -200,8 +200,8 @@ s32 AdjustAngle__Fiii(s32, s32, s32);                      /* extern */
 f32 fn_800D7B00(s32);                                      /* extern */
 f32 GetShadowPos__FP5RwV3dP6sAnglei(s32*, s32*, s32, f32); /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                        /* extern */
-s32 fn_80100BF8(s32);                                      /* extern */
-M2C_UNK fn_80100CFC(s8*);                                  /* extern */
+s32 IsExistSummonEnemy__19nEnemyCommunicationFUc(s32);     /* extern */
+M2C_UNK Send__15sEnemyCommandExFv(s8*);                    /* extern */
 M2C_UNK fn_80103214(void*, void*, s32, s32);               /* extern */
 s32 fn_80103324(void*, void*, f32);                        /* extern */
 s32 fn_8010AFB0(u32);                                      /* extern */
@@ -278,7 +278,9 @@ s32 fn_8_AABC8(void* arg0)
 	if ((s32)M2C_FIELD(arg0, s32*, 0x350) == 1) {
 		return 2;
 	}
-	if (fn_80100BF8(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A)) == 0) {
+	if (IsExistSummonEnemy__19nEnemyCommunicationFUc(
+	        M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A))
+	    == 0) {
 		return 0;
 	}
 	return ((lbl_8_rodata_1ACC * (f32)rand()) < lbl_8_rodata_1AD0) == 0;
@@ -1295,7 +1297,7 @@ void fn_8_ACB0C(void* arg0, s32 arg1)
 					sp34 = M2C_FIELD(arg0, f32*, 0x144);
 					sp38 = M2C_FIELD(arg0, f32*, 0x148);
 					sp3C = M2C_FIELD(arg0, f32*, 0x214);
-					fn_80100CFC(&sp2C);
+					Send__15sEnemyCommandExFv(&sp2C);
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(lbl_8042C388, 0x4044, (u8*)arg0 + 0x140, NULL, 1, 0, 0);
 					}

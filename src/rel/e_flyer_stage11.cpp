@@ -138,8 +138,8 @@ u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);    
 M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                    /* extern */
 M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(u32, M2C_UNK, const void*);        /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv();                                                 /* extern */
-s32 fn_80100C88(u8);                                                                /* extern */
-M2C_UNK fn_80100D24(s8*, ...);                                                      /* extern */
+s32 IsAnnihilated__19nEnemyCommunicationFUc(u8);                                    /* extern */
+M2C_UNK Send__13sEnemyCommandFv(s8*, ...);                                          /* extern */
 M2C_UNK fn_80102C50(s32, s32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32);    /* extern */
 M2C_UNK fn_8010AFE4(void*);                                                         /* extern */
 M2C_UNK fn_8010B208(u32, f32, f32);                                                 /* extern */
@@ -451,7 +451,10 @@ void fn_8_A2840(void* arg0, s32 arg1)
 		case 1:
 			if ((s32)M2C_FIELD(&lbl_8029C310, s32*, 0x2C) == 0x15) {
 				temp_r0 = M2C_FIELD(arg0, s32*, 0x1C);
-				if ((temp_r0 < 4) && (fn_80100C88(*((u8*)&lbl_8_rodata_18AC + temp_r0)) == 1)) {
+				if ((temp_r0 < 4)
+				    && (IsAnnihilated__19nEnemyCommunicationFUc(
+				            *((u8*)&lbl_8_rodata_18AC + temp_r0))
+				        == 1)) {
 					M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 					M2C_FIELD(arg0, s32*, 4) = 6;
@@ -601,7 +604,9 @@ void fn_8_A2D48(void* arg0, u32 arg1, s32 arg2)
 					if ((s32)M2C_FIELD(&lbl_8029C310, s32*, 0x2C) == 0x15) {
 						temp_r0 = M2C_FIELD(arg0, s32*, 0x1C);
 						if ((temp_r0 < 4)
-						    && (fn_80100C88(*((u8*)&lbl_8_rodata_18AC + temp_r0)) == 1)) {
+						    && (IsAnnihilated__19nEnemyCommunicationFUc(
+						            *((u8*)&lbl_8_rodata_18AC + temp_r0))
+						        == 1)) {
 							M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 							M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
 							    0x10)(arg0, M2C_FIELD(arg0, s32*, 4), 3);
@@ -1224,7 +1229,7 @@ void fn_8_A3C88(M2C_UNK* arg0)
 			sp28 = M2C_FIELD(arg0, s32*, 0x14C);
 			sp2C = M2C_FIELD(arg0, s32*, 0x150);
 			sp30 = M2C_FIELD(arg0, s32*, 0x154);
-			fn_80100D24(&sp14);
+			Send__13sEnemyCommandFv(&sp14);
 		}
 	} else if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x288) != NULL) {
 		temp_r3_3                    = fn_8019E8EC((void*)M2C_FIELD(arg0, M2C_UNK**, 0x288));
@@ -1293,7 +1298,7 @@ void fn_8_A4140(void* arg0, s32 arg1)
 				spC  = 2;
 				sp28 = M2C_FIELD(arg0, s32*, 0x258);
 				sp6C = M2C_FIELD(arg0, s32*, 0x230);
-				fn_80100D24(&sp8, 0);
+				Send__13sEnemyCommandFv(&sp8, 0);
 			}
 			((TRenderer*)arg0)->Slot3C();
 			return;
@@ -1527,7 +1532,7 @@ void fn_8_A44D4(M2C_UNK* arg0, s32 arg1, s32 arg2)
 						spC  = 2;
 						sp28 = M2C_FIELD(arg0, s32*, 0x258);
 						sp6C = M2C_FIELD(arg0, s32*, 0x230);
-						fn_80100D24(&sp8, 0);
+						Send__13sEnemyCommandFv(&sp8, 0);
 					}
 					((TRenderer*)arg0)->Slot3C();
 					return;
@@ -1718,7 +1723,7 @@ void fn_8_A4CB0(void* arg0)
 		sp28 = M2C_FIELD(arg0, s32*, 0x14C);
 		sp2C = M2C_FIELD(arg0, s32*, 0x150);
 		sp30 = M2C_FIELD(arg0, s32*, 0x154);
-		fn_80100D24(&sp14);
+		Send__13sEnemyCommandFv(&sp14);
 	}
 }
 
@@ -1918,7 +1923,7 @@ void fn_8_A4E44(M2C_UNK* arg0)
 			} else {
 				spE0 = (s32)(182.04445f * (180.0f + (360.0f - sp8)));
 			}
-			fn_80100D24(&spC8);
+			Send__13sEnemyCommandFv(&spC8);
 			return;
 		case 1:
 			if ((u32)M2C_FIELD(arg0, u32*, 0x304) != 0U) {

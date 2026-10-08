@@ -101,7 +101,7 @@ M2C_UNK fn_800A31B8(void*, s32);                                    /* extern */
 s32 fn_800A3ED4(void*);                                             /* extern */
 M2C_UNK AdjustPoint__FP5RwV3dPC5RwV3df(void*, f32*, M2C_UNK*, f32); /* extern */
 f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, s32);                    /* extern */
-M2C_UNK fn_80100D24(s8*, ...);                                      /* extern */
+M2C_UNK Send__13sEnemyCommandFv(s8*, ...);                          /* extern */
 s32 fn_80103324(void*, M2C_UNK*, f32);                              /* extern */
 M2C_UNK SetLightNum__7nRenderFUi(s32);                              /* extern */
 M2C_UNK fn_8014FF2C(void*);                                         /* extern */
@@ -1050,7 +1050,7 @@ s32 fn_8_B5D9C(void* arg0)
 			sp9     = M2C_FIELD(temp_r5, u8*, 0x2A);
 			spC     = 7;
 			sp1C    = (s32)(s8)M2C_FIELD(temp_r6, u8*, 1);
-			fn_80100D24(&sp8, NULL, temp_r6);
+			Send__13sEnemyCommandFv(&sp8, NULL, temp_r6);
 		}
 	}
 	return var_r31;
@@ -1107,7 +1107,7 @@ s32 fn_8_B5E88(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD4);
 			sp14 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp18 = M2C_FIELD(arg0, f32*, 0xDC);
-			fn_80100D24(&sp8, lbl_8_rodata_1CA4, NULL);
+			Send__13sEnemyCommandFv(&sp8, lbl_8_rodata_1CA4, NULL);
 		}
 	}
 	return var_r31;
@@ -1161,7 +1161,7 @@ s32 fn_8_B5F7C(void* arg0)
 			sp1C = 0;
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			spC  = 5;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -1218,7 +1218,7 @@ s32 fn_8_B6058(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD4);
 			sp14 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp18 = M2C_FIELD(arg0, f32*, 0xDC);
-			fn_80100D24(&sp8, lbl_8_rodata_1CA4, (void*)4);
+			Send__13sEnemyCommandFv(&sp8, lbl_8_rodata_1CA4, (void*)4);
 		}
 	}
 	return var_r31;
@@ -1272,7 +1272,7 @@ s32 fn_8_B6148(void* arg0)
 			sp1C = 0;
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			spC  = 3;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -1322,7 +1322,7 @@ s32 fn_8_B6224(void* arg0)
 			sp1C = 0;
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			spC  = 2;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -1372,7 +1372,7 @@ s32 fn_8_B6304(void* arg0)
 			sp1C = 0;
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			spC  = 1;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -1504,7 +1504,7 @@ s32 fn_8_B63E4(void* arg0)
 						spAC = 0;
 						sp99 = M2C_FIELD(temp_r5, u8*, 0x2A);
 						sp9C = 1;
-						fn_80100D24(&sp98, NULL);
+						Send__13sEnemyCommandFv(&sp98, NULL);
 					}
 				}
 				return var_r30;
@@ -1539,7 +1539,7 @@ s32 fn_8_B63E4(void* arg0)
 						sp94 = 0;
 						sp81 = M2C_FIELD(temp_r5_2, u8*, 0x2A);
 						sp84 = 2;
-						fn_80100D24(&sp80, NULL);
+						Send__13sEnemyCommandFv(&sp80, NULL);
 					}
 				}
 				return var_r30_2;
@@ -1576,7 +1576,7 @@ s32 fn_8_B63E4(void* arg0)
 						sp7C = 0;
 						sp69 = M2C_FIELD(temp_r5_3, u8*, 0x2A);
 						sp6C = 5;
-						fn_80100D24(&sp68, NULL);
+						Send__13sEnemyCommandFv(&sp68, NULL);
 					}
 				}
 				return var_r30_3;
@@ -1613,7 +1613,7 @@ s32 fn_8_B63E4(void* arg0)
 						sp64 = 0;
 						sp51 = M2C_FIELD(temp_r5_4, u8*, 0x2A);
 						sp54 = 3;
-						fn_80100D24(&sp50, NULL);
+						Send__13sEnemyCommandFv(&sp50, NULL);
 					}
 				}
 				return var_r30_4;
@@ -1653,7 +1653,7 @@ s32 fn_8_B63E4(void* arg0)
 						sp40 = M2C_FIELD(arg0, f32*, 0xD4);
 						sp44 = M2C_FIELD(arg0, f32*, 0xD8);
 						sp48 = M2C_FIELD(arg0, f32*, 0xDC);
-						fn_80100D24(&sp38, NULL);
+						Send__13sEnemyCommandFv(&sp38, NULL);
 					}
 				}
 				return var_r30_5;
@@ -1693,7 +1693,7 @@ s32 fn_8_B63E4(void* arg0)
 						sp28 = M2C_FIELD(arg0, f32*, 0xD4);
 						sp2C = M2C_FIELD(arg0, f32*, 0xD8);
 						sp30 = M2C_FIELD(arg0, f32*, 0xDC);
-						fn_80100D24(&sp20, (M2C_UNK*)4);
+						Send__13sEnemyCommandFv(&sp20, (M2C_UNK*)4);
 					}
 				}
 				return var_r30_6;
@@ -1732,7 +1732,7 @@ s32 fn_8_B63E4(void* arg0)
 						sp9       = M2C_FIELD(temp_r6, u8*, 0x2A);
 						spC       = 7;
 						sp1C      = (s32)(s8)M2C_FIELD(temp_r5_7, u8*, 1);
-						fn_80100D24(&sp8, NULL, temp_r5_7);
+						Send__13sEnemyCommandFv(&sp8, NULL, temp_r5_7);
 					}
 				}
 				return var_r30_7;

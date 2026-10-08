@@ -210,7 +210,7 @@ s32 CheckRangeOut__10TObjSetObjFv(void* object);
 s32 CheckMustKill__10TObjSetObjFv(void* object);
 s32 OnEdit__10TObjSetObjFv(void* object);
 s32 objGroupAllActive(s32 index);
-s32 fn_80100C88(s32 index);
+s32 IsAnnihilated__19nEnemyCommunicationFUc(s32 index);
 void fn_800B4A38(void* sound, s32 id, Vec3* position, s32, s32, s32, s32);
 f32 AdjustFloat__Ffff(f32 value, f32 target, f32 step);
 void fn_8003BC38(void* object);
@@ -301,7 +301,7 @@ extern "C" void fn_8_40554(RuntimeState* self)
 			groups += groupOffset;
 			if (*(void**)(groups + 0x30) != NULL && objGroupAllActive(self->index) == 0)
 				break;
-			if (fn_80100C88(self->index) == 0)
+			if (IsAnnihilated__19nEnemyCommunicationFUc(self->index) == 0)
 				break;
 			void* sound = *(void**)lbl_8042C388;
 			if (sound != NULL)

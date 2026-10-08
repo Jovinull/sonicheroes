@@ -62,7 +62,7 @@ s32 CheckFileID__7ONEFILEFPc(s32, s32);                                         
 M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);                                      /* extern */
 f32 fn_800D7AE4(s32);                                                                 /* extern */
 f32 fn_800D7B00(s32);                                                                 /* extern */
-s32 fn_80100C88(u8);                                                                  /* extern */
+s32 IsAnnihilated__19nEnemyCommunicationFUc(u8);                                      /* extern */
 u32 fn_80150588(u32);                                                                 /* extern */
 M2C_UNK fn_80150958(void*);                                                           /* extern */
 M2C_UNK fn_8015BB08(s32, u32);                                                        /* extern */
@@ -313,7 +313,9 @@ void fn_8_956C0(void* arg0)
 				var_r4 = 1;
 			}
 			if (((var_r4 != 0) || (objGroupAllActive() != 0))
-			    && (fn_80100C88(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), u8*, 0x2A)) != 0)) {
+			    && (IsAnnihilated__19nEnemyCommunicationFUc(
+			            M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), u8*, 0x2A))
+			        != 0)) {
 				M2C_FIELD(arg0, s32*, 0xD0) = 1;
 				if ((u32)lbl_8042C388 != 0U) {
 					fn_800B52E8(0x5A02, (s8)lbl_8_data_15130, 0);
