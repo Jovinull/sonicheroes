@@ -120,6 +120,7 @@
     "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
     "game/gParam.cpp",
+    "game/game2pTable.cpp",
     "game/light.cpp",
     "game/material.cpp",
     "game/message.cpp",

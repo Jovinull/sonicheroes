@@ -2297,3 +2297,19 @@ Local symbolic metadata identifies the whole three-function vertical collision
 unit as C++. GameCube call ABI, POLYDATA fields, and callback references
 corroborate it. The reconstruction uses C++ and canonical mangled symbols.
 See [the unit evidence](vertical-colli-unit-evidence.md).
+
+## game2pTable.cpp
+
+Symbolic metadata identifies this complete five-function unit as C++; GameCube
+callers and all four owned table references corroborate its boundaries. Only
+metadata from the other platform was examined. Its differing table counts are
+not imported. The GameCube unit owns 1,252 text bytes, 324 table bytes plus four
+alignment bytes, 32 exception bytes and 48 exception-index bytes.
+
+Automatic inlining with callee-before-caller definitions emits the right bodies
+in the wrong order. Reversing definitions into retail order leaves member
+selection out of line: intro becomes 220 rather than 416 bytes. Whole-unit
+`-inline deferred` preserves both the native inline topology and body order.
+It is listed explicitly in `deferred_sources`. Four bodies match directly;
+the intro's measured 12-field r29/r30 permutation is guarded and documented in
+`game2ptable-unit-evidence.md`, with no retail instruction words injected.
