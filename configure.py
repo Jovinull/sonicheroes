@@ -569,6 +569,7 @@ config.libs = [
             Object(Matching, "game/enemy/e_database.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/one.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline deferred", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/object_defaults.cpp"),
             Object(Matching, "game/fn_8003F300.cpp"),
             Object(Matching, "game/fn_80042864.cpp"),
@@ -4023,6 +4024,11 @@ config.custom_build_rules = [
         "description": "FIX ef_sparkle compiler-owned atom order",
     },
     {
+        "name": "fix_c_colli_react_object",
+        "command": "$python tools/fix_c_colli_react_object.py $in $out",
+        "description": "FIX collision reactor weak inline atom order",
+    },
+    {
         "name": "fix_ef_rain_object",
         "command": f"$python tools/fix_ef_rain_object.py $in $out",
         "description": "FIX ef_rain generated function order",
@@ -4274,6 +4280,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/c-colli-react-object.stamp",
+            "rule": "fix_c_colli_react_object",
+            "inputs": "build/G9SE8P/src/game/c_colli_react.o",
+            "implicit": ["tools/fix_c_colli_react_object.py"],
+        },
         {
             "outputs": "build/G9SE8P/light-registers.stamp",
             "rule": "fix_light_registers",

@@ -2197,3 +2197,24 @@ Four lifecycle bodies and Gliding instruction bytes are exact; three larger
 routines, constant relocation offsets, constant order and
 exception metadata remain NonMatching. See `pathctrl-unit-evidence.md` for
 whole-unit boundaries, comparison results and complete build verification.
+
+## c_colli_react.cpp
+
+PS2 symbolic metadata positively identifies the complete collision reactor unit
+as C++. GameCube virtual-base pointer accesses, four 60-byte allocations, and
+fourteen adjusting thunks independently confirm virtual inheritance. The source
+reconstructs all 42 surviving bodies and five inlined constructors using C++
+classes; the compiler emits the thunks. Metadata also identifies the inline
+CheckReactor and reference-count methods. No instruction post-processor is used.
+
+All 42 bodies match instructions and normalized relocations. The deferred-inline
+recipe uses base-first class definition groups and reproduces the five vtable
+groups, fourteen compiler-generated thunk orderings, and extab records.
+Original source line order remains unproven. Derived override declaration order
+comes from GameCube vtable slots, not PS2 method-order metadata. A fail-closed
+object step moves only the compiler-produced 28-byte weak SetDirection body to
+the tail; it preserves every instruction and relocation meaning. With that
+explicit layout normalization the complete linked DOL is byte-identical and all
+18 supported output hashes pass. The whole unit is enabled as Matching.
+See `c-colli-react-unit-evidence.md` for the inventory, evidence and remaining
+compiler-emission gap.
