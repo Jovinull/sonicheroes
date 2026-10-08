@@ -2336,3 +2336,14 @@ belong to this unit; no data ownership is inferred from metadata declarations.
 All three functions match with ordinary automatic inlining, without a deferred
 override or object normalizer. The frame-hierarchy API is correctly typed as
 returning RpHAnimHierarchy*. See `e-utility-hierarchy-unit-evidence.md`.
+
+## enemy/e_utility_system.cpp
+
+Symbolic metadata establishes two C++ namespace functions taking signed integer
+references. Native enemy timer callers and paired +/-1 operations corroborate
+the full 208-byte inventory. Both functions and the inlined three-mode predicate
+match directly with ordinary automatic inlining; no owned data or exception
+records exist. The original predicate name is unconfirmed, so the source
+explicitly labels its private helper/view names as reconstructed. Native signed
+mode bytes at 0x1F/0x20/0x21 are preserved. No deferred override or object
+normalizer is used. See `e-utility-system-unit-evidence.md`.

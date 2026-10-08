@@ -198,7 +198,7 @@ M2C_UNK fn_80130B40(u8);                                                        
 f32 fn_80132958(M2C_UNK);                                                           /* extern */
 M2C_UNK fn_801329AC();                                                              /* extern */
 M2C_UNK fn_80133090(M2C_UNK*, M2C_UNK*);                                            /* extern */
-M2C_UNK fn_80137FE8(void*);                                                         /* extern */
+M2C_UNK DecreaseTimer__7nSystemFRi(void*);                                          /* extern */
 M2C_UNK fn_8014FF2C(u32);                                                           /* extern */
 M2C_UNK fn_8014FFBC(u32, M2C_UNK*, u32*);                                           /* extern */
 void* fn_80150588(void*);                                                           /* extern */
@@ -443,7 +443,7 @@ void fn_8_9DA48(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x2E;
 			return;
 		case 1:
-			fn_80137FE8((u8*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				if (fn_8_9832C(M2C_FIELD(arg0, s32*, 0x14)) != 0) {
 					M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -479,7 +479,7 @@ void fn_8_9DB5C(void* arg0, s32 arg1)
 			temp_r0 = M2C_FIELD(M2C_FIELD(arg0, void**, 0x14), s32*, 0x570);
 			switch (temp_r0) { /* switch 2; irregular */
 				case 1:        /* switch 2 */
-					fn_80137FE8((u8*)((u32)arg0 + 0x18));
+					DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 					if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 						M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 						M2C_FIELD(M2C_FIELD(arg0, void**, 0), M2C_UNK(**)(void*, s32, M2C_UNK),
@@ -557,7 +557,7 @@ void fn_8_9DD48(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 9;
 			return;
 		case 1:
-			fn_80137FE8((u8*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -580,7 +580,7 @@ void fn_8_9DE00(void* arg0, s32 arg1)
 			return;
 		case 1:
 			if ((s32)M2C_FIELD(M2C_FIELD(arg0, void**, 0x14), s32*, 0x570) == 1) {
-				fn_80137FE8((u8*)((u32)arg0 + 0x18));
+				DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 				if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 					M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -637,7 +637,7 @@ void fn_8_9DF9C(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x24;
 			return;
 		case 1:
-			fn_80137FE8((u8*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -672,7 +672,7 @@ void fn_8_9E074(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x20;
 			return;
 		case 1:
-			fn_80137FE8((u8*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -706,7 +706,7 @@ void fn_8_9E12C(void* arg0, s32 arg1)
 				M2C_FIELD(arg0, s32*, 4) = 1;
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 			}
-			fn_80137FE8((u8*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -1086,7 +1086,7 @@ void fn_8_9EC40(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x2C) = 2;
 			return;
 		case 2:
-			fn_80137FE8((u8*)((u32)arg0 + 0x30));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x30));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x30) < 0) {
 				M2C_FIELD(arg0, s32*, 0x2C) = 0;
 			}

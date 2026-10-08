@@ -218,7 +218,7 @@ M2C_UNK fn_8011B844(u32, f32*, f32);                       /* extern */
 s32 fn_8011C188(s32, s32);                                 /* extern */
 M2C_UNK fn_8011C6EC();                                     /* extern */
 s32 fn_80130B40(s32);                                      /* extern */
-s32 fn_80137FE8(void*);                                    /* extern */
+s32 DecreaseTimer__7nSystemFRi(void*);                     /* extern */
 M2C_UNK fn_8014FF2C(M2C_UNK);                              /* extern */
 M2C_UNK fn_8014FFBC(s32, s32*, s32*);                      /* extern */
 void* fn_80150588();                                       /* extern */
@@ -987,7 +987,7 @@ void fn_8_AC10C(void* arg0, s32 arg1)
 			if (var_r30 == 0) {
 				M2C_FIELD(arg0, s32*, 0x250) = 0x3B;
 			}
-			fn_80137FE8((u8*)((u32)arg0 + 0x274));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x274));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x274) < 0) {
 				M2C_FIELD(arg0, s32*, 0x250) = 0x3B;
 			}
@@ -1205,7 +1205,7 @@ void fn_8_AC9D8(void* arg0, s32 arg1)
 			fn_800B4A38(lbl_8042C388, 0x4046, (u8*)arg0 + 0x140, NULL, 1, 0, 0);
 			return;
 		case 1:
-			fn_80137FE8((u8*)((u32)arg0 + 0x274));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x274));
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2E4) == 0)
 			    && ((s32)M2C_FIELD(arg0, s32*, 0x274) < 0)) {
 				M2C_FIELD(arg0, s32*, 0xD4)  = 1;
@@ -1260,7 +1260,7 @@ void fn_8_ACB0C(void* arg0, s32 arg1)
 		case 2:
 			return;
 		case 1:
-			fn_80137FE8((u8*)((u32)arg0 + 0x274));
+			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x274));
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2E4) == 0)
 			    && ((s32)M2C_FIELD(arg0, s32*, 0x274) < 0)) {
 				M2C_FIELD(arg0, s32*, 0xD4)  = 2;

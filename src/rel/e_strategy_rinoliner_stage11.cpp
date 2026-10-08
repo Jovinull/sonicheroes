@@ -55,15 +55,15 @@ static inline void ChangeMode(void* self, s32 next)
 
 extern "C" {
 
-M2C_UNK __dl__FPv(void*);        /* extern */
-M2C_UNK fn_800A31B8(void*, s32); /* extern */
-s32 fn_800A3ED4(void*);          /* extern */
-s32 fn_800A6334(void*);          /* extern */
-s32 fn_80137FE8(void*);          /* extern */
-s32 fn_8_AABC8(void*);           /* extern */
-s32 fn_8_AAE98(void*);           /* extern */
-s32 fn_8_AAF4C(void*);           /* extern */
-s32 fn_8_AB014(u32);             /* extern */
+M2C_UNK __dl__FPv(void*);              /* extern */
+M2C_UNK fn_800A31B8(void*, s32);       /* extern */
+s32 fn_800A3ED4(void*);                /* extern */
+s32 fn_800A6334(void*);                /* extern */
+s32 DecreaseTimer__7nSystemFRi(void*); /* extern */
+s32 fn_8_AABC8(void*);                 /* extern */
+s32 fn_8_AAE98(void*);                 /* extern */
+s32 fn_8_AAF4C(void*);                 /* extern */
+s32 fn_8_AB014(u32);                   /* extern */
 void fn_8_AF86C();
 extern M2C_UNK lbl_8_data_16B98;
 M2C_UNK** fn_8_B088C(M2C_UNK** arg0, s16 arg1);
@@ -119,7 +119,7 @@ void fn_8_AF9B4(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x3C;
 			return;
 		case 1:
-			fn_80137FE8((void*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((void*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -141,7 +141,7 @@ void fn_8_AFA68(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x3B;
 			return;
 		case 1:
-			fn_80137FE8((void*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((void*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -183,7 +183,7 @@ void fn_8_AFBC8(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x18) = 0x12C;
 			return;
 		case 1:
-			fn_80137FE8((void*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((void*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -207,7 +207,7 @@ void fn_8_AFC80(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x18) = 0x78;
 			return;
 		case 1:
-			fn_80137FE8((void*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((void*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				temp_r31                 = M2C_FIELD(arg0, s32*, 8);
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -232,7 +232,7 @@ void fn_8_AFD40(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x18) = 0x78;
 			return;
 		case 1:
-			fn_80137FE8((void*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((void*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				temp_r31                 = M2C_FIELD(arg0, s32*, 8);
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
@@ -268,7 +268,7 @@ void fn_8_AFE20(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x10) = 0x24;
 			return;
 		case 1:
-			fn_80137FE8((void*)((u32)arg0 + 0x18));
+			DecreaseTimer__7nSystemFRi((void*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
@@ -334,7 +334,7 @@ void fn_8_AFF18(void* arg0, s32 arg1)
 					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 0);
 					return;
 				}
-				fn_80137FE8((void*)((u32)arg0 + 0x18));
+				DecreaseTimer__7nSystemFRi((void*)((u32)arg0 + 0x18));
 				if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
 					temp_r3 = fn_8_AABC8(M2C_FIELD(arg0, void**, 0x14));
 					switch (temp_r3) { /* switch 2; irregular */
