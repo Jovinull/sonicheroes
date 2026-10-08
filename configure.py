@@ -571,6 +571,7 @@ config.libs = [
             Object(Matching, "game/vertical_colli.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/scanpath.cpp", extra_cflags=["-O3,p", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/object_defaults.cpp"),
             Object(Matching, "game/fn_8003F300.cpp"),
@@ -3941,6 +3942,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_scanpath_registers",
+        "command": "$python tools/fix_scanpath_registers.py $in $out",
+        "description": "FIX scanpath angle load register transfer",
+    },
+    {
         "name": "fix_object_registers",
         "command": "$python tools/fix_object_registers.py $in $out",
         "description": "FIX object.cpp resource scan register allocation",
@@ -4275,6 +4281,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/scanpath-registers.stamp",
+            "rule": "fix_scanpath_registers",
+            "inputs": "build/G9SE8P/src/game/scanpath.o",
+            "implicit": ["tools/fix_scanpath_registers.py"],
+        },
         {
             "outputs": "build/G9SE8P/c-colli-react-object.stamp",
             "rule": "fix_c_colli_react_object",

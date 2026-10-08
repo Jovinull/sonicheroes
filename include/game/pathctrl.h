@@ -19,7 +19,7 @@ class CLASS_PATH;
 typedef struct PATHTAG {
 	s16 pathtype, points;
 	f32 totallen;
-	PATHTBL_P* pathtbl;
+	void* pathtbl;
 	void (*pathtask)(CLASS_PATH*);
 } PATHTAG;
 class CLASS_PATH

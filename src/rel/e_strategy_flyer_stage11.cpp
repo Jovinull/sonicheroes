@@ -165,7 +165,7 @@ s32 fn_800A5A54(void*);                                                         
 s32 fn_800A6334(void*);                                                             /* extern */
 M2C_UNK fn_800A7088(TObject*, M2C_UNK);                                             /* extern */
 M2C_UNK fn_800A714C();                                                              /* extern */
-s32 fn_800AF3AC(M2C_UNK*);                                                          /* extern */
+s32 GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_UNK*);                                /* extern */
 M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, M2C_UNK, M2C_UNK, M2C_UNK);         /* extern */
 M2C_UNK fn_800CCC6C(const char*);                                                   /* extern */
 s32 AdjustAngle__Fiii(s32, s32, s32);                                               /* extern */
@@ -1396,7 +1396,7 @@ void fn_8_9F560(void* arg0)
 
 	if ((void*)M2C_FIELD(arg0, void**, 0x248) != NULL) {
 		sp18 = M2C_FIELD(arg0, f32*, 0x24C);
-		if (fn_800AF3AC(&sp8) != 0) {
+		if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(&sp8) != 0) {
 			M2C_FIELD(arg0, f32*, 0x140) = sp1C;
 			M2C_FIELD(arg0, f32*, 0x144) = sp20;
 			M2C_FIELD(arg0, f32*, 0x148) = sp24;
@@ -1420,7 +1420,7 @@ void fn_8_9F618(void* arg0)
 
 	if ((void*)M2C_FIELD(arg0, void**, 0x248) != NULL) {
 		sp18 = M2C_FIELD(arg0, f32*, 0x24C);
-		if (fn_800AF3AC(&sp8) != 0) {
+		if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(&sp8) != 0) {
 			M2C_FIELD(arg0, f32*, 0x140) = sp1C;
 			M2C_FIELD(arg0, f32*, 0x144) = sp20;
 			M2C_FIELD(arg0, f32*, 0x148) = sp24;
@@ -1947,7 +1947,7 @@ void fn_8_A04A8(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x264) != 0) {
 				if ((void*)M2C_FIELD(arg0, void**, 0x248) != NULL) {
 					sp18 = M2C_FIELD(arg0, f32*, 0x24C);
-					if (fn_800AF3AC(&sp8) != 0) {
+					if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(&sp8) != 0) {
 						M2C_FIELD(arg0, f32*, 0x140) = sp1C;
 						M2C_FIELD(arg0, f32*, 0x144) = sp20;
 						M2C_FIELD(arg0, f32*, 0x148) = sp24;
@@ -2038,7 +2038,7 @@ void fn_8_A07B4(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4) = 2;
 			if ((void*)M2C_FIELD(arg0, void**, 0x248) != NULL) {
 				sp5C = M2C_FIELD(arg0, f32*, 0x24C);
-				if (fn_800AF3AC(&sp4C) != 0) {
+				if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(&sp4C) != 0) {
 					M2C_FIELD(arg0, f32*, 0x140) = sp60;
 					M2C_FIELD(arg0, f32*, 0x144) = sp64;
 					M2C_FIELD(arg0, f32*, 0x148) = sp68;
@@ -2060,7 +2060,7 @@ void fn_8_A07B4(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x264) != 0) {
 				if ((void*)M2C_FIELD(arg0, void**, 0x248) != NULL) {
 					sp18 = M2C_FIELD(arg0, f32*, 0x24C);
-					if (fn_800AF3AC(&sp8) != 0) {
+					if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(&sp8) != 0) {
 						M2C_FIELD(arg0, f32*, 0x140) = sp1C;
 						M2C_FIELD(arg0, f32*, 0x144) = sp20;
 						M2C_FIELD(arg0, f32*, 0x148) = sp24;
@@ -2189,7 +2189,7 @@ void fn_8_A0A30(void* arg0, s32 arg1, s32 arg2)
 					if ((s32)M2C_FIELD(arg0, s32*, 0x264) != 0) {
 						if ((void*)M2C_FIELD(arg0, void**, 0x248) != NULL) {
 							sp18 = M2C_FIELD(arg0, f32*, 0x24C);
-							if (fn_800AF3AC(&sp8) != 0) {
+							if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(&sp8) != 0) {
 								M2C_FIELD(arg0, f32*, 0x140) = sp1C;
 								M2C_FIELD(arg0, f32*, 0x144) = sp20;
 								M2C_FIELD(arg0, f32*, 0x148) = sp24;

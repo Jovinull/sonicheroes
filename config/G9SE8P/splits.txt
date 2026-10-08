@@ -264,6 +264,15 @@ game/pathctrl.cpp:
 	.data       start:0x80253648 end:0x80253658
 	.sdata2     start:0x8042DC28 end:0x8042DC60
 
+game/scanpath.cpp:
+	extab       start:0x80007EB4 end:0x80007F68
+	extabindex  start:0x8000E4D0 end:0x8000E560
+	.text       start:0x800AEE80 end:0x800B13EC
+	.data       start:0x80253658 end:0x80253698
+	.sdata      start:0x8042B378 end:0x8042B380
+	.sbss       start:0x8042C380 end:0x8042C388
+	.sdata2     start:0x8042DC60 end:0x8042DCA0
+
 game/c_colli_react.cpp:
 	extab       start:0x80007F68 end:0x80008000
 	extabindex  start:0x8000E560 end:0x8000E5E4

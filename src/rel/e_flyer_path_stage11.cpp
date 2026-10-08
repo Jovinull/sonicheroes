@@ -91,7 +91,7 @@ u32 objPointerReadFromClumpAnim__FPc(s32*);                                     
 M2C_UNK fn_8005FC74(s32*, s32*);                                                   /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                                   /* extern */
 s32 fn_800A3ED4(void*);                                                            /* extern */
-M2C_UNK fn_800AFB50(void*, s32, s32*);                                             /* extern */
+M2C_UNK GetPointDataOnPath__FP7PATHTAGiP5RwV3d(void*, s32, s32*);                  /* extern */
 M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, void*, s32, s32, s32);                    /* extern */
 M2C_UNK fn_800BDEA0(s32, u8*, s32, s32, s32);                                      /* extern */
 M2C_UNK AdjustPoint__FP5RwV3dPC5RwV3df(void*, s32, void*, s32);                    /* extern */
@@ -1127,8 +1127,8 @@ void fn_8_A9E94(void* arg0, s32 arg1)
 		var_r31 = 0;
 	loop_3:
 		if (var_r31 < (s32)(M2C_FIELD(arg0, s16*, 2) - 1)) {
-			fn_800AFB50(arg0, var_r31, &sp14);
-			fn_800AFB50(arg0, var_r31 + 1, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(arg0, var_r31, &sp14);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(arg0, var_r31 + 1, &sp8);
 			fn_8019941C(&sp14, &sp14, 1, arg1);
 			fn_8019941C(&sp8, &sp8, 1, arg1);
 			fn_8005FC74(&sp14, &sp8);
