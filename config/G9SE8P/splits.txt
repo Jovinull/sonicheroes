@@ -151,6 +151,12 @@ game/vibration.cpp:
 game/fn_8003F300.cpp:
 	.text       start:0x8003F300 end:0x8003F308
 
+game/player/player_search.cpp:
+	extab       start:0x80005F20 end:0x80005F30
+	extabindex  start:0x8000C718 end:0x8000C730
+	.text       start:0x80041C5C end:0x80041FF4
+	.sdata2     start:0x8042D1A8 end:0x8042D1B0
+
 game/fn_80042864.cpp:
 	.text       start:0x80042864 end:0x8004286C
 

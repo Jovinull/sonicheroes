@@ -2644,3 +2644,12 @@ a documented twelve-register-field permutation across eleven instructions.
 All seven bodies, owned sections and 155 relocations match after normalization.
 All eighteen supported output hashes and 77 tests pass; see
 `eff-footprints-unit-evidence.md` for the remaining allocation gap and path out.
+
+## player/player_search.cpp
+
+Positive symbolic metadata identifies four C++ file-origin functions. All four
+survive at 0x80041C5C–0x80041FF4; owned exception records and the two exclusively
+referenced constants complete the unit. No PS2 instructions were inspected.
+All four bodies and owned sections match directly from C++ source. The full
+G9SE8P DOL plus seventeen RELs compile, all eighteen hashes match, and 62 tests
+pass. No object normalizer is needed. See `player-search-unit-evidence.md`.
