@@ -229,6 +229,12 @@ rel/pole_register.cpp:
 	.text       start:0x0003FFA0 end:0x00040048
 	.ctors      start:0x0000006C end:0x00000070
 
+rel/fn_403ec_stage11.cpp:
+	.text       start:0x000403D0 end:0x00040F48
+	.rodata     start:0x00000A90 end:0x00000AB8
+	.data       start:0x000043F4 end:0x00004614
+	.bss        start:0x00000988 end:0x000009E0
+
 rel/case_obj_register.cpp:
 	.text       start:0x000415DC end:0x00041684
 	.ctors      start:0x00000074 end:0x00000078
