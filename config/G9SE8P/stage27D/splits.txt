@@ -494,6 +494,9 @@ rel/stg27_obj_register.cpp:
 	.text       start:0x0007AB48 end:0x0007ABF0
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/unbr_bobcont_create.cpp:
+	.text       start:0x000826A4 end:0x000827DC
+
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000827DC end:0x00082884
 	.ctors      start:0x000000F0 end:0x000000F4

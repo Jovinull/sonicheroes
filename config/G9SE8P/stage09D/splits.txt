@@ -679,6 +679,9 @@ rel/turtle_register.cpp:
 	.text       start:0x000CD630 end:0x000CD710
 	.ctors      start:0x000001A0 end:0x000001A4
 
+rel/unbr_bobcont_create.cpp:
+	.text       start:0x000D51CC end:0x000D5304
+
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D5304 end:0x000D53AC
 	.ctors      start:0x000001A4 end:0x000001A8

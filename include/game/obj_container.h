@@ -37,4 +37,33 @@ public:
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
+// TObjBobcontainer, the bobsleigh course's crate base. It has the container's
+// layout field for field and its own copies of the methods; the unbreakable
+// one derives from it the way the plain containers derive from TObjContainer.
+class TObjBobcontainer : public TObject, public TObjSetObj, public C_COLLI
+{
+public:
+	s32 material;     // 0xB8
+	s32 unkBC;        // 0xBC
+	s8 unkC0;         // 0xC0
+	u8 unkC1;         // 0xC1
+	u16 unkC2;        // 0xC2
+	RwV3d pos;        // 0xC4
+	sAngle ang;       // 0xD0
+	f32 unkDC;        // 0xDC
+	s32 unkE0;        // 0xE0
+	RpClump* clump;   // 0xE4
+	void* pieces;     // 0xE8
+	s32 unkEC;        // 0xEC
+	void* pieceTable; // 0xF0
+	s16 pieceKinds;   // 0xF4
+
+	TObjBobcontainer(TObject* parent);
+	void SetPosition();
+	virtual ~TObjBobcontainer();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void EditOnChange(SETDATA_PARAM*);
+};
+
 #endif

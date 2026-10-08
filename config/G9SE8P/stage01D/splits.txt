@@ -666,6 +666,9 @@ rel/s66_star_register.cpp:
 	.text       start:0x000CB010 end:0x000CB0BC
 	.ctors      start:0x00000164 end:0x00000168
 
+rel/unbr_bobcont_create.cpp:
+	.text       start:0x000D2B78 end:0x000D2CB0
+
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D2CB0 end:0x000D2D58
 	.ctors      start:0x00000168 end:0x0000016C
