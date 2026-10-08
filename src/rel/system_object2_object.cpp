@@ -12,8 +12,8 @@
 //
 // The shape is rel/system_object1_object.cpp's, and the argument for the bounds
 // is written there: the run opens with the empty hook that fills vtable slot
-// four and stops before the factory, whose register use no source form
-// reproduces. Two things differ from the first system object. There is no
+// four and stops before the factory, which is rel/system_object2_create.cpp
+// because only the C++ class reproduces its register use. Two things differ from the first system object. There is no
 // adjustor thunk in front of this one, because the run before it is the
 // registration record rather than a class with a second base. And Load is not
 // empty: it hands the module's scene pointer to the engine, where the first and
@@ -65,7 +65,7 @@ extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* systemObject2ClassName;
-extern "C" void* systemObject2Vtable[];
+extern "C" void* __vt__11TObjSystem2[];
 
 extern "C" void systemObject2Disp(void) { }
 
@@ -80,8 +80,8 @@ extern "C" void systemObject2Exec(SystemObject2* object)
 extern "C" SystemObject2* systemObject2Dtor(SystemObject2* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = systemObject2Vtable;
-		object->motion.vtable = systemObject2Vtable + 0xB;
+		object->base.vtable   = __vt__11TObjSystem2;
+		object->motion.vtable = __vt__11TObjSystem2 + 0xB;
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -96,8 +96,8 @@ extern "C" SystemObject2* systemObject2Ctor(SystemObject2* object, void* owner)
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
 
-	object->base.vtable   = systemObject2Vtable;
-	object->motion.vtable = systemObject2Vtable + 0xB;
+	object->base.vtable   = __vt__11TObjSystem2;
+	object->motion.vtable = __vt__11TObjSystem2 + 0xB;
 
 	object->base.className  = systemObject2ClassName;
 	object->base.objectSize = 0x30;
