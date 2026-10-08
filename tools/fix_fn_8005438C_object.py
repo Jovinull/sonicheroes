@@ -102,6 +102,11 @@ def main() -> None:
     for offset in symbol_offsets:
         section_index = struct.unpack_from(">H", blob, offset + 14)[0]
         if section_index in removed_indices:
+            # An absolute symbol cannot still describe a section. MWLink
+            # otherwise tries to resolve its SHN_ABS index as an output section
+            # while writing the symbol table (ELF_gen.c:2336).
+            if blob[offset + 12] & 0xF == 3:  # STT_SECTION
+                blob[offset + 12] &= 0xF0  # preserve binding, use STT_NOTYPE
             struct.pack_into(">H", blob, offset + 14, 0xFFF1)
         elif 0 < section_index < shnum:
             struct.pack_into(">H", blob, offset + 14, old_to_new[section_index])
