@@ -554,6 +554,9 @@ rel/s14_laser_beam_register.cpp:
 	.text       start:0x000A3D00 end:0x000A3DAC
 	.ctors      start:0x0000014C end:0x00000150
 
+rel/s14_laser_sign_create.cpp:
+	.text       start:0x000A6C48 end:0x000A6D14
+
 rel/s14_laser_sign_register.cpp:
 	.text       start:0x000A6D14 end:0x000A6DC0
 	.ctors      start:0x00000150 end:0x00000154
