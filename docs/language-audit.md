@@ -2389,3 +2389,18 @@ The complete G9SE8P main DOL and seventeen RELs compile and pass all eighteen
 reference hashes. All 62 automated tests and both policies pass. Independent
 ELF, layout/control-flow and caller-substitution reviews pass. No runtime or
 physical-hardware validation is claimed.
+
+## rankTable.cpp complete-unit reconstruction
+
+Positive `C_PLUS_PLUS` compile-unit metadata names `rankTable.cpp`, its three
+public functions and five private tables. Retail GameCube text/data, signed
+field accesses and loop bounds establish the final-release layout and larger
+table counts. The complete source compiles to identical 1340-byte text and
+1500-byte data sections with all 41 relocations exact, without a postprocessor
+or deferred inlining. See [the unit evidence](rank-table-unit-evidence.md).
+The initial handoff remains NonMatching pending the full supported build.
+
+All-source compilation of the supported G9SE8P main DOL and seventeen RELs
+passes, with all eighteen reference hashes and 62 automated tests passing.
+Both policies and independent object/type/control-flow reviews pass.
+No runtime or physical-hardware validation is claimed.

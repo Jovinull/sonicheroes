@@ -470,6 +470,10 @@ game/enemy/e_mtnpath.cpp:
 	.sdata      start:0x8042B8F8 end:0x8042B900
 	.sdata2     start:0x8042EBE0 end:0x8042EBF0
 
+game/rankTable.cpp:
+	.text       start:0x8012D440 end:0x8012D97C
+	.data       start:0x8028A2C0 end:0x8028A89C
+
 game/GetSpParam.cpp:
 	extab       start:0x8000B698 end:0x8000B6A8
 	extabindex  start:0x8001165C end:0x80011674
