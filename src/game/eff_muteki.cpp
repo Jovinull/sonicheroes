@@ -102,7 +102,7 @@ s32 fn_80194234(s32, void*);
 void* fn_801B2934(MutekiVertex*, u32, RwMatrix*, u32);
 s32 fn_801B2C00(s32);
 s32 fn_801B2A14();
-void* fn_8005EC0C();
+void* objRwTexDictionaryGetPointer__Fv();
 RwTexture* fn_801A4BBC(void*, const char*);
 }
 class EffMuteki : public CLASS_LINK
@@ -163,7 +163,7 @@ inline f32 MutekiSqrt(f32 value)
 void InitEffMuteki()
 {
 	if (!MutekiTexture)
-		MutekiTexture = fn_801A4BBC(fn_8005EC0C(), "ef_mtk");
+		MutekiTexture = fn_801A4BBC(objRwTexDictionaryGetPointer__Fv(), "ef_mtk");
 	MutekiManager = 0;
 }
 

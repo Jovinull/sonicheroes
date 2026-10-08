@@ -164,7 +164,7 @@ void fn_8003BC38(void*);
 void fn_8003BF04(void*, void*, s32, s32);
 void* __nw__FUl(u32);
 void SetEnd__10TObjSetObjFv(Motion*);
-void fn_8005D5C8(void*, u32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 void fn_800628D0(s32, Vec3*, s32);
 void addPlayerScore__11PARAM_SCOREFii(void*, s32, s32);
 void fn_80090B00(TeamInfo*);
@@ -362,7 +362,8 @@ static inline void constructKey(TObjS11Key* object)
 	object->unkE0           = 0;
 	object->model           = fn_80150588(s11keyModel);
 	if (object->model != NULL) {
-		fn_8005D5C8(object->model, ((object->frame->flags & 0x1C0000) >> 18) + 4);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    object->model, ((object->frame->flags & 0x1C0000) >> 18) + 4);
 		void* anim = __nw__FUl(0x14);
 		if (anim != NULL) {
 			anim = __ct__12DealMaterialFP7RpClump(anim, object->model);

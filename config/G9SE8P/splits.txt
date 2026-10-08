@@ -194,14 +194,16 @@ game/setObj.cpp:
 	.data       start:0x80243408 end:0x80243418
 	.sdata2     start:0x8042D448 end:0x8042D460
 
-game/fn_8005E8EC.cpp:
-	extab       start:0x800069A4 end:0x800069D4
-	extabindex  start:0x8000D3F0 end:0x8000D420
-	.text       start:0x8005E8EC end:0x8005F194
+game/object.cpp:
+	extab       start:0x800067D4 end:0x800069E4
+	extabindex  start:0x8000D138 end:0x8000D438
+	.text       start:0x8005BEC4 end:0x8005F490
+	.rodata     start:0x80239BE8 end:0x80239BF8
 	.data       start:0x80243418 end:0x802435D8
-	.bss        start:0x802FF5E0 end:0x80303D18
-	.sdata      start:0x8042B228 end:0x8042B234
-	.sbss       start:0x8042C2A8 end:0x8042C2AC
+	.bss        start:0x802FF5E0 end:0x80303D28
+	.sdata      start:0x8042B228 end:0x8042B238
+	.sbss       start:0x8042C2A8 end:0x8042C2E0
+	.sdata2     start:0x8042D460 end:0x8042D4A8
 
 game/plugin/materialcolorchange.cpp:
 	extab       start:0x800069E4 end:0x80006A04

@@ -226,13 +226,13 @@ int fn_80017800(void*);
 void fn_8003C200(void*, void*, s32, s32);
 void fn_80021384(void*);
 void* fn_8006298C(s32, RwV3d*, sAngle*);
-void* fn_8005EA04(const char*);
-void* fn_8005E410(void*, s32, const void*);
-void* fn_8005E1DC(void*, s32, const void*);
-void fn_8005DA34(void*);
-void fn_8005D9F4(void*);
-void fn_8005D6DC(void*);
-void fn_8005C014(void*);
+void* objPointerReadFromClumpAnim__FPc(const char*);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(void*, s32, const void*);
+void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(void*, s32, const void*);
+void objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(void*);
+void objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(void*);
+void objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(void*);
+void AtomicSetCustomFXTexture__FP8RpAtomicPv(void*);
 struct RpClump;
 struct RpHAnimHierarchy;
 
@@ -357,7 +357,7 @@ void fn_8003BE78(C_COLLI*);
 void GXSetBlendMode(s32, s32, s32, s32);
 void fn_8011B844(f32);
 void fn_8014FFBC(void*, void*, void*);
-void fn_8005BF88();
+void SetAtomicCustomFXData__FP8RpAtomicPv();
 void fn_8020CC18(void*, f32);
 void fn_8013FC30(void*);
 
@@ -773,7 +773,7 @@ void TObjEffTornado2::TDisp()
 		f32 elapsed = (f32)(frame - lbl_8042C378[0]);
 		if (lbl_8042C370 != 0 && lbl_8042C374 != 0) {
 			fn_8011B844(elapsed);
-			fn_8014FFBC(model, (void*)fn_8005BF88, lbl_80303F98);
+			fn_8014FFBC(model, (void*)SetAtomicCustomFXData__FP8RpAtomicPv, lbl_80303F98);
 		}
 		if (lbl_8042C368 != 0) {
 			fn_8020CC18(*(void**)((u8*)lbl_8042C368 + 0x20), lbl_8042DBBC * elapsed);
@@ -1468,39 +1468,44 @@ extern "C" void InitEffTornado__Fv()
 {
 	for (s32 i = 0; i < 3; ++i) {
 		if (lbl_802532E8[i] == 0) {
-			lbl_802532E8[i] = fn_8005EA04(lbl_80253330[i]);
+			lbl_802532E8[i] = objPointerReadFromClumpAnim__FPc(lbl_80253330[i]);
 			if (lbl_802532E8[i] != 0) {
-				lbl_802532F4[i] = fn_8005E410(lbl_802532E8[i], 0, "ef_tnd");
+				lbl_802532F4[i]
+				    = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+				        lbl_802532E8[i], 0, "ef_tnd");
 			}
 		}
 	}
 
-	lbl_8042C350 = fn_8005EA04(lbl_80253568);
+	lbl_8042C350 = objPointerReadFromClumpAnim__FPc(lbl_80253568);
 	if (lbl_8042C350 != 0) {
-		lbl_8042C354 = fn_8005E410(lbl_8042C350, 0, "ef_chbl");
+		lbl_8042C354 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8042C350, 0, "ef_chbl");
 		lbl_8042C370 = lbl_8042C354;
 		lbl_8042C368 = HAnim.GetHierarchy((RpClump*)lbl_8042C350);
-		fn_8005D9F4(lbl_8042C350);
-		fn_8005D6DC(lbl_8042C350);
+		objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(lbl_8042C350);
+		objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(lbl_8042C350);
 	}
 
-	lbl_8042C358 = fn_8005EA04(lbl_80253578);
+	lbl_8042C358 = objPointerReadFromClumpAnim__FPc(lbl_80253578);
 	if (lbl_8042C358 != 0) {
-		lbl_8042C35C = fn_8005E410(lbl_8042C358, 0, "ef_chbl");
-		fn_8005DA34(lbl_8042C358);
-		fn_8005D9F4(lbl_8042C358);
-		fn_8005D6DC(lbl_8042C358);
+		lbl_8042C35C = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8042C358, 0, "ef_chbl");
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(lbl_8042C358);
+		objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(lbl_8042C358);
+		objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(lbl_8042C358);
 	}
 
-	lbl_8042C360 = fn_8005EA04(lbl_8025358C);
+	lbl_8042C360 = objPointerReadFromClumpAnim__FPc(lbl_8025358C);
 	if (lbl_8042C360 != 0) {
-		lbl_8042C364 = fn_8005E410(lbl_8042C360, 0, "ef_chbl");
-		fn_8005DA34(lbl_8042C360);
-		fn_8005D9F4(lbl_8042C360);
-		fn_8005D6DC(lbl_8042C360);
+		lbl_8042C364 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8042C360, 0, "ef_chbl");
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(lbl_8042C360);
+		objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(lbl_8042C360);
+		objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(lbl_8042C360);
 	}
 
-	lbl_8042C36C = fn_8005EA04(lbl_802535A4);
+	lbl_8042C36C = objPointerReadFromClumpAnim__FPc(lbl_802535A4);
 	if (lbl_8042C36C != 0 && lbl_8042C368 != 0) {
 		HAnim.SetHierarchyForAtomic((RpClump*)lbl_8042C350, (RpHAnimHierarchy*)lbl_8042C368);
 		*(u32*)lbl_8042C368 |= 0x3000;
@@ -1508,11 +1513,12 @@ extern "C" void InitEffTornado__Fv()
 		fn_8013F3A4(lbl_8042C368);
 	}
 
-	lbl_8042C374 = fn_8005EA04(lbl_802535B4);
+	lbl_8042C374 = objPointerReadFromClumpAnim__FPc(lbl_802535B4);
 	if (lbl_8042C374 != 0 && lbl_8042C370 != 0) {
-		void* material  = fn_8005E1DC(lbl_8042C350, 0, "ef_chbl");
+		void* material
+		    = objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(lbl_8042C350, 0, "ef_chbl");
 		lbl_80303F98[0] = lbl_8042C374;
-		fn_8005C014(material);
+		AtomicSetCustomFXTexture__FP8RpAtomicPv(material);
 		fn_801491A8(material);
 	}
 }

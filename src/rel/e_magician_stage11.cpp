@@ -165,19 +165,20 @@ M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(void*, void*, void*);    
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(void*, void*, s32); /* extern */
 void* __ct__10HAnimClassFv(void*);                                                /* extern */
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
-    void*, void*, void*);                                                   /* extern */
-void* __dt__10HAnimClassFv(void*, s32);                                     /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                    /* extern */
-TEnemyParalysis* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);                   /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                  /* extern */
-u32 __nw__FUl(M2C_UNK);                                                     /* extern */
-s32 OnEdit__10TObjSetObjFv(void*);                                          /* extern */
-M2C_UNK fn_8005BF5C(u32, unsigned int[17]);                                 /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                            /* extern */
-s32 fn_8005D9A0(void*, M2C_UNK);                                            /* extern */
-M2C_UNK fn_8005D9F4(void*);                                                 /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                          /* extern */
-s32 fn_8005EA04(void*);                                                     /* extern */
+    void*, void*, void*);                                                               /* extern */
+void* __dt__10HAnimClassFv(void*, s32);                                                 /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                                /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);                               /* extern */
+M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                              /* extern */
+u32 __nw__FUl(M2C_UNK);                                                                 /* extern */
+s32 OnEdit__10TObjSetObjFv(void*);                                                      /* extern */
+M2C_UNK SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(u32, unsigned int[17]);           /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, s32); /* extern */
+s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(void*, M2C_UNK);      /* extern */
+M2C_UNK objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(void*);            /* extern */
+M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
+    u32, M2C_UNK);                                                          /* extern */
+s32 objPointerReadFromClumpAnim__FPc(void*);                                /* extern */
 M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                        /* extern */
 void* fn_8006298C(s32, f32*, s32*);                                         /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                            /* extern */
@@ -826,14 +827,16 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 		fn_8019EB94(temp_r31_2, (u8*)arg0 + 0x2C4, 2);
 	}
 	if ((u32)arg0->unk2E0 == 0U) {
-		temp_r3_4 = fn_8005D9A0(arg0->unkEC, 0x3EA);
+		temp_r3_4
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3EA);
 		if (temp_r3_4 != -1) {
 			arg0->unk2E0
 			    = M2C_FIELD((M2C_FIELD(arg0->unkEC, s32*, 0x10) + (temp_r3_4 * 0x10)), u32*, 0xC);
 		}
 	}
 	if ((u32)arg0->unk2DC == 0U) {
-		temp_r3_5 = fn_8005D9A0(arg0->unkEC, 0x3E9);
+		temp_r3_5
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3E9);
 		if (temp_r3_5 != -1) {
 			arg0->unk2DC
 			    = M2C_FIELD((M2C_FIELD(arg0->unkEC, s32*, 0x10) + (temp_r3_5 * 0x10)), u32*, 0xC);
@@ -1131,7 +1134,8 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	arg0->unkE8  = fn_80150588(M2C_FIELD(&lbl_8_bss_19C8, s32*, 0));
 	arg0->unk2FC = fn_80150588(M2C_FIELD(&lbl_8_bss_19C8, s32*, 4));
 	fn_8_AE604(arg0);
-	fn_8005D5C8(arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	arg0->unkE4 = &lbl_8_data_16628;
 	arg0->unkD4 = 0;
 	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
@@ -1306,7 +1310,7 @@ void magicianObjectLoad(void)
 	temp_r3 = SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(
 	    mpDataBase__14TEnemyDataBase, 0xA, 5);
 	if (temp_r3 != 0U) {
-		fn_8005E00C(temp_r3, 6);
+		objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(temp_r3, 6);
 	} else {
 		return;
 	}
@@ -1315,7 +1319,8 @@ void magicianObjectLoad(void)
 	}
 	M2C_FIELD(&lbl_8_bss_19C8, u32*, 0)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0xA, 4);
-	fn_8005D9F4((void*)M2C_FIELD(&lbl_8_bss_19C8, u32*, 0));
+	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
+	    (void*)M2C_FIELD(&lbl_8_bss_19C8, u32*, 0));
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
 		__ct__14TEnemyDataBaseFv();
 	}
@@ -1329,11 +1334,12 @@ void magicianObjectLoad(void)
 	lbl_8_bss_19D0 = temp_r3;
 	if (((u32)M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) != 0U) && (temp_r3 != 0U)) {
 		*lbl_8_bss_19D4 = temp_r3;
-		fn_8005BF5C(M2C_FIELD(&lbl_8_bss_19C8, u32*, 4), lbl_8_bss_19D4);
+		SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(
+		    M2C_FIELD(&lbl_8_bss_19C8, u32*, 4), lbl_8_bss_19D4);
 	}
 	lbl_8_bss_1A18 = 0;
 	fn_800FE274(0xA, &lbl_8_data_16628);
-	lbl_8_bss_1A48 = fn_8005EA04(&lbl_8_data_1692C);
+	lbl_8_bss_1A48 = objPointerReadFromClumpAnim__FPc(&lbl_8_data_1692C);
 }
 
 void magicianObjectCreate(void)

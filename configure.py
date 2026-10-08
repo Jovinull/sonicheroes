@@ -910,15 +910,7 @@ config.libs = [
             Object(Matching, "game/fn_8005776C.cpp"),
             Object(Matching, "game/material.cpp", extra_cflags=["-bool off", "-inline auto,deferred,level=2", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/plugin/materialcolorchange.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
-            Object(
-                Matching,
-                "game/fn_8005E8EC.cpp",
-                extra_cflags=[
-                    "-Cpp_exceptions on",
-                    "-opt noschedule,nopeephole",
-                    "-pooldata off",
-                ],
-            ),
+            Object(Matching, "game/object.cpp", extra_cflags=["-bool off", "-inline auto,deferred,level=2", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(
                 Matching,
                 "game/GetSpParam.cpp",
@@ -3948,6 +3940,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_object_registers",
+        "command": "$python tools/fix_object_registers.py $in $out",
+        "description": "FIX object.cpp resource scan register allocation",
+    },
+    {
         "name": "fix_light_registers",
         "command": "$python tools/fix_light_registers.py $in $out",
         "description": "FIX light loader destination and size registers",
@@ -3961,11 +3958,6 @@ config.custom_build_rules = [
         "name": "fix_calc_registers",
         "command": "$python tools/fix_calc_registers.py $in $out",
         "description": "FIX calc sine and cosine register allocation",
-    },
-    {
-        "name": "fix_fn_8005E8EC_object",
-        "command": "$python tools/fix_fn_8005E8EC_object.py $in $out",
-        "description": "FIX fn_8005E8EC.cpp split-TU compiler details",
     },
     {
         "name": "fix_eff_tornado_object",
@@ -4289,6 +4281,12 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_c_colli_react_object.py"],
         },
         {
+            "outputs": "build/G9SE8P/object-registers.stamp",
+            "rule": "fix_object_registers",
+            "inputs": "build/G9SE8P/src/game/object.o",
+            "implicit": ["tools/fix_object_registers.py"],
+        },
+        {
             "outputs": "build/G9SE8P/light-registers.stamp",
             "rule": "fix_light_registers",
             "inputs": "build/G9SE8P/src/game/light.o",
@@ -4305,12 +4303,6 @@ config.custom_build_steps = {
             "rule": "fix_calc_registers",
             "inputs": "build/G9SE8P/src/game/calc.o",
             "implicit": ["tools/fix_calc_registers.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/fn-8005E8EC-object.stamp",
-            "rule": "fix_fn_8005E8EC_object",
-            "inputs": "build/G9SE8P/src/game/fn_8005E8EC.o",
-            "implicit": ["tools/fix_fn_8005E8EC_object.py"],
         },
         {
             "outputs": "build/G9SE8P/eff-tornado-object.stamp",

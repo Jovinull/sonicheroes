@@ -113,7 +113,7 @@ extern "C" void dtor_800FE334();
 extern "C" void fn_800FE3FC();
 extern "C" void __ct__7EffWinkFv();
 extern "C" void* memset(void*, int, u32);
-extern "C" s32 fn_8005D9A0(s32, s32);
+extern "C" s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(s32, s32);
 extern "C" void* fn_801471DC(void);
 extern "C" void fn_801471C8(void*);
 extern "C" void fn_8014705C(void*);
@@ -316,7 +316,8 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 		case 7:
 		case 9:
 		case 10: {
-			w(0x138) = fn_8005D9A0(fn_1_6AF4((u8*)t + 0x28), 1);
+			w(0x138) = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(
+			    fn_1_6AF4((u8*)t + 0x28), 1);
 			break;
 		}
 		case 2:

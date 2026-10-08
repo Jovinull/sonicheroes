@@ -37,41 +37,41 @@ typedef struct TObject {
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(void*, void*);          /* extern */
-void* __dt__7TObjectFv(void*, s32);                    /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                 /* extern */
-M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);          /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);            /* extern */
-TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);          /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                         /* extern */
-u32 __nw__FUl(M2C_UNK);                                /* extern */
-s32 CheckMustKill__10TObjSetObjFv(s32);                /* extern */
-s32 CheckRangeOut__10TObjSetObjFv(s32);                /* extern */
-M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                /* extern */
-M2C_UNK fn_8005D5C8(M2C_UNK);                          /* extern */
-u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);    /* extern */
-s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);           /* extern */
-M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);       /* extern */
-f32 fn_800D7AE4(s32);                                  /* extern */
-f32 fn_800D7B00(s32);                                  /* extern */
-M2C_UNK DefaultColor__12DealMaterialFv(u32);           /* extern */
-M2C_UNK MulColor__12DealMaterialFPf(f32*);             /* extern */
-M2C_UNK __dt__12DealMaterialFv(void*, M2C_UNK);        /* extern */
-u32 __ct__12DealMaterialFP7RpClump(u32);               /* extern */
-M2C_UNK fn_8014FF2C(u32);                              /* extern */
-u32 fn_80150588(u32);                                  /* extern */
-M2C_UNK fn_80150958(void*);                            /* extern */
-M2C_UNK fn_80194234(M2C_UNK, s32);                     /* extern */
-M2C_UNK fn_80194294(M2C_UNK, s32*);                    /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK); /* extern */
-M2C_UNK fn_8019E880(s32);                              /* extern */
-M2C_UNK fn_8019EB94(s32, s32*, ...);                   /* extern */
-M2C_UNK fn_801A4C84(u32);                              /* extern */
-s32 rand(f32*);                                        /* extern */
-M2C_UNK fn_8_C2398(s32);                               /* extern */
-void s11spiderObjectCreate();                          /* static */
-void s11spiderObjectLoad(M2C_UNK arg_sp0);             /* static */
-void s11spiderObjectUnload();                          /* static */
+void* __ct__7TObjectFP7TObject(void*, void*);                                        /* extern */
+void* __dt__7TObjectFv(void*, s32);                                                  /* extern */
+M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                               /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                                        /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                          /* extern */
+TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                        /* extern */
+M2C_UNK fn_8003C618(M2C_UNK*);                                                       /* extern */
+u32 __nw__FUl(M2C_UNK);                                                              /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                                              /* extern */
+s32 CheckRangeOut__10TObjSetObjFv(s32);                                              /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                              /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(M2C_UNK); /* extern */
+u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                                  /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);                                         /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);                                     /* extern */
+f32 fn_800D7AE4(s32);                                                                /* extern */
+f32 fn_800D7B00(s32);                                                                /* extern */
+M2C_UNK DefaultColor__12DealMaterialFv(u32);                                         /* extern */
+M2C_UNK MulColor__12DealMaterialFPf(f32*);                                           /* extern */
+M2C_UNK __dt__12DealMaterialFv(void*, M2C_UNK);                                      /* extern */
+u32 __ct__12DealMaterialFP7RpClump(u32);                                             /* extern */
+M2C_UNK fn_8014FF2C(u32);                                                            /* extern */
+u32 fn_80150588(u32);                                                                /* extern */
+M2C_UNK fn_80150958(void*);                                                          /* extern */
+M2C_UNK fn_80194234(M2C_UNK, s32);                                                   /* extern */
+M2C_UNK fn_80194294(M2C_UNK, s32*);                                                  /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);                               /* extern */
+M2C_UNK fn_8019E880(s32);                                                            /* extern */
+M2C_UNK fn_8019EB94(s32, s32*, ...);                                                 /* extern */
+M2C_UNK fn_801A4C84(u32);                                                            /* extern */
+s32 rand(f32*);                                                                      /* extern */
+M2C_UNK fn_8_C2398(s32);                                                             /* extern */
+void s11spiderObjectCreate();                                                        /* static */
+void s11spiderObjectLoad(M2C_UNK arg_sp0);                                           /* static */
+void s11spiderObjectUnload();                                                        /* static */
 TObject* fn_8_C30D8(TObject*, s16, M2C_UNK);
 void fn_8_C2DE4(void*);
 void fn_8_C2C2C(void*);
@@ -245,7 +245,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 		if ((u32)M2C_FIELD(var_r31, u32*, 0xE0) == 0U) {
 			M2C_FIELD(var_r31, u32*, 0xE0) = fn_80150588(arg1);
 			if ((u32)M2C_FIELD(var_r31, u32*, 0xE0) != 0U) {
-				fn_8005D5C8(0x10);
+				objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
 				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
 					var_r0 = __ct__12DealMaterialFP7RpClump(M2C_FIELD(var_r31, u32*, 0xE0));
@@ -258,7 +258,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 			if ((u32)M2C_FIELD(var_r31, u32*, 0xE8) == 0U) {
 				M2C_FIELD(var_r31, u32*, 0xE8) = fn_80150588(arg1);
 				if ((u32)M2C_FIELD(var_r31, u32*, 0xE8) != 0U) {
-					fn_8005D5C8(0x10);
+					objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
 					var_r0_2 = __nw__FUl(0x14);
 					if (var_r0_2 != 0U) {
 						var_r0_2 = __ct__12DealMaterialFP7RpClump(M2C_FIELD(var_r31, u32*, 0xE8));
@@ -506,7 +506,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 		if ((u32)arg0->unkE0 == 0U) {
 			arg0->unkE0 = fn_80150588(temp_r29);
 			if ((u32)arg0->unkE0 != 0U) {
-				fn_8005D5C8(0x10);
+				objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
 				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
 					var_r0 = __ct__12DealMaterialFP7RpClump(arg0->unkE0);
@@ -521,7 +521,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 				temp_r0                      = var_r28 + 0xE8;
 				*(u32*)((u8*)arg0 + temp_r0) = fn_80150588(temp_r29);
 				if (*(u32*)((u8*)arg0 + temp_r0) != 0U) {
-					fn_8005D5C8(0x10);
+					objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
 					var_r4 = __nw__FUl(0x14);
 					if (var_r4 != 0U) {
 						var_r4
@@ -634,7 +634,7 @@ void s11spiderObjectCreate(void)
 			if ((u32)temp_r3->unkE0 == 0U) {
 				temp_r3->unkE0 = fn_80150588(temp_r29);
 				if ((u32)temp_r3->unkE0 != 0U) {
-					fn_8005D5C8(0x10);
+					objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
 					var_r0 = __nw__FUl(0x14);
 					if (var_r0 != 0U) {
 						var_r0 = __ct__12DealMaterialFP7RpClump(temp_r3->unkE0);
@@ -649,7 +649,7 @@ void s11spiderObjectCreate(void)
 					temp_r0                         = var_r28 + 0xE8;
 					*(u32*)((u8*)temp_r3 + temp_r0) = fn_80150588(temp_r29);
 					if (*(u32*)((u8*)temp_r3 + temp_r0) != 0U) {
-						fn_8005D5C8(0x10);
+						objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
 						var_r4 = __nw__FUl(0x14);
 						if (var_r4 != 0U) {
 							var_r4 = __ct__12DealMaterialFP7RpClump(

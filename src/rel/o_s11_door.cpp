@@ -41,38 +41,38 @@ typedef struct TObject {
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
-void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                        /* extern */
-M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                 /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                   /* extern */
-u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                      /* extern */
-M2C_UNK fn_80021384(void*);                                   /* extern */
-M2C_UNK fn_8003BC38(void*);                                   /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                /* extern */
-s32 CheckMustKill__10TObjSetObjFv(void*);                     /* extern */
-s32 OnEdit__10TObjSetObjFv(M2C_UNK*);                         /* extern */
-s32 CheckRangeOut__10TObjSetObjFv(void*);                     /* extern */
-M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                       /* extern */
-M2C_UNK fn_8005D5C8(u32, s32);                                /* extern */
-M2C_UNK fn_800B52E8(M2C_UNK, s8, M2C_UNK);                    /* extern */
-u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);           /* extern */
-s32 CheckFileID__7ONEFILEFPc(s32, s32);                       /* extern */
-M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);              /* extern */
-f32 fn_800D7AE4(s32);                                         /* extern */
-f32 fn_800D7B00(s32);                                         /* extern */
-s32 fn_80100C88(u8);                                          /* extern */
-u32 fn_80150588(u32);                                         /* extern */
-M2C_UNK fn_80150958(void*);                                   /* extern */
-M2C_UNK fn_8015BB08(s32, u32);                                /* extern */
-M2C_UNK fn_8015BBF8(s32, void*);                              /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);        /* extern */
-M2C_UNK fn_8019E880(s32);                                     /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                      /* extern */
-M2C_UNK fn_801A4C84(u32);                                     /* extern */
-M2C_UNK fn_8_94F2C(s32);                                      /* extern */
-s32 objGroupAllActive();                                      /* extern */
+void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);                         /* extern */
+void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);                               /* extern */
+M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                                /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                                         /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                           /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                              /* extern */
+M2C_UNK fn_80021384(void*);                                                           /* extern */
+M2C_UNK fn_8003BC38(void*);                                                           /* extern */
+M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                            /* extern */
+M2C_UNK fn_8003C618(M2C_UNK*);                                                        /* extern */
+s32 CheckMustKill__10TObjSetObjFv(void*);                                             /* extern */
+s32 OnEdit__10TObjSetObjFv(M2C_UNK*);                                                 /* extern */
+s32 CheckRangeOut__10TObjSetObjFv(void*);                                             /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                               /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(u32, s32); /* extern */
+M2C_UNK fn_800B52E8(M2C_UNK, s8, M2C_UNK);                                            /* extern */
+u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                                   /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, s32);                                               /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);                                      /* extern */
+f32 fn_800D7AE4(s32);                                                                 /* extern */
+f32 fn_800D7B00(s32);                                                                 /* extern */
+s32 fn_80100C88(u8);                                                                  /* extern */
+u32 fn_80150588(u32);                                                                 /* extern */
+M2C_UNK fn_80150958(void*);                                                           /* extern */
+M2C_UNK fn_8015BB08(s32, u32);                                                        /* extern */
+M2C_UNK fn_8015BBF8(s32, void*);                                                      /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);                                /* extern */
+M2C_UNK fn_8019E880(s32);                                                             /* extern */
+M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                                              /* extern */
+M2C_UNK fn_801A4C84(u32);                                                             /* extern */
+M2C_UNK fn_8_94F2C(s32);                                                              /* extern */
+s32 objGroupAllActive();                                                              /* extern */
 extern M2C_UNK AxisY;
 extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802FF5A0;
@@ -160,7 +160,8 @@ void fn_8_952CC(void* arg0, M2C_UNK arg_sp0)
 		if ((u32)M2C_FIELD(var_r30, u32*, 0xF4) == 0U) {
 			M2C_FIELD(var_r30, u32*, 0xF4) = fn_80150588(*var_r29);
 			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(var_r30, u32*, 0xF4));
-			fn_8005D5C8(M2C_FIELD(var_r30, u32*, 0xF4),
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    M2C_FIELD(var_r30, u32*, 0xF4),
 			    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
 			        + 4);
 		}
@@ -548,7 +549,8 @@ TObject* fn_8_96018(TObject* arg0, TObject* arg1)
 			temp_r0                        = var_r29 + 0xF4;
 			M2C_FIELD(arg0, u32*, temp_r0) = fn_80150588(*var_r28);
 			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, u32*, temp_r0));
-			fn_8005D5C8(((u32*)((u8*)arg0 + 0xF4))[var_r29 >> 2],
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    ((u32*)((u8*)arg0 + 0xF4))[var_r29 >> 2],
 			    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
 			        + 4);
 		}

@@ -172,7 +172,7 @@ extern "C" void fn_8013D5C8(void*, f32);
 extern "C" void __ct__7TObjectFP7TObject(void*, TObject*);
 extern "C" void __ct__10TObjSetObjFv(void*);
 extern "C" void fn_8003C618(void*);
-extern "C" void* fn_8005E394(void*, s32);
+extern "C" void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, s32);
 extern "C" void fn_8014F854(void*);
 extern "C" void* __nw__FUl(u32);
 extern "C" void RpAtomicMCCSetUsrData(void*, void*, s32);
@@ -457,7 +457,7 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 	if (*(s8*)((u8*)object + 0xB8) < 8) {
 		object->modelC0 = fn_80150588(*(void**)(lbl_8042C1D0 + 0xB08));
 		fn_8015BB08(*(void**)(lbl_8042C1D0 + 0x7278), object->modelC0);
-		void* atomic = fn_8005E394(object->modelC0, 0);
+		void* atomic = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(object->modelC0, 0);
 		fn_8014FFBC(object->modelC0, (void*)flagChangeRenderCallback, &object->modelC4);
 		if ((*(s32*)((u8*)flagPrimaryModel + 0x4C) & 2))
 			fn_8014F854(flagPrimaryModel);

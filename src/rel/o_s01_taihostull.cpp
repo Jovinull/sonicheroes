@@ -69,7 +69,7 @@ extern "C" {
 void* S01RenderCallback(void*);
 void* fn_8014F1B0(void*);
 RenderDescriptor* RpAtomicMCCGetCustomRenderCallBack(void*);
-s32 fn_8005D3DC(void*, f32);
+s32 objRpAtomicCheckFromCamera__FP8RpAtomicf(void*, f32);
 void fn_800B864C(void*);
 void fn_8019EC30(void*, Vec3*, s32);
 void fn_8019ED68(void*, void*, f32, s32);
@@ -85,7 +85,7 @@ void fn_8003C618(void*);
 void* fn_80150588(void*);
 extern void* lbl_8042C1D0;
 void fn_8015BB08(void*, void*);
-void fn_8005CC94(void*, f32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToCheckFromCamera__FP7RpClumpf(void*, f32);
 void fn_8014FFBC(void*, void (*)(RenderObject*), s32);
 void fn_801A4C84(void*);
 extern void* lbl_8042C298;
@@ -110,7 +110,7 @@ extern void* lbl_8042C148;
 void DisableAll__6CLIGHTFv(void*);
 void RestoreAll__6CLIGHTFv(void*);
 void fn_800B85D8(void*);
-void fn_8005CE4C(void*);
+void objRpClumpForAllAtomicsRenderNearCamera__FP7RpClump(void*);
 void* fn_8015BD78(void*);
 void fn_8015BBF8(void*, void*);
 void dtor_8003C52C(void*, s32);
@@ -147,7 +147,7 @@ extern "C" void S01SetRenderCallback(RenderObject* object)
 extern "C" void* S01RenderCallback(void* object)
 {
 	RenderDescriptor* descriptor = RpAtomicMCCGetCustomRenderCallBack(object);
-	if (fn_8005D3DC(object, descriptor->index) == 1)
+	if (objRpAtomicCheckFromCamera__FP8RpAtomicf(object, descriptor->index) == 1)
 		return object;
 	fn_800B864C(object);
 	descriptor->callback(object);
@@ -178,7 +178,7 @@ extern "C" void TDisp__12TObjS01StullFv(TObjS01Stull* object)
 	if (*(s8*)((u8*)lbl_8042C180 + 0x20) == 0) {
 		DisableAll__6CLIGHTFv(&lbl_802D5E80);
 		fn_800B85D8(object->resource);
-		fn_8005CE4C(object->resource);
+		objRpClumpForAllAtomicsRenderNearCamera__FP7RpClump(object->resource);
 		RestoreAll__6CLIGHTFv(&lbl_802D5E80);
 	}
 }
@@ -256,7 +256,7 @@ TObjS01Stull::TObjS01Stull(TObject* parent)
 	if (params[0] == 0.0f)
 		params[0] = 1.0f;
 	SetStullPosition(this);
-	fn_8005CC94(resource, 0.0f);
+	objRpClumpForAllAtomicsToSetRenderCallbackToCheckFromCamera__FP7RpClumpf(resource, 0.0f);
 	fn_8014FFBC(resource, S01SetRenderCallback, 0);
 }
 

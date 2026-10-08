@@ -2255,3 +2255,18 @@ sections are reconstructed. Unit-local deferred level 2 reproduces the nested
 destructor inlining and full function/exception order; ordinary automatic
 inlining and deferred level 1 each match only 28 bodies. No postprocessor is
 used. See [the complete evidence](material-unit-evidence.md).
+
+## object.cpp
+
+Local symbolic metadata identifies the complete object utility family as C++.
+GameCube calls, layouts and resource storage corroborate all 79 surviving bodies
+at `0x8005BEC4–0x8005F490`. The reconstruction subsumes the older five-function
+resource fragment. A metadata-backed ONEFILE constructor removes its fabricated
+wrapper and reproduces the exception cleanup directly. Unit-local deferred
+level 2 reproduces nested inlining while retaining public bodies.
+
+Raw source matches 78 bodies and the complete layout. The remaining two scan
+cursors require ten register-field substitutions across six instructions under
+a narrow, documented normalizer. All other instructions and every relocation
+match without adjustment. The previous fragment's 91-field normalizer is
+removed. See [the full evidence and remaining uncertainty](object-unit-evidence.md).

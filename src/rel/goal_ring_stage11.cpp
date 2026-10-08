@@ -60,9 +60,9 @@ void* fn_80150588(...);
 void fn_8015BB08(...);
 void fn_8015BBF8(...);
 void fn_80150958(void*);
-void fn_8005D5C8(...);
-void* fn_8005EA04(void*);
-void* fn_8005E410(void*, s32, void*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(...);
+void* objPointerReadFromClumpAnim__FPc(void*);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(void*, s32, void*);
 f32 AdjustFloat__Ffff(f32, f32, f32);
 void fn_8_49630();
 void fn_8_497B0(...);
@@ -78,7 +78,7 @@ void fn_80194294(...);
 extern void fn_801942C0(s32 mode, void* verts, s32 count);
 void fn_801AF914(s32);
 void fn_800A7594(...);
-void* fn_8005EC0C(void);
+void* objRwTexDictionaryGetPointer__Fv(void);
 void* fn_801A4BBC(...);
 void* fn_8_4B14C(void*, s16, void*, int, int, void*);
 void* fn_8_4D0CC(void*, void*);
@@ -329,7 +329,7 @@ extern "C" void fn_8_4B684()
 {
 	for (int i = 0; i < 4; i++)
 		lbl_8_data_4E28[i] = NULL;
-	void* archive = fn_8005EC0C();
+	void* archive = objRwTexDictionaryGetPointer__Fv();
 	for (int i = 0; i < 13; i++) {
 		if (lbl_8_data_4EAC[i * 2 + 1] != NULL)
 			lbl_8_data_4EAC[i * 2] = fn_801A4BBC(archive);
@@ -491,12 +491,13 @@ extern "C" void goalRingUnload()
 
 extern "C" void goalRingLoad()
 {
-	lbl_8_bss_C08 = fn_8005EA04(lbl_8_data_5060);
-	lbl_8_bss_C0C = fn_8005EA04(lbl_8_data_5074);
-	lbl_8_bss_C10 = fn_8005EA04(lbl_8_data_5088);
-	lbl_8_bss_C14 = fn_8005EA04(lbl_8_data_509C);
+	lbl_8_bss_C08 = objPointerReadFromClumpAnim__FPc(lbl_8_data_5060);
+	lbl_8_bss_C0C = objPointerReadFromClumpAnim__FPc(lbl_8_data_5074);
+	lbl_8_bss_C10 = objPointerReadFromClumpAnim__FPc(lbl_8_data_5088);
+	lbl_8_bss_C14 = objPointerReadFromClumpAnim__FPc(lbl_8_data_509C);
 	if (lbl_8_bss_C14 != NULL)
-		lbl_8_data_4FB8[0] = fn_8005E410(lbl_8_bss_C14, 0, 0);
+		lbl_8_data_4FB8[0] = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8_bss_C14, 0, 0);
 	fn_8_497B0();
 }
 

@@ -67,7 +67,7 @@ extern u8 lbl_802FF5A0;
 
 s32 CheckMustKill__10TObjSetObjFv(Motion*);
 s32 CheckRangeOut__10TObjSetObjFv(Motion*);
-void fn_8005D5C8(void*, u32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void* Malloc__9THeapCtrlFUi(void*, u32);
@@ -146,7 +146,8 @@ void TObjS12Fan::CloneClump()
 		model         = fn_80150588(s12fanModel);
 		void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
 		fn_8015BB08(manager, model);
-		fn_8005D5C8(model, ((frame->flags & 0x1C0000) >> 18) + 4);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    model, ((frame->flags & 0x1C0000) >> 18) + 4);
 	}
 }
 
@@ -201,7 +202,8 @@ static inline void constructFan(TObjS12Fan* object)
 		object->model = fn_80150588(s12fanModel);
 		fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), object->model);
 		u32 flags = object->frame->flags;
-		fn_8005D5C8(object->model, ((flags & 0x1C0000) >> 18) + 4);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    object->model, ((flags & 0x1C0000) >> 18) + 4);
 	}
 	object->SetPosition();
 }

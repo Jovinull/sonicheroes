@@ -59,7 +59,7 @@ void __ct__10TObjSetObjFv(Motion*);
 s32 CheckMustKill__10TObjSetObjFv(Motion*);
 s32 OnEdit__10TObjSetObjFv(Motion*);
 s32 CheckRangeOut__10TObjSetObjFv(Motion*);
-void fn_8005D5C8(void*, u32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void* Malloc__9THeapCtrlFUi(void*, u32);
@@ -208,8 +208,10 @@ void TObjS33Dice::Exec()
 			manager = *(void**)((u8*)lbl_8042C1D0 + 0x7274);
 			fn_8015BB08(manager, pnModel);
 
-			fn_8005D5C8(onModel, ((motion.frame->flags & 0x1C0000) >> 18) + 4);
-			fn_8005D5C8(pnModel, ((motion.frame->flags & 0x1C0000) >> 18) + 4);
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    onModel, ((motion.frame->flags & 0x1C0000) >> 18) + 4);
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    pnModel, ((motion.frame->flags & 0x1C0000) >> 18) + 4);
 		}
 	}
 
@@ -259,9 +261,11 @@ static inline void constructDice(TObjS33Dice* object, TObject* parent)
 	fn_8015BB08(manager, object->pnModel);
 
 	u32 flags = object->motion.frame->flags;
-	fn_8005D5C8(object->onModel, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->onModel, ((flags & 0x1C0000) >> 18) + 4);
 	flags = object->motion.frame->flags;
-	fn_8005D5C8(object->pnModel, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->pnModel, ((flags & 0x1C0000) >> 18) + 4);
 	object->rotation = 0;
 }
 
@@ -294,9 +298,11 @@ static inline void initializeDice(DiceInitializer* self)
 	fn_8015BB08(manager, object->pnModel);
 
 	u32 flags = object->motion.frame->flags;
-	fn_8005D5C8(object->onModel, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->onModel, ((flags & 0x1C0000) >> 18) + 4);
 	flags = object->motion.frame->flags;
-	fn_8005D5C8(object->pnModel, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->pnModel, ((flags & 0x1C0000) >> 18) + 4);
 	object->rotation = 0;
 }
 

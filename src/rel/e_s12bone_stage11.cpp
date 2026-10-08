@@ -169,35 +169,36 @@ s32* __nw__FUl(M2C_UNK);                                      /* extern */
 s32 CheckMustKill__10TObjSetObjFv(s32);                       /* extern */
 s32 CheckRangeOut__10TObjSetObjFv(s32);                       /* extern */
 M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                       /* extern */
-M2C_UNK fn_8005D5C8(RpClump*, s32);                           /* extern */
-s32 fn_80091FAC(s32);                                         /* extern */
-s32 fn_80096A98(s32);                                         /* extern */
-s32 LoadHAnimationEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);      /* extern */
-s32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);           /* extern */
-s32 CheckFileID__7ONEFILEFPc(s32, const void*);               /* extern */
-M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);              /* extern */
-f32 fn_800D7AE4(s32);                                         /* extern */
-f32 fn_800D7B00(s32);                                         /* extern */
-M2C_UNK fn_8013F3A4(RpHAnimHierarchy*);                       /* extern */
-M2C_UNK fn_8013FC30(void*);                                   /* extern */
-M2C_UNK fn_8014FF2C(s32);                                     /* extern */
-RpClump* fn_80150588(s32);                                    /* extern */
-M2C_UNK fn_80150958(RpClump*);                                /* extern */
-M2C_UNK fn_80195674(void*, s32, s32*);                        /* extern */
-M2C_UNK fn_80195790(void*, M2C_UNK*, M2C_UNK, f32, f32);      /* extern */
-M2C_UNK fn_8019E880(void*);                                   /* extern */
-M2C_UNK fn_8019EB94(void*, void*, M2C_UNK);                   /* extern */
-M2C_UNK fn_801A4C84();                                        /* extern */
-M2C_UNK fn_8020C2D8(s32);                                     /* extern */
-M2C_UNK fn_8020C72C(void**, s32, s32);                        /* extern */
-M2C_UNK fn_8020D02C(void**, const f32*, f32);                 /* extern */
-void* memset(void*, s32, u32);                                /* extern */
-void s12boneColliObjectCreate();                              /* static */
-void s12boneColliObjectReset(void* arg0);                     /* static */
-void s12boneObjectCreate();                                   /* static */
-void s12boneObjectLoad(M2C_UNK arg_sp0);                      /* static */
-void s12boneObjectReset();                                    /* static */
-void s12boneObjectUnload(M2C_UNK arg_sp0);                    /* static */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+    RpClump*, s32);                                      /* extern */
+s32 fn_80091FAC(s32);                                    /* extern */
+s32 fn_80096A98(s32);                                    /* extern */
+s32 LoadHAnimationEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*); /* extern */
+s32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);      /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, const void*);          /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);         /* extern */
+f32 fn_800D7AE4(s32);                                    /* extern */
+f32 fn_800D7B00(s32);                                    /* extern */
+M2C_UNK fn_8013F3A4(RpHAnimHierarchy*);                  /* extern */
+M2C_UNK fn_8013FC30(void*);                              /* extern */
+M2C_UNK fn_8014FF2C(s32);                                /* extern */
+RpClump* fn_80150588(s32);                               /* extern */
+M2C_UNK fn_80150958(RpClump*);                           /* extern */
+M2C_UNK fn_80195674(void*, s32, s32*);                   /* extern */
+M2C_UNK fn_80195790(void*, M2C_UNK*, M2C_UNK, f32, f32); /* extern */
+M2C_UNK fn_8019E880(void*);                              /* extern */
+M2C_UNK fn_8019EB94(void*, void*, M2C_UNK);              /* extern */
+M2C_UNK fn_801A4C84();                                   /* extern */
+M2C_UNK fn_8020C2D8(s32);                                /* extern */
+M2C_UNK fn_8020C72C(void**, s32, s32);                   /* extern */
+M2C_UNK fn_8020D02C(void**, const f32*, f32);            /* extern */
+void* memset(void*, s32, u32);                           /* extern */
+void s12boneColliObjectCreate();                         /* static */
+void s12boneColliObjectReset(void* arg0);                /* static */
+void s12boneObjectCreate();                              /* static */
+void s12boneObjectLoad(M2C_UNK arg_sp0);                 /* static */
+void s12boneObjectReset();                               /* static */
+void s12boneObjectUnload(M2C_UNK arg_sp0);               /* static */
 TObject* fn_8_CC2F0(TObject*, s16);
 void fn_8_CC0F0(s32);
 void fn_8_CC0EC(void);
@@ -1044,10 +1045,10 @@ TObject* fn_8_CD524(TObject* arg0, TObject* arg1)
 	arg0->unk50                 = arg0->unk38;
 	arg0->unk54                 = *temp_r4;
 	arg0->unk88                 = fn_80150588(lbl_8_bss_1DB0[0]);
-	fn_8005D5C8(arg0->unk88,
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(arg0->unk88,
 	    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
 	arg0->unk8C = fn_80150588(lbl_8_bss_1DB0[1]);
-	fn_8005D5C8(arg0->unk8C,
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(arg0->unk8C,
 	    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
 	arg0->unk58 = 1;
 	arg0->unk5C = -1;
@@ -1216,12 +1217,14 @@ void s12boneObjectCreate(void)
 		temp_r0_3
 		    = ((u32)(M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
 		    + 4;
-		fn_8005D5C8(temp_r3->unk88, temp_r0_3);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    temp_r3->unk88, temp_r0_3);
 		temp_r3->unk8C = fn_80150588(lbl_8_bss_1DB0[1]);
 		temp_r0_3
 		    = ((u32)(M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
 		    + 4;
-		fn_8005D5C8(temp_r3->unk8C, temp_r0_3);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    temp_r3->unk8C, temp_r0_3);
 		temp_r3->unk58 = 1;
 		temp_r3->unk5C = -1;
 		temp_r3->unk80 = GetHierarchy__10HAnimClassFP7RpClump(&HAnim, temp_r3->unk88);

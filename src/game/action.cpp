@@ -350,7 +350,7 @@ extern "C" void fn_80018368(void* object);
 extern "C" void ChkController();
 extern "C" void EndDemoData();
 extern "C" void fn_800B9180();
-extern "C" void fn_8005EC14();
+extern "C" void objReleaseCommonObjectTextures__Fv();
 extern "C" void fn_800A73B4();
 extern "C" void fn_8001DF6C();
 extern "C" void fn_80016514(void*);
@@ -373,7 +373,7 @@ extern "C" void fn_801125D4(void*);
 extern "C" void fn_801126B4(void*);
 extern "C" void fn_8001E000();
 extern "C" void fn_800A7428();
-extern "C" void fn_8005ED88();
+extern "C" void objLoadCommonObjectTextures__Fv();
 extern "C" void fn_800B9408();
 extern "C" void fn_80112618(void*);
 extern "C" void fn_8012D97C();
@@ -476,7 +476,7 @@ inline s32 fn_8005A5EC(u32 object)
 	return fn_8005A5EC((void*)object);
 }
 extern "C" s32 fn_8005B558();
-extern "C" s32 fn_8005E8EC();
+extern "C" s32 objReleaseClumpAnimStoredInARAMFromMainRAM__Fv();
 extern "C" s32 fn_800662BC();
 extern "C" s32 getSaveTime__18PARAM_SAVEPOSITIONFPScPScPSc(void*, void*, void*, void*);
 extern "C" s32 InitRing__7G_PARAMFv(void*);
@@ -1649,7 +1649,7 @@ s32 ACTION::Loop()
 			break;
 		case 10:
 			fn_800B113C();
-			fn_8005E8EC();
+			objReleaseClumpAnimStoredInARAMFromMainRAM__Fv();
 			{
 				s32 count = 0;
 				do {
@@ -2424,7 +2424,7 @@ void ACTION::End()
 		*(s32*)((u8*)this + 0x258) = 0;
 	}
 	fn_800B9180();
-	fn_8005EC14();
+	objReleaseCommonObjectTextures__Fv();
 	fn_800A73B4();
 	fn_8001DF6C();
 	mode = 1;
@@ -2463,7 +2463,7 @@ void ACTION::Init()
 	playerCount = 0;
 	fn_8001E000();
 	fn_800A7428();
-	fn_8005ED88();
+	objLoadCommonObjectTextures__Fv();
 	fn_800B9408();
 	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 	fn_80112618(lbl_803E73B0);

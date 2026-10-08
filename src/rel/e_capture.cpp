@@ -269,26 +269,28 @@ M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(
 M2C_UNK __construct_array(M2C_UNK*, M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK); /* extern */
 void* __ct__10HAnimClassFv(HAnimClass* self);                              /* extern */
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
-    TEnemyParalysis* self, TObject* arg0, sParalysisParam* arg1);                   /* extern */
-M2C_UNK __destroy_arr(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                        /* extern */
-void* __dt__10HAnimClassFv(HAnimClass* self, s16 destroyFlag);                      /* extern */
-M2C_UNK __register_global_object(M2C_UNK, void (*)(), M2C_UNK*);                    /* extern */
-s32 fn_80017800(TObject*);                                                          /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                            /* extern */
-TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                               /* extern */
-M2C_UNK fn_8003BC38(M2C_UNK*);                                                      /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                          /* extern */
-M2C_UNK fn_80043DEC();                                                              /* extern */
-M2C_UNK fn_80043F28(u32);                                                           /* extern */
-void** __nw__FUl(M2C_UNK);                                                          /* extern */
-s32 OnEdit__10TObjSetObjFv(void**);                                                 /* extern */
-M2C_UNK SetEnd__10TObjSetObjFv(void*);                                              /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                                    /* extern */
-s32 fn_8005D9A0(void*, M2C_UNK);                                                    /* extern */
-M2C_UNK fn_8005D9F4(u32);                                                           /* extern */
-M2C_UNK fn_8005DA34(u32);                                                           /* extern */
-M2C_UNK fn_8005DABC(u32, s32*);                                                     /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                                  /* extern */
+    TEnemyParalysis* self, TObject* arg0, sParalysisParam* arg1);                       /* extern */
+M2C_UNK __destroy_arr(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                            /* extern */
+void* __dt__10HAnimClassFv(HAnimClass* self, s16 destroyFlag);                          /* extern */
+M2C_UNK __register_global_object(M2C_UNK, void (*)(), M2C_UNK*);                        /* extern */
+s32 fn_80017800(TObject*);                                                              /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                                /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                   /* extern */
+M2C_UNK fn_8003BC38(M2C_UNK*);                                                          /* extern */
+M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                              /* extern */
+M2C_UNK fn_80043DEC();                                                                  /* extern */
+M2C_UNK fn_80043F28(u32);                                                               /* extern */
+void** __nw__FUl(M2C_UNK);                                                              /* extern */
+s32 OnEdit__10TObjSetObjFv(void**);                                                     /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                                  /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, s32); /* extern */
+s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(void*, M2C_UNK);      /* extern */
+M2C_UNK objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(u32);              /* extern */
+M2C_UNK objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(u32);                       /* extern */
+M2C_UNK objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
+    u32, s32*); /* extern */
+M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
+    u32, M2C_UNK);                                                                  /* extern */
 s32 fn_80089204(u32);                                                               /* extern */
 s32 fn_800A34D0(void*, s32*, f32);                                                  /* extern */
 M2C_UNK fn_800A3D48(TObject*);                                                      /* extern */
@@ -1190,9 +1192,12 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 		fn_80113874(0x10);
 		sp14                        = *(const struct _rodata_16BC*)lbl_8_rodata_16BC;
 		M2C_FIELD(&sp14, f32*, 0xC) = M2C_FIELD(arg0, f32*, 0x288);
-		fn_8005DABC(M2C_FIELD(arg0, u32*, 0x2D8), (s32*)&sp14);
-		fn_8005DABC(M2C_FIELD(arg0, u32*, 0x2DC), (s32*)&sp14);
-		fn_8005DABC(M2C_FIELD(arg0, u32*, 0x2E0), (s32*)&sp14);
+		objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
+		    M2C_FIELD(arg0, u32*, 0x2D8), (s32*)&sp14);
+		objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
+		    M2C_FIELD(arg0, u32*, 0x2DC), (s32*)&sp14);
+		objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
+		    M2C_FIELD(arg0, u32*, 0x2E0), (s32*)&sp14);
 		var_r29 = 2;
 		var_r30 = (u8*)&captureObjectGlobalArray + 0x28;
 		do {
@@ -2624,21 +2629,24 @@ void fn_8_9B920(TObject* arg0)
 		}
 	}
 	if ((u32)arg0->unk268 == 0U) {
-		temp_r3_3 = fn_8005D9A0(arg0->unkEC, 0x3EB);
+		temp_r3_3
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3EB);
 		if (temp_r3_3 != -1) {
 			arg0->unk268
 			    = M2C_FIELD((M2C_FIELD(arg0->unkEC, s32*, 0x10) + (temp_r3_3 * 0x10)), u32*, 0xC);
 		}
 	}
 	if ((u32)arg0->unk26C == 0U) {
-		temp_r3_4 = fn_8005D9A0(arg0->unkEC, 0x3EC);
+		temp_r3_4
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3EC);
 		if (temp_r3_4 != -1) {
 			arg0->unk26C
 			    = M2C_FIELD((M2C_FIELD(arg0->unkEC, s32*, 0x10) + (temp_r3_4 * 0x10)), u32*, 0xC);
 		}
 	}
 	if ((u32)arg0->unk270 == 0U) {
-		temp_r3_5 = fn_8005D9A0(arg0->unkEC, 0x3E8);
+		temp_r3_5
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3E8);
 		if (temp_r3_5 != -1) {
 			arg0->unk270
 			    = M2C_FIELD((M2C_FIELD(arg0->unkEC, s32*, 0x10) + (temp_r3_5 * 0x10)), u32*, 0xC);
@@ -3046,7 +3054,8 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 	arg0->unk2E4 = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0x10));
 	arg0->unk2E8 = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0x14));
 	fn_8_9B920(arg0);
-	fn_8005D5C8(arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	arg0->unkE4 = &lbl_8_data_15608;
 	arg0->unkD4 = 0;
 	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
@@ -3250,7 +3259,7 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 	temp_r3 = SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(
 	    mpDataBase__14TEnemyDataBase, 7, 4);
 	if (temp_r3 != 0U) {
-		fn_8005E00C(temp_r3, 6);
+		objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(temp_r3, 6);
 	} else {
 		return;
 	}
@@ -3284,11 +3293,14 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 	}
 	M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 7, 7);
-	fn_8005D9F4(M2C_FIELD(&lbl_8_bss_1780, u32*, 4));
-	fn_8005D9F4(M2C_FIELD(&lbl_8_bss_1780, u32*, 8));
-	fn_8005D9F4(M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC));
+	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
+	    M2C_FIELD(&lbl_8_bss_1780, u32*, 4));
+	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
+	    M2C_FIELD(&lbl_8_bss_1780, u32*, 8));
+	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
+	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC));
 	if ((u32)M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14) != 0U) {
-		fn_8005DA34(M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14));
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14));
 	}
 	fn_800FE274(7, &lbl_8_data_15608);
 	fn_80113AA8((int*)&captureObjectGlobalArray, temp_r3, M2C_FIELD(&lbl_8_bss_1780, u32*, 0),

@@ -204,7 +204,7 @@ void fn_80195790(void* transform, void* matrix, f32 first, f32 second, s32 axis)
 void fn_8019E880(void* object);
 void fn_8019EC30(void* object, Vec3* value, s32 mode);
 void fn_8019EB94(void* object, Vec3* value, s32 mode);
-void* fn_8005DF98(void* object, void* child);
+void* objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(void* object, void* child);
 f32 fn_800D7AE4(s32 range);
 s32 CheckRangeOut__10TObjSetObjFv(void* object);
 s32 CheckMustKill__10TObjSetObjFv(void* object);
@@ -378,30 +378,30 @@ extern "C" void fn_8_40868(RuntimeState* self)
 		fn_8019E880(root);
 	}
 
-	root = (u8*)fn_8005DF98(root, NULL);
+	root = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, NULL);
 	Vec3 offset;
 	offset.z = lbl_8_rodata_A94;
 	offset.x = lbl_8_rodata_A94;
-	u8* node = (u8*)fn_8005DF98(root, NULL);
+	u8* node = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, NULL);
 	offset.y = *(f32*)((u8*)self + 0xF8);
 	fn_8019EB94(node, &offset, 0);
-	node     = (u8*)fn_8005DF98(root, node);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, node);
 	offset.y = *(f32*)((u8*)self + 0xF4);
 	fn_8019EB94(node, &offset, 0);
-	node     = (u8*)fn_8005DF98(root, node);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, node);
 	offset.y = *(f32*)((u8*)self + 0xF0);
 	fn_8019EB94(node, &offset, 0);
-	node     = (u8*)fn_8005DF98(root, node);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, node);
 	offset.y = *(f32*)((u8*)self + 0xEC);
 	fn_8019EB94(node, &offset, 0);
 
 	u8* parent = node;
-	u8* child  = (u8*)fn_8005DF98(parent, NULL);
+	u8* child  = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(parent, NULL);
 	Vec3 childScale;
 	childScale.x = *(f32*)((u8*)self + 0xE8);
 	childScale.z = lbl_8_rodata_A98;
 	childScale.y = lbl_8_rodata_A98;
-	node         = (u8*)fn_8005DF98(parent, child);
+	node         = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(parent, child);
 	Vec3 childPosition;
 	childPosition.x = *(f32*)(node + 0x40);
 	childPosition.y = *(f32*)(node + 0x44);
@@ -409,14 +409,14 @@ extern "C" void fn_8_40868(RuntimeState* self)
 	fn_8019EC30(node, &childScale, 0);
 	fn_8019EB94(node, &childPosition, 2);
 
-	node            = (u8*)fn_8005DF98(parent, node);
+	node            = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(parent, node);
 	childPosition.x = *(f32*)(node + 0x40);
 	childPosition.y = *(f32*)(node + 0x44);
 	childPosition.z = *(f32*)(node + 0x48);
 	fn_8019EC30(node, &childScale, 0);
 	fn_8019EB94(node, &childPosition, 2);
 
-	node     = (u8*)fn_8005DF98(root, parent);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, parent);
 	offset.y = lbl_8_rodata_A94;
 	fn_8019EB94(node, &offset, 0);
 }

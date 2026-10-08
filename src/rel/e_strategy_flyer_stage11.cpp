@@ -137,25 +137,26 @@ public:
 };
 
 extern "C" {
-void* __ct__10HAnimClassFv(void* self);                                             /* extern */
-void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);                       /* extern */
-M2C_UNK __dl__FPv(void* arg0);                                                      /* extern */
-void* __dt__10HAnimClassFv(void* self, s16 destroyFlag);                            /* extern */
-void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);                             /* extern */
-M2C_UNK dtor_800FE334(void*, M2C_UNK);                                              /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                         /* extern */
-TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                       /* extern */
-M2C_UNK fn_80018C4C(M2C_UNK*);                                                      /* extern */
-M2C_UNK fn_80018C64(M2C_UNK*);                                                      /* extern */
-s32 fn_80018C98();                                                                  /* extern */
-M2C_UNK fn_80019898(M2C_UNK*, M2C_UNK);                                             /* extern */
-M2C_UNK fn_8003C640(void*);                                                         /* extern */
-void** __nw__FUl(M2C_UNK);                                                          /* extern */
-s32 CheckMustKill__10TObjSetObjFv(s32);                                             /* extern */
-M2C_UNK SetEnd__10TObjSetObjFv(void*);                                              /* extern */
-M2C_UNK fn_8005BF5C(u32*);                                                          /* extern */
-M2C_UNK fn_8005DA34(void*);                                                         /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                                  /* extern */
+void* __ct__10HAnimClassFv(void* self);                             /* extern */
+void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);       /* extern */
+M2C_UNK __dl__FPv(void* arg0);                                      /* extern */
+void* __dt__10HAnimClassFv(void* self, s16 destroyFlag);            /* extern */
+void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);             /* extern */
+M2C_UNK dtor_800FE334(void*, M2C_UNK);                              /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                         /* extern */
+TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                       /* extern */
+M2C_UNK fn_80018C4C(M2C_UNK*);                                      /* extern */
+M2C_UNK fn_80018C64(M2C_UNK*);                                      /* extern */
+s32 fn_80018C98();                                                  /* extern */
+M2C_UNK fn_80019898(M2C_UNK*, M2C_UNK);                             /* extern */
+M2C_UNK fn_8003C640(void*);                                         /* extern */
+void** __nw__FUl(M2C_UNK);                                          /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                             /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                              /* extern */
+M2C_UNK SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(u32*);        /* extern */
+M2C_UNK objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(void*); /* extern */
+M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
+    u32, M2C_UNK);                                                                  /* extern */
 s32 fn_800A2BE0(void*, u8);                                                         /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                                    /* extern */
 M2C_UNK fn_800A3D48(void*);                                                         /* extern */
@@ -224,7 +225,7 @@ M2C_UNK fn_8_D07F4(u32);                                                        
 s32 fn_8_D2190(u32);                                                                /* extern */
 M2C_UNK fn_8_D8E90(M2C_UNK, M2C_UNK, M2C_UNK);                                      /* extern */
 }
-extern M2C_UNK fn_8005BF88;
+extern M2C_UNK SetAtomicCustomFXData__FP8RpAtomicPv;
 extern M2C_UNK AxisY;
 extern M2C_UNK lbl_8029BBD0;
 extern M2C_UNK lbl_8029C310;
@@ -1457,7 +1458,8 @@ void fn_8_9F6E8(void* arg0)
 		if ((s32)lbl_8_bss_190C != temp_r4) {
 			lbl_8_bss_190C = temp_r4;
 			fn_8011B844(lbl_8_bss_18C4, (void*)lbl_8_rodata_187C, 1.0f);
-			fn_8014FFBC(M2C_FIELD(arg0, u32*, 0x284), &fn_8005BF88, lbl_8_bss_18C8);
+			fn_8014FFBC(M2C_FIELD(arg0, u32*, 0x284), &SetAtomicCustomFXData__FP8RpAtomicPv,
+			    lbl_8_bss_18C8);
 		}
 		fn_8014FF2C(M2C_FIELD(arg0, u32*, 0x284));
 	}
@@ -2870,7 +2872,7 @@ void fn_8_A1F68(M2C_UNK arg_sp0)
 	temp_r3 = SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(
 	    mpDataBase__14TEnemyDataBase, 0xB, 0xE);
 	if (temp_r3 != 0U) {
-		fn_8005E00C(temp_r3, 6);
+		objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(temp_r3, 6);
 	} else {
 		return;
 	}
@@ -2913,13 +2915,16 @@ void fn_8_A1F68(M2C_UNK arg_sp0)
 		fn_800F46B0((void*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 4));
 	}
 	if ((u32)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x10) != 0U) {
-		fn_8005DA34((void*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x10));
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(
+		    (void*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x10));
 	}
 	if ((u32)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x14) != 0U) {
-		fn_8005DA34((void*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x14));
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(
+		    (void*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x14));
 	}
 	if ((u32)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x18) != 0U) {
-		fn_8005DA34((void*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x18));
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(
+		    (void*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0x18));
 	}
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
@@ -2931,7 +2936,7 @@ void fn_8_A1F68(M2C_UNK arg_sp0)
 	}
 	if (((u32)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0xC) != 0U) && ((u32)lbl_8_bss_18C4 != 0U)) {
 		*lbl_8_bss_18C8 = lbl_8_bss_18C4;
-		fn_8005BF5C((u32*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0xC));
+		SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo((u32*)M2C_FIELD(&lbl_8_bss_18A8, u32*, 0xC));
 	}
 	lbl_8_bss_190C = 0;
 	fn_800FE274(0xB, (M2C_UNK*)&lbl_8_data_15BF0[0]);

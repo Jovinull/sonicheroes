@@ -87,7 +87,7 @@ M2C_UNK fn_8003BE78(void*);                                                     
 M2C_UNK fn_8003C200(...);                                                          /* extern */
 M2C_UNK fn_8003C618(...);                                                          /* extern */
 void* __nw__FUl(u32);                                                              /* extern */
-u32 fn_8005EA04(s32*);                                                             /* extern */
+u32 objPointerReadFromClumpAnim__FPc(s32*);                                        /* extern */
 M2C_UNK fn_8005FC74(s32*, s32*);                                                   /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                                   /* extern */
 s32 fn_800A3ED4(void*);                                                            /* extern */
@@ -1566,7 +1566,7 @@ void fn_8_AAB80(void)
 
 void fn_8_AAB94(void)
 {
-	lbl_8_bss_1A48 = fn_8005EA04(&lbl_8_data_1692C);
+	lbl_8_bss_1A48 = objPointerReadFromClumpAnim__FPc(&lbl_8_data_1692C);
 }
 
 s32 fn_8_AABC8(void* arg0)

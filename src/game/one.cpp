@@ -44,7 +44,7 @@ u32 fn_800D082C(u32);
 void fn_800D06C0(void*, u32, u32);
 void fn_80132770(NJS_MOTION*);
 Rt2dMaestro* fn_80203B74(Rt2dMaestro*, RwStream*);
-RpUVAnimAnimation* fn_8005DC30(RwStream*);
+RpUVAnimAnimation* objRpUVAnimAnimationStreamRead__FP8RwStream(RwStream*);
 RtAnimAnimation* fn_8020C398(RwStream*);
 RpWorld* fn_8014E868(RwStream*);
 RpDMorphAnimation* fn_8013BE18(RwStream*);
@@ -312,7 +312,7 @@ RpUVAnimAnimation* ONEFILE::OneFileLoadUVAnim(u32 id, void* buffer)
 	_mem.start = (u8*)buffer;
 	stream     = fn_80198000(3, 1, &_mem);
 	if (fn_80192F38(stream, 27, 0, 0))
-		_uvanim = fn_8005DC30(stream);
+		_uvanim = objRpUVAnimAnimationStreamRead__FP8RwStream(stream);
 	fn_80197ED8(stream, 0);
 	return _uvanim;
 }

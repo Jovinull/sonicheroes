@@ -125,6 +125,7 @@
     "game/message.cpp",
     "game/miscs.cpp",
     "game/modeswitch.cpp",
+    "game/object.cpp",
     "game/octree.cpp",
     "game/octreeColli.cpp",
     "game/one.cpp",
