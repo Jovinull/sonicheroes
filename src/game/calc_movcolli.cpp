@@ -19,6 +19,11 @@ extern const __declspec(section ".sdata2") f32 lbl_8042DFF0;
 extern const __declspec(section ".sdata2") f32 lbl_8042DFF4;
 extern const __declspec(section ".sdata2") f64 lbl_8042DFF8;
 extern const __declspec(section ".sdata2") f64 lbl_8042E000;
+// Retail reloads sphere_vec->y and lbl_8042DFE8 for the squared-motion test
+// although nothing is stored in between, and repeats the same field reloads in
+// clDetectMS2LS_: common-subexpression elimination is off for these two bodies.
+// With it on, both come out eight bytes short (measured 2026-10-08).
+#pragma opt_common_subs off
 enum ENUM_CL_MOVING clDetectMS2T(const RwV3d* sphere_pos, f32 sphere_rad, const RwV3d* sphere_vec,
     RwV3d* tri_vertex, RwV3d* ans_vec, RwV3d* coli_pos, s16* pOn_Edge)
 {
@@ -1241,6 +1246,7 @@ block_120:
 
 // The GameCube implementation is deliberately a no-collision return.
 // Its five calls survive in clDetectMS2LS_; do not import the other platform body.
+#pragma opt_common_subs reset
 enum ENUM_CL_MOVING clDetectMS2P_(const RwV3d* sphere_pos, f32 sphere_rad, const RwV3d* sphere_vec,
     const RwV3d* safe_vec, RwV3d* ans_vec)
 {
