@@ -461,6 +461,15 @@ game/enemy/e_communication.cpp:
 	.text       start:0x80100B28 end:0x80100D4C
 	.data       start:0x8025A940 end:0x8025A970
 
+game/effect/eff_crash3d.cpp:
+	extab       start:0x80009894 end:0x80009A10
+	extabindex  start:0x8000FEA4 end:0x8000FF88
+	.text       start:0x80100D4C end:0x80103178
+	.data       start:0x8025A970 end:0x8025AA48
+	.sdata      start:0x8042B778 end:0x8042B790
+	.sbss       start:0x8042C598 end:0x8042C5A0
+	.sdata2     start:0x8042E6D0 end:0x8042E738
+
 game/enemy/e_utility_search.cpp:
 	extab       start:0x80009A10 end:0x80009A28
 	extabindex  start:0x8000FF88 end:0x8000FFAC

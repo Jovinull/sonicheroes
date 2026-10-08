@@ -406,20 +406,21 @@ u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);    
 M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                    /* extern */
 M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(u32, M2C_UNK, M2C_UNK*);           /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv();                                                 /* extern */
-M2C_UNK fn_80102C50(s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32);    /* extern */
-s32 GetTeamNoFromPlayerNum__13nSearchPlayerFi(s32);                                 /* extern */
-s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, M2C_UNK*, f32);           /* extern */
-s32 IsOn__13TEnemyIconManFv(u32);                                                   /* extern */
-M2C_UNK Close__13TEnemyIconManFv(void*);                                            /* extern */
-M2C_UNK Change__13TEnemyIconManF10eEnemyIcon(u32, s32);                             /* extern */
-M2C_UNK Off__13TEnemyIconManFv(u32);                                                /* extern */
-M2C_UNK On__13TEnemyIconManFffi(u32, f32, f32, s32);                                /* extern */
-M2C_UNK On__13TEnemyIconManFff(u32, f32, f32);                                      /* extern */
-M2C_UNK SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(u32, void*, void*);                /* extern */
-s32 Create__13TEnemyIconManF10eEnemyIcon(M2C_UNK);                                  /* extern */
-M2C_UNK SetLightNum__7nRenderFUi();                                                 /* extern */
-M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                               /* extern */
-M2C_UNK End__16TEnemyMatTextureFv(M2C_UNK*);                                        /* extern */
+M2C_UNK SetEffectCrash3D_R__FP7TObjectP5RwV3dP6sAngleP5RwV3dP5RwV3dffisP7RpClump(
+    s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32);          /* extern */
+s32 GetTeamNoFromPlayerNum__13nSearchPlayerFi(s32);                       /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, M2C_UNK*, f32); /* extern */
+s32 IsOn__13TEnemyIconManFv(u32);                                         /* extern */
+M2C_UNK Close__13TEnemyIconManFv(void*);                                  /* extern */
+M2C_UNK Change__13TEnemyIconManF10eEnemyIcon(u32, s32);                   /* extern */
+M2C_UNK Off__13TEnemyIconManFv(u32);                                      /* extern */
+M2C_UNK On__13TEnemyIconManFffi(u32, f32, f32, s32);                      /* extern */
+M2C_UNK On__13TEnemyIconManFff(u32, f32, f32);                            /* extern */
+M2C_UNK SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(u32, void*, void*);      /* extern */
+s32 Create__13TEnemyIconManF10eEnemyIcon(M2C_UNK);                        /* extern */
+M2C_UNK SetLightNum__7nRenderFUi();                                       /* extern */
+M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                     /* extern */
+M2C_UNK End__16TEnemyMatTextureFv(M2C_UNK*);                              /* extern */
 M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
     M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                          /* extern */
 M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);                        /* extern */
@@ -1349,7 +1350,8 @@ void fn_8_BE978(void* arg0)
 				spC  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 4);
 				sp10 = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 8);
 				sp14.y += 0x8000;
-				fn_80102C50(lbl_8042C2A0, &sp20.x, &sp14.x, &sp8, 0, 0, 0, lbl_8_rodata_1E78[0],
+				SetEffectCrash3D_R__FP7TObjectP5RwV3dP6sAngleP5RwV3dP5RwV3dffisP7RpClump(
+				    lbl_8042C2A0, &sp20.x, &sp14.x, &sp8, 0, 0, 0, lbl_8_rodata_1E78[0],
 				    lbl_8_rodata_1E70[0]);
 			}
 		}

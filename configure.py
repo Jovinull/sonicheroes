@@ -594,6 +594,7 @@ config.libs = [
             Object(Matching, "game/effect/eff_footprints.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/player/player_search.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/player/player_barrier.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/effect/eff_crash3d.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/scanpath.cpp", extra_cflags=["-O3,p", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
@@ -3990,6 +3991,11 @@ config.custom_build_rules = [
         "description": "FIX calc sine and cosine register allocation",
     },
     {
+        "name": "fix_eff_crash3d_pool",
+        "command": "$python tools/fix_eff_crash3d_pool.py $in $out",
+        "description": "FIX crash effect compiler literal order",
+    },
+    {
         "name": "fix_eff_tornado_object",
         "command": "$python tools/fix_eff_tornado_object.py $in $out",
         "description": "FIX eff_tornado.cpp split-TU compiler choices",
@@ -4329,6 +4335,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/eff-crash3d-pool.stamp",
+            "rule": "fix_eff_crash3d_pool",
+            "inputs": "build/G9SE8P/src/game/effect/eff_crash3d.o",
+            "implicit": ["tools/fix_eff_crash3d_pool.py"],
+        },
         {
             "outputs": "build/G9SE8P/eff-footprints-registers.stamp",
             "rule": "fix_eff_footprints_registers",

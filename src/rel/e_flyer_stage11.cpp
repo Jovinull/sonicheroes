@@ -142,65 +142,66 @@ M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(u32, M2C_UNK, const void*);    
 M2C_UNK __ct__14TEnemyDataBaseFv();                                                 /* extern */
 s32 IsAnnihilated__19nEnemyCommunicationFUc(u8);                                    /* extern */
 M2C_UNK Send__13sEnemyCommandFv(s8*, ...);                                          /* extern */
-M2C_UNK fn_80102C50(s32, s32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32);    /* extern */
-M2C_UNK Close__13TEnemyIconManFv(void*);                                            /* extern */
-M2C_UNK On__13TEnemyIconManFff(u32, f32, f32);                                      /* extern */
-M2C_UNK SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(u32, void*, void*);                /* extern */
-s32 Create__13TEnemyIconManF10eEnemyIcon(M2C_UNK);                                  /* extern */
-M2C_UNK SetLightNum__7nRenderFUi();                                                 /* extern */
-M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                                    /* extern */
-M2C_UNK LoadRenderState__7nRenderFv();                                              /* extern */
-M2C_UNK SaveRenderState__7nRenderFv();                                              /* extern */
-M2C_UNK fn_8011C0E8(u32);                                                           /* extern */
-M2C_UNK DestroyEnemy__14TEnemyScoreManFi(u32, s32);                                 /* extern */
-M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);                           /* extern */
-M2C_UNK CreateInstance__14TEnemyScoreManFv();                                       /* extern */
-M2C_UNK Entry__18TEnemyPowerCoreManFPC5RwV3di(void*, s8);                           /* extern */
-M2C_UNK GetInstance__18TEnemyPowerCoreManFv();                                      /* extern */
-u32 GetMtnPathMatrix__13TEnemyMtnPathFv(void*);                                     /* extern */
-M2C_UNK SetPath__13TEnemyMtnPathFi(s8);                                             /* extern */
-M2C_UNK ChangePath__13TEnemyMtnPathFi(M2C_UNK*, s8);                                /* extern */
-M2C_UNK* __ct__13TEnemyMtnPathFP7TObjectP17TEnemyMtnPathData(M2C_UNK*, u32);        /* extern */
-M2C_UNK __dt__17TEnemyMtnPathDataFv(M2C_UNK, M2C_UNK);                              /* extern */
-u32 __ct__17TEnemyMtnPathDataF14eEnemyDataBase(u32, u32);                           /* extern */
-M2C_UNK DecreaseTimer__7nSystemFRi(void*);                                          /* extern */
-M2C_UNK fn_8014FF2C(s32);                                                           /* extern */
-void* fn_80150588(void*);                                                           /* extern */
-M2C_UNK fn_80150958(void*);                                                         /* extern */
-M2C_UNK fn_80195790(s32*, M2C_UNK*, f32, f32, M2C_UNK);                             /* extern */
-M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, ...);                        /* extern */
-M2C_UNK fn_80196050(void*, void*, M2C_UNK);                                         /* extern */
-M2C_UNK fn_801961E8(void*, void*, M2C_UNK);                                         /* extern */
-M2C_UNK fn_80196414(void*, f32*, f32*, M2C_UNK*);                                   /* extern */
-M2C_UNK fn_801990E0(void*, void*);                                                  /* extern */
-f32 fn_801991B4(void*);                                                             /* extern */
-M2C_UNK fn_8019941C(s32*, s32*, M2C_UNK, void*);                                    /* extern */
-void* fn_8019E8EC(void*);                                                           /* extern */
-M2C_UNK fn_8019EB94(M2C_UNK*, void*, M2C_UNK);                                      /* extern */
-M2C_UNK fn_8019ECCC(M2C_UNK*, void*, s32);                                          /* extern */
-M2C_UNK fn_8019ED68(M2C_UNK*, M2C_UNK*, f32, f32, ...);                             /* extern */
-M2C_UNK fn_8019EE04(s32);                                                           /* extern */
-s32 rand();                                                                         /* extern */
-M2C_UNK fn_8_5EF94(u32, s32*);                                                      /* extern */
-M2C_UNK fn_8_5F048(u32, void*);                                                     /* extern */
-M2C_UNK fn_8_5F100(s32);                                                            /* extern */
-M2C_UNK fn_8_5F140();                                                               /* extern */
-s32 fn_8_5F30C(M2C_UNK*, void*, void*, void*, f32);                                 /* extern */
-M2C_UNK fn_8_90B10(s32);                                                            /* extern */
-M2C_UNK fn_8_A1E94(s32);                                                            /* extern */
-M2C_UNK fn_8_A8B60(f32*);                                                           /* extern */
-M2C_UNK fn_8_A8D1C();                                                               /* extern */
-M2C_UNK fn_8_A8D30();                                                               /* extern */
-M2C_UNK fn_8_A9C6C(f32*);                                                           /* extern */
-M2C_UNK fn_8_A9E18();                                                               /* extern */
-M2C_UNK fn_8_A9E2C();                                                               /* extern */
-M2C_UNK fn_8_A9E94(u32, s32*);                                                      /* extern */
-M2C_UNK fn_8_AA08C(M2C_UNK*);                                                       /* extern */
-u32 fn_8_AA58C();                                                                   /* extern */
-M2C_UNK pawnReleaseBuffer();                                                        /* extern */
-s32 sprintf(void*, const char*, ...);                                               /* extern */
-void fn_8_A4E44(M2C_UNK* arg0);                                                     /* static */
-void fn_8_A549C(void* arg0, ...);                                                   /* static */
+M2C_UNK SetEffectCrash3D_R__FP7TObjectP5RwV3dP6sAngleP5RwV3dP5RwV3dffisP7RpClump(
+    s32, s32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32);             /* extern */
+M2C_UNK Close__13TEnemyIconManFv(void*);                                     /* extern */
+M2C_UNK On__13TEnemyIconManFff(u32, f32, f32);                               /* extern */
+M2C_UNK SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(u32, void*, void*);         /* extern */
+s32 Create__13TEnemyIconManF10eEnemyIcon(M2C_UNK);                           /* extern */
+M2C_UNK SetLightNum__7nRenderFUi();                                          /* extern */
+M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                             /* extern */
+M2C_UNK LoadRenderState__7nRenderFv();                                       /* extern */
+M2C_UNK SaveRenderState__7nRenderFv();                                       /* extern */
+M2C_UNK fn_8011C0E8(u32);                                                    /* extern */
+M2C_UNK DestroyEnemy__14TEnemyScoreManFi(u32, s32);                          /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);                    /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                                /* extern */
+M2C_UNK Entry__18TEnemyPowerCoreManFPC5RwV3di(void*, s8);                    /* extern */
+M2C_UNK GetInstance__18TEnemyPowerCoreManFv();                               /* extern */
+u32 GetMtnPathMatrix__13TEnemyMtnPathFv(void*);                              /* extern */
+M2C_UNK SetPath__13TEnemyMtnPathFi(s8);                                      /* extern */
+M2C_UNK ChangePath__13TEnemyMtnPathFi(M2C_UNK*, s8);                         /* extern */
+M2C_UNK* __ct__13TEnemyMtnPathFP7TObjectP17TEnemyMtnPathData(M2C_UNK*, u32); /* extern */
+M2C_UNK __dt__17TEnemyMtnPathDataFv(M2C_UNK, M2C_UNK);                       /* extern */
+u32 __ct__17TEnemyMtnPathDataF14eEnemyDataBase(u32, u32);                    /* extern */
+M2C_UNK DecreaseTimer__7nSystemFRi(void*);                                   /* extern */
+M2C_UNK fn_8014FF2C(s32);                                                    /* extern */
+void* fn_80150588(void*);                                                    /* extern */
+M2C_UNK fn_80150958(void*);                                                  /* extern */
+M2C_UNK fn_80195790(s32*, M2C_UNK*, f32, f32, M2C_UNK);                      /* extern */
+M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, ...);                 /* extern */
+M2C_UNK fn_80196050(void*, void*, M2C_UNK);                                  /* extern */
+M2C_UNK fn_801961E8(void*, void*, M2C_UNK);                                  /* extern */
+M2C_UNK fn_80196414(void*, f32*, f32*, M2C_UNK*);                            /* extern */
+M2C_UNK fn_801990E0(void*, void*);                                           /* extern */
+f32 fn_801991B4(void*);                                                      /* extern */
+M2C_UNK fn_8019941C(s32*, s32*, M2C_UNK, void*);                             /* extern */
+void* fn_8019E8EC(void*);                                                    /* extern */
+M2C_UNK fn_8019EB94(M2C_UNK*, void*, M2C_UNK);                               /* extern */
+M2C_UNK fn_8019ECCC(M2C_UNK*, void*, s32);                                   /* extern */
+M2C_UNK fn_8019ED68(M2C_UNK*, M2C_UNK*, f32, f32, ...);                      /* extern */
+M2C_UNK fn_8019EE04(s32);                                                    /* extern */
+s32 rand();                                                                  /* extern */
+M2C_UNK fn_8_5EF94(u32, s32*);                                               /* extern */
+M2C_UNK fn_8_5F048(u32, void*);                                              /* extern */
+M2C_UNK fn_8_5F100(s32);                                                     /* extern */
+M2C_UNK fn_8_5F140();                                                        /* extern */
+s32 fn_8_5F30C(M2C_UNK*, void*, void*, void*, f32);                          /* extern */
+M2C_UNK fn_8_90B10(s32);                                                     /* extern */
+M2C_UNK fn_8_A1E94(s32);                                                     /* extern */
+M2C_UNK fn_8_A8B60(f32*);                                                    /* extern */
+M2C_UNK fn_8_A8D1C();                                                        /* extern */
+M2C_UNK fn_8_A8D30();                                                        /* extern */
+M2C_UNK fn_8_A9C6C(f32*);                                                    /* extern */
+M2C_UNK fn_8_A9E18();                                                        /* extern */
+M2C_UNK fn_8_A9E2C();                                                        /* extern */
+M2C_UNK fn_8_A9E94(u32, s32*);                                               /* extern */
+M2C_UNK fn_8_AA08C(M2C_UNK*);                                                /* extern */
+u32 fn_8_AA58C();                                                            /* extern */
+M2C_UNK pawnReleaseBuffer();                                                 /* extern */
+s32 sprintf(void*, const char*, ...);                                        /* extern */
+void fn_8_A4E44(M2C_UNK* arg0);                                              /* static */
+void fn_8_A549C(void* arg0, ...);                                            /* static */
 typedef struct ObjectEntry {
 	const char* name;        /* 0x00 */
 	void (*load)(void);      /* 0x04 */
@@ -945,7 +946,8 @@ void fn_8_A35DC(void* arg0)
 				spC  = M2C_FIELD(lbl_8_rodata_18C0, s32*, 4);
 				sp10 = M2C_FIELD(lbl_8_rodata_18C0, s32*, 8);
 				sp18 += 0x8000;
-				fn_80102C50(lbl_8042C2A0, &sp20, &sp14, &sp8, 0, 0, 0, 1.2f, 0.0f);
+				SetEffectCrash3D_R__FP7TObjectP5RwV3dP6sAngleP5RwV3dP5RwV3dffisP7RpClump(
+				    lbl_8042C2A0, &sp20, &sp14, &sp8, 0, 0, 0, 1.2f, 0.0f);
 			}
 		}
 	}

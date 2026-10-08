@@ -120,6 +120,7 @@
     "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
     "game/effect/eff_bomb.cpp",
+    "game/effect/eff_crash3d.cpp",
     "game/effect/eff_dush.cpp",
     "game/effect/eff_footprints.cpp",
     "game/enemy/e_gadget.cpp",
