@@ -3174,6 +3174,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/water_plant_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/waterplant_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

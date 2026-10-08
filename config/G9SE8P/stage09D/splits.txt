@@ -596,6 +596,9 @@ rel/treeleaf_register.cpp:
 	.text       start:0x000999E0 end:0x00099A90
 	.ctors      start:0x00000144 end:0x00000148
 
+rel/water_plant_create.cpp:
+	.text       start:0x0009C73C end:0x0009C85C
+
 rel/waterplant_register.cpp:
 	.text       start:0x0009C85C end:0x0009C90C
 	.ctors      start:0x00000150 end:0x00000154
