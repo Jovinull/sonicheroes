@@ -387,37 +387,39 @@ M2C_UNK objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(void*);             
 M2C_UNK objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
     s32*, s32*); /* extern */
 M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
-    u32, M2C_UNK);                                                                  /* extern */
-M2C_UNK fn_8006298C(M2C_UNK, f32*, s32*);                                           /* extern */
-s32 fn_800A2D50();                                                                  /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                                                    /* extern */
-s32 fn_800A3684();                                                                  /* extern */
-M2C_UNK fn_800A3D48(TObject*);                                                      /* extern */
-s32 fn_800A3ED4(void*);                                                             /* extern */
-M2C_UNK fn_800A3F60(void*);                                                         /* extern */
-M2C_UNK fn_800A4668(TObject*);                                                      /* extern */
-M2C_UNK fn_800A4A8C(TObject*, f32);                                                 /* extern */
-s32 fn_800A5888(TObject*, f32*, f32);                                               /* extern */
-s32 fn_800A5998(TObject*);                                                          /* extern */
-s32 fn_800A5A54(TObject*);                                                          /* extern */
-f32 fn_800A5AC0(TObject*);                                                          /* extern */
-M2C_UNK fn_800A5B34(TObject*);                                                      /* extern */
-M2C_UNK fn_800A5C6C(TObject*, M2C_UNK);                                             /* extern */
-s32 fn_800A6334(void*);                                                             /* extern */
-M2C_UNK fn_800A7088(TObject*, M2C_UNK);                                             /* extern */
-M2C_UNK fn_800A714C();                                                              /* extern */
-M2C_UNK fn_800B4A38(u32, M2C_UNK, f32*, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK);        /* extern */
-M2C_UNK fn_800B7514(f32*, s32*, f32*, f32);                                         /* extern */
-M2C_UNK fn_800B7820();                                                              /* extern */
-M2C_UNK fn_800B7864(M2C_UNK);                                                       /* extern */
-f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, s32);                                    /* extern */
-f32 DistanceP2P__FPC5RwV3dPC5RwV3d(f32*, M2C_UNK*);                                 /* extern */
-s32 AdjustAngle__Fiii(s32, s32, s32);                                               /* extern */
-f32 fn_800D7B00(u32);                                                               /* extern */
-f32 GetShadowPos__FP5RwV3dP6sAnglei(f32*, s32*, M2C_UNK);                           /* extern */
-void** fn_800FD8A0(TObject*, s32);                                                  /* extern */
-M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                             /* extern */
-M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                             /* extern */
+    u32, M2C_UNK);                                                           /* extern */
+M2C_UNK fn_8006298C(M2C_UNK, f32*, s32*);                                    /* extern */
+s32 fn_800A2D50();                                                           /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                             /* extern */
+s32 fn_800A3684();                                                           /* extern */
+M2C_UNK fn_800A3D48(TObject*);                                               /* extern */
+s32 fn_800A3ED4(void*);                                                      /* extern */
+M2C_UNK fn_800A3F60(void*);                                                  /* extern */
+M2C_UNK fn_800A4668(TObject*);                                               /* extern */
+M2C_UNK fn_800A4A8C(TObject*, f32);                                          /* extern */
+s32 fn_800A5888(TObject*, f32*, f32);                                        /* extern */
+s32 fn_800A5998(TObject*);                                                   /* extern */
+s32 fn_800A5A54(TObject*);                                                   /* extern */
+f32 fn_800A5AC0(TObject*);                                                   /* extern */
+M2C_UNK fn_800A5B34(TObject*);                                               /* extern */
+M2C_UNK fn_800A5C6C(TObject*, M2C_UNK);                                      /* extern */
+s32 fn_800A6334(void*);                                                      /* extern */
+M2C_UNK fn_800A7088(TObject*, M2C_UNK);                                      /* extern */
+M2C_UNK fn_800A714C();                                                       /* extern */
+M2C_UNK fn_800B4A38(u32, M2C_UNK, f32*, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK fn_800B7514(f32*, s32*, f32*, f32);                                  /* extern */
+M2C_UNK fn_800B7820();                                                       /* extern */
+M2C_UNK fn_800B7864(M2C_UNK);                                                /* extern */
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, s32);                             /* extern */
+f32 DistanceP2P__FPC5RwV3dPC5RwV3d(f32*, M2C_UNK*);                          /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                        /* extern */
+f32 fn_800D7B00(u32);                                                        /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(f32*, s32*, M2C_UNK);                    /* extern */
+void** fn_800FD8A0(TObject*, s32);                                           /* extern */
+M2C_UNK ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*); /* extern */
+M2C_UNK LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*);                                                             /* extern */
 u32 SearchUVAnim__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);       /* extern */
 u32 SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK); /* extern */
 u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);        /* extern */
@@ -4059,7 +4061,8 @@ void fn_8_BD380(void* arg0, void* arg1)
 void wallObjectUnload(void)
 {
 	End__16TEnemyMatTextureFv(wallObjectGlobalA);
-	fn_800FE248(8, (M2C_UNK*)lbl_8_data_17484);
+	ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    8, (M2C_UNK*)lbl_8_data_17484);
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
@@ -4122,7 +4125,8 @@ void wallObjectLoad(void)
 		SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(lbl_8_bss_1AC8[4], lbl_8_bss_1AE0);
 	}
 	lbl_8_bss_1B24 = 0;
-	fn_800FE274(8, (M2C_UNK*)lbl_8_data_17484);
+	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    8, (M2C_UNK*)lbl_8_data_17484);
 	if (lbl_8_bss_1AC8[3] != NULL) {
 		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump((void*)lbl_8_bss_1AC8[3]);
 		Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(

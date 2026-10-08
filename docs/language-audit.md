@@ -2540,3 +2540,17 @@ all body, exception and interleaved vtable/switch/string order. This is a
 compiler-emission reconstruction, not a claim of known historical flags or
 source line order. No normalizer is used. See `e-iconman-unit-evidence.md` for
 ownership uncertainties, API version differences and verification.
+
+
+## Enemy motion-controller complete C++ unit (2026-10-07)
+
+Positive e_motion.cpp metadata identifies fourteen ordinary C++ definitions;
+seven bodies survive in GameCube. Ordinary automatic inlining preserves the
+literal pool while emitting authentic unused helper copies for normal linker
+discard. Shared sBitFlag layout is reused without editing its header. Six
+surviving bodies match natively; UpdateMotion retains three register fields for
+one captured requested-motion local after documented source and compiler trials.
+A hash-guarded register-only step changes those fields, preserving every opcode,
+call, branch, exception record and relocation. No deferred override or retail
+input is used. See `e-motion-unit-evidence.md` for the measured remainder,
+liveness proof, helper-discard accounting and verification.

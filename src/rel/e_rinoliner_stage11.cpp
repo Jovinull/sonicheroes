@@ -153,21 +153,23 @@ M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*
 s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(void*, M2C_UNK);      /* extern */
 u32 objRwFrameGetFrame__FP7RwFramei(RwFrame*, M2C_UNK);                                 /* extern */
 M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
-    u32, M2C_UNK);                                                                  /* extern */
-void* fn_800628D0(M2C_UNK, f32*, s32*);                                             /* extern */
-M2C_UNK fn_800A7088(void*, M2C_UNK);                                                /* extern */
-M2C_UNK fn_800A714C();                                                              /* extern */
-s32 GetStatusOnPath__FP7PATHTAGP8PATHINFO(...);                                     /* extern */
-M2C_UNK GetPointDataOnPath__FP7PATHTAGiP5RwV3d(...);                                /* extern */
-f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, void*);                                  /* extern */
-M2C_UNK GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(M2C_UNK*, M2C_UNK, s32*);  /* extern */
-s32 VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(f32*, f32*, f32*, f32);                     /* extern */
-s32 AdjustAngle__Fiii(...);                                                         /* extern */
-f32 fn_800D7AE4(s32);                                                               /* extern */
-f32 fn_800D7B00(...);                                                               /* extern */
-M2C_UNK** fn_800FD8A0(TObject*, s32);                                               /* extern */
-M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                             /* extern */
-M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                             /* extern */
+    u32, M2C_UNK);                                                                 /* extern */
+void* fn_800628D0(M2C_UNK, f32*, s32*);                                            /* extern */
+M2C_UNK fn_800A7088(void*, M2C_UNK);                                               /* extern */
+M2C_UNK fn_800A714C();                                                             /* extern */
+s32 GetStatusOnPath__FP7PATHTAGP8PATHINFO(...);                                    /* extern */
+M2C_UNK GetPointDataOnPath__FP7PATHTAGiP5RwV3d(...);                               /* extern */
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, void*);                                 /* extern */
+M2C_UNK GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(M2C_UNK*, M2C_UNK, s32*); /* extern */
+s32 VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(f32*, f32*, f32*, f32);                    /* extern */
+s32 AdjustAngle__Fiii(...);                                                        /* extern */
+f32 fn_800D7AE4(s32);                                                              /* extern */
+f32 fn_800D7B00(...);                                                              /* extern */
+M2C_UNK** fn_800FD8A0(TObject*, s32);                                              /* extern */
+M2C_UNK ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*); /* extern */
+M2C_UNK LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*);                                                             /* extern */
 u32 SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK); /* extern */
 s32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);        /* extern */
 M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                    /* extern */
@@ -1227,7 +1229,8 @@ void rinolinerObjectUnload(void)
 		lbl_8_bss_1A5C                     = NULL;
 	}
 	fn_8_B52F4();
-	fn_800FE248(3, &lbl_8_data_16C18);
+	ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    3, &lbl_8_data_16C18);
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
@@ -1266,7 +1269,8 @@ void rinolinerObjectLoad(void)
 	}
 	M2C_FIELD(&lbl_8_bss_1A50, s32*, 8)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 3, 2);
-	fn_800FE274(3, &lbl_8_data_16C18);
+	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    3, &lbl_8_data_16C18);
 	fn_8_B5308();
 	lbl_8_bss_1A5C = fn_80139984(1, 0x4037, 4);
 }
