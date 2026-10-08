@@ -948,6 +948,7 @@ config.libs = [
                 "game/GetSpParam.cpp",
                 extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
             ),
+            Object(Matching, "game/mobject.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole,nodeadstore"]),
             Object(
                 Matching,
                 "game/dAnim.cpp",

@@ -182,7 +182,7 @@ void* fn_8011EFB0(void*);
 void fn_80194294(s32, u32*);
 void fn_80194234(s32, u32);
 void fn_8019421C();
-void fn_800A7658();
+void GetCurrentCameraPointer__Fv();
 void fn_801942C0(s32, ScreenVertex*, s32);
 void fn_8001867C(void*);
 void fn_8012CEF0(void*, f32);
@@ -225,7 +225,7 @@ void fn_80177C50();
 void fn_801AD3C0(void*, s32);
 f32 GXGetYScaleFactor(u16, u16);
 void GXSetDispCopyYScale(f32);
-void fn_800A7614();
+void fn_800A7614__Fv();
 void fn_8016EBC0(f32*, f32*, f32*);
 void* fn_802043AC(void*);
 void* fn_80204918(void*);
@@ -669,7 +669,7 @@ extern "C" void fn_800A88F0(void*, s32 alpha)
 	f32 width  = RsGlobal.width;
 	f32 height = RsGlobal.height;
 	fn_8019421C();
-	fn_800A7658();
+	GetCurrentCameraPointer__Fv();
 
 	ScreenVertex vertices[4];
 	f32 zero      = *(volatile const f32*)&lbl_8042DB50;
@@ -832,7 +832,7 @@ extern "C" void fn_800A8D24(void* object)
 extern "C" void fn_800A8EC4(void* object)
 {
 	if (*(void**)((u8*)&lbl_80303EC8 + 0x38) == NULL) {
-		fn_800A7658();
+		GetCurrentCameraPointer__Fv();
 		if (object == NULL)
 			return;
 
@@ -1165,7 +1165,7 @@ extern "C" void fn_800A96D4(SelectionState* self)
 		self->flags &= ~2;
 	}
 	if ((self->flags & 4) != 0) {
-		fn_800A7614();
+		fn_800A7614__Fv();
 		self->flags &= ~4;
 	}
 	if ((self->flags & 8) != 0)

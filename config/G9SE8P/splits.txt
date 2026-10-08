@@ -231,6 +231,17 @@ game/locateTable.cpp:
 	.data       start:0x8024FEB0 end:0x80252FA8
 	.bss        start:0x80303E48 end:0x80303EB8
 
+game/mobject.cpp:
+	extab       start:0x80007AF8 end:0x80007B40
+	extabindex  start:0x8000E140 end:0x8000E1AC
+	.text       start:0x800A74BC end:0x800A7AE0
+	.rodata     start:0x80239F40 end:0x80239F50
+	.data       start:0x80253068 end:0x80253118
+	.sdata      start:0x8042B320 end:0x8042B32B
+	.sdata      start:0x8042B32B end:0x8042B330 skip
+	.sbss       start:0x8042C328 end:0x8042C340
+	.sdata2     start:0x8042DB18 end:0x8042DB30
+
 game/dAnim.cpp:
 	extab       start:0x80007B40 end:0x80007B70
 	extabindex  start:0x8000E1AC end:0x8000E1F4

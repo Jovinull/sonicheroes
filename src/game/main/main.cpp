@@ -79,7 +79,7 @@ void fn_80040198(void*);
 void InitGParam__7G_PARAMF11GPARAM_INIT(void*, int);
 void fn_800D0AA8();
 void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(TMainTask*, int, int);
-void fn_800A7614();
+void fn_800A7614__Fv();
 void fn_80112F10();
 int fn_80011D64();
 int fn_80011DD8(void*);
@@ -111,12 +111,12 @@ int fn_8020C044();
 int fn_8014A90C();
 int fn_8023944C();
 int fn_8022D8EC();
-void fn_800A7A44();
+void getRidOfRwCameraMemoryLeakBugAndDefaultFontSet__Fv();
 void fn_80112F74();
 void fn_800A92CC(void*, int, int);
 void fn_800B429C(void*);
 void fn_800CD528();
-void fn_800A74BC(int);
+void fn_800A74BC__Fi(int);
 int CheckCurrentSeqType__11STORYMANAGEFv(void*);
 int CurrentMovieNumber__11STORYMANAGEFv(void*);
 extern TMainTask* lbl_8042C180;
@@ -128,9 +128,9 @@ extern char lbl_8029C2E4[];
 extern char lbl_80303EC8[];
 extern char lbl_803EC340[];
 extern char lbl_8029C310[];
-extern Module* lbl_80253068[];
-extern int lbl_8042B320;
-extern Module* lbl_8042C338;
+extern Module* mobject_table__7MObject[];
+extern int module_number__7MObject;
+extern Module* pCurrent_MObject__7MObject;
 extern void* lbl_8042C388;
 extern char StoryManage;
 extern RsGlobal lbl_8029BB80;
@@ -309,7 +309,7 @@ void MAIN::Init()
 	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 0);
 	fn_800D0AA8();
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x13, ((s8*)lbl_8042C180)[0x13]);
-	fn_800A7614();
+	fn_800A7614__Fv();
 	fn_8011253C();
 	fn_80112F10();
 }
@@ -318,10 +318,10 @@ enum MOBJECT_TYPE { MOBJECT_0, MOBJECT_1, MOBJECT_2, MOBJECT_3 };
 
 static inline void runModule(Module* module, int& result, bool withExtraService)
 {
-	lbl_8042C338 = module;
-	lbl_8042C338->Init();
+	pCurrent_MObject__7MObject = module;
+	pCurrent_MObject__7MObject->Init();
 	do {
-		result = lbl_8042C338->Loop();
+		result = pCurrent_MObject__7MObject->Loop();
 		if (lbl_8042C388 != 0)
 			fn_800B429C(lbl_8042C388);
 		fn_800CD528();
@@ -358,7 +358,7 @@ int MAIN::Loop()
 	field0                       = 0;
 	*(int*)(lbl_803A6690 + 0x4C) = CheckRestHeap__4PERFFv(lbl_803A6690);
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 0);
-	fn_800A7A44();
+	getRidOfRwCameraMemoryLeakBugAndDefaultFontSet__Fv();
 	fn_8011253C();
 	fn_80112F74();
 
@@ -375,20 +375,20 @@ int MAIN::Loop()
 					if (player >= 0)
 						fn_800A92CC(lbl_80303EC8, player, 0);
 				}
-				lbl_8042B320 = 1;
-				runModule(lbl_80253068[1], result, true);
+				module_number__7MObject = 1;
+				runModule(mobject_table__7MObject[1], result, true);
 				if (result == 3)
-					fn_800A74BC(0);
-				lbl_8042C338->End();
+					fn_800A74BC__Fi(0);
+				pCurrent_MObject__7MObject->End();
 				if (lbl_8042C180->field27 != 0)
 					setSpecialMode();
 				break;
 
 			case 2:
-				moduleIndex  = MOBJECT_0;
-				lbl_8042B320 = moduleIndex;
-				runModule(lbl_80253068[moduleIndex], result, false);
-				lbl_8042C338->End();
+				moduleIndex             = MOBJECT_0;
+				module_number__7MObject = moduleIndex;
+				runModule(mobject_table__7MObject[moduleIndex], result, false);
+				pCurrent_MObject__7MObject->End();
 				if (lbl_8042C180->field27 != 0) {
 					if (result == 1)
 						setSpecialMode();
@@ -412,30 +412,30 @@ int MAIN::Loop()
 					SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 1);
 				}
 				if (result == 3)
-					fn_800A74BC(0);
+					fn_800A74BC__Fi(0);
 				break;
 
 			case 3:
-				moduleIndex  = MOBJECT_2;
-				lbl_8042B320 = moduleIndex;
-				runModule(lbl_80253068[moduleIndex], result, true);
-				lbl_8042C338->End();
+				moduleIndex             = MOBJECT_2;
+				module_number__7MObject = moduleIndex;
+				runModule(mobject_table__7MObject[moduleIndex], result, true);
+				pCurrent_MObject__7MObject->End();
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
 				    lbl_8042C180, 0x30, lbl_8042C180->nextMode);
 				break;
 
 			case 5:
-				moduleIndex  = MOBJECT_3;
-				lbl_8042B320 = moduleIndex;
-				runModule(lbl_80253068[moduleIndex], result, true);
-				lbl_8042C338->End();
+				moduleIndex             = MOBJECT_3;
+				module_number__7MObject = moduleIndex;
+				runModule(mobject_table__7MObject[moduleIndex], result, true);
+				pCurrent_MObject__7MObject->End();
 				if (lbl_8042C180->field27 != 0)
 					setSpecialMode();
 				else
 					SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
 					    lbl_8042C180, 0x30, lbl_8042C180->nextMode);
 				if (result == 3)
-					fn_800A74BC(0);
+					fn_800A74BC__Fi(0);
 				break;
 		}
 	}

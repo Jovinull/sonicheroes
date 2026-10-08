@@ -30,7 +30,7 @@ extern const u32 peripheral_repeat_bits[11];
 
 void fn_8005751C(void);
 void fn_80057574(void);
-void fn_800A7548(void);
+void fn_800A7548__Fv(void);
 int OSGetResetSwitchState(void);
 void PADRecalibrate(u32);
 void PADRead(void*);
@@ -308,7 +308,7 @@ void InitDemoData(s32 players, s32 maxFlame)
 void CheckSoftResetTiming(void)
 {
 	if (lbl_8042C180 != 0) {
-		fn_800A7548();
+		fn_800A7548__Fv();
 		lbl_8042C0E1 = 0;
 
 		s8 flag  = 0;

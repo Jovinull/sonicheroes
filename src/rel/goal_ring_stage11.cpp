@@ -77,7 +77,7 @@ void fn_80194234(...);
 void fn_80194294(...);
 extern void fn_801942C0(s32 mode, void* verts, s32 count);
 void fn_801AF914(s32);
-void fn_800A7594(...);
+void fn_800A7594__Fv(...);
 void* objRwTexDictionaryGetPointer__Fv(void);
 void* fn_801A4BBC(...);
 void* fn_8_4B14C(void*, s16, void*, int, int, void*);
@@ -274,7 +274,7 @@ extern "C" void fn_8_4AF64(float x, float y, float radius, void* particle)
 		return;
 	float bounds[4] = { x - radius, x + radius, y - radius, y + radius };
 	fn_801942C0(4, bounds, 4);
-	fn_800A7594();
+	fn_800A7594__Fv();
 }
 extern "C" void fn_8_4B064() { }
 

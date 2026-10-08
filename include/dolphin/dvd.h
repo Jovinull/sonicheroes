@@ -16,4 +16,12 @@ typedef struct DVDDiskID {
 	u8 padding[22];      // 0x0A
 } DVDDiskID;             // 0x20
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+BOOL DVDCheckDisk(void);
+#ifdef __cplusplus
+}
+#endif
+
 #endif

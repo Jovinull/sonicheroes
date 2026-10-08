@@ -301,7 +301,7 @@ extern float lbl_8042CFE0;
 extern u32 lbl_8042CFD8;
 extern u8 lbl_8042AE98;
 extern "C" s32 CheckSoftReset(s32 mode);
-extern "C" void fn_800A74BC(s32 mode);
+extern "C" void fn_800A74BC__Fi(s32 mode);
 extern "C" void fn_800CB6EC();
 extern "C" void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
     MainState* state, s32 field, s32 value);
@@ -358,8 +358,8 @@ extern "C" void RemoveLangMessage__Fv();
 extern "C" void fn_801125D8(void*);
 extern "C" void fn_8020577C();
 extern "C" void fn_8016F084();
-extern "C" void fn_800A76E4(void*);
-extern "C" void fn_800A7820();
+extern "C" void DefaultCloseDown__7MObjectFv(void*);
+extern "C" void DefaultSetUp__7MObjectFv();
 extern "C" void fn_8016EF70();
 extern "C" void fn_80205624();
 extern "C" void fn_8016EE28(float);
@@ -422,7 +422,7 @@ extern "C" void RsCameraShowRaster(void* world);
 extern "C" void fn_800B7BDC();
 extern "C" void fn_800BEEF0();
 extern "C" void fn_8019CF28(void* world, void* color, s32 mode);
-extern "C" void* fn_800A7658();
+extern "C" void* GetCurrentCameraPointer__Fv();
 extern "C" void fn_8019EE04(void* object);
 extern "C" void fn_8004AF04(void* object);
 extern "C" void fn_8004EBE0(void* object, s32 index);
@@ -485,7 +485,7 @@ extern "C" s32 fn_8009C704(s32, s32);
 extern "C" void fn_8009250C(RawTask*);
 extern "C" void fn_8009D2E0(RawTask*);
 extern "C" s32 fn_800A7338();
-extern "C" u32 fn_800A7648();
+extern "C" u32 GetMObjectCameraPointer__Fv();
 extern "C" s32 EndPath__Fv();
 extern "C" s32 fn_800B44A0(void*);
 extern "C" s32 fn_800B48B8(void*);
@@ -576,7 +576,7 @@ ACTIONMODE GetActionMode()
 void CheckActionSoftReset()
 {
 	if (CheckSoftReset(3) != 0)
-		fn_800A74BC(0);
+		fn_800A74BC__Fi(0);
 }
 
 void RestoreStageConnect(ACTION* action)
@@ -1103,7 +1103,7 @@ void ACTION::CheckPauseOff()
 	fn_8019CF28(*(void**)((u8*)lbl_8042C1F8 + 40), &lbl_8042AEB0, 3);
 	fn_8004DC80(lbl_8042C1F8, 1);
 	fn_8015B8E8(*(void**)((u8*)lbl_8042C1D0 + 29264), *(void**)((u8*)lbl_8042C1F8 + 40));
-	fn_8019EE04(*(void**)((u8*)fn_800A7658() + 4));
+	fn_8019EE04(*(void**)((u8*)GetCurrentCameraPointer__Fv() + 4));
 	fn_8019CC28(*(void**)((u8*)lbl_8042C1F8 + 40));
 	((EventManagerLate*)lbl_8042C170)->method24();
 	fn_8019CC00(*(void**)((u8*)lbl_8042C1F8 + 40));
@@ -1168,7 +1168,7 @@ void ACTION::CheckPauseOff()
 	}
 
 	fn_8004EBE0(lbl_8042C1F8, -1);
-	fn_8019EE04(*(void**)((u8*)fn_800A7658() + 4));
+	fn_8019EE04(*(void**)((u8*)GetCurrentCameraPointer__Fv() + 4));
 	fn_8019CC28(*(void**)((u8*)lbl_8042C1F8 + 40));
 	((EventManagerLate*)lbl_8042C170)->method28();
 	fn_8019CC00(*(void**)((u8*)lbl_8042C1F8 + 40));
@@ -1619,11 +1619,11 @@ s32 ACTION::Loop()
 			mode = 16;
 			break;
 		case 3:
-			uVar3 = fn_800A7648();
+			uVar3 = GetMObjectCameraPointer__Fv();
 			fn_8019CF28((void*)uVar3, (u8*)&lbl_8042AEB0, 3);
-			iVar4 = fn_800A7648();
+			iVar4 = GetMObjectCameraPointer__Fv();
 			fn_8019EE04(*(void**)(iVar4 + 4));
-			fn_800A7648();
+			GetMObjectCameraPointer__Fv();
 			fn_8019CC28_noarg();
 			fn_80194234(8, 0);
 			fn_80194234(6, 0);
@@ -1636,10 +1636,10 @@ s32 ACTION::Loop()
 				lbl_8042C760->method0C();
 				lbl_8042C760->method28();
 			}
-			fn_800A7648();
+			GetMObjectCameraPointer__Fv();
 			fn_8019CC00_noarg();
 			if (2 < *(s32*)(*(s32*)((u8*)&lbl_8042C180) + 0x30)) {
-				fn_800A7648();
+				GetMObjectCameraPointer__Fv();
 				fn_800122B4_noarg();
 			}
 			iVar4 = fn_8012DA84();
@@ -2154,7 +2154,7 @@ s32 ACTION::Loop()
 		case 6:
 		case 0xc:
 		case 0xe:
-			fn_800A74BC(0);
+			fn_800A74BC__Fi(0);
 	}
 LAB_8001c460:
 	fn_8001D718();
@@ -2436,7 +2436,7 @@ void ACTION::End()
 	fn_801125D8(lbl_803E73B0);
 	fn_8020577C();
 	fn_8016F084();
-	fn_800A76E4(this);
+	DefaultCloseDown__7MObjectFv(this);
 	fn_80196D00();
 	processState = 0;
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 31, 0);
@@ -2445,8 +2445,8 @@ void ACTION::End()
 
 void ACTION::Init()
 {
-	fn_800A7820();
-	fn_800A7658();
+	DefaultSetUp__7MObjectFv();
+	GetCurrentCameraPointer__Fv();
 	fn_8016EF70();
 	fn_80205624();
 	fn_8016EE28(lbl_8042CFDC);
@@ -2620,7 +2620,7 @@ void ACTION::subInit()
 	s32 firstCount;
 
 	if (stageNumber <= 1 || stageNumber >= 62)
-		fn_800A74BC(0);
+		fn_800A74BC__Fi(0);
 	fn_801126B4(lbl_803E73B0);
 	fn_8012D97C();
 	*(s32*)((u8*)this + 0x250) = 0;
