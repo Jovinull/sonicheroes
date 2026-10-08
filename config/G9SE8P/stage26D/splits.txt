@@ -318,6 +318,9 @@ rel/lens_flare_register.cpp:
 rel/signal_dtor.cpp:
 	.text       start:0x0003F098 end:0x0003F140
 
+rel/signal_lifecycle_stage11.cpp:
+	.text       start:0x0003F140 end:0x0003F6EC
+
 rel/signal_register.cpp:
 	.text       start:0x0003F734 end:0x0003F7DC
 	.ctors      start:0x0000007C end:0x00000080

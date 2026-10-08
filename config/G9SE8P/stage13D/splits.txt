@@ -250,6 +250,9 @@ rel/lens_flare_register.cpp:
 	.text       start:0x000459F8 end:0x00045AA0
 	.ctors      start:0x0000007C end:0x00000080
 
+rel/signal_lifecycle_stage11.cpp:
+	.text       start:0x00046560 end:0x00046B0C
+
 rel/signal_register.cpp:
 	.text       start:0x00046B54 end:0x00046BFC
 	.ctors      start:0x00000080 end:0x00000084
