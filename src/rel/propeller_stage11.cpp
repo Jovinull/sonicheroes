@@ -114,7 +114,7 @@ int fn_80020BD8(void*, int);
 void* fn_800211A8(void*);
 int fn_80041B64(void*);
 void fn_800E1208(int, int, int);
-void* fn_80054F08(void*, void*, float, int);
+void* DetectSphereCollisionWithPolygons__6OCTREEFP5RwV3dfPFP8POLYDATA_i(void*, void*, float, int);
 void fn_8001F674(int, int, int, int);
 void __dt__19ColliPolyLinearListFv(void*, int);
 void fn_8003BC38(void*);
@@ -698,7 +698,8 @@ extern "C" void fn_8_46FEC(void* self)
 			break;
 		}
 	} else if (state == 2) {
-		void* result = fn_80054F08(lbl_8042C150, (u8*)self + 0xFC, lbl_8_data_4C60, 0);
+		void* result = DetectSphereCollisionWithPolygons__6OCTREEFP5RwV3dfPFP8POLYDATA_i(
+		    lbl_8042C150, (u8*)self + 0xFC, lbl_8_data_4C60, 0);
 		if (result != NULL) {
 			int player = field<int>(self, 0x160);
 			if (player >= 0 && lbl_80303DC8[player] != NULL)

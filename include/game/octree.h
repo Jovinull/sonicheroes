@@ -53,6 +53,7 @@ struct MiniLinearList {
 };
 void DeleteNode_MiniLinearList(MiniLinearList*);
 MiniLinearList* AddNode_MiniLinearList(MiniLinearList*, u16);
+enum ENUM_CL_MOVING { CL_MOVING_NONE, CL_MOVING_COLLISION, CL_MOVING_INTERSECTION };
 class OCTREE
 {
 public:
@@ -79,5 +80,26 @@ public:
 	~OCTREE();
 	void GetCenterPosition(const ONODE*, RwV3d*);
 	ONODE* GetNodeFromPosition(const RwV3d*);
+	s32 CheckPolygonFlag(u16) const;
+	s32 CheckNodeFlag(u16) const;
+	void SetPolygonFlag(u16);
+	void SetNodeFlag(u16);
+	s32 GetPolygonNoInTheNode(ONODE*, s32) const;
+	void ClearPolygonFlagAll();
+	void ClearNodeFlagAll();
+	void OmitSameSurfacePolygons(ColliPolyLinearList*);
+	ColliPolyLinearList* DetectMovingSphereCollisionWithPolygons(
+	    RwV3d*, f32, RwV3d*, ENUM_CL_MOVING*, s32 (*)(POLYDATA*));
+	ColliPolyLinearList* DetectSphereCollisionWithPolygons(RwV3d*, f32, s32 (*)(POLYDATA*));
+	MiniLinearList* MakeIntersectionNodeListWithCapsule_Sub(
+	    MiniLinearList*, const ONODE*, const RwV3d*, const RwV3d*);
+	MiniLinearList* MakeIntersectionNodeListWithCapsule(const RwV3d*, const RwV3d*, f32);
+	MiniLinearList* MakeIntersectionNodeListWithSmallSphere(const RwV3d*, f32);
+	MiniLinearList* MakeIntersectionNodeListWithSmallSphere_Sub(
+	    MiniLinearList*, const ONODE*, const RwV3d*, f32, const RwV3d*, const RwV3d*);
+	ONODE* GetNextNeighborNode(const ONODE*, const RwV3d*, const RwV3d*, RwV3d*);
+	POLYDATA* DetectAxisYCollisionWithPolygons(const RwV3d*, f32, RwV3d*, s32 (*)(POLYDATA*));
+	POLYDATA* DetectLineCollisionWithPolygons(
+	    const RwV3d*, const RwV3d*, RwV3d*, s32 (*)(POLYDATA*));
 };
 #endif
