@@ -2949,11 +2949,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/target_object_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/tenkyu_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

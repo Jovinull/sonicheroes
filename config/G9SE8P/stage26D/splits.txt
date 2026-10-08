@@ -467,6 +467,9 @@ rel/e2000_object_register.cpp:
 	.text       start:0x00094B00 end:0x00094BFC
 	.ctors      start:0x000000F4 end:0x000000F8
 
+rel/pawn_dtor.cpp:
+	.text       start:0x0009D4D8 end:0x0009D6B0
+
 rel/pawn_register.cpp:
 	.text       start:0x0009E4BC end:0x0009E564
 	.ctors      start:0x000000F8 end:0x000000FC
