@@ -216,8 +216,8 @@ M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                       /* extern
 M2C_UNK LoadRenderState__7nRenderFv();                                 /* extern */
 M2C_UNK SaveRenderState__7nRenderFv();                                 /* extern */
 M2C_UNK fn_8011B844(u32, f32*, f32);                                   /* extern */
-s32 fn_8011C188(s32, s32);                                             /* extern */
-M2C_UNK fn_8011C6EC();                                                 /* extern */
+s32 ParalyzeEnemy__14TEnemyScoreManFi(s32, s32);                       /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                          /* extern */
 s32 Create__12TEnemySummonFUc(s32);                                    /* extern */
 s32 DecreaseTimer__7nSystemFRi(void*);                                 /* extern */
 M2C_UNK fn_8014FF2C(M2C_UNK);                                          /* extern */
@@ -242,7 +242,7 @@ extern M2C_UNK num__10PARAM_RING;
 extern s32 lbl_8042C148;
 extern void* lbl_8042C180;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C6D0;
+extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern M2C_UNK lbl_8_bss_19C8;
 extern s32 lbl_8_bss_19D0;
 extern M2C_UNK lbl_8_bss_19D4;
@@ -799,10 +799,11 @@ void fn_8_ABB10(void* arg0, s32 arg1)
 			}
 			M2C_FIELD(arg0, s32*, 0x2F0) = 0x5A;
 			M2C_FIELD(arg0, s32*, 0x2F4) = (s32)M2C_FIELD(arg0, s32*, 0x238);
-			if ((u32)lbl_8042C6D0 == 0U) {
-				fn_8011C6EC();
+			if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+				CreateInstance__14TEnemyScoreManFv();
 			}
-			fn_8011C188(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x238));
+			ParalyzeEnemy__14TEnemyScoreManFi(
+			    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x238));
 			M2C_FIELD(arg0, s32*, 0x2EC) = 0;
 			M2C_FIELD(arg0, u16*, 0x30)  = (u16)(M2C_FIELD(arg0, u16*, 0x30) | 0x200);
 			return;

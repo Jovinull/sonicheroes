@@ -2495,3 +2495,21 @@ the existing Task.cpp implementation through normal linker selection. See
 `e-summon-unit-evidence.md` for full ownership and verification scope.
 The final linker map confirms duplicate deletion and exception-record discard;
 all eighteen supported artifacts, 62 tests and both policies pass.
+
+## Enemy score-manager complete C++ unit (2026-10-07)
+
+Positive e_scoreman.cpp metadata identifies the class, fifteen methods and
+owned singleton/class assets. Twelve bodies survive on GameCube; five named
+methods inline and two additional functions keep provisional address names.
+The extra address at this+0x29 uses an explicitly provisional empty-base model,
+with original name and base-versus-member identity unverified. GameCube field
+accesses and allocation establish the final 0x5C class layout.
+
+All twelve functions and 77 owned relocations match raw compiler output.
+Reference-based subobject addressing avoids a nullable conversion; a read-only
+pointer reference preserves the observed inline allocation with no intervening
+writes/calls. These are documented reconstruction spellings, not claims about
+original source syntax. No deferred mode or normalizer is introduced. See
+`e-scoreman-unit-evidence.md` for complete ownership and verification scope.
+Final linked cleanup and normal weak-duplicate discard are verified; the full
+supported release matrix, eighteen hashes, 62 tests and both policies pass.

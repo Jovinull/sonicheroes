@@ -264,7 +264,7 @@ extern StageNameEntry lbl_80240B10[];
 extern RawTask* lbl_80303DC8[];
 extern s32 num__15PARAM_CHALLENGE[];
 extern void* lbl_8042C388;
-extern void* lbl_8042C6D0;
+extern void* EnemyScoreMan__14TEnemyScoreMan;
 extern u8 lbl_803E774C[];
 extern u8 lbl_8029BBD0[];
 extern u32 lbl_8042C160;
@@ -337,8 +337,8 @@ inline void addChallenge__15PARAM_CHALLENGEFii(u32 object, s32 stage, u32 value)
 	addChallenge__15PARAM_CHALLENGEFii((void*)object, stage, (s32)value);
 }
 extern "C" void InitSavePosition__7G_PARAMFv(void* object);
-extern "C" void fn_8011C6EC();
-extern "C" void fn_8011C0C4(void* object);
+extern "C" void CreateInstance__14TEnemyScoreManFv();
+extern "C" void SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv(void* object);
 extern "C" void* fn_80116D2C(void* object);
 extern "C" void fn_8009C2D4(void* team);
 extern "C" void fn_800A0A4C(s32 teamNo);
@@ -855,10 +855,10 @@ void ACTION::BackToBeginningOfStage()
 	mode       = 8;
 	transition = 4;
 	InitSavePosition__7G_PARAMFv(&lbl_8042C308);
-	if (lbl_8042C6D0 == 0)
-		fn_8011C6EC();
-	if (lbl_8042C6D0 != 0)
-		fn_8011C0C4(lbl_8042C6D0);
+	if (EnemyScoreMan__14TEnemyScoreMan == 0)
+		CreateInstance__14TEnemyScoreManFv();
+	if (EnemyScoreMan__14TEnemyScoreMan != 0)
+		SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv(EnemyScoreMan__14TEnemyScoreMan);
 }
 
 void ACTION::RestartStage()

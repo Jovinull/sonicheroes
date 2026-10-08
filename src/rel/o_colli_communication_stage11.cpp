@@ -91,8 +91,8 @@ s32 AdjustAngle__Fiii(s32, s32, s32);                                           
 f32 fn_800D7B00(s32);                                                            /* extern */
 s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32);            /* extern */
 M2C_UNK SetLightNum__7nRenderFUi();                                              /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
-M2C_UNK fn_8011C6EC();                                                           /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);                        /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                                    /* extern */
 M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
 M2C_UNK fn_801990E0(void*, void*, f32);                                          /* extern */
 M2C_UNK fn_8_90B10(s32);                                                         /* extern */
@@ -105,7 +105,7 @@ extern M2C_UNK lbl_8042C1A4;
 extern void* lbl_8042C208;
 extern void* lbl_8042C380;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C6D0;
+extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern M2C_UNK lbl_8_data_16B98;
 extern const f32 lbl_8_rodata_1BB8[3] = { 0.0f, 0.0f, 0.0f };
 extern const f32 lbl_8_rodata_1BC4[3] = { 0.0f, 0.0f, 0.0f };
@@ -162,10 +162,11 @@ void fn_8_B09F8(void* arg0, s32 arg1)
 
 void fn_8_B0A1C(void* arg0)
 {
-	if ((u32)lbl_8042C6D0 == 0U) {
-		fn_8011C6EC();
+	if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+		CreateInstance__14TEnemyScoreManFv();
 	}
-	fn_8011C1F8(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
+	AddScore__14TEnemyScoreManFii(
+	    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
 }
 
 s32 fn_8_B0A74(void* arg0)
