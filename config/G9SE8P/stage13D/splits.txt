@@ -185,6 +185,9 @@ rel/wood_cont_object_register.cpp:
 	.text       start:0x000140F4 end:0x0001419C
 	.ctors      start:0x00000034 end:0x00000038
 
+rel/iron_container_create.cpp:
+	.text       start:0x000145DC end:0x000146E0
+
 rel/iron_container_register.cpp:
 	.text       start:0x000146E0 end:0x00014788
 	.ctors      start:0x00000038 end:0x0000003C
