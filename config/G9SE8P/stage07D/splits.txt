@@ -760,6 +760,9 @@ rel/no_ottotto_collision_register.cpp:
 	.text       start:0x000F4834 end:0x000F48CC
 	.ctors      start:0x000001C8 end:0x000001CC
 
+rel/s08_bob_range_colli_create.cpp:
+	.text       start:0x000F4DF8 end:0x000F4F08
+
 rel/s08bob_colli_object_register.cpp:
 	.text       start:0x000F4F08 end:0x000F4FA8
 	.ctors      start:0x000001CC end:0x000001D0
