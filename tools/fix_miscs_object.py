@@ -19,7 +19,135 @@ import stat
 import struct
 import tempfile
 
-from elftools.elf.elffile import ELFFile
+
+class _Entry(dict):
+    """A header/symbol/relocation record: fields by key, plus a name."""
+
+    name = ""
+
+
+_SHT = {0: "SHT_NULL", 1: "SHT_PROGBITS", 2: "SHT_SYMTAB", 3: "SHT_STRTAB", 4: "SHT_RELA", 8: "SHT_NOBITS", 9: "SHT_REL"}
+_STT = {0: "STT_NOTYPE", 1: "STT_OBJECT", 2: "STT_FUNC", 3: "STT_SECTION", 4: "STT_FILE"}
+_STB = {0: "STB_LOCAL", 1: "STB_GLOBAL", 2: "STB_WEAK"}
+_SHN = {0: "SHN_UNDEF", 0xFFF1: "SHN_ABS", 0xFFF2: "SHN_COMMON"}
+# HASH, DYNAMIC, NOTE, DYNSYM, SYMTAB_SHNDX, RELR, GNU hash/version, ARM/RISC-V attributes
+_UNREAD_KINDS = {5, 6, 7, 11, 18, 19, 0x6FFFFFF6, 0x6FFFFFFD, 0x6FFFFFFE, 0x6FFFFFFF, 0x70000003}
+
+
+def _string(raw: bytes, table_offset: int, offset: int) -> str:
+    """pyelftools' get_string: read from the file, not the section; '' if unterminated."""
+    position = table_offset + offset
+    end = raw.find(bytes(1), position)
+    if position >= len(raw) or end < 0:
+        return ""
+    return raw[position:end].decode("utf-8", errors="replace")
+
+
+class _Section(_Entry):
+    def __init__(self, elf: "ELFFile", fields: dict):
+        super().__init__(fields)
+        self.elf = elf
+
+    def data(self) -> bytes:
+        if self["sh_type"] == "SHT_NOBITS":
+            return b""
+        return self.elf.raw[self["sh_offset"]:self["sh_offset"] + self["sh_size"]]
+
+    def _entry(self, index: int, fmt: str) -> tuple:
+        offset = self["sh_offset"] + index * self["sh_entsize"]
+        return struct.unpack_from(fmt, self.elf.raw, offset)
+
+    def get_symbol(self, index: int):
+        if self["sh_type"] != "SHT_SYMTAB":
+            raise AttributeError("not a symbol table")
+        name, value, size, info, other, shndx = self._entry(index, ">IIIBBH")
+        symbol = _Entry(st_name=name, st_value=value, st_size=size, st_other=other,
+                        st_info={"bind": _STB.get(info >> 4, info >> 4), "type": _STT.get(info & 15, info & 15)},
+                        st_shndx=_SHN.get(shndx, shndx))
+        symbol.name = _string(self.elf.raw, self.elf.sections[self["sh_link"]]["sh_offset"], name)
+        return symbol
+
+    def iter_symbols(self):
+        if self["sh_type"] != "SHT_SYMTAB":
+            raise AttributeError("not a symbol table")
+        for index in range(self["sh_size"] // self["sh_entsize"]):
+            yield self.get_symbol(index)
+
+    def iter_relocations(self):
+        if self["sh_type"] not in ("SHT_REL", "SHT_RELA"):
+            raise AttributeError("not a relocation section")
+        for index in range(self["sh_size"] // self["sh_entsize"]):
+            r_offset, info, addend = self._entry(index, ">IIi")
+            yield _Entry(r_offset=r_offset, r_info=info, r_info_sym=info >> 8, r_info_type=info & 255, r_addend=addend)
+
+
+class ELFFile:
+    """The part of pyelftools' ELFFile this step reads, from the standard library.
+
+    The build container ships plain python3 only, and every other post-processor
+    is stdlib-only. Field names, the string spellings of section types, symbol
+    types and special section indices, and the way strings and table entries are
+    read follow pyelftools 0.33, so the validation below behaves as it did
+    against the real library (checked by flipping every bit of a native object).
+    """
+
+    def __init__(self, stream):
+        self.raw = raw = stream.read()
+        if raw[:4] != b"\x7fELF":
+            raise ValueError("Magic number does not match")
+        if raw[4] not in (1, 2):
+            raise ValueError("Invalid EI_CLASS")
+        if raw[5] not in (1, 2):
+            raise ValueError("Invalid EI_DATA")
+        self.elfclass = 32 if raw[4] == 1 else 64
+        self.little_endian = raw[5] == 1
+        if self.elfclass != 32 or self.little_endian:
+            raise ValueError("only ELF32 big-endian objects are read here")
+        e_type, e_machine = struct.unpack_from(">HH", raw, 16)
+        shoff, = struct.unpack_from(">I", raw, 32)
+        shentsize, shnum, shstrndx = struct.unpack_from(">HHH", raw, 46)
+        self.header = {"e_type": {1: "ET_REL"}.get(e_type, e_type),
+                       "e_machine": {20: "EM_PPC"}.get(e_machine, e_machine)}
+        keys = ("sh_name", "sh_type", "sh_flags", "sh_addr", "sh_offset", "sh_size",
+                "sh_link", "sh_info", "sh_addralign", "sh_entsize")
+        self.sections = []
+        for index in range(shnum):
+            fields = dict(zip(keys, struct.unpack_from(">10I", raw, shoff + index * shentsize)))
+            fields["sh_type"] = _SHT.get(fields["sh_type"], fields["sh_type"])
+            self.sections.append(_Section(self, fields))
+        names = struct.unpack_from(">10I", raw, shoff + shstrndx * shentsize)[4]
+        for section in self.sections:
+            section.name = _string(raw, names, section["sh_name"])
+        for section in self.sections:
+            self._construct(section)
+
+    def _construct(self, section: _Section) -> None:
+        """pyelftools validates these when it builds a section object, and it
+        builds every section as soon as any are iterated. Section kinds it would
+        parse specially but this step never reads are refused outright."""
+        kind = section["sh_type"]
+        if section["sh_flags"] & 0x800:
+            raise ValueError("compressed sections are not read here")
+        if kind == "SHT_SYMTAB":
+            if self.sections[section["sh_link"]]["sh_type"] != "SHT_STRTAB":
+                raise ValueError("SHT_SYMTAB section does not point at a SHT_STRTAB")
+            if not section["sh_entsize"] or section["sh_size"] % section["sh_entsize"]:
+                raise ValueError("symbol table size is not a multiple of its entry size")
+        elif kind in ("SHT_REL", "SHT_RELA"):
+            if section["sh_entsize"] != (12 if kind == "SHT_RELA" else 8):
+                raise ValueError("unexpected relocation entry size")
+        elif kind in _UNREAD_KINDS:
+            raise ValueError(f"section type {kind:#x} is not read here")
+
+    def __getitem__(self, key):
+        return self.header[key]
+
+    def iter_sections(self):
+        return iter(self.sections)
+
+    def get_section_by_name(self, name: str):
+        return next((section for section in self.sections if section.name == name), None)
+
 
 INPUT_HASH = "75558a6359de276575e7a311ec33adb29e3e355b60c27a51173f72da163d6140"
 OUTPUT_HASH = "374d1993f7787e45e924c777214eaef26809b678cd322edbf242f5f40c35fe8d"

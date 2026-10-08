@@ -8,8 +8,12 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from elftools.elf.elffile import ELFFile
 from tools import fix_miscs_object as fix
+
+try:  # an independent reader when available; the step itself is stdlib-only
+    from elftools.elf.elffile import ELFFile
+except ImportError:
+    ELFFile = fix.ELFFile
 
 
 def fixture():
