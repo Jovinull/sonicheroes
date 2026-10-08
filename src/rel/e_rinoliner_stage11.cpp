@@ -146,7 +146,7 @@ void* __ct__15sParalysisParamFv(void*);                                         
 void* __dt__10HAnimClassFv(void*, s32);                                           /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                          /* extern */
 TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                             /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                        /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);       /* extern */
 M2C_UNK** __nw__FUl(M2C_UNK);                                                     /* extern */
 s32 OnEdit__10TObjSetObjFv(void**);                                               /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                                  /* extern */
@@ -961,7 +961,7 @@ TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
 	arg0->unkE4 = &lbl_8_data_16C18;
 	arg0->unkD4 = 0;
 	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
-		fn_8003C200(&arg0->unk28, &lbl_8_data_16BB0, 1, 3);
+		Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk28, &lbl_8_data_16BB0, 1, 3);
 		arg0->unk88 = arg0->unk140;
 		arg0->unk8C = arg0->unk144;
 		arg0->unk90 = arg0->unk148;

@@ -566,6 +566,7 @@ config.libs = [
         "cflags": cflags_base,
         "progress_category": "game",
         "objects": [
+            Object(Matching, "game/effect/eff_brim.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
@@ -3998,6 +3999,11 @@ config.custom_build_rules = [
         "description": "FIX fn_8005E8EC.cpp split-TU compiler details",
     },
     {
+        "name": "fix_eff_brim_layout",
+        "command": "$python tools/fix_eff_brim_layout.py $in $out",
+        "description": "FIX brim compiler literal and exception atom order",
+    },
+    {
         "name": "fix_eff_tornado_object",
         "command": "$python tools/fix_eff_tornado_object.py $in $out",
         "description": "FIX eff_tornado.cpp split-TU compiler choices",
@@ -4312,6 +4318,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/eff-brim-layout.stamp",
+            "rule": "fix_eff_brim_layout",
+            "inputs": "build/G9SE8P/src/game/effect/eff_brim.o",
+            "implicit": ["tools/fix_eff_brim_layout.py"],
+        },
         {
             "outputs": "build/G9SE8P/c-colli-react-object.stamp",
             "rule": "fix_c_colli_react_object",

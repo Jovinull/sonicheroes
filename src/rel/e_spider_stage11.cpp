@@ -39,11 +39,11 @@ extern "C" {
 
 void* __ct__7TObjectFP7TObject(void*, void*);          /* extern */
 void* __dt__7TObjectFv(void*, s32);                    /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                 /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);              /* extern */
 M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);          /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);            /* extern */
 TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);          /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                         /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                    /* extern */
 u32 __nw__FUl(M2C_UNK);                                /* extern */
 s32 CheckMustKill__10TObjSetObjFv(s32);                /* extern */
 s32 CheckRangeOut__10TObjSetObjFv(s32);                /* extern */
@@ -455,7 +455,7 @@ TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 			var_r28 += 1;
 			var_r29 += 1;
 		} while (var_r29 < 4);
-		dtor_8003C52C((u8*)arg0 + 0x30, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x30, 0);
 		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
@@ -478,7 +478,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	__ct__10TObjSetObjFv(&arg0->unk28);
-	fn_8003C618(&arg0->unk30);
+	__ct__7C_COLLIFv(&arg0->unk30);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 	arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 	arg0->unk0  = lbl_8_data_181CC;
@@ -604,7 +604,7 @@ void s11spiderObjectCreate(void)
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
 		__ct__10TObjSetObjFv(&temp_r3->unk28);
-		fn_8003C618(&temp_r3->unk30);
+		__ct__7C_COLLIFv(&temp_r3->unk30);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 		temp_r3->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_181CC;

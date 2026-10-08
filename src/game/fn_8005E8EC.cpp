@@ -173,7 +173,7 @@ void fn_8015C704(void*, s32, s32);
 void fn_8015C710(void*, s32, s32, s32);
 void fn_8015C720(void*, s32);
 
-void fn_8010F3CC(void);
+void EndEffBrim__Fv(void);
 void fn_8010CA00(void);
 void fn_8010C0C0(void);
 void fn_8010AD10(void);
@@ -196,7 +196,7 @@ void fn_80104410(void);
 void fn_8010AD48(void);
 void fn_8010C108(void);
 void fn_8010CA14(void);
-void fn_8010F3F4(void);
+void InitEffBrim__Fv(void);
 
 #pragma force_active on
 char lbl_80243418[]                     = "OBJ_BOBSLEIGH.DFF";
@@ -361,7 +361,7 @@ extern "C" void* fn_8005EC0C(void)
 extern "C" void fn_8005EC14(void)
 {
 	Exec__22TObjSetDamageCollisionFv();
-	fn_8010F3CC();
+	EndEffBrim__Fv();
 	fn_8010CA00();
 	fn_8010C0C0();
 	fn_8010AD10();
@@ -498,6 +498,6 @@ extern "C" void fn_8005ED88(void)
 	fn_8010AD48();
 	fn_8010C108();
 	fn_8010CA14();
-	fn_8010F3F4();
+	InitEffBrim__Fv();
 	startObjSetDamageCollision__Fv();
 }

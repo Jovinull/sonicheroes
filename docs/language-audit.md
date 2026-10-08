@@ -1445,3 +1445,19 @@ is byte-identical. The unit is enabled as Matching with no object normalizer. Th
 TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
 wrappers are corrected with their call sites, preserving call order and targets.
 See `setobj-unit-evidence.md` for the inventory and verification.
+
+## effect/eff_brim.cpp
+
+Positive symbolic metadata identifies 35 C++ file-origin definitions; three
+constructors inline, and six positively named header virtual accessors survive.
+The complete 38-body GameCube range is 0x8010CE9C–0x8010F5D8. Nine owned ranges
+and 625 relocations are inventoried. Four class layouts and all resource
+ownership are independently checked against GameCube evidence; PS2 layout
+alignment differences are not copied. No PS2 instructions were inspected.
+All 38 native instruction bodies match. A guarded permutation of existing pool
+and exception atoms preserves all instruction bytes and relocation meanings.
+Whole-unit auto,deferred plus a genuine constructor inline qualifier recover
+retail expansion; unknown original spelling and target-specific color narrowing
+are documented explicitly. All eighteen output hashes and 82 tests pass; the
+complete unit is enabled as Matching.
+See `eff-brim-unit-evidence.md`.

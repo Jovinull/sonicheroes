@@ -118,8 +118,8 @@ int CheckMustKill__10TObjSetObjFv(void*);
 int OnEdit__10TObjSetObjFv(void*);
 int CheckRangeOut__10TObjSetObjFv(void*);
 void SetEnd__10TObjSetObjFv(void*);
-void fn_8003C200(void*, void*, int, int);
-void fn_80021384(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, int, int);
+void CalcRange__7C_COLLIFv(void*);
 void fn_80021824(void*);
 
 extern void* lbl_8042C180;
@@ -227,12 +227,13 @@ void TEndSkyBob::Exec()
 	}
 
 	if (fn_16_7738(((RawTEndSkyBob*)this)->base + 0x30, 0) == 0) {
-		fn_8003C200(((RawTEndSkyBob*)this)->base + 0x30, TEndSkyBobCollision, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(
+		    ((RawTEndSkyBob*)this)->base + 0x30, TEndSkyBobCollision, 1, 4);
 		info          = fn_16_7738(((RawTEndSkyBob*)this)->base + 0x30, 0);
 		info->scale.x = TEndSkyBobConstants[0] * scale.x;
 		info->scale.y = TEndSkyBobConstants[0] * scale.y;
 		info->scale.z = TEndSkyBobConstants[0] * scale.z;
-		fn_80021384(((RawTEndSkyBob*)this)->base + 0x30);
+		CalcRange__7C_COLLIFv(((RawTEndSkyBob*)this)->base + 0x30);
 		fn_16_DB4(((RawTEndSkyBob*)this)->base + 0x30);
 	}
 	if (!OnEdit__10TObjSetObjFv(((RawTEndSkyBob*)this)->base + 0x28)) {

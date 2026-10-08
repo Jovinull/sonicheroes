@@ -15,7 +15,7 @@
 //
 // The run is the same in all twelve stage modules that share the engine core.
 // Unlike most of the other TObj destructors in this family, TObjBigRings has
-// no embedded Volume base, so there is no dtor_8003C52C call here.
+// no embedded Volume base, so there is no __dt__7C_COLLIFv call here.
 //
 // The delete flag is a short. It is sign extended before the test, so a plain
 // s32 parameter does not reproduce the compare.

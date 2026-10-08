@@ -97,7 +97,7 @@ s32 CheckMustKill__10TObjSetObjFv(Motion*);
 s32 OnEdit__10TObjSetObjFv(Motion*);
 void fn_80021824(void*);
 void* fn_800211A8(void*);
-void fn_8003BC38(void*);
+void Entry__7C_COLLIFv(void*);
 void Free__9THeapCtrlFPv(void*, void*);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void fn_80063E7C(void*, s32);
@@ -265,7 +265,7 @@ void TObjS01Ciseki::Exec()
 	angleX               = frame->angleX;
 	angleY               = frame->angleY;
 	angleZ               = frame->angleZ;
-	fn_8003BC38((u8*)this + 0x30);
+	Entry__7C_COLLIFv((u8*)this + 0x30);
 }
 
 void CisekiThunk::EditOnChange(SETDATA_PARAM* frame)
