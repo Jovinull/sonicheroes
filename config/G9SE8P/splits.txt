@@ -400,6 +400,15 @@ game/enemy/e_gadget.cpp:
 	.text       start:0x800FD468 end:0x800FD6F0
 	.data       start:0x8025A800 end:0x8025A850
 
+game/enemy/e_link.cpp:
+	extab       start:0x80009768 end:0x800097B8
+	extabindex  start:0x8000FD60 end:0x8000FDC0
+	.text       start:0x800FD6F0 end:0x800FE248
+	.rodata     start:0x8023A760 end:0x8023A770
+	.data       start:0x8025A850 end:0x8025A890
+	.sdata      start:0x8042B728 end:0x8042B730
+	.sbss       start:0x8042C578 end:0x8042C580
+
 game/enemy/e_motion.cpp:
 	extab       start:0x800097B8 end:0x800097E0
 	extabindex  start:0x8000FDC0 end:0x8000FDE4

@@ -125,7 +125,7 @@ RENAMES = {
     "KillChild__7TObjectFv": "fn_800184C8",
     "DeleteChild__7TObjectFv": "fn_8001867C",
     "__sinit_Task_cpp": "fn_800188AC",
-    "Exec__7TObjectFv": "fn_8001894C",
+    "Exec__7TObjectFv": "Exec__7TObjectFv",
     "ImmAftSetRaster__7TObjectFv": "ImmAftSetRaster__7TObjectFv",
     "Debug__7TObjectFv": "Debug__7TObjectFv",
     "Render__7TObjectFv": "Render__7TObjectFv",

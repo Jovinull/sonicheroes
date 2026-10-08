@@ -415,7 +415,7 @@ f32 DistanceP2P__FPC5RwV3dPC5RwV3d(f32*, M2C_UNK*);                          /* 
 s32 AdjustAngle__Fiii(s32, s32, s32);                                        /* extern */
 f32 fn_800D7B00(u32);                                                        /* extern */
 f32 GetShadowPos__FP5RwV3dP6sAnglei(f32*, s32*, M2C_UNK);                    /* extern */
-void** fn_800FD8A0(TObject*, s32);                                           /* extern */
+void** __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(TObject*, s32);              /* extern */
 M2C_UNK ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
     M2C_UNK, M2C_UNK*); /* extern */
 M2C_UNK LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
@@ -3963,7 +3963,7 @@ TObject* fn_8_BCF88(TObject* arg0, TObject* arg1)
 	arg0->unk13C = 1;
 	var_r0_3     = __nw__FUl(0x20);
 	if (var_r0_3 != NULL) {
-		var_r0_3 = fn_800FD8A0(arg0, arg0->unk13C);
+		var_r0_3 = __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(arg0, arg0->unk13C);
 	}
 	arg0->unk228 = var_r0_3;
 	return arg0;

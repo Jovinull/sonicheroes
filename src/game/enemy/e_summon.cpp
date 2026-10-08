@@ -32,9 +32,9 @@ extern SummonSetGenView* lbl_8042C298;
 extern TObject* lbl_8042C10C;
 extern u16 e_start_uid_tbl[];
 extern SoundControl* lbl_8042C388;
-void fn_800FDC1C(u32, u32);
-void fn_800FDD40(u32);
-void fn_800FDE58(u32);
+void CreateEffect__12TObjEnemyManFUiUi(u32, u32);
+void TaskResume__12TObjEnemyManFUi(u32);
+void TaskSleep__12TObjEnemyManFUi(u32);
 void fn_800B52E8(SoundControl*, s32, s32, s32);
 }
 // Local predicate names are reconstruction labels, not metadata claims.
@@ -73,14 +73,14 @@ inline s32 TEnemySummon::SummonEnemy()
 }
 inline s32 TEnemySummon::CreateSummonPtcl()
 {
-	fn_800FDC1C(mCommunicationId, 0x20);
+	CreateEffect__12TObjEnemyManFUiUi(mCommunicationId, 0x20);
 	// The inlined call discards this result; the original value is unknown.
 	return 0;
 }
 void TEnemySummon::Exec()
 {
 	if (SummonIsRestarting()) {
-		fn_800FDD40(mCommunicationId);
+		TaskResume__12TObjEnemyManFUi(mCommunicationId);
 		Signal |= 1;
 		return;
 	}
@@ -95,10 +95,10 @@ void TEnemySummon::Exec()
 		case 1:
 			if (mTimer == 80) {
 				CreateSummonPtcl();
-				fn_800FDE58(mCommunicationId);
+				TaskSleep__12TObjEnemyManFUi(mCommunicationId);
 			}
 			if (--mTimer < 0) {
-				fn_800FDD40(mCommunicationId);
+				TaskResume__12TObjEnemyManFUi(mCommunicationId);
 				if (lbl_8042C388)
 					fn_800B52E8(lbl_8042C388, 0x405e, 0, 0);
 				mMode = 2;

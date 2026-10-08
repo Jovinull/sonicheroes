@@ -177,25 +177,25 @@ M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*
 s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(void*, M2C_UNK);      /* extern */
 M2C_UNK objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(void*);            /* extern */
 M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
-    u32, M2C_UNK);                                      /* extern */
-s32 objPointerReadFromClumpAnim__FPc(void*);            /* extern */
-M2C_UNK fn_8005FD8C(void*, M2C_UNK);                    /* extern */
-void* fn_8006298C(s32, f32*, s32*);                     /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                        /* extern */
-M2C_UNK fn_800A4668(void*);                             /* extern */
-M2C_UNK fn_800A4A8C(TObject*, f32);                     /* extern */
-s32 fn_800A5888(void*, void*, f32);                     /* extern */
-s32 fn_800A5A54(void*);                                 /* extern */
-f32 fn_800A5AC0(void*);                                 /* extern */
-M2C_UNK fn_800A5B50(void*, s32);                        /* extern */
-M2C_UNK fn_800A5C6C(void*, s32);                        /* extern */
-M2C_UNK fn_800A7088(void*, M2C_UNK);                    /* extern */
-M2C_UNK fn_800A714C(TEnemyParalysis*, s32);             /* extern */
-s32 AdjustAngle__Fiii(s32, s32, s32);                   /* extern */
-f32 fn_800D7B00(s32);                                   /* extern */
-f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, void*, s32); /* extern */
-M2C_UNK fn_800E1208(s32, s32, s32);                     /* extern */
-u32 fn_800FD8A0(TEnemyParalysis*, s32);                 /* extern */
+    u32, M2C_UNK);                                                   /* extern */
+s32 objPointerReadFromClumpAnim__FPc(void*);                         /* extern */
+M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                 /* extern */
+void* fn_8006298C(s32, f32*, s32*);                                  /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                     /* extern */
+M2C_UNK fn_800A4668(void*);                                          /* extern */
+M2C_UNK fn_800A4A8C(TObject*, f32);                                  /* extern */
+s32 fn_800A5888(void*, void*, f32);                                  /* extern */
+s32 fn_800A5A54(void*);                                              /* extern */
+f32 fn_800A5AC0(void*);                                              /* extern */
+M2C_UNK fn_800A5B50(void*, s32);                                     /* extern */
+M2C_UNK fn_800A5C6C(void*, s32);                                     /* extern */
+M2C_UNK fn_800A7088(void*, M2C_UNK);                                 /* extern */
+M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                          /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                /* extern */
+f32 fn_800D7B00(s32);                                                /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, void*, s32);              /* extern */
+M2C_UNK fn_800E1208(s32, s32, s32);                                  /* extern */
+u32 __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(TEnemyParalysis*, s32); /* extern */
 M2C_UNK ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
     s32, void*); /* extern */
 M2C_UNK LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
@@ -1181,7 +1181,7 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	arg0->unk13C = 1;
 	var_r0_4     = __nw__FUl(0x20);
 	if (var_r0_4 != 0U) {
-		var_r0_4 = fn_800FD8A0(arg0, arg0->unk13C);
+		var_r0_4 = __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(arg0, arg0->unk13C);
 	}
 	arg0->unk228 = var_r0_4;
 	return arg0;

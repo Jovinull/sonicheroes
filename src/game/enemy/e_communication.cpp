@@ -10,8 +10,8 @@ struct SetGenListView {
 extern "C" {
 extern SetGenListView* lbl_8042C298;
 void fn_800593D0(SetGenListView*, u8, SETOBJ_PARAM*);
-void fn_800FDF70(u32, sEnemyCommandEx*);
-void fn_800FE090(u32, sEnemyCommand*);
+void SendCommand__12TObjEnemyManFUiP15sEnemyCommandEx(u32, sEnemyCommandEx*);
+void SendCommand__12TObjEnemyManFUiP13sEnemyCommand(u32, sEnemyCommand*);
 }
 
 u16 e_uid_tbl[10] = { 0x1500, 0x1510, 0x1520, 0x1530, 0x1540, 0x1570, 0x1590, 0x15c0, 0x15d0, 0 };
@@ -73,9 +73,9 @@ s32 nEnemyCommunication::IsAnnihilated(u8 communicationId)
 }
 void sEnemyCommandEx::Send()
 {
-	fn_800FDF70(cid, this);
+	SendCommand__12TObjEnemyManFUiP15sEnemyCommandEx(cid, this);
 }
 void sEnemyCommand::Send()
 {
-	fn_800FE090(cid, this);
+	SendCommand__12TObjEnemyManFUiP13sEnemyCommand(cid, this);
 }
