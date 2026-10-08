@@ -585,6 +585,9 @@ rel/stationdoor_register.cpp:
 	.text       start:0x0008E16C end:0x0008E21C
 	.ctors      start:0x00000138 end:0x0000013C
 
+rel/train_appear_create.cpp:
+	.text       start:0x0008E698 end:0x0008E78C
+
 rel/trainappear_register.cpp:
 	.text       start:0x0008E78C end:0x0008E83C
 	.ctors      start:0x0000013C end:0x00000140

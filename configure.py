@@ -3059,6 +3059,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/train_appear_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/trainappear_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
