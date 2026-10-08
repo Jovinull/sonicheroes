@@ -239,6 +239,9 @@ rel/case_obj_register.cpp:
 	.text       start:0x000415DC end:0x00041684
 	.ctors      start:0x00000074 end:0x00000078
 
+rel/roll_door_lifecycle_stage11.cpp:
+	.text       start:0x00043A24 end:0x00044100
+
 rel/roll_door_register.cpp:
 	.text       start:0x00044148 end:0x000441F0
 	.ctors      start:0x00000078 end:0x0000007C
