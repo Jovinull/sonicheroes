@@ -1986,6 +1986,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/colli_communication_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rino_col_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -3,8 +3,9 @@
 // The record that registers RINO COL OBJECT with the editor.
 //
 // The claim is .text 0xB4BE4 to 0xB4C8C and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// Only the record is taken: the hooks it points at are reached by the names
+// each module's symbols.txt gives them. The factory is
+// rel/colli_communication_create.cpp.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.
