@@ -1855,3 +1855,35 @@ build, progress/report generation and native link. The source object is present
 in the main link inputs. The main DOL and all seventeen REL hashes pass, as do
 all 55 regression tests and both policy checks. PAL, Japan and PS2 are not
 configured build targets. No runtime or physical-hardware testing was performed.
+
+
+## ONEFILE whole-unit reconstruction (2026-10-06)
+
+Symbolic metadata explicitly identifies `one.cpp` as C++ and names its class,
+fields and methods. GameCube callers independently establish a 0x58-byte class,
+without the PS2-only stream member. The complete GameCube unit has 25 functions,
+including a memory-stream setter and an ARAM resource loader absent from the
+available PS2 method inventory. See `one-unit-evidence.md` for boundaries.
+
+Deferred inlining is required by the observed caller/callee relationships.
+With default automatic inlining, the whole native text is 9,116 bytes:
+`LoadOneFile` is 316 bytes, the constructor 100, destructor 88 and `SetOneFile`
+148. These leave nested ownership and loading operations as calls. Deferred
+emission produces all 25 retail function sizes and offsets, the exact 9,856-byte
+text extent, 192 exception-table bytes and 288 exception-index bytes. In
+particular those four functions become the observed 480, 500, 176 and 236 bytes.
+Definitions are reversed to reproduce the compiler's deferred emission order.
+
+All 25 bodies now match directly from C++. Reassociating the shared chunk
+address as `memBlock + position - 12` recovers the original load order and
+register allocation in all seventeen formerly differing bodies.
+The ARAM loader's register allocation matches after grouping the aligned size
+before the stream and allocated address locals. All 422
+normalized relocations agree, and 45 native data bytes agree with the retail
+48-byte extent including three trailing alignment bytes. No instruction patches,
+assembly implementations or synthetic padding are introduced.
+
+The native G9SE8P main DOL plus all seventeen RELs compile and all eighteen
+retail image hashes pass. All-source compilation, progress/report generation,
+55 tests, both policies and formatting pass. See `one-unit-evidence.md`; no
+runtime or physical-hardware validation was performed.

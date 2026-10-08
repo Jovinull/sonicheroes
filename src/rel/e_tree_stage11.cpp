@@ -55,10 +55,10 @@ s32 fn_8005B9F0(s32);                                               /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                                      /* extern */
 M2C_UNK fn_8005D5C8(s32, s32);                                      /* extern */
 M2C_UNK fn_800B4A38(u32, s32, f32*, M2C_UNK, M2C_UNK, s8, M2C_UNK); /* extern */
-u32 fn_800BB0D4(s32, s32, M2C_UNK*);                                /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                                /* extern */
-s32 fn_800BC6CC(s32, M2C_UNK*);                                     /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                                 /* extern */
+u32 LoadHAnimationEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);            /* extern */
+u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                 /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);                        /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);                    /* extern */
 f32 fn_800D7AE4(s32);                                               /* extern */
 f32 fn_800D7B00(s32);                                               /* extern */
 M2C_UNK fn_8013F3A4(void*);                                         /* extern */
@@ -572,12 +572,13 @@ void treeObjectLoad(void)
 		return;
 	}
 	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
-	M2C_FIELD(&lbl_8_data_18298, u32*, 0)
-	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (int*)lbl_8_data_18360), &lbl_802FF5A0);
-	M2C_FIELD(&lbl_8_data_18298, u32*, 4)
-	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18370), &lbl_802FF5A0);
-	lbl_8_bss_1C44 = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18384), &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(temp_r31, &lbl_802FF5A0);
+	M2C_FIELD(&lbl_8_data_18298, u32*, 0) = LoadClumpEx__7ONEFILEFUiPc(
+	    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, (int*)lbl_8_data_18360), &lbl_802FF5A0);
+	M2C_FIELD(&lbl_8_data_18298, u32*, 4) = LoadClumpEx__7ONEFILEFUiPc(
+	    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, &lbl_8_data_18370), &lbl_802FF5A0);
+	lbl_8_bss_1C44 = LoadHAnimationEx__7ONEFILEFUiPc(
+	    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, &lbl_8_data_18384), &lbl_802FF5A0);
 }
 
 void treeObjectCreate(void)

@@ -121,9 +121,9 @@ extern "C" s32 fn_8005B8D8(Motion*);
 extern "C" s32 fn_8005B9F0(Motion*);
 extern "C" void dtor_8005BD3C(Motion*, s32);
 extern "C" void fn_8005BE6C(Motion*);
-extern "C" void* fn_800BC6CC(void*, const char*);
-extern "C" RpClump* fn_800BB92C(void*, void*, void*);
-extern "C" void fn_800BC9F4(void*, void*);
+extern "C" void* CheckFileID__7ONEFILEFPc(void*, const char*);
+extern "C" RpClump* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
+extern "C" void LoadOneFile__7ONEFILEFPc(void*, void*);
 extern "C" void* fn_80150588(RpClump*);
 extern "C" void fn_80150958(void*);
 extern "C" void fn_8015BB08(void*, void*);
@@ -274,12 +274,12 @@ extern "C" void flowerInit()
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	s32 i = 0;
 	while (i < flowerTypeCount) {
 		sprintf(path, flowerFormat, stage, flowerAssetNames[i]);
-		flowerModels[i] = fn_800BB92C(*(void**)(lbl_8042C298 + 0xA50),
-		    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
+		flowerModels[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
 		++i;
 	}
 }

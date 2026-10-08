@@ -118,10 +118,10 @@ void* DetectSphereCollisionWithPolygons__6OCTREEFP5RwV3dfPFP8POLYDATA_i(void*, v
 void fn_8001F674(int, int, int, int);
 void __dt__19ColliPolyLinearListFv(void*, int);
 void fn_8003BC38(void*);
-void fn_800BC9F4(void*, void*);
-void* fn_800BC6CC(void*, char*);
-void* fn_800BB92C(void*, void*, void*);
-void* fn_800BB664(void*, void*, void*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
+void* CheckFileID__7ONEFILEFPc(void*, char*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
+void* LoadSplineEx__7ONEFILEFUiPc(void*, void*, void*);
 int fn_800D7A94(int, int, int);
 float fn_800D7328(float, float, float);
 void fn_800B4A38(void*, int, void*, void*, int, int, int);
@@ -550,27 +550,27 @@ extern "C" void fn_8_48FD8()
 	lbl_8_bss_AC8 = NULL;
 	fn_801A4C84(field<void*>(lbl_8042C1D0, 0x8C18));
 	void* manager = field<void*>(lbl_8042C298, 0xA50);
-	fn_800BC9F4(manager, lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(manager, lbl_802FF5A0);
 	char name[64];
 	int identifier = fn_800194A8(lbl_8029C310);
 	sprintf(name, lbl_8_data_4D3C, identifier);
-	void* nameId     = fn_800BC6CC(manager, name);
+	void* nameId     = CheckFileID__7ONEFILEFPc(manager, name);
 	void** resources = &lbl_8_bss_ACC;
-	resources[0]     = fn_800BB92C(manager, nameId, lbl_802FF5A0);
+	resources[0]     = LoadClumpEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 	if (resources[0] == NULL)
 		return;
 	identifier = fn_800194A8(lbl_8029C310);
 	sprintf(name, lbl_8_data_4D5C, identifier);
-	nameId       = fn_800BC6CC(manager, name);
-	resources[1] = fn_800BB92C(manager, nameId, lbl_802FF5A0);
+	nameId       = CheckFileID__7ONEFILEFPc(manager, name);
+	resources[1] = LoadClumpEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 	if (resources[1] == NULL) {
 		fn_80150958(resources[0]);
 		return;
 	}
 	identifier = fn_800194A8(lbl_8029C310);
 	sprintf(name, lbl_8_data_4D7C, identifier);
-	nameId       = fn_800BC6CC(manager, name);
-	resources[2] = fn_800BB92C(manager, nameId, lbl_802FF5A0);
+	nameId       = CheckFileID__7ONEFILEFPc(manager, name);
+	resources[2] = LoadClumpEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 	if (resources[2] == NULL) {
 		fn_80150958(resources[0]);
 		fn_80150958(resources[2]);
@@ -581,8 +581,8 @@ extern "C" void fn_8_48FD8()
 	for (; index < 10; index++, pathInfo++) {
 		identifier = fn_800194A8(lbl_8029C310);
 		sprintf(name, lbl_8_data_4D9C, identifier, index);
-		nameId         = fn_800BC6CC(manager, name);
-		pathInfo->path = (PropellerPath*)fn_800BB664(manager, nameId, lbl_802FF5A0);
+		nameId         = CheckFileID__7ONEFILEFPc(manager, name);
+		pathInfo->path = (PropellerPath*)LoadSplineEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 		if (pathInfo->path == NULL)
 			break;
 		pathInfo->speed       = lbl_8_rodata_C40 / (float)(pathInfo->path->count * 60);

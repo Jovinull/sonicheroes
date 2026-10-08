@@ -57,9 +57,9 @@ s32 fn_8005B9F0(void*);                                       /* extern */
 M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
 M2C_UNK fn_8005D5C8(u32, s32);                                /* extern */
 M2C_UNK fn_800B52E8(M2C_UNK, s8, M2C_UNK);                    /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                          /* extern */
-s32 fn_800BC6CC(s32, s32);                                    /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                           /* extern */
+u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);           /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, s32);                       /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);              /* extern */
 f32 fn_800D7AE4(s32);                                         /* extern */
 f32 fn_800D7B00(s32);                                         /* extern */
 s32 fn_80100C88(u8);                                          /* extern */
@@ -657,13 +657,14 @@ void s11doorObjectLoad(M2C_UNK arg_sp0)
 	} else {
 		return;
 	}
-	fn_800BC9F4(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
 	var_r27 = 0;
 	var_r29 = &lbl_8_data_15164;
 	var_r28 = lbl_8_data_15134;
 	do {
-		*var_r28 = fn_800BB92C(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
-		    fn_800BC6CC(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29), &lbl_802FF5A0);
+		*var_r28 = LoadClumpEx__7ONEFILEFUiPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
+		    CheckFileID__7ONEFILEFPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29),
+		    &lbl_802FF5A0);
 		var_r29 += 1;
 		var_r28 += 1;
 		var_r27 += 1;

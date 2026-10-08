@@ -64,9 +64,9 @@ f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 void* fn_80150588(void*);
 void fn_80150958(void*);
 void fn_8015BB08(void*, void*);
@@ -337,13 +337,13 @@ extern "C" void initObjS33Dice()
 
 	s32 i;
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
 	i = 0;
 	for (; i < 2; i++) {
-		s32 id             = fn_800BC6CC(archive, diceOnModelNames[i]);
-		diceOnResources[i] = fn_800BB92C(archive, id, &lbl_802FF5A0);
-		id                 = fn_800BC6CC(archive, dicePnModelNames[i]);
-		dicePnResources[i] = fn_800BB92C(archive, id, &lbl_802FF5A0);
+		s32 id             = CheckFileID__7ONEFILEFPc(archive, diceOnModelNames[i]);
+		diceOnResources[i] = LoadClumpEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
+		id                 = CheckFileID__7ONEFILEFPc(archive, dicePnModelNames[i]);
+		dicePnResources[i] = LoadClumpEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
 	}
 }
 

@@ -118,11 +118,11 @@ extern "C" void Error__7TObjectFPc(void);
 extern "C" void __ct__7TObjectFP7TObject(Emblem* emblem);
 extern "C" s32 fn_800A8BF8(void* settings);
 extern "C" void fn_800B52E8(void* handle, s32 id, s32 arg1, s32 arg2);
-extern "C" void* fn_800BBF20(void* archive, s32 index, void* heap);
-extern "C" void* fn_800BC46C(void* archive, s32 index, void* heap);
-extern "C" void* fn_800BC580(void* archive, s32 index, void* heap);
-extern "C" void fn_800BCBD4(void* archive, s32 flag);
-extern "C" void* fn_800BCC84(void* archive, const char* path, s32 flag);
+extern "C" void* OneFileLoadHAnimation__7ONEFILEFUiPv(void* archive, s32 index, void* heap);
+extern "C" void* OneFileLoadClump__7ONEFILEFUiPv(void* archive, s32 index, void* heap);
+extern "C" void* OneFileLoadTextureDictionay__7ONEFILEFUiPv(void* archive, s32 index, void* heap);
+extern "C" void __dt__7ONEFILEFv(void* archive, s32 flag);
+extern "C" void* __ct__7ONEFILEFPci(void* archive, const char* path, s32 flag);
 extern "C" void* fn_800FE464(Task* task);
 extern "C" void* __nw__FUl(s32 size);
 extern "C" SaveState* fn_80116D2C(void* state);
@@ -416,25 +416,25 @@ extern "C" void fn_2_1CE4(void)
 
 	archive = __nw__FUl(0x58);
 	if (archive != NULL) {
-		archive = fn_800BCC84(archive, lbl_2_data_288, 0);
+		archive = __ct__7ONEFILEFPci(archive, lbl_2_data_288, 0);
 	}
 	if (archive != NULL) {
 		void* heap = ((void* (*)(s32))lbl_8042C9A4[0x134 / 4])(0x7D000);
 
 		if (heap != NULL) {
-			lbl_2_bss_10 = fn_800BC580(archive, 4, heap);
+			lbl_2_bss_10 = OneFileLoadTextureDictionay__7ONEFILEFUiPv(archive, 4, heap);
 			if (lbl_2_bss_10 != NULL) {
 				fn_801A4C84(lbl_2_bss_10);
-				lbl_2_bss_14[0]       = fn_800BC46C(archive, 3, heap);
-				lbl_2_bss_1C[0]       = fn_800BBF20(archive, 2, heap);
-				lbl_2_bss_14[1]       = fn_800BC46C(archive, 6, heap);
-				lbl_2_bss_1C[1]       = fn_800BBF20(archive, 5, heap);
+				lbl_2_bss_14[0]       = OneFileLoadClump__7ONEFILEFUiPv(archive, 3, heap);
+				lbl_2_bss_1C[0]       = OneFileLoadHAnimation__7ONEFILEFUiPv(archive, 2, heap);
+				lbl_2_bss_14[1]       = OneFileLoadClump__7ONEFILEFUiPv(archive, 6, heap);
+				lbl_2_bss_1C[1]       = OneFileLoadHAnimation__7ONEFILEFUiPv(archive, 5, heap);
 				lbl_2_data_1B4.target = lbl_2_bss_1C[0];
 				lbl_2_data_1FC.target = lbl_2_bss_1C[1];
 			}
 			((void (*)(void*))lbl_8042C9A4[0x138 / 4])(heap);
 		}
-		fn_800BCBD4(archive, 1);
+		__dt__7ONEFILEFv(archive, 1);
 	}
 
 	lbl_2_bss_24 = (u8*)fn_80154414(2);
