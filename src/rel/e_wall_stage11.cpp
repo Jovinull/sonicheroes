@@ -364,7 +364,7 @@ M2C_UNK __dl__FPv(void* arg0);                                                  
 void* __dt__10HAnimClassFv(void*, s32);                                                 /* extern */
 void* __dt__7TObjectFv(void*, s32);                                                     /* extern */
 M2C_UNK __register_global_object(void*, void*, void*);                                  /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                                  /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                               /* extern */
 s32 fn_80017800(TObject*);                                                              /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                             /* extern */
 TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                           /* extern */
@@ -375,7 +375,7 @@ M2C_UNK fn_80021824(M2C_UNK*);                                                  
 M2C_UNK fn_8003BC38(M2C_UNK*);                                                          /* extern */
 M2C_UNK fn_8003BE78(void*);                                                             /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                              /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                                          /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                                     /* extern */
 M2C_UNK fn_8004D5F4(s32, f32, M2C_UNK);                                                 /* extern */
 void** __nw__FUl(M2C_UNK);                                                              /* extern */
 s32 OnEdit__10TObjSetObjFv(f32*);                                                       /* extern */
@@ -441,53 +441,53 @@ M2C_UNK SaveRenderState__7nRenderFv();                                          
 M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                               /* extern */
 M2C_UNK End__16TEnemyMatTextureFv(M2C_UNK*);                                        /* extern */
 M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
-    M2C_UNK*, s32, void*, M2C_UNK*, M2C_UNK);             /* extern */
-M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);             /* extern */
-M2C_UNK fn_8011B418(f32*);                                /* extern */
-M2C_UNK fn_8011B594(f32*);                                /* extern */
-M2C_UNK fn_8011B844(u32, f32*, f32);                      /* extern */
-M2C_UNK fn_8011C0E8(u32);                                 /* extern */
-M2C_UNK ParalyzeEnemy__14TEnemyScoreManFi(u32, s32);      /* extern */
-M2C_UNK DestroyEnemy__14TEnemyScoreManFi(u32, s32);       /* extern */
-M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK); /* extern */
-M2C_UNK CreateInstance__14TEnemyScoreManFv();             /* extern */
-M2C_UNK fn_8011C9A0(void*, s8);                           /* extern */
-M2C_UNK fn_8011CE44();                                    /* extern */
-M2C_UNK DecreaseTimer__7nSystemFRi(s32*);                 /* extern */
-M2C_UNK IncreaseTimer__7nSystemFRi(s32*);                 /* extern */
-M2C_UNK fn_8014FF2C(s32*);                                /* extern */
-M2C_UNK fn_8014FFBC(void*, M2C_UNK*, u32*);               /* extern */
-void* fn_80150588(void*);                                 /* extern */
-M2C_UNK fn_80150958(void*);                               /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);            /* extern */
-M2C_UNK fn_801990E0(f32*, f32*, f32);                     /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);       /* extern */
-s32 fn_8019CE34(s32, f32*);                               /* extern */
-M2C_UNK* fn_8019E8EC(u32);                                /* extern */
-M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);            /* extern */
-M2C_UNK fn_8019ECCC(s32, M2C_UNK*, M2C_UNK);              /* extern */
-M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);        /* extern */
-M2C_UNK fn_8_90B10(s32);                                  /* extern */
-M2C_UNK fn_8_B6F14(s32);                                  /* extern */
-void fn_8_B7C50(TObject* arg0, void* arg1);               /* static */
-void* fn_8_B81B0(void* arg0);                             /* static */
-void fn_8_B9904(TObject* arg0, s32 arg1);                 /* static */
-s32 fn_8_B9BA0(void* arg0);                               /* static */
-s32 fn_8_B9BBC(void* arg0);                               /* static */
-s32 fn_8_B9CD4(void* arg0);                               /* static */
-s32 fn_8_B9E40(void* arg0);                               /* static */
-void fn_8_BA8E0(TObject* arg0, s32 arg1);                 /* static */
-void fn_8_BAF00(TObject* arg0, s32 arg1);                 /* static */
-void fn_8_BB294(TObject* arg0, s32 arg1);                 /* static */
-void fn_8_BB5E4(TObject* arg0, s32 arg1);                 /* static */
-void fn_8_BBF90(TObject* arg0);                           /* static */
-void fn_8_BC2CC(TObject* arg0);                           /* static */
-void fn_8_BCB60(TObject* arg0);                           /* static */
-void fn_8_BCD58(TObject* arg0);                           /* static */
-TObject* fn_8_BCF88(TObject* arg0, TObject* arg1);        /* static */
-void wallObjectCreate();                                  /* static */
-void wallObjectLoad();                                    /* static */
-void wallObjectUnload();                                  /* static */
+    M2C_UNK*, s32, void*, M2C_UNK*, M2C_UNK);               /* extern */
+M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);               /* extern */
+M2C_UNK fn_8011B418(f32*);                                  /* extern */
+M2C_UNK fn_8011B594(f32*);                                  /* extern */
+M2C_UNK fn_8011B844(u32, f32*, f32);                        /* extern */
+M2C_UNK fn_8011C0E8(u32);                                   /* extern */
+M2C_UNK ParalyzeEnemy__14TEnemyScoreManFi(u32, s32);        /* extern */
+M2C_UNK DestroyEnemy__14TEnemyScoreManFi(u32, s32);         /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);   /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();               /* extern */
+M2C_UNK EntryEx__18TEnemyPowerCoreManFPC5RwV3di(void*, s8); /* extern */
+M2C_UNK GetInstance__18TEnemyPowerCoreManFv();              /* extern */
+M2C_UNK DecreaseTimer__7nSystemFRi(s32*);                   /* extern */
+M2C_UNK IncreaseTimer__7nSystemFRi(s32*);                   /* extern */
+M2C_UNK fn_8014FF2C(s32*);                                  /* extern */
+M2C_UNK fn_8014FFBC(void*, M2C_UNK*, u32*);                 /* extern */
+void* fn_80150588(void*);                                   /* extern */
+M2C_UNK fn_80150958(void*);                                 /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);              /* extern */
+M2C_UNK fn_801990E0(f32*, f32*, f32);                       /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);         /* extern */
+s32 fn_8019CE34(s32, f32*);                                 /* extern */
+M2C_UNK* fn_8019E8EC(u32);                                  /* extern */
+M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);              /* extern */
+M2C_UNK fn_8019ECCC(s32, M2C_UNK*, M2C_UNK);                /* extern */
+M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);          /* extern */
+M2C_UNK fn_8_90B10(s32);                                    /* extern */
+M2C_UNK fn_8_B6F14(s32);                                    /* extern */
+void fn_8_B7C50(TObject* arg0, void* arg1);                 /* static */
+void* fn_8_B81B0(void* arg0);                               /* static */
+void fn_8_B9904(TObject* arg0, s32 arg1);                   /* static */
+s32 fn_8_B9BA0(void* arg0);                                 /* static */
+s32 fn_8_B9BBC(void* arg0);                                 /* static */
+s32 fn_8_B9CD4(void* arg0);                                 /* static */
+s32 fn_8_B9E40(void* arg0);                                 /* static */
+void fn_8_BA8E0(TObject* arg0, s32 arg1);                   /* static */
+void fn_8_BAF00(TObject* arg0, s32 arg1);                   /* static */
+void fn_8_BB294(TObject* arg0, s32 arg1);                   /* static */
+void fn_8_BB5E4(TObject* arg0, s32 arg1);                   /* static */
+void fn_8_BBF90(TObject* arg0);                             /* static */
+void fn_8_BC2CC(TObject* arg0);                             /* static */
+void fn_8_BCB60(TObject* arg0);                             /* static */
+void fn_8_BCD58(TObject* arg0);                             /* static */
+TObject* fn_8_BCF88(TObject* arg0, TObject* arg1);          /* static */
+void wallObjectCreate();                                    /* static */
+void wallObjectLoad();                                      /* static */
+void wallObjectUnload();                                    /* static */
 extern M2C_UNK SetAtomicCustomFXData__FP8RpAtomicPv;
 extern M2C_UNK __dt__16TEnemyMatTextureFv;
 extern M2C_UNK AxisX;
@@ -1862,7 +1862,7 @@ TObject* fn_8_B8F34(TObject* arg0, s16 arg1)
 			fn_80150958((void*)arg0->unkE0);
 			arg0->unkE0 = NULL;
 		}
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -1877,7 +1877,7 @@ TObject* fn_8_B8FD0(TObject* arg0, TObject* arg1, void* arg2)
 	f32 temp_f0;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8003C618(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk28);
 	temp_f0                             = lbl_8_rodata_1D80;
 	arg0->unk18                         = (M2C_UNK*)lbl_8_data_179DC;
 	temp_f0                             = lbl_8_rodata_1D80;
@@ -1926,7 +1926,7 @@ static inline TObject* wallCreateObject(void* arg0)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF8);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		temp_f1                        = lbl_8_rodata_1D80;
 		temp_r3->unk18                 = (M2C_UNK*)lbl_8_data_179DC;
 		temp_r3->unkB8                 = temp_f1;
@@ -2066,8 +2066,8 @@ void fn_8_B956C(void* arg0)
 		if (temp_r3_4 != NULL) {
 			temp_r30 = (void*)(u32) * (&lbl_80303DC8 + ((s8)M2C_FIELD(temp_r3_4, u8*, 0x9BC) * 4));
 			if (temp_r30 != NULL) {
-				fn_8011CE44();
-				fn_8011C9A0((u8*)arg0 + 0x140,
+				GetInstance__18TEnemyPowerCoreManFv();
+				EntryEx__18TEnemyPowerCoreManFPC5RwV3di((u8*)arg0 + 0x140,
 				    (s8)M2C_FIELD(
 				        ((u8*)temp_r30 + (s8)M2C_FIELD(temp_r30, u8*, 0x3A)), u8*, 0x110));
 				((TRenderer*)arg0)->Slot88((u8*)arg0 + 0x140);

@@ -20,8 +20,8 @@ void* __nw__10TObjSampleFUl(u32);
 void __dl__10TObjSampleFPv(void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8003C52C(void*, s16);
-void fn_8003C618(void*);
+void __dt__7C_COLLIFv(void*, s16);
+void __ct__7C_COLLIFv(void*);
 void addSomeonesScore__11PARAM_SCOREFii(void*, s32, s32);
 void fn_16_52528(s32, s32, s32, void*, s32, s32, u32, u8);
 void fn_16_5B4AC(s32, s32);
@@ -101,7 +101,7 @@ extern "C" ThrowObject* fn_16_82B48(ThrowObject* o, s16 flags)
 	if (o) {
 		fn_16_883B4((u8*)o + 0xb0);
 		fn_16_88C1C((u8*)o + 0xb0, -1);
-		dtor_8003C52C((u8*)o + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)o + 0x28, 0);
 		__dt__7TObjectFv(o, 0);
 		if (flags > 0)
 			__dl__10TObjSampleFPv(o);
@@ -111,7 +111,7 @@ extern "C" ThrowObject* fn_16_82B48(ThrowObject* o, s16 flags)
 extern "C" ThrowObject* fn_16_82BCC(ThrowObject* o, void* owner, s32 kind)
 {
 	__ct__7TObjectFP7TObject(o, owner);
-	fn_8003C618((u8*)o + 0x28);
+	__ct__7C_COLLIFv((u8*)o + 0x28);
 	fn_16_88C68((u8*)o + 0xb0);
 	fn_16_82AAC(o);
 	o->kind = kind;

@@ -53,7 +53,7 @@ extern "C" {
 
 void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                        /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                     /* extern */
 M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                 /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                   /* extern */
 TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                 /* extern */
@@ -62,7 +62,7 @@ M2C_UNK fn_80021384(void*);                                   /* extern */
 M2C_UNK fn_80021824(M2C_UNK*);                                /* extern */
 M2C_UNK fn_8003BC38(void*);                                   /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                           /* extern */
 s32 CheckMustKill__10TObjSetObjFv(void*);                     /* extern */
 M2C_UNK SetEnd__10TObjSetObjFv(void*);                        /* extern */
 M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                       /* extern */
@@ -1005,7 +1005,7 @@ TObject* fn_8_A7C3C(TObject* arg0, s16 arg1)
 		arg0->unk18 = &lbl_8_data_163D0;
 		arg0->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 		__dt__10TObjSetObjFv((u8*)arg0 + 0xB0, 0);
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -1022,7 +1022,7 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	void* temp_r3_3;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8003C618(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk28);
 	__ct__10TObjSetObjFv(&arg0->unkB0);
 	arg0->unk18 = &lbl_8_data_163D0;
 	arg0->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
@@ -1069,7 +1069,7 @@ TObject* fn_8_A7E24(void)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		__ct__10TObjSetObjFv(&temp_r3->unkB0);
 		temp_r3->unk18 = &lbl_8_data_163D0;
 		temp_r3->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
@@ -1162,7 +1162,7 @@ void flyerColObjectCreate(void)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		__ct__10TObjSetObjFv(&temp_r3->unkB0);
 		temp_r3->unk18 = &lbl_8_data_163D0;
 		temp_r3->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;

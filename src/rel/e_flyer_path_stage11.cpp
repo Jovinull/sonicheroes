@@ -76,7 +76,7 @@ M2C_UNK __dl__FPv(void*);                                                       
 void* __dt__7TObjectFv(void*, s32);                                                /* extern */
 f64 asin(f32);                                                                     /* extern */
 double atan2(double, double);                                                      /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                             /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                          /* extern */
 s32 fn_80017800(void*);                                                            /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                        /* extern */
 TObject* Malloc__9THeapCtrlFUi(...);                                               /* extern */
@@ -85,7 +85,7 @@ void fn_80021824(void*);                                                        
 M2C_UNK fn_8003BC38(void*);                                                        /* extern */
 M2C_UNK fn_8003BE78(void*);                                                        /* extern */
 M2C_UNK fn_8003C200(...);                                                          /* extern */
-M2C_UNK fn_8003C618(...);                                                          /* extern */
+M2C_UNK __ct__7C_COLLIFv(...);                                                     /* extern */
 void* __nw__FUl(u32);                                                              /* extern */
 u32 objPointerReadFromClumpAnim__FPc(s32*);                                        /* extern */
 M2C_UNK fn_8005FC74(s32*, s32*);                                                   /* extern */
@@ -485,7 +485,7 @@ TObject* fn_8_A8938(TObject* arg0, s16 arg1)
 			fn_80150958((void*)arg0->unkE0);
 			arg0->unkE0 = NULL;
 		}
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -499,7 +499,7 @@ TObject* fn_8_A89D4(TObject* arg0, void* arg1, TObject* arg2)
 	M2C_UNK sp8;
 
 	__ct__7TObjectFP7TObject(arg0, arg2);
-	fn_8003C618(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk28);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_1647C;
 	arg0->unkB8 = 0.0f;
 	arg0->unkB4 = 0.0f;
@@ -545,7 +545,7 @@ TObject* fn_8_A8B60(void* arg0)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_1647C;
 		temp_r3->unkB8 = 0.0f;
 		temp_r3->unkB4 = 0.0f;
@@ -997,7 +997,7 @@ TObject* fn_8_A9A6C(TObject* arg0, s16 arg1)
 {
 	if (arg0 != NULL) {
 		arg0->unk18 = (M2C_UNK*)lbl_8_data_164F4;
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
@@ -1009,7 +1009,7 @@ TObject* fn_8_A9A6C(TObject* arg0, s16 arg1)
 TObject* fn_8_A9AF0(TObject* arg0, void* arg1, TObject* arg2)
 {
 	__ct__7TObjectFP7TObject(arg0, arg2);
-	fn_8003C618(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk28);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_164F4;
 	arg0->unkB8 = 0.0f;
 	arg0->unkB4 = 0.0f;
@@ -1058,7 +1058,7 @@ TObject* fn_8_A9C6C(void* arg0)
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x104);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_164F4;
 		temp_r3->unkB8 = 0.0f;
 		temp_r3->unkB4 = 0.0f;

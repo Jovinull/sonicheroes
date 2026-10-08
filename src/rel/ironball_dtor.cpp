@@ -71,7 +71,7 @@ extern "C" World* lbl_8042C1D0;
 extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
-extern "C" void dtor_8003C52C(Volume* volume, s32 flags);
+extern "C" void __dt__7C_COLLIFv(Volume* volume, s32 flags);
 extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void fn_80150958(void* model);
@@ -101,7 +101,7 @@ extern "C" Ironball* ironballDtor(Ironball* object, s16 flags)
 
 		objReleaseModels((Object*)object);
 
-		dtor_8003C52C(&object->volume, 0);
+		__dt__7C_COLLIFv(&object->volume, 0);
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 

@@ -2513,3 +2513,16 @@ original source syntax. No deferred mode or normalizer is introduced. See
 `e-scoreman-unit-evidence.md` for complete ownership and verification scope.
 Final linked cleanup and normal weak-duplicate discard are verified; the full
 supported release matrix, eighteen hashes, 62 tests and both policies pass.
+
+## Enemy power-core complete C++ unit (2026-10-07)
+
+Positive e_powercore.cpp metadata establishes both classes, twenty-one methods
+and all owned storage. Fourteen bodies survive, with seven inlined constructors
+and helpers. Real inheritance, collision/clump lifetime and new-expression
+cleanup reproduce the unit. GetInstance requires forward automatic inlining
+of the separately exported CreateInstance body; whole-TU auto,deferred and
+reversed ordinary definitions reproduce every body and the native layout.
+Original source order and historical flags are not claimed. There is no object
+normalizer or instruction adjustment. Component sphere initialization and a
+reference to the timer entry preserve observed render behavior. See
+`e-powercore-unit-evidence.md` for complete ownership and compiler-trial evidence.

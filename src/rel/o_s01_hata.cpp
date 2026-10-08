@@ -147,7 +147,7 @@ extern "C" void fn_8015BBF8(void*, void*);
 extern "C" void fn_8013BD74(void*);
 extern "C" void flagInit();
 extern "C" void __dl__FPv(void*);
-extern "C" void dtor_8003C52C(void*, s32);
+extern "C" void __dt__7C_COLLIFv(void*, s32);
 extern "C" void __dt__10TObjSetObjFv(void*, s32);
 extern "C" void __dt__7TObjectFv(void*, s32);
 extern "C" void Free__9THeapCtrlFPv(void*, void*);
@@ -171,7 +171,7 @@ extern "C" void fn_8013D344(void*, void*);
 extern "C" void fn_8013D5C8(void*, f32);
 extern "C" void __ct__7TObjectFP7TObject(void*, TObject*);
 extern "C" void __ct__10TObjSetObjFv(void*);
-extern "C" void fn_8003C618(void*);
+extern "C" void __ct__7C_COLLIFv(void*);
 extern "C" void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, s32);
 extern "C" void fn_8014F854(void*);
 extern "C" void* __nw__FUl(u32);
@@ -420,7 +420,7 @@ extern "C" FlagObject* flagDtor(FlagObject* object, s16 flags)
 			fn_80150958(object->modelBC);
 			object->modelBC = NULL;
 		}
-		dtor_8003C52C((u8*)object + 0x30, 0);
+		__dt__7C_COLLIFv((u8*)object + 0x30, 0);
 		__dt__10TObjSetObjFv(&object->frame, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
@@ -434,7 +434,7 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 	void* collision;
 	__ct__7TObjectFP7TObject(object, parent);
 	__ct__10TObjSetObjFv(&object->frame);
-	fn_8003C618(object->pad30);
+	__ct__7C_COLLIFv(object->pad30);
 	object->vtable              = flagVtable;
 	object->motionVtable        = flagVtable + 11;
 	FlagParams* params          = (FlagParams*)object->frame->params;

@@ -133,8 +133,8 @@ extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void fn_8003BC38(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
-extern "C" void fn_8003C618(void*);
-extern "C" void dtor_8003C52C(void*, s32);
+extern "C" void __ct__7C_COLLIFv(void*);
+extern "C" void __dt__7C_COLLIFv(void*, s32);
 extern "C" void* fn_800628D0(s32, const Vec3*, const void*);
 extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
 extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
@@ -278,7 +278,7 @@ extern "C" BlinkLight* blinkLightDtor(BlinkLight* object, s16 flags)
 		object->base.vtable   = blinkLightVtable;
 		object->motion.vtable = blinkLightVtable + 11;
 		fn_9_75888(&object->model);
-		dtor_8003C52C(&object->transform, 0);
+		__dt__7C_COLLIFv(&object->transform, 0);
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -292,7 +292,7 @@ extern "C" BlinkLight* blinkLightCtor(BlinkLight* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
-	fn_8003C618(&object->transform);
+	__ct__7C_COLLIFv(&object->transform);
 
 	object->base.vtable     = blinkLightVtable;
 	object->motion.vtable   = blinkLightVtable + 11;

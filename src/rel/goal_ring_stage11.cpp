@@ -52,9 +52,9 @@ void __dt__7TObjectFv(void*, s32);
 void __dl__FPv(void*);
 void Free__9THeapCtrlFPv(void*, void*);
 void __ct__10TObjSetObjFv(...);
-void fn_8003C618(...);
+void __ct__7C_COLLIFv(...);
 void fn_8003BF04(...);
-void dtor_8003C52C(...);
+void __dt__7C_COLLIFv(...);
 void __dt__10TObjSetObjFv(...);
 void* fn_80150588(...);
 void fn_8015BB08(...);
@@ -441,7 +441,7 @@ extern "C" void* fn_8_4CFB4(void* self, s16 flags)
 		}
 		fn_80150958(field<void*>(self, 0xFC));
 		field<void*>(self, 0xFC) = NULL;
-		dtor_8003C52C((u8*)self + 0x30, 0);
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
 		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
@@ -454,7 +454,7 @@ extern "C" void* fn_8_4D0CC(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv((u8*)self + 0x28);
-	fn_8003C618((u8*)self + 0x30);
+	__ct__7C_COLLIFv((u8*)self + 0x30);
 	field<void*>(self, 0x18) = lbl_8_data_5024;
 	field<void*>(self, 0)    = lbl_8_data_5014;
 	field<u16>(self, 0x1E)   = 0x100;

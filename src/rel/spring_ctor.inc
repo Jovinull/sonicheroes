@@ -108,7 +108,7 @@ extern "C" World* lbl_8042C1D0;
 
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
 extern "C" void fn_8003BF04(void* part, const void* params, s32 a, s32 b);
-extern "C" void fn_8003C618(void* part);
+extern "C" void __ct__7C_COLLIFv(void* part);
 extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
 extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 extern "C" void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
@@ -134,7 +134,7 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
-	fn_8003C618(&object->list);
+	__ct__7C_COLLIFv(&object->list);
 
 	object->base.vtable   = springVtable;
 	object->motion.vtable = springVtable + 0xB;

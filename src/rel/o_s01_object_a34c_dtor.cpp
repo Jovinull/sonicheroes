@@ -12,7 +12,7 @@
 //
 // This is a different class from the one rel/o_s01_base.cpp reconstructs: that
 // one installs the vtable at data 0xA1C8, this one the vtable at 0xA34C, and
-// this one carries no volume: there is no dtor_8003C52C call and the fields at
+// this one carries no volume: there is no __dt__7C_COLLIFv call and the fields at
 // +0x34 and +0x38 sit where the other class has its volume. The two classes
 // share the translation unit; 0xA34C is also reached by fn_3_7D1A4, which is
 // this class's other method and is still assembly.

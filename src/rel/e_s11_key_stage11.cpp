@@ -113,7 +113,7 @@ struct Motion;
 
 extern "C" {
 void __ct__10TObjSetObjFv(void*);
-void fn_8003C618(void*);
+void __ct__7C_COLLIFv(void*);
 s32 CheckMustKill__10TObjSetObjFv(Motion*);
 s32 OnEdit__10TObjSetObjFv(Motion*);
 s32 CheckRangeOut__10TObjSetObjFv(Motion*);
@@ -137,7 +137,7 @@ struct KeyCollision {
 	u8 pad78[4];
 	Vec3 previous;
 
-	KeyCollision() { fn_8003C618(this); }
+	KeyCollision() { __ct__7C_COLLIFv(this); }
 };
 
 extern "C" {
@@ -153,7 +153,7 @@ extern u8 lbl_802FF5A0;
 extern PlayerInfo* lbl_802AD0D0[];
 extern TeamInfo* lbl_80303DC8[];
 
-void dtor_8003C52C(void*, s16);
+void __dt__7C_COLLIFv(void*, s16);
 void __dt__10TObjSetObjFv(void*, s16);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
@@ -408,7 +408,7 @@ TObjS11Key::~TObjS11Key()
 	if (frame->flags & 0x10000) {
 		SetEnd__10TObjSetObjFv((Motion*)((u8*)this + 0x28));
 	}
-	dtor_8003C52C(&collision, 0);
+	__dt__7C_COLLIFv(&collision, 0);
 	__dt__10TObjSetObjFv((u8*)this + 0x28, 0);
 }
 

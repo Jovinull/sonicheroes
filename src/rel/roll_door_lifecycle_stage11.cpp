@@ -26,7 +26,7 @@ void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
     void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
 void __ct__10TObjSetObjFv(void* placement);
-void fn_8003C618(void* controller);
+void __ct__7C_COLLIFv(void* controller);
 void* fn_80150588(void* resource);
 void fn_8015BB08(void* manager, void* resource);
 f32 fn_800D7B00(s32 angle);
@@ -75,7 +75,7 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	u8* object = (u8*)self;
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv(object + 0x28);
-	fn_8003C618(object + 0x30);
+	__ct__7C_COLLIFv(object + 0x30);
 	*(void**)(object + 0x18) = rollDoorVtable;
 	*(void**)(object + 0x2C) = (u8*)rollDoorVtable + 0x2C;
 	*(u32*)(object + 0x00)   = lbl_8_data_46D4;

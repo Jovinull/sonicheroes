@@ -50,12 +50,12 @@ extern "C" {
 
 void* __ct__7TObjectFP7TObject(void*, void*);                                           /* extern */
 void* __dt__7TObjectFv(void*, s32);                                                     /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                                  /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                               /* extern */
 M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                                           /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                             /* extern */
 u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                                /* extern */
 M2C_UNK fn_8003BF04(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                              /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                                          /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                                     /* extern */
 s32 CheckMustKill__10TObjSetObjFv(s32);                                                 /* extern */
 s32 OnEdit__10TObjSetObjFv(void*);                                                      /* extern */
 s32 CheckRangeOut__10TObjSetObjFv(s32);                                                 /* extern */
@@ -499,7 +499,7 @@ TObject* fn_8_C569C(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 			var_r28 = (u8*)var_r28 + 4;
 			var_r29 += 1;
 		} while (var_r29 < 4);
-		dtor_8003C52C((void*)((u8*)arg0 + 0x30), 0);
+		__dt__7C_COLLIFv((void*)((u8*)arg0 + 0x30), 0);
 		__dt__10TObjSetObjFv((void*)((u8*)arg0 + 0x28), 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
@@ -535,7 +535,7 @@ TObject* fn_8_C577C(TObject* arg0, TObject* arg1)
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	__ct__10TObjSetObjFv(&arg0->unk28);
-	fn_8003C618(&arg0->unk30);
+	__ct__7C_COLLIFv(&arg0->unk30);
 	arg0->unk18 = &lbl_8_data_18660;
 	arg0->unk2C = (u8*)&lbl_8_data_18660 + 0x2C;
 	arg0->unk0  = lbl_8_data_1865C;

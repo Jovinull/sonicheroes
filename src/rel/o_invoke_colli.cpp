@@ -57,12 +57,12 @@ int CheckRangeOut__10TObjSetObjFv(void*);
 int CheckMustKill__10TObjSetObjFv(void*);
 int OnEdit__10TObjSetObjFv(void*);
 void fn_8003BC38(void*);
-void dtor_8003C52C(void*, int);
+void __dt__7C_COLLIFv(void*, int);
 void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __ct__10TObjSetObjFv(void*);
-void fn_8003C618(void*);
+void __ct__7C_COLLIFv(void*);
 void fn_8003C200(void*, void*, int, int);
 void fn_80021384(void*);
 void* Malloc__9THeapCtrlFUi(void*, u32);
@@ -281,7 +281,7 @@ extern "C" void* __dt__18TObjSetInvokeColliFv(void* self, s16 flags)
 		}
 		if (OnEdit__10TObjSetObjFv((u8*)self + 0x28))
 			((InvokeDispatch*)self)->SetCommunication(BYTE(PTR(self, 0x28), 0x2A), 0);
-		dtor_8003C52C((u8*)self + 0x30, 0);
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
 		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
@@ -295,7 +295,7 @@ extern "C" void* __dt__18TObjSetInvokeColliFv(void* self, s16 flags)
 static inline void InitializeInvoke(void* self, void* parent)
 {
 	__ct__10TObjSetObjFv((u8*)self + 0x28);
-	fn_8003C618((u8*)self + 0x30);
+	__ct__7C_COLLIFv((u8*)self + 0x30);
 	WORD(self, 0x18) = (u32)InvokeVtable;
 	WORD(self, 0x2C) = (u32)InvokeVtable + 0x2C;
 	void* frame      = PTR(self, 0x28);

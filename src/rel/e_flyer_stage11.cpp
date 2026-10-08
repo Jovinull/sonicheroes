@@ -153,8 +153,8 @@ M2C_UNK fn_8011C0E8(u32);                                                       
 M2C_UNK DestroyEnemy__14TEnemyScoreManFi(u32, s32);                                 /* extern */
 M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);                           /* extern */
 M2C_UNK CreateInstance__14TEnemyScoreManFv();                                       /* extern */
-M2C_UNK fn_8011CB64(void*, s8);                                                     /* extern */
-M2C_UNK fn_8011CE44();                                                              /* extern */
+M2C_UNK Entry__18TEnemyPowerCoreManFPC5RwV3di(void*, s8);                           /* extern */
+M2C_UNK GetInstance__18TEnemyPowerCoreManFv();                                      /* extern */
 u32 GetMtnPathMatrix__13TEnemyMtnPathFv(void*);                                     /* extern */
 M2C_UNK SetPath__13TEnemyMtnPathFi(s8);                                             /* extern */
 M2C_UNK ChangePath__13TEnemyMtnPathFi(M2C_UNK*, s8);                                /* extern */
@@ -804,8 +804,8 @@ void fn_8_A325C(void* arg0)
 		if (temp_r3_4 != NULL) {
 			temp_r30 = lbl_80303DC8[(s8)M2C_FIELD(temp_r3_4, u8*, 0x9BC)];
 			if (temp_r30 != NULL) {
-				fn_8011CE44();
-				fn_8011CB64((u8*)arg0 + 0x140,
+				GetInstance__18TEnemyPowerCoreManFv();
+				Entry__18TEnemyPowerCoreManFPC5RwV3di((u8*)arg0 + 0x140,
 				    (s8)M2C_FIELD(
 				        ((u8*)temp_r30 + (s8)M2C_FIELD(temp_r30, u8*, 0x3A)), u8*, 0x110));
 				((TRenderer*)arg0)->Slot88((u8*)arg0 + 0x140);

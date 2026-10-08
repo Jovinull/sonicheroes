@@ -38,7 +38,7 @@ void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
     void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
 void __ct__10TObjSetObjFv(void* controller);
-void fn_8003C618(void* object);
+void __ct__7C_COLLIFv(void* object);
 s32 objGroupAllActive(s32 index);
 s32 IsAnnihilated__19nEnemyCommunicationFUc(s32 index);
 void fn_8015BBF8(void* manager, void* resource);
@@ -99,7 +99,7 @@ extern "C" CaseObject* caseObjCtor(CaseObject* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv(&self->placement);
-	fn_8003C618(self->controller);
+	__ct__7C_COLLIFv(self->controller);
 	*(void**)((u8*)self + 0x18) = caseObjVtable;
 	*(void**)((u8*)self + 0x2C) = (u8*)caseObjVtable + 0x2C;
 	*(u32*)((u8*)self + 0x00)   = lbl_8_data_4590[0];
