@@ -437,6 +437,9 @@ rel/obj_set_particle_register.cpp:
 	.text       start:0x0005CADC end:0x0005CB78
 	.ctors      start:0x000000B8 end:0x000000BC
 
+rel/bob_jump_collision_create.cpp:
+	.text       start:0x0005D6AC end:0x0005D8E8
+
 rel/bob_jump_collision_register.cpp:
 	.text       start:0x0005D8E8 end:0x0005D990
 	.ctors      start:0x000000BC end:0x000000C0

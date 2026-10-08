@@ -602,6 +602,9 @@ rel/s02_pole_register.cpp:
 	.text       start:0x000B05CC end:0x000B0678
 	.ctors      start:0x0000012C end:0x00000130
 
+rel/bob_jump_collision_create.cpp:
+	.text       start:0x000B1DA4 end:0x000B1FE0
+
 rel/bob_jump_collision_register.cpp:
 	.text       start:0x000B1FE0 end:0x000B2088
 	.ctors      start:0x00000130 end:0x00000134
