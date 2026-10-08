@@ -175,10 +175,10 @@ void LoadOneFile__7ONEFILEFPc(void*, void*);
 f32 Distance2P2P__FPC5RwV3dPC5RwV3d(SETDATA_PARAM*, SetObjNode*);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void fn_80119618(void*);
-void fn_8011967C(void*, f32*);
-void fn_801197F4(void*, s32);
-void* fn_80119A18(void*, void*);
+void DefaultColor__12DealMaterialFv(void*);
+void MulColor__12DealMaterialFPf(void*, f32*);
+void __dt__12DealMaterialFv(void*, s32);
+void* __ct__12DealMaterialFP7RpClump(void*, void*);
 void fn_801379A0(s32, s32);
 void fn_8014FF2C(void*);
 void* fn_80150588(void*);
@@ -365,7 +365,7 @@ static inline void constructKey(TObjS11Key* object)
 		fn_8005D5C8(object->model, ((object->frame->flags & 0x1C0000) >> 18) + 4);
 		void* anim = __nw__FUl(0x14);
 		if (anim != NULL) {
-			anim = fn_80119A18(anim, object->model);
+			anim = __ct__12DealMaterialFP7RpClump(anim, object->model);
 		}
 		object->uvAnim = anim;
 	}
@@ -398,7 +398,7 @@ TObjS11Key::~TObjS11Key()
 	Motion::vtable  = s11keyVtable + 11;
 	if (model != NULL) {
 		if (uvAnim != NULL) {
-			fn_801197F4(uvAnim, 1);
+			__dt__12DealMaterialFv(uvAnim, 1);
 			uvAnim = NULL;
 		}
 		fn_80150958(model);
@@ -534,9 +534,9 @@ void TObjS11Key::TDisp()
 		fn_80194294(11, &dstBlend);
 		fn_80194234(10, 5);
 		fn_80194234(11, 2);
-		fn_8011967C(uvAnim, color);
+		MulColor__12DealMaterialFPf(uvAnim, color);
 		fn_8014FF2C(model);
-		fn_80119618(uvAnim);
+		DefaultColor__12DealMaterialFv(uvAnim);
 		fn_80194234(10, srcBlend);
 		fn_80194234(11, dstBlend);
 	}

@@ -54,10 +54,10 @@ s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);           /* extern */
 M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);       /* extern */
 f32 fn_800D7AE4(s32);                                  /* extern */
 f32 fn_800D7B00(s32);                                  /* extern */
-M2C_UNK fn_80119618(u32);                              /* extern */
-M2C_UNK fn_8011967C(f32*);                             /* extern */
-M2C_UNK fn_801197F4(void*, M2C_UNK);                   /* extern */
-u32 fn_80119A18(u32);                                  /* extern */
+M2C_UNK DefaultColor__12DealMaterialFv(u32);           /* extern */
+M2C_UNK MulColor__12DealMaterialFPf(f32*);             /* extern */
+M2C_UNK __dt__12DealMaterialFv(void*, M2C_UNK);        /* extern */
+u32 __ct__12DealMaterialFP7RpClump(u32);               /* extern */
 M2C_UNK fn_8014FF2C(u32);                              /* extern */
 u32 fn_80150588(u32);                                  /* extern */
 M2C_UNK fn_80150958(void*);                            /* extern */
@@ -211,7 +211,7 @@ void fn_8_C2A30(void* arg0)
 
 	var_r30 = arg0;
 	if ((u32)M2C_FIELD(var_r30, u32*, 0xE4) != 0U) {
-		fn_801197F4((void*)M2C_FIELD(var_r30, u32*, 0xE4), 1);
+		__dt__12DealMaterialFv((void*)M2C_FIELD(var_r30, u32*, 0xE4), 1);
 		M2C_FIELD(var_r30, u32*, 0xE4) = 0U;
 	}
 	if ((u32)M2C_FIELD(var_r30, u32*, 0xE0) != 0U) {
@@ -221,7 +221,7 @@ void fn_8_C2A30(void* arg0)
 	var_r29 = 0;
 	do {
 		if ((u32)M2C_FIELD(var_r30, u32*, 0xF8) != 0U) {
-			fn_801197F4((void*)M2C_FIELD(var_r30, u32*, 0xF8), 1);
+			__dt__12DealMaterialFv((void*)M2C_FIELD(var_r30, u32*, 0xF8), 1);
 			M2C_FIELD(var_r30, u32*, 0xF8) = 0U;
 		}
 		if ((u32)M2C_FIELD(var_r30, u32*, 0xE8) != 0U) {
@@ -248,7 +248,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 				fn_8005D5C8(0x10);
 				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
-					var_r0 = fn_80119A18(M2C_FIELD(var_r31, u32*, 0xE0));
+					var_r0 = __ct__12DealMaterialFP7RpClump(M2C_FIELD(var_r31, u32*, 0xE0));
 				}
 				M2C_FIELD(var_r31, u32*, 0xE4) = var_r0;
 			}
@@ -261,7 +261,7 @@ void fn_8_C2AE0(void* arg0, u32 arg1)
 					fn_8005D5C8(0x10);
 					var_r0_2 = __nw__FUl(0x14);
 					if (var_r0_2 != 0U) {
-						var_r0_2 = fn_80119A18(M2C_FIELD(var_r31, u32*, 0xE8));
+						var_r0_2 = __ct__12DealMaterialFP7RpClump(M2C_FIELD(var_r31, u32*, 0xE8));
 					}
 					M2C_FIELD(var_r31, u32*, 0xF8) = var_r0_2;
 				}
@@ -320,9 +320,9 @@ void fn_8_C2C2C(void* arg0)
 		fn_80194234(0x14, 1);
 		if (((u32)M2C_FIELD(var_r31, u32*, 0xE0) != 0U)
 		    && ((u32)M2C_FIELD(var_r31, u32*, 0xE4) != 0U)) {
-			fn_8011967C(&sp14);
+			MulColor__12DealMaterialFPf(&sp14);
 			fn_8014FF2C(M2C_FIELD(var_r31, u32*, 0xE0));
-			fn_80119618(M2C_FIELD(var_r31, u32*, 0xE4));
+			DefaultColor__12DealMaterialFv(M2C_FIELD(var_r31, u32*, 0xE4));
 		}
 		var_r30 = 0;
 		do {
@@ -337,9 +337,9 @@ void fn_8_C2C2C(void* arg0)
 			}
 			if (((u32)M2C_FIELD(var_r31, u32*, 0xE8) != 0U)
 			    && ((u32)M2C_FIELD(var_r31, u32*, 0xF8) != 0U)) {
-				fn_8011967C(&sp14);
+				MulColor__12DealMaterialFPf(&sp14);
 				fn_8014FF2C(M2C_FIELD(var_r31, u32*, 0xE8));
-				fn_80119618(M2C_FIELD(var_r31, u32*, 0xF8));
+				DefaultColor__12DealMaterialFv(M2C_FIELD(var_r31, u32*, 0xF8));
 			}
 			var_r31 = (u8*)var_r31 + 4;
 			var_r30 += 1;
@@ -434,7 +434,7 @@ TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 		arg0->unk18 = (M2C_UNK*)lbl_8_data_181D0;
 		arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
 		if ((u32)arg0->unkE4 != 0U) {
-			fn_801197F4((void*)arg0->unkE4, 1);
+			__dt__12DealMaterialFv((void*)arg0->unkE4, 1);
 			arg0->unkE4 = 0U;
 		}
 		if ((u32)arg0->unkE0 != 0U) {
@@ -445,7 +445,7 @@ TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
 		var_r28 = arg0;
 		do {
 			if ((u32)var_r28->unkF8 != 0U) {
-				fn_801197F4((void*)var_r28->unkF8, 1);
+				__dt__12DealMaterialFv((void*)var_r28->unkF8, 1);
 				var_r28->unkF8 = 0U;
 			}
 			if ((u32)var_r28->unkE8 != 0U) {
@@ -509,7 +509,7 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 				fn_8005D5C8(0x10);
 				var_r0 = __nw__FUl(0x14);
 				if (var_r0 != 0U) {
-					var_r0 = fn_80119A18(arg0->unkE0);
+					var_r0 = __ct__12DealMaterialFP7RpClump(arg0->unkE0);
 				}
 				arg0->unkE4 = var_r0;
 			}
@@ -524,7 +524,8 @@ TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
 					fn_8005D5C8(0x10);
 					var_r4 = __nw__FUl(0x14);
 					if (var_r4 != 0U) {
-						var_r4 = fn_80119A18(*(u32*)((u8*)arg0 + var_r28 + 0xE8));
+						var_r4
+						    = __ct__12DealMaterialFP7RpClump(*(u32*)((u8*)arg0 + var_r28 + 0xE8));
 					}
 					*(u32*)((u8*)arg0 + var_r28 + 0xF8) = var_r4;
 				}
@@ -636,7 +637,7 @@ void s11spiderObjectCreate(void)
 					fn_8005D5C8(0x10);
 					var_r0 = __nw__FUl(0x14);
 					if (var_r0 != 0U) {
-						var_r0 = fn_80119A18(temp_r3->unkE0);
+						var_r0 = __ct__12DealMaterialFP7RpClump(temp_r3->unkE0);
 					}
 					temp_r3->unkE4 = var_r0;
 				}
@@ -651,7 +652,8 @@ void s11spiderObjectCreate(void)
 						fn_8005D5C8(0x10);
 						var_r4 = __nw__FUl(0x14);
 						if (var_r4 != 0U) {
-							var_r4 = fn_80119A18(*(u32*)((u8*)temp_r3 + var_r28 + 0xE8));
+							var_r4 = __ct__12DealMaterialFP7RpClump(
+							    *(u32*)((u8*)temp_r3 + var_r28 + 0xE8));
 						}
 						*(u32*)((u8*)temp_r3 + var_r28 + 0xF8) = var_r4;
 					}

@@ -2245,3 +2245,13 @@ All bodies and normalized relocations match under whole-unit `-inline auto`,
 normalizer is added. All eighteen supported artifact hashes, 62 tests, and
 language/object policy checks pass. See
 [the unit evidence](materialcolorchange-unit-evidence.md).
+
+## material.cpp
+
+The complete `DealMaterial` unit is C++, as established by local symbolic
+compilation-unit metadata, constructor overloads, member methods, and destructor
+ABI. All 29 surviving GameCube bodies at `0x80119588–0x80119FE8` and all owned
+sections are reconstructed. Unit-local deferred level 2 reproduces the nested
+destructor inlining and full function/exception order; ordinary automatic
+inlining and deferred level 1 each match only 28 bodies. No postprocessor is
+used. See [the complete evidence](material-unit-evidence.md).

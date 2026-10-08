@@ -121,6 +121,7 @@
     "game/eff_wink.cpp",
     "game/gParam.cpp",
     "game/light.cpp",
+    "game/material.cpp",
     "game/message.cpp",
     "game/miscs.cpp",
     "game/modeswitch.cpp",
