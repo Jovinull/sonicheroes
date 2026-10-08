@@ -51,7 +51,7 @@ extern "C" void* lbl_8042C148;
 
 extern "C" void pawnReleaseBuffer(void* buffer);
 extern "C" void fn_8010AFE4(void* object);
-extern "C" void dtor_800FE334(void* object, s32 flags);
+extern "C" void __dt__11ENEMYMTNMANFv(void* object, s32 flags);
 extern "C" void fn_80150958(void* mesh);
 extern "C" void __dt__10HAnimClassFv(void* hAnim, s32 flags);
 extern "C" void fn_800A7088(void* object, s32 flags);
@@ -96,17 +96,17 @@ extern "C" void* pawnDtor(void* object, s16 flags)
 		}
 
 		if (*(void**)(base + 0x280) != NULL) {
-			dtor_800FE334(*(void**)(base + 0x280), 1);
+			__dt__11ENEMYMTNMANFv(*(void**)(base + 0x280), 1);
 			*(void**)(base + 0x280) = NULL;
 		}
 
 		if (*(void**)(base + 0x278) != NULL) {
-			dtor_800FE334(*(void**)(base + 0x278), 1);
+			__dt__11ENEMYMTNMANFv(*(void**)(base + 0x278), 1);
 			*(void**)(base + 0x278) = NULL;
 		}
 
 		if (*(void**)(base + 0x270) != NULL) {
-			dtor_800FE334(*(void**)(base + 0x270), 1);
+			__dt__11ENEMYMTNMANFv(*(void**)(base + 0x270), 1);
 			*(void**)(base + 0x270) = NULL;
 		}
 

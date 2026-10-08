@@ -334,7 +334,7 @@ void* __ct__15sParalysisParamFv(void*);                                         
 M2C_UNK __dl__FPv(void* arg0);                                                          /* extern */
 void* __dt__10HAnimClassFv(void*, s32);                                                 /* extern */
 M2C_UNK __register_global_object(void*, void*, void*);                                  /* extern */
-M2C_UNK dtor_800FE334(void*, M2C_UNK);                                                  /* extern */
+M2C_UNK __dt__11ENEMYMTNMANFv(void*, M2C_UNK);                                          /* extern */
 s32 fn_80017800(void*);                                                                 /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                                /* extern */
 TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                   /* extern */
@@ -397,8 +397,8 @@ f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, s32*, M2C_UNK);                      
 void** fn_800FD8A0(TObject*, s32);                                                  /* extern */
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                             /* extern */
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                             /* extern */
-void** fn_800FE3FC(void*);                                                          /* extern */
-M2C_UNK fn_800FE464(void**);                                                        /* extern */
+void** __ct__11ENEMYMTNMANFv(void*);                                                /* extern */
+M2C_UNK UpdateMotion__11ENEMYMTNMANFv(void**);                                      /* extern */
 u32 SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK); /* extern */
 u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);        /* extern */
 M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                    /* extern */
@@ -1928,7 +1928,7 @@ void fn_8_BFA30(TObject* arg0)
 		}
 	}
 	if (((s32)arg0->unk2C4 != 0) && ((s32)arg0->unk24C != -1)) {
-		fn_800FE464(arg0->unk250);
+		UpdateMotion__11ENEMYMTNMANFv(arg0->unk250);
 	}
 	if ((fn_80017800(arg0) != 0) && ((u32)arg0->unk38 != 0U)) {
 		arg0->unkA4 = arg0->unk88;
@@ -3060,7 +3060,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, void***, 0x240) = NULL;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x250) != 0U) {
-			dtor_800FE334((void*)M2C_FIELD(arg0, u32*, 0x250), 1);
+			__dt__11ENEMYMTNMANFv((void*)M2C_FIELD(arg0, u32*, 0x250), 1);
 			M2C_FIELD(arg0, u32*, 0x250) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0xE8) != 0U) {
@@ -3134,7 +3134,7 @@ TObject* fn_8_C2018(TObject* arg0)
 	arg0->unkE8 = fn_80150588(lbl_8_bss_1B78);
 	var_r0      = __nw__FUl(0x4C);
 	if (var_r0 != NULL) {
-		var_r0 = fn_800FE3FC((void*)var_r0);
+		var_r0 = __ct__11ENEMYMTNMANFv((void*)var_r0);
 	}
 	arg0->unk250 = var_r0;
 	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
@@ -3142,7 +3142,7 @@ TObject* fn_8_C2018(TObject* arg0)
 	arg0->unkE4  = (M2C_UNK*)lbl_8_data_17CD8;
 	arg0->unkD4  = 0;
 	arg0->unk2E4 = 0;
-	fn_800FE464((void**)&arg0->unkB8);
+	UpdateMotion__11ENEMYMTNMANFv((void**)&arg0->unkB8);
 	fn_8_C14B4(arg0);
 	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
 		fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_17E34, 2, 3);

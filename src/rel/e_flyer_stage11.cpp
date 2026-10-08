@@ -132,7 +132,7 @@ f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, s32*, M2C_UNK);                      
 u32 fn_800FD8A0(M2C_UNK*, s32);                                                     /* extern */
 M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                             /* extern */
 M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                             /* extern */
-M2C_UNK fn_800FE464(void*);                                                         /* extern */
+M2C_UNK UpdateMotion__11ENEMYMTNMANFv(void*);                                       /* extern */
 u32 SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK); /* extern */
 u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);        /* extern */
 M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                    /* extern */
@@ -155,12 +155,12 @@ M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                         
 M2C_UNK fn_8011C6EC();                                                              /* extern */
 M2C_UNK fn_8011CB64(void*, s8);                                                     /* extern */
 M2C_UNK fn_8011CE44();                                                              /* extern */
-u32 fn_8011F894(void*);                                                             /* extern */
-M2C_UNK fn_8011F8B0(s8);                                                            /* extern */
-M2C_UNK fn_8011F900(M2C_UNK*, s8);                                                  /* extern */
-M2C_UNK* fn_8011FA4C(M2C_UNK*, u32);                                                /* extern */
-M2C_UNK fn_8011FD94(M2C_UNK, M2C_UNK);                                              /* extern */
-u32 fn_8011FE0C(u32, u32);                                                          /* extern */
+u32 GetMtnPathMatrix__13TEnemyMtnPathFv(void*);                                     /* extern */
+M2C_UNK SetPath__13TEnemyMtnPathFi(s8);                                             /* extern */
+M2C_UNK ChangePath__13TEnemyMtnPathFi(M2C_UNK*, s8);                                /* extern */
+M2C_UNK* __ct__13TEnemyMtnPathFP7TObjectP17TEnemyMtnPathData(M2C_UNK*, u32);        /* extern */
+M2C_UNK __dt__17TEnemyMtnPathDataFv(M2C_UNK, M2C_UNK);                              /* extern */
+u32 __ct__17TEnemyMtnPathDataF14eEnemyDataBase(u32, u32);                           /* extern */
 M2C_UNK fn_80137FE8(void*);                                                         /* extern */
 M2C_UNK fn_8014FF2C(s32);                                                           /* extern */
 void* fn_80150588(void*);                                                           /* extern */
@@ -1085,7 +1085,8 @@ void fn_8_A3A80(void* arg0)
 		M2C_FIELD(temp_r4_3, s32*, 0xB8) = sp44;
 		M2C_FIELD(M2C_FIELD(arg0, M2C_UNK**, 0x3B4), f32*, 0x34)
 		    = (f32)M2C_FIELD(arg0, f32*, 0x248);
-		fn_8011F900(M2C_FIELD(arg0, M2C_UNK**, 0x3B4), (s8)M2C_FIELD(arg0, u8*, 0x244));
+		ChangePath__13TEnemyMtnPathFi(
+		    M2C_FIELD(arg0, M2C_UNK**, 0x3B4), (s8)M2C_FIELD(arg0, u8*, 0x244));
 	}
 }
 
@@ -1332,7 +1333,8 @@ void fn_8_A4290(M2C_UNK* arg0, s32 arg1)
 			return;
 		case 1:
 			if ((void*)M2C_FIELD(arg0, void**, 0x3B4) != NULL) {
-				temp_r4 = fn_8011F894((void*)M2C_FIELD(arg0, void**, 0x3B4));
+				temp_r4
+				    = GetMtnPathMatrix__13TEnemyMtnPathFv((void*)M2C_FIELD(arg0, void**, 0x3B4));
 				temp_r3 = M2C_FIELD(arg0, void**, 0xE8);
 				if ((temp_r3 != NULL) && (temp_r4 != 0U)) {
 					fn_8019ECCC(M2C_FIELD(temp_r3, M2C_UNK**, 4), (void*)temp_r4, 0);
@@ -1368,7 +1370,8 @@ void fn_8_A4394(void* arg0, s32 arg1)
 			return;
 		case 1:
 			if ((void*)M2C_FIELD(arg0, void**, 0x3B4) != NULL) {
-				temp_r4 = fn_8011F894((void*)M2C_FIELD(arg0, void**, 0x3B4));
+				temp_r4
+				    = GetMtnPathMatrix__13TEnemyMtnPathFv((void*)M2C_FIELD(arg0, void**, 0x3B4));
 				temp_r3 = M2C_FIELD(arg0, void**, 0xE8);
 				if ((temp_r3 != NULL) && (temp_r4 != 0U)) {
 					fn_8019ECCC(M2C_FIELD(temp_r3, M2C_UNK**, 4), (void*)temp_r4, 0);
@@ -1397,7 +1400,7 @@ void fn_8_A4478(void* arg0, s32 arg1)
 			return;
 		case 3:
 			if ((u32)M2C_FIELD(arg0, u32*, 0x3B4) != 0U) {
-				fn_8011F8B0((s8)M2C_FIELD(arg0, u8*, 0x244));
+				SetPath__13TEnemyMtnPathFi((s8)M2C_FIELD(arg0, u8*, 0x244));
 			}
 			return;
 	}
@@ -1429,7 +1432,7 @@ void fn_8_A44D4(M2C_UNK* arg0, s32 arg1, s32 arg2)
 					return;
 				case 3: /* switch 2 */
 					if ((void*)M2C_FIELD(arg0, void**, 0x3B4) != NULL) {
-						fn_8011F8B0((s8)M2C_FIELD(arg0, u8*, 0x244));
+						SetPath__13TEnemyMtnPathFi((s8)M2C_FIELD(arg0, u8*, 0x244));
 						return;
 					}
 					return;
@@ -1442,7 +1445,8 @@ void fn_8_A44D4(M2C_UNK* arg0, s32 arg1, s32 arg2)
 					return;
 				case 1: /* switch 3 */
 					if ((void*)M2C_FIELD(arg0, void**, 0x3B4) != NULL) {
-						temp_r4 = fn_8011F894((void*)M2C_FIELD(arg0, void**, 0x3B4));
+						temp_r4 = GetMtnPathMatrix__13TEnemyMtnPathFv(
+						    (void*)M2C_FIELD(arg0, void**, 0x3B4));
 						temp_r3 = M2C_FIELD(arg0, void**, 0xE8);
 						if ((temp_r3 != NULL) && (temp_r4 != 0U)) {
 							fn_8019ECCC(M2C_FIELD(temp_r3, M2C_UNK**, 4), (void*)temp_r4, 0);
@@ -1469,7 +1473,8 @@ void fn_8_A44D4(M2C_UNK* arg0, s32 arg1, s32 arg2)
 					return;
 				case 1: /* switch 4 */
 					if ((void*)M2C_FIELD(arg0, void**, 0x3B4) != NULL) {
-						temp_r4_2 = fn_8011F894((void*)M2C_FIELD(arg0, void**, 0x3B4));
+						temp_r4_2 = GetMtnPathMatrix__13TEnemyMtnPathFv(
+						    (void*)M2C_FIELD(arg0, void**, 0x3B4));
 						temp_r3_2 = M2C_FIELD(arg0, void**, 0xE8);
 						if ((temp_r3_2 != NULL) && (temp_r4_2 != 0U)) {
 							fn_8019ECCC(M2C_FIELD(temp_r3_2, M2C_UNK**, 4), (void*)temp_r4_2, 0);
@@ -1933,7 +1938,7 @@ void fn_8_A53E4(void* arg0)
 	void* temp_r3;
 
 	if ((void*)M2C_FIELD(arg0, void**, 0x3B4) != NULL) {
-		temp_r4 = fn_8011F894((void*)M2C_FIELD(arg0, void**, 0x3B4));
+		temp_r4 = GetMtnPathMatrix__13TEnemyMtnPathFv((void*)M2C_FIELD(arg0, void**, 0x3B4));
 		temp_r3 = M2C_FIELD(arg0, void**, 0xE8);
 		if ((temp_r3 != NULL) && (temp_r4 != 0U)) {
 			fn_8019ECCC(M2C_FIELD(temp_r3, M2C_UNK**, 4), (void*)temp_r4, 0);
@@ -2469,7 +2474,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	M2C_FIELD(arg0, M2C_UNK**, 0xE4) = (M2C_UNK*)&lbl_8_data_16018[0];
 	M2C_FIELD(arg0, s32*, 0xD4)      = 0;
-	fn_800FE464((u8*)arg0 + 0xB8);
+	UpdateMotion__11ENEMYMTNMANFv((u8*)arg0 + 0xB8);
 	fn_8_A549C(arg0);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x280) != 0U) {
 		temp_r30 = fn_8019E8EC((void*)M2C_FIELD(arg0, u32*, 0x280));
@@ -2519,7 +2524,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	}
 	var_r0_3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (var_r0_3 != NULL) {
-		var_r0_3 = fn_8011FA4C(arg0, lbl_8_bss_1958);
+		var_r0_3 = __ct__13TEnemyMtnPathFP7TObjectP17TEnemyMtnPathData(arg0, lbl_8_bss_1958);
 	}
 	M2C_FIELD(arg0, M2C_UNK**, 0x3B4) = var_r0_3;
 	if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x3B4) != NULL) {
@@ -2545,7 +2550,8 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 		M2C_FIELD(temp_r4_2, s32*, 0xB8) = sp44;
 		M2C_FIELD(M2C_FIELD(arg0, M2C_UNK**, 0x3B4), f32*, 0x34)
 		    = (f32)M2C_FIELD(arg0, f32*, 0x248);
-		fn_8011F900(M2C_FIELD(arg0, M2C_UNK**, 0x3B4), (s8)M2C_FIELD(arg0, u8*, 0x244));
+		ChangePath__13TEnemyMtnPathFi(
+		    M2C_FIELD(arg0, M2C_UNK**, 0x3B4), (s8)M2C_FIELD(arg0, u8*, 0x244));
 	}
 	return arg0;
 }
@@ -2635,7 +2641,7 @@ void fn_8_A6728(void* arg0, void* arg1)
 void flyerObjectUnload(void)
 {
 	if ((u32)lbl_8_bss_1958 != 0U) {
-		fn_8011FD94(lbl_8_bss_1958, 1);
+		__dt__17TEnemyMtnPathDataFv(lbl_8_bss_1958, 1);
 		lbl_8_bss_1958 = 0U;
 	}
 	fn_8_A8D1C();
@@ -2709,7 +2715,7 @@ void flyerObjectLoad(void)
 	fn_8_A8D30();
 	var_r0 = __nw__FUl(0xC);
 	if (var_r0 != 0U) {
-		var_r0 = fn_8011FE0C(var_r0, 0xC);
+		var_r0 = __ct__17TEnemyMtnPathDataF14eEnemyDataBase(var_r0, 0xC);
 	}
 	lbl_8_bss_1958 = var_r0;
 }

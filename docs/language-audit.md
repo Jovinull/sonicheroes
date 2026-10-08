@@ -2313,3 +2313,16 @@ selection out of line: intro becomes 220 rather than 416 bytes. Whole-unit
 It is listed explicitly in `deferred_sources`. Four bodies match directly;
 the intro's measured 12-field r29/r30 permutation is guarded and documented in
 `game2ptable-unit-evidence.md`, with no retail instruction words injected.
+
+## enemy/e_mtnpath.cpp
+
+Symbolic C++ metadata, GameCube class/vtable references and all ten method
+roles identify this complete 1,464-byte unit. The data getters inline into the
+path constructor. Native multiple-inheritance offsets and the four-aligned
+matrix establish a 0xD0 GameCube object, rather than the other platform's 0xE0
+extent. The motion manager and array operators use metadata-backed C++
+interfaces, with callers' symbol references propagated consistently.
+All ten bodies match with ordinary automatic inlining and genuine constructor,
+destructor and exception cleanup emission. No deferred override or object
+normalizer is introduced. See `e-mtnpath-unit-evidence.md` for ownership and
+verification.
