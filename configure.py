@@ -1310,18 +1310,13 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "autosaveD/state_selector.cpp",
+                "autosaveD/adv_window_null_virtual.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "autosaveD/menu_selectors.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "autosaveD/table.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                "autosaveD/adv_menu.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
             ),
         ],
     ),

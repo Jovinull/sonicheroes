@@ -63,10 +63,7 @@
     "rel/prolog.c"
   ],
   "pending_c_evidence": [],
-  "protected_cpp_c_sources": [
-    "autosaveD/menu_selectors.c",
-    "autosaveD/table.c"
-  ],
+  "protected_cpp_c_sources": [],
   "c_sources_compiled_as_cpp": [
     "game/cri/axrna.c",
     "game/cri/rnares.c",

@@ -41,11 +41,8 @@ autosaveD/adv_window.cpp:
 	.text       start:0x0000346C end:0x00004070
 	.rodata     start:0x00000350 end:0x00000358
 
-autosaveD/state_selector.cpp:
-	.text       start:0x00004070 end:0x00004344
+autosaveD/adv_window_null_virtual.cpp:
+	.text       start:0x00004070 end:0x00004074
 
-autosaveD/menu_selectors.c:
-	.text       start:0x00004344 end:0x0000476C
-
-autosaveD/table.c:
-	.text       start:0x0000476C end:0x000047F0
+autosaveD/adv_menu.cpp:
+	.text       start:0x00004074 end:0x000047F0
