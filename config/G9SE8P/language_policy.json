@@ -138,6 +138,7 @@
     "game/octree.cpp",
     "game/octreeColli.cpp",
     "game/one.cpp",
+    "game/player/player_barrier.cpp",
     "game/skyfs_adx.c",
     "game/storyTable.cpp",
     "rel/e_capture_collision_stage11.cpp",

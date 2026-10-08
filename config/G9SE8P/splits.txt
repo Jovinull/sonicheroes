@@ -475,6 +475,16 @@ game/enemy/e_iconman.cpp:
 	.sbss       start:0x8042C5B8 end:0x8042C5C0
 	.sdata2     start:0x8042E810 end:0x8042E818
 
+game/player/player_barrier.cpp:
+	extab       start:0x8000A334 end:0x8000A380
+	extabindex  start:0x800104F8 end:0x80010534
+	.text       start:0x8010C220 end:0x8010CACC
+	.data       start:0x8025B0F0 end:0x8025B238
+	.bss        start:0x803E72B0 end:0x803E72F8
+	.sdata      start:0x8042B7B8 end:0x8042B7C8
+	.sbss       start:0x8042C5D8 end:0x8042C5E8
+	.sdata2     start:0x8042E830 end:0x8042E860
+
 game/effect/eff_footprints.cpp:
 	extab       start:0x8000A5B4 end:0x8000A634
 	extabindex  start:0x800106E4 end:0x80010738
