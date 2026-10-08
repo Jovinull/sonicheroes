@@ -2270,3 +2270,10 @@ cursors require ten register-field substitutions across six instructions under
 a narrow, documented normalizer. All other instructions and every relocation
 match without adjustment. The previous fragment's 91-field normalizer is
 removed. See [the full evidence and remaining uncertainty](object-unit-evidence.md).
+
+## vertical_colli.cpp
+
+Local symbolic metadata identifies the whole three-function vertical collision
+unit as C++. GameCube call ABI, POLYDATA fields, and callback references
+corroborate it. The reconstruction uses C++ and canonical mangled symbols.
+See [the unit evidence](vertical-colli-unit-evidence.md).

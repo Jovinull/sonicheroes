@@ -98,7 +98,7 @@ M2C_UNK AdjustPoint__FP5RwV3dPC5RwV3df(void*, s32, void*, s32);                 
 f32 Distance2P2P__FPC5RwV3dPC5RwV3d(s32*, s32*);                                   /* extern */
 s32 AdjustAngle__Fiii(s32, s32, s32);                                              /* extern */
 f32 fn_800D7B00(s32);                                                              /* extern */
-f32 fn_800D8BC4(...);                                                              /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(...);                                          /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                                                /* extern */
 void* SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv();                                                /* extern */
@@ -358,7 +358,8 @@ void fn_8_A8384(void* arg0)
 		return;
 	}
 	M2C_FIELD(arg0, f32*, 0xE8) = (f32)M2C_FIELD(arg0, f32*, 0xB0);
-	M2C_FIELD(arg0, f32*, 0xEC) = (f32)(4.0f + fn_800D8BC4((u8*)arg0 + 0xB0, &sp8, 1));
+	M2C_FIELD(arg0, f32*, 0xEC)
+	    = (f32)(4.0f + GetShadowPos__FP5RwV3dP6sAnglei((u8*)arg0 + 0xB0, &sp8, 1));
 	M2C_FIELD(arg0, f32*, 0xF0) = (f32)M2C_FIELD(arg0, f32*, 0xB8);
 	temp_r3                     = M2C_FIELD(arg0, void**, 0xE0);
 	if (temp_r3 != NULL) {
@@ -441,7 +442,7 @@ void fn_8_A8590(void* arg0)
 				} else {
 					M2C_FIELD(arg0, f32*, 0xE8) = (f32)M2C_FIELD(arg0, f32*, 0xB0);
 					M2C_FIELD(arg0, f32*, 0xEC)
-					    = (f32)(4.0f + fn_800D8BC4((u8*)arg0 + 0xB0, &sp8, 1));
+					    = (f32)(4.0f + GetShadowPos__FP5RwV3dP6sAnglei((u8*)arg0 + 0xB0, &sp8, 1));
 					M2C_FIELD(arg0, f32*, 0xF0) = (f32)M2C_FIELD(arg0, f32*, 0xB8);
 					temp_r3_2                   = M2C_FIELD(arg0, void**, 0xE0);
 					if (temp_r3_2 != NULL) {
@@ -530,9 +531,9 @@ TObject* fn_8_A89D4(TObject* arg0, void* arg1, TObject* arg2)
 	fn_8003C200((void*)&arg0->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
 	M2C_FIELD(arg0, M2C_BLOCK12*, 0x88) = M2C_FIELD(arg0, M2C_BLOCK12*, 0xb0);
 	arg0->unkE8                         = arg0->unkB0;
-	arg0->unkEC                         = 4.0f + fn_800D8BC4(&arg0->unkB0, &sp8, 1);
-	arg0->unkF0                         = arg0->unkB8;
-	arg0->unkE0                         = fn_80150588(lbl_8_bss_19B8.p);
+	arg0->unkEC = 4.0f + GetShadowPos__FP5RwV3dP6sAnglei(&arg0->unkB0, &sp8, 1);
+	arg0->unkF0 = arg0->unkB8;
+	arg0->unkE0 = fn_80150588(lbl_8_bss_19B8.p);
 	return arg0;
 }
 
@@ -576,9 +577,9 @@ TObject* fn_8_A8B60(void* arg0)
 		fn_8003C200((void*)&temp_r3->unk28, (int)(int*)lbl_8_data_16430, 1, 3);
 		M2C_FIELD(temp_r3, M2C_BLOCK12*, 0x88) = M2C_FIELD(temp_r3, M2C_BLOCK12*, 0xb0);
 		temp_r3->unkE8                         = temp_r3->unkB0;
-		temp_r3->unkEC                         = 4.0f + fn_800D8BC4(&temp_r3->unkB0, &sp8, 1);
-		temp_r3->unkF0                         = temp_r3->unkB8;
-		temp_r3->unkE0                         = fn_80150588(lbl_8_bss_19B8.p);
+		temp_r3->unkEC = 4.0f + GetShadowPos__FP5RwV3dP6sAnglei(&temp_r3->unkB0, &sp8, 1);
+		temp_r3->unkF0 = temp_r3->unkB8;
+		temp_r3->unkE0 = fn_80150588(lbl_8_bss_19B8.p);
 	}
 	return temp_r3;
 }

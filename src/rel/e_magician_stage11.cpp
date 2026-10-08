@@ -193,7 +193,7 @@ M2C_UNK fn_800A7088(void*, M2C_UNK);                                        /* e
 M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                                 /* extern */
 s32 AdjustAngle__Fiii(s32, s32, s32);                                       /* extern */
 f32 fn_800D7B00(s32);                                                       /* extern */
-f32 fn_800D8BC4(void*, void*, s32);                                         /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, void*, s32);                     /* extern */
 M2C_UNK fn_800E1208(s32, s32, s32);                                         /* extern */
 u32 fn_800FD8A0(TEnemyParalysis*, s32);                                     /* extern */
 M2C_UNK fn_800FE248(s32, void*);                                            /* extern */
@@ -848,7 +848,7 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 			arg0->unk2AC = arg0->unk120;
 			arg0->unk284 = lbl_8_rodata_1B40 + arg0->unk144;
 		} else {
-			temp_f1      = fn_800D8BC4((u8*)arg0 + 0x140, &sp20, 1);
+			temp_f1      = GetShadowPos__FP5RwV3dP6sAnglei((u8*)arg0 + 0x140, &sp20, 1);
 			arg0->unk284 = temp_f1;
 			if (lbl_8_rodata_1B1C != temp_f1) {
 				arg0->unk280 = arg0->unk140;
