@@ -23,9 +23,10 @@ boundaries whose historical file language remains unresolved. The current
 policy therefore has no `pending_c_evidence` entry.
 
 The coordinated `advertiseD` reconstruction has now replaced all 30 of its
-legacy C++/`.c` fragments. AutoSaveD remains protected while PR #116 is a
-draft: its 12 legacy C++/`.c` fragments and four C-mode fragments with direct
-C++ evidence remain in the queue.
+legacy C++/`.c` fragments. AutoSaveD is no longer protected: PR #116 was
+abandoned and its scope was taken over (see "AutoSaveD ADV units taken over
+from PR #116" below). Three legacy C++/`.c` fragments remain in its queue and
+no protected C-mode fragment is left.
 
 ### Integrated-link invariant
 
@@ -854,11 +855,9 @@ files.
 
 After the GameCube platform-main decision:
 
-- 12 legacy `.c` paths still compile as C++;
-- none of them are outside the protected areas;
-- all 12 belong to the protected `autosaveD` area;
-- 4 protected sources have direct C++ evidence but remain in C mode until their
-  active changes are coordinated;
+- 3 legacy `.c` paths still compile as C++, all in `autosaveD`
+  (`line_count.c`, `task_callback_setters.c`, `task_object.c`);
+- no protected area or protected C-mode source remains;
 - no C-compiled game source is silently unclassified: one has positive C
   evidence and eight are explicitly reviewed C ABI boundaries that do not
   claim a historical source extension;
@@ -2773,3 +2772,59 @@ G9SE8P is the only currently supported target. Its full release/all-source build
 55 tests, both policy checks and all eighteen hashes pass with the reconstructed
 MObject object linked. This verifies compilation and artifact identity, not
 runtime or physical-hardware behavior.
+
+## AutoSaveD ADV units taken over from PR #116
+
+PR #116 (ThePlayerRolo) proposed `ADV_MENU`, `ADV_WINDOW` and
+`ADV_WINDOW_DISP` units for AutoSaveD from PS2 class symbols and was left as a
+draft in July 2026. The maintainer took the scope over in October 2026. The
+draft could not be rebased (958 commits behind, twelve matching units turned
+NonMatching, incomplete display unit), so the units were rebuilt on current
+`main` from different evidence: AutoSaveD carries copies of code that is
+already fully reconstructed in AdvertiseD.
+
+GameCube correlation:
+
+- Every function in AutoSaveD `.text 0x2488-0x47F0` except one four-byte empty
+  function is byte-identical, relocated fields masked, to an AdvertiseD
+  function, in the same order: `0x2488-0x346C` is all of `adv_draw.o` (13
+  functions), `0x346C-0x4070` is all of `adv_window.o` (11 functions), and
+  `0x4074-0x47F0` is the thirteen menu-cursor functions inside AdvertiseD's
+  `adv_bg.cpp` split (`0x119BC-0x12138`).
+- The `.rodata` owned by those AdvertiseD units appears in AutoSaveD in the same
+  order with identical bytes and identical symbol sizes (`0xA0`, `0x328`,
+  `0x350` versus `0x1A50`, `0x1CD8`, `0x1D00`).
+- Module-local names were mapped by pairing every relocation at the same offset
+  in both retail objects; the resulting map is one-to-one and consistent.
+- The local PS2 symbol table lists the same functions as `ADV_WINDOW`,
+  `sADV_WINDOW_PARAM` and `ADV_MENU` methods in this order; that supports the
+  class identity, not a file name.
+
+Resulting units, all `Matching`:
+
+| unit | range | source |
+| --- | --- | --- |
+| `autosaveD/adv_draw.cpp` | `.text 0x2488-0x346C`, `.rodata 0xA0-0x328` | AdvertiseD `adv_draw.cpp`, same flags including the reviewed `-inline deferred,noauto` |
+| `autosaveD/adv_draw_constants.cpp` | `.rodata 0x328-0x350` | AdvertiseD `adv_draw_constants.cpp` |
+| `autosaveD/adv_window.cpp` | `.text 0x346C-0x4070`, `.rodata 0x350-0x358` | AdvertiseD `adv_window.cpp`; `fn_2_346C` takes the real `Disp__10ADV_WINDOWFv` |
+| `autosaveD/adv_window_null_virtual.cpp` | `.text 0x4070-0x4074` | empty function referenced only from the `ADV_WINDOW` vtable; not emitted by the AdvertiseD source |
+| `autosaveD/adv_menu.cpp` | `.text 0x4074-0x47F0` | the AdvertiseD menu-cursor block, same flags as `adv_bg.cpp` |
+
+Two link details mirror AdvertiseD: `fn_2_2A18` and `fn_2_2BC8` are
+force-active (their AdvertiseD twins are), and `lbl_2_rodata_350` is
+`scope:local`, so the linker drops the named copy of the int-to-float constant
+and keeps the compiler's, exactly as for `lbl_1_rodata_1D00`.
+
+This removes the protected AutoSaveD queue: `menu_selectors.c`, `table.c`,
+`widget_rendering.c`, `window_input.c`, `quad_fill.c`, `quad_submit.c`,
+`window_frame.c`, `widget_slices.cpp` and `window_lifecycle.cpp` are replaced;
+`task_system.c` and `state_selector.c` lost their shared functions and migrated
+to `.cpp` with identical objects (the remaining part of `state_selector` is the
+null-virtual fragment above). `autosaveD/adv_draw.cpp` joins `deferred_sources`
+on the evidence already reviewed for its AdvertiseD original. All 18 artifact
+hashes are exact.
+
+Not taken from the draft: the `game/main.c` and `game/heap.c` changes (already
+resolved differently on `main`), the blanket inline overrides, and the BFBB/SMS
+headers, which the ported units do not need. Real method names for the shared
+functions remain a follow-up best done in both modules together.
