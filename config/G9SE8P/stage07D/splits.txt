@@ -599,6 +599,9 @@ rel/traintop_register.cpp:
 	.text       start:0x00096040 end:0x000960E0
 	.ctors      start:0x0000015C end:0x00000160
 
+rel/obj_set_particle_create.cpp:
+	.text       start:0x000965B0 end:0x000966DC
+
 rel/obj_set_particle_register.cpp:
 	.text       start:0x000966DC end:0x00096778
 	.ctors      start:0x00000160 end:0x00000164
