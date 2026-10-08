@@ -1285,49 +1285,33 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "autosaveD/task_system.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "autosaveD/quad_fill.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "autosaveD/widget_slices.cpp",
+                "autosaveD/task_system.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
-                "autosaveD/quad_submit.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
+                "autosaveD/adv_draw.cpp",
+                extra_cflags=[
+                    "-lang=c++",
+                    "-opt noschedule,nopeephole",
+                    "-pool off",
+                    "-inline deferred,noauto",
+                ],
             ),
             Object(
                 Matching,
-                "autosaveD/widget_rendering.c",
+                "autosaveD/adv_draw_constants.cpp",
+                extra_cflags=["-lang=c++", "-pool off"],
+            ),
+            Object(
+                Matching,
+                "autosaveD/adv_window.cpp",
+                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole", "-pool off"],
+            ),
+            Object(
+                Matching,
+                "autosaveD/state_selector.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "autosaveD/window_frame.c",
-                cflags=cflags_rel_nofma,
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "autosaveD/window_input.c",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "autosaveD/window_lifecycle.cpp",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "autosaveD/state_selector.c",
-                extra_cflags=["-lang=c++", "-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,

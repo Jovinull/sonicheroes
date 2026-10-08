@@ -65,9 +65,7 @@
   "pending_c_evidence": [],
   "protected_cpp_c_sources": [
     "autosaveD/menu_selectors.c",
-    "autosaveD/table.c",
-    "autosaveD/widget_rendering.c",
-    "autosaveD/window_input.c"
+    "autosaveD/table.c"
   ],
   "c_sources_compiled_as_cpp": [
     "game/cri/axrna.c",
@@ -80,17 +78,13 @@
   ],
   "legacy_cpp_c_sources": [
     "autosaveD/line_count.c",
-    "autosaveD/quad_fill.c",
-    "autosaveD/quad_submit.c",
-    "autosaveD/state_selector.c",
     "autosaveD/task_callback_setters.c",
-    "autosaveD/task_object.c",
-    "autosaveD/task_system.c",
-    "autosaveD/window_frame.c"
+    "autosaveD/task_object.c"
   ],
   "deferred_sources": [
     "advertiseD/adv_2p.cpp",
     "advertiseD/adv_draw.cpp",
+    "autosaveD/adv_draw.cpp",
     "game/c_colli_react.cpp",
     "game/calc.cpp",
     "game/calc_colli.cpp",

@@ -84,6 +84,8 @@ modules:
   # exports every symbol in the objects it writes, a hand written one has to say
   # so here. Without this the module is shortened and later code shifts with it.
   force_active:
+    - fn_2_2A18
+    - fn_2_2BC8
     - fn_2_340C
     - fn_2_408C
     - fn_2_4098
