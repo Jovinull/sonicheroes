@@ -591,6 +591,7 @@ config.libs = [
             Object(Matching, "game/enemy/e_shockwave.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_bomb.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_dush.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/effect/eff_footprints.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/scanpath.cpp", extra_cflags=["-O3,p", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
@@ -4065,6 +4066,11 @@ config.custom_build_rules = [
         "description": "FIX bomb effect constructor loop register allocation",
     },
     {
+        "name": "fix_eff_footprints_registers",
+        "command": "$python tools/fix_eff_footprints_registers.py $in $out",
+        "description": "FIX footprint display loop register allocation",
+    },
+    {
         "name": "fix_c_colli_react_object",
         "command": "$python tools/fix_c_colli_react_object.py $in $out",
         "description": "FIX collision reactor weak inline atom order",
@@ -4321,6 +4327,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/eff-footprints-registers.stamp",
+            "rule": "fix_eff_footprints_registers",
+            "inputs": "build/G9SE8P/src/game/effect/eff_footprints.o",
+            "implicit": ["tools/fix_eff_footprints_registers.py"],
+        },
         {
             "outputs": "build/G9SE8P/eff-bomb-registers.stamp",
             "rule": "fix_eff_bomb_registers",

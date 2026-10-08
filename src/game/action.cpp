@@ -513,7 +513,7 @@ extern "C" s32 fn_800CB750();
 extern "C" s32 fn_800CB95C();
 extern "C" s32 fn_800CC7E8();
 extern "C" s32 fn_800CD05C();
-extern "C" s32 fn_80110A4C();
+extern "C" s32 EndEffFootPrints__Fv();
 extern "C" s32 fn_801169A4(s32, u32, s32);
 extern "C" s32 fn_80116B84(void*);
 extern "C" s32 fn_8012C3E8();
@@ -1681,7 +1681,7 @@ s32 ACTION::Loop()
 			fn_800BF5D8();
 			fn_800B603C((u32)lbl_8042C388);
 			fn_8001D540();
-			fn_80110A4C();
+			EndEffFootPrints__Fv();
 			fn_800A7338();
 			fn_800662BC();
 			fn_801AD5E0(1);
@@ -2559,7 +2559,7 @@ extern "C" void fn_800C5BDC();
 extern "C" void fn_800CCEB0();
 extern "C" void fn_80066320();
 extern "C" void fn_800A7374();
-extern "C" void fn_80110B04();
+extern "C" void InitEffFootPrints__Fv();
 extern "C" void fn_800B60C0(void*);
 extern "C" void fn_8004ECBC(void*, u32, s32);
 extern "C" void fn_800BF794();
@@ -2856,7 +2856,7 @@ void ACTION::subInit()
 	fn_800CCEB0();
 	fn_80066320();
 	fn_800A7374();
-	fn_80110B04();
+	InitEffFootPrints__Fv();
 	fn_800B60C0(lbl_8042C388);
 
 	stageObject = currentStage != 0 ? *(u32*)currentStage : 0;
