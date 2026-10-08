@@ -87,16 +87,16 @@ void fn_8019ED68(void*, const void*, f32, s32);
 s32 fn_8019CE34(void*, const void*);
 s32 rand();
 void fn_800B4A38(void*, s32, const void*, s32, s32, s32, s32);
-void fn_80113940();
-void fn_801138B4();
-void fn_801137FC(s32);
-void fn_801137AC();
+void SaveRenderState__7nRenderFv();
+void SetRenderStateForBlendAdd__7nRenderFv();
+void DisableLight__7nRenderFi(s32);
+void FogDisable__7nRenderFv();
 void fn_8011398C(void*, s32);
 void fn_8011B844(void*, f32);
 void fn_8014FFBC(void*, void*, void*);
 void fn_8014FF2C(void*);
-void fn_80113838(s32);
-void fn_801138F4();
+void EnableLight__7nRenderFi(s32);
+void LoadRenderState__7nRenderFv();
 void* objRwTexDictionaryGetPointer__Fv();
 void* objPointerReadFromClumpAnim__FPc(char*);
 void SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(void*);
@@ -292,10 +292,10 @@ void TEnemyParalysis::TDisp()
 		sphere.pos    = position;
 		sphere.radius = lbl_8042E980;
 		if (fn_8019CE34(*lbl_8042C9A4, &sphere)) {
-			fn_80113940();
-			fn_801138B4();
-			fn_801137FC(0x15);
-			fn_801137AC();
+			SaveRenderState__7nRenderFv();
+			SetRenderStateForBlendAdd__7nRenderFv();
+			DisableLight__7nRenderFi(0x15);
+			FogDisable__7nRenderFv();
 			fn_8011398C(lbl_803E7588, frame);
 			s32 value = *(s32*)((u8*)lbl_8042C180 + 0x30);
 			if (lbl_8042C650[0] != value) {
@@ -305,8 +305,8 @@ void TEnemyParalysis::TDisp()
 				lbl_8042C650[0] = value;
 			}
 			fn_8014FF2C(effect);
-			fn_80113838(0x15);
-			fn_801138F4();
+			EnableLight__7nRenderFi(0x15);
+			LoadRenderState__7nRenderFv();
 		}
 	}
 }

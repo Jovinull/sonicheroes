@@ -107,7 +107,7 @@ s32 fn_80103324(void*, f32*, f32);                                              
 M2C_UNK fn_8010AFF8(void*, s32);                                                   /* extern */
 s32 fn_8010B074(void*);                                                            /* extern */
 M2C_UNK fn_8010B208(u32, f32*, f32, f32);                                          /* extern */
-M2C_UNK fn_80113874(s32);                                                          /* extern */
+M2C_UNK SetLightNum__7nRenderFUi(s32);                                             /* extern */
 s32 DecreaseTimer__7nSystemFRi(void*);                                             /* extern */
 M2C_UNK fn_8014FF2C(s32);                                                          /* extern */
 void* fn_80150588(...);                                                            /* extern */
@@ -322,7 +322,7 @@ void fn_8_A82A8(void* arg0)
 		sp8[2] = M2C_FIELD(arg0, f32*, 0xB8);
 		sp8[3] = lbl_8_rodata_19A4[0];
 		if (fn_8019CE34(*lbl_8042C9A4, sp8) != 0) {
-			fn_80113874(M2C_FIELD(arg0, s32*, 0xD8));
+			SetLightNum__7nRenderFUi(M2C_FIELD(arg0, s32*, 0xD8));
 			fn_8014FF2C((int)M2C_FIELD(arg0, void**, 0xE0));
 		}
 	}
@@ -640,7 +640,7 @@ void fn_8_A8E0C(void* arg0)
 			fn_8019ED68(temp_r31, &AxisY, 2,
 			    180.0f + (0.005493164f * (f32)M2C_FIELD(arg0, s32*, 0xDC)), 0.005493164f, 180.0f);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0xB0, 2);
-			fn_80113874(M2C_FIELD(arg0, s32*, 0xEC));
+			SetLightNum__7nRenderFUi(M2C_FIELD(arg0, s32*, 0xEC));
 			fn_8014FF2C((int)lbl_8_bss_19C0.p);
 		}
 	}
@@ -1417,7 +1417,7 @@ void fn_8_AA610(void* arg0)
 		sp10 = M2C_FIELD(arg0, f32*, 0x5C);
 		sp14 = lbl_8_rodata_1AAC;
 		if (fn_8019CE34(*lbl_8042C9A4, &sp8) != 0) {
-			fn_80113874(4);
+			SetLightNum__7nRenderFUi(4);
 			fn_8014FF2C((int)M2C_FIELD(arg0, void**, 0x4C));
 		}
 	}

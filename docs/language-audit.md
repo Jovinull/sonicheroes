@@ -2347,3 +2347,14 @@ records exist. The original predicate name is unconfirmed, so the source
 explicitly labels its private helper/view names as reconstructed. Native signed
 mode bytes at 0x1F/0x20/0x21 are preserved. No deferred override or object
 normalizer is used. See `e-utility-system-unit-evidence.md`.
+
+## Enemy render utility (`enemy/e_utility_render.cpp`)
+
+Positive symbolic metadata identifies the complete eight-function `nRender`
+unit as `C_PLUS_PLUS`. GC fog/light/state calls and four private saved-state
+words independently establish ownership: text `0x801137AC–0x8011398C`, all
+exception records, and `.sbss` `0x8042C658–0x8042C668`. Standard whole-unit
+C++ automatic inlining produces eight exact bodies and all 51 effective
+relocations, with no object postprocessor. The accessed external object views
+use GC offsets and do not import PS2 alignment or layout. See
+[e-utility-render-unit-evidence.md](e-utility-render-unit-evidence.md).
