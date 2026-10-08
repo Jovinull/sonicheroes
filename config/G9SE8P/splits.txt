@@ -314,6 +314,13 @@ game/message.cpp:
 	.sdata2     start:0x8042DF20 end:0x8042DF48
 	.sbss2      start:0x804302B8 end:0x804302C0
 
+game/eff_wink.cpp:
+	extab       start:0x80008A20 end:0x80008A50
+	extabindex  start:0x8000F094 end:0x8000F0DC
+	.text       start:0x800CF070 end:0x800CF5E4
+	.sdata2     start:0x8042DF48 end:0x8042DF64
+	.sdata2     start:0x8042DF64 end:0x8042DF68 skip
+
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 

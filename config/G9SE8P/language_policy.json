@@ -115,6 +115,7 @@
     "game/cri/adx_xpnd.c",
     "game/cri/cri_cvfs.c",
     "game/e_paralysis.cpp",
+    "game/eff_wink.cpp",
     "game/message.cpp",
     "game/modeswitch.cpp",
     "game/skyfs_adx.c",

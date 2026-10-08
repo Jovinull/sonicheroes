@@ -45,6 +45,37 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### EffWink translation unit
+
+`game/eff_wink.cpp` reconstructs all ten surviving methods at GameCube
+`0x800CF070`–`0x800CF5E4`. Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2,
+commit `c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section
+.debug dwarf`) identifies `effect/eff_wink.cpp` as `C_PLUS_PLUS`, the `EffWink`
+class, its 0x28-byte member layout and the corresponding ten method names.
+The GameCube methods follow the same API sequence. The following empty
+function is referenced by another class's vtable, so it is excluded.
+
+The unit uses deferred emission: constructor, destructor, update, setters,
+getter and synchronization definitions emit in reverse order. This also lets
+`Exec` inline the later `SetMode` definition. With automatic inlining, `Exec`
+compares at 97.85577%, exception metadata at 87.5%/30%, and constants at
+57.692307%; deferred emission makes every method and all owned sections exact.
+The header's two simple mode getters inline naturally. No instruction or
+object postprocessor is used for this unit.
+
+Independent ELF comparison verifies 1,396 text bytes, 48 exception-table
+bytes, 72 exception-index bytes, 28 constant bytes and all 41 normalized
+relocations. The compiler marks `.sdata2` writable while the split reference
+marks it read-only; section bytes and eight-byte alignment are identical.
+The four bytes after the final float are linker alignment, excluded from the
+owned range rather than represented by a dummy object. Existing AdvertiseD
+references use the recovered method symbols without changing their ABI.
+
+Validation passed for the sole supported release target, G9SE8P: full
+`all_source`, `progress` and report builds, all 18 artifact hashes, 55 automated
+tests and both policy checkers. Compilation and matching do not establish
+runtime or physical-hardware validation.
+
 ### CRI RNARES translation unit
 
 `game/cri/rnares.c` retains a reviewed vendor C ABI boundary and compiles with
