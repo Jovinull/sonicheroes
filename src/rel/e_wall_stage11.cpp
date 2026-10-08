@@ -445,8 +445,8 @@ M2C_UNK End__16TEnemyMatTextureFv(M2C_UNK*);                                    
 M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
     M2C_UNK*, s32, void*, M2C_UNK*, M2C_UNK);               /* extern */
 M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);               /* extern */
-M2C_UNK fn_8011B418(f32*);                                  /* extern */
-M2C_UNK fn_8011B594(f32*);                                  /* extern */
+M2C_UNK Create__15TEnemyShockWaveFPC10sShockWave(f32*);     /* extern */
+M2C_UNK __ct__10sShockWaveFv(f32*);                         /* extern */
 M2C_UNK fn_8011B844(u32, f32*, f32);                        /* extern */
 M2C_UNK fn_8011C0E8(u32);                                   /* extern */
 M2C_UNK ParalyzeEnemy__14TEnemyScoreManFi(u32, s32);        /* extern */
@@ -2848,13 +2848,13 @@ void fn_8_BAF00(TObject* arg0, s32 arg1)
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(lbl_8042C388, 0x401F, &arg0->unk140, 0, 1, 0, 0);
 					}
-					fn_8011B594(sp8);
+					__ct__10sShockWaveFv(sp8);
 					temp_r3_2 = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x2BC));
 					sp8[0]    = M2C_FIELD(temp_r3_2, f32*, 0x30);
 					sp8[1]    = M2C_FIELD(temp_r3_2, f32*, 0x34);
 					sp8[2]    = M2C_FIELD(temp_r3_2, f32*, 0x38);
 					sp8[1]    = GetShadowPos__FP5RwV3dP6sAnglei(sp8, NULL, 1);
-					fn_8011B418(sp8);
+					Create__15TEnemyShockWaveFPC10sShockWave(sp8);
 					arg0->unk274 = 2;
 				}
 			}

@@ -499,6 +499,17 @@ game/material.cpp:
 	.sbss       start:0x8042C6A0 end:0x8042C6A8
 	.sdata2     start:0x8042EAA8 end:0x8042EAB0
 
+game/enemy/e_shockwave.cpp:
+	extab       start:0x8000AB94 end:0x8000AC08
+	extabindex  start:0x80010C90 end:0x80010CD8
+	.text       start:0x8011AACC end:0x8011B5A8
+	.rodata     start:0x8023AA90 end:0x8023AAA0
+	.data       start:0x80289398 end:0x802893D8
+	.bss        start:0x803E7E58 end:0x803E7EA0
+	.sdata      start:0x8042B8B8 end:0x8042B8C0
+	.sbss       start:0x8042C6B0 end:0x8042C6C0
+	.sdata2     start:0x8042EAE0 end:0x8042EB28
+
 game/enemy/e_utility_rw.cpp:
 	extab       start:0x8000AC08 end:0x8000AC18
 	extabindex  start:0x80010CD8 end:0x80010CF0

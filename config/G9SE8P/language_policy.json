@@ -123,6 +123,7 @@
     "game/enemy/e_iconman.cpp",
     "game/enemy/e_powercore.cpp",
     "game/enemy/e_ringlaser.cpp",
+    "game/enemy/e_shockwave.cpp",
     "game/gParam.cpp",
     "game/game2pTable.cpp",
     "game/light.cpp",
