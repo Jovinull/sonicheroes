@@ -2481,3 +2481,17 @@ No deferred inlining, instruction adjustment or normalizer is needed. See
 `e-utility-search-unit-evidence.md` for boundary qualifications and type evidence.
 Full supported source-linked release build, all eighteen artifact hashes, 62
 automated tests and both policies pass. No runtime validation is claimed.
+
+## Enemy summoning complete C++ unit (2026-10-07)
+
+Positive e_summon.cpp metadata supplies six methods and the class layout.
+Three bodies survive; the constructor and two helpers inline. Genuine C++
+inheritance, new-expression exception cleanup and virtual destruction produce
+all three bodies exactly. A local ACTIONMODE_TURN snapshot preserves the retail
+integer predicate lowering; no deferred mode or object normalizer is used.
+Two discarded helper return values and one inlined helper boundary are
+explicit reconstruction uncertainties. The weak delete duplicate resolves to
+the existing Task.cpp implementation through normal linker selection. See
+`e-summon-unit-evidence.md` for full ownership and verification scope.
+The final linker map confirms duplicate deletion and exception-record discard;
+all eighteen supported artifacts, 62 tests and both policies pass.

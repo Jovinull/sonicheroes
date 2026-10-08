@@ -218,7 +218,7 @@ M2C_UNK SaveRenderState__7nRenderFv();                                 /* extern
 M2C_UNK fn_8011B844(u32, f32*, f32);                                   /* extern */
 s32 fn_8011C188(s32, s32);                                             /* extern */
 M2C_UNK fn_8011C6EC();                                                 /* extern */
-s32 fn_80130B40(s32);                                                  /* extern */
+s32 Create__12TEnemySummonFUc(s32);                                    /* extern */
 s32 DecreaseTimer__7nSystemFRi(void*);                                 /* extern */
 M2C_UNK fn_8014FF2C(M2C_UNK);                                          /* extern */
 M2C_UNK fn_8014FFBC(s32, s32*, s32*);                                  /* extern */
@@ -1219,7 +1219,7 @@ void fn_8_AC9D8(void* arg0, s32 arg1)
 			if (((s32)M2C_FIELD(arg0, s32*, 0x2E8) == 0)
 			    && ((s32)M2C_FIELD(arg0, s32*, 0xD0) == 1)) {
 				if (M2C_FIELD(arg0, f32*, 0xB8) >= lbl_8_rodata_1B28[0]) {
-					fn_80130B40(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A));
+					Create__12TEnemySummonFUc(M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), u8*, 0x2A));
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(lbl_8042C388, 0x4047, (u8*)arg0 + 0x140, NULL, 1, 0, 0);
 					}

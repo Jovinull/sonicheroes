@@ -490,6 +490,13 @@ game/rankTable.cpp:
 	.text       start:0x8012D440 end:0x8012D97C
 	.data       start:0x8028A2C0 end:0x8028A89C
 
+game/enemy/e_summon.cpp:
+	extab       start:0x8000B670 end:0x8000B698
+	extabindex  start:0x80011638 end:0x8001165C
+	.text       start:0x801308C8 end:0x80130BC0
+	.data       start:0x8028AED0 end:0x8028AF10
+	.sdata      start:0x8042BB88 end:0x8042BB90
+
 game/GetSpParam.cpp:
 	extab       start:0x8000B698 end:0x8000B6A8
 	extabindex  start:0x8001165C end:0x80011674
