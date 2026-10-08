@@ -683,6 +683,9 @@ rel/flyer_register.cpp:
 	.text       start:0x000C4EFC end:0x000C4FA0
 	.ctors      start:0x00000198 end:0x0000019C
 
+rel/flyer_collision_create.cpp:
+	.text       start:0x000C6304 end:0x000C647C
+
 rel/flyer_col_register.cpp:
 	.text       start:0x000C647C end:0x000C6524
 	.ctors      start:0x0000019C end:0x000001A0
