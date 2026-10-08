@@ -4,7 +4,7 @@
 extern "C" {
 RpClump* fn_80150588(RpClump*);
 s32 fn_80150958(RpClump*);
-RwFrame* fn_8011B5A8(RwFrame*, s32);
+RwFrame* SearchFrameFromFrameID__11nRenderWareFP7RwFramei(RwFrame*, s32);
 }
 
 char* CL_TEnemyMtnPath = "TEnemyMtnPath";
@@ -81,7 +81,7 @@ TEnemyMtnPath::TEnemyMtnPath(TObject* ptp, TEnemyMtnPathData* pathdata)
 		mpClump         = fn_80150588(pClump_Temp);
 		RwFrame* pFrame = (RwFrame*)mpClump->object.parent;
 		if (pFrame != NULL)
-			mpFrame = fn_8011B5A8(pFrame, 0x37);
+			mpFrame = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(pFrame, 0x37);
 	}
 	ENEMY_MOTION* pMtnTblPtr = pathdata->GetMotionPtr();
 	if (pMtnTblPtr != NULL && mpClump != NULL) {

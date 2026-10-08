@@ -345,30 +345,30 @@ M2C_UNK SaveRenderState__7nRenderFv();                                          
 M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                               /* extern */
 M2C_UNK End__16TEnemyMatTextureFv(void*);                                           /* extern */
 M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
-    M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
-u32 fn_8011B5A8(RwFrame*, M2C_UNK);                              /* extern */
-M2C_UNK fn_8011C188(u32, s32);                                   /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                          /* extern */
-M2C_UNK fn_8011C6EC();                                           /* extern */
-M2C_UNK fn_8014FF2C(void*);                                      /* extern */
-void* fn_80150588(s32);                                          /* extern */
-M2C_UNK fn_80150958(void*);                                      /* extern */
-M2C_UNK fn_80195A74(M2C_UNK*, M2C_UNK*, M2C_UNK, f32, f32, f32); /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                   /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);              /* extern */
-void* fn_8019E8EC(void*);                                        /* extern */
-M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                   /* extern */
-M2C_UNK fn_8019EC30(RwFrame*, f32*, M2C_UNK);                    /* extern */
-M2C_UNK fn_8019ECCC(RwFrame*, void*, M2C_UNK);                   /* extern */
-M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);               /* extern */
-s32 rand(void*, ...);                                            /* extern */
-M2C_UNK fn_8_90B10(s32);                                         /* extern */
-void** fn_8_9DCE8();                                             /* extern */
-M2C_UNK fn_8_9E43C(TObject*);                                    /* extern */
-void** fn_8_9EB28();                                             /* extern */
-void captureObjectGlobalArrayDtor();                             /* static */
-void fn_8_9B920(TObject* arg0);                                  /* static */
-void fn_8_9C054(TObject* arg0);                                  /* static */
+    M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                              /* extern */
+u32 SearchFrameFromFrameID__11nRenderWareFP7RwFramei(RwFrame*, M2C_UNK); /* extern */
+M2C_UNK fn_8011C188(u32, s32);                                           /* extern */
+M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                  /* extern */
+M2C_UNK fn_8011C6EC();                                                   /* extern */
+M2C_UNK fn_8014FF2C(void*);                                              /* extern */
+void* fn_80150588(s32);                                                  /* extern */
+M2C_UNK fn_80150958(void*);                                              /* extern */
+M2C_UNK fn_80195A74(M2C_UNK*, M2C_UNK*, M2C_UNK, f32, f32, f32);         /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                           /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                      /* extern */
+void* fn_8019E8EC(void*);                                                /* extern */
+M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                           /* extern */
+M2C_UNK fn_8019EC30(RwFrame*, f32*, M2C_UNK);                            /* extern */
+M2C_UNK fn_8019ECCC(RwFrame*, void*, M2C_UNK);                           /* extern */
+M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);                       /* extern */
+s32 rand(void*, ...);                                                    /* extern */
+M2C_UNK fn_8_90B10(s32);                                                 /* extern */
+void** fn_8_9DCE8();                                                     /* extern */
+M2C_UNK fn_8_9E43C(TObject*);                                            /* extern */
+void** fn_8_9EB28();                                                     /* extern */
+void captureObjectGlobalArrayDtor();                                     /* static */
+void fn_8_9B920(TObject* arg0);                                          /* static */
+void fn_8_9C054(TObject* arg0);                                          /* static */
 void* fn_8_9C4BC(void*, s16);
 void* fn_8_9D3BC(void*, s16);
 void fn_8_9AB68(void*, u32, s32);
@@ -2626,7 +2626,7 @@ void fn_8_9B920(TObject* arg0)
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
 		}
 		if ((u32)arg0->unk2EC == 0U) {
-			arg0->unk2EC = fn_8011B5A8(temp_r31, 0x456);
+			arg0->unk2EC = SearchFrameFromFrameID__11nRenderWareFP7RwFramei(temp_r31, 0x456);
 		}
 	}
 	if ((u32)arg0->unk268 == 0U) {
