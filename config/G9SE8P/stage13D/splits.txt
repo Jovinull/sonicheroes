@@ -559,6 +559,9 @@ rel/capture_register.cpp:
 	.text       start:0x000ABFE8 end:0x000AC0E4
 	.ctors      start:0x00000154 end:0x00000158
 
+rel/capture_collision_create.cpp:
+	.text       start:0x000AC5CC end:0x000AC6B8
+
 rel/capture_collision_register.cpp:
 	.text       start:0x000AC6B8 end:0x000AC760
 	.ctors      start:0x00000158 end:0x0000015C
