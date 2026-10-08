@@ -1,4 +1,4 @@
-#include "types.h"
+#include "game/expasm.h"
 
 #define NEXT_BIT(bit)                                                                              \
 	do {                                                                                           \
@@ -10,7 +10,7 @@
 		filterAddressing >>= 1;                                                                    \
 	} while (0)
 
-u32 Expand2(void* sourceAddress, void* destinationAddress)
+s32 Expand2(void* sourceAddress, void* destinationAddress)
 {
 	u8* destinationStart;
 	u8* source;

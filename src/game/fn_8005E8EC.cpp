@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/expasm.h"
 
 // The original translation-unit name and private type names are unknown. This
 // neutral filename follows the first function address; descriptive private
@@ -139,7 +140,6 @@ void fn_8011B7CC(void*);
 void* fn_80012994(u32);
 void fn_800126C8(void*);
 void fn_800D0624(void*, void*, u32);
-void* Expand2__FPvPv(void*, void*);
 void fn_801A4C84(void*);
 void* fn_80198000(s32, s32, void*);
 s32 fn_80192F38(void*, s32, s32, s32);
@@ -327,12 +327,15 @@ extern "C" void* fn_8005EA04(char* name)
 			void* expanded = fn_80012994(0x19000);
 			input          = fn_80012994(request->size);
 			fn_800D0624(input, name, request->size);
-			void* end = Expand2__FPvPv(input, expanded);
-			void* streamArgs[2];
-			streamArgs[1] = end;
-			streamArgs[0] = expanded;
+			s32 expandedSize = Expand2(input, expanded);
+			struct {
+				void* start;
+				u32 length;
+			} streamArgs;
+			streamArgs.length = expandedSize;
+			streamArgs.start  = expanded;
 			fn_801A4C84(request->dictionary);
-			void* stream = fn_80198000(3, 1, streamArgs);
+			void* stream = fn_80198000(3, 1, &streamArgs);
 			if (fn_80192F38(stream, 0x10, 0, 0) != 0)
 				*(void**)((u8*)objectBase + request->slot * sizeof(ResourceEntry))
 				    = fn_80150B88(stream);
