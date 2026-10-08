@@ -628,6 +628,9 @@ rel/s03_sign_board_register.cpp:
 	.text       start:0x000ACE44 end:0x000ACEE0
 	.ctors      start:0x0000015C end:0x00000160
 
+rel/key_object_create.cpp:
+	.text       start:0x000AE07C end:0x000AE26C
+
 rel/key_register.cpp:
 	.text       start:0x000AE26C end:0x000AE304
 	.ctors      start:0x00000160 end:0x00000164
