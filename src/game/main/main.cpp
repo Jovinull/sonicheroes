@@ -1,3 +1,4 @@
+#include "game/miscs.h"
 typedef unsigned int u32;
 typedef unsigned char u8;
 typedef signed char s8;
@@ -73,7 +74,6 @@ void* fn_80012994(u32);
 int DVDReadPrio(DVDFileInfo*, void*, int, int, int);
 void OSSetStringTable(void*);
 void DVDClose(DVDFileInfo*);
-void fn_800D7B18();
 void fn_80116D30(void*);
 void fn_80040198(void*);
 void fn_80066ED8(void*, int);
@@ -303,7 +303,7 @@ void MAIN::Init()
 		DVDClose(&file);
 	}
 
-	fn_800D7B18();
+	njInitSinTable();
 	fn_80116D30(lbl_803E774C);
 	fn_80040198(&lbl_8042C1BC);
 	fn_80066ED8(&lbl_8042C308, 0);

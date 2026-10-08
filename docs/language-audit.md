@@ -1560,3 +1560,35 @@ link and report generation. All 55 regression tests, both policy checks and
 all 18 original-linked DOL/REL hashes pass. These do not establish runtime
 validation of the candidate. PAL, Japan and PS2 have no configured build
 targets; no physical hardware or runtime testing was performed.
+
+### miscs.cpp complete reconstruction
+
+`game/miscs.cpp` is a complete eleven-function C++ reconstruction. Local European PS2 (`SLES_519.50`) CCC 2.2 metadata identifies
+`miscs.cpp` as C++ and supplies the correlated sine initialization, segment
+projection, projectile velocity, drawing, and angle-helper sequence. The
+GameCube boundary is inferred from that sequence and shared sine-table/data
+references, not from individual exception records.
+
+The former address-named sine initializer, segment-distance, and XZ-scale
+fragments are consolidated into this unit. The sine table is one 65,536-float
+array; references to former internal labels become offsets within that array.
+The initializer's split-object postprocessor is no longer scheduled.
+
+Deferred inlining with reversed external definitions reproduces the observed
+GameCube function order. Ordinary automatic inlining emits the drawing function
+after the later angle helpers instead. With numeric constants restored, all
+eleven functions have the target instruction bytes. A bounded compiler-atom
+normalizer permutes six existing scalar atoms and rebases their symbols to
+resolve the 64-byte constant-pool order. All instructions and relocation records
+remain unchanged. The lost source/compiler choice behind the scalar ordering
+remains explicit in [the normalization evidence](miscs-constant-order.md).
+
+
+The correlated API names now use C++ linkage and shared declarations in
+`include/game/miscs.h`. The segment-distance interface takes four vector
+pointers; two existing nonmatching stage-11 callers no longer treat an incidental
+floating-point register value as a fifth argument. The three replaced fragments
+and their obsolete initializer postprocessor are removed. Independent exact
+section and relocation checks now include the constant pool without a
+permutation exception. Native supported-matrix validation is recorded in the
+normalization evidence; compilation does not establish runtime validation.

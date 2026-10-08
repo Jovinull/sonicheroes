@@ -118,6 +118,7 @@
     "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
     "game/message.cpp",
+    "game/miscs.cpp",
     "game/modeswitch.cpp",
     "game/skyfs_adx.c",
     "rel/e_capture_collision_stage11.cpp",

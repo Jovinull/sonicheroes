@@ -378,19 +378,12 @@ game/fn_800D7920.cpp:
 game/fn_800D7A54.cpp:
 	.text       start:0x800D7A54 end:0x800D7B18
 
-game/fn_800D7B18.cpp:
-	extab       start:0x80008C68 end:0x80008C70
-	extabindex  start:0x8000F37C end:0x8000F388
-	.text       start:0x800D7B18 end:0x800D7BD8
-	.bss        start:0x803A7028 end:0x803E7028
-
-game/fn_800D7BD8.cpp:
-	extab       start:0x80008C70 end:0x80008C78
-	extabindex  start:0x8000F388 end:0x8000F394
-	.text       start:0x800D7BD8 end:0x800D7E5C
-
-game/fn_800D7E5C.cpp:
-	.text       start:0x800D7E5C end:0x800D7E94
+game/miscs.cpp:
+	extab       start:0x80008C68 end:0x80008CA0
+	extabindex  start:0x8000F37C end:0x8000F3D0
+	.text       start:0x800D7B18 end:0x800D8B48
+	.bss        start:0x803A6FE0 end:0x803E7028
+	.sdata2     start:0x8042E040 end:0x8042E080
 
 game/texture.cpp:
 	extab       start:0x80008CA0 end:0x80008CA8
