@@ -3,8 +3,8 @@
 // The record that registers SYSTEM OBJECT3 with the editor.
 //
 // The claim is .text 0x4DD78 to 0x4DE1C and the .ctors word that names it. Only the
-// record is taken: the four hooks it point at stay assembly and are reached by
-// the names each module's symbols.txt gives them.
+// record is taken: the four hooks it points at are reached by the names each
+// module's symbols.txt gives them. The factory is rel/system_object3_create.cpp.
 //
 // The run is the same in thirteen of the fourteen stage modules. stage40D
 // registers the same object from a different build and does not share it.
