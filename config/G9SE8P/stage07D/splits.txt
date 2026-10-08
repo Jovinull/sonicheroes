@@ -474,6 +474,9 @@ rel/bigcannon_register.cpp:
 	.text       start:0x00073C6C end:0x00073D1C
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/bridge_create.cpp:
+	.text       start:0x00074550 end:0x00074678
+
 rel/bridge_register.cpp:
 	.text       start:0x00074678 end:0x00074728
 	.ctors      start:0x000000CC end:0x000000D0
