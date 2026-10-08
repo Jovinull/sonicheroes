@@ -34,8 +34,9 @@ struct Fn80055874Grid {
 };
 
 extern "C" u32 lbl_80242B28[4];
-extern "C" void fn_8005430C(Fn80055874Grid*, const Fn80055874Node*, Fn80055874Vec*);
-extern "C" Fn80055874Result* fn_8005428C(Fn80055874Result*, u16);
+extern "C" void GetCenterPosition__6OCTREEFPC5ONODEP5RwV3d(
+    Fn80055874Grid*, const Fn80055874Node*, Fn80055874Vec*);
+extern "C" Fn80055874Result* AddNode_MiniLinearList__FP14MiniLinearListUs(Fn80055874Result*, u16);
 extern "C" f64 __fabs(f64);
 
 extern "C" Fn80055874Result* fn_80055874(Fn80055874Grid* grid, Fn80055874Result* result,
@@ -51,7 +52,7 @@ extern "C" Fn80055874Result* fn_80055874(Fn80055874Grid* grid, Fn80055874Result*
 		grid->visited[value >> 5] |= 1 << (value & 31);
 		grid->visitedGroups |= 1 << (value >> 11);
 	}
-	fn_8005430C(grid, node, &center);
+	GetCenterPosition__6OCTREEFPC5ONODEP5RwV3d(grid, node, &center);
 
 	if (node->firstChild != 0) {
 		if (upper->x < center.x)
@@ -113,7 +114,7 @@ extern "C" Fn80055874Result* fn_80055874(Fn80055874Grid* grid, Fn80055874Result*
 				break;
 		}
 		if (intersects)
-			result = fn_8005428C(result, node->value);
+			result = AddNode_MiniLinearList__FP14MiniLinearListUs(result, node->value);
 	}
 
 	for (neighbourIndex = 0; neighbourIndex <= 3; neighbourIndex++) {

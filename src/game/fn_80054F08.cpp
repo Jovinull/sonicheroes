@@ -77,24 +77,27 @@ struct Fn80054F08Grid {
 	f32 cellExtents[1];
 };
 
-extern "C" Fn80054F08Cell* fn_8005438C(Fn80054F08Grid*, const Fn80054F08Vec*);
-extern "C" void fn_8005430C(Fn80054F08Grid*, const Fn80054F08Cell*, Fn80054F08Vec*);
-extern "C" Fn80054F08TraversalEntry* fn_8005428C(Fn80054F08TraversalEntry*, u16);
+extern "C" Fn80054F08Cell* GetNodeFromPosition__6OCTREEFPC5RwV3d(
+    Fn80054F08Grid*, const Fn80054F08Vec*);
+extern "C" void GetCenterPosition__6OCTREEFPC5ONODEP5RwV3d(
+    Fn80054F08Grid*, const Fn80054F08Cell*, Fn80054F08Vec*);
+extern "C" Fn80054F08TraversalEntry* AddNode_MiniLinearList__FP14MiniLinearListUs(
+    Fn80054F08TraversalEntry*, u16);
 extern "C" Fn80054F08TraversalEntry* fn_80055874(Fn80054F08Grid*, Fn80054F08TraversalEntry*,
     Fn80054F08Cell*, const Fn80054F08Vec*, f32, const Fn80054F08Vec*, const Fn80054F08Vec*);
-extern "C" void fn_80054230(Fn80054F08TraversalEntry*);
+extern "C" void DeleteNode_MiniLinearList__FP14MiniLinearList(Fn80054F08TraversalEntry*);
 extern "C" f32 fn_800D71DC(const Fn80054F08Vec*, const Fn80054F08Vec*);
 extern "C" s32 clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
     const Fn80054F08Vec*, f32, const Fn80054F08Vec*, Fn80054F08Vec*, Fn80054F08Vec*);
 extern "C" void* __nw__FUl(u32);
-extern "C" void fn_8005421C(Fn80054F08ContactList*);
-extern "C" void fn_80054048(Fn80054F08ContactList*, u16, const Fn80054F08Vec*, const Fn80054F08Vec*,
-    const Fn80054F08Vec*, const s16*);
+extern "C" void __ct__19ColliPolyLinearListFv(Fn80054F08ContactList*);
+extern "C" void Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(Fn80054F08ContactList*, u16,
+    const Fn80054F08Vec*, const Fn80054F08Vec*, const Fn80054F08Vec*, const s16*);
 extern "C" const f32 lbl_8042D3C0;
 
 inline Fn80054F08ContactList::Fn80054F08ContactList()
 {
-	fn_8005421C(this);
+	__ct__19ColliPolyLinearListFv(this);
 }
 
 inline void* Fn80054F08ContactList::operator new(unsigned long size)
@@ -165,13 +168,13 @@ extern "C" Fn80054F08ContactList* fn_80054F08(Fn80054F08Grid* grid, const Fn8005
 	lower.x = point->x - radius;
 	lower.z = point->z - radius;
 
-	cell = fn_8005438C(grid, point);
-	fn_8005430C(grid, cell, &center);
+	cell = GetNodeFromPosition__6OCTREEFPC5RwV3d(grid, point);
+	GetCenterPosition__6OCTREEFPC5ONODEP5RwV3d(grid, cell, &center);
 	extent = grid->cellExtents[cell->padding3[4]];
 	Fn80054F08TraversalEntry* selectedTraversal;
 	if (upper.x < extent + center.x && center.x - extent < lower.x && upper.z < extent + center.z
 	    && center.z - extent < lower.z) {
-		selectedTraversal = fn_8005428C(0, cell->value);
+		selectedTraversal = AddNode_MiniLinearList__FP14MiniLinearListUs(0, cell->value);
 	} else {
 		selectedTraversal = fn_80055874(grid, 0, cell, point, radius, &upper, &lower);
 	}
@@ -228,8 +231,9 @@ extern "C" Fn80054F08ContactList* fn_80054F08(Fn80054F08Grid* grid, const Fn8005
 							if (contacts == 0) {
 								contacts = new Fn80054F08ContactList;
 							}
-							fn_80054048(contacts, (u16)rawTriangleIndex, &correction,
-							    &resolvedPoint, &surfacePoint, 0);
+							Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(contacts,
+							    (u16)rawTriangleIndex, &correction, &resolvedPoint, &surfacePoint,
+							    0);
 						}
 					}
 				}
@@ -238,7 +242,7 @@ extern "C" Fn80054F08ContactList* fn_80054F08(Fn80054F08Grid* grid, const Fn8005
 			}
 		}
 		next = traversal->next;
-		fn_80054230(traversal);
+		DeleteNode_MiniLinearList__FP14MiniLinearList(traversal);
 		traversal = next;
 	}
 	return contacts;

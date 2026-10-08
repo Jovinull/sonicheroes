@@ -8,6 +8,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex 2026-10-06 | `game/calc_movcolli.cpp`, all three moving-collision functions | Active on `decomp/calc-movcolli-20261006`; complete draft: all three bodies compile; point routine/constants match, triangle/segment remain nonmatching; G9SE8P build, 55 tests and 18 original-linked hashes pass |
 | Codex 2026-10-07 | `game/miscs.cpp`, complete eleven-function utility unit | Complete on PR #557; eleven source bodies exact, six compiler scalar atoms reordered; native DOL and all 17 RELs byte-identical |
 | Codex 2026-10-07 | `game/calc.cpp`, complete interpolation and matrix-rotation unit | Complete on `decomp/calc-20261006`; eight bodies, seven source-exact; ten GetRotYXZ register fields normalized; all 18 native image hashes and 63 tests pass |
+| Codex 2026-10-06 | `game/octree.cpp`, complete octree and collision-list unit | Ready on `decomp/octree-20261006`; all ten functions and owned sections native-match, 37 relocations exact; full G9SE8P build, 18 hashes, 55 tests and policies pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Claude Code | GX graphics library | Active; reserved |
 | Codex | `game/cri/axrna.c` | Attempted; no net improvement after source-form and compiler-flag trials |

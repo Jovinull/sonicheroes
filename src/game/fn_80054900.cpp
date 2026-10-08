@@ -75,11 +75,11 @@ extern "C" f32 fn_801991B4(Fn80054900Vec*);
 extern "C" void fn_801990E0(Fn80054900Vec*, Fn80054900Vec*);
 extern "C" Fn80054900TraversalEntry* fn_800556A0(
     Fn80054900Grid*, const Fn80054900Vec*, const Fn80054900Vec*, f32);
-extern "C" void fn_80054230(Fn80054900TraversalEntry*);
+extern "C" void DeleteNode_MiniLinearList__FP14MiniLinearList(Fn80054900TraversalEntry*);
 extern "C" void* __nw__FUl(u32);
-extern "C" void fn_8005421C(Fn80054900ContactList*);
-extern "C" void fn_80054048(Fn80054900ContactList*, u16, const Fn80054900Vec*, const Fn80054900Vec*,
-    const Fn80054900Vec*, const s16*);
+extern "C" void __ct__19ColliPolyLinearListFv(Fn80054900ContactList*);
+extern "C" void Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(Fn80054900ContactList*, u16,
+    const Fn80054900Vec*, const Fn80054900Vec*, const Fn80054900Vec*, const s16*);
 extern "C" s32 clDetectS2T__FPC5RwV3dfP5RwV3dP5RwV3dP5RwV3d(
     const Fn80054900Vec*, f32, const Fn80054900Vec*, Fn80054900Vec*, Fn80054900Vec*);
 extern "C" s32 clDetectMS2T__FPC5RwV3dfPC5RwV3dP5RwV3dP5RwV3dP5RwV3dPs(const Fn80054900Vec*, f32,
@@ -89,7 +89,7 @@ extern "C" const f32 lbl_8042D3C4;
 
 inline Fn80054900ContactList::Fn80054900ContactList()
 {
-	fn_8005421C(this);
+	__ct__19ColliPolyLinearListFv(this);
 }
 
 inline void* Fn80054900ContactList::operator new(unsigned long size)
@@ -249,8 +249,8 @@ extern "C" Fn80054900ContactList* fn_80054900(Fn80054900Grid* grid, const Fn8005
 								resolvedPoint.x = point->x + correction.x;
 								resolvedPoint.y = point->y + correction.y;
 								resolvedPoint.z = point->z + correction.z;
-								fn_80054048(contacts, (u16)rawTriangleIndex, 0, &resolvedPoint,
-								    &surfacePoint, 0);
+								Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(contacts,
+								    (u16)rawTriangleIndex, 0, &resolvedPoint, &surfacePoint, 0);
 							}
 						} else {
 							s16 secondaryValue = 0;
@@ -263,21 +263,25 @@ extern "C" Fn80054900ContactList* fn_80054900(Fn80054900Grid* grid, const Fn8005
 								}
 								if (grid->contactMode == 1) {
 									if (result == 2) {
-										fn_80054048(contacts, (u16)rawTriangleIndex, 0,
-										    &secondContact, &firstContact, &secondaryValue);
+										Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(
+										    contacts, (u16)rawTriangleIndex, 0, &secondContact,
+										    &firstContact, &secondaryValue);
 										*contactType = 2;
 									} else {
-										fn_80054048(contacts, (u16)rawTriangleIndex, &firstContact,
+										Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(
+										    contacts, (u16)rawTriangleIndex, &firstContact,
 										    &secondContact, 0, &secondaryValue);
 										*contactType       = 1;
 										remainingDirection = firstContact;
 									}
 								} else if (fn_80054900LengthSq(remainingDirection) > lbl_8042D3C0) {
-									fn_80054048(contacts, (u16)rawTriangleIndex, &firstContact,
+									Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(
+									    contacts, (u16)rawTriangleIndex, &firstContact,
 									    &secondContact, 0, &secondaryValue);
 									*contactType = 1;
 								} else {
-									fn_80054048(contacts, (u16)rawTriangleIndex, 0, &secondContact,
+									Insert__19ColliPolyLinearListFUsP5RwV3dP5RwV3dP5RwV3dPs(
+									    contacts, (u16)rawTriangleIndex, 0, &secondContact,
 									    &firstContact, &secondaryValue);
 									*contactType = 2;
 								}
@@ -290,7 +294,7 @@ extern "C" Fn80054900ContactList* fn_80054900(Fn80054900Grid* grid, const Fn8005
 			}
 		}
 		Fn80054900TraversalEntry* next = traversal->next;
-		fn_80054230(traversal);
+		DeleteNode_MiniLinearList__FP14MiniLinearList(traversal);
 		traversal = next;
 	}
 	return contacts;

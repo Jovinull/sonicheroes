@@ -45,6 +45,45 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### Octree and collision-list translation unit
+
+`game/octree.cpp` replaces nine address-named fragments and reconstructs the
+remaining center-position routine, covering all ten surviving functions at
+`0x80053FB8`–`0x800546F4`. The GameCube whole-unit boundary is inferred from
+the correlated function sequence, shared class layouts and constant pool.
+Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2, commit
+`c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section .debug dwarf`)
+identifies `octree.cpp` as C++ and associates `OCTREE`, `ColliPolyLinearList`
+and the mini-list routines with it. The 0x18C-byte OCTREE layout and the
+constructor's header copies, flag-buffer allocation, tree traversal and list
+operations independently correlate with GameCube. Only these symbolic facts
+are recorded; no PS2 code or full metadata dump is included.
+
+Shared layouts and C++ interfaces live in `include/game/octree.h`. Constructors
+and destructors compile natively, with `Clear` inlined into the list destructor.
+The center-position helper writes only X and Z, preserving Y; construction
+retains the root-length mantissa truncation and allocation-failure early returns.
+Existing fragment callers retain their ABI while using canonical C++ symbol
+names. The former traversal fragment's conversion-bias postprocessor is no
+longer configured: the whole unit naturally owns the shared numeric literals.
+Its legacy tool and regression tests remain available.
+
+Reverse definition order with `-inline deferred` reproduces retail function,
+exception and literal emission. With ordinary automatic inlining, the center,
+traversal and constructor compare at 99.84375%, 99.91071% and 99.87069%; exception
+sections compare at 33.333336%/31.111113% and the literal pool at 70.83333%.
+Deferred emission makes all ten functions and all owned sections exact, without
+extra compiler helpers, assembly or postprocessing. Independent ELF comparison
+verifies 1,852 text bytes, 72 exception bytes, 108 exception-index bytes,
+24 literal bytes, all function offsets/sizes and 37 normalized relocations.
+Section types, sizes and alignment agree; `.sdata2` has the usual DTK alloc-only
+versus Metrowerks alloc/write flag difference.
+
+The sole supported release target, G9SE8P, passed the full all-source, link and
+report build with the native octree object linked. All 18 artifact hashes,
+55 automated tests and both policy checkers passed. No runtime or physical
+hardware validation was performed.
+
 ### GameCube ARAM pool translation unit
 
 `game/aram_pool.cpp` reconstructs the seven-function GameCube range

@@ -116,7 +116,7 @@ int fn_80041B64(void*);
 void fn_800E1208(int, int, int);
 void* fn_80054F08(void*, void*, float, int);
 void fn_8001F674(int, int, int, int);
-void fn_80054158(void*, int);
+void __dt__19ColliPolyLinearListFv(void*, int);
 void fn_8003BC38(void*);
 void fn_800BC9F4(void*, void*);
 void* fn_800BC6CC(void*, char*);
@@ -705,7 +705,7 @@ extern "C" void fn_8_46FEC(void* self)
 				fn_8001F674(field<s8>(lbl_80303DC8[player], 0x14C), 4, 15, 0);
 			field<float>(self, 0x140)
 			    = lbl_8_rodata_BF4 * ((PropellerPathInfo*)lbl_8_bss_AEC)[info[0]].speed;
-			fn_80054158(result, 1);
+			__dt__19ColliPolyLinearListFv(result, 1);
 		}
 	}
 	field<Vec3>(self, 0xAC)  = field<Vec3>(self, 0x90);
