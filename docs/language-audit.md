@@ -1502,3 +1502,61 @@ The supported G9SE8P all-source build, all eighteen output hashes and 55 languag
 post-processor and metadata regression tests pass at this checkpoint. Passing
 hashes validate the surrounding split/caller changes, not a source-linked
 collision unit. Runtime and physical-hardware behavior have not been validated.
+
+## calc_movcolli.cpp
+
+The complete GameCube moving-collision unit is `0x800D2ED4`–`0x800D52AC`: three
+functions, 9,176 retail text bytes, 16 exception-table bytes, 24 exception-index
+bytes and 32 small-constant bytes. PS2 symbolic metadata identifies the C++
+`calc_movcolli.cpp` source, `ENUM_CL_MOVING` and the three signatures. The
+GameCube triangle routine calls the segment routine, which calls the point
+routine five times; the following unit is the independently identified
+`Expand2` decompressor. The preceding collision unit has a separate constant
+pool, supporting both boundaries.
+
+All three bodies are reconstructed in C++ with typed vectors and collision
+results. The GameCube point routine is exactly `return CL_MOVING_NONE`; its
+call sites remain present. The other platform's nontrivial point routine is
+not imported. SDK callees were checked in GameCube: `0x801991B4` computes vector
+length without writing the vector, and `0x80199248` accepts and returns a float
+for the reciprocal-square-root lookup.
+
+The initial control-flow recovery used m2c commit
+`708d2d2cb2698f091a92492b328f73b24209f72d` against GameCube assembly only.
+Condition-register aliases were normalized in analysis input, vector stack
+regions were supplied as typed analysis context, and inferred scalar access to
+the first vector component was corrected to `.x`. Those analysis-only stack
+layouts are not emitted as source padding. Correlated vector names describe
+the triangle edges, cross product, projection and contact state. Remaining
+scalar temporaries and control-flow labels await refinement.
+
+Local vector writes use the same separate component-store view as the adjacent
+collision reconstruction, preserving the stores observed in retail. Eight
+segment square-root results use volatile float storage to retain the observed
+single-precision rounding and store/reload sequence. Scalar copies of local
+vector components and input fields were removed where their uses precede calls
+or writes that could change them. The triangle retains separate success and
+fallback returns where retail does; combining those returns changes register
+allocation across the routine.
+The triangle plane dot product is evaluated before the reciprocal-square-root
+call, as in GameCube. These are reconstruction choices, not claims about the
+original spelling or qualifiers.
+The projection coefficient is expressed at its vector uses, reproducing the
+retail normal-component load before the multiply/negate sequence. Descriptive
+names for the Y bounds, plane distances and projection rates describe their
+GameCube computations; they do not assert original source spelling.
+
+This is a **nonmatching draft** and retains the original linked object. The
+point routine and all 32 constant bytes match exactly; all 29 direct call target
+counts agree. The triangle routine is 4,920 native versus 4,928 retail bytes
+(99.54% object match), and the segment routine is 4,232 versus 4,240 (98.94%).
+Both exception-table records and stack-frame sizes match. Instruction and
+register differences remain, along with the resulting exception-index offsets
+and sizes. No instruction patcher or inline assembly is introduced, and matching
+is not claimed for the two larger routines.
+
+Validation: G9SE8P, the sole supported target, passes the full all-source build,
+link and report generation. All 55 regression tests, both policy checks and
+all 18 original-linked DOL/REL hashes pass. These do not establish runtime
+validation of the candidate. PAL, Japan and PS2 have no configured build
+targets; no physical hardware or runtime testing was performed.
