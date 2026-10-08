@@ -83,7 +83,7 @@ TObject* Malloc__9THeapCtrlFUi(...);                                            
 void* fn_800211A8(void*);                                                          /* extern */
 void fn_80021824(void*);                                                           /* extern */
 M2C_UNK fn_8003BC38(void*);                                                        /* extern */
-M2C_UNK fn_8003BE78(void*);                                                        /* extern */
+M2C_UNK ClearInfo__7C_COLLIFv(void*);                                              /* extern */
 M2C_UNK fn_8003C200(...);                                                          /* extern */
 M2C_UNK __ct__7C_COLLIFv(...);                                                     /* extern */
 void* __nw__FUl(u32);                                                              /* extern */
@@ -415,7 +415,7 @@ void fn_8_A8590(void* arg0)
 		var_r0 = 1;
 	}
 	if (var_r0 == 0) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		return;
 	}
 	temp_r0 = M2C_FIELD(arg0, s32*, 0xDC);
@@ -959,7 +959,7 @@ void fn_8_A9874(void* arg0)
 		var_r0 = 1;
 	}
 	if (var_r0 == 0) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		return;
 	}
 	temp_r0 = M2C_FIELD(arg0, s32*, 0xF0);

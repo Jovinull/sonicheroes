@@ -90,7 +90,7 @@ void* fn_800211A8(void*);                                                 /* ext
 M2C_UNK fn_80021384(M2C_UNK*);                                            /* extern */
 M2C_UNK fn_80021824(M2C_UNK*);                                            /* extern */
 M2C_UNK fn_8003BC38(void*);                                               /* extern */
-M2C_UNK fn_8003BE78(void*);                                               /* extern */
+M2C_UNK ClearInfo__7C_COLLIFv(void*);                                     /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK, ...);           /* extern */
 M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                       /* extern */
 s32 CheckMustKill__10TObjSetObjFv(s32);                                   /* extern */
@@ -442,7 +442,7 @@ void fn_8_B4DB0(void* arg0)
 		var_r0 = 1;
 	}
 	if (var_r0 == 0) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		return;
 	}
 	temp_r0 = M2C_FIELD(arg0, s32*, 0xE4);
@@ -1787,7 +1787,7 @@ void fn_8_B6998(void* arg0)
 		var_r0_2 = 1;
 	}
 	if (var_r0_2 == 0) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		return;
 	}
 	if (fn_8_B63E4(arg0) != 0) {

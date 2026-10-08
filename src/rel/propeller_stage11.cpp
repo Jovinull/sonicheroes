@@ -109,7 +109,7 @@ void* fn_80042118(char*);
 void fn_8014D208(void*, int, Vec3*);
 float fn_801991B4(Vec3*);
 int sprintf(char*, const char*, ...);
-void fn_8003BE78(void*);
+void ClearInfo__7C_COLLIFv(void*);
 void fn_80021824(void*);
 int fn_80020BD8(void*, int);
 void* fn_800211A8(void*);
@@ -670,7 +670,7 @@ extern "C" void fn_8_46FEC(void* self)
 	int state = field<int>(self, 0xB8);
 	if (state == 0) {
 		if (field<float>(self, 0xD8) < lbl_8_rodata_BF0) {
-			fn_8003BE78((u8*)self + 0x30);
+			ClearInfo__7C_COLLIFv((u8*)self + 0x30);
 			return;
 		}
 		fn_80021824(&lbl_8042C1A4);

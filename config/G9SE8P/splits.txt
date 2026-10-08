@@ -477,6 +477,17 @@ game/enemy/e_material.cpp:
 	.text       start:0x8011398C end:0x80113CCC
 	.data       start:0x80288CF0 end:0x80288D00
 
+game/enemy/e_ringlaser.cpp:
+	extab       start:0x8000A850 end:0x8000A8D0
+	extabindex  start:0x8001096C end:0x800109A8
+	.text       start:0x80113CCC end:0x801143E0
+	.rodata     start:0x8023A9C8 end:0x8023A9D8
+	.data       start:0x80288D00 end:0x80288D70
+	.bss        start:0x803E75A0 end:0x803E75E8
+	.sdata      start:0x8042B818 end:0x8042B820
+	.sbss       start:0x8042C668 end:0x8042C678
+	.sdata2     start:0x8042E9B8 end:0x8042E9E8
+
 game/SeqFlagCtrl.cpp:
 	.text       start:0x801143E0 end:0x801144E0
 	.bss        start:0x803E75E8 end:0x803E7668

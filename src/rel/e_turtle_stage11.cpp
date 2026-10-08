@@ -421,46 +421,46 @@ M2C_UNK SetLightNum__7nRenderFUi();                                             
 M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                               /* extern */
 M2C_UNK End__16TEnemyMatTextureFv(M2C_UNK*);                                        /* extern */
 M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
-    M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
-M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);                    /* extern */
-M2C_UNK fn_801140DC(f32*, f32);                                  /* extern */
-M2C_UNK fn_80114394(f32*);                                       /* extern */
-M2C_UNK fn_8011C13C(u32);                                        /* extern */
-M2C_UNK ParalyzeEnemy__14TEnemyScoreManFi(u32, s32);             /* extern */
-M2C_UNK TornadoEnemy__14TEnemyScoreManFi(u32, s32);              /* extern */
-M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);        /* extern */
-M2C_UNK CreateInstance__14TEnemyScoreManFv();                    /* extern */
-M2C_UNK fn_80139784(void*, TObject*, f32*);                      /* extern */
-void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                    /* extern */
-M2C_UNK fn_8014FF2C(s32);                                        /* extern */
-void* fn_80150588(u32);                                          /* extern */
-M2C_UNK fn_80150958(void*);                                      /* extern */
-M2C_UNK fn_80195790(M2C_UNK*, RwFrame*, f32, f32, M2C_UNK);      /* extern */
-M2C_UNK fn_80195A74(M2C_UNK*, RwFrame*, M2C_UNK, f32, f32, f32); /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                   /* extern */
-M2C_UNK fn_801990E0(f32*, f32*);                                 /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);              /* extern */
-s32 fn_8019CE34(s32, f32*);                                      /* extern */
-void* fn_8019E8EC(u32);                                          /* extern */
-M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                   /* extern */
-M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                       /* extern */
-M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);                  /* extern */
-s32 rand(f32*);                                                  /* extern */
-M2C_UNK fn_8_90B10(s32);                                         /* extern */
-M2C_UNK fn_8_BD380(s32);                                         /* extern */
-void fn_8_BDF6C(TObject* arg0, void* arg1);                      /* static */
-void fn_8_BE528(void* arg0);                                     /* static */
-s32 fn_8_BF340(void* arg0);                                      /* static */
-s32 fn_8_BF524(s32 arg0);                                        /* static */
-s32 fn_8_BF5AC(void* arg0);                                      /* static */
-void fn_8_BFF94(void* arg0, s32 arg1);                           /* static */
-void fn_8_C08C8(void* arg0, s32 arg1);                           /* static */
-void fn_8_C14B4(TObject* arg0);                                  /* static */
-void fn_8_C1BCC(TObject* arg0);                                  /* static */
-TObject* fn_8_C2018(TObject* arg0);                              /* static */
-void turtleObjectCreate();                                       /* static */
-void turtleObjectLoad();                                         /* static */
-void turtleObjectUnload();                                       /* static */
+    M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                          /* extern */
+M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);                        /* extern */
+M2C_UNK Create__18TObjEnemyRingLaserFPC15sRingLaserParam(f32*, f32); /* extern */
+M2C_UNK __ct__15sRingLaserParamFv(f32*);                             /* extern */
+M2C_UNK fn_8011C13C(u32);                                            /* extern */
+M2C_UNK ParalyzeEnemy__14TEnemyScoreManFi(u32, s32);                 /* extern */
+M2C_UNK TornadoEnemy__14TEnemyScoreManFi(u32, s32);                  /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);            /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                        /* extern */
+M2C_UNK fn_80139784(void*, TObject*, f32*);                          /* extern */
+void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                        /* extern */
+M2C_UNK fn_8014FF2C(s32);                                            /* extern */
+void* fn_80150588(u32);                                              /* extern */
+M2C_UNK fn_80150958(void*);                                          /* extern */
+M2C_UNK fn_80195790(M2C_UNK*, RwFrame*, f32, f32, M2C_UNK);          /* extern */
+M2C_UNK fn_80195A74(M2C_UNK*, RwFrame*, M2C_UNK, f32, f32, f32);     /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                       /* extern */
+M2C_UNK fn_801990E0(f32*, f32*);                                     /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                  /* extern */
+s32 fn_8019CE34(s32, f32*);                                          /* extern */
+void* fn_8019E8EC(u32);                                              /* extern */
+M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                       /* extern */
+M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                           /* extern */
+M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);                      /* extern */
+s32 rand(f32*);                                                      /* extern */
+M2C_UNK fn_8_90B10(s32);                                             /* extern */
+M2C_UNK fn_8_BD380(s32);                                             /* extern */
+void fn_8_BDF6C(TObject* arg0, void* arg1);                          /* static */
+void fn_8_BE528(void* arg0);                                         /* static */
+s32 fn_8_BF340(void* arg0);                                          /* static */
+s32 fn_8_BF524(s32 arg0);                                            /* static */
+s32 fn_8_BF5AC(void* arg0);                                          /* static */
+void fn_8_BFF94(void* arg0, s32 arg1);                               /* static */
+void fn_8_C08C8(void* arg0, s32 arg1);                               /* static */
+void fn_8_C14B4(TObject* arg0);                                      /* static */
+void fn_8_C1BCC(TObject* arg0);                                      /* static */
+TObject* fn_8_C2018(TObject* arg0);                                  /* static */
+void turtleObjectCreate();                                           /* static */
+void turtleObjectLoad();                                             /* static */
+void turtleObjectUnload();                                           /* static */
 extern M2C_UNK __dt__16TEnemyMatTextureFv;
 extern RwFrame AxisX;
 extern RwFrame AxisY;
@@ -1679,7 +1679,7 @@ void fn_8_BF3CC(void* arg0)
 	void* temp_r3;
 
 	if ((u32)M2C_FIELD(arg0, u32*, 0x254) != 0U) {
-		fn_80114394(&sp48.x);
+		__ct__15sRingLaserParamFv(&sp48.x);
 		temp_r3   = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x254));
 		sp48.x    = M2C_FIELD(temp_r3, f32*, 0x30);
 		sp48.y    = M2C_FIELD(temp_r3, f32*, 0x34);
@@ -1696,7 +1696,7 @@ void fn_8_BF3CC(void* arg0)
 		sp54.x *= temp_f1;
 		sp54.y *= temp_f1;
 		sp54.z *= temp_f1;
-		fn_801140DC(&sp48.x, temp_f1);
+		Create__18TObjEnemyRingLaserFPC15sRingLaserParam(&sp48.x, temp_f1);
 		if ((u32)lbl_8042C388 != 0U) {
 			fn_800B4A38(lbl_8042C388, 0x402E, (s32*)((u8*)arg0 + 0x140), 0, 1, 0, 0);
 		}
@@ -2161,7 +2161,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 				}
 			} else if ((s32)M2C_FIELD(arg0, s32*, 0x2C8) == 0) {
 				if ((u32)M2C_FIELD(arg0, u32*, 0x254) != 0U) {
-					fn_80114394(&sp2C.x);
+					__ct__15sRingLaserParamFv(&sp2C.x);
 					temp_r3_4  = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x254));
 					sp2C.x     = M2C_FIELD(temp_r3_4, f32*, 0x30);
 					sp2C.y     = M2C_FIELD(temp_r3_4, f32*, 0x34);
@@ -2178,7 +2178,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 					sp38.x *= temp_f1_2;
 					sp38.y *= temp_f1_2;
 					sp38.z *= temp_f1_2;
-					fn_801140DC(&sp2C.x, temp_f1_2);
+					Create__18TObjEnemyRingLaserFPC15sRingLaserParam(&sp2C.x, temp_f1_2);
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(lbl_8042C388, 0x402E, (s32*)((u8*)arg0 + 0x140), 0, 1, 0, 0);
 					}

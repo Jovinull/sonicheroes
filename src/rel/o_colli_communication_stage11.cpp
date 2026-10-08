@@ -74,7 +74,7 @@ s32 fn_80017800(void*);                                                         
 void* fn_80020BD8(void*, s32);                                                   /* extern */
 void fn_80021824(void*);                                                         /* extern */
 M2C_UNK fn_8003BC38(void*);                                                      /* extern */
-M2C_UNK fn_8003BE78(void*);                                                      /* extern */
+M2C_UNK ClearInfo__7C_COLLIFv(void*);                                            /* extern */
 int CheckMustKill__10TObjSetObjFv(void*);                                        /* extern */
 M2C_UNK fn_8006298C(s32, void*, void*);                                          /* extern */
 M2C_UNK fn_800A3D48(s32);                                                        /* extern */
@@ -809,7 +809,7 @@ void fn_8_B1C1C(void* arg0)
 		}
 	}
 	if ((fn_80017800(arg0) != 0) && ((u32)M2C_FIELD(arg0, u32*, 0x38) != 0U)) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		M2C_FIELD(arg0, f32*, 0xA4) = (f32)M2C_FIELD(arg0, f32*, 0x88);
 		M2C_FIELD(arg0, f32*, 0xA8) = (f32)M2C_FIELD(arg0, f32*, 0x8C);
 		M2C_FIELD(arg0, f32*, 0xAC) = (f32)M2C_FIELD(arg0, f32*, 0x90);
