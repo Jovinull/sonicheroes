@@ -394,6 +394,11 @@ game/vertical_colli.cpp:
 	.text       start:0x800D8BC4 end:0x800D8D2C
 	.sdata2     start:0x8042E080 end:0x8042E090
 
+game/enemy/e_utility_hierarchy.cpp:
+	extab       start:0x800097E0 end:0x800097F8
+	extabindex  start:0x8000FDE4 end:0x8000FE08
+	.text       start:0x800FF8B8 end:0x800FF9CC
+
 game/enemy/e_database.cpp:
 	extab       start:0x8000984C end:0x8000987C
 	extabindex  start:0x8000FE50 end:0x8000FE80

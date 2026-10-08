@@ -2326,3 +2326,13 @@ All ten bodies match with ordinary automatic inlining and genuine constructor,
 destructor and exception cleanup emission. No deferred override or object
 normalizer is introduced. See `e-mtnpath-unit-evidence.md` for ownership and
 verification.
+
+## enemy/e_utility_hierarchy.cpp
+
+C++ metadata supplies the complete three-function nHierarchy inventory, with
+native motion-manager callers and recursive callback addresses confirming the
+correlation. All 276 text bytes, 24 exception bytes and 36 exception-index bytes
+belong to this unit; no data ownership is inferred from metadata declarations.
+All three functions match with ordinary automatic inlining, without a deferred
+override or object normalizer. The frame-hierarchy API is correctly typed as
+returning RpHAnimHierarchy*. See `e-utility-hierarchy-unit-evidence.md`.
