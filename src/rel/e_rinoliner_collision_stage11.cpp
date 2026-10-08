@@ -82,7 +82,7 @@ void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);       /* extern */
 M2C_UNK __dl__FPv(void* arg0);                                      /* extern */
 void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);             /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                              /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                              /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                       /* extern */
 s32 fn_80017800(void*);                                             /* extern */
 M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                         /* extern */
 TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                       /* extern */
@@ -93,9 +93,9 @@ M2C_UNK fn_8003BC38(void*);                                         /* extern */
 M2C_UNK fn_8003BE78(void*);                                         /* extern */
 M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK, ...);     /* extern */
 M2C_UNK fn_8003C618(M2C_UNK*);                                      /* extern */
-s32 fn_8005B8BC(s32);                                               /* extern */
-M2C_UNK fn_8005BC04(void*);                                         /* extern */
-M2C_UNK fn_8005BE6C(f32*);                                          /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                             /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                              /* extern */
+M2C_UNK __ct__10TObjSetObjFv(f32*);                                 /* extern */
 void* fn_8005EA04(const char*);                                     /* extern */
 M2C_UNK fn_800A31B8(void*, s32);                                    /* extern */
 s32 fn_800A3ED4(void*);                                             /* extern */
@@ -928,7 +928,7 @@ s32 fn_8_B5C38(void* arg0)
 	void* var_r3;
 	void* temp_r0;
 
-	if (fn_8005B8BC((s32)((u8*)arg0 + 0xB0)) != 0) {
+	if (CheckMustKill__10TObjSetObjFv((s32)((u8*)arg0 + 0xB0)) != 0) {
 		return 1;
 	}
 	temp_r0 = M2C_FIELD(
@@ -1752,7 +1752,7 @@ void fn_8_B6998(void* arg0)
 	s32 var_r0;
 	s32 var_r0_2;
 
-	if (fn_8005B8BC((s32)((u8*)arg0 + 0xB0)) != 0) {
+	if (CheckMustKill__10TObjSetObjFv((s32)((u8*)arg0 + 0xB0)) != 0) {
 		var_r0 = 1;
 	} else {
 		var_r3
@@ -1790,7 +1790,7 @@ void fn_8_B6998(void* arg0)
 		return;
 	}
 	if (fn_8_B63E4(arg0) != 0) {
-		fn_8005BC04((u8*)arg0 + 0xB0);
+		SetEnd__10TObjSetObjFv((u8*)arg0 + 0xB0);
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -1850,7 +1850,7 @@ TObject* fn_8_B6C04(TObject* arg0, s16 arg1)
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_17268;
 		arg0->unkB4 = (f32)(u32)((u8*)&lbl_8_data_17268 + 0x2C);
-		dtor_8005BD3C((u8*)arg0 + 0xB0, 0);
+		__dt__10TObjSetObjFv((u8*)arg0 + 0xB0, 0);
 		dtor_8003C52C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
@@ -1868,7 +1868,7 @@ TObject* fn_8_B6C9C(TObject* arg0, TObject* arg1)
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
 	fn_8003C618(&arg0->unk28);
-	fn_8005BE6C(&arg0->unkB0);
+	__ct__10TObjSetObjFv(&arg0->unkB0);
 	arg0->unk18                = &lbl_8_data_17268;
 	arg0->unkB4                = (f32)(u32)((u8*)&lbl_8_data_17268 + 0x2C);
 	arg0->unk0                 = lbl_8_data_17264;
@@ -1909,7 +1909,7 @@ TObject* fn_8_B6DC0(void)
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);
-		fn_8005BE6C(&temp_r3->unkB0);
+		__ct__10TObjSetObjFv(&temp_r3->unkB0);
 		temp_r3->unk18                = &lbl_8_data_17268;
 		temp_r3->unkB4                = (f32)(u32)((u8*)&lbl_8_data_17268 + 0x2C);
 		temp_r3->unk0                 = lbl_8_data_17264;
@@ -1999,7 +1999,7 @@ void rinoColObjectCreate(void)
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);
-		fn_8005BE6C(&temp_r3->unkB0);
+		__ct__10TObjSetObjFv(&temp_r3->unkB0);
 		temp_r3->unk18                = &lbl_8_data_17268;
 		temp_r3->unkB4                = (f32)(u32)((u8*)&lbl_8_data_17268 + 0x2C);
 		temp_r3->unk0                 = lbl_8_data_17264;

@@ -23,8 +23,8 @@ extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8005BD3C(Motion*, s16);
-void fn_8005BE6C(Motion*);
+void __dt__10TObjSetObjFv(Motion*, s16);
+void __ct__10TObjSetObjFv(Motion*);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
@@ -35,7 +35,7 @@ void fn_801A4C84(void*);
 
 void Disp__7TObjectFv();
 void fn_8_8AA4C();
-void fn_8005B8B8();
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
 void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void PDisp__7TObjectFv();
@@ -72,14 +72,14 @@ TObjS11Bob::~TObjS11Bob()
 {
 	vtable        = bobVtable;
 	motion.vtable = bobVtable + 11;
-	dtor_8005BD3C(&motion, 0);
+	__dt__10TObjSetObjFv(&motion, 0);
 	__dt__7TObjectFv(this, 0);
 }
 
 static inline void constructBob(TObjS11Bob* object, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(object, parent);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = bobVtable;
 	object->motion.vtable = bobVtable + 11;
 	object->className     = CL_TObjS11Bob;
@@ -137,7 +137,7 @@ static inline void initializeBob(BobInitializer* self)
 {
 	TObjS11Bob* object = (TObjS11Bob*)self;
 	__ct__7TObjectFP7TObject(object, lbl_8042C110);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = bobVtable;
 	object->motion.vtable = bobVtable + 11;
 	object->className     = CL_TObjS11Bob;
@@ -175,7 +175,7 @@ extern "C" void* bobVtable[14] = {
 	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 
 extern "C" char bobModelName[]      = "s12_o_bobsleigh.dff";

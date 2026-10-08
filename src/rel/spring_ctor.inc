@@ -109,8 +109,8 @@ extern "C" World* lbl_8042C1D0;
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
 extern "C" void fn_8003BF04(void* part, const void* params, s32 a, s32 b);
 extern "C" void fn_8003C618(void* part);
-extern "C" s32 fn_8005B8D8(Motion* motion);
-extern "C" void fn_8005BE6C(Motion* motion);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
+extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 extern "C" void fn_8005D5C8(void* model, s32 slot);
 extern "C" void fn_8005E1DC(void* model, s32 a, const char* texture);
 extern "C" s32* fn_8005F490(void);
@@ -131,7 +131,7 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 	s32* handle;
 
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	fn_8003C618(&object->list);
 
 	object->base.vtable   = springVtable;
@@ -183,7 +183,7 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 	handle  = fn_8005F490();
 	*handle = 0x10;
 
-	if (object->state != 3 || fn_8005B8D8(&object->motion) != 0) {
+	if (object->state != 3 || OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		fn_8015BB08(lbl_8042C1D0->scene, object->model);
 	}
 

@@ -122,8 +122,8 @@ void fn_16_8DE9C();
 void fn_16_93BE8(void* object, int flags);
 void fn_16_93C3C(void* object);
 
-int fn_8005B8BC(void* motion);
-int fn_8005B8D8(void* motion);
+int CheckMustKill__10TObjSetObjFv(void* motion);
+int OnEdit__10TObjSetObjFv(void* motion);
 void fn_8003C200(void* collision, void* info, int one, int four);
 void fn_80019898(void* stage, int value);
 void fn_80021384(void* collision);
@@ -233,7 +233,7 @@ void TEndSPStage::Exec()
 	CollisionInfo* info;
 	SETDATA_PARAM* stageObject;
 
-	if (fn_8005B8BC(((RawTEndSPStage*)this)->base + 0x28)) {
+	if (CheckMustKill__10TObjSetObjFv(((RawTEndSPStage*)this)->base + 0x28)) {
 		markSampleForDeletion(this);
 		return;
 	}
@@ -241,7 +241,7 @@ void TEndSPStage::Exec()
 	if (fn_16_F20(lbl_8042C180, 0x1F))
 		return;
 
-	if (fn_8005B8D8((u8*)goalRing + 0x28)) {
+	if (OnEdit__10TObjSetObjFv((u8*)goalRing + 0x28)) {
 		SetGoalRingParam();
 		ringScale = *member;
 
@@ -264,7 +264,7 @@ void TEndSPStage::Exec()
 		fn_16_DB4(((RawTEndSPStage*)this)->base + 0x30);
 	}
 
-	if (!fn_8005B8D8((u8*)goalRing + 0x28)) {
+	if (!OnEdit__10TObjSetObjFv((u8*)goalRing + 0x28)) {
 		fn_80021824(lbl_8042C1A4);
 		if (fn_16_D10(((RawTEndSPStage*)this)->base + 0x30)) {
 			if (fn_16_67EDC() != 0) {

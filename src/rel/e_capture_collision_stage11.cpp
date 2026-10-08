@@ -68,8 +68,8 @@ struct SetObjHdr {
 };
 
 extern "C" {
-s32 fn_8005B8BC(void*);
-s32 fn_8005B9F0(void*);
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
 }
 
 class TObjSetObj : public SetObjHdr
@@ -77,8 +77,8 @@ class TObjSetObj : public SetObjHdr
 public:
 	virtual void EditOnChange(SETDATA_PARAM*);
 
-	s32 CheckMustKill() { return fn_8005B9F0(this); }
-	s32 CheckRangeOut() { return fn_8005B8BC(this); }
+	s32 CheckRangeOut() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckMustKill__10TObjSetObjFv(this); }
 };
 
 extern "C" {
@@ -87,10 +87,10 @@ extern void* lbl_8042C148;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8005BD3C(void*, s16);
+void __dt__10TObjSetObjFv(void*, s16);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
-void fn_8005BE6C(void*);
+void __ct__10TObjSetObjFv(void*);
 }
 
 class TObjCaptureCollision : public TObject, public TObjSetObj
@@ -242,7 +242,7 @@ extern "C" TObjCaptureCollision* __ct__20TObjCaptureCollisionFP7TObject(
     TObjCaptureCollision* self, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(SETOBJ(self));
+	__ct__10TObjSetObjFv(SETOBJ(self));
 	*(void***)((u8*)self + 0x18) = __vt__20TObjCaptureCollision;
 	*(void***)((u8*)self + 0x2C) = __vt__20TObjCaptureCollision + 11;
 	self->className              = CL_TObjCaptureCollision;
@@ -258,7 +258,7 @@ extern "C" TObjCaptureCollision* __dt__20TObjCaptureCollisionFv(
 	if (self != NULL) {
 		*(void***)((u8*)self + 0x18) = __vt__20TObjCaptureCollision;
 		*(void***)((u8*)self + 0x2C) = __vt__20TObjCaptureCollision + 11;
-		dtor_8005BD3C(SETOBJ(self), 0);
+		__dt__10TObjSetObjFv(SETOBJ(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
@@ -292,7 +292,7 @@ void TObjCaptureCollision::TDisp() { }
 
 BOOL TObjCaptureCollision::KillMyself()
 {
-	if (CheckMustKill() != 0 || CheckRangeOut() != 0) {
+	if (CheckRangeOut() != 0 || CheckMustKill() != 0) {
 		return TRUE;
 	}
 	return FALSE;

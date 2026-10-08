@@ -378,8 +378,8 @@ M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                      
 M2C_UNK fn_8003C618(M2C_UNK*);                                                      /* extern */
 M2C_UNK fn_8004D5F4(s32, f32, M2C_UNK);                                             /* extern */
 void** __nw__FUl(M2C_UNK);                                                          /* extern */
-s32 fn_8005B8D8(f32*);                                                              /* extern */
-M2C_UNK fn_8005BC04(void*);                                                         /* extern */
+s32 OnEdit__10TObjSetObjFv(f32*);                                                   /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                              /* extern */
 M2C_UNK fn_8005BF5C(void*, u32*);                                                   /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                                    /* extern */
 s32 fn_8005D9A0(void*, M2C_UNK);                                                    /* extern */
@@ -2053,7 +2053,7 @@ void fn_8_B956C(void* arg0)
 		temp_r3_3                        = M2C_FIELD(arg0, void**, 0xB0);
 		M2C_FIELD(temp_r3_3, s32*, 0x18) = (s32)(M2C_FIELD(temp_r3_3, s32*, 0x18) | 0x200);
 	}
-	fn_8005BC04((u8*)((u32)arg0 + 0xB0));
+	SetEnd__10TObjSetObjFv((u8*)((u32)arg0 + 0xB0));
 	((TRenderer*)arg0)->Slot40();
 	temp_r0_2 = M2C_FIELD(arg0, s32*, 0x230);
 	if (temp_r0_2 != -1) {
@@ -3898,7 +3898,7 @@ TObject* fn_8_BCF88(TObject* arg0, TObject* arg1)
 	    ((u32)(M2C_FIELD(M2C_BITWISE(u32, arg0->unkB0), s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	M2C_FIELD(arg0, u32*, 0xE4) = (u32)lbl_8_data_17484;
 	M2C_FIELD(arg0, s32*, 0xD4) = 1;
-	if (fn_8005B8D8(&arg0->unkB0) == 0) {
+	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
 		fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_1767C, 0xA, 3);
 		arg0->unk88 = arg0->unk140;
 		arg0->unk8C = arg0->unk144;

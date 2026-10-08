@@ -63,7 +63,7 @@ extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void dtor_8003C52C(Volume* volume, s32 flags);
-extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
+extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void fn_8015BBF8(void* scene, void* mesh);
 extern "C" void fn_80150958(void* mesh);
@@ -98,7 +98,7 @@ extern "C" RollDoor* rollDoorDtor(RollDoor* object, s16 flags)
 		}
 
 		dtor_8003C52C(&object->volume, 0);
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {

@@ -151,8 +151,8 @@ s32 fn_80018C98();                                                              
 M2C_UNK fn_80019898(M2C_UNK*, M2C_UNK);                                             /* extern */
 M2C_UNK fn_8003C640(void*);                                                         /* extern */
 void** __nw__FUl(M2C_UNK);                                                          /* extern */
-s32 fn_8005B8BC(s32);                                                               /* extern */
-M2C_UNK fn_8005BC04(void*);                                                         /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                                             /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                              /* extern */
 M2C_UNK fn_8005BF5C(u32*);                                                          /* extern */
 M2C_UNK fn_8005DA34(void*);                                                         /* extern */
 M2C_UNK fn_8005E00C(u32, M2C_UNK);                                                  /* extern */
@@ -1734,7 +1734,7 @@ void fn_8_9FF78(void* arg0, s32 arg1)
 {
 	switch (arg1) { /* irregular */
 		case 0:
-			fn_8005BC04((u8*)arg0 + 0xB0);
+			SetEnd__10TObjSetObjFv((u8*)arg0 + 0xB0);
 			break;
 		case 1:
 			if ((s8)M2C_FIELD(lbl_8042C180, u8*, 0x20) == 0) {
@@ -2273,7 +2273,7 @@ void fn_8_A0A30(void* arg0, s32 arg1, s32 arg2)
 		case 0x1D:          /* switch 1 */
 			switch (arg2) { /* switch 6; irregular */
 				case 0:     /* switch 6 */
-					fn_8005BC04((u8*)arg0 + 0xB0);
+					SetEnd__10TObjSetObjFv((u8*)arg0 + 0xB0);
 					return;
 				case 1: /* switch 6 */
 					if ((s8)M2C_FIELD(lbl_8042C180, u8*, 0x20) == 0) {
@@ -2336,7 +2336,7 @@ void fn_8_A0A30(void* arg0, s32 arg1, s32 arg2)
 
 s32 fn_8_A111C(s32 arg0)
 {
-	return fn_8005B8BC((s32)((u8*)arg0 + 0xB0)) != 0;
+	return CheckMustKill__10TObjSetObjFv((s32)((u8*)arg0 + 0xB0)) != 0;
 }
 
 void fn_8_A114C(void* arg0)

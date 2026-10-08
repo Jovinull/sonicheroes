@@ -22,7 +22,7 @@
 // points the name at its own address.
 //
 // Unlike the ring family, TObjPawn does not embed a Motion base and its
-// destructor never calls dtor_8005BD3C or __dt__7TObjectFv: the embedded
+// destructor never calls __dt__10TObjSetObjFv or __dt__7TObjectFv: the embedded
 // animation class at +0x240 and fn_800A7088 are its own base chain instead.
 // Every other field below is addressed by raw offset rather than through a
 // full struct, since only these offsets are known so far.

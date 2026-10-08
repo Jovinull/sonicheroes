@@ -109,11 +109,11 @@ extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void fn_80051EF0(void* context, Vec3* vector, const Rot3* rotation);
-extern "C" s32 fn_8005B8BC(Motion* motion);
-extern "C" s32 fn_8005B8D8(Motion* motion);
-extern "C" s32 fn_8005B9F0(Motion* motion);
-extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_8005BE6C(Motion* motion);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion* motion);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion* motion);
+extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
+extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 extern "C" void AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
     const Vec3* a, const Vec3* b, Vec3* out);
 
@@ -129,9 +129,10 @@ extern "C" void sample1Exec(Sample1* object)
 	Rot3 rotation;
 	PathParams* params = object->motion.frame->params;
 
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal |= SIGNAL_KILL_OK;
-	} else if (fn_8005B8D8(&object->motion) != 0) {
+	} else if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		Frame* frame = object->motion.frame;
 
 		object->position.x = frame->position.x;
@@ -164,7 +165,7 @@ extern "C" Sample1* sample1Dtor(Sample1* object, s16 flags)
 	if (object != NULL) {
 		object->base.vtable   = sample1Vtable;
 		object->motion.vtable = sample1Vtable + 0xB;
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
@@ -178,7 +179,7 @@ extern "C" Sample1* sample1Ctor(Sample1* object, void* owner)
 	Frame* frame;
 
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 
 	object->base.vtable   = sample1Vtable;
 	object->motion.vtable = sample1Vtable + 0xB;

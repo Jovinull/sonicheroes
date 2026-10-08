@@ -2218,3 +2218,16 @@ explicit layout normalization the complete linked DOL is byte-identical and all
 18 supported output hashes pass. The whole unit is enabled as Matching.
 See `c-colli-react-unit-evidence.md` for the inventory, evidence and remaining
 compiler-emission gap.
+
+## setObj.cpp
+
+PS2 symbolic metadata identifies this complete unit as C++ and TObjSetObj as a
+standalone eight-byte polymorphic class with SETOBJ_PARAM* at offset zero.
+GameCube constructor/destructor vtable accesses and the sole EditOnChange slot
+confirm the class correlation. Nine surviving bodies span 0x8005B8B8–0x8005BEC4;
+SetDestroy and SetInit inline into lifecycle methods. No PS2 instructions were
+inspected. All nine bodies and owned sections match, and the complete native-linked DOL
+is byte-identical. The unit is enabled as Matching with no object normalizer. The destructor is nonvirtual; the class does not inherit
+TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
+wrappers are corrected with their call sites, preserving call order and targets.
+See `setobj-unit-evidence.md` for the inventory and verification.

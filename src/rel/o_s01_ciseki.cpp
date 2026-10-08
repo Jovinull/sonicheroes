@@ -92,9 +92,9 @@ extern void* lbl_3_data_9F0C;
 extern void* lbl_3_data_9F14;
 
 void* __nw__FUl(u32);
-s32 fn_8005B9F0(Motion*);
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B8D8(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 OnEdit__10TObjSetObjFv(Motion*);
 void fn_80021824(void*);
 void* fn_800211A8(void*);
 void fn_8003BC38(void*);
@@ -239,13 +239,14 @@ static inline void callCommunication(TObjS01Ciseki* object, s32 enabled, CisekiP
 void TObjS01Ciseki::Exec()
 {
 	CisekiParams* params = (CisekiParams*)motion.frame->params;
-	if (fn_8005B9F0(&motion) != 0 || fn_8005B8BC(&motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&motion) != 0) {
 		signal |= 1;
 		return;
 	}
 
 	s01ObjectBaseUpdate(this);
-	if (fn_8005B8D8(&motion) != 0)
+	if (OnEdit__10TObjSetObjFv(&motion) != 0)
 		return;
 
 	fn_80021824(&lbl_8042C1A4);
@@ -288,7 +289,7 @@ TObjS01Ciseki::~TObjS01Ciseki()
 	vtable               = cisekiVtable;
 	motion.vtable        = cisekiVtable + 11;
 	CisekiParams* params = (CisekiParams*)motion.frame->params;
-	if (fn_8005B8D8(&motion) != 0)
+	if (OnEdit__10TObjSetObjFv(&motion) != 0)
 		callCommunication(this, 0, params);
 	s01ObjectBaseDtor(this, 0);
 }

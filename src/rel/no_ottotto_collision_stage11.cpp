@@ -142,16 +142,16 @@ ObjectEntry noOttottoCollisionEntry;
 extern void* lbl_8042C148;
 extern void* lbl_8042C110;
 
-s32 fn_8005B9F0(void*);
-s32 fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
 void fn_8003BC38(void*);
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
+void __ct__10TObjSetObjFv(void*);
 void fn_8003C618(void*);
 void fn_8003C200(void*, void*, s32, s32);
 void dtor_8003C52C(void*, s32);
-void dtor_8005BD3C(void*, s32);
+void __dt__10TObjSetObjFv(void*, s32);
 void __dt__7TObjectFv(void*, s32);
 void Free__9THeapCtrlFPv(void*, void*);
 void __dl__FPv(void*);
@@ -167,9 +167,10 @@ void fn_8_DCE38(void) { }
 
 void fn_8_DCE3C(OttottoObject* object)
 {
-	if (fn_8005B9F0(&object->transform) != 0 || fn_8005B8BC(&object->transform) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->transform) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->transform) != 0) {
 		object->flags |= 1;
-	} else if (fn_8005B8D8(&object->transform) != 0) {
+	} else if (OnEdit__10TObjSetObjFv(&object->transform) != 0) {
 		BobXform* transform = object->transform;
 		object->currentX    = transform->x;
 		object->currentY    = transform->y;
@@ -201,7 +202,7 @@ OttottoObject* fn_8_DCF34(OttottoObject* object, s16 flag)
 		object->vtable  = lbl_8_data_1A3F4;
 		object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
 		dtor_8003C52C(object->collision, 0);
-		dtor_8005BD3C(&object->transform, 0);
+		__dt__10TObjSetObjFv(&object->transform, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flag > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, object);
@@ -213,7 +214,7 @@ OttottoObject* fn_8_DCF34(OttottoObject* object, s16 flag)
 OttottoObject* fn_8_DCFCC(OttottoObject* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(object, owner);
-	fn_8005BE6C(&object->transform);
+	__ct__10TObjSetObjFv(&object->transform);
 	fn_8003C618(object->collision);
 	object->vtable  = lbl_8_data_1A3F4;
 	object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
@@ -261,7 +262,7 @@ void noOttottoCollisionCreate(void)
 	if (result != NULL) {
 		OttottoObject* object = (OttottoObject*)result;
 		__ct__7TObjectFP7TObject(object, lbl_8042C110);
-		fn_8005BE6C(&object->transform);
+		__ct__10TObjSetObjFv(&object->transform);
 		fn_8003C618(object->collision);
 		object->vtable  = lbl_8_data_1A3F4;
 		object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;

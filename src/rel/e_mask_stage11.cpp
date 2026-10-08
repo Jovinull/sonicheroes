@@ -128,10 +128,10 @@ struct SetObjHdr {
 };
 
 extern "C" {
-s32 fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
-s32 fn_8005B9F0(void*);
-void fn_8005BE6C(void*);
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
+void __ct__10TObjSetObjFv(void*);
 }
 
 class TObjSetObj : public SetObjHdr
@@ -139,9 +139,9 @@ class TObjSetObj : public SetObjHdr
 public:
 	virtual void EditOnChange(SETDATA_PARAM*);
 
-	s32 CheckMustKill() { return fn_8005B9F0(this); }
-	s32 CheckRangeOut() { return fn_8005B8BC(this); }
-	s32 OnEdit() { return fn_8005B8D8(this); }
+	s32 CheckRangeOut() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckMustKill__10TObjSetObjFv(this); }
+	s32 OnEdit() { return OnEdit__10TObjSetObjFv(this); }
 };
 
 extern "C" {
@@ -158,7 +158,7 @@ extern u8 lbl_802FF5A0;
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
 void dtor_8003C52C(void*, s16);
-void dtor_8005BD3C(void*, s16);
+void __dt__10TObjSetObjFv(void*, s16);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
@@ -388,7 +388,7 @@ static RpAtomic* SetHierarchyForSkinAtomic(RpAtomic* atomic, void* data)
 extern "C" TObjMask* __ct__8TObjMaskFP7TObject(TObjMask* self, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(MOTION(self));
+	__ct__10TObjSetObjFv(MOTION(self));
 	fn_8003C618(&self->collision);
 	*(void***)((u8*)self + 0x18) = __vt__8TObjMask;
 	*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
@@ -426,7 +426,7 @@ extern "C" TObjMask* __dt__8TObjMaskFv(TObjMask* self, s16 flags)
 		*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
 		self->DestroyClump();
 		dtor_8003C52C(&self->collision, 0);
-		dtor_8005BD3C(MOTION(self), 0);
+		__dt__10TObjSetObjFv(MOTION(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
@@ -460,7 +460,7 @@ void TObjMask::SetPosition()
 
 void TObjMask::Exec()
 {
-	if (CheckMustKill() != 0 || CheckRangeOut() != 0) {
+	if (CheckRangeOut() != 0 || CheckMustKill() != 0) {
 		signal |= 1;
 		return;
 	}

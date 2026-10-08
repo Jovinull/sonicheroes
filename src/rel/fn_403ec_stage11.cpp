@@ -206,9 +206,9 @@ void fn_8019EC30(void* object, Vec3* value, s32 mode);
 void fn_8019EB94(void* object, Vec3* value, s32 mode);
 void* fn_8005DF98(void* object, void* child);
 f32 fn_800D7AE4(s32 range);
-s32 fn_8005B9F0(void* object);
-s32 fn_8005B8BC(void* object);
-s32 fn_8005B8D8(void* object);
+s32 CheckRangeOut__10TObjSetObjFv(void* object);
+s32 CheckMustKill__10TObjSetObjFv(void* object);
+s32 OnEdit__10TObjSetObjFv(void* object);
 s32 objGroupAllActive(s32 index);
 s32 fn_80100C88(s32 index);
 void fn_800B4A38(void* sound, s32 id, Vec3* position, s32, s32, s32, s32);
@@ -271,11 +271,12 @@ extern "C" void fn_8_40B34(RuntimeState* self);
 
 extern "C" void fn_8_40554(RuntimeState* self)
 {
-	if (fn_8005B9F0(&self->source) != 0 || fn_8005B8BC(&self->source) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&self->source) != 0
+	    || CheckMustKill__10TObjSetObjFv(&self->source) != 0) {
 		*(u16*)((u8*)self + 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8(&self->source) != 0) {
+	if (OnEdit__10TObjSetObjFv(&self->source) != 0) {
 		SourceTransform* source = self->source;
 		SourceInfo* info        = source->info;
 		self->position          = source->position;

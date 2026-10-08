@@ -24,7 +24,7 @@ extern void* lbl_8_bss_9E8;
 void* fn_8005EA04(const char* name);
 void* fn_8005E410(void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
-void fn_8005BE6C(void* placement);
+void __ct__10TObjSetObjFv(void* placement);
 void fn_8003C618(void* controller);
 void* fn_80150588(void* resource);
 void fn_8015BB08(void* manager, void* resource);
@@ -73,7 +73,7 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 {
 	u8* object = (u8*)self;
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(object + 0x28);
+	__ct__10TObjSetObjFv(object + 0x28);
 	fn_8003C618(object + 0x30);
 	*(void**)(object + 0x18) = rollDoorVtable;
 	*(void**)(object + 0x2C) = (u8*)rollDoorVtable + 0x2C;

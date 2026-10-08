@@ -29,11 +29,11 @@ void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
 void* Malloc__9THeapCtrlFUi(s32, s32);
 void Free__9THeapCtrlFPv(void*, void*);
-void fn_8005BE6C(void*);
-void dtor_8005BD3C(void*, s32);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
+void __ct__10TObjSetObjFv(void*);
+void __dt__10TObjSetObjFv(void*, s32);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
 void SetCurrentNumPlayer__6CLIGHTFScSc(...);
 void fn_8014FFBC(s32, s32, s32);
 void fn_801527A4(void*, void*, void*);
@@ -188,11 +188,12 @@ extern "C" int fn_8_4E704(void* self, int player)
 extern "C" void fn_8_4EB14(void* self)
 {
 	u8* config = field<u8*>(field<void*>(self, 0x28), 0x2C);
-	if (fn_8005B9F0((u8*)self + 0x28) || fn_8005B8BC((u8*)self + 0x28)) {
+	if (CheckRangeOut__10TObjSetObjFv((u8*)self + 0x28)
+	    || CheckMustKill__10TObjSetObjFv((u8*)self + 0x28)) {
 		field<u16>(self, 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8((u8*)self + 0x28)) {
+	if (OnEdit__10TObjSetObjFv((u8*)self + 0x28)) {
 		field<u8>(self, 0x38) = config[0];
 		field<u8>(self, 0x39) = config[1];
 	}
@@ -246,7 +247,7 @@ extern "C" void* fn_8_4EFB8(void* self, s16 flags)
 					field<void*>(item, 0x3C) = field<void*>(self, 0x3C);
 					break;
 				}
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
@@ -257,7 +258,7 @@ extern "C" void* fn_8_4EFB8(void* self, s16 flags)
 extern "C" void* fn_8_4F084(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C((u8*)self + 0x28);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
 	field<void*>(self, 0x18) = lbl_8_data_55F8;
 	field<void*>(self, 0)    = lbl_8_data_559C;
 	field<u16>(self, 0x1E)   = 0x40;

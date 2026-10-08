@@ -69,10 +69,10 @@ void* fn_16_8C05C();
 int fn_16_8BE40(void*, SETDATA_PARAM*, f32);
 void fn_16_67FE0();
 
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
-int fn_8005B9F0(void*);
-void fn_8005BC04(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+void SetEnd__10TObjSetObjFv(void*);
 void fn_80021824(void*);
 
 extern void* lbl_8042C180;
@@ -115,18 +115,18 @@ void TEnemyEndSPBoss::Exec()
 
 	if (fn_16_8C05C() != 0
 	    && !fn_16_8BE40(fn_16_8C05C(), *(SETDATA_PARAM**)(base + 0x28), TEnemyEndSPBossHundred)) {
-		fn_8005BC04(base + 0x28);
+		SetEnd__10TObjSetObjFv(base + 0x28);
 		markSampleForDeletion(this);
 		return;
 	}
-	if (fn_8005B9F0(base + 0x28) || fn_8005B8BC(base + 0x28)) {
+	if (CheckRangeOut__10TObjSetObjFv(base + 0x28) || CheckMustKill__10TObjSetObjFv(base + 0x28)) {
 		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_16_F20(lbl_8042C180, 0x1F))
 		return;
 	fn_16_5F3C8(this);
-	if (fn_8005B8D8(base + 0x28))
+	if (OnEdit__10TObjSetObjFv(base + 0x28))
 		return;
 	fn_80021824(lbl_8042C1A4);
 	if (fn_16_D10(base + 0x30))

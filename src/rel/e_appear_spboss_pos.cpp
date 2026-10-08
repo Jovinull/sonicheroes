@@ -86,9 +86,9 @@ void* fn_16_62FBC(int);
 void fn_16_900(RwV3d*, RwV3d*);
 void fn_16_DB4(void*);
 
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
-int fn_8005B9F0(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
 void fn_8003C200(void*, void*, int, int);
 void fn_80021384(void*);
 
@@ -136,7 +136,8 @@ extern "C" const f32 TEnemyAppearSPBossPosHalf;
 void TEnemyAppearSPBossPos::Exec()
 {
 	RwV3d* member = SET_DATA->member;
-	if (fn_8005B9F0(OBJECT_BYTES + 0x28) || fn_8005B8BC(OBJECT_BYTES + 0x28)) {
+	if (CheckRangeOut__10TObjSetObjFv(OBJECT_BYTES + 0x28)
+	    || CheckMustKill__10TObjSetObjFv(OBJECT_BYTES + 0x28)) {
 		markSampleForDeletion(this);
 		return;
 	}
@@ -146,7 +147,7 @@ void TEnemyAppearSPBossPos::Exec()
 	if (fn_16_F20(lbl_8042C180, 0x1F))
 		return;
 
-	if (fn_8005B8D8(OBJECT_BYTES + 0x28)) {
+	if (OnEdit__10TObjSetObjFv(OBJECT_BYTES + 0x28)) {
 		CURRENT_POS = *member;
 		if (INTERPOLATION <= TEnemyAppearSPBossPosZero) {
 			member[1].x = INTERPOLATION
@@ -174,7 +175,7 @@ void TEnemyAppearSPBossPos::Exec()
 		fn_80021384(AUX_OBJECT);
 		fn_16_DB4(AUX_OBJECT);
 	}
-	if (!fn_8005B8D8(OBJECT_BYTES + 0x28))
+	if (!OnEdit__10TObjSetObjFv(OBJECT_BYTES + 0x28))
 		fn_16_1180(AUX_OBJECT, SET_DATA, (RwV3d*)((u8*)SET_DATA + 0xC));
 }
 

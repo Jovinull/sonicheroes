@@ -38,8 +38,8 @@ public:
 };
 
 extern "C" {
-void dtor_8005BD3C(void*, s16);
-void fn_8005BE6C(void*);
+void __dt__10TObjSetObjFv(void*, s16);
+void __ct__10TObjSetObjFv(void*);
 }
 
 struct CloudThunkPrimary {
@@ -59,7 +59,7 @@ struct Motion {
 	SETDATA_PARAM* frame;
 	void** vtable;
 
-	Motion() { fn_8005BE6C(this); }
+	Motion() { __ct__10TObjSetObjFv(this); }
 	~Motion() { }
 };
 
@@ -81,8 +81,8 @@ extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B9F0(Motion*);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
 void fn_8005C014(void*, void*);
 void fn_8005D5C8(void*, u32);
 void* fn_8005E394(void*, s32);
@@ -241,8 +241,8 @@ void TObjS11Cloud::Disp()
 #pragma opt_common_subs off
 void TObjS11Cloud::Exec()
 {
-	if (fn_8005B9F0((Motion*)((u8*)this + 0x28)) != 0
-	    || fn_8005B8BC((Motion*)((u8*)this + 0x28)) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0
+	    || CheckMustKill__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0) {
 		signal |= 1;
 		return;
 	}
@@ -255,7 +255,7 @@ TObjS11Cloud::~TObjS11Cloud()
 	TObject::vtable = cloudVtable;
 	Motion::vtable  = cloudVtable + 11;
 	DestroyClump();
-	dtor_8005BD3C((u8*)this + 0x28, 0);
+	__dt__10TObjSetObjFv((u8*)this + 0x28, 0);
 }
 
 static inline void constructCloud(TObjS11Cloud* object)

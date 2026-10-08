@@ -51,11 +51,11 @@ void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
 void __dl__FPv(void*);
 void Free__9THeapCtrlFPv(void*, void*);
-void fn_8005BE6C(...);
+void __ct__10TObjSetObjFv(...);
 void fn_8003C618(...);
 void fn_8003BF04(...);
 void dtor_8003C52C(...);
-void dtor_8005BD3C(...);
+void __dt__10TObjSetObjFv(...);
 void* fn_80150588(...);
 void fn_8015BB08(...);
 void fn_8015BBF8(...);
@@ -66,9 +66,9 @@ void* fn_8005E410(void*, s32, void*);
 f32 AdjustFloat__Ffff(f32, f32, f32);
 void fn_8_49630();
 void fn_8_497B0(...);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
 void fn_8003BC38(...);
 void fn_8019ED68(...);
 void fn_8019EC30(...);
@@ -384,11 +384,11 @@ static void drawGoalRingModel(void* self)
 extern "C" void fn_8_4BD90(void* self)
 {
 	void* placement = (u8*)self + 0x28;
-	if (fn_8005B9F0(placement) || fn_8005B8BC(placement)) {
+	if (CheckRangeOut__10TObjSetObjFv(placement) || CheckMustKill__10TObjSetObjFv(placement)) {
 		field<u16>(self, 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8(placement)) {
+	if (OnEdit__10TObjSetObjFv(placement)) {
 		field<Vec3>(self, 0xBC) = field<Vec3>(field<void*>(self, 0x28), 0);
 		field<Vec3>(self, 0xC8) = field<Vec3>(field<void*>(self, 0x28), 0xC);
 		drawGoalRingModel(self);
@@ -442,7 +442,7 @@ extern "C" void* fn_8_4CFB4(void* self, s16 flags)
 		fn_80150958(field<void*>(self, 0xFC));
 		field<void*>(self, 0xFC) = NULL;
 		dtor_8003C52C((u8*)self + 0x30, 0);
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
@@ -453,7 +453,7 @@ extern "C" void* fn_8_4CFB4(void* self, s16 flags)
 extern "C" void* fn_8_4D0CC(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C((u8*)self + 0x28);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
 	fn_8003C618((u8*)self + 0x30);
 	field<void*>(self, 0x18) = lbl_8_data_5024;
 	field<void*>(self, 0)    = lbl_8_data_5014;

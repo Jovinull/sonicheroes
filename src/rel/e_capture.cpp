@@ -281,8 +281,8 @@ M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                      
 M2C_UNK fn_80043DEC();                                                              /* extern */
 M2C_UNK fn_80043F28(u32);                                                           /* extern */
 void** __nw__FUl(M2C_UNK);                                                          /* extern */
-s32 fn_8005B8D8(void**);                                                            /* extern */
-M2C_UNK fn_8005BC04(void*);                                                         /* extern */
+s32 OnEdit__10TObjSetObjFv(void**);                                                 /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                              /* extern */
 M2C_UNK fn_8005D5C8(void*, s32);                                                    /* extern */
 s32 fn_8005D9A0(void*, M2C_UNK);                                                    /* extern */
 M2C_UNK fn_8005D9F4(u32);                                                           /* extern */
@@ -1543,7 +1543,7 @@ void fn_8_99A60(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, f32*, 0x2C0)
 			    = (f32)(M2C_FIELD(arg0, f32*, 0x2C0) + M2C_FIELD(arg0, f32*, 0x2CC));
 			if (M2C_FIELD(arg0, f32*, 0x2B8) < 0.0f) {
-				fn_8005BC04((u8*)arg0 + 0xB0);
+				SetEnd__10TObjSetObjFv((u8*)arg0 + 0xB0);
 				M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 			}
 			return;
@@ -2428,7 +2428,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, f32*, 0x2C0)
 					    = (f32)(M2C_FIELD(arg0, f32*, 0x2C0) + M2C_FIELD(arg0, f32*, 0x2CC));
 					if (M2C_FIELD(arg0, f32*, 0x2B8) < 0.0f) {
-						fn_8005BC04((u8*)arg0 + 0xB0);
+						SetEnd__10TObjSetObjFv((u8*)arg0 + 0xB0);
 						M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 						return;
 					}
@@ -3049,7 +3049,7 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 	fn_8005D5C8(arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	arg0->unkE4 = &lbl_8_data_15608;
 	arg0->unkD4 = 0;
-	if (fn_8005B8D8(&arg0->unkB0) == 0) {
+	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
 		fn_8003C200(&arg0->unk28, (int*)lbl_8_data_156BC, 2, 3);
 		arg0->unk88                    = arg0->unk140;
 		arg0->unk8C                    = arg0->unk144;

@@ -112,21 +112,21 @@ public:
 struct Motion;
 
 extern "C" {
-void fn_8005BE6C(void*);
+void __ct__10TObjSetObjFv(void*);
 void fn_8003C618(void*);
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B8D8(Motion*);
-s32 fn_8005B9F0(Motion*);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 OnEdit__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
 }
 
 struct Motion {
 	SETDATA_PARAM* frame;
 	void** vtable;
 
-	Motion() { fn_8005BE6C(this); }
-	s32 CheckMustKill() { return fn_8005B9F0(this); }
-	s32 CheckRangeOut() { return fn_8005B8BC(this); }
-	s32 OnEdit() { return fn_8005B8D8(this); }
+	Motion() { __ct__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckRangeOut() { return CheckMustKill__10TObjSetObjFv(this); }
+	s32 OnEdit() { return OnEdit__10TObjSetObjFv(this); }
 };
 
 /* The key's collision body. Its position history sits at 0x60. */
@@ -154,7 +154,7 @@ extern PlayerInfo* lbl_802AD0D0[];
 extern TeamInfo* lbl_80303DC8[];
 
 void dtor_8003C52C(void*, s16);
-void dtor_8005BD3C(void*, s16);
+void __dt__10TObjSetObjFv(void*, s16);
 void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 HitNode* fn_80020BD8(void*, s32);
@@ -163,7 +163,7 @@ void fn_80021824(void*);
 void fn_8003BC38(void*);
 void fn_8003BF04(void*, void*, s32, s32);
 void* __nw__FUl(u32);
-void fn_8005BC04(Motion*);
+void SetEnd__10TObjSetObjFv(Motion*);
 void fn_8005D5C8(void*, u32);
 void fn_800628D0(s32, Vec3*, s32);
 void addPlayerScore__11PARAM_SCOREFii(void*, s32, s32);
@@ -191,7 +191,7 @@ void fn_8019EB94(void*, Vec3*, s32);
 void fn_8019EC30(void*, Vec3*, s32);
 void fn_801A4C84(void*);
 
-void fn_8005B8B8();
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -270,7 +270,7 @@ void* s11keyVtable[14]     = {
 	(void*)Render__7TObjectFv,
 	0,
 	0,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 char s11keyModelName[]         = "s11_o_goalkey.dff";
 char s11keyObjectDisplayName[] = "S11KEY OBJECT";
@@ -369,7 +369,7 @@ static inline void constructKey(TObjS11Key* object)
 		}
 		object->uvAnim = anim;
 	}
-	if (fn_8005B8D8((Motion*)((u8*)object + 0x28)) == 0) {
+	if (OnEdit__10TObjSetObjFv((Motion*)((u8*)object + 0x28)) == 0) {
 		fn_8003BF04(&object->collision, lbl_8_data_18E04, 1, 4);
 		object->SearchCage();
 	}
@@ -405,10 +405,10 @@ TObjS11Key::~TObjS11Key()
 		model = NULL;
 	}
 	if (frame->flags & 0x10000) {
-		fn_8005BC04((Motion*)((u8*)this + 0x28));
+		SetEnd__10TObjSetObjFv((Motion*)((u8*)this + 0x28));
 	}
 	dtor_8003C52C(&collision, 0);
-	dtor_8005BD3C((u8*)this + 0x28, 0);
+	__dt__10TObjSetObjFv((u8*)this + 0x28, 0);
 }
 
 void TObjS11Key::SetPosition()
