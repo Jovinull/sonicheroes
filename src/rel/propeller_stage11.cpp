@@ -67,26 +67,26 @@ extern char lbl_8_data_4CB8[];
 extern char lbl_8_data_4CDC[];
 extern char lbl_8_data_4D00[];
 extern char lbl_8_data_4D1C[];
-extern char lbl_80239978[];
-extern char lbl_80239990[];
-extern char lbl_80239984[];
+extern char AxisX[];
+extern char AxisZ[];
+extern char AxisY[];
 
 void* fn_8_46898(void*, void*);
 void fn_80150958(void*);
 void fn_8014D8A4(void*);
-void* fn_80018A34(void*, int);
+void* Malloc__9THeapCtrlFUi(void*, int);
 void* fn_8_48B4C(void*, void*);
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
-void fn_8003C618(void*);
+void __ct__10TObjSetObjFv(void*);
+void __ct__7C_COLLIFv(void*);
 void* fn_80150588(void*);
 void fn_8015BB08(void*, void*);
 void fn_8015BBF8(void*, void*);
-void fn_8003C200(void*, char*, int, int);
-void dtor_8003C52C(void*, int);
-void dtor_8005BD3C(void*, int);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, char*, int, int);
+void __dt__7C_COLLIFv(void*, int);
+void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 float fn_800D7B00(int);
 float fn_800D7AE4(int);
 void fn_80196050(void*, const float*, int);
@@ -96,9 +96,10 @@ void fn_8019EB94(void*, const float*, int);
 void fn_8019EC30(void*, const float*, int);
 void fn_8014D308(void*, int, float, Vec3*, int);
 void* fn_80058FDC(void*, char*, Vec3*, int, int);
-void* fn_80057644(int);
-int fn_800D7A80(int, int);
-void fn_8005F194(void*, int, int, void*, void*);
+void* __nw__FUl(int);
+int SubAngle__Fii(int, int);
+void objSetPlayerHandlingPosition__17OBJ_ReplacePlayerFiUcP5RwV3dP6sAngle(
+    void*, int, int, void*, void*);
 void fn_800E0E98(float, float, float);
 void fn_8_48FD8();
 void fn_801A4C84(void*);
@@ -108,27 +109,27 @@ void* fn_80042118(char*);
 void fn_8014D208(void*, int, Vec3*);
 float fn_801991B4(Vec3*);
 int sprintf(char*, const char*, ...);
-void fn_8003BE78(void*);
+void ClearInfo__7C_COLLIFv(void*);
 void fn_80021824(void*);
 int fn_80020BD8(void*, int);
 void* fn_800211A8(void*);
 int fn_80041B64(void*);
 void fn_800E1208(int, int, int);
-void* fn_80054F08(void*, void*, float, int);
+void* DetectSphereCollisionWithPolygons__6OCTREEFP5RwV3dfPFP8POLYDATA_i(void*, void*, float, int);
 void fn_8001F674(int, int, int, int);
-void fn_80054158(void*, int);
-void fn_8003BC38(void*);
-void fn_800BC9F4(void*, void*);
-void* fn_800BC6CC(void*, char*);
-void* fn_800BB92C(void*, void*, void*);
-void* fn_800BB664(void*, void*, void*);
-int fn_800D7A94(int, int, int);
-float fn_800D7328(float, float, float);
+void __dt__19ColliPolyLinearListFv(void*, int);
+void Entry__7C_COLLIFv(void*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
+void* CheckFileID__7ONEFILEFPc(void*, char*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
+void* LoadSplineEx__7ONEFILEFUiPc(void*, void*, void*);
+int AdjustAngle__Fiii(int, int, int);
+float AdjustFloat__Ffff(float, float, float);
 void fn_800B4A38(void*, int, void*, void*, int, int, int);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
-void fn_800D5CB0(int, void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
+void njPrint__FiPCce(int, void*);
 double atan2(double, double);
 void _savegpr_21();
 void _restgpr_21();
@@ -243,14 +244,14 @@ extern "C" void fn_8_47414(void* self)
 				field<int>(self, 0xE0) = lbl_8_data_4C4C;
 		}
 		field<int>(self, 0x108)
-		    = fn_800D7A94(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
 		field<int>(self, 0x10C)
-		    = fn_800D7A94(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
 		field<int>(self, 0x110)
-		    = fn_800D7A94(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
 		field<int>(self, 0x114) = field<int>(self, 0x118) = field<int>(self, 0x11C) = 0;
 		field<float>(self, 0xD8)
-		    = fn_800D7328(field<float>(self, 0xD8), lbl_8_rodata_BF0, lbl_8_rodata_C00);
+		    = AdjustFloat__Ffff(field<float>(self, 0xD8), lbl_8_rodata_BF0, lbl_8_rodata_C00);
 		field<float>(self, 0x144) = lbl_8_rodata_BF8;
 	} else if (state == 1 && active) {
 		if (--field<int>(self, 0x14C) < 1) {
@@ -287,11 +288,11 @@ extern "C" void fn_8_47414(void* self)
 		field<int>(self, 0x10C) += field<int>(self, 0x118);
 		field<int>(self, 0x110) += field<int>(self, 0x11C);
 		field<int>(self, 0x118)
-		    += fn_800D7A80(field<int>(self, 0x10C), field<int>(self, 0x124)) >> 8;
+		    += SubAngle__Fii(field<int>(self, 0x10C), field<int>(self, 0x124)) >> 8;
 		field<int>(self, 0x114)
-		    += fn_800D7A80(field<int>(self, 0x108), field<int>(self, 0x120)) >> 9;
+		    += SubAngle__Fii(field<int>(self, 0x108), field<int>(self, 0x120)) >> 9;
 		field<int>(self, 0x11C)
-		    += fn_800D7A80(field<int>(self, 0x110), field<int>(self, 0x128)) >> 9;
+		    += SubAngle__Fii(field<int>(self, 0x110), field<int>(self, 0x128)) >> 9;
 		field<int>(self, 0xE0) += lbl_8_data_4C50;
 		if (field<int>(self, 0xE0) >= lbl_8_data_4C48)
 			field<int>(self, 0xE0) = lbl_8_data_4C48;
@@ -300,11 +301,11 @@ extern "C" void fn_8_47414(void* self)
 	} else if (state >= 2 && state < 4) {
 		field<float>(self, 0x100) += lbl_8_rodata_C24;
 		field<int>(self, 0x108)
-		    = fn_800D7A94(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x108), field<int>(self, 0xCC), 0x200);
 		field<int>(self, 0x10C)
-		    = fn_800D7A94(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x10C), field<int>(self, 0xD0), 0x200);
 		field<int>(self, 0x110)
-		    = fn_800D7A94(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
+		    = AdjustAngle__Fiii(field<int>(self, 0x110), field<int>(self, 0xD4), 0x200);
 		field<float>(self, 0xD8) -= lbl_8_rodata_BF0 / lbl_8_data_4C64;
 		if (--field<int>(self, 0x148) < 1) {
 			field<int>(self, 0xB8)  = 0;
@@ -322,10 +323,10 @@ extern "C" void fn_8_47E9C(void* self)
 	fn_80196050(transform, lbl_8_rodata_BD8, 0);
 	float high = fn_800D7B00(field<int>(self, 0x108));
 	float low  = fn_800D7AE4(field<int>(self, 0x108));
-	fn_80195790(transform, lbl_80239978, lbl_8_rodata_BF0 - low, high, 2);
+	fn_80195790(transform, AxisX, lbl_8_rodata_BF0 - low, high, 2);
 	high = fn_800D7B00(field<int>(self, 0x110));
 	low  = fn_800D7AE4(field<int>(self, 0x110));
-	fn_80195790(transform, lbl_80239990, lbl_8_rodata_BF0 - low, high, 2);
+	fn_80195790(transform, AxisZ, lbl_8_rodata_BF0 - low, high, 2);
 	fn_80196050(transform, lbl_8_rodata_BE4, 2);
 	fn_80196050(transform, &field<float>(self, 0xFC), 2);
 	Vec3 scale = { lbl_8_rodata_BF8, lbl_8_rodata_BF4, lbl_8_rodata_BF8 };
@@ -345,20 +346,20 @@ extern "C" void fn_8_47FBC(void* self)
 	}
 	void* placement = field<void*>(self, 0x28);
 	s16* info       = field<s16*>(placement, 0x30);
-	if (fn_8005B9F0(placement) || fn_8005B8BC(placement)) {
+	if (CheckRangeOut__10TObjSetObjFv(placement) || CheckMustKill__10TObjSetObjFv(placement)) {
 		info[2] = info[3] = 0;
 		field<u16>(self, 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8(placement)) {
+	if (OnEdit__10TObjSetObjFv(placement)) {
 		field<Vec3>(self, 0xC0)  = field<Vec3>(placement, 0);
 		field<IVec3>(self, 0xCC) = field<IVec3>(placement, 0xC);
 		field<Vec3>(self, 0xE4)  = field<Vec3>(self, 0xC0);
-		fn_800D5CB0(0x240015, lbl_8_data_4CA0);
-		fn_800D5CB0(0x240016, lbl_8_data_4CB8);
-		fn_800D5CB0(0x240018, lbl_8_bss_AC8 ? (void*)lbl_8_data_4CDC : (void*)lbl_8_data_4D00);
+		njPrint__FiPCce(0x240015, lbl_8_data_4CA0);
+		njPrint__FiPCce(0x240016, lbl_8_data_4CB8);
+		njPrint__FiPCce(0x240018, lbl_8_bss_AC8 ? (void*)lbl_8_data_4CDC : (void*)lbl_8_data_4D00);
 		if (!lbl_8_bss_AC8)
-			fn_800D5CB0(0x240019, lbl_8_data_4D1C);
+			njPrint__FiPCce(0x240019, lbl_8_data_4D1C);
 		else
 			fn_8_46C88(self);
 		return;
@@ -390,27 +391,27 @@ extern "C" void fn_8_46C88(void* self)
 {
 	Vec3 scale  = { field<float>(self, 0xD8), field<float>(self, 0xD8), field<float>(self, 0xD8) };
 	void* model = field<void*>(field<void*>(self, 0x150), 4);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xD0), 0);
-	propellerSetRotation(model, lbl_80239978, field<int>(self, 0xCC), 2);
-	propellerSetRotation(model, lbl_80239990, field<int>(self, 0xD4), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xD0), 0);
+	propellerSetRotation(model, AxisX, field<int>(self, 0xCC), 2);
+	propellerSetRotation(model, AxisZ, field<int>(self, 0xD4), 2);
 	fn_8019EB94(model, &field<float>(self, 0xC0), 2);
 
 	model = field<void*>(field<void*>(self, 0x154), 4);
 	fn_8019EC30(model, &scale.x, 0);
 	fn_8019EB94(model, lbl_8_rodata_BD8, 2);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xF4), 2);
-	propellerSetRotation(model, lbl_80239978, field<int>(self, 0xF0), 2);
-	propellerSetRotation(model, lbl_80239990, field<int>(self, 0xF8), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xF4), 2);
+	propellerSetRotation(model, AxisX, field<int>(self, 0xF0), 2);
+	propellerSetRotation(model, AxisZ, field<int>(self, 0xF8), 2);
 	fn_8019EB94(model, lbl_8_rodata_BE4, 2);
 	fn_8019EB94(model, &field<float>(self, 0xE4), 2);
 
 	model = field<void*>(field<void*>(self, 0x158), 4);
 	fn_8019EC30(model, &scale.x, 0);
 	fn_8019EB94(model, lbl_8_rodata_BD8, 2);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xDC), 2);
-	propellerSetRotation(model, lbl_80239984, field<int>(self, 0xF4), 2);
-	propellerSetRotation(model, lbl_80239978, field<int>(self, 0xF0), 2);
-	propellerSetRotation(model, lbl_80239990, field<int>(self, 0xF8), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xDC), 2);
+	propellerSetRotation(model, AxisY, field<int>(self, 0xF4), 2);
+	propellerSetRotation(model, AxisX, field<int>(self, 0xF0), 2);
+	propellerSetRotation(model, AxisZ, field<int>(self, 0xF8), 2);
 	fn_8019EB94(model, lbl_8_rodata_BE4, 2);
 	fn_8019EB94(model, &field<float>(self, 0xE4), 2);
 }
@@ -418,8 +419,8 @@ extern "C" void fn_8_46C88(void* self)
 extern "C" void* fn_8_48B4C(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C((u8*)self + 0x28);
-	fn_8003C618((u8*)self + 0x30);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
+	__ct__7C_COLLIFv((u8*)self + 0x30);
 	field<void*>(self, 0x18)  = lbl_8_data_4C68;
 	field<void*>(self, 0x2C)  = lbl_8_data_4C68 + 11;
 	field<void*>(self, 0)     = lbl_8_data_4C40[0];
@@ -442,7 +443,7 @@ extern "C" void* fn_8_48B4C(void* self, void* parent)
 		resource++;
 		offset += 4;
 	}
-	fn_8003C200((u8*)self + 0x30, lbl_8_data_4C00, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc((u8*)self + 0x30, lbl_8_data_4C00, 1, 4);
 	field<u16>(self, 0x38) |= 0x40;
 	field<float>(self, 0x138)  = lbl_8_rodata_BFC;
 	field<float>(self, 0x144)  = lbl_8_rodata_BF8;
@@ -479,11 +480,11 @@ extern "C" void* fn_8_48A6C(void* self, s16 flags)
 			}
 			cursor = (u8*)cursor + 4;
 		}
-		dtor_8003C52C((u8*)self + 0x30, 0);
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -550,27 +551,27 @@ extern "C" void fn_8_48FD8()
 	lbl_8_bss_AC8 = NULL;
 	fn_801A4C84(field<void*>(lbl_8042C1D0, 0x8C18));
 	void* manager = field<void*>(lbl_8042C298, 0xA50);
-	fn_800BC9F4(manager, lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(manager, lbl_802FF5A0);
 	char name[64];
 	int identifier = fn_800194A8(lbl_8029C310);
 	sprintf(name, lbl_8_data_4D3C, identifier);
-	void* nameId     = fn_800BC6CC(manager, name);
+	void* nameId     = CheckFileID__7ONEFILEFPc(manager, name);
 	void** resources = &lbl_8_bss_ACC;
-	resources[0]     = fn_800BB92C(manager, nameId, lbl_802FF5A0);
+	resources[0]     = LoadClumpEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 	if (resources[0] == NULL)
 		return;
 	identifier = fn_800194A8(lbl_8029C310);
 	sprintf(name, lbl_8_data_4D5C, identifier);
-	nameId       = fn_800BC6CC(manager, name);
-	resources[1] = fn_800BB92C(manager, nameId, lbl_802FF5A0);
+	nameId       = CheckFileID__7ONEFILEFPc(manager, name);
+	resources[1] = LoadClumpEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 	if (resources[1] == NULL) {
 		fn_80150958(resources[0]);
 		return;
 	}
 	identifier = fn_800194A8(lbl_8029C310);
 	sprintf(name, lbl_8_data_4D7C, identifier);
-	nameId       = fn_800BC6CC(manager, name);
-	resources[2] = fn_800BB92C(manager, nameId, lbl_802FF5A0);
+	nameId       = CheckFileID__7ONEFILEFPc(manager, name);
+	resources[2] = LoadClumpEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 	if (resources[2] == NULL) {
 		fn_80150958(resources[0]);
 		fn_80150958(resources[2]);
@@ -581,8 +582,8 @@ extern "C" void fn_8_48FD8()
 	for (; index < 10; index++, pathInfo++) {
 		identifier = fn_800194A8(lbl_8029C310);
 		sprintf(name, lbl_8_data_4D9C, identifier, index);
-		nameId         = fn_800BC6CC(manager, name);
-		pathInfo->path = (PropellerPath*)fn_800BB664(manager, nameId, lbl_802FF5A0);
+		nameId         = CheckFileID__7ONEFILEFPc(manager, name);
+		pathInfo->path = (PropellerPath*)LoadSplineEx__7ONEFILEFUiPc(manager, nameId, lbl_802FF5A0);
 		if (pathInfo->path == NULL)
 			break;
 		pathInfo->speed       = lbl_8_rodata_C40 / (float)(pathInfo->path->count * 60);
@@ -616,7 +617,7 @@ extern "C" int fn_8_4936C(u32 value1, u32 value2)
 			position.y -= lbl_8_rodata_C48;
 			PropellerEntry* entry
 			    = (PropellerEntry*)fn_80058FDC(lbl_8042C298, propellerEntry, &position, 0, 1);
-			entry->info = (PropellerEntryInfo*)fn_80057644(8);
+			entry->info = (PropellerEntryInfo*)__nw__FUl(8);
 			if (entry->info == NULL) {
 				for (;;) {
 				}
@@ -648,7 +649,8 @@ extern "C" void fn_8_4726C(void* self)
 				return;
 			IVec3 angle = field<IVec3>(self, 0x108);
 			angle.y     = 0x4000 - angle.y;
-			fn_8005F194((u8*)self + 0xB8, field<s8>(self, 0xBC), 0, (u8*)self + 0x12C, &angle);
+			objSetPlayerHandlingPosition__17OBJ_ReplacePlayerFiUcP5RwV3dP6sAngle(
+			    (u8*)self + 0xB8, field<s8>(self, 0xBC), 0, (u8*)self + 0x12C, &angle);
 			flags |= 0x10;
 			return;
 		}
@@ -668,7 +670,7 @@ extern "C" void fn_8_46FEC(void* self)
 	int state = field<int>(self, 0xB8);
 	if (state == 0) {
 		if (field<float>(self, 0xD8) < lbl_8_rodata_BF0) {
-			fn_8003BE78((u8*)self + 0x30);
+			ClearInfo__7C_COLLIFv((u8*)self + 0x30);
 			return;
 		}
 		fn_80021824(&lbl_8042C1A4);
@@ -698,20 +700,21 @@ extern "C" void fn_8_46FEC(void* self)
 			break;
 		}
 	} else if (state == 2) {
-		void* result = fn_80054F08(lbl_8042C150, (u8*)self + 0xFC, lbl_8_data_4C60, 0);
+		void* result = DetectSphereCollisionWithPolygons__6OCTREEFP5RwV3dfPFP8POLYDATA_i(
+		    lbl_8042C150, (u8*)self + 0xFC, lbl_8_data_4C60, 0);
 		if (result != NULL) {
 			int player = field<int>(self, 0x160);
 			if (player >= 0 && lbl_80303DC8[player] != NULL)
 				fn_8001F674(field<s8>(lbl_80303DC8[player], 0x14C), 4, 15, 0);
 			field<float>(self, 0x140)
 			    = lbl_8_rodata_BF4 * ((PropellerPathInfo*)lbl_8_bss_AEC)[info[0]].speed;
-			fn_80054158(result, 1);
+			__dt__19ColliPolyLinearListFv(result, 1);
 		}
 	}
 	field<Vec3>(self, 0xAC)  = field<Vec3>(self, 0x90);
 	field<Vec3>(self, 0x90)  = field<Vec3>(self, 0xC0);
 	field<IVec3>(self, 0x9C) = field<IVec3>(self, 0xCC);
-	fn_8003BC38((u8*)self + 0x30);
+	Entry__7C_COLLIFv((u8*)self + 0x30);
 }
 
 extern "C" void propellerReset() { }
@@ -747,7 +750,7 @@ extern "C" void propellerUnload()
 
 extern "C" void propellerCreate()
 {
-	void* object = fn_80018A34(lbl_8042C148, 356);
+	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 356);
 	if (object != NULL)
 		fn_8_48B4C(object, lbl_8042C110);
 }

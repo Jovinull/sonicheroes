@@ -45,15 +45,15 @@ public:
 };
 
 extern "C" {
-void dtor_8005BD3C(void*, s16);
-void fn_8005BE6C(void*);
+void __dt__10TObjSetObjFv(void*, s16);
+void __ct__10TObjSetObjFv(void*);
 }
 
 struct Motion {
 	SETDATA_PARAM* frame;
 	void** vtable;
 
-	Motion() { fn_8005BE6C(this); }
+	Motion() { __ct__10TObjSetObjFv(this); }
 };
 
 extern "C" {
@@ -62,16 +62,16 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern u8 lbl_80239984;
+extern u8 AxisY;
 extern u8 lbl_802FF5A0;
 
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B9F0(Motion*);
-void fn_8005D5C8(void*, u32);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void* fn_80150588(void*);
 void fn_80150958(void*);
 void fn_8015BB08(void*, void*);
@@ -80,12 +80,12 @@ void fn_80195790(void*, void*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, Vec3*, s32);
 void fn_801A4C84(void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 
 void Disp__7TObjectFv();
-void fn_8005B8B8();
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
 void TDisp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -109,8 +109,11 @@ public:
 	TObjS12Fan(TObject*);
 	~TObjS12Fan();
 
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 // The s12fan* data names and CL_TObjS12Fan (after o_s11_cloud's CL_TObjS11Cloud)
@@ -143,7 +146,8 @@ void TObjS12Fan::CloneClump()
 		model         = fn_80150588(s12fanModel);
 		void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
 		fn_8015BB08(manager, model);
-		fn_8005D5C8(model, ((frame->flags & 0x1C0000) >> 18) + 4);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    model, ((frame->flags & 0x1C0000) >> 18) + 4);
 	}
 }
 
@@ -155,7 +159,7 @@ void TObjS12Fan::SetPosition()
 	time     = *(s32*)((u8*)lbl_8042C180 + 0x30);
 	f32 sine = fn_800D7B00(s12fanRotationSpeed * time);
 	fn_80195790(
-	    (u8*)atomic + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(s12fanRotationSpeed * time), sine, 1);
+	    (u8*)atomic + 0x10, &AxisY, 1.0f - fn_800D7AE4(s12fanRotationSpeed * time), sine, 1);
 	fn_8019E880(atomic);
 }
 
@@ -167,8 +171,8 @@ void TObjS12Fan::SetParameter()
 #pragma opt_common_subs off
 void TObjS12Fan::Exec()
 {
-	if (fn_8005B9F0((Motion*)((u8*)this + 0x28)) != 0
-	    || fn_8005B8BC((Motion*)((u8*)this + 0x28)) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0
+	    || CheckMustKill__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0) {
 		signal |= 1;
 		return;
 	}
@@ -181,7 +185,7 @@ TObjS12Fan::~TObjS12Fan()
 	TObject::vtable = s12fanVtable;
 	Motion::vtable  = s12fanVtable + 11;
 	DestroyClump();
-	dtor_8005BD3C((u8*)this + 0x28, 0);
+	__dt__10TObjSetObjFv((u8*)this + 0x28, 0);
 }
 
 static inline void constructFan(TObjS12Fan* object)
@@ -198,7 +202,8 @@ static inline void constructFan(TObjS12Fan* object)
 		object->model = fn_80150588(s12fanModel);
 		fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), object->model);
 		u32 flags = object->frame->flags;
-		fn_8005D5C8(object->model, ((flags & 0x1C0000) >> 18) + 4);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    object->model, ((flags & 0x1C0000) >> 18) + 4);
 	}
 	object->SetPosition();
 }
@@ -231,9 +236,10 @@ extern "C" void initObjS12Fan()
 	if (!(stage != NULL && (fn_801A4C84(stage), 1)))
 		return;
 
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
-	s32 id      = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), s12fanModelName);
-	s12fanModel = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), id, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	s32 id = CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), s12fanModelName);
+	s12fanModel
+	    = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50), id, &lbl_802FF5A0);
 }
 
 extern "C" void startObjS12Fan()
@@ -305,7 +311,7 @@ extern "C" void* s12fanVtable[14]     = {
 	(void*)Render__7TObjectFv,
 	0,
 	0,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 extern "C" char s12fanModelName[]         = "s12_on_fan.dff";
 extern "C" char s12fanObjectDisplayName[] = "S12FAN OBJECT";

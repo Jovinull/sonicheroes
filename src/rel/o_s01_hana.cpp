@@ -97,9 +97,9 @@ extern "C" u8* lbl_8042C1D0;
 extern "C" u8* lbl_8042C298;
 extern "C" u8 lbl_8029C310[];
 extern "C" u8 lbl_802FF5A0[];
-extern "C" Vec3 lbl_80239978;
-extern "C" Vec3 lbl_80239984;
-extern "C" Vec3 lbl_80239990;
+extern "C" Vec3 AxisX;
+extern "C" Vec3 AxisY;
+extern "C" Vec3 AxisZ;
 extern "C" s8 flowerTypeCount;
 extern "C" RpClump* flowerModels[9];
 extern "C" const char* flowerAssetNames[9];
@@ -113,17 +113,17 @@ extern "C" ObjectEntry flowerEntry;
 
 extern "C" TObject* __ct__7TObjectFP7TObject(TObject*, TObject*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
-extern "C" void fn_800189A4(void*, void*);
-extern "C" void* fn_80018A34(THeapCtrl*, u32);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
+extern "C" void* Malloc__9THeapCtrlFUi(THeapCtrl*, u32);
 extern "C" const char* fn_800194C4(void*);
-extern "C" s32 fn_8005B8BC(Motion*);
-extern "C" s32 fn_8005B8D8(Motion*);
-extern "C" s32 fn_8005B9F0(Motion*);
-extern "C" void dtor_8005BD3C(Motion*, s32);
-extern "C" void fn_8005BE6C(Motion*);
-extern "C" void* fn_800BC6CC(void*, const char*);
-extern "C" RpClump* fn_800BB92C(void*, void*, void*);
-extern "C" void fn_800BC9F4(void*, void*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+extern "C" void __dt__10TObjSetObjFv(Motion*, s32);
+extern "C" void __ct__10TObjSetObjFv(Motion*);
+extern "C" void* CheckFileID__7ONEFILEFPc(void*, const char*);
+extern "C" RpClump* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
+extern "C" void LoadOneFile__7ONEFILEFPc(void*, void*);
 extern "C" void* fn_80150588(RpClump*);
 extern "C" void fn_80150958(void*);
 extern "C" void fn_8015BB08(void*, void*);
@@ -156,9 +156,9 @@ static inline void setFlowerPosition(TObjS01Flower* object, const Vec3& zero)
 	scale.y = scale.x;
 	scale.z = scale.x;
 	fn_8019EC30(model, &scale, 0);
-	fn_8019ED68(model, &lbl_80239984, 0.0054931640625f * (f32)object->motion.frame->angleY, 2);
-	fn_8019ED68(model, &lbl_80239978, 0.0054931640625f * (f32)object->motion.frame->angleX, 2);
-	fn_8019ED68(model, &lbl_80239990, 0.0054931640625f * (f32)object->motion.frame->angleZ, 2);
+	fn_8019ED68(model, &AxisY, 0.0054931640625f * (f32)object->motion.frame->angleY, 2);
+	fn_8019ED68(model, &AxisX, 0.0054931640625f * (f32)object->motion.frame->angleX, 2);
+	fn_8019ED68(model, &AxisZ, 0.0054931640625f * (f32)object->motion.frame->angleZ, 2);
 	fn_8019EB94(model, object->motion.frame, 2);
 }
 
@@ -173,10 +173,10 @@ extern "C" void flowerDisp() { }
 
 extern "C" void flowerExec(TObjS01Flower* object)
 {
-	s32 result = fn_8005B9F0(&object->motion);
-	if (result != 0 || fn_8005B8BC(&object->motion) != 0) {
+	s32 result = CheckRangeOut__10TObjSetObjFv(&object->motion);
+	if (result != 0 || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->signal |= 1;
-	} else if (fn_8005B8D8(&object->motion) != 0) {
+	} else if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		setFlowerPosition(object, *(const Vec3*)&flowerZeroConstants[0]);
 	}
 }
@@ -193,10 +193,10 @@ extern "C" TObjS01Flower* flowerDtor(TObjS01Flower* object, s16 flags)
 			fn_80150958(object->clump);
 			object->clump = NULL;
 		}
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }
@@ -206,7 +206,7 @@ TObjS01Flower::TObjS01Flower(TObject* parent)
     : TObject(parent)
 {
 	TObjS01Flower* object = this;
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	vtable                = flowerVtable;
 	object->motion.vtable = flowerVtable + 11;
 	FlowerParams& params  = *(FlowerParams*)object->motion.frame->params;
@@ -274,24 +274,24 @@ extern "C" void flowerInit()
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	s32 i = 0;
 	while (i < flowerTypeCount) {
 		sprintf(path, flowerFormat, stage, flowerAssetNames[i]);
-		flowerModels[i] = fn_800BB92C(*(void**)(lbl_8042C298 + 0xA50),
-		    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
+		flowerModels[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
 		++i;
 	}
 }
 
 inline void* TObject::operator new(unsigned long size)
 {
-	return fn_80018A34(lbl_8042C148, size);
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
 }
 
 inline void* TObject::operator new(unsigned long size, THeapCtrl* heap)
 {
-	return fn_80018A34(heap, size);
+	return Malloc__9THeapCtrlFUi(heap, size);
 }
 
 extern "C" void flowerCreate()

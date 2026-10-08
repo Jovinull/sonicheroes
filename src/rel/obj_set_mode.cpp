@@ -40,7 +40,7 @@ typedef struct Object {
 	void* drawB;    // 0xF8
 } Object;
 
-extern "C" s32* fn_8005F490(void* draw);
+extern "C" s32* RpAtomicMCCGetCustomRenderCallBack(void* draw);
 
 extern "C" void objSetMode(Object* object, s32 mode)
 {
@@ -50,16 +50,16 @@ extern "C" void objSetMode(Object* object, s32 mode)
 
 	switch (object->mode) {
 		case 0:
-			slot  = fn_8005F490(object->drawA);
+			slot  = RpAtomicMCCGetCustomRenderCallBack(object->drawA);
 			*slot = ((object->handle->flags & 0x1C0000) >> 18) + 4;
-			slot  = fn_8005F490(object->drawB);
+			slot  = RpAtomicMCCGetCustomRenderCallBack(object->drawB);
 			*slot = ((object->handle->flags & 0x1C0000) >> 18) + 4;
 			break;
 		case 1:
 		case 2:
-			slot  = fn_8005F490(object->drawA);
+			slot  = RpAtomicMCCGetCustomRenderCallBack(object->drawA);
 			*slot = 0x10;
-			slot  = fn_8005F490(object->drawB);
+			slot  = RpAtomicMCCGetCustomRenderCallBack(object->drawB);
 			*slot = 0x10;
 			break;
 	}

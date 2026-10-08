@@ -128,10 +128,10 @@ struct SetObjHdr {
 };
 
 extern "C" {
-s32 fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
-s32 fn_8005B9F0(void*);
-void fn_8005BE6C(void*);
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
+void __ct__10TObjSetObjFv(void*);
 }
 
 class TObjSetObj : public SetObjHdr
@@ -139,9 +139,9 @@ class TObjSetObj : public SetObjHdr
 public:
 	virtual void EditOnChange(SETDATA_PARAM*);
 
-	s32 CheckMustKill() { return fn_8005B9F0(this); }
-	s32 CheckRangeOut() { return fn_8005B8BC(this); }
-	s32 OnEdit() { return fn_8005B8D8(this); }
+	s32 CheckRangeOut() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckMustKill__10TObjSetObjFv(this); }
+	s32 OnEdit() { return OnEdit__10TObjSetObjFv(this); }
 };
 
 extern "C" {
@@ -151,24 +151,24 @@ extern GameState* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 extern void* lbl_8042C388;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8003C52C(void*, s16);
-void dtor_8005BD3C(void*, s16);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
-void fn_80021384(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
-void fn_8003C618(void*);
-void fn_8005D5C8(RpClump*, u32);
+void __dt__7C_COLLIFv(void*, s16);
+void __dt__10TObjSetObjFv(void*, s16);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void CalcRange__7C_COLLIFv(MaskCollision*, CollisionShape*, CollisionDesc*, f32);
+void __ct__7C_COLLIFv(void*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(RpClump*, u32);
 void fn_800B4A38(void*, s32, Vec3*, s32, s32, s32, s32);
-void* fn_800BB0D4(void*, s32, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadHAnimationEx__7ONEFILEFUiPc(void*, s32, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
 void fn_8013F3A4(RpHAnimHierarchy*);
@@ -299,7 +299,7 @@ __declspec(section ".ctors") void (*const maskObjectCtorEntry)() = maskObjectReg
 
 extern "C" void startObjMask()
 {
-	TObjMask* object = (TObjMask*)fn_80018A34(lbl_8042C148, sizeof(TObjMask));
+	TObjMask* object = (TObjMask*)Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjMask));
 	if (object != NULL) {
 		__ct__8TObjMaskFP7TObject(object, (TObject*)lbl_8042C110);
 	}
@@ -312,13 +312,15 @@ extern "C" void initObjMask()
 		return;
 
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
-	maskModels[0] = fn_800BB92C(archive, fn_800BC6CC(archive, "s11_on_maska.dff"), &lbl_802FF5A0);
-	maskModels[1] = fn_800BB92C(archive, fn_800BC6CC(archive, "s11_on_maskb.dff"), &lbl_802FF5A0);
-	maskAnimations[0]
-	    = fn_800BB0D4(archive, fn_800BC6CC(archive, "s11_on_maska.anm"), &lbl_802FF5A0);
-	maskAnimations[1]
-	    = fn_800BB0D4(archive, fn_800BC6CC(archive, "s11_on_maskb.anm"), &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
+	maskModels[0] = LoadClumpEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maska.dff"), &lbl_802FF5A0);
+	maskModels[1] = LoadClumpEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maskb.dff"), &lbl_802FF5A0);
+	maskAnimations[0] = LoadHAnimationEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maska.anm"), &lbl_802FF5A0);
+	maskAnimations[1] = LoadHAnimationEx__7ONEFILEFUiPc(
+	    archive, CheckFileID__7ONEFILEFPc(archive, "s11_on_maskb.anm"), &lbl_802FF5A0);
 }
 
 // Retail builds both induction pointers straight into their registers here,
@@ -386,8 +388,8 @@ static RpAtomic* SetHierarchyForSkinAtomic(RpAtomic* atomic, void* data)
 extern "C" TObjMask* __ct__8TObjMaskFP7TObject(TObjMask* self, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(MOTION(self));
-	fn_8003C618(&self->collision);
+	__ct__10TObjSetObjFv(MOTION(self));
+	__ct__7C_COLLIFv(&self->collision);
 	*(void***)((u8*)self + 0x18) = __vt__8TObjMask;
 	*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
 	self->className              = CL_TObjMask;
@@ -401,7 +403,8 @@ extern "C" TObjMask* __ct__8TObjMaskFP7TObject(TObjMask* self, TObject* parent)
 		if (self->model != NULL) {
 			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), self->model);
 			u32 flags = self->frame->flags;
-			fn_8005D5C8(self->model, ((flags & 0x1C0000) >> 18) + 4);
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    self->model, ((flags & 0x1C0000) >> 18) + 4);
 			self->hierarchy = GetHierarchy(self->model);
 			fn_8014FFBC(self->model, SetHierarchyForSkinAtomic, self->hierarchy);
 			self->hierarchy->flags |= 0x3000;
@@ -423,11 +426,11 @@ extern "C" TObjMask* __dt__8TObjMaskFv(TObjMask* self, s16 flags)
 		*(void***)((u8*)self + 0x18) = __vt__8TObjMask;
 		*(void***)((u8*)self + 0x2C) = __vt__8TObjMask + 11;
 		self->DestroyClump();
-		dtor_8003C52C(&self->collision, 0);
-		dtor_8005BD3C(MOTION(self), 0);
+		__dt__7C_COLLIFv(&self->collision, 0);
+		__dt__10TObjSetObjFv(MOTION(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 		}
 	}
 	return self;
@@ -441,15 +444,15 @@ void TObjMask::SetPosition()
 		RwFrame* frame           = *(RwFrame**)((u8*)model + 4);
 		fn_8019EB94(frame, &position, 0);
 		f32 sine = fn_800D7B00(angleY);
-		fn_80195790(&frame->modelling, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), sine, 1);
+		fn_80195790(&frame->modelling, &AxisY, 1.0f - fn_800D7AE4(angleY), sine, 1);
 		fn_8019E880(frame);
 		if (direction == 1) {
 			sine = fn_800D7B00(0x4000);
-			fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(0x4000), sine, 1);
+			fn_80195790(&frame->modelling, &AxisZ, 1.0f - fn_800D7AE4(0x4000), sine, 1);
 			fn_8019E880(frame);
 		} else {
 			sine = fn_800D7B00(-0x4000);
-			fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(-0x4000), sine, 1);
+			fn_80195790(&frame->modelling, &AxisZ, 1.0f - fn_800D7AE4(-0x4000), sine, 1);
 			fn_8019E880(frame);
 		}
 		fn_8019EC30(frame, &size, 1);
@@ -458,7 +461,7 @@ void TObjMask::SetPosition()
 
 void TObjMask::Exec()
 {
-	if (CheckMustKill() != 0 || CheckRangeOut() != 0) {
+	if (CheckRangeOut() != 0 || CheckMustKill() != 0) {
 		signal |= 1;
 		return;
 	}
@@ -517,7 +520,7 @@ void TObjMask::SetCollision()
 	f32 scaled            = depth * scale;
 	CollisionShape* shape = collision.shape;
 	shape->f18            = scaled;
-	fn_80021384(&collision, shape, &maskCollisionDesc, depth);
+	CalcRange__7C_COLLIFv(&collision, shape, &maskCollisionDesc, depth);
 }
 
 void TObjMask::CloneClump()
@@ -526,7 +529,8 @@ void TObjMask::CloneClump()
 		model = fn_80150588(maskModels[type]);
 		if (model != NULL) {
 			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), model);
-			fn_8005D5C8(model, ((frame->flags & 0x1C0000) >> 18) + 4);
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    model, ((frame->flags & 0x1C0000) >> 18) + 4);
 			hierarchy = GetHierarchy(model);
 			fn_8014FFBC(model, SetHierarchyForSkinAtomic, hierarchy);
 			hierarchy->flags |= 0x3000;

@@ -37,8 +37,8 @@ typedef struct ObjectEntry {
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" {
-void* fn_80113C7C(void*);
-void fn_80113C2C(void*, s16);
+void* __ct__16TEnemyMatTextureFv(void*);
+void __dt__16TEnemyMatTextureFv(void*, s16);
 void __construct_array(void*, void*, void*, s32, s32);
 void __register_global_object(void*, void*, void*);
 }
@@ -56,7 +56,8 @@ extern "C" const char* e2000ObjectFieldNames[];
 
 extern "C" void e2000ObjectRegister(void)
 {
-	__construct_array(e2000ObjectGlobalArray, (void*)fn_80113C7C, (void*)fn_80113C2C, 0x14, 4);
+	__construct_array(e2000ObjectGlobalArray, (void*)__ct__16TEnemyMatTextureFv,
+	    (void*)__dt__16TEnemyMatTextureFv, 0x14, 4);
 	__register_global_object(NULL, (void*)e2000ObjectGlobalArrayDtor, e2000ObjectGlobalArrayChain);
 
 	e2000ObjectEntry.flags = 0;

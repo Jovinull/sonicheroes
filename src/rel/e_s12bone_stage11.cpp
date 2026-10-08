@@ -152,52 +152,53 @@ RpHAnimHierarchy* GetHierarchy__10HAnimClassFP7RpClump(
 s32 SearchNodeFrameFromNodeID__10HAnimClassFP16RpHAnimHierarchyi(
     HAnimClass* self, RpHAnimHierarchy* arg0, s32 arg1); /* extern */
 M2C_UNK SetHierarchyForAtomic__10HAnimClassFP7RpClumpP16RpHAnimHierarchy(
-    HAnimClass* self, RpClump* arg0, RpHAnimHierarchy* arg1); /* extern */
-void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
-void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                        /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                        /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                           /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                                /* extern */
-void* fn_800211A8(s32);                                       /* extern */
-M2C_UNK fn_80021384(M2C_UNK*);                                /* extern */
-M2C_UNK fn_80021824(s32);                                     /* extern */
-M2C_UNK fn_8003BC38(void*);                                   /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                /* extern */
-s32* fn_80057644(M2C_UNK);                                    /* extern */
-s32 fn_8005B8BC(s32);                                         /* extern */
-s32 fn_8005B9F0(s32);                                         /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
-M2C_UNK fn_8005D5C8(RpClump*, s32);                           /* extern */
-s32 fn_80091FAC(s32);                                         /* extern */
-s32 fn_80096A98(s32);                                         /* extern */
-s32 fn_800BB0D4(s32, s32, M2C_UNK*);                          /* extern */
-s32 fn_800BB92C(s32, s32, M2C_UNK*);                          /* extern */
-s32 fn_800BC6CC(s32, const void*);                            /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                           /* extern */
-f32 fn_800D7AE4(s32);                                         /* extern */
-f32 fn_800D7B00(s32);                                         /* extern */
-M2C_UNK fn_8013F3A4(RpHAnimHierarchy*);                       /* extern */
-M2C_UNK fn_8013FC30(void*);                                   /* extern */
-M2C_UNK fn_8014FF2C(s32);                                     /* extern */
-RpClump* fn_80150588(s32);                                    /* extern */
-M2C_UNK fn_80150958(RpClump*);                                /* extern */
-M2C_UNK fn_80195674(void*, s32, s32*);                        /* extern */
-M2C_UNK fn_80195790(void*, M2C_UNK*, M2C_UNK, f32, f32);      /* extern */
-M2C_UNK fn_8019E880(void*);                                   /* extern */
-M2C_UNK fn_8019EB94(void*, void*, M2C_UNK);                   /* extern */
-M2C_UNK fn_801A4C84();                                        /* extern */
-M2C_UNK fn_8020C2D8(s32);                                     /* extern */
-M2C_UNK fn_8020C72C(void**, s32, s32);                        /* extern */
-M2C_UNK fn_8020D02C(void**, const f32*, f32);                 /* extern */
-void* memset(void*, s32, u32);                                /* extern */
-void s12boneColliObjectCreate();                              /* static */
-void s12boneColliObjectReset(void* arg0);                     /* static */
-void s12boneObjectCreate();                                   /* static */
-void s12boneObjectLoad(M2C_UNK arg_sp0);                      /* static */
-void s12boneObjectReset();                                    /* static */
-void s12boneObjectUnload(M2C_UNK arg_sp0);                    /* static */
+    HAnimClass* self, RpClump* arg0, RpHAnimHierarchy* arg1);               /* extern */
+void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);               /* extern */
+void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);                     /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                   /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                               /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                 /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                    /* extern */
+void* fn_800211A8(s32);                                                     /* extern */
+M2C_UNK CalcRange__7C_COLLIFv(M2C_UNK*);                                    /* extern */
+M2C_UNK fn_80021824(s32);                                                   /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                                           /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                         /* extern */
+s32* __nw__FUl(M2C_UNK);                                                    /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                                     /* extern */
+s32 CheckRangeOut__10TObjSetObjFv(s32);                                     /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                     /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+    RpClump*, s32);                                      /* extern */
+s32 fn_80091FAC(s32);                                    /* extern */
+s32 fn_80096A98(s32);                                    /* extern */
+s32 LoadHAnimationEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*); /* extern */
+s32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);      /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, const void*);          /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);         /* extern */
+f32 fn_800D7AE4(s32);                                    /* extern */
+f32 fn_800D7B00(s32);                                    /* extern */
+M2C_UNK fn_8013F3A4(RpHAnimHierarchy*);                  /* extern */
+M2C_UNK fn_8013FC30(void*);                              /* extern */
+M2C_UNK fn_8014FF2C(s32);                                /* extern */
+RpClump* fn_80150588(s32);                               /* extern */
+M2C_UNK fn_80150958(RpClump*);                           /* extern */
+M2C_UNK fn_80195674(void*, s32, s32*);                   /* extern */
+M2C_UNK fn_80195790(void*, M2C_UNK*, M2C_UNK, f32, f32); /* extern */
+M2C_UNK fn_8019E880(void*);                              /* extern */
+M2C_UNK fn_8019EB94(void*, void*, M2C_UNK);              /* extern */
+M2C_UNK fn_801A4C84();                                   /* extern */
+M2C_UNK fn_8020C2D8(s32);                                /* extern */
+M2C_UNK fn_8020C72C(void**, s32, s32);                   /* extern */
+M2C_UNK fn_8020D02C(void**, const f32*, f32);            /* extern */
+void* memset(void*, s32, u32);                           /* extern */
+void s12boneColliObjectCreate();                         /* static */
+void s12boneColliObjectReset(void* arg0);                /* static */
+void s12boneObjectCreate();                              /* static */
+void s12boneObjectLoad(M2C_UNK arg_sp0);                 /* static */
+void s12boneObjectReset();                               /* static */
+void s12boneObjectUnload(M2C_UNK arg_sp0);               /* static */
 TObject* fn_8_CC2F0(TObject*, s16);
 void fn_8_CC0F0(s32);
 void fn_8_CC0EC(void);
@@ -213,13 +214,13 @@ void Debug__7TObjectFv(...);
 void Error__7TObjectFPc(...);
 void Render__7TObjectFv(...);
 
-void fn_8005B8B8(...);
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM(...);
 void TDisp__7TObjectFv(...);
 void fn_8_CDCD4(...);
 extern HAnimClass HAnim;
-extern M2C_UNK lbl_80239978;
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+extern M2C_UNK AxisX;
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802AD0D0;
 extern M2C_UNK lbl_802FF5A0;
 extern M2C_UNK lbl_80303DC8;
@@ -283,7 +284,7 @@ S12_DATA void* lbl_8_data_190FC[14]   = {
 	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 S12_DATA void* lbl_8_data_19134[15] = {
 	NULL,
@@ -406,7 +407,8 @@ void fn_8_CC0F0(s32 arg0)
 	void* temp_r4;
 	void* var_r3;
 
-	if ((fn_8005B9F0(arg0 + 0x28) != 0) || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
+	if ((CheckRangeOut__10TObjSetObjFv(arg0 + 0x28) != 0)
+	    || (CheckMustKill__10TObjSetObjFv((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -473,7 +475,7 @@ loop_26_done:
 	M2C_FIELD(arg0, f32*, 0x90) = (f32)M2C_FIELD(arg0, f32*, 0xB8);
 	M2C_FIELD(arg0, f32*, 0x94) = (f32)M2C_FIELD(arg0, f32*, 0xBC);
 	M2C_FIELD(arg0, f32*, 0x98) = (f32)M2C_FIELD(arg0, f32*, 0xC0);
-	fn_8003BC38((void*)(arg0 + 0x30));
+	Entry__7C_COLLIFv((void*)(arg0 + 0x30));
 	temp_r4_2 = M2C_FIELD(arg0, s32*, 0xD0);
 	*M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), u32**, 0x30)
 	    = (u32)((-1 - temp_r4_2) | (temp_r4_2 + 1)) >> 0x1FU;
@@ -484,11 +486,11 @@ TObject* fn_8_CC2F0(TObject* arg0, s16 arg1)
 	if (arg0 != NULL) {
 		arg0->unk18 = (M2C_UNK*)lbl_8_data_190FC;
 		arg0->unk2C = (u8*)lbl_8_data_190FC + 0x2C;
-		dtor_8003C52C((u8*)arg0 + 0x30, 0);
-		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x30, 0);
+		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -502,8 +504,8 @@ TObject* fn_8_CC388(TObject* arg0, TObject* arg1)
 	void* temp_r4;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
-	fn_8003C618(&arg0->unk30);
+	__ct__10TObjSetObjFv(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk30);
 	arg0->unk18 = (M2C_UNK*)lbl_8_data_190FC;
 	arg0->unk2C = (u8*)lbl_8_data_190FC + 0x2C;
 	arg0->unk0  = lbl_8_data_190F8;
@@ -521,13 +523,13 @@ TObject* fn_8_CC388(TObject* arg0, TObject* arg1)
 	arg0->unkC8 = M2C_FIELD(temp_r4, f32*, 4);
 	arg0->unkCC = M2C_FIELD(temp_r4, f32*, 8);
 	arg0->unkD0 = -1;
-	fn_8003C200(&arg0->unk30, (M2C_UNK*)lbl_8_data_190B0, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk30, (M2C_UNK*)lbl_8_data_190B0, 1, 4);
 	M2C_FIELD(arg0->unk40, f32*, 0x14) = (f32)arg0->unkC4;
 	M2C_FIELD(arg0->unk40, f32*, 0x18) = (f32)arg0->unkC8;
 	M2C_FIELD(arg0->unk40, f32*, 0x1C) = (f32)arg0->unkCC;
-	fn_80021384(&arg0->unk30);
+	CalcRange__7C_COLLIFv(&arg0->unk30);
 	if ((s32*)M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32**, 0x30) == NULL) {
-		temp_r3_3                                             = fn_80057644(4);
+		temp_r3_3                                             = __nw__FUl(4);
 		M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32**, 0x30) = temp_r3_3;
 		*temp_r3_3                                            = 0;
 	}
@@ -550,12 +552,12 @@ void s12boneColliObjectCreate(void)
 	void* temp_r3_3;
 	void* temp_r4;
 
-	temp_r0 = fn_80018A34(lbl_8042C148, 0xD4);
+	temp_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD4);
 	if (temp_r0 != 0) {
 		temp_r3 = (TObject*)temp_r0;
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
-		fn_8005BE6C(&temp_r3->unk28);
-		fn_8003C618(&temp_r3->unk30);
+		__ct__10TObjSetObjFv(&temp_r3->unk28);
+		__ct__7C_COLLIFv(&temp_r3->unk30);
 		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_190FC;
 		temp_r3->unk2C = (u8*)lbl_8_data_190FC + 0x2C;
 		temp_r3->unk0  = lbl_8_data_190F8;
@@ -573,13 +575,13 @@ void s12boneColliObjectCreate(void)
 		temp_r3->unkC8 = M2C_FIELD(temp_r4, f32*, 4);
 		temp_r3->unkCC = M2C_FIELD(temp_r4, f32*, 8);
 		temp_r3->unkD0 = -1;
-		fn_8003C200(&temp_r3->unk30, (M2C_UNK*)lbl_8_data_190B0, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(&temp_r3->unk30, (M2C_UNK*)lbl_8_data_190B0, 1, 4);
 		M2C_FIELD(temp_r3->unk40, f32*, 0x14) = (f32)temp_r3->unkC4;
 		M2C_FIELD(temp_r3->unk40, f32*, 0x18) = (f32)temp_r3->unkC8;
 		M2C_FIELD(temp_r3->unk40, f32*, 0x1C) = (f32)temp_r3->unkCC;
-		fn_80021384(&temp_r3->unk30);
+		CalcRange__7C_COLLIFv(&temp_r3->unk30);
 		if ((s32*)M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32**, 0x30) == NULL) {
-			temp_r3_4                                                = fn_80057644(4);
+			temp_r3_4                                                = __nw__FUl(4);
 			M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32**, 0x30) = temp_r3_4;
 			*temp_r3_4                                               = 0;
 		}
@@ -726,37 +728,37 @@ void fn_8_CC9AC(s32 arg0)
 		temp_r31 = (s32)M2C_FIELD(M2C_FIELD(arg0, void**, 0x88), void**, 4);
 		fn_8019EB94((void*)temp_r31, (void*)(arg0 + 0x30), 0);
 		temp_f31 = fn_800D7B00(0x8000);
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239984, 1,
-		    lbl_8_rodata_2004 - fn_800D7AE4(0x8000), temp_f31);
+		fn_80195790(
+		    (void*)(temp_r31 + 0x10), &AxisY, 1, lbl_8_rodata_2004 - fn_800D7AE4(0x8000), temp_f31);
 		fn_8019E880((void*)temp_r31);
 		temp_f31_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x44));
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239990, 1,
+		fn_80195790((void*)(temp_r31 + 0x10), &AxisZ, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x44)), temp_f31_2);
 		fn_8019E880((void*)temp_r31);
 		temp_f31_3 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x40));
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239984, 1,
+		fn_80195790((void*)(temp_r31 + 0x10), &AxisY, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x40)), temp_f31_3);
 		fn_8019E880((void*)temp_r31);
 		temp_f31_4 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x3C));
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239978, 1,
+		fn_80195790((void*)(temp_r31 + 0x10), &AxisX, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x3C)), temp_f31_4);
 		fn_8019E880((void*)temp_r31);
 		temp_r31_2 = (s32)M2C_FIELD(M2C_FIELD(arg0, void**, 0x8C), void**, 4);
 		fn_8019EB94((void*)temp_r31_2, (void*)(arg0 + 0x30), 0);
 		temp_f31_5 = fn_800D7B00(0x8000);
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239984, 1,
-		    lbl_8_rodata_2004 - fn_800D7AE4(0x8000), temp_f31_5);
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisY, 1, lbl_8_rodata_2004 - fn_800D7AE4(0x8000),
+		    temp_f31_5);
 		fn_8019E880((void*)temp_r31_2);
 		temp_f31_6 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x44));
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239990, 1,
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisZ, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x44)), temp_f31_6);
 		fn_8019E880((void*)temp_r31_2);
 		temp_f31_7 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x40));
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239984, 1,
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisY, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x40)), temp_f31_7);
 		fn_8019E880((void*)temp_r31_2);
 		temp_f31_8 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x3C));
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239978, 1,
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisX, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x3C)), temp_f31_8);
 		fn_8019E880((void*)temp_r31_2);
 		temp_r3             = temp_r31_2 + 0x10;
@@ -835,7 +837,8 @@ void fn_8_CCDE4(s32 arg0)
 	void* var_r3;
 	void* var_r3_2;
 
-	if ((fn_8005B9F0(arg0 + 0x28) != 0) || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
+	if ((CheckRangeOut__10TObjSetObjFv(arg0 + 0x28) != 0)
+	    || (CheckMustKill__10TObjSetObjFv((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -843,37 +846,37 @@ void fn_8_CCDE4(s32 arg0)
 		temp_r31 = (s32)M2C_FIELD(M2C_FIELD(arg0, void**, 0x88), void**, 4);
 		fn_8019EB94((void*)temp_r31, (void*)(arg0 + 0x30), 0);
 		temp_f31 = fn_800D7B00(0x8000);
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239984, 1,
-		    lbl_8_rodata_2004 - fn_800D7AE4(0x8000), temp_f31);
+		fn_80195790(
+		    (void*)(temp_r31 + 0x10), &AxisY, 1, lbl_8_rodata_2004 - fn_800D7AE4(0x8000), temp_f31);
 		fn_8019E880((void*)temp_r31);
 		temp_f31_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x44));
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239990, 1,
+		fn_80195790((void*)(temp_r31 + 0x10), &AxisZ, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x44)), temp_f31_2);
 		fn_8019E880((void*)temp_r31);
 		temp_f31_3 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x40));
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239984, 1,
+		fn_80195790((void*)(temp_r31 + 0x10), &AxisY, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x40)), temp_f31_3);
 		fn_8019E880((void*)temp_r31);
 		temp_f31_4 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x3C));
-		fn_80195790((void*)(temp_r31 + 0x10), &lbl_80239978, 1,
+		fn_80195790((void*)(temp_r31 + 0x10), &AxisX, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x3C)), temp_f31_4);
 		fn_8019E880((void*)temp_r31);
 		temp_r31_2 = (s32)M2C_FIELD(M2C_FIELD(arg0, void**, 0x8C), void**, 4);
 		fn_8019EB94((void*)temp_r31_2, (void*)(arg0 + 0x30), 0);
 		temp_f31_5 = fn_800D7B00(0x8000);
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239984, 1,
-		    lbl_8_rodata_2004 - fn_800D7AE4(0x8000), temp_f31_5);
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisY, 1, lbl_8_rodata_2004 - fn_800D7AE4(0x8000),
+		    temp_f31_5);
 		fn_8019E880((void*)temp_r31_2);
 		temp_f31_6 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x44));
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239990, 1,
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisZ, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x44)), temp_f31_6);
 		fn_8019E880((void*)temp_r31_2);
 		temp_f31_7 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x40));
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239984, 1,
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisY, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x40)), temp_f31_7);
 		fn_8019E880((void*)temp_r31_2);
 		temp_f31_8 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x3C));
-		fn_80195790((void*)(temp_r31_2 + 0x10), &lbl_80239978, 1,
+		fn_80195790((void*)(temp_r31_2 + 0x10), &AxisX, 1,
 		    lbl_8_rodata_2004 - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x3C)), temp_f31_8);
 		fn_8019E880((void*)temp_r31_2);
 		temp_r3             = temp_r31_2 + 0x10;
@@ -1004,10 +1007,10 @@ TObject* fn_8_CD478(TObject* arg0, s16 arg1)
 		if ((u32)arg0->unk8C != NULL) {
 			fn_80150958(arg0->unk8C);
 		}
-		dtor_8005BD3C((u8*)arg0 + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1023,7 +1026,7 @@ TObject* fn_8_CD524(TObject* arg0, TObject* arg1)
 	void* temp_r3_2;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
+	__ct__10TObjSetObjFv(&arg0->unk28);
 	arg0->unk18                 = (M2C_UNK*)lbl_8_data_19134;
 	arg0->unk2C                 = (u8*)lbl_8_data_19134 + 0x2C;
 	arg0->unk0                  = lbl_8_data_19088;
@@ -1042,10 +1045,10 @@ TObject* fn_8_CD524(TObject* arg0, TObject* arg1)
 	arg0->unk50                 = arg0->unk38;
 	arg0->unk54                 = *temp_r4;
 	arg0->unk88                 = fn_80150588(lbl_8_bss_1DB0[0]);
-	fn_8005D5C8(arg0->unk88,
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(arg0->unk88,
 	    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
 	arg0->unk8C = fn_80150588(lbl_8_bss_1DB0[1]);
-	fn_8005D5C8(arg0->unk8C,
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(arg0->unk8C,
 	    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
 	arg0->unk58 = 1;
 	arg0->unk5C = -1;
@@ -1144,13 +1147,13 @@ end:
 	return;
 body: {
 	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(temp_r31, &lbl_802FF5A0);
 	var_r25       = 0;
 	var_r29.value = lbl_8_data_18F58;
 	var_r28.value = lbl_8_bss_1DB0;
 	do {
-		*var_r28.value
-		    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, *var_r29.value), &lbl_802FF5A0);
+		*var_r28.value = LoadClumpEx__7ONEFILEFUiPc(
+		    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, *var_r29.value), &lbl_802FF5A0);
 		var_r29.value += 1;
 		var_r28.value += 1;
 		var_r25 += 1;
@@ -1163,7 +1166,8 @@ body: {
 		var_r28_2 = var_r27.value;
 		var_r29_2 = var_r26.value;
 	loop_7:
-		*var_r29_2 = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, *var_r28_2), &lbl_802FF5A0);
+		*var_r29_2 = LoadHAnimationEx__7ONEFILEFUiPc(
+		    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, *var_r28_2), &lbl_802FF5A0);
 		var_r28_2 += 1;
 		var_r29_2 += 1;
 		var_r24 += 1;
@@ -1188,10 +1192,10 @@ void s12boneObjectCreate(void)
 	void* temp_r3_2;
 	void* temp_r3_3;
 
-	temp_r3 = (TObject*)fn_80018A34(lbl_8042C148, 0x98);
+	temp_r3 = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0x98);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
-		fn_8005BE6C(&temp_r3->unk28);
+		__ct__10TObjSetObjFv(&temp_r3->unk28);
 		temp_r3->unk18                 = (M2C_UNK*)lbl_8_data_19134;
 		temp_r3->unk2C                 = (u8*)lbl_8_data_19134 + 0x2C;
 		temp_r3->unk0                  = lbl_8_data_19088;
@@ -1213,12 +1217,14 @@ void s12boneObjectCreate(void)
 		temp_r0_3
 		    = ((u32)(M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
 		    + 4;
-		fn_8005D5C8(temp_r3->unk88, temp_r0_3);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    temp_r3->unk88, temp_r0_3);
 		temp_r3->unk8C = fn_80150588(lbl_8_bss_1DB0[1]);
 		temp_r0_3
 		    = ((u32)(M2C_FIELD(M2C_FIELD(temp_r3, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
 		    + 4;
-		fn_8005D5C8(temp_r3->unk8C, temp_r0_3);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    temp_r3->unk8C, temp_r0_3);
 		temp_r3->unk58 = 1;
 		temp_r3->unk5C = -1;
 		temp_r3->unk80 = GetHierarchy__10HAnimClassFP7RpClump(&HAnim, temp_r3->unk88);

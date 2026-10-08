@@ -53,20 +53,20 @@ void* fn_800211A8(void*);
 int fn_80041B64(void*);
 void* fn_800924E4();
 void fn_80063E7C(void*, int);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
-void fn_8003BC38(void*);
-void dtor_8003C52C(void*, int);
-void dtor_8005BD3C(void*, int);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
+void Entry__7C_COLLIFv(void*);
+void __dt__7C_COLLIFv(void*, int);
+void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
-void fn_8003C618(void*);
-void fn_8003C200(void*, void*, int, int);
-void fn_80021384(void*);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void __ct__10TObjSetObjFv(void*);
+void __ct__7C_COLLIFv(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, int, int);
+void CalcRange__7C_COLLIFv(void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 
 extern void* lbl_8042C298;
 extern void* lbl_8042C1A4;
@@ -101,7 +101,10 @@ class TObject
 public:
 	TObject(TObject*);
 	~TObject();
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
 
 struct TObjSetInvokeColli : TObject {
@@ -231,11 +234,12 @@ extern "C" void TDisp__18TObjSetInvokeColliFv(void* self)
 extern "C" void Exec__18TObjSetInvokeColliFv(void* self)
 {
 	SetData* data = *(SetData**)((u8*)PTR(self, 0x28) + 0x2C);
-	if (fn_8005B9F0((u8*)self + 0x28) != 0 || fn_8005B8BC((u8*)self + 0x28) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv((u8*)self + 0x28) != 0
+	    || CheckMustKill__10TObjSetObjFv((u8*)self + 0x28) != 0) {
 		HALF(self, 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8((u8*)self + 0x28) != 0) {
+	if (OnEdit__10TObjSetObjFv((u8*)self + 0x28) != 0) {
 		FLOAT(self, 0xC8) = data->position.x;
 		FLOAT(self, 0xCC) = data->position.y;
 		FLOAT(self, 0xD0) = data->position.z;
@@ -258,7 +262,7 @@ extern "C" void Exec__18TObjSetInvokeColliFv(void* self)
 	WORD(self, 0x9C)  = WORD(frame, 0xC);
 	WORD(self, 0xA0)  = WORD(frame, 0x10);
 	WORD(self, 0xA4)  = WORD(frame, 0x14);
-	fn_8003BC38((u8*)self + 0x30);
+	Entry__7C_COLLIFv((u8*)self + 0x30);
 }
 #pragma opt_loop_invariants reset
 #pragma opt_strength_reduction reset
@@ -275,13 +279,13 @@ extern "C" void* __dt__18TObjSetInvokeColliFv(void* self, s16 flags)
 			fn_80063E7C(resource, 1);
 			PTR(self, 0xB8) = 0;
 		}
-		if (fn_8005B8D8((u8*)self + 0x28))
+		if (OnEdit__10TObjSetObjFv((u8*)self + 0x28))
 			((InvokeDispatch*)self)->SetCommunication(BYTE(PTR(self, 0x28), 0x2A), 0);
-		dtor_8003C52C((u8*)self + 0x30, 0);
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -290,8 +294,8 @@ extern "C" void* __dt__18TObjSetInvokeColliFv(void* self, s16 flags)
 #pragma opt_common_subs off
 static inline void InitializeInvoke(void* self, void* parent)
 {
-	fn_8005BE6C((u8*)self + 0x28);
-	fn_8003C618((u8*)self + 0x30);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
+	__ct__7C_COLLIFv((u8*)self + 0x30);
 	WORD(self, 0x18) = (u32)InvokeVtable;
 	WORD(self, 0x2C) = (u32)InvokeVtable + 0x2C;
 	void* frame      = PTR(self, 0x28);
@@ -310,12 +314,12 @@ static inline void InitializeInvoke(void* self, void* parent)
 	WORD(self, 0xBC)  = lbl_3_data_5820[0];
 	WORD(self, 0xB8)  = 0;
 	if (WORD(self, 0x40) == 0) {
-		fn_8003C200((u8*)self + 0x30, lbl_3_data_5640, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc((u8*)self + 0x30, lbl_3_data_5640, 1, 4);
 		void* collision        = PTR(self, 0x40);
 		FLOAT(collision, 0x14) = InvokeHalf * FLOAT(self, 0xC8);
 		FLOAT(collision, 0x18) = InvokeHalf * FLOAT(self, 0xCC);
 		FLOAT(collision, 0x1C) = InvokeHalf * FLOAT(self, 0xD0);
-		fn_80021384((u8*)self + 0x30);
+		CalcRange__7C_COLLIFv((u8*)self + 0x30);
 		HALF(self, 0x38) &= ~0x40;
 	}
 }

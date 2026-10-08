@@ -72,13 +72,14 @@ void* __nw__10TObjSampleFUl(u32 size);
 void setupObjClass(SETOBJ_PARAM* param, char* name, void (*load)(), void (*unload)(),
     void (*create)(), void (*reset)(SETOBJ_PARAM*), u32 flags, u32 field18, u32 field20,
     u32 objectId, u32 field1E, u32 field21, void* fieldTypes, void* fieldNames);
-void fn_8005B8B8();
-s32 fn_8005B8BC(TMotion* motion);
-s32 fn_8005B8D8(TMotion* motion);
-s32 fn_8005B9F0(TMotion* motion);
-void dtor_8005BD3C(TMotion* motion, s16 flags);
-void fn_8005BE6C(TMotion* motion);
-void fn_800D72C0(const Vec3* first, const Vec3* second, Vec3* result);
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
+s32 CheckMustKill__10TObjSetObjFv(TMotion* motion);
+s32 OnEdit__10TObjSetObjFv(TMotion* motion);
+s32 CheckRangeOut__10TObjSetObjFv(TMotion* motion);
+void __dt__10TObjSetObjFv(TMotion* motion, s16 flags);
+void __ct__10TObjSetObjFv(TMotion* motion);
+void SubVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+    const Vec3* first, const Vec3* second, Vec3* result);
 void __ct__7TObjectFP7TObject(TObject* object, TObject* owner);
 void __dt__7TObjectFv(TObject* object, s16 flags);
 
@@ -115,7 +116,7 @@ void* __vt__11TObjSample2[] = {
 	(void*)sampleHook4,
 	0,
 	0,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 
 char TObjSample2DisplayName[16] = "SAMPLE2 OBJECT";
@@ -128,32 +129,34 @@ void TObjSample2::Exec()
 {
 	Vec3 delta;
 
-	if (fn_8005B9F0(&motion) != 0 || fn_8005B8BC(&motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&motion) != 0) {
 		markSampleForDeletion(&object);
 		return;
 	}
 
-	if (fn_8005B8D8(&motion) != 0) {
+	if (OnEdit__10TObjSetObjFv(&motion) != 0) {
 		copyVec3(&position, &motion.frame->position);
 		return;
 	}
 
 	rotation.y += 0x38E;
-	fn_800D72C0(lbl_8042C208, &motion.frame->position, &delta);
+	SubVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+	    lbl_8042C208, &motion.frame->position, &delta);
 }
 
 TObjSample2::~TObjSample2()
 {
 	object.vtable = __vt__11TObjSample2;
 	motion.vtable = __vt__11TObjSample2 + 11;
-	dtor_8005BD3C(&motion, 0);
+	__dt__10TObjSetObjFv(&motion, 0);
 	__dt__7TObjectFv(&object, 0);
 }
 
 TObjSample2::TObjSample2(TObject* owner)
 {
 	__ct__7TObjectFP7TObject(&object, owner);
-	fn_8005BE6C(&motion);
+	__ct__10TObjSetObjFv(&motion);
 	object.vtable     = __vt__11TObjSample2;
 	motion.vtable     = __vt__11TObjSample2 + 11;
 	object.className  = CL_TObjSample2;

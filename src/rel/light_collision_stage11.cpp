@@ -4,7 +4,7 @@ extern "C" {
 extern void* lbl_8042C110;
 extern void* lbl_8042C118;
 extern void* lbl_8042C148;
-extern void* lbl_8042C178;
+extern void* pCurrentMatrix;
 extern u8 lbl_802D5E80[];
 extern void* lbl_802AD070[];
 extern void* lbl_8_bss_D38;
@@ -27,18 +27,18 @@ extern float lbl_8_rodata_D58;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
-void* fn_80018A34(s32, s32);
-void fn_800189A4(void*, void*);
-void fn_8005BE6C(void*);
-void dtor_8005BD3C(void*, s32);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
-void fn_80052DAC(...);
+void* Malloc__9THeapCtrlFUi(s32, s32);
+void Free__9THeapCtrlFPv(void*, void*);
+void __ct__10TObjSetObjFv(void*);
+void __dt__10TObjSetObjFv(void*, s32);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
+void SetCurrentNumPlayer__6CLIGHTFScSc(...);
 void fn_8014FFBC(s32, s32, s32);
 void fn_801527A4(void*, void*, void*);
 f32 fn_801991B4(void* v);
-f32 fn_800D7218(void*, void*);
+f32 DistanceP2P__FPC5RwV3dPC5RwV3d(void*, void*);
 }
 
 template <typename T> static inline T& field(void* object, int offset)
@@ -133,7 +133,7 @@ extern "C" void fn_8_4E338(void* self)
 	}
 	for (int i = 0; i < 8; i++) {
 		if (selected[i] != lbl_8_bss_D40[i * 2])
-			fn_80052DAC((int)lbl_802D5E80, i);
+			SetCurrentNumPlayer__6CLIGHTFScSc((int)lbl_802D5E80, i);
 		lbl_8_bss_D40[i * 2] = selected[i];
 	}
 }
@@ -143,12 +143,12 @@ extern "C" void* fn_8_4E588(void* self, s16 flags)
 	if (self != NULL) {
 		field<void*>(self, 0x18) = lbl_8_data_55CC;
 		for (int i = 0; i < 8; i++)
-			fn_80052DAC((int)lbl_802D5E80, i);
+			SetCurrentNumPlayer__6CLIGHTFScSc((int)lbl_802D5E80, i);
 		if (lbl_8_bss_D38 == self)
 			lbl_8_bss_D38 = NULL;
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -176,7 +176,7 @@ extern "C" int fn_8_4E704(void* self, int player)
 	if (collision == NULL)
 		return 0;
 	Vec3 extent = { field<float>(config, 4), field<float>(config, 8), field<float>(config, 0xC) };
-	float distance = fn_800D7218((u8*)collision + 8, placement);
+	float distance = DistanceP2P__FPC5RwV3dPC5RwV3d((u8*)collision + 8, placement);
 	float radius   = field<float>(collision, 0x14);
 	if (config[2] == 0)
 		return fn_801991B4(&extent) + radius >= distance;
@@ -188,11 +188,12 @@ extern "C" int fn_8_4E704(void* self, int player)
 extern "C" void fn_8_4EB14(void* self)
 {
 	u8* config = field<u8*>(field<void*>(self, 0x28), 0x2C);
-	if (fn_8005B9F0((u8*)self + 0x28) || fn_8005B8BC((u8*)self + 0x28)) {
+	if (CheckRangeOut__10TObjSetObjFv((u8*)self + 0x28)
+	    || CheckMustKill__10TObjSetObjFv((u8*)self + 0x28)) {
 		field<u16>(self, 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8((u8*)self + 0x28)) {
+	if (OnEdit__10TObjSetObjFv((u8*)self + 0x28)) {
 		field<u8>(self, 0x38) = config[0];
 		field<u8>(self, 0x39) = config[1];
 	}
@@ -246,10 +247,10 @@ extern "C" void* fn_8_4EFB8(void* self, s16 flags)
 					field<void*>(item, 0x3C) = field<void*>(self, 0x3C);
 					break;
 				}
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -257,12 +258,12 @@ extern "C" void* fn_8_4EFB8(void* self, s16 flags)
 extern "C" void* fn_8_4F084(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C((u8*)self + 0x28);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
 	field<void*>(self, 0x18) = lbl_8_data_55F8;
 	field<void*>(self, 0)    = lbl_8_data_559C;
 	field<u16>(self, 0x1E)   = 0x40;
 	if (lbl_8_bss_D38 == NULL) {
-		void* manager = fn_80018A34((int)lbl_8042C148, 0x28);
+		void* manager = Malloc__9THeapCtrlFUi((int)lbl_8042C148, 0x28);
 		if (manager == NULL) {
 			field<u16>(self, 4) |= 1;
 			return self;
@@ -288,7 +289,7 @@ extern "C" void* fn_8_4F084(void* self, void* parent)
 
 extern "C" void lightCollisionCreate()
 {
-	void* object = fn_80018A34((int)lbl_8042C148, 0x40);
+	void* object = Malloc__9THeapCtrlFUi((int)lbl_8042C148, 0x40);
 	if (object != NULL)
 		fn_8_4F084(object, lbl_8042C110);
 }

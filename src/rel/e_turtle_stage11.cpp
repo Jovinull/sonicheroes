@@ -329,138 +329,143 @@ s32 SetPosition__18TObjEffTornadoSpinFv(void*);                                 
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(void*, void*, s32); /* extern */
 void* __ct__10HAnimClassFv(void*);                                                /* extern */
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
-    void*, void*, void*);                                                        /* extern */
-void* __ct__15sParalysisParamFv(void*);                                          /* extern */
-M2C_UNK __dl__FPv(void* arg0);                                                   /* extern */
-void* __dt__10HAnimClassFv(void*, s32);                                          /* extern */
-M2C_UNK __register_global_object(void*, void*, void*);                           /* extern */
-M2C_UNK dtor_800FE334(void*, M2C_UNK);                                           /* extern */
-s32 fn_80017800(void*);                                                          /* extern */
-M2C_UNK fn_800189A4(s32, void*);                                                 /* extern */
-TEnemyParalysis* fn_80018A34(s32, M2C_UNK);                                      /* extern */
-u32 fn_800207C4(M2C_UNK*, M2C_UNK, M2C_UNK);                                     /* extern */
-u32 fn_800209C8(M2C_UNK*, M2C_UNK);                                              /* extern */
-void* fn_80020D1C(M2C_UNK*);                                                     /* extern */
-M2C_UNK fn_80020EEC(M2C_UNK*);                                                   /* extern */
-void* fn_800210C4(M2C_UNK*);                                                     /* extern */
-void* fn_800211A8(M2C_UNK*);                                                     /* extern */
-M2C_UNK fn_80021824(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_8003BC38(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);                       /* extern */
-s32 fn_80041AB0(s32);                                                            /* extern */
-s32 fn_80041B64(s32);                                                            /* extern */
-void** fn_80057644(M2C_UNK);                                                     /* extern */
-s32 fn_8005B8D8(void**);                                                         /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                                 /* extern */
-s32 fn_8005D9A0(void*, M2C_UNK);                                                 /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                               /* extern */
-M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                             /* extern */
-void* fn_800627BC(M2C_UNK, void*, void*);                                        /* extern */
-M2C_UNK fn_8006298C(M2C_UNK, f32*, s32*);                                        /* extern */
-M2C_UNK fn_800667B4(M2C_UNK*, f32);                                              /* extern */
-s32 fn_8009278C(M2C_UNK, s32);                                                   /* extern */
-s32 fn_800A2B78(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                       /* extern */
-s32 fn_800A2D90(s32);                                                            /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                                                 /* extern */
-s32 fn_800A37A4();                                                               /* extern */
-M2C_UNK fn_800A3CBC(void*);                                                      /* extern */
-M2C_UNK fn_800A3D48(TObject*);                                                   /* extern */
-s32 fn_800A3E10(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                       /* extern */
-s32 fn_800A3ED4(void*);                                                          /* extern */
-M2C_UNK fn_800A4630(TObjEffTornadoSpin*, s32);                                   /* extern */
-M2C_UNK fn_800A4668(void*);                                                      /* extern */
-M2C_UNK fn_800A4A8C(void*, M2C_UNK*, f32);                                       /* extern */
-s32 fn_800A5888(void*, M2C_UNK*, f32);                                           /* extern */
-s32 fn_800A5998(void*);                                                          /* extern */
-s32 fn_800A5A54(void*);                                                          /* extern */
-f32 fn_800A5AC0();                                                               /* extern */
-M2C_UNK fn_800A5B34(TObject*);                                                   /* extern */
-M2C_UNK fn_800A5B50(void*, M2C_UNK);                                             /* extern */
-M2C_UNK fn_800A5C6C(void*, M2C_UNK);                                             /* extern */
-s32 fn_800A6334(void*);                                                          /* extern */
-M2C_UNK fn_800A7088(void*, M2C_UNK);                                             /* extern */
-M2C_UNK fn_800A714C();                                                           /* extern */
-s32 fn_800AAFEC(M2C_UNK*, s32*);                                                 /* extern */
-s32 fn_800AB104(s32);                                                            /* extern */
-M2C_UNK fn_800B4A38(u32, M2C_UNK, s32*, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK);     /* extern */
-M2C_UNK fn_800B7514(void*, void*, f32*, f32);                                    /* extern */
-M2C_UNK fn_800B7820();                                                           /* extern */
-M2C_UNK fn_800B7864(M2C_UNK);                                                    /* extern */
-f32 fn_800D71DC(s32, s32);                                                       /* extern */
-f32 fn_800D7218(void*, void*);                                                   /* extern */
-s32 fn_800D7920(f32*, f32*, M2C_UNK*);                                           /* extern */
-s32 fn_800D7A94(s32, s32, s32);                                                  /* extern */
-f32 fn_800D7AE4(s32);                                                            /* extern */
-f32 fn_800D7B00(s32);                                                            /* extern */
-f32 fn_800D8BC4(void*, s32*, M2C_UNK);                                           /* extern */
-void** fn_800FD8A0(TObject*, s32);                                               /* extern */
-M2C_UNK fn_800FE248(M2C_UNK, M2C_UNK*);                                          /* extern */
-M2C_UNK fn_800FE274(M2C_UNK, M2C_UNK*);                                          /* extern */
-void** fn_800FE3FC(void*);                                                       /* extern */
-M2C_UNK fn_800FE464(void**);                                                     /* extern */
-u32 fn_80100328(u32, M2C_UNK, M2C_UNK);                                          /* extern */
-u32 fn_8010037C(u32, M2C_UNK, M2C_UNK);                                          /* extern */
-M2C_UNK fn_801007F4(u32, M2C_UNK);                                               /* extern */
-M2C_UNK fn_8010096C(u32, M2C_UNK, M2C_UNK*);                                     /* extern */
-M2C_UNK fn_80100AAC();                                                           /* extern */
-M2C_UNK fn_80102C50(s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32); /* extern */
-s32 fn_801031D8(s32);                                                            /* extern */
-s32 fn_80103324(void*, M2C_UNK*, f32);                                           /* extern */
-s32 fn_8010AFB0(u32);                                                            /* extern */
-M2C_UNK fn_8010AFE4(void*);                                                      /* extern */
-M2C_UNK fn_8010AFF8(u32, s32);                                                   /* extern */
-M2C_UNK fn_8010B074(u32);                                                        /* extern */
-M2C_UNK fn_8010B0AC(u32, f32, f32, s32);                                         /* extern */
-M2C_UNK fn_8010B208(u32, f32, f32);                                              /* extern */
-M2C_UNK fn_8010B350(u32, void*, void*);                                          /* extern */
-s32 fn_8010B708(M2C_UNK);                                                        /* extern */
-M2C_UNK fn_80113874();                                                           /* extern */
-M2C_UNK fn_8011398C(M2C_UNK*, s32);                                              /* extern */
-M2C_UNK fn_80113A68(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_80113AA8(M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                      /* extern */
-M2C_UNK fn_80113C7C(M2C_UNK*);                                                   /* extern */
-M2C_UNK fn_801140DC(f32*, f32);                                                  /* extern */
-M2C_UNK fn_80114394(f32*);                                                       /* extern */
-M2C_UNK fn_8011C13C(u32);                                                        /* extern */
-M2C_UNK fn_8011C188(u32, s32);                                                   /* extern */
-M2C_UNK fn_8011C1C0(u32, s32);                                                   /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
-M2C_UNK fn_8011C6EC();                                                           /* extern */
-M2C_UNK fn_80139784(void*, TObject*, f32*);                                      /* extern */
-void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                                    /* extern */
-M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
-void* fn_80150588(u32);                                                          /* extern */
-M2C_UNK fn_80150958(void*);                                                      /* extern */
-M2C_UNK fn_80195790(M2C_UNK*, RwFrame*, f32, f32, M2C_UNK);                      /* extern */
-M2C_UNK fn_80195A74(M2C_UNK*, RwFrame*, M2C_UNK, f32, f32, f32);                 /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                                   /* extern */
-M2C_UNK fn_801990E0(f32*, f32*);                                                 /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                              /* extern */
-s32 fn_8019CE34(s32, f32*);                                                      /* extern */
-void* fn_8019E8EC(u32);                                                          /* extern */
-M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                                   /* extern */
-M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                                       /* extern */
-M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);                                  /* extern */
-s32 rand(f32*);                                                                  /* extern */
-M2C_UNK fn_8_90B10(s32);                                                         /* extern */
-M2C_UNK fn_8_BD380(s32);                                                         /* extern */
-void fn_8_BDF6C(TObject* arg0, void* arg1);                                      /* static */
-void fn_8_BE528(void* arg0);                                                     /* static */
-s32 fn_8_BF340(void* arg0);                                                      /* static */
-s32 fn_8_BF524(s32 arg0);                                                        /* static */
-s32 fn_8_BF5AC(void* arg0);                                                      /* static */
-void fn_8_BFF94(void* arg0, s32 arg1);                                           /* static */
-void fn_8_C08C8(void* arg0, s32 arg1);                                           /* static */
-void fn_8_C14B4(TObject* arg0);                                                  /* static */
-void fn_8_C1BCC(TObject* arg0);                                                  /* static */
-TObject* fn_8_C2018(TObject* arg0);                                              /* static */
-void turtleObjectCreate();                                                       /* static */
-void turtleObjectLoad();                                                         /* static */
-void turtleObjectUnload();                                                       /* static */
-extern M2C_UNK fn_80113C2C;
-extern RwFrame lbl_80239978;
-extern RwFrame lbl_80239984;
-extern RwFrame lbl_80239990;
+    void*, void*, void*);                                                               /* extern */
+void* __ct__15sParalysisParamFv(void*);                                                 /* extern */
+M2C_UNK __dl__FPv(void* arg0);                                                          /* extern */
+void* __dt__10HAnimClassFv(void*, s32);                                                 /* extern */
+M2C_UNK __register_global_object(void*, void*, void*);                                  /* extern */
+M2C_UNK __dt__11ENEMYMTNMANFv(void*, M2C_UNK);                                          /* extern */
+s32 fn_80017800(void*);                                                                 /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                                /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                   /* extern */
+u32 fn_800207C4(M2C_UNK*, M2C_UNK, M2C_UNK);                                            /* extern */
+u32 fn_800209C8(M2C_UNK*, M2C_UNK);                                                     /* extern */
+void* fn_80020D1C(M2C_UNK*);                                                            /* extern */
+M2C_UNK fn_80020EEC(M2C_UNK*);                                                          /* extern */
+void* fn_800210C4(M2C_UNK*);                                                            /* extern */
+void* fn_800211A8(M2C_UNK*);                                                            /* extern */
+M2C_UNK fn_80021824(M2C_UNK*);                                                          /* extern */
+M2C_UNK Entry__7C_COLLIFv(M2C_UNK*);                                                    /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);             /* extern */
+s32 fn_80041AB0(s32);                                                                   /* extern */
+s32 fn_80041B64(s32);                                                                   /* extern */
+void** __nw__FUl(M2C_UNK);                                                              /* extern */
+s32 OnEdit__10TObjSetObjFv(void**);                                                     /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, s32); /* extern */
+s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(void*, M2C_UNK);      /* extern */
+M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
+    u32, M2C_UNK);                                                           /* extern */
+M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                         /* extern */
+void* fn_800627BC(M2C_UNK, void*, void*);                                    /* extern */
+M2C_UNK fn_8006298C(M2C_UNK, f32*, s32*);                                    /* extern */
+M2C_UNK addSFA__9PARAM_SFAFif(M2C_UNK*, f32);                                /* extern */
+s32 fn_8009278C(M2C_UNK, s32);                                               /* extern */
+s32 fn_800A2B78(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                   /* extern */
+s32 fn_800A2D90(s32);                                                        /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                             /* extern */
+s32 fn_800A37A4();                                                           /* extern */
+M2C_UNK fn_800A3CBC(void*);                                                  /* extern */
+M2C_UNK fn_800A3D48(TObject*);                                               /* extern */
+s32 fn_800A3E10(TObjEffTornadoSpin*, TObjEffTornadoSpin*);                   /* extern */
+s32 fn_800A3ED4(void*);                                                      /* extern */
+M2C_UNK fn_800A4630(TObjEffTornadoSpin*, s32);                               /* extern */
+M2C_UNK fn_800A4668(void*);                                                  /* extern */
+M2C_UNK fn_800A4A8C(void*, M2C_UNK*, f32);                                   /* extern */
+s32 fn_800A5888(void*, M2C_UNK*, f32);                                       /* extern */
+s32 fn_800A5998(void*);                                                      /* extern */
+s32 fn_800A5A54(void*);                                                      /* extern */
+f32 fn_800A5AC0();                                                           /* extern */
+M2C_UNK fn_800A5B34(TObject*);                                               /* extern */
+M2C_UNK fn_800A5B50(void*, M2C_UNK);                                         /* extern */
+M2C_UNK fn_800A5C6C(void*, M2C_UNK);                                         /* extern */
+s32 fn_800A6334(void*);                                                      /* extern */
+M2C_UNK fn_800A7088(void*, M2C_UNK);                                         /* extern */
+M2C_UNK fn_800A714C();                                                       /* extern */
+s32 fn_800AAFEC(M2C_UNK*, s32*);                                             /* extern */
+s32 fn_800AB104(s32);                                                        /* extern */
+M2C_UNK fn_800B4A38(u32, M2C_UNK, s32*, M2C_UNK, M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK fn_800B7514(void*, void*, f32*, f32);                                /* extern */
+M2C_UNK fn_800B7820();                                                       /* extern */
+M2C_UNK fn_800B7864(M2C_UNK);                                                /* extern */
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(s32, s32);                               /* extern */
+f32 DistanceP2P__FPC5RwV3dPC5RwV3d(void*, void*);                            /* extern */
+s32 VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(f32*, f32*, M2C_UNK*);               /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                        /* extern */
+f32 fn_800D7AE4(s32);                                                        /* extern */
+f32 fn_800D7B00(s32);                                                        /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, s32*, M2C_UNK);                   /* extern */
+void** __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(TObject*, s32);              /* extern */
+M2C_UNK ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*); /* extern */
+M2C_UNK LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    M2C_UNK, M2C_UNK*);                                                             /* extern */
+void** __ct__11ENEMYMTNMANFv(void*);                                                /* extern */
+M2C_UNK UpdateMotion__11ENEMYMTNMANFv(void**);                                      /* extern */
+u32 SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK); /* extern */
+u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);        /* extern */
+M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                    /* extern */
+M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(u32, M2C_UNK, M2C_UNK*);           /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv();                                                 /* extern */
+M2C_UNK SetEffectCrash3D_R__FP7TObjectP5RwV3dP6sAngleP5RwV3dP5RwV3dffisP7RpClump(
+    s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32);          /* extern */
+s32 GetTeamNoFromPlayerNum__13nSearchPlayerFi(s32);                       /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, M2C_UNK*, f32); /* extern */
+s32 IsOn__13TEnemyIconManFv(u32);                                         /* extern */
+M2C_UNK Close__13TEnemyIconManFv(void*);                                  /* extern */
+M2C_UNK Change__13TEnemyIconManF10eEnemyIcon(u32, s32);                   /* extern */
+M2C_UNK Off__13TEnemyIconManFv(u32);                                      /* extern */
+M2C_UNK On__13TEnemyIconManFffi(u32, f32, f32, s32);                      /* extern */
+M2C_UNK On__13TEnemyIconManFff(u32, f32, f32);                            /* extern */
+M2C_UNK SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(u32, void*, void*);      /* extern */
+s32 Create__13TEnemyIconManF10eEnemyIcon(M2C_UNK);                        /* extern */
+M2C_UNK SetLightNum__7nRenderFUi();                                       /* extern */
+M2C_UNK PreDisp__16TEnemyMatTextureFi(M2C_UNK*, s32);                     /* extern */
+M2C_UNK End__16TEnemyMatTextureFv(M2C_UNK*);                              /* extern */
+M2C_UNK Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+    M2C_UNK*, u32, u32, M2C_UNK*, M2C_UNK);                          /* extern */
+M2C_UNK __ct__16TEnemyMatTextureFv(M2C_UNK*);                        /* extern */
+M2C_UNK Create__18TObjEnemyRingLaserFPC15sRingLaserParam(f32*, f32); /* extern */
+M2C_UNK __ct__15sRingLaserParamFv(f32*);                             /* extern */
+M2C_UNK fn_8011C13C(u32);                                            /* extern */
+M2C_UNK ParalyzeEnemy__14TEnemyScoreManFi(u32, s32);                 /* extern */
+M2C_UNK TornadoEnemy__14TEnemyScoreManFi(u32, s32);                  /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);            /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                        /* extern */
+M2C_UNK fn_80139784(void*, TObject*, f32*);                          /* extern */
+void* fn_80139984(M2C_UNK, M2C_UNK, M2C_UNK);                        /* extern */
+M2C_UNK fn_8014FF2C(s32);                                            /* extern */
+void* fn_80150588(u32);                                              /* extern */
+M2C_UNK fn_80150958(void*);                                          /* extern */
+M2C_UNK fn_80195790(M2C_UNK*, RwFrame*, f32, f32, M2C_UNK);          /* extern */
+M2C_UNK fn_80195A74(M2C_UNK*, RwFrame*, M2C_UNK, f32, f32, f32);     /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                       /* extern */
+M2C_UNK fn_801990E0(f32*, f32*);                                     /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                  /* extern */
+s32 fn_8019CE34(s32, f32*);                                          /* extern */
+void* fn_8019E8EC(u32);                                              /* extern */
+M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                       /* extern */
+M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                           /* extern */
+M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);                      /* extern */
+s32 rand(f32*);                                                      /* extern */
+M2C_UNK fn_8_90B10(s32);                                             /* extern */
+M2C_UNK fn_8_BD380(s32);                                             /* extern */
+void fn_8_BDF6C(TObject* arg0, void* arg1);                          /* static */
+void fn_8_BE528(void* arg0);                                         /* static */
+s32 fn_8_BF340(void* arg0);                                          /* static */
+s32 fn_8_BF524(s32 arg0);                                            /* static */
+s32 fn_8_BF5AC(void* arg0);                                          /* static */
+void fn_8_BFF94(void* arg0, s32 arg1);                               /* static */
+void fn_8_C08C8(void* arg0, s32 arg1);                               /* static */
+void fn_8_C14B4(TObject* arg0);                                      /* static */
+void fn_8_C1BCC(TObject* arg0);                                      /* static */
+TObject* fn_8_C2018(TObject* arg0);                                  /* static */
+void turtleObjectCreate();                                           /* static */
+void turtleObjectLoad();                                             /* static */
+void turtleObjectUnload();                                           /* static */
+extern M2C_UNK __dt__16TEnemyMatTextureFv;
+extern RwFrame AxisX;
+extern RwFrame AxisY;
+extern RwFrame AxisZ;
 extern M2C_UNK lbl_802AD090;
 extern M2C_UNK lbl_80303DC8;
 extern TObject* lbl_8042C10C;
@@ -469,8 +474,8 @@ extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
 extern s32 lbl_8042C2A0;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C590;
-extern u32 lbl_8042C6D0;
+extern u32 mpDataBase__14TEnemyDataBase;
+extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern s32* lbl_8042C9A4;
 /* forward declarations for the dispatch tables below */
 void fn_8_BDA50(void* arg0, s32 arg1);
@@ -1256,12 +1261,12 @@ void fn_8_BE770(void* arg0, void* arg1)
 	M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f1;
 	M2C_FIELD(arg0, f32*, 0x2B4) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2C0) != 0U) {
-		fn_8010B074(M2C_FIELD(arg0, u32*, 0x2C0));
+		Off__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2C0));
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-		fn_8010AFF8(M2C_FIELD(arg0, u32*, 0x2BC), 6);
+		Change__13TEnemyIconManF10eEnemyIcon(M2C_FIELD(arg0, u32*, 0x2BC), 6);
 		temp_r3 = M2C_FIELD(arg0, u32*, 0x2BC);
-		fn_8010B208(temp_r3, lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
+		On__13TEnemyIconManFff(temp_r3, lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
 	}
 }
 
@@ -1286,32 +1291,34 @@ void fn_8_BE80C(void* arg0, void* arg1)
 	M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f0;
 	M2C_FIELD(arg0, f32*, 0x2B4) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2C0) != 0U) {
-		fn_8010B074(M2C_FIELD(arg0, u32*, 0x2C0));
+		Off__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2C0));
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-		fn_8010AFF8(M2C_FIELD(arg0, u32*, 0x2BC), 6);
+		Change__13TEnemyIconManF10eEnemyIcon(M2C_FIELD(arg0, u32*, 0x2BC), 6);
 		temp_handle = M2C_FIELD(arg0, u32*, 0x2BC);
-		fn_8010B208(temp_handle, lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
+		On__13TEnemyIconManFff(temp_handle, lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
 	}
 }
 
 void fn_8_BE8B8(void* arg0)
 {
 	if ((s32)M2C_FIELD(arg0, s32*, 0x310) == 0) {
-		if ((u32)lbl_8042C6D0 == 0U) {
-			fn_8011C6EC();
+		if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+			CreateInstance__14TEnemyScoreManFv();
 		}
-		fn_8011C1F8(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
+		AddScore__14TEnemyScoreManFii(
+		    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
 		return;
 	}
-	if ((u32)lbl_8042C6D0 == 0U) {
-		fn_8011C6EC();
+	if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+		CreateInstance__14TEnemyScoreManFv();
 	}
-	fn_8011C1F8(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230), 0x190);
-	if ((u32)lbl_8042C6D0 == 0U) {
-		fn_8011C6EC();
+	AddScore__14TEnemyScoreManFii(
+	    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0x190);
+	if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+		CreateInstance__14TEnemyScoreManFv();
 	}
-	fn_8011C13C(lbl_8042C6D0);
+	fn_8011C13C(EnemyScoreMan__14TEnemyScoreMan);
 }
 
 void fn_8_BE978(void* arg0)
@@ -1334,15 +1341,17 @@ void fn_8_BE978(void* arg0)
 				fn_800B4A38(lbl_8042C388, 0xE017, (s32*)&sp20, 0, 1, 2, 0);
 			}
 			fn_8006298C(0xF, &sp20.x, &sp14.x);
-			if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
-				fn_80100AAC();
+			if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+				__ct__14TEnemyDataBaseFv();
 			}
-			if (fn_8010037C(lbl_8042C590, 0, 5) != 0U) {
+			if (SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0, 5)
+			    != 0U) {
 				sp8  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 0);
 				spC  = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 4);
 				sp10 = M2C_FIELD((f32*)lbl_8_rodata_1E38, s32*, 8);
 				sp14.y += 0x8000;
-				fn_80102C50(lbl_8042C2A0, &sp20.x, &sp14.x, &sp8, 0, 0, 0, lbl_8_rodata_1E78[0],
+				SetEffectCrash3D_R__FP7TObjectP5RwV3dP6sAngleP5RwV3dP5RwV3dffisP7RpClump(
+				    lbl_8042C2A0, &sp20.x, &sp14.x, &sp8, 0, 0, 0, lbl_8_rodata_1E78[0],
 				    lbl_8_rodata_1E70[0]);
 			}
 		}
@@ -1352,10 +1361,10 @@ void fn_8_BE978(void* arg0)
 void fn_8_BEB1C(void* arg0)
 {
 	if ((s32)M2C_FIELD(arg0, s32*, 0x19C) != 0x1F) {
-		M2C_FIELD(arg0, s32*, 0x29C) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x29C), 0, 0x220);
+		M2C_FIELD(arg0, s32*, 0x29C) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x29C), 0, 0x220);
 	}
 	if ((void*)M2C_FIELD(arg0, void**, 0x258) != NULL) {
-		fn_8019ED68(M2C_FIELD(arg0, void**, 0x258), &lbl_80239984,
+		fn_8019ED68(M2C_FIELD(arg0, void**, 0x258), &AxisY,
 		    lbl_8_rodata_1E7C[0] * (f32)M2C_FIELD(arg0, s32*, 0x29C), 0);
 		fn_8019ECCC(M2C_FIELD(arg0, void**, 0x258), (s32*)((u8*)arg0 + 0x25C), 2);
 	}
@@ -1378,7 +1387,7 @@ void fn_8_BEBC8(void* arg0)
 			if (temp_r30 != NULL) {
 				M2C_FIELD(&sp14, M2C_BLOCK12*, 0) = M2C_FIELD(lbl_8_rodata_1E5C, M2C_BLOCK12*, 0);
 				temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x150) + 0x8000);
-				fn_80195790((s32*)sp20, &lbl_80239984,
+				fn_80195790((s32*)sp20, &AxisY,
 				    lbl_8_rodata_1E88[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x150) + 0x8000),
 				    temp_f31, 0);
 				fn_8019941C(&sp14.x, &sp14.x, 1, (s32*)sp20);
@@ -1390,8 +1399,10 @@ void fn_8_BEBC8(void* arg0)
 				sp8.z   = temp_f1 - M2C_FIELD(arg0, f32*, 0x148);
 				sp8.y   = lbl_8_rodata_1E70[0];
 				fn_801990E0(&sp8.x, &sp8.x);
-				M2C_FIELD(arg0, s32*, 0x29C) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x29C),
-				    fn_800D7920(&sp14.x, &sp8.x, (M2C_UNK*)lbl_8_data_17F94), 0x200);
+				M2C_FIELD(arg0, s32*, 0x29C) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x29C),
+				    VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(
+				        &sp14.x, &sp8.x, (M2C_UNK*)lbl_8_data_17F94),
+				    0x200);
 			}
 		}
 	}
@@ -1628,8 +1639,8 @@ block_24:
 					if (var_f30 < lbl_8_rodata_1E70[0]) {
 						var_f30 = lbl_8_rodata_1E70[0];
 					}
-					if (fn_801031D8(arg0->unk230) != -1) {
-						fn_800667B4(&arg0->unk13C, var_f30);
+					if (GetTeamNoFromPlayerNum__13nSearchPlayerFi(arg0->unk230) != -1) {
+						addSFA__9PARAM_SFAFif(&arg0->unk13C, var_f30);
 					}
 				}
 			} else {
@@ -1649,10 +1660,10 @@ s32 fn_8_BF340(void* arg0)
 	temp_r3 = fn_800A6334((void*)arg0);
 	if ((temp_r3 == 1) && ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U)
 	    && (((u32)M2C_FIELD(arg0, u32*, 0x2C0) == 0U)
-	        || (fn_8010AFB0(M2C_FIELD(arg0, u32*, 0x2C0)) == 0))) {
-		fn_8010AFF8(M2C_FIELD(arg0, u32*, 0x2BC), 1);
+	        || (IsOn__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2C0)) == 0))) {
+		Change__13TEnemyIconManF10eEnemyIcon(M2C_FIELD(arg0, u32*, 0x2BC), 1);
 		temp_handle = M2C_FIELD(arg0, u32*, 0x2BC);
-		fn_8010B208(temp_handle, lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
+		On__13TEnemyIconManFff(temp_handle, lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
 	}
 	return temp_r3;
 }
@@ -1670,7 +1681,7 @@ void fn_8_BF3CC(void* arg0)
 	void* temp_r3;
 
 	if ((u32)M2C_FIELD(arg0, u32*, 0x254) != 0U) {
-		fn_80114394(&sp48.x);
+		__ct__15sRingLaserParamFv(&sp48.x);
 		temp_r3   = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x254));
 		sp48.x    = M2C_FIELD(temp_r3, f32*, 0x30);
 		sp48.y    = M2C_FIELD(temp_r3, f32*, 0x34);
@@ -1679,15 +1690,15 @@ void fn_8_BF3CC(void* arg0)
 		sp64      = temp_r3_2;
 		sp74      = 0x1A4;
 		temp_f31  = fn_800D7B00(temp_r3_2 + 0x8000);
-		fn_80195790((s32*)sp8, &lbl_80239984,
-		    lbl_8_rodata_1E88[0] - fn_800D7AE4(temp_r3_2 + 0x8000), temp_f31, 0);
+		fn_80195790(
+		    (s32*)sp8, &AxisY, lbl_8_rodata_1E88[0] - fn_800D7AE4(temp_r3_2 + 0x8000), temp_f31, 0);
 		fn_8019941C(&sp54.x, &sp54.x, 1, (s32*)sp8);
 		fn_801990E0(&sp54.x, &sp54.x);
 		temp_f1 = M2C_FIELD(arg0, f32*, 0x31C);
 		sp54.x *= temp_f1;
 		sp54.y *= temp_f1;
 		sp54.z *= temp_f1;
-		fn_801140DC(&sp48.x, temp_f1);
+		Create__18TObjEnemyRingLaserFPC15sRingLaserParam(&sp48.x, temp_f1);
 		if ((u32)lbl_8042C388 != 0U) {
 			fn_800B4A38(lbl_8042C388, 0x402E, (s32*)((u8*)arg0 + 0x140), 0, 1, 0, 0);
 		}
@@ -1699,12 +1710,13 @@ s32 fn_8_BF524(s32 arg0)
 	s32 temp_r3;
 	u32 temp_r3_2;
 
-	temp_r3 = fn_80103324(
+	temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
 	    (void*)((u8*)arg0 + 0x140), (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
 	if (temp_r3 != -1) {
 		temp_r3_2 = *(&lbl_802AD090 + temp_r3);
 		if ((temp_r3_2 != 0U)
-		    && (fn_800D71DC((s32)(temp_r3_2 + 0x18), arg0 + 0x140) < lbl_8_rodata_1E94[0])) {
+		    && (Distance2P2P__FPC5RwV3dPC5RwV3d((s32)(temp_r3_2 + 0x18), arg0 + 0x140)
+		        < lbl_8_rodata_1E94[0])) {
 			return 1;
 		}
 	}
@@ -1725,22 +1737,25 @@ s32 fn_8_BF5AC(void* arg0)
 		M2C_FIELD(arg0, f32*, 0x2B4) = temp_f1;
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2C0) != 0U) {
 			if ((s32)M2C_FIELD(arg0, s32*, 0x19C) == 0x24) {
-				fn_8010B0AC(
+				On__13TEnemyIconManFffi(
 				    M2C_FIELD(arg0, u32*, 0x2C0), temp_f1, M2C_FIELD(arg0, f32*, 0x2B8), 0x5A);
 			} else {
-				fn_8010B208(M2C_FIELD(arg0, u32*, 0x2C0), temp_f1, M2C_FIELD(arg0, f32*, 0x2B8));
+				On__13TEnemyIconManFff(
+				    M2C_FIELD(arg0, u32*, 0x2C0), temp_f1, M2C_FIELD(arg0, f32*, 0x2B8));
 			}
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-			fn_8010B074(M2C_FIELD(arg0, u32*, 0x2BC));
+			Off__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2BC));
 		}
 		var_r31 = 1;
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2C0) != 0U) {
-		fn_8010B350(M2C_FIELD(arg0, u32*, 0x2C0), (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1E44);
+		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
+		    M2C_FIELD(arg0, u32*, 0x2C0), (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1E44);
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-		fn_8010B350(M2C_FIELD(arg0, u32*, 0x2BC), (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1E44);
+		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
+		    M2C_FIELD(arg0, u32*, 0x2BC), (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1E44);
 	}
 	return var_r31;
 }
@@ -1753,7 +1768,7 @@ s32 fn_8_BF684(void* arg0)
 		return 0;
 	}
 	temp_r31                     = fn_800A5A54(arg0);
-	M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(
+	M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(
 	    M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 	if (temp_r31 < 0x10) {
 		M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -1785,7 +1800,8 @@ s32 fn_8_BF700(void* arg0)
 		fn_800A5B50(arg0, 0xF00);
 		var_r31 = 0;
 	} else if ((((s32)(M2C_FIELD(arg0, u16*, 0x106) & 4) != 0)
-	               || (fn_800D7218((u8*)arg0 + 0x140, (u8*)arg0 + 0x1E4) < lbl_8_rodata_1EA8[0]))
+	               || (DistanceP2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0x140, (u8*)arg0 + 0x1E4)
+	                   < lbl_8_rodata_1EA8[0]))
 	    && (fn_800A5998(arg0) <= 0)) {
 		var_r31 = 0;
 	}
@@ -1840,8 +1856,8 @@ void fn_8_BF9A4(void) { }
 void fn_8_BF9A8(void* arg0)
 {
 	((TRenderer*)arg0)->Slot90();
-	fn_80113874();
-	fn_8011398C(turtleObjectGlobalA, M2C_FIELD(arg0, s32*, 0x310));
+	SetLightNum__7nRenderFUi();
+	PreDisp__16TEnemyMatTextureFi(turtleObjectGlobalA, M2C_FIELD(arg0, s32*, 0x310));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 }
 
@@ -1913,16 +1929,16 @@ void fn_8_BFA30(TObject* arg0)
 	}
 	if ((s32)arg0->unk2F0 != 0) {
 		if ((s32)arg0->unk19C != 0x1F) {
-			arg0->unk29C = fn_800D7A94(arg0->unk29C, 0, 0x220);
+			arg0->unk29C = AdjustAngle__Fiii(arg0->unk29C, 0, 0x220);
 		}
 		if ((void*)arg0->unk258 != NULL) {
-			fn_8019ED68(M2C_FIELD(arg0, void**, 0x258), &lbl_80239984,
+			fn_8019ED68(M2C_FIELD(arg0, void**, 0x258), &AxisY,
 			    lbl_8_rodata_1E7C[0] * (f32)arg0->unk29C, 0);
 			fn_8019ECCC(arg0->unk258, &arg0->unk25C, 2);
 		}
 	}
 	if (((s32)arg0->unk2C4 != 0) && ((s32)arg0->unk24C != -1)) {
-		fn_800FE464(arg0->unk250);
+		UpdateMotion__11ENEMYMTNMANFv(arg0->unk250);
 	}
 	if ((fn_80017800(arg0) != 0) && ((u32)arg0->unk38 != 0U)) {
 		arg0->unkA4 = arg0->unk88;
@@ -1934,7 +1950,7 @@ void fn_8_BFA30(TObject* arg0)
 		arg0->unk94 = arg0->unk14C;
 		arg0->unk98 = arg0->unk150;
 		arg0->unk9C = arg0->unk154;
-		fn_8003BC38(&arg0->unk28);
+		Entry__7C_COLLIFv(&arg0->unk28);
 	}
 }
 
@@ -1946,21 +1962,22 @@ void fn_8_BFD74(void* arg0, s32 arg1)
 		case 0:
 			M2C_FIELD(arg0, s32*, 0x2D8) = 0x5A;
 			M2C_FIELD(arg0, s32*, 0xD4)  = 0;
-			if ((u32)lbl_8042C6D0 == 0U) {
-				fn_8011C6EC();
+			if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+				CreateInstance__14TEnemyScoreManFv();
 			}
-			fn_8011C188(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x238));
+			ParalyzeEnemy__14TEnemyScoreManFi(
+			    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x238));
 			return;
 		case 1:
 			temp_r0                      = M2C_FIELD(arg0, s32*, 0x2D8) - 1;
 			M2C_FIELD(arg0, s32*, 0x2D8) = temp_r0;
 			if (temp_r0 == 0) {
 				if ((u32)M2C_FIELD(arg0, u32*, 0x2C0) != 0U) {
-					fn_8010B074(M2C_FIELD(arg0, u32*, 0x2C0));
+					Off__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2C0));
 				}
 				if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-					fn_8010AFF8(M2C_FIELD(arg0, u32*, 0x2BC), 2);
-					fn_8010B208(
+					Change__13TEnemyIconManF10eEnemyIcon(M2C_FIELD(arg0, u32*, 0x2BC), 2);
+					On__13TEnemyIconManFff(
 					    M2C_FIELD(arg0, u32*, 0x2BC), lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
 					return;
 				}
@@ -1971,7 +1988,7 @@ void fn_8_BFD74(void* arg0, s32 arg1)
 			break;
 		case 3:
 			if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-				fn_8010B074(M2C_FIELD(arg0, u32*, 0x2BC));
+				Off__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2BC));
 			}
 			break;
 	}
@@ -1987,10 +2004,11 @@ void fn_8_BFE68(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			M2C_FIELD(arg0, s32*, 0x2DC) = (s32)M2C_FIELD(arg0, s32*, 0x234);
-			if ((u32)lbl_8042C6D0 == 0U) {
-				fn_8011C6EC();
+			if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+				CreateInstance__14TEnemyScoreManFv();
 			}
-			fn_8011C1C0(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x234));
+			TornadoEnemy__14TEnemyScoreManFi(
+			    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x234));
 			fn_800A3CBC(arg0);
 			M2C_FIELD(arg0, f32*, 0x15C) = lbl_8_rodata_1EBC[0];
 			M2C_FIELD(arg0, s32*, 0xD4)  = 4;
@@ -2080,9 +2098,10 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 						M2C_FIELD(temp_r3_2, s32*, 0x94) = (s32)M2C_FIELD(temp_r4, s32*, 8);
 					}
 				}
-				M2C_FIELD(arg0, s32*, 0x2D4) = fn_80103324((void*)((u8*)arg0 + 0x140),
-				    (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
-				temp_r0                      = M2C_FIELD(arg0, s32*, 0x2D4);
+				M2C_FIELD(arg0, s32*, 0x2D4)
+				    = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df((void*)((u8*)arg0 + 0x140),
+				        (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
+				temp_r0 = M2C_FIELD(arg0, s32*, 0x2D4);
 				if (temp_r0 != -1) {
 					temp_r3_3 = (void*)(u32) * (&lbl_802AD090 + temp_r0);
 					if (temp_r3_3 != NULL) {
@@ -2095,7 +2114,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 					var_r0 = 0;
 				} else {
 					temp_r30                     = fn_800A5A54(arg0);
-					M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+					M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 					    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 					if (temp_r30 < 0x10) {
 						M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -2118,7 +2137,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 							M2C_FIELD(&sp8, M2C_BLOCK12*, 0)
 							    = M2C_FIELD(lbl_8_rodata_1E5C, M2C_BLOCK12*, 0);
 							temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x150) + 0x8000);
-							fn_80195790((s32*)sp9C, &lbl_80239984,
+							fn_80195790((s32*)sp9C, &AxisY,
 							    lbl_8_rodata_1E88[0]
 							        - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x150) + 0x8000),
 							    temp_f31, 0);
@@ -2133,15 +2152,18 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 							sp14.z  = temp_f1 - M2C_FIELD(arg0, f32*, 0x148);
 							sp14.y  = lbl_8_rodata_1E70[0];
 							fn_801990E0(&sp14.x, &sp14.x);
-							M2C_FIELD(arg0, s32*, 0x29C) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x29C),
-							    fn_800D7920(&sp8.x, &sp14.x, (M2C_UNK*)lbl_8_data_17F94), 0x200);
+							M2C_FIELD(arg0, s32*, 0x29C)
+							    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x29C),
+							        VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(
+							            &sp8.x, &sp14.x, (M2C_UNK*)lbl_8_data_17F94),
+							        0x200);
 							return;
 						}
 					}
 				}
 			} else if ((s32)M2C_FIELD(arg0, s32*, 0x2C8) == 0) {
 				if ((u32)M2C_FIELD(arg0, u32*, 0x254) != 0U) {
-					fn_80114394(&sp2C.x);
+					__ct__15sRingLaserParamFv(&sp2C.x);
 					temp_r3_4  = fn_8019E8EC(M2C_FIELD(arg0, u32*, 0x254));
 					sp2C.x     = M2C_FIELD(temp_r3_4, f32*, 0x30);
 					sp2C.y     = M2C_FIELD(temp_r3_4, f32*, 0x34);
@@ -2150,7 +2172,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 					sp48       = temp_r3_5;
 					sp58       = 0x1A4;
 					temp_f31_2 = fn_800D7B00(temp_r3_5 + 0x8000);
-					fn_80195790(&sp5C, &lbl_80239984, 0,
+					fn_80195790(&sp5C, &AxisY, 0,
 					    lbl_8_rodata_1E88[0] - fn_800D7AE4(temp_r3_5 + 0x8000), temp_f31_2);
 					fn_8019941C(&sp38.x, &sp38.x, 1, &sp5C);
 					fn_801990E0(&sp38.x, &sp38.x);
@@ -2158,7 +2180,7 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 					sp38.x *= temp_f1_2;
 					sp38.y *= temp_f1_2;
 					sp38.z *= temp_f1_2;
-					fn_801140DC(&sp2C.x, temp_f1_2);
+					Create__18TObjEnemyRingLaserFPC15sRingLaserParam(&sp2C.x, temp_f1_2);
 					if ((u32)lbl_8042C388 != 0U) {
 						fn_800B4A38(lbl_8042C388, 0x402E, (s32*)((u8*)arg0 + 0x140), 0, 1, 0, 0);
 					}
@@ -2196,7 +2218,7 @@ void fn_8_C0418(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4) = 2;
 			break;
 		case 1:
-			M2C_FIELD(arg0, s32*, 0x2D4) = fn_80103324(
+			M2C_FIELD(arg0, s32*, 0x2D4) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
 			    (void*)((u8*)arg0 + 0x140), (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x2D4);
 			if (temp_r0 != -1) {
@@ -2211,7 +2233,7 @@ void fn_8_C0418(void* arg0, s32 arg1)
 				var_r0 = 0;
 			} else {
 				temp_r30                     = fn_800A5A54(arg0);
-				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r30 < 0x10) {
 					M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -2234,7 +2256,7 @@ void fn_8_C0418(void* arg0, s32 arg1)
 						M2C_FIELD(&sp8, M2C_BLOCK12*, 0)
 						    = M2C_FIELD(lbl_8_rodata_1E5C, M2C_BLOCK12*, 0);
 						temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x150) + 0x8000);
-						fn_80195790((s32*)sp20, &lbl_80239984,
+						fn_80195790((s32*)sp20, &AxisY,
 						    lbl_8_rodata_1E88[0]
 						        - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x150) + 0x8000),
 						    temp_f31, 0);
@@ -2247,8 +2269,11 @@ void fn_8_C0418(void* arg0, s32 arg1)
 						sp14.z  = temp_f1 - M2C_FIELD(arg0, f32*, 0x148);
 						sp14.y  = lbl_8_rodata_1E70[0];
 						fn_801990E0(&sp14.x, &sp14.x);
-						M2C_FIELD(arg0, s32*, 0x29C) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x29C),
-						    fn_800D7920(&sp8.x, &sp14.x, (M2C_UNK*)lbl_8_data_17F94), 0x200);
+						M2C_FIELD(arg0, s32*, 0x29C)
+						    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x29C),
+						        VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(
+						            &sp8.x, &sp14.x, (M2C_UNK*)lbl_8_data_17F94),
+						        0x200);
 					}
 				}
 			}
@@ -2370,7 +2395,7 @@ void fn_8_C08C8(void* arg0, s32 arg1)
 
 			} else {
 				temp_r31                     = fn_800A5A54(arg0);
-				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r31 < 0x10) {
 					M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -2409,7 +2434,8 @@ void fn_8_C08C8(void* arg0, s32 arg1)
 						fn_800A5B50(arg0, 0xF00);
 						var_r31 = 0;
 					} else if ((((s32)(M2C_FIELD(arg0, u16*, 0x106) & 4) != 0)
-					               || (fn_800D7218((u8*)arg0 + 0x140, (u8*)arg0 + 0x1E4)
+					               || (DistanceP2P__FPC5RwV3dPC5RwV3d(
+					                       (u8*)arg0 + 0x140, (u8*)arg0 + 0x1E4)
 					                   < lbl_8_rodata_1EA8[0]))
 					    && (fn_800A5998(arg0) <= 0)) {
 						var_r31 = 0;
@@ -2421,7 +2447,7 @@ void fn_8_C08C8(void* arg0, s32 arg1)
 					sp8.z   = M2C_FIELD(arg0, f32*, 0x2A0);
 					temp_f3 = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)rand(&sp8.x)))
 					    - lbl_8_rodata_1ECC[0];
-					fn_80195A74((s32*)sp14, &lbl_80239984, 0,
+					fn_80195A74((s32*)sp14, &AxisY, 0,
 					    lbl_8_rodata_1EC0[0]
 					        + (lbl_8_rodata_1E7C[0]
 					            * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
@@ -2442,7 +2468,7 @@ void fn_8_C08C8(void* arg0, s32 arg1)
 					var_r0 = 0;
 				} else {
 					temp_r31_2                   = fn_800A5A54(arg0);
-					M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+					M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 					    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 					if (temp_r31_2 < 0x10) {
 						M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -2624,9 +2650,10 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0xD4) = 2;
 					return;
 				case 1: /* switch 7 */
-					M2C_FIELD(arg0, s32*, 0x2D4) = fn_80103324((void*)((u8*)arg0 + 0x140),
-					    (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
-					temp_r0_2                    = M2C_FIELD(arg0, s32*, 0x2D4);
+					M2C_FIELD(arg0, s32*, 0x2D4)
+					    = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df((void*)((u8*)arg0 + 0x140),
+					        (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
+					temp_r0_2 = M2C_FIELD(arg0, s32*, 0x2D4);
 					if (temp_r0_2 != -1) {
 						temp_r3_3 = (void*)(u32) * (&lbl_802AD090 + temp_r0_2);
 						if (temp_r3_3 != NULL) {
@@ -2638,9 +2665,10 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 					if ((s32)M2C_FIELD(arg0, s32*, 0x2F0) == 0) {
 						var_r0 = 0;
 					} else {
-						temp_r30                     = fn_800A5A54(arg0);
-						M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
-						    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
+						temp_r30 = fn_800A5A54(arg0);
+						M2C_FIELD(arg0, s32*, 0x150)
+						    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
+						        M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 						if (temp_r30 < 0x10) {
 							M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
 							var_r0                       = 1;
@@ -2662,7 +2690,7 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 								M2C_FIELD(&sp8, M2C_BLOCK12*, 0)
 								    = M2C_FIELD(lbl_8_rodata_1E5C, M2C_BLOCK12*, 0);
 								temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0x150) + 0x8000);
-								fn_80195790((s32*)sp20, &lbl_80239984,
+								fn_80195790((s32*)sp20, &AxisY,
 								    lbl_8_rodata_1E88[0]
 								        - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0x150) + 0x8000),
 								    temp_f31, 0);
@@ -2678,8 +2706,9 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 								sp14.y    = lbl_8_rodata_1E70[0];
 								fn_801990E0(&sp14.x, &sp14.x);
 								M2C_FIELD(arg0, s32*, 0x29C)
-								    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x29C),
-								        fn_800D7920(&sp8.x, &sp14.x, (M2C_UNK*)lbl_8_data_17F94),
+								    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x29C),
+								        VectorAngle__FP5RwV3dP5RwV3dP5RwV3d(
+								            &sp8.x, &sp14.x, (M2C_UNK*)lbl_8_data_17F94),
 								        0x200);
 								return;
 							}
@@ -2695,10 +2724,11 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 			switch (arg2) { /* switch 8; irregular */
 				case 0:     /* switch 8 */
 					M2C_FIELD(arg0, s32*, 0x2DC) = (s32)M2C_FIELD(arg0, s32*, 0x234);
-					if ((u32)lbl_8042C6D0 == 0U) {
-						fn_8011C6EC();
+					if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+						CreateInstance__14TEnemyScoreManFv();
 					}
-					fn_8011C1C0(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x234));
+					TornadoEnemy__14TEnemyScoreManFi(
+					    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x234));
 					fn_800A3CBC(arg0);
 					M2C_FIELD(arg0, f32*, 0x15C) = lbl_8_rodata_1EBC[0];
 					M2C_FIELD(arg0, s32*, 0xD4)  = 4;
@@ -2737,29 +2767,30 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 				case 0:     /* switch 9 */
 					M2C_FIELD(arg0, s32*, 0x2D8) = 0x5A;
 					M2C_FIELD(arg0, s32*, 0xD4)  = 0;
-					if ((u32)lbl_8042C6D0 == 0U) {
-						fn_8011C6EC();
+					if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+						CreateInstance__14TEnemyScoreManFv();
 					}
-					fn_8011C188(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x238));
+					ParalyzeEnemy__14TEnemyScoreManFi(
+					    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x238));
 					return;
 				case 1: /* switch 9 */
 					temp_r0_4                    = M2C_FIELD(arg0, s32*, 0x2D8) - 1;
 					M2C_FIELD(arg0, s32*, 0x2D8) = temp_r0_4;
 					if (temp_r0_4 == 0) {
 						if ((u32)M2C_FIELD(arg0, u32*, 0x2C0) != 0U) {
-							fn_8010B074(M2C_FIELD(arg0, u32*, 0x2C0));
+							Off__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2C0));
 						}
 						if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-							fn_8010AFF8(M2C_FIELD(arg0, u32*, 0x2BC), 2);
-							fn_8010B208(M2C_FIELD(arg0, u32*, 0x2BC), lbl_8_rodata_1E70[0],
-							    lbl_8_rodata_1E70[0]);
+							Change__13TEnemyIconManF10eEnemyIcon(M2C_FIELD(arg0, u32*, 0x2BC), 2);
+							On__13TEnemyIconManFff(M2C_FIELD(arg0, u32*, 0x2BC),
+							    lbl_8_rodata_1E70[0], lbl_8_rodata_1E70[0]);
 							return;
 						}
 					}
 					break;
 				case 3: /* switch 9 */
 					if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-						fn_8010B074(M2C_FIELD(arg0, u32*, 0x2BC));
+						Off__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2BC));
 					}
 					break;
 			}
@@ -2789,23 +2820,24 @@ void fn_8_C14B4(TObject* arg0)
 		if (((s32)arg0->unk19C == 0x24) && (temp_r3_2 = arg0->unk244, ((temp_r3_2 == NULL) == 0))) {
 			Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(
 			    temp_r3_2, temp_r31, (RwOpCombineType)0);
-			fn_8019ED68(temp_r31, &lbl_80239990, lbl_8_rodata_1E7C[0] * (f32)arg0->unk154, 2);
-			fn_8019ED68(temp_r31, &lbl_80239978, lbl_8_rodata_1E7C[0] * (f32)arg0->unk14C, 2);
-			fn_8019ED68(temp_r31, &lbl_80239984,
+			fn_8019ED68(temp_r31, &AxisZ, lbl_8_rodata_1E7C[0] * (f32)arg0->unk154, 2);
+			fn_8019ED68(temp_r31, &AxisX, lbl_8_rodata_1E7C[0] * (f32)arg0->unk14C, 2);
+			fn_8019ED68(temp_r31, &AxisY,
 			    lbl_8_rodata_1EC0[0] + (lbl_8_rodata_1E7C[0] * (f32)arg0->unk150), 2);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
 			SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(
 			    arg0->unk244, (u8*)arg0 + 0x140, (u8*)arg0 + 0x14C);
 		} else {
-			fn_8019ED68(temp_r31, &lbl_80239990, lbl_8_rodata_1E7C[0] * (f32)arg0->unk154, 0);
-			fn_8019ED68(temp_r31, &lbl_80239978, lbl_8_rodata_1E7C[0] * (f32)arg0->unk14C, 2);
-			fn_8019ED68(temp_r31, &lbl_80239984,
+			fn_8019ED68(temp_r31, &AxisZ, lbl_8_rodata_1E7C[0] * (f32)arg0->unk154, 0);
+			fn_8019ED68(temp_r31, &AxisX, lbl_8_rodata_1E7C[0] * (f32)arg0->unk14C, 2);
+			fn_8019ED68(temp_r31, &AxisY,
 			    lbl_8_rodata_1EC0[0] + (lbl_8_rodata_1E7C[0] * (f32)arg0->unk150), 2);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
 		}
 	}
 	if ((s32)arg0->unk24C == -1) {
-		arg0->unk24C = fn_8005D9A0(arg0->unkEC, 0x3E8);
+		arg0->unk24C
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3E8);
 		if ((s32)arg0->unk24C != -1) {
 			M2C_FIELD(arg0->unk250, void**, 0x44)    = (void*)arg0->unkEC;
 			M2C_FIELD(arg0->unk250, M2C_UNK**, 0x2C) = (M2C_UNK*)lbl_8_data_17DC8;
@@ -2816,7 +2848,8 @@ void fn_8_C14B4(TObject* arg0)
 	if ((u32)arg0->unk254 == 0U) {
 		temp_r31_2 = arg0->unkEC;
 		if (temp_r31_2 != NULL) {
-			temp_r3_3 = fn_8005D9A0(temp_r31_2, 0x3EA);
+			temp_r3_3
+			    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(temp_r31_2, 0x3EA);
 			if (temp_r3_3 != -1) {
 				arg0->unk254 = M2C_FIELD(
 				    (M2C_FIELD(temp_r31_2, s32*, 0x10) + (temp_r3_3 * 0x10)), u32*, 0xC);
@@ -2826,7 +2859,8 @@ void fn_8_C14B4(TObject* arg0)
 	if ((void*)arg0->unk258 == NULL) {
 		temp_r31_3 = arg0->unkEC;
 		if (temp_r31_3 != NULL) {
-			temp_r3_4 = fn_8005D9A0(temp_r31_3, 0x3E9);
+			temp_r3_4
+			    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(temp_r31_3, 0x3E9);
 			if (temp_r3_4 != -1) {
 				arg0->unk258 = M2C_FIELD(
 				    (M2C_FIELD(temp_r31_3, s32*, 0x10) + (temp_r3_4 * 0x10)), void**, 0xC);
@@ -2858,7 +2892,7 @@ void fn_8_C14B4(TObject* arg0)
 			arg0->unk30C = arg0->unk120;
 			arg0->unk2FC = lbl_8_rodata_1ED0[0] + arg0->unk144;
 		} else {
-			temp_f1      = fn_800D8BC4((f32*)((u8*)arg0 + 0x140), &sp8, 1);
+			temp_f1      = GetShadowPos__FP5RwV3dP6sAnglei((f32*)((u8*)arg0 + 0x140), &sp8, 1);
 			arg0->unk2FC = temp_f1;
 			if (temp_f1 != lbl_8_rodata_1EAC[0]) {
 				arg0->unk2F8 = arg0->unk140;
@@ -2902,7 +2936,7 @@ void fn_8_C1A88(void* arg0)
 	sp8.z   = M2C_FIELD(arg0, f32*, 0x2A0);
 	temp_f3 = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)rand(&sp8.x)))
 	    - lbl_8_rodata_1ECC[0];
-	fn_80195A74((s32*)sp14, &lbl_80239984, 0,
+	fn_80195A74((s32*)sp14, &AxisY, 0,
 	    lbl_8_rodata_1EC0[0]
 	        + (lbl_8_rodata_1E7C[0] * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
 	        + temp_f3,
@@ -2960,7 +2994,7 @@ void fn_8_C1BCC(TObject* arg0)
 	sp8.z        = arg0->unk2A0;
 	temp_f3      = (lbl_8_rodata_1EC4[0] * (lbl_8_rodata_1EC8[0] * (f32)rand(&sp8.x)))
 	    - lbl_8_rodata_1ECC[0];
-	fn_80195A74((s32*)sp14, &lbl_80239984, 0,
+	fn_80195A74((s32*)sp14, &AxisY, 0,
 	    lbl_8_rodata_1EC0[0] + (lbl_8_rodata_1E7C[0] * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10))
 	        + temp_f3,
 	    lbl_8_rodata_1EC0[0], temp_f3);
@@ -3027,11 +3061,11 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, void**, 0x244) = NULL;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2C0) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x2C0));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2C0));
 			M2C_FIELD(arg0, u32*, 0x2C0) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2BC) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x2BC));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2BC));
 			M2C_FIELD(arg0, u32*, 0x2BC) = 0U;
 		}
 		temp_r3_2 = M2C_FIELD(arg0, void***, 0x240);
@@ -3042,7 +3076,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, void***, 0x240) = NULL;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x250) != 0U) {
-			dtor_800FE334((void*)M2C_FIELD(arg0, u32*, 0x250), 1);
+			__dt__11ENEMYMTNMANFv((void*)M2C_FIELD(arg0, u32*, 0x250), 1);
 			M2C_FIELD(arg0, u32*, 0x250) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0xE8) != 0U) {
@@ -3052,7 +3086,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -3114,26 +3148,27 @@ TObject* fn_8_C2018(TObject* arg0)
 		arg0->unkE8 = NULL;
 	}
 	arg0->unkE8 = fn_80150588(lbl_8_bss_1B78);
-	var_r0      = fn_80057644(0x4C);
+	var_r0      = __nw__FUl(0x4C);
 	if (var_r0 != NULL) {
-		var_r0 = fn_800FE3FC((void*)var_r0);
+		var_r0 = __ct__11ENEMYMTNMANFv((void*)var_r0);
 	}
 	arg0->unk250 = var_r0;
-	fn_8005D5C8(arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	arg0->unkE4  = (M2C_UNK*)lbl_8_data_17CD8;
 	arg0->unkD4  = 0;
 	arg0->unk2E4 = 0;
-	fn_800FE464((void**)&arg0->unkB8);
+	UpdateMotion__11ENEMYMTNMANFv((void**)&arg0->unkB8);
 	fn_8_C14B4(arg0);
-	if (fn_8005B8D8(&arg0->unkB0) == 0) {
-		fn_8003C200(&arg0->unk28, (M2C_UNK*)lbl_8_data_17E34, 2, 3);
+	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
+		Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk28, (M2C_UNK*)lbl_8_data_17E34, 2, 3);
 		arg0->unk88 = arg0->unk140;
 		arg0->unk8C = arg0->unk144;
 		arg0->unk90 = arg0->unk148;
 	}
 	arg0->unk130 = lbl_8_rodata_1EDC[0];
 	arg0->unk134 = lbl_8_rodata_1EE0[0];
-	var_r0_2     = fn_80057644(0x1C);
+	var_r0_2     = __nw__FUl(0x1C);
 	if (var_r0_2 != NULL) {
 		fn_8_BE528(var_r0_2);
 	}
@@ -3141,22 +3176,22 @@ TObject* fn_8_C2018(TObject* arg0)
 	if ((void**)arg0->unk240 != NULL) {
 		fn_8_BDF6C((TObject*)arg0->unk240, arg0);
 	}
-	arg0->unk2BC = fn_8010B708(1);
-	arg0->unk2C0 = fn_8010B708(0);
+	arg0->unk2BC = Create__13TEnemyIconManF10eEnemyIcon(1);
+	arg0->unk2C0 = Create__13TEnemyIconManF10eEnemyIcon(0);
 	__ct__15sParalysisParamFv(&sp8);
 	sp10.z   = lbl_8_rodata_1EDC[0];
 	sp10.y   = lbl_8_rodata_1EDC[0];
 	sp10.x   = lbl_8_rodata_1EDC[0];
-	temp_r3  = fn_80018A34(lbl_8042C148, 0x74);
+	temp_r3  = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_3 = temp_r3;
 	if (var_r0_3 != NULL) {
 		var_r0_3 = __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(temp_r3, lbl_8042C10C, &sp8);
 	}
 	arg0->unk244 = var_r0_3;
 	arg0->unk13C = 1;
-	var_r0_4     = fn_80057644(0x20);
+	var_r0_4     = __nw__FUl(0x20);
 	if (var_r0_4 != NULL) {
-		var_r0_4 = fn_800FD8A0(arg0, arg0->unk13C);
+		var_r0_4 = __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(arg0, arg0->unk13C);
 	}
 	arg0->unk228 = var_r0_4;
 	return arg0;
@@ -3167,7 +3202,7 @@ TEnemyParalysis* fn_8_C2344(void)
 {
 	TEnemyParalysis* var_r0;
 
-	var_r0 = fn_80018A34(lbl_8042C148, 0x320);
+	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (var_r0 != NULL) {
 		var_r0 = (TEnemyParalysis*)fn_8_C2018((TObject*)var_r0);
 	}
@@ -3257,45 +3292,53 @@ void turtleObjectUnload(void)
 		M2C_FIELD(lbl_8_bss_1B9C, u16*, 4) = (u16)(M2C_FIELD(lbl_8_bss_1B9C, u16*, 4) | 1);
 		lbl_8_bss_1B9C                     = NULL;
 	}
-	fn_80113A68(turtleObjectGlobalA);
-	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17DC8);
-	fn_800FE248(4, (M2C_UNK*)lbl_8_data_17CD8);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
-		fn_80100AAC();
+	End__16TEnemyMatTextureFv(turtleObjectGlobalA);
+	ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17DC8);
+	ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17CD8);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 4);
+	Delete__14TEnemyDataBaseF14eEnemyDataBase(mpDataBase__14TEnemyDataBase, 4);
 }
 
 void turtleObjectLoad(void)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 4, (M2C_UNK*)lbl_8_data_180F4);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
-		fn_80100AAC();
+	Add__14TEnemyDataBaseF14eEnemyDataBasePc(
+	    mpDataBase__14TEnemyDataBase, 4, (M2C_UNK*)lbl_8_data_180F4);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 4, 5);
+	temp_r3 = SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(
+	    mpDataBase__14TEnemyDataBase, 4, 5);
 	if (temp_r3 != 0U) {
-		fn_8005E00C(temp_r3, 6);
+		objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != NULL)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	lbl_8_bss_1B78 = fn_8010037C(lbl_8042C590, 4, 4);
-	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17CD8);
-	fn_800FE274(4, (M2C_UNK*)lbl_8_data_17DC8);
-	fn_80113AA8(turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);
+	lbl_8_bss_1B78
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 4, 4);
+	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17CD8);
+	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    4, (M2C_UNK*)lbl_8_data_17DC8);
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);
 	lbl_8_bss_1B9C = fn_80139984(0, 0x402D, 4);
 }
 
 void turtleObjectCreate(void)
 {
-	TEnemyParalysis* object = fn_80018A34(lbl_8042C148, 0x320);
+	TEnemyParalysis* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (object != NULL) {
 		fn_8_C2018((TObject*)object);
 	}
@@ -3303,8 +3346,8 @@ void turtleObjectCreate(void)
 
 void turtleObjectRegister(void)
 {
-	__register_global_object((void*)fn_80113C7C(turtleObjectGlobalA), (void*)&fn_80113C2C,
-	    (void*)turtleObjectGlobalAChain);
+	__register_global_object((void*)__ct__16TEnemyMatTextureFv(turtleObjectGlobalA),
+	    (void*)&__dt__16TEnemyMatTextureFv, (void*)turtleObjectGlobalAChain);
 
 	turtleObjectEntry.flags      = 0;
 	turtleObjectEntry.unk18      = 0;

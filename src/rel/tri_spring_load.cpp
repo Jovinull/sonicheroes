@@ -19,11 +19,14 @@ typedef struct TriSpringPart {
 } TriSpringPart;
 
 extern "C" void fn_8003C640(void* model);
-extern "C" void* fn_8005C014(void* handle, void** slot);
-extern "C" void* fn_8005E1DC(void* model, s32 index, const char* name);
-extern "C" TriSpringPart* fn_8005E394(void* model, TriSpringPart* current);
-extern "C" void* fn_8005E410(void* model, s32 index, const char* name);
-extern "C" void* fn_8005EA04(const char* name);
+extern "C" void* AtomicSetCustomFXTexture__FP8RpAtomicPv(void* handle, void** slot);
+extern "C" void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+    void* model, s32 index, const char* name);
+extern "C" TriSpringPart* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(
+    void* model, TriSpringPart* current);
+extern "C" void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+    void* model, s32 index, const char* name);
+extern "C" void* objPointerReadFromClumpAnim__FPc(const char* name);
 
 extern "C" void* triSpringModels[4];
 extern "C" void* triSpringDraws[4];
@@ -39,18 +42,21 @@ extern "C" void* triSpringEffect;
 extern "C" void triSpringLoad(void)
 {
 	for (s32 i = 0; i < 4; i++) {
-		triSpringModels[i] = fn_8005EA04(triSpringModelNames[i]);
+		triSpringModels[i] = objPointerReadFromClumpAnim__FPc(triSpringModelNames[i]);
 		if (triSpringModels[i] == NULL) {
 			continue;
 		}
 
-		triSpringDraws[i]     = fn_8005E1DC(triSpringModels[i], 0, triSpringNodeName);
-		triSpringMaterials[i] = fn_8005E410(triSpringModels[i], 0, triSpringNodeName);
+		triSpringDraws[i] = objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+		    triSpringModels[i], 0, triSpringNodeName);
+		triSpringMaterials[i] = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    triSpringModels[i], 0, triSpringNodeName);
 
 		if (triSpringDraws[i] != NULL) {
 			TriSpringPart* part = NULL;
 
-			while ((part = fn_8005E394(triSpringModels[i], part)) != NULL) {
+			while ((part = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(triSpringModels[i], part))
+			    != NULL) {
 				if (triSpringDraws[i] != part) {
 					part->data->flags &= ~8;
 				}
@@ -61,19 +67,24 @@ extern "C" void triSpringLoad(void)
 		fn_8003C640(triSpringModels[i]);
 
 		TriSpringPart* part = NULL;
-		while ((part = fn_8005E394(triSpringModels[i], part)) != NULL) {
+		while (
+		    (part = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(triSpringModels[i], part)) != NULL) {
 			part->data->flags |= 0x20;
 		}
 
 		if (triSpringModels[i] != NULL) {
-			triSpringEffectMaterial = fn_8005E410(triSpringModels[i], 0, triSpringEffectNodeName);
+			triSpringEffectMaterial
+			    = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+			        triSpringModels[i], 0, triSpringEffectNodeName);
 		}
 
-		triSpringEffect = fn_8005EA04(triSpringEffectName);
+		triSpringEffect = objPointerReadFromClumpAnim__FPc(triSpringEffectName);
 		if (triSpringEffect != NULL && triSpringEffectMaterial != NULL) {
 			triSpringUvAnim = triSpringEffect;
-			fn_8005C014(
-			    fn_8005E1DC(triSpringModels[i], 0, triSpringEffectNodeName), &triSpringUvAnim);
+			AtomicSetCustomFXTexture__FP8RpAtomicPv(
+			    objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+			        triSpringModels[i], 0, triSpringEffectNodeName),
+			    &triSpringUvAnim);
 		}
 	}
 }

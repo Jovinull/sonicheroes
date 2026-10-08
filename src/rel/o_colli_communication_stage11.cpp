@@ -1,3 +1,4 @@
+#include "game/miscs.h"
 #include "types.h"
 
 typedef s32 M2C_UNK;
@@ -68,44 +69,43 @@ public:
 
 extern "C" {
 
-M2C_UNK __dl__FPv(void*);                                 /* extern */
-s32 fn_80017800(void*);                                   /* extern */
-void* fn_80020BD8(void*, s32);                            /* extern */
-void fn_80021824(void*);                                  /* extern */
-M2C_UNK fn_8003BC38(void*);                               /* extern */
-M2C_UNK fn_8003BE78(void*);                               /* extern */
-int fn_8005B8BC(void*);                                   /* extern */
-M2C_UNK fn_8006298C(s32, void*, void*);                   /* extern */
-M2C_UNK fn_800A3D48(s32);                                 /* extern */
-s32 fn_800A3F60(void*);                                   /* extern */
-M2C_UNK fn_800A5B34(s32);                                 /* extern */
-s32 fn_800A6D60(s32, s32, s32);                           /* extern */
-f32 fn_800AEF48(void*, void*, void*, s32);                /* extern */
-s32 fn_800AF3AC(s16*, void*);                             /* extern */
-M2C_UNK fn_800AFB50(...);                                 /* extern */
-M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32); /* extern */
-f32 fn_800D71DC(void*, void*);                            /* extern */
-M2C_UNK fn_800D735C(void*, s32, void*);                   /* extern */
-s32 fn_800D7A94(s32, s32, s32);                           /* extern */
-f32 fn_800D7B00(s32);                                     /* extern */
-f32 fn_800D7BD8(void*, void*, void*, s32, f32);           /* extern */
-s32 fn_80103324(void*, f32*, f32);                        /* extern */
-M2C_UNK fn_80113874();                                    /* extern */
-M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                   /* extern */
-M2C_UNK fn_8011C6EC();                                    /* extern */
-M2C_UNK fn_8014FF2C(s32);                                 /* extern */
-M2C_UNK fn_801990E0(void*, void*, f32);                   /* extern */
-M2C_UNK fn_8_90B10(s32);                                  /* extern */
-M2C_UNK fn_8_B5160(void*);                                /* extern */
-M2C_UNK fn_8_B2BB4(...);                                  /* static */
-M2C_UNK fn_8_B3598(...);                                  /* static */
+M2C_UNK __dl__FPv(void*);                                                        /* extern */
+s32 fn_80017800(void*);                                                          /* extern */
+void* fn_80020BD8(void*, s32);                                                   /* extern */
+void fn_80021824(void*);                                                         /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                                                /* extern */
+M2C_UNK ClearInfo__7C_COLLIFv(void*);                                            /* extern */
+int CheckMustKill__10TObjSetObjFv(void*);                                        /* extern */
+M2C_UNK fn_8006298C(s32, void*, void*);                                          /* extern */
+M2C_UNK fn_800A3D48(s32);                                                        /* extern */
+s32 fn_800A3F60(void*);                                                          /* extern */
+M2C_UNK fn_800A5B34(s32);                                                        /* extern */
+s32 fn_800A6D60(s32, s32, s32);                                                  /* extern */
+f32 SCPathPntNearToOnpos__FP7PATHTAGP5RwV3dP5RwV3dPff(void*, void*, void*, s32); /* extern */
+s32 GetStatusOnPath__FP7PATHTAGP8PATHINFO(s16*, void*);                          /* extern */
+M2C_UNK GetPointDataOnPath__FP7PATHTAGiP5RwV3d(...);                             /* extern */
+M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32);                        /* extern */
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, void*);                               /* extern */
+M2C_UNK GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(void*, s32, void*);     /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                            /* extern */
+f32 fn_800D7B00(s32);                                                            /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32);            /* extern */
+M2C_UNK SetLightNum__7nRenderFUi();                                              /* extern */
+M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, M2C_UNK);                        /* extern */
+M2C_UNK CreateInstance__14TEnemyScoreManFv();                                    /* extern */
+M2C_UNK fn_8014FF2C(s32);                                                        /* extern */
+M2C_UNK fn_801990E0(void*, void*, f32);                                          /* extern */
+M2C_UNK fn_8_90B10(s32);                                                         /* extern */
+M2C_UNK fn_8_B5160(void*);                                                       /* extern */
+M2C_UNK fn_8_B2BB4(...);                                                         /* static */
+M2C_UNK fn_8_B3598(...);                                                         /* static */
 extern M2C_UNK lbl_802AD090;
 extern void* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
 extern void* lbl_8042C208;
 extern void* lbl_8042C380;
 extern u32 lbl_8042C388;
-extern u32 lbl_8042C6D0;
+extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern M2C_UNK lbl_8_data_16B98;
 extern const f32 lbl_8_rodata_1BB8[3] = { 0.0f, 0.0f, 0.0f };
 extern const f32 lbl_8_rodata_1BC4[3] = { 0.0f, 0.0f, 0.0f };
@@ -162,10 +162,11 @@ void fn_8_B09F8(void* arg0, s32 arg1)
 
 void fn_8_B0A1C(void* arg0)
 {
-	if ((u32)lbl_8042C6D0 == 0U) {
-		fn_8011C6EC();
+	if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {
+		CreateInstance__14TEnemyScoreManFv();
 	}
-	fn_8011C1F8(lbl_8042C6D0, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
+	AddScore__14TEnemyScoreManFii(
+	    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0xC8);
 }
 
 s32 fn_8_B0A74(void* arg0)
@@ -178,7 +179,7 @@ s32 fn_8_B0A74(void* arg0)
 	if (temp_r0 != -1) {
 		temp_r3 = (&lbl_802AD090)[temp_r0];
 		if (temp_r3 != 0U) {
-			temp_f1 = fn_800D71DC((u8*)temp_r3 + 0x18, (u8*)arg0 + 0x140);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)temp_r3 + 0x18, (u8*)arg0 + 0x140);
 			if (lbl_8_rodata_1BD4[0] <= temp_f1) {
 				if (temp_f1 <= lbl_8_rodata_1BD8[0]) {
 					return 1;
@@ -210,7 +211,7 @@ void fn_8_B0B00(void* arg0)
 
 s32 fn_8_B0B64(s32 arg0)
 {
-	return fn_8005B8BC((u8*)arg0 + 0xB0) != 0;
+	return CheckMustKill__10TObjSetObjFv((u8*)arg0 + 0xB0) != 0;
 }
 
 s32 fn_8_B0B94(void* arg0)
@@ -233,18 +234,20 @@ s32 fn_8_B0B94(void* arg0)
 	if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) == NULL) {
 		return 2;
 	}
-	temp_r3 = fn_80103324((u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
+	temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+	    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
 	if (temp_r3 != -1) {
 		temp_r31 = (void*)*(&lbl_802AD090 + (temp_r3 * 4));
 		if ((temp_r31 != NULL)
-		    && (fn_800D71DC((u8*)temp_r31 + 0x18, (u8*)arg0 + 0x140) > lbl_8_rodata_1BE8[0])) {
+		    && (Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)temp_r31 + 0x18, (u8*)arg0 + 0x140)
+		        > lbl_8_rodata_1BE8[0])) {
 			sp14    = M2C_FIELD(temp_r31, f32*, 0x18) - M2C_FIELD(arg0, f32*, 0x140);
 			sp18    = M2C_FIELD(temp_r31, f32*, 0x1C) - M2C_FIELD(arg0, f32*, 0x144);
 			temp_f1 = M2C_FIELD(temp_r31, f32*, 0x20);
 			sp1C    = temp_f1 - M2C_FIELD(arg0, f32*, 0x148);
 			fn_801990E0(&sp14, &sp14, temp_f1);
 			sp30 = M2C_FIELD(arg0, f32*, 0x248);
-			if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 0) {
+			if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 0) {
 				return 2;
 			}
 			sp8  = sp58;
@@ -297,12 +300,12 @@ void fn_8_B0D34(void* arg0)
 			if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) == NULL) {
 				var_r0 = 2;
 			} else {
-				temp_r3
-				    = fn_80103324((u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
+				temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+				    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
 				if ((temp_r3 != -1)
 				    && (temp_r30 = (void*)*(&lbl_802AD090 + (temp_r3 * 4)),
 				        ((temp_r30 == NULL) == 0))
-				    && (fn_800D71DC((u8*)temp_r30 + 0x18, (u8*)arg0 + 0x140)
+				    && (Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)temp_r30 + 0x18, (u8*)arg0 + 0x140)
 				        > lbl_8_rodata_1BE8[0])) {
 					sp8     = M2C_FIELD(temp_r30, f32*, 0x18) - M2C_FIELD(arg0, f32*, 0x140);
 					spC     = M2C_FIELD(temp_r30, f32*, 0x1C) - M2C_FIELD(arg0, f32*, 0x144);
@@ -310,7 +313,8 @@ void fn_8_B0D34(void* arg0)
 					sp10    = temp_f1 - M2C_FIELD(arg0, f32*, 0x148);
 					fn_801990E0(&sp8, &sp8, temp_f1);
 					sp30 = M2C_FIELD(arg0, f32*, 0x248);
-					if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 0) {
+					if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp20)
+					    == 0) {
 						var_r0 = 2;
 					} else {
 						sp14 = sp58;
@@ -435,7 +439,8 @@ loop_5:
 	temp_r3 = *var_r29;
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
-			temp_f1 = fn_800AEF48((u8*)arg0 + 0x254, &sp24, &sp8, lbl_8_rodata_1BD0[0]);
+			temp_f1 = SCPathPntNearToOnpos__FP7PATHTAGP5RwV3dP5RwV3dPff(
+			    (u8*)arg0 + 0x254, &sp24, &sp8, lbl_8_rodata_1BD0[0]);
 			if (temp_f1 < var_f30) {
 				var_f30 = temp_f1;
 				var_r28 = *var_r29;
@@ -448,7 +453,7 @@ loop_5:
 	if (var_r28 != NULL) {
 		M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 		sp40                          = var_f31;
-		if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp30) == 1) {
+		if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp30) == 1) {
 			sp18 = sp44 - M2C_FIELD(arg0, f32*, 0x140);
 			sp1C = sp48 - M2C_FIELD(arg0, f32*, 0x144);
 			sp20 = sp4C - M2C_FIELD(arg0, f32*, 0x148);
@@ -461,7 +466,7 @@ loop_5:
 				M2C_FIELD(arg0, f32*, 0x248) = var_f31;
 			}
 			spC = 0;
-			fn_800D735C(&sp68, 0, &spC);
+			GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp68, 0, &spC);
 			if ((s32)M2C_FIELD(arg0, s32*, 0x2B4) != 0) {
 				M2C_FIELD(arg0, f32*, 0x254) = sp44;
 				M2C_FIELD(arg0, f32*, 0x258) = sp48;
@@ -527,8 +532,8 @@ loop_5:
 	temp_r3 = *var_r27;
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
-			fn_800AFB50(NULL, &sp8);
-			temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0x140, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
 				var_r28                      = *var_r27;
@@ -541,11 +546,11 @@ loop_5:
 	M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 	if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) != NULL) {
 		sp30 = lbl_8_rodata_1BD0[0];
-		if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 1) {
+		if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(M2C_FIELD(arg0, s16**, 0x24C), &sp20) == 1) {
 			sp14 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 			sp18 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 			sp1C = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);
-			fn_800D735C(&sp58, 0, &sp14);
+			GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp58, 0, &sp14);
 			M2C_FIELD(arg0, f32*, 0x254) = sp34;
 			M2C_FIELD(arg0, f32*, 0x258) = sp38;
 			M2C_FIELD(arg0, f32*, 0x25C) = sp3C;
@@ -586,9 +591,9 @@ s32 fn_8_B154C(void* arg0)
 	    = (f32)(lbl_8_rodata_1BFC[0] * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x27C)));
 	M2C_FIELD(arg0, s32*, 0x14C) = (s32)M2C_FIELD(arg0, s32*, 0x26C);
 	M2C_FIELD(arg0, s32*, 0x150)
-	    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
+	    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
 	M2C_FIELD(arg0, s32*, 0x154)
-	    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
+	    = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
 	sp8[0] = M2C_FIELD(arg0, f32*, 0x140);
 	sp8[1] = M2C_FIELD(arg0, f32*, 0x144);
 	sp8[2] = M2C_FIELD(arg0, f32*, 0x148);
@@ -598,7 +603,8 @@ s32 fn_8_B154C(void* arg0)
 	    = (f32)(M2C_FIELD(arg0, f32*, 0x264) + M2C_FIELD(arg0, f32*, 0x144));
 	temp_f1                      = M2C_FIELD(arg0, f32*, 0x268);
 	M2C_FIELD(arg0, f32*, 0x148) = (f32)(temp_f1 + M2C_FIELD(arg0, f32*, 0x148));
-	if (fn_800D7BD8((u8*)arg0 + 0x254, sp8, (u8*)arg0 + 0x140, 0, temp_f1) < lbl_8_rodata_1BDC[0]) {
+	if (DistanceP2SegL((RwV3d*)((u8*)arg0 + 0x254), (RwV3d*)sp8, (RwV3d*)((u8*)arg0 + 0x140), 0)
+	    < lbl_8_rodata_1BDC[0]) {
 		M2C_FIELD(arg0, f32*, 0x140) = (f32)M2C_FIELD(arg0, f32*, 0x254);
 		M2C_FIELD(arg0, f32*, 0x144) = (f32)M2C_FIELD(arg0, f32*, 0x258);
 		M2C_FIELD(arg0, f32*, 0x148) = (f32)M2C_FIELD(arg0, f32*, 0x25C);
@@ -630,16 +636,17 @@ loop_10:
 	temp_r3 = *var_r27;
 	if (temp_r3 != NULL) {
 		if ((temp_r3 != (void*)arg2) && ((s16)M2C_FIELD(temp_r3, s16*, 0) == 1)) {
-			fn_800AFB50(NULL, &sp8);
-			temp_f1 = fn_800D71DC(arg1, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d(arg1, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
 				var_r31                      = *var_r27;
 				M2C_FIELD(arg0, s32*, 0x2B4) = 1;
 			}
 			temp_r3_2 = *var_r27;
-			fn_800AFB50(temp_r3_2, M2C_FIELD(temp_r3_2, s16*, 2) - 1, &sp8);
-			temp_f1_2 = fn_800D71DC(arg1, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(
+			    temp_r3_2, M2C_FIELD(temp_r3_2, s16*, 2) - 1, &sp8);
+			temp_f1_2 = Distance2P2P__FPC5RwV3dPC5RwV3d(arg1, &sp8);
 			if (temp_f1_2 < var_f31) {
 				var_f31                      = temp_f1_2;
 				var_r31                      = *var_r27;
@@ -671,8 +678,8 @@ loop_7:
 	temp_r3 = *var_r30;
 	if (temp_r3 != NULL) {
 		if ((s16)*temp_r3 == 1) {
-			fn_800AFB50(NULL, &sp8);
-			temp_f1 = fn_800D71DC(arg1, &sp8);
+			GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
+			temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d(arg1, &sp8);
 			if (temp_f1 < var_f31) {
 				var_f31                      = temp_f1;
 				var_r29                      = *var_r30;
@@ -687,7 +694,7 @@ loop_7:
 
 s32 fn_8_B1A0C(s32 arg0, s32 arg1, f32 farg0)
 {
-	if (fn_800D71DC(lbl_8042C208, (void*)arg1) > lbl_8_rodata_1C00[0]) {
+	if (Distance2P2P__FPC5RwV3dPC5RwV3d(lbl_8042C208, (void*)arg1) > lbl_8_rodata_1C00[0]) {
 		return 0;
 	}
 	return fn_800A6D60(arg0, arg1, farg0);
@@ -698,7 +705,7 @@ void fn_8_B1A90(void) { }
 void fn_8_B1A94(void* arg0)
 {
 	((TRenderer*)arg0)->Slot90();
-	fn_80113874();
+	SetLightNum__7nRenderFUi();
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0xE8));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x310));
 	fn_8014FF2C(M2C_FIELD(arg0, s32*, 0x314));
@@ -802,7 +809,7 @@ void fn_8_B1C1C(void* arg0)
 		}
 	}
 	if ((fn_80017800(arg0) != 0) && ((u32)M2C_FIELD(arg0, u32*, 0x38) != 0U)) {
-		fn_8003BE78((u8*)arg0 + 0x28);
+		ClearInfo__7C_COLLIFv((u8*)arg0 + 0x28);
 		M2C_FIELD(arg0, f32*, 0xA4) = (f32)M2C_FIELD(arg0, f32*, 0x88);
 		M2C_FIELD(arg0, f32*, 0xA8) = (f32)M2C_FIELD(arg0, f32*, 0x8C);
 		M2C_FIELD(arg0, f32*, 0xAC) = (f32)M2C_FIELD(arg0, f32*, 0x90);
@@ -812,7 +819,7 @@ void fn_8_B1C1C(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0x14C);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0x150);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0x154);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 
@@ -871,8 +878,8 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 					temp_r3 = *var_r27;
 					if (temp_r3 != NULL) {
 						if ((s16)*temp_r3 == 1) {
-							fn_800AFB50(NULL, &sp8);
-							temp_f1 = fn_800D71DC((u8*)arg0 + 0x140, &sp8);
+							GetPointDataOnPath__FP7PATHTAGiP5RwV3d(NULL, &sp8);
+							temp_f1 = Distance2P2P__FPC5RwV3dPC5RwV3d((u8*)arg0 + 0x140, &sp8);
 							if (temp_f1 < var_f31) {
 								var_f31                      = temp_f1;
 								var_r28                      = *var_r27;
@@ -885,11 +892,13 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 					M2C_FIELD(arg0, s16**, 0x24C) = var_r28;
 					if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) != NULL) {
 						sp3C = lbl_8_rodata_1BD0[0];
-						if (fn_800AF3AC(M2C_FIELD(arg0, s16**, 0x24C), &sp2C) == 1) {
+						if (GetStatusOnPath__FP7PATHTAGP8PATHINFO(
+						        M2C_FIELD(arg0, s16**, 0x24C), &sp2C)
+						    == 1) {
 							sp20 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 0);
 							sp24 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 4);
 							sp28 = M2C_FIELD(lbl_8_rodata_1BC4, s32*, 8);
-							fn_800D735C(&sp64, 0, &sp20);
+							GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(&sp64, 0, &sp20);
 							M2C_FIELD(arg0, f32*, 0x254) = sp40;
 							M2C_FIELD(arg0, f32*, 0x258) = sp44;
 							M2C_FIELD(arg0, f32*, 0x25C) = sp48;
@@ -934,10 +943,10 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, f32*, 0x278)
 			    = (f32)(lbl_8_rodata_1BFC[0] * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x27C)));
 			M2C_FIELD(arg0, s32*, 0x14C) = (s32)M2C_FIELD(arg0, s32*, 0x26C);
-			M2C_FIELD(arg0, s32*, 0x150)
-			    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
-			M2C_FIELD(arg0, s32*, 0x154)
-			    = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
+			M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(
+			    M2C_FIELD(arg0, s32*, 0x150), M2C_FIELD(arg0, s32*, 0x270), 0x80);
+			M2C_FIELD(arg0, s32*, 0x154) = AdjustAngle__Fiii(
+			    M2C_FIELD(arg0, s32*, 0x154), M2C_FIELD(arg0, s32*, 0x274), 0x80);
 			sp14 = M2C_FIELD(arg0, f32*, 0x140);
 			sp18 = M2C_FIELD(arg0, f32*, 0x144);
 			sp1C = M2C_FIELD(arg0, f32*, 0x148);
@@ -947,7 +956,8 @@ void fn_8_B1E9C(void* arg0, s32 arg1)
 			    = (f32)(M2C_FIELD(arg0, f32*, 0x264) + M2C_FIELD(arg0, f32*, 0x144));
 			temp_f1_3                    = M2C_FIELD(arg0, f32*, 0x268);
 			M2C_FIELD(arg0, f32*, 0x148) = (f32)(temp_f1_3 + M2C_FIELD(arg0, f32*, 0x148));
-			if (fn_800D7BD8((u8*)arg0 + 0x254, &sp14, (u8*)arg0 + 0x140, 0, temp_f1_3)
+			if (DistanceP2SegL(
+			        (RwV3d*)((u8*)arg0 + 0x254), (RwV3d*)&sp14, (RwV3d*)((u8*)arg0 + 0x140), 0)
 			    < lbl_8_rodata_1BDC[0]) {
 				M2C_FIELD(arg0, f32*, 0x140) = (f32)M2C_FIELD(arg0, f32*, 0x254);
 				M2C_FIELD(arg0, f32*, 0x144) = (f32)M2C_FIELD(arg0, f32*, 0x258);

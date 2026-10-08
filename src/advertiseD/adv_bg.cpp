@@ -93,7 +93,7 @@ extern TAdvBg* lbl_1_bss_7D0; // TAdvBg singleton
 extern u8 lbl_80303EC8[];  // pad/edge controller object
 extern u8 lbl_803E774C[];  // global sound/anim controller object
 extern void* lbl_8042C180; // game-config handle
-extern u8 lbl_8042C7E0[];  // scene/render object
+extern u8 StoryManage[];   // scene/render object
 
 // ---- external functions ------------------------------------------------
 void fn_1_11030(TAdvBg*);
@@ -114,7 +114,7 @@ void* fn_80116D2C(void*);
 void* memset(void*, int, int);
 int fn_1_12A0(s8*, int);
 int fn_801383F0(void*);
-int fn_80138994(void*, int, int);
+int CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(void*, int, int);
 int fn_80116AE4(void*);
 int fn_80117274(void*, int);
 
@@ -628,17 +628,18 @@ s32 fn_1_12138(void)
 	s32 buf[5];
 	memset(buf, 0, 0x14);
 	if (fn_1_12A0((s8*)lbl_8042C180, 0x27)) {
-		buf[fn_801383F0(lbl_8042C7E0)] = 2;
+		buf[fn_801383F0(StoryManage)] = 2;
 	}
-	if (fn_80138994(lbl_8042C7E0, 0, buf[0]) != 0x64 || fn_80138994(lbl_8042C7E0, 1, buf[1]) != 0x64
-	    || fn_80138994(lbl_8042C7E0, 2, buf[2]) != 0x64
-	    || fn_80138994(lbl_8042C7E0, 3, buf[3]) != 0x64) {
+	if (CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 0, buf[0]) != 0x64
+	    || CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 1, buf[1]) != 0x64
+	    || CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 2, buf[2]) != 0x64
+	    || CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 3, buf[3]) != 0x64) {
 		return 0;
 	}
 	if (fn_80116AE4(a) != 7) {
 		return 1;
 	}
-	if (fn_80138994(lbl_8042C7E0, 4, buf[4]) != 0x64) {
+	if (CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 4, buf[4]) != 0x64) {
 		return 2;
 	}
 	if (fn_80117274(b, 5) != 0x8d) {

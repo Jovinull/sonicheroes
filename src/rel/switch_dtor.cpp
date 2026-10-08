@@ -30,9 +30,9 @@ extern "C" World* lbl_8042C1D0;
 extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
-extern "C" void fn_800189A4(void* heap, TObject* object);
-extern "C" void dtor_8003C52C(void* part, s32 flags);
-extern "C" void dtor_8005BD3C(void* motion, s32 flags);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
+extern "C" void __dt__7C_COLLIFv(void* part, s32 flags);
+extern "C" void __dt__10TObjSetObjFv(void* motion, s32 flags);
 extern "C" void fn_80150958(void* model);
 extern "C" void fn_8015BBF8(void* scene, void* model);
 extern "C" void* fn_8015BD78(void* model);
@@ -51,12 +51,12 @@ extern "C" Switch* switchDtor(Switch* object, s16 flags)
 		fn_80150958(object->model);
 		object->model = NULL;
 
-		dtor_8003C52C(&object->collision, 0);
-		dtor_8005BD3C(&object->placement, 0);
+		__dt__7C_COLLIFv(&object->collision, 0);
+		__dt__10TObjSetObjFv(&object->placement, 0);
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;

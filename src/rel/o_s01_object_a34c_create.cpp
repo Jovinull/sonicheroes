@@ -43,12 +43,13 @@ typedef struct S01ObjectA34C {
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 
-extern "C" void* fn_80018A34(void* heap, u32 size);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 extern "C" void fn_3_7D1A4(S01ObjectA34C* object, void* parent);
 
 extern "C" void s01ObjectA34CCreate(void)
 {
-	S01ObjectA34C* object = (S01ObjectA34C*)fn_80018A34(lbl_8042C148, sizeof(S01ObjectA34C));
+	S01ObjectA34C* object
+	    = (S01ObjectA34C*)Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(S01ObjectA34C));
 
 	if (object != NULL) {
 		fn_3_7D1A4(object, lbl_8042C110);

@@ -68,14 +68,14 @@ public:
 };
 
 extern "C" {
-void* fn_80057644(u32);
+void* __nw__FUl(u32);
 void* fn_8005FAE8(char*, TEXTURE_LIST*);
 void fn_8005FA8C(void*, TEXTURE_LIST*);
 }
 
 inline void* operator new(unsigned long size)
 {
-	return fn_80057644(size);
+	return __nw__FUl(size);
 }
 
 extern TEXTURE_ENTRY texDir[];

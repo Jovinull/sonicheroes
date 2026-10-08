@@ -112,21 +112,21 @@ public:
 struct Motion;
 
 extern "C" {
-void fn_8005BE6C(void*);
-void fn_8003C618(void*);
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B8D8(Motion*);
-s32 fn_8005B9F0(Motion*);
+void __ct__10TObjSetObjFv(void*);
+void __ct__7C_COLLIFv(void*);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 OnEdit__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
 }
 
 struct Motion {
 	SETDATA_PARAM* frame;
 	void** vtable;
 
-	Motion() { fn_8005BE6C(this); }
-	s32 CheckMustKill() { return fn_8005B9F0(this); }
-	s32 CheckRangeOut() { return fn_8005B8BC(this); }
-	s32 OnEdit() { return fn_8005B8D8(this); }
+	Motion() { __ct__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckRangeOut() { return CheckMustKill__10TObjSetObjFv(this); }
+	s32 OnEdit() { return OnEdit__10TObjSetObjFv(this); }
 };
 
 /* The key's collision body. Its position history sits at 0x60. */
@@ -137,7 +137,7 @@ struct KeyCollision {
 	u8 pad78[4];
 	Vec3 previous;
 
-	KeyCollision() { fn_8003C618(this); }
+	KeyCollision() { __ct__7C_COLLIFv(this); }
 };
 
 extern "C" {
@@ -148,37 +148,37 @@ extern u8 lbl_8042C1A4;
 extern void* lbl_8042C1D0;
 extern ObjectManager* lbl_8042C298;
 extern void* lbl_8042C388;
-extern u8 lbl_80239984;
+extern u8 AxisY;
 extern u8 lbl_802FF5A0;
 extern PlayerInfo* lbl_802AD0D0[];
 extern TeamInfo* lbl_80303DC8[];
 
-void dtor_8003C52C(void*, s16);
-void dtor_8005BD3C(void*, s16);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void __dt__7C_COLLIFv(void*, s16);
+void __dt__10TObjSetObjFv(void*, s16);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 HitNode* fn_80020BD8(void*, s32);
 HitNode* fn_800211A8(void*);
 void fn_80021824(void*);
-void fn_8003BC38(void*);
+void Entry__7C_COLLIFv(void*);
 void fn_8003BF04(void*, void*, s32, s32);
-void* fn_80057644(u32);
-void fn_8005BC04(Motion*);
-void fn_8005D5C8(void*, u32);
+void* __nw__FUl(u32);
+void SetEnd__10TObjSetObjFv(Motion*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 void fn_800628D0(s32, Vec3*, s32);
-void fn_80066988(void*, s32, s32);
+void addPlayerScore__11PARAM_SCOREFii(void*, s32, s32);
 void fn_80090B00(TeamInfo*);
 void fn_800B52E8(void*, s32, s32, s32);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
-f32 fn_800D71DC(SETDATA_PARAM*, SetObjNode*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
+f32 Distance2P2P__FPC5RwV3dPC5RwV3d(SETDATA_PARAM*, SetObjNode*);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void fn_80119618(void*);
-void fn_8011967C(void*, f32*);
-void fn_801197F4(void*, s32);
-void* fn_80119A18(void*, void*);
+void DefaultColor__12DealMaterialFv(void*);
+void MulColor__12DealMaterialFPf(void*, f32*);
+void __dt__12DealMaterialFv(void*, s32);
+void* __ct__12DealMaterialFP7RpClump(void*, void*);
 void fn_801379A0(s32, s32);
 void fn_8014FF2C(void*);
 void* fn_80150588(void*);
@@ -191,7 +191,7 @@ void fn_8019EB94(void*, Vec3*, s32);
 void fn_8019EC30(void*, Vec3*, s32);
 void fn_801A4C84(void*);
 
-void fn_8005B8B8();
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
@@ -226,8 +226,11 @@ public:
 	TObjS11Key(TObject*);
 	~TObjS11Key();
 
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 // The s11key* data names and CL_TObjS11Key are descriptive guesses.
@@ -267,7 +270,7 @@ void* s11keyVtable[14]     = {
 	(void*)Render__7TObjectFv,
 	0,
 	0,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 char s11keyModelName[]         = "s11_o_goalkey.dff";
 char s11keyObjectDisplayName[] = "S11KEY OBJECT";
@@ -332,9 +335,9 @@ extern "C" void initObjS11Key()
 		return;
 
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
-	s32 id      = fn_800BC6CC(archive, s11keyModelName);
-	s11keyModel = fn_800BB92C(archive, id, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
+	s32 id      = CheckFileID__7ONEFILEFPc(archive, s11keyModelName);
+	s11keyModel = LoadClumpEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
 }
 
 extern "C" void endObjS11Key()
@@ -359,14 +362,15 @@ static inline void constructKey(TObjS11Key* object)
 	object->unkE0           = 0;
 	object->model           = fn_80150588(s11keyModel);
 	if (object->model != NULL) {
-		fn_8005D5C8(object->model, ((object->frame->flags & 0x1C0000) >> 18) + 4);
-		void* anim = fn_80057644(0x14);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    object->model, ((object->frame->flags & 0x1C0000) >> 18) + 4);
+		void* anim = __nw__FUl(0x14);
 		if (anim != NULL) {
-			anim = fn_80119A18(anim, object->model);
+			anim = __ct__12DealMaterialFP7RpClump(anim, object->model);
 		}
 		object->uvAnim = anim;
 	}
-	if (fn_8005B8D8((Motion*)((u8*)object + 0x28)) == 0) {
+	if (OnEdit__10TObjSetObjFv((Motion*)((u8*)object + 0x28)) == 0) {
 		fn_8003BF04(&object->collision, lbl_8_data_18E04, 1, 4);
 		object->SearchCage();
 	}
@@ -395,17 +399,17 @@ TObjS11Key::~TObjS11Key()
 	Motion::vtable  = s11keyVtable + 11;
 	if (model != NULL) {
 		if (uvAnim != NULL) {
-			fn_801197F4(uvAnim, 1);
+			__dt__12DealMaterialFv(uvAnim, 1);
 			uvAnim = NULL;
 		}
 		fn_80150958(model);
 		model = NULL;
 	}
 	if (frame->flags & 0x10000) {
-		fn_8005BC04((Motion*)((u8*)this + 0x28));
+		SetEnd__10TObjSetObjFv((Motion*)((u8*)this + 0x28));
 	}
-	dtor_8003C52C(&collision, 0);
-	dtor_8005BD3C((u8*)this + 0x28, 0);
+	__dt__7C_COLLIFv(&collision, 0);
+	__dt__10TObjSetObjFv((u8*)this + 0x28, 0);
 }
 
 void TObjS11Key::SetPosition()
@@ -427,14 +431,14 @@ void TObjS11Key::SetPosition()
 			fn_8019EB94(atomic, &pos, 0);
 			s32 angY = GetWaitAngY();
 			f32 sine = fn_800D7B00(angY);
-			fn_80195790((u8*)atomic + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(angY), sine, 1);
+			fn_80195790((u8*)atomic + 0x10, &AxisY, 1.0f - fn_800D7AE4(angY), sine, 1);
 			fn_8019E880(atomic);
 		} else {
 			Vec3 size;
 			size.x = size.y = size.z = 1.0f + scale;
 			fn_8019EB94(atomic, &position, 0);
 			f32 sine = fn_800D7B00(angle);
-			fn_80195790((u8*)atomic + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(angle), sine, 1);
+			fn_80195790((u8*)atomic + 0x10, &AxisY, 1.0f - fn_800D7AE4(angle), sine, 1);
 			fn_8019E880(atomic);
 			fn_8019EC30(atomic, &size, 1);
 		}
@@ -473,7 +477,7 @@ void TObjS11Key::Exec()
 				state = 2;
 				frame->flags |= 0x10000;
 				s32 leader = lbl_80303DC8[team]->members[lbl_80303DC8[team]->leader];
-				fn_80066988(&collision, leader, 100);
+				addPlayerScore__11PARAM_SCOREFii(&collision, leader, 100);
 				if (lbl_8042C388 != NULL) {
 					fn_800B52E8(lbl_8042C388, 0x1020, 0, 0);
 				}
@@ -487,7 +491,7 @@ void TObjS11Key::Exec()
 				collision.previous = collision.position;
 				collision.position = position;
 				collision.angle    = zero;
-				fn_8003BC38(&collision);
+				Entry__7C_COLLIFv(&collision);
 			}
 			break;
 		}
@@ -531,9 +535,9 @@ void TObjS11Key::TDisp()
 		fn_80194294(11, &dstBlend);
 		fn_80194234(10, 5);
 		fn_80194234(11, 2);
-		fn_8011967C(uvAnim, color);
+		MulColor__12DealMaterialFPf(uvAnim, color);
 		fn_8014FF2C(model);
-		fn_80119618(uvAnim);
+		DefaultColor__12DealMaterialFv(uvAnim);
 		fn_80194234(10, srcBlend);
 		fn_80194234(11, dstBlend);
 	}
@@ -599,8 +603,8 @@ void TObjS11Key::SearchCage()
 		SetObjNode* node = lbl_8042C298->lists[frame->group];
 		f32 range        = 100.0f;
 		for (; node != NULL; node = node->next) {
-			if (node->type == 0x24 && fn_800D71DC(frame, node) < range) {
-				frame->cage           = (KeyCage*)fn_80057644(0x14);
+			if (node->type == 0x24 && Distance2P2P__FPC5RwV3dPC5RwV3d(frame, node) < range) {
+				frame->cage           = (KeyCage*)__nw__FUl(0x14);
 				frame->cage->magic    = 0x12345678;
 				frame->cage->position = frame->position;
 				return;

@@ -149,15 +149,16 @@ void zeroFlagWord(FlagWord* word);
 void drawSample(void* display, Vec3* position, f32 scaleX, f32 scaleY, void* model);
 
 void Error__7TObjectFPc();
-void* fn_80018A34(void* heap, u32 size);
-void fn_800189A4(void* heap, void* object);
+void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
+void Free__9THeapCtrlFPv(void* heap, void* object);
 void fn_80051EF0(void* context, Vec3* vector, const Rot3* rotation);
-s32 fn_8005B8BC(TMotion* motion);
-s32 fn_8005B8D8(TMotion* motion);
-s32 fn_8005B9F0(TMotion* motion);
-void dtor_8005BD3C(TMotion* motion, s16 flags);
-void fn_8005BE6C(TMotion* motion);
-void fn_800D72F4(const Vec3* first, const Vec3* second, Vec3* result);
+s32 CheckMustKill__10TObjSetObjFv(TMotion* motion);
+s32 OnEdit__10TObjSetObjFv(TMotion* motion);
+s32 CheckRangeOut__10TObjSetObjFv(TMotion* motion);
+void __dt__10TObjSetObjFv(TMotion* motion, s16 flags);
+void __ct__10TObjSetObjFv(TMotion* motion);
+void AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+    const Vec3* first, const Vec3* second, Vec3* result);
 void __ct__7TObjectFP7TObject(TObject* object, TObject* owner);
 void __dt__7TObjectFv(TObject* object, s16 flags);
 
@@ -214,9 +215,10 @@ void TObjSample::Exec()
 	Rot3 rotation;
 	PathParams* params = frame->params;
 
-	if (fn_8005B9F0((TMotion*)&frame) != 0 || fn_8005B8BC((TMotion*)&frame) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv((TMotion*)&frame) != 0
+	    || CheckMustKill__10TObjSetObjFv((TMotion*)&frame) != 0) {
 		markSampleForDeletion(this);
-	} else if (fn_8005B8D8((TMotion*)&frame) != 0) {
+	} else if (OnEdit__10TObjSetObjFv((TMotion*)&frame) != 0) {
 		copyVec3(&position, &frame->position);
 	} else {
 		angle += (s32)(182.04445f * params->speed);
@@ -225,7 +227,7 @@ void TObjSample::Exec()
 		rotation.x = rotation.z = 0;
 		rotation.y              = angle;
 		fn_80051EF0(lbl_8042B088, &offset, &rotation);
-		fn_800D72F4(&frame->position, &offset, &position);
+		AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(&frame->position, &offset, &position);
 		timer++;
 		if (timer > 600) {
 			setFlagBits((FlagWord*)&frame->flags, 0x10000);
@@ -255,7 +257,7 @@ TObjSample* TObjSample::Destroy(s16 flags)
 	if (this != 0) {
 		((TObject*)this)->vtable   = __vt__10TObjSample;
 		((TMotion*)&frame)->vtable = __vt__10TObjSample + 11;
-		dtor_8005BD3C((TMotion*)&frame, 0);
+		__dt__10TObjSetObjFv((TMotion*)&frame, 0);
 		__dt__7TObjectFv((TObject*)this, 0);
 		if (flags > 0) {
 			TObjSample::operator delete(this);
@@ -266,13 +268,13 @@ TObjSample* TObjSample::Destroy(s16 flags)
 
 void TObjSample::operator delete(void* object)
 {
-	fn_800189A4(lbl_8042C148, object);
+	Free__9THeapCtrlFPv(lbl_8042C148, object);
 }
 
 extern "C" TObjSample* constructObjSample(TObjSample* sample, TObject* owner)
 {
 	__ct__7TObjectFP7TObject((TObject*)sample, owner);
-	fn_8005BE6C((TMotion*)&sample->frame);
+	__ct__10TObjSetObjFv((TMotion*)&sample->frame);
 	((TObject*)sample)->vtable         = __vt__10TObjSample;
 	((TMotion*)&sample->frame)->vtable = __vt__10TObjSample + 11;
 	((TObject*)sample)->className      = CL_TObjSample;
@@ -320,7 +322,7 @@ extern "C" void startObjSample()
 
 void* TObjSample::operator new(unsigned long size)
 {
-	return fn_80018A34(lbl_8042C148, size);
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
 }
 
 extern "C" void registerObjSample()

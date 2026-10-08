@@ -79,8 +79,8 @@ struct SetObjHdr {
 };
 
 extern "C" {
-s32 fn_8005B8BC(void*);
-s32 fn_8005B9F0(void*);
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
 }
 
 class TObjSetObj : public SetObjHdr
@@ -88,8 +88,8 @@ class TObjSetObj : public SetObjHdr
 public:
 	virtual void EditOnChange(SETDATA_PARAM*);
 
-	s32 CheckMustKill() { return fn_8005B9F0(this); }
-	s32 CheckRangeOut() { return fn_8005B8BC(this); }
+	s32 CheckRangeOut() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckMustKill__10TObjSetObjFv(this); }
 };
 
 extern "C" {
@@ -97,21 +97,21 @@ extern void* lbl_8042C110;
 extern void* lbl_8042C148;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern u8 lbl_80239978;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisX;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8005BD3C(void*, s16);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
-void fn_8005BE6C(void*);
-void fn_8005D5C8(void*, u32);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void __dt__10TObjSetObjFv(void*, s16);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void __ct__10TObjSetObjFv(void*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 void fn_800BDF30(void*);
 void fn_800BE1F4(void*);
 void fn_800BE274(void*);
@@ -241,7 +241,10 @@ struct S12CelestialStorage : ObjectStorage {
 	{
 		__ct__16TObjS12CelestialFP7TObject((TObjS12Celestial*)this, (TObject*)lbl_8042C110);
 	}
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
 
 extern "C" void startObjS12Celestial()
@@ -257,11 +260,12 @@ extern "C" void initObjS12Celestial()
 		return;
 
 	fn_800BE274(*(void**)((u8*)lbl_8042C1D0 + 0x8C18));
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
 	s32 i;
 	for (i = 0; i < 2; i++) {
-		s12celestialModels[i] = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50),
-		    fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), s12celestialModelNames[i]),
+		s12celestialModels[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(
+		        *(void**)((u8*)lbl_8042C298 + 0xA50), s12celestialModelNames[i]),
 		    &lbl_802FF5A0);
 		if (s12celestialModels[i] != NULL) {
 			fn_800BDF30(s12celestialModels[i]);
@@ -294,7 +298,7 @@ extern "C" TObjS12Celestial* __ct__16TObjS12CelestialFP7TObject(
     TObjS12Celestial* self, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(SETOBJ(self));
+	__ct__10TObjSetObjFv(SETOBJ(self));
 	*(void***)((u8*)self + 0x18) = __vt__16TObjS12Celestial;
 	*(void***)((u8*)self + 0x2C) = __vt__16TObjS12Celestial + 11;
 	self->className              = CL_TObjS12Celestial;
@@ -313,10 +317,10 @@ extern "C" TObjS12Celestial* __dt__16TObjS12CelestialFv(TObjS12Celestial* self, 
 		*(void***)((u8*)self + 0x18) = __vt__16TObjS12Celestial;
 		*(void***)((u8*)self + 0x2C) = __vt__16TObjS12Celestial + 11;
 		self->DestroyClump();
-		dtor_8005BD3C(SETOBJ(self), 0);
+		__dt__10TObjSetObjFv(SETOBJ(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 		}
 	}
 	return self;
@@ -324,7 +328,7 @@ extern "C" TObjS12Celestial* __dt__16TObjS12CelestialFv(TObjS12Celestial* self, 
 
 void TObjS12Celestial::Exec()
 {
-	if (CheckMustKill() != 0 || CheckRangeOut() != 0) {
+	if (CheckRangeOut() != 0 || CheckMustKill() != 0) {
 		signal |= 1;
 		return;
 	}
@@ -355,13 +359,13 @@ void TObjS12Celestial::SetPosition()
 	RwFrame* frame           = *(RwFrame**)((u8*)model + 4);
 	fn_8019EB94(frame, &position, 0);
 	f32 sine = fn_800D7B00(angleZ);
-	fn_80195790(&frame->modelling, &lbl_80239990, 1.0f - fn_800D7AE4(angleZ), sine, 1);
+	fn_80195790(&frame->modelling, &AxisZ, 1.0f - fn_800D7AE4(angleZ), sine, 1);
 	fn_8019E880(frame);
 	sine = fn_800D7B00(angleY);
-	fn_80195790(&frame->modelling, &lbl_80239984, 1.0f - fn_800D7AE4(angleY), sine, 1);
+	fn_80195790(&frame->modelling, &AxisY, 1.0f - fn_800D7AE4(angleY), sine, 1);
 	fn_8019E880(frame);
 	sine = fn_800D7B00(angleX);
-	fn_80195790(&frame->modelling, &lbl_80239978, 1.0f - fn_800D7AE4(angleX), sine, 1);
+	fn_80195790(&frame->modelling, &AxisX, 1.0f - fn_800D7AE4(angleX), sine, 1);
 	fn_8019E880(frame);
 	fn_8019EC30(frame, &size, 1);
 }
@@ -371,7 +375,7 @@ void TObjS12Celestial::CloneClump(s32 index)
 	if (model == NULL) {
 		model = fn_80150588(s12celestialModels[index]);
 		fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x72A0), model);
-		fn_8005D5C8(model, 0x10);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(model, 0x10);
 	}
 }
 

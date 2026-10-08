@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/calc.h"
 
 // The original object retains its standalone helpers and editor storage even
 // when no external relocation names them.
@@ -120,28 +121,27 @@ extern "C" void* lbl_8042C148;
 extern "C" void* lbl_8042C180;
 extern "C" void* lbl_8042C1D0;
 extern "C" void* lbl_8042C298;
-extern "C" Vec3 lbl_80239978;
-extern "C" Vec3 lbl_80239984;
-extern "C" Vec3 lbl_80239990;
+extern "C" Vec3 AxisX;
+extern "C" Vec3 AxisY;
+extern "C" Vec3 AxisZ;
 extern "C" char lbl_802FF5A0[];
 
 extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void Error__7TObjectFPc(void);
-extern "C" void fn_800189A4(void*, TObject*);
-extern "C" void* fn_80018A34(void*, u32);
-extern "C" void fn_8003BC38(void*);
+extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
+extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
-extern "C" void fn_8003C618(void*);
-extern "C" void dtor_8003C52C(void*, s32);
-extern "C" void* fn_800628D0(s32, const Vec3*, const Vec3*);
-extern "C" s32 fn_8005B8BC(Motion*);
-extern "C" s32 fn_8005B8D8(Motion*);
-extern "C" s32 fn_8005B9F0(Motion*);
-extern "C" void dtor_8005BD3C(Motion*, s32);
-extern "C" void fn_8005BE6C(Motion*);
-extern "C" void fn_800BC9F4(void*, void*);
-extern "C" void fn_800D1108(void*, f32*, f32*, f32*);
+extern "C" void __ct__7C_COLLIFv(void*);
+extern "C" void __dt__7C_COLLIFv(void*, s32);
+extern "C" void* fn_800628D0(s32, const Vec3*, const void*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+extern "C" void __dt__10TObjSetObjFv(Motion*, s32);
+extern "C" void __ct__10TObjSetObjFv(Motion*);
+extern "C" void LoadOneFile__7ONEFILEFPc(void*, void*);
 extern "C" f32 fn_800D7AE4(s32);
 extern "C" f32 fn_800D7B00(s32);
 extern "C" void fn_80195790(void*, const Vec3*, f32, f32, s32);
@@ -180,12 +180,14 @@ extern "C" void blinkLightCreateParticle(BlinkLight* object)
 	if (object->particle != NULL) {
 		void* transform = fn_8019E8EC(object->particle);
 		Vec3 position;
-		Vec3 angle;
+		struct {
+			s32 x, y, z;
+		} angle;
 
 		position.x = ((f32*)transform)[12];
 		position.y = ((f32*)transform)[13];
 		position.z = ((f32*)transform)[14];
-		fn_800D1108(transform, &angle.x, &angle.y, &angle.z);
+		GetRotYXZ((RwMatrixTag*)transform, &angle.x, &angle.y, &angle.z);
 		fn_800628D0(5, &position, &angle);
 	}
 }
@@ -209,17 +211,17 @@ extern "C" void blinkLightSetPosition(BlinkLight* object)
 
 	c = fn_800D7B00(object->motion.frame->angleZ);
 	s = 1.0f - fn_800D7AE4(object->motion.frame->angleZ);
-	fn_80195790(model + 0x10, &lbl_80239984, s, c, 0);
+	fn_80195790(model + 0x10, &AxisY, s, c, 0);
 	fn_8019E880(model);
 
 	c = fn_800D7B00(object->motion.frame->angleY);
 	s = 1.0f - fn_800D7AE4(object->motion.frame->angleY);
-	fn_80195790(model + 0x10, &lbl_80239978, s, c, 2);
+	fn_80195790(model + 0x10, &AxisX, s, c, 2);
 	fn_8019E880(model);
 
 	c = fn_800D7B00(object->motion.frame->angleX);
 	s = 1.0f - fn_800D7AE4(object->motion.frame->angleX);
-	fn_80195790(model + 0x10, &lbl_80239990, s, c, 2);
+	fn_80195790(model + 0x10, &AxisZ, s, c, 2);
 	fn_8019E880(model);
 	fn_8019EB94(model, object->motion.frame, 2);
 }
@@ -228,7 +230,8 @@ extern "C" void blinkLightExec(BlinkLight* object)
 {
 	f32 duration = ((f32*)&blinkLightAsset)[7];
 
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal |= 1;
 		return;
 	}
@@ -240,11 +243,11 @@ extern "C" void blinkLightExec(BlinkLight* object)
 		object->transform.angleY           = frame->angleY;
 		object->transform.angleZ           = frame->angleZ;
 		object->transform.angleX           = frame->angleX;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 		return;
 	}
 
-	if (fn_8005B8D8(&object->motion) != 0) {
+	if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		blinkLightSetPosition(object);
 	} else {
 		object->phase += 0.0166667f;
@@ -263,7 +266,7 @@ extern "C" void blinkLightExec(BlinkLight* object)
 		object->transform.angleY           = frame->angleY;
 		object->transform.angleZ           = frame->angleZ;
 		object->transform.angleX           = frame->angleX;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 	}
 }
 
@@ -275,11 +278,11 @@ extern "C" BlinkLight* blinkLightDtor(BlinkLight* object, s16 flags)
 		object->base.vtable   = blinkLightVtable;
 		object->motion.vtable = blinkLightVtable + 11;
 		fn_9_75888(&object->model);
-		dtor_8003C52C(&object->transform, 0);
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__7C_COLLIFv(&object->transform, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;
@@ -288,8 +291,8 @@ extern "C" BlinkLight* blinkLightDtor(BlinkLight* object, s16 flags)
 extern "C" BlinkLight* blinkLightCtor(BlinkLight* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
-	fn_8003C618(&object->transform);
+	__ct__10TObjSetObjFv(&object->motion);
+	__ct__7C_COLLIFv(&object->transform);
 
 	object->base.vtable     = blinkLightVtable;
 	object->motion.vtable   = blinkLightVtable + 11;
@@ -322,7 +325,7 @@ extern "C" void blinkLightInit(void)
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	ModelAsset* asset = &blinkLightAsset;
 	for (u8 i = 0; i < 1; i++) {
 		fn_9_765CC(asset, 0);
@@ -341,7 +344,7 @@ public:
 
 extern "C" void blinkLightCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, sizeof(BlinkLightAllocation));
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(BlinkLightAllocation));
 	if (memory != NULL) {
 		new (memory) BlinkLightAllocation(lbl_8042C110);
 	}

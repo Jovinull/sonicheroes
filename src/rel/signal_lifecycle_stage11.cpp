@@ -30,27 +30,27 @@ extern float lbl_8_rodata_BB0;
 extern float lbl_8_rodata_BC4;
 extern float lbl_8_rodata_BC8;
 extern double lbl_8_rodata_BD0;
-extern char lbl_80239978[];
-extern char lbl_80239984[];
-extern char lbl_80239990[];
+extern char AxisX[];
+extern char AxisY[];
+extern char AxisZ[];
 
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
-void fn_8003C618(void*);
+void __ct__10TObjSetObjFv(void*);
+void __ct__7C_COLLIFv(void*);
 void* fn_80150588(void*);
 float fn_800D7B00(int);
 float fn_800D7AE4(int);
 void fn_80195790(void*, char*, float, float, int);
 void fn_8019EB94(void*, void*, int);
 void fn_8003BF04(void*, char*, int, int);
-float fn_800D8BC4(void*, int*, int);
-void fn_8005D5C8(void*, int);
-void* fn_8005E1DC(void*, int, char*);
-int* fn_8005F490();
-void* fn_8005EC0C();
+float GetShadowPos__FP5RwV3dP6sAnglei(void*, int*, int);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, int);
+void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(void*, int, char*);
+int* RpAtomicMCCGetCustomRenderCallBack();
+void* objRwTexDictionaryGetPointer__Fv();
 void* fn_801A4BBC(void*, char*);
-void* fn_8005EA04(char*);
-void* fn_8005E410(void*, int, char*);
+void* objPointerReadFromClumpAnim__FPc(char*);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(void*, int, char*);
 }
 
 struct SignalInfo {
@@ -107,8 +107,8 @@ static inline float signalIntToScaledFloat(int value)
 extern "C" Signal* signalCtor(Signal* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(&self->placement);
-	fn_8003C618(self->member30);
+	__ct__10TObjSetObjFv(&self->placement);
+	__ct__7C_COLLIFv(self->member30);
 	self->vtable          = signalVtable;
 	self->secondaryVtable = signalVtable + 11;
 	*(void**)self         = lbl_8_data_4B78[0];
@@ -130,20 +130,20 @@ extern "C" Signal* signalCtor(Signal* self, void* parent)
 	SignalModel* model = *(SignalModel**)((u8*)self->resource + 4);
 	float high         = fn_800D7B00(self->values[1]);
 	float low          = fn_800D7AE4(self->values[1]);
-	fn_80195790(model->transforms, lbl_80239984, lbl_8_rodata_BB0 - low, high, 0);
+	fn_80195790(model->transforms, AxisY, lbl_8_rodata_BB0 - low, high, 0);
 	high = fn_800D7B00(self->values[0]);
 	low  = fn_800D7AE4(self->values[0]);
-	fn_80195790(model->transforms, lbl_80239978, lbl_8_rodata_BB0 - low, high, 2);
+	fn_80195790(model->transforms, AxisX, lbl_8_rodata_BB0 - low, high, 2);
 	high = fn_800D7B00(self->values[2]);
 	low  = fn_800D7AE4(self->values[2]);
-	fn_80195790(model->transforms, lbl_80239990, lbl_8_rodata_BB0 - low, high, 2);
+	fn_80195790(model->transforms, AxisZ, lbl_8_rodata_BB0 - low, high, 2);
 	fn_8019EB94(model, self->position, 2);
 	fn_8003BF04(self->member30, lbl_8_data_4B3C, 1, 4);
 
 	self->fieldE8 = lbl_8_rodata_BA8;
 	if ((self->placement->flags & 0x20000) != 0) {
 		int result[3];
-		self->fieldE8 = fn_800D8BC4(self->position, result, 1);
+		self->fieldE8 = GetShadowPos__FP5RwV3dP6sAnglei(self->position, result, 1);
 		if (self->fieldE8 != lbl_8_rodata_BA8) {
 			self->fieldE4 = self->position[0];
 			self->fieldE8 += lbl_8_rodata_BC4;
@@ -154,14 +154,15 @@ extern "C" Signal* signalCtor(Signal* self, void* parent)
 		}
 	}
 
-	fn_8005D5C8(self->resource, ((self->placement->flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    self->resource, ((self->placement->flags & 0x1C0000) >> 18) + 4);
 	void* found = NULL;
 	char** name = lbl_8_data_4B00.last;
 	while (found == NULL) {
-		found = fn_8005E1DC(self->resource, 0, *name);
+		found = objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(self->resource, 0, *name);
 		name++;
 	}
-	int* state = fn_8005F490();
+	int* state = RpAtomicMCCGetCustomRenderCallBack();
 	*state     = 16;
 	return self;
 }
@@ -183,7 +184,7 @@ extern "C" void signalUnload()
 
 extern "C" void signalLoad()
 {
-	void* context = fn_8005EC0C();
+	void* context = objRwTexDictionaryGetPointer__Fv();
 	lbl_8_bss_A74 = fn_801A4BBC(context, lbl_8_data_4B00.first[0]);
 	lbl_8_bss_A78 = fn_801A4BBC(context, lbl_8_data_4B00.first[1]);
 	lbl_8_bss_A7C = fn_801A4BBC(context, lbl_8_data_4B00.first[2]);
@@ -194,23 +195,26 @@ extern "C" void signalLoad()
 	lbl_8_bss_A90 = fn_801A4BBC(context, lbl_8_data_4B00.last[1]);
 	lbl_8_bss_A94 = fn_801A4BBC(context, lbl_8_data_4B00.last[2]);
 
-	lbl_8_bss_A60 = fn_8005EA04(lbl_8_data_4BC4);
+	lbl_8_bss_A60 = objPointerReadFromClumpAnim__FPc(lbl_8_data_4BC4);
 	if (lbl_8_bss_A60 != NULL) {
 		lbl_8_bss_A68 = NULL;
 		char** name   = lbl_8_data_4B00.first;
 		while (lbl_8_bss_A68 == NULL) {
-			lbl_8_bss_A68 = fn_8005E410(lbl_8_bss_A60, 0, *name);
+			lbl_8_bss_A68 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+			    lbl_8_bss_A60, 0, *name);
 			name++;
 		}
 
 		lbl_8_bss_A6C = NULL;
 		name          = lbl_8_data_4B00.last;
 		while (lbl_8_bss_A6C == NULL) {
-			lbl_8_bss_A6C = fn_8005E410(lbl_8_bss_A60, 0, *name);
+			lbl_8_bss_A6C = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+			    lbl_8_bss_A60, 0, *name);
 			name++;
 		}
 	}
 
-	lbl_8_bss_A64 = fn_8005EA04(lbl_8_data_4BD4);
-	lbl_8_bss_A70 = fn_8005E410(lbl_8_bss_A64, 0, NULL);
+	lbl_8_bss_A64 = objPointerReadFromClumpAnim__FPc(lbl_8_data_4BD4);
+	lbl_8_bss_A70 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+	    lbl_8_bss_A64, 0, NULL);
 }

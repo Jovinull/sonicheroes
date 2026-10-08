@@ -88,13 +88,13 @@ void fn_1_119BC(void* p, int n);
 void* advE3Rom_resume(s32 id);
 ADV_WINDOW* fn_1_14DA4(ADV_WINDOW* self, void* parent, const sADV_WINDOW_PARAM* param);
 void fn_801A46D0(void*);
-void* fn_80057644(int size);
-void* fn_800BCC84(void* h, void* name, int a);
+void* __nw__FUl(int size);
+void* __ct__7ONEFILEFPci(void* h, void* name, int a);
 void* fn_80012994(int size);
-void* fn_800BC580(void* h, int a, void* buf);
+void* OneFileLoadTextureDictionay__7ONEFILEFUiPv(void* h, int a, void* buf);
 void* fn_801A4BBC(void* h, void* name);
 void fn_800126C8(void* p);
-void fn_800BCBD4(void* h, int a);
+void __dt__7ONEFILEFv(void* h, int a);
 void fn_8012FF6C(void* list);
 void fn_801301C8(void* list);
 void fn_1_1517C(void);
@@ -396,14 +396,14 @@ void fn_1_1517C(void)
 	int i;
 	void* res;
 
-	h.value = fn_80057644(0x58);
+	h.value = __nw__FUl(0x58);
 	if (h.value) {
-		h.value = fn_800BCC84(h.value, lbl_1_data_8578, 0);
+		h.value = __ct__7ONEFILEFPci(h.value, lbl_1_data_8578, 0);
 	}
 	if (h.value) {
 		buf = fn_80012994(0x300000);
 		if (buf) {
-			lbl_1_bss_830 = fn_800BC580(h.value, 2, buf);
+			lbl_1_bss_830 = OneFileLoadTextureDictionay__7ONEFILEFUiPv(h.value, 2, buf);
 			if (lbl_1_bss_830) {
 				i = 0;
 				do {
@@ -416,7 +416,7 @@ void fn_1_1517C(void)
 			}
 			fn_800126C8(buf);
 		}
-		fn_800BCBD4(h.value, 1);
+		__dt__7ONEFILEFv(h.value, 1);
 	}
 }
 

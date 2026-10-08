@@ -15,7 +15,7 @@
 //
 // The run is the same in all twelve stage modules that share the engine core.
 // Unlike most of the other TObj destructors in this family, TObjBigRings has
-// no embedded Volume base, so there is no dtor_8003C52C call here.
+// no embedded Volume base, so there is no __dt__7C_COLLIFv call here.
 //
 // The delete flag is a short. It is sign extended before the test, so a plain
 // s32 parameter does not reproduce the compare.
@@ -51,9 +51,9 @@ extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void __destroy_new_array(void* array, void (*destructor)(void*, int));
-extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_800189A4(void* heap, TObject* object);
-extern "C" void fn_8005BC04(Motion* motion);
+extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
+extern "C" void SetEnd__10TObjSetObjFv(Motion* motion);
 extern "C" void bigRingsElementDtor(void*, int);
 
 typedef struct BigRings {
@@ -78,14 +78,14 @@ extern "C" BigRings* bigRingsDtor(BigRings* object, s16 flags)
 		}
 
 		if (object->motion.frame->flags & 0x10000) {
-			fn_8005BC04(&object->motion);
+			SetEnd__10TObjSetObjFv(&object->motion);
 		}
 
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;

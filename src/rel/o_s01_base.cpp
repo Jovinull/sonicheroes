@@ -124,18 +124,18 @@ extern "C" u32 lbl_3_data_A170[];
 extern "C" u32 cisekiEntry[12];
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
-extern "C" void dtor_8003C52C(Volume* volume, s32 flags);
-extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_800189A4(void* heap, TObject* object);
+extern "C" void __dt__7C_COLLIFv(Volume* volume, s32 flags);
+extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void fn_80063E7C(void* handle, s32 flags);
-extern "C" s32 fn_8005B8BC(Motion* motion);
-extern "C" s32 fn_8005B8D8(Motion* motion);
-extern "C" s32 fn_8005B9F0(Motion* motion);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion* motion);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion* motion);
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, TObject* parent);
-extern "C" void fn_8003C200(Volume* volume, u32* entry, s32 kind, s32 count);
-extern "C" void fn_8003C618(Volume* volume);
-extern "C" void fn_80021384(Volume* volume);
-extern "C" void fn_8005BE6C(Motion* motion);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(Volume* volume, u32* entry, s32 kind, s32 count);
+extern "C" void __ct__7C_COLLIFv(Volume* volume);
+extern "C" void CalcRange__7C_COLLIFv(Volume* volume);
+extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 
 // Defined by the module, renamed to this name in its own symbols.txt.
 extern "C" void* s01ObjectBaseVtable[];
@@ -147,10 +147,11 @@ extern "C" void s01ObjectBaseUpdate(S01ObjectBase* object)
 {
 	Vec3* params = object->motion.frame->params;
 
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal = object->base.signal | 1;
 	} else if (((s8*)lbl_8042C180)[0x1F] == 0) {
-		if (fn_8005B8D8(&object->motion) != 0) {
+		if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 			object->position.x = params->x;
 			object->position.y = params->y;
 			object->position.z = params->z;
@@ -169,12 +170,12 @@ extern "C" S01ObjectBase* s01ObjectBaseDtor(S01ObjectBase* object, s16 flags)
 			object->handle = NULL;
 		}
 
-		dtor_8003C52C(&object->volume, 0);
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__7C_COLLIFv(&object->volume, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;
@@ -190,8 +191,8 @@ extern "C" S01ObjectBase* s01ObjectBaseCtor(S01ObjectBase* object, TObject* pare
 	VolumeBody* body;
 
 	__ct__7TObjectFP7TObject(&object->base, parent);
-	fn_8005BE6C(&object->motion);
-	fn_8003C618(&object->volume);
+	__ct__10TObjSetObjFv(&object->motion);
+	__ct__7C_COLLIFv(&object->volume);
 
 	object->base.vtable   = s01ObjectBaseVtable;
 	object->motion.vtable = s01ObjectBaseVtable + 0xB;
@@ -211,7 +212,7 @@ extern "C" S01ObjectBase* s01ObjectBaseCtor(S01ObjectBase* object, TObject* pare
 	object->unkBC  = lbl_3_data_A170[0];
 	object->handle = NULL;
 
-	fn_8003C200(&object->volume, cisekiEntry, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&object->volume, cisekiEntry, 1, 4);
 
 	body = object->volume.body;
 
@@ -219,7 +220,7 @@ extern "C" S01ObjectBase* s01ObjectBaseCtor(S01ObjectBase* object, TObject* pare
 	body->scale.y = 0.5f * object->position.y;
 	body->scale.z = 0.5f * object->position.z;
 
-	fn_80021384(&object->volume);
+	CalcRange__7C_COLLIFv(&object->volume);
 
 	object->volume.flags = object->volume.flags & ~0x40;
 

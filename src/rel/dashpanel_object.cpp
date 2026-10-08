@@ -26,10 +26,12 @@ typedef struct Frame {
 	DashpanelParams* params; // 0x2C
 } Frame;
 
-extern "C" void* fn_8005C014(void* handle, void** slot);
-extern "C" void* fn_8005E1DC(void* model, s32 index, const char* name);
-extern "C" u8* fn_8005E410(void* model, s32 index, const char* name);
-extern "C" void* fn_8005EA04(const char* name);
+extern "C" void* AtomicSetCustomFXTexture__FP8RpAtomicPv(void* handle, void** slot);
+extern "C" void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+    void* model, s32 index, const char* name);
+extern "C" u8* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+    void* model, s32 index, const char* name);
+extern "C" void* objPointerReadFromClumpAnim__FPc(const char* name);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" void* dashpanelModel;
@@ -73,14 +75,18 @@ extern "C" void dashpanelUnload(void)
 // are there, since one is fed into the other.
 extern "C" void dashpanelLoad(void)
 {
-	dashpanelModel = fn_8005EA04(dashpanelModelName);
+	dashpanelModel = objPointerReadFromClumpAnim__FPc(dashpanelModelName);
 	if (dashpanelModel != NULL) {
-		dashpanelMaterial = fn_8005E410(dashpanelModel, 0, dashpanelTextureName);
+		dashpanelMaterial = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    dashpanelModel, 0, dashpanelTextureName);
 	}
 
-	dashpanelEffect = fn_8005EA04(dashpanelEffectName);
+	dashpanelEffect = objPointerReadFromClumpAnim__FPc(dashpanelEffectName);
 	if (dashpanelEffect != NULL && dashpanelMaterial != NULL) {
 		stageUvAnim = dashpanelEffect;
-		fn_8005C014(fn_8005E1DC(dashpanelModel, 0, dashpanelTextureName), &stageUvAnim);
+		AtomicSetCustomFXTexture__FP8RpAtomicPv(
+		    objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+		        dashpanelModel, 0, dashpanelTextureName),
+		    &stageUvAnim);
 	}
 }

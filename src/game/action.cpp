@@ -262,9 +262,9 @@ extern RwRGBA lbl_8042AEAC;
 extern u8 lbl_80240D0C[];
 extern StageNameEntry lbl_80240B10[];
 extern RawTask* lbl_80303DC8[];
-extern s32 lbl_80303D44[];
+extern s32 num__15PARAM_CHALLENGE[];
 extern void* lbl_8042C388;
-extern void* lbl_8042C6D0;
+extern void* EnemyScoreMan__14TEnemyScoreMan;
 extern u8 lbl_803E774C[];
 extern u8 lbl_8029BBD0[];
 extern u32 lbl_8042C160;
@@ -287,7 +287,7 @@ extern void* lbl_8042C1FC;
 extern s32 lbl_8042C200;
 extern s32 lbl_8042C710;
 extern EventManager* lbl_8042C760;
-extern u8 lbl_8042C7E0;
+extern u8 StoryManage;
 extern void* lbl_8042C148;
 extern void* lbl_8042C108;
 extern u8 lbl_8029C728[];
@@ -301,7 +301,7 @@ extern float lbl_8042CFE0;
 extern u32 lbl_8042CFD8;
 extern u8 lbl_8042AE98;
 extern "C" s32 CheckSoftReset(s32 mode);
-extern "C" void fn_800A74BC(s32 mode);
+extern "C" void fn_800A74BC__Fi(s32 mode);
 extern "C" void fn_800CB6EC();
 extern "C" void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
     MainState* state, s32 field, s32 value);
@@ -322,8 +322,8 @@ inline void fn_8005A298(u32 object, s32 mode)
 {
 	fn_8005A298((void*)object, mode);
 }
-extern "C" void fn_80066ED8(void* object, s32 mode);
-extern "C" void fn_80066D68(void* object, u8 red, u8 green, u8 blue);
+extern "C" void InitGParam__7G_PARAMF11GPARAM_INIT(void* object, s32 mode);
+extern "C" void setSaveTime__18PARAM_SAVEPOSITIONFScScSc(void* object, u8 red, u8 green, u8 blue);
 extern "C" void fn_800B4684(void* object, s32 mode);
 inline void fn_800B4684(u32 object, s32 mode)
 {
@@ -331,14 +331,14 @@ inline void fn_800B4684(u32 object, s32 mode)
 }
 extern "C" void fn_800CB84C();
 extern "C" void fn_8001F600();
-extern "C" void fn_80066AFC(void* object, s32 stage, s32 value);
-inline void fn_80066AFC(u32 object, s32 stage, u32 value)
+extern "C" void addChallenge__15PARAM_CHALLENGEFii(void* object, s32 stage, s32 value);
+inline void addChallenge__15PARAM_CHALLENGEFii(u32 object, s32 stage, u32 value)
 {
-	fn_80066AFC((void*)object, stage, (s32)value);
+	addChallenge__15PARAM_CHALLENGEFii((void*)object, stage, (s32)value);
 }
-extern "C" void fn_80066EA0(void* object);
-extern "C" void fn_8011C6EC();
-extern "C" void fn_8011C0C4(void* object);
+extern "C" void InitSavePosition__7G_PARAMFv(void* object);
+extern "C" void CreateInstance__14TEnemyScoreManFv();
+extern "C" void SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv(void* object);
 extern "C" void* fn_80116D2C(void* object);
 extern "C" void fn_8009C2D4(void* team);
 extern "C" void fn_800A0A4C(s32 teamNo);
@@ -350,16 +350,16 @@ extern "C" void fn_80018368(void* object);
 extern "C" void ChkController();
 extern "C" void EndDemoData();
 extern "C" void fn_800B9180();
-extern "C" void fn_8005EC14();
+extern "C" void objReleaseCommonObjectTextures__Fv();
 extern "C" void fn_800A73B4();
 extern "C" void fn_8001DF6C();
 extern "C" void fn_80016514(void*);
-extern "C" void fn_800CE010();
+extern "C" void RemoveLangMessage__Fv();
 extern "C" void fn_801125D8(void*);
 extern "C" void fn_8020577C();
 extern "C" void fn_8016F084();
-extern "C" void fn_800A76E4(void*);
-extern "C" void fn_800A7820();
+extern "C" void DefaultCloseDown__7MObjectFv(void*);
+extern "C" void DefaultSetUp__7MObjectFv();
 extern "C" void fn_8016EF70();
 extern "C" void fn_80205624();
 extern "C" void fn_8016EE28(float);
@@ -368,21 +368,21 @@ extern "C" void* RsPathnameCreate(void*);
 extern "C" void fn_8016E054();
 extern "C" void RsPathnameDestroy(void*);
 extern "C" void fn_8011264C(void*);
-extern "C" void fn_800CE0CC();
+extern "C" void OnLangChange__Fv();
 extern "C" void fn_801125D4(void*);
 extern "C" void fn_801126B4(void*);
 extern "C" void fn_8001E000();
 extern "C" void fn_800A7428();
-extern "C" void fn_8005ED88();
+extern "C" void objLoadCommonObjectTextures__Fv();
 extern "C" void fn_800B9408();
 extern "C" void fn_80112618(void*);
 extern "C" void fn_8012D97C();
 extern "C" void fn_800CD138();
 extern "C" void fn_8002171C(void*);
 extern "C" void fn_80042310(void*, void*);
-extern "C" void* fn_80018A34(void*, s32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, s32);
 extern "C" void fn_8009DFE0(void*, s32, s32, s32, s32, s32, void*);
-extern "C" void fn_80066B48(void*, s32, s32);
+extern "C" void setChallenge__15PARAM_CHALLENGEFii(void*, s32, s32);
 extern "C" void fn_8004F0F8(s32);
 extern "C" void fn_800C731C();
 extern "C" void MakeGameKeyData();
@@ -422,7 +422,7 @@ extern "C" void RsCameraShowRaster(void* world);
 extern "C" void fn_800B7BDC();
 extern "C" void fn_800BEEF0();
 extern "C" void fn_8019CF28(void* world, void* color, s32 mode);
-extern "C" void* fn_800A7658();
+extern "C" void* GetCurrentCameraPointer__Fv();
 extern "C" void fn_8019EE04(void* object);
 extern "C" void fn_8004AF04(void* object);
 extern "C" void fn_8004EBE0(void* object, s32 index);
@@ -434,7 +434,7 @@ extern "C" s32 fn_8004A5B8(void* object, s32 index, void* filter);
 extern "C" void fn_8011253C();
 extern "C" void fn_800C4C18();
 extern "C" void fn_800B6E64();
-extern "C" void fn_80052DD4(void* object, void* world);
+extern "C" void ChangeWorld__6CLIGHTFP7RpWorld(void* object, void* world);
 extern "C" void fn_8004D678(void* object);
 extern "C" void fn_8004D650(void* object);
 extern "C" void fn_801AFFB0(s32, s32, s32, s32, s32);
@@ -449,8 +449,8 @@ extern u8 lbl_802D5E80[];
 extern u8 lbl_803EDBD0[];
 extern s8 lbl_80240D00[];
 extern ExecTable lbl_802895B8[];
-extern "C" void fn_80066474(void* object, s32 mode);
-extern "C" void fn_80066454(s8* a, s8* b, s8* c);
+extern "C" void addFrm__10PARAM_TIMEFi(void* object, s32 mode);
+extern "C" void getGameTime__FPScPScPSc(s8* a, s8* b, s8* c);
 extern "C" s32 fn_8012DA08();
 extern "C" void* memcpy(void* destination, const void* source, unsigned long size);
 extern "C" s32 fn_800166E8(void*);
@@ -464,7 +464,7 @@ inline s32 fn_8004B144(u32 object)
 	return fn_8004B144((void*)object);
 }
 extern "C" s32 fn_8004EF98();
-extern "C" s32 fn_80053B9C(void*);
+extern "C" s32 End__6CLIGHTFv(void*);
 extern "C" s32 fn_8005952C(void*);
 extern "C" s32 fn_8005A5EC(void*);
 inline s32 fn_8005952C(u32 object)
@@ -476,17 +476,17 @@ inline s32 fn_8005A5EC(u32 object)
 	return fn_8005A5EC((void*)object);
 }
 extern "C" s32 fn_8005B558();
-extern "C" s32 fn_8005E8EC();
+extern "C" s32 objReleaseClumpAnimStoredInARAMFromMainRAM__Fv();
 extern "C" s32 fn_800662BC();
-extern "C" s32 fn_80066D4C(void*, void*, void*, void*);
-extern "C" s32 fn_80066E80(void*);
+extern "C" s32 getSaveTime__18PARAM_SAVEPOSITIONFPScPScPSc(void*, void*, void*, void*);
+extern "C" s32 InitRing__7G_PARAMFv(void*);
 extern "C" s32 fn_8009C618(RawTask*);
 extern "C" s32 fn_8009C704(s32, s32);
 extern "C" void fn_8009250C(RawTask*);
 extern "C" void fn_8009D2E0(RawTask*);
 extern "C" s32 fn_800A7338();
-extern "C" u32 fn_800A7648();
-extern "C" s32 fn_800B113C();
+extern "C" u32 GetMObjectCameraPointer__Fv();
+extern "C" s32 EndPath__Fv();
 extern "C" s32 fn_800B44A0(void*);
 extern "C" s32 fn_800B48B8(void*);
 extern "C" s32 fn_800B603C(void*);
@@ -513,7 +513,7 @@ extern "C" s32 fn_800CB750();
 extern "C" s32 fn_800CB95C();
 extern "C" s32 fn_800CC7E8();
 extern "C" s32 fn_800CD05C();
-extern "C" s32 fn_80110A4C();
+extern "C" s32 EndEffFootPrints__Fv();
 extern "C" s32 fn_801169A4(s32, u32, s32);
 extern "C" s32 fn_80116B84(void*);
 extern "C" s32 fn_8012C3E8();
@@ -522,8 +522,8 @@ extern "C" s32 fn_8012DAA0();
 extern "C" s32 fn_80130484();
 extern "C" s32 fn_8013057C();
 extern "C" s32 fn_801306BC();
-extern "C" s32 fn_80138414(void*, s32);
-extern "C" s32 fn_801388C4(void*, s32);
+extern "C" s32 MustExit__11STORYMANAGEF18ACTIONSTAGE_NUMBER(void*, s32);
+extern "C" s32 StepStageSeq__11STORYMANAGEF18ACTIONSTAGE_NUMBER(void*, s32);
 extern "C" s32 fn_80196D00();
 extern "C" s32 strcmp(u32, void*);
 
@@ -540,7 +540,7 @@ extern "C" s32 strcmp(u32, void*);
 #define DAT_8029c330 (*(s32*)((u8*)&Action + 0x20))
 #define DAT_8029c344 ((u8*)Action.currentStage)
 #define DAT_802d5e80 lbl_802D5E80
-#define DAT_80303d44 lbl_80303D44[0]
+#define DAT_80303d44 num__15PARAM_CHALLENGE[0]
 #define DAT_80303dc8 (*(s32*)lbl_80303DC8)
 #define DAT_803e774c lbl_803E774C
 
@@ -576,7 +576,7 @@ ACTIONMODE GetActionMode()
 void CheckActionSoftReset()
 {
 	if (CheckSoftReset(3) != 0)
-		fn_800A74BC(0);
+		fn_800A74BC__Fi(0);
 }
 
 void RestoreStageConnect(ACTION* action)
@@ -676,7 +676,7 @@ s32 ACTION::restartStage()
 	fn_800215A8(&lbl_8042C1A4);
 	fn_8004ED48(lbl_8042C1F8);
 	fn_8005A298(lbl_8042C298, 0);
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 
 	processState = 2;
 	fn_80016BBC(lbl_8029C2E4);
@@ -698,10 +698,11 @@ s32 ACTION::restartStage()
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
 
 	if (stageNumber == 23)
-		fn_80066D68(lbl_8042C304, lbl_8042C304[0], lbl_8042C304[1], lbl_8042C304[2]);
+		setSaveTime__18PARAM_SAVEPOSITIONFScScSc(
+		    lbl_8042C304, lbl_8042C304[0], lbl_8042C304[1], lbl_8042C304[2]);
 
 	if (lbl_8042C180->field1E == 0 && lbl_8042C180->field18 == 0
-	    && lbl_80303D44[*(s8*)(*(u8**)lbl_80303DC8 + 56)] < 0) {
+	    && num__15PARAM_CHALLENGE[*(s8*)(*(u8**)lbl_80303DC8 + 56)] < 0) {
 		*(s32*)((u8*)this + 0x14) = 3;
 		return 0;
 	}
@@ -845,7 +846,7 @@ void ACTION::InitRestartStage()
 	mode       = 8;
 	transition = 2;
 	fn_800CB6EC();
-	fn_80066AFC(object, *(s8*)(*(u8**)lbl_80303DC8 + 56), -1);
+	addChallenge__15PARAM_CHALLENGEFii(object, *(s8*)(*(u8**)lbl_80303DC8 + 56), -1);
 }
 
 void ACTION::BackToBeginningOfStage()
@@ -853,11 +854,11 @@ void ACTION::BackToBeginningOfStage()
 	((EventManagerLate*)lbl_8042C170)->method54();
 	mode       = 8;
 	transition = 4;
-	fn_80066EA0(&lbl_8042C308);
-	if (lbl_8042C6D0 == 0)
-		fn_8011C6EC();
-	if (lbl_8042C6D0 != 0)
-		fn_8011C0C4(lbl_8042C6D0);
+	InitSavePosition__7G_PARAMFv(&lbl_8042C308);
+	if (EnemyScoreMan__14TEnemyScoreMan == 0)
+		CreateInstance__14TEnemyScoreManFv();
+	if (EnemyScoreMan__14TEnemyScoreMan != 0)
+		SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv(EnemyScoreMan__14TEnemyScoreMan);
 }
 
 void ACTION::RestartStage()
@@ -890,7 +891,7 @@ void ACTION::StartPose()
 	if (lbl_8042C180->field1E == 0) {
 		s32 score;
 		s32 team     = teams[0];
-		score        = lbl_80303D44[0];
+		score        = num__15PARAM_CHALLENGE[0];
 		s32* scores  = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 60);
 		scores[team] = score;
 	}
@@ -934,7 +935,7 @@ void ACTION::SetGoalAction(s32 teamNo)
 	*(s32*)(lbl_8029BBD0 + 44) = 0;
 
 	if (lbl_8042C180->field1E == 0) {
-		s32 score         = lbl_80303D44[0];
+		s32 score         = num__15PARAM_CHALLENGE[0];
 		s32 teamIndex     = teams[0];
 		s32* scores       = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 60);
 		scores[teamIndex] = score;
@@ -1026,7 +1027,8 @@ void ACTION::EnterPauseMode()
 	        && (repCheck(GetPauseInput(1), 4, 12, 1) || ConvertBit_AD(GetPauseInput(1), 4)))) {
 		if (pauseChoice < 2) {
 			++pauseChoice;
-			if (lbl_8042C180->field1E == 0 && (lbl_80303D44[0] <= 0 || IsSpecialAndBonusStage())) {
+			if (lbl_8042C180->field1E == 0
+			    && (num__15PARAM_CHALLENGE[0] <= 0 || IsSpecialAndBonusStage())) {
 				if (pauseChoice == 1)
 					pauseChoice = 2;
 			}
@@ -1042,7 +1044,8 @@ void ACTION::EnterPauseMode()
 	        && (repCheck(GetPauseInput(1), 8, 12, 1) || ConvertBit_AD(GetPauseInput(1), 8)))) {
 		if (pauseChoice != 0) {
 			--pauseChoice;
-			if (lbl_8042C180->field1E == 0 && (lbl_80303D44[0] <= 0 || IsSpecialAndBonusStage())) {
+			if (lbl_8042C180->field1E == 0
+			    && (num__15PARAM_CHALLENGE[0] <= 0 || IsSpecialAndBonusStage())) {
 				if (pauseChoice == 1)
 					pauseChoice = 0;
 			}
@@ -1100,7 +1103,7 @@ void ACTION::CheckPauseOff()
 	fn_8019CF28(*(void**)((u8*)lbl_8042C1F8 + 40), &lbl_8042AEB0, 3);
 	fn_8004DC80(lbl_8042C1F8, 1);
 	fn_8015B8E8(*(void**)((u8*)lbl_8042C1D0 + 29264), *(void**)((u8*)lbl_8042C1F8 + 40));
-	fn_8019EE04(*(void**)((u8*)fn_800A7658() + 4));
+	fn_8019EE04(*(void**)((u8*)GetCurrentCameraPointer__Fv() + 4));
 	fn_8019CC28(*(void**)((u8*)lbl_8042C1F8 + 40));
 	((EventManagerLate*)lbl_8042C170)->method24();
 	fn_8019CC00(*(void**)((u8*)lbl_8042C1F8 + 40));
@@ -1165,7 +1168,7 @@ void ACTION::CheckPauseOff()
 	}
 
 	fn_8004EBE0(lbl_8042C1F8, -1);
-	fn_8019EE04(*(void**)((u8*)fn_800A7658() + 4));
+	fn_8019EE04(*(void**)((u8*)GetCurrentCameraPointer__Fv() + 4));
 	fn_8019CC28(*(void**)((u8*)lbl_8042C1F8 + 40));
 	((EventManagerLate*)lbl_8042C170)->method28();
 	fn_8019CC00(*(void**)((u8*)lbl_8042C1F8 + 40));
@@ -1195,10 +1198,10 @@ void ACTION::dispAlpha(void* world, BitFlag option)
 
 	if ((option.bits & 1) != 0) {
 		*(s32*)((u8*)world + 8) = flags | 0x30;
-		fn_80052DD4(lbl_802D5E80, world);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, world);
 	} else {
 		*(s32*)((u8*)world + 8) = flags & ~0x30;
-		fn_80052DD4(lbl_802D5E80, 0);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, 0);
 	}
 
 	if ((option.bits & 8) != 0)
@@ -1252,10 +1255,10 @@ void ACTION::dispPunch(void* world, BitFlag option)
 
 	if ((option.bits & 1) != 0) {
 		*(s32*)((u8*)world + 8) = flags | 0x30;
-		fn_80052DD4(lbl_802D5E80, world);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, world);
 	} else {
 		*(s32*)((u8*)world + 8) = flags & ~0x30;
-		fn_80052DD4(lbl_802D5E80, 0);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, 0);
 	}
 
 	if ((option.bits & 8) != 0)
@@ -1309,10 +1312,10 @@ void ACTION::dispOpeq(void* world, BitFlag option)
 
 	if ((option.bits & 1) != 0) {
 		*(s32*)((u8*)world + 8) = flags | 0x30;
-		fn_80052DD4(lbl_802D5E80, world);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, world);
 	} else {
 		*(s32*)((u8*)world + 8) = flags & ~0x30;
-		fn_80052DD4(lbl_802D5E80, 0);
+		ChangeWorld__6CLIGHTFP7RpWorld(lbl_802D5E80, 0);
 	}
 
 	if ((option.bits & 8) != 0)
@@ -1451,12 +1454,12 @@ exec_start_done:
 	    && *(s8*)((u8*)lbl_8042C180 + 31) == 0 && *(s8*)((u8*)lbl_8042C180 + 33) == 0
 	    && challengeState == 0) {
 		if (execCallback != 0) {
-			fn_80066474(&object, -1);
-			fn_80066454(&resultA, resultBPtr, resultCPtr);
+			addFrm__10PARAM_TIMEFi(&object, -1);
+			getGameTime__FPScPScPSc(&resultA, resultBPtr, resultCPtr);
 			if (resultA == 0 && resultB == 0 && resultC == 0)
 				execCallback();
 		} else {
-			fn_80066474(&object, 1);
+			addFrm__10PARAM_TIMEFi(&object, 1);
 		}
 	}
 #pragma opt_propagation reset
@@ -1616,11 +1619,11 @@ s32 ACTION::Loop()
 			mode = 16;
 			break;
 		case 3:
-			uVar3 = fn_800A7648();
+			uVar3 = GetMObjectCameraPointer__Fv();
 			fn_8019CF28((void*)uVar3, (u8*)&lbl_8042AEB0, 3);
-			iVar4 = fn_800A7648();
+			iVar4 = GetMObjectCameraPointer__Fv();
 			fn_8019EE04(*(void**)(iVar4 + 4));
-			fn_800A7648();
+			GetMObjectCameraPointer__Fv();
 			fn_8019CC28_noarg();
 			fn_80194234(8, 0);
 			fn_80194234(6, 0);
@@ -1633,10 +1636,10 @@ s32 ACTION::Loop()
 				lbl_8042C760->method0C();
 				lbl_8042C760->method28();
 			}
-			fn_800A7648();
+			GetMObjectCameraPointer__Fv();
 			fn_8019CC00_noarg();
 			if (2 < *(s32*)(*(s32*)((u8*)&lbl_8042C180) + 0x30)) {
-				fn_800A7648();
+				GetMObjectCameraPointer__Fv();
 				fn_800122B4_noarg();
 			}
 			iVar4 = fn_8012DA84();
@@ -1645,8 +1648,8 @@ s32 ACTION::Loop()
 			}
 			break;
 		case 10:
-			fn_800B113C();
-			fn_8005E8EC();
+			EndPath__Fv();
+			objReleaseClumpAnimStoredInARAMFromMainRAM__Fv();
 			{
 				s32 count = 0;
 				do {
@@ -1662,7 +1665,7 @@ s32 ACTION::Loop()
 			}
 			fn_8005B558();
 			fn_800B7B30();
-			fn_80053B9C(&DAT_802d5e80);
+			End__6CLIGHTFv(&DAT_802d5e80);
 			fn_800C59C4();
 			if (*(void**)((u8*)lbl_8042C1D0 + 0x7250) != 0) {
 				fn_80194234(8, 1);
@@ -1678,7 +1681,7 @@ s32 ACTION::Loop()
 			fn_800BF5D8();
 			fn_800B603C((u32)lbl_8042C388);
 			fn_8001D540();
-			fn_80110A4C();
+			EndEffFootPrints__Fv();
 			fn_800A7338();
 			fn_800662BC();
 			fn_801AD5E0(1);
@@ -1686,10 +1689,11 @@ s32 ACTION::Loop()
 			fn_80016BBC(&DAT_8029c2e4);
 			if (*(s32*)(param_1 + 0x14) != 3) {
 				if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x27) != '\0') {
-					fn_801388C4(&lbl_8042C7E0, stageConnect[stageCount]);
+					StepStageSeq__11STORYMANAGEF18ACTIONSTAGE_NUMBER(
+					    &StoryManage, stageConnect[stageCount]);
 				}
 				if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x28) == '\x02') {
-					iterator.count = lbl_80303D44[0];
+					iterator.count = num__15PARAM_CHALLENGE[0];
 					iVar4          = (s32)fn_80116D2C(&DAT_803e774c);
 					fn_801169A4(iVar4 + 0x6f8, iterator.count, 1);
 				}
@@ -1709,7 +1713,8 @@ s32 ACTION::Loop()
 						} while (1);
 						iVar4 = strcmp((u32)stageSet, (void*)name);
 						if ((iVar4 != 0)
-						    || (iVar4 = fn_80138414(&lbl_8042C7E0, stageConnect[stageCount]),
+						    || (iVar4 = MustExit__11STORYMANAGEF18ACTIONSTAGE_NUMBER(
+						            &StoryManage, stageConnect[stageCount]),
 						        iVar4 != 0))
 							goto LAB_8001b690;
 						stageNumber  = stageConnect[stageCount];
@@ -1743,13 +1748,14 @@ s32 ACTION::Loop()
 						goto regularTransition;
 				specialTransition:
 					if (*(char*)(iVar4 + 0x28) == '\x02') {
-						iterator.count = lbl_80303D44[0];
+						iterator.count = num__15PARAM_CHALLENGE[0];
 						iVar4          = (s32)fn_80116D2C(&DAT_803e774c);
 						fn_801169A4(iVar4 + 0x6f8, iterator.count, 0);
 					}
 					fn_80116B84(&DAT_803e774c);
 					if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x27) != '\0') {
-						fn_801388C4(&lbl_8042C7E0, stageConnect[stageCount]);
+						StepStageSeq__11STORYMANAGEF18ACTIONSTAGE_NUMBER(
+						    &StoryManage, stageConnect[stageCount]);
 					}
 					*(u32*)(param_1 + 0xc)  = 0xd;
 					*(u32*)(param_1 + 0x10) = 0xb;
@@ -1759,7 +1765,7 @@ s32 ACTION::Loop()
 				if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x28) == '\x02') {
 					if (*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x28) != '\x02')
 						goto regularTransitionCleanup;
-					iterator.count = lbl_80303D44[0];
+					iterator.count = num__15PARAM_CHALLENGE[0];
 					iVar4          = (s32)fn_80116D2C(&DAT_803e774c);
 					fn_801169A4(iVar4 + 0x6f8, iterator.count, 0);
 				regularTransitionCleanup:
@@ -1829,7 +1835,7 @@ s32 ACTION::Loop()
 						fn_800215A8((u8*)&lbl_8042C1A4);
 						fn_8004ED48(*(u32*)((u8*)&lbl_8042C1F8));
 						fn_8005A5EC(*(u32*)((u8*)&lbl_8042C298));
-						fn_80066ED8((u8*)&lbl_8042C308, 3);
+						InitGParam__7G_PARAMF11GPARAM_INIT((u8*)&lbl_8042C308, 3);
 						*(u32*)(param_1 + 0x18) = 1;
 						fn_80016BBC(&DAT_8029c2e4);
 						fn_800215A8((u8*)&lbl_8042C1A4);
@@ -1846,7 +1852,7 @@ s32 ACTION::Loop()
 						fn_8001F4E8(*(u32*)((u8*)&lbl_8042C180), 0x22, 0);
 						fn_8001F4E8(*(u32*)((u8*)&lbl_8042C180), 0x23, 0);
 						fn_8001F4E8(*(u32*)((u8*)&lbl_8042C180), 0x26, 1);
-						fn_80066E80((u8*)&lbl_8042C308);
+						InitRing__7G_PARAMFv((u8*)&lbl_8042C308);
 						if ((*(char*)(*(s32*)((u8*)&lbl_8042C180) + 0x1e) == '\0')
 						    && ((int)(&DAT_80303d44)[*(s8*)(*(u8**)lbl_80303DC8 + 0x38)] < 0)) {
 							*(u32*)(param_1 + 0x14)                          = 3;
@@ -2021,8 +2027,8 @@ s32 ACTION::Loop()
 								fn_8012C3E8();
 								goto goalDone;
 							}
-							fn_80066D4C((u8*)&lbl_8042C304, (u8*)&lbl_8042C304,
-							    (u8*)&lbl_8042C304 + 1, (u8*)&lbl_8042C304 + 2);
+							getSaveTime__18PARAM_SAVEPOSITIONFPScPScPSc((u8*)&lbl_8042C304,
+							    (u8*)&lbl_8042C304, (u8*)&lbl_8042C304 + 1, (u8*)&lbl_8042C304 + 2);
 							lbl_8042C170->method54();
 							*(u32*)(param_1 + 0xc) = 8;
 							fn_800CB6EC();
@@ -2064,8 +2070,8 @@ s32 ACTION::Loop()
 						*(u32*)(param_1 + 0xc)  = 8;
 						*(u32*)(param_1 + 0x14) = 2;
 						fn_800CB6EC();
-						fn_80066AFC(*(u32*)(param_1 + 4), (int)*(s8*)(*(u8**)lbl_80303DC8 + 0x38),
-						    0xffffffff);
+						addChallenge__15PARAM_CHALLENGEFii(*(u32*)(param_1 + 4),
+						    (int)*(s8*)(*(u8**)lbl_80303DC8 + 0x38), 0xffffffff);
 						if (lbl_8042C388 != 0) {
 							fn_800B52E8((s32)lbl_8042C388, 0xe008, 0, 0);
 						}
@@ -2134,7 +2140,7 @@ s32 ACTION::Loop()
 				*(u32*)(param_1 + 0xc)  = 8;
 				*(u32*)(param_1 + 0x14) = 2;
 				fn_800CB6EC();
-				fn_80066AFC(
+				addChallenge__15PARAM_CHALLENGEFii(
 				    *(u32*)(param_1 + 4), (int)*(char*)(*(s32*)lbl_80303DC8 + 0x38), 0xffffffff);
 			}
 			break;
@@ -2148,7 +2154,7 @@ s32 ACTION::Loop()
 		case 6:
 		case 0xc:
 		case 0xe:
-			fn_800A74BC(0);
+			fn_800A74BC__Fi(0);
 	}
 LAB_8001c460:
 	fn_8001D718();
@@ -2355,19 +2361,19 @@ void ACTION::subEnd()
 		if (*(s32*)((u8*)this + 0x23C + player * 4) != -1) {
 			if (lbl_80303DC8[player] == 0) {
 				if (lbl_8042C180->field1E == 0) {
-					void* task = fn_80018A34(lbl_8042C148, 0x280);
+					void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 					if (task != 0)
 						fn_8009DFE0(task, 1, player, *(s32*)((u8*)this + 0x23C + player * 4),
 						    player, 0, lbl_8042C108);
 				} else {
 					u32 buttons = *(u32*)(lbl_8029BBD0 + lbl_802408F8[player] * 0x4C + 0x48);
 					if ((buttons & 0x100) != 0 && (buttons & 0x800) != 0) {
-						void* task = fn_80018A34(lbl_8042C148, 0x280);
+						void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 						if (task != 0)
 							fn_8009DFE0(task, 1, player, *(s32*)((u8*)this + 0x23C + player * 4),
 							    player, 1, lbl_8042C108);
 					} else {
-						void* task = fn_80018A34(lbl_8042C148, 0x280);
+						void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 						if (task != 0)
 							fn_8009DFE0(task, 1, player, *(s32*)((u8*)this + 0x23C + player * 4),
 							    player, 0, lbl_8042C108);
@@ -2382,7 +2388,7 @@ void ACTION::subEnd()
 					if (*(s32*)(save + 0x6FC) <= 0)
 						*(s32*)((u8*)fn_80116D2C(lbl_803E774C) + 0x6FC) = 3;
 					save = (u8*)fn_80116D2C(lbl_803E774C);
-					fn_80066B48(object, 0, *(s32*)(save + 0x6FC));
+					setChallenge__15PARAM_CHALLENGEFii(object, 0, *(s32*)(save + 0x6FC));
 				} else {
 					s32* ranks = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 0x3C);
 					if (ReadSavedTeamRank(ranks, team) <= 3) {
@@ -2390,7 +2396,7 @@ void ACTION::subEnd()
 						WriteSavedTeamRank(ranks, team, 3);
 					}
 					ranks = (s32*)((u8*)fn_80116D2C(lbl_803E774C) + 0x3C);
-					fn_80066B48(object, 0, ReadSavedTeamRank(ranks, team));
+					setChallenge__15PARAM_CHALLENGEFii(object, 0, ReadSavedTeamRank(ranks, team));
 				}
 				*(s8*)((u8*)fn_80116D2C(lbl_803E774C) + 0x24) = (s8)team;
 			}
@@ -2403,7 +2409,7 @@ void ACTION::subEnd()
 	if (activeTeams == 2)
 		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 41, 0);
 	fn_8004F0F8(activeTeams);
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 	*(s32*)((u8*)lbl_8042C180 + 0x30) = 0;
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
 	if (*(s8*)((u8*)lbl_8042C180 + 0x27) != 0)
@@ -2421,16 +2427,16 @@ void ACTION::End()
 		*(s32*)((u8*)this + 0x258) = 0;
 	}
 	fn_800B9180();
-	fn_8005EC14();
+	objReleaseCommonObjectTextures__Fv();
 	fn_800A73B4();
 	fn_8001DF6C();
 	mode = 1;
 	fn_80016514(lbl_8029C2E4);
-	fn_800CE010();
+	RemoveLangMessage__Fv();
 	fn_801125D8(lbl_803E73B0);
 	fn_8020577C();
 	fn_8016F084();
-	fn_800A76E4(this);
+	DefaultCloseDown__7MObjectFv(this);
 	fn_80196D00();
 	processState = 0;
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 31, 0);
@@ -2439,8 +2445,8 @@ void ACTION::End()
 
 void ACTION::Init()
 {
-	fn_800A7820();
-	fn_800A7658();
+	DefaultSetUp__7MObjectFv();
+	GetCurrentCameraPointer__Fv();
 	fn_8016EF70();
 	fn_80205624();
 	fn_8016EE28(lbl_8042CFDC);
@@ -2449,7 +2455,7 @@ void ACTION::Init()
 	fn_8016E054();
 	RsPathnameDestroy(state);
 	fn_8011264C(lbl_803E73B0);
-	fn_800CE0CC();
+	OnLangChange__Fv();
 	softReset                  = 0;
 	*(s32*)((u8*)this + 0x250) = 0;
 	*(s32*)((u8*)this + 0x26C) = 0;
@@ -2460,9 +2466,9 @@ void ACTION::Init()
 	playerCount = 0;
 	fn_8001E000();
 	fn_800A7428();
-	fn_8005ED88();
+	objLoadCommonObjectTextures__Fv();
 	fn_800B9408();
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 	fn_80112618(lbl_803E73B0);
 }
 
@@ -2553,14 +2559,14 @@ extern "C" void fn_800C5BDC();
 extern "C" void fn_800CCEB0();
 extern "C" void fn_80066320();
 extern "C" void fn_800A7374();
-extern "C" void fn_80110B04();
+extern "C" void InitEffFootPrints__Fv();
 extern "C" void fn_800B60C0(void*);
 extern "C" void fn_8004ECBC(void*, u32, s32);
 extern "C" void fn_800BF794();
 extern "C" s32 fn_8004B308(void*, u32);
 extern "C" s32 fn_8004B9D4(void*, u32);
 extern "C" void RsErrorMessage(void*);
-extern "C" void fn_80053D58(void*);
+extern "C" void Init__6CLIGHTFv(void*);
 extern "C" void fn_8005B5B8(void*, u32);
 extern "C" void fn_8009250C(RawTask*);
 extern "C" void fn_8009D2E0(RawTask*);
@@ -2614,7 +2620,7 @@ void ACTION::subInit()
 	s32 firstCount;
 
 	if (stageNumber <= 1 || stageNumber >= 62)
-		fn_800A74BC(0);
+		fn_800A74BC__Fi(0);
 	fn_801126B4(lbl_803E73B0);
 	fn_8012D97C();
 	*(s32*)((u8*)this + 0x250) = 0;
@@ -2834,7 +2840,7 @@ void ACTION::subInit()
 			break;
 	}
 
-	fn_80066ED8(&lbl_8042C308, 2);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 2);
 	*(s32*)((u8*)lbl_8042C180 + 0x30) = 0;
 	*(s32*)((u8*)lbl_8042C180 + 0x34) = 0;
 	srand(0xDEAD0CAB);
@@ -2850,7 +2856,7 @@ void ACTION::subInit()
 	fn_800CCEB0();
 	fn_80066320();
 	fn_800A7374();
-	fn_80110B04();
+	InitEffFootPrints__Fv();
 	fn_800B60C0(lbl_8042C388);
 
 	stageObject = currentStage != 0 ? *(u32*)currentStage : 0;
@@ -2881,7 +2887,7 @@ void ACTION::subInit()
 		for (;;) {
 		}
 	}
-	fn_80053D58(lbl_802D5E80);
+	Init__6CLIGHTFv(lbl_802D5E80);
 	stageObject = currentStage != 0 ? *(u32*)currentStage : 0;
 	fn_8005B5B8(*(void**)((u8*)this + 0x38), stageObject);
 	RawCallback callback = *(RawCallback*)((u8*)currentStage + 8);
@@ -2895,17 +2901,17 @@ void ACTION::subInit()
 	do {
 		if (*(s32*)(playerAction + 0x23C) != -1 && *taskBase == 0) {
 			if (*(s8*)((u8*)lbl_8042C180 + 0x1E) == 0) {
-				void* task = fn_80018A34(lbl_8042C148, 0x280);
+				void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 				if (task != 0)
 					fn_8009DFE0(task, 1, j, *(s32*)(playerAction + 0x23C), j, 0, lbl_8042C108);
 			} else {
 				u32 buttons = *(u32*)(lbl_8029BBD0 + lbl_802408F8[j] * 0x4C + 0x48);
 				if ((buttons & 0x100) != 0 && (buttons & 0x800) != 0) {
-					void* task = fn_80018A34(lbl_8042C148, 0x280);
+					void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 					if (task != 0)
 						fn_8009DFE0(task, 1, j, *(s32*)(playerAction + 0x23C), j, 1, lbl_8042C108);
 				} else {
-					void* task = fn_80018A34(lbl_8042C148, 0x280);
+					void* task = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x280);
 					if (task != 0)
 						fn_8009DFE0(task, 1, j, *(s32*)(playerAction + 0x23C), j, 0, lbl_8042C108);
 				}

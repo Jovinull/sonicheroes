@@ -142,20 +142,20 @@ ObjectEntry noOttottoCollisionEntry;
 extern void* lbl_8042C148;
 extern void* lbl_8042C110;
 
-s32 fn_8005B9F0(void*);
-s32 fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
-void fn_8003BC38(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
+void Entry__7C_COLLIFv(void*);
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
-void fn_8003C618(void*);
-void fn_8003C200(void*, void*, s32, s32);
-void dtor_8003C52C(void*, s32);
-void dtor_8005BD3C(void*, s32);
+void __ct__10TObjSetObjFv(void*);
+void __ct__7C_COLLIFv(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
+void __dt__7C_COLLIFv(void*, s32);
+void __dt__10TObjSetObjFv(void*, s32);
 void __dt__7TObjectFv(void*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void __dl__FPv(void*);
-void* fn_80018A34(void*, s32);
+void* Malloc__9THeapCtrlFUi(void*, s32);
 void* fn_8_DCCAC(void*);
 
 void* fn_8_DCE30(void* object)
@@ -167,9 +167,10 @@ void fn_8_DCE38(void) { }
 
 void fn_8_DCE3C(OttottoObject* object)
 {
-	if (fn_8005B9F0(&object->transform) != 0 || fn_8005B8BC(&object->transform) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->transform) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->transform) != 0) {
 		object->flags |= 1;
-	} else if (fn_8005B8D8(&object->transform) != 0) {
+	} else if (OnEdit__10TObjSetObjFv(&object->transform) != 0) {
 		BobXform* transform = object->transform;
 		object->currentX    = transform->x;
 		object->currentY    = transform->y;
@@ -191,7 +192,7 @@ void fn_8_DCE3C(OttottoObject* object)
 		object->previousRotX = object->currentRotX;
 		object->previousRotY = object->currentRotY;
 		object->previousRotZ = object->currentRotZ;
-		fn_8003BC38(object->collision);
+		Entry__7C_COLLIFv(object->collision);
 	}
 }
 
@@ -200,11 +201,11 @@ OttottoObject* fn_8_DCF34(OttottoObject* object, s16 flag)
 	if (object != NULL) {
 		object->vtable  = lbl_8_data_1A3F4;
 		object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
-		dtor_8003C52C(object->collision, 0);
-		dtor_8005BD3C(&object->transform, 0);
+		__dt__7C_COLLIFv(object->collision, 0);
+		__dt__10TObjSetObjFv(&object->transform, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flag > 0) {
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 		}
 	}
 	return object;
@@ -213,8 +214,8 @@ OttottoObject* fn_8_DCF34(OttottoObject* object, s16 flag)
 OttottoObject* fn_8_DCFCC(OttottoObject* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(object, owner);
-	fn_8005BE6C(&object->transform);
-	fn_8003C618(object->collision);
+	__ct__10TObjSetObjFv(&object->transform);
+	__ct__7C_COLLIFv(object->collision);
 	object->vtable  = lbl_8_data_1A3F4;
 	object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
 	object->field00 = (u32)lbl_8_data_1A3F0;
@@ -233,7 +234,7 @@ OttottoObject* fn_8_DCFCC(OttottoObject* object, void* owner)
 	lbl_8_data_1A374[param->index].x = param->x;
 	lbl_8_data_1A374[param->index].y = param->y;
 	lbl_8_data_1A374[param->index].z = param->z;
-	fn_8003C200(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
 	return object;
 }
 
@@ -251,18 +252,18 @@ void fn_8_DD0D4(OttottoObject* object, SetdataParam* setdata)
 		lbl_8_data_1A374[param->index].x = param->x;
 		lbl_8_data_1A374[param->index].y = param->y;
 		lbl_8_data_1A374[param->index].z = param->z;
-		fn_8003C200(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
 	}
 }
 
 void noOttottoCollisionCreate(void)
 {
-	void* result = fn_80018A34(lbl_8042C148, 0xD0);
+	void* result = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (result != NULL) {
 		OttottoObject* object = (OttottoObject*)result;
 		__ct__7TObjectFP7TObject(object, lbl_8042C110);
-		fn_8005BE6C(&object->transform);
-		fn_8003C618(object->collision);
+		__ct__10TObjSetObjFv(&object->transform);
+		__ct__7C_COLLIFv(object->collision);
 		object->vtable  = lbl_8_data_1A3F4;
 		object->field2C = (u8*)lbl_8_data_1A3F4 + 0x2C;
 		object->field00 = (u32)lbl_8_data_1A3F0;
@@ -281,7 +282,7 @@ void noOttottoCollisionCreate(void)
 		lbl_8_data_1A374[param->index].x = param->x;
 		lbl_8_data_1A374[param->index].y = param->y;
 		lbl_8_data_1A374[param->index].z = param->z;
-		fn_8003C200(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->collision, &lbl_8_data_1A374[param->index], 1, 4);
 	}
 }
 

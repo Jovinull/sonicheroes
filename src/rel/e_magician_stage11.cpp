@@ -165,74 +165,77 @@ M2C_UNK SetPosAng__15TEnemyParalysisFPC5RwV3dPC6sAngle(void*, void*, void*);    
 M2C_UNK Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(void*, void*, s32); /* extern */
 void* __ct__10HAnimClassFv(void*);                                                /* extern */
 TEnemyParalysis* __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
-    void*, void*, void*);                                               /* extern */
-void* __dt__10HAnimClassFv(void*, s32);                                 /* extern */
-M2C_UNK fn_800189A4(s32, void*);                                        /* extern */
-TEnemyParalysis* fn_80018A34(M2C_UNK, M2C_UNK);                         /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);              /* extern */
-u32 fn_80057644(M2C_UNK);                                               /* extern */
-s32 fn_8005B8D8(void*);                                                 /* extern */
-M2C_UNK fn_8005BF5C(u32, unsigned int[17]);                             /* extern */
-M2C_UNK fn_8005D5C8(void*, s32);                                        /* extern */
-s32 fn_8005D9A0(void*, M2C_UNK);                                        /* extern */
-M2C_UNK fn_8005D9F4(void*);                                             /* extern */
-M2C_UNK fn_8005E00C(u32, M2C_UNK);                                      /* extern */
-s32 fn_8005EA04(void*);                                                 /* extern */
-M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                    /* extern */
-void* fn_8006298C(s32, f32*, s32*);                                     /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                                        /* extern */
-M2C_UNK fn_800A4668(void*);                                             /* extern */
-M2C_UNK fn_800A4A8C(TObject*, f32);                                     /* extern */
-s32 fn_800A5888(void*, void*, f32);                                     /* extern */
-s32 fn_800A5A54(void*);                                                 /* extern */
-f32 fn_800A5AC0(void*);                                                 /* extern */
-M2C_UNK fn_800A5B50(void*, s32);                                        /* extern */
-M2C_UNK fn_800A5C6C(void*, s32);                                        /* extern */
-M2C_UNK fn_800A7088(void*, M2C_UNK);                                    /* extern */
-M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                             /* extern */
-s32 fn_800D7A94(s32, s32, s32);                                         /* extern */
-f32 fn_800D7B00(s32);                                                   /* extern */
-f32 fn_800D8BC4(void*, void*, s32);                                     /* extern */
-M2C_UNK fn_800E1208(s32, s32, s32);                                     /* extern */
-u32 fn_800FD8A0(TEnemyParalysis*, s32);                                 /* extern */
-M2C_UNK fn_800FE248(s32, void*);                                        /* extern */
-M2C_UNK fn_800FE274(s32, void*);                                        /* extern */
-u32 fn_80100280(s32, s32, s32);                                         /* extern */
-u32 fn_80100328(s32, s32, s32);                                         /* extern */
-u32 fn_8010037C(s32, s32, s32);                                         /* extern */
-M2C_UNK fn_801007F4(s32, s32);                                          /* extern */
-M2C_UNK fn_8010096C(s32, s32, void*);                                   /* extern */
-M2C_UNK fn_80100AAC(void);                                              /* extern */
-s32 fn_80103324(void*, void*, f32);                                     /* extern */
-M2C_UNK fn_8010AFE4(void*);                                             /* extern */
-s32 fn_8010B708(s32);                                                   /* extern */
-void* fn_80150588(M2C_UNK);                                             /* extern */
-M2C_UNK fn_80150958(void*);                                             /* extern */
-M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, s32);            /* extern */
-M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                          /* extern */
-void fn_801990E0(void* dst, void* src);                                 /* extern */
-M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                     /* extern */
-void* fn_8019E8EC(void*);                                               /* extern */
-M2C_UNK fn_8019EB94(void*, u8*, s32);                                   /* extern */
-M2C_UNK fn_8019EC30(void*, u8*, s32);                                   /* extern */
-M2C_UNK fn_8019ED68(...);                                               /* extern */
-s32 rand(...);                                                          /* extern */
-M2C_UNK fn_8_B0300(TEnemyParalysis*);                                   /* extern */
-u32 fn_8_B08F0();                                                       /* extern */
-void fn_8_AE604(TEnemyParalysis* arg0);                                 /* static */
-void fn_8_AEB80(TEnemyParalysis* arg0);                                 /* static */
-void fn_8_AEE04(TEnemyParalysis* arg0);                                 /* static */
-TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2); /* static */
-void magicianObjectCreate();                                            /* static */
-void magicianObjectLoad();                                              /* static */
-void magicianObjectUnload();                                            /* static */
-extern M2C_UNK lbl_80239978;
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+    void*, void*, void*);                                                               /* extern */
+void* __dt__10HAnimClassFv(void*, s32);                                                 /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                                /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);                               /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);             /* extern */
+u32 __nw__FUl(M2C_UNK);                                                                 /* extern */
+s32 OnEdit__10TObjSetObjFv(void*);                                                      /* extern */
+M2C_UNK SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(u32, unsigned int[17]);           /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, s32); /* extern */
+s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(void*, M2C_UNK);      /* extern */
+M2C_UNK objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(void*);            /* extern */
+M2C_UNK objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(
+    u32, M2C_UNK);                                                   /* extern */
+s32 objPointerReadFromClumpAnim__FPc(void*);                         /* extern */
+M2C_UNK fn_8005FD8C(void*, M2C_UNK);                                 /* extern */
+void* fn_8006298C(s32, f32*, s32*);                                  /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                     /* extern */
+M2C_UNK fn_800A4668(void*);                                          /* extern */
+M2C_UNK fn_800A4A8C(TObject*, f32);                                  /* extern */
+s32 fn_800A5888(void*, void*, f32);                                  /* extern */
+s32 fn_800A5A54(void*);                                              /* extern */
+f32 fn_800A5AC0(void*);                                              /* extern */
+M2C_UNK fn_800A5B50(void*, s32);                                     /* extern */
+M2C_UNK fn_800A5C6C(void*, s32);                                     /* extern */
+M2C_UNK fn_800A7088(void*, M2C_UNK);                                 /* extern */
+M2C_UNK fn_800A714C(TEnemyParalysis*, s32);                          /* extern */
+s32 AdjustAngle__Fiii(s32, s32, s32);                                /* extern */
+f32 fn_800D7B00(s32);                                                /* extern */
+f32 GetShadowPos__FP5RwV3dP6sAnglei(void*, void*, s32);              /* extern */
+M2C_UNK fn_800E1208(s32, s32, s32);                                  /* extern */
+u32 __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(TEnemyParalysis*, s32); /* extern */
+M2C_UNK ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    s32, void*); /* extern */
+M2C_UNK LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+    s32, void*);                                                            /* extern */
+u32 SearchUVAnim__14TEnemyDataBaseF14eEnemyDataBaseUi(s32, s32, s32);       /* extern */
+u32 SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(s32, s32, s32); /* extern */
+u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(s32, s32, s32);        /* extern */
+M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(s32, s32);                /* extern */
+M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(s32, s32, void*);          /* extern */
+M2C_UNK __ct__14TEnemyDataBaseFv(void);                                     /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, void*, f32);      /* extern */
+M2C_UNK Close__13TEnemyIconManFv(void*);                                    /* extern */
+s32 Create__13TEnemyIconManF10eEnemyIcon(s32);                              /* extern */
+void* fn_80150588(M2C_UNK);                                                 /* extern */
+M2C_UNK fn_80150958(void*);                                                 /* extern */
+M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, s32);                /* extern */
+M2C_UNK fn_80196050(M2C_UNK*, void*, M2C_UNK);                              /* extern */
+void fn_801990E0(void* dst, void* src);                                     /* extern */
+M2C_UNK fn_8019941C(f32*, f32*, M2C_UNK, M2C_UNK*);                         /* extern */
+void* fn_8019E8EC(void*);                                                   /* extern */
+M2C_UNK fn_8019EB94(void*, u8*, s32);                                       /* extern */
+M2C_UNK fn_8019EC30(void*, u8*, s32);                                       /* extern */
+M2C_UNK fn_8019ED68(...);                                                   /* extern */
+s32 rand(...);                                                              /* extern */
+M2C_UNK fn_8_B0300(TEnemyParalysis*);                                       /* extern */
+u32 fn_8_B08F0();                                                           /* extern */
+void fn_8_AE604(TEnemyParalysis* arg0);                                     /* static */
+void fn_8_AEB80(TEnemyParalysis* arg0);                                     /* static */
+void fn_8_AEE04(TEnemyParalysis* arg0);                                     /* static */
+TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2);     /* static */
+void magicianObjectCreate();                                                /* static */
+void magicianObjectLoad();                                                  /* static */
+void magicianObjectUnload();                                                /* static */
+extern M2C_UNK AxisX;
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802AD090;
 extern TObject* lbl_8042C10C;
 extern s32 lbl_8042C148;
-extern u32 lbl_8042C590;
+extern u32 mpDataBase__14TEnemyDataBase;
 extern M2C_UNK lbl_8_bss_19C8;
 extern u32 lbl_8_bss_19D0;
 extern s32 lbl_8_bss_1A48;
@@ -447,8 +450,8 @@ void fn_8_ACE24(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, f32*, 0x1B8) = (f32)lbl_8_rodata_1B10;
 			return;
 		case 1:
-			M2C_FIELD(arg0, s32*, 0x27C)
-			    = fn_80103324((u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
+			M2C_FIELD(arg0, s32*, 0x27C) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+			    (u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x27C);
 			if (temp_r0 != -1) {
 				temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));
@@ -460,7 +463,7 @@ void fn_8_ACE24(void* arg0, s32 arg1)
 			}
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				temp_r30                     = fn_800A5A54(arg0);
-				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r30 < 0x80) {
 					M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -532,8 +535,8 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4) = 6;
 			return;
 		case 1:
-			M2C_FIELD(arg0, s32*, 0x27C)
-			    = fn_80103324((u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
+			M2C_FIELD(arg0, s32*, 0x27C) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+			    (u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x27C);
 			if (temp_r0 != -1) {
 				temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));
@@ -545,7 +548,7 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 			}
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				temp_r30                     = fn_800A5A54(arg0);
-				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r30 < 0x80) {
 					M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -554,7 +557,7 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 				temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-				temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+				temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 				// Preserve the operand order emitted by the original GameCube build.
 				asm { fadds temp_f30, temp_f0, temp_f31 }
 				M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -594,7 +597,7 @@ void fn_8_AD260(void* arg0, s32 arg1)
 				var_r0 = 0;
 			} else {
 				temp_r30                     = fn_800A5A54(arg0);
-				M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+				M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 				    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 				if (temp_r30 < 0x80) {
 					M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -640,7 +643,7 @@ void fn_8_AD260(void* arg0, s32 arg1)
 					temp_f3
 					    = (lbl_8_rodata_1B38 * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AC8)))
 					    - lbl_8_rodata_1B3C;
-					fn_80195A74(&sp14, &lbl_80239984, 0,
+					fn_80195A74(&sp14, &AxisY, 0,
 					    lbl_8_rodata_1B30
 					        + (lbl_8_rodata_1B34
 					            * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
@@ -661,7 +664,7 @@ void fn_8_AD260(void* arg0, s32 arg1)
 					var_r0_2 = 0;
 				} else {
 					temp_r30_2                   = fn_800A5A54(arg0);
-					M2C_FIELD(arg0, s32*, 0x150) = fn_800D7A94(M2C_FIELD(arg0, s32*, 0x150),
+					M2C_FIELD(arg0, s32*, 0x150) = AdjustAngle__Fiii(M2C_FIELD(arg0, s32*, 0x150),
 					    M2C_FIELD(arg0, s32*, 0x174), M2C_FIELD(arg0, s32*, 0x180));
 					if (temp_r30_2 < 0x80) {
 						M2C_FIELD(arg0, s32*, 0x150) = (s32)M2C_FIELD(arg0, s32*, 0x174);
@@ -710,7 +713,7 @@ void fn_8_AD670(void* arg0, s32 arg1)
 			if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 				M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 				temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-				temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+				temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 				// Preserve the operand order emitted by the original GameCube build.
 				asm { fadds temp_f30, temp_f0, temp_f31 }
 				M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -740,7 +743,7 @@ void fn_8_AE428(void* arg0)
 	if ((s32)M2C_FIELD(arg0, s32*, 0x310) != 0) {
 		M2C_FIELD(arg0, s32*, 0x278) = (s32)(M2C_FIELD(arg0, s32*, 0x278) + 0x100);
 		temp_f31 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 4);
-		temp_f0 = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
+		temp_f0  = lbl_8_rodata_1AC4 * fn_800D7B00(M2C_FIELD(arg0, s32*, 0x278) * 2);
 		// Preserve the operand order emitted by the original GameCube build.
 		asm { fadds temp_f30, temp_f0, temp_f31 }
 		M2C_FIELD(arg0, f32*, 0x144) = temp_f30 + M2C_FIELD(arg0, f32*, 0x1C4);
@@ -758,7 +761,7 @@ void fn_8_AE4C0(void* arg0)
 	sp8[2]  = M2C_FIELD(arg0, f32*, 0x25C);
 	temp_f3 = (lbl_8_rodata_1B38 * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AC8)))
 	    - lbl_8_rodata_1B3C;
-	fn_80195A74(&sp14, &lbl_80239984, 0,
+	fn_80195A74(&sp14, &AxisY, 0,
 	    lbl_8_rodata_1B30
 	        + (lbl_8_rodata_1B34 * (f32)M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), s32*, 0x10))
 	        + temp_f3,
@@ -801,9 +804,9 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 			Vibrate__15TEnemyParalysisFP7RwFrame15RwOpCombineType(
 			    temp_r3_2, temp_r31, (RwOpCombineType)0);
 			fn_8019EC30(temp_r31, (u8*)arg0 + 0x2B8, 2);
-			fn_8019ED68(temp_r31, &lbl_80239990, 2, arg0->unk270);
-			fn_8019ED68(temp_r31, &lbl_80239978, 2, arg0->unk26C);
-			fn_8019ED68(temp_r31, &lbl_80239984, 2,
+			fn_8019ED68(temp_r31, &AxisZ, 2, arg0->unk270);
+			fn_8019ED68(temp_r31, &AxisX, 2, arg0->unk26C);
+			fn_8019ED68(temp_r31, &AxisY, 2,
 			    lbl_8_rodata_1B30 + (lbl_8_rodata_1B34 * (f32)arg0->unk150), lbl_8_rodata_1B34,
 			    lbl_8_rodata_1B30);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
@@ -811,9 +814,9 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 			    arg0->unk24C, (u8*)arg0 + 0x140, (u8*)arg0 + 0x14C);
 		} else {
 			fn_8019EC30(temp_r31, (u8*)arg0 + 0x2B8, 0);
-			fn_8019ED68(temp_r31, &lbl_80239990, 2, arg0->unk270);
-			fn_8019ED68(temp_r31, &lbl_80239978, 2, arg0->unk26C);
-			fn_8019ED68(temp_r31, &lbl_80239984, 2,
+			fn_8019ED68(temp_r31, &AxisZ, 2, arg0->unk270);
+			fn_8019ED68(temp_r31, &AxisX, 2, arg0->unk26C);
+			fn_8019ED68(temp_r31, &AxisY, 2,
 			    lbl_8_rodata_1B30 + (lbl_8_rodata_1B34 * (f32)arg0->unk150), lbl_8_rodata_1B34,
 			    lbl_8_rodata_1B30);
 			fn_8019EB94(temp_r31, (u8*)arg0 + 0x140, 2);
@@ -826,14 +829,16 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 		fn_8019EB94(temp_r31_2, (u8*)arg0 + 0x2C4, 2);
 	}
 	if ((u32)arg0->unk2E0 == 0U) {
-		temp_r3_4 = fn_8005D9A0(arg0->unkEC, 0x3EA);
+		temp_r3_4
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3EA);
 		if (temp_r3_4 != -1) {
 			arg0->unk2E0
 			    = M2C_FIELD((M2C_FIELD(arg0->unkEC, s32*, 0x10) + (temp_r3_4 * 0x10)), u32*, 0xC);
 		}
 	}
 	if ((u32)arg0->unk2DC == 0U) {
-		temp_r3_5 = fn_8005D9A0(arg0->unkEC, 0x3E9);
+		temp_r3_5
+		    = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(arg0->unkEC, 0x3E9);
 		if (temp_r3_5 != -1) {
 			arg0->unk2DC
 			    = M2C_FIELD((M2C_FIELD(arg0->unkEC, s32*, 0x10) + (temp_r3_5 * 0x10)), u32*, 0xC);
@@ -845,7 +850,7 @@ void fn_8_AE604(TEnemyParalysis* arg0)
 			arg0->unk2AC = arg0->unk120;
 			arg0->unk284 = lbl_8_rodata_1B40 + arg0->unk144;
 		} else {
-			temp_f1      = fn_800D8BC4((u8*)arg0 + 0x140, &sp20, 1);
+			temp_f1      = GetShadowPos__FP5RwV3dP6sAnglei((u8*)arg0 + 0x140, &sp20, 1);
 			arg0->unk284 = temp_f1;
 			if (lbl_8_rodata_1B1C != temp_f1) {
 				arg0->unk280 = arg0->unk140;
@@ -962,7 +967,7 @@ void fn_8_AEB80(TEnemyParalysis* arg0)
 	temp_f3 = (lbl_8_rodata_1B38
 	              * (lbl_8_rodata_1ACC * (f32)rand(&lbl_8_rodata_1AE8, temp_r4, lbl_8_rodata_1AC8)))
 	    - lbl_8_rodata_1B3C;
-	fn_80195A74(&sp14, &lbl_80239984, 0,
+	fn_80195A74(&sp14, &AxisY, 0,
 	    lbl_8_rodata_1B30 + (lbl_8_rodata_1B34 * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10)) + temp_f3,
 	    lbl_8_rodata_1B30, temp_f3);
 	fn_80196050(&sp14, arg0->unkB0, 2);
@@ -1053,11 +1058,11 @@ void* fn_8_AEEE4(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, u32*, 0x320) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x318));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x318));
 			M2C_FIELD(arg0, u32*, 0x318) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x31C));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x31C));
 			M2C_FIELD(arg0, u32*, 0x31C) = 0U;
 		}
 		temp_r3_2 = M2C_FIELD(arg0, void***, 0x248);
@@ -1078,7 +1083,7 @@ void* fn_8_AEEE4(void* arg0, s16 arg1)
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1131,11 +1136,12 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	arg0->unkE8  = fn_80150588(M2C_FIELD(&lbl_8_bss_19C8, s32*, 0));
 	arg0->unk2FC = fn_80150588(M2C_FIELD(&lbl_8_bss_19C8, s32*, 4));
 	fn_8_AE604(arg0);
-	fn_8005D5C8(arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	arg0->unkE4 = &lbl_8_data_16628;
 	arg0->unkD4 = 0;
-	if (fn_8005B8D8(&arg0->unkB0) == 0) {
-		fn_8003C200(&arg0->unk28, &lbl_8_data_167FC, 1, 3);
+	if (OnEdit__10TObjSetObjFv(&arg0->unkB0) == 0) {
+		Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk28, &lbl_8_data_167FC, 1, 3);
 		arg0->unk88 = arg0->unk140;
 		arg0->unk8C = arg0->unk144;
 		arg0->unk90 = arg0->unk148;
@@ -1146,14 +1152,14 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	temp_r0      = arg0->unk350;
 	switch (temp_r0) { /* irregular */
 		case 0:
-			var_r0 = fn_80057644(0x1C);
+			var_r0 = __nw__FUl(0x1C);
 			if (var_r0 != 0U) {
 				var_r0 = fn_8_B08F0();
 			}
 			arg0->unk248 = var_r0;
 			break;
 		case 1:
-			var_r0_2 = fn_80057644(0x1C);
+			var_r0_2 = __nw__FUl(0x1C);
 			if (var_r0_2 != 0U) {
 				var_r0_2 = fn_8_B08F0();
 			}
@@ -1163,19 +1169,19 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	if ((u32)arg0->unk248 != 0U) {
 		fn_8_B0300(arg0);
 	}
-	arg0->unk31C = fn_8010B708(1);
-	arg0->unk318 = fn_8010B708(0);
+	arg0->unk31C = Create__13TEnemyIconManF10eEnemyIcon(1);
+	arg0->unk318 = Create__13TEnemyIconManF10eEnemyIcon(0);
 	arg0->unk320 = fn_8006298C(0xD, &arg0->unk140, &arg0->unk14C);
-	temp_r3      = fn_80018A34(lbl_8042C148, 0x74);
+	temp_r3      = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_3     = temp_r3;
 	if (var_r0_3 != NULL) {
 		var_r0_3 = __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(temp_r3, lbl_8042C10C, NULL);
 	}
 	arg0->unk24C = var_r0_3;
 	arg0->unk13C = 1;
-	var_r0_4     = fn_80057644(0x20);
+	var_r0_4     = __nw__FUl(0x20);
 	if (var_r0_4 != 0U) {
-		var_r0_4 = fn_800FD8A0(arg0, arg0->unk13C);
+		var_r0_4 = __ct__11ObjEnemyKeyFP9TObjEnemy8ENEMY_ID(arg0, arg0->unk13C);
 	}
 	arg0->unk228 = var_r0_4;
 	return arg0;
@@ -1185,7 +1191,7 @@ TEnemyParalysis* fn_8_AF390(void)
 {
 	TEnemyParalysis* var_r0;
 
-	var_r0 = fn_80018A34(lbl_8042C148, 0x360);
+	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x360);
 	if (var_r0 != NULL) {
 		var_r0 = fn_8_AF05C((TEnemyParalysis*)1U, (s16)lbl_8042C10C, 0);
 	}
@@ -1281,60 +1287,68 @@ void fn_8_AF3E8(void* arg0, void* arg1)
 void magicianObjectUnload(void)
 {
 	lbl_8_bss_1A48 = 0;
-	fn_800FE248(0xA, &lbl_8_data_16628);
+	ReleaseAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    0xA, &lbl_8_data_16628);
 	lbl_8_bss_1A18                      = 0;
 	lbl_8_bss_19D0                      = 0U;
 	M2C_FIELD(&lbl_8_bss_19C8, s32*, 4) = 0;
 	M2C_FIELD(&lbl_8_bss_19C8, s32*, 0) = 0;
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_801007F4(lbl_8042C590, 0xA);
+	Delete__14TEnemyDataBaseF14eEnemyDataBase(mpDataBase__14TEnemyDataBase, 0xA);
 }
 
 void magicianObjectLoad(void)
 {
 	u32 temp_r3;
 
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	fn_8010096C(lbl_8042C590, 0xA, &lbl_8_data_16A30);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-		fn_80100AAC();
+	Add__14TEnemyDataBaseF14eEnemyDataBasePc(mpDataBase__14TEnemyDataBase, 0xA, &lbl_8_data_16A30);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3 = fn_80100328(lbl_8042C590, 0xA, 5);
+	temp_r3 = SearchTexDictonary__14TEnemyDataBaseF14eEnemyDataBaseUi(
+	    mpDataBase__14TEnemyDataBase, 0xA, 5);
 	if (temp_r3 != 0U) {
-		fn_8005E00C(temp_r3, 6);
+		objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(temp_r3, 6);
 	} else {
 		return;
 	}
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-		fn_80100AAC();
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_19C8, u32*, 0) = fn_8010037C(lbl_8042C590, 0xA, 4);
-	fn_8005D9F4((void*)M2C_FIELD(&lbl_8_bss_19C8, u32*, 0));
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_19C8, u32*, 0)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0xA, 4);
+	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
+	    (void*)M2C_FIELD(&lbl_8_bss_19C8, u32*, 0));
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) = fn_8010037C(lbl_8042C590, 0xA, 2);
-	if (((u32)lbl_8042C590 == 0U) && (fn_80057644(0x70) != 0U)) {
-		fn_80100AAC();
+	M2C_FIELD(&lbl_8_bss_19C8, u32*, 4)
+	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0xA, 2);
+	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != 0U)) {
+		__ct__14TEnemyDataBaseFv();
 	}
-	temp_r3        = fn_80100280(lbl_8042C590, 0xA, 3);
+	temp_r3
+	    = SearchUVAnim__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 0xA, 3);
 	lbl_8_bss_19D0 = temp_r3;
 	if (((u32)M2C_FIELD(&lbl_8_bss_19C8, u32*, 4) != 0U) && (temp_r3 != 0U)) {
 		*lbl_8_bss_19D4 = temp_r3;
-		fn_8005BF5C(M2C_FIELD(&lbl_8_bss_19C8, u32*, 4), lbl_8_bss_19D4);
+		SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(
+		    M2C_FIELD(&lbl_8_bss_19C8, u32*, 4), lbl_8_bss_19D4);
 	}
 	lbl_8_bss_1A18 = 0;
-	fn_800FE274(0xA, &lbl_8_data_16628);
-	lbl_8_bss_1A48 = fn_8005EA04(&lbl_8_data_1692C);
+	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
+	    0xA, &lbl_8_data_16628);
+	lbl_8_bss_1A48 = objPointerReadFromClumpAnim__FPc(&lbl_8_data_1692C);
 }
 
 void magicianObjectCreate(void)
 {
-	if (fn_80018A34(lbl_8042C148, 0x360) != NULL) {
+	if (Malloc__9THeapCtrlFUi(lbl_8042C148, 0x360) != NULL) {
 		fn_8_AF05C((TEnemyParalysis*)1U, (s16)lbl_8042C10C, 0);
 	}
 }

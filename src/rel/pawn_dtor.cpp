@@ -22,7 +22,7 @@
 // points the name at its own address.
 //
 // Unlike the ring family, TObjPawn does not embed a Motion base and its
-// destructor never calls dtor_8005BD3C or __dt__7TObjectFv: the embedded
+// destructor never calls __dt__10TObjSetObjFv or __dt__7TObjectFv: the embedded
 // animation class at +0x240 and fn_800A7088 are its own base chain instead.
 // Every other field below is addressed by raw offset rather than through a
 // full struct, since only these offsets are known so far.
@@ -50,12 +50,12 @@ public:
 extern "C" void* lbl_8042C148;
 
 extern "C" void pawnReleaseBuffer(void* buffer);
-extern "C" void fn_8010AFE4(void* object);
-extern "C" void dtor_800FE334(void* object, s32 flags);
+extern "C" void Close__13TEnemyIconManFv(void* object);
+extern "C" void __dt__11ENEMYMTNMANFv(void* object, s32 flags);
 extern "C" void fn_80150958(void* mesh);
 extern "C" void __dt__10HAnimClassFv(void* hAnim, s32 flags);
 extern "C" void fn_800A7088(void* object, s32 flags);
-extern "C" void fn_800189A4(void* heap, void* object);
+extern "C" void Free__9THeapCtrlFPv(void* heap, void* object);
 
 // Defined by each module, renamed to this name in its own symbols.txt.
 extern "C" void* pawnVtable[];
@@ -79,12 +79,12 @@ extern "C" void* pawnDtor(void* object, s16 flags)
 		}
 
 		if (*(void**)(base + 0x2DC) != NULL) {
-			fn_8010AFE4(*(void**)(base + 0x2DC));
+			Close__13TEnemyIconManFv(*(void**)(base + 0x2DC));
 			*(void**)(base + 0x2DC) = NULL;
 		}
 
 		if (*(void**)(base + 0x2D8) != NULL) {
-			fn_8010AFE4(*(void**)(base + 0x2D8));
+			Close__13TEnemyIconManFv(*(void**)(base + 0x2D8));
 			*(void**)(base + 0x2D8) = NULL;
 		}
 
@@ -96,17 +96,17 @@ extern "C" void* pawnDtor(void* object, s16 flags)
 		}
 
 		if (*(void**)(base + 0x280) != NULL) {
-			dtor_800FE334(*(void**)(base + 0x280), 1);
+			__dt__11ENEMYMTNMANFv(*(void**)(base + 0x280), 1);
 			*(void**)(base + 0x280) = NULL;
 		}
 
 		if (*(void**)(base + 0x278) != NULL) {
-			dtor_800FE334(*(void**)(base + 0x278), 1);
+			__dt__11ENEMYMTNMANFv(*(void**)(base + 0x278), 1);
 			*(void**)(base + 0x278) = NULL;
 		}
 
 		if (*(void**)(base + 0x270) != NULL) {
-			dtor_800FE334(*(void**)(base + 0x270), 1);
+			__dt__11ENEMYMTNMANFv(*(void**)(base + 0x270), 1);
 			*(void**)(base + 0x270) = NULL;
 		}
 
@@ -134,7 +134,7 @@ extern "C" void* pawnDtor(void* object, s16 flags)
 		fn_800A7088(object, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 		}
 	}
 	return object;

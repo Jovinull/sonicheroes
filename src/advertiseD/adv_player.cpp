@@ -85,14 +85,14 @@ extern "C" s32 lbl_802408F8;
 extern "C" void fn_80194294(s32 id, u32* out);
 extern "C" void fn_80194234(s32 id, s32 val);
 extern "C" void fn_8014FF2C(void*);
-extern "C" s32 fn_800CF114(void*);
-extern "C" void fn_800FE464(void*);
-extern "C" void fn_800CF224(void*);
-extern "C" void fn_800CF070(void*, void*);
-extern "C" void fn_800CF1F0(void*, s32);
-extern "C" void fn_800CF1E8(void*, f32);
-extern "C" void fn_800CF1D8(void*, s32);
-extern "C" void fn_800CF1B8(void*, u32, u32);
+extern "C" s32 GetPattern__7EffWinkCFv(void*);
+extern "C" void UpdateMotion__11ENEMYMTNMANFv(void*);
+extern "C" void Exec__7EffWinkFv(void*);
+extern "C" void SyncPattern__7EffWinkFP7EffWink(void*, void*);
+extern "C" void SetPatternMax__7EffWinkFi(void*, s32);
+extern "C" void SetPatternSpeed__7EffWinkFf(void*, f32);
+extern "C" void SetMode__7EffWinkF16Enum_EffWinkMode(void*, s32);
+extern "C" void SetModeNormal__7EffWinkFii(void*, u32, u32);
 extern "C" void* fn_1_5994(void* dst, const void* src);
 extern "C" void fn_1_5C1C(void* t, s32 code);
 extern "C" void fn_1_5510(void*);
@@ -108,12 +108,12 @@ extern "C" void __ct__7TObjectFP7TObject(void*, void*);
 extern "C" void __dt__7TObjectFv(void*, int);
 extern "C" void __destroy_arr(void*, void*, s32, s32);
 extern "C" void __construct_array(void*, void*, void*, s32, s32);
-extern "C" void dtor_800CF564();
-extern "C" void dtor_800FE334();
-extern "C" void fn_800FE3FC();
-extern "C" void fn_800CF5A8();
+extern "C" void __dt__7EffWinkFv();
+extern "C" void __dt__11ENEMYMTNMANFv();
+extern "C" void __ct__11ENEMYMTNMANFv();
+extern "C" void __ct__7EffWinkFv();
 extern "C" void* memset(void*, int, u32);
-extern "C" s32 fn_8005D9A0(s32, s32);
+extern "C" s32 objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(s32, s32);
 extern "C" void* fn_801471DC(void);
 extern "C" void fn_801471C8(void*);
 extern "C" void fn_8014705C(void*);
@@ -124,17 +124,17 @@ extern "C" void fn_80197ED8(void*, s32);
 extern "C" void fn_8020C2D8(void*);
 extern "C" void fn_80150958(void*);
 extern "C" void fn_801A46D0(void*);
-extern "C" void* fn_80057644(s32);
-extern "C" void* fn_800BCC84(void*, s32, s32);
+extern "C" void* __nw__FUl(s32);
+extern "C" void* __ct__7ONEFILEFPci(void*, s32, s32);
 extern "C" void* fn_80012994(s32);
 extern "C" void fn_800D0624(void*, void*, void*);
 extern "C" void fn_800BA7F8(void*, void*, void*);
-extern "C" void* fn_800BC580(void*, void*, void*);
+extern "C" void* OneFileLoadTextureDictionay__7ONEFILEFUiPv(void*, void*, void*);
 extern "C" void fn_801A4C84(void*);
-extern "C" void* fn_800BC46C(void*, void*, void*);
-extern "C" void* fn_800BBF20(void*, void*, void*);
+extern "C" void* OneFileLoadClump__7ONEFILEFUiPv(void*, void*, void*);
+extern "C" void* OneFileLoadHAnimation__7ONEFILEFUiPv(void*, void*, void*);
 extern "C" void* fn_8022CF5C(void*);
-extern "C" void fn_800BCBD4(void*, s32);
+extern "C" void __dt__7ONEFILEFv(void*, s32);
 extern "C" void fn_800126C8(void*);
 extern "C" void fn_800D075C(void*);
 extern "C" void fn_8012C840(void*);
@@ -189,9 +189,9 @@ extern "C" void fn_1_5CBC(void* t)
 	v = (u8*)t;
 	fn_8014FF2C(*(void**)(v + 0xc0));
 	if (w(0x134) && *(s32*)(v + 0x194) > 2) {
-		fn_8014FF2C(((void**)(v + 0xc4))[fn_800CF114(v + 0x140)]);
-		if (((void**)(v + 0xd8))[fn_800CF114((u8*)t + 0x168)])
-			fn_8014FF2C(((void**)(v + 0xd8))[fn_800CF114(v + 0x168)]);
+		fn_8014FF2C(((void**)(v + 0xc4))[GetPattern__7EffWinkCFv(v + 0x140)]);
+		if (((void**)(v + 0xd8))[GetPattern__7EffWinkCFv((u8*)t + 0x168)])
+			fn_8014FF2C(((void**)(v + 0xd8))[GetPattern__7EffWinkCFv(v + 0x168)]);
 	}
 	fn_80194234(8, s8);
 	fn_80194234(6, s6);
@@ -214,12 +214,12 @@ extern "C" void fn_1_5E8C(void* t)
 	fn_1_59B0(t);
 	fn_1_5B08(t);
 	v = (u8*)t;
-	fn_800FE464(v + 0x28);
+	UpdateMotion__11ENEMYMTNMANFv(v + 0x28);
 	if (*(u32*)(v + 0xec))
-		fn_800FE464(v + 0x74);
-	fn_800CF224(v + 0x140);
-	fn_800CF224(v + 0x168);
-	fn_800CF070(v + 0x168, v + 0x140);
+		UpdateMotion__11ENEMYMTNMANFv(v + 0x74);
+	Exec__7EffWinkFv(v + 0x140);
+	Exec__7EffWinkFv(v + 0x168);
+	SyncPattern__7EffWinkFP7EffWink(v + 0x168, v + 0x140);
 	fn_1_5764(t);
 	fn_1_5658(t);
 }
@@ -230,8 +230,8 @@ extern "C" void* fn_1_5F1C(void* t, s16 flag)
 	if (t) {
 		pp(0x18) = lbl_1_data_1BE4;
 		fn_1_5B9C(t);
-		__destroy_arr((u8*)t + 0x140, (void*)dtor_800CF564, 0x28, 2);
-		__destroy_arr((u8*)t + 0x28, (void*)dtor_800FE334, 0x4c, 2);
+		__destroy_arr((u8*)t + 0x140, (void*)__dt__7EffWinkFv, 0x28, 2);
+		__destroy_arr((u8*)t + 0x28, (void*)__dt__11ENEMYMTNMANFv, 0x4c, 2);
 		__dt__7TObjectFv(t, 0);
 		if (flag > 0)
 			advE3Rom_pause(t);
@@ -245,8 +245,9 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 {
 	__ct__7TObjectFP7TObject(t, parent);
 	pp(0x18) = lbl_1_data_1BE4;
-	__construct_array((u8*)t + 0x28, (void*)fn_800FE3FC, (void*)dtor_800FE334, 0x4c, 2);
-	__construct_array((u8*)t + 0x140, (void*)fn_800CF5A8, (void*)dtor_800CF564, 0x28, 2);
+	__construct_array(
+	    (u8*)t + 0x28, (void*)__ct__11ENEMYMTNMANFv, (void*)__dt__11ENEMYMTNMANFv, 0x4c, 2);
+	__construct_array((u8*)t + 0x140, (void*)__ct__7EffWinkFv, (void*)__dt__7EffWinkFv, 0x28, 2);
 	uw(0)                  = lbl_1_data_11A4[0];
 	*(s16*)((u8*)t + 0x1e) = 0x19c;
 	memset((u8*)t + 0xc0, 0, 0x40);
@@ -316,7 +317,8 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 		case 7:
 		case 9:
 		case 10: {
-			w(0x138) = fn_8005D9A0(fn_1_6AF4((u8*)t + 0x28), 1);
+			w(0x138) = objRpHAnimHierarchyFindFrameFromBoneID__FP16RpHAnimHierarchyi(
+			    fn_1_6AF4((u8*)t + 0x28), 1);
 			break;
 		}
 		case 2:
@@ -333,17 +335,17 @@ extern "C" void* fn_1_5FBC(void* t, void* parent, const sADV_PLAYER* s)
 		for (i = 0; i != 2; i++) {
 			s32 offset = i * 0x28;
 			if (w(0x134))
-				fn_800CF1F0((u8*)t + 0x140 + offset, w(0x134) - 1);
+				SetPatternMax__7EffWinkFi((u8*)t + 0x140 + offset, w(0x134) - 1);
 			else
-				fn_800CF1F0((u8*)t + 0x140 + offset, 0);
-			fn_800CF1E8((u8*)t + 0x140 + offset, lbl_1_rodata_3A8[s->code]);
-			fn_800CF1B8(
+				SetPatternMax__7EffWinkFi((u8*)t + 0x140 + offset, 0);
+			SetPatternSpeed__7EffWinkFf((u8*)t + 0x140 + offset, lbl_1_rodata_3A8[s->code]);
+			SetModeNormal__7EffWinkFii(
 			    (pair = (u32*)((u8*)lbl_1_rodata_3D8 + s->code * 8), (u8*)t + 0x140 + offset),
 			    pair[0], pair[1]);
 			offset += 0x28;
 		}
 	}
-	fn_800CF1D8((u8*)t + 0x168, 3);
+	SetMode__7EffWinkF16Enum_EffWinkMode((u8*)t + 0x168, 3);
 	w(0x194) = 0;
 	w(0x198) = -1;
 	return t;
@@ -423,7 +425,7 @@ extern "C" u32 lbl_1_rodata_198[];
 extern "C" s32 lbl_1_rodata_1C8[];
 extern "C" s32 lbl_1_rodata_2B8[];
 extern "C" s32 lbl_1_rodata_5B8[];
-extern "C" void* fn_800BC580(void*, void*, void*);
+extern "C" void* OneFileLoadTextureDictionay__7ONEFILEFUiPv(void*, void*, void*);
 
 static inline u32* advPlayerIdentity(u32* p)
 {
@@ -482,19 +484,21 @@ extern "C" void fn_1_65BC(void)
 		s32 k;
 		void* d18;
 		void* d17;
-		obj.value = fn_80057644(0x58);
+		obj.value = __nw__FUl(0x58);
 		if (obj.value)
-			obj.value = fn_800BCC84(obj.value, 0, 0);
+			obj.value = __ct__7ONEFILEFPci(obj.value, 0, 0);
 		d18 = fn_80012994(0x7d000);
 		d17 = fn_80012994(p140.value->size + 0x40);
 		if (d17)
 			fn_800D0624(d17, p140.value->p, (void*)p140.value->size);
 		if (obj.value && d18 && d17) {
 			fn_800BA7F8(obj.value, d17, (void*)p140.value->size);
-			*p200.value = (u32)fn_800BC580(obj.value, (void*)*a588, d18);
+			*p200.value
+			    = (u32)OneFileLoadTextureDictionay__7ONEFILEFUiPv(obj.value, (void*)*a588, d18);
 			if (*p200.value) {
 				fn_801A4C84((void*)*p200.value);
-				((Blk230*)lbl_1_bss_230)[i].w[0] = (u32)fn_800BC46C(obj.value, (void*)*a198, d18);
+				((Blk230*)lbl_1_bss_230)[i].w[0]
+				    = (u32)OneFileLoadClump__7ONEFILEFUiPv(obj.value, (void*)*a198, d18);
 				{
 					b1C8 = (Row5*)lbl_1_rodata_1C8;
 					b2B8 = (Row5*)lbl_1_rodata_2B8;
@@ -504,9 +508,11 @@ extern "C" void fn_1_65BC(void)
 					w2b8 = b2B8[i];
 					do {
 						if (*w1c8 != -1)
-							w230[1] = (u32)fn_800BC46C(obj.value, (void*)*w1c8, d18);
+							w230[1] = (u32)OneFileLoadClump__7ONEFILEFUiPv(
+							    obj.value, (void*)*w1c8, d18);
 						if (*w2b8 != -1)
-							w230[6] = (u32)fn_800BC46C(obj.value, (void*)*w2b8, d18);
+							w230[6] = (u32)OneFileLoadClump__7ONEFILEFUiPv(
+							    obj.value, (void*)*w2b8, d18);
 						w1c8++;
 						w230++;
 						w2b8++;
@@ -517,7 +523,7 @@ extern "C" void fn_1_65BC(void)
 					s32* w438 = ((Row2*)lbl_1_rodata_438)[i];
 					if (*w438 != -1)
 						((Blk230*)lbl_1_bss_230)[i].w[11]
-						    = (u32)fn_800BC46C(obj.value, (void*)*w438, d18);
+						    = (u32)OneFileLoadClump__7ONEFILEFUiPv(obj.value, (void*)*w438, d18);
 				}
 				{
 					b5B8       = (Row5*)lbl_1_rodata_5B8;
@@ -526,7 +532,8 @@ extern "C" void fn_1_65BC(void)
 					w470.value = ((Blk470*)lbl_1_bss_470)[i].w;
 					do {
 						if (*w5b8.value != -1) {
-							void* tex = fn_800BBF20(obj.value, (void*)*w5b8.value, d18);
+							void* tex = OneFileLoadHAnimation__7ONEFILEFUiPv(
+							    obj.value, (void*)*w5b8.value, d18);
 							if (tex) {
 								void* alt = fn_8022CF5C(tex);
 								fn_8020C2D8(tex);
@@ -542,7 +549,7 @@ extern "C" void fn_1_65BC(void)
 			}
 		}
 		if (obj.value)
-			fn_800BCBD4(obj.value, 1);
+			__dt__7ONEFILEFv(obj.value, 1);
 		if (d18)
 			fn_800126C8(d18);
 		if (d17)

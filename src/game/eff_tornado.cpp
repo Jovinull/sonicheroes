@@ -59,8 +59,8 @@
 //   which costs three more instructions; declaring the three loops' pointers
 //   inside their blocks instead of sharing the outer declarations, same three;
 //   every permutation tried of the eight assignments that open the first loop;
-//   dropping the firstAxis and secondAxis locals and passing &lbl_80239978 and
-//   &lbl_80239984 straight to the call, which changes nothing because the
+//   dropping the firstAxis and secondAxis locals and passing &AxisX and
+//   &AxisY straight to the call, which changes nothing because the
 //   address is loop-invariant and gets hoisted back into a register anyway; and
 //   ten optimiser pragmas layered on top of opt_common_subs off -- lifetimes,
 //   dead_assignments, loop_invariants, strength_reduction, unroll_loops,
@@ -80,7 +80,7 @@ inline void* operator new(unsigned long, void* address)
 	return address;
 }
 
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void* lbl_8042C148;
 
 struct RwV3d {
@@ -119,7 +119,10 @@ struct TObject {
 
 	TObject(TObject*);
 	~TObject();
-	static void* operator new(unsigned long size) { return fn_80018A34(lbl_8042C148, size); }
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
 };
 
 struct C_COLLI {
@@ -220,16 +223,16 @@ extern "C" {
 void TDisp__14TObjEffTornadoFv(TObjEffTornado*);
 void Exec__14TObjEffTornadoFv(TObjEffTornado*);
 int fn_80017800(void*);
-void fn_8003C200(void*, void*, s32, s32);
-void fn_80021384(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
+void CalcRange__7C_COLLIFv(void*);
 void* fn_8006298C(s32, RwV3d*, sAngle*);
-void* fn_8005EA04(const char*);
-void* fn_8005E410(void*, s32, const void*);
-void* fn_8005E1DC(void*, s32, const void*);
-void fn_8005DA34(void*);
-void fn_8005D9F4(void*);
-void fn_8005D6DC(void*);
-void fn_8005C014(void*);
+void* objPointerReadFromClumpAnim__FPc(const char*);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(void*, s32, const void*);
+void* objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(void*, s32, const void*);
+void objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(void*);
+void objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(void*);
+void objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(void*);
+void AtomicSetCustomFXTexture__FP8RpAtomicPv(void*);
 struct RpClump;
 struct RpHAnimHierarchy;
 
@@ -243,10 +246,10 @@ void fn_8013F3A4(void*);
 void fn_801491A8(void*);
 int rand();
 void* fn_80150588(void*);
-void dtor_8003C52C(C_COLLI*, s32);
+void __dt__7C_COLLIFv(C_COLLI*, s32);
 void __dt__7TObjectFv(TObject*, s32);
 TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 
 extern TObject* lbl_8042C2A0;
 extern TObject* lbl_8042C110;
@@ -323,8 +326,8 @@ extern u8 lbl_8029C310[];
 extern u8 lbl_802D5E80[];
 extern void* lbl_802AD070[];
 extern u8 lbl_8042C1A4;
-extern RwV3d lbl_80239978;
-extern RwV3d lbl_80239984;
+extern RwV3d AxisX;
+extern RwV3d AxisY;
 extern void* lbl_802535F0[];
 extern RwV3d lbl_8025337C[];
 extern RwV3d lbl_802533DC[];
@@ -335,11 +338,11 @@ extern PlayerColorSource* lbl_80303DC8[];
 
 void fn_80194294(s32, u32*);
 void fn_80194234(s32, u32);
-void fn_80053660(void*, s32);
-void fn_8005349C(void*, u8);
+void SetCurrentNum__6CLIGHTFSc(void*, s32);
+void SetLightRegular__6CLIGHTFSc(void*, u8);
 void fn_8014FF2C(void*);
-int fn_8005BB20(RwV3d*, f32);
-f32 fn_800D7328(f32, f32, f32);
+int setobjCheckRangeOut2__FPC5RwV3df(RwV3d*, f32);
+f32 AdjustFloat__Ffff(f32, f32, f32);
 void fn_80021824(void*);
 CollisionSearchResult* fn_80020BD8(void*, s32);
 void fn_80150958(void*);
@@ -349,12 +352,12 @@ f32 fn_800D7AE4(s32);
 void fn_80195790(void*, RwV3d*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, RwV3d*, s32);
-void fn_8003BC38(C_COLLI*);
-void fn_8003BE78(C_COLLI*);
+void Entry__7C_COLLIFv(C_COLLI*);
+void ClearInfo__7C_COLLIFv(C_COLLI*);
 void GXSetBlendMode(s32, s32, s32, s32);
 void fn_8011B844(f32);
 void fn_8014FFBC(void*, void*, void*);
-void fn_8005BF88();
+void SetAtomicCustomFXData__FP8RpAtomicPv();
 void fn_8020CC18(void*, f32);
 void fn_8013FC30(void*);
 
@@ -369,12 +372,12 @@ int CheckTornado__FP7C_COLLI(C_COLLI*);
 void TDisp__14TObjEffTyphoonFv(TObjEffTyphoon*);
 void Exec__14TObjEffTyphoonFv(TObjEffTyphoon*);
 TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon*, s32);
-void fn_8001898C();
-void fn_80018988();
-void fn_80018950();
-void fn_80018954();
+void Disp__7TObjectFv();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
 void Error__7TObjectFPc();
-void fn_80018958();
+void Render__7TObjectFv();
 void __ct__15TObjEffTornado2FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObjEffTornado2*, TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 }
@@ -567,13 +570,13 @@ void* lbl_802534E4[11] = {
 	0,
 	(void*)__dt__14TObjEffTyphoonFv,
 	(void*)Exec__14TObjEffTyphoonFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__14TObjEffTyphoonFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 const char* lbl_8042B350 = lbl_8025336C;
@@ -616,11 +619,11 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 		effect->vtable = lbl_802534E4;
 		if (effect != 0) {
 			effect->vtable = lbl_8025361C;
-			dtor_8003C52C(&effect->effectModel, 0);
+			__dt__7C_COLLIFv(&effect->effectModel, 0);
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;
@@ -652,7 +655,7 @@ TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngl
 	base->kind       = kind;
 	base->active     = 1;
 	base->timer      = 0;
-	fn_8003C200(&base->effectModel, lbl_8025333C, 1, 1);
+	Init__7C_COLLIFP8CCL_INFOiUc(&base->effectModel, lbl_8025333C, 1, 1);
 
 	s32 effectType;
 	switch (base->kind) {
@@ -687,7 +690,7 @@ TObjEffTornado::TObjEffTornado(TObject* parent, s32 kind, RwV3d* position, sAngl
 		((RwV3d*)((u8*)model + 8))->z = base->position.z;
 		model                         = *(void**)&base->effectModel.data[0x10];
 		((RwV3d*)((u8*)model + 8))->y += lbl_8042DBB8;
-		fn_80021384(&base->effectModel);
+		CalcRange__7C_COLLIFv(&base->effectModel);
 	}
 }
 
@@ -761,8 +764,8 @@ void TObjEffTornado2::TDisp()
 	material->blue     = blue;
 	material->alpha    = alpha;
 
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	SetCurrentNum__6CLIGHTFSc(lbl_802D5E80, 16);
+	SetLightRegular__6CLIGHTFSc(lbl_802D5E80, lbl_802D5E80[0x4be]);
 
 	model = lbl_8042C350;
 	frame = tornadoFrameCounter();
@@ -770,7 +773,7 @@ void TObjEffTornado2::TDisp()
 		f32 elapsed = (f32)(frame - lbl_8042C378[0]);
 		if (lbl_8042C370 != 0 && lbl_8042C374 != 0) {
 			fn_8011B844(elapsed);
-			fn_8014FFBC(model, (void*)fn_8005BF88, lbl_80303F98);
+			fn_8014FFBC(model, (void*)SetAtomicCustomFXData__FP8RpAtomicPv, lbl_80303F98);
 		}
 		if (lbl_8042C368 != 0) {
 			fn_8020CC18(*(void**)((u8*)lbl_8042C368 + 0x20), lbl_8042DBBC * elapsed);
@@ -803,7 +806,7 @@ void TObjEffTornado2::TDisp()
 		s32 angle         = (s32)(lbl_8042DBC4 * this->scale);
 		f32 sine          = fn_800D7B00(angle);
 		f32 inverseCosine = lbl_8042DBC0 - fn_800D7AE4((s32)(lbl_8042DBC4 * this->scale));
-		fn_80195790((u8*)frameObject + 0x10, &lbl_80239984, inverseCosine, sine, 2);
+		fn_80195790((u8*)frameObject + 0x10, &AxisY, inverseCosine, sine, 2);
 		fn_8019E880(frameObject);
 		fn_8019EB94(frameObject, &position, 2);
 		fn_8014FF2C(model);
@@ -827,7 +830,7 @@ void TObjEffTornado2::TDisp()
 		s32 angle         = (s32)(lbl_8042DBC4 * this->scale);
 		f32 sine          = fn_800D7B00(angle);
 		f32 inverseCosine = lbl_8042DBC0 - fn_800D7AE4((s32)(lbl_8042DBC4 * this->scale));
-		fn_80195790((u8*)frameObject + 0x10, &lbl_80239984, inverseCosine, sine, 2);
+		fn_80195790((u8*)frameObject + 0x10, &AxisY, inverseCosine, sine, 2);
 		fn_8019E880(frameObject);
 		f32 height = lbl_8042DBC8 * (lbl_8042DBC0 - this->verticalScale);
 		position.y = position.y + height;
@@ -844,7 +847,7 @@ void TObjEffTornado2::TDisp()
 
 void TObjEffTornado2::Exec()
 {
-	if (fn_8005BB20(&this->position, lbl_8042DBE0) != 0) {
+	if (setobjCheckRangeOut2__FPC5RwV3df(&this->position, lbl_8042DBE0) != 0) {
 		this->flags |= 1;
 		return;
 	}
@@ -852,9 +855,9 @@ void TObjEffTornado2::Exec()
 	switch (this->active) {
 		case 1:
 			if (this->direction != 0) {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBC0, lbl_8042DBE4);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBC0, lbl_8042DBE4);
 			} else {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBC0, lbl_8042DBE8);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBC0, lbl_8042DBE8);
 			}
 			if (this->alpha >= lbl_8042DBC0) {
 				this->active = 2;
@@ -885,9 +888,9 @@ void TObjEffTornado2::Exec()
 
 		case 3:
 			if (this->direction != 0) {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBB4, lbl_8042DBE4);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBB4, lbl_8042DBE4);
 			} else {
-				this->alpha = fn_800D7328(this->alpha, lbl_8042DBB4, lbl_8042DBE8);
+				this->alpha = AdjustFloat__Ffff(this->alpha, lbl_8042DBB4, lbl_8042DBE8);
 			}
 			if (this->alpha <= lbl_8042DBB4) {
 				this->active = 4;
@@ -905,8 +908,8 @@ void TObjEffTornado2::Exec()
 	}
 
 	this->scale += lbl_8042DBF4;
-	this->swirlScale    = fn_800D7328(this->swirlScale, lbl_8042DBC0, lbl_8042DBF8);
-	this->verticalScale = fn_800D7328(this->verticalScale, lbl_8042DBFC, lbl_8042DC00);
+	this->swirlScale    = AdjustFloat__Ffff(this->swirlScale, lbl_8042DBC0, lbl_8042DBF8);
+	this->verticalScale = AdjustFloat__Ffff(this->verticalScale, lbl_8042DBFC, lbl_8042DC00);
 
 	if (this->swirlScale >= lbl_8042DC04) {
 		s32 opacity = this->opacity;
@@ -925,9 +928,9 @@ void TObjEffTornado2::Exec()
 			*(RwV3d*)&this->effectModel.data[0x7c]  = *(RwV3d*)&this->effectModel.data[0x60];
 			*(RwV3d*)&this->effectModel.data[0x60]  = this->position;
 			*(sAngle*)&this->effectModel.data[0x6c] = this->rotation;
-			fn_8003BC38(&this->effectModel);
+			Entry__7C_COLLIFv(&this->effectModel);
 		} else {
-			fn_8003BE78(&this->effectModel);
+			ClearInfo__7C_COLLIFv(&this->effectModel);
 		}
 	}
 }
@@ -938,11 +941,11 @@ extern "C" TObjEffTornado2* __dt__15TObjEffTornado2Fv(TObjEffTornado2* effect, s
 		effect->vtable = lbl_802535C4;
 		if (effect != 0) {
 			effect->vtable = lbl_8025361C;
-			dtor_8003C52C(&effect->effectModel, 0);
+			__dt__7C_COLLIFv(&effect->effectModel, 0);
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;
@@ -1008,8 +1011,8 @@ extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 	material[6]      = ((u8*)&saved)[2];
 	material[7]      = ((u8*)&saved)[3];
 
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	SetCurrentNum__6CLIGHTFSc(lbl_802D5E80, 16);
+	SetLightRegular__6CLIGHTFSc(lbl_802D5E80, lbl_802D5E80[0x4be]);
 	fn_8014FF2C(effect->model);
 
 	fn_80194234(14, state14);
@@ -1020,14 +1023,15 @@ extern "C" void TDisp__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 
 extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 {
-	if (fn_8005BB20(&effect->direction, lbl_8042DBE0) != 0 || *(s32*)(lbl_8029C310 + 0x18) != 0) {
+	if (setobjCheckRangeOut2__FPC5RwV3df(&effect->direction, lbl_8042DBE0) != 0
+	    || *(s32*)(lbl_8029C310 + 0x18) != 0) {
 		effect->flags |= 1;
 		return;
 	}
 
 	switch (effect->state) {
 		case 1:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
 			if (effect->alpha >= lbl_8042DBC0) {
 				effect->state = 2;
 				effect->timer = 0;
@@ -1042,7 +1046,7 @@ extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 			break;
 		}
 		case 3:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
 			if (effect->alpha <= lbl_8042DBB4) {
 				effect->state = 4;
 			}
@@ -1057,7 +1061,7 @@ extern "C" void Exec__18TObjEffTornadoSpinFv(TObjEffTornadoSpin* effect)
 	fn_8019EC30(frame, &effect->position, 0);
 	f32 sine   = fn_800D7B00(effect->angle);
 	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(effect->angle);
-	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+	fn_80195790((u8*)frame + 0x10, &AxisY, cosine, sine, 2);
 	fn_8019E880(frame);
 	fn_8019EB94(frame, &effect->direction, 2);
 }
@@ -1073,7 +1077,7 @@ extern "C" TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(
 		}
 		__dt__7TObjectFv(effect, 0);
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;
@@ -1103,7 +1107,7 @@ TObjEffTornadoSpin::TObjEffTornadoSpin(
 	fn_8019EC30(frame, &result->position, 0);
 	f32 sine   = fn_800D7B00(result->angle);
 	f32 cosine = lbl_8042DBC0 - fn_800D7AE4(result->angle);
-	fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+	fn_80195790((u8*)frame + 0x10, &AxisY, cosine, sine, 2);
 	fn_8019E880(frame);
 	fn_8019EB94(frame, &result->direction, 2);
 }
@@ -1134,39 +1138,39 @@ void* lbl_802535C4[11] = {
 	0,
 	(void*)__dt__15TObjEffTornado2Fv,
 	(void*)Exec__15TObjEffTornado2Fv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__15TObjEffTornado2Fv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 void* lbl_802535F0[11] = {
 	0,
 	0,
 	(void*)__dt__18TObjEffTornadoSpinFv,
 	(void*)Exec__18TObjEffTornadoSpinFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__18TObjEffTornadoSpinFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 void* lbl_8025361C[11] = {
 	0,
 	0,
 	(void*)__dt__14TObjEffTornadoFv,
 	(void*)Exec__14TObjEffTornadoFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__14TObjEffTornadoFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 extern "C" int CheckTornado__FP7C_COLLI(C_COLLI* collision)
@@ -1228,8 +1232,8 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 	material[6] = color.blue;
 	material[7] = color.alpha;
 
-	fn_80053660(lbl_802D5E80, 16);
-	fn_8005349C(lbl_802D5E80, lbl_802D5E80[0x4be]);
+	SetCurrentNum__6CLIGHTFSc(lbl_802D5E80, 16);
+	SetLightRegular__6CLIGHTFSc(lbl_802D5E80, lbl_802D5E80[0x4be]);
 
 	s32 angle = (s32)(lbl_8042DBC4 * effect->scale);
 	void** models;
@@ -1246,10 +1250,10 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		positions       = lbl_8025337C;
 		directions      = lbl_802533DC;
 		rotations       = lbl_8025343C;
-		firstAxis.value = &lbl_80239978;
+		firstAxis.value = &AxisX;
 		f32 one         = lbl_8042DBC0;
 		angleOffsets    = lbl_8025347C;
-		secondAxis      = &lbl_80239984;
+		secondAxis      = &AxisY;
 		f32 sine;
 		f32 increment = lbl_8042DC24;
 		f32 limit     = lbl_8042DBB8;
@@ -1286,10 +1290,10 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		positions       = lbl_8025337C;
 		directions      = lbl_802533DC;
 		rotations       = lbl_8025343C;
-		firstAxis.value = &lbl_80239978;
+		firstAxis.value = &AxisX;
 		f32 one         = lbl_8042DBC0;
 		angleOffsets    = lbl_8025347C;
-		secondAxis      = &lbl_80239984;
+		secondAxis      = &AxisY;
 		f32 sine;
 		f32 limit;
 		f32 increment = lbl_8042DC24;
@@ -1327,7 +1331,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 		positions       = lbl_8025337C;
 		directions      = lbl_802533DC;
 		rotations       = lbl_8025343C;
-		firstAxis.value = &lbl_80239978;
+		firstAxis.value = &AxisX;
 		f32 sine;
 		f32 one      = lbl_8042DBC0;
 		angleOffsets = lbl_8025347C;
@@ -1346,7 +1350,7 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 			vectorOffset = tableIndex * sizeof(s32);
 			sine         = fn_800D7B00(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
 			f32 cosine   = one - fn_800D7AE4(angle + *(s32*)((u8*)angleOffsets + vectorOffset));
-			fn_80195790((u8*)frame + 0x10, &lbl_80239984, cosine, sine, 2);
+			fn_80195790((u8*)frame + 0x10, &AxisY, cosine, sine, 2);
 			RwV3d position = effect->position;
 			position.y += height;
 			fn_8019EB94(frame, &position, 2);
@@ -1366,14 +1370,14 @@ extern "C" void TDisp__14TObjEffTornadoFv(TObjEffTornado* effect)
 
 extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 {
-	if (fn_8005BB20(&effect->position, lbl_8042DBE0) != 0) {
+	if (setobjCheckRangeOut2__FPC5RwV3df(&effect->position, lbl_8042DBE0) != 0) {
 		effect->flags |= 1;
 		return;
 	}
 
 	switch (effect->active) {
 		case 1:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBC0, lbl_8042DBE8);
 			if (effect->alpha >= lbl_8042DBC0) {
 				effect->active = 2;
 				effect->state  = 0;
@@ -1393,7 +1397,7 @@ extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 			break;
 		}
 		case 3:
-			effect->alpha = fn_800D7328(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
+			effect->alpha = AdjustFloat__Ffff(effect->alpha, lbl_8042DBB4, lbl_8042DBE8);
 			if (effect->alpha <= lbl_8042DBB4) {
 				effect->active = 4;
 			}
@@ -1419,12 +1423,12 @@ extern "C" void Exec__14TObjEffTornadoFv(TObjEffTornado* effect)
 			*(s32*)((u8*)effect + 0x94) = effect->rotation.x;
 			*(s32*)((u8*)effect + 0x98) = effect->rotation.y;
 			*(s32*)((u8*)effect + 0x9c) = effect->rotation.z;
-			fn_8003BC38(&effect->effectModel);
+			Entry__7C_COLLIFv(&effect->effectModel);
 		} else {
-			fn_8003BE78(&effect->effectModel);
+			ClearInfo__7C_COLLIFv(&effect->effectModel);
 		}
 	} else {
-		fn_8003BE78(&effect->effectModel);
+		ClearInfo__7C_COLLIFv(&effect->effectModel);
 	}
 }
 
@@ -1432,10 +1436,10 @@ extern "C" TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado* effect, s32 
 {
 	if (effect != 0) {
 		effect->vtable = lbl_8025361C;
-		dtor_8003C52C(&effect->effectModel, 0);
+		__dt__7C_COLLIFv(&effect->effectModel, 0);
 		__dt__7TObjectFv(effect, 0);
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;
@@ -1464,39 +1468,44 @@ extern "C" void InitEffTornado__Fv()
 {
 	for (s32 i = 0; i < 3; ++i) {
 		if (lbl_802532E8[i] == 0) {
-			lbl_802532E8[i] = fn_8005EA04(lbl_80253330[i]);
+			lbl_802532E8[i] = objPointerReadFromClumpAnim__FPc(lbl_80253330[i]);
 			if (lbl_802532E8[i] != 0) {
-				lbl_802532F4[i] = fn_8005E410(lbl_802532E8[i], 0, "ef_tnd");
+				lbl_802532F4[i]
+				    = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+				        lbl_802532E8[i], 0, "ef_tnd");
 			}
 		}
 	}
 
-	lbl_8042C350 = fn_8005EA04(lbl_80253568);
+	lbl_8042C350 = objPointerReadFromClumpAnim__FPc(lbl_80253568);
 	if (lbl_8042C350 != 0) {
-		lbl_8042C354 = fn_8005E410(lbl_8042C350, 0, "ef_chbl");
+		lbl_8042C354 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8042C350, 0, "ef_chbl");
 		lbl_8042C370 = lbl_8042C354;
 		lbl_8042C368 = HAnim.GetHierarchy((RpClump*)lbl_8042C350);
-		fn_8005D9F4(lbl_8042C350);
-		fn_8005D6DC(lbl_8042C350);
+		objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(lbl_8042C350);
+		objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(lbl_8042C350);
 	}
 
-	lbl_8042C358 = fn_8005EA04(lbl_80253578);
+	lbl_8042C358 = objPointerReadFromClumpAnim__FPc(lbl_80253578);
 	if (lbl_8042C358 != 0) {
-		lbl_8042C35C = fn_8005E410(lbl_8042C358, 0, "ef_chbl");
-		fn_8005DA34(lbl_8042C358);
-		fn_8005D9F4(lbl_8042C358);
-		fn_8005D6DC(lbl_8042C358);
+		lbl_8042C35C = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8042C358, 0, "ef_chbl");
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(lbl_8042C358);
+		objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(lbl_8042C358);
+		objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(lbl_8042C358);
 	}
 
-	lbl_8042C360 = fn_8005EA04(lbl_8025358C);
+	lbl_8042C360 = objPointerReadFromClumpAnim__FPc(lbl_8025358C);
 	if (lbl_8042C360 != 0) {
-		lbl_8042C364 = fn_8005E410(lbl_8042C360, 0, "ef_chbl");
-		fn_8005DA34(lbl_8042C360);
-		fn_8005D9F4(lbl_8042C360);
-		fn_8005D6DC(lbl_8042C360);
+		lbl_8042C364 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8042C360, 0, "ef_chbl");
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(lbl_8042C360);
+		objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(lbl_8042C360);
+		objRpClumpForAllGeometriesToAffectAlphaToColor__FP7RpClump(lbl_8042C360);
 	}
 
-	lbl_8042C36C = fn_8005EA04(lbl_802535A4);
+	lbl_8042C36C = objPointerReadFromClumpAnim__FPc(lbl_802535A4);
 	if (lbl_8042C36C != 0 && lbl_8042C368 != 0) {
 		HAnim.SetHierarchyForAtomic((RpClump*)lbl_8042C350, (RpHAnimHierarchy*)lbl_8042C368);
 		*(u32*)lbl_8042C368 |= 0x3000;
@@ -1504,11 +1513,12 @@ extern "C" void InitEffTornado__Fv()
 		fn_8013F3A4(lbl_8042C368);
 	}
 
-	lbl_8042C374 = fn_8005EA04(lbl_802535B4);
+	lbl_8042C374 = objPointerReadFromClumpAnim__FPc(lbl_802535B4);
 	if (lbl_8042C374 != 0 && lbl_8042C370 != 0) {
-		void* material  = fn_8005E1DC(lbl_8042C350, 0, "ef_chbl");
+		void* material
+		    = objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(lbl_8042C350, 0, "ef_chbl");
 		lbl_80303F98[0] = lbl_8042C374;
-		fn_8005C014(material);
+		AtomicSetCustomFXTexture__FP8RpAtomicPv(material);
 		fn_801491A8(material);
 	}
 }

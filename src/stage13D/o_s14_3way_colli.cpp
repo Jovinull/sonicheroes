@@ -174,22 +174,22 @@ extern "C" StageCollisionTable* lbl_8042C298;
 extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void Error__7TObjectFPc(void);
-extern "C" void fn_800189A4(void*, TObject*);
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" IteratorResult* fn_800211A8(Transform*);
-extern "C" void fn_80021384(Transform*);
+extern "C" void CalcRange__7C_COLLIFv(Transform*);
 extern "C" void fn_80021824(void*);
-extern "C" void fn_8003BC38(Transform*);
-extern "C" void fn_8003C200(Transform*, const void*, s32, s32);
-extern "C" void dtor_8003C52C(Transform*, s32);
-extern "C" void fn_8003C618(Transform*);
+extern "C" void Entry__7C_COLLIFv(Transform*);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(Transform*, const void*, s32, s32);
+extern "C" void __dt__7C_COLLIFv(Transform*, s32);
+extern "C" void __ct__7C_COLLIFv(Transform*);
 extern "C" s32 fn_80041B64(void*);
-extern "C" s32 fn_8005B8BC(Motion*);
-extern "C" s32 fn_8005B8D8(Motion*);
-extern "C" s32 fn_8005B9F0(Motion*);
-extern "C" void fn_8005BC04(Motion*);
-extern "C" void dtor_8005BD3C(Motion*, s32);
-extern "C" void fn_8005BE6C(Motion*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+extern "C" void SetEnd__10TObjSetObjFv(Motion*);
+extern "C" void __dt__10TObjSetObjFv(Motion*, s32);
+extern "C" void __ct__10TObjSetObjFv(Motion*);
 extern "C" void fn_80063E7C(void*, s32);
 extern "C" PlayerData* fn_800924E4(void);
 
@@ -256,14 +256,15 @@ extern "C" void collisionRelease(CollisionObject* object)
 extern "C" void collisionExec(CollisionObject* object)
 {
 	CollisionParams* params = object->motion.frame->params;
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal |= 1;
 		return;
 	}
 	if (((s8*)lbl_8042C180)[0x1F] != 0) {
 		return;
 	}
-	if (fn_8005B8D8(&object->motion) != 0) {
+	if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		object->scale = *(Vec3*)&params->scaleX;
 		object->color = collisionDescriptor.colors[params->color];
 		return;
@@ -330,7 +331,7 @@ extern "C" void collisionExec(CollisionObject* object)
 	object->transform.angle.y          = ((Frame*)frame)->angle.y;
 	object->transform.angle.z          = ((Frame*)frame)->angle.z;
 	object->transform.angle.x          = ((Frame*)frame)->angle.x;
-	fn_8003BC38(&object->transform);
+	Entry__7C_COLLIFv(&object->transform);
 }
 
 extern "C" CollisionObject* collisionDtor(CollisionObject* object, s16 flags)
@@ -340,13 +341,13 @@ extern "C" CollisionObject* collisionDtor(CollisionObject* object, s16 flags)
 		object->motion.vtable = collisionVtable + 11;
 		collisionRelease(object);
 		if ((object->motion.frame->flags & 0x10000) != 0) {
-			fn_8005BC04(&object->motion);
+			SetEnd__10TObjSetObjFv(&object->motion);
 		}
-		dtor_8003C52C(&object->transform, 0);
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__7C_COLLIFv(&object->transform, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;
@@ -355,14 +356,14 @@ extern "C" CollisionObject* collisionDtor(CollisionObject* object, s16 flags)
 extern "C" CollisionObject* collisionCtor(CollisionObject* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
-	fn_8003C618(&object->transform);
+	__ct__10TObjSetObjFv(&object->motion);
+	__ct__7C_COLLIFv(&object->transform);
 	object->base.vtable   = collisionVtable;
 	object->motion.vtable = collisionVtable + 11;
 
 	Motion* motion          = &object->motion;
 	CollisionParams* params = motion->frame->params;
-	if (fn_8005B8D8(motion) != 0 && collisionZero == params->scaleX
+	if (OnEdit__10TObjSetObjFv(motion) != 0 && collisionZero == params->scaleX
 	    && collisionZero == params->scaleY && collisionZero == params->scaleZ) {
 		params->scaleX = collisionDefaultScale;
 		params->scaleY = collisionDefaultScale;
@@ -371,13 +372,13 @@ extern "C" CollisionObject* collisionCtor(CollisionObject* object, void* owner)
 	object->scale              = *(Vec3*)&params->scaleX;
 	object->color              = collisionDescriptor.colors[params->color];
 	object->allocatedCollision = NULL;
-	fn_8003C200(&object->transform, collisionShape, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&object->transform, collisionShape, 1, 4);
 
 	f32* size = (f32*)((u8*)object->transform.collision + 0x14);
 	size[0]   = collisionHalf * object->scale.x;
 	size[1]   = collisionHalf * object->scale.y;
 	size[2]   = collisionHalf * object->scale.z;
-	fn_80021384(&object->transform);
+	CalcRange__7C_COLLIFv(&object->transform);
 	*(u16*)((u8*)&object->transform + 8) &= ~0x40;
 	return object;
 }
@@ -417,7 +418,7 @@ public:
 
 extern "C" void collisionCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, sizeof(CollisionAllocation));
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(CollisionAllocation));
 	if (memory != NULL) {
 		new (memory) CollisionAllocation(lbl_8042C110);
 	}

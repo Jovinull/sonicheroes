@@ -116,7 +116,7 @@ extern void* lbl_1_data_2BB8;   // module table
 extern void* lbl_1_data_29F0;   // module init descriptor
 
 extern void* lbl_8042C388; // debug event flag word
-extern u8 lbl_8042C7E0[];  // story render/scene object
+extern u8 StoryManage[];   // story render/scene object
 extern u8 lbl_803E774C[];  // sound/anim controller object
 extern u8 lbl_80303EC8[];  // save/card controller object
 extern u8 lbl_8029C310[];  // scratch object
@@ -207,10 +207,10 @@ void fn_8012CC20(void*);
 void fn_8012CEF0(void*, f32);
 void fn_80126254(void);
 void fn_801262DC(void);
-int fn_80138994(void*, int, int);
-void fn_801384F0(void*, int);
+int CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(void*, int, int);
+void WarpSeqStep__11STORYMANAGEF18ACTIONSTAGE_NUMBER(void*, int);
 void fn_80138A9C(void*);
-void fn_80138C78(void*, int);
+void SetStory__11STORYMANAGEF10STORY_TYPE(void*, int);
 void fn_8013BBE0(void);
 void fn_8013BC78(void);
 void fn_80014154(void);
@@ -313,15 +313,15 @@ int fn_1_7314(AStory* self, int chapter)
 	(void)self;
 	switch (chapter) {
 		case 0:
-			return fn_80138994(lbl_8042C7E0, 0, 0);
+			return CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 0, 0);
 		case 1:
-			return fn_80138994(lbl_8042C7E0, 1, 0);
+			return CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 1, 0);
 		case 2:
-			return fn_80138994(lbl_8042C7E0, 2, 0);
+			return CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 2, 0);
 		case 3:
-			return fn_80138994(lbl_8042C7E0, 3, 0);
+			return CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 3, 0);
 		case 4:
-			return fn_80138994(lbl_8042C7E0, 4, 0);
+			return CheckStoryProgress__11STORYMANAGEF10STORY_TYPEi(StoryManage, 4, 0);
 	}
 	return 0;
 }
@@ -758,32 +758,33 @@ AStory* fn_1_8190(AStory* self, s16 flag)
 			fn_800A96B0(lbl_80303EC8, 0x18, 0);
 			switch (*(pg = &self->curPage)) {
 				case 0:
-					fn_80138C78(lbl_8042C7E0, 0);
+					SetStory__11STORYMANAGEF10STORY_TYPE(StoryManage, 0);
 					break;
 				case 1:
-					fn_80138C78(lbl_8042C7E0, 1);
+					SetStory__11STORYMANAGEF10STORY_TYPE(StoryManage, 1);
 					break;
 				case 2:
-					fn_80138C78(lbl_8042C7E0, 2);
+					SetStory__11STORYMANAGEF10STORY_TYPE(StoryManage, 2);
 					break;
 				case 3:
-					fn_80138C78(lbl_8042C7E0, 3);
+					SetStory__11STORYMANAGEF10STORY_TYPE(StoryManage, 3);
 					break;
 				case 4:
-					fn_80138C78(lbl_8042C7E0, 4);
+					SetStory__11STORYMANAGEF10STORY_TYPE(StoryManage, 4);
 					break;
 			}
 			if (self->curPage == 4 && fn_1_73D8(self) == 2) {
 				if (fn_1_7314(self, self->curPage) == 100) {
-					fn_80138A9C(lbl_8042C7E0);
+					fn_80138A9C(StoryManage);
 				}
 			} else if (fn_1_7314(self, *pg) == 100) {
 				if (*pg == 3 && lbl_1_data_294C[self->sel110[*pg]] == 8) {
-					fn_801384F0(lbl_8042C7E0, 0x24);
+					WarpSeqStep__11STORYMANAGEF18ACTIONSTAGE_NUMBER(StoryManage, 0x24);
 				} else if (*pg == 2 && lbl_1_data_294C[self->sel110[self->curPage]] == 2) {
-					fn_801384F0(lbl_8042C7E0, 0x19);
+					WarpSeqStep__11STORYMANAGEF18ACTIONSTAGE_NUMBER(StoryManage, 0x19);
 				} else {
-					fn_801384F0(lbl_8042C7E0, lbl_1_data_294C[self->sel110[self->curPage]]);
+					WarpSeqStep__11STORYMANAGEF18ACTIONSTAGE_NUMBER(
+					    StoryManage, lbl_1_data_294C[self->sel110[self->curPage]]);
 				}
 			}
 		}

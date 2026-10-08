@@ -88,7 +88,8 @@ extern "C" Node* fn_80020BD8(u8* list, s32 kind);
 extern "C" Node* fn_800211A8(u8* list);
 extern "C" void fn_80021824(u8* list);
 extern "C" s32 fn_80041B64(void* owner);
-extern "C" void fn_8005F3F0(s32* state, s32 player, s32 b, const Vec3* impulse, s32 c);
+extern "C" void objSetPlayerPosition__17OBJ_ReplacePlayerFiUcP5RwV3dP6sAngle(
+    s32* state, s32 player, s32 b, const Vec3* impulse, s32 c);
 extern "C" s32 fn_80091F54(Character* team, s32 player);
 extern "C" s32 fn_80091FAC(Character* team);
 extern "C" s32 fn_800927D0(Character* team, s32 slot);
@@ -166,7 +167,8 @@ static inline void springLaunchImpl(Spring* object)
 			}
 		}
 
-		fn_8005F3F0(&object->state, player, 0, &impulse, 0);
+		objSetPlayerPosition__17OBJ_ReplacePlayerFiUcP5RwV3dP6sAngle(
+		    &object->state, player, 0, &impulse, 0);
 		fn_800E0CC8(player, world.y, object->unkD4, object->unkC4);
 
 		object->hits[player] = 9;

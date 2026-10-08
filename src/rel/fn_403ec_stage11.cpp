@@ -188,8 +188,8 @@ extern u8 lbl_8042C1D0[];
 extern u8 lbl_8042C180[];
 extern u8 lbl_8042C298[];
 extern u8 lbl_8042C388[];
-extern u8 lbl_80239984[];
-extern u8 lbl_80239990[];
+extern u8 AxisY[];
+extern u8 AxisZ[];
 
 f32 fn_800D7B00(s32 range);
 u32 __cvt_fp2unsigned(f32 value);
@@ -199,21 +199,21 @@ void fn_8015BBF8(void* manager, void* resource);
 void fn_80150958(void* resource);
 void* fn_80150588(void* descriptor);
 void fn_8015BB08(void* manager, void* resource);
-void fn_80021384(void* object);
+void CalcRange__7C_COLLIFv(void* object);
 void fn_80195790(void* transform, void* matrix, f32 first, f32 second, s32 axis);
 void fn_8019E880(void* object);
 void fn_8019EC30(void* object, Vec3* value, s32 mode);
 void fn_8019EB94(void* object, Vec3* value, s32 mode);
-void* fn_8005DF98(void* object, void* child);
+void* objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(void* object, void* child);
 f32 fn_800D7AE4(s32 range);
-s32 fn_8005B9F0(void* object);
-s32 fn_8005B8BC(void* object);
-s32 fn_8005B8D8(void* object);
+s32 CheckRangeOut__10TObjSetObjFv(void* object);
+s32 CheckMustKill__10TObjSetObjFv(void* object);
+s32 OnEdit__10TObjSetObjFv(void* object);
 s32 objGroupAllActive(s32 index);
-s32 fn_80100C88(s32 index);
+s32 IsAnnihilated__19nEnemyCommunicationFUc(s32 index);
 void fn_800B4A38(void* sound, s32 id, Vec3* position, s32, s32, s32, s32);
-f32 fn_800D7328(f32 value, f32 target, f32 step);
-void fn_8003BC38(void* object);
+f32 AdjustFloat__Ffff(f32 value, f32 target, f32 step);
+void Entry__7C_COLLIFv(void* object);
 }
 
 extern "C" void fn_8_403EC(RuntimeState* self)
@@ -271,11 +271,12 @@ extern "C" void fn_8_40B34(RuntimeState* self);
 
 extern "C" void fn_8_40554(RuntimeState* self)
 {
-	if (fn_8005B9F0(&self->source) != 0 || fn_8005B8BC(&self->source) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&self->source) != 0
+	    || CheckMustKill__10TObjSetObjFv(&self->source) != 0) {
 		*(u16*)((u8*)self + 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8(&self->source) != 0) {
+	if (OnEdit__10TObjSetObjFv(&self->source) != 0) {
 		SourceTransform* source = self->source;
 		SourceInfo* info        = source->info;
 		self->position          = source->position;
@@ -300,7 +301,7 @@ extern "C" void fn_8_40554(RuntimeState* self)
 			groups += groupOffset;
 			if (*(void**)(groups + 0x30) != NULL && objGroupAllActive(self->index) == 0)
 				break;
-			if (fn_80100C88(self->index) == 0)
+			if (IsAnnihilated__19nEnemyCommunicationFUc(self->index) == 0)
 				break;
 			void* sound = *(void**)lbl_8042C388;
 			if (sound != NULL)
@@ -310,18 +311,18 @@ extern "C" void fn_8_40554(RuntimeState* self)
 		}
 		case 2: {
 			*(f32*)((u8*)self + 0xE8)
-			    = fn_800D7328(*(f32*)((u8*)self + 0xE8), lbl_8_rodata_A94, lbl_8_data_43C0);
+			    = AdjustFloat__Ffff(*(f32*)((u8*)self + 0xE8), lbl_8_rodata_A94, lbl_8_data_43C0);
 			f32 target  = lbl_8_rodata_A94;
 			f32 current = *(f32*)((u8*)self + 0xE8);
 			if (target == current) {
-				*(f32*)((u8*)self + 0xEC)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xEC), lbl_8_rodata_A94, lbl_8_data_43B0);
-				*(f32*)((u8*)self + 0xF0)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xF0), lbl_8_rodata_A94, lbl_8_data_43B4);
-				*(f32*)((u8*)self + 0xF4)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xF4), lbl_8_rodata_A94, lbl_8_data_43B8);
-				*(f32*)((u8*)self + 0xF8)
-				    = fn_800D7328(*(f32*)((u8*)self + 0xF8), lbl_8_rodata_A94, lbl_8_data_43BC);
+				*(f32*)((u8*)self + 0xEC) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xEC), lbl_8_rodata_A94, lbl_8_data_43B0);
+				*(f32*)((u8*)self + 0xF0) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xF0), lbl_8_rodata_A94, lbl_8_data_43B4);
+				*(f32*)((u8*)self + 0xF4) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xF4), lbl_8_rodata_A94, lbl_8_data_43B8);
+				*(f32*)((u8*)self + 0xF8) = AdjustFloat__Ffff(
+				    *(f32*)((u8*)self + 0xF8), lbl_8_rodata_A94, lbl_8_data_43BC);
 				if (lbl_8_rodata_A94
 				    == *(f32*)((u8*)self + 0xEC) + *(f32*)((u8*)self + 0xF0)
 				        + *(f32*)((u8*)self + 0xF4) + *(f32*)((u8*)self + 0xF8))
@@ -345,7 +346,7 @@ extern "C" void fn_8_40554(RuntimeState* self)
 			*(Vec3*)((u8*)self + 0xAC)   = *(Vec3*)((u8*)self + 0x90);
 			*(Vec3*)((u8*)self + 0x90)   = self->position;
 			*(Angle3*)((u8*)self + 0x9C) = self->rotation;
-			fn_8003BC38((u8*)self + 0x30);
+			Entry__7C_COLLIFv((u8*)self + 0x30);
 			break;
 		default:
 			break;
@@ -360,7 +361,7 @@ extern "C" void fn_8_40868(RuntimeState* self)
 	u8* root   = *(u8**)((u8*)self->resource + 4);
 	f32 second = fn_800D7B00(*(s32*)((u8*)self + 0xD0));
 	f32 first  = lbl_8_rodata_A98 - fn_800D7AE4(*(s32*)((u8*)self + 0xD0));
-	fn_80195790(root + 0x10, lbl_80239984, first, second, 0);
+	fn_80195790(root + 0x10, AxisY, first, second, 0);
 	fn_8019E880(root);
 
 	Vec3 value;
@@ -373,34 +374,34 @@ extern "C" void fn_8_40868(RuntimeState* self)
 	if (self->type == 1) {
 		second = fn_800D7B00(0x8000);
 		first  = lbl_8_rodata_A98 - fn_800D7AE4(0x8000);
-		fn_80195790(root + 0x10, lbl_80239990, first, second, 1);
+		fn_80195790(root + 0x10, AxisZ, first, second, 1);
 		fn_8019E880(root);
 	}
 
-	root = (u8*)fn_8005DF98(root, NULL);
+	root = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, NULL);
 	Vec3 offset;
 	offset.z = lbl_8_rodata_A94;
 	offset.x = lbl_8_rodata_A94;
-	u8* node = (u8*)fn_8005DF98(root, NULL);
+	u8* node = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, NULL);
 	offset.y = *(f32*)((u8*)self + 0xF8);
 	fn_8019EB94(node, &offset, 0);
-	node     = (u8*)fn_8005DF98(root, node);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, node);
 	offset.y = *(f32*)((u8*)self + 0xF4);
 	fn_8019EB94(node, &offset, 0);
-	node     = (u8*)fn_8005DF98(root, node);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, node);
 	offset.y = *(f32*)((u8*)self + 0xF0);
 	fn_8019EB94(node, &offset, 0);
-	node     = (u8*)fn_8005DF98(root, node);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, node);
 	offset.y = *(f32*)((u8*)self + 0xEC);
 	fn_8019EB94(node, &offset, 0);
 
 	u8* parent = node;
-	u8* child  = (u8*)fn_8005DF98(parent, NULL);
+	u8* child  = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(parent, NULL);
 	Vec3 childScale;
 	childScale.x = *(f32*)((u8*)self + 0xE8);
 	childScale.z = lbl_8_rodata_A98;
 	childScale.y = lbl_8_rodata_A98;
-	node         = (u8*)fn_8005DF98(parent, child);
+	node         = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(parent, child);
 	Vec3 childPosition;
 	childPosition.x = *(f32*)(node + 0x40);
 	childPosition.y = *(f32*)(node + 0x44);
@@ -408,14 +409,14 @@ extern "C" void fn_8_40868(RuntimeState* self)
 	fn_8019EC30(node, &childScale, 0);
 	fn_8019EB94(node, &childPosition, 2);
 
-	node            = (u8*)fn_8005DF98(parent, node);
+	node            = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(parent, node);
 	childPosition.x = *(f32*)(node + 0x40);
 	childPosition.y = *(f32*)(node + 0x44);
 	childPosition.z = *(f32*)(node + 0x48);
 	fn_8019EC30(node, &childScale, 0);
 	fn_8019EB94(node, &childPosition, 2);
 
-	node     = (u8*)fn_8005DF98(root, parent);
+	node     = (u8*)objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(root, parent);
 	offset.y = lbl_8_rodata_A94;
 	fn_8019EB94(node, &offset, 0);
 }
@@ -490,7 +491,7 @@ extern "C" void fn_8_40B34(RuntimeState* self)
 			break;
 		}
 	}
-	fn_80021384((u8*)self + 0x30);
+	CalcRange__7C_COLLIFv((u8*)self + 0x30);
 #undef MODEL
 }
 

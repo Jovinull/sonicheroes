@@ -41,35 +41,35 @@ extern float lbl_8_rodata_D04;
 extern float lbl_8_rodata_D08;
 extern float lbl_8_rodata_D0C;
 extern float lbl_8_rodata_D10;
-extern char lbl_80239978[];
-extern char lbl_80239984[];
-extern char lbl_80239990[];
+extern char AxisX[];
+extern char AxisY[];
+extern char AxisZ[];
 
-void* fn_80018A34(void*, u32);
-void* fn_80057644(u32);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void* __nw__FUl(u32);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
 void __dl__FPv(void*);
-void fn_800189A4(void*, void*);
-void fn_8005BE6C(...);
-void fn_8003C618(...);
+void Free__9THeapCtrlFPv(void*, void*);
+void __ct__10TObjSetObjFv(...);
+void __ct__7C_COLLIFv(...);
 void fn_8003BF04(...);
-void dtor_8003C52C(...);
-void dtor_8005BD3C(...);
+void __dt__7C_COLLIFv(...);
+void __dt__10TObjSetObjFv(...);
 void* fn_80150588(...);
 void fn_8015BB08(...);
 void fn_8015BBF8(...);
 void fn_80150958(void*);
-void fn_8005D5C8(...);
-void* fn_8005EA04(void*);
-void* fn_8005E410(void*, s32, void*);
-f32 fn_800D7328(f32, f32, f32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(...);
+void* objPointerReadFromClumpAnim__FPc(void*);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(void*, s32, void*);
+f32 AdjustFloat__Ffff(f32, f32, f32);
 void fn_8_49630();
 void fn_8_497B0(...);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-s32 fn_8005B8D8(void*);
-void fn_8003BC38(...);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
+void Entry__7C_COLLIFv(...);
 void fn_8019ED68(...);
 void fn_8019EC30(...);
 void fn_8019EB94(...);
@@ -77,8 +77,8 @@ void fn_80194234(...);
 void fn_80194294(...);
 extern void fn_801942C0(s32 mode, void* verts, s32 count);
 void fn_801AF914(s32);
-void fn_800A7594(...);
-void* fn_8005EC0C(void);
+void fn_800A7594__Fv(...);
+void* objRwTexDictionaryGetPointer__Fv(void);
 void* fn_801A4BBC(...);
 void* fn_8_4B14C(void*, s16, void*, int, int, void*);
 void* fn_8_4D0CC(void*, void*);
@@ -125,7 +125,7 @@ extern "C" void fn_8_4A4CC(int group, int type, int subtype, void* data)
 		return;
 	if (lbl_8_data_4E28[group] == NULL) {
 		void* parent = lbl_8042C2A0 != NULL ? lbl_8042C2A0 : lbl_8042C110;
-		void* object = fn_80018A34(lbl_8042C148, 0x40);
+		void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x40);
 		if (object != NULL) {
 			__ct__7TObjectFP7TObject(object, parent);
 			field<void*>(object, 0x18) = lbl_8_data_4F54;
@@ -141,7 +141,7 @@ extern "C" void fn_8_4A4CC(int group, int type, int subtype, void* data)
 		}
 	}
 	if (lbl_8_data_4E28[group] != NULL) {
-		void* particle = fn_80057644(0x3C);
+		void* particle = __nw__FUl(0x3C);
 		if (particle != NULL)
 			fn_8_4B14C(particle, 1, lbl_8_data_4E28[group], type, subtype, data);
 	}
@@ -190,7 +190,7 @@ extern "C" void fn_8_4AAE8(void* self)
 			field<int>(self, 0x28) = 2;
 	} else if (state == 2) {
 		field<float>(self, 0x34)
-		    = fn_800D7328(field<float>(self, 0x34), lbl_8_rodata_CDC, lbl_8_rodata_CE0);
+		    = AdjustFloat__Ffff(field<float>(self, 0x34), lbl_8_rodata_CDC, lbl_8_rodata_CE0);
 		if (field<float>(self, 0x34) <= lbl_8_rodata_CDC)
 			field<int>(self, 0x28) = 3;
 	} else if (state == 3) {
@@ -246,7 +246,7 @@ extern "C" void* fn_8_4AD60(void* self, s16 flags)
 		}
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -274,7 +274,7 @@ extern "C" void fn_8_4AF64(float x, float y, float radius, void* particle)
 		return;
 	float bounds[4] = { x - radius, x + radius, y - radius, y + radius };
 	fn_801942C0(4, bounds, 4);
-	fn_800A7594();
+	fn_800A7594__Fv();
 }
 extern "C" void fn_8_4B064() { }
 
@@ -329,7 +329,7 @@ extern "C" void fn_8_4B684()
 {
 	for (int i = 0; i < 4; i++)
 		lbl_8_data_4E28[i] = NULL;
-	void* archive = fn_8005EC0C();
+	void* archive = objRwTexDictionaryGetPointer__Fv();
 	for (int i = 0; i < 13; i++) {
 		if (lbl_8_data_4EAC[i * 2 + 1] != NULL)
 			lbl_8_data_4EAC[i * 2] = fn_801A4BBC(archive);
@@ -375,7 +375,7 @@ static void drawGoalRingModel(void* self)
 	if (resource == NULL)
 		return;
 	void* model = field<void*>(resource, 4);
-	fn_8019ED68(field<float>(self, 0xDC), model, lbl_80239984, 0);
+	fn_8019ED68(field<float>(self, 0xDC), model, AxisY, 0);
 	Vec3 scale = { field<float>(self, 0xD8), lbl_8_rodata_CF0, field<float>(self, 0xD8) };
 	fn_8019EC30(model, &scale, 2);
 	fn_8019EB94(model, (u8*)self + 0xBC, 2);
@@ -384,11 +384,11 @@ static void drawGoalRingModel(void* self)
 extern "C" void fn_8_4BD90(void* self)
 {
 	void* placement = (u8*)self + 0x28;
-	if (fn_8005B9F0(placement) || fn_8005B8BC(placement)) {
+	if (CheckRangeOut__10TObjSetObjFv(placement) || CheckMustKill__10TObjSetObjFv(placement)) {
 		field<u16>(self, 4) |= 1;
 		return;
 	}
-	if (fn_8005B8D8(placement)) {
+	if (OnEdit__10TObjSetObjFv(placement)) {
 		field<Vec3>(self, 0xBC) = field<Vec3>(field<void*>(self, 0x28), 0);
 		field<Vec3>(self, 0xC8) = field<Vec3>(field<void*>(self, 0x28), 0xC);
 		drawGoalRingModel(self);
@@ -407,7 +407,7 @@ extern "C" void fn_8_4BD90(void* self)
 		field<Vec3>(self, 0xAC) = field<Vec3>(self, 0x90);
 		field<Vec3>(self, 0x90) = field<Vec3>(self, 0xBC);
 		field<Vec3>(self, 0x9C) = field<Vec3>(self, 0xC8);
-		fn_8003BC38((u8*)self + 0x30);
+		Entry__7C_COLLIFv((u8*)self + 0x30);
 	} else if (state == 2) {
 		if (field<float>(self, 0xD8) <= lbl_8_rodata_CE8)
 			return;
@@ -418,7 +418,7 @@ extern "C" void fn_8_4BD90(void* self)
 			field<float>(self, 0xE8) += lbl_8_rodata_CF0;
 		}
 		field<float>(self, 0xD8)
-		    = fn_800D7328(field<float>(self, 0xD8), lbl_8_rodata_CE8, lbl_8_rodata_D10);
+		    = AdjustFloat__Ffff(field<float>(self, 0xD8), lbl_8_rodata_CE8, lbl_8_rodata_D10);
 	}
 	drawGoalRingModel(self);
 }
@@ -441,11 +441,11 @@ extern "C" void* fn_8_4CFB4(void* self, s16 flags)
 		}
 		fn_80150958(field<void*>(self, 0xFC));
 		field<void*>(self, 0xFC) = NULL;
-		dtor_8003C52C((u8*)self + 0x30, 0);
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -453,8 +453,8 @@ extern "C" void* fn_8_4CFB4(void* self, s16 flags)
 extern "C" void* fn_8_4D0CC(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C((u8*)self + 0x28);
-	fn_8003C618((u8*)self + 0x30);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
+	__ct__7C_COLLIFv((u8*)self + 0x30);
 	field<void*>(self, 0x18) = lbl_8_data_5024;
 	field<void*>(self, 0)    = lbl_8_data_5014;
 	field<u16>(self, 0x1E)   = 0x100;
@@ -491,18 +491,19 @@ extern "C" void goalRingUnload()
 
 extern "C" void goalRingLoad()
 {
-	lbl_8_bss_C08 = fn_8005EA04(lbl_8_data_5060);
-	lbl_8_bss_C0C = fn_8005EA04(lbl_8_data_5074);
-	lbl_8_bss_C10 = fn_8005EA04(lbl_8_data_5088);
-	lbl_8_bss_C14 = fn_8005EA04(lbl_8_data_509C);
+	lbl_8_bss_C08 = objPointerReadFromClumpAnim__FPc(lbl_8_data_5060);
+	lbl_8_bss_C0C = objPointerReadFromClumpAnim__FPc(lbl_8_data_5074);
+	lbl_8_bss_C10 = objPointerReadFromClumpAnim__FPc(lbl_8_data_5088);
+	lbl_8_bss_C14 = objPointerReadFromClumpAnim__FPc(lbl_8_data_509C);
 	if (lbl_8_bss_C14 != NULL)
-		lbl_8_data_4FB8[0] = fn_8005E410(lbl_8_bss_C14, 0, 0);
+		lbl_8_data_4FB8[0] = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8_bss_C14, 0, 0);
 	fn_8_497B0();
 }
 
 extern "C" void goalRingCreate()
 {
-	void* object = fn_80018A34(lbl_8042C148, 0x100);
+	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x100);
 	if (object != NULL)
 		fn_8_4D0CC(object, lbl_8042C110);
 }

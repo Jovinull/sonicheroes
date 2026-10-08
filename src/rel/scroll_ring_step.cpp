@@ -30,7 +30,7 @@ struct ScrollRing {
 #define SCROLL_RING_PARKED 2
 
 extern "C" f32 fn_801991B4(void* animation);
-extern "C" void fn_8005C16C(void* motion, s32 mode);
+extern "C" void CheckGroundCollision__16OBJ_MoveOnGroundFUi(void* motion, s32 mode);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const f32 scrollRingStopped;
@@ -43,5 +43,5 @@ extern "C" void scrollRingStep(ScrollRing* object)
 		object->scroll += scrollRingDrift;
 	}
 
-	fn_8005C16C(object->motion, 768);
+	CheckGroundCollision__16OBJ_MoveOnGroundFUi(object->motion, 768);
 }

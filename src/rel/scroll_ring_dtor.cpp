@@ -25,12 +25,12 @@
 
 extern "C" void* lbl_8042C148;
 
-extern "C" void dtor_8003C52C(void* volume, s32 flags);
-extern "C" void dtor_8005BD3C(void* motion, s32 flags);
+extern "C" void __dt__7C_COLLIFv(void* volume, s32 flags);
+extern "C" void __dt__10TObjSetObjFv(void* motion, s32 flags);
 extern "C" void __dt__7TObjectFv(void* object, s32 flags);
 extern "C" void __destroy_new_array(void* array, void (*destructor)(void*, int));
 extern "C" void scrollRingFieldDtor(void*, int);
-extern "C" void fn_800189A4(void* heap, void* object);
+extern "C" void Free__9THeapCtrlFPv(void* heap, void* object);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" void* scrollRingVtableA[];
@@ -45,7 +45,7 @@ extern "C" void* scrollRingDtor(void* object, s16 flags)
 		*(void**)(base + 0x18) = scrollRingVtableA;
 		*(void**)(base + 0x54) = scrollRingVtableA + 0xC;
 
-		dtor_8003C52C(base + 0x58, 0);
+		__dt__7C_COLLIFv(base + 0x58, 0);
 
 		if (object != NULL) {
 			*(void**)(base + 0x18) = scrollRingVtableB;
@@ -57,7 +57,7 @@ extern "C" void* scrollRingDtor(void* object, s16 flags)
 				*(u8*)(base + 0x28)    = 0;
 			}
 
-			dtor_8005BD3C(base + 0x50, 0);
+			__dt__10TObjSetObjFv(base + 0x50, 0);
 
 			if (object != NULL) {
 				*(void**)(base + 0x18) = scrollRingVtableC;
@@ -73,7 +73,7 @@ extern "C" void* scrollRingDtor(void* object, s16 flags)
 		}
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 		}
 	}
 	return object;

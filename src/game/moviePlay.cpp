@@ -3,8 +3,8 @@ typedef int s32;
 extern "C" {
 void fn_800421C8(void*, void*);
 void fn_80042310(void*, void*);
-void fn_800A7614();
-void fn_800A75E0();
+void fn_800A7614__Fv();
+void fn_800A75E0__Fv();
 
 extern unsigned char lbl_8042C1C0;
 extern unsigned char lbl_8042BC80;
@@ -96,7 +96,7 @@ void MOVIE_PLAY::End()
 {
 	MoviePlay.end();
 	fn_800421C8(&lbl_8042C1C0, &lbl_8042BC80);
-	fn_800A7614();
+	fn_800A7614__Fv();
 
 	MoviePlay.init         = 0;
 	MoviePlay.end          = 0;
@@ -109,6 +109,6 @@ void MOVIE_PLAY::Init()
 {
 	loop = 0;
 	fn_80042310(&lbl_8042C1C0, &lbl_8042BC80);
-	fn_800A75E0();
+	fn_800A75E0__Fv();
 	MoviePlay.init();
 }

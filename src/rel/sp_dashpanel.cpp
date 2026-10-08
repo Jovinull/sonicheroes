@@ -34,8 +34,8 @@ void __dl__10TObjSampleFPv(void*);
 void __dl__FPv(void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void fn_8005BE6C(void*);
-void dtor_8005BD3C(void*, s16);
+void __ct__10TObjSetObjFv(void*);
+void __dt__10TObjSetObjFv(void*, s16);
 void fn_16_93C3C(void*);
 void fn_16_93BE8(void*, s32);
 void fn_16_4DF58(void*);
@@ -107,7 +107,7 @@ extern "C" SpDashpanelObject* fn_16_801A4(SpDashpanelObject* object, s16 flags)
 		fn_16_4DF58((u8*)object + 0x68);
 		fn_16_4DEC8((u8*)object + 0x68);
 		fn_16_93BE8((u8*)object + 0x30, 0);
-		dtor_8005BD3C((u8*)object + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)object + 0x28, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
 			__dl__10TObjSampleFPv(object);
@@ -118,7 +118,7 @@ extern "C" SpDashpanelObject* fn_16_801A4(SpDashpanelObject* object, s16 flags)
 extern "C" SpDashpanelObject* fn_16_8025C(SpDashpanelObject* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(object, owner);
-	fn_8005BE6C((u8*)object + 0x28);
+	__ct__10TObjSetObjFv((u8*)object + 0x28);
 	fn_16_93C3C((u8*)object + 0x30);
 	copyVec3(&object->position, object->motion);
 	fn_16_6B5C(object->rotation, (u8*)object->motion + 0xC);

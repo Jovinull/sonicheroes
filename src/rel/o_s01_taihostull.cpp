@@ -48,7 +48,7 @@ struct TObject {
 	~TObject();
 };
 
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void* lbl_8042C148;
 
 struct TObjS01Stull : TObject {
@@ -59,61 +59,64 @@ struct TObjS01Stull : TObject {
 
 	TObjS01Stull(TObject*);
 	~TObjS01Stull();
-	static void* operator new(unsigned long size) { return fn_80018A34(lbl_8042C148, size); }
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
 };
 
 extern "C" {
 void* S01RenderCallback(void*);
 void* fn_8014F1B0(void*);
-RenderDescriptor* fn_8005F490(void*);
-s32 fn_8005D3DC(void*, f32);
+RenderDescriptor* RpAtomicMCCGetCustomRenderCallBack(void*);
+s32 objRpAtomicCheckFromCamera__FP8RpAtomicf(void*, f32);
 void fn_800B864C(void*);
 void fn_8019EC30(void*, Vec3*, s32);
 void fn_8019ED68(void*, void*, f32, s32);
 void fn_8019EB94(void*, void*, s32);
-extern void* lbl_80239978;
-extern void* lbl_80239984;
-extern void* lbl_80239990;
+extern void* AxisX;
+extern void* AxisY;
+extern void* AxisZ;
 
 void fn_80150958(void*);
 void* __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
-void fn_8003C618(void*);
+void __ct__10TObjSetObjFv(void*);
+void __ct__7C_COLLIFv(void*);
 void* fn_80150588(void*);
 extern void* lbl_8042C1D0;
 void fn_8015BB08(void*, void*);
-void fn_8005CC94(void*, f32);
+void objRpClumpForAllAtomicsToSetRenderCallbackToCheckFromCamera__FP7RpClumpf(void*, f32);
 void fn_8014FFBC(void*, void (*)(RenderObject*), s32);
 void fn_801A4C84(void*);
 extern void* lbl_8042C298;
 extern u8 lbl_8029C310[];
 extern char lbl_802FF5A0[];
-void fn_800BC9F4(void*, char*);
+void LoadOneFile__7ONEFILEFPc(void*, char*);
 s32 strcmp(char*, char*);
 char* strcpy(char*, const char*);
-s32 fn_800BC6CC(void*, s32);
-void* fn_800BB92C(void*, s32, char*);
+s32 CheckFileID__7ONEFILEFPc(void*, s32);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, char*);
 void fn_800B8BEC(void*, s32);
 extern void* lbl_8042C110;
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
-void fn_8003C200(void*, void*, s32, s32);
-void fn_80021384(void*);
-void fn_8003BC38(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
+void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
+void CalcRange__7C_COLLIFv(void*);
+void Entry__7C_COLLIFv(void*);
 extern void* lbl_8042C180;
 extern void* lbl_802D5E80;
 extern void* lbl_8042C148;
-void fn_8005303C(void*);
-void fn_80053114(void*);
+void DisableAll__6CLIGHTFv(void*);
+void RestoreAll__6CLIGHTFv(void*);
 void fn_800B85D8(void*);
-void fn_8005CE4C(void*);
+void objRpClumpForAllAtomicsRenderNearCamera__FP7RpClump(void*);
 void* fn_8015BD78(void*);
 void fn_8015BBF8(void*, void*);
-void dtor_8003C52C(void*, s32);
-void dtor_8005BD3C(void*, s32);
+void __dt__7C_COLLIFv(void*, s32);
+void __dt__10TObjSetObjFv(void*, s32);
 void __dt__7TObjectFv(void*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void Disp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -143,8 +146,8 @@ extern "C" void S01SetRenderCallback(RenderObject* object)
 
 extern "C" void* S01RenderCallback(void* object)
 {
-	RenderDescriptor* descriptor = fn_8005F490(object);
-	if (fn_8005D3DC(object, descriptor->index) == 1)
+	RenderDescriptor* descriptor = RpAtomicMCCGetCustomRenderCallBack(object);
+	if (objRpAtomicCheckFromCamera__FP8RpAtomicf(object, descriptor->index) == 1)
 		return object;
 	fn_800B864C(object);
 	descriptor->callback(object);
@@ -160,9 +163,9 @@ static inline void SetStullPosition(TObjS01Stull* object)
 	scale.y      = params[0];
 	scale.z      = params[0];
 	fn_8019EC30(atomic, &scale, 0);
-	fn_8019ED68(atomic, &lbl_80239984, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x10), 2);
-	fn_8019ED68(atomic, &lbl_80239978, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x0C), 2);
-	fn_8019ED68(atomic, &lbl_80239990, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x14), 2);
+	fn_8019ED68(atomic, &AxisY, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x10), 2);
+	fn_8019ED68(atomic, &AxisX, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x0C), 2);
+	fn_8019ED68(atomic, &AxisZ, 0.0054931640625f * *(s32*)(*(u8**)object->motion + 0x14), 2);
 	fn_8019EB94(atomic, *(u8**)object->motion, 2);
 }
 
@@ -173,26 +176,27 @@ extern "C" void SetPosition__12TObjS01StullFv(TObjS01Stull* object)
 extern "C" void TDisp__12TObjS01StullFv(TObjS01Stull* object)
 {
 	if (*(s8*)((u8*)lbl_8042C180 + 0x20) == 0) {
-		fn_8005303C(&lbl_802D5E80);
+		DisableAll__6CLIGHTFv(&lbl_802D5E80);
 		fn_800B85D8(object->resource);
-		fn_8005CE4C(object->resource);
-		fn_80053114(&lbl_802D5E80);
+		objRpClumpForAllAtomicsRenderNearCamera__FP7RpClump(object->resource);
+		RestoreAll__6CLIGHTFv(&lbl_802D5E80);
 	}
 }
 extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 {
 	f32* params = *(f32**)(*(u8**)object->motion + 0x2C);
-	if (fn_8005B9F0(object->motion) != 0 || fn_8005B8BC(object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(object->motion) != 0) {
 		*(u16*)((u8*)object + 4) |= 1;
 		return;
 	}
 
-	if (fn_8005B8D8(object->motion) != 0) {
+	if (OnEdit__10TObjSetObjFv(object->motion) != 0) {
 		SetStullPosition(object);
 	} else {
 		if (*(void**)((u8*)object + 0x40) == NULL && stullClump != NULL
 		    && *(void**)((u8*)stullClump + 0x28) != NULL) {
-			fn_8003C200(object->collision, *(void**)((u8*)stullClump + 0x28),
+			Init__7C_COLLIFP8CCL_INFOiUc(object->collision, *(void**)((u8*)stullClump + 0x28),
 			    *(s8*)((u8*)stullClump + 0x2C), 4);
 			*(u16*)((u8*)object + 0x38) &= ~0x40;
 			for (s8 i = 0; i < *(s8*)((u8*)stullClump + 0x2C); i++) {
@@ -201,7 +205,7 @@ extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 				vertex[6] *= params[0];
 				vertex[7] *= params[0];
 			}
-			fn_80021384(object->collision);
+			CalcRange__7C_COLLIFv(object->collision);
 		}
 
 		u8* frame                   = *(u8**)object->motion;
@@ -214,7 +218,7 @@ extern "C" void Exec__12TObjS01StullFv(TObjS01Stull* object)
 		*(u32*)((u8*)object + 0x9C) = *(u32*)(frame + 0x0C);
 		*(u32*)((u8*)object + 0xA0) = *(u32*)(frame + 0x10);
 		*(u32*)((u8*)object + 0xA4) = *(u32*)(frame + 0x14);
-		fn_8003BC38(object->collision);
+		Entry__7C_COLLIFv(object->collision);
 	}
 }
 extern "C" TObjS01Stull* __dt__12TObjS01StullFv(TObjS01Stull* object, s16 flags)
@@ -229,19 +233,19 @@ extern "C" TObjS01Stull* __dt__12TObjS01StullFv(TObjS01Stull* object, s16 flags)
 			fn_80150958(object->resource);
 			object->resource = NULL;
 		}
-		dtor_8003C52C(object->collision, 0);
-		dtor_8005BD3C(object->motion, 0);
+		__dt__7C_COLLIFv(object->collision, 0);
+		__dt__10TObjSetObjFv(object->motion, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }
 TObjS01Stull::TObjS01Stull(TObject* parent)
     : TObject(parent)
 {
-	fn_8005BE6C(motion);
-	fn_8003C618(collision);
+	__ct__10TObjSetObjFv(motion);
+	__ct__7C_COLLIFv(collision);
 	vtable                    = stullVtable;
 	*(void***)(motion + 4)    = stullVtable + 11;
 	f32* params               = *(f32**)(*(u8**)motion + 0x2C);
@@ -252,7 +256,7 @@ TObjS01Stull::TObjS01Stull(TObject* parent)
 	if (params[0] == 0.0f)
 		params[0] = 1.0f;
 	SetStullPosition(this);
-	fn_8005CC94(resource, 0.0f);
+	objRpClumpForAllAtomicsToSetRenderCallbackToCheckFromCamera__FP7RpClumpf(resource, 0.0f);
 	fn_8014FFBC(resource, S01SetRenderCallback, 0);
 }
 
@@ -289,7 +293,7 @@ extern "C" void initObjS01Stull()
 		return;
 	}
 
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	StageResource* entry = lbl_3_data_B4AC;
 	void* stage          = *(void**)(lbl_8029C310 + 0x34);
 	while (entry->stage >= 0) {
@@ -301,8 +305,9 @@ extern "C" void initObjS01Stull()
 		entry = lbl_3_data_B4AC;
 	if (strcmp(entry->name, stullEmpty) == 0)
 		strcpy(entry->name, lbl_802FF5A0);
-	s32 asset     = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), entry->asset);
-	stullResource = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), asset, entry->name);
+	s32 asset = CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), entry->asset);
+	stullResource
+	    = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50), asset, entry->name);
 	if (stullResource != NULL)
 		fn_800B8BEC(stullResource, 0);
 	stullClump = entry;

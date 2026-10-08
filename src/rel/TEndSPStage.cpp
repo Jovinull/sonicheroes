@@ -122,11 +122,11 @@ void fn_16_8DE9C();
 void fn_16_93BE8(void* object, int flags);
 void fn_16_93C3C(void* object);
 
-int fn_8005B8BC(void* motion);
-int fn_8005B8D8(void* motion);
-void fn_8003C200(void* collision, void* info, int one, int four);
+int CheckMustKill__10TObjSetObjFv(void* motion);
+int OnEdit__10TObjSetObjFv(void* motion);
+void Init__7C_COLLIFP8CCL_INFOiUc(void* collision, void* info, int one, int four);
 void fn_80019898(void* stage, int value);
-void fn_80021384(void* collision);
+void CalcRange__7C_COLLIFv(void* collision);
 void fn_80021824(void* collision);
 
 extern void* lbl_8042C180;
@@ -233,7 +233,7 @@ void TEndSPStage::Exec()
 	CollisionInfo* info;
 	SETDATA_PARAM* stageObject;
 
-	if (fn_8005B8BC(((RawTEndSPStage*)this)->base + 0x28)) {
+	if (CheckMustKill__10TObjSetObjFv(((RawTEndSPStage*)this)->base + 0x28)) {
 		markSampleForDeletion(this);
 		return;
 	}
@@ -241,7 +241,7 @@ void TEndSPStage::Exec()
 	if (fn_16_F20(lbl_8042C180, 0x1F))
 		return;
 
-	if (fn_8005B8D8((u8*)goalRing + 0x28)) {
+	if (OnEdit__10TObjSetObjFv((u8*)goalRing + 0x28)) {
 		SetGoalRingParam();
 		ringScale = *member;
 
@@ -255,16 +255,16 @@ void TEndSPStage::Exec()
 	}
 
 	if (fn_16_7738(((RawTEndSPStage*)this)->base + 0x30, 0) == 0) {
-		fn_8003C200(((RawTEndSPStage*)this)->base + 0x30, sColInfo, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(((RawTEndSPStage*)this)->base + 0x30, sColInfo, 1, 4);
 		info          = fn_16_7738(((RawTEndSPStage*)this)->base + 0x30, 0);
 		info->scale.x = TEndSPStageConstants[0] * ringScale.x;
 		info->scale.y = TEndSPStageConstants[0] * ringScale.y;
 		info->scale.z = TEndSPStageConstants[0] * ringScale.z;
-		fn_80021384(((RawTEndSPStage*)this)->base + 0x30);
+		CalcRange__7C_COLLIFv(((RawTEndSPStage*)this)->base + 0x30);
 		fn_16_DB4(((RawTEndSPStage*)this)->base + 0x30);
 	}
 
-	if (!fn_8005B8D8((u8*)goalRing + 0x28)) {
+	if (!OnEdit__10TObjSetObjFv((u8*)goalRing + 0x28)) {
 		fn_80021824(lbl_8042C1A4);
 		if (fn_16_D10(((RawTEndSPStage*)this)->base + 0x30)) {
 			if (fn_16_67EDC() != 0) {

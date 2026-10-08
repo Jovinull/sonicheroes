@@ -39,56 +39,56 @@ typedef struct TObject {
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(void*, void*);                      /* extern */
-void* __dt__7TObjectFv(void*, s32);                                /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                             /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                             /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                                /* extern */
-u32 fn_80018A34(s32, M2C_UNK);                                     /* extern */
-M2C_UNK fn_80021384(M2C_UNK*, ...);                                /* extern */
-M2C_UNK fn_8003BC38(void*);                                        /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);         /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                     /* extern */
-s32 fn_8005B8BC(s32);                                              /* extern */
-s32 fn_8005B8D8(M2C_UNK*);                                         /* extern */
-s32 fn_8005B9F0(s32);                                              /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                                     /* extern */
-M2C_UNK fn_8005D5C8(s32, s32);                                     /* extern */
-M2C_UNK fn_800B4A38(u32, s32, f32*, M2C_UNK, M2C_UNK, s8, M2C_UNK); /* extern */
-u32 fn_800BB0D4(s32, s32, M2C_UNK*);                               /* extern */
-u32 fn_800BB92C(s32, s32, M2C_UNK*);                               /* extern */
-s32 fn_800BC6CC(s32, M2C_UNK*);                                    /* extern */
-M2C_UNK fn_800BC9F4(s32, M2C_UNK*);                                /* extern */
-f32 fn_800D7AE4(s32);                                              /* extern */
-f32 fn_800D7B00(s32);                                              /* extern */
-M2C_UNK fn_8013F3A4(void*);                                        /* extern */
-void* fn_8013F484(s32);                                            /* extern */
-M2C_UNK fn_8013FC30(void*);                                        /* extern */
-M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);          /* extern */
-s32 fn_80150588(u32);                                              /* extern */
-M2C_UNK fn_80150958(void*);                                        /* extern */
-M2C_UNK fn_8015BB08(s32, void*);                                   /* extern */
-M2C_UNK fn_8015BBF8(s32);                                          /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);             /* extern */
-M2C_UNK fn_8019E880(s32);                                          /* extern */
-M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);            /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                           /* extern */
-M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                           /* extern */
-M2C_UNK fn_801A4C84(u32);                                          /* extern */
-M2C_UNK fn_8020C2D8(void*);                                        /* extern */
-M2C_UNK fn_8020C72C(void**, u32);                                  /* extern */
-M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                        /* extern */
-M2C_UNK fn_8020D02C(void**, f32, f32);                             /* extern */
-M2C_UNK fn_80226440(void*, s32);                                   /* extern */
-u32 fn_80226468(s32);                                              /* extern */
-TObject* fn_8_C46C4(TObject* arg0, TObject* arg1);                 /* static */
-void* fn_8_C4AA8(void* arg0, s32 arg1);                            /* static */
-s32 fn_8_C4B58(s32 arg0, void** arg1);                             /* static */
-void treeObjectCreate();                                           /* static */
-void treeObjectLoad();                                             /* static */
-void treeObjectUnload();                                           /* static */
-extern M2C_UNK lbl_80239984;
-extern M2C_UNK lbl_80239990;
+void* __ct__7TObjectFP7TObject(void*, void*);                                         /* extern */
+void* __dt__7TObjectFv(void*, s32);                                                   /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                             /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                                         /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                           /* extern */
+u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                              /* extern */
+M2C_UNK CalcRange__7C_COLLIFv(M2C_UNK*, ...);                                         /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                                                     /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);           /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                                   /* extern */
+s32 CheckMustKill__10TObjSetObjFv(s32);                                               /* extern */
+s32 OnEdit__10TObjSetObjFv(M2C_UNK*);                                                 /* extern */
+s32 CheckRangeOut__10TObjSetObjFv(s32);                                               /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                               /* extern */
+M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(s32, s32); /* extern */
+M2C_UNK fn_800B4A38(u32, s32, f32*, M2C_UNK, M2C_UNK, s8, M2C_UNK);                   /* extern */
+u32 LoadHAnimationEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                              /* extern */
+u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                                   /* extern */
+s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);                                          /* extern */
+M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);                                      /* extern */
+f32 fn_800D7AE4(s32);                                                                 /* extern */
+f32 fn_800D7B00(s32);                                                                 /* extern */
+M2C_UNK fn_8013F3A4(void*);                                                           /* extern */
+void* fn_8013F484(s32);                                                               /* extern */
+M2C_UNK fn_8013FC30(void*);                                                           /* extern */
+M2C_UNK fn_8014FFBC(void*, void* (*)(void*, s32), void*);                             /* extern */
+s32 fn_80150588(u32);                                                                 /* extern */
+M2C_UNK fn_80150958(void*);                                                           /* extern */
+M2C_UNK fn_8015BB08(s32, void*);                                                      /* extern */
+M2C_UNK fn_8015BBF8(s32);                                                             /* extern */
+M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);                                /* extern */
+M2C_UNK fn_8019E880(s32);                                                             /* extern */
+M2C_UNK fn_8019EB10(s32, s32 (*)(s32, void**), void**);                               /* extern */
+M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                                              /* extern */
+M2C_UNK fn_8019EC30(s32, f32*, M2C_UNK);                                              /* extern */
+M2C_UNK fn_801A4C84(u32);                                                             /* extern */
+M2C_UNK fn_8020C2D8(void*);                                                           /* extern */
+M2C_UNK fn_8020C72C(void**, u32);                                                     /* extern */
+M2C_UNK fn_8020CC18(void**, M2C_UNK*, f32);                                           /* extern */
+M2C_UNK fn_8020D02C(void**, f32, f32);                                                /* extern */
+M2C_UNK fn_80226440(void*, s32);                                                      /* extern */
+u32 fn_80226468(s32);                                                                 /* extern */
+TObject* fn_8_C46C4(TObject* arg0, TObject* arg1);                                    /* static */
+void* fn_8_C4AA8(void* arg0, s32 arg1);                                               /* static */
+s32 fn_8_C4B58(s32 arg0, void** arg1);                                                /* static */
+void treeObjectCreate();                                                              /* static */
+void treeObjectLoad();                                                                /* static */
+void treeObjectUnload();                                                              /* static */
+extern M2C_UNK AxisY;
+extern M2C_UNK AxisZ;
 extern M2C_UNK lbl_802FF5A0;
 extern TObject* lbl_8042C110;
 extern s32 lbl_8042C148;
@@ -96,14 +96,14 @@ extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 extern u32 lbl_8042C388;
-static u32 lbl_8_data_18298[2] = { 0U, 0U };
-static char lbl_8_data_182A0[] = "scale(def:1.0)";
-static char lbl_8_data_182B0[] = "direction : up";
+static u32 lbl_8_data_18298[2]       = { 0U, 0U };
+static char lbl_8_data_182A0[]       = "scale(def:1.0)";
+static char lbl_8_data_182B0[]       = "direction : up";
 static char* treeObjectFieldNames[2] = { lbl_8_data_182A0, lbl_8_data_182B0 };
-static char lbl_8_data_182C8[] = "direction : down";
+static char lbl_8_data_182C8[]       = "direction : down";
 static M2C_UNK gap_04_000182D9_data; /* unable to generate initializer: unknown type */
-static char* lbl_8_data_182DC[2]     = { lbl_8_data_182B0, lbl_8_data_182C8 };
-static u32 lbl_8_data_182E4[12]     = { 0x0008FFE0, 0x00000002, 0x00000000, 0x418C0000, 0x00000000,
+static char* lbl_8_data_182DC[2] = { lbl_8_data_182B0, lbl_8_data_182C8 };
+static u32 lbl_8_data_182E4[12]  = { 0x0008FFE0, 0x00000002, 0x00000000, 0x418C0000, 0x00000000,
 	0x41700000, 0x418C0000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
 static M2C_UNK lbl_8_data_18314;     /* unable to generate initializer: unknown type */
 static M2C_UNK gap_04_0001831D_data; /* unable to generate initializer: unknown type */
@@ -173,7 +173,7 @@ void fn_8_C3FF8(void* arg0)
 	temp_r4 = M2C_FIELD(arg0, M2C_UNK**, 0x40);
 	M2C_FIELD(temp_r4, f32*, 0x18)
 	    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0x18) * M2C_FIELD(arg0, f32*, 0xD0));
-	fn_80021384((M2C_UNK*)((u8*)arg0 + 0x30), temp_r4, lbl_8_data_182E4,
+	CalcRange__7C_COLLIFv((M2C_UNK*)((u8*)arg0 + 0x30), temp_r4, lbl_8_data_182E4,
 	    M2C_FIELD(lbl_8_data_182E4, f32*, 0x18));
 }
 
@@ -218,8 +218,8 @@ void fn_8_C4108(void* arg0)
 	void* temp_r4;
 	void* var_r27;
 
-	if ((fn_8005B9F0((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (fn_8005B8BC((s32)((u32)arg0 + 0x28)) != 0)) {
+	if ((CheckRangeOut__10TObjSetObjFv((s32)((u8*)arg0 + 0x28)) != 0)
+	    || (CheckMustKill__10TObjSetObjFv((s32)((u32)arg0 + 0x28)) != 0)) {
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -229,7 +229,7 @@ void fn_8_C4108(void* arg0)
 	temp_f31 = (f32)temp_r0 - (temp_f30 * (f32)(s32)((f32)temp_r0 / temp_f30));
 	fn_8020D02C(temp_r3, temp_f31 / lbl_8_rodata_1F2C[0], lbl_8_rodata_1F2C[0]);
 	fn_8013FC30(M2C_FIELD(arg0, void**, 0xE0));
-	if (fn_8005B8D8((M2C_UNK*)((u8*)arg0 + 0x28)) != 0) {
+	if (OnEdit__10TObjSetObjFv((M2C_UNK*)((u8*)arg0 + 0x28)) != 0) {
 		temp_r3_2                   = M2C_FIELD(arg0, void**, 0x28);
 		temp_r4                     = M2C_FIELD(temp_r3_2, void**, 0x2C);
 		M2C_FIELD(arg0, f32*, 0xB8) = (f32)M2C_FIELD(temp_r3_2, f32*, 0);
@@ -253,13 +253,13 @@ void fn_8_C4108(void* arg0)
 			temp_r28 = M2C_FIELD(M2C_FIELD(var_r27, void**, 0xD8), s32*, 4);
 			fn_8019EB94(temp_r28, (f32*)((u8*)arg0 + 0xB8), 0);
 			temp_f31_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+			fn_80195790(temp_r28 + 0x10, &AxisY,
 			    lbl_8_rodata_1F28[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31_2, 1);
 			fn_8019E880(temp_r28);
 			if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 				temp_f31_3 = fn_800D7B00(0x8000);
-				fn_80195790(temp_r28 + 0x10, &lbl_80239990,
-				    lbl_8_rodata_1F28[0] - fn_800D7AE4(0x8000), temp_f31_3, 1);
+				fn_80195790(temp_r28 + 0x10, &AxisZ, lbl_8_rodata_1F28[0] - fn_800D7AE4(0x8000),
+				    temp_f31_3, 1);
 				fn_8019E880(temp_r28);
 			}
 			fn_8019EC30(temp_r28, &sp8, 1);
@@ -288,7 +288,7 @@ void fn_8_C4108(void* arg0)
 	M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0xC4);
 	M2C_FIELD(arg0, s32*, 0xA0) = (s32)M2C_FIELD(arg0, s32*, 0xC8);
 	M2C_FIELD(arg0, s32*, 0xA4) = (s32)M2C_FIELD(arg0, s32*, 0xCC);
-	fn_8003BC38((void*)((u8*)arg0 + 0x30));
+	Entry__7C_COLLIFv((void*)((u8*)arg0 + 0x30));
 }
 
 void fn_8_C4474(void* arg0)
@@ -311,13 +311,13 @@ void fn_8_C4474(void* arg0)
 		temp_r28 = M2C_FIELD(M2C_FIELD(var_r30, void**, 0xD8), s32*, 4);
 		fn_8019EB94(temp_r28, (f32*)((u8*)arg0 + 0xB8), 0);
 		temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &lbl_80239984,
+		fn_80195790(temp_r28 + 0x10, &AxisY,
 		    lbl_8_rodata_1F28[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
 		fn_8019E880(temp_r28);
 		if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r28 + 0x10, &lbl_80239990, lbl_8_rodata_1F28[0] - fn_800D7AE4(0x8000),
-			    temp_f31_2, 1);
+			fn_80195790(
+			    temp_r28 + 0x10, &AxisZ, lbl_8_rodata_1F28[0] - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r28);
 		}
 		fn_8019EC30(temp_r28, sp8, 1);
@@ -349,11 +349,11 @@ TObject* fn_8_C45B4(TObject* arg0, s16 arg1)
 			var_r31 += 4;
 			var_r30 += 1;
 		} while (var_r30 < 2);
-		dtor_8003C52C((void*)((u8*)arg0 + 0x30), 0);
-		dtor_8005BD3C((void*)((u8*)arg0 + 0x28), 0);
+		__dt__7C_COLLIFv((void*)((u8*)arg0 + 0x30), 0);
+		__dt__10TObjSetObjFv((void*)((u8*)arg0 + 0x28), 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -380,8 +380,8 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 	void* temp_r4;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8005BE6C(&arg0->unk28);
-	fn_8003C618(&arg0->unk30);
+	__ct__10TObjSetObjFv(&arg0->unk28);
+	__ct__7C_COLLIFv(&arg0->unk30);
 	arg0->unk18 = &lbl_8_data_18324;
 	arg0->unk2C = (u8*)&lbl_8_data_18324 + 0x2C;
 	arg0->unk0  = lbl_8_data_18320;
@@ -409,7 +409,8 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 		} else {
 			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x7284), arg0->unkDC);
 		}
-		fn_8005D5C8(*(u32*)((u8*)arg0 + var_r31 + 0xD8),
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+		    *(u32*)((u8*)arg0 + var_r31 + 0xD8),
 		    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U) + 4);
 		var_r28 += 1;
 		var_r31 += 4;
@@ -441,19 +442,19 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 		temp_r31 = M2C_FIELD(*(u32*)((u8*)arg0 + var_r27 + 0xD8), s32*, 4);
 		fn_8019EB94(temp_r31, &arg0->unkB8, 0);
 		temp_f31 = fn_800D7B00(arg0->unkC8);
-		fn_80195790(temp_r31 + 0x10, &lbl_80239984, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
+		fn_80195790(temp_r31 + 0x10, &AxisY, 1.0f - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
 		fn_8019E880(temp_r31);
 		if ((s32)arg0->unkD4 == 1) {
 			temp_f31_2 = fn_800D7B00(0x8000);
-			fn_80195790(temp_r31 + 0x10, &lbl_80239990, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
+			fn_80195790(temp_r31 + 0x10, &AxisZ, 1.0f - fn_800D7AE4(0x8000), temp_f31_2, 1);
 			fn_8019E880(temp_r31);
 		}
 		fn_8019EC30(temp_r31, spC, 1);
 		var_r27 += 4;
 		var_r28_2 += 1;
 	} while (var_r28_2 < 2);
-	if (fn_8005B8D8(&arg0->unk28) == 0) {
-		fn_8003C200(&arg0->unk30, (int*)lbl_8_data_182E4, 1, 4);
+	if (OnEdit__10TObjSetObjFv(&arg0->unk28) == 0) {
+		Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk30, (int*)lbl_8_data_182E4, 1, 4);
 		if ((s32)arg0->unkD4 == 1) {
 			M2C_FIELD(arg0->unk40, f32*, 0xC)
 			    = (f32)(-M2C_FIELD(lbl_8_data_182E4, f32*, 0xC) * arg0->unkD0);
@@ -465,7 +466,7 @@ TObject* fn_8_C46C4(TObject* arg0, TObject* arg1)
 		    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0x14) * arg0->unkD0);
 		M2C_FIELD(arg0->unk40, f32*, 0x18)
 		    = (f32)(M2C_FIELD(lbl_8_data_182E4, f32*, 0x18) * arg0->unkD0);
-		fn_80021384(&arg0->unk30, lbl_8_data_182E4,
+		CalcRange__7C_COLLIFv(&arg0->unk30, lbl_8_data_182E4,
 		    M2C_BITWISE(M2C_UNK*, M2C_FIELD(lbl_8_data_182E4, f32*, 0x18)));
 	}
 	return arg0;
@@ -531,14 +532,17 @@ void treeObjectUnload(void)
 		lis r3, lbl_8_data_18298@ha
 		addi var_r30, r3, lbl_8_data_18298@l
 	}
-	do {
+	do
+	{
 		if ((u32)*var_r30 != 0U) {
 			fn_80150958((void*)*var_r30);
 			*var_r30 = 0U;
 		}
 		var_r30 += 1;
 		var_r29 += 1;
-	} while (var_r29 < 2);
+	}
+	while (var_r29 < 2)
+		;
 	{
 		register u32 temp_r3;
 		asm {
@@ -546,7 +550,8 @@ void treeObjectUnload(void)
 			addi r3, r3, lbl_8_bss_1C44@l
 			lwz temp_r3, 0(r3)
 		}
-		if (temp_r3 != 0U) {
+		if (temp_r3 != 0U)
+		{
 			fn_8020C2D8((void*)temp_r3);
 			asm {
 				li r0, 0
@@ -568,17 +573,18 @@ void treeObjectLoad(void)
 		return;
 	}
 	temp_r31 = M2C_FIELD(lbl_8042C298, s32*, 0xA50);
-	fn_800BC9F4(temp_r31, &lbl_802FF5A0);
-	M2C_FIELD(&lbl_8_data_18298, u32*, 0)
-	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, (int*)lbl_8_data_18360), &lbl_802FF5A0);
-	M2C_FIELD(&lbl_8_data_18298, u32*, 4)
-	    = fn_800BB92C(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18370), &lbl_802FF5A0);
-	lbl_8_bss_1C44 = fn_800BB0D4(temp_r31, fn_800BC6CC(temp_r31, &lbl_8_data_18384), &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(temp_r31, &lbl_802FF5A0);
+	M2C_FIELD(&lbl_8_data_18298, u32*, 0) = LoadClumpEx__7ONEFILEFUiPc(
+	    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, (int*)lbl_8_data_18360), &lbl_802FF5A0);
+	M2C_FIELD(&lbl_8_data_18298, u32*, 4) = LoadClumpEx__7ONEFILEFUiPc(
+	    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, &lbl_8_data_18370), &lbl_802FF5A0);
+	lbl_8_bss_1C44 = LoadHAnimationEx__7ONEFILEFUiPc(
+	    temp_r31, CheckFileID__7ONEFILEFPc(temp_r31, &lbl_8_data_18384), &lbl_802FF5A0);
 }
 
 void treeObjectCreate(void)
 {
-	TObject* object = (TObject*)fn_80018A34(lbl_8042C148, 0xE4);
+	TObject* object = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE4);
 	if (object != NULL) {
 		fn_8_C46C4(object, lbl_8042C110);
 	}

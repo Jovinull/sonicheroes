@@ -1,0 +1,337 @@
+#!/usr/bin/env python3
+"""Order miscs.cpp's existing scalar atoms; never change instruction bytes.
+
+The whole C++ unit is reconstructed, but six scalar atoms (32 of the 64 pool
+bytes) have a measured ordering remainder. Only those compiler-owned atoms
+and their symbol values move; instruction bytes never change. See
+docs/miscs-constant-order.md. Hashes
+and the relocation contract describe compiler output, not replacement bytes.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import io
+import json
+import os
+from pathlib import Path
+import stat
+import struct
+import tempfile
+
+
+class _Entry(dict):
+    """A header/symbol/relocation record: fields by key, plus a name."""
+
+    name = ""
+
+
+_SHT = {0: "SHT_NULL", 1: "SHT_PROGBITS", 2: "SHT_SYMTAB", 3: "SHT_STRTAB", 4: "SHT_RELA", 8: "SHT_NOBITS", 9: "SHT_REL"}
+_STT = {0: "STT_NOTYPE", 1: "STT_OBJECT", 2: "STT_FUNC", 3: "STT_SECTION", 4: "STT_FILE"}
+_STB = {0: "STB_LOCAL", 1: "STB_GLOBAL", 2: "STB_WEAK"}
+_SHN = {0: "SHN_UNDEF", 0xFFF1: "SHN_ABS", 0xFFF2: "SHN_COMMON"}
+# HASH, DYNAMIC, NOTE, DYNSYM, SYMTAB_SHNDX, RELR, GNU hash/version, ARM/RISC-V attributes
+_UNREAD_KINDS = {5, 6, 7, 11, 18, 19, 0x6FFFFFF6, 0x6FFFFFFD, 0x6FFFFFFE, 0x6FFFFFFF, 0x70000003}
+
+
+def _string(raw: bytes, table_offset: int, offset: int) -> str:
+    """pyelftools' get_string: read from the file, not the section; '' if unterminated."""
+    position = table_offset + offset
+    end = raw.find(bytes(1), position)
+    if position >= len(raw) or end < 0:
+        return ""
+    return raw[position:end].decode("utf-8", errors="replace")
+
+
+class _Section(_Entry):
+    def __init__(self, elf: "ELFFile", fields: dict):
+        super().__init__(fields)
+        self.elf = elf
+
+    def data(self) -> bytes:
+        if self["sh_type"] == "SHT_NOBITS":
+            return b""
+        return self.elf.raw[self["sh_offset"]:self["sh_offset"] + self["sh_size"]]
+
+    def _entry(self, index: int, fmt: str) -> tuple:
+        offset = self["sh_offset"] + index * self["sh_entsize"]
+        return struct.unpack_from(fmt, self.elf.raw, offset)
+
+    def get_symbol(self, index: int):
+        if self["sh_type"] != "SHT_SYMTAB":
+            raise AttributeError("not a symbol table")
+        name, value, size, info, other, shndx = self._entry(index, ">IIIBBH")
+        symbol = _Entry(st_name=name, st_value=value, st_size=size, st_other=other,
+                        st_info={"bind": _STB.get(info >> 4, info >> 4), "type": _STT.get(info & 15, info & 15)},
+                        st_shndx=_SHN.get(shndx, shndx))
+        symbol.name = _string(self.elf.raw, self.elf.sections[self["sh_link"]]["sh_offset"], name)
+        return symbol
+
+    def iter_symbols(self):
+        if self["sh_type"] != "SHT_SYMTAB":
+            raise AttributeError("not a symbol table")
+        for index in range(self["sh_size"] // self["sh_entsize"]):
+            yield self.get_symbol(index)
+
+    def iter_relocations(self):
+        if self["sh_type"] not in ("SHT_REL", "SHT_RELA"):
+            raise AttributeError("not a relocation section")
+        for index in range(self["sh_size"] // self["sh_entsize"]):
+            r_offset, info, addend = self._entry(index, ">IIi")
+            yield _Entry(r_offset=r_offset, r_info=info, r_info_sym=info >> 8, r_info_type=info & 255, r_addend=addend)
+
+
+class ELFFile:
+    """The part of pyelftools' ELFFile this step reads, from the standard library.
+
+    The build container ships plain python3 only, and every other post-processor
+    is stdlib-only. Field names, the string spellings of section types, symbol
+    types and special section indices, and the way strings and table entries are
+    read follow pyelftools 0.33, so the validation below behaves as it did
+    against the real library (checked by flipping every bit of a native object).
+    """
+
+    def __init__(self, stream):
+        self.raw = raw = stream.read()
+        if raw[:4] != b"\x7fELF":
+            raise ValueError("Magic number does not match")
+        if raw[4] not in (1, 2):
+            raise ValueError("Invalid EI_CLASS")
+        if raw[5] not in (1, 2):
+            raise ValueError("Invalid EI_DATA")
+        self.elfclass = 32 if raw[4] == 1 else 64
+        self.little_endian = raw[5] == 1
+        if self.elfclass != 32 or self.little_endian:
+            raise ValueError("only ELF32 big-endian objects are read here")
+        e_type, e_machine = struct.unpack_from(">HH", raw, 16)
+        shoff, = struct.unpack_from(">I", raw, 32)
+        shentsize, shnum, shstrndx = struct.unpack_from(">HHH", raw, 46)
+        self.header = {"e_type": {1: "ET_REL"}.get(e_type, e_type),
+                       "e_machine": {20: "EM_PPC"}.get(e_machine, e_machine)}
+        keys = ("sh_name", "sh_type", "sh_flags", "sh_addr", "sh_offset", "sh_size",
+                "sh_link", "sh_info", "sh_addralign", "sh_entsize")
+        self.sections = []
+        for index in range(shnum):
+            fields = dict(zip(keys, struct.unpack_from(">10I", raw, shoff + index * shentsize)))
+            fields["sh_type"] = _SHT.get(fields["sh_type"], fields["sh_type"])
+            self.sections.append(_Section(self, fields))
+        names = struct.unpack_from(">10I", raw, shoff + shstrndx * shentsize)[4]
+        for section in self.sections:
+            section.name = _string(raw, names, section["sh_name"])
+        for section in self.sections:
+            self._construct(section)
+
+    def _construct(self, section: _Section) -> None:
+        """pyelftools validates these when it builds a section object, and it
+        builds every section as soon as any are iterated. Section kinds it would
+        parse specially but this step never reads are refused outright."""
+        kind = section["sh_type"]
+        if section["sh_flags"] & 0x800:
+            raise ValueError("compressed sections are not read here")
+        if kind == "SHT_SYMTAB":
+            if self.sections[section["sh_link"]]["sh_type"] != "SHT_STRTAB":
+                raise ValueError("SHT_SYMTAB section does not point at a SHT_STRTAB")
+            if not section["sh_entsize"] or section["sh_size"] % section["sh_entsize"]:
+                raise ValueError("symbol table size is not a multiple of its entry size")
+        elif kind in ("SHT_REL", "SHT_RELA"):
+            if section["sh_entsize"] != (12 if kind == "SHT_RELA" else 8):
+                raise ValueError("unexpected relocation entry size")
+        elif kind in _UNREAD_KINDS:
+            raise ValueError(f"section type {kind:#x} is not read here")
+
+    def __getitem__(self, key):
+        return self.header[key]
+
+    def iter_sections(self):
+        return iter(self.sections)
+
+    def get_section_by_name(self, name: str):
+        return next((section for section in self.sections if section.name == name), None)
+
+
+INPUT_HASH = "75558a6359de276575e7a311ec33adb29e3e355b60c27a51173f72da163d6140"
+OUTPUT_HASH = "374d1993f7787e45e924c777214eaef26809b678cd322edbf242f5f40c35fe8d"
+RELOCATION_HASH = "1ed0666921f10dda1e3872985a9f9f1ece5085e3a3b84d8de8dc20742c9847b4"
+ALLOCATED = {
+    ".text": (4144, "6c9e903857c8392b6f34878585add9d902c0208e2ec602d204bb633fd4ca5b4f"),
+    "extab": (56, "74a2dedbb91e9640ab494790addb76ae897bdc1b78b01c6ae4a88b108ff650cd"),
+    "extabindex": (84, "75f56bb063c9e6157aeace73f0fb5c0411776b83aa837230de17c6f5fbf02d3c"),
+    ".bss": (262216, None),
+    ".sdata2": (64, None),
+}
+SECTION_METADATA = {".text": (6, 4), "extab": (2, 4), "extabindex": (2, 4),
+                    ".bss": (3, 8), ".sdata2": (3, 8)}
+FUNCTIONS = {
+    "njInitSinTable__Fv": (0, 192),
+    "DistanceP2SegL__FP5RwV3dP5RwV3dP5RwV3dP5RwV3d": (192, 644),
+    "GetSclXZ__FifPfPf": (836, 56),
+    "CalcV2_TimeGP__FP5RwV3dP5RwV3dffP5RwV3dP5RwV3dPiPi": (892, 1020),
+    "CalcV2_Time__FP5RwV3dP5RwV3dffP5RwV3dPi": (1912, 968),
+    "CalcV2__FP5RwV3dP5RwV3dffP5RwV3d": (2880, 940),
+    "DrawSphere___FP5RwV3df": (3820, 4),
+    "DrawLine___FP5RwV3dP6RwRGBA": (3824, 212),
+    "SetPlayerYAngle__Fi": (4036, 8),
+    "CmpAngleRelative__Fii": (4044, 16),
+    "GetYangle__Fff": (4060, 84),
+}
+# old offset, new offset, size; the four existing alignment bytes stay put.
+ATOMS = ((0, 0, 4), (4, 4, 4), (8, 8, 4), (16, 16, 8),
+         (24, 32, 4), (28, 36, 4), (32, 40, 8), (40, 48, 8),
+         (48, 28, 4), (52, 24, 4), (56, 56, 4), (60, 60, 4))
+TOTAL_RELOCATIONS = 103
+POOL_REFERENCES = 66
+
+
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise ValueError(message)
+
+
+def inspect(data: bytes):
+    """Validate both native and already-normalized objects before any write."""
+    elf = ELFFile(io.BytesIO(data))
+    require(elf.elfclass == 32 and not elf.little_endian
+            and elf["e_type"] == "ET_REL" and elf["e_machine"] == "EM_PPC",
+            "expected ELF32 big-endian PowerPC relocatable")
+    sections = list(elf.iter_sections())
+    require(len({s.name for s in sections}) == len(sections), "duplicate section names")
+    allocated = {s.name: s for s in sections if s["sh_flags"] & 2 and s["sh_size"]}
+    require(set(allocated) == set(ALLOCATED), "unexpected allocated sections")
+    for name, (size, expected) in ALLOCATED.items():
+        sec = allocated[name]
+        require((sec["sh_flags"], sec["sh_addralign"]) == SECTION_METADATA[name],
+                f"unexpected {name} flags/alignment")
+        require(sec["sh_size"] == size, f"unexpected {name} size")
+        require((sec["sh_type"] == "SHT_NOBITS") == (name == ".bss"),
+                f"unexpected {name} section type")
+        if expected:
+            require(digest(sec.data()) == expected, f"unexpected {name} bytes")
+    pool = allocated[".sdata2"]
+    pool_hash = digest(pool.data())
+    require(pool_hash in (INPUT_HASH, OUTPUT_HASH), "unexpected scalar pool")
+    done = pool_hash == OUTPUT_HASH
+    pool_index = next(i for i, s in enumerate(sections) if s.name == ".sdata2")
+    table = elf.get_section_by_name(".symtab")
+    require(table is not None and table["sh_entsize"] == 16, "invalid symbol table")
+    symbols = list(table.iter_symbols())
+    functions = [symbol for symbol in symbols
+                 if symbol["st_info"]["type"] == "STT_FUNC"
+                 and isinstance(symbol["st_shndx"], int)]
+    require(len(functions) == len(FUNCTIONS)
+            and {symbol.name: (symbol["st_value"], symbol["st_size"]) for symbol in functions} == FUNCTIONS
+            and all(sections[symbol["st_shndx"]].name == ".text" for symbol in functions),
+            "unexpected defined function inventory")
+    expected_atoms = {(new if done else old): (old, new, size) for old, new, size in ATOMS}
+    seen = set()
+    changes = []
+    for i, symbol in enumerate(symbols):
+        if symbol["st_shndx"] != pool_index:
+            continue
+        if symbol["st_info"]["type"] == "STT_SECTION":
+            require(symbol["st_value"] == 0 and symbol["st_size"] == 0,
+                    "invalid pool section symbol")
+            continue
+        value = symbol["st_value"]
+        require(value in expected_atoms and value not in seen, "unexpected scalar symbol")
+        old, new, size = expected_atoms[value]
+        require(symbol["st_info"]["type"] == "STT_OBJECT" and symbol["st_size"] == size,
+                "unexpected scalar extent/type")
+        seen.add(value)
+        if not done and old != new:
+            changes.append((table["sh_offset"] + i * 16 + 4, new))
+    require(seen == set(expected_atoms), "missing scalar symbols")
+    normalized = []
+    pool_refs = 0
+    for sec in sections:
+        require(sec["sh_type"] != "SHT_REL", "unexpected implicit-addend relocations")
+        if sec["sh_type"] != "SHT_RELA":
+            continue
+        require(sec["sh_entsize"] == 12 and sections[sec["sh_link"]].name == ".symtab",
+                "unexpected relocation table")
+        owner = sections[sec["sh_info"]]
+        require(owner.name != ".sdata2", "relocation source inside scalar pool")
+        for relocation in sec.iter_relocations():
+            symbol = symbols[relocation["r_info_sym"]]
+            index = symbol["st_shndx"]
+            target_offset = symbol["st_value"] + relocation["r_addend"]
+            if index == pool_index:
+                require(owner.name == ".text" and relocation["r_info_type"] == 109
+                        and symbol["st_info"]["type"] == "STT_OBJECT"
+                        and relocation["r_addend"] == 0,
+                        "unexpected scalar relocation shape")
+                target_offset = expected_atoms[target_offset][0]
+                pool_refs += 1
+            target = ([sections[index].name, target_offset] if isinstance(index, int)
+                      else [symbol.name, relocation["r_addend"]])
+            normalized.append([owner.name, relocation["r_offset"],
+                               relocation["r_info_type"], target])
+    require(len(normalized) == TOTAL_RELOCATIONS and pool_refs == POOL_REFERENCES,
+            "unexpected relocation inventory")
+    relocation_hash = digest(json.dumps(sorted(normalized), separators=(",", ":")).encode())
+    require(relocation_hash == RELOCATION_HASH, "unexpected relocation destinations/sites")
+    return done, pool["sh_offset"], changes
+
+
+def normalize(data: bytes) -> bytes:
+    try:
+        done, offset, changes = inspect(data)
+        if done:
+            return data
+        result = bytearray(data)
+        pool = data[offset:offset + 64]
+        # Permute exclusively the bytes already generated by the compiler.
+        result[offset:offset + 64] = pool[:24] + pool[52:56] + pool[48:52] + pool[24:48] + pool[56:64]
+        for position, value in changes:
+            struct.pack_into(">I", result, position, value)
+        output = bytes(result)
+        require(inspect(output)[0], "output contract failed")
+        return output
+    except ValueError:
+        raise
+    except Exception as error:
+        raise ValueError(f"malformed or unsupported object: {error}") from error
+
+
+def fix(path: Path) -> bool:
+    original = path.read_bytes()
+    output = normalize(original)
+    if output == original:
+        return False
+    mode = stat.S_IMODE(path.stat().st_mode)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(prefix=f".{path.name}.", dir=path.parent, delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(output)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+        temporary = None
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+    return True
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("object", type=Path)
+    parser.add_argument("stamp", type=Path, nargs="?", help="touch only after successful validation")
+    args = parser.parse_args()
+    try:
+        changed = fix(args.object)
+        if args.stamp is not None:
+            args.stamp.parent.mkdir(parents=True, exist_ok=True)
+            args.stamp.touch()
+    except (ValueError, OSError) as error:
+        parser.exit(1, f"miscs object normalization rejected: {error}\n")
+    print("miscs scalar atoms reordered" if changed else "miscs object already normalized")
+
+
+if __name__ == "__main__":
+    main()

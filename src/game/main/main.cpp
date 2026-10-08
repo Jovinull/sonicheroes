@@ -1,3 +1,4 @@
+#include "game/miscs.h"
 typedef unsigned int u32;
 typedef unsigned char u8;
 typedef signed char s8;
@@ -66,20 +67,19 @@ void CARDInit();
 void fn_80112F80();
 void fn_800B654C();
 void fn_8001D70C();
-void fn_8001F4D8();
+void InitMatrix__Fv();
 void fn_8011253C();
 int DVDOpen(const char*, DVDFileInfo*);
 void* fn_80012994(u32);
 int DVDReadPrio(DVDFileInfo*, void*, int, int, int);
 void OSSetStringTable(void*);
 void DVDClose(DVDFileInfo*);
-void fn_800D7B18();
 void fn_80116D30(void*);
 void fn_80040198(void*);
-void fn_80066ED8(void*, int);
+void InitGParam__7G_PARAMF11GPARAM_INIT(void*, int);
 void fn_800D0AA8();
 void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(TMainTask*, int, int);
-void fn_800A7614();
+void fn_800A7614__Fv();
 void fn_80112F10();
 int fn_80011D64();
 int fn_80011DD8(void*);
@@ -89,7 +89,7 @@ void fn_800B6C64();
 void* fn_801784C8(void*, void*);
 void fn_8022CEB0();
 void fn_80016E88(void*);
-void fn_800CE010();
+void RemoveLangMessage__Fv();
 void fn_800D09C4();
 void fn_8004014C(void*);
 void __dt__10MODESWITCHFv(void*, int);
@@ -103,7 +103,7 @@ int fn_80159FB8();
 int fn_8013ECE0();
 int fn_80226338();
 int fn_80149018();
-int fn_8005F710();
+int RpAtomicMCCPluginAttach();
 int fn_8014DB38();
 int fn_801FC470();
 int fn_8013D78C();
@@ -111,14 +111,14 @@ int fn_8020C044();
 int fn_8014A90C();
 int fn_8023944C();
 int fn_8022D8EC();
-void fn_800A7A44();
+void getRidOfRwCameraMemoryLeakBugAndDefaultFontSet__Fv();
 void fn_80112F74();
 void fn_800A92CC(void*, int, int);
 void fn_800B429C(void*);
 void fn_800CD528();
-void fn_800A74BC(int);
-int fn_801386C4(void*);
-int fn_80138664(void*);
+void fn_800A74BC__Fi(int);
+int CheckCurrentSeqType__11STORYMANAGEFv(void*);
+int CurrentMovieNumber__11STORYMANAGEFv(void*);
 extern TMainTask* lbl_8042C180;
 extern char lbl_803E774C[];
 extern char lbl_8042C1BC;
@@ -128,11 +128,11 @@ extern char lbl_8029C2E4[];
 extern char lbl_80303EC8[];
 extern char lbl_803EC340[];
 extern char lbl_8029C310[];
-extern Module* lbl_80253068[];
-extern int lbl_8042B320;
-extern Module* lbl_8042C338;
+extern Module* mobject_table__7MObject[];
+extern int module_number__7MObject;
+extern Module* pCurrent_MObject__7MObject;
 extern void* lbl_8042C388;
-extern char lbl_8042C7E0;
+extern char StoryManage;
 extern RsGlobal lbl_8029BB80;
 extern char lbl_802409C8[];
 extern char lbl_802409F4[];
@@ -169,7 +169,7 @@ static inline int AttachPlugins()
 		return MAIN_FALSE;
 	if (!fn_80149018())
 		return MAIN_FALSE;
-	if (!fn_8005F710())
+	if (!RpAtomicMCCPluginAttach())
 		return MAIN_FALSE;
 	if (!fn_8014DB38())
 		return MAIN_FALSE;
@@ -239,7 +239,7 @@ extern "C" RsEventStatus AppEventHandler(unsigned event, void* param)
 		case 13:
 			return Initialize3D(param) ? rsEVENTPROCESSED : rsEVENTERROR;
 		case 14:
-			fn_800CE010();
+			RemoveLangMessage__Fv();
 			fn_800D09C4();
 			fn_8004014C(&lbl_8042C1BC);
 			while (lbl_8042C180) {
@@ -291,7 +291,7 @@ void MAIN::Init()
 	fn_80112F80();
 	fn_800B654C();
 	fn_8001D70C();
-	fn_8001F4D8();
+	InitMatrix__Fv();
 	fn_8011253C();
 
 	DVDFileInfo file;
@@ -303,13 +303,13 @@ void MAIN::Init()
 		DVDClose(&file);
 	}
 
-	fn_800D7B18();
+	njInitSinTable();
 	fn_80116D30(lbl_803E774C);
 	fn_80040198(&lbl_8042C1BC);
-	fn_80066ED8(&lbl_8042C308, 0);
+	InitGParam__7G_PARAMF11GPARAM_INIT(&lbl_8042C308, 0);
 	fn_800D0AA8();
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x13, ((s8*)lbl_8042C180)[0x13]);
-	fn_800A7614();
+	fn_800A7614__Fv();
 	fn_8011253C();
 	fn_80112F10();
 }
@@ -318,10 +318,10 @@ enum MOBJECT_TYPE { MOBJECT_0, MOBJECT_1, MOBJECT_2, MOBJECT_3 };
 
 static inline void runModule(Module* module, int& result, bool withExtraService)
 {
-	lbl_8042C338 = module;
-	lbl_8042C338->Init();
+	pCurrent_MObject__7MObject = module;
+	pCurrent_MObject__7MObject->Init();
 	do {
-		result = lbl_8042C338->Loop();
+		result = pCurrent_MObject__7MObject->Loop();
 		if (lbl_8042C388 != 0)
 			fn_800B429C(lbl_8042C388);
 		fn_800CD528();
@@ -332,7 +332,7 @@ static inline void runModule(Module* module, int& result, bool withExtraService)
 
 static inline void setSpecialMode()
 {
-	switch (fn_801386C4(&lbl_8042C7E0)) {
+	switch (CheckCurrentSeqType__11STORYMANAGEFv(&StoryManage)) {
 		case 0:
 			SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 			break;
@@ -341,7 +341,7 @@ static inline void setSpecialMode()
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 2);
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x26, 1);
 			} else {
-				*(int*)(lbl_803EC340 + 4) = fn_80138664(&lbl_8042C7E0);
+				*(int*)(lbl_803EC340 + 4) = CurrentMovieNumber__11STORYMANAGEFv(&StoryManage);
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 5);
 			}
 			break;
@@ -358,7 +358,7 @@ int MAIN::Loop()
 	field0                       = 0;
 	*(int*)(lbl_803A6690 + 0x4C) = CheckRestHeap__4PERFFv(lbl_803A6690);
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 0);
-	fn_800A7A44();
+	getRidOfRwCameraMemoryLeakBugAndDefaultFontSet__Fv();
 	fn_8011253C();
 	fn_80112F74();
 
@@ -375,20 +375,20 @@ int MAIN::Loop()
 					if (player >= 0)
 						fn_800A92CC(lbl_80303EC8, player, 0);
 				}
-				lbl_8042B320 = 1;
-				runModule(lbl_80253068[1], result, true);
+				module_number__7MObject = 1;
+				runModule(mobject_table__7MObject[1], result, true);
 				if (result == 3)
-					fn_800A74BC(0);
-				lbl_8042C338->End();
+					fn_800A74BC__Fi(0);
+				pCurrent_MObject__7MObject->End();
 				if (lbl_8042C180->field27 != 0)
 					setSpecialMode();
 				break;
 
 			case 2:
-				moduleIndex  = MOBJECT_0;
-				lbl_8042B320 = moduleIndex;
-				runModule(lbl_80253068[moduleIndex], result, false);
-				lbl_8042C338->End();
+				moduleIndex             = MOBJECT_0;
+				module_number__7MObject = moduleIndex;
+				runModule(mobject_table__7MObject[moduleIndex], result, false);
+				pCurrent_MObject__7MObject->End();
 				if (lbl_8042C180->field27 != 0) {
 					if (result == 1)
 						setSpecialMode();
@@ -412,30 +412,30 @@ int MAIN::Loop()
 					SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x30, 1);
 				}
 				if (result == 3)
-					fn_800A74BC(0);
+					fn_800A74BC__Fi(0);
 				break;
 
 			case 3:
-				moduleIndex  = MOBJECT_2;
-				lbl_8042B320 = moduleIndex;
-				runModule(lbl_80253068[moduleIndex], result, true);
-				lbl_8042C338->End();
+				moduleIndex             = MOBJECT_2;
+				module_number__7MObject = moduleIndex;
+				runModule(mobject_table__7MObject[moduleIndex], result, true);
+				pCurrent_MObject__7MObject->End();
 				SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
 				    lbl_8042C180, 0x30, lbl_8042C180->nextMode);
 				break;
 
 			case 5:
-				moduleIndex  = MOBJECT_3;
-				lbl_8042B320 = moduleIndex;
-				runModule(lbl_80253068[moduleIndex], result, true);
-				lbl_8042C338->End();
+				moduleIndex             = MOBJECT_3;
+				module_number__7MObject = moduleIndex;
+				runModule(mobject_table__7MObject[moduleIndex], result, true);
+				pCurrent_MObject__7MObject->End();
 				if (lbl_8042C180->field27 != 0)
 					setSpecialMode();
 				else
 					SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(
 					    lbl_8042C180, 0x30, lbl_8042C180->nextMode);
 				if (result == 3)
-					fn_800A74BC(0);
+					fn_800A74BC__Fi(0);
 				break;
 		}
 	}

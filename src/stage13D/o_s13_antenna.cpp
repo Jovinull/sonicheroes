@@ -119,26 +119,26 @@ extern "C" void* lbl_8042C148;
 extern "C" void* lbl_8042C180;
 extern "C" void* lbl_8042C1D0;
 extern "C" void* lbl_8042C298;
-extern "C" Vec3 lbl_80239978;
-extern "C" Vec3 lbl_80239984;
-extern "C" Vec3 lbl_80239990;
+extern "C" Vec3 AxisX;
+extern "C" Vec3 AxisY;
+extern "C" Vec3 AxisZ;
 extern "C" char lbl_802FF5A0[];
 
 extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void Error__7TObjectFPc(void);
-extern "C" void fn_800189A4(void*, TObject*);
-extern "C" void* fn_80018A34(void*, u32);
-extern "C" void fn_8003BC38(void*);
+extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
+extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
-extern "C" void fn_8003C618(void*);
-extern "C" void dtor_8003C52C(void*, s32);
-extern "C" s32 fn_8005B8BC(Motion*);
-extern "C" s32 fn_8005B8D8(Motion*);
-extern "C" s32 fn_8005B9F0(Motion*);
-extern "C" void dtor_8005BD3C(Motion*, s32);
-extern "C" void fn_8005BE6C(Motion*);
-extern "C" void fn_800BC9F4(void*, void*);
+extern "C" void __ct__7C_COLLIFv(void*);
+extern "C" void __dt__7C_COLLIFv(void*, s32);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion*);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion*);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+extern "C" void __dt__10TObjSetObjFv(Motion*, s32);
+extern "C" void __ct__10TObjSetObjFv(Motion*);
+extern "C" void LoadOneFile__7ONEFILEFPc(void*, void*);
 extern "C" f32 fn_800D7AE4(s32);
 extern "C" f32 fn_800D7B00(s32);
 extern "C" void fn_80195790(void*, const Vec3*, f32, f32, s32);
@@ -192,17 +192,17 @@ extern "C" void antennaSetPosition(Antenna* object)
 
 	c = fn_800D7B00(object->motion.frame->angle.z);
 	s = antennaOne - fn_800D7AE4(object->motion.frame->angle.z);
-	fn_80195790(model + 0x10, &lbl_80239984, s, c, 0);
+	fn_80195790(model + 0x10, &AxisY, s, c, 0);
 	fn_8019E880(model);
 
 	c = fn_800D7B00(object->motion.frame->angle.y);
 	s = antennaOne - fn_800D7AE4(object->motion.frame->angle.y);
-	fn_80195790(model + 0x10, &lbl_80239978, s, c, 2);
+	fn_80195790(model + 0x10, &AxisX, s, c, 2);
 	fn_8019E880(model);
 
 	c = fn_800D7B00(object->motion.frame->angle.x);
 	s = antennaOne - fn_800D7AE4(object->motion.frame->angle.x);
-	fn_80195790(model + 0x10, &lbl_80239990, s, c, 2);
+	fn_80195790(model + 0x10, &AxisZ, s, c, 2);
 	fn_8019E880(model);
 	fn_8019EB94(model, object->motion.frame, 2);
 }
@@ -211,7 +211,8 @@ extern "C" void antennaExec(Antenna* object)
 {
 	f32 duration = ((f32*)&antennaAsset)[7];
 
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal |= 1;
 		return;
 	}
@@ -223,11 +224,11 @@ extern "C" void antennaExec(Antenna* object)
 		object->transform.angleY           = frame->angle.y;
 		object->transform.angleZ           = frame->angle.z;
 		object->transform.angleX           = frame->angle.x;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 		return;
 	}
 
-	if (fn_8005B8D8(&object->motion) != 0) {
+	if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		antennaSetPosition(object);
 	} else {
 		object->phase += antennaFrameStep;
@@ -244,7 +245,7 @@ extern "C" void antennaExec(Antenna* object)
 		object->transform.angleY           = angles.y;
 		object->transform.angleZ           = angles.z;
 		object->transform.angleX           = angles.x;
-		fn_8003BC38(&object->transform);
+		Entry__7C_COLLIFv(&object->transform);
 	}
 }
 
@@ -256,11 +257,11 @@ extern "C" Antenna* antennaDtor(Antenna* object, s16 flags)
 		object->base.vtable   = antennaVtable;
 		object->motion.vtable = antennaVtable + 11;
 		fn_9_75888(&object->model);
-		dtor_8003C52C(&object->transform, 0);
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__7C_COLLIFv(&object->transform, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;
@@ -269,8 +270,8 @@ extern "C" Antenna* antennaDtor(Antenna* object, s16 flags)
 extern "C" Antenna* antennaCtor(Antenna* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
-	fn_8003C618(&object->transform);
+	__ct__10TObjSetObjFv(&object->motion);
+	__ct__7C_COLLIFv(&object->transform);
 
 	object->base.vtable     = antennaVtable;
 	object->motion.vtable   = antennaVtable + 11;
@@ -301,7 +302,7 @@ extern "C" void antennaInit(void)
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	ModelAsset* asset = &antennaAsset;
 	for (u8 i = 0; i < 1; i++) {
 		fn_9_765CC(asset, 0);
@@ -319,7 +320,7 @@ public:
 
 extern "C" void antennaCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, sizeof(AntennaAllocation));
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(AntennaAllocation));
 	if (memory != NULL) {
 		new (memory) AntennaAllocation(lbl_8042C110);
 	}

@@ -49,26 +49,26 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
 
-extern u8 lbl_80239978;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisX;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8005BD3C(Motion*, s16);
-void fn_8005BE6C(Motion*);
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B8D8(Motion*);
-s32 fn_8005B9F0(Motion*);
-void fn_8005D5C8(void*, u32);
+void __dt__10TObjSetObjFv(Motion*, s16);
+void __ct__10TObjSetObjFv(Motion*);
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 OnEdit__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 void* fn_80150588(void*);
 void fn_80150958(void*);
 void fn_8015BB08(void*, void*);
@@ -113,7 +113,7 @@ public:
 	TObjS33Chip(TObject*);
 	~TObjS33Chip();
 
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 extern "C" {
@@ -140,19 +140,19 @@ void TObjS33Chip::SetPosition()
 	f32 sine    = fn_800D7B00(angleZ);
 	f32 cosine  = fn_800D7AE4(angleZ);
 	f32 inverse = chipOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239990, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisZ, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleX);
 	cosine  = fn_800D7AE4(angleX);
 	inverse = chipOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239978, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisX, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleY + rotation);
 	cosine  = fn_800D7AE4(angleY + rotation);
 	inverse = chipOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, inverse, sine, 1);
 	fn_8019E880(atomic);
 }
 #pragma opt_propagation reset
@@ -174,12 +174,13 @@ void TObjS33Chip::Disp() { }
 #pragma opt_propagation off
 void TObjS33Chip::Exec()
 {
-	if (fn_8005B9F0(&motion) != 0 || fn_8005B8BC(&motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&motion) != 0) {
 		signal |= 1;
 		return;
 	}
 
-	if (fn_8005B8D8(&motion) != 0)
+	if (OnEdit__10TObjSetObjFv(&motion) != 0)
 		SetParameter();
 
 	rotation += rotationSpeed;
@@ -189,21 +190,21 @@ void TObjS33Chip::Exec()
 	f32 sine    = fn_800D7B00(angleZ);
 	f32 cosine  = fn_800D7AE4(angleZ);
 	f32 inverse = chipOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239990, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisZ, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleX);
 	cosine  = fn_800D7AE4(angleX);
 	inverse = chipOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239978, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisX, inverse, sine, 1);
 	fn_8019E880(atomic);
 
 	sine    = fn_800D7B00(angleY + rotation);
 	cosine  = fn_800D7AE4(angleY + rotation);
 	inverse = chipOne[0] - cosine;
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, inverse, sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, inverse, sine, 1);
 	fn_8019E880(atomic);
-	if (fn_8005B8D8(&motion) != 0)
+	if (OnEdit__10TObjSetObjFv(&motion) != 0)
 		return;
 }
 #pragma opt_propagation reset
@@ -218,14 +219,14 @@ TObjS33Chip::~TObjS33Chip()
 		fn_8015BBF8(manager, model);
 		fn_80150958(model);
 	}
-	dtor_8005BD3C(&motion, 0);
+	__dt__10TObjSetObjFv(&motion, 0);
 	__dt__7TObjectFv(this, 0);
 }
 
 static inline void constructChip(TObjS33Chip* object, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(object, parent);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = chipVtable;
 	object->motion.vtable = chipVtable + 11;
 	object->className     = CL_TObjS33Chip;
@@ -235,7 +236,8 @@ static inline void constructChip(TObjS33Chip* object, TObject* parent)
 	void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
 	fn_8015BB08(manager, object->model);
 	u32 flags = object->motion.frame->flags;
-	fn_8005D5C8(object->model, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->model, ((flags & 0x1C0000) >> 18) + 4);
 	object->rotation = 0;
 }
 
@@ -252,7 +254,7 @@ static inline void initializeChip(ChipInitializer* self)
 {
 	TObjS33Chip* object = (TObjS33Chip*)self;
 	__ct__7TObjectFP7TObject(object, lbl_8042C110);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = chipVtable;
 	object->motion.vtable = chipVtable + 11;
 	object->className     = CL_TObjS33Chip;
@@ -262,7 +264,8 @@ static inline void initializeChip(ChipInitializer* self)
 	void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x725C);
 	fn_8015BB08(manager, object->model);
 	u32 flags = object->motion.frame->flags;
-	fn_8005D5C8(object->model, ((flags & 0x1C0000) >> 18) + 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->model, ((flags & 0x1C0000) >> 18) + 4);
 	object->rotation = 0;
 }
 
@@ -284,9 +287,9 @@ extern "C" void initObjS33Chip()
 	if (!(stage != NULL && (fn_801A4C84(stage), true)))
 		return;
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
-	s32 id       = fn_800BC6CC(archive, chipModelName);
-	chipResource = fn_800BB92C(archive, id, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
+	s32 id       = CheckFileID__7ONEFILEFPc(archive, chipModelName);
+	chipResource = LoadClumpEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
 }
 
 #pragma optimization_level 2
@@ -294,7 +297,7 @@ extern "C" void initObjS33Chip()
 extern "C" void startObjS33Chip()
 {
 #pragma opt_propagation off
-	void* allocation = fn_80018A34(lbl_8042C148, sizeof(TObjS33Chip));
+	void* allocation = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjS33Chip));
 	if (allocation != NULL) {
 		ChipInitializer* object = (ChipInitializer*)allocation;
 		initializeChip(object);

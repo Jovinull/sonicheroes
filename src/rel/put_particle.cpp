@@ -32,8 +32,8 @@ void* __nw__10TObjSampleFUl(u32);
 void __dl__10TObjSampleFPv(void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void fn_8005BE6C(void*);
-void dtor_8005BD3C(void*, s16);
+void __ct__10TObjSetObjFv(void*);
+void __dt__10TObjSetObjFv(void*, s16);
 void fn_16_93C3C(void*);
 void fn_16_93BE8(void*, s32);
 void* fn_16_528A4(s32, s32, void*, void*, s32, s32, s32);
@@ -136,7 +136,7 @@ extern "C" PutParticleObject* fn_16_7F70C(PutParticleObject* object, s16 flags)
 	if (object != NULL) {
 		fn_16_7EE30(object);
 		fn_16_93BE8((u8*)object + 0x30, 0);
-		dtor_8005BD3C((u8*)object + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)object + 0x28, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
 			__dl__10TObjSampleFPv(object);
@@ -165,7 +165,7 @@ extern "C" void fn_16_7F858(PutParticleObject* object)
 extern "C" PutParticleObject* fn_16_7F874(PutParticleObject* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(object, owner);
-	fn_8005BE6C((u8*)object + 0x28);
+	__ct__10TObjSetObjFv((u8*)object + 0x28);
 	fn_16_93C3C((u8*)object + 0x30);
 	fn_16_7F858(object);
 	PutParticleParams* params = *(PutParticleParams**)((u8*)object->motion + 0x2C);

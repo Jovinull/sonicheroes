@@ -1,0 +1,21 @@
+#ifndef GAME_RANK_TABLE_H
+#define GAME_RANK_TABLE_H
+#include "types.h"
+enum ENUM_PLAYER_VOICE {
+	ENUM_PLAYER_VOICE_RANK_A             = 48,
+	ENUM_PLAYER_VOICE_RANK_B             = 49,
+	ENUM_PLAYER_VOICE_RANK_C             = 50,
+	ENUM_PLAYER_VOICE_RANK_D             = 51,
+	ENUM_PLAYER_VOICE_RANK_E             = 52,
+	ENUM_PLAYER_VOICE_CLEAR_EGGHAWK      = 53,
+	ENUM_PLAYER_VOICE_CLEAR_TEAM_1       = 54,
+	ENUM_PLAYER_VOICE_CLEAR_ZAKO_1       = 55,
+	ENUM_PLAYER_VOICE_CLEAR_EGGALBATROSS = 56,
+	ENUM_PLAYER_VOICE_CLEAR_TEAM_2       = 57,
+	ENUM_PLAYER_VOICE_CLEAR_ZAKO_2       = 58,
+	ENUM_PLAYER_VOICE_CLEAR_KINGPAWN     = 59
+};
+ENUM_PLAYER_VOICE GetADXForRank(s32 rank);
+s32 CheckTimeRank(s32 teamNo, s32 min, s32 sec);
+s32 CheckScoreRank(s32 teamNo, s32 total_score);
+#endif

@@ -137,7 +137,7 @@ extern "C" u32 flagCollisionConfig[];
 extern "C" void* flagCallbackContext;
 extern "C" ObjectEntry flagEntry;
 extern "C" void* flagVtable[15];
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" FlagObject* flagCtor(FlagObject*, TObject*);
 extern "C" void fn_80150958(void*);
 extern "C" void* fn_80150588(void*);
@@ -147,40 +147,40 @@ extern "C" void fn_8015BBF8(void*, void*);
 extern "C" void fn_8013BD74(void*);
 extern "C" void flagInit();
 extern "C" void __dl__FPv(void*);
-extern "C" void dtor_8003C52C(void*, s32);
-extern "C" void dtor_8005BD3C(void*, s32);
+extern "C" void __dt__7C_COLLIFv(void*, s32);
+extern "C" void __dt__10TObjSetObjFv(void*, s32);
 extern "C" void __dt__7TObjectFv(void*, s32);
-extern "C" void fn_800189A4(void*, void*);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" const char* fn_800194C4(void*);
 extern "C" void fn_801A4C84(void*);
-extern "C" void fn_800BC9F4(void*, void*);
-extern "C" void* fn_800BC6CC(void*, const char*);
-extern "C" void* fn_800BB92C(void*, void*, void*);
-extern "C" void* fn_800BB39C(void*, void*, void*);
+extern "C" void LoadOneFile__7ONEFILEFPc(void*, void*);
+extern "C" void* CheckFileID__7ONEFILEFPc(void*, const char*);
+extern "C" void* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
+extern "C" void* LoadDeltaMorphEx__7ONEFILEFUiPc(void*, void*, void*);
 extern "C" void fn_8014FFBC(void*, void*, void*);
 extern "C" f32 GetTotalFrame__10DAnimClassFP17RpDMorphAnimation(void*, void*);
 extern "C" s32 sprintf(char*, const char*, ...);
-extern "C" FlagMotion* fn_8005F4E8();
+extern "C" FlagMotion* RpAtomicMCCGetUsrData();
 extern "C" void fn_8019EC30(void*, const Vec3*, s32);
 extern "C" void fn_8019ED68(void*, const Vec3*, f32, s32);
 extern "C" void fn_8019EB94(void*, const Vec3*, s32);
-extern "C" Vec3 lbl_80239978;
-extern "C" Vec3 lbl_80239984;
-extern "C" Vec3 lbl_80239990;
+extern "C" Vec3 AxisX;
+extern "C" Vec3 AxisY;
+extern "C" Vec3 AxisZ;
 extern "C" void fn_8013D344(void*, void*);
 extern "C" void fn_8013D5C8(void*, f32);
 extern "C" void __ct__7TObjectFP7TObject(void*, TObject*);
-extern "C" void fn_8005BE6C(void*);
-extern "C" void fn_8003C618(void*);
-extern "C" void* fn_8005E394(void*, s32);
+extern "C" void __ct__10TObjSetObjFv(void*);
+extern "C" void __ct__7C_COLLIFv(void*);
+extern "C" void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, s32);
 extern "C" void fn_8014F854(void*);
-extern "C" void* fn_80057644(u32);
-extern "C" void fn_8005F50C(void*, void*, s32);
-extern "C" void fn_8003C200(void*, void*, s32, s32);
-extern "C" s32 fn_8005B9F0(void*);
-extern "C" s32 fn_8005B8BC(void*);
-extern "C" s32 fn_8005B8D8(void*);
-extern "C" void fn_8003BC38(void*);
+extern "C" void* __nw__FUl(u32);
+extern "C" void RpAtomicMCCSetUsrData(void*, void*, s32);
+extern "C" void Init__7C_COLLIFP8CCL_INFOiUc(void*, void*, s32, s32);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(void*);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(void*);
+extern "C" s32 OnEdit__10TObjSetObjFv(void*);
+extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void* lbl_8042C180;
 extern "C" void TDisp__7TObjectFv();
 extern "C" void PDisp__7TObjectFv();
@@ -267,17 +267,17 @@ extern "C" RpAtomic* flagCaptureRenderCallback(RpAtomic* atomic, RpAtomic** resu
 
 extern "C" RpAtomic* flagRenderCallback(RpAtomic* atomic)
 {
-	FlagMotion* motion = fn_8005F4E8();
+	FlagMotion* motion = RpAtomicMCCGetUsrData();
 	void* model        = *(void**)((u8*)flagPrimaryModel + 4);
 	Vec3 scale         = flagZeroVector;
 	scale.x            = *motion->frame->scale;
 	scale.y            = scale.x;
 	scale.z            = scale.x;
 	fn_8019EC30(model, &scale, 0);
-	fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)*motion->frame->angleY, 2);
-	fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)motion->frame->anglesXZ[1], 2);
-	fn_8019ED68(model, &lbl_80239978, flagAngleFactor * (f32)motion->frame->anglesXZ[0], 2);
-	fn_8019ED68(model, &lbl_80239990, flagAngleFactor * (f32)motion->frame->anglesXZ[2], 2);
+	fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)*motion->frame->angleY, 2);
+	fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)motion->frame->anglesXZ[1], 2);
+	fn_8019ED68(model, &AxisX, flagAngleFactor * (f32)motion->frame->anglesXZ[0], 2);
+	fn_8019ED68(model, &AxisZ, flagAngleFactor * (f32)motion->frame->anglesXZ[2], 2);
 	fn_8019EB94(model, motion->frame->position, 2);
 	if (flagPositionInitialized == 0) {
 		fn_8013D344(flagPrimaryModel, flagAnimation);
@@ -302,18 +302,18 @@ static inline void setFlagPosition(FlagObject* object)
 		scale.y          = scale.x;
 		scale.z          = scale.x;
 		fn_8019EC30(model, &scale, 0);
-		fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)object->frame->angleY, 2);
-		fn_8019ED68(model, &lbl_80239978, flagAngleFactor * (f32)object->frame->angleX, 2);
-		fn_8019ED68(model, &lbl_80239990, flagAngleFactor * (f32)object->frame->angleZ, 2);
+		fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)object->frame->angleY, 2);
+		fn_8019ED68(model, &AxisX, flagAngleFactor * (f32)object->frame->angleX, 2);
+		fn_8019ED68(model, &AxisZ, flagAngleFactor * (f32)object->frame->angleZ, 2);
 		fn_8019EB94(model, &object->frame->position, 2);
 		if (object->modelC0 != NULL) {
 			model = *(void**)((u8*)object->modelC0 + 4);
 			fn_8019EC30(model, &scale, 0);
 			fn_8019EC30(model, &scale, 0);
-			fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)params->angle, 2);
-			fn_8019ED68(model, &lbl_80239984, flagAngleFactor * (f32)object->frame->angleY, 2);
-			fn_8019ED68(model, &lbl_80239978, flagAngleFactor * (f32)object->frame->angleX, 2);
-			fn_8019ED68(model, &lbl_80239990, flagAngleFactor * (f32)object->frame->angleZ, 2);
+			fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)params->angle, 2);
+			fn_8019ED68(model, &AxisY, flagAngleFactor * (f32)object->frame->angleY, 2);
+			fn_8019ED68(model, &AxisX, flagAngleFactor * (f32)object->frame->angleX, 2);
+			fn_8019ED68(model, &AxisZ, flagAngleFactor * (f32)object->frame->angleZ, 2);
 			fn_8019EB94(model, &object->frame->position, 2);
 		}
 	}
@@ -334,12 +334,13 @@ static inline void copyFlagFrame(FlagObject* object)
 	*(s32*)((u8*)object + 0x9C)  = frame->angleX;
 	*(s32*)((u8*)object + 0xA0)  = frame->angleY;
 	*(s32*)((u8*)object + 0xA4)  = frame->angleZ;
-	fn_8003BC38((u8*)object + 0x30);
+	Entry__7C_COLLIFv((u8*)object + 0x30);
 }
 
 extern "C" void flagExec(FlagObject* object)
 {
-	if (fn_8005B9F0(&object->frame) || fn_8005B8BC(&object->frame)) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->frame)
+	    || CheckMustKill__10TObjSetObjFv(&object->frame)) {
 		*(u16*)((u8*)object + 4) |= 1;
 		return;
 	}
@@ -347,7 +348,7 @@ extern "C" void flagExec(FlagObject* object)
 		copyFlagFrame(object);
 		return;
 	}
-	if (fn_8005B8D8(&object->frame))
+	if (OnEdit__10TObjSetObjFv(&object->frame))
 		setFlagPosition(object);
 	if (*(f32**)((u8*)object + 0xC8) != NULL && flagAnimationState == NULL) {
 		**(f32**)((u8*)object + 0xC8) += flagAnimationStep;
@@ -357,7 +358,7 @@ extern "C" void flagExec(FlagObject* object)
 		flagAnimationState      = 1;
 		flagPositionInitialized = 0;
 	}
-	if (fn_8005B8D8(&object->frame))
+	if (OnEdit__10TObjSetObjFv(&object->frame))
 		setFlagPosition(object);
 	else
 		copyFlagFrame(object);
@@ -419,11 +420,11 @@ extern "C" FlagObject* flagDtor(FlagObject* object, s16 flags)
 			fn_80150958(object->modelBC);
 			object->modelBC = NULL;
 		}
-		dtor_8003C52C((u8*)object + 0x30, 0);
-		dtor_8005BD3C(&object->frame, 0);
+		__dt__7C_COLLIFv((u8*)object + 0x30, 0);
+		__dt__10TObjSetObjFv(&object->frame, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }
@@ -432,8 +433,8 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 {
 	void* collision;
 	__ct__7TObjectFP7TObject(object, parent);
-	fn_8005BE6C(&object->frame);
-	fn_8003C618(object->pad30);
+	__ct__10TObjSetObjFv(&object->frame);
+	__ct__7C_COLLIFv(object->pad30);
 	object->vtable              = flagVtable;
 	object->motionVtable        = flagVtable + 11;
 	FlagParams* params          = (FlagParams*)object->frame->params;
@@ -456,7 +457,7 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 	if (*(s8*)((u8*)object + 0xB8) < 8) {
 		object->modelC0 = fn_80150588(*(void**)(lbl_8042C1D0 + 0xB08));
 		fn_8015BB08(*(void**)(lbl_8042C1D0 + 0x7278), object->modelC0);
-		void* atomic = fn_8005E394(object->modelC0, 0);
+		void* atomic = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(object->modelC0, 0);
 		fn_8014FFBC(object->modelC0, (void*)flagChangeRenderCallback, &object->modelC4);
 		if ((*(s32*)((u8*)flagPrimaryModel + 0x4C) & 2))
 			fn_8014F854(flagPrimaryModel);
@@ -469,14 +470,14 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 		};
 		*(Sphere*)((u8*)atomic + 0x1C) = *(Sphere*)((u8*)primary + 0x1C);
 		*(void**)((u8*)object + 0xC8)  = &flagCallbackContext;
-		object->allocatedCC            = fn_80057644(20);
+		object->allocatedCC            = __nw__FUl(20);
 		if (object->allocatedCC != NULL) {
 			((void**)object->allocatedCC)[0] = object->frame;
 			((void**)object->allocatedCC)[1] = (u8*)object->frame + 0xC;
 			((void**)object->allocatedCC)[2] = (u8*)params + 4;
 			((void**)object->allocatedCC)[3] = *(void**)((u8*)object + 0xC8);
 			((void**)object->allocatedCC)[4] = (u8*)params + 8;
-			fn_8005F50C(object->modelC4, &object->allocatedCC, 4);
+			RpAtomicMCCSetUsrData(object->modelC4, &object->allocatedCC, 4);
 		}
 	} else {
 		object->modelC0               = NULL;
@@ -492,9 +493,9 @@ extern "C" FlagObject* flagCtor(FlagObject* object, TObject* parent)
 		collision = object->pad30;
 	s8 type = *(s8*)((u8*)object + 0xB8);
 	if (type < 4 || type > 7)
-		fn_8003C200(object->pad30, flagCollisionConfig, 3, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->pad30, flagCollisionConfig, 3, 4);
 	else
-		fn_8003C200(object->pad30, flagCollisionConfig, 2, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(object->pad30, flagCollisionConfig, 2, 4);
 	*(u16*)((u8*)collision + 8) &= ~0x40;
 	return object;
 }
@@ -534,19 +535,19 @@ extern "C" void flagInit()
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
 	for (s32 i = 0; i < modelCount; ++i) {
 		sprintf(modelPath, flagAssetFormat, stageName, flagAssetNames[i]);
-		flagModels[i] = fn_800BB92C(*(void**)(lbl_8042C298 + 0xA50),
-		    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), modelPath), lbl_802FF5A0);
+		flagModels[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), modelPath), lbl_802FF5A0);
 	}
 	sprintf(path, flagModelFormat, stageName);
-	flagSecondaryModel = fn_800BB92C(*(void**)(lbl_8042C298 + 0xA50),
-	    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
+	flagSecondaryModel = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+	    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
 	fn_8014FFBC(flagSecondaryModel, (void*)flagCaptureRenderCallback, &flagPrimaryModel);
 	sprintf(path, flagAnimationFormat, stageName);
-	flagAnimation = fn_800BB39C(*(void**)(lbl_8042C298 + 0xA50),
-	    fn_800BC6CC(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
+	flagAnimation = LoadDeltaMorphEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+	    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), path), lbl_802FF5A0);
 	if (flagAnimation != NULL)
 		flagUnknownFloat
 		    = GetTotalFrame__10DAnimClassFP17RpDMorphAnimation(lbl_8042C340, flagAnimation);
@@ -554,7 +555,7 @@ extern "C" void flagInit()
 
 extern "C" void flagCreate()
 {
-	void* object = fn_80018A34(lbl_8042C148, 0xD0);
+	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (object != NULL)
 		flagCtor((FlagObject*)object, (TObject*)lbl_8042C110);
 }

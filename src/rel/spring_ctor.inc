@@ -108,12 +108,14 @@ extern "C" World* lbl_8042C1D0;
 
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
 extern "C" void fn_8003BF04(void* part, const void* params, s32 a, s32 b);
-extern "C" void fn_8003C618(void* part);
-extern "C" s32 fn_8005B8D8(Motion* motion);
-extern "C" void fn_8005BE6C(Motion* motion);
-extern "C" void fn_8005D5C8(void* model, s32 slot);
-extern "C" void fn_8005E1DC(void* model, s32 a, const char* texture);
-extern "C" s32* fn_8005F490(void);
+extern "C" void __ct__7C_COLLIFv(void* part);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
+extern "C" void __ct__10TObjSetObjFv(Motion* motion);
+extern "C" void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+    void* model, s32 slot);
+extern "C" void objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(
+    void* model, s32 a, const char* texture);
+extern "C" s32* RpAtomicMCCGetCustomRenderCallBack(void);
 extern "C" void* fn_80150588(void* source);
 extern "C" void fn_8015BB08(void* scene, void* model);
 
@@ -131,8 +133,8 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 	s32* handle;
 
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
-	fn_8003C618(&object->list);
+	__ct__10TObjSetObjFv(&object->motion);
+	__ct__7C_COLLIFv(&object->list);
 
 	object->base.vtable   = springVtable;
 	object->motion.vtable = springVtable + 0xB;
@@ -177,13 +179,14 @@ extern "C" Spring* springCtor(Spring* object, void* owner)
 
 	object->model = fn_80150588(springModel);
 
-	fn_8005D5C8(object->model, ((springFlags(object) & 0x001C0000) >> 18) + 4);
-	fn_8005E1DC(object->model, 0, springTextureName);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    object->model, ((springFlags(object) & 0x001C0000) >> 18) + 4);
+	objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(object->model, 0, springTextureName);
 
-	handle  = fn_8005F490();
+	handle  = RpAtomicMCCGetCustomRenderCallBack();
 	*handle = 0x10;
 
-	if (object->state != 3 || fn_8005B8D8(&object->motion) != 0) {
+	if (object->state != 3 || OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		fn_8015BB08(lbl_8042C1D0->scene, object->model);
 	}
 

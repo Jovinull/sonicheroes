@@ -38,8 +38,8 @@ public:
 };
 
 extern "C" {
-void dtor_8005BD3C(void*, s16);
-void fn_8005BE6C(void*);
+void __dt__10TObjSetObjFv(void*, s16);
+void __ct__10TObjSetObjFv(void*);
 }
 
 struct CloudThunkPrimary {
@@ -59,7 +59,7 @@ struct Motion {
 	SETDATA_PARAM* frame;
 	void** vtable;
 
-	Motion() { fn_8005BE6C(this); }
+	Motion() { __ct__10TObjSetObjFv(this); }
 	~Motion() { }
 };
 
@@ -74,23 +74,23 @@ extern void* lbl_8042C148;
 extern void* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern u8 lbl_80239984;
-extern u8 lbl_80239990;
+extern u8 AxisY;
+extern u8 AxisZ;
 extern u8 lbl_8029C310;
 extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-s32 fn_8005B8BC(Motion*);
-s32 fn_8005B9F0(Motion*);
-void fn_8005C014(void*, void*);
-void fn_8005D5C8(void*, u32);
-void* fn_8005E394(void*, s32);
-void fn_8005BF88();
+s32 CheckMustKill__10TObjSetObjFv(Motion*);
+s32 CheckRangeOut__10TObjSetObjFv(Motion*);
+void AtomicSetCustomFXTexture__FP8RpAtomicPv(void*, void*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void*, u32);
+void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, s32);
+void SetAtomicCustomFXData__FP8RpAtomicPv();
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void fn_8011B7CC(void*);
 void fn_8011B844(void*, f32);
 void fn_801491A8();
@@ -103,10 +103,10 @@ void fn_80195790(void*, void*, f32, f32, s32);
 void fn_8019E880(void*);
 void fn_8019EB94(void*, Vec3*, s32);
 void fn_801A4C84(void*);
-void* fn_800BAE0C(void*, s32, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void* LoadUVAnimationEx__7ONEFILEFUiPc(void*, s32, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 
 void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -138,8 +138,11 @@ public:
 	TObjS11Cloud(TObject*);
 	~TObjS11Cloud();
 
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 extern "C" {
@@ -181,7 +184,7 @@ void TObjS11Cloud::CloneClump(s32 index)
 		model         = fn_80150588(cloudModels[index]);
 		void* manager = *(void**)((u8*)lbl_8042C1D0 + 0x72A0);
 		fn_8015BB08(manager, model);
-		fn_8005D5C8(model, 0x10);
+		objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(model, 0x10);
 	}
 }
 
@@ -191,11 +194,11 @@ void TObjS11Cloud::SetPosition()
 	void* atomic = *(void**)((u8*)model + 4);
 	fn_8019EB94(atomic, &position, 0);
 	f32 sine = fn_800D7B00(angleY);
-	fn_80195790((u8*)atomic + 0x10, &lbl_80239984, cloudOne - fn_800D7AE4(angleY), sine, 1);
+	fn_80195790((u8*)atomic + 0x10, &AxisY, cloudOne - fn_800D7AE4(angleY), sine, 1);
 	fn_8019E880(atomic);
 	if (direction == 1) {
 		sine = fn_800D7B00(0x8000);
-		fn_80195790((u8*)atomic + 0x10, &lbl_80239990, cloudOne - fn_800D7AE4(0x8000), sine, 1);
+		fn_80195790((u8*)atomic + 0x10, &AxisZ, cloudOne - fn_800D7AE4(0x8000), sine, 1);
 		fn_8019E880(atomic);
 	}
 }
@@ -228,7 +231,7 @@ void TObjS11Cloud::Disp()
 		if (cloudLastFrame != frame) {
 			f32 time = speed * (cloudHalf * (f32)(frame - cloudLastFrame));
 			fn_8011B844(cloudUvResource, time);
-			fn_8014FFBC(model, (void*)fn_8005BF88, cloudUvState);
+			fn_8014FFBC(model, (void*)SetAtomicCustomFXData__FP8RpAtomicPv, cloudUvState);
 			cloudLastFrame = frame;
 		}
 	}
@@ -238,8 +241,8 @@ void TObjS11Cloud::Disp()
 #pragma opt_common_subs off
 void TObjS11Cloud::Exec()
 {
-	if (fn_8005B9F0((Motion*)((u8*)this + 0x28)) != 0
-	    || fn_8005B8BC((Motion*)((u8*)this + 0x28)) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0
+	    || CheckMustKill__10TObjSetObjFv((Motion*)((u8*)this + 0x28)) != 0) {
 		signal |= 1;
 		return;
 	}
@@ -252,7 +255,7 @@ TObjS11Cloud::~TObjS11Cloud()
 	TObject::vtable = cloudVtable;
 	Motion::vtable  = cloudVtable + 11;
 	DestroyClump();
-	dtor_8005BD3C((u8*)this + 0x28, 0);
+	__dt__10TObjSetObjFv((u8*)this + 0x28, 0);
 }
 
 static inline void constructCloud(TObjS11Cloud* object)
@@ -264,7 +267,7 @@ static inline void constructCloud(TObjS11Cloud* object)
 	object->SetParameter();
 	object->model = NULL;
 	object->CloneClump(object->modelNo);
-	fn_8005E394(object->model, 0);
+	objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(object->model, 0);
 	fn_801491A8();
 	object->SetPosition();
 }
@@ -365,11 +368,11 @@ static inline void loadCloudModels(
 	model = cloudModels;
 	while (index < count) {
 		void* archive = *(void**)((u8*)*archiveRoot + 0xA50);
-		s32 id        = fn_800BC6CC(archive, *name);
+		s32 id        = CheckFileID__7ONEFILEFPc(archive, *name);
 		archive       = *(void**)((u8*)*archiveRoot + 0xA50);
-		*model        = fn_800BB92C(archive, id, context);
-		void* result  = fn_8005E394(*model, 0);
-		fn_8005C014(result, uvState);
+		*model        = LoadClumpEx__7ONEFILEFUiPc(archive, id, context);
+		void* result  = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(*model, 0);
+		AtomicSetCustomFXTexture__FP8RpAtomicPv(result, uvState);
 		name++;
 		model++;
 		index++;
@@ -384,11 +387,11 @@ extern "C" void initObjS11Cloud()
 		return;
 
 	void* archive = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	fn_800BC9F4(archive, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(archive, &lbl_802FF5A0);
 	archive               = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	s32 id                = fn_800BC6CC(archive, cloudUvName);
+	s32 id                = CheckFileID__7ONEFILEFPc(archive, cloudUvName);
 	archive               = *(void**)((u8*)lbl_8042C298 + 0xA50);
-	cloudUvResource       = fn_800BAE0C(archive, id, &lbl_802FF5A0);
+	cloudUvResource       = LoadUVAnimationEx__7ONEFILEFUiPc(archive, id, &lbl_802FF5A0);
 	*(void**)cloudUvState = cloudUvResource;
 
 	s32 count = *(s32*)((u8*)&lbl_8029C310 + 0x2C) == 0x15 ? 3 : 6;

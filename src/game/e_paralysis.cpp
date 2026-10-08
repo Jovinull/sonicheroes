@@ -22,7 +22,7 @@ struct RawV3d {
 };
 
 struct RwFrame;
-extern "C" void fn_800189A4(void*, void*);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" void* lbl_8042C148;
 enum RwOpCombineType {
 	rwCOMBINEREPLACE    = 0,
@@ -43,7 +43,7 @@ struct TObject {
 
 	TObject(TObject* parent);
 	~TObject();
-	static void operator delete(void* ptr) { fn_800189A4(lbl_8042C148, ptr); }
+	static void operator delete(void* ptr) { Free__9THeapCtrlFPv(lbl_8042C148, ptr); }
 };
 
 struct TEnemyParalysis : TObject {
@@ -70,12 +70,12 @@ struct TEnemyParalysis : TObject {
 };
 
 extern "C" {
-void fn_8001898C();
-void fn_80018988();
-void fn_80018950();
-void fn_80018954();
+void Disp__7TObjectFv();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
 void Error__7TObjectFPc();
-void fn_80018958();
+void Render__7TObjectFv();
 void __dt__15TEnemyParalysisFv();
 void Exec__15TEnemyParalysisFv();
 void TDisp__15TEnemyParalysisFv();
@@ -87,33 +87,34 @@ void fn_8019ED68(void*, const void*, f32, s32);
 s32 fn_8019CE34(void*, const void*);
 s32 rand();
 void fn_800B4A38(void*, s32, const void*, s32, s32, s32, s32);
-void fn_80113940();
-void fn_801138B4();
-void fn_801137FC(s32);
-void fn_801137AC();
-void fn_8011398C(void*, s32);
+void SaveRenderState__7nRenderFv();
+void SetRenderStateForBlendAdd__7nRenderFv();
+void DisableLight__7nRenderFi(s32);
+void FogDisable__7nRenderFv();
+void PreDisp__16TEnemyMatTextureFi(void*, s32);
 void fn_8011B844(void*, f32);
 void fn_8014FFBC(void*, void*, void*);
 void fn_8014FF2C(void*);
-void fn_80113838(s32);
-void fn_801138F4();
-void* fn_8005EC0C();
-void* fn_8005EA04(char*);
-void fn_8005BF5C(void*);
-void fn_8005BF88();
-void fn_80113AA8(void*, void*, void*, void*, s32);
-void fn_80113A68(void*);
-void* fn_80113C7C(void*);
-void fn_80113C2C(void*, s16);
+void EnableLight__7nRenderFi(s32);
+void LoadRenderState__7nRenderFv();
+void* objRwTexDictionaryGetPointer__Fv();
+void* objPointerReadFromClumpAnim__FPc(char*);
+void SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(void*);
+void SetAtomicCustomFXData__FP8RpAtomicPv();
+void Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+    void*, void*, void*, void*, s32);
+void End__16TEnemyMatTextureFv(void*);
+void* __ct__16TEnemyMatTextureFv(void*);
+void __dt__16TEnemyMatTextureFv(void*, s16);
 void __register_global_object(void*, void*, void*);
 f64 __fabs(f64);
 
 extern void* lbl_8042C180;
 extern void* lbl_8042C388;
 extern void** lbl_8042C9A4;
-extern u8 lbl_80239978[];
-extern u8 lbl_80239984[];
-extern u8 lbl_80239990[];
+extern u8 AxisX[];
+extern u8 AxisY[];
+extern u8 AxisZ[];
 extern u8 lbl_80288C24[];
 }
 
@@ -125,13 +126,13 @@ extern "C" void* lbl_80288CA0[] = {
 	NULL,
 	(void*)__dt__15TEnemyParalysisFv,
 	(void*)Exec__15TEnemyParalysisFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__15TEnemyParalysisFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 char lbl_80288CCC[] = "EF_SIBIRE.DFF";
@@ -160,8 +161,8 @@ static const f32 lbl_8042E9B0 = 8.0f;
 
 void __sinit_e_paralysis_cpp()
 {
-	void* object = fn_80113C7C(lbl_803E7588);
-	__register_global_object(object, (void*)fn_80113C2C, lbl_803E757C);
+	void* object = __ct__16TEnemyMatTextureFv(lbl_803E7588);
+	__register_global_object(object, (void*)__dt__16TEnemyMatTextureFv, lbl_803E757C);
 }
 // An explicit .ctors entry rather than #pragma startup: the pragma leaves the
 // static initializer out of the section, which drops the 4-byte slot the retail
@@ -178,20 +179,21 @@ sParalysisParam::sParalysisParam()
 
 void TEnemyParalysis::Initialize()
 {
-	void* heap   = fn_8005EC0C();
-	lbl_8042C648 = fn_8005EA04(lbl_80288CCC);
-	lbl_8042C64C = fn_8005EA04(lbl_80288CDC);
+	void* heap   = objRwTexDictionaryGetPointer__Fv();
+	lbl_8042C648 = objPointerReadFromClumpAnim__FPc(lbl_80288CCC);
+	lbl_8042C64C = objPointerReadFromClumpAnim__FPc(lbl_80288CDC);
 	if (lbl_8042C648 != NULL && lbl_8042C64C != NULL) {
 		*(void**)lbl_803E7538 = lbl_8042C64C;
-		fn_8005BF5C(lbl_8042C648);
+		SetClumpCustomFXTexture__FP7RpClumpP8UVFXInfo(lbl_8042C648);
 	}
-	fn_80113AA8(lbl_803E7588, heap, lbl_8042C648, lbl_80288C24, 9);
+	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
+	    lbl_803E7588, heap, lbl_8042C648, lbl_80288C24, 9);
 	lbl_8042C650[0] = 0;
 }
 
 void TEnemyParalysis::Finalize()
 {
-	fn_80113A68(lbl_803E7588);
+	End__16TEnemyMatTextureFv(lbl_803E7588);
 }
 
 TEnemyParalysis::TEnemyParalysis(TObject* parent, sParalysisParam* param)
@@ -272,9 +274,9 @@ void TEnemyParalysis::Exec()
 	if (enabled != 0 && effect != NULL && state == 1) {
 		void* frame = *(void**)((u8*)effect + 4);
 		fn_8019EC30(frame, &offset, 0);
-		fn_8019ED68(frame, lbl_80239990, lbl_8042E9A0 * angle.z, 2);
-		fn_8019ED68(frame, lbl_80239978, lbl_8042E9A0 * angle.x, 2);
-		fn_8019ED68(frame, lbl_80239984, lbl_8042E9A0 * angle.y, 2);
+		fn_8019ED68(frame, AxisZ, lbl_8042E9A0 * angle.z, 2);
+		fn_8019ED68(frame, AxisX, lbl_8042E9A0 * angle.x, 2);
+		fn_8019ED68(frame, AxisY, lbl_8042E9A0 * angle.y, 2);
 		fn_8019EB94(frame, &position, 2);
 		++this->frame;
 		if (this->frame > 8)
@@ -292,20 +294,21 @@ void TEnemyParalysis::TDisp()
 		sphere.pos    = position;
 		sphere.radius = lbl_8042E980;
 		if (fn_8019CE34(*lbl_8042C9A4, &sphere)) {
-			fn_80113940();
-			fn_801138B4();
-			fn_801137FC(0x15);
-			fn_801137AC();
-			fn_8011398C(lbl_803E7588, frame);
+			SaveRenderState__7nRenderFv();
+			SetRenderStateForBlendAdd__7nRenderFv();
+			DisableLight__7nRenderFi(0x15);
+			FogDisable__7nRenderFv();
+			PreDisp__16TEnemyMatTextureFi(lbl_803E7588, frame);
 			s32 value = *(s32*)((u8*)lbl_8042C180 + 0x30);
 			if (lbl_8042C650[0] != value) {
 				fn_8011B844(lbl_8042C64C, lbl_8042E984);
-				fn_8014FFBC(lbl_8042C648, (void*)fn_8005BF88, lbl_803E7538);
+				fn_8014FFBC(
+				    lbl_8042C648, (void*)SetAtomicCustomFXData__FP8RpAtomicPv, lbl_803E7538);
 				lbl_8042C650[0] = value;
 			}
 			fn_8014FF2C(effect);
-			fn_80113838(0x15);
-			fn_801138F4();
+			EnableLight__7nRenderFi(0x15);
+			LoadRenderState__7nRenderFv();
 		}
 	}
 }

@@ -67,15 +67,15 @@ static inline s32* ClampCaptureCollisionValue(s32* value, s32* minimum, s32* max
 }
 
 extern "C" {
-int fn_8005B8BC(void*);
-int fn_8005B9F0(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
 void __ct__7TObjectFP7TObject();
 void CaptureCollisionBaseCtor(void*, TObject*);
-void fn_8005BE6C(void*);
-void dtor_8005BD3C(void*, int);
+void __ct__10TObjSetObjFv(void*);
+void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 
 extern void* lbl_8042C10C;
 extern void* lbl_8042C148;
@@ -113,7 +113,7 @@ static inline char* GetCaptureCollisionVtable()
 #pragma optimization_level 0
 bool TObjCaptureCollision::KillMyself()
 {
-	if (fn_8005B9F0(BYTES + 0x28) || fn_8005B8BC(BYTES + 0x28))
+	if (CheckRangeOut__10TObjSetObjFv(BYTES + 0x28) || CheckMustKill__10TObjSetObjFv(BYTES + 0x28))
 		return true;
 	return false;
 }
@@ -124,7 +124,7 @@ void TObjCaptureCollision::TDisp() { }
 void TObjCaptureCollision::Exec()
 {
 	int kill;
-	if (fn_8005B9F0(BYTES + 0x28) || fn_8005B8BC(BYTES + 0x28))
+	if (CheckRangeOut__10TObjSetObjFv(BYTES + 0x28) || CheckMustKill__10TObjSetObjFv(BYTES + 0x28))
 		kill = 1;
 	else
 		kill = 0;
@@ -160,10 +160,10 @@ extern "C" TObjCaptureCollision* __dt__20TObjCaptureCollisionFv(
 		u32 vtable                  = (u32)TObjCaptureCollisionVtable;
 		*(u32*)((u8*)object + 0x18) = vtable;
 		*(u32*)((u8*)object + 0x2C) = vtable + 0x2C;
-		dtor_8005BD3C((u8*)object + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)object + 0x28, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }
@@ -176,7 +176,7 @@ extern "C" TObjCaptureCollision* __ct__20TObjCaptureCollisionFP7TObject(
     TObjCaptureCollision* object, TObject* parent)
 {
 	__ct__7TObjectFP7TObject();
-	fn_8005BE6C((u8*)object + 0x28);
+	__ct__10TObjSetObjFv((u8*)object + 0x28);
 	register char* vtable         = GetCaptureCollisionVtable();
 	*(char**)((u8*)object + 0x18) = vtable;
 	*(char**)((u8*)object + 0x2C) = vtable + 0x2C;
@@ -206,7 +206,7 @@ public:
 	{
 		TObjCaptureCollision* object = (TObjCaptureCollision*)self;
 		CaptureCollisionBaseCtor(object, parent);
-		fn_8005BE6C((u8*)object + 0x28);
+		__ct__10TObjSetObjFv((u8*)object + 0x28);
 		u32 vtable                  = (u32)TObjCaptureCollisionVtable;
 		*(u32*)((u8*)object + 0x18) = vtable;
 		*(u32*)((u8*)object + 0x2C) = vtable + 0x2C;
@@ -219,7 +219,8 @@ public:
 
 TObjCaptureCollision* TObjCaptureCollision::CreateInstance()
 {
-	TObjCaptureCollision* allocation = (TObjCaptureCollision*)fn_80018A34(lbl_8042C148, 0x48);
+	TObjCaptureCollision* allocation
+	    = (TObjCaptureCollision*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0x48);
 	if (allocation != 0)
 		new (allocation) CaptureCollisionInitializer((TObject*)lbl_8042C10C);
 	return allocation;
@@ -250,7 +251,7 @@ extern "C" void initObjCaptureCollision() { }
 extern "C" void startObjCaptureCollision()
 {
 #pragma opt_propagation off
-	void* allocation = fn_80018A34(lbl_8042C148, 0x48);
+	void* allocation = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x48);
 	if (allocation != 0) {
 		register CaptureCollisionInitializer* object = (CaptureCollisionInitializer*)allocation;
 		CaptureCollisionInitializer::InitializeObject(object, (TObject*)lbl_8042C10C);

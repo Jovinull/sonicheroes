@@ -74,11 +74,11 @@ extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
-extern "C" void fn_800189A4(void* heap, TObject* object);
-extern "C" s32 fn_8005B8BC(Motion* motion);
-extern "C" s32 fn_8005B9F0(Motion* motion);
-extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_8005BE6C(Motion* motion);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion* motion);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion* motion);
+extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
+extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* systemObject1ClassName;
@@ -88,7 +88,8 @@ extern "C" void systemObject1Disp(void) { }
 
 extern "C" void systemObject1Exec(SystemObject1* object)
 {
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal |= SIGNAL_KILL_OK;
 	}
 }
@@ -98,10 +99,10 @@ extern "C" SystemObject1* systemObject1Dtor(SystemObject1* object, s16 flags)
 	if (object != NULL) {
 		object->base.vtable   = systemObject1Vtable;
 		object->motion.vtable = systemObject1Vtable + 0xB;
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;
@@ -110,7 +111,7 @@ extern "C" SystemObject1* systemObject1Dtor(SystemObject1* object, s16 flags)
 extern "C" SystemObject1* systemObject1Ctor(SystemObject1* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 
 	object->base.vtable   = systemObject1Vtable;
 	object->motion.vtable = systemObject1Vtable + 0xB;

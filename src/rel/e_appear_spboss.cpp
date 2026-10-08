@@ -77,10 +77,10 @@ void fn_16_93BE8(void*, int);
 void fn_16_93C3C(void*);
 int fn_16_93ACC(void*, SETDATA_PARAM*, f32);
 
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
-int fn_8005B9F0(void*);
-void fn_8005BC04(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+void SetEnd__10TObjSetObjFv(void*);
 void fn_80021824(void*);
 
 extern void* lbl_8042C180;
@@ -115,18 +115,19 @@ void TEnemyAppearSPBoss::Exec()
 	RwV3d* member = frame->member;
 
 	if (!fn_16_93ACC(updater, frame, TEnemyAppearSPBossTen)) {
-		fn_8005BC04((u8*)this + 0x28);
+		SetEnd__10TObjSetObjFv((u8*)this + 0x28);
 		markSampleForDeletion(this);
 		return;
 	}
-	if (fn_8005B9F0((u8*)this + 0x28) || fn_8005B8BC((u8*)this + 0x28)) {
+	if (CheckRangeOut__10TObjSetObjFv((u8*)this + 0x28)
+	    || CheckMustKill__10TObjSetObjFv((u8*)this + 0x28)) {
 		markSampleForDeletion(this);
 		return;
 	}
 	if (fn_16_F20(lbl_8042C180, 0x1F))
 		return;
 	fn_16_5F3C8(this);
-	if (!fn_8005B8D8((u8*)this + 0x28)) {
+	if (!OnEdit__10TObjSetObjFv((u8*)this + 0x28)) {
 		fn_80021824(lbl_8042C1A4);
 		if (fn_16_D10((u8*)this + 0x30))
 			fn_16_682D4(0, frame->type);

@@ -49,7 +49,7 @@ extern "C" f32 s01ObjectBaseVolumes[];
 extern "C" MeshCacheSlot s01ObjectBaseMeshCache[];
 
 extern "C" void fn_8011B844(void* clump, f32 volume);
-extern "C" void fn_8005BF88(void);
+extern "C" void SetAtomicCustomFXData__FP8RpAtomicPv(void);
 extern "C" void fn_8014FFBC(void* mesh, void* callback, MeshCacheSlot* slot);
 
 extern "C" void s01ObjectBaseLoad(S01ObjectBase* object)
@@ -58,8 +58,8 @@ extern "C" void s01ObjectBaseLoad(S01ObjectBase* object)
 		fn_8011B844(
 		    s01ObjectBaseClumps[object->volume.kind], s01ObjectBaseVolumes[object->volume.kind]);
 
-		fn_8014FFBC(
-		    object->volume.mesh, (void*)fn_8005BF88, &s01ObjectBaseMeshCache[object->volume.kind]);
+		fn_8014FFBC(object->volume.mesh, (void*)SetAtomicCustomFXData__FP8RpAtomicPv,
+		    &s01ObjectBaseMeshCache[object->volume.kind]);
 
 		s01ObjectBaseLoaded[object->volume.kind] = 1;
 	}

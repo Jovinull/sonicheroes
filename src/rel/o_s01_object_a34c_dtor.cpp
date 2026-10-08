@@ -12,7 +12,7 @@
 //
 // This is a different class from the one rel/o_s01_base.cpp reconstructs: that
 // one installs the vtable at data 0xA1C8, this one the vtable at 0xA34C, and
-// this one carries no volume: there is no dtor_8003C52C call and the fields at
+// this one carries no volume: there is no __dt__7C_COLLIFv call and the fields at
 // +0x34 and +0x38 sit where the other class has its volume. The two classes
 // share the translation unit; 0xA34C is also reached by fn_3_7D1A4, which is
 // this class's other method and is still assembly.
@@ -65,8 +65,8 @@ typedef struct S01ObjectA34C {
 extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
-extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_800189A4(void* heap, TObject* object);
+extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void fn_8005FD8C(void* handle, s32 slot);
 extern "C" void* fn_8015BD78(void* mesh);
 extern "C" void fn_8015BBF8(void* scene, void* mesh);
@@ -92,11 +92,11 @@ extern "C" S01ObjectA34C* s01ObjectA34CDtor(S01ObjectA34C* object, s16 flags)
 			object->mesh = NULL;
 		}
 
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;

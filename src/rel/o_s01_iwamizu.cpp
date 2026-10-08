@@ -49,39 +49,39 @@ void ImmAftSetRaster__7TObjectFv();
 void Debug__7TObjectFv();
 void Error__7TObjectFPc();
 void Render__7TObjectFv();
-void fn_8005F4B4(void*, void*);
-void* fn_8005F490();
+void RpAtomicMCCSetCustomRenderCallBack(void*, void*);
+void* RpAtomicMCCGetCustomRenderCallBack();
 int fn_8004A5B8(void*, int, int);
 void fn_8014F1B0();
 void fn_8019EC30(void*, Vec3*, int);
 void fn_8019ED68(void*, const void*, f32, int);
 void fn_8019EB94(void*, void*, int);
 void fn_8011B844(void*, f32);
-void fn_8005BF88();
+void SetAtomicCustomFXData__FP8RpAtomicPv();
 void fn_8014FFBC(void*, void*, int);
-int fn_8005B9F0(void*);
-int fn_8005B8BC(void*);
-int fn_8005B8D8(void*);
+int CheckRangeOut__10TObjSetObjFv(void*);
+int CheckMustKill__10TObjSetObjFv(void*);
+int OnEdit__10TObjSetObjFv(void*);
 void fn_800B4A38(void*, int, void*, void*, int, int, int);
 void fn_8015BBF8(void*, void*);
 void fn_80150958(void*);
-void dtor_8005BD3C(void*, int);
+void __dt__10TObjSetObjFv(void*, int);
 void __dt__7TObjectFv(void*, int);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void __ct__7TObjectFP7TObject(void*, void*);
-void fn_8005BE6C(void*);
+void __ct__10TObjSetObjFv(void*);
 void* fn_80150588(void*);
 void fn_8015BB08(void*, void*);
 void fn_8011B7CC(void*);
 void __dl__FPv(void*);
 void fn_801A4C84(void*);
-void fn_800BC9F4(void*, void*);
-void* fn_800BC6CC(void*, const char*);
-void* fn_800BB92C(void*, void*, void*);
-void* fn_8005E394(void*, int);
-void* fn_800BAE0C(void*, void*, void*);
-void fn_8005C014(void*, void*);
-void* fn_80018A34(void*, u32);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
+void* CheckFileID__7ONEFILEFPc(void*, const char*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, void*, void*);
+void* objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(void*, int);
+void* LoadUVAnimationEx__7ONEFILEFUiPc(void*, void*, void*);
+void AtomicSetCustomFXTexture__FP8RpAtomicPv(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
 
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
@@ -90,7 +90,7 @@ extern void* lbl_8042C388;
 extern void* lbl_8042C148;
 extern void* lbl_8042C110;
 extern void* lbl_802FF5A0;
-extern const f64 lbl_80239984;
+extern const f64 AxisY;
 
 void* fn_3_816D8(void*);
 void* fn_3_81858(void*);
@@ -152,7 +152,7 @@ extern "C" void* SetIwamizuCallback(IwamizuCallback* callback, void* argument)
 		return callback;
 	} else {
 		savedArgument = argument;
-		fn_8005F4B4(callback, (void*)&savedArgument);
+		RpAtomicMCCSetCustomRenderCallBack(callback, (void*)&savedArgument);
 		callback->function = (void (*)())fn_3_816D8;
 		if (callback->function == 0)
 			callback->function = fn_8014F1B0;
@@ -169,7 +169,7 @@ struct CallbackState {
 #pragma opt_common_subs off
 extern "C" void* fn_3_816D8(void* argument)
 {
-	CallbackState* state = (CallbackState*)fn_8005F490();
+	CallbackState* state = (CallbackState*)RpAtomicMCCGetCustomRenderCallBack();
 	int invoke           = 0;
 	switch (state->mode) {
 		case 1:
@@ -255,7 +255,10 @@ public:
 
 	TObject(TObject*);
 	~TObject();
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
 
 struct TObjS01Iwamizu : TObject {
@@ -277,7 +280,7 @@ static inline void SetIwamizuPosition(void* self)
 	*(f32*)&scale.y = value;
 	*(f32*)&scale.z = value;
 	fn_8019EC30(frame, (Vec3*)&scale, 0);
-	fn_8019ED68(frame, &lbl_80239984, IwamizuMinimum * (f32)(s32)WORD(PTR(self, 0x28), 0x10), 2);
+	fn_8019ED68(frame, &AxisY, IwamizuMinimum * (f32)(s32)WORD(PTR(self, 0x28), 0x10), 2);
 	fn_8019EB94(frame, PTR(self, 0x28), 2);
 }
 
@@ -290,7 +293,8 @@ extern "C" void Disp__14TObjS01IwamizuFv(void* self)
 {
 	if (IwamizuDispInitialized == 0) {
 		fn_8011B844(IwamizuClump, IwamizuSoundVolume);
-		fn_8014FFBC(PTR(self, 0x30), (void*)fn_8005BF88, (int)IwamizuRenderState);
+		fn_8014FFBC(
+		    PTR(self, 0x30), (void*)SetAtomicCustomFXData__FP8RpAtomicPv, (int)IwamizuRenderState);
 		IwamizuDispInitialized = 1;
 	}
 }
@@ -300,10 +304,11 @@ extern "C" void Disp__14TObjS01IwamizuFv(void* self)
 extern "C" void Exec__14TObjS01IwamizuFv(void* self)
 {
 	s8 pan;
-	if (fn_8005B9F0((u8*)self + 0x28) || fn_8005B8BC((u8*)self + 0x28)) {
+	if (CheckRangeOut__10TObjSetObjFv((u8*)self + 0x28)
+	    || CheckMustKill__10TObjSetObjFv((u8*)self + 0x28)) {
 		HALF(self, 4) |= 1;
 	} else {
-		if (fn_8005B8D8((u8*)self + 0x28)) {
+		if (OnEdit__10TObjSetObjFv((u8*)self + 0x28)) {
 			SetIwamizuPosition(self);
 		} else {
 			if (SBYTE(lbl_8042C180, 0x1F) == 0) {
@@ -329,10 +334,10 @@ extern "C" void* __dt__14TObjS01IwamizuFv(void* self, s16 flags)
 			fn_80150958(PTR(self, 0x30));
 			PTR(self, 0x30) = 0;
 		}
-		dtor_8005BD3C((u8*)self + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -344,13 +349,13 @@ inline TObject::TObject(TObject* parent)
 
 static inline void InitializeIwamizuBody(void* self)
 {
-	fn_8005BE6C((u8*)self + 0x28);
+	__ct__10TObjSetObjFv((u8*)self + 0x28);
 	WORD(self, 0x18) = (u32)IwamizuVtable;
 	WORD(self, 0x2C) = (u32)IwamizuVtable + 0x2C;
 	f32* values      = *(f32**)((u8*)PTR(self, 0x28) + 0x2C);
 	PTR(self, 0)     = IwamizuClassNamePtr;
 	HALF(self, 0x1E) = 0x38;
-	if (fn_8005B8D8((u8*)self + 0x28)) {
+	if (OnEdit__10TObjSetObjFv((u8*)self + 0x28)) {
 		if (IwamizuZero == *values)
 			*values = IwamizuOne;
 		if (*(s8*)((u8*)values + 8) < 0 || *(s8*)((u8*)values + 8) >= 4)
@@ -417,15 +422,19 @@ extern "C" void initObjS01Iwamizu()
 	} else {
 		return;
 	}
-	fn_800BC9F4(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
-	void* model      = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuModelName);
-	IwamizuAnimation = fn_800BB92C(*(void**)((u8*)lbl_8042C298 + 0xA50), model, &lbl_802FF5A0);
-	IwamizuAnimationCallback = fn_8005E394(IwamizuAnimation, 0);
-	void* animation = fn_800BC6CC(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuAnimationName);
-	IwamizuClump    = fn_800BAE0C(*(void**)((u8*)lbl_8042C298 + 0xA50), animation, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	void* model = CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuModelName);
+	IwamizuAnimation
+	    = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50), model, &lbl_802FF5A0);
+	IwamizuAnimationCallback = objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(IwamizuAnimation, 0);
+	void* animation
+	    = CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), IwamizuAnimationName);
+	IwamizuClump = LoadUVAnimationEx__7ONEFILEFUiPc(
+	    *(void**)((u8*)lbl_8042C298 + 0xA50), animation, &lbl_802FF5A0);
 	if (IwamizuAnimation != 0 && IwamizuClump != 0) {
 		*(void**)IwamizuRenderState = IwamizuClump;
-		fn_8005C014(fn_8005E394(IwamizuAnimation, 0), IwamizuRenderState);
+		AtomicSetCustomFXTexture__FP8RpAtomicPv(
+		    objRpClumpGetAtomic__FP7RpClumpP8RpAtomic(IwamizuAnimation, 0), IwamizuRenderState);
 	}
 }
 #pragma optimization_level 2

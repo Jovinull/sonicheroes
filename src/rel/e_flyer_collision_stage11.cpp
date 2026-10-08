@@ -51,28 +51,28 @@ public:
 
 extern "C" {
 
-void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0); /* extern */
-void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);       /* extern */
-M2C_UNK dtor_8003C52C(void*, M2C_UNK);                        /* extern */
-M2C_UNK dtor_8005BD3C(void*, M2C_UNK);                        /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                           /* extern */
-TObject* fn_80018A34(s32, M2C_UNK);                           /* extern */
-void* fn_800211A8(void*);                                     /* extern */
-M2C_UNK fn_80021384(void*);                                   /* extern */
-M2C_UNK fn_80021824(M2C_UNK*);                                /* extern */
-M2C_UNK fn_8003BC38(void*);                                   /* extern */
-M2C_UNK fn_8003C200(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);    /* extern */
-M2C_UNK fn_8003C618(M2C_UNK*);                                /* extern */
-s32 fn_8005B8BC(void*);                                       /* extern */
-M2C_UNK fn_8005BC04(void*);                                   /* extern */
-M2C_UNK fn_8005BE6C(M2C_UNK*);                                /* extern */
-M2C_UNK fn_800A31B8(void*, s32);                              /* extern */
-M2C_UNK fn_80100D24(s8*, void*, ...);                         /* extern */
-M2C_UNK fn_8_A6728(s32);                                      /* extern */
-void flyerColObjectCreate();                                  /* static */
-void flyerColObjectLoad();                                    /* static */
-void flyerColObjectUnload();                                  /* static */
-s32 fn_8_A74CC(void* arg0);                                   /* static */
+void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);               /* extern */
+void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);                     /* extern */
+M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                   /* extern */
+M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                               /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                 /* extern */
+TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                               /* extern */
+void* fn_800211A8(void*);                                                   /* extern */
+M2C_UNK CalcRange__7C_COLLIFv(void*);                                       /* extern */
+M2C_UNK fn_80021824(M2C_UNK*);                                              /* extern */
+M2C_UNK Entry__7C_COLLIFv(void*);                                           /* extern */
+M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK); /* extern */
+M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                         /* extern */
+s32 CheckMustKill__10TObjSetObjFv(void*);                                   /* extern */
+M2C_UNK SetEnd__10TObjSetObjFv(void*);                                      /* extern */
+M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                     /* extern */
+M2C_UNK fn_800A31B8(void*, s32);                                            /* extern */
+M2C_UNK Send__13sEnemyCommandFv(s8*, void*, ...);                           /* extern */
+M2C_UNK fn_8_A6728(s32);                                                    /* extern */
+void flyerColObjectCreate();                                                /* static */
+void flyerColObjectLoad();                                                  /* static */
+void flyerColObjectUnload();                                                /* static */
+s32 fn_8_A74CC(void* arg0);                                                 /* static */
 extern TObject* lbl_8042C10C;
 extern s32 lbl_8042C148;
 extern M2C_UNK lbl_8042C1A4;
@@ -182,7 +182,7 @@ s32 fn_8_A6DC4(void* arg0)
 	void* var_r3;
 	void* temp_r0;
 
-	if (fn_8005B8BC((u8*)((u32)arg0 + 0xB0)) != 0) {
+	if (CheckMustKill__10TObjSetObjFv((u8*)((u32)arg0 + 0xB0)) != 0) {
 		return 1;
 	}
 	temp_r0 = M2C_FIELD(
@@ -302,7 +302,7 @@ s32 fn_8_A6F28(void* arg0)
 			sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 			sp9  = M2C_FIELD(temp_r6, u8*, 0x2A);
 			spC  = 6;
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -360,7 +360,7 @@ s32 fn_8_A700C(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 5);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 5);
 		}
 	}
 	return var_r31;
@@ -418,7 +418,7 @@ s32 fn_8_A7104(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -476,7 +476,7 @@ s32 fn_8_A7200(void* arg0)
 			sp10 = M2C_FIELD(arg0, f32*, 0xD8);
 			sp14 = M2C_FIELD(arg0, f32*, 0xDC);
 			sp18 = M2C_FIELD(arg0, f32*, 0xE0);
-			fn_80100D24(&sp8, (void*)lbl_8_rodata_198C, 0);
+			Send__13sEnemyCommandFv(&sp8, (void*)lbl_8_rodata_198C, 0);
 		}
 	}
 	return var_r31;
@@ -527,7 +527,7 @@ s32 fn_8_A72FC(void* arg0)
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 			spC  = 2;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -578,7 +578,7 @@ s32 fn_8_A73E4(void* arg0)
 			sp9  = M2C_FIELD(temp_r5, u8*, 0x2A);
 			sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 			spC  = 1;
-			fn_80100D24(&sp8, NULL);
+			Send__13sEnemyCommandFv(&sp8, NULL);
 		}
 	}
 	return var_r31;
@@ -696,7 +696,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp81 = M2C_FIELD(temp_r5, u8*, 0x2A);
 					sp94 = M2C_FIELD(arg0, s32*, 0xD4);
 					sp84 = 1;
-					fn_80100D24(&sp80, NULL);
+					Send__13sEnemyCommandFv(&sp80, NULL);
 				}
 			}
 			return var_r30;
@@ -732,7 +732,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp69 = M2C_FIELD(temp_r5_2, u8*, 0x2A);
 					sp7C = M2C_FIELD(arg0, s32*, 0xD4);
 					sp6C = 2;
-					fn_80100D24(&sp68, NULL);
+					Send__13sEnemyCommandFv(&sp68, NULL);
 				}
 			}
 			return var_r30_2;
@@ -773,7 +773,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp58 = M2C_FIELD(arg0, f32*, 0xD8);
 					sp5C = M2C_FIELD(arg0, f32*, 0xDC);
 					sp60 = M2C_FIELD(arg0, f32*, 0xE0);
-					fn_80100D24(&sp50, NULL);
+					Send__13sEnemyCommandFv(&sp50, NULL);
 				}
 			}
 			return var_r30_3;
@@ -814,7 +814,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp40 = M2C_FIELD(arg0, f32*, 0xD8);
 					sp44 = M2C_FIELD(arg0, f32*, 0xDC);
 					sp48 = M2C_FIELD(arg0, f32*, 0xE0);
-					fn_80100D24(&sp38, NULL);
+					Send__13sEnemyCommandFv(&sp38, NULL);
 				}
 			}
 			return var_r30_4;
@@ -855,7 +855,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp28 = M2C_FIELD(arg0, f32*, 0xD8);
 					sp2C = M2C_FIELD(arg0, f32*, 0xDC);
 					sp30 = M2C_FIELD(arg0, f32*, 0xE0);
-					fn_80100D24(&sp20, (M2C_UNK*)5);
+					Send__13sEnemyCommandFv(&sp20, (M2C_UNK*)5);
 				}
 			}
 			return var_r30_5;
@@ -893,7 +893,7 @@ s32 fn_8_A74CC(void* arg0)
 					sp1C = M2C_FIELD(arg0, s32*, 0xD4);
 					sp9  = M2C_FIELD(temp_r5_6, u8*, 0x2A);
 					spC  = 6;
-					fn_80100D24(&sp8, NULL);
+					Send__13sEnemyCommandFv(&sp8, NULL);
 				}
 			}
 			return var_r30_6;
@@ -911,7 +911,7 @@ void fn_8_A7A10(void* arg0)
 	void* var_r3;
 	s32 var_r0;
 
-	if (fn_8005B8BC((u8*)((u32)arg0 + 0xB0)) != 0) {
+	if (CheckMustKill__10TObjSetObjFv((u8*)((u32)arg0 + 0xB0)) != 0) {
 		var_r0 = 1;
 	} else {
 		var_r3
@@ -936,7 +936,7 @@ void fn_8_A7A10(void* arg0)
 		return;
 	}
 	if (fn_8_A74CC(arg0) != 0) {
-		fn_8005BC04((u8*)((u32)arg0 + 0xB0));
+		SetEnd__10TObjSetObjFv((u8*)((u32)arg0 + 0xB0));
 		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
@@ -950,7 +950,7 @@ void fn_8_A7A10(void* arg0)
 		M2C_FIELD(arg0, s32*, 0x94) = (s32)M2C_FIELD(arg0, s32*, 0xC4);
 		M2C_FIELD(arg0, s32*, 0x98) = (s32)M2C_FIELD(arg0, s32*, 0xC8);
 		M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0xCC);
-		fn_8003BC38((u8*)arg0 + 0x28);
+		Entry__7C_COLLIFv((u8*)arg0 + 0x28);
 	}
 }
 
@@ -965,7 +965,7 @@ void fn_8_A7B4C(void* arg0)
 		M2C_FIELD(arg0, f32*, 0x90) = (f32)M2C_FIELD(arg0, f32*, 0xC0);
 		M2C_FIELD(M2C_FIELD(arg0, void**, 0x38), f32*, 0x14) = (f32)M2C_FIELD(temp_r4, f32*, 4);
 	}
-	fn_80021384((u8*)arg0 + 0x28);
+	CalcRange__7C_COLLIFv((u8*)arg0 + 0x28);
 }
 
 void fn_8_A7BA8(void* arg0)
@@ -1004,11 +1004,11 @@ TObject* fn_8_A7C3C(TObject* arg0, s16 arg1)
 	if (arg0 != NULL) {
 		arg0->unk18 = &lbl_8_data_163D0;
 		arg0->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
-		dtor_8005BD3C((u8*)arg0 + 0xB0, 0);
-		dtor_8003C52C((u8*)arg0 + 0x28, 0);
+		__dt__10TObjSetObjFv((u8*)arg0 + 0xB0, 0);
+		__dt__7C_COLLIFv((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1022,8 +1022,8 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	void* temp_r3_3;
 
 	__ct__7TObjectFP7TObject(arg0, arg1);
-	fn_8003C618(&arg0->unk28);
-	fn_8005BE6C(&arg0->unkB0);
+	__ct__7C_COLLIFv(&arg0->unk28);
+	__ct__10TObjSetObjFv(&arg0->unkB0);
 	arg0->unk18 = &lbl_8_data_163D0;
 	arg0->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 	arg0->unk0  = lbl_8_data_163CC;
@@ -1047,7 +1047,7 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 	arg0->unkC4 = M2C_FIELD(temp_r3_3, s32*, 0xC);
 	arg0->unkC8 = M2C_FIELD(temp_r3_3, s32*, 0x10);
 	arg0->unkCC = M2C_FIELD(temp_r3_3, s32*, 0x14);
-	fn_8003C200(&arg0->unk28, &lbl_8_data_162C8, 1, 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk28, &lbl_8_data_162C8, 1, 4);
 	if ((void*)arg0->unk38 != NULL) {
 		temp_r3_4                          = M2C_FIELD(M2C_FIELD(arg0, void**, 0xB0), void**, 0x2C);
 		arg0->unk88                        = arg0->unkB8;
@@ -1055,7 +1055,7 @@ TObject* fn_8_A7CD4(TObject* arg0, TObject* arg1)
 		arg0->unk90                        = arg0->unkC0;
 		M2C_FIELD(arg0->unk38, f32*, 0x14) = (f32)M2C_FIELD(temp_r3_4, f32*, 4);
 	}
-	fn_80021384(&arg0->unk28);
+	CalcRange__7C_COLLIFv(&arg0->unk28);
 	return arg0;
 }
 
@@ -1066,11 +1066,11 @@ TObject* fn_8_A7E24(void)
 	void* temp_r3_3;
 	void* temp_r3_4;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0xE4);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
-		fn_8005BE6C(&temp_r3->unkB0);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
+		__ct__10TObjSetObjFv(&temp_r3->unkB0);
 		temp_r3->unk18 = &lbl_8_data_163D0;
 		temp_r3->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_163CC;
@@ -1094,7 +1094,7 @@ TObject* fn_8_A7E24(void)
 		temp_r3->unkC4 = M2C_FIELD(temp_r3_4, s32*, 0xC);
 		temp_r3->unkC8 = M2C_FIELD(temp_r3_4, s32*, 0x10);
 		temp_r3->unkCC = M2C_FIELD(temp_r3_4, s32*, 0x14);
-		fn_8003C200(&temp_r3->unk28, &lbl_8_data_162C8, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(&temp_r3->unk28, &lbl_8_data_162C8, 1, 4);
 		if ((void*)temp_r3->unk38 != NULL) {
 			temp_r3->unk88                        = temp_r3->unkB8;
 			temp_r3->unk8C                        = temp_r3->unkBC;
@@ -1102,7 +1102,7 @@ TObject* fn_8_A7E24(void)
 			M2C_FIELD(temp_r3->unk38, f32*, 0x14) = (f32)M2C_FIELD(
 			    M2C_FIELD(M2C_FIELD(temp_r3, void**, 0xB0), void**, 0x2C), f32*, 4);
 		}
-		fn_80021384(&temp_r3->unk28);
+		CalcRange__7C_COLLIFv(&temp_r3->unk28);
 	}
 	return temp_r3;
 }
@@ -1159,11 +1159,11 @@ void flyerColObjectCreate(void)
 	void* temp_r3_3;
 	void* temp_r3_4;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0xE4);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
-		fn_8003C618(&temp_r3->unk28);
-		fn_8005BE6C(&temp_r3->unkB0);
+		__ct__7C_COLLIFv(&temp_r3->unk28);
+		__ct__10TObjSetObjFv(&temp_r3->unkB0);
 		temp_r3->unk18 = &lbl_8_data_163D0;
 		temp_r3->unkB4 = (u8*)&lbl_8_data_163D0 + 0x2C;
 		temp_r3->unk0  = lbl_8_data_163CC;
@@ -1187,7 +1187,7 @@ void flyerColObjectCreate(void)
 		temp_r3->unkC4 = M2C_FIELD(temp_r3_4, s32*, 0xC);
 		temp_r3->unkC8 = M2C_FIELD(temp_r3_4, s32*, 0x10);
 		temp_r3->unkCC = M2C_FIELD(temp_r3_4, s32*, 0x14);
-		fn_8003C200(&temp_r3->unk28, &lbl_8_data_162C8, 1, 4);
+		Init__7C_COLLIFP8CCL_INFOiUc(&temp_r3->unk28, &lbl_8_data_162C8, 1, 4);
 		if ((void*)temp_r3->unk38 != NULL) {
 			temp_r3->unk88                        = temp_r3->unkB8;
 			temp_r3->unk8C                        = temp_r3->unkBC;
@@ -1195,7 +1195,7 @@ void flyerColObjectCreate(void)
 			M2C_FIELD(temp_r3->unk38, f32*, 0x14) = (f32)M2C_FIELD(
 			    M2C_FIELD(M2C_FIELD(temp_r3, void**, 0xB0), void**, 0x2C), f32*, 4);
 		}
-		fn_80021384(&temp_r3->unk28);
+		CalcRange__7C_COLLIFv(&temp_r3->unk28);
 	}
 }
 

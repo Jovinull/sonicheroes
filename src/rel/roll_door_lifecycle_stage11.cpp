@@ -21,11 +21,12 @@ extern void* lbl_8_bss_9E0;
 extern void* lbl_8_bss_9E4;
 extern void* lbl_8_bss_9E8;
 
-void* fn_8005EA04(const char* name);
-void* fn_8005E410(void* resource, s32 index, const char* name);
+void* objPointerReadFromClumpAnim__FPc(const char* name);
+void* objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+    void* resource, s32 index, const char* name);
 void __ct__7TObjectFP7TObject(void* self, void* parent);
-void fn_8005BE6C(void* placement);
-void fn_8003C618(void* controller);
+void __ct__10TObjSetObjFv(void* placement);
+void __ct__7C_COLLIFv(void* controller);
 void* fn_80150588(void* resource);
 void fn_8015BB08(void* manager, void* resource);
 f32 fn_800D7B00(s32 angle);
@@ -33,14 +34,14 @@ f32 fn_800D7AE4(s32 angle);
 void fn_80195790(void* object, const void* axis, f32 first, f32 second, s32 mode);
 void fn_8019EB94(void* object, const void* vector, s32 mode);
 void fn_8019EC30(void* object, const void* vector, s32 mode);
-void* fn_8005DF98(void* object, s32 index);
-void fn_8005D5C8(void* resource, s32 index);
-void fn_8003C200(void* controller, const void* data, s32 count, s32 type);
-void fn_80021384(void* controller);
+void* objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(void* object, s32 index);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(void* resource, s32 index);
+void Init__7C_COLLIFP8CCL_INFOiUc(void* controller, const void* data, s32 count, s32 type);
+void CalcRange__7C_COLLIFv(void* controller);
 extern u8 lbl_8042C1D0[];
-extern f32 lbl_80239978[];
-extern f32 lbl_80239984[];
-extern f32 lbl_80239990[];
+extern f32 AxisX[];
+extern f32 AxisY[];
+extern f32 AxisZ[];
 }
 
 struct RollDoorInfo {
@@ -73,8 +74,8 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 {
 	u8* object = (u8*)self;
 	__ct__7TObjectFP7TObject(self, parent);
-	fn_8005BE6C(object + 0x28);
-	fn_8003C618(object + 0x30);
+	__ct__10TObjSetObjFv(object + 0x28);
+	__ct__7C_COLLIFv(object + 0x30);
 	*(void**)(object + 0x18) = rollDoorVtable;
 	*(void**)(object + 0x2C) = (u8*)rollDoorVtable + 0x2C;
 	*(u32*)(object + 0x00)   = lbl_8_data_46D4;
@@ -102,9 +103,9 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	*(void**)(object + 0xF0) = fn_80150588(lbl_8_bss_9E4);
 
 	u8* firstModel = *(u8**)(*(u8**)(object + 0xEC) + 4);
-	SET_ROTATION(firstModel, lbl_80239984, *(s32*)(object + 0xD0) + 0x8000, 0);
-	SET_ROTATION(firstModel, lbl_80239978, *(s32*)(object + 0xCC), 2);
-	SET_ROTATION(firstModel, lbl_80239990, *(s32*)(object + 0xD4), 2);
+	SET_ROTATION(firstModel, AxisY, *(s32*)(object + 0xD0) + 0x8000, 0);
+	SET_ROTATION(firstModel, AxisX, *(s32*)(object + 0xCC), 2);
+	SET_ROTATION(firstModel, AxisZ, *(s32*)(object + 0xD4), 2);
 	fn_8019EB94(firstModel, object + 0xC0, 2);
 
 	Vec3 unit;
@@ -112,30 +113,31 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 	Vec3 zero;
 	zero.x = zero.y = zero.z = lbl_8_data_4618;
 	fn_8019EC30(firstModel, &zero, 1);
-	void* part     = fn_8005DF98(firstModel, 0);
-	part           = fn_8005DF98(part, 0);
-	part           = fn_8005DF98(part, 0);
+	void* part     = objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(firstModel, 0);
+	part           = objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(part, 0);
+	part           = objRwFrameGetChildFrame__FP7RwFrameP7RwFrame(part, 0);
 	u8* secondPart = (u8*)part;
 	partPosition   = *(Vec3*)(secondPart + 0x40);
 	s32 extraAngle = (s32)(lbl_8_rodata_B10 * *(f32*)(object + 0xE4));
-	SET_ROTATION(secondPart, lbl_80239978, extraAngle, 0);
+	SET_ROTATION(secondPart, AxisX, extraAngle, 0);
 	fn_8019EB94(secondPart, &partPosition, 2);
 
 	u8* secondModel = *(u8**)(*(u8**)(object + 0xF0) + 4);
-	SET_ROTATION(secondModel, lbl_80239984, *(s32*)(object + 0xD0) + 0x8000, 0);
-	SET_ROTATION(secondModel, lbl_80239978, *(s32*)(object + 0xCC), 2);
-	SET_ROTATION(secondModel, lbl_80239990, *(s32*)(object + 0xD4), 2);
+	SET_ROTATION(secondModel, AxisY, *(s32*)(object + 0xD0) + 0x8000, 0);
+	SET_ROTATION(secondModel, AxisX, *(s32*)(object + 0xCC), 2);
+	SET_ROTATION(secondModel, AxisZ, *(s32*)(object + 0xD4), 2);
 	fn_8019EB94(secondModel, object + 0xC0, 2);
 	fn_8019EC30(secondModel, &zero, 1);
 	*(RawVec3*)&unit = *(RawVec3*)lbl_8_rodata_AC0;
 	fn_8019EB94(secondModel, &unit, 1);
-	SET_ROTATION(secondModel, lbl_80239978, extraAngle, 1);
+	SET_ROTATION(secondModel, AxisX, extraAngle, 1);
 	if (*(f32*)(object + 0xE8) < lbl_8_rodata_AEC)
-		fn_80195790(secondModel + 0x10, lbl_80239984, lbl_8_rodata_B14, lbl_8_rodata_AEC, 1);
+		fn_80195790(secondModel + 0x10, AxisY, lbl_8_rodata_B14, lbl_8_rodata_AEC, 1);
 
 	u32 flags = *(u32*)(*(u8**)(object + 0x28) + 0x18);
-	fn_8005D5C8(*(void**)(object + 0xEC), ((flags & 0x001C0000) >> 18) + 4);
-	fn_8003C200(object + 0x30, lbl_8_data_4664, 2, 4);
+	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+	    *(void**)(object + 0xEC), ((flags & 0x001C0000) >> 18) + 4);
+	Init__7C_COLLIFP8CCL_INFOiUc(object + 0x30, lbl_8_data_4664, 2, 4);
 
 	s32 fieldOffset = 0;
 	for (s32 i = 0; i < 2; ++i) {
@@ -151,7 +153,7 @@ extern "C" void* rollDoorCtor(void* self, void* parent)
 			*(f32*)(entry + 0x18) *= lbl_8_data_4618;
 		fieldOffset += 0x30;
 	}
-	fn_80021384(object + 0x30);
+	CalcRange__7C_COLLIFv(object + 0x30);
 	return self;
 }
 #pragma opt_common_subs reset
@@ -196,8 +198,9 @@ extern "C" void rollDoorUnload()
 
 extern "C" void rollDoorLoad()
 {
-	lbl_8_bss_9E0 = fn_8005EA04(lbl_8_data_4714);
-	lbl_8_bss_9E4 = fn_8005EA04(lbl_8_data_4728);
+	lbl_8_bss_9E0 = objPointerReadFromClumpAnim__FPc(lbl_8_data_4714);
+	lbl_8_bss_9E4 = objPointerReadFromClumpAnim__FPc(lbl_8_data_4728);
 	if (lbl_8_bss_9E4 != NULL)
-		lbl_8_bss_9E8 = fn_8005E410(lbl_8_bss_9E4, 0, NULL);
+		lbl_8_bss_9E8 = objRpClumpGetMaterialWithSpecificTexture__FP7RpClumpP10RpMaterialPc(
+		    lbl_8_bss_9E4, 0, NULL);
 }

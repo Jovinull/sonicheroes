@@ -117,14 +117,15 @@ extern "C" Vec3* lbl_8042C208;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void __ct__7TObjectFP7TObject(TObject* object, void* owner);
-extern "C" void fn_800189A4(void* heap, TObject* object);
-extern "C" void* fn_80018A34(void* heap, u32 size);
-extern "C" s32 fn_8005B8BC(Motion* motion);
-extern "C" s32 fn_8005B8D8(Motion* motion);
-extern "C" s32 fn_8005B9F0(Motion* motion);
-extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_8005BE6C(Motion* motion);
-extern "C" void fn_800D72C0(const Vec3* a, const Vec3* b, Vec3* out);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
+extern "C" s32 CheckMustKill__10TObjSetObjFv(Motion* motion);
+extern "C" s32 OnEdit__10TObjSetObjFv(Motion* motion);
+extern "C" s32 CheckRangeOut__10TObjSetObjFv(Motion* motion);
+extern "C" void __dt__10TObjSetObjFv(Motion* motion, s32 flags);
+extern "C" void __ct__10TObjSetObjFv(Motion* motion);
+extern "C" void SubVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+    const Vec3* a, const Vec3* b, Vec3* out);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* sample2ClassName;
@@ -136,9 +137,10 @@ extern "C" void sample2Exec(Sample2* object)
 {
 	Vec3 delta;
 
-	if (fn_8005B9F0(&object->motion) != 0 || fn_8005B8BC(&object->motion) != 0) {
+	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
+	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
 		object->base.signal |= SIGNAL_KILL_OK;
-	} else if (fn_8005B8D8(&object->motion) != 0) {
+	} else if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
 		Frame* frame = object->motion.frame;
 
 		object->position.x = frame->position.x;
@@ -146,7 +148,8 @@ extern "C" void sample2Exec(Sample2* object)
 		object->position.z = frame->position.z;
 	} else {
 		object->rotation.y += 0x38E;
-		fn_800D72C0(lbl_8042C208, &object->motion.frame->position, &delta);
+		SubVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
+		    lbl_8042C208, &object->motion.frame->position, &delta);
 	}
 }
 
@@ -155,10 +158,10 @@ extern "C" Sample2* sample2Dtor(Sample2* object, s16 flags)
 	if (object != NULL) {
 		object->base.vtable   = sample2Vtable;
 		object->motion.vtable = sample2Vtable + 0xB;
-		dtor_8005BD3C(&object->motion, 0);
+		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;
@@ -167,7 +170,7 @@ extern "C" Sample2* sample2Dtor(Sample2* object, s16 flags)
 extern "C" Sample2* sample2Ctor(Sample2* object, void* owner)
 {
 	__ct__7TObjectFP7TObject(&object->base, owner);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 
 	object->base.vtable   = sample2Vtable;
 	object->motion.vtable = sample2Vtable + 0xB;

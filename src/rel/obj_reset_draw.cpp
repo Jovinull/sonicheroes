@@ -14,15 +14,15 @@ typedef struct Object {
 	void* draw;    // 0xF4
 } Object;
 
-extern "C" void fn_8005F670(void* draw);
-extern "C" s32* fn_8005F490(void* draw);
+extern "C" void RpAtomicMCCSetMaterialPointer(void* draw);
+extern "C" s32* RpAtomicMCCGetCustomRenderCallBack(void* draw);
 
 extern "C" void objResetDraw(Object* object)
 {
 	s32* slot;
 
-	fn_8005F670(object->draw);
+	RpAtomicMCCSetMaterialPointer(object->draw);
 
-	slot  = fn_8005F490(object->draw);
+	slot  = RpAtomicMCCGetCustomRenderCallBack(object->draw);
 	*slot = 0x10;
 }

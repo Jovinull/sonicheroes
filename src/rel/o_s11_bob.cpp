@@ -23,19 +23,19 @@ extern u8 lbl_802FF5A0;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
-void dtor_8005BD3C(Motion*, s16);
-void fn_8005BE6C(Motion*);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
-void* fn_800BB92C(void*, s32, void*);
-s32 fn_800BC6CC(void*, const char*);
-void fn_800BC9F4(void*, void*);
+void __dt__10TObjSetObjFv(Motion*, s16);
+void __ct__10TObjSetObjFv(Motion*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
 void fn_80150958(void*);
 void fn_801A4C84(void*);
 
 void Disp__7TObjectFv();
 void fn_8_8AA4C();
-void fn_8005B8B8();
+void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
 void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
 void PDisp__7TObjectFv();
@@ -59,7 +59,7 @@ public:
 	TObjS11Bob(TObject*);
 	~TObjS11Bob();
 
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 extern "C" {
@@ -72,14 +72,14 @@ TObjS11Bob::~TObjS11Bob()
 {
 	vtable        = bobVtable;
 	motion.vtable = bobVtable + 11;
-	dtor_8005BD3C(&motion, 0);
+	__dt__10TObjSetObjFv(&motion, 0);
 	__dt__7TObjectFv(this, 0);
 }
 
 static inline void constructBob(TObjS11Bob* object, TObject* parent)
 {
 	__ct__7TObjectFP7TObject(object, parent);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = bobVtable;
 	object->motion.vtable = bobVtable + 11;
 	object->className     = CL_TObjS11Bob;
@@ -122,11 +122,11 @@ extern "C" void initObjS11Bob()
 	if (!(stage != NULL && (fn_801A4C84(stage), true)))
 		return;
 
-	fn_800BC9F4(stageArchive(), &lbl_802FF5A0);
-	s32 id           = fn_800BC6CC(stageArchive(), bobModelName);
-	bobResource      = fn_800BB92C(stageArchive(), id, &lbl_802FF5A0);
-	id               = fn_800BC6CC(stageArchive(), bobLightModelName);
-	bobLightResource = fn_800BB92C(stageArchive(), id, &lbl_802FF5A0);
+	LoadOneFile__7ONEFILEFPc(stageArchive(), &lbl_802FF5A0);
+	s32 id           = CheckFileID__7ONEFILEFPc(stageArchive(), bobModelName);
+	bobResource      = LoadClumpEx__7ONEFILEFUiPc(stageArchive(), id, &lbl_802FF5A0);
+	id               = CheckFileID__7ONEFILEFPc(stageArchive(), bobLightModelName);
+	bobLightResource = LoadClumpEx__7ONEFILEFUiPc(stageArchive(), id, &lbl_802FF5A0);
 }
 
 struct BobInitializer {
@@ -137,7 +137,7 @@ static inline void initializeBob(BobInitializer* self)
 {
 	TObjS11Bob* object = (TObjS11Bob*)self;
 	__ct__7TObjectFP7TObject(object, lbl_8042C110);
-	fn_8005BE6C(&object->motion);
+	__ct__10TObjSetObjFv(&object->motion);
 	object->vtable        = bobVtable;
 	object->motion.vtable = bobVtable + 11;
 	object->className     = CL_TObjS11Bob;
@@ -149,7 +149,7 @@ static inline void initializeBob(BobInitializer* self)
 extern "C" void startObjS11Bob()
 {
 #pragma opt_propagation off
-	void* allocation = fn_80018A34(lbl_8042C148, sizeof(TObjS11Bob));
+	void* allocation = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjS11Bob));
 	if (allocation != NULL) {
 		BobInitializer* object = (BobInitializer*)allocation;
 		initializeBob(object);
@@ -175,7 +175,7 @@ extern "C" void* bobVtable[14] = {
 	(void*)Render__7TObjectFv,
 	NULL,
 	NULL,
-	(void*)fn_8005B8B8,
+	(void*)EditOnChange__10TObjSetObjFP13SETDATA_PARAM,
 };
 
 extern "C" char bobModelName[]      = "s12_o_bobsleigh.dff";

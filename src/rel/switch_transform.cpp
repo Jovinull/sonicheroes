@@ -51,9 +51,9 @@ typedef struct Switch {
 } Switch;
 
 extern "C" const f32 switchOne;
-extern "C" const Vec3 lbl_80239978;
-extern "C" const Vec3 lbl_80239984;
-extern "C" const Vec3 lbl_80239990;
+extern "C" const Vec3 AxisX;
+extern "C" const Vec3 AxisY;
+extern "C" const Vec3 AxisZ;
 
 extern "C" f32 fn_800D7AE4(s32 angle);
 extern "C" f32 fn_800D7B00(s32 angle);
@@ -79,13 +79,13 @@ extern "C" void switchTransform(Switch* object)
 	primary = object->primary->model;
 
 	wave = fn_800D7B00(object->rotationY);
-	fn_80195790(primary + 0x10, &lbl_80239984, switchOne - fn_800D7AE4(object->rotationY), wave, 0);
+	fn_80195790(primary + 0x10, &AxisY, switchOne - fn_800D7AE4(object->rotationY), wave, 0);
 
 	wave = fn_800D7B00(object->rotationX);
-	fn_80195790(primary + 0x10, &lbl_80239978, switchOne - fn_800D7AE4(object->rotationX), wave, 2);
+	fn_80195790(primary + 0x10, &AxisX, switchOne - fn_800D7AE4(object->rotationX), wave, 2);
 
 	wave = fn_800D7B00(object->rotationZ);
-	fn_80195790(primary + 0x10, &lbl_80239990, switchOne - fn_800D7AE4(object->rotationZ), wave, 2);
+	fn_80195790(primary + 0x10, &AxisZ, switchOne - fn_800D7AE4(object->rotationZ), wave, 2);
 
 	fn_8019EB94(primary, &object->position, 2);
 

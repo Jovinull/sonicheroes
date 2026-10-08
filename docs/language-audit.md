@@ -45,6 +45,295 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### Octree collision queries
+
+`game/octreeColli.cpp` reconstructs all nine surviving bodies in the inferred
+GameCube range `0x800546F4`–`0x800569BC`, replacing six address-named fragments
+and adding neighbor traversal, axis-Y collision and line collision. The complete
+unit is `Matching` and release builds link its native C++ object. The former
+two sphere-query instruction postprocessors are no longer configured.
+
+Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2, commit
+`c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section .debug dwarf`)
+identifies `octreeColli.cpp` as C++ and its `OCTREE` member interfaces, including
+`GetNextNeighborNode`, `MakeIntersectionNodeListWithSmallSphere` and the
+polygon-query methods. Independent GameCube correlation uses the shared
+0x18C-byte class layout, child and neighbor traversal, packed polygon indices,
+flag buffers and triangle-collision calls. Several PS2 helpers are inlined on
+GameCube. The next GameCube routine accesses gameplay globals and allocates
+objects rather than belonging to this query family; the whole-unit boundary
+remains an inference. Only minimal symbolic facts are recorded.
+
+The source uses shared octree types, native member calls and inline flag/index
+methods. Flag clearing advances through an active block while clearing it and
+skips 64 words only for an inactive block. The inherited fragment source had
+advanced again after an active block; the old patchers' branch retargets had
+corrected that behavior in object code. The C++ now expresses it directly.
+The stationary sphere query inlines the recovered small-sphere list helper.
+The recursive query retains a full-width neighbor index for node addressing
+and narrows only the flag-helper argument. Neighbor traversal computes X/Z and
+preserves the retail uninitialized Y store in its optional output. Successful
+line/axis queries calculate movement from the updated endpoint, preserving the
+retail reuse of copied coordinates.
+
+Reverse source definitions with `-inline deferred` reproduce the correlated
+PS2/GameCube function sequence and numeric-pool order. A control build of the
+same final source with automatic inlining emits line collision first and
+surface pruning last. Only the capsule subroutine and recursive small-sphere
+routine compare at 100%; the other functions range from 99.841774% to
+99.985756%. Exception sections compare at
+60.000004%/62.222225% and the literal pool at 33.333336%. Deferred emission makes
+all nine functions and all owned sections exact, without extra helper bodies,
+assembly or postprocessing.
+
+Independent ELF comparison verifies 8,904 text bytes, 104 exception bytes,
+108 exception-index bytes, 16 child-mask bytes and 24 numeric-pool bytes;
+all nine function offsets/sizes, all native global definitions and 103
+normalized relocations match. Section types, sizes and alignment agree;
+`.sdata2` has the usual DTK alloc-only versus Metrowerks alloc/write flag
+difference. G9SE8P, the sole supported release target, passed the native
+all-source/link/report build, all 18 artifact hashes, 55 automated tests and
+both policy checkers. The final linker input was confirmed to select native
+`octreeColli.o`. Runtime and physical-hardware validation were not performed.
+
+### Octree and collision-list translation unit
+
+`game/octree.cpp` replaces nine address-named fragments and reconstructs the
+remaining center-position routine, covering all ten surviving functions at
+`0x80053FB8`–`0x800546F4`. The GameCube whole-unit boundary is inferred from
+the correlated function sequence, shared class layouts and constant pool.
+Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2, commit
+`c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section .debug dwarf`)
+identifies `octree.cpp` as C++ and associates `OCTREE`, `ColliPolyLinearList`
+and the mini-list routines with it. The 0x18C-byte OCTREE layout and the
+constructor's header copies, flag-buffer allocation, tree traversal and list
+operations independently correlate with GameCube. Only these symbolic facts
+are recorded; no PS2 code or full metadata dump is included.
+
+Shared layouts and C++ interfaces live in `include/game/octree.h`. Constructors
+and destructors compile natively, with `Clear` inlined into the list destructor.
+The center-position helper writes only X and Z, preserving Y; construction
+retains the root-length mantissa truncation and allocation-failure early returns.
+Existing fragment callers retain their ABI while using canonical C++ symbol
+names. The former traversal fragment's conversion-bias postprocessor is no
+longer configured: the whole unit naturally owns the shared numeric literals.
+Its legacy tool and regression tests remain available.
+
+Reverse definition order with `-inline deferred` reproduces retail function,
+exception and literal emission. With ordinary automatic inlining, the center,
+traversal and constructor compare at 99.84375%, 99.91071% and 99.87069%; exception
+sections compare at 33.333336%/31.111113% and the literal pool at 70.83333%.
+Deferred emission makes all ten functions and all owned sections exact, without
+extra compiler helpers, assembly or postprocessing. Independent ELF comparison
+verifies 1,852 text bytes, 72 exception bytes, 108 exception-index bytes,
+24 literal bytes, all function offsets/sizes and 37 normalized relocations.
+Section types, sizes and alignment agree; `.sdata2` has the usual DTK alloc-only
+versus Metrowerks alloc/write flag difference.
+
+The sole supported release target, G9SE8P, passed the full all-source, link and
+report build with the native octree object linked. All 18 artifact hashes,
+55 automated tests and both policy checkers passed. No runtime or physical
+hardware validation was performed.
+
+### Light translation unit
+
+`game/light.cpp` reconstructs the 26 surviving functions at GameCube
+`0x80052184`–`0x80053FB8`, including both `RP_Light` constructors, allocation,
+world attachment, light properties, regular-table selection, loading and cleanup.
+The inferred unit owns 7,732 retail text bytes, 232 exception-table bytes,
+276 exception-index bytes, 144 data bytes, eight small-data bytes and 16
+small-constant bytes. The adjoining constructor-registration and octree routines
+are outside this boundary.
+
+PS2 PAL `SLES_519.50` DWARF metadata identifies `light.cpp` as C++ and supplies
+`CLIGHT`, `RP_Light`, `RP_LightInfo`, and `REGLIGHT_STRUCT` names and layouts.
+Only symbolic metadata was consulted from that executable. GameCube instructions
+corroborate the 0x40-byte light allocation, manager field offsets, 0x30-byte
+special-light records, 0x34-byte regular records, methods and file format string.
+`CLIGHT::SetRadius` and `CLIGHT::SetPosition` names are inferred from their
+GameCube behavior and corresponding `RP_Light` methods, rather than asserted
+as surviving PS2 manager symbols. SDK structures here are explicitly partial,
+pointer-only views; they are never allocated using those partial sizes.
+
+The loader retains defaults outside the available first 16 entries, copies at
+most 832 bytes, and preserves the executable's ignored file-read return value.
+Regular-light creation checks allocation of the wrapper rather than its SDK
+light; second-wrapper allocation failure destroys the first. Restore-all passes
+cached worlds directly, while individual restore requires a non-null cached
+world. Cleanup does not invent pointer resets absent from the executable.
+
+Deferred inlining with reverse definition order emits exactly the 26 retail
+function symbols in retail order, without extra out-of-line helper functions.
+Automatic emission kept definition order instead. This justifies the scoped
+deferred policy entry; it does not establish matching instruction bytes.
+Data pooling is disabled because retail addresses the individual globals.
+
+The whole-unit source produces 25 exact bodies. Expanding the existing eight-light
+restoration loop directly in EndIgnoreLight fixes its allocation without changing
+behavior. Init alone retains ten register fields across seven instructions; the
+bounded compiler-output normalizer in `tools/fix_light_registers.py` exchanges
+only its loader destination and filesize live ranges. It carries no retail
+instruction words. This is not a source-only match claim.
+
+All 26 export offsets and sizes, 263 normalized relocations, 232 exception-table
+bytes, 276 exception-index bytes, eight small-data bytes and 16 small-constant
+bytes agree. All 141 authored data bytes agree; retail includes three natural
+trailing alignment bytes. The compiler's conventional writable `.sdata2` flag
+is unchanged. The normalization leaves every ELF byte outside the seven
+instructions unchanged and checks exact text hashes, function boundary,
+relocations and individual instruction fields.
+
+Recovered function-scope pointer locals reproduce color and position copies.
+Angle updates preserve input arguments across rotation calls. Null destinations
+select the manager table in the inlined load/assign paths. Local-order, scope,
+helper expansion and inline-level trials did not reproduce both Init's loading
+and later assignment allocations together. The register proof and removal path
+are documented in [light-register-evidence.md](light-register-evidence.md).
+
+The native G9SE8P main DOL and all seventeen RELs build with all eighteen
+retail hashes passing. All-source compilation, progress/report generation,
+63 automated tests, both policy checks and formatting pass. No runtime or
+physical-hardware validation was performed.
+
+### GameCube ARAM pool translation unit
+
+`game/aram_pool.cpp` reconstructs the seven-function GameCube range
+`0x800D0624`–`0x800D0B08`: two synchronous transfers, their completion callback,
+release, allocation, cleanup and initialization. The three contiguous small
+BSS objects are the reserved base, list head, and volatile completion flag.
+This is an inferred whole-unit boundary from the shared allocation lifecycle,
+callback and data family: it follows `link.cpp` and ends before unrelated
+scalar interpolation routines. Exception entries corroborate the individual
+ranges, not an original source-file boundary. The four trailing small-BSS bytes
+are linker alignment.
+
+The source follows the project's C++ default. Native allocation/deletion
+paths exhibit the inlined constructor/destructor pattern reproduced by the
+local class. `aram_pool.cpp` and `AramAllocation` are descriptive names;
+original file/class names are unknown, and no PS2 metadata is asserted for
+these GameCube-specific ARAM operations. Exported functions retain their
+address names. Existing SDK headers supply AR/ARQ interfaces; the OS declarations
+are included with C linkage. No shared-header change is needed.
+
+The class stores next/previous links, address and size. The head is a zero-size
+sentinel whose previous pointer initially points to itself. Removing a final
+node updates that pointer; cleanup follows it exactly as in the executable.
+Allocation rounds stored
+sizes to 32 bytes, while the final capacity check uses the original requested
+size, matching the executable. Cleanup releases nodes and calls ARFree without
+resetting the stored base. Transfer code preserves the retail cache operations
+and volatile callback wait. Ordinary automatic inlining produces the complete
+object without extra helper bodies, deferred emission or postprocessing.
+
+Independent ELF comparison verifies all four allocated sections, including
+bytes, sizes, types, flags and alignment: 1,252 text bytes, 48 exception-table
+bytes, 72 exception-index bytes and 12 small-BSS bytes. All seven function
+symbols and 50 normalized relocations match. The sole supported release target,
+G9SE8P, passed full native all-source/link/report builds, all 18 artifact hashes,
+55 automated tests and both policy checkers. Runtime and physical-hardware
+behavior have not been tested.
+
+### Invincibility-effect translation unit
+
+`game/eff_muteki.cpp` reconstructs all twelve surviving functions at GameCube
+`0x800CF5E4`–`0x800D03A0`. Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2,
+commit `c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section
+.debug dwarf`) identifies `effect/eff_muteki.cpp` as `C_PLUS_PLUS` and
+corroborates `EffMuteki`, `EffMutekiManager`, `TObjPlayerMuteki`, their layouts,
+methods, and the static ribbon factory `Create`. The following list operations
+belong to the separately reconstructed `link.cpp`.
+
+Deferred emission permits the factory, manager updates, and destruction paths
+to inline later definitions before emitting the retail function order. With
+automatic emission, the factory compared at 83.80198% and manager update at
+99.00944%; deferred emission makes both exact after canonical symbol naming.
+The position-copy helper uses scalar float loads, and the drawing loop uses
+the metadata-corroborated float UV pointer and indexed position array. The
+existing single-flag dispatch retains the retail conditional/unconditional
+branch pair. No new object or instruction postprocessor is used.
+
+All owned bytes match: 3,516 text, 176 exception table, 132 exception index,
+272 data, 15 small data, 8 small BSS, and 76 constants. All 180 normalized
+relocations match. The link map marks seven unused out-of-line helpers (796
+text bytes and their exception metadata) as discarded; an additional 40-byte
+inline TObject delete duplicate resolves to the existing Task definition.
+These are ordinary compiler emissions, not dummy functions. The constant
+section's final four bytes and small-data final byte are linker alignment.
+The compiler's writable constant-section flag differs from the reference;
+bytes, placement and final artifacts match.
+
+Native vtables and allocation calls now use canonical names for five TObject
+virtual methods and THeapCtrl allocation/free. Existing callers and four
+existing metadata rename maps use the same names. The symbol updates are
+mechanical; touched source files retain repository formatting. Updating the
+legacy `autosaveD/task_runtime.c` caller also migrates it to `.cpp`, retaining
+its existing reviewed C++ classification and removing only the redundant
+language flag. This is not a new claim of historical source-file identity.
+Its complete text remains 100% in objdiff. The protected AutoSaveD paths are
+unchanged.
+
+The sole supported release target, G9SE8P, passed the full native all-source,
+link and report builds, all 18 artifact hashes, 55 automated tests, and both
+policy checkers. The first packaging passes exposed stale allocator names in
+two shared spring includes; both were updated and all consumers rebuilt.
+Runtime and physical-hardware behavior have not been tested.
+
+### CLASS_LINK translation unit
+
+`game/link.cpp` reconstructs the complete six-method unit at GameCube
+`0x800D03A0`–`0x800D0624`. Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2,
+commit `c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section
+.debug dwarf`) identifies `link.cpp` as `C_PLUS_PLUS`, the `CLASS_LINK` and
+`CLASS_LINK_MANAGER` layouts, their constructors/destructors and both link
+operations. `link.h` metadata corroborates the pointer accessors. The six
+methods occur in the same order in the GameCube build. They form a separate
+unit from the preceding invincibility effect and following ARAM operations.
+
+Ordinary automatic inlining reproduces the unlink operation inside both
+destructors. Its two function-scope temporary pointers and inline accessors
+reproduce the native register allocation. No deferred override, assembly or
+object postprocessor is required. The head's previous pointer stores the tail;
+the list is otherwise terminated by a null next pointer. Destruction unlinks
+members without destroying their payloads, and leaves `pData` untouched.
+
+Independent ELF comparison verifies all three allocated sections, including
+section types/flags/alignment: 644 text bytes, 16 exception-table bytes and
+24 exception-index bytes. All six function symbols and all six normalized
+relocations match. The sole supported release target, G9SE8P, passed the full
+`all_source`, `progress` and report builds, all 18 artifact hashes, 55 tests,
+and both policy checkers. Runtime/hardware behavior has not been tested.
+
+### EffWink translation unit
+
+`game/eff_wink.cpp` reconstructs all ten surviving methods at GameCube
+`0x800CF070`–`0x800CF5E4`. Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2,
+commit `c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section
+.debug dwarf`) identifies `effect/eff_wink.cpp` as `C_PLUS_PLUS`, the `EffWink`
+class, its 0x28-byte member layout and the corresponding ten method names.
+The GameCube methods follow the same API sequence. The following empty
+function is referenced by another class's vtable, so it is excluded.
+
+The unit uses deferred emission: constructor, destructor, update, setters,
+getter and synchronization definitions emit in reverse order. This also lets
+`Exec` inline the later `SetMode` definition. With automatic inlining, `Exec`
+compares at 97.85577%, exception metadata at 87.5%/30%, and constants at
+57.692307%; deferred emission makes every method and all owned sections exact.
+The header's two simple mode getters inline naturally. No instruction or
+object postprocessor is used for this unit.
+
+Independent ELF comparison verifies 1,396 text bytes, 48 exception-table
+bytes, 72 exception-index bytes, 28 constant bytes and all 41 normalized
+relocations. The compiler marks `.sdata2` writable while the split reference
+marks it read-only; section bytes and eight-byte alignment are identical.
+The four bytes after the final float are linker alignment, excluded from the
+owned range rather than represented by a dummy object. Existing AdvertiseD
+references use the recovered method symbols without changing their ABI.
+
+Validation passed for the sole supported release target, G9SE8P: full
+`all_source`, `progress` and report builds, all 18 artifact hashes, 55 automated
+tests and both policy checkers. Compilation and matching do not establish
+runtime or physical-hardware validation.
+
 ### CRI RNARES translation unit
 
 `game/cri/rnares.c` retains a reviewed vendor C ABI boundary and compiles with
@@ -607,6 +896,17 @@ initializer arrays must remain writable at the same time: const qualification
 under deferred emission moves them to `.rodata`, whereas the writable
 declarations reproduce the target `.data` byte-for-byte.
 
+The GameCube class layout is 0x44 bytes: 0x2C byte flags followed by six words.
+The constructor's two copies and the GameCube main-task layout establish this;
+the PS2 metadata's 0x28 flag bytes describe that platform's smaller class.
+The corrected members and `sizeof` copies preserve every instruction and all
+18 normalized relocations. The setter retains the retail boundary-index quirk:
+index 0x2C addresses the last four flag bytes, while word indices begin at 0x2D.
+A compile-time size check prevents reintroducing the undersized class. The full
+supported G9SE8P release/all-source build, 54 policy tests, both policy checks and
+all eighteen artifact hashes pass; this is not runtime/hardware validation.
+
+
 `game/e_paralysis.cpp` keeps an object-level `-inline deferred` override for the
 same reason. The PS2 beta debug symbols name the original translation unit and
 its `TEnemyParalysis` and `sParalysisParam` methods, and the GameCube vtable,
@@ -816,6 +1116,18 @@ Evidence and rationale:
 - the GameCube function is the corresponding bitstream decompressor, including
   the same literal-byte, short-back-reference and long-back-reference forms;
 - the configured C++ object matches its complete text range byte-for-byte.
+
+The shared `game/expasm.h` declaration returns `s32`: PS2 symbolic metadata
+identifies a signed integer result, and the GameCube body returns the difference
+between the destination cursor and its starting address. The resource loader
+uses that byte count as the second word of its memory-stream descriptor, after
+the buffer pointer. Its previous pointer-return declaration and two-pointer
+array concealed these roles. Both source files now include the same C++ API,
+and the descriptor explicitly stores a pointer and an unsigned byte length.
+The complete 476-byte decompressor text and 2,216-byte caller-unit text remain
+exact (the caller retains its existing register postprocessor unchanged).
+G9SE8P all-source build, link/report, 55 tests, both policies and all 18 linked
+artifact hashes pass; no runtime or hardware validation is claimed.
 
 ### Movie playback controller
 
@@ -1210,3 +1522,1254 @@ depend on emission order keep the default CRI flags.
 - `game/cri/adx_sje.c`: the ADX encoder (ADXSJE), sixteen functions,
   `-inline deferred`. The older 8.84 encoder has no CINF chunk and inlines
   the header writer, which is why `adxsje_output_header` is 0x13E8 bytes.
+
+
+### Complete matrix.cpp reconstruction (2026-10-06)
+
+A local PS2 `SLES_519.50` DWARF query with `stdump` identifies `matrix.cpp`
+as `C_PLUS_PLUS`, with the sixteen functions from `ProjectScreen` through
+`InitMatrix`, `pCurrentMatrix`, `MatrixStack[64]`, and `AxisX/Y/Z`. The
+GameCube independently has the same ordered API at `0x8001EED8–0x8001F4E8`:
+point/vector transformations and matrix inversion call the corresponding
+RenderWare operations, the three rotations use their own axis vectors, and
+the stack operations advance or retreat by the 64-byte matrix size. Shared
+stack storage and constants establish the enclosing unit; the exception
+records corroborate function ranges rather than proving the file boundary.
+
+The unit is native C++ with recovered C++ function linkage. Existing callers
+retain their ABI and use the recovered linker names; the signal lifecycle
+postprocessor's three axis relocation names receive the same mechanical
+rename. Its transformation logic and instruction hashes are unchanged.
+The canonical API and matrix/vector layouts are declared in
+`include/game/matrix.h`. Camera field names in this unit are descriptive;
+only the GameCube-accessed offsets are represented. Original statement
+spelling and the identity-assignment expansion are reconstruction inferences.
+
+The 4-byte tails after `AxisZ` and `pCurrentMatrix` are linker alignment,
+not members of those objects. No padding object, assembly implementation,
+new global compiler override, or matrix postprocessor is used. The compiler uses
+the established game release settings with exceptions on and scheduling/
+peephole optimization off; ordinary auto inlining suffices.
+
+Verification against upstream `ba1a6be`:
+
+- All 16 functions and all seven allocated sections report 100% in objdiff:
+  1,552 code bytes and 4,312 data bytes including exception metadata and BSS.
+- Independent ELF comparison confirms section bytes, types, sizes and
+  alignments, 21 named global exports and all 104 normalized relocations.
+  The compiler marks `.sdata2` writable while the reconstructed target
+  metadata marks it read-only; this conventional object flag difference
+  does not change any bytes or the final link. This is not a claim of
+  byte-identical ELF files. Compiler-generated constant labels also differ.
+- G9SE8P release `all_source`, full link, progress and report generation pass;
+  all eighteen DOL/REL hashes match. PAL and Japanese releases are not
+  configured targets, and PS2 is an evidence source only.
+- All 54 checker tests and both language/postprocessor policy checks pass.
+  Every retained unit preserves matched code, data and function counts.
+  The raw report comparison flags vacuous percentages on two deleted
+  anonymous fragment entries; their contents are now in the complete unit.
+
+This establishes source and binary matching, not runtime or hardware validation.
+
+## message.cpp
+
+The European PS2 debug metadata identifies `message.cpp` as C++ and gives the
+`MESSAGE` class, font members, constructor/destructor and language-change APIs.
+The GameCube member offsets, font paths, table lookup and call relationships
+independently correlate the nine surviving functions at `0x800CE010`–`0x800CF070`.
+The next function operates on an unrelated interpolation structure. GameCube's
+`DisplayMessage` has two additional floating-point offset arguments; the PS2
+signature is not substituted for this platform's ABI.
+
+The source groups construction, destruction, font loading/release, rendering,
+conversion and language-change entry points. Default `-inline auto` emits them
+in source order and leaves the destructor out of the language-change paths.
+`-inline deferred` reverses their emission into the observed GameCube order
+and reproduces the inlined destructor/release loops and their exception records.
+This is a caller/callee and exception-handling requirement, not just a function
+permutation. Separate multiply/add instructions and the full-width comparison
+result in the rendering code establish `-fp_contract off` and `-bool off`.
+
+All nine surviving functions, exception records, relocation targets and owned
+data now match natively in objdiff. `setupBBox` is an ordinary method whose
+call is inlined and whose unused out-of-line body is stripped at link time;
+retaining its definition also reproduces the original floating-point constant
+order. Explicitly marking it inline instead places the constructor's height
+constant before the bounding-box constants.
+
+The language-change allocation uses global `operator new`. The existing subtitle
+constructor mapping already identified the same allocation entry point, paired
+with global `operator delete` and using the RenderWare allocator callback. Its
+canonical name is now `__nw__FUl`; keeping a provisional class-specific wrapper
+introduced an extra temporary register move. Existing callers and metadata
+renames follow the canonical global symbol. No instruction post-processor is
+used for message.cpp.
+
+Validation for message.cpp: the native G9SE8P all-source build passes, including
+the main DOL and all seventeen REL hashes. The object audit matches all eight
+owned sections and 141 normalized relocations after excluding the 32-byte
+`setupBBox` body that the linker map explicitly marks UNUSED. All 55 language,
+post-processor and ELF metadata regression tests pass. This is compilation and
+binary verification; no runtime or hardware validation was performed.
+
+## calc_colli.cpp (non-matching reconstruction)
+
+European PS2 DWARF identifies `calc_colli.cpp` as `C_PLUS_PLUS`, with named
+point/line-distance, coplanar-segment and triangle-intersection functions.
+The metadata was inspected locally with CCC v2.2 (`c025ca94735d75cd366b29a10f924010ce43353d`).
+The GameCube argument layouts, projection arithmetic, region classification,
+call relationships and function order independently correlate those identities.
+The two triangle-intersection helpers are file-local in the PS2 metadata.
+This does not establish identical platform implementations.
+
+The proposed GameCube unit owns eight surviving functions at
+`0x800D1408`–`0x800D2ED4`, exception records at `0x80008B78`–`0x80008BB0`,
+exception indexes at `0x8000F214`–`0x8000F268`, the seven-entry switch table at
+`0x802558D0`–`0x802558EC`, and constants at `0x8042DFD0`–`0x8042DFE8`.
+The succeeding moving-collision functions begin a separate pool with duplicate
+threshold/zero/one values. PS2's succeeding `calc_movcolli.cpp` source marker
+corroborates that boundary; the GameCube boundary remains an inference.
+
+All eight functions have C++ bodies. The two point/vector helpers identified
+in PS2 are inlined into the GameCube sphere routine. Its seven cases distinguish
+face, three edge and three vertex contacts. Observed degenerate-input loops,
+null-output behavior, comparison direction and calls are preserved. The local
+`VectorComponents` storage view is a reconstruction aid for retained vector
+writes and pointer comparisons, not a recovered original type name.
+
+This unit uses `-inline deferred,noauto` as an explicitly provisional compiler
+configuration. Natural function order from metadata is distance, coefficient
+solver, coplanar intersection, public intersection wrappers, private triangle
+helpers, then sphere contact. Default auto mode emits definitions in source
+order and can fold the private helpers into their callers. Deferred mode emits
+the reversed definitions in the observed object order; noauto preserves those
+calls while explicitly inline point/vector helpers expand in the sphere routine.
+Deferred emission also permits opaque constant declarations before the functions
+and definitions afterwards, reproducing the pool and repeated threshold loads
+without an object patcher. Thus this configuration addresses calls and data
+access as well as order. It is not proof of a finished match or the original
+source arrangement.
+
+Native G9SE8P objdiff results at the draft checkpoint:
+
+| Function | Match | Remaining work |
+| --- | ---: | --- |
+| `clDistanceP2L2` | 97.27% | Floating-point register allocation; 300-byte size matches |
+| `clGetTriangleVectorCoef_CrsP` | 100% | Whole-object audit still pending |
+| `clIsCrossLS2VonPlane` | 96.03% | Seven missing loads; 1160 bytes versus 1188 |
+| `clDetectLSY2T` | 100% | Whole-object audit still pending |
+| `clDetectLS2T` | 100% | Whole-object audit still pending |
+| `clIntersectTriangleY` | 100% | Whole-object audit still pending |
+| `clIntersectTriangle` | 100% | Whole-object audit still pending |
+| `clDetectS2T` | 98.96% | Floating-point register allocation; 3400-byte size matches |
+
+Constant-pool and exception-table bytes match. Exception-index sizes and switch
+relocation offsets are not yet a whole-object match because the coplanar routine
+is short. No instruction post-processor or assembly substitute is used.
+`configure.py` deliberately keeps this unit `NonMatching`; the linked image
+continues to use its original object. Matching the remainder, auditing every
+owned section/relocation and revalidating the build are required before changing
+that status.
+
+The supported G9SE8P all-source build, all eighteen output hashes and 55 language,
+post-processor and metadata regression tests pass at this checkpoint. Passing
+hashes validate the surrounding split/caller changes, not a source-linked
+collision unit. Runtime and physical-hardware behavior have not been validated.
+
+## calc_movcolli.cpp
+
+The complete GameCube moving-collision unit is `0x800D2ED4`–`0x800D52AC`: three
+functions, 9,176 retail text bytes, 16 exception-table bytes, 24 exception-index
+bytes and 32 small-constant bytes. PS2 symbolic metadata identifies the C++
+`calc_movcolli.cpp` source, `ENUM_CL_MOVING` and the three signatures. The
+GameCube triangle routine calls the segment routine, which calls the point
+routine five times; the following unit is the independently identified
+`Expand2` decompressor. The preceding collision unit has a separate constant
+pool, supporting both boundaries.
+
+All three bodies are reconstructed in C++ with typed vectors and collision
+results. The GameCube point routine is exactly `return CL_MOVING_NONE`; its
+call sites remain present. The other platform's nontrivial point routine is
+not imported. SDK callees were checked in GameCube: `0x801991B4` computes vector
+length without writing the vector, and `0x80199248` accepts and returns a float
+for the reciprocal-square-root lookup.
+
+The initial control-flow recovery used m2c commit
+`708d2d2cb2698f091a92492b328f73b24209f72d` against GameCube assembly only.
+Condition-register aliases were normalized in analysis input, vector stack
+regions were supplied as typed analysis context, and inferred scalar access to
+the first vector component was corrected to `.x`. Those analysis-only stack
+layouts are not emitted as source padding. Correlated vector names describe
+the triangle edges, cross product, projection and contact state. Remaining
+scalar temporaries and control-flow labels await refinement.
+
+Local vector writes use the same separate component-store view as the adjacent
+collision reconstruction, preserving the stores observed in retail. Eight
+segment square-root results use volatile float storage to retain the observed
+single-precision rounding and store/reload sequence. Scalar copies of local
+vector components and input fields were removed where their uses precede calls
+or writes that could change them. The triangle retains separate success and
+fallback returns where retail does; combining those returns changes register
+allocation across the routine.
+The triangle plane dot product is evaluated before the reciprocal-square-root
+call, as in GameCube. These are reconstruction choices, not claims about the
+original spelling or qualifiers.
+The projection coefficient is expressed at its vector uses, reproducing the
+retail normal-component load before the multiply/negate sequence. Descriptive
+names for the Y bounds, plane distances and projection rates describe their
+GameCube computations; they do not assert original source spelling.
+
+This is a **nonmatching draft** and retains the original linked object. The
+point routine and all 32 constant bytes match exactly; all 29 direct call target
+counts agree. The triangle routine is 4,920 native versus 4,928 retail bytes
+(99.54% object match), and the segment routine is 4,232 versus 4,240 (98.94%).
+Both exception-table records and stack-frame sizes match. Instruction and
+register differences remain, along with the resulting exception-index offsets
+and sizes. No instruction patcher or inline assembly is introduced, and matching
+is not claimed for the two larger routines.
+
+Validation: G9SE8P, the sole supported target, passes the full all-source build,
+link and report generation. All 55 regression tests, both policy checks and
+all 18 original-linked DOL/REL hashes pass. These do not establish runtime
+validation of the candidate. PAL, Japan and PS2 have no configured build
+targets; no physical hardware or runtime testing was performed.
+
+### miscs.cpp complete reconstruction
+
+`game/miscs.cpp` is a complete eleven-function C++ reconstruction. Local European PS2 (`SLES_519.50`) CCC 2.2 metadata identifies
+`miscs.cpp` as C++ and supplies the correlated sine initialization, segment
+projection, projectile velocity, drawing, and angle-helper sequence. The
+GameCube boundary is inferred from that sequence and shared sine-table/data
+references, not from individual exception records.
+
+The former address-named sine initializer, segment-distance, and XZ-scale
+fragments are consolidated into this unit. The sine table is one 65,536-float
+array; references to former internal labels become offsets within that array.
+The initializer's split-object postprocessor is no longer scheduled.
+
+Deferred inlining with reversed external definitions reproduces the observed
+GameCube function order. Ordinary automatic inlining emits the drawing function
+after the later angle helpers instead. With numeric constants restored, all
+eleven functions have the target instruction bytes. A bounded compiler-atom
+normalizer permutes six existing scalar atoms and rebases their symbols to
+resolve the 64-byte constant-pool order. All instructions and relocation records
+remain unchanged. The lost source/compiler choice behind the scalar ordering
+remains explicit in [the normalization evidence](miscs-constant-order.md).
+
+
+The correlated API names now use C++ linkage and shared declarations in
+`include/game/miscs.h`. The segment-distance interface takes four vector
+pointers; two existing nonmatching stage-11 callers no longer treat an incidental
+floating-point register value as a fifth argument. The three replaced fragments
+and their obsolete initializer postprocessor are removed. Independent exact
+section and relocation checks now include the constant pool without a
+permutation exception. Native supported-matrix validation is recorded in the
+normalization evidence; compilation does not establish runtime validation.
+
+### calc.cpp reconstruction
+
+The eight-function `game/calc.cpp` reconstruction is C++, based on correlated
+PS2 `calc.cpp` metadata and C++ signatures for the interpolation, angle, and
+matrix-rotation routines. The GameCube unit boundary is inferred from that
+sequence and its shared constants. Seven functions match directly. `GetRotYXZ` retains ten fields that exchange
+floating-point registers 30 and 31; a bounded compiler-output normalizer
+substitutes those fields alone. This is not a source-only match claim.
+
+Deferred inlining and reversed source definitions reproduce the GameCube
+function order and exception tables. A real, referenced zero constant is defined
+after the functions to preserve its leading position before the compiler's
+conversion bias and angle scale. The 20-byte constant pool is exact; it is not
+synthetic padding. No assembly implementation or layout normalizer is used.
+
+The public declarations live in `include/game/calc.h`. The BlinkLight caller now
+uses the evidenced integer output pointers and integer angle storage rather
+than declaring the rotation routine's outputs as floats. The downstream particle
+factory receives that storage through an opaque pointer pending reconstruction
+of its interface.
+
+The ordinary-inline comparison emits `GetRotXYZ` first and `InterDivPosF` last;
+deferred mode gives the target's opposite order. Independent ELF validation
+finds exact export offsets/sizes, 56 bytes of exception data, 84 bytes of
+exception indices, the 20-byte constant pool and all 85 normalized relocations.
+The only ten differing instruction words lie inside `GetRotYXZ` and change
+register fields only. The complete liveness proof, source trials, guards and
+removal path are recorded in [calc-register-evidence.md](calc-register-evidence.md).
+A fresh native G9SE8P main DOL and all seventeen RELs compile and all eighteen
+retail hashes pass. All-source compilation, progress/report generation, 63
+tests, both policies and formatting pass. No runtime or physical-hardware
+validation was performed.
+
+## locateTable.cpp
+
+European PS2 debug metadata identifies `locateTable.cpp` as C++ and supplies
+the five function names and locator/timer record layouts. GameCube's contiguous
+five-function range at `0x800A2090`–`0x800A23CC` independently correlates through
+stage lookup, team selection and timer callback access. Table lengths and values
+come from GameCube: the other platform's counts are not substituted.
+
+The unit owns 828 bytes of code, 12,536 bytes of initialized locator/timer data
+and 112 bytes of demo locator BSS. The spurious interior symbol at `0x80252411`
+is folded into the complete two-player locator array beginning at `0x8025240C`.
+Private views of external action, mode and team state describe only accessed
+prefixes and are never allocated as complete objects. The multiplayer search
+preserves the original stage index lifetime across teams.
+
+Default automatic inlining and `-pooldata off` reproduce the separate table
+addresses. All five functions, seven data definitions, section bytes and 43
+normalized relocations match without instruction post-processing, assembly,
+unused helper bodies or synthetic padding.
+
+Validation: the supported G9SE8P all-source build and native link pass, as do
+the main DOL and seventeen REL hashes, all 55 regression tests and both policy
+checks. The existing Peripheral demo loader now refers to the canonical table
+symbol. PAL, Japan and PS2 are not configured build targets. No runtime or
+physical-hardware validation was performed.
+
+## gParam.cpp
+
+European PS2 debug metadata identifies `gParam.cpp` as C++ and names the
+parameter classes, static fields and game-state APIs. GameCube's 27 contiguous
+functions at `0x800663D0`–`0x80067050` independently correlate victory counts,
+timers, team/member scores, challenge counts, rings and checkpoint state. The
+preceding thunk/stubs and following player-state method are outside this unit.
+GameCube has additional saved-time methods and initialization behavior; their
+descriptive names are inferred from this platform's code.
+
+The unit preserves double clamping through inlined setters, ring threshold
+rewards, trigger-dependent SFA updates, and checkpoint time restoration only
+in single-player mode. Its checkpoint getter tests the angle output pointer
+before writing either output, including the position: this retail quirk is
+retained. The seconds helper loops on underflow but carries overflow only once.
+The stage-24 three-byte saved timer remains under its address-based symbol.
+External object declarations describe accessed prefixes only and are never
+allocated here; shared static-state helpers do not assume a class hierarchy.
+
+Deferred inlining with reverse function definitions reproduces the 27 exported
+functions in retail order and inlines the victory, score and ring setters into
+their callers. Default automatic inlining leaves calls and extra exception
+records, producing 3,016 instead of 3,200 text bytes. This caller/callee evidence
+justifies the scoped deferred policy entry. `-pooldata off` retains independent
+static-state addresses. No assembly, instruction patcher or synthetic padding
+is used.
+
+The exact object comparison covers all 3,200 text bytes, 24 exception-table
+bytes, 36 exception-index bytes, 140 BSS bytes, 24 constant-pool bytes and 191
+normalized relocations. The native small BSS has 23 bytes plus one trailing
+link-alignment byte in the reference; every named data object's offset and size
+matches. The compiler's writable `.sdata2` flag differs from the split object's
+read-only convention. Corrected symbol extents describe four victory bytes,
+three saved-timer bytes and the 16-byte TB array. Existing callers retain their
+ABI while referring to the recovered names.
+
+Validation: the sole supported target, G9SE8P, passes the complete all-source
+build, progress/report generation and native link. The source object is present
+in the main link inputs. The main DOL and all seventeen REL hashes pass, as do
+all 55 regression tests and both policy checks. PAL, Japan and PS2 are not
+configured build targets. No runtime or physical-hardware testing was performed.
+
+
+## ONEFILE whole-unit reconstruction (2026-10-06)
+
+Symbolic metadata explicitly identifies `one.cpp` as C++ and names its class,
+fields and methods. GameCube callers independently establish a 0x58-byte class,
+without the PS2-only stream member. The complete GameCube unit has 25 functions,
+including a memory-stream setter and an ARAM resource loader absent from the
+available PS2 method inventory. See `one-unit-evidence.md` for boundaries.
+
+Deferred inlining is required by the observed caller/callee relationships.
+With default automatic inlining, the whole native text is 9,116 bytes:
+`LoadOneFile` is 316 bytes, the constructor 100, destructor 88 and `SetOneFile`
+148. These leave nested ownership and loading operations as calls. Deferred
+emission produces all 25 retail function sizes and offsets, the exact 9,856-byte
+text extent, 192 exception-table bytes and 288 exception-index bytes. In
+particular those four functions become the observed 480, 500, 176 and 236 bytes.
+Definitions are reversed to reproduce the compiler's deferred emission order.
+
+All 25 bodies now match directly from C++. Reassociating the shared chunk
+address as `memBlock + position - 12` recovers the original load order and
+register allocation in all seventeen formerly differing bodies.
+The ARAM loader's register allocation matches after grouping the aligned size
+before the stream and allocated address locals. All 422
+normalized relocations agree, and 45 native data bytes agree with the retail
+48-byte extent including three trailing alignment bytes. No instruction patches,
+assembly implementations or synthetic padding are introduced.
+
+The native G9SE8P main DOL plus all seventeen RELs compile and all eighteen
+retail image hashes pass. All-source compilation, progress/report generation,
+55 tests, both policies and formatting pass. See `one-unit-evidence.md`; no
+runtime or physical-hardware validation was performed.
+
+
+## Enemy database whole-unit reconstruction (2026-10-07)
+
+Positive C++ compilation-unit and class metadata identifies enemy/e_database.cpp.
+All twelve GameCube methods, fourteen-record layout, singleton, extension
+strings and exception sections are reconstructed together. Resource ownership
+is explicit: Delete releases loaded objects, while the destructor only clears
+records. The completed ONEFILE interface supplies archive loading and real C++
+construction/destruction. No PS2 instructions were inspected.
+
+All 2,380 text bytes match directly, without a normalizer or deferred-inlining
+override. All 67 effective relocations and owned data/exception sections match,
+allowing only natural tail alignment in small-data sections. Canonical method,
+singleton and array-operator renames are propagated through existing callers.
+The G9SE8P main DOL and seventeen RELs compile and pass all eighteen hashes;
+55 automated tests and both policies pass. See `e-database-unit-evidence.md`
+for boundaries and lifecycle details. No runtime validation is claimed.
+
+### misc.cpp boundary and reconstruction inventory
+
+The next whole-unit reconstruction covers GameCube `0x800D5844`–`0x800D7B18`:
+30 functions and 8,916 text bytes. This is `misc.cpp`, distinct from the
+following eleven-function `miscs.cpp` draft. Local PS2 symbolic metadata marks
+`misc.cpp` as C++ and supplies the ordered camera-position, printing, geometry
+and angle API sequence. GameCube's `ClosePositionToCamera` candidate reads the
+camera-position global and moves the supplied point toward it; the following
+empty spline-display body and relative-point helper support the start boundary.
+The existing `miscs.cpp` investigation places sine-table initialization at
+`0x800D7B18`, fixing the other boundary. Exception tables span
+`0x80008BD0`–`0x80008C68`, and their index spans `0x8000F298`–`0x8000F37C`.
+The shared constant range is `0x8042E008`–`0x8042E040`.
+
+The ordered working inventory is below. Names are metadata correlations;
+parameter and return types still require checking against each GameCube body.
+The two final table lookups are GameCube-specific inventory entries, without
+an asserted original source spelling.
+
+| GameCube address | Correlated operation |
+| --- | --- |
+| `800D5844` | `ClosePositionToCamera` |
+| `800D5938` | `DisplayRpSpline` |
+| `800D593C` | `RelativeCalcPoint` |
+| `800D5A64` | `AdjustPoint` |
+| `800D5B8C` | `njPrintColor` |
+| `800D5C08` | `njPrint2` |
+| `800D5CB0` | `njPrint` |
+| `800D5D5C` | `DistanceL2PL` |
+| `800D605C` | `DistanceL2L` |
+| `800D67D4` | `RoundOff` |
+| `800D6818` | `CrossProduct` |
+| `800D689C` | `DistancePL2PL`, vector overload |
+| `800D6958` | `DistancePL2PL`, line overload |
+| `800D6E0C` | `DistanceP2PL`, vector overload |
+| `800D6F0C` | `DistanceP2PL`, line overload |
+| `800D7044` | `DistanceP2L` |
+| `800D71DC` | `Distance2P2P` |
+| `800D7218` | `DistanceP2P` |
+| `800D72C0` | `SubVectorReturnToVector` |
+| `800D72F4` | `AddVectorReturnToVector` |
+| `800D7328` | `AdjustFloat` |
+| `800D735C` | `GetZYAngleForTheTargetPoint` |
+| `800D7564` | `GetFloatMod` |
+| `800D75CC` | `VectorAngleOnPlane` |
+| `800D7920` | `VectorAngle` |
+| `800D7A54` | `DiffAngle` |
+| `800D7A80` | `SubAngle` |
+| `800D7A94` | `AdjustAngle` |
+| `800D7AE4` | cosine-table lookup |
+| `800D7B00` | sine-table lookup |
+
+The address-named fragments are not a completed reconstruction of this unit.
+In particular, `fn_800D6818.cpp` is not a separate file: its current body lives
+in `fn_800D67D4.cpp`, declares a void result and calls the vector-length SDK
+function. The metadata identifies `CrossProduct` as returning a float, and the
+GameCube sequence preserves the SDK result in `f1` through its epilogue. Its
+return contract must be corrected during consolidation. Existing instruction
+postprocessors on other fragments must be audited rather than silently carried
+into a newly claimed native whole-unit match. No new source matching or build
+validation is claimed by this inventory-only update.
+
+The first whole-unit candidate now compiles all 30 bodies in `game/misc.cpp`.
+It replaces four address-named source fragments and removes the former
+angle-helper instruction patch step and tool. The 28 metadata-backed APIs now use C++ linkage and declarations in
+`game/misc.h`; their callers use the corresponding recovered linker names.
+The two GameCube-only table lookups retain provisional names. No new instruction postprocessor is introduced.
+
+Initial control-flow recovery used m2c `708d2d2cb2698f091a92492b328f73b24209f72d`
+on GameCube assembly. Typed analysis-only stack layouts establish actual vector
+and line objects; no analysis padding is emitted in source. The two print
+functions use `__builtin_va_info` and a 64-byte formatting buffer rather than
+inferred register-save pseudocode. Scalar square-root intermediates retain
+single-precision store/reload rounding. Existing source forms for the angle
+helpers are retained where they improve native correspondence.
+
+Twenty-six functions currently have exact native instruction bytes. Four geometry
+helpers remain nonmatching. Native text is 8,972 bytes including a generated
+helper; retail text is 8,916. Both exception section sizes agree (152/228 bytes). The exception table is
+byte-exact; the index has one function-size difference, as detailed below. The 52
+native constant bytes equal the retail prefix; the retail range includes four
+trailing zero bytes. The candidate remains **NonMatching** and links the
+original object. The full supported G9SE8P all-source build and link/report,
+55 tests, both policies and 18 original-linked artifact hashes pass. These do
+not validate candidate runtime behavior or establish whole-object matching.
+
+`AdjustPoint` now reproduces the retail three-word vector copy through a private
+word-copy view, then reads the scaled vector components at their observed uses.
+The vector-overload plane intersection also matches after removing premature
+input caches. Three square-root paths now reload their rounded stack result
+instead of retaining the pre-store temporary. These refinements bring the
+native function count to 22 exact; the whole unit remains nonmatching.
+
+The shared API distinguishes the vector and line overloads, restores const input
+pointers, and declares `CrossProduct` with its observed floating-point result.
+GameCube's angle-difference and adjustment bodies explicitly narrow their
+results to 16 bits; the header retains those return types while using the
+metadata-backed integer parameter types. Caller edits outside this unit are
+linker-name substitutions and preserve their existing private type boundaries.
+All 34 direct-call target counts agree with the original object. Following the
+API edits, all 22 exact functions remain exact, the complete supported build
+passes, and all 55 tests and 18 original-linked output hashes pass.
+
+`DistanceP2L` now matches all 408 bytes. Input-field and squared-distance
+expressions follow the retail evaluation order, and the existing square-root
+helper is shared with this function and both point-to-plane overloads. The
+private helper is named `MiscSqrt` as a reconstruction aid. It preserves the
+three reciprocal-square-root refinements and rounded float store/reload.
+Sharing it also brings the line-based point-to-plane overload to 99.87%; the
+vector overload remains 99.84%. The full supported build, 55 tests, both policy
+checks and 18 original-linked hashes pass after these changes.
+
+`DistanceL2PL` improves from 88.66% to 94.69% native correspondence while
+retaining the exact 768-byte retail function size. Eleven redundant scalar
+input caches are folded into their expressions; all affected reads occur
+before any potentially aliasing output write. The original three explicit
+square-root sequences remain: sharing `MiscSqrt` here introduced extra branches
+and register moves. The other 23 exact functions remain exact. The full
+supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
+hashes pass for this refinement.
+
+Both `DistanceP2PL` overloads now match their complete 256/312-byte retail
+bodies. An explicit double-precision absolute-value intermediate followed by
+the existing float conversion reproduces the two previously differing `fabs`
+and `frsp` register operands. `GetZYAngleForTheTargetPoint` also matches all
+520 bytes after folding four redundant input-component copies into their
+squared-length expressions. Its explicit square-root sequences remain; the
+shared helper trial changed the instruction sequence. These changes raise the
+native exact count to 26 of 30 without changing whole-unit text size. The
+full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked artifact hashes pass; candidate runtime remains unvalidated.
+
+`DistanceL2L` improves from 89.51% to 92.56%. Its nearest-point stack storage is
+represented as a vector instead of three disconnected scalars; the existing
+volatile accesses and retained null-output branch preserve observed stores,
+reloads and control flow. Volatile is a reconstruction aid, not a claim about
+the original declaration. Redundant direction caches and local-vector store
+copies are folded into their expressions. Position snapshots that remain live
+across potentially aliasing output writes are retained. Its native body is
+1,916 bytes versus 1,912 retail bytes; the other 26 exact functions remain
+exact. Full G9SE8P build/report, 55 tests, both policies and all 18
+original-linked hashes pass after this refinement.
+
+The line-based `DistancePL2PL` improves from 74.24% to 80.91% and now has the
+exact 1,204-byte retail size. Sixteen redundant input-component caches and nine
+product temporaries are folded into expressions without changing arithmetic
+association. The Z-coordinate numerator is evaluated before the X/Y output
+stores, following the retail sequence, while its final multiplication and store
+remain last. Input snapshots used across output writes remain intact. These
+changes remove an extra saved floating-point register and bring whole-unit
+native text to 8,964 bytes. All 26 exact functions remain exact. The full
+supported G9SE8P build/report, 55 tests, both policies and 18 original-linked
+hashes pass; the unit remains nonmatching and candidate runtime unvalidated.
+
+The parallel-plane branch now evaluates its plane offset before the normal's
+squared length, matching retail load/arithmetic order. This brings the
+line-based plane intersection to 84.12%, retaining its exact 1,204-byte size.
+The determinant and three plane offsets also receive descriptive local names.
+Broader normal-cache removal introduced additional loads and was reverted.
+All 26 exact functions remain exact; full supported G9SE8P build/report,
+55 tests, both policies and 18 original-linked hashes pass.
+
+`DistanceL2L` now reaches 96.54% and the exact 1,912-byte retail size. Twelve
+squared-distance intermediates are folded into their expressions, preserving
+arithmetic association and the existing captured positions. Combining the
+parallel branch's square-root return paths removes the extra branch. The
+volatile nearest-point reloads remain unchanged. All 26 exact functions stay
+exact; whole-unit native text is now 8,960 bytes. Full supported G9SE8P
+build/report, 55 tests, both policies and 18 original-linked hashes pass.
+
+A whole-object audit at `470642f` confirms that all 26 byte-exact functions also
+have exact relocations after normalizing defined targets by section/offset or
+function identity. Both line-distance routines have exact relocation offsets
+and targets despite their remaining instruction differences. The line-based
+plane intersection and projected-vector angle still differ in both instructions
+and relocation placement. All 34 direct-call target counts agree.
+
+All 152 exception-table bytes match. All 38 exception-index relocations match;
+the only index data difference is the `VectorAngleOnPlane` function-size word
+at index offset 208 (retail 852, native 848). The native 52-byte constant section
+matches the retail prefix; retail has four additional trailing zero bytes.
+The native object also contains a 48-byte static dot helper whose final linker
+removal has not been verified because the original object remains linked.
+These outstanding details prevent a whole-object matching claim. This audit
+changes documentation only; the preceding full build and checks remain the
+validation for the unchanged source.
+
+The line-to-plane body now names its line/plane inputs, projection scale,
+intersection rate, captured point coordinates and dot/offset values directly.
+Each of its three square-root blocks uses one scoped estimate for the three
+Newton refinements instead of register-derived intermediate names. A fresh
+before/after compilation confirms identical native text, constants, exception
+bytes and normalized relocations throughout the object. The match count stays
+26/30. Full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked hashes pass for this source simplification.
+
+A diagnostic native link of the unchanged `50f307c` candidate resolves the
+helper and constant-tail questions. The link command contains the compiled
+`src/game/misc.o` and excludes the original object. Its map marks the 48-byte
+`fn_800D7920Dot` helper `UNUSED`. The linked bytes from `0x8042E008` through
+`0x8042E03F` equal the complete 56-byte retail constant range: the native
+52-byte contribution is followed by four normal linker-alignment bytes, and
+the next contribution remains at `0x8042E040`. No source padding is needed.
+
+The first subsequent function, `VectorAngle`, links at `0x800D791C` rather than
+`0x800D7920`, consistent with the four-byte-short projected-angle routine.
+Thus the remaining barriers are the four instruction bodies and the associated
+size/relocation differences, not the unused helper or constant alignment.
+This diagnostic is not a matching release or runtime validation. The temporary
+Matching setting was reverted; a full supported G9SE8P all-source build and
+link/report then passed with the original object, alongside 55 tests, both
+policies and all 18 original-linked artifact hashes. No diagnostic binary or
+configuration change is retained.
+
+Symbolic metadata for the line-based plane intersection identifies a local
+`RwV3d p`, three float plane terms `d1`, `d2`, `d3`, and reciprocal determinant
+`oodet`, with parameters `pl1`, `pl2`, `l`. Reconstructing that local point lets
+the determinant expressions read normals directly before the output-point
+stores, preserving the observed order without extra reloads. This raises the
+native match from 84.12% to 94.24%, retaining the exact 1,204-byte function size.
+The GameCube instruction sequence remains the behavioral authority; metadata
+supplies only names/types. All 26 exact functions and the established object
+metadata checks remain intact. Full supported G9SE8P build/report, 55 tests,
+both policies and 18 original-linked hashes pass.
+
+The projected-angle metadata identifies `NJS_LINE pl` and `RwV3d v1s/v2s`,
+with parameters `v1/v2/vn`. The source now constructs that plane and invokes
+the recovered line-overload `DistanceP2PL` twice. This replaces the private
+projection and normal-dot reconstruction helpers; both real API calls inline.
+The retail register operands are reproduced, including the previously missing
+zero reload and second-offset addition order. Two extra rounded-result loads
+remain from the inlined square-root return values, making this body 860 bytes
+versus 852 retail (98.96% versus the previous 99.25%). This is accepted as a
+better-grounded source reconstruction, not an increased binary match score.
+The exception-index size word is correspondingly 860; whole native text is
+8,972 bytes. All 26 exact functions, 34 direct-call counts, exception-table
+bytes and index relocation targets remain verified. Full supported G9SE8P
+build/report, 55 tests, both policies and 18 original-linked hashes pass.
+
+`DistanceL2L` now represents the recovered temporary direction `p` and first
+nearest point `tp1` as vectors rather than disconnected component scalars.
+The line/plane locals and arguments use the metadata-backed `pl1`, `pl2`,
+`tl`, `tp2`, `l1/l2`, `p1/p2` and parameter `u` names. Component evaluation order,
+conditional Z access and existing volatile nearest-point loads are preserved.
+The routine remains 96.54% with its exact 1,912-byte size. Consolidating the
+separate determinant temporaries did not improve correspondence and was not
+retained. All 26 exact functions and object-audit invariants pass, as do the
+full supported G9SE8P build/report, 55 tests, both policies and 18
+original-linked artifact hashes.
+
+The parallel-plane branch now snapshots `pl1->p` into local `p` before clearing
+`l`, as shown by the retail three point loads preceding the six output stores.
+The previous candidate read that point after clearing the output, producing a
+different distance when `l == pl1`. Plane-normal reads remain after the clear,
+preserving the separate alias behavior when `l == pl2`. The signed offset,
+normal magnitude and absolute-value calculations are separated, with the
+normal components captured in their observed order. The native function now
+matches 94.90%, retains its exact 1,204-byte size, and has exact relocation
+offsets and targets. All 26 exact functions remain exact. Full supported
+G9SE8P build/report, 55 tests, both policies, object audit and 18 original-linked
+hashes pass. The alias correction is established from load/store order; no
+candidate runtime or hardware validation is claimed.
+
+The line-to-line determinant path now reads two direction components at their
+uses and evaluates the first determinant product before loading the negated
+X component. This follows the retail sequence without changing the products
+or subtraction. Native correspondence improves to 97.04%, retaining the exact
+1,912-byte size and relocation layout. All 26 exact functions remain exact;
+full supported G9SE8P build/report, 55 tests, both policies, object audit and
+18 original-linked hashes pass.
+
+
+## pathctrl.cpp
+
+Symbolic PS2 metadata positively identifies this whole translation unit as C++
+and describes CLASS_PATH methods and private path-control helpers. GameCube
+member accesses independently establish the 88-byte class and callback ABI.
+All eight surviving GameCube bodies are reconstructed together; the metadata-named pathCalcRoughArea helper inlines into its three callers.
+The metadata-named pathCheckRangeWithinArea2 also inlines into Seeing.
+The remaining private range-helper operations stay inside their caller.
+
+The unit uses ordinary C++ methods and default automatic inlining. Exception
+handling is enabled for its six owned exception records; separate multiply/add
+instructions motivate disabling floating-point contraction. Scheduling and
+peephole optimization are disabled for the current native comparison, and
+constant pooling is disabled. These settings remain subject to matching work.
+No deferred-inline override, assembly stub or instruction patcher is used.
+Four lifecycle bodies and Gliding instruction bytes are exact; three larger
+routines, constant relocation offsets, constant order and
+exception metadata remain NonMatching. See `pathctrl-unit-evidence.md` for
+whole-unit boundaries, comparison results and complete build verification.
+
+
+## scanpath.cpp
+
+PS2 symbolic metadata identifies scanpath.cpp as C++ and names its manager
+class, four transformation helpers, constructor and SetPath. GameCube code
+independently confirms the class layout, virtual dispatch, object allocation,
+exception cleanup and three path-record formats. The complete sixteen-body
+GameCube unit is reconstructed together, with its six inline methods.
+
+The candidate uses ordinary C++ and compiler floating-point intrinsics. Its
+compiler settings use unit-wide `-O3,p` optimization with exceptions enabled, floating-point
+contraction disabled, no scheduling/peephole optimization, constant pooling
+disabled and automatic inlining. Fifteen functions match instruction bytes and
+normalized relocations directly. CalcPNNPntParam retains four register fields
+across two instructions; a guarded compiler-output normalizer changes only
+those fields. The load and copy reach identical register state before the
+next call. All sixteen game/SDK direct call inventories agree. See
+`scanpath-unit-evidence.md` for the published remainder, owned ranges, native
+comparisons and supported build verification.
+
+## c_colli_react.cpp
+
+PS2 symbolic metadata positively identifies the complete collision reactor unit
+as C++. GameCube virtual-base pointer accesses, four 60-byte allocations, and
+fourteen adjusting thunks independently confirm virtual inheritance. The source
+reconstructs all 42 surviving bodies and five inlined constructors using C++
+classes; the compiler emits the thunks. Metadata also identifies the inline
+CheckReactor and reference-count methods. No instruction post-processor is used.
+
+All 42 bodies match instructions and normalized relocations. The deferred-inline
+recipe uses base-first class definition groups and reproduces the five vtable
+groups, fourteen compiler-generated thunk orderings, and extab records.
+Original source line order remains unproven. Derived override declaration order
+comes from GameCube vtable slots, not PS2 method-order metadata. A fail-closed
+object step moves only the compiler-produced 28-byte weak SetDirection body to
+the tail; it preserves every instruction and relocation meaning. With that
+explicit layout normalization the complete linked DOL is byte-identical and all
+18 supported output hashes pass. The whole unit is enabled as Matching.
+See `c-colli-react-unit-evidence.md` for the inventory, evidence and remaining
+compiler-emission gap.
+
+## setObj.cpp
+
+PS2 symbolic metadata identifies this complete unit as C++ and TObjSetObj as a
+standalone eight-byte polymorphic class with SETOBJ_PARAM* at offset zero.
+GameCube constructor/destructor vtable accesses and the sole EditOnChange slot
+confirm the class correlation. Nine surviving bodies span 0x8005B8B8–0x8005BEC4;
+SetDestroy and SetInit inline into lifecycle methods. No PS2 instructions were
+inspected. All nine bodies and owned sections match, and the complete native-linked DOL
+is byte-identical. The unit is enabled as Matching with no object normalizer. The destructor is nonvirtual; the class does not inherit
+TObject. The previously reversed CheckMustKill/CheckRangeOut labels in three stage
+wrappers are corrected with their call sites, preserving call order and targets.
+See `setobj-unit-evidence.md` for the inventory and verification.
+
+## Material color change plugin (2026-10-06)
+
+`src/plugin/materialcolorchange.c` is explicitly `C_PLUS_PLUS` in PS2 symbolic
+metadata despite its suffix. The complete reconstruction uses
+`game/plugin/materialcolorchange.cpp`, retaining C linkage for the public
+`RpAtomicMCC*` API and C++ linkage for its local callbacks. The sixteen-function
+GameCube extent is `0x8005F490..0x8005FA0C`; plugin registration and its six
+callback pointers positively establish the unit inventory and 32-byte payload.
+All bodies and normalized relocations match under whole-unit `-inline auto`,
+`-bool off`, `-Cpp_exceptions on`, and `-opt noschedule,nopeephole`. No object
+normalizer is added. All eighteen supported artifact hashes, 62 tests, and
+language/object policy checks pass. See
+[the unit evidence](materialcolorchange-unit-evidence.md).
+
+## material.cpp
+
+The complete `DealMaterial` unit is C++, as established by local symbolic
+compilation-unit metadata, constructor overloads, member methods, and destructor
+ABI. All 29 surviving GameCube bodies at `0x80119588–0x80119FE8` and all owned
+sections are reconstructed. Unit-local deferred level 2 reproduces the nested
+destructor inlining and full function/exception order; ordinary automatic
+inlining and deferred level 1 each match only 28 bodies. No postprocessor is
+used. See [the complete evidence](material-unit-evidence.md).
+
+## object.cpp
+
+Local symbolic metadata identifies the complete object utility family as C++.
+GameCube calls, layouts and resource storage corroborate all 79 surviving bodies
+at `0x8005BEC4–0x8005F490`. The reconstruction subsumes the older five-function
+resource fragment. A metadata-backed ONEFILE constructor removes its fabricated
+wrapper and reproduces the exception cleanup directly. Unit-local deferred
+level 2 reproduces nested inlining while retaining public bodies.
+
+Raw source matches 78 bodies and the complete layout. The remaining two scan
+cursors require ten register-field substitutions across six instructions under
+a narrow, documented normalizer. All other instructions and every relocation
+match without adjustment. The previous fragment's 91-field normalizer is
+removed. See [the full evidence and remaining uncertainty](object-unit-evidence.md).
+
+## vertical_colli.cpp
+
+Local symbolic metadata identifies the whole three-function vertical collision
+unit as C++. GameCube call ABI, POLYDATA fields, and callback references
+corroborate it. The reconstruction uses C++ and canonical mangled symbols.
+See [the unit evidence](vertical-colli-unit-evidence.md).
+
+## game2pTable.cpp
+
+Symbolic metadata identifies this complete five-function unit as C++; GameCube
+callers and all four owned table references corroborate its boundaries. Only
+metadata from the other platform was examined. Its differing table counts are
+not imported. The GameCube unit owns 1,252 text bytes, 324 table bytes plus four
+alignment bytes, 32 exception bytes and 48 exception-index bytes.
+
+Automatic inlining with callee-before-caller definitions emits the right bodies
+in the wrong order. Reversing definitions into retail order leaves member
+selection out of line: intro becomes 220 rather than 416 bytes. Whole-unit
+`-inline deferred` preserves both the native inline topology and body order.
+It is listed explicitly in `deferred_sources`. Four bodies match directly;
+the intro's measured 12-field r29/r30 permutation is guarded and documented in
+`game2ptable-unit-evidence.md`, with no retail instruction words injected.
+
+## enemy/e_mtnpath.cpp
+
+Symbolic C++ metadata, GameCube class/vtable references and all ten method
+roles identify this complete 1,464-byte unit. The data getters inline into the
+path constructor. Native multiple-inheritance offsets and the four-aligned
+matrix establish a 0xD0 GameCube object, rather than the other platform's 0xE0
+extent. The motion manager and array operators use metadata-backed C++
+interfaces, with callers' symbol references propagated consistently.
+All ten bodies match with ordinary automatic inlining and genuine constructor,
+destructor and exception cleanup emission. No deferred override or object
+normalizer is introduced. See `e-mtnpath-unit-evidence.md` for ownership and
+verification.
+
+## enemy/e_utility_hierarchy.cpp
+
+C++ metadata supplies the complete three-function nHierarchy inventory, with
+native motion-manager callers and recursive callback addresses confirming the
+correlation. All 276 text bytes, 24 exception bytes and 36 exception-index bytes
+belong to this unit; no data ownership is inferred from metadata declarations.
+All three functions match with ordinary automatic inlining, without a deferred
+override or object normalizer. The frame-hierarchy API is correctly typed as
+returning RpHAnimHierarchy*. See `e-utility-hierarchy-unit-evidence.md`.
+
+## enemy/e_utility_system.cpp
+
+Symbolic metadata establishes two C++ namespace functions taking signed integer
+references. Native enemy timer callers and paired +/-1 operations corroborate
+the full 208-byte inventory. Both functions and the inlined three-mode predicate
+match directly with ordinary automatic inlining; no owned data or exception
+records exist. The original predicate name is unconfirmed, so the source
+explicitly labels its private helper/view names as reconstructed. Native signed
+mode bytes at 0x1F/0x20/0x21 are preserved. No deferred override or object
+normalizer is used. See `e-utility-system-unit-evidence.md`.
+
+## Enemy render utility (`enemy/e_utility_render.cpp`)
+
+Positive symbolic metadata identifies the complete eight-function `nRender`
+unit as `C_PLUS_PLUS`. GC fog/light/state calls and four private saved-state
+words independently establish ownership: text `0x801137AC–0x8011398C`, all
+exception records, and `.sbss` `0x8042C658–0x8042C668`. Standard whole-unit
+C++ automatic inlining produces eight exact bodies and all 51 effective
+relocations, with no object postprocessor. The accessed external object views
+use GC offsets and do not import PS2 alignment or layout. See
+[e-utility-render-unit-evidence.md](e-utility-render-unit-evidence.md).
+
+## enemy/e_material.cpp
+
+Symbolic C++ class/callback metadata and GameCube texture/material operations
+establish the complete six-body TEnemyMatTexture unit, distinct from DealMaterial.
+All 832 text bytes match directly with ordinary automatic inlining. Clear()
+inlines; the callback is local; the vtable contains only the virtual destructor.
+Native End/destructor/Init lifecycle distinctions and the strict-greater-than
+PreDisp index check are preserved. Genuine array new/delete use metadata-backed
+C++ operator identities. No deferred override or object normalizer is used.
+See `e-material-unit-evidence.md` for section ownership and validation.
+
+
+## Enemy communication whole-unit reconstruction (2026-10-07)
+
+Symbolic metadata explicitly classifies enemy/e_communication.cpp as C++ and
+identifies three namespace functions plus two command methods. All five bodies,
+both writable UID tables and exception sections are reconstructed together.
+GameCube table lengths and values take precedence over different PS2 arrays;
+no PS2 instructions were inspected. The command records preserve public
+inheritance and the four-byte/20-byte native layouts.
+
+The metadata-backed inline list getter reproduces the pointer copies that a
+direct field expression omitted. All 548 text bytes match directly, with no
+normalizer or deferred-inlining override. See `e-communication-unit-evidence.md`
+for complete ownership, sentinel and removal-order contracts.
+
+The complete G9SE8P main DOL and seventeen RELs compile and pass all eighteen
+reference hashes. All 62 automated tests and both policies pass. Independent
+ELF, layout/control-flow and caller-substitution reviews pass. No runtime or
+physical-hardware validation is claimed.
+
+## rankTable.cpp complete-unit reconstruction
+
+Positive `C_PLUS_PLUS` compile-unit metadata names `rankTable.cpp`, its three
+public functions and five private tables. Retail GameCube text/data, signed
+field accesses and loop bounds establish the final-release layout and larger
+table counts. The complete source compiles to identical 1340-byte text and
+1500-byte data sections with all 41 relocations exact, without a postprocessor
+or deferred inlining. See [the unit evidence](rank-table-unit-evidence.md).
+The initial handoff remains NonMatching pending the full supported build.
+
+All-source compilation of the supported G9SE8P main DOL and seventeen RELs
+passes, with all eighteen reference hashes and 62 automated tests passing.
+Both policies and independent object/type/control-flow reviews pass.
+No runtime or physical-hardware validation is claimed.
+
+
+## Enemy RenderWare utility whole-unit reconstruction (2026-10-07)
+
+Positive C++ unit and subprogram metadata identifies enemy/e_utility_rw.cpp,
+its public frame-ID search and static recursive callback. Both surviving
+GameCube bodies and exception sections are reconstructed together. The scratch
+record preserves its pointer/signed-ID layout; parent-frame exclusion and the
+callback's always-return-input contract follow GameCube behavior. No PS2
+instructions were inspected.
+
+Both functions match directly on the first complete compile, without object
+normalization or deferred inlining. See `e-utility-rw-unit-evidence.md` for
+complete ownership and recursion details.
+
+The supported G9SE8P main DOL and all seventeen RELs compile and pass all
+eighteen reference hashes. All 62 automated tests, both policies and independent
+whole-object/source/caller reviews pass. No runtime validation is claimed.
+
+## locateTable.cpp complete-unit reconstruction
+
+Positive `C_PLUS_PLUS` metadata names the complete five-function locator unit,
+four locator tables, DemoLocator and two timer tables. GameCube behavior and
+initializer data establish the final-release counts and layout. All five native
+bodies, three owned sections and 43 effective relocations match without a
+normalizer or deferred inlining. See [the unit evidence](locate-table-unit-evidence.md).
+Independent whole-object, field/layout, control-flow and consumer-rename
+reviews pass. All-source compilation of the supported G9SE8P main DOL and seventeen RELs
+passes; all eighteen reference hashes, 62 automated tests and both policies
+pass. No runtime or physical-hardware validation is claimed.
+
+## storyTable.cpp complete C++ consolidation
+
+Positive C_PLUS_PLUS metadata and the correlated thirteen-body retail cluster
+establish complete story management ownership. This absorbs the provisional
+eight-body voice_sequence.cpp split, all five sequence tables and singleton.
+Four GC-only bodies retain address names; revised GC signatures are documented.
+All per-function language/optimization pragmas are removed. A reviewed whole-TU
+`-bool off -inline auto,deferred` mode restores the metadata helper expansions,
+full native body order and all 200 relocations; ordinary auto alternatives
+change emitted helper inventory and body sizes. Original source line order is
+not claimed. See [the complete evidence](story-table-unit-evidence.md).
+The supported G9SE8P main DOL and all seventeen RELs compile and link with
+the reconstructed source, passing all eighteen hashes. All 62 automated tests,
+both policies and independent whole-object/control-flow/consumer reviews pass.
+No runtime or physical-hardware validation is claimed.
+
+
+## Enemy gadget complete C++ unit (2026-10-07)
+
+Positive e_gadget.cpp and header metadata, GameCube constructor/field accesses
+and the complete vtable establish fourteen emitted bodies and all owned
+sections. Real inheritance, virtual dispatch, inline destruction and nested
+gadget-mode enum reproduce every function body directly. Two GameCube-only
+virtual names remain explicit provisional reconstructions, with their exact
+slots and caller ABI documented in `e-gadget-unit-evidence.md`.
+
+Automatic and out-of-class-inline trials change emitted function and exception
+order. Whole-unit auto,deferred plus reversed out-of-line definitions retains
+all exact bodies and exception records, leaving only two text blocks and one
+exception-index row to move intact. The original source line order is unknown.
+The guarded atom permutation passes independent object and byte-preservation
+review. All eighteen G9SE8P artifact hashes, 69 tests and both policies pass.
+See the detailed unit evidence for verification scope and provisional names.
+
+## Enemy player-search complete C++ unit (2026-10-07)
+
+Positive e_utility_search.cpp metadata establishes four nSearchPlayer functions
+and their signatures. The full five-body GameCube boundary also includes an
+unnamed leading player-character helper, with ownership explicitly inferred
+from neighboring effect-class boundaries, shared lookups and callers. That
+helper retains its address-based C ABI; it does not imply a C source language.
+All five bodies, exception sections and 29 relocations match raw C++ output.
+No deferred inlining, instruction adjustment or normalizer is needed. See
+`e-utility-search-unit-evidence.md` for boundary qualifications and type evidence.
+Full supported source-linked release build, all eighteen artifact hashes, 62
+automated tests and both policies pass. No runtime validation is claimed.
+
+## Enemy summoning complete C++ unit (2026-10-07)
+
+Positive e_summon.cpp metadata supplies six methods and the class layout.
+Three bodies survive; the constructor and two helpers inline. Genuine C++
+inheritance, new-expression exception cleanup and virtual destruction produce
+all three bodies exactly. A local ACTIONMODE_TURN snapshot preserves the retail
+integer predicate lowering; no deferred mode or object normalizer is used.
+Two discarded helper return values and one inlined helper boundary are
+explicit reconstruction uncertainties. The weak delete duplicate resolves to
+the existing Task.cpp implementation through normal linker selection. See
+`e-summon-unit-evidence.md` for full ownership and verification scope.
+The final linker map confirms duplicate deletion and exception-record discard;
+all eighteen supported artifacts, 62 tests and both policies pass.
+
+## Enemy score-manager complete C++ unit (2026-10-07)
+
+Positive e_scoreman.cpp metadata identifies the class, fifteen methods and
+owned singleton/class assets. Twelve bodies survive on GameCube; five named
+methods inline and two additional functions keep provisional address names.
+The extra address at this+0x29 uses an explicitly provisional empty-base model,
+with original name and base-versus-member identity unverified. GameCube field
+accesses and allocation establish the final 0x5C class layout.
+
+All twelve functions and 77 owned relocations match raw compiler output.
+Reference-based subobject addressing avoids a nullable conversion; a read-only
+pointer reference preserves the observed inline allocation with no intervening
+writes/calls. These are documented reconstruction spellings, not claims about
+original source syntax. No deferred mode or normalizer is introduced. See
+`e-scoreman-unit-evidence.md` for complete ownership and verification scope.
+Final linked cleanup and normal weak-duplicate discard are verified; the full
+supported release matrix, eighteen hashes, 62 tests and both policies pass.
+
+## Enemy power-core complete C++ unit (2026-10-07)
+
+Positive e_powercore.cpp metadata establishes both classes, twenty-one methods
+and all owned storage. Fourteen bodies survive, with seven inlined constructors
+and helpers. Real inheritance, collision/clump lifetime and new-expression
+cleanup reproduce the unit. GetInstance requires forward automatic inlining
+of the separately exported CreateInstance body; whole-TU auto,deferred and
+reversed ordinary definitions reproduce every body and the native layout.
+Original source order and historical flags are not claimed. There is no object
+normalizer or instruction adjustment. Component sphere initialization and a
+reference to the timer entry preserve observed render behavior. See
+`e-powercore-unit-evidence.md` for complete ownership and compiler-trial evidence.
+
+
+## Enemy icon-manager complete C++ unit (2026-10-07)
+
+Positive e_iconman.cpp metadata identifies the icon manager; shared inline
+construction and interleaved class data support inclusion of the GameCube-only
+mission-failure class. The complete unit has seventeen surviving bodies.
+Ordinary auto reproduces all corrected bodies but emits the mission vtable last;
+class declaration order and adjacent class-definition placement do not fix that
+layout. Whole-unit auto,deferred with reversed ordinary definitions reproduces
+all body, exception and interleaved vtable/switch/string order. This is a
+compiler-emission reconstruction, not a claim of known historical flags or
+source line order. No normalizer is used. See `e-iconman-unit-evidence.md` for
+ownership uncertainties, API version differences and verification.
+
+
+## Enemy motion-controller complete C++ unit (2026-10-07)
+
+Positive e_motion.cpp metadata identifies fourteen ordinary C++ definitions;
+seven bodies survive in GameCube. Ordinary automatic inlining preserves the
+literal pool while emitting authentic unused helper copies for normal linker
+discard. Shared sBitFlag layout is reused without editing its header. Six
+surviving bodies match natively; UpdateMotion retains three register fields for
+one captured requested-motion local after documented source and compiler trials.
+A hash-guarded register-only step changes those fields, preserving every opcode,
+call, branch, exception record and relocation. No deferred override or retail
+input is used. See `e-motion-unit-evidence.md` for the measured remainder,
+liveness proof, helper-discard accounting and verification.
+
+
+## enemy/e_link.cpp
+
+Positive symbolic metadata identifies all eighteen file-origin definitions as
+C++, with a 32-byte ObjEnemyKey and 44-byte TObjEnemyMan. Ten bodies survive;
+the other list helpers and manager constructor inline into their callers.
+GameCube accesses establish the partial external enemy layout and virtual
+slots. Public manager commands are static void methods. No PS2 instructions
+were inspected. Whole-unit automatic inlining is used without a per-function
+language switch. All ten surviving bodies and sixty effective relocations match directly from
+source, with no object normalizer. The final map accounts for eight unused
+method copies and a duplicate weak delete. Every supported target builds and
+all eighteen output hashes and 62 tests pass. The unit is enabled as Matching;
+see `e-link-unit-evidence.md` for ownership and validation.
+
+
+## enemy/e_ringlaser.cpp
+
+Positive symbolic metadata identifies this whole translation unit as C++ and
+fourteen file-origin methods. GameCube vtable and field accesses establish the
+TObject/C_COLLI inheritance and 0xE4-byte ring-laser object; the 0x30-byte
+parameter type is also corroborated. UV state uses the GameCube matrix offset
+four, rather than the older platform's aligned offset sixteen. No PS2
+instructions were inspected. All methods and owned sections are reconstructed
+together. Whole-TU deferred inlining with reversed ordinary definitions restores
+forward inlining and native function/constant emission order; historical flags
+and original source order remain unproven. All seven surviving bodies and 110
+effective relocations match with no normalizer. Independent final-link review
+accounts for unused helpers and exception records. All eighteen supported
+output hashes and 62 tests pass; the whole unit is enabled as Matching.
+See `e-ringlaser-unit-evidence.md`.
+
+
+## enemy/e_shockwave.cpp
+
+Positive symbolic metadata identifies this complete unit as C++ with thirteen
+file-origin definitions. GameCube accesses and allocation establish its 0x9C
+class size, instead of the older platform's 0xA0-byte metadata size. All eight
+surviving bodies and 297 effective relocations match directly from source.
+Whole-unit deferred inlining with reversed ordinary definitions reconstructs
+forward constructor inlining and native emission order. A read-only timer
+alias restores four loads while preserving branch semantics; its asymmetric
+spelling is a reconstruction choice, not a claimed original local. No object
+normalizer or PS2 instructions are used. Independent final ELF/map review
+verifies all owned bytes and accounts for unused helpers and exception records.
+All eighteen supported output hashes and 62 tests pass. The complete unit is
+enabled as Matching; see `e-shockwave-unit-evidence.md`.
+
+
+## effect/eff_bomb.cpp
+
+Positive symbolic metadata identifies the complete bomb-effect translation unit
+as C++ with eleven file-origin definitions. GameCube code confirms the
+0x100-byte TObject/C_COLLI-derived class, nine surviving functions, and owned
+storage. Two ordinary methods inline into their callers; the local atomic
+render callback retains its one-argument signature. GameCube effect value four
+is labeled provisionally because its original name is unknown. No PS2
+instructions were inspected. Eight bodies match directly; the constructor has
+a documented eight-register-field permutation across six instructions. All owned
+sections and 209 relocations match after this compiler-output normalization;
+all eighteen supported output hashes and 77 tests pass. See
+`eff-bomb-unit-evidence.md` for the remaining allocation gap and path out.
+
+
+## effect/eff_dush.cpp
+
+Positive symbolic metadata identifies eleven definitions in this complete C++
+unit. GameCube code confirms the EffDash/EffDush class layouts and seven
+surviving functions; four ordinary methods inline into callers. The runtime
+TObjEffDash string is independent of the authentic C++ type names. The preceding
+hierarchy utility and following database method are excluded. No PS2
+instructions were inspected. All seven bodies, nine owned sections and 154
+relocations match directly from source with whole-unit deferred inlining and
+no object normalizer. All eighteen supported output hashes and 62 tests pass;
+see `eff-dush-unit-evidence.md`.
+
+
+## effect/eff_footprints.cpp
+
+Positive symbolic metadata identifies fourteen C++ definitions. Seven survive
+in GameCube code and seven ordinary helpers inline into them. Both footprint
+classes and all owned sections are independently correlated; neighboring
+receiver/singleton helpers are excluded. GameCube immediate vertex layout takes
+precedence over the older platform's metadata layout. No PS2 instructions were
+inspected. Six bodies match directly from source; the display method retains
+a documented twelve-register-field permutation across eleven instructions.
+All seven bodies, owned sections and 155 relocations match after normalization.
+All eighteen supported output hashes and 77 tests pass; see
+`eff-footprints-unit-evidence.md` for the remaining allocation gap and path out.
+
+## player/player_search.cpp
+
+Positive symbolic metadata identifies four C++ file-origin functions. All four
+survive at 0x80041C5C–0x80041FF4; owned exception records and the two exclusively
+referenced constants complete the unit. No PS2 instructions were inspected.
+All four bodies and owned sections match directly from C++ source. The full
+G9SE8P DOL plus seventeen RELs compile, all eighteen hashes match, and 62 tests
+pass. No object normalizer is needed. See `player-search-unit-evidence.md`.
+
+## player/player_barrier.cpp
+
+Positive symbolic metadata identifies seven C++ definitions, including a
+constructor inlined into the factory. Six surviving GameCube functions occupy
+0x8010C220–0x8010CACC. The vtable, allocation size and exclusive storage references
+independently establish the complete unit. No PS2 instructions were inspected.
+All six surviving bodies, eight owned sections and 132 relocations match from
+source with whole-unit automatic deferred inlining and reversed ordinary
+definitions. No object normalizer is needed. The DOL plus all seventeen RELs
+compile, all eighteen hashes match, and 62 automated tests pass.
+See `player-barrier-unit-evidence.md`.
+
+## effect/eff_crash3d.cpp
+
+Positive symbolic metadata identifies 25 C++ file-origin definitions; GameCube
+adds a light-selection factory overload. Twenty metadata functions and that
+overload survive at 0x80100D4C–0x80103178; five ordinary methods inline. The
+GameCube child constructor also takes an added signed-short light parameter.
+All seven owned ranges are inventoried. No PS2 instructions were inspected.
+All 21 surviving bodies and 504 relocations match. A guarded existing-literal
+rotation corrects only pool order; instructions and relocation bytes remain
+native compiler output. All eighteen output hashes and 76 tests pass. The
+complete unit is enabled as Matching.
+See `eff-crash3d-unit-evidence.md`.
+
+## effect/eff_ball.cpp
+
+Positive symbolic metadata identifies eleven C++ definitions, all surviving at
+0x800C8EA0–0x800C99F8. The six-slot resource graph and nonpolymorphic 0x1C class
+layout independently agree with GameCube behavior. All eight owned ranges are
+inventoried. No PS2 instructions were inspected. All eleven native bodies,
+eight sections and 176 relocations match using ordinary reversed definitions
+and whole-unit auto,deferred, without an object normalizer. All eighteen
+output hashes and 62 tests pass; the complete unit is enabled as Matching.
+See `eff-ball-unit-evidence.md`.
+
+## effect/eff_brim.cpp
+
+Positive symbolic metadata identifies 35 C++ file-origin definitions; three
+constructors inline, and six positively named header virtual accessors survive.
+The complete 38-body GameCube range is 0x8010CE9C–0x8010F5D8. Nine owned ranges
+and 625 relocations are inventoried. Four class layouts and all resource
+ownership are independently checked against GameCube evidence; PS2 layout
+alignment differences are not copied. No PS2 instructions were inspected.
+All 38 native instruction bodies match. A guarded permutation of existing pool
+and exception atoms preserves all instruction bytes and relocation meanings.
+Whole-unit auto,deferred plus a genuine constructor inline qualifier recover
+retail expansion; unknown original spelling and target-specific color narrowing
+are documented explicitly. All eighteen output hashes and 82 tests pass; the
+complete unit is enabled as Matching.
+See `eff-brim-unit-evidence.md`.
+
+## effect/eff_rocketaxel.cpp
+
+Positive symbolic metadata identifies 21 C++ definitions: seventeen GameCube
+survivors at 0x800F3134–0x800F46B0 and four ordinary constructors that inline.
+Four named class/vtable/resource graphs and allocation sizes corroborate the
+complete unit. Eight owned ranges and 375 relocations are inventoried. No
+PS2 instructions were inspected. All seventeen native bodies, 375 relocations
+and eight sections match with reversed ordinary definitions and whole-unit
+auto,deferred; no normalizer is needed. All eighteen output hashes and 62 tests
+pass; the complete unit is enabled as Matching. See `eff-rocketaxel-unit-evidence.md`.
+
+## effect/eff_thunderbomb.cpp
+
+Positive symbolic metadata identifies eighteen C++ definitions, ten surviving
+at 0x8010B84C–0x8010C220 and eight ordinary definitions that inline. Class/vtable
+and texture-resource graphs corroborate all eight owned ranges and 185
+relocations; adjacent completed units establish both boundaries. No PS2
+instructions were inspected. All ten native bodies, 185 relocations, eight
+sections and thirteen named-object contracts match using reversed ordinary
+definitions and whole-unit auto,deferred, without an object normalizer. All
+eighteen output hashes and 62 tests pass; the complete unit is enabled as
+Matching. See `eff-thunderbomb-unit-evidence.md`.
+
+### Complete MObject translation unit
+
+`game/mobject.cpp` reconstructs all eleven surviving GameCube functions for
+module access, reset/disc history, copy filters, default scene setup/teardown,
+and the camera/font leak workaround. Local European PS2 (`SLES_519.50`) CCC 2.2
+DWARF identifies `mobject.cpp` as C++, its `MObject` methods/static members and
+the three camera/world getters. GameCube global references, virtual-call context,
+RenderWare allocation/destruction and GX/DVD/OS calls independently correlate
+the unit. GameCube-only helper names remain address labels. The proposed unit
+boundary is inferred from that sequence; preceding enemy vtable stubs are
+excluded.
+
+The camera-creation helper carries frame-valid creation status through its
+pointer return. `DefaultSetUp` discards that return. With ordinary dead-store
+elimination the compiler removes the otherwise unused frame-null comparison;
+`-opt nodeadstore`, alongside the unit's existing noschedule/nopeephole settings,
+preserves the observed comparison and its two paths to the common view setup.
+This is an inferred source/optimization relationship, not proof of original
+compiler command-line options or of an independently emitted helper body.
+No artificial empty conditional, assembly or object postprocessor is used.
+
+Independent ELF checks establish exact bytes for all eleven functions (1,572
+bytes), exception tables (72 + 108 bytes), read-only data (16 bytes), data (176
+bytes), small data (11 bytes), small BSS (24 bytes) and constants (24 bytes).
+All native global definitions have exact offsets/sizes and all 147 normalized
+relocations match. As in other native MW objects, `.sdata2` has alloc/write flags
+where DTK's reference object has alloc-only flags; bytes, alignment, destinations
+and final release artifacts are checked independently.
+
+G9SE8P is the only currently supported target. Its full release/all-source build,
+55 tests, both policy checks and all eighteen hashes pass with the reconstructed
+MObject object linked. This verifies compilation and artifact identity, not
+runtime or physical-hardware behavior.
