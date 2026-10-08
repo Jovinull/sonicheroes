@@ -273,7 +273,9 @@ reproduces all 19 functions, relocations and owned sections byte-for-byte.
 `game/modeswitch.cpp` needs deferred emission to reverse its source order and
 reproduce the target exception-record order. The two reconstructed AdvertiseD
 units require deferred/noauto emission to reproduce their reviewed object
-order and linked data layout. The unified spring unit requires deferred/auto
+order and linked data layout; `autosaveD/adv_draw.cpp` is AutoSaveD's copy of
+the same `adv_draw.cpp` source, byte-identical once relocated, and carries the
+same flag. The unified spring unit requires deferred/auto
 emission to place its transform helper after `springExec`, matching all
 functions, relocations and owned sections. The Stage 11 key unit needs
 deferred/auto so `Exec` can inline helpers that retail emits after it; the

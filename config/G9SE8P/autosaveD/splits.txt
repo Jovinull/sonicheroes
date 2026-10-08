@@ -27,37 +27,22 @@ autosaveD/prolog.c:
 autosaveD/task_object.c:
 	.text       start:0x00001FB4 end:0x00002294
 
-autosaveD/task_system.c:
-	.text       start:0x00002294 end:0x000026C0
+autosaveD/task_system.cpp:
+	.text       start:0x00002294 end:0x00002488
 
-autosaveD/quad_fill.c:
-	.text       start:0x000026C0 end:0x00002868
-	.rodata     start:0x00000320 end:0x00000328
+autosaveD/adv_draw.cpp:
+	.text       start:0x00002488 end:0x0000346C
+	.rodata     start:0x000000A0 end:0x00000328
 
-autosaveD/widget_slices.cpp:
-	.text       start:0x00002868 end:0x000031F0
+autosaveD/adv_draw_constants.cpp:
+	.rodata     start:0x00000328 end:0x00000350
 
-autosaveD/quad_submit.c:
-	.text       start:0x000031F0 end:0x000032F8
-
-autosaveD/widget_rendering.c:
-	.text       start:0x000032F8 end:0x0000346C
-
-autosaveD/window_frame.c:
-	.text       start:0x0000346C end:0x000038F4
-
-autosaveD/window_input.c:
-	.text       start:0x000038F4 end:0x00003A70
-
-autosaveD/window_lifecycle.cpp:
-	.text       start:0x00003A70 end:0x00003FAC
+autosaveD/adv_window.cpp:
+	.text       start:0x0000346C end:0x00004070
 	.rodata     start:0x00000350 end:0x00000358
 
-autosaveD/state_selector.c:
-	.text       start:0x00003FAC end:0x00004344
+autosaveD/adv_window_null_virtual.cpp:
+	.text       start:0x00004070 end:0x00004074
 
-autosaveD/menu_selectors.c:
-	.text       start:0x00004344 end:0x0000476C
-
-autosaveD/table.c:
-	.text       start:0x0000476C end:0x000047F0
+autosaveD/adv_menu.cpp:
+	.text       start:0x00004074 end:0x000047F0

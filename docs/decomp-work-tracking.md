@@ -4,6 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Claude Code | AutoSaveD ADV units (PR #116 scope, taken over) | Complete: `adv_draw`, `adv_draw_constants`, `adv_window`, `adv_menu` ported from the matching AdvertiseD sources; all 18 hashes exact |
 | Codex 2026-10-06 | `game/matrix.cpp`, recovered matrix API declarations and symbol names | Complete locally on `decomp/whole-tu-20261006`: 16 functions, all seven owned sections and 104 relocations exact; full G9SE8P release and 18 hashes pass; publication pending |
 | Codex 2026-10-06 | `game/calc_movcolli.cpp`, all three moving-collision functions | Active on `decomp/calc-movcolli-20261006`; complete draft: all three bodies compile; point routine/constants match, triangle/segment remain nonmatching; G9SE8P build, 55 tests and 18 original-linked hashes pass |
 | Codex 2026-10-07 | `game/miscs.cpp`, complete eleven-function utility unit | Complete on PR #557; eleven source bodies exact, six compiler scalar atoms reordered; native DOL and all 17 RELs byte-identical |
