@@ -204,7 +204,7 @@ u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(s32, s32, s32);        /* e
 M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(s32, s32);                /* extern */
 M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(s32, s32, void*);          /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv(void);                                     /* extern */
-s32 fn_80103324(void*, void*, f32);                                         /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, void*, f32);      /* extern */
 M2C_UNK fn_8010AFE4(void*);                                                 /* extern */
 s32 fn_8010B708(s32);                                                       /* extern */
 void* fn_80150588(M2C_UNK);                                                 /* extern */
@@ -448,8 +448,8 @@ void fn_8_ACE24(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, f32*, 0x1B8) = (f32)lbl_8_rodata_1B10;
 			return;
 		case 1:
-			M2C_FIELD(arg0, s32*, 0x27C)
-			    = fn_80103324((u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
+			M2C_FIELD(arg0, s32*, 0x27C) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+			    (u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x27C);
 			if (temp_r0 != -1) {
 				temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));
@@ -533,8 +533,8 @@ void fn_8_AD0EC(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4) = 6;
 			return;
 		case 1:
-			M2C_FIELD(arg0, s32*, 0x27C)
-			    = fn_80103324((u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
+			M2C_FIELD(arg0, s32*, 0x27C) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+			    (u8*)arg0 + 0x140, &lbl_8_rodata_1B14, lbl_8_rodata_1B14);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x27C);
 			if (temp_r0 != -1) {
 				temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));

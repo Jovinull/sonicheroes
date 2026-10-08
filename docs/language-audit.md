@@ -2468,3 +2468,16 @@ exception-index row to move intact. The original source line order is unknown.
 The guarded atom permutation passes independent object and byte-preservation
 review. All eighteen G9SE8P artifact hashes, 69 tests and both policies pass.
 See the detailed unit evidence for verification scope and provisional names.
+
+## Enemy player-search complete C++ unit (2026-10-07)
+
+Positive e_utility_search.cpp metadata establishes four nSearchPlayer functions
+and their signatures. The full five-body GameCube boundary also includes an
+unnamed leading player-character helper, with ownership explicitly inferred
+from neighboring effect-class boundaries, shared lookups and callers. That
+helper retains its address-based C ABI; it does not imply a C source language.
+All five bodies, exception sections and 29 relocations match raw C++ output.
+No deferred inlining, instruction adjustment or normalizer is needed. See
+`e-utility-search-unit-evidence.md` for boundary qualifications and type evidence.
+Full supported source-linked release build, all eighteen artifact hashes, 62
+automated tests and both policies pass. No runtime validation is claimed.

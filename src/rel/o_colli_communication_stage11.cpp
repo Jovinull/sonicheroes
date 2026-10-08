@@ -89,7 +89,7 @@ f32 Distance2P2P__FPC5RwV3dPC5RwV3d(void*, void*);                              
 M2C_UNK GetZYAngleForTheTargetPoint__FPC5RwV3dPC5RwV3dPi(void*, s32, void*);     /* extern */
 s32 AdjustAngle__Fiii(s32, s32, s32);                                            /* extern */
 f32 fn_800D7B00(s32);                                                            /* extern */
-s32 fn_80103324(void*, f32*, f32);                                               /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32);            /* extern */
 M2C_UNK SetLightNum__7nRenderFUi();                                              /* extern */
 M2C_UNK fn_8011C1F8(u32, s32, M2C_UNK);                                          /* extern */
 M2C_UNK fn_8011C6EC();                                                           /* extern */
@@ -233,7 +233,8 @@ s32 fn_8_B0B94(void* arg0)
 	if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) == NULL) {
 		return 2;
 	}
-	temp_r3 = fn_80103324((u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
+	temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+	    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
 	if (temp_r3 != -1) {
 		temp_r31 = (void*)*(&lbl_802AD090 + (temp_r3 * 4));
 		if ((temp_r31 != NULL)
@@ -298,8 +299,8 @@ void fn_8_B0D34(void* arg0)
 			if ((s16*)M2C_FIELD(arg0, s16**, 0x24C) == NULL) {
 				var_r0 = 2;
 			} else {
-				temp_r3
-				    = fn_80103324((u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
+				temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+				    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1BE4, lbl_8_rodata_1BE4[0]);
 				if ((temp_r3 != -1)
 				    && (temp_r30 = (void*)*(&lbl_802AD090 + (temp_r3 * 4)),
 				        ((temp_r30 == NULL) == 0))

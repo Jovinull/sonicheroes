@@ -405,8 +405,8 @@ M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                
 M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(u32, M2C_UNK, M2C_UNK*);           /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv();                                                 /* extern */
 M2C_UNK fn_80102C50(s32, f32*, s32*, s32*, M2C_UNK, M2C_UNK, M2C_UNK, f32, f32);    /* extern */
-s32 fn_801031D8(s32);                                                               /* extern */
-s32 fn_80103324(void*, M2C_UNK*, f32);                                              /* extern */
+s32 GetTeamNoFromPlayerNum__13nSearchPlayerFi(s32);                                 /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, M2C_UNK*, f32);           /* extern */
 s32 fn_8010AFB0(u32);                                                               /* extern */
 M2C_UNK fn_8010AFE4(void*);                                                         /* extern */
 M2C_UNK fn_8010AFF8(u32, s32);                                                      /* extern */
@@ -1633,7 +1633,7 @@ block_24:
 					if (var_f30 < lbl_8_rodata_1E70[0]) {
 						var_f30 = lbl_8_rodata_1E70[0];
 					}
-					if (fn_801031D8(arg0->unk230) != -1) {
+					if (GetTeamNoFromPlayerNum__13nSearchPlayerFi(arg0->unk230) != -1) {
 						addSFA__9PARAM_SFAFif(&arg0->unk13C, var_f30);
 					}
 				}
@@ -1704,7 +1704,7 @@ s32 fn_8_BF524(s32 arg0)
 	s32 temp_r3;
 	u32 temp_r3_2;
 
-	temp_r3 = fn_80103324(
+	temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
 	    (void*)((u8*)arg0 + 0x140), (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
 	if (temp_r3 != -1) {
 		temp_r3_2 = *(&lbl_802AD090 + temp_r3);
@@ -2087,9 +2087,10 @@ void fn_8_BFF94(void* arg0, s32 arg1)
 						M2C_FIELD(temp_r3_2, s32*, 0x94) = (s32)M2C_FIELD(temp_r4, s32*, 8);
 					}
 				}
-				M2C_FIELD(arg0, s32*, 0x2D4) = fn_80103324((void*)((u8*)arg0 + 0x140),
-				    (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
-				temp_r0                      = M2C_FIELD(arg0, s32*, 0x2D4);
+				M2C_FIELD(arg0, s32*, 0x2D4)
+				    = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df((void*)((u8*)arg0 + 0x140),
+				        (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
+				temp_r0 = M2C_FIELD(arg0, s32*, 0x2D4);
 				if (temp_r0 != -1) {
 					temp_r3_3 = (void*)(u32) * (&lbl_802AD090 + temp_r0);
 					if (temp_r3_3 != NULL) {
@@ -2206,7 +2207,7 @@ void fn_8_C0418(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0xD4) = 2;
 			break;
 		case 1:
-			M2C_FIELD(arg0, s32*, 0x2D4) = fn_80103324(
+			M2C_FIELD(arg0, s32*, 0x2D4) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
 			    (void*)((u8*)arg0 + 0x140), (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x2D4);
 			if (temp_r0 != -1) {
@@ -2638,9 +2639,10 @@ void fn_8_C0D74(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0xD4) = 2;
 					return;
 				case 1: /* switch 7 */
-					M2C_FIELD(arg0, s32*, 0x2D4) = fn_80103324((void*)((u8*)arg0 + 0x140),
-					    (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
-					temp_r0_2                    = M2C_FIELD(arg0, s32*, 0x2D4);
+					M2C_FIELD(arg0, s32*, 0x2D4)
+					    = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df((void*)((u8*)arg0 + 0x140),
+					        (s32*)(f32*)lbl_8_rodata_1E90, lbl_8_rodata_1E90[0]);
+					temp_r0_2 = M2C_FIELD(arg0, s32*, 0x2D4);
 					if (temp_r0_2 != -1) {
 						temp_r3_3 = (void*)(u32) * (&lbl_802AD090 + temp_r0_2);
 						if (temp_r3_3 != NULL) {

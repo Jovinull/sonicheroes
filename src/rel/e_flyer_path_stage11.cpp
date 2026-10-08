@@ -103,7 +103,7 @@ M2C_UNK fn_800E1208(s32, s32, s32);                                             
 void* SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv();                                                /* extern */
 s32 IsExistSummonEnemy__19nEnemyCommunicationFUc(s32);                             /* extern */
-s32 fn_80103324(void*, f32*, f32);                                                 /* extern */
+s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32);              /* extern */
 M2C_UNK fn_8010AFF8(void*, s32);                                                   /* extern */
 s32 fn_8010B074(void*);                                                            /* extern */
 M2C_UNK fn_8010B208(u32, f32*, f32, f32);                                          /* extern */
@@ -1651,7 +1651,8 @@ s32 fn_8_AAE2C(void* arg0)
 {
 	s32 temp_r3;
 
-	temp_r3 = fn_80103324((u8*)arg0 + 0x2C4, &lbl_8_rodata_1AE0, lbl_8_rodata_1AE0);
+	temp_r3 = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
+	    (u8*)arg0 + 0x2C4, &lbl_8_rodata_1AE0, lbl_8_rodata_1AE0);
 	if (temp_r3 != -1) {
 		M2C_FIELD(arg0, s32*, 0x2D0) = temp_r3;
 		fn_800E1208(M2C_FIELD(arg0, s32*, 0x2D0), 0x17, 0);
