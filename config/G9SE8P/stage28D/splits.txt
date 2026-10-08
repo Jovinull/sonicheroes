@@ -345,6 +345,9 @@ rel/goal_ring_register.cpp:
 rel/system_object1_object.cpp:
 	.text       start:0x000461FC end:0x00046354
 
+rel/system_object1_create.cpp:
+	.text       start:0x00046354 end:0x000463E0
+
 rel/system_object1_register.cpp:
 	.text       start:0x000463E0 end:0x00046484
 	.ctors      start:0x0000008C end:0x00000090
