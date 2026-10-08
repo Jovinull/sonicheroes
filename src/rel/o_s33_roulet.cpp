@@ -62,8 +62,8 @@ s32 fn_8005B9F0(Motion*);
 void fn_8005D5C8(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void* fn_800BB92C(void*, s32, void*);
 s32 fn_800BC6CC(void*, const char*);
 void fn_800BC9F4(void*, void*);
@@ -111,7 +111,7 @@ public:
 	TObjS33Roulet(TObject*);
 	~TObjS33Roulet();
 
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 extern "C" {
@@ -291,7 +291,7 @@ extern "C" void initObjS33Roulet()
 extern "C" void startObjS33Roulet()
 {
 #pragma opt_propagation off
-	void* allocation = fn_80018A34(lbl_8042C148, sizeof(TObjS33Roulet));
+	void* allocation = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjS33Roulet));
 	if (allocation != NULL) {
 		RouletInitializer* object = (RouletInitializer*)allocation;
 		initializeRoulet(object);

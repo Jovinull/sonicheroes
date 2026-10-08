@@ -25,8 +25,8 @@ void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
 void dtor_8005BD3C(Motion*, s16);
 void fn_8005BE6C(Motion*);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void* fn_800BB92C(void*, s32, void*);
 s32 fn_800BC6CC(void*, const char*);
 void fn_800BC9F4(void*, void*);
@@ -59,7 +59,7 @@ public:
 	TObjS11Bob(TObject*);
 	~TObjS11Bob();
 
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 extern "C" {
@@ -149,7 +149,7 @@ static inline void initializeBob(BobInitializer* self)
 extern "C" void startObjS11Bob()
 {
 #pragma opt_propagation off
-	void* allocation = fn_80018A34(lbl_8042C148, sizeof(TObjS11Bob));
+	void* allocation = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjS11Bob));
 	if (allocation != NULL) {
 		BobInitializer* object = (BobInitializer*)allocation;
 		initializeBob(object);

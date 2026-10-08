@@ -155,8 +155,8 @@ extern TeamInfo* lbl_80303DC8[];
 
 void dtor_8003C52C(void*, s16);
 void dtor_8005BD3C(void*, s16);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 HitNode* fn_80020BD8(void*, s32);
 HitNode* fn_800211A8(void*);
 void fn_80021824(void*);
@@ -226,8 +226,11 @@ public:
 	TObjS11Key(TObject*);
 	~TObjS11Key();
 
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 // The s11key* data names and CL_TObjS11Key are descriptive guesses.

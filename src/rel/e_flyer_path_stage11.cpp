@@ -77,8 +77,8 @@ f64 asin(f32);                                                  /* extern */
 double atan2(double, double);                                   /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                          /* extern */
 s32 fn_80017800(void*);                                         /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                             /* extern */
-TObject* fn_80018A34(...);                                      /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                     /* extern */
+TObject* Malloc__9THeapCtrlFUi(...);                            /* extern */
 void* fn_800211A8(void*);                                       /* extern */
 void fn_80021824(void*);                                        /* extern */
 M2C_UNK fn_8003BC38(void*);                                     /* extern */
@@ -487,7 +487,7 @@ TObject* fn_8_A8938(TObject* arg0, s16 arg1)
 		dtor_8003C52C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -541,7 +541,7 @@ TObject* fn_8_A8B60(void* arg0)
 	M2C_UNK sp8;
 	TObject* temp_r3;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0xF4);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF4);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);
@@ -995,7 +995,7 @@ TObject* fn_8_A9A6C(TObject* arg0, s16 arg1)
 		dtor_8003C52C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1050,7 +1050,7 @@ TObject* fn_8_A9C6C(void* arg0)
 {
 	TObject* temp_r3;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0x104);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x104);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);
@@ -1506,7 +1506,7 @@ TObject* fn_8_AA994(TObject* arg0, s16 arg1)
 		}
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;

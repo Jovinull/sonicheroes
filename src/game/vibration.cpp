@@ -13,7 +13,7 @@ struct GameState {
 struct THeapCtrl;
 
 extern "C" THeapCtrl* lbl_8042C148;
-extern "C" void* fn_80018A34(THeapCtrl*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(THeapCtrl*, u32);
 
 struct TObject {
 	u8 pad0[4];
@@ -21,7 +21,10 @@ struct TObject {
 	u8 pad6[0x12];
 	void** vtable;
 
-	static void* operator new(unsigned long size) { return fn_80018A34(lbl_8042C148, size); }
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
 	static void operator delete(void*);
 	TObject(TObject*);
 };
@@ -43,7 +46,7 @@ extern "C" {
 void PADControlMotor(s32, u32);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 
 extern s32 lbl_8029BBD0[0x100];
 extern s32 lbl_802399A0[3];
@@ -55,13 +58,13 @@ void fn_8001F600();
 void fn_8001F674(s32, s32, s32, s32, s32, s32);
 void fn_8001F894(VibrationTask*);
 VibrationTask* fn_8001F92C(VibrationTask*, s32);
-void fn_8001898C();
+void Disp__7TObjectFv();
 void fn_80018984();
-void fn_80018988();
-void fn_80018950();
-void fn_80018954();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
 void Error__7TObjectFPc();
-void fn_80018958();
+void Render__7TObjectFv();
 }
 
 extern void* lbl_80241328[12];
@@ -87,13 +90,13 @@ void* lbl_80241328[12]         = {
 	0,
 	(void*)fn_8001F92C,
 	(void*)fn_8001F894,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)fn_80018984,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 	0,
 };
 
@@ -223,7 +226,7 @@ extern "C" VibrationTask* fn_8001F92C(VibrationTask* task, s32 shouldDelete)
 		}
 		__dt__7TObjectFv(task, 0);
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, task);
+			Free__9THeapCtrlFPv(lbl_8042C148, task);
 		}
 	}
 	return task;

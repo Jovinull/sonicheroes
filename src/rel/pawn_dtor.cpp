@@ -55,7 +55,7 @@ extern "C" void dtor_800FE334(void* object, s32 flags);
 extern "C" void fn_80150958(void* mesh);
 extern "C" void __dt__10HAnimClassFv(void* hAnim, s32 flags);
 extern "C" void fn_800A7088(void* object, s32 flags);
-extern "C" void fn_800189A4(void* heap, void* object);
+extern "C" void Free__9THeapCtrlFPv(void* heap, void* object);
 
 // Defined by each module, renamed to this name in its own symbols.txt.
 extern "C" void* pawnVtable[];
@@ -134,7 +134,7 @@ extern "C" void* pawnDtor(void* object, s16 flags)
 		fn_800A7088(object, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 		}
 	}
 	return object;

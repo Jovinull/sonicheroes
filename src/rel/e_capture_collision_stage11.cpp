@@ -88,8 +88,8 @@ extern void* lbl_8042C148;
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s16);
 void dtor_8005BD3C(void*, s16);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void fn_8005BE6C(void*);
 }
 
@@ -150,7 +150,10 @@ struct CaptureCollisionStorage : ObjectStorage {
 	{
 		__ct__20TObjCaptureCollisionFP7TObject((TObjCaptureCollision*)this, (TObject*)lbl_8042C10C);
 	}
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
 
 struct SETOBJ_PARAM {
@@ -258,7 +261,7 @@ extern "C" TObjCaptureCollision* __dt__20TObjCaptureCollisionFv(
 		dtor_8005BD3C(SETOBJ(self), 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 		}
 	}
 	return self;

@@ -22,7 +22,7 @@ struct RawV3d {
 };
 
 struct RwFrame;
-extern "C" void fn_800189A4(void*, void*);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" void* lbl_8042C148;
 enum RwOpCombineType {
 	rwCOMBINEREPLACE    = 0,
@@ -43,7 +43,7 @@ struct TObject {
 
 	TObject(TObject* parent);
 	~TObject();
-	static void operator delete(void* ptr) { fn_800189A4(lbl_8042C148, ptr); }
+	static void operator delete(void* ptr) { Free__9THeapCtrlFPv(lbl_8042C148, ptr); }
 };
 
 struct TEnemyParalysis : TObject {
@@ -70,12 +70,12 @@ struct TEnemyParalysis : TObject {
 };
 
 extern "C" {
-void fn_8001898C();
-void fn_80018988();
-void fn_80018950();
-void fn_80018954();
+void Disp__7TObjectFv();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
 void Error__7TObjectFPc();
-void fn_80018958();
+void Render__7TObjectFv();
 void __dt__15TEnemyParalysisFv();
 void Exec__15TEnemyParalysisFv();
 void TDisp__15TEnemyParalysisFv();
@@ -125,13 +125,13 @@ extern "C" void* lbl_80288CA0[] = {
 	NULL,
 	(void*)__dt__15TEnemyParalysisFv,
 	(void*)Exec__15TEnemyParalysisFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__15TEnemyParalysisFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 char lbl_80288CCC[] = "EF_SIBIRE.DFF";

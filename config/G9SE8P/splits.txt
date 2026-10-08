@@ -321,6 +321,17 @@ game/eff_wink.cpp:
 	.sdata2     start:0x8042DF48 end:0x8042DF64
 	.sdata2     start:0x8042DF64 end:0x8042DF68 skip
 
+game/eff_muteki.cpp:
+	extab       start:0x80008A50 end:0x80008B00
+	extabindex  start:0x8000F0DC end:0x8000F160
+	.text       start:0x800CF5E4 end:0x800D03A0
+	.data       start:0x802557C0 end:0x802558D0
+	.sdata      start:0x8042B670 end:0x8042B67F
+	.sdata      start:0x8042B67F end:0x8042B680 skip
+	.sbss       start:0x8042C480 end:0x8042C488
+	.sdata2     start:0x8042DF68 end:0x8042DFB4
+	.sdata2     start:0x8042DFB4 end:0x8042DFB8 skip
+
 game/link.cpp:
 	extab       start:0x80008B00 end:0x80008B10
 	extabindex  start:0x8000F160 end:0x8000F178

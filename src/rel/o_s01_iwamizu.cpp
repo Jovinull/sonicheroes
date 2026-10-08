@@ -67,7 +67,7 @@ void fn_8015BBF8(void*, void*);
 void fn_80150958(void*);
 void dtor_8005BD3C(void*, int);
 void __dt__7TObjectFv(void*, int);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void fn_8005BE6C(void*);
 void* fn_80150588(void*);
@@ -81,7 +81,7 @@ void* fn_800BB92C(void*, void*, void*);
 void* fn_8005E394(void*, int);
 void* fn_800BAE0C(void*, void*, void*);
 void fn_8005C014(void*, void*);
-void* fn_80018A34(void*, u32);
+void* Malloc__9THeapCtrlFUi(void*, u32);
 
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
@@ -255,7 +255,10 @@ public:
 
 	TObject(TObject*);
 	~TObject();
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
 
 struct TObjS01Iwamizu : TObject {
@@ -332,7 +335,7 @@ extern "C" void* __dt__14TObjS01IwamizuFv(void* self, s16 flags)
 		dtor_8005BD3C((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }

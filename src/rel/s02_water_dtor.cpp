@@ -52,7 +52,7 @@ extern "C" void* lbl_8042C148;
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void dtor_8005BD3C(Motion* motion, s32 flags);
-extern "C" void fn_800189A4(void* heap, TObject* object);
+extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void* fn_8015BD78(void* clump);
 extern "C" void fn_8015BBF8(void* atomic, void* clump);
 extern "C" void fn_80150958(void* clump);
@@ -84,7 +84,7 @@ extern "C" S02Water* s02WaterDtor(S02Water* object, s16 flags)
 		__dt__7TObjectFv(&object->base, 0);
 
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;

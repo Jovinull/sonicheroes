@@ -26,8 +26,8 @@ EXCEPTION_ORDER = (
 )
 
 RENAMES = {
-    "Free__9THeapCtrlFPv": "fn_800189A4",
-    "Malloc__9THeapCtrlFUi": "fn_80018A34",
+    "Free__9THeapCtrlFPv": "Free__9THeapCtrlFPv",
+    "Malloc__9THeapCtrlFUi": "Malloc__9THeapCtrlFUi",
     "__dt__9THeapCtrlFv": "fn_80018AB0",
     "__ct__9THeapCtrlFUiUi": "fn_80018B24",
     "__dl__9THeapCtrlFPv": "dtor_80018BB4",

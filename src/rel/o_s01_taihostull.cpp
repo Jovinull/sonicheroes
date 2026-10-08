@@ -48,7 +48,7 @@ struct TObject {
 	~TObject();
 };
 
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void* lbl_8042C148;
 
 struct TObjS01Stull : TObject {
@@ -59,7 +59,10 @@ struct TObjS01Stull : TObject {
 
 	TObjS01Stull(TObject*);
 	~TObjS01Stull();
-	static void* operator new(unsigned long size) { return fn_80018A34(lbl_8042C148, size); }
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
 };
 
 extern "C" {
@@ -113,7 +116,7 @@ void fn_8015BBF8(void*, void*);
 void dtor_8003C52C(void*, s32);
 void dtor_8005BD3C(void*, s32);
 void __dt__7TObjectFv(void*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void Disp__7TObjectFv();
 void PDisp__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -233,7 +236,7 @@ extern "C" TObjS01Stull* __dt__12TObjS01StullFv(TObjS01Stull* object, s16 flags)
 		dtor_8005BD3C(object->motion, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }

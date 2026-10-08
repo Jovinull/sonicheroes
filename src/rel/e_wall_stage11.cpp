@@ -366,8 +366,8 @@ void* __dt__7TObjectFv(void*, s32);                                             
 M2C_UNK __register_global_object(void*, void*, void*);                           /* extern */
 M2C_UNK dtor_8003C52C(void*, M2C_UNK);                                           /* extern */
 s32 fn_80017800(TObject*);                                                       /* extern */
-M2C_UNK fn_800189A4(s32, TObject*);                                              /* extern */
-TObject* fn_80018A34(s32, M2C_UNK);                                              /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                      /* extern */
+TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                    /* extern */
 u32 fn_800209C8(void*, M2C_UNK);                                                 /* extern */
 u32 fn_80020BD8(void*, M2C_UNK);                                                 /* extern */
 M2C_UNK fn_80021384(void*);                                                      /* extern */
@@ -1860,7 +1860,7 @@ TObject* fn_8_B8F34(TObject* arg0, s16 arg1)
 		dtor_8003C52C((u8*)arg0 + 0x28, 0);
 		__dt__7TObjectFv(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -1918,7 +1918,7 @@ static inline TObject* wallCreateObject(void* arg0)
 	TObject* temp_r3;
 	f32 temp_f1;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0xF8);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xF8);
 	if (temp_r3 != NULL) {
 		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C10C);
 		fn_8003C618(&temp_r3->unk28);
@@ -3821,7 +3821,7 @@ TObject* fn_8_BCE1C(TObject* arg0, s16 arg1)
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -3924,7 +3924,7 @@ TObject* fn_8_BCF88(TObject* arg0, TObject* arg1)
 	sp18     = lbl_8_rodata_1E00;
 	sp14     = lbl_8_rodata_1E00;
 	sp10     = lbl_8_rodata_1E00;
-	temp_r3  = fn_80018A34(lbl_8042C148, 0x74);
+	temp_r3  = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_2 = temp_r3;
 	if (var_r0_2 != NULL) {
 		var_r0_2 = __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(
@@ -3945,7 +3945,7 @@ TObject* fn_8_BD32C(void)
 {
 	TObject* var_r0;
 
-	var_r0 = fn_80018A34(lbl_8042C148, 0x318);
+	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x318);
 	if (var_r0 != NULL) {
 		var_r0 = fn_8_BCF88(var_r0, lbl_8042C10C);
 	}
@@ -4098,7 +4098,7 @@ void wallObjectCreate(void)
 {
 	TObject* temp_r3;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0x318);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x318);
 	if (temp_r3 != NULL) {
 		fn_8_BCF88(temp_r3, lbl_8042C10C);
 	}

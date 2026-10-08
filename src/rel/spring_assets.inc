@@ -15,7 +15,7 @@
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 
-extern "C" void* fn_80018A34(void* heap, u32 size);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 extern "C" u8* fn_8005E410(void* model, s32 index, const char* name);
 extern "C" void* fn_8005EA04(const char* name);
 
@@ -86,7 +86,7 @@ extern "C" void springRegister(void)
 
 extern "C" void springCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, 0xFC);
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xFC);
 
 	if (memory != NULL) {
 		springCtor(memory, lbl_8042C110);

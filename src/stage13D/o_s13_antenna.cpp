@@ -127,8 +127,8 @@ extern "C" char lbl_802FF5A0[];
 extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
 extern "C" void Error__7TObjectFPc(void);
-extern "C" void fn_800189A4(void*, TObject*);
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void fn_8003BC38(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
 extern "C" void fn_8003C618(void*);
@@ -260,7 +260,7 @@ extern "C" Antenna* antennaDtor(Antenna* object, s16 flags)
 		dtor_8005BD3C(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
-			fn_800189A4(lbl_8042C148, &object->base);
+			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
 		}
 	}
 	return object;
@@ -319,7 +319,7 @@ public:
 
 extern "C" void antennaCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, sizeof(AntennaAllocation));
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(AntennaAllocation));
 	if (memory != NULL) {
 		new (memory) AntennaAllocation(lbl_8042C110);
 	}

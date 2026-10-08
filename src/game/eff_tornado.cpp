@@ -80,7 +80,7 @@ inline void* operator new(unsigned long, void* address)
 	return address;
 }
 
-extern "C" void* fn_80018A34(void*, u32);
+extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void* lbl_8042C148;
 
 struct RwV3d {
@@ -119,7 +119,10 @@ struct TObject {
 
 	TObject(TObject*);
 	~TObject();
-	static void* operator new(unsigned long size) { return fn_80018A34(lbl_8042C148, size); }
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
 };
 
 struct C_COLLI {
@@ -246,7 +249,7 @@ void* fn_80150588(void*);
 void dtor_8003C52C(C_COLLI*, s32);
 void __dt__7TObjectFv(TObject*, s32);
 TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado*, s32);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 
 extern TObject* lbl_8042C2A0;
 extern TObject* lbl_8042C110;
@@ -369,12 +372,12 @@ int CheckTornado__FP7C_COLLI(C_COLLI*);
 void TDisp__14TObjEffTyphoonFv(TObjEffTyphoon*);
 void Exec__14TObjEffTyphoonFv(TObjEffTyphoon*);
 TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon*, s32);
-void fn_8001898C();
-void fn_80018988();
-void fn_80018950();
-void fn_80018954();
+void Disp__7TObjectFv();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
 void Error__7TObjectFPc();
-void fn_80018958();
+void Render__7TObjectFv();
 void __ct__15TObjEffTornado2FP7TObjectiP5RwV3dP6sAngleP5RwV3d(
     TObjEffTornado2*, TObject*, s32, RwV3d*, sAngle*, RwV3d*);
 }
@@ -567,13 +570,13 @@ void* lbl_802534E4[11] = {
 	0,
 	(void*)__dt__14TObjEffTyphoonFv,
 	(void*)Exec__14TObjEffTyphoonFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__14TObjEffTyphoonFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 const char* lbl_8042B350 = lbl_8025336C;
@@ -620,7 +623,7 @@ extern "C" TObjEffTyphoon* __dt__14TObjEffTyphoonFv(TObjEffTyphoon* effect, s32 
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;
@@ -942,7 +945,7 @@ extern "C" TObjEffTornado2* __dt__15TObjEffTornado2Fv(TObjEffTornado2* effect, s
 			__dt__7TObjectFv(effect, 0);
 		}
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;
@@ -1073,7 +1076,7 @@ extern "C" TObjEffTornadoSpin* __dt__18TObjEffTornadoSpinFv(
 		}
 		__dt__7TObjectFv(effect, 0);
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;
@@ -1134,39 +1137,39 @@ void* lbl_802535C4[11] = {
 	0,
 	(void*)__dt__15TObjEffTornado2Fv,
 	(void*)Exec__15TObjEffTornado2Fv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__15TObjEffTornado2Fv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 void* lbl_802535F0[11] = {
 	0,
 	0,
 	(void*)__dt__18TObjEffTornadoSpinFv,
 	(void*)Exec__18TObjEffTornadoSpinFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__18TObjEffTornadoSpinFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 void* lbl_8025361C[11] = {
 	0,
 	0,
 	(void*)__dt__14TObjEffTornadoFv,
 	(void*)Exec__14TObjEffTornadoFv,
-	(void*)fn_8001898C,
+	(void*)Disp__7TObjectFv,
 	(void*)TDisp__14TObjEffTornadoFv,
-	(void*)fn_80018988,
-	(void*)fn_80018950,
-	(void*)fn_80018954,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
 	(void*)Error__7TObjectFPc,
-	(void*)fn_80018958,
+	(void*)Render__7TObjectFv,
 };
 
 extern "C" int CheckTornado__FP7C_COLLI(C_COLLI* collision)
@@ -1435,7 +1438,7 @@ extern "C" TObjEffTornado* __dt__14TObjEffTornadoFv(TObjEffTornado* effect, s32 
 		dtor_8003C52C(&effect->effectModel, 0);
 		__dt__7TObjectFv(effect, 0);
 		if ((s16)shouldDelete > 0) {
-			fn_800189A4(lbl_8042C148, effect);
+			Free__9THeapCtrlFPv(lbl_8042C148, effect);
 		}
 	}
 	return effect;

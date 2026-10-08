@@ -45,12 +45,12 @@ extern char AxisX[];
 extern char AxisY[];
 extern char AxisZ[];
 
-void* fn_80018A34(void*, u32);
+void* Malloc__9THeapCtrlFUi(void*, u32);
 void* __nw__FUl(u32);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
 void __dl__FPv(void*);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 void fn_8005BE6C(...);
 void fn_8003C618(...);
 void fn_8003BF04(...);
@@ -125,7 +125,7 @@ extern "C" void fn_8_4A4CC(int group, int type, int subtype, void* data)
 		return;
 	if (lbl_8_data_4E28[group] == NULL) {
 		void* parent = lbl_8042C2A0 != NULL ? lbl_8042C2A0 : lbl_8042C110;
-		void* object = fn_80018A34(lbl_8042C148, 0x40);
+		void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x40);
 		if (object != NULL) {
 			__ct__7TObjectFP7TObject(object, parent);
 			field<void*>(object, 0x18) = lbl_8_data_4F54;
@@ -246,7 +246,7 @@ extern "C" void* fn_8_4AD60(void* self, s16 flags)
 		}
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -445,7 +445,7 @@ extern "C" void* fn_8_4CFB4(void* self, s16 flags)
 		dtor_8005BD3C((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -502,7 +502,7 @@ extern "C" void goalRingLoad()
 
 extern "C" void goalRingCreate()
 {
-	void* object = fn_80018A34(lbl_8042C148, 0x100);
+	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x100);
 	if (object != NULL)
 		fn_8_4D0CC(object, lbl_8042C110);
 }

@@ -113,8 +113,8 @@ extern "C" ObjectEntry flowerEntry;
 
 extern "C" TObject* __ct__7TObjectFP7TObject(TObject*, TObject*);
 extern "C" void __dt__7TObjectFv(TObject*, s32);
-extern "C" void fn_800189A4(void*, void*);
-extern "C" void* fn_80018A34(THeapCtrl*, u32);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
+extern "C" void* Malloc__9THeapCtrlFUi(THeapCtrl*, u32);
 extern "C" const char* fn_800194C4(void*);
 extern "C" s32 fn_8005B8BC(Motion*);
 extern "C" s32 fn_8005B8D8(Motion*);
@@ -196,7 +196,7 @@ extern "C" TObjS01Flower* flowerDtor(TObjS01Flower* object, s16 flags)
 		dtor_8005BD3C(&object->motion, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }
@@ -286,12 +286,12 @@ extern "C" void flowerInit()
 
 inline void* TObject::operator new(unsigned long size)
 {
-	return fn_80018A34(lbl_8042C148, size);
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
 }
 
 inline void* TObject::operator new(unsigned long size, THeapCtrl* heap)
 {
-	return fn_80018A34(heap, size);
+	return Malloc__9THeapCtrlFUi(heap, size);
 }
 
 extern "C" void flowerCreate()

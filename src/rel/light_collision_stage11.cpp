@@ -27,8 +27,8 @@ extern float lbl_8_rodata_D58;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
-void* fn_80018A34(s32, s32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(s32, s32);
+void Free__9THeapCtrlFPv(void*, void*);
 void fn_8005BE6C(void*);
 void dtor_8005BD3C(void*, s32);
 int fn_8005B9F0(void*);
@@ -148,7 +148,7 @@ extern "C" void* fn_8_4E588(void* self, s16 flags)
 			lbl_8_bss_D38 = NULL;
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -249,7 +249,7 @@ extern "C" void* fn_8_4EFB8(void* self, s16 flags)
 		dtor_8005BD3C((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -262,7 +262,7 @@ extern "C" void* fn_8_4F084(void* self, void* parent)
 	field<void*>(self, 0)    = lbl_8_data_559C;
 	field<u16>(self, 0x1E)   = 0x40;
 	if (lbl_8_bss_D38 == NULL) {
-		void* manager = fn_80018A34((int)lbl_8042C148, 0x28);
+		void* manager = Malloc__9THeapCtrlFUi((int)lbl_8042C148, 0x28);
 		if (manager == NULL) {
 			field<u16>(self, 4) |= 1;
 			return self;
@@ -288,7 +288,7 @@ extern "C" void* fn_8_4F084(void* self, void* parent)
 
 extern "C" void lightCollisionCreate()
 {
-	void* object = fn_80018A34((int)lbl_8042C148, 0x40);
+	void* object = Malloc__9THeapCtrlFUi((int)lbl_8042C148, 0x40);
 	if (object != NULL)
 		fn_8_4F084(object, lbl_8042C110);
 }

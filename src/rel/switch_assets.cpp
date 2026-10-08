@@ -35,7 +35,7 @@ typedef struct ObjectEntry {
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 
-extern "C" void* fn_80018A34(void* heap, u32 size);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" void* switchCtor(void* object, void* owner);
@@ -49,7 +49,7 @@ extern "C" const char* switchLabels[];
 
 extern "C" void switchCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, 0xFC);
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xFC);
 
 	if (memory != NULL) {
 		switchCtor(memory, lbl_8042C110);

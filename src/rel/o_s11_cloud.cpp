@@ -89,8 +89,8 @@ void* fn_8005E394(void*, s32);
 void fn_8005BF88();
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void fn_8011B7CC(void*);
 void fn_8011B844(void*, f32);
 void fn_801491A8();
@@ -138,8 +138,11 @@ public:
 	TObjS11Cloud(TObject*);
 	~TObjS11Cloud();
 
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 extern "C" {

@@ -40,7 +40,7 @@ typedef struct Frame {
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 
-extern "C" void* fn_80018A34(void* heap, u32 size);
+extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 
 // The record the module registers the class with, the same shape every TObj*
 // uses. The last two fields are what the editor lays the parameters out from:
@@ -123,7 +123,7 @@ extern "C" void setCollisionLoad(void) { }
 // it inlined spend an extra register copy no source form reproduces.
 extern "C" void setCollisionCreate(void)
 {
-	void* memory = fn_80018A34(lbl_8042C148, 0xE8);
+	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xE8);
 
 	if (memory != NULL) {
 		setCollisionCtor(memory, lbl_8042C110);

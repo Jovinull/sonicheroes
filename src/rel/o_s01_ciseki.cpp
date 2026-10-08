@@ -43,7 +43,7 @@ struct Motion {
 	u8 pad08[8];
 };
 
-extern "C" void fn_800189A4(void*, void*);
+extern "C" void Free__9THeapCtrlFPv(void*, void*);
 extern "C" void* lbl_8042C148;
 
 class TObject;
@@ -77,7 +77,7 @@ public:
 	void MotionNoop();
 	TObjS01Ciseki(TObject*);
 	~TObjS01Ciseki();
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 extern "C" {
@@ -98,8 +98,8 @@ s32 fn_8005B8D8(Motion*);
 void fn_80021824(void*);
 void* fn_800211A8(void*);
 void fn_8003BC38(void*);
-void fn_800189A4(void*, void*);
-void* fn_80018A34(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
 void fn_80063E7C(void*, s32);
 void s01ObjectBaseUpdate(TObjS01Ciseki*);
 void s01ObjectBaseDtor(TObjS01Ciseki*, s16);
@@ -310,7 +310,8 @@ TObjS01Ciseki::TObjS01Ciseki(TObject* parent)
 
 extern "C" void startObj_S01_Ciseki()
 {
-	TObjS01Ciseki* object = (TObjS01Ciseki*)fn_80018A34(lbl_8042C148, sizeof(TObjS01Ciseki));
+	TObjS01Ciseki* object
+	    = (TObjS01Ciseki*)Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(TObjS01Ciseki));
 	if (object != NULL) {
 		s01ObjectBaseCtor(object, lbl_8042C110);
 		object->vtable        = cisekiVtable;

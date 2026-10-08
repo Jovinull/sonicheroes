@@ -74,7 +74,7 @@ extern char AxisY[];
 void* fn_8_46898(void*, void*);
 void fn_80150958(void*);
 void fn_8014D8A4(void*);
-void* fn_80018A34(void*, int);
+void* Malloc__9THeapCtrlFUi(void*, int);
 void* fn_8_48B4C(void*, void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void fn_8005BE6C(void*);
@@ -86,7 +86,7 @@ void fn_8003C200(void*, char*, int, int);
 void dtor_8003C52C(void*, int);
 void dtor_8005BD3C(void*, int);
 void __dt__7TObjectFv(void*, int);
-void fn_800189A4(void*, void*);
+void Free__9THeapCtrlFPv(void*, void*);
 float fn_800D7B00(int);
 float fn_800D7AE4(int);
 void fn_80196050(void*, const float*, int);
@@ -483,7 +483,7 @@ extern "C" void* fn_8_48A6C(void* self, s16 flags)
 		dtor_8005BD3C((u8*)self + 0x28, 0);
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, self);
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
@@ -747,7 +747,7 @@ extern "C" void propellerUnload()
 
 extern "C" void propellerCreate()
 {
-	void* object = fn_80018A34(lbl_8042C148, 356);
+	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 356);
 	if (object != NULL)
 		fn_8_48B4C(object, lbl_8042C110);
 }

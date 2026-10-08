@@ -70,8 +70,8 @@ s32 fn_8005B9F0(Motion*);
 void fn_8005D5C8(void*, u32);
 f32 fn_800D7AE4(s32);
 f32 fn_800D7B00(s32);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 void* fn_80150588(void*);
 void fn_80150958(void*);
 void fn_8015BB08(void*, void*);
@@ -109,8 +109,11 @@ public:
 	TObjS12Fan(TObject*);
 	~TObjS12Fan();
 
-	static void* operator new(unsigned long size, void* heap) { return fn_80018A34(heap, size); }
-	static void operator delete(void* object) { fn_800189A4(lbl_8042C148, object); }
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
+	static void operator delete(void* object) { Free__9THeapCtrlFPv(lbl_8042C148, object); }
 };
 
 // The s12fan* data names and CL_TObjS12Fan (after o_s11_cloud's CL_TObjS11Cloud)

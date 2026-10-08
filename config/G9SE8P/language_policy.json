@@ -85,7 +85,6 @@
     "autosaveD/state_selector.c",
     "autosaveD/task_callback_setters.c",
     "autosaveD/task_object.c",
-    "autosaveD/task_runtime.c",
     "autosaveD/task_system.c",
     "autosaveD/window_frame.c"
   ],
@@ -115,6 +114,7 @@
     "game/cri/adx_xpnd.c",
     "game/cri/cri_cvfs.c",
     "game/e_paralysis.cpp",
+    "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
     "game/message.cpp",
     "game/modeswitch.cpp",

@@ -99,8 +99,8 @@ f64 asin(f32);                                                                  
 f64 atan2(void*, f32, f32);                                                      /* extern */
 f64 fabs(f64);                                                                   /* extern */
 s32 fn_80017800(M2C_UNK*);                                                       /* extern */
-M2C_UNK fn_800189A4(s32, void*);                                                 /* extern */
-M2C_UNK* fn_80018A34(s32, M2C_UNK);                                              /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                         /* extern */
+M2C_UNK* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                    /* extern */
 u32 fn_800194C4(M2C_UNK*);                                                       /* extern */
 M2C_UNK UnitMatrix__FP11RwMatrixTag(void*);                                      /* extern */
 M2C_UNK fn_8003BC38(void*);                                                      /* extern */
@@ -2299,7 +2299,7 @@ void* fn_8_A5E08(void* arg0, s16 arg1)
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -2503,7 +2503,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 		    lbl_8042C10C, (u8*)arg0 + 0x140, (u8*)arg0 + 0x14C, (s32*)lbl_8_rodata_196C, 200.0f);
 		fn_8_5F100(M2C_FIELD(arg0, s32*, 0x304));
 	}
-	var_r0_3 = fn_80018A34(lbl_8042C148, 0xD0);
+	var_r0_3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (var_r0_3 != NULL) {
 		var_r0_3 = fn_8011FA4C(arg0, lbl_8_bss_1958);
 	}
@@ -2540,7 +2540,7 @@ M2C_UNK* fn_8_A66D4(void)
 {
 	M2C_UNK* var_r0;
 
-	var_r0 = fn_80018A34(lbl_8042C148, 0x3C4);
+	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x3C4);
 	if (var_r0 != NULL) {
 		var_r0 = fn_8_A5F50(var_r0, lbl_8042C10C);
 	}
@@ -2699,7 +2699,7 @@ void flyerObjectCreate(void)
 {
 	M2C_UNK* temp_r3;
 
-	temp_r3 = fn_80018A34(lbl_8042C148, 0x3C4);
+	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x3C4);
 	if (temp_r3 != NULL) {
 		fn_8_A5F50(temp_r3, lbl_8042C10C);
 	}

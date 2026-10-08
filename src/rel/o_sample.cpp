@@ -149,8 +149,8 @@ void zeroFlagWord(FlagWord* word);
 void drawSample(void* display, Vec3* position, f32 scaleX, f32 scaleY, void* model);
 
 void Error__7TObjectFPc();
-void* fn_80018A34(void* heap, u32 size);
-void fn_800189A4(void* heap, void* object);
+void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
+void Free__9THeapCtrlFPv(void* heap, void* object);
 void fn_80051EF0(void* context, Vec3* vector, const Rot3* rotation);
 s32 fn_8005B8BC(TMotion* motion);
 s32 fn_8005B8D8(TMotion* motion);
@@ -266,7 +266,7 @@ TObjSample* TObjSample::Destroy(s16 flags)
 
 void TObjSample::operator delete(void* object)
 {
-	fn_800189A4(lbl_8042C148, object);
+	Free__9THeapCtrlFPv(lbl_8042C148, object);
 }
 
 extern "C" TObjSample* constructObjSample(TObjSample* sample, TObject* owner)
@@ -320,7 +320,7 @@ extern "C" void startObjSample()
 
 void* TObjSample::operator new(unsigned long size)
 {
-	return fn_80018A34(lbl_8042C148, size);
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
 }
 
 extern "C" void registerObjSample()

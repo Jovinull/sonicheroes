@@ -45,6 +45,51 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### Invincibility-effect translation unit
+
+`game/eff_muteki.cpp` reconstructs all twelve surviving functions at GameCube
+`0x800CF5E4`–`0x800D03A0`. Local PS2 PAL metadata (`SLES_519.50`, CCC v2.2,
+commit `c025ca94735d75cd366b29a10f924010ce43353d`, `stdump symbols --section
+.debug dwarf`) identifies `effect/eff_muteki.cpp` as `C_PLUS_PLUS` and
+corroborates `EffMuteki`, `EffMutekiManager`, `TObjPlayerMuteki`, their layouts,
+methods, and the static ribbon factory `Create`. The following list operations
+belong to the separately reconstructed `link.cpp`.
+
+Deferred emission permits the factory, manager updates, and destruction paths
+to inline later definitions before emitting the retail function order. With
+automatic emission, the factory compared at 83.80198% and manager update at
+99.00944%; deferred emission makes both exact after canonical symbol naming.
+The position-copy helper uses scalar float loads, and the drawing loop uses
+the metadata-corroborated float UV pointer and indexed position array. The
+existing single-flag dispatch retains the retail conditional/unconditional
+branch pair. No new object or instruction postprocessor is used.
+
+All owned bytes match: 3,516 text, 176 exception table, 132 exception index,
+272 data, 15 small data, 8 small BSS, and 76 constants. All 180 normalized
+relocations match. The link map marks seven unused out-of-line helpers (796
+text bytes and their exception metadata) as discarded; an additional 40-byte
+inline TObject delete duplicate resolves to the existing Task definition.
+These are ordinary compiler emissions, not dummy functions. The constant
+section's final four bytes and small-data final byte are linker alignment.
+The compiler's writable constant-section flag differs from the reference;
+bytes, placement and final artifacts match.
+
+Native vtables and allocation calls now use canonical names for five TObject
+virtual methods and THeapCtrl allocation/free. Existing callers and four
+existing metadata rename maps use the same names. The symbol updates are
+mechanical; touched source files retain repository formatting. Updating the
+legacy `autosaveD/task_runtime.c` caller also migrates it to `.cpp`, retaining
+its existing reviewed C++ classification and removing only the redundant
+language flag. This is not a new claim of historical source-file identity.
+Its complete text remains 100% in objdiff. The protected AutoSaveD paths are
+unchanged.
+
+The sole supported release target, G9SE8P, passed the full native all-source,
+link and report builds, all 18 artifact hashes, 55 automated tests, and both
+policy checkers. The first packaging passes exposed stale allocator names in
+two shared spring includes; both were updated and all consumers rebuilt.
+Runtime and physical-hardware behavior have not been tested.
+
 ### CLASS_LINK translation unit
 
 `game/link.cpp` reconstructs the complete six-method unit at GameCube

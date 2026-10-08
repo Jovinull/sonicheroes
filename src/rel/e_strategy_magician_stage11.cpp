@@ -170,7 +170,7 @@ extern "C" {
 
 void* __ct__7TObjectFP7TObject(void*, void*);             /* extern */
 s32 fn_80017800(void*);                                   /* extern */
-TObject* fn_80018A34(M2C_UNK, M2C_UNK);                   /* extern */
+TObject* Malloc__9THeapCtrlFUi(M2C_UNK, M2C_UNK);         /* extern */
 M2C_UNK fn_8003BC38(void*);                               /* extern */
 M2C_UNK fn_8005DABC(s32, s32*);                           /* extern */
 M2C_UNK fn_8005FD20(void*);                               /* extern */
@@ -1103,7 +1103,7 @@ void fn_8_AC440(TObject* arg0, s32 arg1)
 									arg0->unk32C = M2C_FIELD(temp_r3_4, f32*, 0x18);
 									arg0->unk330 = M2C_FIELD(temp_r3_4, f32*, 0x1C);
 									arg0->unk334 = M2C_FIELD(temp_r3_4, f32*, 0x20);
-									temp_r3_5    = fn_80018A34(lbl_8042C148, 0x68);
+									temp_r3_5    = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x68);
 									if (temp_r3_5 != NULL) {
 										__ct__7TObjectFP7TObject(temp_r3_5, arg0);
 										temp_r3_5->unk18 = &lbl_8_data_16900;

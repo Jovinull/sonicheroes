@@ -74,8 +74,8 @@ void CaptureCollisionBaseCtor(void*, TObject*);
 void fn_8005BE6C(void*);
 void dtor_8005BD3C(void*, int);
 void __dt__7TObjectFv(void*, int);
-void* fn_80018A34(void*, u32);
-void fn_800189A4(void*, void*);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
 
 extern void* lbl_8042C10C;
 extern void* lbl_8042C148;
@@ -163,7 +163,7 @@ extern "C" TObjCaptureCollision* __dt__20TObjCaptureCollisionFv(
 		dtor_8005BD3C((u8*)object + 0x28, 0);
 		__dt__7TObjectFv(object, 0);
 		if (flags > 0)
-			fn_800189A4(lbl_8042C148, object);
+			Free__9THeapCtrlFPv(lbl_8042C148, object);
 	}
 	return object;
 }
@@ -219,7 +219,8 @@ public:
 
 TObjCaptureCollision* TObjCaptureCollision::CreateInstance()
 {
-	TObjCaptureCollision* allocation = (TObjCaptureCollision*)fn_80018A34(lbl_8042C148, 0x48);
+	TObjCaptureCollision* allocation
+	    = (TObjCaptureCollision*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0x48);
 	if (allocation != 0)
 		new (allocation) CaptureCollisionInitializer((TObject*)lbl_8042C10C);
 	return allocation;
@@ -250,7 +251,7 @@ extern "C" void initObjCaptureCollision() { }
 extern "C" void startObjCaptureCollision()
 {
 #pragma opt_propagation off
-	void* allocation = fn_80018A34(lbl_8042C148, 0x48);
+	void* allocation = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x48);
 	if (allocation != 0) {
 		register CaptureCollisionInitializer* object = (CaptureCollisionInitializer*)allocation;
 		CaptureCollisionInitializer::InitializeObject(object, (TObject*)lbl_8042C10C);

@@ -336,8 +336,8 @@ void* __dt__10HAnimClassFv(void*, s32);                                         
 M2C_UNK __register_global_object(void*, void*, void*);                           /* extern */
 M2C_UNK dtor_800FE334(void*, M2C_UNK);                                           /* extern */
 s32 fn_80017800(void*);                                                          /* extern */
-M2C_UNK fn_800189A4(s32, void*);                                                 /* extern */
-TEnemyParalysis* fn_80018A34(s32, M2C_UNK);                                      /* extern */
+M2C_UNK Free__9THeapCtrlFPv(s32, void*);                                         /* extern */
+TEnemyParalysis* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                            /* extern */
 u32 fn_800207C4(M2C_UNK*, M2C_UNK, M2C_UNK);                                     /* extern */
 u32 fn_800209C8(M2C_UNK*, M2C_UNK);                                              /* extern */
 void* fn_80020D1C(M2C_UNK*);                                                     /* extern */
@@ -3052,7 +3052,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 		__dt__10HAnimClassFv((u8*)arg0 + 0x240, 0);
 		fn_800A7088(arg0, 0);
 		if (arg1 > 0) {
-			fn_800189A4(lbl_8042C148, arg0);
+			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
 	}
 	return arg0;
@@ -3147,7 +3147,7 @@ TObject* fn_8_C2018(TObject* arg0)
 	sp10.z   = lbl_8_rodata_1EDC[0];
 	sp10.y   = lbl_8_rodata_1EDC[0];
 	sp10.x   = lbl_8_rodata_1EDC[0];
-	temp_r3  = fn_80018A34(lbl_8042C148, 0x74);
+	temp_r3  = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_3 = temp_r3;
 	if (var_r0_3 != NULL) {
 		var_r0_3 = __ct__15TEnemyParalysisFP7TObjectP15sParalysisParam(temp_r3, lbl_8042C10C, &sp8);
@@ -3167,7 +3167,7 @@ TEnemyParalysis* fn_8_C2344(void)
 {
 	TEnemyParalysis* var_r0;
 
-	var_r0 = fn_80018A34(lbl_8042C148, 0x320);
+	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (var_r0 != NULL) {
 		var_r0 = (TEnemyParalysis*)fn_8_C2018((TObject*)var_r0);
 	}
@@ -3295,7 +3295,7 @@ void turtleObjectLoad(void)
 
 void turtleObjectCreate(void)
 {
-	TEnemyParalysis* object = fn_80018A34(lbl_8042C148, 0x320);
+	TEnemyParalysis* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (object != NULL) {
 		fn_8_C2018((TObject*)object);
 	}
