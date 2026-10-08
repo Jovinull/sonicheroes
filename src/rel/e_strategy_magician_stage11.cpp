@@ -205,12 +205,12 @@ M2C_UNK Send__15sEnemyCommandExFv(s8*);                    /* extern */
 M2C_UNK GetNearestLeaderPosition__13nSearchPlayerFPC5RwV3dP5RwV3df(
     void*, void*, s32, s32);                                           /* extern */
 s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, void*, f32); /* extern */
-s32 fn_8010AFB0(u32);                                                  /* extern */
-M2C_UNK fn_8010AFF8(void*, s32);                                       /* extern */
-s32 fn_8010B074(void*);                                                /* extern */
-s32 fn_8010B0AC(u32, f32, f32, s32);                                   /* extern */
-M2C_UNK fn_8010B208(...);                                              /* extern */
-s32 fn_8010B350(u32, void*, void*);                                    /* extern */
+s32 IsOn__13TEnemyIconManFv(u32);                                      /* extern */
+M2C_UNK Change__13TEnemyIconManF10eEnemyIcon(void*, s32);              /* extern */
+s32 Off__13TEnemyIconManFv(void*);                                     /* extern */
+s32 On__13TEnemyIconManFffi(u32, f32, f32, s32);                       /* extern */
+M2C_UNK On__13TEnemyIconManFff(...);                                   /* extern */
+s32 SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(u32, void*, void*);       /* extern */
 M2C_UNK SetLightNum__7nRenderFUi(...);                                 /* extern */
 M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                       /* extern */
 M2C_UNK LoadRenderState__7nRenderFv();                                 /* extern */
@@ -306,11 +306,11 @@ void fn_8_AAC90(void* arg0, void* arg1)
 	M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f1;
 	M2C_FIELD(arg0, f32*, 0x254) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-		fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x318));
+		Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x318));
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-		fn_8010AFF8((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
-		fn_8010B208(
+		Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
+		On__13TEnemyIconManFff(
 		    M2C_FIELD(arg0, u32*, 0x31C), &lbl_8_rodata_1AC8, lbl_8_rodata_1AC8, lbl_8_rodata_1AC8);
 	}
 }
@@ -332,11 +332,11 @@ void fn_8_AAD2C(void* arg0, void* arg1)
 	M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f0;
 	M2C_FIELD(arg0, f32*, 0x254) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-		fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x318));
+		Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x318));
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-		fn_8010AFF8((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
-		fn_8010B208(
+		Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, u32*, 0x31C), 6);
+		On__13TEnemyIconManFff(
 		    M2C_FIELD(arg0, u32*, 0x31C), &lbl_8_rodata_1AC8, lbl_8_rodata_1AC8, lbl_8_rodata_1AC8);
 	}
 }
@@ -410,22 +410,25 @@ s32 fn_8_AAF4C(void* arg0)
 		M2C_FIELD(arg0, f32*, 0x254) = temp_f1;
 		if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
 			if ((s32)M2C_FIELD(arg0, s32*, 0x19C) == 0x24) {
-				fn_8010B0AC(
+				On__13TEnemyIconManFffi(
 				    M2C_FIELD(arg0, u32*, 0x318), temp_f1, M2C_FIELD(arg0, f32*, 0x258), 0x5A);
 			} else {
-				fn_8010B208(M2C_FIELD(arg0, u32*, 0x318), temp_f1, M2C_FIELD(arg0, f32*, 0x258));
+				On__13TEnemyIconManFff(
+				    M2C_FIELD(arg0, u32*, 0x318), temp_f1, M2C_FIELD(arg0, f32*, 0x258));
 			}
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-			fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x31C));
+			Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x31C));
 		}
 		var_r31 = 1;
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-		fn_8010B350(M2C_FIELD(arg0, u32*, 0x318), (u8*)arg0 + 0x140, &lbl_8_rodata_1A2C);
+		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
+		    M2C_FIELD(arg0, u32*, 0x318), (u8*)arg0 + 0x140, &lbl_8_rodata_1A2C);
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-		fn_8010B350(M2C_FIELD(arg0, u32*, 0x31C), (u8*)arg0 + 0x140, &lbl_8_rodata_1A2C);
+		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
+		    M2C_FIELD(arg0, u32*, 0x31C), (u8*)arg0 + 0x140, &lbl_8_rodata_1A2C);
 	}
 	return var_r31;
 }
@@ -437,9 +440,9 @@ s32 fn_8_AB014(void* arg0)
 	temp_r3 = fn_800A6334((void*)arg0);
 	if ((temp_r3 == 1) && ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U)
 	    && (((u32)M2C_FIELD(arg0, u32*, 0x318) == 0U)
-	        || (fn_8010AFB0(M2C_FIELD(arg0, u32*, 0x318)) == 0))) {
-		fn_8010AFF8((void*)M2C_FIELD(arg0, u32*, 0x31C), 1);
-		fn_8010B208(
+	        || (IsOn__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x318)) == 0))) {
+		Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, u32*, 0x31C), 1);
+		On__13TEnemyIconManFff(
 		    M2C_FIELD(arg0, u32*, 0x31C), &lbl_8_rodata_1AC8, lbl_8_rodata_1AC8, lbl_8_rodata_1AC8);
 	}
 	return temp_r3;
@@ -749,7 +752,7 @@ void fn_8_ABA38(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-				fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x31C));
+				Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x31C));
 			}
 			if ((s32)M2C_FIELD(arg0, s32*, 0x350) == 0) {
 				M2C_FIELD(arg0, s32*, 0xD4) = 0;
@@ -812,12 +815,12 @@ void fn_8_ABB10(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x2F0) = temp_r0;
 			if (temp_r0 == 0) {
 				if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-					fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x318));
+					Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x318));
 				}
 				if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-					fn_8010AFF8((void*)M2C_FIELD(arg0, u32*, 0x31C), 2);
-					fn_8010B208(M2C_FIELD(arg0, u32*, 0x31C), &lbl_8_rodata_1AC8, lbl_8_rodata_1AC8,
-					    lbl_8_rodata_1AC8);
+					Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, u32*, 0x31C), 2);
+					On__13TEnemyIconManFff(M2C_FIELD(arg0, u32*, 0x31C), &lbl_8_rodata_1AC8,
+					    lbl_8_rodata_1AC8, lbl_8_rodata_1AC8);
 				}
 			}
 			sp8     = M2C_FIELD(arg0, s32*, 0x280);

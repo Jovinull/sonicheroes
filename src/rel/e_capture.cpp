@@ -330,14 +330,14 @@ M2C_UNK __ct__14TEnemyDataBaseFv();                                             
 s32 GetTeamNoFromPlayerNum__13nSearchPlayerFi();                                    /* extern */
 s32 GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(f32*, f32*, f32);                /* extern */
 s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32);               /* extern */
-s32 fn_8010AFB0(u32);                                                               /* extern */
-M2C_UNK fn_8010AFE4(void*);                                                         /* extern */
-M2C_UNK fn_8010AFF8(void*, s32);                                                    /* extern */
-M2C_UNK fn_8010B074(void*);                                                         /* extern */
-M2C_UNK fn_8010B0AC(u32, f32, f32, s32);                                            /* extern */
-M2C_UNK fn_8010B208(u32, f32, f32);                                                 /* extern */
-M2C_UNK fn_8010B350(u32, void*, void*);                                             /* extern */
-u32 fn_8010B708(M2C_UNK);                                                           /* extern */
+s32 IsOn__13TEnemyIconManFv(u32);                                                   /* extern */
+M2C_UNK Close__13TEnemyIconManFv(void*);                                            /* extern */
+M2C_UNK Change__13TEnemyIconManF10eEnemyIcon(void*, s32);                           /* extern */
+M2C_UNK Off__13TEnemyIconManFv(void*);                                              /* extern */
+M2C_UNK On__13TEnemyIconManFffi(u32, f32, f32, s32);                                /* extern */
+M2C_UNK On__13TEnemyIconManFff(u32, f32, f32);                                      /* extern */
+M2C_UNK SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(u32, void*, void*);                /* extern */
+u32 Create__13TEnemyIconManF10eEnemyIcon(M2C_UNK);                                  /* extern */
 M2C_UNK SetLightNum__7nRenderFUi(...);                                              /* extern */
 M2C_UNK SetRenderStateForBlendAdd__7nRenderFv();                                    /* extern */
 M2C_UNK LoadRenderState__7nRenderFv();                                              /* extern */
@@ -625,11 +625,11 @@ void fn_8_9811C(void* arg0, void* arg1)
 	M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f1;
 	M2C_FIELD(arg0, f32*, 0x24C) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
-		fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x2F0));
+		Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F0));
 	}
 	if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4) != NULL) {
-		fn_8010AFF8((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 6);
-		fn_8010B208((u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
+		Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 6);
+		On__13TEnemyIconManFff((u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
 	}
 }
 
@@ -658,11 +658,12 @@ void fn_8_981B8(void* arg0, void* arg1)
 			M2C_FIELD(arg0, s16*, 0x2E)  = (s16)var_f0;
 			M2C_FIELD(arg0, f32*, 0x24C) = (f32)M2C_FIELD(arg0, f32*, 0x1A4);
 			if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
-				fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x2F0));
+				Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F0));
 			}
 			if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4) != NULL) {
-				fn_8010AFF8((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 6);
-				fn_8010B208((u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
+				Change__13TEnemyIconManF10eEnemyIcon((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 6);
+				On__13TEnemyIconManFff(
+				    (u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
 			}
 			break;
 	}
@@ -759,22 +760,25 @@ s32 fn_8_98480(void* arg0)
 		M2C_FIELD(arg0, f32*, 0x24C) = temp_f1;
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
 			if ((s32)M2C_FIELD(arg0, s32*, 0x19C) == 0x24) {
-				fn_8010B0AC(
+				On__13TEnemyIconManFffi(
 				    M2C_FIELD(arg0, u32*, 0x2F0), temp_f1, M2C_FIELD(arg0, f32*, 0x250), 0x5A);
 			} else {
-				fn_8010B208(M2C_FIELD(arg0, u32*, 0x2F0), temp_f1, M2C_FIELD(arg0, f32*, 0x250));
+				On__13TEnemyIconManFff(
+				    M2C_FIELD(arg0, u32*, 0x2F0), temp_f1, M2C_FIELD(arg0, f32*, 0x250));
 			}
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2F4) != 0U) {
-			fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x2F4));
+			Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F4));
 		}
 		var_r31 = 1;
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
-		fn_8010B350(M2C_FIELD(arg0, u32*, 0x2F0), (u8*)arg0 + 0x140, (s32*)lbl_8_rodata_16A4);
+		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
+		    M2C_FIELD(arg0, u32*, 0x2F0), (u8*)arg0 + 0x140, (s32*)lbl_8_rodata_16A4);
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2F4) != 0U) {
-		fn_8010B350(M2C_FIELD(arg0, u32*, 0x2F4), (u8*)arg0 + 0x140, (s32*)lbl_8_rodata_16A4);
+		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
+		    M2C_FIELD(arg0, u32*, 0x2F4), (u8*)arg0 + 0x140, (s32*)lbl_8_rodata_16A4);
 	}
 	return var_r31;
 }
@@ -1000,9 +1004,9 @@ s32 fn_8_98B08(void* arg0)
 	temp_r3 = fn_800A6334((void*)arg0);
 	if ((temp_r3 == 1) && ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4) != NULL)
 	    && (((u32)M2C_FIELD(arg0, u32*, 0x2F0) == 0U)
-	        || (fn_8010AFB0(M2C_FIELD(arg0, u32*, 0x2F0)) == 0))) {
-		fn_8010AFF8(M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 1);
-		fn_8010B208((u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
+	        || (IsOn__13TEnemyIconManFv(M2C_FIELD(arg0, u32*, 0x2F0)) == 0))) {
+		Change__13TEnemyIconManF10eEnemyIcon(M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 1);
+		On__13TEnemyIconManFff((u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
 	}
 	return temp_r3;
 }
@@ -1509,7 +1513,7 @@ void fn_8_99A0C(void* arg0, s32 arg1)
 		}
 	} else {
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2F4) != 0U) {
-			fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x2F4));
+			Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F4));
 		}
 		M2C_FIELD(arg0, s32*, 0xD4) = 0;
 	}
@@ -1667,7 +1671,7 @@ void fn_8_99E34(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			if ((u32)M2C_FIELD(arg0, u32*, 0x2F4) != 0U) {
-				fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x2F4));
+				Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F4));
 			}
 			M2C_FIELD(arg0, s32*, 0xD4) = 0;
 			return;
@@ -1722,11 +1726,13 @@ void fn_8_99EF4(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x290) = temp_r0;
 			if (temp_r0 == 0) {
 				if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
-					fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x2F0));
+					Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F0));
 				}
 				if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4) != NULL) {
-					fn_8010AFF8((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 2);
-					fn_8010B208((u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
+					Change__13TEnemyIconManF10eEnemyIcon(
+					    (void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 2);
+					On__13TEnemyIconManFff(
+					    (u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
 				}
 			}
 			sp8     = M2C_FIELD(arg0, s32*, 0x2F8);
@@ -2338,11 +2344,12 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 					M2C_FIELD(arg0, s32*, 0x290) = temp_r0_5;
 					if (temp_r0_5 == 0) {
 						if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
-							fn_8010B074((void*)M2C_FIELD(arg0, u32*, 0x2F0));
+							Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F0));
 						}
 						if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4) != NULL) {
-							fn_8010AFF8((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 2);
-							fn_8010B208(
+							Change__13TEnemyIconManF10eEnemyIcon(
+							    (void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), 2);
+							On__13TEnemyIconManFff(
 							    (u32)M2C_FIELD(arg0, M2C_UNK**, 0x2F4), lbl_8_rodata_1704[0], 0.0f);
 						}
 					}
@@ -2373,7 +2380,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 			switch (arg2) { /* switch 8; irregular */
 				case 0:     /* switch 8 */
 					if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4) != NULL) {
-						fn_8010B074((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4));
+						Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4));
 					}
 					M2C_FIELD(arg0, s32*, 0xD4) = 0;
 					return;
@@ -2519,7 +2526,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 				}
 			} else {
 				if ((M2C_UNK*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4) != NULL) {
-					fn_8010B074((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4));
+					Off__13TEnemyIconManFv((void*)M2C_FIELD(arg0, M2C_UNK**, 0x2F4));
 				}
 				M2C_FIELD(arg0, s32*, 0xD4) = 0;
 			}
@@ -2951,11 +2958,11 @@ void* fn_8_9C4BC(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, void**, 0x244) = NULL;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x2F0));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F0));
 			M2C_FIELD(arg0, u32*, 0x2F0) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x2F4) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x2F4));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x2F4));
 			M2C_FIELD(arg0, u32*, 0x2F4) = 0U;
 		}
 		temp_r3_3 = M2C_FIELD(arg0, void***, 0x240);
@@ -3098,14 +3105,14 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 		fn_8_9E43C(arg0);
 	}
 	if ((s32)arg0->unk580 == 0) {
-		arg0->unk2F4 = fn_8010B708(8);
+		arg0->unk2F4 = Create__13TEnemyIconManF10eEnemyIcon(8);
 		if ((u32)arg0->unk2F4 != 0U) {
-			fn_8010B208((u32)lbl_8_rodata_1704, 0.0f, 0.0f);
+			On__13TEnemyIconManFff((u32)lbl_8_rodata_1704, 0.0f, 0.0f);
 		}
 	} else {
-		arg0->unk2F4 = fn_8010B708(1);
+		arg0->unk2F4 = Create__13TEnemyIconManF10eEnemyIcon(1);
 	}
-	arg0->unk2F0 = fn_8010B708(0);
+	arg0->unk2F0 = Create__13TEnemyIconManF10eEnemyIcon(0);
 	temp_r3_2    = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_3     = temp_r3_2;
 	if (var_r0_3 != NULL) {

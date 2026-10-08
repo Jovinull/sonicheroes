@@ -2526,3 +2526,17 @@ Original source order and historical flags are not claimed. There is no object
 normalizer or instruction adjustment. Component sphere initialization and a
 reference to the timer entry preserve observed render behavior. See
 `e-powercore-unit-evidence.md` for complete ownership and compiler-trial evidence.
+
+
+## Enemy icon-manager complete C++ unit (2026-10-07)
+
+Positive e_iconman.cpp metadata identifies the icon manager; shared inline
+construction and interleaved class data support inclusion of the GameCube-only
+mission-failure class. The complete unit has seventeen surviving bodies.
+Ordinary auto reproduces all corrected bodies but emits the mission vtable last;
+class declaration order and adjacent class-definition placement do not fix that
+layout. Whole-unit auto,deferred with reversed ordinary definitions reproduces
+all body, exception and interleaved vtable/switch/string order. This is a
+compiler-emission reconstruction, not a claim of known historical flags or
+source line order. No normalizer is used. See `e-iconman-unit-evidence.md` for
+ownership uncertainties, API version differences and verification.

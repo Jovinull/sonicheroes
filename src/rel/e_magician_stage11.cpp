@@ -205,8 +205,8 @@ M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(s32, s32);                /* e
 M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(s32, s32, void*);          /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv(void);                                     /* extern */
 s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, void*, f32);      /* extern */
-M2C_UNK fn_8010AFE4(void*);                                                 /* extern */
-s32 fn_8010B708(s32);                                                       /* extern */
+M2C_UNK Close__13TEnemyIconManFv(void*);                                    /* extern */
+s32 Create__13TEnemyIconManF10eEnemyIcon(s32);                              /* extern */
 void* fn_80150588(M2C_UNK);                                                 /* extern */
 M2C_UNK fn_80150958(void*);                                                 /* extern */
 M2C_UNK fn_80195A74(s32*, M2C_UNK*, M2C_UNK, f32, f32, s32);                /* extern */
@@ -1056,11 +1056,11 @@ void* fn_8_AEEE4(void* arg0, s16 arg1)
 			M2C_FIELD(arg0, u32*, 0x320) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x318) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x318));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x318));
 			M2C_FIELD(arg0, u32*, 0x318) = 0U;
 		}
 		if ((u32)M2C_FIELD(arg0, u32*, 0x31C) != 0U) {
-			fn_8010AFE4((void*)M2C_FIELD(arg0, u32*, 0x31C));
+			Close__13TEnemyIconManFv((void*)M2C_FIELD(arg0, u32*, 0x31C));
 			M2C_FIELD(arg0, u32*, 0x31C) = 0U;
 		}
 		temp_r3_2 = M2C_FIELD(arg0, void***, 0x248);
@@ -1167,8 +1167,8 @@ TEnemyParalysis* fn_8_AF05C(TEnemyParalysis* arg0, s16 arg1, s32 arg2)
 	if ((u32)arg0->unk248 != 0U) {
 		fn_8_B0300(arg0);
 	}
-	arg0->unk31C = fn_8010B708(1);
-	arg0->unk318 = fn_8010B708(0);
+	arg0->unk31C = Create__13TEnemyIconManF10eEnemyIcon(1);
+	arg0->unk318 = Create__13TEnemyIconManF10eEnemyIcon(0);
 	arg0->unk320 = fn_8006298C(0xD, &arg0->unk140, &arg0->unk14C);
 	temp_r3      = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x74);
 	var_r0_3     = temp_r3;

@@ -120,6 +120,7 @@
     "game/eff_muteki.cpp",
     "game/eff_wink.cpp",
     "game/enemy/e_gadget.cpp",
+    "game/enemy/e_iconman.cpp",
     "game/enemy/e_powercore.cpp",
     "game/gParam.cpp",
     "game/game2pTable.cpp",

@@ -423,6 +423,15 @@ game/enemy/e_utility_search.cpp:
 	extabindex  start:0x8000FF88 end:0x8000FFAC
 	.text       start:0x80103178 end:0x8010346C
 
+game/enemy/e_iconman.cpp:
+	extab       start:0x8000A104 end:0x8000A298
+	extabindex  start:0x800103E4 end:0x8001048C
+	.text       start:0x8010ADA4 end:0x8010B84C
+	.data       start:0x8025AEB8 end:0x8025AF68
+	.sdata      start:0x8042B7A8 end:0x8042B7B0
+	.sbss       start:0x8042C5B8 end:0x8042C5C0
+	.sdata2     start:0x8042E810 end:0x8042E818
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C
