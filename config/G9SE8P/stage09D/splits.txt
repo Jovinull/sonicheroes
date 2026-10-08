@@ -506,6 +506,9 @@ rel/pond_register.cpp:
 	.text       start:0x0007EEB4 end:0x0007EF64
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/powder_create.cpp:
+	.text       start:0x00080218 end:0x000802FC
+
 rel/powder_register.cpp:
 	.text       start:0x000802FC end:0x000803AC
 	.ctors      start:0x000000F0 end:0x000000F4
