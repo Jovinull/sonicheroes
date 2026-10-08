@@ -337,6 +337,13 @@ game/link.cpp:
 	extabindex  start:0x8000F160 end:0x8000F178
 	.text       start:0x800D03A0 end:0x800D0624
 
+game/aram_pool.cpp:
+	extab       start:0x80008B10 end:0x80008B40
+	extabindex  start:0x8000F178 end:0x8000F1C0
+	.text       start:0x800D0624 end:0x800D0B08
+	.sbss       start:0x8042C488 end:0x8042C494
+	.sbss       start:0x8042C494 end:0x8042C498 skip
+
 game/expasm.cpp:
 	.text       start:0x800D52AC end:0x800D5488
 

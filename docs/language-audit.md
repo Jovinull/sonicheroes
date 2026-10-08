@@ -45,6 +45,44 @@ not instructions; every matching source object remained complete in objdiff.
 
 ## Completed batches
 
+### GameCube ARAM pool translation unit
+
+`game/aram_pool.cpp` reconstructs the seven-function GameCube range
+`0x800D0624`–`0x800D0B08`: two synchronous transfers, their completion callback,
+release, allocation, cleanup and initialization. The three contiguous small
+BSS objects are the reserved base, list head, and volatile completion flag.
+This is an inferred whole-unit boundary from the shared allocation lifecycle,
+callback and data family: it follows `link.cpp` and ends before unrelated
+scalar interpolation routines. Exception entries corroborate the individual
+ranges, not an original source-file boundary. The four trailing small-BSS bytes
+are linker alignment.
+
+The source follows the project's C++ default. Native allocation/deletion
+paths exhibit the inlined constructor/destructor pattern reproduced by the
+local class. `aram_pool.cpp` and `AramAllocation` are descriptive names;
+original file/class names are unknown, and no PS2 metadata is asserted for
+these GameCube-specific ARAM operations. Exported functions retain their
+address names. Existing SDK headers supply AR/ARQ interfaces; the OS declarations
+are included with C linkage. No shared-header change is needed.
+
+The class stores next/previous links, address and size. The head is a zero-size
+sentinel whose previous pointer initially points to itself. Removing a final
+node updates that pointer; cleanup follows it exactly as in the executable.
+Allocation rounds stored
+sizes to 32 bytes, while the final capacity check uses the original requested
+size, matching the executable. Cleanup releases nodes and calls ARFree without
+resetting the stored base. Transfer code preserves the retail cache operations
+and volatile callback wait. Ordinary automatic inlining produces the complete
+object without extra helper bodies, deferred emission or postprocessing.
+
+Independent ELF comparison verifies all four allocated sections, including
+bytes, sizes, types, flags and alignment: 1,252 text bytes, 48 exception-table
+bytes, 72 exception-index bytes and 12 small-BSS bytes. All seven function
+symbols and 50 normalized relocations match. The sole supported release target,
+G9SE8P, passed full native all-source/link/report builds, all 18 artifact hashes,
+55 automated tests and both policy checkers. Runtime and physical-hardware
+behavior have not been tested.
+
 ### Invincibility-effect translation unit
 
 `game/eff_muteki.cpp` reconstructs all twelve surviving functions at GameCube
