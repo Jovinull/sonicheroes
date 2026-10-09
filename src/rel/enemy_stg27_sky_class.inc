@@ -43,8 +43,8 @@ public:
 		}
 	}
 
-	virtual ~TObjEnemyStg27Sky();
 	virtual void Exec();
+	virtual ~TObjEnemyStg27Sky();
 	virtual void Disp();
 
 	static void Create();
