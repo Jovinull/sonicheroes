@@ -543,6 +543,9 @@ rel/bigslot_register.cpp:
 	.text       start:0x00087AC4 end:0x00087B74
 	.ctors      start:0x000000FC end:0x00000100
 
+rel/bobin_create.cpp:
+	.text       start:0x00088AFC end:0x00088C54
+
 rel/bobin_register.cpp:
 	.text       start:0x00088C54 end:0x00088D04
 	.ctors      start:0x00000100 end:0x00000104
