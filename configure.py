@@ -3629,6 +3629,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/train_roll_tunnel_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/train_roll_tunnel_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
