@@ -1,8 +1,17 @@
-// TObjEFLens and TObjEFLensSet with their constructors, shared by
-// rel/lens_flare_create.cpp (both inline, so the factory inlines them) and
-// rel/lens_flare_ctor.cpp (TObjEFLensSet's out of line, with TObjEFLens's
-// inlined into it). TObjEFLens's own out-of-line copy is not matched yet: its
-// chain walk comes out in another shape when compiled on its own.
+// TObjEFLens and TObjEFLensSet with their constructors and TObjEFLens's
+// destructor, shared by rel/lens_flare_create.cpp (all inline, so the factory
+// inlines the constructors), rel/lens_flare_ctor.cpp (TObjEFLensSet's
+// constructor out of line, with TObjEFLens's inlined into it),
+// rel/lens_flare_dtor.cpp (TObjEFLens's destructor out of line) and
+// rel/lens_flare_set_dtor.cpp (TObjEFLensSet's, with TObjEFLens's inlined).
+//
+// TObjEFLens's destructor deletes its particles, each of which unlinks itself
+// from the lens's list (EFLensPtcl's inline destructor), and then takes the
+// lens out of the efLensTop chain. That second walk is written in the
+// destructor and not in an inline helper like LinkChain: out of line, the
+// original tests the head through the global and copies it into the walk's
+// pointer (`mr r3, r0`), which only the direct form gives; inlined, as in
+// TObjEFLensSet's destructor, both forms load the head straight into it.
 
 #include "game/effect/eff_bomb.h"
 #include "game/setObj.h"
@@ -29,6 +38,7 @@ public:
 	EFLensPtcl* next;              // 0x20
 
 	inline EFLensPtcl(s16 index, TObjEFLens* lens);
+	inline ~EFLensPtcl();
 };
 
 class TObjEFLens : public TObject
@@ -57,8 +67,8 @@ public:
 	EFLensPtcl* GetPtclTop() { return ptclTop; }
 	void SetPtclTop(EFLensPtcl* ptcl) { ptclTop = ptcl; }
 
-	virtual ~TObjEFLens();
 	virtual void Exec();
+	virtual ~TObjEFLens();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 	virtual RwV3d* GetPosition();
@@ -80,6 +90,37 @@ inline EFLensPtcl::EFLensPtcl(s16 index, TObjEFLens* lens)
 		last->next = this;
 	}
 	next = NULL;
+}
+
+inline EFLensPtcl::~EFLensPtcl()
+{
+	EFLensPtcl* prev;
+
+	if (this == (prev = owner->GetPtclTop())) {
+		owner->SetPtclTop(next);
+	} else {
+		while (this != prev->next) {
+			prev = prev->next;
+		}
+		prev->next = next;
+	}
+}
+
+LENS_FLARE_DTOR TObjEFLens::~TObjEFLens()
+{
+	while (ptclTop != NULL) {
+		delete ptclTop;
+	}
+
+	if (this == efLensTop) {
+		efLensTop = next;
+	} else {
+		TObjEFLens* prev = efLensTop;
+		while (this != prev->next) {
+			prev = prev->next;
+		}
+		prev->next = next;
+	}
 }
 
 LENS_FLARE_CTOR TObjEFLens::TObjEFLens(TObject* parent)
