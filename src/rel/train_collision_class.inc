@@ -20,8 +20,8 @@ public:
 	sAngle ang; // 0xC4
 
 	TObjTrainCollision(TObject* parent);
-	virtual ~TObjTrainCollision();
 	virtual void Exec();
+	virtual ~TObjTrainCollision();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
