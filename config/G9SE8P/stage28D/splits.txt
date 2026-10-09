@@ -536,6 +536,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x00083C74 end:0x00083D1C
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/no_ottotto_collision_ctor.cpp:
+	.text       start:0x00088618 end:0x00088720
+
 rel/no_ottotto_collision_create.cpp:
 	.text       start:0x000887EC end:0x0008891C
 
