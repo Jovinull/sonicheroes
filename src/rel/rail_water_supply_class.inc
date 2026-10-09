@@ -44,8 +44,8 @@ public:
 	ModelPart parts[2]; // 0xD0
 
 	TObjRailWaterSupply(TObject* parent);
-	virtual ~TObjRailWaterSupply();
 	virtual void Exec();
+	virtual ~TObjRailWaterSupply();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

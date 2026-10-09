@@ -516,6 +516,9 @@ rel/o_setDamegeCollision.cpp:
 	.data       start:0x000071C4 end:0x000072A8
 	.bss        start:0x000010A8 end:0x000010D8
 
+rel/rail_water_supply_dtor.cpp:
+	.text       start:0x000712BC end:0x000713BC
+
 rel/rail_water_supply_ctor.cpp:
 	.text       start:0x000713BC end:0x00071510
 
