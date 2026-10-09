@@ -612,6 +612,9 @@ rel/bigchip_register.cpp:
 	.text       start:0x000842DC end:0x0008438C
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/big_dice_dtor.cpp:
+	.text       start:0x00084CEC end:0x00084DEC
+
 rel/big_dice_ctor.cpp:
 	.text       start:0x00084DEC end:0x00084EF0
 

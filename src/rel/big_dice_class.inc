@@ -32,8 +32,8 @@ public:
 	DicePart parts[4]; // 0xD0
 
 	TObjBigDice(TObject* parent);
-	virtual ~TObjBigDice();
 	virtual void Exec();
+	virtual ~TObjBigDice();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
