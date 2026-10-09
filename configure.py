@@ -2769,6 +2769,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rail_water_supply_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rail_water_supply_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
