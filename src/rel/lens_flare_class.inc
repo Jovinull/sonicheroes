@@ -65,7 +65,7 @@ public:
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 	virtual RwV3d* GetPosition();
-	virtual void SetPosition(RwV3d*);
+	virtual s32 SetPosition(RwV3d*);
 };
 
 inline EFLensPtcl::EFLensPtcl(s16 index, TObjEFLens* lens)
@@ -150,6 +150,8 @@ public:
 	virtual ~TObjEFLensSet();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
+	virtual RwV3d* GetPosition();
+	virtual s32 SetPosition(RwV3d*);
 };
 
 // The other lens of the module, TObjEFLensTmp in the PS2 symbols: no placement
@@ -165,7 +167,7 @@ public:
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 	virtual RwV3d* GetPosition();
-	virtual void SetPosition(RwV3d*);
+	virtual s32 SetPosition(RwV3d*);
 };
 
 #ifndef LENS_FLARE_TMP_CTOR
