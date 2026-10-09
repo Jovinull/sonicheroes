@@ -529,6 +529,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - __ct__19TObjS14LaserSignSetFP7TObject
     - __ct__20TObjS14LaserLightSetFP7TObject
     - __ct__19TObjS14LaserBeamSetFP7TObject
     - __ct__10TObjS14KeyFP7TObject
