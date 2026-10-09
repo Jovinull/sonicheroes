@@ -4309,6 +4309,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_road_side_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_roadside_a_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
