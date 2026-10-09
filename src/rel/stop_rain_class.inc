@@ -24,6 +24,7 @@ public:
 	TObjStopRain(TObject* parent);
 	virtual void Exec();
 	virtual ~TObjStopRain();
+	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
