@@ -12,8 +12,8 @@ class TObjSystem4 : public TObject, public TObjSetObj
 {
 public:
 	TObjSystem4(TObject* parent);
-	virtual ~TObjSystem4();
 	virtual void Exec();
+	virtual ~TObjSystem4();
 	virtual void Disp();
 };
 
