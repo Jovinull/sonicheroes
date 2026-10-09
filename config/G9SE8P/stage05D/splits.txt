@@ -524,6 +524,9 @@ rel/bingopanel_register.cpp:
 	.text       start:0x00081CE4 end:0x00081D94
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/big_chip_create.cpp:
+	.text       start:0x00084160 end:0x000842DC
+
 rel/bigchip_register.cpp:
 	.text       start:0x000842DC end:0x0008438C
 	.ctors      start:0x000000F0 end:0x000000F4

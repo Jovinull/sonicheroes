@@ -2154,6 +2154,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_chip_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigchip_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
