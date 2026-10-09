@@ -40,8 +40,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjRailChimney(TObject* parent);
-	virtual ~TObjRailChimney();
 	virtual void Exec();
+	virtual ~TObjRailChimney();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
