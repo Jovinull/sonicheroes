@@ -361,6 +361,9 @@ rel/roll_door_assets.cpp:
 rel/lens_flare_tmp_dtor.cpp:
 	.text       start:0x00044658 end:0x00044770
 
+rel/lens_flare_tmp_ctor.cpp:
+	.text       start:0x00044770 end:0x000448C0
+
 rel/lens_flare_set_dtor.cpp:
 	.text       start:0x00044B08 end:0x00044C38
 

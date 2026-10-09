@@ -27,6 +27,8 @@ struct EFLensTableEntry {
 
 extern "C" char* CL_TObjEFLens;
 extern "C" char* CL_TObjEFLensSet;
+extern "C" char* CL_TObjEFLensTmp;
+extern "C" const f32 lensFlareZero[1];
 extern "C" TObjEFLens* efLensTop;
 extern "C" EFLensTableEntry efLensTable[12];
 extern "C" TObject* lbl_8042C110;
@@ -155,6 +157,9 @@ public:
 class TObjEFLensTmp : public TObjEFLens
 {
 public:
+	RwV3d pos; // 0x38
+
+	TObjEFLensTmp(TObject* parent);
 	virtual void Exec();
 	virtual ~TObjEFLensTmp();
 	virtual void TDisp();
@@ -162,6 +167,19 @@ public:
 	virtual RwV3d* GetPosition();
 	virtual void SetPosition(RwV3d*);
 };
+
+#ifndef LENS_FLARE_TMP_CTOR
+#define LENS_FLARE_TMP_CTOR inline
+#endif
+
+LENS_FLARE_TMP_CTOR TObjEFLensTmp::TObjEFLensTmp(TObject* parent)
+    : TObjEFLens(parent)
+{
+	ClassName = CL_TObjEFLensTmp;
+	DispTime  = 0x44;
+
+	pos.x = pos.y = pos.z = lensFlareZero[0];
+}
 
 LENS_FLARE_SET_CTOR TObjEFLensSet::TObjEFLensSet(TObject* parent)
     : TObjEFLens(parent)
