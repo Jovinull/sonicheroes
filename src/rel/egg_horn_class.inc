@@ -40,8 +40,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjEggHorn(TObject* parent);
-	virtual ~TObjEggHorn();
 	virtual void Exec();
+	virtual ~TObjEggHorn();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
