@@ -696,6 +696,9 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000B4A08 end:0x000B4AA0
 	.ctors      start:0x00000164 end:0x00000168
 
+rel/s04_ball_colli_dtor.cpp:
+	.text       start:0x000B6A30 end:0x000B6AC8
+
 rel/s04_ball_colli_ctor.cpp:
 	.text       start:0x000B6AC8 end:0x000B6BA8
 

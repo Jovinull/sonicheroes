@@ -19,8 +19,8 @@ class TObjS04BallColli : public TObject, public TObjSetObj, public C_COLLI
 {
 public:
 	TObjS04BallColli(TObject* parent);
-	virtual ~TObjS04BallColli();
 	virtual void Exec();
+	virtual ~TObjS04BallColli();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
