@@ -597,6 +597,9 @@ rel/s13d_bigfan_register.cpp:
 	.text       start:0x0008729C end:0x00087344
 	.ctors      start:0x00000104 end:0x00000108
 
+rel/s13d_screw_create.cpp:
+	.text       start:0x00087A2C end:0x00087C1C
+
 rel/s13d_screw_register.cpp:
 	.text       start:0x00087C1C end:0x00087CB8
 	.ctors      start:0x00000108 end:0x0000010C
