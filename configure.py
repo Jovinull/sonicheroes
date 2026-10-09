@@ -2209,6 +2209,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobin_air_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobinair_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

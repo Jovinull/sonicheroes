@@ -550,6 +550,9 @@ rel/bobin_register.cpp:
 	.text       start:0x00088C54 end:0x00088D04
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/bobin_air_create.cpp:
+	.text       start:0x00089CD4 end:0x00089E4C
+
 rel/bobinair_register.cpp:
 	.text       start:0x00089E4C end:0x00089EFC
 	.ctors      start:0x00000104 end:0x00000108
