@@ -619,6 +619,9 @@ rel/capture_collision_dtor.cpp:
 rel/capture_collision_ctor.cpp:
 	.text       start:0x0008EB48 end:0x0008EC0C
 
+rel/capture_collision_edit.cpp:
+	.text       start:0x0008ED04 end:0x0008ED4C
+
 rel/capture_collision_create.cpp:
 	.text       start:0x0008ED54 end:0x0008EE40
 
