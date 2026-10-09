@@ -157,6 +157,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - __ct__17TObjS02Rolling_CLFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
     - __ct__7TObjKeyFP7TObject

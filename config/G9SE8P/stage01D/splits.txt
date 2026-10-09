@@ -589,6 +589,9 @@ rel/s02_moving_land_register.cpp:
 	.text       start:0x0009F2CC end:0x0009F378
 	.ctors      start:0x00000118 end:0x0000011C
 
+rel/s02_rolling_cl_ctor.cpp:
+	.text       start:0x0009FADC end:0x0009FC0C
+
 rel/s02_rolling_cl_create.cpp:
 	.text       start:0x0009FC0C end:0x0009FD64
 
