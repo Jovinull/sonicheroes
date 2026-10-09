@@ -739,6 +739,9 @@ rel/railpollex_register.cpp:
 	.text       start:0x000892B8 end:0x00089358
 	.ctors      start:0x00000124 end:0x00000128
 
+rel/rail_poll_gol_dtor.cpp:
+	.text       start:0x00089A00 end:0x00089B00
+
 rel/rail_poll_gol_ctor.cpp:
 	.text       start:0x00089B00 end:0x00089C68
 
