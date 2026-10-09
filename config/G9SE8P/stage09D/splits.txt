@@ -572,6 +572,9 @@ rel/pond_register.cpp:
 	.text       start:0x0007EEB4 end:0x0007EF64
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/powder_dtor.cpp:
+	.text       start:0x0007FE28 end:0x0007FF54
+
 rel/powder_ctor.cpp:
 	.text       start:0x0007FF54 end:0x00080010
 
