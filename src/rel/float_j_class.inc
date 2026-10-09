@@ -27,8 +27,8 @@ public:
 	RpClump* clump; // 0xD4
 
 	TObjFloatJ(TObject* parent);
-	virtual ~TObjFloatJ();
 	virtual void Exec();
+	virtual ~TObjFloatJ();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

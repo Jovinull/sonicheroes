@@ -2604,6 +2604,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/float_j_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/float_j_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
