@@ -38,6 +38,8 @@ public:
 	virtual void Disp();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
+	virtual void UpdatePosition(RwV3d* position);
+	virtual RwV3d* GetPosition();
 };
 
 ITEMBALOON_CTOR TObjItembaloon::TObjItembaloon(TObject* parent)

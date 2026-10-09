@@ -297,6 +297,9 @@ rel/itembaloon_register.cpp:
 	.text       start:0x0003D228 end:0x0003D374
 	.ctors      start:0x00000068 end:0x0000006C
 
+rel/itembaloon_position.cpp:
+	.text       start:0x0003D384 end:0x0003D3A8
+
 rel/pole_dtor.cpp:
 	.text       start:0x0003F854 end:0x0003F914
 

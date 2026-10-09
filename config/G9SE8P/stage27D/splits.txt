@@ -314,6 +314,9 @@ rel/itembaloon_register.cpp:
 	.text       start:0x00035E0C end:0x00035F58
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/itembaloon_position.cpp:
+	.text       start:0x00035F68 end:0x00035F8C
+
 rel/pole_dtor.cpp:
 	.text       start:0x00038438 end:0x000384F8
 
