@@ -746,6 +746,9 @@ rel/turtle_register.cpp:
 	.text       start:0x000B9A30 end:0x000B9B10
 	.ctors      start:0x00000160 end:0x00000164
 
+rel/s06_chip_dtor.cpp:
+	.text       start:0x000BAE1C end:0x000BAF08
+
 rel/s06_chip_ctor.cpp:
 	.text       start:0x000BAF08 end:0x000BB134
 

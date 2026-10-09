@@ -76,8 +76,8 @@ public:
 		}
 	}
 
-	virtual ~TObjS06Chip();
 	virtual void Exec();
+	virtual ~TObjS06Chip();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
