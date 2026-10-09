@@ -344,6 +344,9 @@ rel/system_object1_register.cpp:
 	.text       start:0x0004D7FC end:0x0004D8A0
 	.ctors      start:0x00000090 end:0x00000094
 
+rel/system_object2_ctor.cpp:
+	.text       start:0x0004D988 end:0x0004D9EC
+
 rel/system_object2_create.cpp:
 	.text       start:0x0004DA20 end:0x0004DAAC
 
