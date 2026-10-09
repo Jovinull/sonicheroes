@@ -700,6 +700,9 @@ rel/railenden_register.cpp:
 	.text       start:0x00086D68 end:0x00086E08
 	.ctors      start:0x00000118 end:0x0000011C
 
+rel/rail_end_ex_dtor.cpp:
+	.text       start:0x00087418 end:0x00087518
+
 rel/rail_end_ex_ctor.cpp:
 	.text       start:0x00087518 end:0x00087654
 

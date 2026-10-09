@@ -35,8 +35,8 @@ public:
 	ModelPart parts[2]; // 0xD4
 
 	TObjRailEndEx(TObject* parent);
-	virtual ~TObjRailEndEx();
 	virtual void Exec();
+	virtual ~TObjRailEndEx();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
