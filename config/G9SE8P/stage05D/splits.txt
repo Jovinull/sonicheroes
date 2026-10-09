@@ -636,6 +636,9 @@ rel/rinoliner_register.cpp:
 	.text       start:0x000B23AC end:0x000B2454
 	.ctors      start:0x00000158 end:0x0000015C
 
+rel/colli_communication_instance.cpp:
+	.text       start:0x000B483C end:0x000B4990
+
 rel/colli_communication_create.cpp:
 	.text       start:0x000B4A98 end:0x000B4BE4
 

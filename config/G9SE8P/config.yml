@@ -255,6 +255,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - CreateInstance__22TObjColliCommunicationFv
     - CreateInstance__18TObjFlyerCollisionFv
     - setDamageCollisionCtor
     - fn_8_40DF8
@@ -291,6 +292,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - CreateInstance__22TObjColliCommunicationFv
     - CreateInstance__18TObjFlyerCollisionFv
     - setDamageCollisionCtor
     - fn_8_40DF8
