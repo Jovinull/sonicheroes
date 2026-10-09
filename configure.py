@@ -4034,6 +4034,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_thunder_chain.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_thunder_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

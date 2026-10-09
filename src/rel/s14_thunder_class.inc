@@ -26,7 +26,7 @@ class TObjS14ThunderSet : public TObject, public TObjSetObj
 {
 public:
 	s32 unk30;               // 0x30
-	u8 unk34[4];             // 0x34
+	TObjS14ThunderSet* next; // 0x34, the chain fn_9_A215C links into
 	SETOBJ_PARAM* placement; // 0x38
 	sAngle* angle;           // 0x3C
 
