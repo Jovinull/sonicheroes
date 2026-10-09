@@ -595,6 +595,9 @@ rel/enemy_stg27_sky_ctor.cpp:
 rel/enemy_stg27_sky_create.cpp:
 	.text       start:0x000B4FC8 end:0x000B50AC
 
+rel/enemy_stg27_cloud_create.cpp:
+	.text       start:0x000B55FC end:0x000B575C
+
 rel/stg27_obj_register.cpp:
 	.text       start:0x000B5C68 end:0x000B5D10
 	.ctors      start:0x00000110 end:0x00000114
