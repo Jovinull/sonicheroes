@@ -12,8 +12,17 @@ class TObjSystem3 : public TObject, public TObjSetObj
 {
 public:
 	TObjSystem3(TObject* parent);
-	virtual void Exec();
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable. These are all overrides, whose order does not move
+	// their slots, so each fragment unit can put first one it does not define:
+	// rel/system_object3_exec.cpp (Exec and Disp) declares the destructor first.
+#ifdef SYSTEM_OBJECT_DTOR_FIRST
 	virtual ~TObjSystem3();
+#endif
+	virtual void Exec();
+#ifndef SYSTEM_OBJECT_DTOR_FIRST
+	virtual ~TObjSystem3();
+#endif
 	virtual void Disp();
 };
 
