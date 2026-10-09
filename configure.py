@@ -2684,6 +2684,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/moji_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/moji_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

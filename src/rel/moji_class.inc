@@ -46,8 +46,8 @@ public:
 	MojiPart parts[8]; // 0xD0
 
 	TObjMoji(TObject* parent);
-	virtual ~TObjMoji();
 	virtual void Exec();
+	virtual ~TObjMoji();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
