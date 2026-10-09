@@ -528,6 +528,9 @@ rel/bigchip_register.cpp:
 	.text       start:0x000842DC end:0x0008438C
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/big_dice_create.cpp:
+	.text       start:0x000851E0 end:0x0008530C
+
 rel/bigdice_register.cpp:
 	.text       start:0x0008530C end:0x000853BC
 	.ctors      start:0x000000F4 end:0x000000F8
