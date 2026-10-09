@@ -573,6 +573,10 @@ rel/warp_dtor.cpp:
 rel/warp_ctor.cpp:
 	.text       start:0x00077DFC end:0x00077E90
 
+rel/warp_edit.cpp:
+	.text       start:0x00077E90 end:0x00077EE0
+	.rodata     start:0x00001290 end:0x00001294
+
 rel/warp_create.cpp:
 	.text       start:0x00077EEC end:0x00077FA8
 
