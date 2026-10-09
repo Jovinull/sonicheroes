@@ -5,7 +5,23 @@
 #include "game/effect/eff_bomb.h"
 #include "game/setObj.h"
 
+// One of the module's model files: its name, the archive it is read from, the
+// world slot its clones go into, and the model once loaded.
+struct ModelFile {
+	const char* name; // 0x00
+	void* archive;    // 0x04
+	s32 world;        // 0x08
+	void* model;      // 0x0C
+};
+
+struct DestructRailPart {
+	RpClump* clump; // 0x00
+	s32 added;      // 0x04
+};
+
 extern "C" char* CL_TObjDestructRail;
+extern "C" ModelFile destructRailModelFiles[2];
+extern "C" u8* lbl_8042C1D0;
 extern "C" CCL_INFO destructRailCclInfo;
 extern "C" TObject* lbl_8042C110;
 extern "C" void fn_8003BF04(C_COLLI* colli, CCL_INFO* info, int count, u8 kind);
@@ -24,11 +40,11 @@ public:
 	RwV3d pos;      // 0xB8
 	sAngle ang;     // 0xC4
 	s32 unkD0;      // 0xD0
-	u8 unkD4[0x10]; // 0xD4
+	DestructRailPart parts[2]; // 0xD4
 
 	TObjDestructRail(TObject* parent);
-	virtual ~TObjDestructRail();
 	virtual void Exec();
+	virtual ~TObjDestructRail();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
