@@ -20,8 +20,8 @@ public:
 	sAngle ang; // 0xC4
 
 	TObjTrainAppear(TObject* parent);
-	virtual ~TObjTrainAppear();
 	virtual void Exec();
+	virtual ~TObjTrainAppear();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
