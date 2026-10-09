@@ -625,6 +625,9 @@ rel/glassfloor_register.cpp:
 	.text       start:0x00091444 end:0x000914F4
 	.ctors      start:0x00000118 end:0x0000011C
 
+rel/moji_ctor.cpp:
+	.text       start:0x00091E20 end:0x00091F6C
+
 rel/moji_create.cpp:
 	.text       start:0x000922F8 end:0x0009246C
 
