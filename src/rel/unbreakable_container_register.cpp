@@ -3,8 +3,9 @@
 // The record that registers UNBR. CONT. OBJECT with the editor.
 //
 // The claim is .text 0x14C9C to 0x14D44 and the .ctors word that names it. Only the
-// record is taken: the three hooks it points at stay assembly and are reached
-// by the names each module's symbols.txt gives them.
+// record is taken: the three hooks it points at are reached by the names each
+// module's symbols.txt gives them. The factory is
+// rel/unbreakable_container_create.cpp.
 //
 // The run is the same in thirteen of the fourteen stage modules. stage40D
 // registers the same object from a different build and does not share it.

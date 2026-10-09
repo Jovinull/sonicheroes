@@ -13,7 +13,7 @@ from pathlib import Path
 SYMBOL_RENAMES = {
     "slot0__20CollisionPrimaryBaseFv": "collisionDtor",
     "slot1__20CollisionPrimaryBaseFv": "collisionExec",
-    "slot2__20CollisionPrimaryBaseFv": "fn_9_1A9B4",
+    "slot2__20CollisionPrimaryBaseFv": "Disp__7TObjectFv",
     "slot3__20CollisionPrimaryBaseFv": "collisionRelease",
     "slot4__20CollisionPrimaryBaseFv": "PDisp__7TObjectFv",
     "slot5__20CollisionPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",

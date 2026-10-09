@@ -59,7 +59,7 @@ extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* systemObject4ClassName;
-extern "C" void* systemObject4Vtable[];
+extern "C" void* __vt__11TObjSystem4[];
 
 extern "C" void systemObject4Disp(void) { }
 
@@ -74,8 +74,8 @@ extern "C" void systemObject4Exec(SystemObject4* object)
 extern "C" SystemObject4* systemObject4Dtor(SystemObject4* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = systemObject4Vtable;
-		object->motion.vtable = systemObject4Vtable + 0xB;
+		object->base.vtable   = __vt__11TObjSystem4;
+		object->motion.vtable = __vt__11TObjSystem4 + 0xB;
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -90,8 +90,8 @@ extern "C" SystemObject4* systemObject4Ctor(SystemObject4* object, void* owner)
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
 
-	object->base.vtable   = systemObject4Vtable;
-	object->motion.vtable = systemObject4Vtable + 0xB;
+	object->base.vtable   = __vt__11TObjSystem4;
+	object->motion.vtable = __vt__11TObjSystem4 + 0xB;
 
 	object->base.className  = systemObject4ClassName;
 	object->base.objectSize = 0x30;

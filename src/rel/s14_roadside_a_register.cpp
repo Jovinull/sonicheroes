@@ -2,9 +2,10 @@
 
 // The records that register S14 ROADSIDE A and S14 ROADSIDE B with the editor.
 //
-// The claim is .text 0xC9A54 to 0xC9B70 and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// The claim is .text 0xC9A54 to 0xC9B70 and the .ctors word that names it. Only
+// the record is taken: the hooks it points at are reached by the names each
+// module's symbols.txt gives them.
+// The factory is rel/s14_road_side_create.cpp.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

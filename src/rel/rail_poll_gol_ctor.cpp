@@ -1,0 +1,6 @@
+// TObjRailPollGol's constructor, out of line: the copy each module keeps beside the
+// one inlined into the factory in rel/rail_poll_gol_create.cpp. The class and the
+// constructor's body are shared through rail_poll_gol_class.inc.
+
+#define RAIL_POLL_GOL_CTOR
+#include "src/rel/rail_poll_gol_class.inc"

@@ -77,8 +77,9 @@ extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
 extern "C" void fn_80150958(void* model);
 extern "C" void fn_8015BBF8(void* scene, void* model);
 
-// Defined by each module, renamed to this name in its own symbols.txt.
-extern "C" void* ironballVtable[];
+// TObjIronball's vtable, defined by each module under the C++ name the class
+// gives it (see rel/ironball_class.inc).
+extern "C" void* __vt__12TObjIronball[];
 
 extern "C" void objReleaseModels(Object* object)
 {
@@ -96,8 +97,8 @@ extern "C" void objReleaseModels(Object* object)
 extern "C" Ironball* ironballDtor(Ironball* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = ironballVtable;
-		object->motion.vtable = ironballVtable + 0xB;
+		object->base.vtable   = __vt__12TObjIronball;
+		object->motion.vtable = __vt__12TObjIronball + 0xB;
 
 		objReleaseModels((Object*)object);
 

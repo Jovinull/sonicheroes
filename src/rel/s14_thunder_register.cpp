@@ -2,9 +2,10 @@
 
 // The records that register S14 Thunder and S14 Thunder2 with the editor.
 //
-// The claim is .text 0xA12A0 to 0xA13F4 and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// The claim is .text 0xA12A0 to 0xA13F4 and the .ctors word that names it. Only
+// the record is taken: the hooks it points at are reached by the names each
+// module's symbols.txt gives them.
+// The factory is rel/s14_thunder_create.cpp.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

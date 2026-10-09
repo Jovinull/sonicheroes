@@ -157,6 +157,23 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__17TObjS02Rolling_CLFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
@@ -209,6 +226,31 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - SetPosition__12TObjS01StullFv
+    - __ct__12TObjS01StullFP7TObject
+    - stullVector1
+    - stullVector2
+    - stullTrailingZero
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__15TObjS04FloatWayFP7TObject
+    - __ct__16TObjS04BallColliFP7TObject
+    - __ct__14TObjS03WalkWayFP7TObject
+    - __ct__12TObjS03TrainFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
@@ -251,6 +293,38 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__12TObjYajirusiFP7TObject
+    - __ct__11TObjXxxSignFP7TObject
+    - __ct__9TObjXSignFP7TObject
+    - __ct__10TObjTenkyuFP7TObject
+    - __ct__11TObjS06ChipFP7TObject
+    - __ct__12TObjRouletteFP7TObject
+    - __ct__8TObjMojiFP7TObject
+    - __ct__10TObjBumperFP7TObject
+    - __ct__9TObjBobinFP7TObject
+    - __ct__12TObjBobinAirFP7TObject
+    - __ct__11TObjBigSlotFP7TObject
+    - __ct__11TObjBigDiceFP7TObject
+    - __ct__11TObjBigChipFP7TObject
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - CreateInstance__22TObjColliCommunicationFv
+    - CreateInstance__18TObjFlyerCollisionFv
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
@@ -284,6 +358,51 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__13TObjRailEndEnFP7TObject
+    - __ct__15TObjRailPollGorFP7TObject
+    - __ct__15TObjRailPollGolFP7TObject
+    - __ct__13TObjRailCapEnFP7TObject
+    - __ct__12TObjTrainTopFP7TObject
+    - __ct__19TObjTrainRollTunnelFP7TObject
+    - __ct__18TObjTrainCollisionFP7TObject
+    - __ct__21TObjTrainChangeSwitchFP7TObject
+    - __ct__19TObjTrainChangeRailFP7TObject
+    - __ct__20TObjTrainChangeBoardFP7TObject
+    - __ct__15TObjTrainAppearFP7TObject
+    - __ct__14TObjS23WarpPosFP7TObject
+    - __ct__14TObjRoomPillarFP7TObject
+    - __ct__19TObjRailWaterSupplyFP7TObject
+    - __ct__11TObjRailTieFP7TObject
+    - __ct__14TObjRailPollExFP7TObject
+    - __ct__13TObjRailEndExFP7TObject
+    - __ct__15TObjRailChimneyFP7TObject
+    - __ct__18TObjRailChangeRailFP7TObject
+    - __ct__13TObjRailCapExFP7TObject
+    - __ct__12TObjRailBushFP7TObject
+    - __ct__18TObjRailBulletrackFP7TObject
+    - __ct__16TObjRailBarbwireFP7TObject
+    - __ct__11TObjEggHornFP7TObject
+    - __ct__16TObjDestructRailFP7TObject
+    - __ct__10TObjBridgeFP7TObject
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - CreateInstance__22TObjColliCommunicationFv
+    - CreateInstance__18TObjFlyerCollisionFv
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
@@ -317,6 +436,29 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__12TObjStopRainFP7TObject
+    - __ct__8TObjSidaFP7TObject
+    - __ct__17TObjRainCollisionFP7TObject
+    - __ct__10TObjPowderFP7TObject
+    - __ct__10TObjFloatJFP7TObject
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - CreateInstance__18TObjFlyerCollisionFv
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
@@ -354,6 +496,19 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
     # This internal update helper has no relocation from outside its original
     # monolithic compiler atom, so retain it once that atom is reconstructed.
     - fn_8_40DF8
@@ -433,6 +588,37 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - targetReloadModel
+    - lensFlareEditOnChange
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__13TObjS13Cloud1FP7TObject
+    - __ct__11TObjSystem4FP7TObject
+    - __ct__11TObjSystem3FP7TObject
+    - __ct__11TObjSystem2FP7TObject
+    - __ct__11TObjSystem1FP7TObject
+    - __ct__13TObjS14EggmanFP7TObject
+    - __ct__12TObjS14CrushFP7TObject
+    - __ct__17TObjS14ThunderSetFP7TObject
+    - __ct__19TObjS14LaserSignSetFP7TObject
+    - __ct__20TObjS14LaserLightSetFP7TObject
+    - __ct__19TObjS14LaserBeamSetFP7TObject
+    - __ct__10TObjS14KeyFP7TObject
+    - __ct__16TObjS13PartitionFP7TObject
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - CreateInstance__18TObjFlyerCollisionFv
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - objApplyTransform
     - objReleaseModels
@@ -460,6 +646,26 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - lensFlareEditOnChange
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__17TObjEnemyStg27SkyFP7TObject
+    - __ct__20TObjCaptureCollisionFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - CreateInstance__18TObjFlyerCollisionFv
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - objApplyTransform
@@ -492,6 +698,25 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - lensFlareEditOnChange
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__13TObjS13Cloud1FP7TObject
+    - __ct__17TObjEnemyStg27SkyFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - objApplyTransform
@@ -524,6 +749,26 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - lensFlareEditOnChange
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__13TObjS13Cloud1FP7TObject
+    - __ct__12TObjEnemySkyFP7TObject
+    - __ct__14TObjEnemyCloudFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - objApplyTransform
@@ -556,6 +801,22 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
@@ -589,6 +850,22 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange
@@ -622,6 +899,22 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - GetNearestLens__Fv
+    - __dt__10EFLensPtclFv
+    - __ct__10EFLensPtclFsP10TObjEFLens
+    - __ct__13TObjEFLensTmpFP7TObject
+    - __ct__10TObjEFLensFP7TObject
+    - __ct__13TObjEFLensSetFP7TObject
+    - __ct__25TObjSetNoOttottoCollisionFP7TObject
+    - __ct__10TObjS31BobFP7TObject
+    - __ct__7TObjKeyFP7TObject
+    - __ct__8TObjWarpFP7TObject
+    - __ct__15TObjSetParticleFP7TObject
+    - __ct__14TObjItembaloonFP7TObject
+    - __ct__12TObjIronballFP7TObject
+    - __ct__20TObjBobJumpCollisionFP7TObject
+    - setDamageCollisionCtor
+    - fn_8_40DF8
     - springTransform
     - targetReloadModel
     - lensFlareEditOnChange

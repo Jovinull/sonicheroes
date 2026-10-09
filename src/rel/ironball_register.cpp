@@ -3,8 +3,8 @@
 // The record that registers IRONBALL OBJECT with the editor.
 //
 // The claim is .text 0x76C0 to 0x7768 and the .ctors word that names it. Only the
-// record is taken: the three hooks it points at stay assembly and are reached
-// by the names each module's symbols.txt gives them.
+// record is taken: the three hooks it points at are reached by the names each
+// module's symbols.txt gives them. The factory is rel/ironball_create.cpp.
 //
 // The run is the same in all thirteen stage modules that share the engine
 // core. stage40D is a different revision of the source and is left out.

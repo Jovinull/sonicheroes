@@ -13,7 +13,7 @@ from pathlib import Path
 SYMBOL_RENAMES = {
     "slot0__21BlinkLightPrimaryBaseFv": "blinkLightDtor",
     "slot1__21BlinkLightPrimaryBaseFv": "blinkLightExec",
-    "slot2__21BlinkLightPrimaryBaseFv": "fn_9_1A9B4",
+    "slot2__21BlinkLightPrimaryBaseFv": "Disp__7TObjectFv",
     "slot3__21BlinkLightPrimaryBaseFv": "TDisp__7TObjectFv",
     "slot4__21BlinkLightPrimaryBaseFv": "PDisp__7TObjectFv",
     "slot5__21BlinkLightPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",

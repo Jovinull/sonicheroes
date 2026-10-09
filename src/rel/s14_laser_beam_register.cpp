@@ -3,8 +3,9 @@
 // The record that registers S14 LaserBeam with the editor.
 //
 // The claim is .text 0xA3D00 to 0xA3DAC and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// Only the record is taken: the hooks it points at are reached by the names
+// each module's symbols.txt gives them.
+// The factory is rel/s14_laser_beam_create.cpp.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

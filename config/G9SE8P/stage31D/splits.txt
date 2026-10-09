@@ -13,6 +13,9 @@ rel/sample1_object.cpp:
 	.text       start:0x000000D8 end:0x000003E0
 	.rodata     start:0x00000000 end:0x00000018
 
+rel/sample1_create.cpp:
+	.text       start:0x000003E0 end:0x00000494
+
 rel/sample1_register.cpp:
 	.text       start:0x00000494 end:0x00000548
 	.ctors      start:0x00000000 end:0x00000004
@@ -22,6 +25,9 @@ rel/obj_base_stubs.cpp:
 
 rel/sample2_object.cpp:
 	.text       start:0x00000564 end:0x00000740
+
+rel/sample2_create.cpp:
+	.text       start:0x00000740 end:0x00000804
 
 rel/sample2_register.cpp:
 	.text       start:0x00000804 end:0x0000088C
@@ -109,6 +115,12 @@ rel/set_collision_hooks.cpp:
 rel/ironball_dtor.cpp:
 	.text       start:0x00006E78 end:0x00006FDC
 
+rel/ironball_ctor.cpp:
+	.text       start:0x00006FDC end:0x00007244
+
+rel/ironball_create.cpp:
+	.text       start:0x00007430 end:0x000076C0
+
 rel/ironball_register.cpp:
 	.text       start:0x000076C0 end:0x00007768
 	.ctors      start:0x00000018 end:0x0000001C
@@ -187,6 +199,9 @@ rel/reel_assets.cpp:
 	.text       start:0x00012128 end:0x00012218
 	.ctors      start:0x00000030 end:0x00000034
 
+rel/wood_container_create.cpp:
+	.text       start:0x00013FB0 end:0x000140F0
+
 rel/wood_container_register.cpp:
 	.text       start:0x000140F0 end:0x00014198
 	.ctors      start:0x00000034 end:0x00000038
@@ -197,6 +212,9 @@ rel/wood_container_sound.cpp:
 rel/iron_container_unload.cpp:
 	.text       start:0x00014544 end:0x00014558
 
+rel/iron_container_create.cpp:
+	.text       start:0x000145D8 end:0x000146DC
+
 rel/iron_container_register.cpp:
 	.text       start:0x000146DC end:0x00014784
 	.ctors      start:0x00000038 end:0x0000003C
@@ -206,6 +224,9 @@ rel/iron_container_sound.cpp:
 
 rel/unbreakable_container_unload.cpp:
 	.text       start:0x00014AEC end:0x00014B00
+
+rel/unbreakable_container_create.cpp:
+	.text       start:0x00014B80 end:0x00014C9C
 
 rel/unbreakable_container_register.cpp:
 	.text       start:0x00014C9C end:0x00014D44
@@ -284,12 +305,27 @@ rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/itembaloon_tdisp.cpp:
+	.text       start:0x0003C270 end:0x0003C394
+
+rel/itembaloon_disp.cpp:
+	.text       start:0x0003C394 end:0x0003C420
+
 rel/itembaloon_object_dtor.cpp:
 	.text       start:0x0003CDB0 end:0x0003CE58
+
+rel/itembaloon_ctor.cpp:
+	.text       start:0x0003CE58 end:0x0003CFBC
+
+rel/itembaloon_create.cpp:
+	.text       start:0x0003D0B8 end:0x0003D244
 
 rel/itembaloon_register.cpp:
 	.text       start:0x0003D244 end:0x0003D390
 	.ctors      start:0x00000068 end:0x0000006C
+
+rel/itembaloon_position.cpp:
+	.text       start:0x0003D3A0 end:0x0003D3C4
 
 rel/pole_dtor.cpp:
 	.text       start:0x0003F870 end:0x0003F930
@@ -298,8 +334,17 @@ rel/pole_assets.cpp:
 	.text       start:0x0003FF74 end:0x00040064
 	.ctors      start:0x0000006C end:0x00000070
 
+rel/fn_403ec_stage11.cpp:
+	.text       start:0x000403EC end:0x00040F64
+	.rodata     start:0x00000A80 end:0x00000AA8
+	.data       start:0x000042C4 end:0x000044E4
+	.bss        start:0x00000988 end:0x000009E0
+
 rel/case_obj_dtor.cpp:
 	.text       start:0x00040F64 end:0x00041034
+
+rel/case_obj_lifecycle_stage11.cpp:
+	.text       start:0x00041034 end:0x000415B0
 
 rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0
@@ -308,12 +353,63 @@ rel/case_assets.cpp:
 rel/roll_door_dtor.cpp:
 	.text       start:0x0004395C end:0x00043A3C
 
+rel/roll_door_lifecycle_stage11.cpp:
+	.text       start:0x00043A3C end:0x00044118
+
 rel/roll_door_assets.cpp:
 	.text       start:0x00044118 end:0x00044208
 	.ctors      start:0x00000078 end:0x0000007C
 
+rel/lens_flare_nearest.cpp:
+	.text       start:0x00044210 end:0x000442E4
+
+rel/lens_flare_ptcl.cpp:
+	.text       start:0x00044498 end:0x0004457C
+
+rel/lens_flare_tmp_tdisp.cpp:
+	.text       start:0x0004457C end:0x00044654
+
+rel/lens_flare_tmp_exec.cpp:
+	.text       start:0x00044654 end:0x00044658
+
+rel/lens_flare_tmp_dtor.cpp:
+	.text       start:0x00044658 end:0x00044770
+
+rel/lens_flare_tmp_ctor.cpp:
+	.text       start:0x00044770 end:0x000448C0
+
+rel/lens_flare_set_tdisp.cpp:
+	.text       start:0x000448C0 end:0x00044AA0
+
+rel/lens_flare_set_exec.cpp:
+	.text       start:0x00044AA0 end:0x00044B08
+
+rel/lens_flare_set_dtor.cpp:
+	.text       start:0x00044B08 end:0x00044C38
+
+rel/lens_flare_ctor.cpp:
+	.text       start:0x00044C38 end:0x00044E04
+
+rel/lens_flare_dtor.cpp:
+	.text       start:0x0004521C end:0x00045328
+
+rel/lens_flare_lens_ctor.cpp:
+	.text       start:0x00045328 end:0x00045444
+
 rel/lens_flare_edit.cpp:
 	.text       start:0x00045444 end:0x000454A8
+
+rel/lens_flare_load.cpp:
+	.text       start:0x000454A8 end:0x00045634
+
+rel/lens_flare_create_lens.cpp:
+	.text       start:0x00045634 end:0x000457D4
+
+rel/lens_flare_create.cpp:
+	.text       start:0x000457D4 end:0x000459C4
+
+rel/lens_flare_accessors.cpp:
+	.text       start:0x000459D0 end:0x00045A00
 
 rel/lens_flare_test.cpp:
 	.text       start:0x00045A00 end:0x00045A10
@@ -324,6 +420,9 @@ rel/lens_flare_register.cpp:
 
 rel/signal_dtor.cpp:
 	.text       start:0x000464D0 end:0x00046578
+
+rel/signal_lifecycle_stage11.cpp:
+	.text       start:0x00046578 end:0x00046B24
 
 rel/signal_assets.cpp:
 	.text       start:0x00046B24 end:0x00046C14
@@ -346,12 +445,18 @@ rel/goal_ring_register.cpp:
 rel/system_object1_object.cpp:
 	.text       start:0x0004D634 end:0x0004D78C
 
+rel/system_object1_create.cpp:
+	.text       start:0x0004D78C end:0x0004D818
+
 rel/system_object1_register.cpp:
 	.text       start:0x0004D818 end:0x0004D8BC
 	.ctors      start:0x00000090 end:0x00000094
 
 rel/system_object2_object.cpp:
 	.text       start:0x0004D8BC end:0x0004DA3C
+
+rel/system_object2_create.cpp:
+	.text       start:0x0004DA3C end:0x0004DAC8
 
 rel/system_object2_register.cpp:
 	.text       start:0x0004DAC8 end:0x0004DB6C
@@ -360,12 +465,18 @@ rel/system_object2_register.cpp:
 rel/system_object3_object.cpp:
 	.text       start:0x0004DB6C end:0x0004DCEC
 
+rel/system_object3_create.cpp:
+	.text       start:0x0004DCEC end:0x0004DD78
+
 rel/system_object3_register.cpp:
 	.text       start:0x0004DD78 end:0x0004DE1C
 	.ctors      start:0x00000098 end:0x0000009C
 
 rel/system_object4_object.cpp:
 	.text       start:0x0004DE1C end:0x0004DF74
+
+rel/system_object4_create.cpp:
+	.text       start:0x0004DF74 end:0x0004E000
 
 rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
@@ -404,13 +515,30 @@ rel/hintring_register.cpp:
 	.text       start:0x0006330C end:0x000633E0
 	.ctors      start:0x000000B4 end:0x000000B8
 
-rel/damage_collision_register.cpp:
-	.text       start:0x00063880 end:0x00063918
+rel/o_setDamegeCollision.cpp:
+	.text       start:0x000633E8 end:0x00063920
 	.ctors      start:0x000000B8 end:0x000000BC
+	.data       start:0x0000647C end:0x00006560
+	.bss        start:0x00000F78 end:0x00000FA8
+
+rel/obj_set_particle_dtor.cpp:
+	.text       start:0x00063C58 end:0x00063D10
+
+rel/obj_set_particle_ctor.cpp:
+	.text       start:0x00063D10 end:0x00063E14
+
+rel/obj_set_particle_create.cpp:
+	.text       start:0x00063EE8 end:0x00064014
 
 rel/obj_set_particle_register.cpp:
 	.text       start:0x00064014 end:0x000640B0
 	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/bob_jump_collision_ctor.cpp:
+	.text       start:0x00064950 end:0x00064B64
+
+rel/bob_jump_collision_create.cpp:
+	.text       start:0x00064BE4 end:0x00064E20
 
 rel/bob_jump_collision_register.cpp:
 	.text       start:0x00064E20 end:0x00064EC8
@@ -424,6 +552,22 @@ rel/chao_register.cpp:
 	.text       start:0x0006CA10 end:0x0006CAC0
 	.ctors      start:0x000000D0 end:0x000000D4
 
+rel/warp_exec.cpp:
+	.text       start:0x0006CB98 end:0x0006CCF4
+
+rel/warp_dtor.cpp:
+	.text       start:0x0006CCF4 end:0x0006CD8C
+
+rel/warp_ctor.cpp:
+	.text       start:0x0006CD8C end:0x0006CE20
+
+rel/warp_edit.cpp:
+	.text       start:0x0006CE20 end:0x0006CE70
+	.rodata     start:0x000010C8 end:0x000010CC
+
+rel/warp_create.cpp:
+	.text       start:0x0006CE7C end:0x0006CF38
+
 rel/warp_register.cpp:
 	.text       start:0x0006CF38 end:0x0006CFE4
 	.ctors      start:0x000000D4 end:0x000000D8
@@ -436,6 +580,15 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x0006F830 end:0x0006F8C4
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/key_object_dtor.cpp:
+	.text       start:0x00070748 end:0x00070850
+
+rel/key_object_ctor.cpp:
+	.text       start:0x00070850 end:0x00070A18
+
+rel/key_object_create.cpp:
+	.text       start:0x00070A60 end:0x00070C50
+
 rel/key_register.cpp:
 	.text       start:0x00070C50 end:0x00070CE8
 	.ctors      start:0x000000E0 end:0x000000E4
@@ -443,13 +596,43 @@ rel/key_register.cpp:
 rel/s31_bob_dummy_dtor.cpp:
 	.text       start:0x00070CE8 end:0x00070D74
 
+rel/s31bob_ctor.cpp:
+	.text       start:0x00070D74 end:0x00070DD8
+
+rel/s31bob_create.cpp:
+	.text       start:0x00070F1C end:0x00070FA8
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00073A2C end:0x00073AC4
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/s31bob_exec.cpp:
+	.text       start:0x00073AC4 end:0x00073AC8
+
+rel/event_manager_init.cpp:
+	.text       start:0x00079E0C end:0x00079F90
+
+rel/unbr_bobcont_create.cpp:
+	.text       start:0x0007CE94 end:0x0007CFCC
+
 rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x0007CFCC end:0x0007D074
 	.ctors      start:0x000000EC end:0x000000F0
+
+rel/no_ottotto_collision_exec.cpp:
+	.text       start:0x0007D074 end:0x0007D170
+
+rel/no_ottotto_collision_dtor.cpp:
+	.text       start:0x0007D170 end:0x0007D208
+
+rel/no_ottotto_collision_ctor.cpp:
+	.text       start:0x0007D208 end:0x0007D310
+
+rel/no_ottotto_collision_edit.cpp:
+	.text       start:0x0007D310 end:0x0007D3DC
+
+rel/no_ottotto_collision_create.cpp:
+	.text       start:0x0007D3DC end:0x0007D50C
 
 rel/no_ottotto_collision_register.cpp:
 	.text       start:0x0007D50C end:0x0007D5A4

@@ -3,8 +3,9 @@
 // The record that registers OBJ SetParticle  with the editor.
 //
 // The claim is .text 0xAF398 to 0xAF434 and the .ctors word at 0x128 that names
-// it. Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the hooks it points at are reached by the names
+// each module's symbols.txt gives them. The factory is
+// rel/obj_set_particle_create.cpp.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

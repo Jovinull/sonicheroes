@@ -2,9 +2,10 @@
 
 // The record that registers RAILCAPEX with the editor.
 //
-// The claim is .text 0x83924 to 0x839C4 and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// The claim is .text 0x83924 to 0x839C4 and the .ctors word that names it. Only
+// the record is taken: the hooks it points at are reached by the names each
+// module's symbols.txt gives them.
+// The factory is rel/rail_cap_ex_create.cpp.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

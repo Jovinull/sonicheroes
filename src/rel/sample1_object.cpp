@@ -15,12 +15,10 @@
 // 0x28 and its splits.txt says so. Everything else is at the same address in
 // all thirteen.
 //
-// The run stops at 0x3E0 rather than carrying on to the registration function:
-// the factory at 0x3E0 has the same shape sample2Create does, where the
-// original keeps the allocator's result and the pointer the construction runs
-// on in separate registers and no source form reproduces the extra copy. That
-// one is left to the module, and so is fn_N_494, which fills the registration
-// record in .bss and reaches three of the stubs here.
+// The run stops at 0x3E0. The factory there is rel/sample1_create.cpp, which
+// is written as a real new-expression of the class because that is the only
+// form that reproduces the original's register copy, and the registration
+// function after it is rel/sample1_register.cpp.
 //
 // Both the constructor and Exec read the keyframe through a local rather than
 // assigning the position across whole, for the reason written up in
@@ -119,7 +117,7 @@ extern "C" void AddVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" Sample1Defaults sample1Defaults;
-extern "C" void* sample1Vtable[];
+extern "C" void* __vt__10TObjSample[];
 
 extern "C" void sample1Disp(void) { }
 
@@ -163,8 +161,8 @@ extern "C" void sample1Exec(Sample1* object)
 extern "C" Sample1* sample1Dtor(Sample1* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = sample1Vtable;
-		object->motion.vtable = sample1Vtable + 0xB;
+		object->base.vtable   = __vt__10TObjSample;
+		object->motion.vtable = __vt__10TObjSample + 0xB;
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -181,8 +179,8 @@ extern "C" Sample1* sample1Ctor(Sample1* object, void* owner)
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
 
-	object->base.vtable   = sample1Vtable;
-	object->motion.vtable = sample1Vtable + 0xB;
+	object->base.vtable   = __vt__10TObjSample;
+	object->motion.vtable = __vt__10TObjSample + 0xB;
 
 	object->base.className  = sample1Defaults.className;
 	object->base.objectSize = 0x44;

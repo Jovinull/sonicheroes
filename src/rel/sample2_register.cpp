@@ -2,8 +2,8 @@
 
 // The record that registers TObjSample2 with the editor.
 //
-// The claim is .text 0x804 to 0x88C and the .ctors word that names it. Only the
-// record is taken: the factory it points at is still assembly.
+// The claim is .text 0x804 to 0x88C and the .ctors word that names it. The
+// factory it points at is rel/sample2_create.cpp.
 //
 // The run is the same in all thirteen stage modules that share the engine core.
 // stage40D is a different revision of the source and is left out.

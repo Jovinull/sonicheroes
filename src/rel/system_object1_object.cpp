@@ -21,11 +21,10 @@
 // no thunk in front of them, at 0x4D8BC, 0x4DB6C and 0x4DE1C. So the blr is the
 // first function of an object's own run, and this one starts at 0x4D634.
 //
-// The upper bound stops short of the factory at 0x4D78C for the reason
-// rel/sample1_object.cpp already records: the original keeps the allocator's
-// result and the pointer the construction runs on in separate registers, `mr
-// r0, r3` and then `mr r31, r0`, and no source form reproduces the extra copy.
-// It stays assembly here as it does there.
+// The upper bound stops short of the factory at 0x4D78C, which is
+// rel/system_object1_create.cpp: its `mr r0, r3` and then `mr r31, r0` only
+// come out of a real new-expression of the C++ class, which this file's C
+// spelling of the object does not have.
 //
 // The object is the base plus one embedded second base and nothing else: the
 // constructor writes 0x30 as the instance size, and the second base starts at
@@ -82,7 +81,7 @@ extern "C" void __ct__10TObjSetObjFv(Motion* motion);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* systemObject1ClassName;
-extern "C" void* systemObject1Vtable[];
+extern "C" void* __vt__11TObjSystem1[];
 
 extern "C" void systemObject1Disp(void) { }
 
@@ -97,8 +96,8 @@ extern "C" void systemObject1Exec(SystemObject1* object)
 extern "C" SystemObject1* systemObject1Dtor(SystemObject1* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = systemObject1Vtable;
-		object->motion.vtable = systemObject1Vtable + 0xB;
+		object->base.vtable   = __vt__11TObjSystem1;
+		object->motion.vtable = __vt__11TObjSystem1 + 0xB;
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -113,8 +112,8 @@ extern "C" SystemObject1* systemObject1Ctor(SystemObject1* object, void* owner)
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
 
-	object->base.vtable   = systemObject1Vtable;
-	object->motion.vtable = systemObject1Vtable + 0xB;
+	object->base.vtable   = __vt__11TObjSystem1;
+	object->motion.vtable = __vt__11TObjSystem1 + 0xB;
 
 	object->base.className  = systemObject1ClassName;
 	object->base.objectSize = 0x30;

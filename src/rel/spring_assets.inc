@@ -9,8 +9,8 @@
 // The factory here is the shape sample2Create and the sample1 factory are not:
 // it calls the constructor rather than having it inlined, so the allocator's
 // result stays in one register and the whole thing falls out in four lines. The
-// other two spend an instruction on a copy no source form reproduces, which is
-// why they are still assembly.
+// other two inline the constructor of a class with two bases, which spends an
+// instruction on a register copy; see rel/sample1_create.cpp.
 
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;

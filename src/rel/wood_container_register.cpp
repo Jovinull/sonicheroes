@@ -3,8 +3,8 @@
 // The record that registers WOOD. CONT. OBJECT with the editor.
 //
 // The claim is .text 0x140F0 to 0x14198 and the .ctors word that names it. Only the
-// record is taken: the three hooks it points at stay assembly and are reached
-// by the names each module's symbols.txt gives them.
+// record is taken: the three hooks it points at are reached by the names each
+// module's symbols.txt gives them. The factory is rel/wood_container_create.cpp.
 //
 // The run is the same in twelve of the fourteen stage modules. stage13D is
 // built from a different revision here, and stage40D everywhere.

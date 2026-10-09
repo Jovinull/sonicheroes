@@ -15,22 +15,14 @@
 // stage13D's strings are shorter, so its vtable is at .data 0xA0 rather than
 // 0xB0, which the rename in its symbols.txt takes care of.
 //
-// Four of the five are claimed, 0x564 to 0x740. sample2Create, the factory at
-// 0x740, is left to the module: it comes out one instruction short, and the
-// missing one is a register copy no source form produces. The original keeps
-// the allocator's result in r0 for the null test and copies it into r31 inside
-// the branch; the compiler here folds the two into r31 and tests that. About
-// twenty five ways of writing it were measured, including `new` with the class
-// carrying its own operator new, an inlined construction helper, both orders
-// of declaring the two locals, an early return, and a ternary. What decides it
-// is the call the construction makes on the second base at 0x28: with that one
-// argument written as the object plus nothing, every shape keeps the two
-// registers apart, and with it written as the address of the member at 0x28 --
-// which is what the original does -- every shape folds them. No optimisation
-// flag or pragma moves it either: -O2 through -O4 in all three modes, the four
-// combinations of noschedule and nopeephole, -inline off, noauto and deferred,
-// and opt_propagation, opt_lifetimes, opt_dead_assignments, opt_common_subs
-// and opt_dead_code turned off one at a time all produce the folded form.
+// Four of the five are claimed here, 0x564 to 0x740. sample2Create, the
+// factory at 0x740, is rel/sample2_create.cpp. Its one hard instruction is a
+// register copy: the original tests the allocator's result in r0 and moves it
+// to r31 inside the branch. About twenty five C spellings, every optimisation
+// level and the pragmas that touch propagation, lifetimes and common
+// subexpressions all fold the two into r31. What produces the copy is a real
+// new-expression of a class with two bases and an inline constructor, so that
+// file writes the class as C++.
 //
 // The boundary is read off the two sample vtables. TObjSample's is at .data
 // 0x50 and TObjSample2's at .data 0xB0, and they share their last six slots:
@@ -129,7 +121,7 @@ extern "C" void SubVectorReturnToVector__FPC5RwV3dPC5RwV3dP5RwV3d(
 
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" const char* sample2ClassName;
-extern "C" void* sample2Vtable[];
+extern "C" void* __vt__11TObjSample2[];
 
 extern "C" void sample2Disp(void) { }
 
@@ -156,8 +148,8 @@ extern "C" void sample2Exec(Sample2* object)
 extern "C" Sample2* sample2Dtor(Sample2* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = sample2Vtable;
-		object->motion.vtable = sample2Vtable + 0xB;
+		object->base.vtable   = __vt__11TObjSample2;
+		object->motion.vtable = __vt__11TObjSample2 + 0xB;
 		__dt__10TObjSetObjFv(&object->motion, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
@@ -172,8 +164,8 @@ extern "C" Sample2* sample2Ctor(Sample2* object, void* owner)
 	__ct__7TObjectFP7TObject(&object->base, owner);
 	__ct__10TObjSetObjFv(&object->motion);
 
-	object->base.vtable   = sample2Vtable;
-	object->motion.vtable = sample2Vtable + 0xB;
+	object->base.vtable   = __vt__11TObjSample2;
+	object->motion.vtable = __vt__11TObjSample2 + 0xB;
 
 	object->base.className  = sample2ClassName;
 	object->base.objectSize = 0x48;

@@ -193,7 +193,7 @@ extern "C" void __ct__10TObjSetObjFv(Motion*);
 extern "C" void fn_80063E7C(void*, s32);
 extern "C" PlayerData* fn_800924E4(void);
 
-extern "C" void fn_9_1A9B4(void);
+extern "C" void Disp__7TObjectFv(void);
 extern "C" void objDefaultPDisp(void);
 extern "C" void objDefaultImmAftSetRaster(void);
 extern "C" void objDefaultDebug(void);

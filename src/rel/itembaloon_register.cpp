@@ -4,8 +4,9 @@
 // editor.
 //
 // The claim is .text 0x3D244 to 0x3D390 and the .ctors word that names it. Only
-// the records are taken: the hooks they point at stay assembly and are reached
-// by the names each module's symbols.txt gives them.
+// the records are taken: the hooks they point at are reached by the names each
+// module's symbols.txt gives them. The item balloon's factory is
+// rel/itembaloon_create.cpp.
 //
 // The run is the same in thirteen of the fourteen stage modules. stage40D
 // registers the same objects from a different build and does not share it.
