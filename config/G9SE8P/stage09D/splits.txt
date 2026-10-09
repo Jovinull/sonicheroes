@@ -578,6 +578,9 @@ rel/bushsq_register.cpp:
 	.text       start:0x00093FF4 end:0x000940A4
 	.ctors      start:0x0000012C end:0x00000130
 
+rel/bush_zenmai_create.cpp:
+	.text       start:0x00094A74 end:0x00094BB4
+
 rel/bushzenmai_register.cpp:
 	.text       start:0x00094BB4 end:0x00094C64
 	.ctors      start:0x00000130 end:0x00000134
