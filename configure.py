@@ -2314,6 +2314,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/float_j_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/floatj_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
