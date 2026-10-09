@@ -632,6 +632,9 @@ rel/traincapsule_register.cpp:
 	.text       start:0x0008F7A8 end:0x0008F858
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/train_change_board_create.cpp:
+	.text       start:0x000906B4 end:0x00090818
+
 rel/trainchangeboard_register.cpp:
 	.text       start:0x00090818 end:0x000908C8
 	.ctors      start:0x00000144 end:0x00000148
