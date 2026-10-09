@@ -791,6 +791,9 @@ rel/s14_red_light_register.cpp:
 	.text       start:0x000C7898 end:0x000C7930
 	.ctors      start:0x0000017C end:0x00000180
 
+rel/s14_ring_light_create.cpp:
+	.text       start:0x000C805C end:0x000C823C
+
 rel/s14_ring_light_register.cpp:
 	.text       start:0x000C823C end:0x000C82D4
 	.ctors      start:0x00000180 end:0x00000184

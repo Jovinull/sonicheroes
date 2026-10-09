@@ -3719,6 +3719,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_ring_light_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_ring_light_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
