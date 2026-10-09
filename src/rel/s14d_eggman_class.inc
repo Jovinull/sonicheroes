@@ -31,8 +31,8 @@ public:
 	RpClump* clump; // 0x34
 
 	TObjS14Eggman(TObject* parent);
-	virtual ~TObjS14Eggman();
 	virtual void Exec();
+	virtual ~TObjS14Eggman();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
