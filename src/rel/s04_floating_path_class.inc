@@ -24,8 +24,8 @@ public:
 	u8 padBA[2]; // 0xBA
 
 	TObjS04FloatWay(TObject* parent);
-	virtual ~TObjS04FloatWay();
 	virtual void Exec();
+	virtual ~TObjS04FloatWay();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

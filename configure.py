@@ -3154,6 +3154,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04_floating_path_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04_floating_path_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
