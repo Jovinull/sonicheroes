@@ -3644,6 +3644,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/train_top_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/train_top_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
