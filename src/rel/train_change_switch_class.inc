@@ -50,8 +50,8 @@ public:
 	ModelPart parts[3]; // 0xD8
 
 	TObjTrainChangeSwitch(TObject* parent);
-	virtual ~TObjTrainChangeSwitch();
 	virtual void Exec();
+	virtual ~TObjTrainChangeSwitch();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

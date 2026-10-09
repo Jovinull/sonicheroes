@@ -832,6 +832,9 @@ rel/trainchangerail_register.cpp:
 	.text       start:0x000918D0 end:0x00091970
 	.ctors      start:0x00000148 end:0x0000014C
 
+rel/train_change_switch_dtor.cpp:
+	.text       start:0x00092610 end:0x0009271C
+
 rel/train_change_switch_ctor.cpp:
 	.text       start:0x0009271C end:0x00092870
 
