@@ -635,6 +635,9 @@ rel/enemy_stg27_sky_ctor.cpp:
 rel/enemy_stg27_sky_create.cpp:
 	.text       start:0x00079EA8 end:0x00079F8C
 
+rel/enemy_stg27_cloud_exec.cpp:
+	.text       start:0x0007A0B8 end:0x0007A188
+
 rel/enemy_stg27_cloud_dtor.cpp:
 	.text       start:0x0007A2FC end:0x0007A3A4
 
