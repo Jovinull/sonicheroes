@@ -616,6 +616,9 @@ rel/s14_thunder_ptcl_register.cpp:
 	.text       start:0x0007AF30 end:0x0007AFCC
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/enemy_sky_exec.cpp:
+	.text       start:0x0007B0B0 end:0x0007B15C
+
 rel/enemy_sky_dtor.cpp:
 	.text       start:0x0007B248 end:0x0007B2D8
 
