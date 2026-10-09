@@ -665,6 +665,9 @@ rel/trispring_register.cpp:
 	.text       start:0x0009D78C end:0x0009D83C
 	.ctors      start:0x00000134 end:0x00000138
 
+rel/x_sign_ctor.cpp:
+	.text       start:0x0009DE6C end:0x0009DF6C
+
 rel/x_sign_create.cpp:
 	.text       start:0x0009E0DC end:0x0009E204
 
