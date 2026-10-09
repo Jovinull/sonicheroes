@@ -1,6 +1,3 @@
-#include "game/effect/eff_bomb.h"
-#include "game/setObj.h"
-
 // systemObject3Create, the factory rel/system_object3_register.cpp puts in
 // the editor record for TObjSystem3.
 //
@@ -18,22 +15,8 @@
 // The PS2 build spells the vtable __vt__11TObjSystem3, which is the name each
 // module's symbols.txt gives the table the constructor stores.
 
-extern "C" char* systemObject3ClassName;
-extern "C" TObject* lbl_8042C110;
-
-class TObjSystem3 : public TObject, public TObjSetObj
-{
-public:
-	TObjSystem3(TObject* parent)
-	    : TObject(parent)
-	{
-		ClassName = systemObject3ClassName;
-		DispTime  = 0x30;
-	}
-	virtual ~TObjSystem3();
-	virtual void Exec();
-	virtual void Disp();
-};
+#define SYSTEM_OBJECT3_CTOR inline
+#include "src/rel/system_object3_class.inc"
 
 extern "C" void systemObject3Create(void)
 {
