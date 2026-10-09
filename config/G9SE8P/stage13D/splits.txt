@@ -778,6 +778,9 @@ rel/wall_register.cpp:
 	.text       start:0x000C2544 end:0x000C2624
 	.ctors      start:0x00000168 end:0x0000016C
 
+rel/s13_cloud1_tdisp.cpp:
+	.text       start:0x000C34A4 end:0x000C350C
+
 rel/s13_cloud1_dtor.cpp:
 	.text       start:0x000C393C end:0x000C39F4
 

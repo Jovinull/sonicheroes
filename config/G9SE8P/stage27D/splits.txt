@@ -597,6 +597,9 @@ rel/s31_bob_dummy_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x00077834 end:0x00077838
 
+rel/s13_cloud1_tdisp.cpp:
+	.text       start:0x00078788 end:0x000787F0
+
 rel/s13_cloud1_dtor.cpp:
 	.text       start:0x00078C20 end:0x00078CD8
 

@@ -6,7 +6,8 @@
 #include "game/setObj.h"
 
 struct S13Cloud1Param {
-	s16 unk0; // 0x00
+	s8 kind;  // 0x00
+	u8 pad01; // 0x01
 	s16 unk2; // 0x02
 	s16 unk4; // 0x04
 };
@@ -39,6 +40,7 @@ public:
 	TObjS13Cloud1(TObject* parent);
 	virtual void Exec();
 	virtual ~TObjS13Cloud1();
+	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
