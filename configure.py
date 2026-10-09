@@ -3589,6 +3589,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_senkan_yuka_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_senkan_yuka_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
