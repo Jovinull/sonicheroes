@@ -230,6 +230,9 @@ rel/cage_object_register.cpp:
 	.text       start:0x00021C90 end:0x00021D38
 	.ctors      start:0x0000004C end:0x00000050
 
+rel/target_reload.cpp:
+	.text       start:0x00023BC8 end:0x00023C1C
+
 rel/target_dtor.cpp:
 	.text       start:0x00023C1C end:0x00023CCC
 

@@ -588,6 +588,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - targetReloadModel
     - lensFlareEditOnChange
     - GetNearestLens__Fv
     - __dt__10EFLensPtclFv
