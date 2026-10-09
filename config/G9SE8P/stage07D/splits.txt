@@ -731,6 +731,9 @@ rel/traincore_register.cpp:
 	.text       start:0x000CA4A8 end:0x000CA558
 	.ctors      start:0x0000018C end:0x00000190
 
+rel/train_roll_tunnel_create.cpp:
+	.text       start:0x000CB220 end:0x000CB384
+
 rel/trainrolltunnel_register.cpp:
 	.text       start:0x000CB384 end:0x000CB438
 	.ctors      start:0x00000190 end:0x00000194
