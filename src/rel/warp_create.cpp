@@ -1,6 +1,3 @@
-#include "game/effect/eff_bomb.h"
-#include "game/setObj.h"
-
 // warpCreate, the factory rel/warp_register.cpp puts in the editor record for
 // TObjWarp.
 //
@@ -23,27 +20,8 @@
 // __vt__8TObjWarp, and each module's symbols.txt uses those names; warpCclInfo
 // is this file's name for the shape.
 
-extern "C" char* CL_TObjWarp;
-extern "C" CCL_INFO warpCclInfo;
-extern "C" TObject* lbl_8042C110;
-
-class TObjWarp : public TObject, public TObjSetObj, public C_COLLI
-{
-public:
-	TObjWarp(TObject* parent)
-	    : TObject(parent)
-	{
-		ClassName = CL_TObjWarp;
-		DispTime  = 0xB8;
-
-		warpCclInfo.a = *(f32*)ObjParam->setData.setBuffer;
-		Init(&warpCclInfo, 1, 4);
-	}
-	virtual ~TObjWarp();
-	virtual void Exec();
-	virtual void TDisp();
-	virtual void EditOnChange(SETDATA_PARAM*);
-};
+#define WARP_CTOR inline
+#include "src/rel/warp_class.inc"
 
 extern "C" void warpCreate(void)
 {

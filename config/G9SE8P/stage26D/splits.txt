@@ -477,6 +477,9 @@ rel/stg26_ctrl_reset.cpp:
 rel/stg26_ctrl_start.cpp:
 	.text       start:0x0006CDEC end:0x0006CF0C
 
+rel/warp_ctor.cpp:
+	.text       start:0x0006D1D0 end:0x0006D264
+
 rel/warp_create.cpp:
 	.text       start:0x0006D2C0 end:0x0006D37C
 
