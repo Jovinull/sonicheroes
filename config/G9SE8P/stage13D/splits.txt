@@ -781,6 +781,9 @@ rel/wall_register.cpp:
 rel/s13_cloud1_tdisp.cpp:
 	.text       start:0x000C34A4 end:0x000C350C
 
+rel/s13_cloud1_edit.cpp:
+	.text       start:0x000C38A4 end:0x000C393C
+
 rel/s13_cloud1_dtor.cpp:
 	.text       start:0x000C393C end:0x000C39F4
 

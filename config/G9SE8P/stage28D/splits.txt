@@ -596,6 +596,9 @@ rel/s31bob_exec.cpp:
 rel/s13_cloud1_tdisp.cpp:
 	.text       start:0x00079C7C end:0x00079CE4
 
+rel/s13_cloud1_edit.cpp:
+	.text       start:0x0007A07C end:0x0007A114
+
 rel/s13_cloud1_dtor.cpp:
 	.text       start:0x0007A114 end:0x0007A1CC
 
