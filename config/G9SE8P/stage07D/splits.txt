@@ -588,6 +588,9 @@ rel/railpollgor_register.cpp:
 	.text       start:0x0008AB80 end:0x0008AC20
 	.ctors      start:0x0000012C end:0x00000130
 
+rel/rail_tie_create.cpp:
+	.text       start:0x0008B39C end:0x0008B4DC
+
 rel/railtie_register.cpp:
 	.text       start:0x0008B4DC end:0x0008B57C
 	.ctors      start:0x00000130 end:0x00000134
