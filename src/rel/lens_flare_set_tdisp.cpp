@@ -1,9 +1,9 @@
-// TObjEFLensSet::TDisp. Only the set nearest the camera focus draws (the
-// focus is the position lbl_8042C208 points at; NearestLens walks the
-// efLensTop chain through each lens's GetPosition), and not when its
-// placement asks for kind 1 or while the mode flag at +0x20 of lbl_8042C180
+// TObjEFLensSet::TDisp. Only the set nearest the camera focus draws (the focus
+// is the position lbl_8042C208 points at; GetNearestLens walks the efLensTop
+// chain through each lens's GetPosition, in lens_flare_class.inc), and not when
+// its placement asks for kind 1 or while the mode flag at +0x20 of lbl_8042C180
 // is 1. The drawing is TObjEFLensTmp::TDisp's (rel/lens_flare_tmp_tdisp.cpp),
-// followed by three calls on the current camera (lbl_8042C9A4). NearestLens
+// followed by three calls on the current camera (lbl_8042C9A4). GetNearestLens
 // returns NULL itself for an empty chain, which is the original's `li r28, 0`
 // over a register that already holds it. The classes are in
 // lens_flare_class.inc.
@@ -26,7 +26,6 @@ struct LensGameMode {
 	s8 unk20; // 0x20
 };
 
-extern "C" RwV3d* lbl_8042C208;
 extern "C" LensGameMode* lbl_8042C180;
 extern "C" RwCamera** lbl_8042C9A4;
 extern "C" f32 fn_8019421C(void);
@@ -36,35 +35,12 @@ extern "C" void fn_80194234(s32 state, s32 value);
 extern "C" void fn_8019CC00(RwCamera* camera);
 extern "C" void fn_8019CC28(RwCamera* camera);
 extern "C" void fn_8016EE88(RwCamera* camera);
-f32 DistanceP2P(const RwV3d* a, const RwV3d* b);
-
-static inline TObjEFLens* NearestLens()
-{
-	TObjEFLens* nearest = efLensTop;
-
-	if (nearest == NULL) {
-		return NULL;
-	}
-
-	TObjEFLens* lens = nearest->next;
-	f32 best         = DistanceP2P(lbl_8042C208, nearest->GetPosition());
-
-	while (lens != NULL) {
-		f32 distance = DistanceP2P(lbl_8042C208, lens->GetPosition());
-		if (distance < best) {
-			best    = distance;
-			nearest = lens;
-		}
-		lens = lens->next;
-	}
-	return nearest;
-}
 
 void TObjEFLensSet::TDisp()
 {
 	EFLensSetParam* param = (EFLensSetParam*)ObjParam->setData.setBuffer;
 
-	if (this == NearestLens()) {
+	if (this == GetNearestLens()) {
 		if (param == NULL || param->kind != 1) {
 			if (lbl_8042C180->unk20 != 1) {
 				f32 first  = fn_8019421C();

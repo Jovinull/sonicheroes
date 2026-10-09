@@ -30,6 +30,8 @@ extern "C" char* CL_TObjEFLensSet;
 extern "C" char* CL_TObjEFLensTmp;
 extern "C" const f32 lensFlareZero[1];
 extern "C" const f32 lensFlareOne[1];
+extern "C" RwV3d* lbl_8042C208;
+f32 DistanceP2P(const RwV3d* a, const RwV3d* b);
 extern "C" TObjEFLens* efLensTop;
 extern "C" EFLensTableEntry efLensTable[12];
 extern "C" TObject* lbl_8042C110;
@@ -179,6 +181,34 @@ public:
 	virtual RwV3d* GetPosition();
 	virtual s32 SetPosition(RwV3d*);
 };
+
+// The lens nearest the camera focus (the position lbl_8042C208 points at),
+// GetNearestLens in the PS2 symbols, a file-local function there. Inline here
+// by default; rel/lens_flare_nearest.cpp emits the module's copy.
+#ifndef LENS_FLARE_NEAREST
+#define LENS_FLARE_NEAREST static inline
+#endif
+
+LENS_FLARE_NEAREST TObjEFLens* GetNearestLens()
+{
+	if (efLensTop == NULL) {
+		return NULL;
+	}
+
+	TObjEFLens* nearest = efLensTop;
+	TObjEFLens* lens    = nearest->next;
+	f32 best         = DistanceP2P(lbl_8042C208, nearest->GetPosition());
+
+	while (lens != NULL) {
+		f32 distance = DistanceP2P(lbl_8042C208, lens->GetPosition());
+		if (distance < best) {
+			best    = distance;
+			nearest = lens;
+		}
+		lens = lens->next;
+	}
+	return nearest;
+}
 
 #ifndef LENS_FLARE_TMP_CTOR
 #define LENS_FLARE_TMP_CTOR inline
