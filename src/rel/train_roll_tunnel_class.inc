@@ -34,8 +34,8 @@ public:
 	ModelPart parts[6]; // 0xD0
 
 	TObjTrainRollTunnel(TObject* parent);
-	virtual ~TObjTrainRollTunnel();
 	virtual void Exec();
+	virtual ~TObjTrainRollTunnel();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
