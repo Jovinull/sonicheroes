@@ -501,6 +501,9 @@ rel/stg26_colli_cc_register.cpp:
 	.text       start:0x000756F4 end:0x00075840
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/event_manager_init.cpp:
+	.text       start:0x0007CF04 end:0x0007D088
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x0007FF8C end:0x000800C4
 

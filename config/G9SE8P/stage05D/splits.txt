@@ -681,6 +681,9 @@ rel/s06chip_object_register.cpp:
 	.text       start:0x000BB468 end:0x000BB500
 	.ctors      start:0x00000164 end:0x00000168
 
+rel/event_manager_init.cpp:
+	.text       start:0x000BFF2C end:0x000C00B0
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000C2FB4 end:0x000C30EC
 

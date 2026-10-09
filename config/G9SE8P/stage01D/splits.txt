@@ -678,6 +678,9 @@ rel/s66_star_register.cpp:
 	.text       start:0x000CB010 end:0x000CB0BC
 	.ctors      start:0x00000164 end:0x00000168
 
+rel/event_manager_init.cpp:
+	.text       start:0x000CFAF0 end:0x000CFC74
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000D2B78 end:0x000D2CB0
 

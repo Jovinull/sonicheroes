@@ -687,6 +687,9 @@ rel/s14_wall_side_register.cpp:
 	.text       start:0x000D69D0 end:0x000D6A78
 	.ctors      start:0x000001B0 end:0x000001B4
 
+rel/event_manager_init.cpp:
+	.text       start:0x000DB4AC end:0x000DB630
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000DE534 end:0x000DE66C
 
