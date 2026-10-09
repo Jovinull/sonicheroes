@@ -548,6 +548,9 @@ rel/railcapen_register.cpp:
 	.text       start:0x00082DA0 end:0x00082E40
 	.ctors      start:0x00000104 end:0x00000108
 
+rel/rail_cap_ex_create.cpp:
+	.text       start:0x000837B8 end:0x00083924
+
 rel/railcapex_register.cpp:
 	.text       start:0x00083924 end:0x000839C4
 	.ctors      start:0x00000108 end:0x0000010C
