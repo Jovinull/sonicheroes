@@ -590,6 +590,9 @@ rel/egg_horn_dtor.cpp:
 rel/egg_horn_ctor.cpp:
 	.text       start:0x0007B324 end:0x0007B43C
 
+rel/egg_horn_edit.cpp:
+	.text       start:0x0007B43C end:0x0007B44C
+
 rel/egg_horn_create.cpp:
 	.text       start:0x0007B534 end:0x0007B674
 
