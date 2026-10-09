@@ -640,6 +640,9 @@ rel/railbush_register.cpp:
 	.text       start:0x0008212C end:0x000821DC
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/rail_cap_en_dtor.cpp:
+	.text       start:0x00082884 end:0x00082984
+
 rel/rail_cap_en_ctor.cpp:
 	.text       start:0x00082984 end:0x00082AEC
 
