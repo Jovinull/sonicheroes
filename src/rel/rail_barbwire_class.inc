@@ -40,8 +40,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjRailBarbwire(TObject* parent);
-	virtual ~TObjRailBarbwire();
 	virtual void Exec();
+	virtual ~TObjRailBarbwire();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
