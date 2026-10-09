@@ -2959,6 +2959,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_walk_way_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_walk_way_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
