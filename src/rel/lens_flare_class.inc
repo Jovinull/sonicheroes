@@ -145,8 +145,8 @@ class TObjEFLensSet : public TObjEFLens, public TObjSetObj
 {
 public:
 	TObjEFLensSet(TObject* parent);
-	virtual ~TObjEFLensSet();
 	virtual void Exec();
+	virtual ~TObjEFLensSet();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
