@@ -43,9 +43,17 @@ public:
 		}
 	}
 
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable. These are all overrides, whose order does not move
+	// their slots: rel/enemy_stg27_sky_exec.cpp (Exec) declares Disp first.
+#ifdef ENEMY_STG27_SKY_DISP_FIRST
+	virtual void Disp();
+#endif
 	virtual void Exec();
 	virtual ~TObjEnemyStg27Sky();
+#ifndef ENEMY_STG27_SKY_DISP_FIRST
 	virtual void Disp();
+#endif
 
 	static void Create();
 };

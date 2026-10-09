@@ -1946,6 +1946,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_stg27_sky_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_stg27_sky_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
