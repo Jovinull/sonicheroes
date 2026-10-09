@@ -3764,6 +3764,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/train_change_rail_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/train_change_rail_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

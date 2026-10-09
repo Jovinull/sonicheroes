@@ -7,24 +7,32 @@
 #include "game/obj_train_switch.h"
 #include "MSL_C/string.h"
 
+// One of the object's two rails: fn_6_908D0 releases it and the destructor
+// then frees its buffer.
+struct TrainChangeRailWork {
+	u8 unk0[8];  // 0x00
+	RwV3d vec;   // 0x08
+	u8* buf;     // 0x14
+	u8 unk18[4]; // 0x18
+};
+
+class TObjTrainChangeRail;
+
 extern "C" char* CL_TObjTrainChangeRail;
+extern "C" void fn_6_908D0(TObjTrainChangeRail* rail, int index, int arg);
 extern "C" TObject* lbl_8042C110;
 
 class TObjTrainChangeRail : public TObject, public TObjSetObj, public TrainSwitchManager
 {
 public:
-	RwV3d pos;      // 0x30
-	sAngle ang;     // 0x3C
-	u8 unk48[8];    // 0x48
-	RwV3d unk50;    // 0x50
-	u8 unk5C[0x10]; // 0x5C
-	RwV3d unk6C;    // 0x6C
-	u8 unk78[8];    // 0x78
-	s32 unk80;      // 0x80
+	RwV3d pos;                   // 0x30
+	sAngle ang;                  // 0x3C
+	TrainChangeRailWork work[2]; // 0x48
+	s32 unk80;                   // 0x80
 
 	TObjTrainChangeRail(TObject* parent);
-	virtual ~TObjTrainChangeRail();
 	virtual void Exec();
+	virtual ~TObjTrainChangeRail();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
@@ -37,7 +45,7 @@ TRAIN_CHANGE_RAIL_CTOR TObjTrainChangeRail::TObjTrainChangeRail(TObject* parent)
 	pos = ObjParam->setData.pos;
 	ang = ObjParam->setData.ang;
 
-	memset(&unk50, 0, sizeof(unk50));
-	memset(&unk6C, 0, sizeof(unk6C));
+	memset(&work[0].vec, 0, sizeof(work[0].vec));
+	memset(&work[1].vec, 0, sizeof(work[1].vec));
 	unk80 = 0;
 }
