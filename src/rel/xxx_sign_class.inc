@@ -30,8 +30,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjXxxSign(TObject* parent);
-	virtual ~TObjXxxSign();
 	virtual void Exec();
+	virtual ~TObjXxxSign();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

@@ -4139,6 +4139,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/xxx_sign_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/xxx_sign_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
