@@ -220,6 +220,7 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - __ct__15TObjS04FloatWayFP7TObject
     - __ct__16TObjS04BallColliFP7TObject
     - __ct__14TObjS03WalkWayFP7TObject
     - __ct__12TObjS03TrainFP7TObject
