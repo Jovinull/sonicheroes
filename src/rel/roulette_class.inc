@@ -40,8 +40,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjRoulette(TObject* parent);
-	virtual ~TObjRoulette();
 	virtual void Exec();
+	virtual ~TObjRoulette();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
