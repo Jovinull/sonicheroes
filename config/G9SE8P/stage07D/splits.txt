@@ -615,6 +615,9 @@ rel/raildash_register.cpp:
 	.text       start:0x00086074 end:0x00086124
 	.ctors      start:0x00000114 end:0x00000118
 
+rel/rail_end_en_create.cpp:
+	.text       start:0x00086BD8 end:0x00086D68
+
 rel/railenden_register.cpp:
 	.text       start:0x00086D68 end:0x00086E08
 	.ctors      start:0x00000118 end:0x0000011C

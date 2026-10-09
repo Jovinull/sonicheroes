@@ -2744,6 +2744,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rail_end_en_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railenden_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
