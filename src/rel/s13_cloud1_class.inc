@@ -11,7 +11,13 @@ struct S13Cloud1Param {
 	s16 unk4; // 0x04
 };
 
-class TObjS13CloudPtcl;
+// One of the cloud's particles. Each unlinks itself from the cloud's list when
+// it is deleted.
+class TObjS13CloudPtcl : public TObject
+{
+public:
+	virtual ~TObjS13CloudPtcl();
+};
 
 class TObjS13Cloud
 {
@@ -31,8 +37,8 @@ public:
 	u8 pad36[2]; // 0x36
 
 	TObjS13Cloud1(TObject* parent);
-	virtual ~TObjS13Cloud1();
 	virtual void Exec();
+	virtual ~TObjS13Cloud1();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

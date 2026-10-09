@@ -1961,6 +1961,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_cloud1_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_cloud1_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
