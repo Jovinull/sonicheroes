@@ -3199,11 +3199,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/s01_taiho_daiza_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/s03_aircar_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

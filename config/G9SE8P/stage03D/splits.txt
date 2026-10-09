@@ -785,9 +785,12 @@ rel/s04_floating_path_register.cpp:
 	.text       start:0x000C3110 end:0x000C31A8
 	.ctors      start:0x0000017C end:0x00000180
 
-rel/s01_taiho_daiza_register.cpp:
-	.text       start:0x000C3E74 end:0x000C3F1C
+rel/o_s01_taihostull.cpp:
+	.text       start:0x000C31B0 end:0x000C3F24
 	.ctors      start:0x00000180 end:0x00000184
+	.rodata     start:0x00001D10 end:0x00001D58
+	.data       start:0x00014A14 end:0x00014A88
+	.bss        start:0x00001FE8 end:0x00002024
 
 rel/s04d_pipe_elev_register.cpp:
 	.text       start:0x000C4970 end:0x000C4A08

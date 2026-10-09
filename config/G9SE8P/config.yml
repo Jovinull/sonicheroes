@@ -226,6 +226,11 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - SetPosition__12TObjS01StullFv
+    - __ct__12TObjS01StullFP7TObject
+    - stullVector1
+    - stullVector2
+    - stullTrailingZero
     - GetNearestLens__Fv
     - __dt__10EFLensPtclFv
     - __ct__10EFLensPtclFsP10TObjEFLens
