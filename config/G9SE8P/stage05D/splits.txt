@@ -838,6 +838,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000C30EC end:0x000C3194
 	.ctors      start:0x00000168 end:0x0000016C
 
+rel/tenkyu_dtor.cpp:
+	.text       start:0x000C98D4 end:0x000C99C0
+
 rel/tenkyu_ctor.cpp:
 	.text       start:0x000C99C0 end:0x000C9AC0
 

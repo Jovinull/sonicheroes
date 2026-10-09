@@ -30,8 +30,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjTenkyu(TObject* parent);
-	virtual ~TObjTenkyu();
 	virtual void Exec();
+	virtual ~TObjTenkyu();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
