@@ -635,6 +635,9 @@ rel/moji_register.cpp:
 	.text       start:0x0009246C end:0x0009251C
 	.ctors      start:0x0000011C end:0x00000120
 
+rel/roulette_ctor.cpp:
+	.text       start:0x00092BA0 end:0x00092CB8
+
 rel/roulette_create.cpp:
 	.text       start:0x00092DEC end:0x00092F2C
 
