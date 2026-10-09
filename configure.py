@@ -1936,6 +1936,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hawk_gun_flash_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sample1_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
