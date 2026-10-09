@@ -40,8 +40,8 @@ public:
 	AnimPart parts[4]; // 0xD4
 
 	TObjRailEndEn(TObject* parent);
-	virtual ~TObjRailEndEn();
 	virtual void Exec();
+	virtual ~TObjRailEndEn();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
