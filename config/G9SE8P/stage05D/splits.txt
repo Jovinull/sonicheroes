@@ -769,6 +769,9 @@ rel/xxxsign_register.cpp:
 	.text       start:0x0009EB2C end:0x0009EBDC
 	.ctors      start:0x0000013C end:0x00000140
 
+rel/yajirusi_dtor.cpp:
+	.text       start:0x0009F3CC end:0x0009F4CC
+
 rel/yajirusi_ctor.cpp:
 	.text       start:0x0009F4CC end:0x0009F620
 

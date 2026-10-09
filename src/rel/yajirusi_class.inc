@@ -44,8 +44,8 @@ public:
 	ModelPart parts[2]; // 0xD0
 
 	TObjYajirusi(TObject* parent);
-	virtual ~TObjYajirusi();
 	virtual void Exec();
+	virtual ~TObjYajirusi();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
