@@ -543,6 +543,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - __ct__13TObjS13Cloud1FP7TObject
     - __ct__11TObjSystem4FP7TObject
     - __ct__11TObjSystem3FP7TObject
     - __ct__11TObjSystem2FP7TObject
@@ -637,6 +638,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - __ct__13TObjS13Cloud1FP7TObject
     - __ct__17TObjEnemyStg27SkyFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
@@ -680,6 +682,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - __ct__13TObjS13Cloud1FP7TObject
     - __ct__12TObjEnemySkyFP7TObject
     - __ct__14TObjEnemyCloudFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
