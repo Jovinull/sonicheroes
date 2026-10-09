@@ -3439,6 +3439,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s08_bob_range_colli_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s08_bob_range_colli_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
