@@ -543,6 +543,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - __ct__11TObjSystem1FP7TObject
     - __ct__13TObjS14EggmanFP7TObject
     - __ct__12TObjS14CrushFP7TObject
     - __ct__17TObjS14ThunderSetFP7TObject
