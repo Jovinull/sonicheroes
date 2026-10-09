@@ -476,6 +476,9 @@ rel/butterfly_register.cpp:
 	.text       start:0x00072980 end:0x00072A30
 	.ctors      start:0x000000C4 end:0x000000C8
 
+rel/float_j_ctor.cpp:
+	.text       start:0x00073014 end:0x0007312C
+
 rel/float_j_create.cpp:
 	.text       start:0x00073214 end:0x00073354
 
