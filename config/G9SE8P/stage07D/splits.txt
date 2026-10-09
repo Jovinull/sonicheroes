@@ -390,6 +390,9 @@ rel/lens_flare_lens_ctor.cpp:
 rel/lens_flare_edit.cpp:
 	.text       start:0x00045444 end:0x000454A8
 
+rel/lens_flare_load.cpp:
+	.text       start:0x000454A8 end:0x00045634
+
 rel/lens_flare_create_lens.cpp:
 	.text       start:0x00045634 end:0x000457D4
 

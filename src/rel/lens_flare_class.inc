@@ -21,8 +21,14 @@
 
 class TObjEFLens;
 
+struct RwTexture;
+
+// One of the module's 12 particle kinds (efLensTable); the load routine
+// gives the first nine their texture.
 struct EFLensTableEntry {
-	u8 unk00[0x28];
+	u8 unk00[0x14];
+	RwTexture* texture; // 0x14
+	u8 unk18[0x10];
 };
 
 extern "C" char* CL_TObjEFLens;
