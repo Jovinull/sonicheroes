@@ -650,6 +650,9 @@ rel/railpollgol_register.cpp:
 	.text       start:0x00089F1C end:0x00089FBC
 	.ctors      start:0x00000128 end:0x0000012C
 
+rel/rail_poll_gor_create.cpp:
+	.text       start:0x0008A9F0 end:0x0008AB80
+
 rel/railpollgor_register.cpp:
 	.text       start:0x0008AB80 end:0x0008AC20
 	.ctors      start:0x0000012C end:0x00000130
