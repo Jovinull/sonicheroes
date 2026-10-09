@@ -574,6 +574,9 @@ rel/railbush_register.cpp:
 	.text       start:0x0008212C end:0x000821DC
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/rail_cap_en_create.cpp:
+	.text       start:0x00082C10 end:0x00082DA0
+
 rel/railcapen_register.cpp:
 	.text       start:0x00082DA0 end:0x00082E40
 	.ctors      start:0x00000104 end:0x00000108
