@@ -278,6 +278,9 @@ rel/item_box_register.cpp:
 	.text       start:0x0003B2F8 end:0x0003B3A0
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/itembaloon_disp.cpp:
+	.text       start:0x0003C378 end:0x0003C404
+
 rel/itembaloon_object_dtor.cpp:
 	.text       start:0x0003CD94 end:0x0003CE3C
 
