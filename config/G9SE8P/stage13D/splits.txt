@@ -645,6 +645,9 @@ rel/wall_register.cpp:
 	.text       start:0x000C2544 end:0x000C2624
 	.ctors      start:0x00000168 end:0x0000016C
 
+rel/s13_cloud1_create.cpp:
+	.text       start:0x000C3AAC end:0x000C3B8C
+
 rel/s13_cloud_register.cpp:
 	.text       start:0x000C3C38 end:0x000C3D74
 	.ctors      start:0x0000016C end:0x00000170

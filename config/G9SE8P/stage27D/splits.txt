@@ -512,6 +512,9 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0007779C end:0x00077834
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s13_cloud1_create.cpp:
+	.text       start:0x00078D90 end:0x00078E70
+
 rel/s13_cloud_register.cpp:
 	.text       start:0x00078F1C end:0x00079058
 	.ctors      start:0x000000E4 end:0x000000E8
