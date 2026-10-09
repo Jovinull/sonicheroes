@@ -4,13 +4,8 @@
 
 #include "game/effect/eff_bomb.h"
 #include "game/setObj.h"
+#include "game/obj_train_switch.h"
 #include "MSL_C/string.h"
-
-class TrainSwitchManager
-{
-public:
-	TrainSwitchManager();
-};
 
 extern "C" char* CL_TObjTrainChangeRail;
 extern "C" TObject* lbl_8042C110;

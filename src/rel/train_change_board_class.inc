@@ -4,6 +4,7 @@
 
 #include "game/effect/eff_bomb.h"
 #include "game/setObj.h"
+#include "game/obj_train_switch.h"
 
 // One of the module's model files: its name, the archive it is read from, the
 // world slot its clones go into, and the model once loaded.
@@ -17,12 +18,6 @@ struct ModelFile {
 struct ModelPart {
 	RpClump* clump; // 0x00
 	s32 added;      // 0x04
-};
-
-class TrainSwitchManager
-{
-public:
-	TrainSwitchManager();
 };
 
 extern "C" char* CL_TObjTrainChangeBoard;

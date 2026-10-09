@@ -760,6 +760,9 @@ rel/traintrain_register.cpp:
 	.text       start:0x0009533C end:0x000953DC
 	.ctors      start:0x00000154 end:0x00000158
 
+rel/train_switch_manager.cpp:
+	.text       start:0x000956C0 end:0x00095708
+
 rel/train_top_ctor.cpp:
 	.text       start:0x00095D2C end:0x00095E2C
 
