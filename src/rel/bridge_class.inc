@@ -30,8 +30,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjBridge(TObject* parent);
-	virtual ~TObjBridge();
 	virtual void Exec();
+	virtual ~TObjBridge();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
