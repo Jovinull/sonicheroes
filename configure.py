@@ -1901,6 +1901,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/system_object4_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/system_object4_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
