@@ -35,8 +35,8 @@ public:
 	ModelPart parts[7]; // 0x48
 
 	TObjTrainChangeBoard(TObject* parent);
-	virtual ~TObjTrainChangeBoard();
 	virtual void Exec();
+	virtual ~TObjTrainChangeBoard();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

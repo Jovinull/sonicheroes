@@ -803,6 +803,9 @@ rel/traincapsule_register.cpp:
 	.text       start:0x0008F7A8 end:0x0008F858
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/train_change_board_dtor.cpp:
+	.text       start:0x00090348 end:0x00090448
+
 rel/train_change_board_ctor.cpp:
 	.text       start:0x00090448 end:0x00090584
 
