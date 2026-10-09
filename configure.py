@@ -3114,6 +3114,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s06_chip_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s06_chip_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
