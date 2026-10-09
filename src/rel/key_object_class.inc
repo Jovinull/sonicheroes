@@ -68,8 +68,8 @@ public:
 		}
 	}
 
-	virtual ~TObjKey();
 	virtual void Exec();
+	virtual ~TObjKey();
 };
 
 KEY_OBJECT_CTOR TObjKey::TObjKey(TObject* parent)

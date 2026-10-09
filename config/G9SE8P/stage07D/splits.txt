@@ -987,6 +987,9 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x000CF594 end:0x000CF628
 	.ctors      start:0x0000019C end:0x000001A0
 
+rel/key_object_dtor.cpp:
+	.text       start:0x000D04AC end:0x000D05B4
+
 rel/key_object_ctor.cpp:
 	.text       start:0x000D05B4 end:0x000D077C
 
