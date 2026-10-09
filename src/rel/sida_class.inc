@@ -30,8 +30,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjSida(TObject* parent);
-	virtual ~TObjSida();
 	virtual void Exec();
+	virtual ~TObjSida();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
