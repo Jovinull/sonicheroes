@@ -76,8 +76,8 @@ public:
 		}
 	}
 
-	virtual ~TObjS14Key();
 	virtual void Exec();
+	virtual ~TObjS14Key();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
