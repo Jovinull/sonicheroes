@@ -649,6 +649,9 @@ rel/watersurface_register.cpp:
 	.text       start:0x0009D204 end:0x0009D2A4
 	.ctors      start:0x00000154 end:0x00000158
 
+rel/obj_set_particle_dtor.cpp:
+	.text       start:0x0009D6F4 end:0x0009D7AC
+
 rel/obj_set_particle_ctor.cpp:
 	.text       start:0x0009D7AC end:0x0009D8B0
 

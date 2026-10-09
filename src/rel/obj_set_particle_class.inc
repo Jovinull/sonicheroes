@@ -24,8 +24,8 @@ public:
 	void* particle; // 0x30
 
 	TObjSetParticle(TObject* parent);
-	virtual ~TObjSetParticle();
 	virtual void Exec();
+	virtual ~TObjSetParticle();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

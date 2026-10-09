@@ -615,6 +615,9 @@ rel/s02_green_register.cpp:
 	.text       start:0x000AECF0 end:0x000AED9C
 	.ctors      start:0x00000124 end:0x00000128
 
+rel/obj_set_particle_dtor.cpp:
+	.text       start:0x000AEFDC end:0x000AF094
+
 rel/obj_set_particle_ctor.cpp:
 	.text       start:0x000AF094 end:0x000AF198
 
