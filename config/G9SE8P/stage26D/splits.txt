@@ -468,6 +468,9 @@ rel/o_invoke_colli.cpp:
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00049DFC end:0x00049EBC
 
+rel/push_pull_switch_edit.cpp:
+	.text       start:0x0004A264 end:0x0004A2C0
+
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0004A4E4 end:0x0004A594
 	.ctors      start:0x000000A4 end:0x000000A8
