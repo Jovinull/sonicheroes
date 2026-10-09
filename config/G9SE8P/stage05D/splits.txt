@@ -514,6 +514,9 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x0007AC4C end:0x0007ACE0
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/key_object_ctor.cpp:
+	.text       start:0x0007BC6C end:0x0007BE34
+
 rel/key_object_create.cpp:
 	.text       start:0x0007BE7C end:0x0007C06C
 
