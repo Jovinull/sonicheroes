@@ -13,8 +13,8 @@ class TObjWarp : public TObject, public TObjSetObj, public C_COLLI
 {
 public:
 	TObjWarp(TObject* parent);
-	virtual ~TObjWarp();
 	virtual void Exec();
+	virtual ~TObjWarp();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
