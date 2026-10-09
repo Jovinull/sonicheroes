@@ -2459,6 +2459,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rail_chimney_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railchimney_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
