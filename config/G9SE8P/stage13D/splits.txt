@@ -712,6 +712,9 @@ rel/s14d_eggman_register.cpp:
 	.text       start:0x000D3CF4 end:0x000D3D90
 	.ctors      start:0x000001A8 end:0x000001AC
 
+rel/s14d_crush_ctor.cpp:
+	.text       start:0x000D5618 end:0x000D577C
+
 rel/s14d_crush_create.cpp:
 	.text       start:0x000D587C end:0x000D5A08
 

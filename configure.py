@@ -3374,6 +3374,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14d_crush_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14d_crush_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
