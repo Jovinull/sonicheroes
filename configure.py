@@ -4024,6 +4024,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_thunder_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_thunder_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

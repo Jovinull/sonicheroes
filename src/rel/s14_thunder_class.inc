@@ -31,8 +31,8 @@ public:
 	sAngle* angle;           // 0x3C
 
 	TObjS14ThunderSet(TObject* parent);
-	virtual ~TObjS14ThunderSet();
 	virtual void Exec();
+	virtual ~TObjS14ThunderSet();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
