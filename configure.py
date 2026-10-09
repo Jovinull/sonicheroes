@@ -3524,6 +3524,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tenkyu_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tenkyu_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
