@@ -618,6 +618,9 @@ rel/rail_barbwire_dtor.cpp:
 rel/rail_barbwire_ctor.cpp:
 	.text       start:0x0007F530 end:0x0007F648
 
+rel/rail_barbwire_edit.cpp:
+	.text       start:0x0007F648 end:0x0007F658
+
 rel/rail_barbwire_create.cpp:
 	.text       start:0x0007F740 end:0x0007F880
 
