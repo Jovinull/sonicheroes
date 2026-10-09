@@ -2464,6 +2464,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bumper_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bumper_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

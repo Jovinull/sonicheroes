@@ -39,8 +39,8 @@ public:
 	BumperPart parts[4]; // 0xF4
 
 	TObjBumper(TObject* parent);
-	virtual ~TObjBumper();
 	virtual void Exec();
+	virtual ~TObjBumper();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
