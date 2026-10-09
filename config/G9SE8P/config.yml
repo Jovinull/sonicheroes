@@ -271,6 +271,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - __ct__20TObjCaptureCollisionFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
     - __ct__7TObjKeyFP7TObject
@@ -316,6 +317,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - __ct__20TObjCaptureCollisionFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
     - __ct__7TObjKeyFP7TObject
@@ -361,6 +363,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - __ct__20TObjCaptureCollisionFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
     - __ct__7TObjKeyFP7TObject
@@ -495,6 +498,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - __ct__20TObjCaptureCollisionFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__7TObjKeyFP7TObject
     - __ct__8TObjWarpFP7TObject
@@ -531,6 +535,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - __ct__20TObjCaptureCollisionFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
     - __ct__7TObjKeyFP7TObject
