@@ -335,6 +335,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - __ct__13TObjRailCapEnFP7TObject
     - __ct__12TObjTrainTopFP7TObject
     - __ct__19TObjTrainRollTunnelFP7TObject
     - __ct__18TObjTrainCollisionFP7TObject
