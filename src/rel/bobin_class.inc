@@ -44,8 +44,8 @@ public:
 	u8 unkE0[0x20]; // 0xE0
 
 	TObjBobin(TObject* parent);
-	virtual ~TObjBobin();
 	virtual void Exec();
+	virtual ~TObjBobin();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

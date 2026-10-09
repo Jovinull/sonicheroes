@@ -2404,6 +2404,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobin_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobin_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
