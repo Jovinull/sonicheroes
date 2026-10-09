@@ -36,8 +36,8 @@ public:
 		next = NULL;
 	}
 
-	virtual ~TObjS23WarpPos();
 	virtual void Exec();
+	virtual ~TObjS23WarpPos();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
