@@ -929,6 +929,9 @@ rel/eggmaso_register.cpp:
 	.text       start:0x000C8130 end:0x000C81CC
 	.ctors      start:0x00000180 end:0x00000184
 
+rel/room_pillar_dtor.cpp:
+	.text       start:0x000C86C8 end:0x000C87B4
+
 rel/room_pillar_ctor.cpp:
 	.text       start:0x000C87B4 end:0x000C88CC
 

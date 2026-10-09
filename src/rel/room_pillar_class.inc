@@ -40,8 +40,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjRoomPillar(TObject* parent);
-	virtual ~TObjRoomPillar();
 	virtual void Exec();
+	virtual ~TObjRoomPillar();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

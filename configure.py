@@ -3124,6 +3124,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/room_pillar_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/room_pillar_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
