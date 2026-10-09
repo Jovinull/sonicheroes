@@ -29,8 +29,8 @@ public:
 		ang = ObjParam->setData.ang;
 	}
 
-	virtual ~TObjCaptureCollision();
 	virtual void Exec();
+	virtual ~TObjCaptureCollision();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
