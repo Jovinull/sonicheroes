@@ -689,6 +689,9 @@ rel/s14_holea_neon_register.cpp:
 	.text       start:0x000C4AC8 end:0x000C4DB0
 	.ctors      start:0x00000170 end:0x00000174
 
+rel/s14_laser_light_dtor.cpp:
+	.text       start:0x000C5E60 end:0x000C5EF0
+
 rel/s14_laser_light_ctor.cpp:
 	.text       start:0x000C5EF0 end:0x000C5F98
 

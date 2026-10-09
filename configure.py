@@ -3474,6 +3474,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_laser_light_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_laser_light_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

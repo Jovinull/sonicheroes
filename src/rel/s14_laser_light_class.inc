@@ -22,8 +22,8 @@ public:
 	s32 unk34; // 0x34
 
 	TObjS14LaserLightSet(TObject* parent);
-	virtual ~TObjS14LaserLightSet();
 	virtual void Exec();
+	virtual ~TObjS14LaserLightSet();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
