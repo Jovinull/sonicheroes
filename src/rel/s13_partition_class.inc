@@ -25,8 +25,8 @@ public:
 	RpClump* clump; // 0xBC
 
 	TObjS13Partition(TObject* parent);
-	virtual ~TObjS13Partition();
 	virtual void Exec();
+	virtual ~TObjS13Partition();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
