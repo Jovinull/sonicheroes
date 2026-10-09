@@ -677,6 +677,9 @@ rel/s02_pole_register.cpp:
 rel/hawk_gun_flash_create.cpp:
 	.text       start:0x000B0A8C end:0x000B0BD0
 
+rel/hawk_gun_flash_dtor.cpp:
+	.text       start:0x000B10F4 end:0x000B1168
+
 rel/bob_jump_collision_ctor.cpp:
 	.text       start:0x000B1B10 end:0x000B1D24
 
