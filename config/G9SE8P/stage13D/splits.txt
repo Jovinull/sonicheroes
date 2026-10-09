@@ -616,6 +616,9 @@ stage13D/o_s13_blinklight.cpp:
 	.data       start:0x00017A70 end:0x00017B7C
 	.bss        start:0x0000165C end:0x00001694
 
+rel/s13d_senkan_far_create.cpp:
+	.text       start:0x0008C12C end:0x0008CF2C
+
 rel/s13d_senkan_far_move_top_l_register.cpp:
 	.text       start:0x0008F468 end:0x0008FC40
 	.ctors      start:0x00000118 end:0x0000011C

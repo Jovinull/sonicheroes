@@ -4319,6 +4319,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_senkan_far_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_thunder_chain.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
