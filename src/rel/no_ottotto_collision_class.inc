@@ -23,10 +23,19 @@ public:
 	sAngle ang; // 0xC4
 
 	TObjSetNoOttottoCollision(TObject* parent);
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable. These are all overrides, whose order does not move
+	// their slots, so each fragment unit can put first one it does not define:
+	// rel/no_ottotto_collision_exec.cpp (Exec) declares EditOnChange first.
+#ifdef NO_OTTOTTO_EDIT_FIRST
+	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 	virtual void Exec();
 	virtual ~TObjSetNoOttottoCollision();
 	virtual void TDisp();
+#ifndef NO_OTTOTTO_EDIT_FIRST
 	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 };
 
 NO_OTTOTTO_COLLISION_CTOR TObjSetNoOttottoCollision::TObjSetNoOttottoCollision(TObject* parent)

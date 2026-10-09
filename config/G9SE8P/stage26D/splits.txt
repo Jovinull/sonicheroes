@@ -655,6 +655,9 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000B22B0 end:0x000B2358
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/no_ottotto_collision_exec.cpp:
+	.text       start:0x000B46C8 end:0x000B47C4
+
 rel/no_ottotto_collision_dtor.cpp:
 	.text       start:0x000B47C4 end:0x000B485C
 
