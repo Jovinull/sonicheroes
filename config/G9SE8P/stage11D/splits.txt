@@ -370,6 +370,9 @@ rel/lens_flare_tmp_dtor.cpp:
 rel/lens_flare_tmp_ctor.cpp:
 	.text       start:0x00044770 end:0x000448C0
 
+rel/lens_flare_set_tdisp.cpp:
+	.text       start:0x000448C0 end:0x00044AA0
+
 rel/lens_flare_set_exec.cpp:
 	.text       start:0x00044AA0 end:0x00044B08
 

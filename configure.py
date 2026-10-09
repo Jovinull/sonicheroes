@@ -4234,6 +4234,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/lens_flare_set_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/lens_flare_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
