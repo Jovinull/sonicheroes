@@ -40,8 +40,8 @@ public:
 		}
 	}
 
-	virtual ~TObjS03Train();
 	virtual void Exec();
+	virtual ~TObjS03Train();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

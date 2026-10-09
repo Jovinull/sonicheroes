@@ -522,6 +522,9 @@ rel/s03d_pole_register.cpp:
 	.text       start:0x0008562C end:0x000856D8
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/s03_train_dtor.cpp:
+	.text       start:0x00086278 end:0x0008632C
+
 rel/s03_train_ctor.cpp:
 	.text       start:0x0008632C end:0x0008646C
 

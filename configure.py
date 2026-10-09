@@ -3049,6 +3049,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_train_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_train_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
