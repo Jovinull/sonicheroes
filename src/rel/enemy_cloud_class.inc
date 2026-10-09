@@ -59,8 +59,8 @@ public:
 		}
 	}
 
-	virtual ~TObjEnemyCloud();
 	virtual void Exec();
+	virtual ~TObjEnemyCloud();
 	virtual void Disp();
 
 	static void Create();

@@ -1921,6 +1921,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_cloud_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_cloud_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
