@@ -30,8 +30,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjTrainTop(TObject* parent);
-	virtual ~TObjTrainTop();
 	virtual void Exec();
+	virtual ~TObjTrainTop();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
