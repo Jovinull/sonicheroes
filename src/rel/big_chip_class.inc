@@ -34,8 +34,8 @@ public:
 	ChipPart parts[5]; // 0xD0
 
 	TObjBigChip(TObject* parent);
-	virtual ~TObjBigChip();
 	virtual void Exec();
+	virtual ~TObjBigChip();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
