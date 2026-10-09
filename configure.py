@@ -2384,6 +2384,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/destruct_rail_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/destruct_rail_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

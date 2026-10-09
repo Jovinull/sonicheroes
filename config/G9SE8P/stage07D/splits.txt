@@ -497,6 +497,9 @@ rel/crossing_register.cpp:
 	.text       start:0x00077A88 end:0x00077B38
 	.ctors      start:0x000000D0 end:0x000000D4
 
+rel/destruct_rail_ctor.cpp:
+	.text       start:0x00078AF4 end:0x00078BB8
+
 rel/destruct_rail_create.cpp:
 	.text       start:0x00078E8C end:0x00078F78
 
