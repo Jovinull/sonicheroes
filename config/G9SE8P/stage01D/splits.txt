@@ -791,6 +791,9 @@ rel/no_ottotto_collision_dtor.cpp:
 rel/no_ottotto_collision_ctor.cpp:
 	.text       start:0x000D5CFC end:0x000D5E04
 
+rel/no_ottotto_collision_edit.cpp:
+	.text       start:0x000D5E04 end:0x000D5ED0
+
 rel/no_ottotto_collision_create.cpp:
 	.text       start:0x000D5ED0 end:0x000D6000
 
