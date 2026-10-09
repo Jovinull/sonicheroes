@@ -21,8 +21,8 @@ public:
 	u8 unk30; // 0x30
 
 	TObjS14LaserSignSet(TObject* parent);
-	virtual ~TObjS14LaserSignSet();
 	virtual void Exec();
+	virtual ~TObjS14LaserSignSet();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
