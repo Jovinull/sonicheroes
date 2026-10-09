@@ -752,6 +752,9 @@ rel/railpollgol_register.cpp:
 	.text       start:0x00089F1C end:0x00089FBC
 	.ctors      start:0x00000128 end:0x0000012C
 
+rel/rail_poll_gor_dtor.cpp:
+	.text       start:0x0008A664 end:0x0008A764
+
 rel/rail_poll_gor_ctor.cpp:
 	.text       start:0x0008A764 end:0x0008A8CC
 

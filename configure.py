@@ -2989,6 +2989,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rail_poll_gor_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rail_poll_gor_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

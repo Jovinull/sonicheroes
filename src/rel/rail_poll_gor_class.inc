@@ -40,8 +40,8 @@ public:
 	AnimPart parts[2]; // 0xD4
 
 	TObjRailPollGor(TObject* parent);
-	virtual ~TObjRailPollGor();
 	virtual void Exec();
+	virtual ~TObjRailPollGor();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
