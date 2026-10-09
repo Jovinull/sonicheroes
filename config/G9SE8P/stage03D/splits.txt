@@ -510,6 +510,9 @@ rel/s03d_pole_register.cpp:
 	.text       start:0x0008562C end:0x000856D8
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/s03_train_create.cpp:
+	.text       start:0x00086670 end:0x000867D8
+
 rel/s03_train_register.cpp:
 	.text       start:0x000867D8 end:0x00086884
 	.ctors      start:0x000000F0 end:0x000000F4
