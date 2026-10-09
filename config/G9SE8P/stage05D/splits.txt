@@ -305,6 +305,9 @@ rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/itembaloon_tdisp.cpp:
+	.text       start:0x0003C270 end:0x0003C394
+
 rel/itembaloon_disp.cpp:
 	.text       start:0x0003C394 end:0x0003C420
 

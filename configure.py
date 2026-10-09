@@ -2101,6 +2101,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/itembaloon_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/itembaloon_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
