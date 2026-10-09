@@ -561,6 +561,9 @@ rel/railbulletrack_register.cpp:
 	.text       start:0x00081730 end:0x000817D0
 	.ctors      start:0x000000FC end:0x00000100
 
+rel/rail_bush_ctor.cpp:
+	.text       start:0x00081DD0 end:0x00081ED0
+
 rel/rail_bush_create.cpp:
 	.text       start:0x00082004 end:0x0008212C
 
