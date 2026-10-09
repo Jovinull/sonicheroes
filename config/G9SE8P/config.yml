@@ -529,6 +529,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - __ct__16TObjS13PartitionFP7TObject
     - __ct__20TObjCaptureCollisionFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__7TObjKeyFP7TObject

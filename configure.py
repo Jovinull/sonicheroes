@@ -3259,6 +3259,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_partition_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_partition_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
