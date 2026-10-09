@@ -610,6 +610,9 @@ rel/s14_thunder_register.cpp:
 	.text       start:0x000A12A0 end:0x000A13F4
 	.ctors      start:0x00000148 end:0x0000014C
 
+rel/s14_laser_beam_dtor.cpp:
+	.text       start:0x000A39C8 end:0x000A3A58
+
 rel/s14_laser_beam_ctor.cpp:
 	.text       start:0x000A3A58 end:0x000A3AFC
 

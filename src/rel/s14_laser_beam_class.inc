@@ -21,8 +21,8 @@ public:
 	u8 unk30; // 0x30
 
 	TObjS14LaserBeamSet(TObject* parent);
-	virtual ~TObjS14LaserBeamSet();
 	virtual void Exec();
+	virtual ~TObjS14LaserBeamSet();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
