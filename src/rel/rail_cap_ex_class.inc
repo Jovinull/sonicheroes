@@ -35,8 +35,8 @@ public:
 	RailPart parts[2]; // 0xD4
 
 	TObjRailCapEx(TObject* parent);
-	virtual ~TObjRailCapEx();
 	virtual void Exec();
+	virtual ~TObjRailCapEx();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
