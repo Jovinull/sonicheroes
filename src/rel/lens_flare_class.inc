@@ -1,9 +1,10 @@
-// TObjEFLens and TObjEFLensSet with their constructors and TObjEFLens's
-// destructor, shared by rel/lens_flare_create.cpp (all inline, so the factory
-// inlines the constructors), rel/lens_flare_ctor.cpp (TObjEFLensSet's
-// constructor out of line, with TObjEFLens's inlined into it),
+// TObjEFLens, TObjEFLensSet and TObjEFLensTmp, the constructors and
+// TObjEFLens's destructor, shared by rel/lens_flare_create.cpp (all inline, so
+// the factory inlines the constructors), rel/lens_flare_ctor.cpp
+// (TObjEFLensSet's constructor out of line, with TObjEFLens's inlined into it),
 // rel/lens_flare_dtor.cpp (TObjEFLens's destructor out of line) and
-// rel/lens_flare_set_dtor.cpp (TObjEFLensSet's, with TObjEFLens's inlined).
+// rel/lens_flare_set_dtor.cpp and rel/lens_flare_tmp_dtor.cpp (TObjEFLensSet's
+// and TObjEFLensTmp's, with TObjEFLens's inlined).
 //
 // TObjEFLens's destructor deletes its particles, each of which unlinks itself
 // from the lens's list (EFLensPtcl's inline destructor), and then takes the
@@ -149,6 +150,19 @@ public:
 	virtual ~TObjEFLensSet();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
+};
+
+// The other lens of the module, TObjEFLensTmp in the PS2 symbols: no placement
+// base, only its own virtuals over TObjEFLens's.
+class TObjEFLensTmp : public TObjEFLens
+{
+public:
+	virtual void Exec();
+	virtual ~TObjEFLensTmp();
+	virtual void TDisp();
+	virtual void EditOnChange(SETDATA_PARAM*);
+	virtual RwV3d* GetPosition();
+	virtual void SetPosition(RwV3d*);
 };
 
 LENS_FLARE_SET_CTOR TObjEFLensSet::TObjEFLensSet(TObject* parent)
