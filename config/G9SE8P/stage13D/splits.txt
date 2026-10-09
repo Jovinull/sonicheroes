@@ -657,6 +657,9 @@ rel/s14_tower_neon_a_register.cpp:
 	.text       start:0x000D2558 end:0x000D2684
 	.ctors      start:0x000001A4 end:0x000001A8
 
+rel/s14d_eggman_create.cpp:
+	.text       start:0x000D3B68 end:0x000D3CF4
+
 rel/s14d_eggman_register.cpp:
 	.text       start:0x000D3CF4 end:0x000D3D90
 	.ctors      start:0x000001A8 end:0x000001AC
