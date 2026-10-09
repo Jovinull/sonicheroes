@@ -2689,6 +2689,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/leaf_aa_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/leaf_aa_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
