@@ -613,6 +613,9 @@ rel/capture_register.cpp:
 	.text       start:0x0008E758 end:0x0008E854
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/capture_collision_exec.cpp:
+	.text       start:0x0008E9E4 end:0x0008EA54
+
 rel/capture_collision_dtor.cpp:
 	.text       start:0x0008EABC end:0x0008EB48
 

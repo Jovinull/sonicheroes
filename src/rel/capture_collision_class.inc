@@ -29,9 +29,28 @@ public:
 		ang = ObjParam->setData.ang;
 	}
 
+	// Out of range or due to be killed (TObjSetObj's two tests, as one answer).
+	s32 CheckKill()
+	{
+		if (CheckRangeOut() || CheckMustKill()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable. These are all overrides, whose order does not move
+	// their slots, so each fragment unit can put first one it does not define:
+	// rel/capture_collision_exec.cpp (Exec) declares EditOnChange first.
+#ifdef CAPTURE_EDIT_FIRST
+	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 	virtual void Exec();
 	virtual ~TObjCaptureCollision();
+	virtual void TDisp();
+#ifndef CAPTURE_EDIT_FIRST
 	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 };
 
 CAPTURE_COLLISION_CTOR TObjCaptureCollision::TObjCaptureCollision(TObject* parent)
