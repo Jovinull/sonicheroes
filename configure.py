@@ -1846,6 +1846,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/system_object3_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/system_object3_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
