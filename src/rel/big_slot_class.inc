@@ -43,8 +43,8 @@ public:
 	SlotReel reels[3];  // 0xEC
 
 	TObjBigSlot(TObject* parent);
-	virtual ~TObjBigSlot();
 	virtual void Exec();
+	virtual ~TObjBigSlot();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
