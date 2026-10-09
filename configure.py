@@ -2434,6 +2434,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rail_barbwire_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railburbwire_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

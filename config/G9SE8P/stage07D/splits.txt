@@ -519,6 +519,9 @@ rel/pulley_register.cpp:
 	.text       start:0x0007EF18 end:0x0007EFB8
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/rail_barbwire_create.cpp:
+	.text       start:0x0007F740 end:0x0007F880
+
 rel/railburbwire_register.cpp:
 	.text       start:0x0007F880 end:0x0007F920
 	.ctors      start:0x000000F4 end:0x000000F8
