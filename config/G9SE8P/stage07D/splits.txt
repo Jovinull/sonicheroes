@@ -915,6 +915,9 @@ rel/hawk_gun_flash_create.cpp:
 rel/hawk_gun_flash_dtor.cpp:
 	.text       start:0x000AF7FC end:0x000AF870
 
+rel/warp_exec.cpp:
+	.text       start:0x000C32A8 end:0x000C3404
+
 rel/warp_dtor.cpp:
 	.text       start:0x000C3404 end:0x000C349C
 

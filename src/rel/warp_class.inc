@@ -13,10 +13,19 @@ class TObjWarp : public TObject, public TObjSetObj, public C_COLLI
 {
 public:
 	TObjWarp(TObject* parent);
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable. These are all overrides, whose order does not move
+	// their slots, so each fragment unit can put first one it does not define:
+	// rel/warp_exec.cpp (Exec) declares EditOnChange first, the others Exec.
+#ifdef WARP_EDIT_FIRST
+	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 	virtual void Exec();
 	virtual ~TObjWarp();
 	virtual void TDisp();
+#ifndef WARP_EDIT_FIRST
 	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 };
 
 WARP_CTOR TObjWarp::TObjWarp(TObject* parent)
