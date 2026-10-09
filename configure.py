@@ -1996,6 +1996,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_iron_ball_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_iron_ball_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
