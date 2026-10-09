@@ -40,8 +40,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjRailTie(TObject* parent);
-	virtual ~TObjRailTie();
 	virtual void Exec();
+	virtual ~TObjRailTie();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
