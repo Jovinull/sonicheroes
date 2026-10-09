@@ -660,6 +660,9 @@ rel/railcapex_register.cpp:
 	.text       start:0x00083924 end:0x000839C4
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/rail_change_rail_dtor.cpp:
+	.text       start:0x00083E50 end:0x00083F3C
+
 rel/rail_change_rail_ctor.cpp:
 	.text       start:0x00083F3C end:0x00084054
 
