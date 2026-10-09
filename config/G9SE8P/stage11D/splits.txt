@@ -641,6 +641,9 @@ rel/scaffold12_object_register.cpp:
 	.text       start:0x0008F7F8 end:0x0008F8A0
 	.ctors      start:0x000000FC end:0x00000100
 
+rel/s12_thunder_range_colli_dtor.cpp:
+	.text       start:0x0008FC70 end:0x0008FD08
+
 rel/s12_thunder_range_colli_create.cpp:
 	.text       start:0x0008FE2C end:0x0008FF44
 
