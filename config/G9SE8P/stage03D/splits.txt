@@ -582,6 +582,9 @@ rel/s04_wall_register.cpp:
 	.text       start:0x0009A318 end:0x0009A3B4
 	.ctors      start:0x00000128 end:0x0000012C
 
+rel/obj_set_particle_ctor.cpp:
+	.text       start:0x0009B808 end:0x0009B90C
+
 rel/obj_set_particle_create.cpp:
 	.text       start:0x0009B9E0 end:0x0009BB0C
 

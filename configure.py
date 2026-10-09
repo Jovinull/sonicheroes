@@ -3862,6 +3862,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_set_particle_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_set_particle_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

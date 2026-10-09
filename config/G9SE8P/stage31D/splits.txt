@@ -464,6 +464,9 @@ rel/o_setDamegeCollision.cpp:
 	.data       start:0x0000647C end:0x00006560
 	.bss        start:0x00000F78 end:0x00000FA8
 
+rel/obj_set_particle_ctor.cpp:
+	.text       start:0x00063D10 end:0x00063E14
+
 rel/obj_set_particle_create.cpp:
 	.text       start:0x00063EE8 end:0x00064014
 
