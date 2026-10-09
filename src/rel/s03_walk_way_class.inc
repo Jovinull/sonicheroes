@@ -35,8 +35,8 @@ public:
 	RwV3d dir;  // 0xD0
 
 	TObjS03WalkWay(TObject* parent);
-	virtual ~TObjS03WalkWay();
 	virtual void Exec();
+	virtual ~TObjS03WalkWay();
 	virtual void Disp();
 	virtual void TDisp();
 	virtual void PDisp();
