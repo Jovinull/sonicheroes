@@ -600,6 +600,9 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00074CE0 end:0x00074D78
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/s31bob_exec.cpp:
+	.text       start:0x00074D78 end:0x00074D7C
+
 rel/stg26_colli_cc_register.cpp:
 	.text       start:0x000756F4 end:0x00075840
 	.ctors      start:0x000000E0 end:0x000000E4

@@ -2041,6 +2041,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s31bob_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s31bob_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -610,6 +610,9 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x0007EE48 end:0x0007EEE0
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s31bob_exec.cpp:
+	.text       start:0x0007EEE0 end:0x0007EEE4
+
 rel/bingogate_register.cpp:
 	.text       start:0x00080504 end:0x000805B4
 	.ctors      start:0x000000E4 end:0x000000E8

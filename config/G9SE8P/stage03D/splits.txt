@@ -607,6 +607,9 @@ rel/s04_e_bubble_register.cpp:
 	.text       start:0x00089ED0 end:0x00089F78
 	.ctors      start:0x000000FC end:0x00000100
 
+rel/s31bob_exec.cpp:
+	.text       start:0x00089F80 end:0x00089F84
+
 rel/s04_egg_cap2_register.cpp:
 	.text       start:0x0008C6CC end:0x0008C774
 	.ctors      start:0x00000100 end:0x00000104

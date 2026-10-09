@@ -1032,6 +1032,9 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000D3790 end:0x000D3828
 	.ctors      start:0x000001A4 end:0x000001A8
 
+rel/s31bob_exec.cpp:
+	.text       start:0x000D3828 end:0x000D382C
+
 rel/capture_register.cpp:
 	.text       start:0x000DA36C end:0x000DA468
 	.ctors      start:0x000001AC end:0x000001B0

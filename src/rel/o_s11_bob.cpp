@@ -34,7 +34,7 @@ void fn_80150958(void*);
 void fn_801A4C84(void*);
 
 void Disp__7TObjectFv();
-void fn_8_8AA4C();
+void Exec__10TObjS31BobFv();
 void EditOnChange__10TObjSetObjFP13SETDATA_PARAM();
 void Debug__7TObjectFv();
 void ImmAftSetRaster__7TObjectFv();
@@ -165,7 +165,7 @@ extern "C" void* bobVtable[14] = {
 	NULL,
 	NULL,
 	(void*)__dt__10TObjS11BobFv,
-	(void*)fn_8_8AA4C,
+	(void*)Exec__10TObjS31BobFv,
 	(void*)Disp__7TObjectFv,
 	(void*)TDisp__7TObjectFv,
 	(void*)PDisp__7TObjectFv,
