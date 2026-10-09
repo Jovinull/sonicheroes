@@ -717,6 +717,9 @@ rel/rinoliner_register.cpp:
 	.text       start:0x000B23AC end:0x000B2454
 	.ctors      start:0x00000158 end:0x0000015C
 
+rel/enemy_iron_ball_create.cpp:
+	.text       start:0x000B2BDC end:0x000B2D70
+
 rel/colli_communication_instance.cpp:
 	.text       start:0x000B483C end:0x000B4990
 
