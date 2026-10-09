@@ -43,8 +43,8 @@ public:
 	u8 unkE0[8];    // 0xE0
 
 	TObjBobinAir(TObject* parent);
-	virtual ~TObjBobinAir();
 	virtual void Exec();
+	virtual ~TObjBobinAir();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

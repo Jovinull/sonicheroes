@@ -649,6 +649,9 @@ rel/bobin_register.cpp:
 	.text       start:0x00088C54 end:0x00088D04
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/bobin_air_dtor.cpp:
+	.text       start:0x00089840 end:0x0008992C
+
 rel/bobin_air_ctor.cpp:
 	.text       start:0x0008992C end:0x00089A7C
 
