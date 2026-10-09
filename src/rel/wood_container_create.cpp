@@ -6,7 +6,7 @@
 // It is the same 80 instructions in the thirteen stage modules that share the
 // engine core, at their own address in each, so each module's splits.txt names
 // its own range. stage13D registers it through rel/wood_cont_object_register.cpp
-// and once named it woodContObjectCreate.
+// and once named it woodContainerCreate.
 //
 // It is rel/iron_container_create.cpp with material 0, its own model and
 // debris, a word from the module for the field at 0xEC, and one difference in

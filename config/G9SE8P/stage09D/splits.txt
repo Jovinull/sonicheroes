@@ -486,6 +486,9 @@ rel/kazariobj_register.cpp:
 	.text       start:0x0007A3BC end:0x0007A46C
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/leaf_aa_create.cpp:
+	.text       start:0x0007ACD8 end:0x0007AE00
+
 rel/leafaa_register.cpp:
 	.text       start:0x0007AE00 end:0x0007AEB0
 	.ctors      start:0x000000DC end:0x000000E0
