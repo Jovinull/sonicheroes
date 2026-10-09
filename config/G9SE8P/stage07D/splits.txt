@@ -611,6 +611,9 @@ rel/railboard_register.cpp:
 	.text       start:0x00080DC4 end:0x00080E74
 	.ctors      start:0x000000F8 end:0x000000FC
 
+rel/rail_bulletrack_dtor.cpp:
+	.text       start:0x00081300 end:0x000813EC
+
 rel/rail_bulletrack_ctor.cpp:
 	.text       start:0x000813EC end:0x00081504
 

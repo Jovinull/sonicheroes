@@ -2744,6 +2744,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rail_bulletrack_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rail_bulletrack_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
