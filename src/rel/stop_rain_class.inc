@@ -22,8 +22,8 @@ public:
 	u8 unkD0[4]; // 0xD0
 
 	TObjStopRain(TObject* parent);
-	virtual ~TObjStopRain();
 	virtual void Exec();
+	virtual ~TObjStopRain();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

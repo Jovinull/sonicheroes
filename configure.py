@@ -3634,6 +3634,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/stop_rain_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/stop_rain_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
