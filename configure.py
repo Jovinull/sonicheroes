@@ -4144,6 +4144,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/water_surface_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/water_surface_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
