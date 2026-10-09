@@ -351,6 +351,9 @@ rel/roll_door_assets.cpp:
 	.text       start:0x00044118 end:0x00044208
 	.ctors      start:0x00000078 end:0x0000007C
 
+rel/lens_flare_ctor.cpp:
+	.text       start:0x00044C38 end:0x00044E04
+
 rel/lens_flare_edit.cpp:
 	.text       start:0x00045444 end:0x000454A8
 
