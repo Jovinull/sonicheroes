@@ -542,6 +542,9 @@ rel/bigfireworks_register.cpp:
 	.text       start:0x00086484 end:0x00086534
 	.ctors      start:0x000000F8 end:0x000000FC
 
+rel/big_slot_create.cpp:
+	.text       start:0x00087934 end:0x00087AC4
+
 rel/bigslot_register.cpp:
 	.text       start:0x00087AC4 end:0x00087B74
 	.ctors      start:0x000000FC end:0x00000100
