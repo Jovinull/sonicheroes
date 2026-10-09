@@ -146,10 +146,12 @@ class TObjEFLensSet : public TObjEFLens, public TObjSetObj
 {
 public:
 	TObjEFLensSet(TObject* parent);
+	// EditOnChange first: it is the key function, and rel/lens_flare_edit.cpp
+	// defines it under its C name, so no C++ unit here emits the vtable.
+	virtual void EditOnChange(SETDATA_PARAM*);
 	virtual void Exec();
 	virtual ~TObjEFLensSet();
 	virtual void TDisp();
-	virtual void EditOnChange(SETDATA_PARAM*);
 	virtual RwV3d* GetPosition();
 	virtual s32 SetPosition(RwV3d*);
 };
@@ -162,10 +164,12 @@ public:
 	RwV3d pos; // 0x38
 
 	TObjEFLensTmp(TObject* parent);
+	// EditOnChange first: it is the key function and no unit defines it yet
+	// (see rel/lens_flare_accessors.cpp), so no C++ unit here emits the vtable.
+	virtual void EditOnChange(SETDATA_PARAM*);
 	virtual void Exec();
 	virtual ~TObjEFLensTmp();
 	virtual void TDisp();
-	virtual void EditOnChange(SETDATA_PARAM*);
 	virtual RwV3d* GetPosition();
 	virtual s32 SetPosition(RwV3d*);
 };
