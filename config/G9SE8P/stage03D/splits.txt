@@ -517,6 +517,9 @@ rel/s03_train_register.cpp:
 	.text       start:0x000867D8 end:0x00086884
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/s03_walk_way_create.cpp:
+	.text       start:0x00086E4C end:0x00087004
+
 rel/s03_walk_way_register.cpp:
 	.text       start:0x00087004 end:0x000870AC
 	.ctors      start:0x000000F4 end:0x000000F8
