@@ -1946,6 +1946,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_rolling_cl_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_rolling_cl_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

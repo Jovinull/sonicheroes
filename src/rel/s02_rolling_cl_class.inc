@@ -23,8 +23,8 @@ public:
 	u8 padBA[2];
 
 	TObjS02Rolling_CL(TObject* parent);
-	virtual ~TObjS02Rolling_CL();
 	virtual void Exec();
+	virtual ~TObjS02Rolling_CL();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
