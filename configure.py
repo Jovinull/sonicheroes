@@ -3759,6 +3759,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/yajirusi_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/yajirusi_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

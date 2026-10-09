@@ -276,6 +276,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - __ct__12TObjYajirusiFP7TObject
     - __ct__11TObjXxxSignFP7TObject
     - __ct__9TObjXSignFP7TObject
     - __ct__10TObjTenkyuFP7TObject
