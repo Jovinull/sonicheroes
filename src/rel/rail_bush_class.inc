@@ -30,8 +30,8 @@ public:
 	s32 added;      // 0xD4
 
 	TObjRailBush(TObject* parent);
-	virtual ~TObjRailBush();
 	virtual void Exec();
+	virtual ~TObjRailBush();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
