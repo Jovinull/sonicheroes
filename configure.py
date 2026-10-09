@@ -2219,6 +2219,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_dice_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/big_dice_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
