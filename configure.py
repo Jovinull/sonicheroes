@@ -4209,6 +4209,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s12_door_range_colli_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s12_door_range_colli_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
