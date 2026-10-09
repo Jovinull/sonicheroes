@@ -1,6 +1,3 @@
-#include "game/effect/eff_bomb.h"
-#include "game/setObj.h"
-
 // s31bobObjectdummyCreate, the factory the editor record for TObjS31Bob points
 // at.
 //
@@ -19,22 +16,8 @@
 // at construction, so the constructor only names the class and records the
 // instance size, 0x30.
 
-extern "C" char* s31bobObjectdummyClassName;
-extern "C" TObject* lbl_8042C110;
-
-class TObjS31Bob : public TObject, public TObjSetObj
-{
-public:
-	TObjS31Bob(TObject* parent)
-	    : TObject(parent)
-	{
-		ClassName = s31bobObjectdummyClassName;
-		DispTime  = 0x30;
-	}
-	virtual ~TObjS31Bob();
-	virtual void Exec();
-	virtual void Disp();
-};
+#define S31BOB_CTOR inline
+#include "src/rel/s31bob_class.inc"
 
 extern "C" void s31bobObjectdummyCreate(void)
 {

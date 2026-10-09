@@ -551,6 +551,9 @@ rel/o_s33_slot.cpp:
 rel/s31_bob_dummy_dtor.cpp:
 	.text       start:0x000736C4 end:0x00073750
 
+rel/s31bob_ctor.cpp:
+	.text       start:0x00073750 end:0x000737B4
+
 rel/s31bob_create.cpp:
 	.text       start:0x000738F8 end:0x00073984
 
