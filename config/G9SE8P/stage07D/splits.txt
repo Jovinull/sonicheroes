@@ -945,6 +945,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000F14E4 end:0x000F158C
 	.ctors      start:0x000001C4 end:0x000001C8
 
+rel/no_ottotto_collision_dtor.cpp:
+	.text       start:0x000F4498 end:0x000F4530
+
 rel/no_ottotto_collision_ctor.cpp:
 	.text       start:0x000F4530 end:0x000F4638
 

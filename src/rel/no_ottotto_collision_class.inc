@@ -23,8 +23,8 @@ public:
 	sAngle ang; // 0xC4
 
 	TObjSetNoOttottoCollision(TObject* parent);
-	virtual ~TObjSetNoOttottoCollision();
 	virtual void Exec();
+	virtual ~TObjSetNoOttottoCollision();
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
