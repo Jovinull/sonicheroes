@@ -560,6 +560,9 @@ rel/bobinair_register.cpp:
 	.text       start:0x00089E4C end:0x00089EFC
 	.ctors      start:0x00000104 end:0x00000108
 
+rel/bumper_create.cpp:
+	.text       start:0x0008B418 end:0x0008B5B8
+
 rel/bumper_register.cpp:
 	.text       start:0x0008B5B8 end:0x0008B668
 	.ctors      start:0x00000108 end:0x0000010C

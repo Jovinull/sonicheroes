@@ -2,9 +2,10 @@
 
 // The record that registers BUMPER with the editor.
 //
-// The claim is .text 0x8B5B8 to 0x8B668 and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// The claim is .text 0x8B5B8 to 0x8B668 and the .ctors word that names it. Only
+// the record is taken: the hooks it points at are reached by the names each
+// module's symbols.txt gives them.
+// The factory is rel/bumper_create.cpp.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.
