@@ -29,6 +29,7 @@ extern "C" char* CL_TObjEFLens;
 extern "C" char* CL_TObjEFLensSet;
 extern "C" char* CL_TObjEFLensTmp;
 extern "C" const f32 lensFlareZero[1];
+extern "C" const f32 lensFlareOne[1];
 extern "C" TObjEFLens* efLensTop;
 extern "C" EFLensTableEntry efLensTable[12];
 extern "C" TObject* lbl_8042C110;
@@ -55,6 +56,8 @@ public:
 	f32 unk34;           // 0x34
 
 	TObjEFLens(TObject* parent);
+
+	void DispPtcl();
 
 
 	EFLensPtcl* GetPtclTop() { return ptclTop; }
