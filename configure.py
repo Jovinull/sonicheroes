@@ -2304,6 +2304,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bridge_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bridge_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

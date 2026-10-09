@@ -322,6 +322,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - __ct__10TObjBridgeFP7TObject
     - __ct__20TObjCaptureCollisionFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
