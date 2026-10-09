@@ -312,6 +312,9 @@ rel/roll_door_register.cpp:
 	.text       start:0x00044148 end:0x000441F0
 	.ctors      start:0x00000078 end:0x0000007C
 
+rel/lens_flare_ptcl.cpp:
+	.text       start:0x00044480 end:0x00044564
+
 rel/lens_flare_tmp_tdisp.cpp:
 	.text       start:0x00044564 end:0x0004463C
 

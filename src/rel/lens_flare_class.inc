@@ -43,8 +43,8 @@ public:
 	TObjEFLens* owner;             // 0x1C
 	EFLensPtcl* next;              // 0x20
 
-	inline EFLensPtcl(s16 index, TObjEFLens* lens);
-	inline ~EFLensPtcl();
+	EFLensPtcl(s16 index, TObjEFLens* lens);
+	~EFLensPtcl();
 };
 
 class TObjEFLens : public TObject
@@ -71,7 +71,24 @@ public:
 	virtual s32 SetPosition(RwV3d*);
 };
 
-inline EFLensPtcl::EFLensPtcl(s16 index, TObjEFLens* lens)
+#ifndef LENS_FLARE_PTCL
+#define LENS_FLARE_PTCL inline
+#endif
+
+LENS_FLARE_PTCL EFLensPtcl::~EFLensPtcl()
+{
+	if (this == owner->GetPtclTop()) {
+		owner->SetPtclTop(next);
+	} else {
+		EFLensPtcl* prev = owner->GetPtclTop();
+		while (this != prev->next) {
+			prev = prev->next;
+		}
+		prev->next = next;
+	}
+}
+
+LENS_FLARE_PTCL EFLensPtcl::EFLensPtcl(s16 index, TObjEFLens* lens)
 {
 	id    = index;
 	owner = lens;
@@ -86,20 +103,6 @@ inline EFLensPtcl::EFLensPtcl(s16 index, TObjEFLens* lens)
 		last->next = this;
 	}
 	next = NULL;
-}
-
-inline EFLensPtcl::~EFLensPtcl()
-{
-	EFLensPtcl* prev;
-
-	if (this == (prev = owner->GetPtclTop())) {
-		owner->SetPtclTop(next);
-	} else {
-		while (this != prev->next) {
-			prev = prev->next;
-		}
-		prev->next = next;
-	}
 }
 
 LENS_FLARE_DTOR TObjEFLens::~TObjEFLens()
