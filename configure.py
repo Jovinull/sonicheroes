@@ -2964,6 +2964,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s11_light_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s11light_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
