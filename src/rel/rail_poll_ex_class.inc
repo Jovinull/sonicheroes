@@ -35,8 +35,8 @@ public:
 	RailPart parts[2]; // 0xD4
 
 	TObjRailPollEx(TObject* parent);
-	virtual ~TObjRailPollEx();
 	virtual void Exec();
+	virtual ~TObjRailPollEx();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 

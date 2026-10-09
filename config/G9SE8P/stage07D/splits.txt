@@ -717,6 +717,9 @@ rel/railmechtypeabc_register.cpp:
 	.text       start:0x00088724 end:0x000887D4
 	.ctors      start:0x00000120 end:0x00000124
 
+rel/rail_poll_ex_dtor.cpp:
+	.text       start:0x00088DE4 end:0x00088EE4
+
 rel/rail_poll_ex_ctor.cpp:
 	.text       start:0x00088EE4 end:0x00089028
 
