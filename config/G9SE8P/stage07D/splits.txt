@@ -710,6 +710,9 @@ rel/trainchangeswitch_register.cpp:
 	.text       start:0x00092B1C end:0x00092BBC
 	.ctors      start:0x0000014C end:0x00000150
 
+rel/train_collision_ctor.cpp:
+	.text       start:0x00092EE8 end:0x00092FB0
+
 rel/train_collision_create.cpp:
 	.text       start:0x0009304C end:0x0009313C
 
