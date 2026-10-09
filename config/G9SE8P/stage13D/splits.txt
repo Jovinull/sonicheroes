@@ -214,6 +214,9 @@ rel/unbreakable_container_register.cpp:
 rel/cannon_dtor.cpp:
 	.text       start:0x00019EC0 end:0x00019F88
 
+rel/cannon_hooks.cpp:
+	.text       start:0x0001A874 end:0x0001A898
+
 rel/cannon_register.cpp:
 	.text       start:0x0001A9B8 end:0x0001AA68
 	.ctors      start:0x00000040 end:0x00000044
