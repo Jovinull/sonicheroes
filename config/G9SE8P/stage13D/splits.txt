@@ -340,6 +340,9 @@ rel/goal_ring_register.cpp:
 	.text       start:0x0004D568 end:0x0004D610
 	.ctors      start:0x0000008C end:0x00000090
 
+rel/system_object1_dtor.cpp:
+	.text       start:0x0004D674 end:0x0004D700
+
 rel/system_object1_ctor.cpp:
 	.text       start:0x0004D700 end:0x0004D764
 
