@@ -2414,6 +2414,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/egg_horn_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/egg_horn_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
