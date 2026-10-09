@@ -8,8 +8,8 @@
 // own (EditOnChange, GetPosition and SetPosition), which is why the placement
 // base's vtable starts 0x38 into the set's.
 //
-// TObjEFLens joins the module's chain of lens flares (LinkChain, as in
-// rel/s23_warppos_create.cpp) and builds its twelve particles, each a real
+// TObjEFLens joins the end of the module's chain of lens flares (as
+// rel/s23_warppos_create.cpp does) and builds its twelve particles, each a real
 // new-expression through the global operator new: a particle takes its index,
 // its owner and its entry of the module's table, and joins the end of the
 // owner's particle list. The set then folds the placement's kind into 0 or 1

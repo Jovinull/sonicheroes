@@ -370,6 +370,9 @@ rel/lens_flare_ctor.cpp:
 rel/lens_flare_dtor.cpp:
 	.text       start:0x0004521C end:0x00045328
 
+rel/lens_flare_lens_ctor.cpp:
+	.text       start:0x00045328 end:0x00045444
+
 rel/lens_flare_edit.cpp:
 	.text       start:0x00045444 end:0x000454A8
 

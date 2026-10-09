@@ -157,6 +157,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__17TObjS02Rolling_CLFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
@@ -221,6 +222,7 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__15TObjS04FloatWayFP7TObject
     - __ct__16TObjS04BallColliFP7TObject
@@ -278,6 +280,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__12TObjYajirusiFP7TObject
     - __ct__11TObjXxxSignFP7TObject
@@ -338,6 +341,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__13TObjRailEndEnFP7TObject
     - __ct__15TObjRailPollGorFP7TObject
@@ -411,6 +415,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__12TObjStopRainFP7TObject
     - __ct__8TObjSidaFP7TObject
@@ -466,6 +471,7 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__10TObjS31BobFP7TObject
     - __ct__7TObjKeyFP7TObject
@@ -553,6 +559,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__13TObjS13Cloud1FP7TObject
     - __ct__11TObjSystem4FP7TObject
@@ -604,6 +611,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__17TObjEnemyStg27SkyFP7TObject
     - __ct__20TObjCaptureCollisionFP7TObject
@@ -650,6 +658,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__13TObjS13Cloud1FP7TObject
     - __ct__17TObjEnemyStg27SkyFP7TObject
@@ -695,6 +704,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__13TObjS13Cloud1FP7TObject
     - __ct__12TObjEnemySkyFP7TObject
@@ -741,6 +751,7 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
@@ -785,6 +796,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
@@ -829,6 +841,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - __ct__10TObjEFLensFP7TObject
     - __ct__13TObjEFLensSetFP7TObject
     - __ct__25TObjSetNoOttottoCollisionFP7TObject
     - __ct__10TObjS31BobFP7TObject
