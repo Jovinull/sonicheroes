@@ -981,6 +981,9 @@ rel/s04_ball_colli_register.cpp:
 	.text       start:0x000B6CD4 end:0x000B6D70
 	.ctors      start:0x0000016C end:0x00000170
 
+rel/capture_object_create.cpp:
+	.text       start:0x000BBE88 end:0x000BBED0
+
 rel/capture_register.cpp:
 	.text       start:0x000BBFA0 end:0x000BC09C
 	.ctors      start:0x00000170 end:0x00000174

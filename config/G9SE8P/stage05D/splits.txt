@@ -1010,6 +1010,9 @@ rel/casinodush_register.cpp:
 	.text       start:0x000A2C78 end:0x000A2D28
 	.ctors      start:0x00000148 end:0x0000014C
 
+rel/capture_object_create.cpp:
+	.text       start:0x000A8304 end:0x000A834C
+
 rel/capture_register.cpp:
 	.text       start:0x000A841C end:0x000A8518
 	.ctors      start:0x0000014C end:0x00000150
