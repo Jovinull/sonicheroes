@@ -3838,6 +3838,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03d_pole_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03d_pole_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
