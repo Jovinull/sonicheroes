@@ -218,6 +218,9 @@ rel/wood_container_exec.cpp:
 rel/wood_container_dtor.cpp:
 	.text       start:0x00013BCC end:0x00013C7C
 
+rel/wood_container_ctor.cpp:
+	.text       start:0x00013C7C end:0x00013D94
+
 rel/wood_container_create.cpp:
 	.text       start:0x00013FB4 end:0x000140F4
 

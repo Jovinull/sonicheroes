@@ -4611,6 +4611,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/wood_container_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/wood_container_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
