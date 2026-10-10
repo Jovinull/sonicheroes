@@ -1073,6 +1073,9 @@ rel/flyer_collision_parameter.cpp:
 rel/flyer_collision_dtor.cpp:
 	.text       start:0x000CE75C end:0x000CE7F4
 
+rel/flyer_collision_ctor.cpp:
+	.text       start:0x000CE7F4 end:0x000CE944
+
 rel/flyer_collision_instance.cpp:
 	.text       start:0x000CE944 end:0x000CEAC4
 
