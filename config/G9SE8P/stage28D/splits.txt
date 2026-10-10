@@ -671,6 +671,9 @@ rel/stg28_obj_register.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x00080AB4 end:0x00080C38
 
+rel/unbr_bobcont_exec.cpp:
+	.text       start:0x00083738 end:0x0008375C
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x00083B3C end:0x00083C74
 
