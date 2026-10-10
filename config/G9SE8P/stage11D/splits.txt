@@ -233,6 +233,10 @@ rel/wood_container_register.cpp:
 rel/wood_container_sound.cpp:
 	.text       start:0x00014198 end:0x000141D8
 
+rel/iron_container_check_break.cpp:
+	.text       start:0x000141D8 end:0x00014394
+	.data       start:0x00001A48 end:0x00001A74
+
 rel/iron_container_exec.cpp:
 	.text       start:0x00014394 end:0x000143B8
 

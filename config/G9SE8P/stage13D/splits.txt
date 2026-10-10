@@ -221,6 +221,10 @@ rel/wood_cont_object_register.cpp:
 	.text       start:0x000140F4 end:0x0001419C
 	.ctors      start:0x00000034 end:0x00000038
 
+rel/iron_container_check_break.cpp:
+	.text       start:0x000141DC end:0x00014398
+	.data       start:0x00001AD8 end:0x00001B04
+
 rel/iron_container_exec.cpp:
 	.text       start:0x00014398 end:0x000143BC
 
