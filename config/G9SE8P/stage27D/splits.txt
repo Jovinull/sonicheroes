@@ -569,6 +569,9 @@ rel/obj_set_particle_register.cpp:
 rel/bob_pre_jump_dtor.cpp:
 	.text       start:0x0005CCC4 end:0x0005CD48
 
+rel/bob_jump_collision_dtor.cpp:
+	.text       start:0x0005D328 end:0x0005D418
+
 rel/bob_jump_collision_ctor.cpp:
 	.text       start:0x0005D418 end:0x0005D62C
 
