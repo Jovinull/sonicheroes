@@ -737,6 +737,9 @@ rel/hawk_gun_flash_create.cpp:
 rel/hawk_gun_flash_dtor.cpp:
 	.text       start:0x000B10F4 end:0x000B1168
 
+rel/bob_pre_jump_dtor.cpp:
+	.text       start:0x000B13BC end:0x000B1440
+
 rel/bob_jump_collision_ctor.cpp:
 	.text       start:0x000B1B10 end:0x000B1D24
 
