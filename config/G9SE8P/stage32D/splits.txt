@@ -185,6 +185,9 @@ rel/dash_ring_assets.cpp:
 rel/checkpoint_edit.cpp:
 	.text       start:0x0001079C end:0x000107CC
 
+rel/checkpoint_hooks.cpp:
+	.text       start:0x000107CC end:0x00010A38
+
 rel/checkpoint_bind.cpp:
 	.text       start:0x00010A38 end:0x00010A94
 

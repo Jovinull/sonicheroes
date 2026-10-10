@@ -182,6 +182,9 @@ rel/dashring_object_register.cpp:
 rel/checkpoint_edit.cpp:
 	.text       start:0x000107A0 end:0x000107D0
 
+rel/checkpoint_hooks.cpp:
+	.text       start:0x000107D0 end:0x00010A3C
+
 rel/checkpoint_register.cpp:
 	.text       start:0x00010AD0 end:0x00010B78
 	.ctors      start:0x0000002C end:0x00000030
