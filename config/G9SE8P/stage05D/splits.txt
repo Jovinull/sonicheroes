@@ -945,6 +945,9 @@ rel/capture_collision_kill.cpp:
 rel/capture_collision_exec.cpp:
 	.text       start:0x000A8690 end:0x000A8700
 
+rel/capture_collision_parameter.cpp:
+	.text       start:0x000A8700 end:0x000A8768
+
 rel/capture_collision_dtor.cpp:
 	.text       start:0x000A8768 end:0x000A87F4
 

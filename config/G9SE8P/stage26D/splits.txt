@@ -818,6 +818,9 @@ rel/capture_collision_kill.cpp:
 rel/capture_collision_exec.cpp:
 	.text       start:0x0008E9E4 end:0x0008EA54
 
+rel/capture_collision_parameter.cpp:
+	.text       start:0x0008EA54 end:0x0008EABC
+
 rel/capture_collision_dtor.cpp:
 	.text       start:0x0008EABC end:0x0008EB48
 
