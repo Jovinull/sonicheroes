@@ -680,6 +680,9 @@ rel/bush_register.cpp:
 	.text       start:0x000717F0 end:0x000718A0
 	.ctors      start:0x000000C0 end:0x000000C4
 
+rel/butterfly_create.cpp:
+	.text       start:0x00072938 end:0x00072980
+
 rel/butterfly_register.cpp:
 	.text       start:0x00072980 end:0x00072A30
 	.ctors      start:0x000000C4 end:0x000000C8
