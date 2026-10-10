@@ -5758,6 +5758,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gokurakucho_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gokurakucho_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
