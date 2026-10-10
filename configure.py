@@ -5115,6 +5115,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/target_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
