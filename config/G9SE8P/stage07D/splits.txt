@@ -1245,6 +1245,9 @@ rel/colli_communication_ctor.cpp:
 rel/colli_communication_instance.cpp:
 	.text       start:0x000E94A0 end:0x000E95F4
 
+rel/colli_communication_edit.cpp:
+	.text       start:0x000E95F4 end:0x000E96F4
+
 rel/colli_communication_hooks.cpp:
 	.text       start:0x000E96F4 end:0x000E96FC
 

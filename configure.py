@@ -2494,6 +2494,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/colli_communication_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/colli_communication_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

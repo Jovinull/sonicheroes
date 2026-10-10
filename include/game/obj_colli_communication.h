@@ -17,6 +17,7 @@
 
 struct ColliCommunicationParam {
 	u8 kind;      // 0x00
+	u8 action;    // 0x01: names the editor's second field
 	f32 radius;   // 0x04
 	RwV3d extent; // 0x08
 };
