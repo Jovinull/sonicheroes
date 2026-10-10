@@ -218,6 +218,9 @@ rel/wood_container_sound.cpp:
 rel/iron_container_exec.cpp:
 	.text       start:0x00014394 end:0x000143B8
 
+rel/iron_container_dtor.cpp:
+	.text       start:0x000143B8 end:0x00014468
+
 rel/iron_container_unload.cpp:
 	.text       start:0x00014544 end:0x00014558
 
