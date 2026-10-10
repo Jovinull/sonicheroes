@@ -4133,6 +4133,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s12wall_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s12wall_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
