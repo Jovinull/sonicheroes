@@ -5543,6 +5543,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/formgate_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
