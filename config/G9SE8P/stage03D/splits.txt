@@ -836,6 +836,9 @@ rel/s04_energy_pipe_up_register.cpp:
 	.text       start:0x00098D88 end:0x00098E30
 	.ctors      start:0x00000120 end:0x00000124
 
+rel/s04d_shutter_create.cpp:
+	.text       start:0x000998CC end:0x00099914
+
 rel/s04d_shutter_register.cpp:
 	.text       start:0x00099914 end:0x000999BC
 	.ctors      start:0x00000124 end:0x00000128
