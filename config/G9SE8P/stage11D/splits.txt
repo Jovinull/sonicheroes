@@ -925,6 +925,9 @@ rel/event_manager_dtor.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x000D2868 end:0x000D29EC
 
+rel/event_script_tdisp.cpp:
+	.text       start:0x000D2D18 end:0x000D2D1C
+
 rel/bobcontainer_check_break.cpp:
 	.text       start:0x000D3A64 end:0x000D3D10
 	.data       start:0x00019A30 end:0x00019A88

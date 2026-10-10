@@ -707,6 +707,9 @@ rel/event_manager_dtor.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x00080AB4 end:0x00080C38
 
+rel/event_script_tdisp.cpp:
+	.text       start:0x00080F64 end:0x00080F68
+
 rel/bobcontainer_check_break.cpp:
 	.text       start:0x00081CB0 end:0x00081F5C
 	.data       start:0x00008978 end:0x000089D0
