@@ -213,6 +213,9 @@ rel/iron_container_register.cpp:
 	.text       start:0x000146E0 end:0x00014788
 	.ctors      start:0x00000038 end:0x0000003C
 
+rel/unbreakable_container_exec.cpp:
+	.text       start:0x00014928 end:0x0001494C
+
 rel/unbreakable_container_create.cpp:
 	.text       start:0x00014B84 end:0x00014CA0
 
