@@ -208,6 +208,9 @@ rel/container_colli.cpp:
 rel/container_check_ground.cpp:
 	.text       start:0x00012280 end:0x0001230C
 
+rel/container_check_piled.cpp:
+	.text       start:0x0001230C end:0x000123E0
+
 rel/container_check_break.cpp:
 	.text       start:0x000123E0 end:0x0001268C
 	.data       start:0x0000176C end:0x000017C4
