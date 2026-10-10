@@ -205,6 +205,9 @@ rel/container_disp.cpp:
 rel/container_dtor.cpp:
 	.text       start:0x0001396C end:0x00013A50
 
+rel/container_edit.cpp:
+	.text       start:0x00013B4C end:0x00013B9C
+
 rel/wood_container_exec.cpp:
 	.text       start:0x00013BA4 end:0x00013BC8
 
