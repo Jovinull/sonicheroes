@@ -198,6 +198,9 @@ rel/checkpoint_register.cpp:
 rel/reel_dtor.cpp:
 	.text       start:0x00011B1C end:0x00011BE4
 
+rel/reel_create.cpp:
+	.text       start:0x0001212C end:0x00012174
+
 rel/reel_object_register.cpp:
 	.text       start:0x00012174 end:0x0001221C
 	.ctors      start:0x00000030 end:0x00000034

@@ -3648,6 +3648,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/reel_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/reel_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
