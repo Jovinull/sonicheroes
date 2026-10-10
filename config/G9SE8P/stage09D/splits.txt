@@ -872,6 +872,9 @@ rel/redleaves_register.cpp:
 	.text       start:0x00098EF8 end:0x00098FA8
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/treeleaf_create.cpp:
+	.text       start:0x00099998 end:0x000999E0
+
 rel/treeleaf_register.cpp:
 	.text       start:0x000999E0 end:0x00099A90
 	.ctors      start:0x00000144 end:0x00000148
