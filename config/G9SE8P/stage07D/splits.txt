@@ -1328,6 +1328,9 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000E0C38 end:0x000E0CE0
 	.ctors      start:0x000001B8 end:0x000001BC
 
+rel/rinoliner_create.cpp:
+	.text       start:0x000E6FC4 end:0x000E700C
+
 rel/rinoliner_register.cpp:
 	.text       start:0x000E700C end:0x000E70B4
 	.ctors      start:0x000001BC end:0x000001C0
