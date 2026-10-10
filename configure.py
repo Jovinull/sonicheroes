@@ -5065,6 +5065,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/signal_create_rev2.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/signal_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
