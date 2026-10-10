@@ -756,6 +756,9 @@ rel/wave_register.cpp:
 	.text       start:0x00089438 end:0x000894E4
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/shachi_create.cpp:
+	.text       start:0x0008A760 end:0x0008A7A8
+
 rel/shachi_register.cpp:
 	.text       start:0x0008A7A8 end:0x0008A854
 	.ctors      start:0x000000EC end:0x000000F0
