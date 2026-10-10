@@ -31,8 +31,10 @@ public:
 
 	TObjContainer(TObject* parent);
 	void SetPosition();
-	virtual ~TObjContainer();
+	// Exec first: it is the key function and no unit defines it yet, so the
+	// units that define the others do not emit the vtable.
 	virtual void Exec();
+	virtual ~TObjContainer();
 	virtual void Disp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
@@ -60,8 +62,10 @@ public:
 
 	TObjBobcontainer(TObject* parent);
 	void SetPosition();
-	virtual ~TObjBobcontainer();
+	// Exec first: it is the key function and no unit defines it yet, so the
+	// units that define the others do not emit the vtable.
 	virtual void Exec();
+	virtual ~TObjBobcontainer();
 	virtual void Disp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
