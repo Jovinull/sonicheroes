@@ -501,6 +501,9 @@ rel/signal_register.cpp:
 	.text       start:0x00046B54 end:0x00046BFC
 	.ctors      start:0x00000080 end:0x00000084
 
+rel/propeller_create.cpp:
+	.text       start:0x00049530 end:0x00049578
+
 rel/propeller_register.cpp:
 	.text       start:0x00049578 end:0x00049618
 	.ctors      start:0x00000084 end:0x00000088
