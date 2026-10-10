@@ -660,6 +660,10 @@ rel/s31bob_exec.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x00079E0C end:0x00079F90
 
+rel/bobcontainer_check_break.cpp:
+	.text       start:0x0007B008 end:0x0007B2B4
+	.data       start:0x0000CAA8 end:0x0000CB00
+
 rel/bobcontainer_disp.cpp:
 	.text       start:0x0007B3BC end:0x0007B3C0
 

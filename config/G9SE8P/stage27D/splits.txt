@@ -702,6 +702,10 @@ rel/stg27_obj_register.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x0007F61C end:0x0007F7A0
 
+rel/bobcontainer_check_break.cpp:
+	.text       start:0x00080818 end:0x00080AC4
+	.data       start:0x00008948 end:0x000089A0
+
 rel/bobcontainer_disp.cpp:
 	.text       start:0x00080BCC end:0x00080BD0
 
