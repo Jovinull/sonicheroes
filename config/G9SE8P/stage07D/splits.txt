@@ -960,6 +960,9 @@ rel/obj_set_particle_register.cpp:
 	.text       start:0x000966DC end:0x00096778
 	.ctors      start:0x00000160 end:0x00000164
 
+rel/bob_pre_jump_exec.cpp:
+	.text       start:0x00096A10 end:0x00096AE4
+
 rel/bob_pre_jump_dtor.cpp:
 	.text       start:0x00096AE4 end:0x00096B68
 
