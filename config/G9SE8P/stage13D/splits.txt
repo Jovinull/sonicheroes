@@ -404,6 +404,9 @@ rel/case_obj_dtor.cpp:
 rel/case_obj_lifecycle_stage11.cpp:
 	.text       start:0x00041018 end:0x00041594
 
+rel/case_obj_create_rev2.cpp:
+	.text       start:0x00041594 end:0x000415DC
+
 rel/case_obj_register.cpp:
 	.text       start:0x000415DC end:0x00041684
 	.ctors      start:0x00000074 end:0x00000078
