@@ -294,6 +294,9 @@ rel/unbreakable_container_ctor.cpp:
 rel/unbreakable_container_unload.cpp:
 	.text       start:0x00014AEC end:0x00014B00
 
+rel/unbreakable_container_load.cpp:
+	.text       start:0x00014B00 end:0x00014B80
+
 rel/unbreakable_container_create.cpp:
 	.text       start:0x00014B80 end:0x00014C9C
 
