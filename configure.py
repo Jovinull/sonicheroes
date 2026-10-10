@@ -5145,6 +5145,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_rings_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/big_rings_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
