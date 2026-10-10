@@ -5055,6 +5055,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/roll_door_create_rev2.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roll_door_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

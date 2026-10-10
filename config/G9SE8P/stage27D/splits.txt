@@ -437,6 +437,9 @@ rel/roll_door_dtor.cpp:
 rel/roll_door_lifecycle_stage11.cpp:
 	.text       start:0x0003C604 end:0x0003CCE0
 
+rel/roll_door_create_rev2.cpp:
+	.text       start:0x0003CCE0 end:0x0003CD28
+
 rel/roll_door_register.cpp:
 	.text       start:0x0003CD28 end:0x0003CDD0
 	.ctors      start:0x00000074 end:0x00000078
