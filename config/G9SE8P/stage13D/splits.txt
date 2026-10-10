@@ -870,6 +870,9 @@ rel/flyer_collision_ctor.cpp:
 rel/flyer_collision_instance.cpp:
 	.text       start:0x000B9614 end:0x000B9794
 
+rel/flyer_collision_hooks.cpp:
+	.text       start:0x000B9864 end:0x000B986C
+
 rel/flyer_collision_create.cpp:
 	.text       start:0x000B986C end:0x000B99E4
 
