@@ -347,6 +347,9 @@ rel/fan_object_register.cpp:
 rel/weight_dtor.cpp:
 	.text       start:0x000283CC end:0x000284AC
 
+rel/weight_hooks.cpp:
+	.text       start:0x00028A48 end:0x00028C18
+
 rel/weight_register.cpp:
 	.text       start:0x00028C18 end:0x00028CC0
 	.ctors      start:0x00000058 end:0x0000005C

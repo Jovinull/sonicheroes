@@ -380,6 +380,9 @@ rel/fan_assets.cpp:
 rel/weight_dtor.cpp:
 	.text       start:0x000283E8 end:0x000284C8
 
+rel/weight_hooks.cpp:
+	.text       start:0x00028A64 end:0x00028C34
+
 rel/weight_register.cpp:
 	.text       start:0x00028C34 end:0x00028CDC
 	.ctors      start:0x00000058 end:0x0000005C
