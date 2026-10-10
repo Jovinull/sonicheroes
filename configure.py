@@ -3943,6 +3943,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04_solar_robo_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04_solar_robo_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
