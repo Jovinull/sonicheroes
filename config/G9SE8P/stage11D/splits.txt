@@ -606,6 +606,9 @@ rel/obj_set_particle_register.cpp:
 	.text       start:0x000713E4 end:0x00071480
 	.ctors      start:0x000000C0 end:0x000000C4
 
+rel/bob_pre_jump_parameter.cpp:
+	.text       start:0x00071488 end:0x000714F8
+
 rel/bob_pre_jump_exec.cpp:
 	.text       start:0x000714F8 end:0x000715CC
 

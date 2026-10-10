@@ -5236,6 +5236,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bob_pre_jump_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bob_jump_collision_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

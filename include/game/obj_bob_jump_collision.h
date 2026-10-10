@@ -38,6 +38,7 @@ public:
 	TObjBobJumpCollision* owner; // 0xB0
 
 	inline TObjBobPreJumpCollision(TObject* parent);
+	void BobJumpCollisionParameter();
 	// The first virtual declared is the key function, and the unit that defines
 	// it emits the vtable. Overrides, whose order does not move their slots:
 	// rel/bob_pre_jump_exec.cpp declares the destructor first, the others Exec.
@@ -67,6 +68,8 @@ public:
 	TObjBobPreJumpCollision* preJump; // 0xF4
 
 	TObjBobJumpCollision(TObject* parent);
+	void BobJumpCollisionParameter();
+	void SetParameter();
 	// The same: rel/bob_jump_collision_exec.cpp declares the destructor first.
 #ifdef BOB_JUMP_DTOR_FIRST
 	virtual ~TObjBobJumpCollision();
