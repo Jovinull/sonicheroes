@@ -815,6 +815,9 @@ rel/s13_tsuitate_register.cpp:
 	.text       start:0x00084FE4 end:0x0008507C
 	.ctors      start:0x000000F8 end:0x000000FC
 
+rel/s13_senkan_belt_create.cpp:
+	.text       start:0x00085DB8 end:0x00085E00
+
 rel/s13_senkan_belt_register.cpp:
 	.text       start:0x00085E00 end:0x00085EA8
 	.ctors      start:0x000000FC end:0x00000100
