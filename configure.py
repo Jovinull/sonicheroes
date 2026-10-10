@@ -3123,6 +3123,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ivyjump_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ivyjump_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
