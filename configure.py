@@ -3973,6 +3973,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04d_ecylinder_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04d_e_cylinder_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
