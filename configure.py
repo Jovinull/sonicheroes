@@ -3203,6 +3203,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/mushroom_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/mushroom_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

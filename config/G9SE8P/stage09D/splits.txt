@@ -728,6 +728,9 @@ rel/leafaa_register.cpp:
 	.text       start:0x0007AE00 end:0x0007AEB0
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/mushroom_create.cpp:
+	.text       start:0x0007BEA0 end:0x0007BEE8
+
 rel/mushroom_register.cpp:
 	.text       start:0x0007BEE8 end:0x0007BF98
 	.ctors      start:0x000000E0 end:0x000000E4
