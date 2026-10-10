@@ -959,6 +959,9 @@ rel/flower_register.cpp:
 	.text       start:0x000A2BFC end:0x000A2CAC
 	.ctors      start:0x00000160 end:0x00000164
 
+rel/chao_search_cage.cpp:
+	.text       start:0x000A2D88 end:0x000A2E78
+
 rel/chao_check_touched.cpp:
 	.text       start:0x000A2E78 end:0x000A3030
 

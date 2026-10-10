@@ -5758,6 +5758,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/chao_search_cage.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/chao_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

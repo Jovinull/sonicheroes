@@ -714,6 +714,9 @@ rel/flower_register.cpp:
 	.text       start:0x0006B414 end:0x0006B4C4
 	.ctors      start:0x000000C4 end:0x000000C8
 
+rel/chao_search_cage.cpp:
+	.text       start:0x0006B5A0 end:0x0006B690
+
 rel/chao_check_touched.cpp:
 	.text       start:0x0006B690 end:0x0006B848
 
