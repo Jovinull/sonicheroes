@@ -4758,6 +4758,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traincollision_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traincollision_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
