@@ -4488,6 +4488,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scaffold_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/scaffold_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
