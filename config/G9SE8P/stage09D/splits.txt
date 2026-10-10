@@ -767,6 +767,9 @@ rel/rainfloor_register.cpp:
 	.text       start:0x00080FB0 end:0x00081060
 	.ctors      start:0x000000F4 end:0x000000F8
 
+rel/rainfruit_create.cpp:
+	.text       start:0x00082E8C end:0x00082ED4
+
 rel/rainfruit_register.cpp:
 	.text       start:0x00082ED4 end:0x00082F84
 	.ctors      start:0x000000F8 end:0x000000FC
