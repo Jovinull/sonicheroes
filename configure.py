@@ -4793,6 +4793,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/trispring_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/trispring_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

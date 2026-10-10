@@ -972,6 +972,9 @@ rel/springblk_air_register.cpp:
 	.text       start:0x0009BACC end:0x0009BB7C
 	.ctors      start:0x00000130 end:0x00000134
 
+rel/trispring_create.cpp:
+	.text       start:0x0009D744 end:0x0009D78C
+
 rel/trispring_register.cpp:
 	.text       start:0x0009D78C end:0x0009D83C
 	.ctors      start:0x00000134 end:0x00000138
