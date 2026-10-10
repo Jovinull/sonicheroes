@@ -968,6 +968,9 @@ rel/chao_check_touched.cpp:
 rel/chao_pdisp.cpp:
 	.text       start:0x000A3030 end:0x000A3078
 
+rel/chao_set_position.cpp:
+	.text       start:0x000A3824 end:0x000A39BC
+
 rel/chao_dtor.cpp:
 	.text       start:0x000A39BC end:0x000A3AB4
 

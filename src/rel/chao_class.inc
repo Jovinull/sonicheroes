@@ -10,12 +10,19 @@
 class TObjChao : public TObject, public TObjSetObj, public C_COLLI
 {
 public:
-	u8 padB8[0xE4 - 0xB8];
+	RwV3d pos;      // 0xB8
+	RwV3d worldPos; // 0xC4: the frame's position after SetPosition
+	u8 padD0[0x4];  // 0xD0
+	f32 offset;     // 0xD4: how far from the cage the chao sits
+	f32 spin;       // 0xD8: added to the angle every frame
+	u8 padDC[0x4];  // 0xDC
+	f32 angle;      // 0xE0
 	RpClump* clump; // 0xE4
 	u8 padE8[0x4];  // 0xE8
 	TObject* unkEC; // 0xEC: deleted with the chao
 
 	void SearchCage();
+	void SetPosition();
 	s32 CheckTouchedByLeader();
 
 	// Exec first: it is the key function and no unit defines it, so the units
