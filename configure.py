@@ -5353,6 +5353,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s31_bob_dummy_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s31_bob_dummy_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
