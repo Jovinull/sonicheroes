@@ -693,6 +693,9 @@ rel/event_manager_init.cpp:
 rel/bobcontainer_disp.cpp:
 	.text       start:0x00080BCC end:0x00080BD0
 
+rel/bobcontainer_broken_se.cpp:
+	.text       start:0x00081D04 end:0x00081D44
+
 rel/bobcontainer_dtor.cpp:
 	.text       start:0x00081EC0 end:0x00081FA4
 

@@ -53,7 +53,7 @@ class TObjBobcontainer : public TObject, public TObjSetObj, public C_COLLI
 public:
 	s32 material;     // 0xB8
 	s32 unkBC;        // 0xBC
-	s8 unkC0;         // 0xC0
+	s8 kind;          // 0xC0: the placement's first parameter
 	u8 unkC1;         // 0xC1
 	u16 unkC2;        // 0xC2
 	RwV3d pos;        // 0xC4
@@ -68,11 +68,15 @@ public:
 
 	TObjBobcontainer(TObject* parent);
 	void SetPosition();
+	void SetParameter();
 	// Exec first: it is the key function and no unit defines it yet, so the
 	// units that define the others do not emit the vtable.
 	virtual void Exec();
 	virtual ~TObjBobcontainer();
 	virtual void Disp();
+	// The class's own virtuals, after the second base's slots (PS2 names).
+	virtual s32 CheckBreak();
+	virtual void BrokenSE();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
