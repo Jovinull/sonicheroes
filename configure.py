@@ -5105,6 +5105,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pole_create_rev2.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pole_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
