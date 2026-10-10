@@ -847,6 +847,9 @@ rel/flyer_collision_ctor.cpp:
 rel/flyer_collision_instance.cpp:
 	.text       start:0x000B1EDC end:0x000B205C
 
+rel/flyer_collision_edit.cpp:
+	.text       start:0x000B205C end:0x000B2130
+
 rel/flyer_collision_hooks.cpp:
 	.text       start:0x000B2130 end:0x000B2138
 

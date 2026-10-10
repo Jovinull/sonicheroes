@@ -1198,6 +1198,9 @@ rel/flyer_collision_ctor.cpp:
 rel/flyer_collision_instance.cpp:
 	.text       start:0x000E0864 end:0x000E09E4
 
+rel/flyer_collision_edit.cpp:
+	.text       start:0x000E09E4 end:0x000E0AB8
+
 rel/flyer_collision_hooks.cpp:
 	.text       start:0x000E0AB8 end:0x000E0AC0
 
