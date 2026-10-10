@@ -2793,6 +2793,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigrings_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigrings_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
