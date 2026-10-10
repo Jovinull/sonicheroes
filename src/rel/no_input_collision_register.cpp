@@ -3,8 +3,9 @@
 // The record that registers NO_INPUT_COLLISION OBJECT with the editor.
 //
 // The claim is .text 0x6DD8C to 0x6DE34 and the .ctors word at 0xB4 that names
-// it. Only the record is taken: the three hooks it points at stay assembly and
-// are reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the three hooks it points at are
+// rel/no_input_collision_hooks.cpp, reached by the names each module's
+// symbols.txt gives them.
 //
 // The object's name is the display string the record itself installs, which is
 // what names every symbol here.
