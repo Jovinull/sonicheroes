@@ -3,8 +3,9 @@
 // The record that registers POLE OBJECT with the editor.
 //
 // The claim is .text 0x3FFA0 to 0x40048 and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// Only the record is taken: the hooks it points at are rel/pole_hooks.cpp
+// (unload and load) and rel/pole_create_rev2.cpp (the factory), reached by the
+// names each module's symbols.txt gives them.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.
