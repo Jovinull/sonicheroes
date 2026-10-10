@@ -622,6 +622,9 @@ rel/searcher_register.cpp:
 rel/formgate_unload.cpp:
 	.text       start:0x0006124C end:0x000612BC
 
+rel/formgate_create.cpp:
+	.text       start:0x000616A8 end:0x000616F0
+
 rel/formgate_register.cpp:
 	.text       start:0x00061804 end:0x000618AC
 	.ctors      start:0x000000B0 end:0x000000B4
