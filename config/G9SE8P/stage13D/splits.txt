@@ -781,6 +781,9 @@ rel/s13_houdai_yoko_register.cpp:
 	.text       start:0x0007E658 end:0x0007E700
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/s13_houdai_l_create.cpp:
+	.text       start:0x000816B8 end:0x00081700
+
 rel/s13_houdai_l_register.cpp:
 	.text       start:0x00081700 end:0x000817A8
 	.ctors      start:0x000000EC end:0x000000F0
