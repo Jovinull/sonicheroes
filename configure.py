@@ -3143,6 +3143,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/laserfence_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/laserfence_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
