@@ -2364,6 +2364,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

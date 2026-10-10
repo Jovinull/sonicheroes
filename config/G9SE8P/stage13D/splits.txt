@@ -615,6 +615,9 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x00051900 end:0x000519B0
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/searcher_create.cpp:
+	.text       start:0x0005A3B8 end:0x0005A400
+
 rel/searcher_register.cpp:
 	.text       start:0x0005A414 end:0x0005A514
 	.ctors      start:0x000000AC end:0x000000B0
