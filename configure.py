@@ -2419,6 +2419,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/flyer_collision_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/flyer_collision_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

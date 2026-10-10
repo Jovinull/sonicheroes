@@ -53,6 +53,7 @@ public:
 	FLYER_COL_INLINE void SetColliParameter();
 	FLYER_COL_INLINE void SetParameter();
 	FLYER_COL_INLINE void ResetVariable();
+	s32 CheckCollision();
 	void OnClose();
 
 	static TObjFlyerCollision* CreateInstance();
