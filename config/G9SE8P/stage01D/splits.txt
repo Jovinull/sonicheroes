@@ -777,6 +777,9 @@ rel/s01_truck_rail_register.cpp:
 	.text       start:0x0008FBCC end:0x0008FC74
 	.ctors      start:0x000000F8 end:0x000000FC
 
+rel/s01_truck_path_create.cpp:
+	.text       start:0x000925D4 end:0x0009261C
+
 rel/s01_truck_path_register.cpp:
 	.text       start:0x0009261C end:0x000926B4
 	.ctors      start:0x000000FC end:0x00000100
