@@ -2953,6 +2953,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cage_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cage_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
