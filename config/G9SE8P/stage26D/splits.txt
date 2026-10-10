@@ -252,6 +252,10 @@ rel/iron_container_register.cpp:
 rel/iron_container_sound.cpp:
 	.text       start:0x00014784 end:0x000147C4
 
+rel/unbreakable_container_check_break.cpp:
+	.text       start:0x000147C4 end:0x00014924
+	.data       start:0x00001AD4 end:0x00001B00
+
 rel/unbreakable_container_exec.cpp:
 	.text       start:0x00014924 end:0x00014948
 

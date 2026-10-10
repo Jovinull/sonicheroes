@@ -49,6 +49,7 @@ public:
 #endif
 	virtual void Exec();
 	virtual void Disp();
+	virtual s32 CheckBreak();
 #ifndef UNBREAKABLE_CONTAINER_DTOR_FIRST
 	virtual ~TObjContUnbreakable();
 #endif

@@ -4665,6 +4665,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/unbreakable_container_check_break.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/unbreakable_container_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
