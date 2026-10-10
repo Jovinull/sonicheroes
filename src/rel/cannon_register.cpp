@@ -3,8 +3,9 @@
 // The record that registers CANNON OBJECT with the editor.
 //
 // The claim is .text 0x1A9B4 to 0x1AA64 and the .ctors word that names it. Only
-// the record is taken: the four hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// the record is taken: the four hooks it points at are rel/cannon_hooks.cpp
+// (reset and unload) and rel/cannon_load.cpp (load and the factory), reached by
+// the names each module's symbols.txt gives them.
 //
 // The run is the same in twelve of the fourteen stage modules. stage13D is
 // built from a different revision here, and stage40D everywhere.
