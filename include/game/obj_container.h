@@ -71,6 +71,7 @@ public:
 	s16 pieceKinds;   // 0xF4
 
 	TObjBobcontainer(TObject* parent);
+	s32 CheckBreak_Sub(int type);
 	void SetPosition();
 	void SetParameter();
 	// Exec first: it is the key function and no unit defines it yet, so the

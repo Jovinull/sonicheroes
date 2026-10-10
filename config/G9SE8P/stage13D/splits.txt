@@ -1011,6 +1011,10 @@ rel/bobcontainer_check_break.cpp:
 	.text       start:0x000DC6A8 end:0x000DC954
 	.data       start:0x00024C48 end:0x00024CA0
 
+rel/bobcontainer_check_break_sub.cpp:
+	.text       start:0x000DC954 end:0x000DCA5C
+	.data       start:0x00024CA0 end:0x00024CCC
+
 rel/bobcontainer_disp.cpp:
 	.text       start:0x000DCA5C end:0x000DCA60
 
