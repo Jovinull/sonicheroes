@@ -4073,6 +4073,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s11fire_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s11fire_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
