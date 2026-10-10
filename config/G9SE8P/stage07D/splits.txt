@@ -1230,6 +1230,9 @@ rel/enemy_iron_ball_dtor.cpp:
 rel/enemy_iron_ball_create.cpp:
 	.text       start:0x000E7840 end:0x000E79D4
 
+rel/colli_communication_tdisp.cpp:
+	.text       start:0x000E9070 end:0x000E9078
+
 rel/colli_communication_instance.cpp:
 	.text       start:0x000E94A0 end:0x000E95F4
 
