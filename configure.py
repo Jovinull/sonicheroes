@@ -5155,6 +5155,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cage_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cage_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
