@@ -2978,6 +2978,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dashring_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dashring_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

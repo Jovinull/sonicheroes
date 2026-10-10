@@ -178,6 +178,9 @@ rel/jump_panel_register.cpp:
 rel/dash_ring_dtor.cpp:
 	.text       start:0x0000DC5C end:0x0000DD60
 
+rel/dashring_create.cpp:
+	.text       start:0x0000E330 end:0x0000E378
+
 rel/dashring_object_register.cpp:
 	.text       start:0x0000E378 end:0x0000E420
 	.ctors      start:0x00000028 end:0x0000002C
