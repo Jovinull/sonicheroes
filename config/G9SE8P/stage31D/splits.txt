@@ -323,6 +323,9 @@ rel/cannon_dtor.cpp:
 rel/cannon_hooks.cpp:
 	.text       start:0x0001A870 end:0x0001A894
 
+rel/cannon_load.cpp:
+	.text       start:0x0001A894 end:0x0001A9B0
+
 rel/cannon_register.cpp:
 	.text       start:0x0001A9B4 end:0x0001AA64
 	.ctors      start:0x00000040 end:0x00000044
