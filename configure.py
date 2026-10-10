@@ -1761,6 +1761,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/light_collision_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/light_collision_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
