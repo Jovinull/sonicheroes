@@ -670,6 +670,9 @@ rel/flower_register.cpp:
 rel/chao_pdisp.cpp:
 	.text       start:0x00076964 end:0x000769AC
 
+rel/chao_dtor.cpp:
+	.text       start:0x000772F0 end:0x000773E8
+
 rel/chao_hooks.cpp:
 	.text       start:0x000779C8 end:0x00077A80
 
