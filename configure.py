@@ -5758,6 +5758,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_breakdoor_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_break_door_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
