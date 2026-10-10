@@ -5373,6 +5373,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hintcolli_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/hintcolli_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
