@@ -157,6 +157,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -240,6 +241,7 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -321,6 +323,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -400,6 +403,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -492,6 +496,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -566,6 +571,7 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -672,6 +678,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -740,6 +747,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -806,6 +814,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -871,6 +880,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -937,6 +947,7 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -1000,6 +1011,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject
@@ -1063,6 +1075,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - CheckGround__13TObjContainerFv
     - CheckBreak_Sub__16TObjBobcontainerFi
     - CheckBreak_Sub__13TObjContainerFi
     - __ct__22TObjBobcontUnbreakableFP7TObject

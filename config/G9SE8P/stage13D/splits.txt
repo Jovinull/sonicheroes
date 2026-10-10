@@ -193,6 +193,9 @@ rel/reel_object_register.cpp:
 rel/container_colli.cpp:
 	.text       start:0x00012224 end:0x00012284
 
+rel/container_check_ground.cpp:
+	.text       start:0x00012284 end:0x00012310
+
 rel/container_check_break.cpp:
 	.text       start:0x000123E4 end:0x00012690
 	.data       start:0x00001884 end:0x000018DC
