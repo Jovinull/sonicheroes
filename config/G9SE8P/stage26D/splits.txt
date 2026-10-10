@@ -420,6 +420,9 @@ rel/itembaloon_position.cpp:
 rel/pole_dtor.cpp:
 	.text       start:0x00038438 end:0x000384F8
 
+rel/pole_hooks.cpp:
+	.text       start:0x00038AF4 end:0x00038B3C
+
 rel/pole_register.cpp:
 	.text       start:0x00038B84 end:0x00038C2C
 	.ctors      start:0x00000068 end:0x0000006C
