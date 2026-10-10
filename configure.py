@@ -4650,6 +4650,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/unbr_bobcont_check_break.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/unbr_bobcont_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -848,6 +848,10 @@ rel/bobcontainer_edit.cpp:
 rel/unbr_bobcont_broken_se.cpp:
 	.text       start:0x000D25D4 end:0x000D2614
 
+rel/unbr_bobcont_check_break.cpp:
+	.text       start:0x000D2614 end:0x000D2774
+	.data       start:0x000177FC end:0x00017828
+
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x000D2774 end:0x000D2798
 
