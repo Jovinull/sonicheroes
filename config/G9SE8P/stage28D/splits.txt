@@ -250,6 +250,9 @@ rel/iron_container_exec.cpp:
 rel/iron_container_dtor.cpp:
 	.text       start:0x000143B8 end:0x00014468
 
+rel/iron_container_ctor.cpp:
+	.text       start:0x00014468 end:0x00014544
+
 rel/iron_container_unload.cpp:
 	.text       start:0x00014544 end:0x00014558
 
