@@ -392,6 +392,9 @@ rel/item_box_register.cpp:
 	.text       start:0x00033EDC end:0x00033F84
 	.ctors      start:0x00000060 end:0x00000064
 
+rel/scroll_itembaloon_create.cpp:
+	.text       start:0x00034BA4 end:0x00034BEC
+
 rel/itembaloon_tdisp.cpp:
 	.text       start:0x00034E38 end:0x00034F5C
 
