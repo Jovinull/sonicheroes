@@ -33,8 +33,8 @@ typedef struct ObjectEntry {
 } ObjectEntry;               // 0x2C
 
 // Defined by each module, renamed to these names in its own symbols.txt.
-extern "C" void woodContObjectLoad(void);
-extern "C" void woodContObjectUnload(void);
+extern "C" void woodContainerLoad(void);
+extern "C" void woodContainerUnload(void);
 extern "C" void woodContainerCreate(void);
 extern "C" ObjectEntry woodContObjectEntry;
 extern "C" char woodContObjectDisplayName[];
@@ -47,8 +47,8 @@ extern "C" void woodContObjectRegister(void)
 	woodContObjectEntry.unk18 = 0;
 
 	woodContObjectEntry.name   = woodContObjectDisplayName;
-	woodContObjectEntry.load   = woodContObjectLoad;
-	woodContObjectEntry.unload = woodContObjectUnload;
+	woodContObjectEntry.load   = woodContainerLoad;
+	woodContObjectEntry.unload = woodContainerUnload;
 	woodContObjectEntry.create = woodContainerCreate;
 	woodContObjectEntry.reset  = NULL;
 
