@@ -2359,6 +2359,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/capture_collision_kill.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_collision_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
