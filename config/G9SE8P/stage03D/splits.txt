@@ -727,6 +727,9 @@ rel/bob_pre_jump_exec.cpp:
 rel/bob_pre_jump_dtor.cpp:
 	.text       start:0x0009BCF4 end:0x0009BD78
 
+rel/bob_pre_jump_ctor.cpp:
+	.text       start:0x0009BD78 end:0x0009BE50
+
 rel/bob_jump_collision_tdisp.cpp:
 	.text       start:0x0009BE50 end:0x0009BE54
 

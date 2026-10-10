@@ -26,6 +26,13 @@ struct BobJumpParam {
 
 class TObjBobJumpCollision;
 
+// The pre-jump constructor is inline (the jump's constructor inlines it);
+// rel/bob_pre_jump_ctor.cpp defines this empty to emit the out-of-line copy each
+// module also keeps.
+#ifndef BOB_PRE_JUMP_CTOR
+#define BOB_PRE_JUMP_CTOR inline
+#endif
+
 extern "C" char* CL_TObjBobJumpCollision;
 extern "C" char* CL_TObjBobPreJumpCollision;
 extern "C" CCL_INFO bobJumpCclInfo;
@@ -37,7 +44,7 @@ class TObjBobPreJumpCollision : public TObject, public C_COLLI
 public:
 	TObjBobJumpCollision* owner; // 0xB0
 
-	inline TObjBobPreJumpCollision(TObject* parent);
+	BOB_PRE_JUMP_CTOR TObjBobPreJumpCollision(TObject* parent);
 	void BobJumpCollisionParameter();
 	// The first virtual declared is the key function, and the unit that defines
 	// it emits the vtable. Overrides, whose order does not move their slots:
@@ -82,7 +89,7 @@ public:
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
-inline TObjBobPreJumpCollision::TObjBobPreJumpCollision(TObject* parent)
+BOB_PRE_JUMP_CTOR TObjBobPreJumpCollision::TObjBobPreJumpCollision(TObject* parent)
     : TObject(parent)
 {
 	ClassName = CL_TObjBobPreJumpCollision;
