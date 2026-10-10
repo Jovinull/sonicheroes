@@ -3888,6 +3888,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04_egg_cap2_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04_egg_cap2_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
