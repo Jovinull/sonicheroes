@@ -946,6 +946,9 @@ rel/event_manager_init.cpp:
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x000DE130 end:0x000DE154
 
+rel/unbr_bobcont_dtor.cpp:
+	.text       start:0x000DE154 end:0x000DE204
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000DE534 end:0x000DE66C
 

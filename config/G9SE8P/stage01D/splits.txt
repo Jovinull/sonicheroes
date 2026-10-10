@@ -811,6 +811,9 @@ rel/event_manager_init.cpp:
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x000D2774 end:0x000D2798
 
+rel/unbr_bobcont_dtor.cpp:
+	.text       start:0x000D2798 end:0x000D2848
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000D2B78 end:0x000D2CB0
 
