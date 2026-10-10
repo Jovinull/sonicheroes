@@ -1035,6 +1035,9 @@ rel/unbr_bobcont_dtor.cpp:
 rel/unbr_bobcont_ctor.cpp:
 	.text       start:0x000DE204 end:0x000DE314
 
+rel/unbr_bobcont_hooks.cpp:
+	.text       start:0x000DE314 end:0x000DE534
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000DE534 end:0x000DE66C
 

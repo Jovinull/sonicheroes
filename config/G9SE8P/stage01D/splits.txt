@@ -930,6 +930,9 @@ rel/unbr_bobcont_dtor.cpp:
 rel/unbr_bobcont_ctor.cpp:
 	.text       start:0x000D2848 end:0x000D2958
 
+rel/unbr_bobcont_hooks.cpp:
+	.text       start:0x000D2958 end:0x000D2B78
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000D2B78 end:0x000D2CB0
 
