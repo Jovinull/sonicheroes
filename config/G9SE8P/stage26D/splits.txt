@@ -643,6 +643,9 @@ rel/bobcontainer_disp.cpp:
 rel/bobcontainer_dtor.cpp:
 	.text       start:0x0007F7A8 end:0x0007F88C
 
+rel/bobcontainer_edit.cpp:
+	.text       start:0x0007F990 end:0x0007F9E0
+
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x0007FB88 end:0x0007FBAC
 
