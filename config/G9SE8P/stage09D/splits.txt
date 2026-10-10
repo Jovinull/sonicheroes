@@ -700,6 +700,9 @@ rel/floatj_register.cpp:
 	.text       start:0x00073354 end:0x00073400
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/froggreen_create.cpp:
+	.text       start:0x00077134 end:0x0007717C
+
 rel/froggreen_register.cpp:
 	.text       start:0x0007717C end:0x0007722C
 	.ctors      start:0x000000D0 end:0x000000D4
