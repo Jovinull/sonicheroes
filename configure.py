@@ -3218,6 +3218,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pepe_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pepe_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
