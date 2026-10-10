@@ -713,6 +713,9 @@ rel/key_object_dtor.cpp:
 rel/key_object_ctor.cpp:
 	.text       start:0x00070850 end:0x00070A18
 
+rel/key_hooks.cpp:
+	.text       start:0x00070A18 end:0x00070A60
+
 rel/key_object_create.cpp:
 	.text       start:0x00070A60 end:0x00070C50
 

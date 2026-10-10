@@ -662,6 +662,9 @@ rel/key_object_dtor.cpp:
 rel/key_object_ctor.cpp:
 	.text       start:0x000709C0 end:0x00070B88
 
+rel/key_hooks.cpp:
+	.text       start:0x00070B88 end:0x00070BD0
+
 rel/key_object_create.cpp:
 	.text       start:0x00070BD0 end:0x00070DC0
 
