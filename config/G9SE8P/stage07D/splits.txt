@@ -1155,6 +1155,9 @@ rel/rino_col_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000EA690 end:0x000EA6CC
 
+rel/event_manager_dtor.cpp:
+	.text       start:0x000EDD08 end:0x000EDDAC
+
 rel/event_manager_init.cpp:
 	.text       start:0x000EE324 end:0x000EE4A8
 

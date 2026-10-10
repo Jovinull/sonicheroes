@@ -688,6 +688,9 @@ rel/s31bob_exec.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x00078E3C end:0x00078E78
 
+rel/event_manager_dtor.cpp:
+	.text       start:0x0007C4B4 end:0x0007C558
+
 rel/event_manager_init.cpp:
 	.text       start:0x0007CAD0 end:0x0007CC54
 

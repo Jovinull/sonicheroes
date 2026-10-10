@@ -702,6 +702,9 @@ rel/stg27_obj_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x0007B988 end:0x0007B9C4
 
+rel/event_manager_dtor.cpp:
+	.text       start:0x0007F000 end:0x0007F0A4
+
 rel/event_manager_init.cpp:
 	.text       start:0x0007F61C end:0x0007F7A0
 

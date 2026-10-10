@@ -919,6 +919,9 @@ rel/e_s12bone_stage11.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000CEBD4 end:0x000CEC10
 
+rel/event_manager_dtor.cpp:
+	.text       start:0x000D224C end:0x000D22F0
+
 rel/event_manager_init.cpp:
 	.text       start:0x000D2868 end:0x000D29EC
 

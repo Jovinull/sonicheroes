@@ -701,6 +701,9 @@ rel/stg28_obj_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x0007CE20 end:0x0007CE5C
 
+rel/event_manager_dtor.cpp:
+	.text       start:0x00080498 end:0x0008053C
+
 rel/event_manager_init.cpp:
 	.text       start:0x00080AB4 end:0x00080C38
 
