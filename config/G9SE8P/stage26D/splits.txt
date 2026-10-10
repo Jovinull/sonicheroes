@@ -835,6 +835,9 @@ rel/flyer_register.cpp:
 rel/flyer_collision_tdisp.cpp:
 	.text       start:0x000B1AC0 end:0x000B1AC8
 
+rel/flyer_collision_parameter.cpp:
+	.text       start:0x000B1C04 end:0x000B1CF4
+
 rel/flyer_collision_dtor.cpp:
 	.text       start:0x000B1CF4 end:0x000B1D8C
 
