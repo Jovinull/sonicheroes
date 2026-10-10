@@ -168,6 +168,9 @@ rel/ring_register.cpp:
 	.text       start:0x0000BD3C end:0x0000BE98
 	.ctors      start:0x00000020 end:0x00000024
 
+rel/jump_panel_hooks.cpp:
+	.text       start:0x0000CC08 end:0x0000CCDC
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB8 end:0x0000D060
 	.ctors      start:0x00000024 end:0x00000028
