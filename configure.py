@@ -3078,6 +3078,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/fan_object_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/fan_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
