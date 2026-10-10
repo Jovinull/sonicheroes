@@ -276,6 +276,9 @@ rel/unbreakable_container_exec.cpp:
 rel/unbreakable_container_dtor.cpp:
 	.text       start:0x00014948 end:0x000149F8
 
+rel/unbreakable_container_ctor.cpp:
+	.text       start:0x000149F8 end:0x00014AEC
+
 rel/unbreakable_container_unload.cpp:
 	.text       start:0x00014AEC end:0x00014B00
 
