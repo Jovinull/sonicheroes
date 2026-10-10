@@ -2106,6 +2106,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/container_colli.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/container_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

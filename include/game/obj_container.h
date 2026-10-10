@@ -16,13 +16,13 @@ class TObjContainer : public TObject, public TObjSetObj, public C_COLLI
 public:
 	s32 material;     // 0xB8: 1 iron, 2 unbreakable
 	s32 unkBC;        // 0xBC
-	s8 unkC0;         // 0xC0
+	s8 kind;          // 0xC0: the placement's first parameter
 	u8 unkC1;         // 0xC1
 	u16 unkC2;        // 0xC2
 	RwV3d pos;        // 0xC4
 	sAngle ang;       // 0xD0
 	f32 unkDC;        // 0xDC
-	s32 unkE0;        // 0xE0
+	f32 height;       // 0xE0
 	RpClump* clump;   // 0xE4
 	void* pieces;     // 0xE8: the debris models the module loads
 	s32 unkEC;        // 0xEC
@@ -30,12 +30,18 @@ public:
 	s16 pieceKinds;   // 0xF4
 
 	TObjContainer(TObject* parent);
+	void SetOriginalCColli();
+	void SetFallingCColli();
 	void SetPosition();
+	void SetParameter();
 	// Exec first: it is the key function and no unit defines it yet, so the
 	// units that define the others do not emit the vtable.
 	virtual void Exec();
 	virtual ~TObjContainer();
 	virtual void Disp();
+	// The class's own virtuals, after the second base's slots (PS2 names).
+	virtual s32 CheckBreak();
+	virtual void BrokenSE();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
