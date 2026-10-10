@@ -5543,6 +5543,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/egghawk_colli_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/egghawk_colli_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
