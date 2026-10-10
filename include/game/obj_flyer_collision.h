@@ -53,6 +53,15 @@ public:
 	FLYER_COL_INLINE void SetColliParameter();
 	FLYER_COL_INLINE void SetParameter();
 	FLYER_COL_INLINE void ResetVariable();
+	s32 KillMyself();
+	s32 HitFlyer();
+	s32 HitPlayer();
+	s32 CheckCollisionPawn();
+	s32 CheckCollisionMgun();
+	s32 CheckCollisionMissile();
+	s32 CheckCollisionBomb();
+	s32 CheckCollisionEnd();
+	s32 CheckCollisionBegin();
 	s32 CheckCollision();
 	void OnClose();
 

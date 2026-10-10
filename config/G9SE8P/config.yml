@@ -329,6 +329,15 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - KillMyself__18TObjFlyerCollisionFv
+    - HitFlyer__18TObjFlyerCollisionFv
+    - HitPlayer__18TObjFlyerCollisionFv
+    - CheckCollisionPawn__18TObjFlyerCollisionFv
+    - CheckCollisionMgun__18TObjFlyerCollisionFv
+    - CheckCollisionMissile__18TObjFlyerCollisionFv
+    - CheckCollisionBomb__18TObjFlyerCollisionFv
+    - CheckCollisionEnd__18TObjFlyerCollisionFv
+    - CheckCollisionBegin__18TObjFlyerCollisionFv
     - __ct__18TObjFlyerCollisionFP7TObject
     - SetColliParameter__18TObjFlyerCollisionFv
     - SetParameter__18TObjFlyerCollisionFv
@@ -417,6 +426,15 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - KillMyself__18TObjFlyerCollisionFv
+    - HitFlyer__18TObjFlyerCollisionFv
+    - HitPlayer__18TObjFlyerCollisionFv
+    - CheckCollisionPawn__18TObjFlyerCollisionFv
+    - CheckCollisionMgun__18TObjFlyerCollisionFv
+    - CheckCollisionMissile__18TObjFlyerCollisionFv
+    - CheckCollisionBomb__18TObjFlyerCollisionFv
+    - CheckCollisionEnd__18TObjFlyerCollisionFv
+    - CheckCollisionBegin__18TObjFlyerCollisionFv
     - __ct__18TObjFlyerCollisionFP7TObject
     - SetColliParameter__18TObjFlyerCollisionFv
     - SetParameter__18TObjFlyerCollisionFv
@@ -518,6 +536,15 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - KillMyself__18TObjFlyerCollisionFv
+    - HitFlyer__18TObjFlyerCollisionFv
+    - HitPlayer__18TObjFlyerCollisionFv
+    - CheckCollisionPawn__18TObjFlyerCollisionFv
+    - CheckCollisionMgun__18TObjFlyerCollisionFv
+    - CheckCollisionMissile__18TObjFlyerCollisionFv
+    - CheckCollisionBomb__18TObjFlyerCollisionFv
+    - CheckCollisionEnd__18TObjFlyerCollisionFv
+    - CheckCollisionBegin__18TObjFlyerCollisionFv
     - __ct__18TObjFlyerCollisionFP7TObject
     - SetColliParameter__18TObjFlyerCollisionFv
     - SetParameter__18TObjFlyerCollisionFv
@@ -711,6 +738,15 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - KillMyself__18TObjFlyerCollisionFv
+    - HitFlyer__18TObjFlyerCollisionFv
+    - HitPlayer__18TObjFlyerCollisionFv
+    - CheckCollisionPawn__18TObjFlyerCollisionFv
+    - CheckCollisionMgun__18TObjFlyerCollisionFv
+    - CheckCollisionMissile__18TObjFlyerCollisionFv
+    - CheckCollisionBomb__18TObjFlyerCollisionFv
+    - CheckCollisionEnd__18TObjFlyerCollisionFv
+    - CheckCollisionBegin__18TObjFlyerCollisionFv
     - __ct__18TObjFlyerCollisionFP7TObject
     - SetColliParameter__18TObjFlyerCollisionFv
     - SetParameter__18TObjFlyerCollisionFv
@@ -788,6 +824,15 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - KillMyself__18TObjFlyerCollisionFv
+    - HitFlyer__18TObjFlyerCollisionFv
+    - HitPlayer__18TObjFlyerCollisionFv
+    - CheckCollisionPawn__18TObjFlyerCollisionFv
+    - CheckCollisionMgun__18TObjFlyerCollisionFv
+    - CheckCollisionMissile__18TObjFlyerCollisionFv
+    - CheckCollisionBomb__18TObjFlyerCollisionFv
+    - CheckCollisionEnd__18TObjFlyerCollisionFv
+    - CheckCollisionBegin__18TObjFlyerCollisionFv
     - __ct__18TObjFlyerCollisionFP7TObject
     - SetColliParameter__18TObjFlyerCollisionFv
     - SetParameter__18TObjFlyerCollisionFv
