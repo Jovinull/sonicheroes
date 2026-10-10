@@ -5973,6 +5973,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/wave_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/wave_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
