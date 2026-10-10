@@ -3013,6 +3013,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dispfruit_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dispfruit_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
