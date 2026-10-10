@@ -923,6 +923,9 @@ rel/s04d_floor_light_register.cpp:
 	.text       start:0x000A5BC4 end:0x000A5C6C
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/s04_big_shutter_create.cpp:
+	.text       start:0x000A6BD0 end:0x000A6C18
+
 rel/s04_big_shutter_register.cpp:
 	.text       start:0x000A6C18 end:0x000A6CB4
 	.ctors      start:0x00000144 end:0x00000148
