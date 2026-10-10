@@ -681,6 +681,9 @@ rel/stg27_obj_register.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x0007F61C end:0x0007F7A0
 
+rel/bobcontainer_dtor.cpp:
+	.text       start:0x00081EC0 end:0x00081FA4
+
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x000822A0 end:0x000822C4
 

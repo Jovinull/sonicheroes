@@ -2111,6 +2111,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobcontainer_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sample1_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

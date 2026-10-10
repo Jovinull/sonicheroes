@@ -898,6 +898,9 @@ rel/e_s12bone_stage11.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x000D2868 end:0x000D29EC
 
+rel/bobcontainer_dtor.cpp:
+	.text       start:0x000D510C end:0x000D51F0
+
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x000D54EC end:0x000D5510
 

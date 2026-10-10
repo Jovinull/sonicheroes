@@ -1134,6 +1134,9 @@ rel/rino_col_register.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x000EE324 end:0x000EE4A8
 
+rel/bobcontainer_dtor.cpp:
+	.text       start:0x000F0BC8 end:0x000F0CAC
+
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x000F0FA8 end:0x000F0FCC
 
