@@ -989,6 +989,9 @@ rel/event_manager_init.cpp:
 rel/event_script_tdisp.cpp:
 	.text       start:0x000C03DC end:0x000C03E0
 
+rel/bobcontainer_check_ground.cpp:
+	.text       start:0x000C0FD0 end:0x000C1054
+
 rel/bobcontainer_check_break.cpp:
 	.text       start:0x000C1128 end:0x000C13D4
 	.data       start:0x00018B60 end:0x00018BB8

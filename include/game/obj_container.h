@@ -63,7 +63,7 @@ public:
 	RwV3d pos;        // 0xC4
 	sAngle ang;       // 0xD0
 	f32 unkDC;        // 0xDC
-	s32 unkE0;        // 0xE0
+	f32 height;       // 0xE0
 	RpClump* clump;   // 0xE4
 	void* pieces;     // 0xE8
 	s32 unkEC;        // 0xEC
@@ -71,6 +71,8 @@ public:
 	s16 pieceKinds;   // 0xF4
 
 	TObjBobcontainer(TObject* parent);
+	s32 CheckGround();
+	s32 CheckPiled();
 	s32 CheckBreak_Sub(int type);
 	void SetPosition();
 	void SetParameter();
