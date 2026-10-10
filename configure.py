@@ -5438,6 +5438,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_breakruin_l_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_break_ruin_l_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
