@@ -738,6 +738,9 @@ rel/o_s01_iwamizu.cpp:
 	.data       start:0x0000A8F0 end:0x0000AA04
 	.bss        start:0x00001344 end:0x000013D0
 
+rel/kamome_create.cpp:
+	.text       start:0x000844D0 end:0x00084518
+
 rel/kamome_register.cpp:
 	.text       start:0x00084518 end:0x000845C4
 	.ctors      start:0x000000DC end:0x000000E0

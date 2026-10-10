@@ -5748,6 +5748,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/kamome_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/kamome_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
