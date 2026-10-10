@@ -59,6 +59,7 @@ public:
 #endif
 	virtual void Exec();
 	virtual void Disp();
+	virtual void BrokenSE();
 #ifndef UNBR_BOBCONT_DTOR_FIRST
 	virtual ~TObjBobcontUnbreakable();
 #endif

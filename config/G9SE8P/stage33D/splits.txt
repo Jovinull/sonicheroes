@@ -691,6 +691,9 @@ rel/bobcontainer_dtor.cpp:
 rel/bobcontainer_edit.cpp:
 	.text       start:0x0007F55C end:0x0007F5AC
 
+rel/unbr_bobcont_broken_se.cpp:
+	.text       start:0x0007F5B4 end:0x0007F5F4
+
 rel/unbr_bobcont_exec.cpp:
 	.text       start:0x0007F754 end:0x0007F778
 
