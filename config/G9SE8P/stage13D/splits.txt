@@ -367,6 +367,9 @@ rel/breakable_weight_register.cpp:
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CE0 end:0x00032EB8
 
+rel/pawn_create.cpp:
+	.text       start:0x00033C7C end:0x00033CC4
+
 rel/pawn_register.cpp:
 	.text       start:0x00033CC4 end:0x00033D6C
 	.ctors      start:0x00000060 end:0x00000064

@@ -5090,6 +5090,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
