@@ -2309,6 +2309,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hintring_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/hintring_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
