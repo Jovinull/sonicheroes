@@ -202,6 +202,10 @@ rel/reel_assets.cpp:
 rel/container_colli.cpp:
 	.text       start:0x00012220 end:0x00012280
 
+rel/container_check_break.cpp:
+	.text       start:0x000123E0 end:0x0001268C
+	.data       start:0x0000183C end:0x00001894
+
 rel/container_disp.cpp:
 	.text       start:0x00012794 end:0x00012798
 
