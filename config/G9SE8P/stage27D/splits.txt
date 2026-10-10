@@ -769,6 +769,9 @@ rel/bobcontainer_set_parameter.cpp:
 rel/bobcontainer_dtor.cpp:
 	.text       start:0x00081EC0 end:0x00081FA4
 
+rel/bobcontainer_ctor.cpp:
+	.text       start:0x00081FA4 end:0x000820A8
+
 rel/bobcontainer_edit.cpp:
 	.text       start:0x000820A8 end:0x000820F8
 
