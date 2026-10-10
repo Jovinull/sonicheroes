@@ -199,6 +199,9 @@ rel/reel_assets.cpp:
 	.text       start:0x00012128 end:0x00012218
 	.ctors      start:0x00000030 end:0x00000034
 
+rel/wood_container_exec.cpp:
+	.text       start:0x00013BA4 end:0x00013BC8
+
 rel/wood_container_create.cpp:
 	.text       start:0x00013FB0 end:0x000140F0
 
