@@ -2148,6 +2148,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/container_check_break_sub.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/container_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

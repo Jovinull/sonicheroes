@@ -32,6 +32,10 @@ public:
 	TObjContainer(TObject* parent);
 	void SetOriginalCColli();
 	void SetFallingCColli();
+	s32 CheckGround();
+	s32 CheckPiled();
+	s32 CheckBreak_Sub(int type);
+	void Broken(int breaker);
 	void SetPosition();
 	void SetParameter();
 	// Exec first: it is the key function and no unit defines it yet, so the
