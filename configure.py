@@ -4483,6 +4483,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s23_warppos_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s23_warppos_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

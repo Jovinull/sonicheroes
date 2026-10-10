@@ -1481,6 +1481,9 @@ rel/s23_warppos_dtor.cpp:
 rel/s23_warppos_ctor.cpp:
 	.text       start:0x000F52D0 end:0x000F53A4
 
+rel/s23_warppos_hooks.cpp:
+	.text       start:0x000F53A4 end:0x000F53B0
+
 rel/s23_warppos_create.cpp:
 	.text       start:0x000F53B0 end:0x000F54AC
 
