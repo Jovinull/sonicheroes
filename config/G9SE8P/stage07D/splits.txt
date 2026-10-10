@@ -1228,6 +1228,9 @@ rel/event_script_tdisp.cpp:
 rel/bobcontainer_check_ground.cpp:
 	.text       start:0x000EF3C8 end:0x000EF44C
 
+rel/bobcontainer_check_piled.cpp:
+	.text       start:0x000EF44C end:0x000EF520
+
 rel/bobcontainer_check_break.cpp:
 	.text       start:0x000EF520 end:0x000EF7CC
 	.data       start:0x00087F10 end:0x00087F68

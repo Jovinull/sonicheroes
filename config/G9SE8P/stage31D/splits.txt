@@ -733,6 +733,9 @@ rel/event_script_tdisp.cpp:
 rel/bobcontainer_check_ground.cpp:
 	.text       start:0x0007AEB0 end:0x0007AF34
 
+rel/bobcontainer_check_piled.cpp:
+	.text       start:0x0007AF34 end:0x0007B008
+
 rel/bobcontainer_check_break.cpp:
 	.text       start:0x0007B008 end:0x0007B2B4
 	.data       start:0x0000C178 end:0x0000C1D0
