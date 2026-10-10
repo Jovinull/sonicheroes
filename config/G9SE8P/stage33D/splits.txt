@@ -597,6 +597,9 @@ rel/bob_jump_collision_tdisp.cpp:
 rel/bob_jump_collision_exec.cpp:
 	.text       start:0x0006435C end:0x000644AC
 
+rel/bob_jump_collision_parameter.cpp:
+	.text       start:0x000647A4 end:0x00064860
+
 rel/bob_jump_collision_dtor.cpp:
 	.text       start:0x00064860 end:0x00064950
 
