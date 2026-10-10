@@ -265,6 +265,9 @@ rel/iron_container_ctor.cpp:
 rel/iron_container_unload.cpp:
 	.text       start:0x00014544 end:0x00014558
 
+rel/iron_container_load.cpp:
+	.text       start:0x00014558 end:0x000145D8
+
 rel/iron_container_create.cpp:
 	.text       start:0x000145D8 end:0x000146DC
 
