@@ -49,6 +49,16 @@ public:
 	COLLI_COMM_INLINE void SetColliParameter();
 	COLLI_COMM_INLINE void SetParameter();
 	COLLI_COMM_INLINE void ResetVariable();
+	s32 KillMyself();
+	s32 HitRinoLiner();
+	s32 HitPlayer();
+	s32 CheckCollisionSpeedCtrl();
+	s32 CheckCollisionChangePathSet();
+	s32 CheckCollisionChangePath();
+	s32 CheckCollisionAttackSet();
+	s32 CheckCollisionAttack();
+	s32 CheckCollisionEnd();
+	s32 CheckCollisionBegin();
 	s32 CheckCollision();
 	void OnClose();
 

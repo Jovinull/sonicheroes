@@ -2504,6 +2504,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/colli_communication_check.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/colli_communication_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
