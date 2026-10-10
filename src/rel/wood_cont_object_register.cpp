@@ -2,16 +2,17 @@
 
 // The record that registers WOOD. CONT. OBJECT with the editor.
 //
-// The claim is .text 0x140F4 to 0x1419C and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// The claim is .text 0x140F4 to 0x1419C and the .ctors word that names it. Only
+// the record is taken: the hooks it points at are rel/wood_container_hooks.cpp
+// (unload and load) and rel/wood_container_create.cpp (the factory), reached by
+// the names each module's symbols.txt gives them.
 //
 // The object's name is the display string the record itself installs, and each
-// hook is named from the entry offset it is stored into. The label array is
-// the one the three container classes share, so it keeps the shared name.
+// hook is named from the entry offset it is stored into. The label array is the
+// one the three container classes share, so it keeps the shared name.
 //
-// "s" is the field type string: one character per parameter the
-// editor shows, and the array beside it holds their labels.
+// "s" is the field type string: one character per parameter the editor shows,
+// and the array beside it holds their labels.
 //
 // Only stage13D carries this run.
 
