@@ -969,6 +969,9 @@ rel/bob_pre_jump_dtor.cpp:
 rel/bob_jump_collision_tdisp.cpp:
 	.text       start:0x00096C40 end:0x00096C44
 
+rel/bob_jump_collision_exec.cpp:
+	.text       start:0x00096C44 end:0x00096D94
+
 rel/bob_jump_collision_dtor.cpp:
 	.text       start:0x00097148 end:0x00097238
 

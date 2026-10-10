@@ -67,9 +67,14 @@ public:
 	TObjBobPreJumpCollision* preJump; // 0xF4
 
 	TObjBobJumpCollision(TObject* parent);
-	// Exec first, for the same reason.
-	virtual void Exec();
+	// The same: rel/bob_jump_collision_exec.cpp declares the destructor first.
+#ifdef BOB_JUMP_DTOR_FIRST
 	virtual ~TObjBobJumpCollision();
+#endif
+	virtual void Exec();
+#ifndef BOB_JUMP_DTOR_FIRST
+	virtual ~TObjBobJumpCollision();
+#endif
 	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
