@@ -4153,6 +4153,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_houdai_fumi_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_houdai_fumi_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

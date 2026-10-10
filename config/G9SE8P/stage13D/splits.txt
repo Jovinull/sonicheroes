@@ -785,6 +785,9 @@ rel/s13_houdai_l_register.cpp:
 	.text       start:0x00081700 end:0x000817A8
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/s13_houdai_fumi_create.cpp:
+	.text       start:0x00083218 end:0x00083260
+
 rel/s13_houdai_fumi_register.cpp:
 	.text       start:0x00083260 end:0x00083308
 	.ctors      start:0x000000F0 end:0x000000F4
