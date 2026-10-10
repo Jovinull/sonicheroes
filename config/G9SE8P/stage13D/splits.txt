@@ -952,6 +952,9 @@ rel/s14_wall_side_register.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x000DB4AC end:0x000DB630
 
+rel/bobcontainer_disp.cpp:
+	.text       start:0x000DCA5C end:0x000DCA60
+
 rel/bobcontainer_dtor.cpp:
 	.text       start:0x000DDD50 end:0x000DDE34
 

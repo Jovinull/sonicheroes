@@ -667,6 +667,9 @@ rel/s31bob_exec.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x0007CAD0 end:0x0007CC54
 
+rel/bobcontainer_disp.cpp:
+	.text       start:0x0007E080 end:0x0007E084
+
 rel/bobcontainer_dtor.cpp:
 	.text       start:0x0007F374 end:0x0007F458
 
