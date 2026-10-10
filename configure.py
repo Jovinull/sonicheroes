@@ -5475,6 +5475,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/reel_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/reel_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
