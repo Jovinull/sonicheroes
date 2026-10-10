@@ -914,6 +914,9 @@ rel/flower_register.cpp:
 	.text       start:0x000B6320 end:0x000B63D0
 	.ctors      start:0x00000134 end:0x00000138
 
+rel/chao_check_touched.cpp:
+	.text       start:0x000B659C end:0x000B6754
+
 rel/chao_pdisp.cpp:
 	.text       start:0x000B6754 end:0x000B679C
 

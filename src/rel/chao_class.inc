@@ -15,6 +15,8 @@ public:
 	u8 padE8[0x4];  // 0xE8
 	TObject* unkEC; // 0xEC: deleted with the chao
 
+	s32 CheckTouchedByLeader();
+
 	// Exec first: it is the key function and no unit defines it, so the units
 	// that define the others do not emit the vtable.
 	virtual void Exec();

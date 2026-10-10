@@ -907,6 +907,9 @@ rel/flower_register.cpp:
 	.text       start:0x000A0C58 end:0x000A0D08
 	.ctors      start:0x00000134 end:0x00000138
 
+rel/chao_check_touched.cpp:
+	.text       start:0x000A0ED4 end:0x000A108C
+
 rel/chao_pdisp.cpp:
 	.text       start:0x000A108C end:0x000A10D4
 
