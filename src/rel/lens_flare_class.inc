@@ -178,10 +178,17 @@ public:
 	RwV3d pos; // 0x38
 
 	TObjEFLensTmp(TObject* parent);
-	// EditOnChange first: it is the key function and no unit defines it yet
-	// (see rel/lens_flare_accessors.cpp), so no C++ unit here emits the vtable.
-	virtual void EditOnChange(SETDATA_PARAM*);
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable, which stays in the auto region. Overrides, whose order
+	// does not move their slots: rel/lens_flare_tmp_edit.cpp, which defines
+	// EditOnChange, declares Exec first; the others EditOnChange.
+#ifdef LENS_FLARE_TMP_EXEC_FIRST
 	virtual void Exec();
+#endif
+	virtual void EditOnChange(SETDATA_PARAM*);
+#ifndef LENS_FLARE_TMP_EXEC_FIRST
+	virtual void Exec();
+#endif
 	virtual ~TObjEFLensTmp();
 	virtual void TDisp();
 	virtual RwV3d* GetPosition();
