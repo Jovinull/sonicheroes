@@ -49,6 +49,7 @@ public:
 	COLLI_COMM_INLINE void SetColliParameter();
 	COLLI_COMM_INLINE void SetParameter();
 	COLLI_COMM_INLINE void ResetVariable();
+	s32 CheckCollision();
 	void OnClose();
 
 	static TObjColliCommunication* CreateInstance();
