@@ -955,6 +955,9 @@ rel/unbr_bobcont_exec.cpp:
 rel/unbr_bobcont_dtor.cpp:
 	.text       start:0x000CC0E4 end:0x000CC194
 
+rel/unbr_bobcont_ctor.cpp:
+	.text       start:0x000CC194 end:0x000CC2A4
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000CC4C4 end:0x000CC5FC
 

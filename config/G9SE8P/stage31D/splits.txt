@@ -746,6 +746,9 @@ rel/unbr_bobcont_exec.cpp:
 rel/unbr_bobcont_dtor.cpp:
 	.text       start:0x0007CAB4 end:0x0007CB64
 
+rel/unbr_bobcont_ctor.cpp:
+	.text       start:0x0007CB64 end:0x0007CC74
+
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x0007CE94 end:0x0007CFCC
 
