@@ -193,6 +193,9 @@ rel/reel_object_register.cpp:
 rel/wood_container_exec.cpp:
 	.text       start:0x00013BA8 end:0x00013BCC
 
+rel/wood_container_dtor.cpp:
+	.text       start:0x00013BCC end:0x00013C7C
+
 rel/wood_container_create.cpp:
 	.text       start:0x00013FB4 end:0x000140F4
 
