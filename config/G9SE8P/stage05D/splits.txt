@@ -1193,6 +1193,9 @@ rel/tenkyu_register.cpp:
 	.text       start:0x000C9CD4 end:0x000C9D74
 	.ctors      start:0x0000016C end:0x00000170
 
+rel/flyer_object_create.cpp:
+	.text       start:0x000CD750 end:0x000CD798
+
 rel/flyer_register.cpp:
 	.text       start:0x000CD798 end:0x000CD83C
 	.ctors      start:0x00000170 end:0x00000174

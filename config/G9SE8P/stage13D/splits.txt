@@ -950,6 +950,9 @@ rel/e2000_object_register.cpp:
 	.text       start:0x000B2370 end:0x000B246C
 	.ctors      start:0x0000015C end:0x00000160
 
+rel/flyer_object_create.cpp:
+	.text       start:0x000B8420 end:0x000B8468
+
 rel/flyer_register.cpp:
 	.text       start:0x000B8468 end:0x000B850C
 	.ctors      start:0x00000160 end:0x00000164

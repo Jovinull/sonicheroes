@@ -945,6 +945,9 @@ rel/searcher_register.cpp:
 	.text       start:0x000AA818 end:0x000AA918
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/flyer_object_create.cpp:
+	.text       start:0x000B0CE8 end:0x000B0D30
+
 rel/flyer_register.cpp:
 	.text       start:0x000B0D30 end:0x000B0DD4
 	.ctors      start:0x00000104 end:0x00000108

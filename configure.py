@@ -2374,6 +2374,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/flyer_object_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/flyer_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

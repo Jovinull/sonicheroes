@@ -1077,6 +1077,9 @@ rel/wall_register.cpp:
 	.text       start:0x000C13F8 end:0x000C14D8
 	.ctors      start:0x00000194 end:0x00000198
 
+rel/flyer_object_create.cpp:
+	.text       start:0x000C4EB4 end:0x000C4EFC
+
 rel/flyer_register.cpp:
 	.text       start:0x000C4EFC end:0x000C4FA0
 	.ctors      start:0x00000198 end:0x0000019C
