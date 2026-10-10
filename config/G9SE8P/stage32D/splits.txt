@@ -208,6 +208,9 @@ rel/container_disp.cpp:
 rel/container_broken_se.cpp:
 	.text       start:0x00013840 end:0x00013880
 
+rel/container_set_parameter.cpp:
+	.text       start:0x0001391C end:0x0001396C
+
 rel/container_dtor.cpp:
 	.text       start:0x0001396C end:0x00013A50
 

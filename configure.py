@@ -2117,6 +2117,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/container_set_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/container_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
