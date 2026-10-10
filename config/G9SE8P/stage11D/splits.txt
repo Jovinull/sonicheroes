@@ -701,6 +701,9 @@ rel/warp_edit.cpp:
 	.text       start:0x00077E90 end:0x00077EE0
 	.rodata     start:0x00001290 end:0x00001294
 
+rel/warp_hooks.cpp:
+	.text       start:0x00077EE0 end:0x00077EEC
+
 rel/warp_create.cpp:
 	.text       start:0x00077EEC end:0x00077FA8
 

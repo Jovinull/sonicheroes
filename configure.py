@@ -5258,6 +5258,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/warp_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/warp_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
