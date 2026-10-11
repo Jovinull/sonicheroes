@@ -5523,6 +5523,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/key_check_player.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/key_object_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

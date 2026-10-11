@@ -899,6 +899,9 @@ rel/key_search_cage.cpp:
 rel/key_disappear.cpp:
 	.text       start:0x0007ADD8 end:0x0007AF48
 
+rel/key_check_player.cpp:
+	.text       start:0x0007AF48 end:0x0007B104
+
 rel/key_object_dtor.cpp:
 	.text       start:0x0007BB64 end:0x0007BC6C
 

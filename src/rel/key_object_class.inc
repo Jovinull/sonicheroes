@@ -55,6 +55,7 @@ public:
 	// out-of-line copy the module also keeps.
 	void SearchCage();
 	void Disappear();
+	s32 CheckPlayer();
 
 	virtual void Exec();
 	virtual ~TObjKey();
