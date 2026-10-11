@@ -924,6 +924,9 @@ rel/stage_init.cpp:
 rel/event_script_tdisp.cpp:
 	.text       start:0x00080F64 end:0x00080F68
 
+rel/event_script_update_endian.cpp:
+	.text       start:0x000815DC end:0x00081690
+
 rel/event_script_set_info.cpp:
 	.text       start:0x00081690 end:0x0008171C
 

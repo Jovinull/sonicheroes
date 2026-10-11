@@ -22,17 +22,20 @@ public:
 	u8 unk000[0x1B4];
 	MESSAGE(char* name);
 	~MESSAGE();
+	void ReleaseFontFile();
 };
 
 // What the script shares with main: a header (the game's word at 0xC and the
-// manager's 0x140-byte table at 0x10) and, at 0xAD88, the light table main
-// copies into its CLIGHT.
+// manager's 0x140-byte table at 0x10), two tables of halfwords, a block of
+// words and, at 0xAD88, the light table main copies into its CLIGHT.
 struct EventScriptData {
-	u8 unk0000[0xC];            // 0x0000
-	s32 unk000C;                // 0x000C
-	u8 info[0x140];             // 0x0010
-	u8 unk0150[0xAD88 - 0x150]; // 0x0150
-	u8 light[0xB1A0 - 0xAD88];  // 0xAD88
+	u8 unk0000[0xC];           // 0x0000
+	s32 unk000C;               // 0x000C
+	u8 info[0x140];            // 0x0010
+	u8 halves[0x2000];         // 0x0150
+	u8 halves2[0x8C00];        // 0x2150
+	u8 words[0x38];            // 0xAD50
+	u8 light[0xB1A0 - 0xAD88]; // 0xAD88
 };
 
 class EventScript
@@ -41,13 +44,15 @@ public:
 	static EventScriptData scriptData;
 	static u8 saveLightBuffer[0x3E0];
 
-	u8 unk00[0x44];        // 0x00
-	MESSAGE* message;      // 0x44
-	s32 unk48;             // 0x48
-	u8 unk4C[0x94 - 0x4C]; // 0x4C
+	u8 unk00[0x44];     // 0x00
+	MESSAGE* message;   // 0x44
+	s32 unk48;          // 0x48
+	u8 unk4C[0x8];      // 0x4C
+	char bgmName[0x40]; // 0x54: the stream the event plays
 	EventScript();
 	~EventScript();
 	void ScriptTDisp();
+	void ReleaseScript();
 };
 
 extern "C" void* fn_80012994(u32 size);
