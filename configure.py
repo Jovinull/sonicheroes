@@ -6538,6 +6538,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scroll_itembaloon_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/itembaloon_object_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

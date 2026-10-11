@@ -474,6 +474,9 @@ rel/item_box_assets.cpp:
 	.text       start:0x0003B2B0 end:0x0003B3A0
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/scroll_itembaloon_dtor.cpp:
+	.text       start:0x0003BB98 end:0x0003BC58
+
 rel/scroll_itembaloon_create.cpp:
 	.text       start:0x0003BFC0 end:0x0003C008
 
