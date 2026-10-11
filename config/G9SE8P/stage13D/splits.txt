@@ -201,6 +201,9 @@ rel/dash_ring_assets.cpp:
 	.text       start:0x0000E330 end:0x0000E420
 	.ctors      start:0x00000028 end:0x0000002C
 
+rel/checkpoint_star_check.cpp:
+	.text       start:0x0000E428 end:0x0000E740
+
 rel/checkpoint_star_disp.cpp:
 	.text       start:0x0000E740 end:0x0000E940
 

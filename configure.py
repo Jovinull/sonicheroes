@@ -1876,6 +1876,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/checkpoint_star_check.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
