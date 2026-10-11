@@ -1841,6 +1841,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_breakruin_s_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
