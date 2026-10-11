@@ -156,11 +156,11 @@ void __dt__7TObjectFv(void*, s32);
 void Free__9THeapCtrlFPv(void*, void*);
 void __dl__FPv(void*);
 void* Malloc__9THeapCtrlFUi(void*, s32);
-void* fn_8_DCCAC(void*);
+void* bgmcolliEditOnChange(void*);
 
 void* fn_8_DCE30(void* object)
 {
-	return fn_8_DCCAC((u8*)object - 0x28);
+	return bgmcolliEditOnChange((u8*)object - 0x28);
 }
 
 void fn_8_DCE38(void) { }
