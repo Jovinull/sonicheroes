@@ -1686,6 +1686,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/no_input_collision_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
