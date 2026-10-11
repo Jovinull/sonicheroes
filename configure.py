@@ -2349,6 +2349,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scroll_ring_field_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
