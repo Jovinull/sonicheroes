@@ -672,6 +672,9 @@ rel/formgate_register.cpp:
 	.text       start:0x0004CF40 end:0x0004CFE8
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/no_input_collision_dtor.cpp:
+	.text       start:0x00058DE0 end:0x00058EB0
+
 rel/no_input_collision_hooks.cpp:
 	.text       start:0x00059434 end:0x00059484
 
