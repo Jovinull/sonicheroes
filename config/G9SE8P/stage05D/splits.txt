@@ -979,6 +979,10 @@ rel/bobin_dtor.cpp:
 rel/bobin_ctor.cpp:
 	.text       start:0x000886E4 end:0x00088814
 
+rel/bobin_edit.cpp:
+	.text       start:0x00088814 end:0x0008883C
+	.rodata     start:0x000014A8 end:0x000014AC
+
 rel/bobin_create.cpp:
 	.text       start:0x00088AFC end:0x00088C54
 
