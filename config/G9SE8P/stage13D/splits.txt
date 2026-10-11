@@ -404,6 +404,9 @@ rel/target_dtor.cpp:
 rel/target_ctor.cpp:
 	.text       start:0x00023CCC end:0x00023FE0
 
+rel/target_edit.cpp:
+	.text       start:0x00023FE0 end:0x00024088
+
 rel/target_hooks.cpp:
 	.text       start:0x00024088 end:0x000240D0
 
