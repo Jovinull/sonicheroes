@@ -2151,6 +2151,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/event_script_bgm_name.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/event_script_release.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

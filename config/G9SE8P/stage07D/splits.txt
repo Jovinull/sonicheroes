@@ -1526,6 +1526,9 @@ rel/event_script_pop_light.cpp:
 rel/event_script_push_light.cpp:
 	.text       start:0x000EE528 end:0x000EE560
 
+rel/event_script_bgm_name.cpp:
+	.text       start:0x000EE7AC end:0x000EE7D4
+
 rel/event_script_tdisp.cpp:
 	.text       start:0x000EE7D4 end:0x000EE7D8
 
