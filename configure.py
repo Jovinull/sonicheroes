@@ -1892,6 +1892,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/weight_move.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
