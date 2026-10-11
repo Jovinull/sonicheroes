@@ -1851,6 +1851,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hermitcrab_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
