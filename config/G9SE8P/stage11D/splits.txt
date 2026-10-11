@@ -981,6 +981,9 @@ rel/s12thunder_object_register.cpp:
 	.text       start:0x000909C4 end:0x00090B08
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/s11wall_edit.cpp:
+	.text       start:0x00091A70 end:0x00091AF4
+
 rel/s11wall_create.cpp:
 	.text       start:0x00091D6C end:0x00091DB4
 
