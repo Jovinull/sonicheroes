@@ -24,9 +24,23 @@ public:
 	~MESSAGE();
 };
 
+// What the script shares with main: a header (the game's word at 0xC and the
+// manager's 0x140-byte table at 0x10) and, at 0xAD88, the light table main
+// copies into its CLIGHT.
+struct EventScriptData {
+	u8 unk0000[0xC];            // 0x0000
+	s32 unk000C;                // 0x000C
+	u8 info[0x140];             // 0x0010
+	u8 unk0150[0xAD88 - 0x150]; // 0x0150
+	u8 light[0xB1A0 - 0xAD88];  // 0xAD88
+};
+
 class EventScript
 {
 public:
+	static EventScriptData scriptData;
+	static u8 saveLightBuffer[0x3E0];
+
 	u8 unk00[0x44];        // 0x00
 	MESSAGE* message;      // 0x44
 	s32 unk48;             // 0x48
@@ -110,10 +124,15 @@ public:
 #define EVENT_EXIST_INLINE inline
 #endif
 
+// The manager's own source defines Exist, and its functions inline it; the
+// script's source only sees the declaration and calls the out-of-line copy,
+// so the script's units define EVENT_SCRIPT_SOURCE first.
+#ifndef EVENT_SCRIPT_SOURCE
 EVENT_EXIST_INLINE s32 EventManager::Exist()
 {
 	return unk28 >= 0 ? TRUE : FALSE;
 }
+#endif
 
 extern "C" EventScript* lbl_8042C6E0;
 extern "C" EventManager* lbl_8042C6E4;

@@ -896,6 +896,9 @@ rel/stage_init.cpp:
 rel/event_script_tdisp.cpp:
 	.text       start:0x0007CF80 end:0x0007CF84
 
+rel/event_script_set_info.cpp:
+	.text       start:0x0007D6AC end:0x0007D738
+
 rel/event_script_dtor.cpp:
 	.text       start:0x0007DA48 end:0x0007DAB8
 
