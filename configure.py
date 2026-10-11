@@ -2201,6 +2201,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/event_manager_add_clump.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/event_manager_init.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

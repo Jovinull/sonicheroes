@@ -1424,6 +1424,9 @@ rel/event_manager_disp.cpp:
 rel/event_manager_remove_clump.cpp:
 	.text       start:0x000EADD8 end:0x000EAE20
 
+rel/event_manager_add_clump.cpp:
+	.text       start:0x000EAE20 end:0x000EAE78
+
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x000EC0A8 end:0x000EC0F0
 
