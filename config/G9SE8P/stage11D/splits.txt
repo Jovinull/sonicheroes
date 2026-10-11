@@ -1007,6 +1007,9 @@ rel/s12_door_range_colli_create.cpp:
 rel/s12_door_object_dtor.cpp:
 	.text       start:0x00094A38 end:0x00094B18
 
+rel/s12door_edit.cpp:
+	.text       start:0x00094F2C end:0x00094F7C
+
 rel/s12door_create.cpp:
 	.text       start:0x000950B4 end:0x000950FC
 
