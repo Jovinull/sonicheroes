@@ -812,6 +812,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - leafaaEditOnChange
     - hintcolliEditOnChange
     - objSecollisionEditOnChange
     - hintringEditOnChange
