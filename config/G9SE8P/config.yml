@@ -966,6 +966,7 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - s12wallEditOnChange
     - bgmcolliEditOnChange
     - s12doorEditOnChange
     - s11wallEditOnChange

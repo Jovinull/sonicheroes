@@ -991,6 +991,9 @@ rel/s11wall_object_register.cpp:
 	.text       start:0x00091DB4 end:0x00091E5C
 	.ctors      start:0x00000104 end:0x00000108
 
+rel/s12wall_edit.cpp:
+	.text       start:0x00092D5C end:0x00092D8C
+
 rel/s12wall_create.cpp:
 	.text       start:0x00093074 end:0x000930BC
 
