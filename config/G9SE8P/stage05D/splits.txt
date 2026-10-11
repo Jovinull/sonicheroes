@@ -1167,6 +1167,9 @@ rel/s06chip_object_register.cpp:
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000BB500 end:0x000BB530
 
+rel/event_manager_error_stop.cpp:
+	.text       start:0x000BB580 end:0x000BB584
+
 rel/event_manager_cut_extention.cpp:
 	.text       start:0x000BB584 end:0x000BB5C0
 

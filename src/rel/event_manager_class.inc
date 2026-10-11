@@ -165,6 +165,7 @@ public:
 	void changeBoundingSphere(struct RpClump* clump);
 	static RpAtomic* _bsCallback(RpAtomic* atomic, void* data);
 	void cutExtention(char* name, char* path);
+	void errorStop(s32 line, s32 code, char* message);
 	void setCheeseFrame();
 	s32 getPlayerNumber(s32 player, s32 unused);
 	struct RpClump* getPlayerBodyClump(s32 player);

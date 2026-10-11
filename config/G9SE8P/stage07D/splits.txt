@@ -1421,6 +1421,9 @@ rel/rino_col_register.cpp:
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000E98F8 end:0x000E9928
 
+rel/event_manager_error_stop.cpp:
+	.text       start:0x000E9978 end:0x000E997C
+
 rel/event_manager_cut_extention.cpp:
 	.text       start:0x000E997C end:0x000E99B8
 

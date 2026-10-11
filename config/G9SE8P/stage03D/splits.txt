@@ -1116,6 +1116,9 @@ rel/s04d_pipe_elev_register.cpp:
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000C4A10 end:0x000C4A40
 
+rel/event_manager_error_stop.cpp:
+	.text       start:0x000C4A90 end:0x000C4A94
+
 rel/event_manager_cut_extention.cpp:
 	.text       start:0x000C4A94 end:0x000C4AD0
 
