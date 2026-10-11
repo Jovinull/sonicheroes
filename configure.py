@@ -2306,6 +2306,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/event_manager_bounding_sphere.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/event_manager_init.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

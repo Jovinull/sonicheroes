@@ -162,6 +162,9 @@ public:
 	void connectCurrentMabuta(SceneMemPlayerObj* player, s32 mabuta);
 	s32 evPlayerNo2playerNo(s32 player);
 	void showHidePlayer(s32 player, s32 show);
+	void changeBoundingSphere(struct RpClump* clump);
+	static RpAtomic* _bsCallback(RpAtomic* atomic, void* data);
+	void cutExtention(char* name, char* path);
 	void setCheeseFrame();
 	s32 getPlayerNumber(s32 player, s32 unused);
 	struct RpClump* getPlayerBodyClump(s32 player);

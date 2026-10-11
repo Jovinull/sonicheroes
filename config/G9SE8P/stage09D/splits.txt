@@ -1191,6 +1191,9 @@ rel/turtle_register.cpp:
 	.text       start:0x000CD630 end:0x000CD710
 	.ctors      start:0x000001A0 end:0x000001A4
 
+rel/event_manager_bounding_sphere.cpp:
+	.text       start:0x000CD718 end:0x000CD748
+
 rel/event_manager_disp.cpp:
 	.text       start:0x000CE4B0 end:0x000CE4EC
 

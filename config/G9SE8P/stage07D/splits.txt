@@ -1418,6 +1418,9 @@ rel/rino_col_register.cpp:
 	.text       start:0x000E9848 end:0x000E98F0
 	.ctors      start:0x000001C0 end:0x000001C4
 
+rel/event_manager_bounding_sphere.cpp:
+	.text       start:0x000E98F8 end:0x000E9928
+
 rel/event_manager_disp.cpp:
 	.text       start:0x000EA690 end:0x000EA6CC
 

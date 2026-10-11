@@ -1055,6 +1055,9 @@ rel/s66_star_register.cpp:
 	.text       start:0x000CB010 end:0x000CB0BC
 	.ctors      start:0x00000164 end:0x00000168
 
+rel/event_manager_bounding_sphere.cpp:
+	.text       start:0x000CB0C4 end:0x000CB0F4
+
 rel/event_manager_disp.cpp:
 	.text       start:0x000CBE5C end:0x000CBE98
 
