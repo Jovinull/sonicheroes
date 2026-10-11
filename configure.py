@@ -6098,6 +6098,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hermitcrab_hierarchy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/chao_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

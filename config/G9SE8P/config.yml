@@ -157,6 +157,9 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - hermitcrabSetHierarchyForSkinAtomic__FP8RpAtomicPv
+    - hermitcrabGetHierarchy__FP7RpClump
+    - hermitcrabGetChildFrameHierarchy__FP7RwFramePv
     - ringObjectReset
     - scrollItembaloonDtor
     - __dt__12TEnemyGadgetFv
