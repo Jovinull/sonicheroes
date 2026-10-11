@@ -420,11 +420,8 @@ rel/breakable_weight_register.cpp:
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CE0 end:0x00032EB8
 
-rel/pawn_create.cpp:
-	.text       start:0x00033C7C end:0x00033CC4
-
-rel/pawn_register.cpp:
-	.text       start:0x00033CC4 end:0x00033D6C
+rel/pawn_assets.cpp:
+	.text       start:0x00033C7C end:0x00033D6C
 	.ctors      start:0x00000060 end:0x00000064
 
 rel/item_box_search_cage.cpp:
@@ -436,11 +433,8 @@ rel/item_box_dtor.cpp:
 rel/item_box_ctor.cpp:
 	.text       start:0x0003AC80 end:0x0003AF10
 
-rel/item_box_create_rev2.cpp:
-	.text       start:0x0003B2B0 end:0x0003B2F8
-
-rel/item_box_register.cpp:
-	.text       start:0x0003B2F8 end:0x0003B3A0
+rel/item_box_assets.cpp:
+	.text       start:0x0003B2B0 end:0x0003B3A0
 	.ctors      start:0x00000064 end:0x00000068
 
 rel/scroll_itembaloon_create.cpp:
@@ -474,11 +468,8 @@ rel/pole_dtor.cpp:
 rel/pole_hooks.cpp:
 	.text       start:0x0003FF10 end:0x0003FF58
 
-rel/pole_create_rev2.cpp:
-	.text       start:0x0003FF58 end:0x0003FFA0
-
-rel/pole_register.cpp:
-	.text       start:0x0003FFA0 end:0x00040048
+rel/pole_assets.cpp:
+	.text       start:0x0003FF58 end:0x00040048
 	.ctors      start:0x0000006C end:0x00000070
 
 rel/ef_rain_stage11.cpp:
@@ -500,21 +491,15 @@ rel/case_obj_dtor.cpp:
 rel/case_obj_lifecycle_stage11.cpp:
 	.text       start:0x00041018 end:0x00041594
 
-rel/case_obj_create_rev2.cpp:
-	.text       start:0x00041594 end:0x000415DC
-
-rel/case_obj_register.cpp:
-	.text       start:0x000415DC end:0x00041684
+rel/case_assets.cpp:
+	.text       start:0x00041594 end:0x00041684
 	.ctors      start:0x00000074 end:0x00000078
 
 rel/roll_door_lifecycle_stage11.cpp:
 	.text       start:0x00043A24 end:0x00044100
 
-rel/roll_door_create_rev2.cpp:
-	.text       start:0x00044100 end:0x00044148
-
-rel/roll_door_register.cpp:
-	.text       start:0x00044148 end:0x000441F0
+rel/roll_door_assets.cpp:
+	.text       start:0x00044100 end:0x000441F0
 	.ctors      start:0x00000078 end:0x0000007C
 
 rel/lens_flare_nearest.cpp:
@@ -584,11 +569,8 @@ rel/signal_dtor.cpp:
 rel/signal_lifecycle_stage11.cpp:
 	.text       start:0x00046560 end:0x00046B0C
 
-rel/signal_create_rev2.cpp:
-	.text       start:0x00046B0C end:0x00046B54
-
-rel/signal_register.cpp:
-	.text       start:0x00046B54 end:0x00046BFC
+rel/signal_assets.cpp:
+	.text       start:0x00046B0C end:0x00046BFC
 	.ctors      start:0x00000080 end:0x00000084
 
 rel/propeller_create.cpp:

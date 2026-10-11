@@ -7,9 +7,10 @@
 // 0x390 bytes and hand them to the constructor, then fill a 0x2C record in .bss
 // with the display name, the three hooks and the editor's field layout.
 //
-// The run is the same in nine of the fourteen stage modules. stage13D, 26D, 27D
-// and 28D are built from a different revision this far in, and stage40D
-// everywhere, so those five are left out.
+// The run is the same in eleven of the fourteen stage modules (stage13D and
+// stage26D name their symbols differently but carry the same code). stage27D
+// and stage28D are built from a different revision this far in, and stage40D
+// everywhere, so those three are left out.
 //
 // This one takes its owner from lbl_8042C10C rather than the lbl_8042C110 the
 // other factories use.

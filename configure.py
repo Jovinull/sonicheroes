@@ -2968,36 +2968,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/roll_door_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/pole_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/case_obj_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/item_box_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/signal_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/pawn_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/stg27_obj_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5615,22 +5585,12 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/pawn_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/pawn_assets.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
                 "rel/shield_splinter_dtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/item_box_create_rev2.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5645,17 +5605,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/pole_create_rev2.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/pole_assets.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/case_obj_create_rev2.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5665,17 +5615,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/roll_door_create_rev2.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/roll_door_assets.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/signal_create_rev2.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

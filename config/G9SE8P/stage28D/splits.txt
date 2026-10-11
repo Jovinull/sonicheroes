@@ -447,11 +447,8 @@ rel/item_box_dtor.cpp:
 rel/item_box_ctor.cpp:
 	.text       start:0x00033864 end:0x00033AF4
 
-rel/item_box_create_rev2.cpp:
-	.text       start:0x00033E94 end:0x00033EDC
-
-rel/item_box_register.cpp:
-	.text       start:0x00033EDC end:0x00033F84
+rel/item_box_assets.cpp:
+	.text       start:0x00033E94 end:0x00033F84
 	.ctors      start:0x00000060 end:0x00000064
 
 rel/scroll_itembaloon_create.cpp:
@@ -485,11 +482,8 @@ rel/pole_dtor.cpp:
 rel/pole_hooks.cpp:
 	.text       start:0x00038AF4 end:0x00038B3C
 
-rel/pole_create_rev2.cpp:
-	.text       start:0x00038B3C end:0x00038B84
-
-rel/pole_register.cpp:
-	.text       start:0x00038B84 end:0x00038C2C
+rel/pole_assets.cpp:
+	.text       start:0x00038B3C end:0x00038C2C
 	.ctors      start:0x00000068 end:0x0000006C
 
 rel/ef_rain_stage11.cpp:
@@ -511,11 +505,8 @@ rel/case_obj_dtor.cpp:
 rel/case_obj_lifecycle_stage11.cpp:
 	.text       start:0x00039BFC end:0x0003A178
 
-rel/case_obj_create_rev2.cpp:
-	.text       start:0x0003A178 end:0x0003A1C0
-
-rel/case_obj_register.cpp:
-	.text       start:0x0003A1C0 end:0x0003A268
+rel/case_assets.cpp:
+	.text       start:0x0003A178 end:0x0003A268
 	.ctors      start:0x00000070 end:0x00000074
 
 rel/roll_door_dtor.cpp:
@@ -524,11 +515,8 @@ rel/roll_door_dtor.cpp:
 rel/roll_door_lifecycle_stage11.cpp:
 	.text       start:0x0003C604 end:0x0003CCE0
 
-rel/roll_door_create_rev2.cpp:
-	.text       start:0x0003CCE0 end:0x0003CD28
-
-rel/roll_door_register.cpp:
-	.text       start:0x0003CD28 end:0x0003CDD0
+rel/roll_door_assets.cpp:
+	.text       start:0x0003CCE0 end:0x0003CDD0
 	.ctors      start:0x00000074 end:0x00000078
 
 rel/lens_flare_nearest.cpp:
@@ -598,11 +586,8 @@ rel/signal_dtor.cpp:
 rel/signal_lifecycle_stage11.cpp:
 	.text       start:0x0003F140 end:0x0003F6EC
 
-rel/signal_create_rev2.cpp:
-	.text       start:0x0003F6EC end:0x0003F734
-
-rel/signal_register.cpp:
-	.text       start:0x0003F734 end:0x0003F7DC
+rel/signal_assets.cpp:
+	.text       start:0x0003F6EC end:0x0003F7DC
 	.ctors      start:0x0000007C end:0x00000080
 
 rel/propeller_create.cpp:
