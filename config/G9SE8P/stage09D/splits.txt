@@ -1200,6 +1200,9 @@ rel/event_manager_texdict.cpp:
 rel/event_manager_rewind.cpp:
 	.text       start:0x000CFF94 end:0x000D00B8
 
+rel/event_manager_pause.cpp:
+	.text       start:0x000D00B8 end:0x000D00D0
+
 rel/event_manager_exist.cpp:
 	.text       start:0x000D1A6C end:0x000D1A7C
 
