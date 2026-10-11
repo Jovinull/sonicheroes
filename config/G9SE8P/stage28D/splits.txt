@@ -927,6 +927,9 @@ rel/event_script_tdisp.cpp:
 rel/event_script_set_info.cpp:
 	.text       start:0x00081690 end:0x0008171C
 
+rel/event_script_address.cpp:
+	.text       start:0x0008171C end:0x00081778
+
 rel/event_script_dtor.cpp:
 	.text       start:0x00081A2C end:0x00081A9C
 
