@@ -6123,6 +6123,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hermitcrab_check_touched.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/chao_check_touched.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
