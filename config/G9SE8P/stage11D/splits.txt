@@ -1224,6 +1224,9 @@ rel/e_s12bone_stage11.cpp:
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000CDE3C end:0x000CDE6C
 
+rel/event_manager_bs_callback.cpp:
+	.text       start:0x000CDE6C end:0x000CDEBC
+
 rel/event_manager_error_stop.cpp:
 	.text       start:0x000CDEBC end:0x000CDEC0
 

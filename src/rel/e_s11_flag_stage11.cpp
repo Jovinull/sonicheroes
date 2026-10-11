@@ -192,7 +192,7 @@ extern const f32 eventPlayerNumbers[12]    = { 0.0f, 1.401298464324817e-45f, 2.8
 	9.80908925027372e-45f, 1.1210387714598537e-44f, 1.2611686178923354e-44f, 1.401298464324817e-44f,
 	1.5414283107572988e-44f };
 extern const f32 lbl_8_rodata_2040[3]      = { 1.0f, 0.009999999776482582f, 1.0f };
-extern const f32 lbl_8_rodata_204C[1]      = { 100.0f };
+extern const f32 eventSphereRadius[1]      = { 100.0f };
 extern const f32 lbl_8_rodata_2050[1]      = { 1.0f };
 extern const f32 lbl_8_rodata_2054[1]      = { 0.016666699200868607f };
 extern const f64 lbl_8_rodata_2058[1]      = { 4503601774854144.0 };

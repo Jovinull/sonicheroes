@@ -1186,6 +1186,9 @@ rel/s66_star_register.cpp:
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000CB0C4 end:0x000CB0F4
 
+rel/event_manager_bs_callback.cpp:
+	.text       start:0x000CB0F4 end:0x000CB144
+
 rel/event_manager_error_stop.cpp:
 	.text       start:0x000CB144 end:0x000CB148
 

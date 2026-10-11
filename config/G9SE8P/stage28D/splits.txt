@@ -983,6 +983,9 @@ rel/stg28_obj_register.cpp:
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x0007C088 end:0x0007C0B8
 
+rel/event_manager_bs_callback.cpp:
+	.text       start:0x0007C0B8 end:0x0007C108
+
 rel/event_manager_error_stop.cpp:
 	.text       start:0x0007C108 end:0x0007C10C
 
