@@ -1126,6 +1126,9 @@ rel/bobcontainer_disp.cpp:
 rel/bobcontainer_broken_se.cpp:
 	.text       start:0x0007F1B8 end:0x0007F1F8
 
+rel/bobcontainer_set_position.cpp:
+	.text       start:0x0007F1F8 end:0x0007F324
+
 rel/bobcontainer_set_parameter.cpp:
 	.text       start:0x0007F324 end:0x0007F374
 
