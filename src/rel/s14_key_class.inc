@@ -62,6 +62,7 @@ public:
 	// The constructor inlines it; rel/s14_key_search_cage.cpp emits the
 	// out-of-line copy the module also keeps.
 	void SearchCage();
+	void Disappear();
 	s32 CheckTouchedByLeader();
 
 	virtual void Exec();

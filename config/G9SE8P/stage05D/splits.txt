@@ -1255,6 +1255,9 @@ rel/turtle_register.cpp:
 rel/s06_chip_search_cage.cpp:
 	.text       start:0x000B9B18 end:0x000B9C08
 
+rel/s06_chip_disappear.cpp:
+	.text       start:0x000B9C08 end:0x000B9C78
+
 rel/s06_chip_check_touched.cpp:
 	.text       start:0x000B9C78 end:0x000B9E30
 
