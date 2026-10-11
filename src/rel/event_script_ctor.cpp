@@ -10,7 +10,6 @@
 extern "C" void* lbl_803E7F88[];
 extern "C" u8* lbl_8042C180;
 
-void UpdateEndianandOthers();
 void ScriptDataSetInfo();
 void* GetScriptAddress();
 

@@ -1524,6 +1524,9 @@ rel/event_script_address.cpp:
 rel/event_script_release.cpp:
 	.text       start:0x000EEFE8 end:0x000EF090
 
+rel/event_script_load.cpp:
+	.text       start:0x000EF090 end:0x000EF29C
+
 rel/event_script_dtor.cpp:
 	.text       start:0x000EF29C end:0x000EF30C
 

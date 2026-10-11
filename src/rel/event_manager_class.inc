@@ -53,6 +53,7 @@ public:
 	u8 unk000[0x1B4];
 	MESSAGE(char* name);
 	~MESSAGE();
+	s32 LoadFontFile(char* name);
 	void ReleaseFontFile();
 };
 
@@ -78,7 +79,7 @@ public:
 	s32 unk00;          // 0x00
 	u8 unk04[0x38];     // 0x04
 	s32 unk3C;          // 0x3C
-	u8 unk40[4];        // 0x40
+	s32 voiceOffset;    // 0x40: the event's first voice
 	MESSAGE* message;   // 0x44
 	s32 unk48;          // 0x48
 	u8 unk4C[4];        // 0x4C
@@ -89,7 +90,7 @@ public:
 	void ScriptTDisp();
 	void ReleaseScript();
 	void ScriptInit();
-	void LoadScript(s32 event);
+	s32 LoadScript(s32 event);
 };
 
 extern "C" void* fn_80012994(u32 size);
@@ -165,6 +166,31 @@ public:
 // macro empty to emit that member's out-of-line copy, which has no caller.
 extern "C" EventScript* lbl_8042C6E0;
 extern "C" EventManager* lbl_8042C6E4;
+
+void ConvertU32Array(u8* data, s32 size);
+void ConvertU16Array(u8* data, s32 size);
+
+// It hands the script the manager's file table and swaps the script data's
+// byte order. Only the units that define EVENT_UPDATE_ENDIAN_INLINE see the
+// body: rel/event_script_load.cpp (inline) and rel/event_script_update_endian.cpp
+// (empty, for the out-of-line copy); EventScript's constructor takes its address
+// and must not emit a copy of its own.
+s32 UpdateEndianandOthers();
+
+#ifdef EVENT_UPDATE_ENDIAN_INLINE
+EVENT_UPDATE_ENDIAN_INLINE s32 UpdateEndianandOthers()
+{
+	if (lbl_8042C6E0 != NULL) {
+		memcpy(EventScript::scriptData.info, lbl_8042C6E4->objects, 0x140);
+		ConvertU32Array((u8*)&EventScript::scriptData, 0x150);
+		ConvertU16Array(EventScript::scriptData.halves, 0x2000);
+		ConvertU16Array(EventScript::scriptData.halves2, 0x8C00);
+		ConvertU32Array(EventScript::scriptData.words, 0x38);
+		return 1;
+	}
+	return 0;
+}
+#endif
 
 #ifndef EVENT_INIT_INLINE
 #define EVENT_INIT_INLINE inline
