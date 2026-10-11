@@ -108,7 +108,9 @@ public:
 	EventSlot slots[14];     // 0x48
 	EventEntry entries[16];  // 0x940
 	s32 unkE40;              // 0xE40
-	u8 unkE44[0x1C];         // 0xE44
+	u8 unkE44[0xC];          // 0xE44
+	s32 unkE50;              // 0xE50
+	u8 unkE54[0xC];          // 0xE54
 	void* buffer;            // 0xE60
 	ONEFILE* file;           // 0xE64
 	EventObject objects[16]; // 0xE68
@@ -121,6 +123,7 @@ public:
 	s32 releaseScene(s32* scenes);
 	s32 checkFileKind(char* name, s32* kind);
 	s32 releaseSceneAll();
+	s32 ReleaseEvent();
 	void releaseSceneExtObjs();
 	s32 loadSceneFromAram(s32 object);
 	s32 loadEventToAMem();
@@ -225,10 +228,10 @@ extern "C" void fn_8015BB08(void* world, struct RpClump* clump);
 extern "C" void fn_8020D02C(void* interpolator, f32 time);
 extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 
-// The manager's own functions inline these four; rel/event_manager_remove_clump.cpp,
-// rel/event_manager_add_clump.cpp, rel/event_manager_player_no.cpp and
-// rel/event_manager_set_animation.cpp define their macro empty to emit the
-// out-of-line copy.
+// The manager's own functions inline these five; rel/event_manager_remove_clump.cpp,
+// rel/event_manager_add_clump.cpp, rel/event_manager_player_no.cpp,
+// rel/event_manager_release_all.cpp and rel/event_manager_set_animation.cpp
+// define their macro empty to emit the out-of-line copy.
 #ifndef EVENT_REMOVE_CLUMP_INLINE
 #define EVENT_REMOVE_CLUMP_INLINE inline
 #endif
@@ -237,6 +240,9 @@ extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 #endif
 #ifndef EVENT_PLAYER_NO_INLINE
 #define EVENT_PLAYER_NO_INLINE inline
+#endif
+#ifndef EVENT_RELEASE_ALL_INLINE
+#define EVENT_RELEASE_ALL_INLINE inline
 #endif
 #ifndef EVENT_SET_ANIMATION_INLINE
 #define EVENT_SET_ANIMATION_INLINE inline
@@ -270,6 +276,28 @@ EVENT_PLAYER_NO_INLINE s32 EventManager::evPlayerNo2playerNo(s32 player)
 		return -1;
 	}
 	return eventPlayerNumbers[player];
+}
+
+extern "C" void fn_800D075C(void* aram);
+extern "C" void fn_801A46D0(void* dictionary);
+
+// It releases every scene, frees the event's files kept in ARAM and destroys
+// the event's texture dictionary, answering what releaseScene answered.
+EVENT_RELEASE_ALL_INLINE s32 EventManager::releaseSceneAll()
+{
+	s32 result = releaseScene(NULL);
+
+	unk3C = 0;
+	for (int i = 0; i < 16; i++) {
+		if (objects[i].aram != NULL) {
+			fn_800D075C(objects[i].aram);
+			objects[i].aram = NULL;
+		}
+	}
+	if (texDict != NULL) {
+		fn_801A46D0(texDict);
+	}
+	return result;
 }
 
 EVENT_SET_ANIMATION_INLINE void EventManager::setAnimation(RpHAnimHierarchy* hierarchy, f32 time)
