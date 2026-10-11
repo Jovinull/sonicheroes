@@ -8,8 +8,10 @@
 
 struct EventSlot {
 	u8 unk00[0x44];
-	s32 id; // 0x44
-	u8 unk48[0xA4 - 0x48];
+	s32 id;                // 0x44
+	u8 unk48[0x4];         // 0x48
+	struct RpClump* clump; // 0x4C
+	u8 unk50[0xA4 - 0x50];
 };
 
 struct EventEntry {
@@ -136,6 +138,7 @@ public:
 	void connectCurrentMabuta(SceneMemPlayerObj* player, s32 mabuta);
 	s32 evPlayerNo2playerNo(s32 player);
 	s32 getPlayerNumber(s32 player, s32 unused);
+	struct RpClump* getPlayerBodyClump(s32 player);
 	void setDAnimation(struct RpDMorphAnimation* animation, struct RpAtomic* atomic, f32 time);
 	void setAnimation(struct RpHAnimHierarchy* hierarchy, f32 time);
 	void loadScene(s32 cut);
@@ -256,10 +259,11 @@ extern "C" void fn_8015BB08(void* world, struct RpClump* clump);
 extern "C" void fn_8020D02C(void* interpolator, f32 time);
 extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 
-// The manager's own functions inline these five; rel/event_manager_remove_clump.cpp,
+// The manager's own functions inline these six; rel/event_manager_remove_clump.cpp,
 // rel/event_manager_add_clump.cpp, rel/event_manager_player_no.cpp,
-// rel/event_manager_release_all.cpp and rel/event_manager_set_animation.cpp
-// define their macro empty to emit the out-of-line copy.
+// rel/event_manager_player_number.cpp, rel/event_manager_release_all.cpp and
+// rel/event_manager_set_animation.cpp define their macro empty to emit the
+// out-of-line copy.
 #ifndef EVENT_REMOVE_CLUMP_INLINE
 #define EVENT_REMOVE_CLUMP_INLINE inline
 #endif
@@ -271,6 +275,9 @@ extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 #endif
 #ifndef EVENT_RELEASE_ALL_INLINE
 #define EVENT_RELEASE_ALL_INLINE inline
+#endif
+#ifndef EVENT_PLAYER_NUMBER_INLINE
+#define EVENT_PLAYER_NUMBER_INLINE inline
 #endif
 #ifndef EVENT_SET_ANIMATION_INLINE
 #define EVENT_SET_ANIMATION_INLINE inline
@@ -326,6 +333,34 @@ EVENT_RELEASE_ALL_INLINE s32 EventManager::releaseSceneAll()
 		fn_801A46D0(texDict);
 	}
 	return result;
+}
+
+// A player of the game, as the event sees it.
+struct EventPlayerWork {
+	s8 unk00;              // 0x000
+	s8 characterNo;        // 0x001
+	u8 unk002[0x17E];      // 0x002
+	struct RpClump* clump; // 0x180: the body's model
+};
+
+extern "C" EventPlayerWork* lbl_802AD0D0[8];
+
+// The index of the game's player that plays the event's player number, or -1.
+EVENT_PLAYER_NUMBER_INLINE s32 EventManager::getPlayerNumber(s32 player, s32 unused)
+{
+	s32 character = evPlayerNo2playerNo(player);
+	if (character < 0) {
+		return -1;
+	}
+	for (s32 i = 0; i < 8; i++) {
+		if (lbl_802AD0D0[i] == NULL) {
+			return -1;
+		}
+		if (character == lbl_802AD0D0[i]->characterNo) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 EVENT_SET_ANIMATION_INLINE void EventManager::setAnimation(RpHAnimHierarchy* hierarchy, f32 time)

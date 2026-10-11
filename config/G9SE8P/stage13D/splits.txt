@@ -1229,6 +1229,9 @@ rel/event_manager_remove_clump.cpp:
 rel/event_manager_add_clump.cpp:
 	.text       start:0x000D7FA8 end:0x000D8000
 
+rel/event_manager_body_clump.cpp:
+	.text       start:0x000D82E0 end:0x000D8448
+
 rel/event_manager_mabuta.cpp:
 	.text       start:0x000D8448 end:0x000D850C
 
