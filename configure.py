@@ -1831,6 +1831,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_break_gareki_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
