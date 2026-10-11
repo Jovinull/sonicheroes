@@ -1170,6 +1170,9 @@ rel/event_manager_disp.cpp:
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x000BDCB0 end:0x000BDCF8
 
+rel/event_manager_set_animation.cpp:
+	.text       start:0x000BDCF8 end:0x000BDD30
+
 rel/event_manager_texdict.cpp:
 	.text       start:0x000BDD30 end:0x000BDD7C
 

@@ -1061,6 +1061,9 @@ rel/event_manager_disp.cpp:
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x000CD874 end:0x000CD8BC
 
+rel/event_manager_set_animation.cpp:
+	.text       start:0x000CD8BC end:0x000CD8F4
+
 rel/event_manager_texdict.cpp:
 	.text       start:0x000CD8F4 end:0x000CD940
 

@@ -850,6 +850,9 @@ rel/event_manager_disp.cpp:
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x00077B90 end:0x00077BD8
 
+rel/event_manager_set_animation.cpp:
+	.text       start:0x00077BD8 end:0x00077C10
+
 rel/event_manager_texdict.cpp:
 	.text       start:0x00077C10 end:0x00077C5C
 
