@@ -59,27 +59,35 @@ public:
 
 	TObjS06Chip(TObject* parent);
 
-	void SearchCage()
-	{
-		if (ObjParam->originalWork == NULL) {
-			SETOBJ_PARAM* node = lbl_8042C298->lists[ObjParam->setData.communicateId];
-			f32 range          = s06ChipCageRange[0];
-			for (; node != NULL; node = node->next) {
-				if (node->setData.uniqueId == 0x24
-				    && Distance2P2P(&ObjParam->setData.pos, &node->setData.pos) < range) {
-					ObjParam->originalWork                       = new KeyCage;
-					((KeyCage*)ObjParam->originalWork)->magic    = 0x12345678;
-					((KeyCage*)ObjParam->originalWork)->position = ObjParam->setData.pos;
-					return;
-				}
-			}
-		}
-	}
+	// The constructor inlines it; rel/s06_chip_search_cage.cpp emits the
+	// out-of-line copy the module also keeps.
+	void SearchCage();
 
 	virtual void Exec();
 	virtual ~TObjS06Chip();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
+
+#ifndef S06_CHIP_SEARCH_CAGE_INLINE
+#define S06_CHIP_SEARCH_CAGE_INLINE inline
+#endif
+
+S06_CHIP_SEARCH_CAGE_INLINE void TObjS06Chip::SearchCage()
+{
+	if (ObjParam->originalWork == NULL) {
+		SETOBJ_PARAM* node = lbl_8042C298->lists[ObjParam->setData.communicateId];
+		f32 range          = s06ChipCageRange[0];
+		for (; node != NULL; node = node->next) {
+			if (node->setData.uniqueId == 0x24
+			    && Distance2P2P(&ObjParam->setData.pos, &node->setData.pos) < range) {
+				ObjParam->originalWork                       = new KeyCage;
+				((KeyCage*)ObjParam->originalWork)->magic    = 0x12345678;
+				((KeyCage*)ObjParam->originalWork)->position = ObjParam->setData.pos;
+				return;
+			}
+		}
+	}
+}
 
 S06_CHIP_CTOR TObjS06Chip::TObjS06Chip(TObject* parent)
     : TObject(parent)

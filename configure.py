@@ -4423,6 +4423,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s06_chip_search_cage.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s06_chip_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
