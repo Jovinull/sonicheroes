@@ -811,6 +811,9 @@ rel/obj_set_particle_register.cpp:
 	.text       start:0x000670D8 end:0x00067174
 	.ctors      start:0x000000C0 end:0x000000C4
 
+rel/flower_hierarchy.cpp:
+	.text       start:0x0006B078 end:0x0006B18C
+
 rel/flower_hooks.cpp:
 	.text       start:0x0006B24C end:0x0006B414
 
