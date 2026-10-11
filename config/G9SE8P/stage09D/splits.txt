@@ -689,6 +689,10 @@ rel/no_input_collision_set_parameter.cpp:
 rel/no_input_collision_dtor.cpp:
 	.text       start:0x0006D6E8 end:0x0006D7B8
 
+rel/no_input_collision_edit.cpp:
+	.text       start:0x0006DC14 end:0x0006DD3C
+	.rodata     start:0x00001170 end:0x00001178
+
 rel/no_input_collision_hooks.cpp:
 	.text       start:0x0006DD3C end:0x0006DD8C
 
