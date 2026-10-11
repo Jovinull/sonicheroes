@@ -905,6 +905,9 @@ rel/event_script_set_info.cpp:
 rel/event_script_address.cpp:
 	.text       start:0x0007D738 end:0x0007D794
 
+rel/event_script_release.cpp:
+	.text       start:0x0007D794 end:0x0007D83C
+
 rel/event_script_dtor.cpp:
 	.text       start:0x0007DA48 end:0x0007DAB8
 

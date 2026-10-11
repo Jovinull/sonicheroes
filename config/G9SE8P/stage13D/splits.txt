@@ -1253,6 +1253,9 @@ rel/event_script_set_info.cpp:
 rel/event_script_address.cpp:
 	.text       start:0x000DC114 end:0x000DC170
 
+rel/event_script_release.cpp:
+	.text       start:0x000DC170 end:0x000DC218
+
 rel/event_script_dtor.cpp:
 	.text       start:0x000DC424 end:0x000DC494
 
