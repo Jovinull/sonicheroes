@@ -1,9 +1,8 @@
 #include "types.h"
 
 // The factory rel/kamome_register.cpp puts in the kamome's editor record. The
-// factory allocates 0x44 bytes and hands them to the module's constructor (left
-// as assembly and named kamomeCtor here, as rel/reel_assets.cpp names the
-// reel's).
+// factory allocates 0x44 bytes and hands them to the module's constructor,
+// kamomeCtor (rel/kamome_ctor.cpp).
 
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
