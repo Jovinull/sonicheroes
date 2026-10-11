@@ -6398,6 +6398,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hintring_bind.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/checkpoint_bind.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
