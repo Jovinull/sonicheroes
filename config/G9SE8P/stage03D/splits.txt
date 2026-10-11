@@ -1116,6 +1116,9 @@ rel/s04d_pipe_elev_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000C57A8 end:0x000C57E4
 
+rel/event_manager_remove_clump.cpp:
+	.text       start:0x000C5EF0 end:0x000C5F38
+
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x000C71C0 end:0x000C7208
 

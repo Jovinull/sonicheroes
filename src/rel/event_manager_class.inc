@@ -96,6 +96,9 @@ public:
 	s32 Exist();
 	s32 releaseScene(s32* scenes);
 	s32 releaseSceneAll();
+	void removeClump(struct RpClump* clump);
+	void addClump(struct RpClump* clump);
+	s32 evPlayerNo2playerNo(s32 player);
 	void setDAnimation(struct RpDMorphAnimation* animation, struct RpAtomic* atomic, f32 time);
 	void setAnimation(struct RpHAnimHierarchy* hierarchy, f32 time);
 	void loadScene(s32 cut);

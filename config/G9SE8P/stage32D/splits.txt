@@ -847,6 +847,9 @@ rel/s31bob_exec.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x00076178 end:0x000761B4
 
+rel/event_manager_remove_clump.cpp:
+	.text       start:0x000768C0 end:0x00076908
+
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x00077B90 end:0x00077BD8
 
