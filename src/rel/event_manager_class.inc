@@ -89,7 +89,10 @@ public:
 	s32 Exist();
 	void releaseScene(s32* scenes);
 	void loadScene(s32 cut);
+	void loadEventTexdict();
 	void EventRewind();
+	void EventPause();
+	void EventStart();
 
 	void Init();
 
@@ -111,6 +114,9 @@ public:
 // The constructor and Init are inline in the units that use them;
 // rel/event_manager_ctor.cpp and rel/event_manager_reset.cpp each define one
 // macro empty to emit that member's out-of-line copy, which has no caller.
+extern "C" EventScript* lbl_8042C6E0;
+extern "C" EventManager* lbl_8042C6E4;
+
 #ifndef EVENT_INIT_INLINE
 #define EVENT_INIT_INLINE inline
 #endif
@@ -159,7 +165,68 @@ EVENT_EXIST_INLINE s32 EventManager::Exist()
 {
 	return unk28 >= 0 ? TRUE : FALSE;
 }
+
+extern "C" void* lbl_8042C180;
+extern "C" void* lbl_80303DC8;
+extern "C" char eventTexdictFormat[];
+extern "C" void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(void* modes, s32 mode, s32 value);
+extern "C" void fn_8009D1F8(void* players);
+extern "C" int sprintf(char* buffer, const char* format, ...);
+void* texLoadTexDictionaryFile(char* name);
+
+// The rewind and its parts are inline where the manager's hooks use them;
+// rel/event_manager_texdict.cpp, rel/event_manager_rewind.cpp,
+// rel/event_manager_pause.cpp and rel/event_manager_start.cpp each define one
+// of these macros empty to emit that member's out-of-line copy.
+#ifndef EVENT_TEXDICT_INLINE
+#define EVENT_TEXDICT_INLINE inline
+#endif
+#ifndef EVENT_REWIND_INLINE
+#define EVENT_REWIND_INLINE inline
+#endif
+#ifndef EVENT_PAUSE_INLINE
+#define EVENT_PAUSE_INLINE inline
+#endif
+#ifndef EVENT_START_INLINE
+#define EVENT_START_INLINE inline
 #endif
 
-extern "C" EventScript* lbl_8042C6E0;
-extern "C" EventManager* lbl_8042C6E4;
+EVENT_TEXDICT_INLINE void EventManager::loadEventTexdict()
+{
+	char name[64];
+	sprintf(name, eventTexdictFormat, unk28);
+	unk38 = (s32)texLoadTexDictionaryFile(name);
+}
+
+EVENT_PAUSE_INLINE void EventManager::EventPause()
+{
+	if (unk28 >= 0) {
+		unk34 = 0;
+	}
+}
+
+EVENT_START_INLINE void EventManager::EventStart()
+{
+	if (Exist()) {
+		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x32, unk28);
+		fn_8009D1F8(lbl_80303DC8);
+		unk34 = 1;
+	}
+}
+
+EVENT_REWIND_INLINE void EventManager::EventRewind()
+{
+	unk2C = 0;
+	releaseScene(NULL);
+	unk3C = 0;
+	memset(slots, 0, sizeof(slots));
+	memset(entries, 0, sizeof(entries));
+	loadEventTexdict();
+	loadScene(unk2C++);
+	lbl_8042C6E0->ScriptInit();
+	EventStart();
+	unk30 = 0;
+	Exec();
+	EventPause();
+}
+#endif

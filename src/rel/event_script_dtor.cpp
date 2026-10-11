@@ -2,6 +2,8 @@
 // message board. EndEventManager deletes the script. The class is in
 // event_manager_class.inc.
 
+#define EVENT_SCRIPT_SOURCE
+
 #include "src/rel/event_manager_class.inc"
 
 EventScript::~EventScript()

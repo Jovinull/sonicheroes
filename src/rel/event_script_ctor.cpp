@@ -3,6 +3,8 @@
 // hooks (see rel/stage_init.cpp for the first five) and makes the message
 // board the script writes on, which only the game modes 0 and 6 have.
 
+#define EVENT_SCRIPT_SOURCE
+
 #include "src/rel/event_manager_class.inc"
 
 extern "C" void* lbl_803E7F88[];

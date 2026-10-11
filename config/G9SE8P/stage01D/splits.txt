@@ -1058,6 +1058,9 @@ rel/s66_star_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000CBE5C end:0x000CBE98
 
+rel/event_manager_texdict.cpp:
+	.text       start:0x000CD8F4 end:0x000CD940
+
 rel/event_manager_exist.cpp:
 	.text       start:0x000CF418 end:0x000CF428
 
