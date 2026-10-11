@@ -884,6 +884,9 @@ rel/event_manager_dtor.cpp:
 rel/event_start.cpp:
 	.text       start:0x0007C9B0 end:0x0007CA40
 
+rel/event_end.cpp:
+	.text       start:0x0007CA40 end:0x0007CAD0
+
 rel/event_manager_init.cpp:
 	.text       start:0x0007CAD0 end:0x0007CC54
 

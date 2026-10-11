@@ -1067,6 +1067,9 @@ rel/event_manager_dtor.cpp:
 rel/event_start.cpp:
 	.text       start:0x000CF9D0 end:0x000CFA60
 
+rel/event_end.cpp:
+	.text       start:0x000CFA60 end:0x000CFAF0
+
 rel/event_manager_init.cpp:
 	.text       start:0x000CFAF0 end:0x000CFC74
 

@@ -1430,6 +1430,9 @@ rel/event_manager_dtor.cpp:
 rel/event_start.cpp:
 	.text       start:0x000EE204 end:0x000EE294
 
+rel/event_end.cpp:
+	.text       start:0x000EE294 end:0x000EE324
+
 rel/event_manager_init.cpp:
 	.text       start:0x000EE324 end:0x000EE4A8
 

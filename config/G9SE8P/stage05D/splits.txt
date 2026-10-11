@@ -1176,6 +1176,9 @@ rel/event_manager_dtor.cpp:
 rel/event_start.cpp:
 	.text       start:0x000BFE0C end:0x000BFE9C
 
+rel/event_end.cpp:
+	.text       start:0x000BFE9C end:0x000BFF2C
+
 rel/event_manager_init.cpp:
 	.text       start:0x000BFF2C end:0x000C00B0
 
