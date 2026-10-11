@@ -418,6 +418,9 @@ rel/breakable_weight_register.cpp:
 rel/item_box_dtor.cpp:
 	.text       start:0x000337BC end:0x00033864
 
+rel/item_box_ctor.cpp:
+	.text       start:0x00033864 end:0x00033AF4
+
 rel/item_box_create_rev2.cpp:
 	.text       start:0x00033E94 end:0x00033EDC
 

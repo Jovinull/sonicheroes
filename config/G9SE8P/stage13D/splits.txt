@@ -410,6 +410,9 @@ rel/pawn_register.cpp:
 rel/item_box_dtor.cpp:
 	.text       start:0x0003ABD8 end:0x0003AC80
 
+rel/item_box_ctor.cpp:
+	.text       start:0x0003AC80 end:0x0003AF10
+
 rel/item_box_create_rev2.cpp:
 	.text       start:0x0003B2B0 end:0x0003B2F8
 

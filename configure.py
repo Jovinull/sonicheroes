@@ -2334,6 +2334,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/item_box_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
