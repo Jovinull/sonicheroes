@@ -1067,6 +1067,9 @@ rel/event_manager_add_clump.cpp:
 rel/event_manager_player_no.cpp:
 	.text       start:0x000CCC50 end:0x000CCC74
 
+rel/event_manager_set_animation_ext.cpp:
+	.text       start:0x000CCC74 end:0x000CCCEC
+
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x000CD874 end:0x000CD8BC
 
