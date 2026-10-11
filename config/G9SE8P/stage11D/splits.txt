@@ -741,6 +741,9 @@ rel/no_input_collision_register.cpp:
 	.text       start:0x0006DD8C end:0x0006DE34
 	.ctors      start:0x000000B4 end:0x000000B8
 
+rel/hintring_edit.cpp:
+	.text       start:0x000701D8 end:0x00070234
+
 rel/hintring_hooks.cpp:
 	.text       start:0x00070234 end:0x00070378
 

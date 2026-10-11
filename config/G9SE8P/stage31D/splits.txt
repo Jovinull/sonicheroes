@@ -730,6 +730,9 @@ rel/no_input_collision_register.cpp:
 	.text       start:0x000608BC end:0x00060964
 	.ctors      start:0x000000B0 end:0x000000B4
 
+rel/hintring_edit.cpp:
+	.text       start:0x00062D08 end:0x00062D64
+
 rel/hintring_hooks.cpp:
 	.text       start:0x00062D64 end:0x00062EA8
 
