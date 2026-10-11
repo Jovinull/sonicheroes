@@ -2311,6 +2311,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/event_manager_cut_extention.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/event_manager_init.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

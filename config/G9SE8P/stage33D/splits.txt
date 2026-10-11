@@ -875,6 +875,9 @@ rel/s31bob_exec.cpp:
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000780A4 end:0x000780D4
 
+rel/event_manager_cut_extention.cpp:
+	.text       start:0x00078128 end:0x00078164
+
 rel/event_manager_disp.cpp:
 	.text       start:0x00078E3C end:0x00078E78
 
