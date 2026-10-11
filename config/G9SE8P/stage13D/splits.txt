@@ -1253,6 +1253,9 @@ rel/event_manager_start.cpp:
 rel/event_manager_release_all.cpp:
 	.text       start:0x000D94AC end:0x000D9530
 
+rel/event_manager_release_ext.cpp:
+	.text       start:0x000D9954 end:0x000D99FC
+
 rel/event_manager_exist.cpp:
 	.text       start:0x000DADD4 end:0x000DADE4
 

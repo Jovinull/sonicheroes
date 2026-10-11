@@ -4,6 +4,7 @@
 #include "game/effect/eff_bomb.h"
 #include "game/one.h"
 #include "MSL_C/string.h"
+#include "game/object.h"
 
 struct EventSlot {
 	u8 unk00[0x44];
@@ -12,14 +13,28 @@ struct EventSlot {
 };
 
 struct EventEntry {
-	u8 unk00[0x50];
+	u8 unk00[0x40];        // 0x00
+	struct RpClump* clump; // 0x40
+	u8 unk44[0x4];         // 0x44
+	void* interpolator;    // 0x48
+	u8 unk4C[0x4];         // 0x4C
+}; // 0x50
+
+// What the script keeps for an extra object of the scene.
+struct SceneMemEtcObj {
+	u8 unk00[0x40];                     // 0x00
+	struct RpClump* clump;              // 0x40
+	u8 unk44[0x8];                      // 0x44
+	struct RpHAnimHierarchy* hierarchy; // 0x4C
 };
 
-// One of the event's objects, whose clump releaseSceneAll frees.
+// One of the event's files kept in ARAM: loadSceneFromAram copies it back
+// into main memory and releaseSceneAll frees it.
 struct EventObject {
 	u8 unk00[0x8]; // 0x00
-	void* clump;   // 0x08
-	u8 unk0C[0x8]; // 0x0C
+	void* aram;    // 0x08
+	u32 size;      // 0x0C
+	u8 unk10[0x4]; // 0x10
 }; // 0x14
 
 // The message board the script shows text on, defined in src/game/message.cpp.
@@ -96,6 +111,9 @@ public:
 	s32 Exist();
 	s32 releaseScene(s32* scenes);
 	s32 releaseSceneAll();
+	void releaseSceneExtObjs();
+	s32 loadSceneFromAram(s32 object);
+	void setAnimationExt(SceneMemEtcObj* object, f32 time);
 	void removeClump(struct RpClump* clump);
 	void addClump(struct RpClump* clump);
 	s32 evPlayerNo2playerNo(s32 player);
@@ -186,6 +204,37 @@ extern "C" void SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(void* modes, s32 
 extern "C" void fn_8009D1F8(void* players);
 extern "C" int sprintf(char* buffer, const char* format, ...);
 void* texLoadTexDictionaryFile(char* name);
+
+extern "C" void* fn_8015BD78(struct RpClump* clump);
+extern "C" void fn_8015BBF8(void* world, struct RpClump* clump);
+extern "C" void fn_8020D02C(void* interpolator, f32 time);
+extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
+
+// The manager's own functions inline these two; rel/event_manager_remove_clump.cpp
+// and rel/event_manager_set_animation.cpp define their macro empty to emit the
+// out-of-line copy.
+#ifndef EVENT_REMOVE_CLUMP_INLINE
+#define EVENT_REMOVE_CLUMP_INLINE inline
+#endif
+#ifndef EVENT_SET_ANIMATION_INLINE
+#define EVENT_SET_ANIMATION_INLINE inline
+#endif
+
+EVENT_REMOVE_CLUMP_INLINE void EventManager::removeClump(struct RpClump* clump)
+{
+	if (clump != NULL) {
+		void* world = fn_8015BD78(clump);
+		if (world != NULL) {
+			fn_8015BBF8(world, clump);
+		}
+	}
+}
+
+EVENT_SET_ANIMATION_INLINE void EventManager::setAnimation(RpHAnimHierarchy* hierarchy, f32 time)
+{
+	fn_8020D02C(hierarchy->currentAnim, time);
+	fn_8013FC30(hierarchy);
+}
 
 // The rewind and its parts are inline where the manager's hooks use them;
 // rel/event_manager_texdict.cpp, rel/event_manager_rewind.cpp,
