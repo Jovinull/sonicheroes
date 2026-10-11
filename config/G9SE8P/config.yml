@@ -1186,6 +1186,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - Disappear__10TObjS14KeyFv
     - CheckTouchedByLeader__10TObjS14KeyFv
     - SearchCage__10TObjS14KeyFv
     - flowerSetHierarchyForSkinAtomic__FP8RpAtomicPv

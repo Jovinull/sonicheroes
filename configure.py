@@ -6153,6 +6153,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_key_disappear.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/chao_check_touched.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
