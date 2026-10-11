@@ -53,6 +53,7 @@ public:
 	~EventScript();
 	void ScriptTDisp();
 	void ReleaseScript();
+	void ScriptInit();
 };
 
 extern "C" void* fn_80012994(u32 size);
@@ -63,7 +64,7 @@ class EventManager : public TObject
 public:
 	s32 unk28;                // 0x28
 	s32 unk2C;                // 0x2C
-	u8 unk30[4];              // 0x30
+	s32 unk30;                // 0x30
 	s32 unk34;                // 0x34
 	s32 unk38;                // 0x38
 	s32 unk3C;                // 0x3C
@@ -86,6 +87,9 @@ public:
 	// Whether an event is loaded. rel/event_manager_exist.cpp emits the
 	// out-of-line copy; the others inline it.
 	s32 Exist();
+	void releaseScene(s32* scenes);
+	void loadScene(s32 cut);
+	void EventRewind();
 
 	void Init()
 	{

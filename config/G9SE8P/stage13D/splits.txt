@@ -1229,6 +1229,9 @@ rel/event_manager_exist.cpp:
 rel/event_manager_dtor.cpp:
 	.text       start:0x000DAE90 end:0x000DAF34
 
+rel/event_rewind.cpp:
+	.text       start:0x000DB248 end:0x000DB38C
+
 rel/event_start.cpp:
 	.text       start:0x000DB38C end:0x000DB41C
 
