@@ -1523,6 +1523,9 @@ rel/stage_init.cpp:
 rel/event_script_pop_light.cpp:
 	.text       start:0x000EE4F0 end:0x000EE528
 
+rel/event_script_push_light.cpp:
+	.text       start:0x000EE528 end:0x000EE560
+
 rel/event_script_tdisp.cpp:
 	.text       start:0x000EE7D4 end:0x000EE7D8
 

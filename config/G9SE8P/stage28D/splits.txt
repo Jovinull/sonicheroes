@@ -1005,6 +1005,9 @@ rel/stage_init.cpp:
 rel/event_script_pop_light.cpp:
 	.text       start:0x00080C80 end:0x00080CB8
 
+rel/event_script_push_light.cpp:
+	.text       start:0x00080CB8 end:0x00080CF0
+
 rel/event_script_tdisp.cpp:
 	.text       start:0x00080F64 end:0x00080F68
 
