@@ -6378,6 +6378,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_smoke_field.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/checkpoint_field.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
