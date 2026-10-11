@@ -912,6 +912,9 @@ rel/event_manager_add_clump.cpp:
 rel/event_manager_mabuta.cpp:
 	.text       start:0x0007DA50 end:0x0007DB14
 
+rel/event_manager_player_number.cpp:
+	.text       start:0x0007DB14 end:0x0007DC14
+
 rel/event_manager_player_no.cpp:
 	.text       start:0x0007DC14 end:0x0007DC38
 
