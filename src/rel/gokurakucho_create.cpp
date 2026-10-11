@@ -2,8 +2,7 @@
 
 // The factory rel/gokurakucho_register.cpp puts in the gokurakucho's editor
 // record. The factory allocates 0xA0 bytes and hands them to the module's
-// constructor (left as assembly and named gokurakuchoCtor here, as
-// rel/reel_assets.cpp names the reel's).
+// constructor, gokurakuchoCtor (rel/gokuracho_ctor.cpp).
 
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
