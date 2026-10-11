@@ -8,13 +8,13 @@
 #include "src/rel/event_manager_class.inc"
 
 extern "C" u8* lbl_8042C180;
-extern "C" u8 eventSubtitles0[];
-extern "C" u8 eventSubtitles1[];
-extern "C" u8 eventSubtitles2[];
-extern "C" u8 eventSubtitles3[];
-extern "C" u8 eventSubtitles4[];
-extern "C" u8 eventSubtitles5[];
-extern "C" u8 eventSubtitles6[];
+extern "C" EventSubtitle eventSubtitles0[];
+extern "C" EventSubtitle eventSubtitles1[];
+extern "C" EventSubtitle eventSubtitles2[];
+extern "C" EventSubtitle eventSubtitles3[];
+extern "C" EventSubtitle eventSubtitles4[];
+extern "C" EventSubtitle eventSubtitles5[];
+extern "C" EventSubtitle eventSubtitles6[];
 
 void EventScript::ScriptInit()
 {

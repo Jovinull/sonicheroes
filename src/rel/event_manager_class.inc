@@ -72,6 +72,13 @@ public:
 	void ReleaseFontFile();
 };
 
+// A subtitle of the language's table, which ends with a negative event.
+struct EventSubtitle {
+	s32 event;  // 0x00
+	s32 id;     // 0x04
+	char* text; // 0x08
+}; // 0x0C
+
 // What the script shares with main: a header (the game's word at 0xC and the
 // manager's 0x140-byte table at 0x10), two tables of halfwords, a block of
 // words and, at 0xAD88, the light table main copies into its CLIGHT.
@@ -91,21 +98,25 @@ public:
 	static EventScriptData scriptData;
 	static u8 saveLightBuffer[0x3E0];
 
-	s32 unk00;          // 0x00
-	u8 unk04[0x38];     // 0x04
-	s32 unk3C;          // 0x3C
-	s32 voiceOffset;    // 0x40: the event's first voice
-	MESSAGE* message;   // 0x44
-	s32 unk48;          // 0x48
-	u8 unk4C[4];        // 0x4C
-	void* subtitles;    // 0x50: the language's table
-	char bgmName[0x40]; // 0x54: the stream the event plays
+	s32 unk00;                       // 0x00
+	u8 unk04[0x38];                  // 0x04
+	s32 unk3C;                       // 0x3C
+	s32 voiceOffset;                 // 0x40: the event's first voice
+	MESSAGE* message;                // 0x44
+	s32 unk48;                       // 0x48: how long the subtitle shows
+	char* messageText;               // 0x4C: the subtitle shown
+	struct EventSubtitle* subtitles; // 0x50: the language's table
+	char bgmName[0x40];              // 0x54: the stream the event plays
 	EventScript();
 	~EventScript();
 	void ScriptTDisp();
 	void ReleaseScript();
 	void ScriptInit();
 	s32 LoadScript(s32 event);
+	void popGameLightData();
+	void pushGameLightData();
+	void startEventMessage(u16 id, s16 time);
+	char* getEventBgmName(u16 bgm);
 };
 
 extern "C" void* fn_80012994(u32 size);

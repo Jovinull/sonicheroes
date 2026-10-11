@@ -1520,6 +1520,9 @@ rel/event_manager_init.cpp:
 rel/stage_init.cpp:
 	.text       start:0x000EE4A8 end:0x000EE4F0
 
+rel/event_script_pop_light.cpp:
+	.text       start:0x000EE4F0 end:0x000EE528
+
 rel/event_script_tdisp.cpp:
 	.text       start:0x000EE7D4 end:0x000EE7D8
 
