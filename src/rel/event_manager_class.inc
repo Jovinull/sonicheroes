@@ -28,6 +28,14 @@ struct SceneMemEtcObj {
 	struct RpHAnimHierarchy* hierarchy; // 0x4C
 };
 
+// What the script keeps for a player of the scene: the eyelid clumps
+// (connectCurrentMabuta shows one of them at a time).
+struct SceneMemPlayerObj {
+	u8 unk00[0x24];            // 0x00
+	struct RpClump* mabuta[8]; // 0x24
+	s32 mabutaNo;              // 0x44: the one shown, or -1
+};
+
 // One of the event's files kept in ARAM: loadSceneFromAram copies it back
 // into main memory and releaseSceneAll frees it.
 struct EventObject {
@@ -117,6 +125,7 @@ public:
 	void setAnimationExt(SceneMemEtcObj* object, f32 time);
 	void removeClump(struct RpClump* clump);
 	void addClump(struct RpClump* clump);
+	void connectCurrentMabuta(SceneMemPlayerObj* player, s32 mabuta);
 	s32 evPlayerNo2playerNo(s32 player);
 	void setDAnimation(struct RpDMorphAnimation* animation, struct RpAtomic* atomic, f32 time);
 	void setAnimation(struct RpHAnimHierarchy* hierarchy, f32 time);
@@ -208,14 +217,19 @@ void* texLoadTexDictionaryFile(char* name);
 
 extern "C" void* fn_8015BD78(struct RpClump* clump);
 extern "C" void fn_8015BBF8(void* world, struct RpClump* clump);
+extern "C" u8* lbl_8042C1D0;
+extern "C" void fn_8015BB08(void* world, struct RpClump* clump);
 extern "C" void fn_8020D02C(void* interpolator, f32 time);
 extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 
-// The manager's own functions inline these two; rel/event_manager_remove_clump.cpp
-// and rel/event_manager_set_animation.cpp define their macro empty to emit the
-// out-of-line copy.
+// The manager's own functions inline these three; rel/event_manager_remove_clump.cpp,
+// rel/event_manager_add_clump.cpp and rel/event_manager_set_animation.cpp define
+// their macro empty to emit the out-of-line copy.
 #ifndef EVENT_REMOVE_CLUMP_INLINE
 #define EVENT_REMOVE_CLUMP_INLINE inline
+#endif
+#ifndef EVENT_ADD_CLUMP_INLINE
+#define EVENT_ADD_CLUMP_INLINE inline
 #endif
 #ifndef EVENT_SET_ANIMATION_INLINE
 #define EVENT_SET_ANIMATION_INLINE inline
@@ -228,6 +242,14 @@ EVENT_REMOVE_CLUMP_INLINE void EventManager::removeClump(struct RpClump* clump)
 		if (world != NULL) {
 			fn_8015BBF8(world, clump);
 		}
+	}
+}
+
+// It adds a clump that is in no world to the stage's world.
+EVENT_ADD_CLUMP_INLINE void EventManager::addClump(struct RpClump* clump)
+{
+	if (clump != NULL && fn_8015BD78(clump) == NULL) {
+		fn_8015BB08(*(void**)(lbl_8042C1D0 + 0x7258), clump);
 	}
 }
 

@@ -866,6 +866,9 @@ rel/event_manager_remove_clump.cpp:
 rel/event_manager_add_clump.cpp:
 	.text       start:0x00079A00 end:0x00079A58
 
+rel/event_manager_mabuta.cpp:
+	.text       start:0x00079EA0 end:0x00079F64
+
 rel/event_manager_player_no.cpp:
 	.text       start:0x0007A064 end:0x0007A088
 
