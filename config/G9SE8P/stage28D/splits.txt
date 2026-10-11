@@ -909,6 +909,9 @@ rel/event_manager_remove_clump.cpp:
 rel/event_manager_add_clump.cpp:
 	.text       start:0x0007D5B0 end:0x0007D608
 
+rel/event_manager_player_no.cpp:
+	.text       start:0x0007DC14 end:0x0007DC38
+
 rel/event_manager_set_d_animation.cpp:
 	.text       start:0x0007E838 end:0x0007E880
 
