@@ -1184,6 +1184,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - SearchCage__10TObjS14KeyFv
     - flowerSetHierarchyForSkinAtomic__FP8RpAtomicPv
     - flowerGetHierarchy__FP7RpClump
     - flowerGetChildFrameHierarchy__FP7RwFramePv

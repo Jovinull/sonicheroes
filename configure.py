@@ -4838,6 +4838,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_key_search_cage.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_key_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
