@@ -30,12 +30,16 @@ struct SceneMemEtcObj {
 	struct RpHAnimHierarchy* hierarchy; // 0x4C
 };
 
-// What the script keeps for a player of the scene: the eyelid clumps
-// (connectCurrentMabuta shows one of them at a time).
+// What the script keeps for a player of the scene, in the player's slot: its
+// models and the eyelid clumps (connectCurrentMabuta shows one at a time).
 struct SceneMemPlayerObj {
-	u8 unk00[0x24];            // 0x00
+	struct RpClump* body;      // 0x00
+	u8 unk04[0x14];            // 0x04
+	struct RpClump* head;      // 0x18
+	u8 unk1C[0x8];             // 0x1C
 	struct RpClump* mabuta[8]; // 0x24
 	s32 mabutaNo;              // 0x44: the one shown, or -1
+	s32 mabutaCount;           // 0x48
 };
 
 // One of the event's files kept in ARAM: loadSceneFromAram copies it back
@@ -137,6 +141,7 @@ public:
 	void addClump(struct RpClump* clump);
 	void connectCurrentMabuta(SceneMemPlayerObj* player, s32 mabuta);
 	s32 evPlayerNo2playerNo(s32 player);
+	void showHidePlayer(s32 player, s32 show);
 	s32 getPlayerNumber(s32 player, s32 unused);
 	struct RpClump* getPlayerBodyClump(s32 player);
 	void setDAnimation(struct RpDMorphAnimation* animation, struct RpAtomic* atomic, f32 time);
@@ -259,11 +264,11 @@ extern "C" void fn_8015BB08(void* world, struct RpClump* clump);
 extern "C" void fn_8020D02C(void* interpolator, f32 time);
 extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 
-// The manager's own functions inline these six; rel/event_manager_remove_clump.cpp,
-// rel/event_manager_add_clump.cpp, rel/event_manager_player_no.cpp,
-// rel/event_manager_player_number.cpp, rel/event_manager_release_all.cpp and
-// rel/event_manager_set_animation.cpp define their macro empty to emit the
-// out-of-line copy.
+// The manager's own functions inline these seven; rel/event_manager_remove_clump.cpp,
+// rel/event_manager_add_clump.cpp, rel/event_manager_mabuta.cpp,
+// rel/event_manager_player_no.cpp, rel/event_manager_player_number.cpp,
+// rel/event_manager_release_all.cpp and rel/event_manager_set_animation.cpp
+// define their macro empty to emit the out-of-line copy.
 #ifndef EVENT_REMOVE_CLUMP_INLINE
 #define EVENT_REMOVE_CLUMP_INLINE inline
 #endif
@@ -278,6 +283,9 @@ extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 #endif
 #ifndef EVENT_PLAYER_NUMBER_INLINE
 #define EVENT_PLAYER_NUMBER_INLINE inline
+#endif
+#ifndef EVENT_MABUTA_INLINE
+#define EVENT_MABUTA_INLINE inline
 #endif
 #ifndef EVENT_SET_ANIMATION_INLINE
 #define EVENT_SET_ANIMATION_INLINE inline
@@ -299,6 +307,24 @@ EVENT_ADD_CLUMP_INLINE void EventManager::addClump(struct RpClump* clump)
 	if (clump != NULL && fn_8015BD78(clump) == NULL) {
 		fn_8015BB08(*(void**)(lbl_8042C1D0 + 0x7258), clump);
 	}
+}
+
+// It swaps the player's eyelid clump shown in the world.
+EVENT_MABUTA_INLINE void EventManager::connectCurrentMabuta(SceneMemPlayerObj* player, s32 mabuta)
+{
+	if (player->mabutaNo >= 0) {
+		struct RpClump* clump = player->mabuta[player->mabutaNo];
+		if (clump != NULL) {
+			removeClump(clump);
+		}
+	}
+	if (mabuta >= 0) {
+		struct RpClump* clump = player->mabuta[mabuta];
+		if (clump != NULL) {
+			addClump(clump);
+		}
+	}
+	player->mabutaNo = mabuta;
 }
 
 extern "C" const s32 eventPlayerNumbers[12];

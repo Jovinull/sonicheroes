@@ -909,6 +909,9 @@ rel/event_manager_remove_clump.cpp:
 rel/event_manager_add_clump.cpp:
 	.text       start:0x0007D5B0 end:0x0007D608
 
+rel/event_manager_show_hide.cpp:
+	.text       start:0x0007D608 end:0x0007D8E8
+
 rel/event_manager_body_clump.cpp:
 	.text       start:0x0007D8E8 end:0x0007DA50
 
