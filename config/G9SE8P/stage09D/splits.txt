@@ -1242,6 +1242,9 @@ rel/event_manager_file_kind.cpp:
 rel/event_manager_load_aram.cpp:
 	.text       start:0x000D14DC end:0x000D1578
 
+rel/event_manager_load_amem.cpp:
+	.text       start:0x000D1578 end:0x000D16D8
+
 rel/event_manager_exist.cpp:
 	.text       start:0x000D1A6C end:0x000D1A7C
 

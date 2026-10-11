@@ -39,10 +39,11 @@ struct SceneMemPlayerObj {
 // One of the event's files kept in ARAM: loadSceneFromAram copies it back
 // into main memory and releaseSceneAll frees it.
 struct EventObject {
-	u8 unk00[0x8]; // 0x00
-	void* aram;    // 0x08
-	u32 size;      // 0x0C
-	u8 unk10[0x4]; // 0x10
+	s32 no;     // 0x00
+	s32 scene;  // 0x04: the scene file's number
+	void* aram; // 0x08
+	u32 size;   // 0x0C
+	s32 frames; // 0x10: the length of the scene's camera motion
 }; // 0x14
 
 // The message board the script shows text on, defined in src/game/message.cpp.
@@ -122,6 +123,7 @@ public:
 	s32 releaseSceneAll();
 	void releaseSceneExtObjs();
 	s32 loadSceneFromAram(s32 object);
+	s32 loadEventToAMem();
 	void setAnimationExt(SceneMemEtcObj* object, f32 time);
 	void removeClump(struct RpClump* clump);
 	void addClump(struct RpClump* clump);
