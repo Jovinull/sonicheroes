@@ -15,7 +15,7 @@
 // *Ctor boundary sits next to this run, so the name comes from tracing the
 // vtable's other user instead.
 //
-// The run is the same in the twelve stage modules that share the engine
+// The run is the same in the thirteen stage modules that share the engine
 // core.
 //
 // The delete flag is a short. It is sign extended before the test, so a

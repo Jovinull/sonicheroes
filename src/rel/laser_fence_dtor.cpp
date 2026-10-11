@@ -12,7 +12,7 @@
 // begins, which is the destructor-then-constructor order the other stage
 // objects also have.
 //
-// The run is the same in all twelve stage modules that share the engine core,
+// The run is the same in all thirteen stage modules that share the engine core,
 // checked by normalising the disassembly and comparing across modules.
 //
 // The delete flag is a short. It is sign extended before the test, so a plain

@@ -15,12 +15,12 @@
 //
 // Only the first model is registered with the scene; the second is released
 // through fn_80150958 alone, which is what the missing fn_8015BBF8 call on that
-// path says.//
-// The run is the same in twelve of the fourteen stage modules that carry it.
-// stage26D, stage27D and stage28D were not wired when this was first carved;
-// tracing their own copy of the run to rollDoorCreate through its vtable
-// data symbol showed the bytes are identical there too, so a follow-up
-// wired those three in as well.
+// path says.
+//
+// The run is the same in the thirteen stage modules that carry it. stage26D,
+// stage27D and stage28D were wired in after it was first carved, by tracing
+// their copy of the run to rollDoorCreate through its vtable data symbol, and
+// stage13D later the same way.
 //
 // The delete flag is a short. It is sign extended before the test, so a plain
 // s32 parameter does not reproduce the compare.

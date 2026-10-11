@@ -174,6 +174,9 @@ rel/ring_register.cpp:
 	.text       start:0x0000BD3C end:0x0000BE98
 	.ctors      start:0x00000020 end:0x00000024
 
+rel/jump_panel_dtor.cpp:
+	.text       start:0x0000C6D0 end:0x0000C7B0
+
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC08 end:0x0000CCDC
 
@@ -203,6 +206,12 @@ rel/checkpoint_edit.cpp:
 
 rel/checkpoint_hooks.cpp:
 	.text       start:0x000107D0 end:0x00010A3C
+
+rel/checkpoint_bind.cpp:
+	.text       start:0x00010A3C end:0x00010A98
+
+rel/checkpoint_field.cpp:
+	.text       start:0x00010A98 end:0x00010AD0
 
 rel/checkpoint_register.cpp:
 	.text       start:0x00010AD0 end:0x00010B78
@@ -275,6 +284,9 @@ rel/wood_container_register.cpp:
 	.text       start:0x000140F4 end:0x0001419C
 	.ctors      start:0x00000034 end:0x00000038
 
+rel/wood_container_sound.cpp:
+	.text       start:0x0001419C end:0x000141DC
+
 rel/iron_container_check_break.cpp:
 	.text       start:0x000141DC end:0x00014398
 	.data       start:0x00001AD8 end:0x00001B04
@@ -300,6 +312,9 @@ rel/iron_container_create.cpp:
 rel/iron_container_register.cpp:
 	.text       start:0x000146E0 end:0x00014788
 	.ctors      start:0x00000038 end:0x0000003C
+
+rel/iron_container_sound.cpp:
+	.text       start:0x00014788 end:0x000147C8
 
 rel/unbreakable_container_check_break.cpp:
 	.text       start:0x000147C8 end:0x00014928
@@ -339,6 +354,12 @@ rel/cannon_load.cpp:
 rel/cannon_register.cpp:
 	.text       start:0x0001A9B8 end:0x0001AA68
 	.ctors      start:0x00000040 end:0x00000044
+
+rel/laser_fence_dtor.cpp:
+	.text       start:0x0001BED8 end:0x0001BF70
+
+rel/laser_fence_hooks.cpp:
+	.text       start:0x0001C32C end:0x0001C398
 
 rel/laser_fence_assets.cpp:
 	.text       start:0x0001C398 end:0x0001C488
@@ -393,7 +414,7 @@ rel/target_assets.cpp:
 rel/fan_dtor.cpp:
 	.text       start:0x000251CC end:0x00025294
 
-rel/fan_object_hooks.cpp:
+rel/fan_hooks.cpp:
 	.text       start:0x000257AC end:0x000257F4
 
 rel/fan_assets.cpp:
@@ -423,6 +444,9 @@ rel/pawn_dtor.cpp:
 rel/pawn_assets.cpp:
 	.text       start:0x00033C7C end:0x00033D6C
 	.ctors      start:0x00000060 end:0x00000064
+
+rel/shield_splinter_dtor.cpp:
+	.text       start:0x000371F0 end:0x00037264
 
 rel/item_box_search_cage.cpp:
 	.text       start:0x0003A8CC end:0x0003A9BC
@@ -494,6 +518,9 @@ rel/case_obj_lifecycle_stage11.cpp:
 rel/case_assets.cpp:
 	.text       start:0x00041594 end:0x00041684
 	.ctors      start:0x00000074 end:0x00000078
+
+rel/roll_door_dtor.cpp:
+	.text       start:0x00043944 end:0x00043A24
 
 rel/roll_door_lifecycle_stage11.cpp:
 	.text       start:0x00043A24 end:0x00044100
@@ -579,6 +606,12 @@ rel/propeller_create.cpp:
 rel/propeller_register.cpp:
 	.text       start:0x00049578 end:0x00049618
 	.ctors      start:0x00000084 end:0x00000088
+
+rel/goal_ring_bind.cpp:
+	.text       start:0x0004D4D4 end:0x0004D530
+
+rel/goal_ring_field.cpp:
+	.text       start:0x0004D530 end:0x0004D568
 
 rel/goal_ring_register.cpp:
 	.text       start:0x0004D568 end:0x0004D610
@@ -673,6 +706,9 @@ rel/o_invoke_colli.cpp:
 
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00051218 end:0x000512D8
+
+rel/push_pull_switch_edit.cpp:
+	.text       start:0x00051680 end:0x000516DC
 
 rel/push_pull_switch_hooks.cpp:
 	.text       start:0x000516DC end:0x00051900

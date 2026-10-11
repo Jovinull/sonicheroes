@@ -16,7 +16,7 @@
 // two are separate sources rather than one: each module's split names its own
 // run, and the two runs sit at different addresses.
 //
-// The run is the same in the twelve stage modules that carry it, checked by
+// The run is the same in the thirteen stage modules that carry it, checked by
 // normalising the disassembly and comparing across modules.
 
 extern "C" void* lbl_8042C388;
