@@ -187,6 +187,10 @@ rel/jump_panel_register.cpp:
 rel/dash_ring_dtor.cpp:
 	.text       start:0x0000DC58 end:0x0000DD5C
 
+rel/dash_ring_edit.cpp:
+	.text       start:0x0000E110 end:0x0000E178
+	.rodata     start:0x00000280 end:0x00000288
+
 rel/dash_ring_hooks.cpp:
 	.text       start:0x0000E178 end:0x0000E32C
 

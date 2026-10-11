@@ -5750,6 +5750,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dash_ring_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dash_ring_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
