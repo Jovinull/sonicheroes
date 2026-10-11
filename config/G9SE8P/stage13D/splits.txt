@@ -357,6 +357,9 @@ rel/target_reload.cpp:
 rel/target_dtor.cpp:
 	.text       start:0x00023C1C end:0x00023CCC
 
+rel/target_ctor.cpp:
+	.text       start:0x00023CCC end:0x00023FE0
+
 rel/target_hooks.cpp:
 	.text       start:0x00024088 end:0x000240D0
 
