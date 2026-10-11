@@ -907,6 +907,9 @@ rel/event_manager_disp.cpp:
 rel/event_manager_exist.cpp:
 	.text       start:0x0007EF44 end:0x0007EF54
 
+rel/event_manager_reset.cpp:
+	.text       start:0x0007EF54 end:0x0007F000
+
 rel/event_manager_dtor.cpp:
 	.text       start:0x0007F000 end:0x0007F0A4
 

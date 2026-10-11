@@ -82,11 +82,7 @@ public:
 	ONEFILE* file;            // 0xE64
 	u8 unkE68[0xFA8 - 0xE68]; // 0xE68
 
-	EventManager(TObject* parent)
-	    : TObject(parent)
-	{
-		Init();
-	}
+	EventManager(TObject* parent);
 
 	// Whether an event is loaded. rel/event_manager_exist.cpp emits the
 	// out-of-line copy; the others inline it.
@@ -95,28 +91,7 @@ public:
 	void loadScene(s32 cut);
 	void EventRewind();
 
-	void Init()
-	{
-		buffer          = fn_80012994(0x40000);
-		file            = new ONEFILE(NULL, 0);
-		file->exBuffer  = buffer;
-		file->showError = 0;
-		unk28           = -1;
-		unk34           = 0;
-		unk2C           = 0;
-		unkE40          = 0;
-		unk38           = 0;
-		unk3C           = 0;
-		unk44           = 0;
-		for (int i = 0; i < 14; i++) {
-			EventSlot* slot = &slots[i];
-			memset(slot, 0, sizeof(EventSlot));
-			slot->id = -1;
-		}
-		for (int j = 0; j < 16; j++) {
-			memset(&entries[j], 0, sizeof(EventEntry));
-		}
-	}
+	void Init();
 
 	// The first virtual declared is the key function, and the unit that defines
 	// it emits the vtable. These are all overrides, whose order does not move
@@ -132,6 +107,45 @@ public:
 	virtual ~EventManager();
 #endif
 };
+
+// The constructor and Init are inline in the units that use them;
+// rel/event_manager_ctor.cpp and rel/event_manager_reset.cpp each define one
+// macro empty to emit that member's out-of-line copy, which has no caller.
+#ifndef EVENT_INIT_INLINE
+#define EVENT_INIT_INLINE inline
+#endif
+#ifndef EVENT_CTOR_INLINE
+#define EVENT_CTOR_INLINE inline
+#endif
+
+EVENT_INIT_INLINE void EventManager::Init()
+{
+	unk28  = -1;
+	unk34  = 0;
+	unk2C  = 0;
+	unkE40 = 0;
+	unk38  = 0;
+	unk3C  = 0;
+	unk44  = 0;
+	for (int i = 0; i < 14; i++) {
+		EventSlot* slot = &slots[i];
+		memset(slot, 0, sizeof(EventSlot));
+		slot->id = -1;
+	}
+	for (int j = 0; j < 16; j++) {
+		memset(&entries[j], 0, sizeof(EventEntry));
+	}
+}
+
+EVENT_CTOR_INLINE EventManager::EventManager(TObject* parent)
+    : TObject(parent)
+{
+	buffer          = fn_80012994(0x40000);
+	file            = new ONEFILE(NULL, 0);
+	file->exBuffer  = buffer;
+	file->showError = 0;
+	Init();
+}
 
 #ifndef EVENT_EXIST_INLINE
 #define EVENT_EXIST_INLINE inline

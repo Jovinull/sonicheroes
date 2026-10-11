@@ -1226,6 +1226,9 @@ rel/event_manager_disp.cpp:
 rel/event_manager_exist.cpp:
 	.text       start:0x000DADD4 end:0x000DADE4
 
+rel/event_manager_reset.cpp:
+	.text       start:0x000DADE4 end:0x000DAE90
+
 rel/event_manager_dtor.cpp:
 	.text       start:0x000DAE90 end:0x000DAF34
 
