@@ -492,6 +492,22 @@ placement, and matches the same way. So does
 `KillMyself`, `TDisp`, `Exec`, `SetParameter`, `ResetVariable`, destructor,
 constructor, `CreateInstance`, `EditOnChange`).
 
+### Chao constructor
+
+`rel/chao_ctor.cpp` reconstructs `TObjChao::TObjChao` with the three helpers the
+thirteen stage modules keep after it. The PS2 symbols order the family as the
+constructor followed by the local `SetHierarchyForSkinAtomic`,
+`GetHierarchy` and `GetChildFrameHierarchy`, then `EditOnChange`, and the
+GameCube modules have the same four functions in the same order. The
+constructor inlines `GetHierarchy` (and `SearchCage`/`SetPosition`, kept as
+inline definitions in `rel/chao_methods.inc`) although `GetHierarchy` is
+emitted after it, which only deferred inlining does; `-inline deferred,auto`
+with the helpers defined first reproduces all four functions, relocations and
+owned sections in the 13 modules (exato EXACT), and all 18 hashes. The
+helpers are named `chao*` rather than file-static so the otherwise
+unreferenced `GetHierarchy` copy can be kept with `force_active` in every
+module (a static symbol cannot be force-activated by name).
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and

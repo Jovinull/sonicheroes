@@ -5783,6 +5783,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/chao_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred,auto"],
+            ),
+            Object(
+                Matching,
                 "rel/chao_check_touched.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

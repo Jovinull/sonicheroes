@@ -940,6 +940,9 @@ rel/chao_set_position.cpp:
 rel/chao_dtor.cpp:
 	.text       start:0x000A1A18 end:0x000A1B10
 
+rel/chao_ctor.cpp:
+	.text       start:0x000A1B10 end:0x000A2078
+
 rel/chao_hooks.cpp:
 	.text       start:0x000A20F0 end:0x000A21A8
 

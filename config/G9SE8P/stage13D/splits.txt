@@ -744,6 +744,9 @@ rel/chao_set_position.cpp:
 rel/chao_dtor.cpp:
 	.text       start:0x0006C1D4 end:0x0006C2CC
 
+rel/chao_ctor.cpp:
+	.text       start:0x0006C2CC end:0x0006C834
+
 rel/chao_hooks.cpp:
 	.text       start:0x0006C8AC end:0x0006C964
 
