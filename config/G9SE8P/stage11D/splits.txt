@@ -1194,11 +1194,45 @@ rel/e_rinoliner_stage11.cpp:
 	.bss        start:0x00001A48 end:0x00001A90
 
 rel/e_rinoliner_collision_stage11.cpp:
-	.text       start:0x000B49D8 end:0x000B7210
-	.ctors      start:0x00000138 end:0x0000013C
+	.text       start:0x000B49D8 end:0x000B5C38
 	.rodata     start:0x00001C64 end:0x00001E20
-	.data       start:0x00016FD8 end:0x000172E0
+	.data       start:0x00016FD8 end:0x000172A4
 	.bss        start:0x00001A90 end:0x00001AC8
+
+rel/colli_communication_check.cpp:
+	.text       start:0x000B5C38 end:0x000B6990
+	.data       start:0x000172A4 end:0x000172C0
+
+rel/colli_communication_tdisp.cpp:
+	.text       start:0x000B6990 end:0x000B6998
+
+rel/colli_communication_exec.cpp:
+	.text       start:0x000B6998 end:0x000B6B40
+
+rel/colli_communication_parameter.cpp:
+	.text       start:0x000B6B40 end:0x000B6C04
+
+rel/colli_communication_dtor.cpp:
+	.text       start:0x000B6C04 end:0x000B6C9C
+
+rel/colli_communication_ctor.cpp:
+	.text       start:0x000B6C9C end:0x000B6DC0
+
+rel/colli_communication_instance.cpp:
+	.text       start:0x000B6DC0 end:0x000B6F14
+
+rel/colli_communication_edit.cpp:
+	.text       start:0x000B6F14 end:0x000B7014
+
+rel/colli_communication_hooks.cpp:
+	.text       start:0x000B7014 end:0x000B701C
+
+rel/colli_communication_create.cpp:
+	.text       start:0x000B701C end:0x000B7168
+
+rel/rino_col_register.cpp:
+	.text       start:0x000B7168 end:0x000B7210
+	.ctors      start:0x00000138 end:0x0000013C
 
 rel/e_wall_stage11.cpp:
 	.text       start:0x000B7210 end:0x000BDA48
