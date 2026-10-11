@@ -460,6 +460,9 @@ rel/item_box_dtor.cpp:
 rel/item_box_ctor.cpp:
 	.text       start:0x0003AC80 end:0x0003AF10
 
+rel/item_box_edit.cpp:
+	.text       start:0x0003AF10 end:0x0003AFB8
+
 rel/item_box_assets.cpp:
 	.text       start:0x0003B2B0 end:0x0003B3A0
 	.ctors      start:0x00000064 end:0x00000068

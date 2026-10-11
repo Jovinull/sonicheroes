@@ -1701,6 +1701,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/item_box_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
