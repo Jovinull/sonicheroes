@@ -2749,6 +2749,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hermitcrab_search_cage.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/item_box_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
