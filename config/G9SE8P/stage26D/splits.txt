@@ -867,6 +867,9 @@ rel/hintcolli_register.cpp:
 	.text       start:0x0006F250 end:0x0006F300
 	.ctors      start:0x000000D0 end:0x000000D4
 
+rel/obj_secollision_edit.cpp:
+	.text       start:0x0006F9AC end:0x0006FA94
+
 rel/obj_se_collision_register.cpp:
 	.text       start:0x0006FC74 end:0x0006FD08
 	.ctors      start:0x000000D4 end:0x000000D8
