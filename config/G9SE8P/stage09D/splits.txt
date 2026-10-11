@@ -1066,6 +1066,9 @@ rel/tutaetc_register.cpp:
 	.text       start:0x000A80D4 end:0x000A8174
 	.ctors      start:0x00000174 end:0x00000178
 
+rel/key_search_cage.cpp:
+	.text       start:0x000A817C end:0x000A826C
+
 rel/key_object_dtor.cpp:
 	.text       start:0x000A8FF8 end:0x000A9100
 

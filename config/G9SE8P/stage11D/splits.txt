@@ -847,6 +847,9 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x0007A8A0 end:0x0007A934
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/key_search_cage.cpp:
+	.text       start:0x0007A93C end:0x0007AA2C
+
 rel/key_object_dtor.cpp:
 	.text       start:0x0007B7B8 end:0x0007B8C0
 
