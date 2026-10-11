@@ -1706,6 +1706,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/fan_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-pool off"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

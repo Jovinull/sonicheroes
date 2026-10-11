@@ -417,6 +417,10 @@ rel/target_assets.cpp:
 rel/fan_dtor.cpp:
 	.text       start:0x000251CC end:0x00025294
 
+rel/fan_edit.cpp:
+	.text       start:0x00025604 end:0x000257AC
+	.rodata     start:0x000005B0 end:0x000005C8
+
 rel/fan_hooks.cpp:
 	.text       start:0x000257AC end:0x000257F4
 
