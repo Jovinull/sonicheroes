@@ -929,6 +929,9 @@ rel/event_manager_load_amem.cpp:
 rel/event_manager_release_event.cpp:
 	.text       start:0x0007C064 end:0x0007C208
 
+rel/event_manager_load_event.cpp:
+	.text       start:0x0007C208 end:0x0007C3F8
+
 rel/event_manager_exist.cpp:
 	.text       start:0x0007C3F8 end:0x0007C408
 

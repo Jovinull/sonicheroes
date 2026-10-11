@@ -89,6 +89,7 @@ public:
 	void ScriptTDisp();
 	void ReleaseScript();
 	void ScriptInit();
+	void LoadScript(s32 event);
 };
 
 extern "C" void* fn_80012994(u32 size);
@@ -124,6 +125,7 @@ public:
 	s32 checkFileKind(char* name, s32* kind);
 	s32 releaseSceneAll();
 	s32 ReleaseEvent();
+	s32 LoadEvent(s32 event);
 	void releaseSceneExtObjs();
 	s32 loadSceneFromAram(s32 object);
 	s32 loadEventToAMem();
@@ -360,5 +362,42 @@ EVENT_REWIND_INLINE void EventManager::EventRewind()
 	unk30 = 0;
 	Exec();
 	EventPause();
+}
+
+// LoadEvent inlines the release; rel/event_manager_release_event.cpp defines
+// the macro empty to emit the out-of-line copy.
+#ifndef EVENT_RELEASE_EVENT_INLINE
+#define EVENT_RELEASE_EVENT_INLINE inline
+#endif
+
+extern "C" void* lbl_8042C1F8;
+extern "C" void fn_8004DE10(void* sound, s32 kind);
+extern "C" void fn_801329AC();
+extern "C" void fn_80018C64();
+extern "C" void fn_8009C704(void* players, s32 value);
+extern "C" void fn_8004ED48(void* sound);
+
+// It ends the loaded event: the event's sound, the script, every scene with its
+// files and textures, the event's file, and the manager's state; then it puts
+// the game back. With no event loaded it only turns the mode switch off.
+EVENT_RELEASE_EVENT_INLINE s32 EventManager::ReleaseEvent()
+{
+	if (Exist()) {
+		if (unkE50 != 0) {
+			fn_8004DE10(lbl_8042C1F8, 0xE);
+		}
+		lbl_8042C6E0->ReleaseScript();
+		releaseSceneAll();
+		file->ReleaseOneFile();
+		Init();
+		fn_801329AC();
+		SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x32, -1);
+		fn_80018C64();
+		fn_8009C704(lbl_80303DC8, 0);
+		fn_8004ED48(lbl_8042C1F8);
+		return 1;
+	}
+	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x32, -1);
+	return 0;
 }
 #endif

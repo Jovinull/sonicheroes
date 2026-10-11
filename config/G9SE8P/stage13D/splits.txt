@@ -1277,6 +1277,9 @@ rel/event_manager_load_amem.cpp:
 rel/event_manager_release_event.cpp:
 	.text       start:0x000DAA40 end:0x000DABE4
 
+rel/event_manager_load_event.cpp:
+	.text       start:0x000DABE4 end:0x000DADD4
+
 rel/event_manager_exist.cpp:
 	.text       start:0x000DADD4 end:0x000DADE4
 
