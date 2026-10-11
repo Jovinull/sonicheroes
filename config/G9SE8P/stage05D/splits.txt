@@ -1173,6 +1173,9 @@ rel/event_manager_dtor.cpp:
 rel/event_manager_init.cpp:
 	.text       start:0x000BFF2C end:0x000C00B0
 
+rel/stage_init.cpp:
+	.text       start:0x000C00B0 end:0x000C00F8
+
 rel/event_script_tdisp.cpp:
 	.text       start:0x000C03DC end:0x000C03E0
 

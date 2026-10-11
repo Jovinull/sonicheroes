@@ -2354,6 +2354,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/stage_init.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
