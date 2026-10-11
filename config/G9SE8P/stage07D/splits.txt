@@ -1339,6 +1339,9 @@ rel/obj_se_collision_register.cpp:
 rel/key_search_cage.cpp:
 	.text       start:0x000CF630 end:0x000CF720
 
+rel/key_disappear.cpp:
+	.text       start:0x000CF720 end:0x000CF890
+
 rel/key_object_dtor.cpp:
 	.text       start:0x000D04AC end:0x000D05B4
 

@@ -883,6 +883,9 @@ rel/metal_sonic_1st_register.cpp:
 rel/key_search_cage.cpp:
 	.text       start:0x0006C3F0 end:0x0006C4E0
 
+rel/key_disappear.cpp:
+	.text       start:0x0006C4E0 end:0x0006C650
+
 rel/key_object_dtor.cpp:
 	.text       start:0x0006D26C end:0x0006D374
 

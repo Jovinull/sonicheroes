@@ -54,6 +54,7 @@ public:
 	// The constructor inlines it; rel/key_search_cage.cpp emits the
 	// out-of-line copy the module also keeps.
 	void SearchCage();
+	void Disappear();
 
 	virtual void Exec();
 	virtual ~TObjKey();
