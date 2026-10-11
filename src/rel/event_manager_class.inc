@@ -13,7 +13,7 @@ struct EventSlot {
 };
 
 struct EventEntry {
-	u8 unk00[0x40];        // 0x00
+	char name[0x40];       // 0x00: the file the entry was loaded from
 	struct RpClump* clump; // 0x40
 	u8 unk44[0x4];         // 0x44
 	void* interpolator;    // 0x48
@@ -110,6 +110,7 @@ public:
 	// out-of-line copy; the others inline it.
 	s32 Exist();
 	s32 releaseScene(s32* scenes);
+	s32 checkFileKind(char* name, s32* kind);
 	s32 releaseSceneAll();
 	void releaseSceneExtObjs();
 	s32 loadSceneFromAram(s32 object);

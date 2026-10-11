@@ -1152,6 +1152,9 @@ rel/event_manager_release_all.cpp:
 rel/event_manager_release_ext.cpp:
 	.text       start:0x000C78E4 end:0x000C798C
 
+rel/event_manager_file_kind.cpp:
+	.text       start:0x000C86FC end:0x000C87D4
+
 rel/event_manager_load_aram.cpp:
 	.text       start:0x000C87D4 end:0x000C8870
 
