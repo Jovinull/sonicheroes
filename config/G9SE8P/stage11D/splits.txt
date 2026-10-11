@@ -918,6 +918,9 @@ rel/s11warp_object_register.cpp:
 	.text       start:0x000807FC end:0x000808AC
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/s11ghost_edit.cpp:
+	.text       start:0x00083D48 end:0x00083DA8
+
 rel/s11ghost_object_register.cpp:
 	.text       start:0x00084058 end:0x00084108
 	.ctors      start:0x000000E8 end:0x000000EC
