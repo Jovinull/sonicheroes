@@ -463,6 +463,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - CheckTouchedByLeader__11TObjS06ChipFv
     - SearchCage__11TObjS06ChipFv
     - flowerSetHierarchyForSkinAtomic__FP8RpAtomicPv
     - flowerGetHierarchy__FP7RpClump

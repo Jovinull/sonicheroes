@@ -62,6 +62,7 @@ public:
 	// The constructor inlines it; rel/s06_chip_search_cage.cpp emits the
 	// out-of-line copy the module also keeps.
 	void SearchCage();
+	s32 CheckTouchedByLeader();
 
 	virtual void Exec();
 	virtual ~TObjS06Chip();
