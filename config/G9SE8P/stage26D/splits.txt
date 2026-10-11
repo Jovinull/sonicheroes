@@ -860,6 +860,9 @@ rel/stg26_colli_cc_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x00079270 end:0x000792AC
 
+rel/event_manager_cheese.cpp:
+	.text       start:0x0007993C end:0x000799B8
+
 rel/event_manager_remove_clump.cpp:
 	.text       start:0x000799B8 end:0x00079A00
 

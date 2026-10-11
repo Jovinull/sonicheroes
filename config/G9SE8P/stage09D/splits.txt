@@ -1194,6 +1194,9 @@ rel/turtle_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000CE4B0 end:0x000CE4EC
 
+rel/event_manager_cheese.cpp:
+	.text       start:0x000CEB7C end:0x000CEBF8
+
 rel/event_manager_remove_clump.cpp:
 	.text       start:0x000CEBF8 end:0x000CEC40
 

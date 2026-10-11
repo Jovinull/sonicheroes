@@ -1167,6 +1167,9 @@ rel/s06chip_object_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000BC298 end:0x000BC2D4
 
+rel/event_manager_cheese.cpp:
+	.text       start:0x000BC964 end:0x000BC9E0
+
 rel/event_manager_remove_clump.cpp:
 	.text       start:0x000BC9E0 end:0x000BCA28
 

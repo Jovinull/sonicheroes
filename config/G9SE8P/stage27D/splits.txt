@@ -904,6 +904,9 @@ rel/stg27_obj_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x0007B988 end:0x0007B9C4
 
+rel/event_manager_cheese.cpp:
+	.text       start:0x0007C054 end:0x0007C0D0
+
 rel/event_manager_remove_clump.cpp:
 	.text       start:0x0007C0D0 end:0x0007C118
 

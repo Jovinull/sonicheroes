@@ -1118,6 +1118,9 @@ rel/e_s12bone_stage11.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000CEBD4 end:0x000CEC10
 
+rel/event_manager_cheese.cpp:
+	.text       start:0x000CF2A0 end:0x000CF31C
+
 rel/event_manager_remove_clump.cpp:
 	.text       start:0x000CF31C end:0x000CF364
 

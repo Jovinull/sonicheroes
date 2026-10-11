@@ -1058,6 +1058,9 @@ rel/s66_star_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000CBE5C end:0x000CBE98
 
+rel/event_manager_cheese.cpp:
+	.text       start:0x000CC528 end:0x000CC5A4
+
 rel/event_manager_remove_clump.cpp:
 	.text       start:0x000CC5A4 end:0x000CC5EC
 

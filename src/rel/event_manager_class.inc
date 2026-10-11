@@ -142,6 +142,7 @@ public:
 	void connectCurrentMabuta(SceneMemPlayerObj* player, s32 mabuta);
 	s32 evPlayerNo2playerNo(s32 player);
 	void showHidePlayer(s32 player, s32 show);
+	void setCheeseFrame();
 	s32 getPlayerNumber(s32 player, s32 unused);
 	struct RpClump* getPlayerBodyClump(s32 player);
 	void setDAnimation(struct RpDMorphAnimation* animation, struct RpAtomic* atomic, f32 time);
