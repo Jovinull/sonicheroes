@@ -426,4 +426,28 @@ EVENT_RELEASE_EVENT_INLINE s32 EventManager::ReleaseEvent()
 	SetModeSwitch__10MODESWITCHF15MODESWITCH_ENUMi(lbl_8042C180, 0x32, -1);
 	return 0;
 }
+
+// _loadEvent inlines the load; rel/event_manager_load_event.cpp defines the
+// macro empty to emit the out-of-line copy.
+#ifndef EVENT_LOAD_EVENT_INLINE
+#define EVENT_LOAD_EVENT_INLINE inline
+#endif
+
+extern "C" void fn_80018C4C();
+
+EVENT_LOAD_EVENT_INLINE s32 EventManager::LoadEvent(s32 event)
+{
+	if (event < 0) {
+		return 0;
+	}
+	ReleaseEvent();
+	unk28 = event;
+	if (loadEventToAMem()) {
+		unkE50 = 0;
+		lbl_8042C6E0->LoadScript(event);
+		fn_80018C4C();
+		return 1;
+	}
+	return 0;
+}
 #endif

@@ -2146,6 +2146,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/event_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/event_rewind.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

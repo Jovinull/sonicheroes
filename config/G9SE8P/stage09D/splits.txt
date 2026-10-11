@@ -1263,6 +1263,9 @@ rel/event_manager_dtor.cpp:
 rel/event_manager_ctor.cpp:
 	.text       start:0x000D1BCC end:0x000D1CD8
 
+rel/event_load.cpp:
+	.text       start:0x000D1CD8 end:0x000D1EE0
+
 rel/event_rewind.cpp:
 	.text       start:0x000D1EE0 end:0x000D2024
 
