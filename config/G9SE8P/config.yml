@@ -157,6 +157,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - egghawkColliEditOnChange
     - hintcolliEditOnChange
     - objSecollisionEditOnChange
     - hintringEditOnChange
