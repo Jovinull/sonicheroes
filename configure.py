@@ -1897,6 +1897,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cage_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
