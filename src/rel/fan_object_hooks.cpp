@@ -11,12 +11,12 @@ extern "C" RpClump* fanObjectModel;
 
 RpClump* objPointerReadFromClumpAnim(char* name);
 
-extern "C" void fanObjectUnload(void)
+extern "C" void fanUnload(void)
 {
 	fanObjectModel = NULL;
 }
 
-extern "C" void fanObjectLoad(void)
+extern "C" void fanLoad(void)
 {
 	fanObjectModel = objPointerReadFromClumpAnim(fanObjectModelName);
 }

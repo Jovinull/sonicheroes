@@ -1,7 +1,7 @@
 #include "types.h"
 
 // The unload and load hooks rel/big_rings_assets.cpp puts in the big ring's
-// editor record, in the twelve stage modules that share it. The load clears the
+// editor record, in the thirteen stage modules that share it. The load clears the
 // word at bigRingsState, reads the ring (keeping its material for the hint ring
 // texture when there is a ring) and its effect, which ignores the lights. The
 // unload forgets all of it (the stage resource manager owns the models).

@@ -1,7 +1,7 @@
 #include "types.h"
 
 // The unload and load hooks rel/dash_ring_assets.cpp puts in the dash ring's
-// editor record, in the twelve stage modules that share it.
+// editor record, in the thirteen stage modules that share it.
 //
 // The load finds the ring's three textures in the stage's texture dictionary,
 // reads the ring and its light (keeping the light's first material that uses

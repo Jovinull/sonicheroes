@@ -188,11 +188,11 @@ rel/dash_ring_edit.cpp:
 	.text       start:0x0000E114 end:0x0000E17C
 	.rodata     start:0x00000290 end:0x00000298
 
-rel/dashring_create.cpp:
-	.text       start:0x0000E330 end:0x0000E378
+rel/dash_ring_hooks.cpp:
+	.text       start:0x0000E17C end:0x0000E330
 
-rel/dashring_object_register.cpp:
-	.text       start:0x0000E378 end:0x0000E420
+rel/dash_ring_assets.cpp:
+	.text       start:0x0000E330 end:0x0000E420
 	.ctors      start:0x00000028 end:0x0000002C
 
 rel/checkpoint_ctor.cpp:
@@ -211,11 +211,14 @@ rel/checkpoint_register.cpp:
 rel/reel_dtor.cpp:
 	.text       start:0x00011B1C end:0x00011BE4
 
-rel/reel_create.cpp:
-	.text       start:0x0001212C end:0x00012174
+rel/reel_ctor.cpp:
+	.text       start:0x00011BE4 end:0x00011F24
 
-rel/reel_object_register.cpp:
-	.text       start:0x00012174 end:0x0001221C
+rel/reel_hooks.cpp:
+	.text       start:0x0001201C end:0x0001212C
+
+rel/reel_assets.cpp:
+	.text       start:0x0001212C end:0x0001221C
 	.ctors      start:0x00000030 end:0x00000034
 
 rel/container_colli.cpp:
@@ -268,7 +271,7 @@ rel/wood_container_hooks.cpp:
 rel/wood_container_create.cpp:
 	.text       start:0x00013FB4 end:0x000140F4
 
-rel/wood_cont_object_register.cpp:
+rel/wood_container_register.cpp:
 	.text       start:0x000140F4 end:0x0001419C
 	.ctors      start:0x00000034 end:0x00000038
 
@@ -337,11 +340,8 @@ rel/cannon_register.cpp:
 	.text       start:0x0001A9B8 end:0x0001AA68
 	.ctors      start:0x00000040 end:0x00000044
 
-rel/laserfence_create.cpp:
-	.text       start:0x0001C398 end:0x0001C3E0
-
-rel/laserfence_object_register.cpp:
-	.text       start:0x0001C3E0 end:0x0001C488
+rel/laser_fence_assets.cpp:
+	.text       start:0x0001C398 end:0x0001C488
 	.ctors      start:0x00000044 end:0x00000048
 
 rel/big_rings_element_dtor.cpp:
@@ -350,22 +350,22 @@ rel/big_rings_element_dtor.cpp:
 rel/big_rings_dtor.cpp:
 	.text       start:0x0001E914 end:0x0001E9DC
 
-rel/bigrings_create.cpp:
-	.text       start:0x0001F094 end:0x0001F0DC
+rel/big_rings_hooks.cpp:
+	.text       start:0x0001EFD0 end:0x0001F094
 
-rel/bigrings_object_register.cpp:
-	.text       start:0x0001F0DC end:0x0001F184
+rel/big_rings_assets.cpp:
+	.text       start:0x0001F094 end:0x0001F184
 	.ctors      start:0x00000048 end:0x0000004C
 
 rel/cage_check_break.cpp:
 	.text       start:0x0001F18C end:0x0001F348
 	.data       start:0x00002448 end:0x00002474
 
-rel/cage_create.cpp:
-	.text       start:0x00021C48 end:0x00021C90
+rel/cage_hooks.cpp:
+	.text       start:0x00021B64 end:0x00021C48
 
-rel/cage_object_register.cpp:
-	.text       start:0x00021C90 end:0x00021D38
+rel/cage_assets.cpp:
+	.text       start:0x00021C48 end:0x00021D38
 	.ctors      start:0x0000004C end:0x00000050
 
 rel/cannon_smoke_bind.cpp:
@@ -396,11 +396,8 @@ rel/fan_dtor.cpp:
 rel/fan_object_hooks.cpp:
 	.text       start:0x000257AC end:0x000257F4
 
-rel/fan_create.cpp:
-	.text       start:0x000257F4 end:0x0002583C
-
-rel/fan_object_register.cpp:
-	.text       start:0x0002583C end:0x000258E4
+rel/fan_assets.cpp:
+	.text       start:0x000257F4 end:0x000258E4
 	.ctors      start:0x00000054 end:0x00000058
 
 rel/weight_dtor.cpp:

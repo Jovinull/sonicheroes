@@ -1,7 +1,7 @@
 #include "types.h"
 
 // The unload and load hooks rel/reel_assets.cpp puts in REEL OBJECT's editor
-// record, in the twelve stage modules that carry that revision of the reel.
+// record, in the thirteen stage modules that carry that revision of the reel.
 //
 // Load finds the reel's three textures in the stage's texture dictionary,
 // reads the reel's model and then looks for the first of those texture names

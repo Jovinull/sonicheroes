@@ -1,7 +1,7 @@
 #include "types.h"
 
 // The unload and load hooks rel/cage_assets.cpp puts in the cage's editor
-// record, in the twelve stage modules that share it. The load reads the cage's
+// record, in the thirteen stage modules that share it. The load reads the cage's
 // three models and its three kinds of debris; the unload forgets the models
 // (the stage resource manager owns them).
 

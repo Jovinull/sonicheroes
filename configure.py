@@ -3098,16 +3098,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/bigrings_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/bigrings_object_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/big_slot_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3258,16 +3248,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/cage_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/cage_object_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/casinodoor_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3279,16 +3259,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/crossing_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/dashring_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/dashring_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3363,17 +3333,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/fan_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/fan_object_hooks.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/fan_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3449,16 +3409,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/king_pawn_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/laserfence_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/laserfence_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3959,16 +3909,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/redweed_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/reel_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/reel_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5189,11 +5129,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/wheel_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/wood_cont_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
