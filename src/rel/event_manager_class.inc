@@ -44,10 +44,14 @@ public:
 	static EventScriptData scriptData;
 	static u8 saveLightBuffer[0x3E0];
 
-	u8 unk00[0x44];     // 0x00
+	s32 unk00;          // 0x00
+	u8 unk04[0x38];     // 0x04
+	s32 unk3C;          // 0x3C
+	u8 unk40[4];        // 0x40
 	MESSAGE* message;   // 0x44
 	s32 unk48;          // 0x48
-	u8 unk4C[0x8];      // 0x4C
+	u8 unk4C[4];        // 0x4C
+	void* subtitles;    // 0x50: the language's table
 	char bgmName[0x40]; // 0x54: the stream the event plays
 	EventScript();
 	~EventScript();

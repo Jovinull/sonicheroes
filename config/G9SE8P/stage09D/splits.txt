@@ -1218,6 +1218,10 @@ rel/stage_init.cpp:
 rel/event_script_tdisp.cpp:
 	.text       start:0x000D25F4 end:0x000D25F8
 
+rel/event_script_init.cpp:
+	.text       start:0x000D2B70 end:0x000D2C6C
+	.data       start:0x00020A28 end:0x00020A44
+
 rel/event_script_update_endian.cpp:
 	.text       start:0x000D2C6C end:0x000D2D20
 
