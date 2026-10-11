@@ -1896,6 +1896,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_disp_stub.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_base_stubs.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -357,6 +357,9 @@ rel/cannon_hooks.cpp:
 rel/cannon_load.cpp:
 	.text       start:0x0001A894 end:0x0001A9B0
 
+rel/obj_disp_stub.cpp:
+	.text       start:0x0001A9B0 end:0x0001A9B4
+
 rel/cannon_register.cpp:
 	.text       start:0x0001A9B4 end:0x0001AA64
 	.ctors      start:0x00000040 end:0x00000044
