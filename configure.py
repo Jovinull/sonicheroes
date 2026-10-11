@@ -5443,6 +5443,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cage_check_break.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/iron_container_check_break.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
