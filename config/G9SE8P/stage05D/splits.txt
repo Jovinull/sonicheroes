@@ -1176,6 +1176,9 @@ rel/event_manager_reset.cpp:
 rel/event_manager_dtor.cpp:
 	.text       start:0x000BF910 end:0x000BF9B4
 
+rel/event_manager_ctor.cpp:
+	.text       start:0x000BF9B4 end:0x000BFAC0
+
 rel/event_rewind.cpp:
 	.text       start:0x000BFCC8 end:0x000BFE0C
 

@@ -884,6 +884,9 @@ rel/event_manager_reset.cpp:
 rel/event_manager_dtor.cpp:
 	.text       start:0x0007C4B4 end:0x0007C558
 
+rel/event_manager_ctor.cpp:
+	.text       start:0x0007C558 end:0x0007C664
+
 rel/event_rewind.cpp:
 	.text       start:0x0007C86C end:0x0007C9B0
 
