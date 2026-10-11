@@ -1751,6 +1751,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/slotlarge_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
