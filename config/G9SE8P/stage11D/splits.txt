@@ -1127,6 +1127,9 @@ rel/event_manager_rewind.cpp:
 rel/event_manager_pause.cpp:
 	.text       start:0x000D07DC end:0x000D07F4
 
+rel/event_manager_start.cpp:
+	.text       start:0x000D07F4 end:0x000D0868
+
 rel/event_manager_exist.cpp:
 	.text       start:0x000D2190 end:0x000D21A0
 
