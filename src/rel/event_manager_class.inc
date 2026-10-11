@@ -20,6 +20,7 @@ class EventScript
 public:
 	u8 unk00[0x94];
 	EventScript();
+	~EventScript();
 	void ScriptTDisp();
 };
 
@@ -50,6 +51,10 @@ public:
 	{
 		Init();
 	}
+
+	// Whether an event is loaded. rel/event_manager_exist.cpp emits the
+	// out-of-line copy; the others inline it.
+	s32 Exist();
 
 	void Init()
 	{
@@ -88,6 +93,12 @@ public:
 	virtual ~EventManager();
 #endif
 };
+
+#ifndef EVENT_EXIST_INLINE
+#define EVENT_EXIST_INLINE inline
+#endif
+
+EVENT_EXIST_INLINE s32 EventManager::Exist() { return unk28 >= 0 ? TRUE : FALSE; }
 
 extern "C" EventScript* lbl_8042C6E0;
 extern "C" EventManager* lbl_8042C6E4;

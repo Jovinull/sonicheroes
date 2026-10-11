@@ -224,7 +224,7 @@ M2C_UNK fn_8_A2A78(TObject*);                                                   
 void** fn_8_A31D4();                                                                /* extern */
 M2C_UNK fn_8_D06B8(u32);                                                            /* extern */
 M2C_UNK fn_8_D07F4(u32);                                                            /* extern */
-s32 fn_8_D2190(u32);                                                                /* extern */
+s32 Exist__12EventManagerFv(u32);                                                   /* extern */
 M2C_UNK fn_8_D8E90(M2C_UNK, M2C_UNK, M2C_UNK);                                      /* extern */
 }
 extern M2C_UNK SetAtomicCustomFXData__FP8RpAtomicPv;
@@ -1979,7 +1979,7 @@ void fn_8_A0668(void* arg0, s32 arg1)
 	switch (arg1) { /* irregular */
 		case 0:
 			M2C_FIELD(arg0, s32*, 0xD4) = 2;
-			if (((u32)lbl_8042C6E4 != 0U) && (fn_8_D2190(lbl_8042C6E4) != 0)) {
+			if (((u32)lbl_8042C6E4 != 0U) && (Exist__12EventManagerFv(lbl_8042C6E4) != 0)) {
 				fn_8_D06B8(lbl_8042C6E4);
 				fn_8_D07F4(lbl_8042C6E4);
 			}
@@ -2135,7 +2135,7 @@ void fn_8_A0A30(void* arg0, s32 arg1, s32 arg2)
 			switch (arg2) { /* switch 2; irregular */
 				case 0:     /* switch 2 */
 					M2C_FIELD(arg0, s32*, 0xD4) = 2;
-					if (((u32)lbl_8042C6E4 != 0U) && (fn_8_D2190(lbl_8042C6E4) != 0)) {
+					if (((u32)lbl_8042C6E4 != 0U) && (Exist__12EventManagerFv(lbl_8042C6E4) != 0)) {
 						fn_8_D06B8(lbl_8042C6E4);
 						fn_8_D07F4(lbl_8042C6E4);
 					}
