@@ -911,6 +911,9 @@ rel/scaffold_object_register.cpp:
 	.text       start:0x0007EAC0 end:0x0007EB68
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s11warp_edit.cpp:
+	.text       start:0x000804B0 end:0x00080554
+
 rel/s11warp_object_register.cpp:
 	.text       start:0x000807FC end:0x000808AC
 	.ctors      start:0x000000E4 end:0x000000E8
