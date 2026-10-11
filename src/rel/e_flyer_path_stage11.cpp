@@ -124,7 +124,7 @@ s32 rand();                                                                     
 M2C_UNK fn_8_90B10(s32);                                                           /* extern */
 M2C_UNK fn_8_A353C(void*);                                                         /* extern */
 s32 fn_8_A35BC(M2C_UNK);                                                           /* extern */
-M2C_UNK fn_8_A7FA4(M2C_UNK);                                                       /* extern */
+M2C_UNK EditOnChange__18TObjFlyerCollisionFP13SETDATA_PARAM(M2C_UNK);              /* extern */
 void fn_8_A945C(void* arg0);                                                       /* static */
 void fn_8_A82A8(void*);
 void fn_8_A8590(void*);
@@ -310,7 +310,7 @@ extern const f32 lbl_8_rodata_1AA0[3]
 
 void fn_8_A82A0(s32 arg0)
 {
-	fn_8_A7FA4(arg0 - 0xB0);
+	EditOnChange__18TObjFlyerCollisionFP13SETDATA_PARAM(arg0 - 0xB0);
 }
 
 void fn_8_A82A8(void* arg0)

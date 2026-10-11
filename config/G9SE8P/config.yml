@@ -1094,6 +1094,21 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - OnClose__18TObjFlyerCollisionFv
+    - CreateInstance__18TObjFlyerCollisionFv
+    - __ct__18TObjFlyerCollisionFP7TObject
+    - ResetVariable__18TObjFlyerCollisionFv
+    - SetColliParameter__18TObjFlyerCollisionFv
+    - SetParameter__18TObjFlyerCollisionFv
+    - CheckCollisionBegin__18TObjFlyerCollisionFv
+    - CheckCollisionBomb__18TObjFlyerCollisionFv
+    - CheckCollisionEnd__18TObjFlyerCollisionFv
+    - CheckCollisionMgun__18TObjFlyerCollisionFv
+    - CheckCollisionMissile__18TObjFlyerCollisionFv
+    - CheckCollisionPawn__18TObjFlyerCollisionFv
+    - HitFlyer__18TObjFlyerCollisionFv
+    - HitPlayer__18TObjFlyerCollisionFv
+    - KillMyself__18TObjFlyerCollisionFv
     - cageCheckThunderShoot
     - cageDisp
     - weightUp
