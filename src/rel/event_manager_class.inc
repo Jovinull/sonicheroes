@@ -31,16 +31,25 @@ struct SceneMemEtcObj {
 };
 
 // What the script keeps for a player of the scene, in the player's slot: its
-// models and the eyelid clumps (connectCurrentMabuta shows one at a time).
+// models and their animations, and the eyelid clumps (connectCurrentMabuta
+// shows one at a time).
 struct SceneMemPlayerObj {
-	struct RpClump* body;      // 0x00
-	u8 unk04[0x14];            // 0x04
-	struct RpClump* head;      // 0x18
-	u8 unk1C[0x8];             // 0x1C
-	struct RpClump* mabuta[8]; // 0x24
-	s32 mabutaNo;              // 0x44: the one shown, or -1
-	s32 mabutaCount;           // 0x48
-};
+	struct RpClump* body;                    // 0x00
+	void* bodyAnim;                          // 0x04: an interpolator
+	u8 unk08[0x10];                          // 0x08
+	struct RpClump* head;                    // 0x18
+	u8 unk1C[0x4];                           // 0x1C
+	void* unk20;                             // 0x20
+	struct RpClump* mabuta[8];               // 0x24
+	s32 mabutaNo;                            // 0x44: the one shown, or -1
+	s32 mabutaCount;                         // 0x48
+	struct RpClump* model;                   // 0x4C
+	void* modelAnim;                         // 0x50: an interpolator
+	struct RpHAnimHierarchy* modelHierarchy; // 0x54
+	struct RpClump* modelPart;               // 0x58
+	u8 unk5C[0x44];                          // 0x5C
+	struct RpHAnimHierarchy* hierarchy;      // 0xA0: the body's
+}; // 0xA4
 
 // One of the event's files kept in ARAM: loadSceneFromAram copies it back
 // into main memory and releaseSceneAll frees it.
@@ -265,11 +274,12 @@ extern "C" void fn_8015BB08(void* world, struct RpClump* clump);
 extern "C" void fn_8020D02C(void* interpolator, f32 time);
 extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 
-// The manager's own functions inline these seven; rel/event_manager_remove_clump.cpp,
+// The manager's own functions inline these; each of rel/event_manager_remove_clump.cpp,
 // rel/event_manager_add_clump.cpp, rel/event_manager_mabuta.cpp,
 // rel/event_manager_player_no.cpp, rel/event_manager_player_number.cpp,
+// rel/event_manager_body_clump.cpp, rel/event_manager_release_ext.cpp,
 // rel/event_manager_release_all.cpp and rel/event_manager_set_animation.cpp
-// define their macro empty to emit the out-of-line copy.
+// defines one macro empty to emit that member's out-of-line copy.
 #ifndef EVENT_REMOVE_CLUMP_INLINE
 #define EVENT_REMOVE_CLUMP_INLINE inline
 #endif
@@ -287,6 +297,12 @@ extern "C" void fn_8013FC30(RpHAnimHierarchy* hierarchy);
 #endif
 #ifndef EVENT_MABUTA_INLINE
 #define EVENT_MABUTA_INLINE inline
+#endif
+#ifndef EVENT_BODY_CLUMP_INLINE
+#define EVENT_BODY_CLUMP_INLINE inline
+#endif
+#ifndef EVENT_RELEASE_EXT_INLINE
+#define EVENT_RELEASE_EXT_INLINE inline
 #endif
 #ifndef EVENT_SET_ANIMATION_INLINE
 #define EVENT_SET_ANIMATION_INLINE inline
@@ -342,6 +358,24 @@ EVENT_PLAYER_NO_INLINE s32 EventManager::evPlayerNo2playerNo(s32 player)
 
 extern "C" void fn_800D075C(void* aram);
 extern "C" void fn_801A46D0(void* dictionary);
+extern "C" void fn_80150958(struct RpClump* clump);
+extern "C" void fn_8020C2D8(void* interpolator);
+
+// It releases the scene's extra objects: their clumps and animations.
+EVENT_RELEASE_EXT_INLINE void EventManager::releaseSceneExtObjs()
+{
+	for (int i = 0; i < 16; i++) {
+		if (entries[i].clump == NULL) {
+			break;
+		}
+		removeClump(entries[i].clump);
+		fn_80150958(entries[i].clump);
+		if (entries[i].interpolator != NULL) {
+			fn_8020C2D8(entries[i].interpolator);
+		}
+	}
+	memset(entries, 0, sizeof(entries));
+}
 
 // It releases every scene, frees the event's files kept in ARAM and destroys
 // the event's texture dictionary, answering what releaseScene answered.
@@ -388,6 +422,22 @@ EVENT_PLAYER_NUMBER_INLINE s32 EventManager::getPlayerNumber(s32 player, s32 unu
 		}
 	}
 	return -1;
+}
+
+extern "C" struct RpClump* lbl_8042B708[2];
+
+// The body model of an event's player.
+EVENT_BODY_CLUMP_INLINE struct RpClump* EventManager::getPlayerBodyClump(s32 player)
+{
+	switch (player) {
+		case 10:
+		case 12:
+			return slots[player].clump;
+		case 13:
+			return lbl_8042B708[0];
+		default:
+			return lbl_802AD0D0[getPlayerNumber(player, 0)]->clump;
+	}
 }
 
 EVENT_SET_ANIMATION_INLINE void EventManager::setAnimation(RpHAnimHierarchy* hierarchy, f32 time)

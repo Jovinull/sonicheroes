@@ -895,6 +895,9 @@ rel/event_manager_start.cpp:
 rel/event_manager_release_all.cpp:
 	.text       start:0x00077E0C end:0x00077E90
 
+rel/event_manager_release_scene.cpp:
+	.text       start:0x00077E90 end:0x000782B4
+
 rel/event_manager_release_ext.cpp:
 	.text       start:0x000782B4 end:0x0007835C
 

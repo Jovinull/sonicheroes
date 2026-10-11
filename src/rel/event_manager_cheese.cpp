@@ -6,7 +6,6 @@
 
 #include "src/rel/event_manager_class.inc"
 
-extern "C" struct RpClump* lbl_8042B708[2];
 extern "C" RwV3d eventCheeseOffset;
 extern "C" void* fn_8019E8EC(RwFrame* frame);
 extern "C" void fn_8019ECCC(RwFrame* frame, void* matrix, s32 combine);

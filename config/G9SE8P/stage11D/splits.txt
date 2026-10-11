@@ -1166,6 +1166,9 @@ rel/event_manager_start.cpp:
 rel/event_manager_release_all.cpp:
 	.text       start:0x000D0868 end:0x000D08EC
 
+rel/event_manager_release_scene.cpp:
+	.text       start:0x000D08EC end:0x000D0D10
+
 rel/event_manager_release_ext.cpp:
 	.text       start:0x000D0D10 end:0x000D0DB8
 
