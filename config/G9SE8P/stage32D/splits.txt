@@ -868,6 +868,9 @@ rel/stage_init.cpp:
 rel/event_script_tdisp.cpp:
 	.text       start:0x0007A2BC end:0x0007A2C0
 
+rel/event_script_dtor.cpp:
+	.text       start:0x0007AD84 end:0x0007ADF4
+
 rel/bobcontainer_check_ground.cpp:
 	.text       start:0x0007AEB0 end:0x0007AF34
 

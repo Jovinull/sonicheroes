@@ -15,10 +15,22 @@ struct EventEntry {
 	u8 unk00[0x50];
 };
 
+// The message board the script shows text on, defined in src/game/message.cpp.
+class MESSAGE
+{
+public:
+	u8 unk000[0x1B4];
+	MESSAGE(char* name);
+	~MESSAGE();
+};
+
 class EventScript
 {
 public:
-	u8 unk00[0x94];
+	u8 unk00[0x44];        // 0x00
+	MESSAGE* message;      // 0x44
+	s32 unk48;             // 0x48
+	u8 unk4C[0x94 - 0x4C]; // 0x4C
 	EventScript();
 	~EventScript();
 	void ScriptTDisp();
@@ -98,7 +110,10 @@ public:
 #define EVENT_EXIST_INLINE inline
 #endif
 
-EVENT_EXIST_INLINE s32 EventManager::Exist() { return unk28 >= 0 ? TRUE : FALSE; }
+EVENT_EXIST_INLINE s32 EventManager::Exist()
+{
+	return unk28 >= 0 ? TRUE : FALSE;
+}
 
 extern "C" EventScript* lbl_8042C6E0;
 extern "C" EventManager* lbl_8042C6E4;
