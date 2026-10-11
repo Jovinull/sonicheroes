@@ -1218,6 +1218,9 @@ rel/event_script_tdisp.cpp:
 rel/event_script_dtor.cpp:
 	.text       start:0x000D30BC end:0x000D312C
 
+rel/event_script_ctor.cpp:
+	.text       start:0x000D312C end:0x000D31E8
+
 rel/bobcontainer_check_ground.cpp:
 	.text       start:0x000D31E8 end:0x000D326C
 
