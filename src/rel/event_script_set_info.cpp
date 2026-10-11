@@ -13,7 +13,7 @@ s32 ScriptDataSetInfo()
 {
 	if (lbl_8042C6E0 != NULL && lbl_8042C6E4->Exist()) {
 		EventScript::scriptData.unk000C = *(s32*)(lbl_8042C180 + 0x40);
-		memcpy(EventScript::scriptData.info, lbl_8042C6E4->unkE68, 0x140);
+		memcpy(EventScript::scriptData.info, lbl_8042C6E4->objects, 0x140);
 		return 1;
 	}
 	return 0;

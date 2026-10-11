@@ -903,6 +903,9 @@ rel/stg28_obj_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x0007CE20 end:0x0007CE5C
 
+rel/event_manager_set_d_animation.cpp:
+	.text       start:0x0007E838 end:0x0007E880
+
 rel/event_manager_texdict.cpp:
 	.text       start:0x0007E8B8 end:0x0007E904
 

@@ -1194,6 +1194,9 @@ rel/turtle_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000CE4B0 end:0x000CE4EC
 
+rel/event_manager_set_d_animation.cpp:
+	.text       start:0x000CFEC8 end:0x000CFF10
+
 rel/event_manager_texdict.cpp:
 	.text       start:0x000CFF48 end:0x000CFF94
 

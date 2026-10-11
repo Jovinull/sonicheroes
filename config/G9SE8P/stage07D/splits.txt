@@ -1421,6 +1421,9 @@ rel/rino_col_register.cpp:
 rel/event_manager_disp.cpp:
 	.text       start:0x000EA690 end:0x000EA6CC
 
+rel/event_manager_set_d_animation.cpp:
+	.text       start:0x000EC0A8 end:0x000EC0F0
+
 rel/event_manager_texdict.cpp:
 	.text       start:0x000EC128 end:0x000EC174
 

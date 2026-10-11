@@ -15,6 +15,13 @@ struct EventEntry {
 	u8 unk00[0x50];
 };
 
+// One of the event's objects, whose clump releaseSceneAll frees.
+struct EventObject {
+	u8 unk00[0x8]; // 0x00
+	void* clump;   // 0x08
+	u8 unk0C[0x8]; // 0x0C
+}; // 0x14
+
 // The message board the script shows text on, defined in src/game/message.cpp.
 class MESSAGE
 {
@@ -66,28 +73,31 @@ extern "C" TObject* lbl_8042C104;
 class EventManager : public TObject
 {
 public:
-	s32 unk28;                // 0x28
-	s32 unk2C;                // 0x2C
-	s32 unk30;                // 0x30
-	s32 unk34;                // 0x34
-	s32 unk38;                // 0x38
-	s32 unk3C;                // 0x3C
-	u8 unk40[4];              // 0x40
-	s32 unk44;                // 0x44
-	EventSlot slots[14];      // 0x48
-	EventEntry entries[16];   // 0x940
-	s32 unkE40;               // 0xE40
-	u8 unkE44[0x1C];          // 0xE44
-	void* buffer;             // 0xE60
-	ONEFILE* file;            // 0xE64
-	u8 unkE68[0xFA8 - 0xE68]; // 0xE68
+	s32 unk28;               // 0x28
+	s32 unk2C;               // 0x2C
+	s32 unk30;               // 0x30
+	s32 unk34;               // 0x34
+	void* texDict;           // 0x38: the event's texture dictionary
+	s32 unk3C;               // 0x3C
+	u8 unk40[4];             // 0x40
+	s32 unk44;               // 0x44
+	EventSlot slots[14];     // 0x48
+	EventEntry entries[16];  // 0x940
+	s32 unkE40;              // 0xE40
+	u8 unkE44[0x1C];         // 0xE44
+	void* buffer;            // 0xE60
+	ONEFILE* file;           // 0xE64
+	EventObject objects[16]; // 0xE68
 
 	EventManager(TObject* parent);
 
 	// Whether an event is loaded. rel/event_manager_exist.cpp emits the
 	// out-of-line copy; the others inline it.
 	s32 Exist();
-	void releaseScene(s32* scenes);
+	s32 releaseScene(s32* scenes);
+	s32 releaseSceneAll();
+	void setDAnimation(struct RpDMorphAnimation* animation, struct RpAtomic* atomic, f32 time);
+	void setAnimation(struct RpHAnimHierarchy* hierarchy, f32 time);
 	void loadScene(s32 cut);
 	void loadEventTexdict();
 	void EventRewind();
@@ -126,13 +136,13 @@ extern "C" EventManager* lbl_8042C6E4;
 
 EVENT_INIT_INLINE void EventManager::Init()
 {
-	unk28  = -1;
-	unk34  = 0;
-	unk2C  = 0;
-	unkE40 = 0;
-	unk38  = 0;
-	unk3C  = 0;
-	unk44  = 0;
+	unk28   = -1;
+	unk34   = 0;
+	unk2C   = 0;
+	unkE40  = 0;
+	texDict = NULL;
+	unk3C   = 0;
+	unk44   = 0;
 	for (int i = 0; i < 14; i++) {
 		EventSlot* slot = &slots[i];
 		memset(slot, 0, sizeof(EventSlot));
@@ -195,7 +205,7 @@ EVENT_TEXDICT_INLINE void EventManager::loadEventTexdict()
 {
 	char name[64];
 	sprintf(name, eventTexdictFormat, unk28);
-	unk38 = (s32)texLoadTexDictionaryFile(name);
+	texDict = texLoadTexDictionaryFile(name);
 }
 
 EVENT_PAUSE_INLINE void EventManager::EventPause()
