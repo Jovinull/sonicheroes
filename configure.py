@@ -6388,6 +6388,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_smoke_bind.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/checkpoint_bind.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
