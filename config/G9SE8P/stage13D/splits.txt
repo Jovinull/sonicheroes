@@ -784,6 +784,9 @@ rel/o_invoke_colli.cpp:
 rel/push_pull_switch_set_position.cpp:
 	.text       start:0x00050E08 end:0x00051094
 
+rel/push_pull_switch_set_parameter.cpp:
+	.text       start:0x00051094 end:0x000511BC
+
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00051218 end:0x000512D8
 
