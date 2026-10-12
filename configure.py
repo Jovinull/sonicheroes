@@ -1922,6 +1922,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cage_clone_clump.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cage_destroy_clump.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
