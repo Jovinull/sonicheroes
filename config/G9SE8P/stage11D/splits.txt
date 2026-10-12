@@ -714,7 +714,13 @@ rel/system_object4_register.cpp:
 	.ctors      start:0x0000009C end:0x000000A0
 
 rel/light_collision_stage11.cpp:
-	.text       start:0x0004E0A4 end:0x0004F2E4
+	.text       start:0x0004E0A4 end:0x0004F084
+
+rel/light_collision_ctor.cpp:
+	.text       start:0x0004F084 end:0x0004F29C
+
+rel/light_collision_create.cpp:
+	.text       start:0x0004F29C end:0x0004F2E4
 
 rel/light_collision_register.cpp:
 	.text       start:0x0004F2E4 end:0x0004F37C

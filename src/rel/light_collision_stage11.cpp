@@ -1,5 +1,9 @@
 #include "types.h"
 
+// The light collision's out-of-line constructor and factory, which end this
+// run, are the shared rel/light_collision_ctor.cpp and
+// rel/light_collision_create.cpp units.
+
 extern "C" {
 extern void* lbl_8042C110;
 extern void* lbl_8042C118;
@@ -7,23 +11,23 @@ extern void* lbl_8042C148;
 extern void* pCurrentMatrix;
 extern u8 lbl_802D5E80[];
 extern void* lbl_802AD070[];
-extern void* lbl_8_bss_D38;
-extern void* lbl_8_bss_D3C;
-extern s8 lbl_8_bss_D40[];
+extern void* lightCollisionManager;
+extern void* lightCollisionHead;
+extern s8 lightCollisionSlots[];
 extern void* lbl_8_bss_D50;
 extern void* lbl_8_bss_D54;
 extern void* lbl_8_bss_D58;
 extern void* lbl_8_bss_D5C;
 extern void* lbl_8_bss_D60;
 extern u8 lbl_8_data_5588[];
-extern void* lbl_8_data_559C;
-extern void* lbl_8_data_55B8;
-extern void* lbl_8_data_55CC;
-extern void* lbl_8_data_55F8;
+extern void* lightCollisionClassName;
+extern void* lightCollisionManagerClassName;
+extern void* lightCollisionManagerVtable;
+extern void* lightCollisionVtable;
 extern float lbl_8_rodata_D38;
 extern float lbl_8_rodata_D3C;
-extern float lbl_8_rodata_D40;
-extern float lbl_8_rodata_D58;
+extern float lightCollisionNoSize;
+extern float lightCollisionDefaultSize;
 
 void __ct__7TObjectFP7TObject(void*, void*);
 void __dt__7TObjectFv(void*, s32);
@@ -101,7 +105,7 @@ extern "C" void fn_8_4E1A8()
 
 extern "C" void fn_8_4E2C8(s8 player)
 {
-	for (void* object = lbl_8_bss_D3C; object != NULL; object = field<void*>(object, 0x3C)) {
+	for (void* object = lightCollisionHead; object != NULL; object = field<void*>(object, 0x3C)) {
 		if (field<s8>(object, 0x39) == 1 && ((s8*)((u8*)object + 0x30))[player] == 1)
 			((s8*)((u8*)object + 0x30))[player] = 0;
 	}
@@ -109,43 +113,43 @@ extern "C" void fn_8_4E2C8(s8 player)
 
 extern "C" void fn_8_4E318(void* first)
 {
-	lbl_8_bss_D3C = first;
+	lightCollisionHead = first;
 }
 extern "C" void* fn_8_4E328()
 {
-	return lbl_8_bss_D3C;
+	return lightCollisionHead;
 }
 
 extern "C" void fn_8_4E338(void* self)
 {
-	if (lbl_8_bss_D3C == NULL) {
+	if (lightCollisionHead == NULL) {
 		field<u16>(self, 4) |= 1;
 		return;
 	}
 	s8 selected[8];
 	for (int i = 0; i < 8; i++)
 		selected[i] = -1;
-	for (void* object = lbl_8_bss_D3C; object != NULL; object = field<void*>(object, 0x3C)) {
+	for (void* object = lightCollisionHead; object != NULL; object = field<void*>(object, 0x3C)) {
 		for (int i = 0; i < 8; i++) {
 			if (((s8*)((u8*)object + 0x30))[i] == 1 && selected[i] < 0)
 				selected[i] = field<s8>(object, 0x38);
 		}
 	}
 	for (int i = 0; i < 8; i++) {
-		if (selected[i] != lbl_8_bss_D40[i * 2])
+		if (selected[i] != lightCollisionSlots[i * 2])
 			SetCurrentNumPlayer__6CLIGHTFScSc((int)lbl_802D5E80, i);
-		lbl_8_bss_D40[i * 2] = selected[i];
+		lightCollisionSlots[i * 2] = selected[i];
 	}
 }
 
 extern "C" void* fn_8_4E588(void* self, s16 flags)
 {
 	if (self != NULL) {
-		field<void*>(self, 0x18) = lbl_8_data_55CC;
+		field<void*>(self, 0x18) = lightCollisionManagerVtable;
 		for (int i = 0; i < 8; i++)
 			SetCurrentNumPlayer__6CLIGHTFScSc((int)lbl_802D5E80, i);
-		if (lbl_8_bss_D38 == self)
-			lbl_8_bss_D38 = NULL;
+		if (lightCollisionManager == self)
+			lightCollisionManager = NULL;
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
@@ -156,11 +160,11 @@ extern "C" void* fn_8_4E588(void* self, s16 flags)
 extern "C" void* fn_8_4E654(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
-	field<void*>(self, 0x18) = lbl_8_data_55CC;
-	field<void*>(self, 0)    = lbl_8_data_55B8;
+	field<void*>(self, 0x18) = lightCollisionManagerVtable;
+	field<void*>(self, 0)    = lightCollisionManagerClassName;
 	field<u16>(self, 0x1E)   = 0x28;
 	for (int i = 0; i < 16; i++)
-		lbl_8_bss_D40[i] = -1;
+		lightCollisionSlots[i] = -1;
 	return self;
 }
 
@@ -231,18 +235,18 @@ extern "C" void fn_3_4EE40(void*, void* placement)
 	if (config[2] > 3)
 		config[2] = 3;
 	for (int i = 0; i < 3; i++)
-		if (field<float>(config, 4 + i * 4) < lbl_8_rodata_D40)
-			field<float>(config, 4 + i * 4) = lbl_8_rodata_D40;
+		if (field<float>(config, 4 + i * 4) < lightCollisionNoSize)
+			field<float>(config, 4 + i * 4) = lightCollisionNoSize;
 }
 
 extern "C" void* fn_8_4EFB8(void* self, s16 flags)
 {
 	if (self != NULL) {
-		field<void*>(self, 0x18) = lbl_8_data_55F8;
-		if (lbl_8_bss_D3C == self)
-			lbl_8_bss_D3C = field<void*>(self, 0x3C);
+		field<void*>(self, 0x18) = lightCollisionVtable;
+		if (lightCollisionHead == self)
+			lightCollisionHead = field<void*>(self, 0x3C);
 		else
-			for (void* item = lbl_8_bss_D3C; item != NULL; item = field<void*>(item, 0x3C))
+			for (void* item = lightCollisionHead; item != NULL; item = field<void*>(item, 0x3C))
 				if (field<void*>(item, 0x3C) == self) {
 					field<void*>(item, 0x3C) = field<void*>(self, 0x3C);
 					break;
@@ -253,43 +257,4 @@ extern "C" void* fn_8_4EFB8(void* self, s16 flags)
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
-}
-
-extern "C" void* fn_8_4F084(void* self, void* parent)
-{
-	__ct__7TObjectFP7TObject(self, parent);
-	__ct__10TObjSetObjFv((u8*)self + 0x28);
-	field<void*>(self, 0x18) = lbl_8_data_55F8;
-	field<void*>(self, 0)    = lbl_8_data_559C;
-	field<u16>(self, 0x1E)   = 0x40;
-	if (lbl_8_bss_D38 == NULL) {
-		void* manager = Malloc__9THeapCtrlFUi((int)lbl_8042C148, 0x28);
-		if (manager == NULL) {
-			field<u16>(self, 4) |= 1;
-			return self;
-		}
-		lbl_8_bss_D38 = fn_8_4E654(manager, lbl_8042C118);
-	}
-	for (int i = 0; i < 8; i++)
-		((u8*)((u8*)self + 0x30))[i] = 0;
-	u8* config            = field<u8*>(field<void*>(self, 0x28), 0x2C);
-	field<u8>(self, 0x38) = config[0];
-	field<u8>(self, 0x39) = config[1];
-	void* tail            = lbl_8_bss_D3C;
-	if (tail == NULL)
-		lbl_8_bss_D3C = self;
-	else {
-		while (field<void*>(tail, 0x3C) != NULL)
-			tail = field<void*>(tail, 0x3C);
-		field<void*>(tail, 0x3C) = self;
-	}
-	field<void*>(self, 0x3C) = NULL;
-	return self;
-}
-
-extern "C" void lightCollisionCreate()
-{
-	void* object = Malloc__9THeapCtrlFUi((int)lbl_8042C148, 0x40);
-	if (object != NULL)
-		fn_8_4F084(object, lbl_8042C110);
 }
