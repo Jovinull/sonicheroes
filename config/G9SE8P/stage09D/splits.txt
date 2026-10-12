@@ -1436,6 +1436,9 @@ rel/bobsleigh_vacuum_exec.cpp:
 rel/bobsleigh_vacuum_dtor.cpp:
 	.text       start:0x000ACB8C end:0x000ACC10
 
+rel/bobsleigh_attack_exec.cpp:
+	.text       start:0x000ACCB8 end:0x000ACDB4
+
 rel/bobsleigh_attack_dtor.cpp:
 	.text       start:0x000ACDB4 end:0x000ACE38
 
