@@ -650,7 +650,10 @@ rel/signal_assets.cpp:
 	.ctors      start:0x00000080 end:0x00000084
 
 rel/propeller_stage11.cpp:
-	.text       start:0x00046C14 end:0x00049590
+	.text       start:0x00046C14 end:0x00049548
+
+rel/propeller_create.cpp:
+	.text       start:0x00049548 end:0x00049590
 
 rel/propeller_register.cpp:
 	.text       start:0x00049590 end:0x00049630
