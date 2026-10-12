@@ -273,6 +273,9 @@ game/locateTable.cpp:
 game/fn_800A26EC.cpp:
 	.text       start:0x800A26EC end:0x800A2704
 
+game/fn_800A31A0.cpp:
+	.text       start:0x800A31A0 end:0x800A31B8
+
 game/fn_800A3CBC.cpp:
 	.text       start:0x800A3CBC end:0x800A3CE0
 
