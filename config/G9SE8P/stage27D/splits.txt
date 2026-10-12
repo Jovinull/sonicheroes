@@ -899,6 +899,9 @@ rel/hintcolli_register.cpp:
 	.text       start:0x00065574 end:0x00065624
 	.ctors      start:0x000000CC end:0x000000D0
 
+rel/obj_secollision_exec.cpp:
+	.text       start:0x000656B0 end:0x00065A58
+
 rel/obj_secollision_edit.cpp:
 	.text       start:0x00065CD0 end:0x00065DB8
 

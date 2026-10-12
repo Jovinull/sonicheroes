@@ -1116,6 +1116,9 @@ rel/hintcolli_register.cpp:
 	.text       start:0x000AB6B8 end:0x000AB768
 	.ctors      start:0x00000154 end:0x00000158
 
+rel/obj_secollision_exec.cpp:
+	.text       start:0x000AB7F4 end:0x000ABB9C
+
 rel/obj_secollision_edit.cpp:
 	.text       start:0x000ABE14 end:0x000ABEFC
 
