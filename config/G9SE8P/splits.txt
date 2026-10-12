@@ -212,6 +212,11 @@ game/fn_8004F97C.cpp:
 game/fn_8004FC9C.cpp:
 	.text       start:0x8004FC9C end:0x8004FCC4
 
+game/fn_80051F68.cpp:
+	extab       start:0x80006404 end:0x8000640C
+	extabindex  start:0x8000CD54 end:0x8000CD60
+	.text       start:0x80051F68 end:0x80051FF0
+
 game/light.cpp:
 	extab       start:0x80006424 end:0x8000650C
 	extabindex  start:0x8000CD84 end:0x8000CE98
