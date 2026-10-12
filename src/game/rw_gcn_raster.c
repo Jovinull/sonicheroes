@@ -194,7 +194,7 @@ u32* fn_80225248(u32* arg0, u8* arg1)
 		temp_r27 = M2C_FIELD(arg1, s32*, 0);
 		temp_r28 = sp8;
 		if ((u32)M2C_FIELD(arg1, u32*, 0x3C) != 0U) {
-			M2C_FIELD(lbl_8042C9A4, M2C_UNK(**)(), 0x138)(lbl_8042C9A4);
+			M2C_FIELD(lbl_8042C9A4, M2C_UNK(**)(), 0x138)(M2C_FIELD(arg1, u32*, 0x3C));
 		}
 		M2C_FIELD(arg1, u32*, 0x30) = 0U;
 		M2C_FIELD(arg1, s32*, 0x34) = 0;
