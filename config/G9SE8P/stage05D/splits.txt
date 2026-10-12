@@ -423,6 +423,9 @@ rel/big_rings_element_dtor.cpp:
 rel/big_rings_dtor.cpp:
 	.text       start:0x0001E910 end:0x0001E9D8
 
+rel/big_rings_edit.cpp:
+	.text       start:0x0001EF6C end:0x0001EFCC
+
 rel/big_rings_hooks.cpp:
 	.text       start:0x0001EFCC end:0x0001F090
 
