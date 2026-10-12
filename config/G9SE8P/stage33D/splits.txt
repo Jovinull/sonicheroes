@@ -984,6 +984,9 @@ rel/bobsleigh_merge_path_pos.cpp:
 rel/bobsleigh_init_signal.cpp:
 	.text       start:0x00056430 end:0x00056700
 
+rel/bobsleigh_check_damage.cpp:
+	.text       start:0x000592A4 end:0x00059778
+
 rel/bobsleigh_riders.cpp:
 	.text       start:0x00059778 end:0x00059900
 
