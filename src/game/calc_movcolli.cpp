@@ -974,7 +974,8 @@ block_30:
 		temp_f2_5 = (temp_f6_2 * temp_f6_2) + ((temp_f8_5 * temp_f8_5) + (temp_f7_7 * temp_f7_7));
 		if (temp_f2_5 <= (lbl_8042DFE8 + temp_f4_4)) {
 			if (coli_pos != NULL) {
-				coli_pos->x = detect_vec->x;
+				// The retail reloads this component after using the vector to form the endpoint.
+				coli_pos->x = *(volatile const f32*)&detect_vec->x;
 				coli_pos->y = detect_vec->y;
 				coli_pos->z = detect_vec->z;
 			}
