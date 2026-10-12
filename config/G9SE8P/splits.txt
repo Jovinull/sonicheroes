@@ -592,6 +592,9 @@ game/effect/eff_brim.cpp:
 	.sbss       start:0x8042C5E8 end:0x8042C610
 	.sdata2     start:0x8042E890 end:0x8042E910
 
+game/effect/fn_8010F5D8.cpp:
+	.text       start:0x8010F5D8 end:0x8010F5FC
+
 game/effect/eff_footprints.cpp:
 	extab       start:0x8000A5B4 end:0x8000A634
 	extabindex  start:0x800106E4 end:0x80010738
