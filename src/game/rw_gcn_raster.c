@@ -1077,21 +1077,21 @@ void fn_80226B2C(s32 arg0, u8* arg1, M2C_UNK* arg2, u8* arg3)
 	M2C_UNK sp88[16];
 	M2C_UNK sp48[16];
 	M2C_UNK sp8[16];
+	u8* var_r31;
+	u32 var_r30;
 	M2C_UNK* var_r29;
-	M2C_UNK* var_r6;
+	u8* var_r27;
+	u32 temp_r24;
 	s32 temp_r23;
+	u32 var_r23;
+	u8* var_r25;
+	M2C_UNK* var_r6;
 	s32 temp_r29;
 	s32 temp_r3;
 	s32 temp_r5;
 	u32 temp_r0;
-	u32 temp_r24;
 	u32 temp_r25;
-	u32 var_r23;
-	u32 var_r30;
-	u8* var_r25;
-	u8* var_r27;
 	u8* var_r27_2;
-	u8* var_r31;
 	u8* temp_r4;
 
 	if (arg3 != NULL) {
