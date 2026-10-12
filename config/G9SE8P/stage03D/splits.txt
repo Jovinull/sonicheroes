@@ -1045,6 +1045,9 @@ rel/bobsleigh_set_player_position.cpp:
 rel/bobsleigh_dtor.cpp:
 	.text       start:0x0006A7CC end:0x0006AA64
 
+rel/bobsleigh_hooks.cpp:
+	.text       start:0x0006BABC end:0x0006BB9C
+
 rel/bobsleigh_set.cpp:
 	.text       start:0x0006BB9C end:0x0006BE14
 
