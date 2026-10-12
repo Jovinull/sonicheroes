@@ -6180,6 +6180,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_light_tdisp.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobsleigh_light_clone.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],

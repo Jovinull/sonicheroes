@@ -1680,6 +1680,9 @@ rel/bobsleigh_light_destroy.cpp:
 rel/bobsleigh_light_clone.cpp:
 	.text       start:0x000D1280 end:0x000D1368
 
+rel/bobsleigh_light_tdisp.cpp:
+	.text       start:0x000D1368 end:0x000D1514
+
 rel/bobsleigh_light_dtor.cpp:
 	.text       start:0x000D16B4 end:0x000D17AC
 
