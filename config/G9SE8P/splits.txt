@@ -173,6 +173,9 @@ game/Endian.cpp:
 game/fn_8004D99C.cpp:
 	.text       start:0x8004D99C end:0x8004D9B8
 
+game/fn_8004EC9C.cpp:
+	.text       start:0x8004EC9C end:0x8004ECBC
+
 game/fn_8004F97C.cpp:
 	.text       start:0x8004F97C end:0x8004F994
 	.ctors      start:0x802398D4 end:0x802398D8
