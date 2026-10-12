@@ -639,6 +639,9 @@ rel/lens_flare_register.cpp:
 	.text       start:0x000459F8 end:0x00045AA0
 	.ctors      start:0x0000007C end:0x00000080
 
+rel/signal_exec.cpp:
+	.text       start:0x0004604C end:0x0004634C
+
 rel/signal_dtor.cpp:
 	.text       start:0x000464B8 end:0x00046560
 

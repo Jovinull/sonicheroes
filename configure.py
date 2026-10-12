@@ -6689,6 +6689,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/signal_exec.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/signal_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
