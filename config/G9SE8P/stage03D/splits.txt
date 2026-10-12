@@ -1003,6 +1003,9 @@ rel/formgate_register.cpp:
 	.text       start:0x00061848 end:0x000618F0
 	.ctors      start:0x000000B0 end:0x000000B4
 
+rel/bobsleigh_init_signal.cpp:
+	.text       start:0x00063900 end:0x00063BD0
+
 rel/bobsleigh_riders.cpp:
 	.text       start:0x00066C48 end:0x00066DD0
 
