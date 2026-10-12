@@ -646,6 +646,7 @@ config.libs = [
             Object(Matching, "game/fn_800DA09C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule"]),
             Object(Matching, "game/fn_800EA94C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule"]),
             Object(Matching, "game/fn_80128218.cpp"),
+            Object(Matching, "game/fn_80128224.cpp"),
             Object(
                 Matching,
                 "game/skeleton.cpp",

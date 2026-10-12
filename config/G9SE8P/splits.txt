@@ -781,6 +781,9 @@ game/fn_80125530.cpp:
 game/fn_80128218.cpp:
 	.text       start:0x80128218 end:0x80128224
 
+game/fn_80128224.cpp:
+	.text       start:0x80128224 end:0x8012823C
+
 game/rankTable.cpp:
 	.text       start:0x8012D440 end:0x8012D97C
 	.data       start:0x8028A2C0 end:0x8028A89C
