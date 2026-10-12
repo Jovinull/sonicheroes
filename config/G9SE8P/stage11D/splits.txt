@@ -614,6 +614,9 @@ rel/pawn_update_on_edit.cpp:
 rel/pawn_md_idle.cpp:
 	.text       start:0x0002F090 end:0x0002F0B0
 
+rel/pawn_md_tornado_blow_shield.cpp:
+	.text       start:0x0002F56C end:0x0002F658
+
 rel/pawn_md_shot_fire.cpp:
 	.text       start:0x0002F82C end:0x0002F8A0
 
