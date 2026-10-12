@@ -440,6 +440,9 @@ rel/cage_destroy_clump.cpp:
 rel/cage_clone_clump.cpp:
 	.text       start:0x000211DC end:0x00021340
 
+rel/cage_dtor.cpp:
+	.text       start:0x00021340 end:0x00021460
+
 rel/cage_hooks.cpp:
 	.text       start:0x00021B64 end:0x00021C48
 
