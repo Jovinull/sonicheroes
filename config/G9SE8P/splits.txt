@@ -270,6 +270,11 @@ game/locateTable.cpp:
 game/fn_800A3CBC.cpp:
 	.text       start:0x800A3CBC end:0x800A3CE0
 
+game/fn_800A3D48.cpp:
+	extab       start:0x80007978 end:0x80007980
+	extabindex  start:0x8000DFA8 end:0x8000DFB4
+	.text       start:0x800A3D48 end:0x800A3D6C
+
 game/fn_800A5B34.cpp:
 	.text       start:0x800A5B34 end:0x800A5B50
 
