@@ -857,6 +857,9 @@ rel/system_object4_register.cpp:
 rel/light_collision_edit.cpp:
 	.text       start:0x0004EE40 end:0x0004EFB8
 
+rel/light_collision_dtor.cpp:
+	.text       start:0x0004EFB8 end:0x0004F084
+
 rel/light_collision_ctor.cpp:
 	.text       start:0x0004F084 end:0x0004F29C
 

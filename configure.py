@@ -2072,6 +2072,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/light_collision_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/light_collision_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
