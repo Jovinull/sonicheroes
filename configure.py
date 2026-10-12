@@ -1691,6 +1691,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/no_input_collision_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/no_input_collision_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
