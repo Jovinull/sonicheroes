@@ -158,6 +158,7 @@ modules:
   # compiler object replaces dtk's exported object.
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -395,6 +396,7 @@ modules:
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -622,6 +624,7 @@ modules:
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -889,6 +892,7 @@ modules:
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -1161,6 +1165,7 @@ modules:
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -1400,6 +1405,7 @@ modules:
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -1686,6 +1692,7 @@ modules:
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -1900,6 +1907,7 @@ modules:
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -2537,6 +2545,7 @@ modules:
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -2741,6 +2750,7 @@ modules:
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
@@ -2945,6 +2955,7 @@ modules:
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
     - RcvBrokenCommand__13TObjEnemyPawnFP13sEnemyCommand
+    - RcvHpIncCommand__13TObjEnemyPawnFP13sEnemyCommand
     - CheckDamage__13TObjEnemyPawnFv
     - CheckHitPoint__13TObjEnemyPawnFv
     - effSparkDestroy
