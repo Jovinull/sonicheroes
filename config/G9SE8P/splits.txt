@@ -189,6 +189,9 @@ game/fn_8004F97C.cpp:
 	.text       start:0x8004F97C end:0x8004F994
 	.ctors      start:0x802398D4 end:0x802398D8
 
+game/fn_8004FC9C.cpp:
+	.text       start:0x8004FC9C end:0x8004FCC4
+
 game/light.cpp:
 	extab       start:0x80006424 end:0x8000650C
 	extabindex  start:0x8000CD84 end:0x8000CE98
