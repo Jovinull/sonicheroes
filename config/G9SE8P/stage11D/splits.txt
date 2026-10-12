@@ -922,6 +922,9 @@ rel/enemy_gadget_bomb_disp.cpp:
 rel/enemy_gadget_bomb_dtor.cpp:
 	.text       start:0x0005AEBC end:0x0005AF58
 
+rel/enemy_gadget_bomb_ctor.cpp:
+	.text       start:0x0005AF58 end:0x0005B0F8
+
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE30 end:0x0005EEA4
 

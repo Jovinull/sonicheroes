@@ -5690,6 +5690,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_gadget_bomb_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_gadget_bomb_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
