@@ -524,6 +524,11 @@ game/effect/eff_rocketaxel.cpp:
 	.sbss       start:0x8042C4A8 end:0x8042C4C0
 	.sdata2     start:0x8042E490 end:0x8042E4E0
 
+game/fn_800F4880.cpp:
+	extab       start:0x80009158 end:0x80009160
+	extabindex  start:0x8000F9A0 end:0x8000F9AC
+	.text       start:0x800F4880 end:0x800F48A4
+
 game/enemy/e_gadget.cpp:
 	extab       start:0x80009738 end:0x80009768
 	extabindex  start:0x8000FD18 end:0x8000FD60
