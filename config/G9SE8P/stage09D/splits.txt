@@ -1472,6 +1472,9 @@ rel/s31bob_create.cpp:
 rel/bobsleigh_light_destroy.cpp:
 	.text       start:0x000AACA0 end:0x000AAD50
 
+rel/bobsleigh_light_clone.cpp:
+	.text       start:0x000AAD50 end:0x000AAE38
+
 rel/bobsleigh_signal_tdisp.cpp:
 	.text       start:0x000AB40C end:0x000AB708
 
