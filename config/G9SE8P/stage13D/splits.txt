@@ -623,6 +623,9 @@ rel/pawn_md_shot_ready.cpp:
 rel/pawn_md_dropped.cpp:
 	.text       start:0x0002FBA8 end:0x0002FC2C
 
+rel/pawn_md_wander_walk.cpp:
+	.text       start:0x0002FCE4 end:0x0002FD54
+
 rel/pawn_md_fall_land.cpp:
 	.text       start:0x00030158 end:0x0003019C
 
