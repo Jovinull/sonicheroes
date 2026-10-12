@@ -1,7 +1,4 @@
 #include "types.h"
-// This unit was built without the constant pool (-pool off, as every other
-// Stage 11 object unit); its configure flags lack it, so say it here.
-#pragma pool_data off
 
 // e_magician.cpp: TObjEnemyMagicianRing (the ring-stealing spell), the
 // magician's strategy/mode handlers and TObjEnemyMagician itself. Function
@@ -720,7 +717,10 @@ const sAngle lbl_8_rodata_1A48     = { 0, 0, 0 };
 const sAngle lbl_8_rodata_1A54     = { 0, 0, 0 };
 const RwV3d lbl_8_rodata_1A60      = { 0.0f, 8.0f, 0.0f };
 const RwV3d lbl_8_rodata_1A6C      = { 0.0f, 8.0f, 0.0f };
-const RwV3d lbl_8_rodata_1A78      = { 0.0f, 0.0f, 0.0f };
+/* Unreferenced in the shipped code, but kept in retail's .rodata. */
+#pragma force_active on
+const RwV3d lbl_8_rodata_1A78 = { 0.0f, 0.0f, 0.0f };
+#pragma force_active reset
 const RwRGBAReal lbl_8_rodata_1A84 = { 1.0f, 1.0f, 1.0f, 1.0f };
 const RwV3d lbl_8_rodata_1A94      = { 20.0f, 1.0f, 20.0f };
 const RwV3d lbl_8_rodata_1AA0      = { 0.2f, 0.2f, 0.2f };
@@ -1735,8 +1735,14 @@ void fn_8_AC440(MagStrat* arg0, s32 arg1)
 			arg0->unk30C += 0x600;
 			arg0->unk300 = AdjustFloat__Ffff(arg0->unk300, 1.0f, 0.02f);
 			pulse        = 1.2f * fn_800D7B00(arg0->unk30C);
-			arg0->unk304 = 1.0f + pulse;
-			arg0->unk308 = AdjustFloat__Ffff(arg0->unk308, 1.0f, 0.02f);
+			{
+				/* A const local, not two 1.0f literals: retail reloads the
+				 * constant (reusing only its address) for the second use. */
+				const f32 one = 1.0f;
+
+				arg0->unk304 = one + pulse;
+				arg0->unk308 = AdjustFloat__Ffff(arg0->unk308, one, 0.02f);
+			}
 			break;
 		case 2:
 			break;

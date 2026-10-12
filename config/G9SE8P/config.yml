@@ -1094,6 +1094,36 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - fn_8_AA898
+    - fn_8_AA910
+    - fn_8_AA950
+    - fn_8_AAA24
+    - fn_8_AAB80
+    - fn_8_AAB94
+    - fn_8_AAC90
+    - fn_8_AADD8
+    - fn_8_AAE2C
+    - fn_8_AB0A0
+    - fn_8_AB11C
+    - fn_8_AB174
+    - fn_8_AB31C
+    - fn_8_AB424
+    - fn_8_ABA38
+    - fn_8_ABB10
+    - fn_8_ABCE4
+    - fn_8_ABE70
+    - fn_8_AC10C
+    - fn_8_AC338
+    - fn_8_AC9D8
+    - fn_8_ACDC0
+    - fn_8_ACDC4
+    - fn_8_AD0EC
+    - fn_8_AD670
+    - fn_8_AE428
+    - fn_8_AE4C0
+    - fn_8_AEAA8
+    - fn_8_AEB00
+    - fn_8_AF390
     - fn_8_9EED4
     - fn_8_9EF3C
     - fn_8_9F2E4

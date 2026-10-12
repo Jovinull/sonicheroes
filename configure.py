@@ -3104,7 +3104,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_magician_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off", "-fp_contract off", "-pool off"],
             ),
