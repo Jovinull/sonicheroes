@@ -1992,6 +1992,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/propeller_set_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/propeller_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
