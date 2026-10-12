@@ -951,7 +951,7 @@ SetBobsleigh_SpecialModel__F17ENUM_BOBSLEIGH_IDP14BobsleighParamP7RpClumpP7RpClu
 SetBobsleigh__F17ENUM_BOBSLEIGH_IDP14BobsleighParam = .text:0x0005E7A4; // type:function size:0xD8
 __ct__14BobsleighParamFPA2_P7PATHTAGi = .text:0x0005E87C; // type:function size:0xC8
 fn_14_5E944 = .text:0x0005E944; // type:function size:0x318
-fn_14_5EC5C = .text:0x0005EC5C; // type:function size:0x70
+effSparkDestroy = .text:0x0005EC5C; // type:function size:0x70
 fn_14_5ECCC = .text:0x0005ECCC; // type:function size:0x1B4
 TDisp__8EffSparkFv = .text:0x0005EE80; // type:function size:0xB8
 fn_14_5EF38 = .text:0x0005EF38; // type:function size:0x2D0

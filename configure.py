@@ -6203,6 +6203,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/eff_spark_destroy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
