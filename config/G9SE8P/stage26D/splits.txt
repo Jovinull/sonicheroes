@@ -679,6 +679,9 @@ rel/signal_assets.cpp:
 rel/propeller_set_position.cpp:
 	.text       start:0x0003F850 end:0x0003FBB0
 
+rel/propeller_ctor.cpp:
+	.text       start:0x00041714 end:0x000418CC
+
 rel/propeller_create.cpp:
 	.text       start:0x00042110 end:0x00042158
 
