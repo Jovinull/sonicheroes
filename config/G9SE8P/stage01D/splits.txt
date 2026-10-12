@@ -650,6 +650,9 @@ rel/pawn_md_fall_land.cpp:
 rel/pawn_md_fall_down.cpp:
 	.text       start:0x000301B8 end:0x00030240
 
+rel/pawn_md_hide.cpp:
+	.text       start:0x0003047C end:0x00030544
+
 rel/pawn_md_wait.cpp:
 	.text       start:0x000306C4 end:0x00030738
 
