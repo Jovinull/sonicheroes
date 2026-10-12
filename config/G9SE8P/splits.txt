@@ -431,6 +431,9 @@ game/vertical_colli.cpp:
 	.text       start:0x800D8BC4 end:0x800D8D2C
 	.sdata2     start:0x8042E080 end:0x8042E090
 
+game/fn_800F1608.cpp:
+	.text       start:0x800F1608 end:0x800F1618
+
 game/effect/eff_rocketaxel.cpp:
 	extab       start:0x80008FE8 end:0x80009140
 	extabindex  start:0x8000F8BC end:0x8000F97C
