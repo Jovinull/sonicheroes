@@ -9,10 +9,11 @@ struct TFn800A3D6CData {
 extern "C" s32 fn_800A3D6C(TFn800A3D6CData* arg0)
 {
 	s32 value = arg0->mValue19C;
-	if (value < 0x26) {
-		if (value >= 0x24) {
+	switch (value) {
+		case 0x24:
+		case 0x25:
 			return 0;
-		}
+		default:
+			return 1;
 	}
-	return 1;
 }
