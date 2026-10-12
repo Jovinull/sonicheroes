@@ -704,6 +704,9 @@ game/fn_801248E8.cpp:
 game/fn_80124924.cpp:
 	.text       start:0x80124924 end:0x80124938
 
+game/fn_80125530.cpp:
+	.text       start:0x80125530 end:0x8012554C
+
 game/rankTable.cpp:
 	.text       start:0x8012D440 end:0x8012D97C
 	.data       start:0x8028A2C0 end:0x8028A89C
