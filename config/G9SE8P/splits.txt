@@ -422,6 +422,10 @@ game/effect/eff_bomb.cpp:
 	.sbss       start:0x8042C3D8 end:0x8042C3E8
 	.sdata2     start:0x8042DDC8 end:0x8042DE28
 
+game/fn_800C8E84.cpp:
+	.text       start:0x800C8E84 end:0x800C8EA0
+	.ctors      start:0x802398F4 end:0x802398F8
+
 game/effect/eff_ball.cpp:
 	extab       start:0x800087E8 end:0x80008830
 	extabindex  start:0x8000EDDC end:0x8000EE48

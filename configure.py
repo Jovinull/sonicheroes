@@ -618,6 +618,7 @@ config.libs = [
             Object(Matching, "game/player/player_search.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/player/player_barrier.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_crash3d.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/fn_800C8E84.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/effect/eff_ball.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_brim.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/fn_8010F5D8.cpp"),
