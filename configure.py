@@ -6699,6 +6699,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_hold_player.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

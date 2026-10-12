@@ -364,6 +364,9 @@ rel/unbreakable_container_register.cpp:
 rel/cannon_set_player_position.cpp:
 	.text       start:0x000172D0 end:0x000174E0
 
+rel/cannon_hold_player.cpp:
+	.text       start:0x00017D60 end:0x00018058
+
 rel/cannon_calc_barrel_position.cpp:
 	.text       start:0x00018EFC end:0x000191B0
 
