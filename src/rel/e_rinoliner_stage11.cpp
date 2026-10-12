@@ -206,7 +206,7 @@ extern TObject* lbl_8042C10C;
 extern s32 lbl_8042C148;
 extern void* lbl_8042C380;
 extern u32 mpDataBase__14TEnemyDataBase;
-extern s32 lbl_8_bss_1030;
+extern s32 EffSparkTp;
 extern M2C_UNK lbl_8_bss_1A50;
 extern void* lbl_8_bss_1A5C;
 extern M2C_UNK lbl_8_data_16BB0;
@@ -398,7 +398,7 @@ void fn_8_B2BB4(void* arg0)
 				M2C_FIELD(&lbl_8_data_16CE0, f32**, 4)        = &sp2C;
 				M2C_FIELD(&lbl_8_data_16CE0, M2C_UNK**, 0x1C) = &lbl_8_data_16CC0;
 				M2C_FIELD(&lbl_8_data_16CE0, M2C_UNK**, 0x20) = &lbl_8_data_16CD0;
-				fn_8_6BE14(lbl_8_bss_1030, &lbl_8_data_16CE0);
+				fn_8_6BE14(EffSparkTp, &lbl_8_data_16CE0);
 			}
 		}
 		if ((s32)M2C_FIELD(arg0, s32*, 0x2B4) != 0) {
