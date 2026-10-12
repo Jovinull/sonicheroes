@@ -5966,6 +5966,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bob_jump_collision_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

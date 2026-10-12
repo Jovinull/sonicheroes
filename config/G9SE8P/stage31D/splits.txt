@@ -973,6 +973,9 @@ rel/bob_jump_collision_dtor.cpp:
 rel/bob_jump_collision_ctor.cpp:
 	.text       start:0x00064950 end:0x00064B64
 
+rel/bob_jump_collision_edit.cpp:
+	.text       start:0x00064B64 end:0x00064BDC
+
 rel/bob_jump_collision_hooks.cpp:
 	.text       start:0x00064BDC end:0x00064BE4
 
