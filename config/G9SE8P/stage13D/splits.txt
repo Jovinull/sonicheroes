@@ -193,6 +193,9 @@ rel/ring_register.cpp:
 rel/jump_panel_dtor.cpp:
 	.text       start:0x0000C6D0 end:0x0000C7B0
 
+rel/jump_panel_edit.cpp:
+	.text       start:0x0000CB68 end:0x0000CC08
+
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC08 end:0x0000CCDC
 

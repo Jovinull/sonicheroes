@@ -5996,6 +5996,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/jump_panel_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
