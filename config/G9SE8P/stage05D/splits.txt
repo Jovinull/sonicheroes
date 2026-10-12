@@ -549,6 +549,9 @@ rel/weight_move.cpp:
 rel/weight_checks.cpp:
 	.text       start:0x00025D0C end:0x00025DEC
 
+rel/weight_disp.cpp:
+	.text       start:0x00027374 end:0x00027440
+
 rel/weight_dtor.cpp:
 	.text       start:0x000283E8 end:0x000284C8
 
