@@ -6704,6 +6704,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_draw_trajectory.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
