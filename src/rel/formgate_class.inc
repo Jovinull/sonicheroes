@@ -31,6 +31,7 @@ public:
 	virtual void TDisp();
 	virtual void Exec();
 	virtual ~TObjFormGate();
+	virtual void EditOnChange(SETDATA_PARAM* param);
 	void SetPosition();
 	void SetParameter();
 }; // 0xF8
