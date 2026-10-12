@@ -2994,9 +2994,9 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_eggmobile_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),
             Object(
                 Matching,
@@ -3009,9 +3009,9 @@ config.libs = [
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_flyer_stage11.cpp",
-                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),
             Object(
                 Matching,
@@ -3195,9 +3195,9 @@ config.libs = [
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_turtle_stage11.cpp",
-                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),
             Object(
                 Matching,
@@ -3213,7 +3213,7 @@ config.libs = [
                 ],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_wall_stage11.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off",
                     "-use_lmw_stmw on",

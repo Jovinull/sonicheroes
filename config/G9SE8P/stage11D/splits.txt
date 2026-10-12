@@ -1124,13 +1124,14 @@ rel/e_flyer_strategy_stage11.cpp:
 	.data       start:0x00015F80 end:0x00015FD8
 
 rel/e_flyer_stage11.cpp:
-	.text       start:0x000A325C end:0x000A6DC4
+	.text       start:0x000A325C end:0x000A6D24
 	.ctors      start:0x00000128 end:0x0000012C
 	.rodata     start:0x000018C0 end:0x00001980
 	.data       start:0x00015FD8 end:0x000162C8
 	.bss        start:0x00001948 end:0x00001988
 
 rel/e_flyer_collision_stage11.cpp:
+	.text       start:0x000A6D24 end:0x000A6DC4
 	.rodata     start:0x00001980 end:0x00001998
 	.data       start:0x000162C8 end:0x00016430
 	.bss        start:0x00001988 end:0x000019B8
@@ -1277,14 +1278,14 @@ rel/e_turtle_stage11.cpp:
 	.text       start:0x000BE644 end:0x000C28D4
 	.ctors      start:0x00000140 end:0x00000144
 	.rodata     start:0x00001E38 end:0x00001F08
-	.data       start:0x00017C70 end:0x00018180
+	.data       start:0x00017C70 end:0x00018120
 	.bss        start:0x00001B78 end:0x00001BD0
 
 rel/e_spider_stage11.cpp:
 	.text       start:0x000C28D4 end:0x000C37E8
 	.ctors      start:0x00000144 end:0x00000148
 	.rodata     start:0x00001F08 end:0x00001F18
-	.data       start:0x00018180 end:0x00018228
+	.data       start:0x00018120 end:0x00018228
 	.bss        start:0x00001BD0 end:0x00001C10
 
 rel/e_fan_stage11.cpp:

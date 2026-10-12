@@ -139,8 +139,11 @@
     "game/storyTable.cpp",
     "rel/chao_ctor.cpp",
     "rel/e_capture_collision_stage11.cpp",
+    "rel/e_eggmobile_stage11.cpp",
+    "rel/e_flyer_stage11.cpp",
     "rel/e_mask_stage11.cpp",
     "rel/e_s11_key_stage11.cpp",
+    "rel/e_turtle_stage11.cpp",
     "rel/o_s12_celestial_sphere.cpp",
     "rel/o_spring.cpp"
   ]

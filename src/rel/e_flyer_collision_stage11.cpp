@@ -1,9 +1,28 @@
 #include "types.h"
 
-// What stays here of stage11D's flyer collision run: its data. The
-// TObjFlyerCollision code itself is the shared rel/flyer_collision_*.cpp and
-// rel/flyer_col_register.cpp units, so the data keeps the names those units
-// use.
+// stage11D's TObjFlyerCollision data, plus the two functions that follow
+// TObjEnemyFlyer's thunk: TObjEnemyFlyer's Virtual33D98 getter and
+// fn_8_A6D2C (set a release target, then release through the vtable). The
+// class's code is the shared rel/flyer_collision_*.cpp and
+// rel/flyer_col_register.cpp units.
+
+#define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
+
+/* Dispatch view of the strategy's vtable (slots 2 and 3 are the implicit
+ * destructor slots' placeholders, which put Release at vtable offset 0x10). */
+class TObjectDispatch
+{
+public:
+	virtual void vslot2();
+	virtual void vslot3();
+	virtual void Release(s32, s32);
+	virtual s32 vslot5();
+};
+
+// What stays here of stage11D's flyer collision run: the two small functions
+// in front of it and the run's data. The TObjFlyerCollision code itself is the
+// shared rel/flyer_collision_*.cpp and rel/flyer_col_register.cpp units, so the
+// data keeps the names those units use.
 
 extern "C" {
 
@@ -135,4 +154,28 @@ static const f32 lbl_8_rodata_1980[3] = { 0.0f, 1.5f, 0.0f };
 extern const f32 flyerColZero[1]     = { 0.0f };
 extern const s32 flyerColUnk14Min[1] = { 0 };
 extern const s32 flyerColUnk14Max[1] = { 0x100 };
+
+/* TObjEnemyFlyer's override of TObjEnemy's slot-35 virtual (the base returns
+ * its position at 0x140; the flyer's is at 0x268). */
+void* Virtual33D98__14TObjEnemyFlyerFv(void* self)
+{
+	return (u8*)self + 0x268;
+}
+
+void fn_800A31B8(void*, s32);
+
+/* The TEnemyStrategy base's mode-change hook, shared by the flyer path
+ * strategy (rel/e_flyer_path_stage11.cpp). */
+void fn_8_A6D2C(void* arg0, s32 arg1)
+{
+	M2C_FIELD(arg0, s32*, 0x14) = arg1;
+	M2C_FIELD(arg0, s32*, 0x10) = 0;
+	if (((TObjectDispatch*)arg0)->vslot5() != 0) {
+		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 2);
+	}
+	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 1);
+	if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
+		fn_800A31B8((void*)M2C_FIELD(arg0, s32*, 0x14), M2C_FIELD(arg0, s32*, 0x10));
+	}
+}
 }
