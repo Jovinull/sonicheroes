@@ -576,6 +576,7 @@ config.libs = [
             Object(Matching, "game/fn_800A6D44.cpp"),
             Object(Matching, "game/fn_800CB5BC.cpp"),
             Object(Matching, "game/fn_80124924.cpp"),
+            Object(Matching, "game/fn_80110C18.cpp", extra_cflags=["-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_80125530.cpp"),
             Object(Matching, "game/game2pTable.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/enemy/e_mtnpath.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),

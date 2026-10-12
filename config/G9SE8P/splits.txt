@@ -595,6 +595,9 @@ game/effect/eff_footprints.cpp:
 	.sdata      start:0x8042B7E0 end:0x8042B7E8
 	.sdata2     start:0x8042E938 end:0x8042E960
 
+game/fn_80110C18.cpp:
+	.text       start:0x80110C18 end:0x80110C38
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C
