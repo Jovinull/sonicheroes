@@ -6796,6 +6796,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/push_pull_switch_set_position.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

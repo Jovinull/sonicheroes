@@ -751,6 +751,9 @@ rel/o_invoke_colli.cpp:
 	.data       start:0x000058BC end:0x00005A18
 	.bss        start:0x00000D6C end:0x00000D98
 
+rel/push_pull_switch_set_position.cpp:
+	.text       start:0x00050E24 end:0x000510B0
+
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00051234 end:0x000512F4
 
