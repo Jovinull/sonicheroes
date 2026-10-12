@@ -6006,6 +6006,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/light_collision_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
