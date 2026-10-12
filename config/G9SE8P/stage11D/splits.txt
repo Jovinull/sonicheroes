@@ -590,6 +590,9 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/pawn_hit_point.cpp:
+	.text       start:0x0002D35C end:0x0002D44C
+
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CFC end:0x00032ED4
 
