@@ -605,6 +605,9 @@ rel/pawn_exec_thunder_shoot.cpp:
 rel/pawn_check_damage2.cpp:
 	.text       start:0x0002DF74 end:0x0002DFB8
 
+rel/pawn_update_on_edit.cpp:
+	.text       start:0x0002E978 end:0x0002E9AC
+
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CFC end:0x00032ED4
 
