@@ -259,6 +259,9 @@ game/gParam.cpp:
 game/fn_800898F0.cpp:
 	.text       start:0x800898F0 end:0x800898F8
 
+game/fn_80090040.cpp:
+	.text       start:0x80090040 end:0x80090058
+
 game/fn_80098710.cpp:
 	.text       start:0x80098710 end:0x80098730
 
