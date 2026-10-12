@@ -6899,6 +6899,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_player_to_cancel.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

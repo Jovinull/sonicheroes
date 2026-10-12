@@ -22,7 +22,9 @@ typedef struct Cannon {
 	u8 unk00[0xB8];
 	u8 replace[0x4]; // 0xB8, OBJ_ReplacePlayer
 	RwV3d pos;       // 0xBC
-	u8 unkC8[0x34];
+	u8 unkC8[0x14];
+	s16 timer;       // 0xDC
+	u8 unkDE[0x1E];
 	s32 barrelPitch; // 0xFC
 	s32 barrelYaw;   // 0x100
 	u8 unk104[0x38];
