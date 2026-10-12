@@ -6006,6 +6006,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_rings_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/big_rings_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
