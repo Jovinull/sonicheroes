@@ -620,6 +620,7 @@ config.libs = [
             Object(Matching, "game/effect/eff_brim.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/fn_8010F5D8.cpp"),
             Object(Matching, "game/fn_8010A0E8.cpp"),
+            Object(Matching, "game/fn_80111578.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule"]),
             Object(Matching, "game/effect/eff_rocketaxel.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_thunderbomb.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),

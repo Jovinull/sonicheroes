@@ -661,6 +661,11 @@ game/effect/eff_footprints.cpp:
 game/fn_80110C18.cpp:
 	.text       start:0x80110C18 end:0x80110C38
 
+game/fn_80111578.cpp:
+	extab       start:0x8000A67C end:0x8000A684
+	extabindex  start:0x8001078C end:0x80010798
+	.text       start:0x80111578 end:0x801115A0
+
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
 	extabindex  start:0x80010870 end:0x8001087C
