@@ -368,6 +368,9 @@ game/effect/eff_ball.cpp:
 	.sdata      start:0x8042B610 end:0x8042B620
 	.sdata2     start:0x8042DEE8 end:0x8042DF08
 
+game/fn_800CB5BC.cpp:
+	.text       start:0x800CB5BC end:0x800CB5D8
+
 game/perf.cpp:
 	extab       start:0x800089A0 end:0x800089C8
 	extabindex  start:0x8000EFEC end:0x8000F028
