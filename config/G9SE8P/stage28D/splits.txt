@@ -971,6 +971,9 @@ rel/formgate_register.cpp:
 rel/bobsleigh_search.cpp:
 	.text       start:0x00053554 end:0x00053600
 
+rel/bobsleigh_tdisp.cpp:
+	.text       start:0x00053600 end:0x000539A4
+
 rel/bobsleigh_disp.cpp:
 	.text       start:0x000539A4 end:0x00053C0C
 
