@@ -6704,6 +6704,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/goal_ring_check_reached.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/goal_ring_check_back.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

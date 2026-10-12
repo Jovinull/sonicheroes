@@ -1,10 +1,21 @@
 #include "game/effect/eff_bomb.h"
 #include "game/setObj.h"
 
+// As in game/gparam.h (which clashes with eff_bomb.h's RwV3d).
+class PARAM_VICTORY
+{
+public:
+	static s8 num[4];
+	void addVictory(s32, s32);
+	void setVictory(s32, s32);
+};
+
 // TObjGoalring (the PS2 build's class): the goal ring, either the plain ring
 // or, on mission and versus stages, the two-part ring (front and back).
 
-class TObjGoalring : public TObject, public TObjSetObj, public C_COLLI
+// PARAM_VICTORY is an empty base: it sits at 0xB8, where addVictory gets its
+// `this`.
+class TObjGoalring : public TObject, public TObjSetObj, public C_COLLI, public PARAM_VICTORY
 {
 public:
 	s32 state;         // 0xB8
@@ -31,6 +42,9 @@ public:
 	virtual ~TObjGoalring();
 	virtual void EditOnChange(SETDATA_PARAM* param);
 	u8 CheckDispBackRing();
+	void CheckAndSetPlayerReached();
+	// The collision base without the null test a pointer conversion makes.
+	C_COLLI& Colli() { return *this; }
 }; // 0x100
 
 struct GoalringTeam {

@@ -723,6 +723,9 @@ rel/propeller_register.cpp:
 rel/goal_ring_check_back.cpp:
 	.text       start:0x0004B710 end:0x0004B7C8
 
+rel/goal_ring_check_reached.cpp:
+	.text       start:0x0004B7C8 end:0x0004BA1C
+
 rel/goal_ring_tdisp.cpp:
 	.text       start:0x0004BA1C end:0x0004BB84
 
