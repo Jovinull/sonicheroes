@@ -4,8 +4,8 @@
 // bomb a searcher drops, an object under the stage's enemy task. It keeps its
 // searcher, starts a little above the given position with the given angles,
 // takes the searcher's light set, gives its collision its shape there (without
-// flag 0x40), finds the ground below it for its shadow, and starts unscaled
-// with its fuse (0x78 frames) and life (0x708 frames) set.
+// flag 0x40), finds the ground below it for its shadow, and starts with its
+// launch speed, its fuse (0x78 frames) and life (0x708 frames) set.
 
 typedef struct RpClump RpClump;
 
@@ -78,7 +78,7 @@ typedef struct GadgetBomb {
 	s32 unkB4;                // 0xB4
 	RpClump* clump;           // 0xB8
 	RwV3d pos;                // 0xBC
-	RwV3d scale;              // 0xC8
+	RwV3d speed;              // 0xC8
 	sAngle ang;               // 0xD4
 	u32 light;                // 0xE0
 	f32 shadowY;              // 0xE4
@@ -121,9 +121,9 @@ extern "C" GadgetBomb* __ct__16TEnemyGadgetBombFP17TObjEnemySearcherP5RwV3dP6sAn
 	object->colliFlag &= ~0x40;
 	object->shadowY = GetShadowPos(&object->pos, &ground, 1);
 	object->shadowY += gadgetBombShadowLift[0];
-	object->scale.x = gadgetBombScaleXZ[0];
-	object->scale.y = gadgetBombScaleY[0];
-	object->scale.z = gadgetBombScaleXZ[0];
+	object->speed.x = gadgetBombScaleXZ[0];
+	object->speed.y = gadgetBombScaleY[0];
+	object->speed.z = gadgetBombScaleXZ[0];
 	object->unkB4   = 0;
 	object->fuse    = 0x78;
 	object->unkF0   = 0;
