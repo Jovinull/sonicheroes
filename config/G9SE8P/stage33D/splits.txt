@@ -1243,6 +1243,9 @@ rel/bobsleigh_light_clone.cpp:
 rel/bobsleigh_light_dtor.cpp:
 	.text       start:0x0007432C end:0x00074424
 
+rel/bobsleigh_light_ctor.cpp:
+	.text       start:0x00074424 end:0x000745B4
+
 rel/bobsleigh_signal_tdisp.cpp:
 	.text       start:0x000745B4 end:0x000748B0
 

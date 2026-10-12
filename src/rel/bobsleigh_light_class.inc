@@ -9,16 +9,21 @@
 class TObjBobsleighLight : public TObject
 {
 public:
-	u8 pad28[0x18];
+	u8 pad28[0xC];
+	f32 alpha;                   // 0x34
+	f32 shade;                   // 0x38
+	s32 unk3C;                   // 0x3C
 	RpClump* clump;              // 0x40
 	RpClump* clumps[8];          // 0x44
 	DealMaterial* material;      // 0x64
 	DealMaterial* materials[8];  // 0x68
+	s32 lit[8];                  // 0x88
 
 	TObjBobsleighLight(TObject* parent, RpClump* model);
 	// Exec comes first so that it is the key function: no unit of ours emits
 	// the vtable, which stays in each module's data.
 	virtual void Exec();
+	virtual void TDisp();
 	virtual ~TObjBobsleighLight();
 	void DestroyClump();
 	void CloneClump(RpClump* model);
