@@ -617,6 +617,9 @@ rel/pawn_md_idle.cpp:
 rel/pawn_md_shot_fire.cpp:
 	.text       start:0x0002F810 end:0x0002F884
 
+rel/pawn_md_shot_ready.cpp:
+	.text       start:0x0002F884 end:0x0002F8D8
+
 rel/pawn_md_crouch.cpp:
 	.text       start:0x000307AC end:0x000307CC
 
