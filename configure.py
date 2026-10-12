@@ -6127,6 +6127,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_riders.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
