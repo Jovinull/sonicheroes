@@ -1017,6 +1017,9 @@ rel/bobsleigh_set_player_position.cpp:
 rel/bobsleigh_set_camera.cpp:
 	.text       start:0x0005CBFC end:0x0005CF68
 
+rel/bobsleigh_set_position.cpp:
+	.text       start:0x0005CF68 end:0x0005D2FC
+
 rel/bobsleigh_dtor.cpp:
 	.text       start:0x0005D2FC end:0x0005D594
 
