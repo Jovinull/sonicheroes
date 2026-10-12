@@ -393,6 +393,9 @@ game/effect/eff_ball.cpp:
 	.sdata      start:0x8042B610 end:0x8042B620
 	.sdata2     start:0x8042DEE8 end:0x8042DF08
 
+game/fn_800CAF14.cpp:
+	.text       start:0x800CAF14 end:0x800CAF2C
+
 game/fn_800CB5BC.cpp:
 	.text       start:0x800CB5BC end:0x800CB5D8
 
