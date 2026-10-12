@@ -6920,6 +6920,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pole_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/laser_fence_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

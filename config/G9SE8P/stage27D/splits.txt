@@ -613,6 +613,9 @@ rel/itembaloon_position.cpp:
 rel/pole_dtor.cpp:
 	.text       start:0x00038438 end:0x000384F8
 
+rel/pole_edit.cpp:
+	.text       start:0x00038938 end:0x00038AF4
+
 rel/pole_hooks.cpp:
 	.text       start:0x00038AF4 end:0x00038B3C
 
