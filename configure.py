@@ -6700,6 +6700,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/signal_set_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/signal_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

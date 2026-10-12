@@ -645,6 +645,9 @@ rel/signal_exec.cpp:
 rel/signal_set_position.cpp:
 	.text       start:0x0004634C end:0x00046458
 
+rel/signal_set_parameter.cpp:
+	.text       start:0x00046458 end:0x000464B8
+
 rel/signal_dtor.cpp:
 	.text       start:0x000464B8 end:0x00046560
 
