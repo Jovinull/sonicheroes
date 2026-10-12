@@ -1077,11 +1077,11 @@ void fn_80226B2C(s32 arg0, u8* arg1, M2C_UNK* arg2, u8* arg3)
 	M2C_UNK sp8[16];
 	M2C_UNK* var_r29;
 	M2C_UNK* var_r6;
-	s32 temp_r0;
 	s32 temp_r23;
 	s32 temp_r29;
 	s32 temp_r3;
 	s32 temp_r5;
+	u32 temp_r0;
 	u32 temp_r24;
 	u32 temp_r25;
 	u32 var_r23;
@@ -1113,9 +1113,8 @@ void fn_80226B2C(s32 arg0, u8* arg1, M2C_UNK* arg2, u8* arg3)
 			    var_r30 += 1, var_r27 += 1, var_r25 += 1, var_r31 += 1) {
 				sp88[3] = 0;
 				temp_r4 = M2C_FIELD(arg3, u8**, 0x10);
-				temp_r0 = (*var_r31 * 0x10) + 0xC;
 				fn_80195674(sp88, (M2C_UNK*)(temp_r23 + (*var_r25 << 6)),
-				    fn_8019E8EC(M2C_FIELD(temp_r4, s32*, temp_r0)));
+				    fn_8019E8EC(((u32*)temp_r4)[(*var_r31 * 4) + 3]));
 				fn_80195674((M2C_UNK*)(arg0 + (*var_r27 << 6)), sp88, (M2C_UNK*)var_r29);
 			}
 			return;
@@ -1123,11 +1122,13 @@ void fn_80226B2C(s32 arg0, u8* arg1, M2C_UNK* arg2, u8* arg3)
 		if (temp_r3 & 0x4000) {
 			if (((u32)M2C_FIELD(arg1, u32*, 0x10) > 1U)
 			    || ((u32)M2C_FIELD(arg1, u32*, 0x2C) == 3U)) {
-				var_r27_2 = M2C_FIELD(arg1, u8**, 8);
-				temp_r29  = M2C_FIELD(arg1, s32*, 0xC);
-				temp_r25  = M2C_FIELD(arg1, u32*, 4);
-				for (var_r23 = 0U; var_r23 < temp_r25; var_r23 += 1, var_r27_2 += 1) {
-					temp_r5 = *var_r27_2 << 6;
+				temp_r0  = *(volatile u32*)(arg1 + 8);
+				var_r23  = 0U;
+				temp_r29 = M2C_FIELD(arg1, s32*, 0xC);
+				temp_r25 = M2C_FIELD(arg1, u32*, 4);
+				arg1     = (u8*)temp_r0;
+				for (; var_r23 < temp_r25; var_r23 += 1, arg1 += 1) {
+					temp_r5 = *arg1 << 6;
 					fn_80195674((M2C_UNK*)(arg0 + temp_r5), (M2C_UNK*)(temp_r29 + temp_r5),
 					    (M2C_UNK*)(M2C_FIELD(arg3, s32*, 8) + temp_r5));
 				}
