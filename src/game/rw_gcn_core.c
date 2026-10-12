@@ -1574,9 +1574,9 @@ M2C_UNK* fn_80233F50(s32 arg0, M2C_UNK* arg1, s32* arg2)
 	s32 temp_r29;
 	s32 temp_r29_2;
 	s32 temp_r29_3;
-	s32 var_r29;
-	s32 var_r30;
 	s32 var_r31;
+	s32 var_r30;
+	s32 var_r29;
 	u32 (*temp_r12)(s32, M2C_UNK*, s32*);
 	u8* temp_r28;
 	u8* temp_r30;
