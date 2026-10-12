@@ -5986,6 +5986,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gokurakucho_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
