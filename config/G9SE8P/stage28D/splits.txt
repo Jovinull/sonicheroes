@@ -1181,6 +1181,9 @@ rel/bobsleigh_vacuum_exec.cpp:
 rel/bobsleigh_vacuum_dtor.cpp:
 	.text       start:0x000785BC end:0x00078640
 
+rel/bobsleigh_vacuum_ctor.cpp:
+	.text       start:0x00078640 end:0x000786E8
+
 rel/bobsleigh_attack_exec.cpp:
 	.text       start:0x000786E8 end:0x000787E4
 

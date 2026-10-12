@@ -6093,6 +6093,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_vacuum_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobsleigh_vacuum_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
