@@ -66,6 +66,9 @@ rel/o_system4.cpp:
 	.data       start:0x000040B8 end:0x00004110
 	.bss        start:0x00000B68 end:0x00000B98
 
+rel/fn_16_469A0.cpp:
+	.text       start:0x000469A0 end:0x000469BC
+
 rel/e_end_spboss.cpp:
 	.text       start:0x00058E44 end:0x000591C0
 	.ctors      start:0x000000DC end:0x000000E0
