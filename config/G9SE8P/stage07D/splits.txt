@@ -849,6 +849,9 @@ rel/enemy_gadget_dtor.cpp:
 rel/formgate_sub_dtor.cpp:
 	.text       start:0x0005FC14 end:0x0005FC98
 
+rel/formgate_dtor.cpp:
+	.text       start:0x00060C70 end:0x00060D50
+
 rel/formgate_unload.cpp:
 	.text       start:0x00061290 end:0x00061300
 
