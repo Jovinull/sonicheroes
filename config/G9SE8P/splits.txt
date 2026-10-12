@@ -148,6 +148,11 @@ game/vibration.cpp:
 	.data       start:0x80241308 end:0x80241358
 	.sdata2     start:0x8042D038 end:0x8042D048
 
+game/fn_80029088.cpp:
+	extab       start:0x80005C70 end:0x80005C78
+	extabindex  start:0x8000C3B8 end:0x8000C3C4
+	.text       start:0x80029088 end:0x800298AC
+
 game/fn_8003C618.cpp:
 	.text       start:0x8003C618 end:0x8003C640
 
