@@ -190,6 +190,11 @@ game/fn_8004E690.cpp:
 game/fn_8004EC9C.cpp:
 	.text       start:0x8004EC9C end:0x8004ECBC
 
+game/fn_8004ECBC.cpp:
+	extab       start:0x800062A0 end:0x800062A8
+	extabindex  start:0x8000CBE0 end:0x8000CBEC
+	.text       start:0x8004ECBC end:0x8004ED48
+
 game/fn_8004F97C.cpp:
 	.text       start:0x8004F97C end:0x8004F994
 	.ctors      start:0x802398D4 end:0x802398D8
