@@ -3175,6 +3175,11 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                Matching,
+                "rel/e_strategy_turtle_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
                 NonMatching,
                 "rel/e_turtle_stage11.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
@@ -3183,6 +3188,14 @@ config.libs = [
                 Matching,
                 "rel/wall_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e_strategy_wall_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off",
+                    "-use_lmw_stmw on",
+                    "-bool off",
+                ],
             ),
             Object(
                 NonMatching,
@@ -7388,6 +7401,18 @@ config.custom_build_steps = {
             "outputs": "build/G9SE8P/wall-symbols.stamp",
             "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/e_wall_stage11.o",
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/strategy-wall-symbols.stamp",
+            "rule": "fix_stage11_symbols",
+            "inputs": "build/G9SE8P/src/rel/e_strategy_wall_stage11.o",
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/strategy-turtle-symbols.stamp",
+            "rule": "fix_stage11_symbols",
+            "inputs": "build/G9SE8P/src/rel/e_strategy_turtle_stage11.o",
             "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {

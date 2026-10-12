@@ -13,13 +13,15 @@ SYMBOL_RENAMES = {
         ("@99", "lbl_8_rodata_18B4", 0x4),
         ("@101", "lbl_8_rodata_18B8", 0x8),
     ],
+    "e_strategy_wall_stage11.o": [("@288", "jumptable_8_data_17338", 0x40)],
     "e_wall_stage11.o": [
-        ("@292", "jumptable_8_data_17338", 0x40),
         ("@407", "lbl_8_rodata_1D90", 0x8),
     ],
+    "e_strategy_turtle_stage11.o": [
+        ("@204", "jumptable_8_data_17BF0", 0x40),
+        ("@221", "jumptable_8_data_17C30", 0x28),
+    ],
     "e_turtle_stage11.o": [
-        ("@208", "jumptable_8_data_17BF0", 0x40),
-        ("@225", "jumptable_8_data_17C30", 0x28),
         # MWCC emits an anonymous copy of the shared integer-to-float bias.
         ("@372", "lbl_8_rodata_1E80", 0x8),
     ],

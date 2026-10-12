@@ -1240,22 +1240,32 @@ rel/rino_col_register.cpp:
 	.text       start:0x000B7168 end:0x000B7210
 	.ctors      start:0x00000138 end:0x0000013C
 
+rel/e_strategy_wall_stage11.cpp:
+	.text       start:0x000B7218 end:0x000B82CC
+	.rodata     start:0x00001CA8 end:0x00001CB8
+	.data       start:0x000172E0 end:0x00017390
+
 rel/e_wall_stage11.cpp:
-	.text       start:0x000B7210 end:0x000BDA48
+	.text       start:0x000B82CC end:0x000BDA50
 	.ctors      start:0x0000013C end:0x00000140
-	.rodata     start:0x00001E20 end:0x00001E38
-	.data       start:0x000172E0 end:0x00017BB0
+	.rodata     start:0x00001CB8 end:0x00001E28
+	.data       start:0x00017390 end:0x00017BB0
 	.bss        start:0x00001AC8 end:0x00001B78
 
+rel/e_strategy_turtle_stage11.cpp:
+	.text       start:0x000BDA50 end:0x000BE644
+	.rodata     start:0x00001E28 end:0x00001E38
+	.data       start:0x00017BB0 end:0x00017C70
+
 rel/e_turtle_stage11.cpp:
-	.text       start:0x000BDA48 end:0x000C28CC
+	.text       start:0x000BE644 end:0x000C28D4
 	.ctors      start:0x00000140 end:0x00000144
 	.rodata     start:0x00001E38 end:0x00001F08
-	.data       start:0x00017BB0 end:0x00018180
+	.data       start:0x00017C70 end:0x00018180
 	.bss        start:0x00001B78 end:0x00001BD0
 
 rel/e_spider_stage11.cpp:
-	.text       start:0x000C28CC end:0x000C37E8
+	.text       start:0x000C28D4 end:0x000C37E8
 	.ctors      start:0x00000144 end:0x00000148
 	.rodata     start:0x00001F08 end:0x00001F18
 	.data       start:0x00018180 end:0x00018228
