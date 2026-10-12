@@ -1200,6 +1200,9 @@ rel/s31_bob_dummy_hooks.cpp:
 rel/s31bob_create.cpp:
 	.text       start:0x00074C8C end:0x00074D18
 
+rel/bobsleigh_light_destroy.cpp:
+	.text       start:0x000751DC end:0x0007528C
+
 rel/bobsleigh_signal_tdisp.cpp:
 	.text       start:0x00075948 end:0x00075C44
 
