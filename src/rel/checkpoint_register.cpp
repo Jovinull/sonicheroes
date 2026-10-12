@@ -3,8 +3,8 @@
 // The record that registers CHECKPOINT OBJECT with the editor.
 //
 // The claim is .text 0x10ACC to 0x10B74 and the .ctors word that names it. Only the
-// record is taken: the three hooks it points at stay assembly and are reached
-// by the names each module's symbols.txt gives them.
+// record is taken: the three hooks it points at are rel/checkpoint_hooks.cpp,
+// reached by the names each module's symbols.txt gives them.
 //
 // The run is the same in twelve of the fourteen stage modules. stage13D is
 // built from a different revision here, and stage40D everywhere.

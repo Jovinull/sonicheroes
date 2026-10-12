@@ -1,5 +1,8 @@
 #include "types.h"
 
+// The rinoliner's factory and editor record, which end this run, are the shared
+// rel/rinoliner_create.cpp and rel/rinoliner_register.cpp units.
+
 typedef s32 M2C_UNK;
 
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
@@ -872,7 +875,7 @@ void* fn_8_B3CC4(void* arg0, s16 arg1)
 	return arg0;
 }
 
-TObject* fn_8_B3E0C(TObject* arg0, TObject* arg1)
+TObject* rinolinerObjectCtor(TObject* arg0, TObject* arg1)
 {
 	f32 sp30;
 	f32 sp2C;
@@ -1083,7 +1086,7 @@ TEnemyParalysis* fn_8_B4394(void)
 
 	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (var_r0 != NULL) {
-		var_r0 = (TEnemyParalysis*)fn_8_B3E0C((TObject*)var_r0, lbl_8042C10C);
+		var_r0 = (TEnemyParalysis*)rinolinerObjectCtor((TObject*)var_r0, lbl_8042C10C);
 	}
 	return var_r0;
 }
@@ -1274,62 +1277,4 @@ void rinolinerObjectLoad(void)
 	fn_8_B5308();
 	lbl_8_bss_1A5C = fn_80139984(1, 0x4037, 4);
 }
-
-void rinolinerObjectCreate(void)
-{
-	TEnemyParalysis* temp_r3;
-
-	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
-	if (temp_r3 != NULL) {
-		fn_8_B3E0C((TObject*)temp_r3, lbl_8042C10C);
-	}
-}
-
-typedef struct ObjectEntry {
-	const char* name;
-	void (*load)(void);
-	void (*unload)(void);
-	void (*create)(void);
-	void (*reset)(void);
-	u32 flags;
-	u32 unk18;
-	s16 unk1C;
-	s16 unk1E;
-	u8 unk20;
-	u8 unk21;
-	u8 pad22[2];
-	const char* fieldTypes;
-	const char** fieldNames;
-} ObjectEntry;
-
-extern ObjectEntry rinolinerObjectEntry;
-extern char rinolinerObjectDisplayName[];
-extern char rinolinerObjectFieldTypes[];
-extern const char* rinolinerObjectFieldNames[];
-
-void rinolinerObjectRegister(void)
-{
-	rinolinerObjectEntry.flags      = 0;
-	rinolinerObjectEntry.unk18      = 0;
-	rinolinerObjectEntry.name       = rinolinerObjectDisplayName;
-	rinolinerObjectEntry.load       = rinolinerObjectLoad;
-	rinolinerObjectEntry.unload     = rinolinerObjectUnload;
-	rinolinerObjectEntry.create     = rinolinerObjectCreate;
-	rinolinerObjectEntry.reset      = NULL;
-	rinolinerObjectEntry.flags      = 0x20000;
-	rinolinerObjectEntry.unk18      = 0;
-	rinolinerObjectEntry.unk20      = 0x1E;
-	rinolinerObjectEntry.unk1C      = 0x1590;
-	rinolinerObjectEntry.unk1E      = 4;
-	rinolinerObjectEntry.unk21      = 0;
-	rinolinerObjectEntry.fieldTypes = rinolinerObjectFieldTypes;
-	rinolinerObjectEntry.fieldNames = rinolinerObjectFieldNames;
-	if (rinolinerObjectFieldTypes != NULL) {
-		rinolinerObjectEntry.flags |= 8;
-	} else {
-		rinolinerObjectEntry.flags &= ~8;
-	}
-}
-
-__declspec(section ".ctors") void (*const rinolinerObjectCtorEntry)(void) = rinolinerObjectRegister;
 }

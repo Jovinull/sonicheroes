@@ -2,9 +2,10 @@
 
 // The record that registers BREAKABLEWEIGHTOBJECT with the editor.
 //
-// The claim is .text 0x2C958 to 0x2CA00 and the .ctors word that names it. Only the
-// record is taken: the three hooks it points at stay assembly and are reached
-// by the names each module's symbols.txt gives them.
+// The claim is .text 0x2C958 to 0x2CA00 and the .ctors word that names it. Only
+// the record is taken: the three hooks it points at are
+// rel/breakable_weight_hooks.cpp, reached by the names each module's
+// symbols.txt gives them.
 //
 // The run is the same in thirteen of the fourteen stage modules. stage40D
 // registers the same object from a different build and does not share it.

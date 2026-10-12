@@ -15,7 +15,7 @@
 // Same shape as rel/lens_flare_edit.cpp with one difference: the frame's
 // parameters are read without a null check here, so the source has no guard.
 //
-// The run is the same in the nine stage modules that carry it, checked by
+// The run is the same in the thirteen stage modules that carry it, checked by
 // normalising the disassembly and comparing across modules.
 
 typedef struct Vec3 {

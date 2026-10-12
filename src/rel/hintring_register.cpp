@@ -3,7 +3,7 @@
 // The record that registers HINTRING OBJECT with the editor.
 //
 // The claim is .text 0x707DC to 0x708B0 and the .ctors word that names it. Only
-// the record is taken: the four hooks it points at stay assembly and are
+// the record is taken: the four hooks it points at are rel/hintring_hooks.cpp,
 // reached by the names each module's symbols.txt gives them.
 //
 // The run is the same in thirteen of the fourteen stage modules. stage40D

@@ -372,7 +372,7 @@ static M2C_UNK lbl_8_rodata_1C74; /* unable to generate initializer: unknown typ
 static M2C_UNK lbl_8_rodata_1C78; /* unable to generate initializer: unknown type; const */
 static M2C_UNK lbl_8_rodata_1C7C; /* unable to generate initializer: unknown type; const */
 static M2C_UNK lbl_8_rodata_1C80; /* unable to generate initializer: unknown type; const */
-static M2C_UNK lbl_8_rodata_1CA4; /* unable to generate initializer: unknown type; const */
+static M2C_UNK rinoColZero;       /* unable to generate initializer: unknown type; const */
 static M2C_UNK lbl_8_rodata_1CB8; /* unable to generate initializer: unknown type; const */
 static M2C_UNK lbl_8_rodata_1CC4; /* unable to generate initializer: unknown type; const */
 static M2C_UNK lbl_8_rodata_1CD0; /* unable to generate initializer: unknown type; const */

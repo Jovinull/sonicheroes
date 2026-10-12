@@ -3,8 +3,9 @@
 // The record that registers FLOWER OBJECT with the editor.
 //
 // The claim is .text 0xB6320 to 0xB63D0 and the .ctors word at 0x134 that names
-// it. Only the record is taken: the four hooks it points at stay assembly and
-// are reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the four hooks it points at are
+// rel/flower_hooks.cpp, reached by the names each module's symbols.txt gives
+// them.
 //
 // The object's name is the display string the record itself installs, which is
 // what names every symbol here.

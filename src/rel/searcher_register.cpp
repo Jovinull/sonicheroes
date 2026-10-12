@@ -4,8 +4,9 @@
 // file-scope objects the same translation unit constructs.
 //
 // The claim is .text 0x5A440 to 0x5A540 and the .ctors word that names it. Only
-// the initializer is taken: the three hooks the record points at stay assembly
-// and are reached by the names each module's symbols.txt gives them.
+// the initializer is taken: of the three hooks the record points at, the
+// factory is rel/searcher_create.cpp and the other two stay assembly, all
+// reached by the names each module's symbols.txt gives them.
 //
 // The run is the same in eight of the fourteen stage modules: 01D, 03D, 05D,
 // 07D, 09D, 11D, 13D and 26D. The other six build this area differently.

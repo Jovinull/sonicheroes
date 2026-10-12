@@ -3,8 +3,9 @@
 // The record that registers HINTCOLLI OBJECT with the editor.
 //
 // The claim is .text 0xC0008 to 0xC00B8 and the .ctors word at 0x14C that names
-// it. Only the record is taken: the four hooks it points at stay assembly and
-// are reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the four hooks it points at are
+// rel/hintcolli_hooks.cpp, reached by the names each module's symbols.txt gives
+// them.
 //
 // The object's name is the display string the record itself installs, which is
 // what names every symbol here.

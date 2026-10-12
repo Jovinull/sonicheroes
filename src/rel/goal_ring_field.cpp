@@ -10,7 +10,7 @@
 // place, which is why the original stages it through the frame: CodeWarrior
 // copies a four byte structure member by member.
 //
-// The run is the same in the nine stage modules that carry it, checked by
+// The run is the same in the thirteen stage modules that carry it, checked by
 // normalising the disassembly and comparing across modules.
 
 typedef struct Field {

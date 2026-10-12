@@ -3,8 +3,9 @@
 // The record that registers S31BOB OBJECT(DUMMY) with the editor.
 //
 // The claim is .text 0xC4ED0 to 0xC4F68 and the .ctors word at 0x158 that names
-// it. Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the hooks it points at are
+// rel/s31_bob_dummy_hooks.cpp (unload and load) and rel/s31bob_create.cpp (the
+// factory), reached by the names each module's symbols.txt gives them.
 //
 // The object's name is the display string the record itself installs, which is
 // what names every symbol here.

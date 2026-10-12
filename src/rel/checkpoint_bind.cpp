@@ -20,10 +20,10 @@
 //
 // The callback it hooks is still assembly. It is renamed to a shared name in
 // every module's symbols.txt rather than left as fn_<id>_10A94, because a
-// module-id name in a source linked into twelve modules resolves in one and
+// module-id name in a source linked into thirteen modules resolves in one and
 // breaks the rest.
 //
-// The run is the same in the twelve stage modules that carry it, checked by
+// The run is the same in the thirteen stage modules that carry it, checked by
 // normalising the disassembly and comparing across modules.
 
 typedef struct Handle {

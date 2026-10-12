@@ -59,27 +59,37 @@ public:
 
 	TObjS14Key(TObject* parent);
 
-	void SearchCage()
-	{
-		if (ObjParam->originalWork == NULL) {
-			SETOBJ_PARAM* node = lbl_8042C298->lists[ObjParam->setData.communicateId];
-			f32 range          = s14KeyCageRange[0];
-			for (; node != NULL; node = node->next) {
-				if (node->setData.uniqueId == 0x24
-				    && Distance2P2P(&ObjParam->setData.pos, &node->setData.pos) < range) {
-					ObjParam->originalWork                       = new KeyCage;
-					((KeyCage*)ObjParam->originalWork)->magic    = 0x12345678;
-					((KeyCage*)ObjParam->originalWork)->position = ObjParam->setData.pos;
-					return;
-				}
-			}
-		}
-	}
+	// The constructor inlines it; rel/s14_key_search_cage.cpp emits the
+	// out-of-line copy the module also keeps.
+	void SearchCage();
+	void Disappear();
+	s32 CheckTouchedByLeader();
 
 	virtual void Exec();
 	virtual ~TObjS14Key();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
+
+#ifndef S14_KEY_SEARCH_CAGE_INLINE
+#define S14_KEY_SEARCH_CAGE_INLINE inline
+#endif
+
+S14_KEY_SEARCH_CAGE_INLINE void TObjS14Key::SearchCage()
+{
+	if (ObjParam->originalWork == NULL) {
+		SETOBJ_PARAM* node = lbl_8042C298->lists[ObjParam->setData.communicateId];
+		f32 range          = s14KeyCageRange[0];
+		for (; node != NULL; node = node->next) {
+			if (node->setData.uniqueId == 0x24
+			    && Distance2P2P(&ObjParam->setData.pos, &node->setData.pos) < range) {
+				ObjParam->originalWork                       = new KeyCage;
+				((KeyCage*)ObjParam->originalWork)->magic    = 0x12345678;
+				((KeyCage*)ObjParam->originalWork)->position = ObjParam->setData.pos;
+				return;
+			}
+		}
+	}
+}
 
 S14_KEY_CTOR TObjS14Key::TObjS14Key(TObject* parent)
     : TObject(parent)

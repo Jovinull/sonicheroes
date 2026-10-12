@@ -7,9 +7,9 @@
 // 0x110 bytes and hand them to the constructor, then fill a 0x2C record in .bss
 // with the display name, the three hooks and the editor's field layout.
 //
-// The run is the same in nine of the fourteen stage modules. stage13D, 26D, 27D
-// and 28D are built from a different revision this far in, and stage40D
-// everywhere, so those five are left out.
+// The run is the same in thirteen of the fourteen stage modules (stage13D and
+// stages 26D to 28D name their symbols differently but carry the same code);
+// stage40D is built from a different revision and is left out.
 //
 // "ssssfffCCs" is the field type string: one character per parameter the editor
 // shows, and the array beside it holds their labels.

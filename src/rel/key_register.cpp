@@ -3,8 +3,9 @@
 // The record that registers KEY OBJECT with the editor.
 //
 // The claim is .text 0xC20F4 to 0xC218C and the .ctors word at 0x154 that names
-// it. Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the hooks it points at are rel/key_hooks.cpp
+// (unload and load) and rel/key_object_create.cpp (the factory), reached by the
+// names each module's symbols.txt gives them.
 //
 // The object's name is the display string the record itself installs, which is
 // what names every symbol here.

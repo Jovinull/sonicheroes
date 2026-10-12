@@ -3,8 +3,9 @@
 // The record that registers FLYER OBJECT with the editor.
 //
 // The claim is .text 0xCD798 to 0xCD83C and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// Only the record is taken: the factory is rel/flyer_object_create.cpp and the
+// other hooks stay assembly, all reached by the names each module's symbols.txt
+// gives them.
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

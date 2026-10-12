@@ -3,8 +3,8 @@
 // The record that registers PUSH/PULL SWITCH with the editor.
 //
 // The claim is .text 0x5191C to 0x519CC and the .ctors word that names it. Only the
-// record is taken: the hooks it points at stay assembly and are reached by the
-// names each module's symbols.txt gives them.
+// record is taken: the hooks it points at are rel/push_pull_switch_hooks.cpp,
+// reached by the names each module's symbols.txt gives them.
 //
 // The run is the same in thirteen of the fourteen stage modules. stage40D
 // registers the same object from a different build and does not share it.

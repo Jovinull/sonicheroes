@@ -71,7 +71,7 @@ M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);                          
 M2C_UNK fn_8019E880(s32);                                                             /* extern */
 M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                                              /* extern */
 M2C_UNK fn_801A4C84(u32);                                                             /* extern */
-M2C_UNK fn_8_94F2C(s32);                                                              /* extern */
+M2C_UNK s12doorEditOnChange(s32);                                                     /* extern */
 s32 objGroupAllActive();                                                              /* extern */
 extern M2C_UNK AxisY;
 extern M2C_UNK AxisZ;
@@ -125,7 +125,7 @@ extern M2C_UNK s11doorObjectVtable;
 
 void fn_8_95240(s32 arg0)
 {
-	fn_8_94F2C(arg0 - 0x28);
+	s12doorEditOnChange(arg0 - 0x28);
 }
 
 void fn_8_95248(void* arg0)

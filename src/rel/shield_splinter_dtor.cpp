@@ -14,9 +14,9 @@
 // each module's data and is renamed to the shared name below; it reads no
 // constant, so it owns no rodata.
 //
-// The run is the same in the nine stage modules that carry this revision of the
-// engine core — 01D, 03D, 05D, 07D, 09D, 11D, 31D, 32D and 33D — the same set
-// rel/system_object1_object.cpp records.
+// The run is the same in the thirteen stage modules that share the engine
+// core; stage13D and stages 26D to 28D name its symbols differently but carry
+// the same code.
 //
 // The delete flag is a short. It is sign extended before the test, so a plain
 // s32 parameter does not reproduce the compare.

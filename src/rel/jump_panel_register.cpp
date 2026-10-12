@@ -3,8 +3,9 @@
 // The record that registers JUMPPANEL OBJECT with the editor.
 //
 // The claim is .text 0xCFB4 to 0xD05C and the .ctors word that names it. Only the
-// record is taken: the three hooks it points at stay assembly and are reached
-// by the names each module's symbols.txt gives them.
+// record is taken: of the three hooks it points at, the unload and load are
+// rel/jump_panel_hooks.cpp and the factory stays assembly, all reached by the
+// names each module's symbols.txt gives them.
 //
 // The run is the same in twelve of the fourteen stage modules. stage13D is
 // built from a different revision here, and stage40D everywhere.

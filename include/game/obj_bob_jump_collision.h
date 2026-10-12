@@ -1,6 +1,7 @@
 #ifndef GAME_OBJ_BOB_JUMP_COLLISION_H
 #define GAME_OBJ_BOB_JUMP_COLLISION_H
 #include "game/effect/eff_bomb.h"
+#include "game/material.h"
 #include "game/setObj.h"
 
 // TObjBobJumpCollision, the bobsleigh jump's trigger box, and the pre-jump box
@@ -25,6 +26,13 @@ struct BobJumpParam {
 
 class TObjBobJumpCollision;
 
+// The pre-jump constructor is inline (the jump's constructor inlines it);
+// rel/bob_pre_jump_ctor.cpp defines this empty to emit the out-of-line copy each
+// module also keeps.
+#ifndef BOB_PRE_JUMP_CTOR
+#define BOB_PRE_JUMP_CTOR inline
+#endif
+
 extern "C" char* CL_TObjBobJumpCollision;
 extern "C" char* CL_TObjBobPreJumpCollision;
 extern "C" CCL_INFO bobJumpCclInfo;
@@ -36,9 +44,18 @@ class TObjBobPreJumpCollision : public TObject, public C_COLLI
 public:
 	TObjBobJumpCollision* owner; // 0xB0
 
-	inline TObjBobPreJumpCollision(TObject* parent);
+	BOB_PRE_JUMP_CTOR TObjBobPreJumpCollision(TObject* parent);
+	void BobJumpCollisionParameter();
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable. Overrides, whose order does not move their slots:
+	// rel/bob_pre_jump_exec.cpp declares the destructor first, the others Exec.
+#ifdef BOB_PRE_JUMP_DTOR_FIRST
 	virtual ~TObjBobPreJumpCollision();
+#endif
 	virtual void Exec();
+#ifndef BOB_PRE_JUMP_DTOR_FIRST
+	virtual ~TObjBobPreJumpCollision();
+#endif
 };
 
 class TObjBobJumpCollision : public TObject, public TObjSetObj, public C_COLLI
@@ -51,19 +68,28 @@ public:
 	f32 b;                            // 0xD8
 	f32 c;                            // 0xDC
 	f32 depth;                        // 0xE0
-	s32 unkE4;                        // 0xE4
-	s32 unkE8;                        // 0xE8
-	s32 unkEC;                        // 0xEC
-	s32 unkF0;                        // 0xF0
+	RpClump* unkE4;                   // 0xE4
+	RpClump* unkE8;                   // 0xE8
+	DealMaterial* unkEC;              // 0xEC
+	DealMaterial* unkF0;              // 0xF0
 	TObjBobPreJumpCollision* preJump; // 0xF4
 
 	TObjBobJumpCollision(TObject* parent);
+	void BobJumpCollisionParameter();
+	void SetParameter();
+	// The same: rel/bob_jump_collision_exec.cpp declares the destructor first.
+#ifdef BOB_JUMP_DTOR_FIRST
 	virtual ~TObjBobJumpCollision();
+#endif
 	virtual void Exec();
+#ifndef BOB_JUMP_DTOR_FIRST
+	virtual ~TObjBobJumpCollision();
+#endif
+	virtual void TDisp();
 	virtual void EditOnChange(SETDATA_PARAM*);
 };
 
-inline TObjBobPreJumpCollision::TObjBobPreJumpCollision(TObject* parent)
+BOB_PRE_JUMP_CTOR TObjBobPreJumpCollision::TObjBobPreJumpCollision(TObject* parent)
     : TObject(parent)
 {
 	ClassName = CL_TObjBobPreJumpCollision;

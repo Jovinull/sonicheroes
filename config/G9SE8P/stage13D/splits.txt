@@ -79,6 +79,9 @@ rel/switch_transform.cpp:
 rel/switch_dtor.cpp:
 	.text       start:0x00004580 end:0x00004650
 
+rel/switch_ctor.cpp:
+	.text       start:0x00004650 end:0x00004AC4
+
 rel/switch_guard.cpp:
 	.text       start:0x00004AC4 end:0x00004B44
 
@@ -117,6 +120,9 @@ rel/ironball_dtor.cpp:
 
 rel/ironball_ctor.cpp:
 	.text       start:0x00006FDC end:0x00007244
+
+rel/ironball_hooks.cpp:
+	.text       start:0x00007314 end:0x00007430
 
 rel/ironball_create.cpp:
 	.text       start:0x00007430 end:0x000076C0
@@ -161,9 +167,21 @@ rel/scroll_ring_touch.cpp:
 rel/scroll_ring_disp.cpp:
 	.text       start:0x00008F98 end:0x00008FF0
 
+rel/scroll_ring_field_dtor.cpp:
+	.text       start:0x00009BD0 end:0x00009C40
+
+rel/ring_object_reset.cpp:
+	.text       start:0x0000BB4C end:0x0000BB80
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD3C end:0x0000BE98
 	.ctors      start:0x00000020 end:0x00000024
+
+rel/jump_panel_dtor.cpp:
+	.text       start:0x0000C6D0 end:0x0000C7B0
+
+rel/jump_panel_hooks.cpp:
+	.text       start:0x0000CC08 end:0x0000CCDC
 
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB8 end:0x0000D060
@@ -172,12 +190,43 @@ rel/jump_panel_register.cpp:
 rel/dash_ring_dtor.cpp:
 	.text       start:0x0000DC5C end:0x0000DD60
 
-rel/dashring_object_register.cpp:
-	.text       start:0x0000E378 end:0x0000E420
+rel/dash_ring_edit.cpp:
+	.text       start:0x0000E114 end:0x0000E17C
+	.rodata     start:0x00000290 end:0x00000298
+
+rel/dash_ring_hooks.cpp:
+	.text       start:0x0000E17C end:0x0000E330
+
+rel/dash_ring_assets.cpp:
+	.text       start:0x0000E330 end:0x0000E420
 	.ctors      start:0x00000028 end:0x0000002C
+
+rel/checkpoint_star_check.cpp:
+	.text       start:0x0000E428 end:0x0000E740
+
+rel/checkpoint_star_disp.cpp:
+	.text       start:0x0000E740 end:0x0000E940
+
+rel/checkpoint_star_disp_opaque.cpp:
+	.text       start:0x0000E940 end:0x0000E9E4
+
+rel/checkpoint_star_exec.cpp:
+	.text       start:0x0000E9E4 end:0x0000EA04
+
+rel/checkpoint_ctor.cpp:
+	.text       start:0x0001053C end:0x000107A0
 
 rel/checkpoint_edit.cpp:
 	.text       start:0x000107A0 end:0x000107D0
+
+rel/checkpoint_hooks.cpp:
+	.text       start:0x000107D0 end:0x00010A3C
+
+rel/checkpoint_bind.cpp:
+	.text       start:0x00010A3C end:0x00010A98
+
+rel/checkpoint_field.cpp:
+	.text       start:0x00010A98 end:0x00010AD0
 
 rel/checkpoint_register.cpp:
 	.text       start:0x00010AD0 end:0x00010B78
@@ -186,16 +235,91 @@ rel/checkpoint_register.cpp:
 rel/reel_dtor.cpp:
 	.text       start:0x00011B1C end:0x00011BE4
 
-rel/reel_object_register.cpp:
-	.text       start:0x00012174 end:0x0001221C
+rel/reel_ctor.cpp:
+	.text       start:0x00011BE4 end:0x00011F24
+
+rel/reel_hooks.cpp:
+	.text       start:0x0001201C end:0x0001212C
+
+rel/reel_assets.cpp:
+	.text       start:0x0001212C end:0x0001221C
 	.ctors      start:0x00000030 end:0x00000034
+
+rel/container_colli.cpp:
+	.text       start:0x00012224 end:0x00012284
+
+rel/container_check_ground.cpp:
+	.text       start:0x00012284 end:0x00012310
+
+rel/container_check_piled.cpp:
+	.text       start:0x00012310 end:0x000123E4
+
+rel/container_check_break.cpp:
+	.text       start:0x000123E4 end:0x00012690
+	.data       start:0x00001884 end:0x000018DC
+
+rel/container_check_break_sub.cpp:
+	.text       start:0x00012690 end:0x00012798
+	.data       start:0x000018DC end:0x00001908
+
+rel/container_disp.cpp:
+	.text       start:0x00012798 end:0x0001279C
+
+rel/container_broken_se.cpp:
+	.text       start:0x00013844 end:0x00013884
+
+rel/container_set_parameter.cpp:
+	.text       start:0x00013920 end:0x00013970
+
+rel/container_dtor.cpp:
+	.text       start:0x00013970 end:0x00013A54
+
+rel/container_ctor.cpp:
+	.text       start:0x00013A54 end:0x00013B50
+
+rel/container_edit.cpp:
+	.text       start:0x00013B50 end:0x00013BA0
+
+rel/wood_container_exec.cpp:
+	.text       start:0x00013BA8 end:0x00013BCC
+
+rel/wood_container_dtor.cpp:
+	.text       start:0x00013BCC end:0x00013C7C
+
+rel/wood_container_ctor.cpp:
+	.text       start:0x00013C7C end:0x00013D94
+
+rel/wood_container_hooks.cpp:
+	.text       start:0x00013D94 end:0x00013FB4
 
 rel/wood_container_create.cpp:
 	.text       start:0x00013FB4 end:0x000140F4
 
-rel/wood_cont_object_register.cpp:
+rel/wood_container_register.cpp:
 	.text       start:0x000140F4 end:0x0001419C
 	.ctors      start:0x00000034 end:0x00000038
+
+rel/wood_container_sound.cpp:
+	.text       start:0x0001419C end:0x000141DC
+
+rel/iron_container_check_break.cpp:
+	.text       start:0x000141DC end:0x00014398
+	.data       start:0x00001AD8 end:0x00001B04
+
+rel/iron_container_exec.cpp:
+	.text       start:0x00014398 end:0x000143BC
+
+rel/iron_container_dtor.cpp:
+	.text       start:0x000143BC end:0x0001446C
+
+rel/iron_container_ctor.cpp:
+	.text       start:0x0001446C end:0x00014548
+
+rel/iron_container_unload.cpp:
+	.text       start:0x00014548 end:0x0001455C
+
+rel/iron_container_load.cpp:
+	.text       start:0x0001455C end:0x000145DC
 
 rel/iron_container_create.cpp:
 	.text       start:0x000145DC end:0x000146E0
@@ -203,6 +327,28 @@ rel/iron_container_create.cpp:
 rel/iron_container_register.cpp:
 	.text       start:0x000146E0 end:0x00014788
 	.ctors      start:0x00000038 end:0x0000003C
+
+rel/iron_container_sound.cpp:
+	.text       start:0x00014788 end:0x000147C8
+
+rel/unbreakable_container_check_break.cpp:
+	.text       start:0x000147C8 end:0x00014928
+	.data       start:0x00001BD4 end:0x00001C00
+
+rel/unbreakable_container_exec.cpp:
+	.text       start:0x00014928 end:0x0001494C
+
+rel/unbreakable_container_dtor.cpp:
+	.text       start:0x0001494C end:0x000149FC
+
+rel/unbreakable_container_ctor.cpp:
+	.text       start:0x000149FC end:0x00014AF0
+
+rel/unbreakable_container_unload.cpp:
+	.text       start:0x00014AF0 end:0x00014B04
+
+rel/unbreakable_container_load.cpp:
+	.text       start:0x00014B04 end:0x00014B84
 
 rel/unbreakable_container_create.cpp:
 	.text       start:0x00014B84 end:0x00014CA0
@@ -214,33 +360,82 @@ rel/unbreakable_container_register.cpp:
 rel/cannon_dtor.cpp:
 	.text       start:0x00019EC0 end:0x00019F88
 
+rel/cannon_edit.cpp:
+	.text       start:0x0001A68C end:0x0001A874
+
 rel/cannon_hooks.cpp:
 	.text       start:0x0001A874 end:0x0001A898
+
+rel/cannon_load.cpp:
+	.text       start:0x0001A898 end:0x0001A9B4
+
+rel/obj_disp_stub.cpp:
+	.text       start:0x0001A9B4 end:0x0001A9B8
 
 rel/cannon_register.cpp:
 	.text       start:0x0001A9B8 end:0x0001AA68
 	.ctors      start:0x00000040 end:0x00000044
 
-rel/laserfence_object_register.cpp:
-	.text       start:0x0001C3E0 end:0x0001C488
+rel/laser_fence_dtor.cpp:
+	.text       start:0x0001BED8 end:0x0001BF70
+
+rel/laser_fence_hooks.cpp:
+	.text       start:0x0001C32C end:0x0001C398
+
+rel/laser_fence_assets.cpp:
+	.text       start:0x0001C398 end:0x0001C488
 	.ctors      start:0x00000044 end:0x00000048
+
+rel/big_rings_element_dtor.cpp:
+	.text       start:0x0001D0E4 end:0x0001D150
 
 rel/big_rings_dtor.cpp:
 	.text       start:0x0001E914 end:0x0001E9DC
 
-rel/bigrings_object_register.cpp:
-	.text       start:0x0001F0DC end:0x0001F184
+rel/big_rings_hooks.cpp:
+	.text       start:0x0001EFD0 end:0x0001F094
+
+rel/big_rings_assets.cpp:
+	.text       start:0x0001F094 end:0x0001F184
 	.ctors      start:0x00000048 end:0x0000004C
 
-rel/cage_object_register.cpp:
-	.text       start:0x00021C90 end:0x00021D38
+rel/cage_check_break.cpp:
+	.text       start:0x0001F18C end:0x0001F348
+	.data       start:0x00002448 end:0x00002474
+
+rel/cage_disp.cpp:
+	.text       start:0x0001F348 end:0x0001F34C
+
+rel/cage_check_thunder.cpp:
+	.text       start:0x0001F34C end:0x0001F3D4
+
+rel/cage_hooks.cpp:
+	.text       start:0x00021B64 end:0x00021C48
+
+rel/cage_assets.cpp:
+	.text       start:0x00021C48 end:0x00021D38
 	.ctors      start:0x0000004C end:0x00000050
+
+rel/cannon_smoke_bind.cpp:
+	.text       start:0x00021F6C end:0x00021FC8
+
+rel/cannon_smoke_field.cpp:
+	.text       start:0x00021FC8 end:0x00022000
 
 rel/target_reload.cpp:
 	.text       start:0x00023BC8 end:0x00023C1C
 
 rel/target_dtor.cpp:
 	.text       start:0x00023C1C end:0x00023CCC
+
+rel/target_ctor.cpp:
+	.text       start:0x00023CCC end:0x00023FE0
+
+rel/target_edit.cpp:
+	.text       start:0x00023FE0 end:0x00024088
+
+rel/target_hooks.cpp:
+	.text       start:0x00024088 end:0x000240D0
 
 rel/target_assets.cpp:
 	.text       start:0x000240D0 end:0x000241C0
@@ -249,16 +444,38 @@ rel/target_assets.cpp:
 rel/fan_dtor.cpp:
 	.text       start:0x000251CC end:0x00025294
 
-rel/fan_object_register.cpp:
-	.text       start:0x0002583C end:0x000258E4
+rel/fan_edit.cpp:
+	.text       start:0x00025604 end:0x000257AC
+	.rodata     start:0x000005B0 end:0x000005C8
+
+rel/fan_hooks.cpp:
+	.text       start:0x000257AC end:0x000257F4
+
+rel/fan_assets.cpp:
+	.text       start:0x000257F4 end:0x000258E4
 	.ctors      start:0x00000054 end:0x00000058
+
+rel/weight_move.cpp:
+	.text       start:0x00025BA4 end:0x00025CF0
+
+rel/weight_checks.cpp:
+	.text       start:0x00025CF0 end:0x00025DD0
 
 rel/weight_dtor.cpp:
 	.text       start:0x000283CC end:0x000284AC
 
+rel/weight_hooks.cpp:
+	.text       start:0x00028A48 end:0x00028C18
+
 rel/weight_register.cpp:
 	.text       start:0x00028C18 end:0x00028CC0
 	.ctors      start:0x00000058 end:0x0000005C
+
+rel/breakable_weight_checks.cpp:
+	.text       start:0x0002977C end:0x0002985C
+
+rel/breakable_weight_hooks.cpp:
+	.text       start:0x0002C76C end:0x0002C93C
 
 rel/breakable_weight_register.cpp:
 	.text       start:0x0002C93C end:0x0002C9E4
@@ -267,16 +484,34 @@ rel/breakable_weight_register.cpp:
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CE0 end:0x00032EB8
 
-rel/pawn_register.cpp:
-	.text       start:0x00033CC4 end:0x00033D6C
+rel/pawn_assets.cpp:
+	.text       start:0x00033C7C end:0x00033D6C
 	.ctors      start:0x00000060 end:0x00000064
+
+rel/shield_splinter_dtor.cpp:
+	.text       start:0x000371F0 end:0x00037264
+
+rel/item_box_search_cage.cpp:
+	.text       start:0x0003A8CC end:0x0003A9BC
 
 rel/item_box_dtor.cpp:
 	.text       start:0x0003ABD8 end:0x0003AC80
 
-rel/item_box_register.cpp:
-	.text       start:0x0003B2F8 end:0x0003B3A0
+rel/item_box_ctor.cpp:
+	.text       start:0x0003AC80 end:0x0003AF10
+
+rel/item_box_edit.cpp:
+	.text       start:0x0003AF10 end:0x0003AFB8
+
+rel/item_box_assets.cpp:
+	.text       start:0x0003B2B0 end:0x0003B3A0
 	.ctors      start:0x00000064 end:0x00000068
+
+rel/scroll_itembaloon_dtor.cpp:
+	.text       start:0x0003BB98 end:0x0003BC58
+
+rel/scroll_itembaloon_create.cpp:
+	.text       start:0x0003BFC0 end:0x0003C008
 
 rel/itembaloon_tdisp.cpp:
 	.text       start:0x0003C254 end:0x0003C378
@@ -303,9 +538,19 @@ rel/itembaloon_position.cpp:
 rel/pole_dtor.cpp:
 	.text       start:0x0003F854 end:0x0003F914
 
-rel/pole_register.cpp:
-	.text       start:0x0003FFA0 end:0x00040048
+rel/pole_hooks.cpp:
+	.text       start:0x0003FF10 end:0x0003FF58
+
+rel/pole_assets.cpp:
+	.text       start:0x0003FF58 end:0x00040048
 	.ctors      start:0x0000006C end:0x00000070
+
+rel/ef_rain_stage11.cpp:
+	.text       start:0x00040050 end:0x000403D0
+	.ctors      start:0x00000070 end:0x00000074
+	.rodata     start:0x00000A80 end:0x00000A90
+	.data       start:0x0000439C end:0x000043F4
+	.bss        start:0x00000978 end:0x00000988
 
 rel/fn_403ec_stage11.cpp:
 	.text       start:0x000403D0 end:0x00040F48
@@ -319,15 +564,18 @@ rel/case_obj_dtor.cpp:
 rel/case_obj_lifecycle_stage11.cpp:
 	.text       start:0x00041018 end:0x00041594
 
-rel/case_obj_register.cpp:
-	.text       start:0x000415DC end:0x00041684
+rel/case_assets.cpp:
+	.text       start:0x00041594 end:0x00041684
 	.ctors      start:0x00000074 end:0x00000078
+
+rel/roll_door_dtor.cpp:
+	.text       start:0x00043944 end:0x00043A24
 
 rel/roll_door_lifecycle_stage11.cpp:
 	.text       start:0x00043A24 end:0x00044100
 
-rel/roll_door_register.cpp:
-	.text       start:0x00044148 end:0x000441F0
+rel/roll_door_assets.cpp:
+	.text       start:0x00044100 end:0x000441F0
 	.ctors      start:0x00000078 end:0x0000007C
 
 rel/lens_flare_nearest.cpp:
@@ -378,6 +626,9 @@ rel/lens_flare_create_lens.cpp:
 rel/lens_flare_create.cpp:
 	.text       start:0x000457BC end:0x000459AC
 
+rel/lens_flare_tmp_edit.cpp:
+	.text       start:0x000459AC end:0x000459B8
+
 rel/lens_flare_accessors.cpp:
 	.text       start:0x000459B8 end:0x000459E8
 
@@ -394,13 +645,22 @@ rel/signal_dtor.cpp:
 rel/signal_lifecycle_stage11.cpp:
 	.text       start:0x00046560 end:0x00046B0C
 
-rel/signal_register.cpp:
-	.text       start:0x00046B54 end:0x00046BFC
+rel/signal_assets.cpp:
+	.text       start:0x00046B0C end:0x00046BFC
 	.ctors      start:0x00000080 end:0x00000084
+
+rel/propeller_create.cpp:
+	.text       start:0x00049530 end:0x00049578
 
 rel/propeller_register.cpp:
 	.text       start:0x00049578 end:0x00049618
 	.ctors      start:0x00000084 end:0x00000088
+
+rel/goal_ring_bind.cpp:
+	.text       start:0x0004D4D4 end:0x0004D530
+
+rel/goal_ring_field.cpp:
+	.text       start:0x0004D530 end:0x0004D568
 
 rel/goal_ring_register.cpp:
 	.text       start:0x0004D568 end:0x0004D610
@@ -414,6 +674,9 @@ rel/system_object1_dtor.cpp:
 
 rel/system_object1_ctor.cpp:
 	.text       start:0x0004D700 end:0x0004D764
+
+rel/system_object1_hooks.cpp:
+	.text       start:0x0004D764 end:0x0004D770
 
 rel/system_object1_create.cpp:
 	.text       start:0x0004D770 end:0x0004D7FC
@@ -463,12 +726,21 @@ rel/system_object4_dtor.cpp:
 rel/system_object4_ctor.cpp:
 	.text       start:0x0004DEE8 end:0x0004DF4C
 
+rel/system_object4_hooks.cpp:
+	.text       start:0x0004DF4C end:0x0004DF58
+
 rel/system_object4_create.cpp:
 	.text       start:0x0004DF58 end:0x0004DFE4
 
 rel/system_object4_register.cpp:
 	.text       start:0x0004DFE4 end:0x0004E088
 	.ctors      start:0x0000009C end:0x000000A0
+
+rel/light_collision_ctor.cpp:
+	.text       start:0x0004F068 end:0x0004F280
+
+rel/light_collision_create.cpp:
+	.text       start:0x0004F280 end:0x0004F2C8
 
 rel/light_collision_register.cpp:
 	.text       start:0x0004F2C8 end:0x0004F360
@@ -484,21 +756,67 @@ rel/o_invoke_colli.cpp:
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00051218 end:0x000512D8
 
+rel/push_pull_switch_edit.cpp:
+	.text       start:0x00051680 end:0x000516DC
+
+rel/push_pull_switch_hooks.cpp:
+	.text       start:0x000516DC end:0x00051900
+
 rel/push_pull_switch_register.cpp:
 	.text       start:0x00051900 end:0x000519B0
 	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/searcher_create.cpp:
+	.text       start:0x0005A3B8 end:0x0005A400
 
 rel/searcher_register.cpp:
 	.text       start:0x0005A414 end:0x0005A514
 	.ctors      start:0x000000AC end:0x000000B0
 
+rel/enemy_gadget_dtor.cpp:
+	.text       start:0x0005EE04 end:0x0005EE78
+
+rel/formgate_unload.cpp:
+	.text       start:0x0006124C end:0x000612BC
+
+rel/formgate_create.cpp:
+	.text       start:0x000616A8 end:0x000616F0
+
 rel/formgate_register.cpp:
 	.text       start:0x00061804 end:0x000618AC
 	.ctors      start:0x000000B0 end:0x000000B4
 
+rel/no_input_collision_parameter.cpp:
+	.text       start:0x000630D8 end:0x00063128
+
+rel/no_input_collision_set_parameter.cpp:
+	.text       start:0x00063128 end:0x00063188
+
+rel/no_input_collision_dtor.cpp:
+	.text       start:0x00063188 end:0x00063258
+
+rel/no_input_collision_edit.cpp:
+	.text       start:0x000636B4 end:0x000637DC
+	.rodata     start:0x000010C8 end:0x000010D0
+
+rel/no_input_collision_hooks.cpp:
+	.text       start:0x000637DC end:0x0006382C
+
 rel/no_input_collision_register.cpp:
 	.text       start:0x0006382C end:0x000638D4
 	.ctors      start:0x000000B4 end:0x000000B8
+
+rel/hintring_edit.cpp:
+	.text       start:0x00065C78 end:0x00065CD4
+
+rel/hintring_hooks.cpp:
+	.text       start:0x00065CD4 end:0x00065E18
+
+rel/hintring_bind.cpp:
+	.text       start:0x00065E18 end:0x00065E74
+
+rel/hintring_field.cpp:
+	.text       start:0x00065E74 end:0x00065EAC
 
 rel/hintring_register.cpp:
 	.text       start:0x0006627C end:0x00066350
@@ -523,9 +841,36 @@ rel/obj_set_particle_register.cpp:
 	.text       start:0x000670D8 end:0x00067174
 	.ctors      start:0x000000C0 end:0x000000C4
 
+rel/flower_hierarchy.cpp:
+	.text       start:0x0006B078 end:0x0006B18C
+
+rel/flower_hooks.cpp:
+	.text       start:0x0006B24C end:0x0006B414
+
 rel/flower_register.cpp:
 	.text       start:0x0006B414 end:0x0006B4C4
 	.ctors      start:0x000000C4 end:0x000000C8
+
+rel/chao_search_cage.cpp:
+	.text       start:0x0006B5A0 end:0x0006B690
+
+rel/chao_check_touched.cpp:
+	.text       start:0x0006B690 end:0x0006B848
+
+rel/chao_pdisp.cpp:
+	.text       start:0x0006B848 end:0x0006B890
+
+rel/chao_set_position.cpp:
+	.text       start:0x0006C03C end:0x0006C1D4
+
+rel/chao_dtor.cpp:
+	.text       start:0x0006C1D4 end:0x0006C2CC
+
+rel/chao_ctor.cpp:
+	.text       start:0x0006C2CC end:0x0006C834
+
+rel/chao_hooks.cpp:
+	.text       start:0x0006C8AC end:0x0006C964
 
 rel/chao_register.cpp:
 	.text       start:0x0006C964 end:0x0006CA14
@@ -544,6 +889,9 @@ rel/warp_edit.cpp:
 	.text       start:0x0006CFA0 end:0x0006CFF0
 	.rodata     start:0x000011E0 end:0x000011E4
 
+rel/warp_hooks.cpp:
+	.text       start:0x0006CFF0 end:0x0006CFFC
+
 rel/warp_create.cpp:
 	.text       start:0x0006CFFC end:0x0006D0B8
 
@@ -551,19 +899,40 @@ rel/warp_register.cpp:
 	.text       start:0x0006D0B8 end:0x0006D164
 	.ctors      start:0x000000CC end:0x000000D0
 
+rel/hintcolli_edit.cpp:
+	.text       start:0x0006EEA0 end:0x0006EF38
+
+rel/hintcolli_hooks.cpp:
+	.text       start:0x0006EF38 end:0x0006EF8C
+
 rel/hintcolli_register.cpp:
 	.text       start:0x0006EF8C end:0x0006F03C
 	.ctors      start:0x000000D0 end:0x000000D4
 
+rel/obj_secollision_edit.cpp:
+	.text       start:0x0006F6D8 end:0x0006F7C0
+
 rel/obj_se_collision_register.cpp:
 	.text       start:0x0006F9A0 end:0x0006FA34
 	.ctors      start:0x000000D4 end:0x000000D8
+
+rel/key_search_cage.cpp:
+	.text       start:0x0006FA3C end:0x0006FB2C
+
+rel/key_disappear.cpp:
+	.text       start:0x0006FB2C end:0x0006FC9C
+
+rel/key_check_player.cpp:
+	.text       start:0x0006FC9C end:0x0006FE58
 
 rel/key_object_dtor.cpp:
 	.text       start:0x000708B8 end:0x000709C0
 
 rel/key_object_ctor.cpp:
 	.text       start:0x000709C0 end:0x00070B88
+
+rel/key_hooks.cpp:
+	.text       start:0x00070B88 end:0x00070BD0
 
 rel/key_object_create.cpp:
 	.text       start:0x00070BD0 end:0x00070DC0
@@ -583,21 +952,36 @@ rel/s13_senkan_yuka_register.cpp:
 	.text       start:0x00077AFC end:0x00077BA4
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s13_senkan_shut_create.cpp:
+	.text       start:0x000788C0 end:0x00078908
+
 rel/s13_senkan_shut_register.cpp:
 	.text       start:0x00078908 end:0x000789B0
 	.ctors      start:0x000000E4 end:0x000000E8
+
+rel/s13_houdai_yoko_create.cpp:
+	.text       start:0x0007E610 end:0x0007E658
 
 rel/s13_houdai_yoko_register.cpp:
 	.text       start:0x0007E658 end:0x0007E700
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/s13_houdai_l_create.cpp:
+	.text       start:0x000816B8 end:0x00081700
+
 rel/s13_houdai_l_register.cpp:
 	.text       start:0x00081700 end:0x000817A8
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/s13_houdai_fumi_create.cpp:
+	.text       start:0x00083218 end:0x00083260
+
 rel/s13_houdai_fumi_register.cpp:
 	.text       start:0x00083260 end:0x00083308
 	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/s13_senkan_mov_create.cpp:
+	.text       start:0x00084618 end:0x00084660
 
 rel/s13_senkan_mov_register.cpp:
 	.text       start:0x00084660 end:0x00084708
@@ -615,6 +999,9 @@ rel/s13_partition_create.cpp:
 rel/s13_tsuitate_register.cpp:
 	.text       start:0x00084FE4 end:0x0008507C
 	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/s13_senkan_belt_create.cpp:
+	.text       start:0x00085DB8 end:0x00085E00
 
 rel/s13_senkan_belt_register.cpp:
 	.text       start:0x00085E00 end:0x00085EA8
@@ -745,12 +1132,21 @@ rel/s14_laser_sign_register.cpp:
 	.text       start:0x000A6D14 end:0x000A6DC0
 	.ctors      start:0x00000150 end:0x00000154
 
+rel/capture_object_create.cpp:
+	.text       start:0x000ABED0 end:0x000ABF18
+
 rel/capture_register.cpp:
 	.text       start:0x000ABFE8 end:0x000AC0E4
 	.ctors      start:0x00000154 end:0x00000158
 
+rel/capture_collision_kill.cpp:
+	.text       start:0x000AC208 end:0x000AC25C
+
 rel/capture_collision_exec.cpp:
 	.text       start:0x000AC25C end:0x000AC2CC
+
+rel/capture_collision_parameter.cpp:
+	.text       start:0x000AC2CC end:0x000AC334
 
 rel/capture_collision_dtor.cpp:
 	.text       start:0x000AC334 end:0x000AC3C0
@@ -758,8 +1154,14 @@ rel/capture_collision_dtor.cpp:
 rel/capture_collision_ctor.cpp:
 	.text       start:0x000AC3C0 end:0x000AC484
 
+rel/capture_collision_instance.cpp:
+	.text       start:0x000AC484 end:0x000AC57C
+
 rel/capture_collision_edit.cpp:
 	.text       start:0x000AC57C end:0x000AC5C4
+
+rel/capture_collision_hooks.cpp:
+	.text       start:0x000AC5C4 end:0x000AC5CC
 
 rel/capture_collision_create.cpp:
 	.text       start:0x000AC5CC end:0x000AC6B8
@@ -772,12 +1174,39 @@ rel/e2000_object_register.cpp:
 	.text       start:0x000B2370 end:0x000B246C
 	.ctors      start:0x0000015C end:0x00000160
 
+rel/flyer_object_create.cpp:
+	.text       start:0x000B8420 end:0x000B8468
+
 rel/flyer_register.cpp:
 	.text       start:0x000B8468 end:0x000B850C
 	.ctors      start:0x00000160 end:0x00000164
 
+rel/flyer_collision_check.cpp:
+	.text       start:0x000B85B4 end:0x000B91F8
+
+rel/flyer_collision_tdisp.cpp:
+	.text       start:0x000B91F8 end:0x000B9200
+
+rel/flyer_collision_exec.cpp:
+	.text       start:0x000B9200 end:0x000B933C
+
+rel/flyer_collision_parameter.cpp:
+	.text       start:0x000B933C end:0x000B942C
+
+rel/flyer_collision_dtor.cpp:
+	.text       start:0x000B942C end:0x000B94C4
+
+rel/flyer_collision_ctor.cpp:
+	.text       start:0x000B94C4 end:0x000B9614
+
 rel/flyer_collision_instance.cpp:
 	.text       start:0x000B9614 end:0x000B9794
+
+rel/flyer_collision_edit_stage13.cpp:
+	.text       start:0x000B9794 end:0x000B9864
+
+rel/flyer_collision_hooks.cpp:
+	.text       start:0x000B9864 end:0x000B986C
 
 rel/flyer_collision_create.cpp:
 	.text       start:0x000B986C end:0x000B99E4
@@ -871,6 +1300,15 @@ rel/s14d_wall_neon_register.cpp:
 	.text       start:0x000CE574 end:0x000CE60C
 	.ctors      start:0x00000198 end:0x0000019C
 
+rel/s14_key_search_cage.cpp:
+	.text       start:0x000CF2E0 end:0x000CF3D0
+
+rel/s14_key_disappear.cpp:
+	.text       start:0x000CF3D0 end:0x000CF440
+
+rel/s14_key_check_touched.cpp:
+	.text       start:0x000CF440 end:0x000CF5F8
+
 rel/s14_key_dtor.cpp:
 	.text       start:0x000D05E4 end:0x000D06D0
 
@@ -922,8 +1360,213 @@ rel/s14_wall_side_register.cpp:
 	.text       start:0x000D69D0 end:0x000D6A78
 	.ctors      start:0x000001B0 end:0x000001B4
 
+rel/event_manager_bounding_sphere.cpp:
+	.text       start:0x000D6A80 end:0x000D6AB0
+
+rel/event_manager_bs_callback.cpp:
+	.text       start:0x000D6AB0 end:0x000D6B00
+
+rel/event_manager_error_stop.cpp:
+	.text       start:0x000D6B00 end:0x000D6B04
+
+rel/event_manager_cut_extention.cpp:
+	.text       start:0x000D6B04 end:0x000D6B40
+
+rel/event_manager_disp.cpp:
+	.text       start:0x000D7818 end:0x000D7854
+
+rel/event_manager_cheese.cpp:
+	.text       start:0x000D7EE4 end:0x000D7F60
+
+rel/event_manager_remove_clump.cpp:
+	.text       start:0x000D7F60 end:0x000D7FA8
+
+rel/event_manager_add_clump.cpp:
+	.text       start:0x000D7FA8 end:0x000D8000
+
+rel/event_manager_show_hide.cpp:
+	.text       start:0x000D8000 end:0x000D82E0
+
+rel/event_manager_body_clump.cpp:
+	.text       start:0x000D82E0 end:0x000D8448
+
+rel/event_manager_mabuta.cpp:
+	.text       start:0x000D8448 end:0x000D850C
+
+rel/event_manager_player_number.cpp:
+	.text       start:0x000D850C end:0x000D860C
+
+rel/event_manager_player_no.cpp:
+	.text       start:0x000D860C end:0x000D8630
+
+rel/event_manager_set_animation_ext.cpp:
+	.text       start:0x000D8630 end:0x000D86A8
+
+rel/event_manager_set_d_animation.cpp:
+	.text       start:0x000D9230 end:0x000D9278
+
+rel/event_manager_set_animation.cpp:
+	.text       start:0x000D9278 end:0x000D92B0
+
+rel/event_manager_texdict.cpp:
+	.text       start:0x000D92B0 end:0x000D92FC
+
+rel/event_manager_rewind.cpp:
+	.text       start:0x000D92FC end:0x000D9420
+
+rel/event_manager_pause.cpp:
+	.text       start:0x000D9420 end:0x000D9438
+
+rel/event_manager_start.cpp:
+	.text       start:0x000D9438 end:0x000D94AC
+
+rel/event_manager_release_all.cpp:
+	.text       start:0x000D94AC end:0x000D9530
+
+rel/event_manager_release_scene.cpp:
+	.text       start:0x000D9530 end:0x000D9954
+
+rel/event_manager_release_ext.cpp:
+	.text       start:0x000D9954 end:0x000D99FC
+
+rel/event_manager_file_kind.cpp:
+	.text       start:0x000DA76C end:0x000DA844
+
+rel/event_manager_load_aram.cpp:
+	.text       start:0x000DA844 end:0x000DA8E0
+
+rel/event_manager_load_amem.cpp:
+	.text       start:0x000DA8E0 end:0x000DAA40
+
+rel/event_manager_release_event.cpp:
+	.text       start:0x000DAA40 end:0x000DABE4
+
+rel/event_manager_load_event.cpp:
+	.text       start:0x000DABE4 end:0x000DADD4
+
+rel/event_manager_exist.cpp:
+	.text       start:0x000DADD4 end:0x000DADE4
+
+rel/event_manager_reset.cpp:
+	.text       start:0x000DADE4 end:0x000DAE90
+
+rel/event_manager_dtor.cpp:
+	.text       start:0x000DAE90 end:0x000DAF34
+
+rel/event_manager_ctor.cpp:
+	.text       start:0x000DAF34 end:0x000DB040
+
+rel/event_load.cpp:
+	.text       start:0x000DB040 end:0x000DB248
+
+rel/event_rewind.cpp:
+	.text       start:0x000DB248 end:0x000DB38C
+
+rel/event_start.cpp:
+	.text       start:0x000DB38C end:0x000DB41C
+
+rel/event_end.cpp:
+	.text       start:0x000DB41C end:0x000DB4AC
+
 rel/event_manager_init.cpp:
 	.text       start:0x000DB4AC end:0x000DB630
+
+rel/stage_init.cpp:
+	.text       start:0x000DB630 end:0x000DB678
+
+rel/event_script_pop_light.cpp:
+	.text       start:0x000DB678 end:0x000DB6B0
+
+rel/event_script_push_light.cpp:
+	.text       start:0x000DB6B0 end:0x000DB6E8
+
+rel/event_script_start_message.cpp:
+	.text       start:0x000DB8B0 end:0x000DB934
+
+rel/event_script_bgm_name.cpp:
+	.text       start:0x000DB934 end:0x000DB95C
+
+rel/event_script_tdisp.cpp:
+	.text       start:0x000DB95C end:0x000DB960
+
+rel/event_script_init.cpp:
+	.text       start:0x000DBED8 end:0x000DBFD4
+	.data       start:0x00024B50 end:0x00024B6C
+
+rel/event_script_update_endian.cpp:
+	.text       start:0x000DBFD4 end:0x000DC088
+
+rel/event_script_set_info.cpp:
+	.text       start:0x000DC088 end:0x000DC114
+
+rel/event_script_address.cpp:
+	.text       start:0x000DC114 end:0x000DC170
+
+rel/event_script_release.cpp:
+	.text       start:0x000DC170 end:0x000DC218
+
+rel/event_script_load.cpp:
+	.text       start:0x000DC218 end:0x000DC424
+
+rel/event_script_dtor.cpp:
+	.text       start:0x000DC424 end:0x000DC494
+
+rel/event_script_ctor.cpp:
+	.text       start:0x000DC494 end:0x000DC550
+
+rel/bobcontainer_check_ground.cpp:
+	.text       start:0x000DC550 end:0x000DC5D4
+
+rel/bobcontainer_check_piled.cpp:
+	.text       start:0x000DC5D4 end:0x000DC6A8
+
+rel/bobcontainer_check_break.cpp:
+	.text       start:0x000DC6A8 end:0x000DC954
+	.data       start:0x00024C48 end:0x00024CA0
+
+rel/bobcontainer_check_break_sub.cpp:
+	.text       start:0x000DC954 end:0x000DCA5C
+	.data       start:0x00024CA0 end:0x00024CCC
+
+rel/bobcontainer_disp.cpp:
+	.text       start:0x000DCA5C end:0x000DCA60
+
+rel/bobcontainer_broken_se.cpp:
+	.text       start:0x000DDB94 end:0x000DDBD4
+
+rel/bobcontainer_set_position.cpp:
+	.text       start:0x000DDBD4 end:0x000DDD00
+
+rel/bobcontainer_set_parameter.cpp:
+	.text       start:0x000DDD00 end:0x000DDD50
+
+rel/bobcontainer_dtor.cpp:
+	.text       start:0x000DDD50 end:0x000DDE34
+
+rel/bobcontainer_ctor.cpp:
+	.text       start:0x000DDE34 end:0x000DDF38
+
+rel/bobcontainer_edit.cpp:
+	.text       start:0x000DDF38 end:0x000DDF88
+
+rel/unbr_bobcont_broken_se.cpp:
+	.text       start:0x000DDF90 end:0x000DDFD0
+
+rel/unbr_bobcont_check_break.cpp:
+	.text       start:0x000DDFD0 end:0x000DE130
+	.data       start:0x00024DCC end:0x00024DF8
+
+rel/unbr_bobcont_exec.cpp:
+	.text       start:0x000DE130 end:0x000DE154
+
+rel/unbr_bobcont_dtor.cpp:
+	.text       start:0x000DE154 end:0x000DE204
+
+rel/unbr_bobcont_ctor.cpp:
+	.text       start:0x000DE204 end:0x000DE314
+
+rel/unbr_bobcont_hooks.cpp:
+	.text       start:0x000DE314 end:0x000DE534
 
 rel/unbr_bobcont_create.cpp:
 	.text       start:0x000DE534 end:0x000DE66C
