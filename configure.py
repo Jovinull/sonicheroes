@@ -6073,6 +6073,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/formgate_sub_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_sub_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
