@@ -852,6 +852,9 @@ rel/formgate_sub_dtor.cpp:
 rel/formgate_sub_ctor.cpp:
 	.text       start:0x0005FC98 end:0x0005FD98
 
+rel/formgate_exec.cpp:
+	.text       start:0x000605A0 end:0x00060728
+
 rel/formgate_set_parameter.cpp:
 	.text       start:0x00060BF0 end:0x00060C70
 
