@@ -826,6 +826,9 @@ rel/push_pull_switch_register.cpp:
 rel/formgate_sub_dtor.cpp:
 	.text       start:0x0004B30C end:0x0004B390
 
+rel/formgate_sub_ctor.cpp:
+	.text       start:0x0004B390 end:0x0004B490
+
 rel/formgate_dtor.cpp:
 	.text       start:0x0004C368 end:0x0004C448
 

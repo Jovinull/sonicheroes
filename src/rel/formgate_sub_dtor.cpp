@@ -16,7 +16,7 @@ typedef struct FormgateSub {
 } FormgateSub;
 
 extern "C" void* lbl_8042C148;
-extern "C" void* formgateSubVtable[];
+extern "C" void* __vt__15TObjFormGateSub[];
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
@@ -25,7 +25,7 @@ extern "C" void __dt__7C_COLLIFv(void* volume, s32 flags);
 extern "C" FormgateSub* formgateSubDtor(FormgateSub* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable = formgateSubVtable;
+		object->base.vtable = __vt__15TObjFormGateSub;
 
 		__dt__7C_COLLIFv(object->volume, 0);
 		__dt__7TObjectFv(&object->base, 0);
