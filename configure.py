@@ -2042,6 +2042,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/propeller_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/propeller_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
