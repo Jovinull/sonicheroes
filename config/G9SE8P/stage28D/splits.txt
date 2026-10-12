@@ -1220,6 +1220,9 @@ rel/bobsleigh_signal_tdisp.cpp:
 rel/bobsleigh_signal_disp.cpp:
 	.text       start:0x00077138 end:0x0007738C
 
+rel/bobsleigh_signal_dtor.cpp:
+	.text       start:0x000776F8 end:0x0007778C
+
 rel/bobsleigh_vacuum_exec.cpp:
 	.text       start:0x000784C0 end:0x000785BC
 
