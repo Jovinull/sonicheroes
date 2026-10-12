@@ -163,6 +163,9 @@ game/fn_800421B4.cpp:
 game/fn_80042864.cpp:
 	.text       start:0x80042864 end:0x8004286C
 
+game/fn_800487A0.cpp:
+	.text       start:0x800487A0 end:0x800487B8
+
 game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
