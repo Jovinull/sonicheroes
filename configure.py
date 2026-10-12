@@ -6318,6 +6318,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_md_warp_out.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
