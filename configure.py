@@ -1952,6 +1952,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cage_propeler.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cage_check_thunder.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

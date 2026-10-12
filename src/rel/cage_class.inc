@@ -54,6 +54,7 @@ public:
 	// the vtable, which stays in each module's data.
 	virtual void Exec();
 	virtual ~TObjCage();
+	void Propeler();
 	void SetPosition();
 	void SetParameter();
 	void DestroyClump();

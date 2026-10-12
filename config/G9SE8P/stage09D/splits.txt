@@ -431,6 +431,9 @@ rel/cage_disp.cpp:
 rel/cage_check_thunder.cpp:
 	.text       start:0x0001F348 end:0x0001F3D0
 
+rel/cage_propeler.cpp:
+	.text       start:0x0001FB28 end:0x0001FCCC
+
 rel/cage_set_parameter.cpp:
 	.text       start:0x00020FAC end:0x00021154
 
