@@ -520,6 +520,9 @@ rel/weight_ext_dtor.cpp:
 rel/breakable_weight_checks.cpp:
 	.text       start:0x00029798 end:0x00029878
 
+rel/breakable_weight_edit.cpp:
+	.text       start:0x0002C5DC end:0x0002C788
+
 rel/breakable_weight_hooks.cpp:
 	.text       start:0x0002C788 end:0x0002C958
 

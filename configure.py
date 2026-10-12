@@ -5941,6 +5941,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/breakable_weight_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
