@@ -30,6 +30,7 @@ public:
 	// the vtable, which stays in each module's data.
 	virtual void TDisp();
 	virtual void Exec();
+	virtual void Disp();
 	virtual ~TObjFormGate();
 	virtual void EditOnChange(SETDATA_PARAM* param);
 	void SetPosition();

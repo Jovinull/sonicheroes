@@ -5962,6 +5962,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/formgate_disp.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
