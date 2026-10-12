@@ -157,7 +157,7 @@ extern "C" void fn_80029088(
 		matrix2C8Ptr = &collision.matrix2C8;
 		fn_80196050(matrix2C8Ptr, &sp8, 2);
 		matrix248Ptr = &collision.matrix248;
-		matrix248Ptr = fn_80195B5C(matrix248Ptr, matrix2C8Ptr);
+		fn_80195B5C(matrix248Ptr, matrix2C8Ptr);
 
 		collision.points[0].x = lbl_8042D048;
 		collision.points[0].y = lbl_8042D048;
