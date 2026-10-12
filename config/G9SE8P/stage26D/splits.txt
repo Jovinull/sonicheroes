@@ -802,6 +802,9 @@ rel/formgate_sub_dtor.cpp:
 rel/formgate_unload.cpp:
 	.text       start:0x0004C988 end:0x0004C9F8
 
+rel/formgate_load.cpp:
+	.text       start:0x0004C9F8 end:0x0004CDE4
+
 rel/formgate_create.cpp:
 	.text       start:0x0004CDE4 end:0x0004CE2C
 
