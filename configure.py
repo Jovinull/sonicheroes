@@ -5891,6 +5891,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_attack_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/shield_splinter_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

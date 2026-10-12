@@ -981,6 +981,9 @@ rel/s31bob_create.cpp:
 rel/bobsleigh_vacuum_dtor.cpp:
 	.text       start:0x0007460C end:0x00074690
 
+rel/bobsleigh_attack_dtor.cpp:
+	.text       start:0x00074834 end:0x000748B8
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00074CE0 end:0x00074D78
 	.ctors      start:0x000000DC end:0x000000E0
