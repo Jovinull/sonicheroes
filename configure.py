@@ -5700,6 +5700,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_gadget_bomb_calc.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_gadget_bomb_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
