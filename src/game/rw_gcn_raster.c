@@ -583,6 +583,7 @@ block_16:
 u32* fn_80225D48(u32* arg0, s32 arg1, u32* arg2, s32 arg3, s32 arg4)
 {
 	u32 sp8;
+	u8* var_r29;
 	s32 var_r11;
 	s32 var_r27;
 	s32 var_r4;
@@ -605,7 +606,6 @@ u32* fn_80225D48(u32* arg0, s32 arg1, u32* arg2, s32 arg3, s32 arg4)
 	u8 temp_r26;
 	u8 temp_r4_2;
 	u8 temp_r27;
-	u8* var_r29;
 
 	if (!(M2C_FIELD(arg2, s32*, 8) & 0x01000000)) {
 		if (fn_80193884(arg0, (s32*)&sp8, 4) == 0U) {
