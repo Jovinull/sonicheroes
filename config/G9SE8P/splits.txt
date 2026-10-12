@@ -248,6 +248,9 @@ game/gParam.cpp:
 game/fn_800898F0.cpp:
 	.text       start:0x800898F0 end:0x800898F8
 
+game/fn_80098710.cpp:
+	.text       start:0x80098710 end:0x80098730
+
 game/locateTable.cpp:
 	.text       start:0x800A2090 end:0x800A23CC
 	.data       start:0x8024FEB0 end:0x80252FA8
