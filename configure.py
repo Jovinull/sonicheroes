@@ -6888,6 +6888,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/push_pull_switch_light_render.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

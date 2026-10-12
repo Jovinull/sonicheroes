@@ -796,6 +796,9 @@ rel/push_pull_switch_set_parameter.cpp:
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00051234 end:0x000512F4
 
+rel/push_pull_switch_light_render.cpp:
+	.text       start:0x000515EC end:0x0005169C
+
 rel/push_pull_switch_edit.cpp:
 	.text       start:0x0005169C end:0x000516F8
 
