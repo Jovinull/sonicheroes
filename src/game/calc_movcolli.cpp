@@ -1072,7 +1072,8 @@ block_30:
 			coli_pos->y = temp_f11_2;
 			coli_pos->z = temp_f10_3;
 		}
-		if (lbl_8042DFE8 >= (f32)__fabs(temp_f4_4 - temp_f5_2)) {
+		temp_f0_30 = __fabs(temp_f4_4 - temp_f5_2);
+		if (lbl_8042DFE8 >= (f32)temp_f0_30) {
 			if (ans_vec != NULL) {
 				ans_vec->z = lbl_8042DFEC;
 				ans_vec->y = lbl_8042DFEC;
