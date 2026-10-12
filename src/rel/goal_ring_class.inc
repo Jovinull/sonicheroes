@@ -30,6 +30,7 @@ public:
 	virtual void TDisp();
 	virtual ~TObjGoalring();
 	virtual void EditOnChange(SETDATA_PARAM* param);
+	u8 CheckDispBackRing();
 }; // 0x100
 
 struct GoalringTeam {
@@ -53,9 +54,9 @@ extern "C" GoalringStage lbl_8029C310;
 extern "C" s32 stageMissionFlags[];
 
 // Whether the stage shows the two-part ring: team kind 3 on a mission the
-// stage's table flags, or team kinds 1 and 2 with the game's byte 0x28 set.
-// The answer goes through an s32, as the retail tests it.
-static inline s32 goalRingHasTwoRings()
+// stage's table flags, or team kinds 1 and 2 with the game's byte 0x28 set
+// (CheckDispBackRing, inlined).
+static inline bool goalRingTwoRings()
 {
 	s32 kind = lbl_80303DC8[0]->kind;
 	bool two = kind == 3;
@@ -72,4 +73,10 @@ static inline s32 goalRingHasTwoRings()
 		}
 	}
 	return two;
+}
+
+// The members test it as an s32, as the retail does.
+static inline s32 goalRingHasTwoRings()
+{
+	return goalRingTwoRings();
 }
