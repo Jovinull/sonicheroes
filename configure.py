@@ -319,6 +319,7 @@ config.libs = [
             Object(Matching, "MSL_C/arith.c", extra_cflags=["-inline deferred,auto", "-char signed"]),
             Object(Matching, "MSL_C/buffer_io.c"),
             Object(Matching, "MSL_C/char_io.c"),
+            Object(Matching, "game/fn_801BEFE8.cpp"),
             Object(Matching, "MSL_C/direct_io.c"),
             Object(Matching, "MSL_C/file_io.c"),
             Object(Matching, "MSL_C/FILE_POS.c"),

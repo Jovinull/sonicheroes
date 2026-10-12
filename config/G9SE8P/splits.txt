@@ -914,6 +914,9 @@ MSL_C/buffer_io.c:
 MSL_C/char_io.c:
 	.text       start:0x801BEB44 end:0x801BEFE8
 
+game/fn_801BEFE8.cpp:
+	.text       start:0x801BEFE8 end:0x801BF00C
+
 MSL_C/direct_io.c:
 	.text       start:0x801BF00C end:0x801BF6A8
 
