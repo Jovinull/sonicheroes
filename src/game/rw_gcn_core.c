@@ -1529,8 +1529,8 @@ u8* fn_80233DF8(s32 arg0, u8* arg1, s32* arg2)
 {
 	s32 spC;
 	s32 sp8;
-	s32 var_r30;
 	s32 var_r31;
+	s32 var_r30;
 	u32 (*temp_r12)(s32, u8*, s32*);
 	u8* temp_r29;
 	u8* temp_r31;
