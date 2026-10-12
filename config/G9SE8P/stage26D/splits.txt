@@ -1194,6 +1194,9 @@ rel/bobsleigh_attack_exec.cpp:
 rel/bobsleigh_attack_dtor.cpp:
 	.text       start:0x00074834 end:0x000748B8
 
+rel/bobsleigh_attack_ctor.cpp:
+	.text       start:0x000748B8 end:0x00074998
+
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00074CE0 end:0x00074D78
 	.ctors      start:0x000000DC end:0x000000E0

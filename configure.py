@@ -6108,6 +6108,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_attack_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobsleigh_attack_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
