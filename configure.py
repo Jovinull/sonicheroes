@@ -6798,6 +6798,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "movieD/movie_play_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "movieD/cri/sud.c",
                 extra_cflags=["-str readonly", "-use_lmw_stmw on"],
             ),
