@@ -1922,6 +1922,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cage_search_inside_object.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cage_dtor.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],

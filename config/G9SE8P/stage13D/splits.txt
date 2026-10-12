@@ -443,6 +443,9 @@ rel/cage_clone_clump.cpp:
 rel/cage_dtor.cpp:
 	.text       start:0x00021340 end:0x00021460
 
+rel/cage_search_inside_object.cpp:
+	.text       start:0x00021460 end:0x0002153C
+
 rel/cage_hooks.cpp:
 	.text       start:0x00021B64 end:0x00021C48
 
