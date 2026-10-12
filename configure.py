@@ -7143,6 +7143,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tri_spring_disp.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tri_spring_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
