@@ -6156,6 +6156,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_signal_disp.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobsleigh_attack_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
