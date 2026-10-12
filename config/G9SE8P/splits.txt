@@ -296,6 +296,11 @@ game/fn_80090040.cpp:
 game/fn_80098710.cpp:
 	.text       start:0x80098710 end:0x80098730
 
+game/fn_8009CFC0.cpp:
+	extab       start:0x80007754 end:0x8000775C
+	extabindex  start:0x8000DD98 end:0x8000DDA4
+	.text       start:0x8009CFC0 end:0x8009D048
+
 game/locateTable.cpp:
 	.text       start:0x800A2090 end:0x800A23CC
 	.data       start:0x8024FEB0 end:0x80252FA8
