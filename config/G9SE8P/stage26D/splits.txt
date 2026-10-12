@@ -232,6 +232,9 @@ rel/checkpoint_star_disp_opaque.cpp:
 rel/checkpoint_star_exec.cpp:
 	.text       start:0x0000E9E0 end:0x0000EA00
 
+rel/checkpoint_disp.cpp:
+	.text       start:0x0000FA40 end:0x0000FC74
+
 rel/checkpoint_ctor.cpp:
 	.text       start:0x00010538 end:0x0001079C
 
