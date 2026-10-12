@@ -565,6 +565,9 @@ rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
 
+rel/scroll_itembaloon_edit.cpp:
+	.text       start:0x0003BB04 end:0x0003BBB4
+
 rel/scroll_itembaloon_dtor.cpp:
 	.text       start:0x0003BBB4 end:0x0003BC74
 

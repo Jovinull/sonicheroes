@@ -5956,6 +5956,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scroll_itembaloon_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
