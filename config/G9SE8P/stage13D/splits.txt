@@ -620,6 +620,9 @@ rel/pawn_md_shot_fire.cpp:
 rel/pawn_md_shot_ready.cpp:
 	.text       start:0x0002F884 end:0x0002F8D8
 
+rel/pawn_md_fall_land.cpp:
+	.text       start:0x00030158 end:0x0003019C
+
 rel/pawn_md_crouch.cpp:
 	.text       start:0x000307AC end:0x000307CC
 
