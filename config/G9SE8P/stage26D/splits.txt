@@ -1604,6 +1604,9 @@ rel/pawn_update_on_edit.cpp:
 rel/pawn_md_idle.cpp:
 	.text       start:0x0009986C end:0x0009988C
 
+rel/pawn_md_shot_fire.cpp:
+	.text       start:0x0009A008 end:0x0009A07C
+
 rel/pawn_md_crouch.cpp:
 	.text       start:0x0009AFA4 end:0x0009AFC4
 
