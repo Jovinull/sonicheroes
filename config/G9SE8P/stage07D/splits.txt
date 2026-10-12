@@ -394,6 +394,9 @@ rel/cannon_draw_trajectory.cpp:
 rel/cannon_calc_barrel_position.cpp:
 	.text       start:0x00018EF8 end:0x000191AC
 
+rel/cannon_disp.cpp:
+	.text       start:0x000191AC end:0x000191B0
+
 rel/cannon_dtor.cpp:
 	.text       start:0x00019EBC end:0x00019F84
 
