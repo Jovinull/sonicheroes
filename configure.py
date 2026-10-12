@@ -1731,6 +1731,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hint_ball_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/hintring_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

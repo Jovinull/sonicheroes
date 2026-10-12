@@ -821,6 +821,9 @@ rel/no_input_collision_register.cpp:
 rel/hint_ball_create_balls.cpp:
 	.text       start:0x00060DC8 end:0x00061000
 
+rel/hint_ball_ctor.cpp:
+	.text       start:0x000614A8 end:0x00061708
+
 rel/hintring_edit.cpp:
 	.text       start:0x00062D08 end:0x00062D64
 
