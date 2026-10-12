@@ -504,6 +504,9 @@ rel/weight_checks.cpp:
 rel/weight_dtor.cpp:
 	.text       start:0x000283CC end:0x000284AC
 
+rel/weight_edit.cpp:
+	.text       start:0x0002889C end:0x00028A48
+
 rel/weight_hooks.cpp:
 	.text       start:0x00028A48 end:0x00028C18
 
