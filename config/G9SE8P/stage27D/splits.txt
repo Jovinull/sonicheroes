@@ -1010,6 +1010,9 @@ rel/bobsleigh_set_player_position.cpp:
 rel/bobsleigh_dtor.cpp:
 	.text       start:0x00055EC4 end:0x0005615C
 
+rel/bobsleigh_set.cpp:
+	.text       start:0x00057294 end:0x0005750C
+
 rel/no_input_collision_tdisp.cpp:
 	.text       start:0x00058160 end:0x0005824C
 
