@@ -579,6 +579,9 @@ rel/itembaloon_object_dtor.cpp:
 rel/itembaloon_ctor.cpp:
 	.text       start:0x00035A20 end:0x00035B84
 
+rel/itembaloon_edit.cpp:
+	.text       start:0x00035B84 end:0x00035C18
+
 rel/itembaloon_create.cpp:
 	.text       start:0x00035C80 end:0x00035E0C
 
