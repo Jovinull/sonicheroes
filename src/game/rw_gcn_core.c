@@ -4295,8 +4295,8 @@ s32 fn_80238228(u8* arg0, u8* arg1, f32* arg2)
 			temp_r3 = M2C_FIELD(temp_r4, u32*, 0x18);
 			if (temp_r3 != 0U) {
 				temp_r3_2 = *(u8**)((u8*)temp_r3 + lbl_8042CF48);
-				var_f3    = (temp_f2 * M2C_FIELD(temp_r30, f32*, 0x80))
-				    + M2C_FIELD(temp_r3_2, f32*, 0xC0);
+				var_f3    = M2C_FIELD(temp_r3_2, f32*, 0xC0)
+				    + (M2C_FIELD(temp_r30, f32*, 0x80) * temp_f2);
 				if (var_f3 > lbl_80430278) {
 					var_f3 = (f32)((f64)var_f3 - lbl_80430280);
 				} else if (var_f3 < lbl_8043027C) {
@@ -4706,7 +4706,7 @@ s32 fn_80238FF0(s32 arg0)
 	if ((M2C_UNK**)M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60) != NULL) {
 		var_r30 = *M2C_FIELD(lbl_8042AC68, M2C_UNK***, 0x60);
 		while (var_r30 != var_r28) {
-			var_r28   = var_r30;
+			var_r28 = var_r30;
 			var_r30 = (M2C_UNK*)*var_r30;
 			fn_80232288(var_r28);
 		}
