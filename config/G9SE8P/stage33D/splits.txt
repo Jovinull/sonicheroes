@@ -623,6 +623,9 @@ rel/pawn_md_shot_ready.cpp:
 rel/pawn_md_bite_nail.cpp:
 	.text       start:0x0002F8F4 end:0x0002F990
 
+rel/pawn_md_run.cpp:
+	.text       start:0x0002F990 end:0x0002FA54
+
 rel/pawn_md_dropped.cpp:
 	.text       start:0x0002FBC4 end:0x0002FC48
 
