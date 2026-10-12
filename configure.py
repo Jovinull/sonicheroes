@@ -6694,6 +6694,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_calc_barrel_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
