@@ -1210,6 +1210,9 @@ rel/chao_dtor.cpp:
 rel/chao_ctor.cpp:
 	.text       start:0x000A1B10 end:0x000A2078
 
+rel/chao_edit.cpp:
+	.text       start:0x000A2078 end:0x000A20F0
+
 rel/chao_hooks.cpp:
 	.text       start:0x000A20F0 end:0x000A21A8
 

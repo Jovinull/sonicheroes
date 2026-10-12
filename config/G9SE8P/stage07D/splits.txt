@@ -1419,6 +1419,9 @@ rel/chao_dtor.cpp:
 rel/chao_ctor.cpp:
 	.text       start:0x0009C900 end:0x0009CE68
 
+rel/chao_edit.cpp:
+	.text       start:0x0009CE68 end:0x0009CEE0
+
 rel/chao_hooks.cpp:
 	.text       start:0x0009CEE0 end:0x0009CF98
 
