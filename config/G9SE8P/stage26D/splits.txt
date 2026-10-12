@@ -590,6 +590,9 @@ rel/shield_splinter_move.cpp:
 rel/shield_splinter_dtor.cpp:
 	.text       start:0x0002FDD4 end:0x0002FE48
 
+rel/item_box_disp.cpp:
+	.text       start:0x00032AFC end:0x00032CAC
+
 rel/item_box_search_cage.cpp:
 	.text       start:0x000334B0 end:0x000335A0
 
