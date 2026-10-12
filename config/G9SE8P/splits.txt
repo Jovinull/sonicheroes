@@ -199,6 +199,9 @@ game/fn_80057524.cpp:
 game/fn_8005776C.cpp:
 	.text       start:0x8005776C end:0x80057774
 
+game/fn_8005B8A0.cpp:
+	.text       start:0x8005B8A0 end:0x8005B8B8
+
 game/setObj.cpp:
 	extab       start:0x800067AC end:0x800067D4
 	extabindex  start:0x8000D0FC end:0x8000D138
