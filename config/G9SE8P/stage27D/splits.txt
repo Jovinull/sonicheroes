@@ -971,6 +971,9 @@ rel/formgate_register.cpp:
 rel/bobsleigh_riders.cpp:
 	.text       start:0x00052340 end:0x000524C8
 
+rel/bobsleigh_player_ride.cpp:
+	.text       start:0x000524C8 end:0x000527E4
+
 rel/bobsleigh_catch_leader.cpp:
 	.text       start:0x000533DC end:0x00053554
 
