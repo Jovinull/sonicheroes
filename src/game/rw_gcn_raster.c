@@ -1487,12 +1487,13 @@ u8* fn_80227528(u8* arg0, u8* arg1, M2C_UNK arg_sp0)
 	u8* var_r29;
 	u8* var_r30;
 
-	temp_r4                        = M2C_FIELD(arg1, u8**, 0);
-	temp_r16                       = temp_r4 + 0x18;
+	temp_r4  = M2C_FIELD(arg1, u8**, 0);
+	temp_r16 = temp_r4 + 0x18;
+	var_r30  = temp_r16 + ((M2C_FIELD(temp_r4, s32*, 0x20) - 1) * 8);
+	var_r30 += 0x14;
 	M2C_FIELD(temp_r4, u16*, 0x18) = (u16)lbl_8042BE88;
-	var_r30                        = temp_r16 + ((M2C_FIELD(temp_r4, s32*, 0x20) - 1) * 8) + 0x14;
-	temp_r5                        = M2C_FIELD(arg0, u32**, 0x18);
 	temp_r15                       = fn_8019E8EC(M2C_FIELD(arg0, s32*, 4));
+	temp_r5                        = M2C_FIELD(arg0, u32**, 0x18);
 	fn_8015C3A4((s32)M2C_FIELD(temp_r5, u8**, lbl_8042C930), arg1, temp_r5);
 	temp_r3 = fn_80226468(M2C_FIELD(arg0, u32**, 0x18));
 	if (((u32)M2C_FIELD(temp_r3, u32*, 0x10) > 1U) || ((u32)M2C_FIELD(temp_r3, u32*, 0x2C) == 3U)) {
