@@ -1583,6 +1583,9 @@ rel/e2000_object_register.cpp:
 rel/pawn_hit_point.cpp:
 	.text       start:0x00097B38 end:0x00097C28
 
+rel/pawn_rcv_broken.cpp:
+	.text       start:0x00097F68 end:0x00097FA0
+
 rel/pawn_dtor.cpp:
 	.text       start:0x0009D4D8 end:0x0009D6B0
 
