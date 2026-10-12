@@ -1,93 +1,117 @@
 #include "types.h"
 
-// What stays here of stage11D's flyer collision run: the three small functions
-// in front of it (fn_8_A6D1C/A6D24/A6D2C, which stage05D keeps right after its
-// flyer register) and the run's data. The TObjFlyerCollision code itself is the
-// shared rel/flyer_collision_*.cpp and rel/flyer_col_register.cpp units, so the
-// data keeps the names those units use.
-
-typedef s32 M2C_UNK;
-#define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
-#define M2C_ERROR(...)
-
-/* Dispatch view of the object's vtable. The handler at vtable offset 0x10 is
- * reached through genuine virtual dispatch in retail: the target loads the
- * vtable through the already-materialised `this` in r3 and keeps the slot in
- * r12, which manual vtable indexing does not reproduce. Two implicit
- * destructor slots plus the two placeholders below put Release at slot 4. */
-class TObjectDispatch
-{
-public:
-	virtual void vslot2();
-	virtual void vslot3();
-	virtual void Release(s32, s32);
-	virtual s32 vslot5();
-};
+// What stays here of stage11D's flyer collision run: its data. The
+// TObjFlyerCollision code itself is the shared rel/flyer_collision_*.cpp and
+// rel/flyer_col_register.cpp units, so the data keeps the names those units
+// use.
 
 extern "C" {
 
-M2C_UNK fn_800A31B8(void*, s32);     /* extern */
-M2C_UNK fn_8_A6728(s32);             /* extern */
-static M2C_UNK flyerColCclInfo;      /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_162F8;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00016303_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16304;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001630F_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16310;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00016317_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16318;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00016321_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16324;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001632D_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16330;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00016339_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_1633C;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00016345_data; /* unable to generate initializer: unknown type */
-static M2C_UNK* flyerColObjectFieldNames[9] = {
-	&lbl_8_data_162F8,
-	&lbl_8_data_16304,
-	&lbl_8_data_16304,
-	&lbl_8_data_16304,
-	&lbl_8_data_16310,
-	&lbl_8_data_16318,
-	&lbl_8_data_16324,
-	&lbl_8_data_16330,
-	&lbl_8_data_1633C,
+/* The collision volume's shape record, handed to C_COLLI::Init by the
+ * constructor (game/obj_flyer_collision.h). The layout is CCL_INFO's. */
+typedef struct FlyerColCclInfo {
+	u8 kind, form, push, damage; /* 0x00 */
+	u32 attr;                    /* 0x04 */
+	f32 center[3];               /* 0x08 */
+	f32 a, b, c;                 /* 0x14 */
+	void* pReactor;              /* 0x20 */
+	s32 angx, angy, angz;        /* 0x24 */
+} FlyerColCclInfo;               /* 0x30 */
+
+FlyerColCclInfo flyerColCclInfo = {
+	0x00,
+	0x00,
+	0xF0,
+	0x00,
+	0x00708000,
+	{ 0.0f, 0.0f, 0.0f },
+	10.0f,
+	10.0f,
+	10.0f,
+	NULL,
+	0,
+	0,
+	0,
 };
-static M2C_UNK lbl_8_data_1636C;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00016372_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16374;     /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16378;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001637D_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16380;     /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16388;     /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_16394;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_00016399_data; /* unable to generate initializer: unknown type */
-static M2C_UNK* flyerColKindNames[6] = {
-	&lbl_8_data_1636C,
-	&lbl_8_data_16374,
-	&lbl_8_data_16378,
-	&lbl_8_data_16380,
-	&lbl_8_data_16388,
-	&lbl_8_data_16394,
+
+/* The editor's labels, one per character of flyerColObjectFieldTypes. EditOnChange
+ * rewrites the first with the kind's name from flyerColKindNames. */
+const char* flyerColObjectFieldNames[9] = {
+	"COLLI TYPE",
+	"Not in use",
+	"Not in use",
+	"Not in use",
+	"RADIUS",
+	"TARGET X",
+	"TARGET Y",
+	"TARGET Z",
+	"FLYER ID",
 };
-static u8 flyerColKindMin = 0;
-static u8 flyerColKindMax = 5;
-static M2C_UNK gap_04_000163B6_data; /* unable to generate initializer: unknown type */
-static M2C_UNK lbl_8_data_163B8;     /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_000163CB_data; /* unable to generate initializer: unknown type */
-static M2C_UNK* CL_TObjFlyerCollision = &lbl_8_data_163B8;
-static M2C_UNK __vt__18TObjFlyerCollision; /* unable to generate initializer: unknown type */
-static M2C_UNK flyerColObjectDisplayName;  /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001641D_data;       /* unable to generate initializer: unknown type */
-static M2C_UNK flyerColObjectFieldTypes;   /* unable to generate initializer: unknown type */
-static M2C_UNK gap_04_0001642A_data;       /* unable to generate initializer: unknown type */
+
+const char* flyerColKindNames[6] = {
+	"START",
+	"END",
+	"BOMB",
+	"MISSILE",
+	"MACHINE GUN",
+	"PAWN",
+};
+
+/* EditOnChange's limits on the kind. The lower one is zero but lives in .data
+ * beside the upper one. */
+#pragma explicit_zero_data on
+s8 flyerColKindMin = 0;
+#pragma explicit_zero_data reset
+s8 flyerColKindMax = 5;
+
+char* CL_TObjFlyerCollision = "TObjFlyerCollision";
+
+/* The class's code is the shared rel/flyer_collision_*.cpp units and the
+ * EditOnChange adjustor thunk (fn_8_A82A0) heads stage11D's flyer path run, so
+ * nothing in this unit defines the key function that would make the compiler
+ * emit the vtable. It is spelled out instead, in the compiler's layout: the
+ * TObject vtable with its 8-byte header, then the TObjSetObj one at +0x2C
+ * (the second vtable pointer the constructor stores at 0xB4). */
+void __dt__18TObjFlyerCollisionFv();
+void Exec__18TObjFlyerCollisionFv();
+void Disp__7TObjectFv();
+void TDisp__18TObjFlyerCollisionFv();
+void PDisp__7TObjectFv();
+void ImmAftSetRaster__7TObjectFv();
+void Debug__7TObjectFv();
+void Error__7TObjectFPc();
+void Render__7TObjectFv();
+void fn_8_A82A0();
+void EditOnChange__18TObjFlyerCollisionFP13SETDATA_PARAM();
+
+void* __vt__18TObjFlyerCollision[15] = {
+	NULL,
+	NULL,
+	(void*)__dt__18TObjFlyerCollisionFv,
+	(void*)Exec__18TObjFlyerCollisionFv,
+	(void*)Disp__7TObjectFv,
+	(void*)TDisp__18TObjFlyerCollisionFv,
+	(void*)PDisp__7TObjectFv,
+	(void*)ImmAftSetRaster__7TObjectFv,
+	(void*)Debug__7TObjectFv,
+	(void*)Error__7TObjectFPc,
+	(void*)Render__7TObjectFv,
+	NULL,
+	NULL,
+	(void*)fn_8_A82A0,
+	(void*)EditOnChange__18TObjFlyerCollisionFP13SETDATA_PARAM,
+};
+
+/* The editor record's strings (rel/flyer_col_register.cpp installs them). */
+char flyerColObjectDisplayName[] = "FLYER COL OBJECT";
+char flyerColObjectFieldTypes[]  = "ccccffffi";
+
 typedef struct ObjectEntry {
 	const char* name;        /* 0x00 */
 	void (*load)(void);      /* 0x04 */
 	void (*unload)(void);    /* 0x08 */
 	void (*create)(void);    /* 0x0C */
-	void* unk10;             /* 0x10 */
+	void (*reset)(void);     /* 0x10 */
 	u32 flags;               /* 0x14 */
 	u32 unk18;               /* 0x18 */
 	s16 unk1C;               /* 0x1C */
@@ -100,31 +124,15 @@ typedef struct ObjectEntry {
 	u8 pad2C[4];             /* 0x2C */
 } ObjectEntry;               /* 0x30 */
 
-static ObjectEntry flyerColObjectEntry;
+ObjectEntry flyerColObjectEntry;
+
+/* The {0, 1.5, 0} vector the stage 11 object units carry unreferenced at the
+ * head of their .rodata (see e_capture_collision_stage11.cpp). */
+#pragma force_active on
+static const f32 lbl_8_rodata_1980[3] = { 0.0f, 1.5f, 0.0f };
+#pragma force_active reset
+/* EditOnChange's zero and its limits on the unknown at 0x14. */
 extern const f32 flyerColZero[1]     = { 0.0f };
 extern const s32 flyerColUnk14Min[1] = { 0 };
-extern const s32 flyerColUnk14Max[4] = { 0x100, 0, 0x3FC00000, 0 };
-
-void fn_8_A6D1C(s32 arg0)
-{
-	fn_8_A6728(arg0 - 0xB0);
-}
-
-s32 fn_8_A6D24(s32 arg0)
-{
-	return arg0 + 0x268;
-}
-
-void fn_8_A6D2C(void* arg0, s32 arg1)
-{
-	M2C_FIELD(arg0, s32*, 0x14) = arg1;
-	M2C_FIELD(arg0, s32*, 0x10) = 0;
-	if (((TObjectDispatch*)arg0)->vslot5() != 0) {
-		((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 2);
-	}
-	((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 1);
-	if ((s32)M2C_FIELD(arg0, s32*, 0x10) != 0) {
-		fn_800A31B8((void*)M2C_FIELD(arg0, s32*, 0x14), M2C_FIELD(arg0, s32*, 0x10));
-	}
-}
+extern const s32 flyerColUnk14Max[1] = { 0x100 };
 }

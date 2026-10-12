@@ -9,9 +9,9 @@ from pathlib import Path
 
 SYMBOL_RENAMES = {
     "e_capture.o": [("@507", "lbl_8_rodata_1748", 0x4)],
-    "e_flyer_stage11.o": [
-        ("@99", "lbl_8_rodata_18B4", 0x4),
-        ("@101", "lbl_8_rodata_18B8", 0x8),
+    "e_flyer_strategy_stage11.o": [
+        ("@97", "lbl_8_rodata_18B4", 0x4),
+        ("@99", "lbl_8_rodata_18B8", 0x8),
     ],
     "e_strategy_wall_stage11.o": [("@288", "jumptable_8_data_17338", 0x40)],
     "e_wall_stage11.o": [

@@ -2989,8 +2989,13 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
+                Matching,
+                "rel/e_eggmobile_strategy_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
                 NonMatching,
-                "rel/e_strategy_flyer_stage11.cpp",
+                "rel/e_eggmobile_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
@@ -2999,12 +3004,17 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-inline deferred,auto"],
             ),
             Object(
+                Matching,
+                "rel/e_flyer_strategy_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
                 NonMatching,
                 "rel/e_flyer_stage11.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_flyer_collision_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
@@ -3074,7 +3084,22 @@ config.libs = [
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
+                "rel/e_flyer_ironball_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
+                Matching,
+                "rel/e_flyer_missile_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
+                Matching,
+                "rel/e_path_draw_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
+                Matching,
                 "rel/e_flyer_path_stage11.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
@@ -7394,7 +7419,7 @@ config.custom_build_steps = {
         {
             "outputs": "build/G9SE8P/flyer-symbols.stamp",
             "rule": "fix_stage11_symbols",
-            "inputs": "build/G9SE8P/src/rel/e_flyer_stage11.o",
+            "inputs": "build/G9SE8P/src/rel/e_flyer_strategy_stage11.o",
             "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {

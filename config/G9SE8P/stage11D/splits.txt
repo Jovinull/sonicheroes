@@ -1106,23 +1106,32 @@ rel/e_capture_collision_stage11.cpp:
 	.data       start:0x000159E8 end:0x00015A70
 	.bss        start:0x00001870 end:0x000018A8
 
-rel/e_strategy_flyer_stage11.cpp:
-	.text       start:0x0009DA08 end:0x000A2584
+rel/e_eggmobile_strategy_stage11.cpp:
+	.text       start:0x0009DA08 end:0x0009EBB8
+	.rodata     start:0x000017C0 end:0x000017D0
+	.data       start:0x00015A70 end:0x00015B78
+
+rel/e_eggmobile_stage11.cpp:
+	.text       start:0x0009EBB8 end:0x000A258C
 	.ctors      start:0x00000124 end:0x00000128
-	.rodata     start:0x000017C0 end:0x000018B0
-	.data       start:0x00015A70 end:0x00015F80
+	.rodata     start:0x000017D0 end:0x000018A0
+	.data       start:0x00015B78 end:0x00015F80
 	.bss        start:0x000018A8 end:0x00001948
 
+rel/e_flyer_strategy_stage11.cpp:
+	.text       start:0x000A258C end:0x000A325C
+	.rodata     start:0x000018A0 end:0x000018C0
+	.data       start:0x00015F80 end:0x00015FD8
+
 rel/e_flyer_stage11.cpp:
-	.text       start:0x000A2584 end:0x000A6D1C
+	.text       start:0x000A325C end:0x000A6DC4
 	.ctors      start:0x00000128 end:0x0000012C
-	.rodata     start:0x000018B0 end:0x0000198C
-	.data       start:0x00015F80 end:0x000162C8
-	.bss        start:0x00001948 end:0x0000195C
+	.rodata     start:0x000018C0 end:0x00001980
+	.data       start:0x00015FD8 end:0x000162C8
+	.bss        start:0x00001948 end:0x00001988
 
 rel/e_flyer_collision_stage11.cpp:
-	.text       start:0x000A6D1C end:0x000A6DC4
-	.rodata     start:0x0000198C end:0x000019A4
+	.rodata     start:0x00001980 end:0x00001998
 	.data       start:0x000162C8 end:0x00016430
 	.bss        start:0x00001988 end:0x000019B8
 
@@ -1160,11 +1169,26 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000A81F8 end:0x000A82A0
 	.ctors      start:0x0000012C end:0x00000130
 
+rel/e_flyer_ironball_stage11.cpp:
+	.text       start:0x000A82A8 end:0x000A8D98
+	.rodata     start:0x00001998 end:0x000019C8
+	.data       start:0x00016430 end:0x000164A8
+	.bss        start:0x000019B8 end:0x000019C0
+
+rel/e_flyer_missile_stage11.cpp:
+	.text       start:0x000A8D98 end:0x000A9E94
+	.rodata     start:0x000019C8 end:0x00001A00
+	.data       start:0x000164A8 end:0x00016520
+	.bss        start:0x000019C0 end:0x000019C8
+
+rel/e_path_draw_stage11.cpp:
+	.text       start:0x000A9E94 end:0x000A9F48
+	.rodata     start:0x00001A00 end:0x00001A10
+
 rel/e_flyer_path_stage11.cpp:
-	.text       start:0x000A82A0 end:0x000AA610
-	.rodata     start:0x000019A4 end:0x00001AAC
-	.data       start:0x00016430 end:0x00016550
-	.bss        start:0x000019B8 end:0x000019C8
+	.text       start:0x000A9F48 end:0x000AA610
+	.rodata     start:0x00001A10 end:0x00001A20
+	.data       start:0x00016520 end:0x00016550
 
 rel/e_strategy_magician_stage11.cpp:
 	.text       start:0x000AABC8 end:0x000ACE24
