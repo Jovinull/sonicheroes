@@ -611,6 +611,9 @@ rel/pawn_disp_trans.cpp:
 rel/pawn_update_on_edit.cpp:
 	.text       start:0x0002E978 end:0x0002E9AC
 
+rel/pawn_md_idle.cpp:
+	.text       start:0x0002F090 end:0x0002F0B0
+
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CFC end:0x00032ED4
 
