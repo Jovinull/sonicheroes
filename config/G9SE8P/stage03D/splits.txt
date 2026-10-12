@@ -434,6 +434,9 @@ rel/cage_check_thunder.cpp:
 rel/cage_set_parameter.cpp:
 	.text       start:0x00020FAC end:0x00021154
 
+rel/cage_destroy_clump.cpp:
+	.text       start:0x00021154 end:0x000211D8
+
 rel/cage_hooks.cpp:
 	.text       start:0x00021B60 end:0x00021C44
 
