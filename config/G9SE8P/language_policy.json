@@ -141,9 +141,15 @@
     "rel/e_capture_collision_stage11.cpp",
     "rel/e_eggmobile_stage11.cpp",
     "rel/e_flyer_stage11.cpp",
+    "rel/e_grass2_stage11.cpp",
+    "rel/e_grass_stage11.cpp",
     "rel/e_mask_stage11.cpp",
+    "rel/e_s11_flag_stage11.cpp",
     "rel/e_s11_key_stage11.cpp",
+    "rel/e_spider_stage11.cpp",
+    "rel/e_tree_stage11.cpp",
     "rel/e_turtle_stage11.cpp",
+    "rel/o_s11_door.cpp",
     "rel/o_s12_celestial_sphere.cpp",
     "rel/o_spring.cpp"
   ]

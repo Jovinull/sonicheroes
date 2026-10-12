@@ -24,7 +24,7 @@ SYMBOL_RENAMES = {
         # MWCC emits an anonymous copy of the shared integer-to-float bias.
         ("@895", "lbl_8_rodata_1E80", 0x8),
     ],
-    "e_tree_stage11.o": [("@24", "lbl_8_rodata_1F28", 0x4)],
+    "e_tree_stage11.o": [("@125", "lbl_8_rodata_1F28", 0x4)],
 }
 
 

@@ -1072,10 +1072,10 @@ rel/s12door_object_register.cpp:
 	.ctors      start:0x0000010C end:0x00000110
 
 rel/o_s11_door.cpp:
-	.text       start:0x00095240 end:0x00096768
+	.text       start:0x00095248 end:0x00096768
 	.ctors      start:0x00000110 end:0x00000114
-	.rodata     start:0x00001634 end:0x00001660
-	.data       start:0x00015134 end:0x00015340
+	.rodata     start:0x00001628 end:0x00001660
+	.data       start:0x00015130 end:0x00015340
 	.bss        start:0x000016A0 end:0x000016D0
 
 rel/o_s12_celestial_sphere.cpp:
@@ -1296,31 +1296,32 @@ rel/e_fan_stage11.cpp:
 	.bss        start:0x00001C10 end:0x00001C40
 
 rel/e_tree_stage11.cpp:
-	.text       start:0x000C3FF8 end:0x000C4E94
+	.text       start:0x000C3FF8 end:0x000C4E9C
 	.ctors      start:0x0000014C end:0x00000150
 	.rodata     start:0x00001F28 end:0x00001F48
-	.data       start:0x00018298 end:0x00018468
-	.bss        start:0x00001C40 end:0x00001CA8
+	.data       start:0x00018298 end:0x000183A8
+	.bss        start:0x00001C40 end:0x00001C78
 
 rel/e_grass2_stage11.cpp:
-	.text       start:0x000C4E94 end:0x000C5FA4
+	.text       start:0x000C4E9C end:0x000C5FAC
 	.ctors      start:0x00000150 end:0x00000154
 	.rodata     start:0x00001F48 end:0x00001F60
-	.data       start:0x00018468 end:0x00018778
+	.data       start:0x000183A8 end:0x000186B0
+	.bss        start:0x00001C78 end:0x00001CA8
 
 rel/e_grass_stage11.cpp:
-	.text       start:0x000C5FA4 end:0x000C7548
+	.text       start:0x000C5FAC end:0x000C7550
 	.ctors      start:0x00000154 end:0x00000158
 	.rodata     start:0x00001F60 end:0x00001F78
-	.data       start:0x00018778 end:0x00018AA8
-	.bss        start:0x00001CA8 end:0x00001CE8
+	.data       start:0x000186B0 end:0x00018AA8
+	.bss        start:0x00001CA8 end:0x00001CD8
 
 rel/e_s11_flag_stage11.cpp:
-	.text       start:0x000C7548 end:0x000C9084
+	.text       start:0x000C7550 end:0x000C9084
 	.ctors      start:0x00000158 end:0x0000015C
 	.rodata     start:0x00001F78 end:0x00001F98
 	.data       start:0x00018AA8 end:0x00018C88
-	.bss        start:0x00001CE8 end:0x00001D18
+	.bss        start:0x00001CD8 end:0x00001D18
 
 rel/e_mask_stage11.cpp:
 	.text       start:0x000C9084 end:0x000CA218
