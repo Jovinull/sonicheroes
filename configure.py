@@ -6689,6 +6689,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_set_player_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

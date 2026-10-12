@@ -777,6 +777,9 @@ rel/formgate_register.cpp:
 	.text       start:0x00054378 end:0x00054420
 	.ctors      start:0x000000AC end:0x000000B0
 
+rel/bobsleigh_set_player_position.cpp:
+	.text       start:0x0005CA24 end:0x0005CBFC
+
 rel/no_input_collision_parameter.cpp:
 	.text       start:0x00060168 end:0x000601B8
 
