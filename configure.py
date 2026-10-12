@@ -6904,6 +6904,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_smoke_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

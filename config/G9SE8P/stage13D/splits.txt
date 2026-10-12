@@ -379,6 +379,9 @@ rel/unbreakable_container_register.cpp:
 	.text       start:0x00014CA0 end:0x00014D48
 	.ctors      start:0x0000003C end:0x00000040
 
+rel/cannon_smoke_ctor.cpp:
+	.text       start:0x00015500 end:0x00015660
+
 rel/cannon_player_to_cancel.cpp:
 	.text       start:0x00016AC4 end:0x00016C94
 
