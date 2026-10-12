@@ -968,6 +968,9 @@ rel/formgate_register.cpp:
 	.text       start:0x0004CF40 end:0x0004CFE8
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/bobsleigh_double_path_angle.cpp:
+	.text       start:0x0004D274 end:0x0004D4A0
+
 rel/bobsleigh_merge_path_pos.cpp:
 	.text       start:0x0004E9E0 end:0x0004EA88
 
