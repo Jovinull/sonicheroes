@@ -167,15 +167,15 @@ extern "C" void fn_80029088(
 		collision.points[1].z = temp_f29;
 		collision.points[2].x = temp_f31;
 		collision.points[2].y = lbl_8042D048;
-		temp_f2               = -temp_f29;
-		collision.points[2].z = temp_f2;
-		collision.points[3].x = -temp_f31;
+		temp_f1               = -temp_f29;
+		collision.points[2].z = temp_f1;
+		temp_f2               = -temp_f31;
+		collision.points[3].x = temp_f2;
 		collision.points[3].y = lbl_8042D048;
 		collision.points[3].z = temp_f29;
-		temp_f1               = -temp_f31;
-		collision.points[4].x = temp_f1;
+		collision.points[4].x = temp_f2;
 		collision.points[4].y = lbl_8042D048;
-		collision.points[4].z = temp_f2;
+		collision.points[4].z = temp_f1;
 
 		secondPoints      = &collision.points[5];
 		secondPoints[0].x = lbl_8042D048;
@@ -186,16 +186,16 @@ extern "C" void fn_80029088(
 		secondPoints[1].z = temp_f29;
 		secondPoints[2].x = temp_f31;
 		secondPoints[2].y = lbl_8042D048;
-		secondPoints[2].z = temp_f2;
-		secondPoints[3].x = temp_f1;
+		secondPoints[2].z = temp_f1;
+		secondPoints[3].x = temp_f2;
 		secondPoints[3].y = lbl_8042D048;
 		secondPoints[3].z = temp_f29;
-		secondPoints[4].x = temp_f1;
+		secondPoints[4].x = temp_f2;
 		secondPoints[4].y = lbl_8042D048;
-		secondPoints[4].z = temp_f2;
+		secondPoints[4].z = temp_f1;
 
-		secondOutput = sp154;
 		fn_8019941C(sp118, collision.points, 5, &collision.matrix288);
+		secondOutput = sp154;
 		secondOutput = fn_8019941C(secondOutput, secondPoints, 5, matrix2C8Ptr);
 		fn_8019941C(spA0, sp118, 5, matrix248Ptr);
 		fn_8019941C(spDC, secondOutput, 5, &collision.matrix208);
