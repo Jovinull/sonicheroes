@@ -1443,6 +1443,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/fn_16_D10.cpp",
+                extra_cflags=[
+                    "-O0",
+                    "-inline noauto",
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/o_system4.cpp",
                 extra_cflags=[
                     "-O0",
