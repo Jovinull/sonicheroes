@@ -39,6 +39,10 @@ rel/o_spring.cpp:
 	.rodata     start:0x00000028 end:0x00000050
 	.data       start:0x00000278 end:0x000002E4
 
+rel/tri_spring_exec.cpp:
+	.text       start:0x00002100 end:0x000023FC
+	.rodata     start:0x00000088 end:0x00000090
+
 rel/tri_spring_dtor.cpp:
 	.text       start:0x0000282C end:0x00002920
 
