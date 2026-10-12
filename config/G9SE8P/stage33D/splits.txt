@@ -726,6 +726,9 @@ rel/goal_ring_dtor.cpp:
 rel/goal_ring_ctor.cpp:
 	.text       start:0x0004D0CC end:0x0004D37C
 
+rel/goal_ring_edit.cpp:
+	.text       start:0x0004D37C end:0x0004D380
+
 rel/goal_ring_create.cpp:
 	.text       start:0x0004D4A8 end:0x0004D4F0
 
