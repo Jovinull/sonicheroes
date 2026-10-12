@@ -984,6 +984,9 @@ rel/bobsleigh_tdisp.cpp:
 rel/bobsleigh_disp.cpp:
 	.text       start:0x0005ADDC end:0x0005B044
 
+rel/bobsleigh_launcher.cpp:
+	.text       start:0x0005C8A0 end:0x0005CA24
+
 rel/bobsleigh_set_player_position.cpp:
 	.text       start:0x0005CA24 end:0x0005CBFC
 
