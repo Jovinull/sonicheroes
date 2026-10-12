@@ -626,6 +626,7 @@ config.libs = [
             Object(Matching, "game/fn_80042864.cpp"),
             Object(Matching, "game/fn_800487A0.cpp"),
             Object(Matching, "game/fn_8005B8A0.cpp"),
+            Object(Matching, "game/fn_800A3CBC.cpp", extra_cflags=["-opt noschedule,nopeephole"]),
             Object(
                 Matching,
                 "game/skeleton.cpp",
