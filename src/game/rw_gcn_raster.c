@@ -720,6 +720,7 @@ u32* fn_80226080(u32* arg0, s32 arg1, u8* arg2, s32 arg3, s32 arg4)
 	s32 var_r27;
 	s32 var_r4;
 	s32* var_r27_2;
+	u8* temp_r31;
 	u32* temp_r30;
 	u32* var_r10;
 	u32* var_r12;
@@ -735,7 +736,6 @@ u32* fn_80226080(u32* arg0, s32 arg1, u8* arg2, s32 arg3, s32 arg4)
 	u32 var_r5;
 	u32 var_r7_2;
 	u32 var_r8;
-	u8* temp_r31;
 	u8* temp_r9;
 
 	temp_r30 = M2C_FIELD(arg2, u32**, 0x18);
