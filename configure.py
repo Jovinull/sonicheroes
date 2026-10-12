@@ -6699,6 +6699,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/goal_ring_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/goal_ring_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
