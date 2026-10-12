@@ -632,6 +632,9 @@ rel/pawn_md_wander_walk.cpp:
 rel/pawn_md_wander.cpp:
 	.text       start:0x0002FE98 end:0x0002FF24
 
+rel/pawn_md_ctrl.cpp:
+	.text       start:0x0002FF24 end:0x0002FFCC
+
 rel/pawn_md_fall_land.cpp:
 	.text       start:0x00030158 end:0x0003019C
 
