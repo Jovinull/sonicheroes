@@ -1446,8 +1446,6 @@ u8* fn_80227528(u8* arg0, u8* arg1, M2C_UNK arg_sp0)
 	M2C_UNK* temp_r15;
 	s32** temp_r15_2;
 	s32* temp_r4_3;
-	s32 temp_cr0_eq;
-	s32 temp_cr0_eq_2;
 	s32 temp_r18;
 	s32 temp_r3_6;
 	s32 temp_r18_2;
@@ -1535,7 +1533,7 @@ u8* fn_80227528(u8* arg0, u8* arg1, M2C_UNK arg_sp0)
 		}
 	}
 	if (M2C_FIELD(arg1, u32*, 8) & 0x84) {
-		while (temp_cr0_eq = var_r31 == 0, var_r31 -= 1, temp_cr0_eq == 0) {
+		while (var_r31-- != 0) {
 			temp_r15_2 = M2C_FIELD(M2C_FIELD(var_r29, u8**, 8), s32***, 0);
 			fn_801B1D0C(temp_r15_2, 0);
 			if (temp_r15_2 != NULL) {
@@ -1590,7 +1588,7 @@ u8* fn_80227528(u8* arg0, u8* arg1, M2C_UNK arg_sp0)
 			var_r29 += 0xC;
 		}
 	} else {
-		while (temp_cr0_eq_2 = var_r31 == 0, var_r31 -= 1, temp_cr0_eq_2 == 0) {
+		while (var_r31-- != 0) {
 			if (temp_r28 != NULL) {
 				temp_r5_5 = M2C_FIELD(var_r29, u8**, 8);
 				temp_r28(arg1 + 0xC, temp_r5_5 + 4, temp_r5_5, M2C_FIELD(temp_r5_5, f32*, 0xC));
