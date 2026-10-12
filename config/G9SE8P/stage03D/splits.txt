@@ -1396,6 +1396,9 @@ rel/s31_bob_dummy_hooks.cpp:
 rel/s31bob_create.cpp:
 	.text       start:0x000B1EF8 end:0x000B1F84
 
+rel/bobsleigh_vacuum_exec.cpp:
+	.text       start:0x000B4238 end:0x000B4334
+
 rel/bobsleigh_vacuum_dtor.cpp:
 	.text       start:0x000B4334 end:0x000B43B8
 
