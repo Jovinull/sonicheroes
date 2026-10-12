@@ -3155,7 +3155,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/e_rinoliner_collision_stage11.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopeephole", "-pool off", "-bool off"],
             ),

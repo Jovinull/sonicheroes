@@ -1188,7 +1188,7 @@ rel/o_colli_communication_stage11.cpp:
 
 rel/e_rinoliner_stage11.cpp:
 	.text       start:0x000B2BB4 end:0x000B48E8
-	.rodata     start:0x00001C08 end:0x00001C64
+	.rodata     start:0x00001C08 end:0x00001C58
 	.data       start:0x00016BB0 end:0x00016FD8
 	.bss        start:0x00001A48 end:0x00001A90
 
@@ -1200,8 +1200,8 @@ rel/rinoliner_register.cpp:
 	.ctors      start:0x00000134 end:0x00000138
 
 rel/e_rinoliner_collision_stage11.cpp:
-	.text       start:0x000B49D8 end:0x000B5C38
-	.rodata     start:0x00001C64 end:0x00001E20
+	.text       start:0x000B49E0 end:0x000B5C38
+	.rodata     start:0x00001C58 end:0x00001C88
 	.data       start:0x00016FD8 end:0x000172A4
 	.bss        start:0x00001A90 end:0x00001AC8
 

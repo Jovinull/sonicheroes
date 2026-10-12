@@ -1094,6 +1094,9 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - fn_8_B4B88
+    - fn_8_B4DA4
+    - fn_8_B4FF4
     - OnClose__22TObjColliCommunicationFv
     - CreateInstance__22TObjColliCommunicationFv
     - __ct__22TObjColliCommunicationFP7TObject
