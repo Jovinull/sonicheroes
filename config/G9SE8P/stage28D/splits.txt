@@ -635,6 +635,9 @@ rel/lens_flare_register.cpp:
 rel/signal_exec.cpp:
 	.text       start:0x0003EC2C end:0x0003EF2C
 
+rel/signal_set_position.cpp:
+	.text       start:0x0003EF2C end:0x0003F038
+
 rel/signal_dtor.cpp:
 	.text       start:0x0003F098 end:0x0003F140
 
