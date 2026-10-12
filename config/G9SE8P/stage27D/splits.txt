@@ -1206,6 +1206,9 @@ rel/bobsleigh_light_destroy.cpp:
 rel/bobsleigh_light_clone.cpp:
 	.text       start:0x0007528C end:0x00075374
 
+rel/bobsleigh_light_dtor.cpp:
+	.text       start:0x000756C0 end:0x000757B8
+
 rel/bobsleigh_signal_tdisp.cpp:
 	.text       start:0x00075948 end:0x00075C44
 
