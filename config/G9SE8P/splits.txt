@@ -766,6 +766,11 @@ game/enemy/e_utility_rw.cpp:
 	extabindex  start:0x80010CD8 end:0x80010CF0
 	.text       start:0x8011B5A8 end:0x8011B654
 
+game/fn_8011B81C.cpp:
+	extab       start:0x8000AC38 end:0x8000AC40
+	extabindex  start:0x80010D20 end:0x80010D2C
+	.text       start:0x8011B81C end:0x8011B844
+
 game/enemy/e_scoreman.cpp:
 	extab       start:0x8000AC88 end:0x8000ACC8
 	extabindex  start:0x80010D98 end:0x80010DE0
