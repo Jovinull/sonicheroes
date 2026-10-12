@@ -738,6 +738,11 @@ game/enemy/e_mtnpath.cpp:
 game/fn_801248E8.cpp:
 	.text       start:0x801248E8 end:0x801248F8
 
+game/fn_801248F8.cpp:
+	extab       start:0x8000B15C end:0x8000B164
+	extabindex  start:0x80011110 end:0x8001111C
+	.text       start:0x801248F8 end:0x8012491C
+
 game/fn_80124924.cpp:
 	.text       start:0x80124924 end:0x80124938
 
