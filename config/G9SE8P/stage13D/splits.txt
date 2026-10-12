@@ -1027,6 +1027,9 @@ rel/formgate_register.cpp:
 	.text       start:0x00061804 end:0x000618AC
 	.ctors      start:0x000000B0 end:0x000000B4
 
+rel/eff_spark_tdisp.cpp:
+	.text       start:0x00061DF0 end:0x00061EA8
+
 rel/eff_spark.cpp:
 	.text       start:0x00062178 end:0x00062508
 

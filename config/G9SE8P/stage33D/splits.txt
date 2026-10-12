@@ -1029,6 +1029,9 @@ rel/bobsleigh_hooks.cpp:
 rel/bobsleigh_set.cpp:
 	.text       start:0x0005E6CC end:0x0005E944
 
+rel/eff_spark_tdisp.cpp:
+	.text       start:0x0005EE80 end:0x0005EF38
+
 rel/eff_spark.cpp:
 	.text       start:0x0005F208 end:0x0005F598
 
