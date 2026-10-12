@@ -251,6 +251,9 @@ rel/reel_dtor.cpp:
 rel/reel_ctor.cpp:
 	.text       start:0x00011BE0 end:0x00011F20
 
+rel/reel_edit.cpp:
+	.text       start:0x00011F20 end:0x00012018
+
 rel/reel_hooks.cpp:
 	.text       start:0x00012018 end:0x00012128
 
