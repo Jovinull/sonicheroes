@@ -6709,6 +6709,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_catch_leader_player.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

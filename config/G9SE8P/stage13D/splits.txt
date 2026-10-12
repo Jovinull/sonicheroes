@@ -367,6 +367,9 @@ rel/cannon_set_player_position.cpp:
 rel/cannon_hold_player.cpp:
 	.text       start:0x00017D60 end:0x00018058
 
+rel/cannon_catch_leader_player.cpp:
+	.text       start:0x00018A68 end:0x00018D78
+
 rel/cannon_draw_trajectory.cpp:
 	.text       start:0x00018D78 end:0x00018EFC
 
