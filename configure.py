@@ -5881,6 +5881,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_sound_limit_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/shield_splinter_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
