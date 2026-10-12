@@ -1589,6 +1589,9 @@ rel/pawn_rcv_broken.cpp:
 rel/pawn_rcv_hp_inc.cpp:
 	.text       start:0x00098054 end:0x000980BC
 
+rel/pawn_check_damage2.cpp:
+	.text       start:0x00098750 end:0x00098794
+
 rel/pawn_dtor.cpp:
 	.text       start:0x0009D4D8 end:0x0009D6B0
 
