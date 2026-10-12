@@ -243,6 +243,11 @@ game/plugin/materialcolorchange.cpp:
 	.sdata      start:0x8042B238 end:0x8042B240
 	.sbss2      start:0x804302A8 end:0x804302B0
 
+game/fn_8005FC74.cpp:
+	extab       start:0x80006A2C end:0x80006A34
+	extabindex  start:0x8000D4A4 end:0x8000D4B0
+	.text       start:0x8005FC74 end:0x8005FC98
+
 game/gParam.cpp:
 	extab       start:0x80006C40 end:0x80006C58
 	extabindex  start:0x8000D6A8 end:0x8000D6CC
