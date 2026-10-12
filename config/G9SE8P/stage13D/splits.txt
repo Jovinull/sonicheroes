@@ -629,6 +629,9 @@ rel/pawn_md_run.cpp:
 rel/pawn_md_dropped.cpp:
 	.text       start:0x0002FBA8 end:0x0002FC2C
 
+rel/pawn_md_destroy.cpp:
+	.text       start:0x0002FC2C end:0x0002FCE4
+
 rel/pawn_md_wander_walk.cpp:
 	.text       start:0x0002FCE4 end:0x0002FD54
 
