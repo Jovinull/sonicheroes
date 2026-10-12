@@ -978,6 +978,9 @@ rel/searcher_register.cpp:
 rel/enemy_gadget_bomb_disp.cpp:
 	.text       start:0x0005A51C end:0x0005A640
 
+rel/enemy_gadget_bomb_dtor.cpp:
+	.text       start:0x0005AE90 end:0x0005AF2C
+
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE04 end:0x0005EE78
 
