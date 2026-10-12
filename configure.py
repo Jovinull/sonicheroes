@@ -1736,6 +1736,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_secollision_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_secollision_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

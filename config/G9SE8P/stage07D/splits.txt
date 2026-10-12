@@ -1362,6 +1362,9 @@ rel/wheel_register.cpp:
 rel/obj_secollision_exec.cpp:
 	.text       start:0x000CECAC end:0x000CF054
 
+rel/obj_secollision_dtor.cpp:
+	.text       start:0x000CF054 end:0x000CF114
+
 rel/obj_secollision_edit.cpp:
 	.text       start:0x000CF2CC end:0x000CF3B4
 
