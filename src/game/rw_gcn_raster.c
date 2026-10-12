@@ -220,9 +220,14 @@ u32* fn_80225248(u32* arg0, u8* arg1)
 		if (var_r4 == NULL) {
 			return NULL;
 		}
-		temp_r6 = M2C_FIELD(arg1, s32*, 0);
-		temp_r5 = (u32)M2C_FIELD(temp_r31, u32*, 4) * 2 + (M2C_FIELD(temp_r31, s32*, 8) * 2);
-		if (fn_801979AC(arg0, M2C_FIELD(temp_r31, s32*, 0xC), temp_r6 + temp_r5) == 0U) {
+		temp_r5  = *(volatile s32*)(temp_r31 + 4);
+		temp_r6  = *(volatile s32*)(temp_r31 + 8);
+		temp_r5  = (u32)temp_r5 * 2;
+		temp_r27 = *(volatile s32*)arg1;
+		temp_r6  = temp_r6 * 2;
+		temp_r24 = *(volatile s32*)(temp_r31 + 0xC);
+		temp_r5 += temp_r6;
+		if (fn_801979AC(arg0, temp_r24, temp_r27 + temp_r5) == 0U) {
 			M2C_FIELD(lbl_8042C9A4, M2C_UNK(**)(), 0x138)(temp_r31, lbl_8042C9A4);
 			return NULL;
 		}
