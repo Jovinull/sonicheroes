@@ -157,6 +157,9 @@ game/player/player_search.cpp:
 	.text       start:0x80041C5C end:0x80041FF4
 	.sdata2     start:0x8042D1A8 end:0x8042D1B0
 
+game/fn_800421B4.cpp:
+	.text       start:0x800421B4 end:0x800421C8
+
 game/fn_80042864.cpp:
 	.text       start:0x80042864 end:0x8004286C
 

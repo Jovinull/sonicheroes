@@ -608,6 +608,7 @@ config.libs = [
             Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/object_defaults.cpp"),
             Object(Matching, "game/fn_8003F300.cpp"),
+            Object(Matching, "game/fn_800421B4.cpp"),
             Object(Matching, "game/fn_80042864.cpp"),
             Object(
                 Matching,
