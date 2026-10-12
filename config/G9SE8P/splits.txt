@@ -166,6 +166,11 @@ game/fn_800421B4.cpp:
 game/fn_80042864.cpp:
 	.text       start:0x80042864 end:0x8004286C
 
+game/fn_80043E9C.cpp:
+	extab       start:0x80005FA0 end:0x80005FA8
+	extabindex  start:0x8000C7D8 end:0x8000C7E4
+	.text       start:0x80043E9C end:0x80043F28
+
 game/fn_800487A0.cpp:
 	.text       start:0x800487A0 end:0x800487B8
 
