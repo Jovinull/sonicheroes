@@ -17,7 +17,7 @@ typedef struct EnemyShot {
 } EnemyShot;
 
 extern "C" void* lbl_8042C148;
-extern "C" void* enemyShotVtable[];
+extern "C" void* __vt__10ENEMY_SHOT[];
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
@@ -26,7 +26,7 @@ extern "C" void __dt__7C_COLLIFv(void* volume, s32 flags);
 extern "C" EnemyShot* enemyShotDtor(EnemyShot* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable = enemyShotVtable;
+		object->base.vtable = __vt__10ENEMY_SHOT;
 
 		__dt__7C_COLLIFv(object->volume, 0);
 		__dt__7TObjectFv(&object->base, 0);
