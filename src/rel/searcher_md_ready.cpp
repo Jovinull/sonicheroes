@@ -24,7 +24,7 @@ extern "C" void EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
 				searcher->aimPos = lbl_802AD090[player]->pos;
 			}
 			TurnToAimForSearcher__17TObjEnemySearcherFv(searcher);
-			searcherBob(searcher);
+			CtrlWaitPos__17TObjEnemySearcherFv(searcher);
 			break;
 		}
 		case 2:

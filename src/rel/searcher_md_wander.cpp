@@ -31,7 +31,7 @@ extern "C" void EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
 					searcher->walking = 1;
 				}
 			}
-			searcherBob(searcher);
+			CtrlWaitPos__17TObjEnemySearcherFv(searcher);
 			break;
 		case 2:
 		case 3:

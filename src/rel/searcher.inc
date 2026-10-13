@@ -47,6 +47,12 @@ public:
 	virtual void DispTrans();
 	virtual s32 ReqGadgetMode(eGadgetMode mode);
 	virtual void Cancel();
+
+	u8 unk1C[0xC];
+	void* pOwner;      // 0x28
+	RpClump* pClump;   // 0x2C
+	eGadgetMode gmode; // 0x30
+	s32 IsKilled;      // 0x34
 };
 
 // TObjEnemy's virtuals up to GetCurrentLightNum (slot 0x90), declared as
@@ -230,8 +236,15 @@ static inline TObjEnemy* searcherEnemy(Searcher* searcher)
 extern "C" f32 fn_800D7B00(s32 angle);
 extern "C" const f32 searcherBobHeight;
 
-// bobs up and down around the home height while it moves
-static inline void searcherBob(Searcher* searcher)
+// TObjEnemySearcher::CtrlWaitPos (the PS2 build's name): bobs up and down
+// around the home height while it moves. The enemy modes inline it;
+// rel/searcher_ctrl.cpp has the out-of-line copy (SEARCHER_CTRL_WAIT_POS_INLINE
+// empty).
+#ifndef SEARCHER_CTRL_WAIT_POS_INLINE
+#define SEARCHER_CTRL_WAIT_POS_INLINE inline
+#endif
+
+extern "C" SEARCHER_CTRL_WAIT_POS_INLINE void CtrlWaitPos__17TObjEnemySearcherFv(Searcher* searcher)
 {
 	if (searcher->turning) {
 		searcher->bobAngle += 0x100;

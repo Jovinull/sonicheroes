@@ -49,7 +49,7 @@ extern "C" void EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
 			if (lbl_8042C388 != NULL) {
 				fn_800B4A38(lbl_8042C388, 0x4006, &searcher->pos, searcher, 3, 0, 2);
 			}
-			searcherBob(searcher);
+			CtrlWaitPos__17TObjEnemySearcherFv(searcher);
 			break;
 		case 2:
 		case 3:
@@ -87,7 +87,7 @@ extern "C" void EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
 			break;
 		case 1:
 			if (searcher->kind == 1) {
-				searcherBob(searcher);
+				CtrlWaitPos__17TObjEnemySearcherFv(searcher);
 				searcher->colli->flags &= ~0x10;
 			}
 			break;
@@ -112,7 +112,7 @@ extern "C" void EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
 			searcher->light->on = 1;
 			break;
 		case 1:
-			searcherBob(searcher);
+			CtrlWaitPos__17TObjEnemySearcherFv(searcher);
 			break;
 		case 2:
 			break;
