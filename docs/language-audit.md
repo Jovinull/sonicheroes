@@ -1263,8 +1263,11 @@ functions and every owned section match byte-for-byte in objdiff.
 The unit now uses `-inline auto,deferred` with reversed ordinary definitions.
 This keeps the deleting operator visible during destructor compilation and
 natively emits all six methods and both exception sections in the target
-order. All 616 code bytes, 80 exception bytes, and 14 relocations match without
-a post-compile layout or symbol fixer. The constructor, destructor, and
+order. All 616 code bytes, 80 exception bytes, the four-byte `TaskHeap`
+pointer, and 14 relocations match without
+a post-compile layout or symbol fixer. `TaskHeap` is reassigned from the
+adjacent task split using cross-platform metadata and data-order evidence;
+the following four bytes remain an alignment gap. The constructor, destructor, and
 allocation operators retain their native C++ symbols; the adjacent task unit
 uses those names without changing its code or owned data. See
 [memory-unit evidence](memory-unit-evidence.md) for ownership and validation.

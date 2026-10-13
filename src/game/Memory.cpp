@@ -19,6 +19,10 @@ struct THeapCtrl {
 	static void* operator new(unsigned long size);
 };
 
+// TaskHeap belongs to the heap-controller unit; retain the current link name.
+#define TaskHeap lbl_8042C148
+THeapCtrl* TaskHeap;
+
 struct MemoryAllocator {
 	u8 pad[308];
 	void* (*Alloc)(u32 size);

@@ -322,7 +322,7 @@ def main() -> None:
     reorder_relocations(".relaextab", map_extab_offset)
 
     # The retail splitter owns the alignment tails in these sections.
-    for name, size in ((".data", 0x80), (".sdata", 0x88), (".sbss", 0x58)):
+    for name, size in ((".data", 0x80), (".sdata", 0x88), (".sbss", 0x50)):
         if name in section_by_name:
             index, section = section_by_name[name]
             section[5] = size
@@ -358,8 +358,6 @@ def main() -> None:
         elif name == "charSet_Debug":
             symbol[1] = 0
             symbol[5] = 0
-        elif name == "TaskHeap":
-            symbol[2] = 8
         elif name == "CL_TL_TIMESTOP":
             symbol[2] = 8
         else:

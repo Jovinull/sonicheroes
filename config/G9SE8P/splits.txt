@@ -91,12 +91,14 @@ game/Task.cpp:
 	.ctors      start:0x802398C4 end:0x802398C8
 	.data       start:0x80240A90 end:0x80240B10
 	.sdata      start:0x8042AD98 end:0x8042AE20
-	.sbss       start:0x8042C0F8 end:0x8042C150
+	.sbss       start:0x8042C0F8 end:0x8042C148
 
 game/Memory.cpp:
 	extab       start:0x80005908 end:0x80005928
 	extabindex  start:0x8000BF5C end:0x8000BF8C
 	.text       start:0x800189A4 end:0x80018C0C
+	.sbss       start:0x8042C148 end:0x8042C14C
+	.sbss       start:0x8042C14C end:0x8042C150 skip
 
 game/action.cpp:
 	extab       start:0x80005928 end:0x80005940

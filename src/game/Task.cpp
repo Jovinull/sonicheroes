@@ -109,7 +109,7 @@ u32 ImmAftSetRasterSleepFlag;
 u32 ImmAftSetRasterSleepFlagOld;
 struct RwRaster;
 RwRaster* charSet_Debug;
-THeapCtrl* TaskHeap;
+extern THeapCtrl* TaskHeap;
 
 #define lbl_8042ADA0 CL_TObject
 #define lbl_8042ADB0 CL_TL_SU
