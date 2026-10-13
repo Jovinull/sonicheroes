@@ -758,6 +758,9 @@ rel/pawn_reset_variable.cpp:
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CFC end:0x00032ED4
 
+rel/pawn_create_instance.cpp:
+	.text       start:0x00033460 end:0x000334B4
+
 rel/pawn_assets.cpp:
 	.text       start:0x00033C98 end:0x00033D88
 	.ctors      start:0x00000060 end:0x00000064
