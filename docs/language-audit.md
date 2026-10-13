@@ -2831,6 +2831,46 @@ resolved differently on `main`), the blanket inline overrides, and the BFBB/SMS
 headers, which the ported units do not need. Real method names for the shared
 functions remain a follow-up best done in both modules together.
 
+### Stage 40 dash panel whole unit
+
+Retained PS2 symbolic metadata identifies `osp_dashpanel.cpp`, namespace
+`SPSTAGEOBJ`, class `TObjDashpanel` and its `TObject`, `TObjSetObj` and
+`CSetObjAutoRemove` bases. The class size, member offsets, virtual slots and
+method family independently correlate with the GameCube code and resource
+references. The direction method returns an angle aggregate through the hidden
+return argument; it is not the skeleton's explicit output-pointer method.
+
+The original split assigned the dash panel's first UV hook to `put_particle`
+and the dash ring's UV hook to `sp_dashpanel`. The corrected text range is
+`0x7FA6C`–`0x805FC`; resource ownership follows each hook's own UV/clump tables,
+giving data range `0x44180`–`0x442B0`. Neighboring source edits move only that
+method ownership. No shared headers change.
+
+Scoped `-inline deferred,noauto` with reversed definitions emits the native
+method/vtable order and retains the aggregate direction copy. The unused
+260-byte out-of-line direction method is force-active in the REL link. All fourteen
+native functions and 2,960 instruction bytes match. The constructor retains
+the observed debug address check rather than removing it. Adjacent resource
+and editor strings are represented as packed character-array members to retain
+their byte-aligned layout.
+
+Five undefined C++ base-method names bind to this REL's existing implementations
+through `tools/fix_sp_dashpanel_symbols.py`, rather than same-named DOL methods.
+The tool rejects defined-symbol collisions, checks every allocated section and
+resolved relocation before atomically replacing the object, and is idempotent.
+It changes no instruction or data payload. Five synthetic ELF tests cover
+these invariants. All owned sections and 236 resolved relocations match; the
+three-byte data tail and four-byte read-only-data tail are linker alignment.
+Full supported build and hash verification are recorded in the whole-unit PR.
+
+The data annotations describe the emitted storage atoms: thirteen separate
+four-byte float constants, a 52-byte UV-name block, a 35-byte editor-name block
+and three compiler-local trailing strings. These grouping/naming annotations
+are reconstruction metadata, not claims about original variable names. The
+last float is four bytes followed by four alignment bytes, rather than the
+old eight-byte inferred object. This removes symbol-shape differences from the
+progress report without changing any payload or resolved relocation.
+
 ### Stage 11 door whole unit
 
 `rel/o_s11_door.cpp` is GameCube C++: the retained PS2 `TObjS11Door`

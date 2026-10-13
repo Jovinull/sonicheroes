@@ -192,9 +192,4 @@ extern "C" void fn_16_7FA64(PutParticleObject* motionView)
 	fn_16_7F48C((PutParticleObject*)((u8*)motionView - 0x28));
 }
 
-extern "C" void fn_16_7FA6C(void)
-{
-	fn_16_4E384(putParticleVtable);
-}
-
 __declspec(section ".ctors") void (*const putParticleCtorEntry)(void) = fn_16_7F9E0;

@@ -1576,10 +1576,10 @@ config.libs = [
                 ],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/sp_dashpanel.cpp",
                 extra_cflags=[
-                    "-inline noauto",
+                    "-inline deferred,noauto",
                     "-opt noschedule,nopropagation,nopeephole",
                     "-pool off",
                     "-bool off",
@@ -7895,6 +7895,11 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
+        "name": "fix_sp_dashpanel_symbols",
+        "command": f"$python tools/fix_sp_dashpanel_symbols.py $in $out --objcopy {objcopy_path}",
+        "description": "BIND dash-panel module-local base symbols",
+    },
+    {
         "name": "fix_scanpath_registers",
         "command": "$python tools/fix_scanpath_registers.py $in $out",
         "description": "FIX scanpath angle load register transfer",
@@ -8279,6 +8284,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/stage40D/sp-dashpanel-symbols.stamp",
+            "rule": "fix_sp_dashpanel_symbols",
+            "inputs": "build/G9SE8P/src/rel/sp_dashpanel.o",
+            "implicit": ["tools/fix_sp_dashpanel_symbols.py", str(binutils_dir)],
+        },
         {
             "outputs": "build/G9SE8P/eff-brim-layout.stamp",
             "rule": "fix_eff_brim_layout",
