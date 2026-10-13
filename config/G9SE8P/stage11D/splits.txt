@@ -1116,6 +1116,9 @@ rel/push_pull_switch_register.cpp:
 rel/searcher_strategy_mgun.cpp:
 	.text       start:0x00051F00 end:0x00052450
 
+rel/searcher_strategy_shot.cpp:
+	.text       start:0x00052504 end:0x00052B28
+
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x000545B0 end:0x00054634
 
