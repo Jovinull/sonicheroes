@@ -1,12 +1,7 @@
 #include "game/scanpath.h"
 
 // Complete C++ scanpath unit; see docs/scanpath-unit-evidence.md.
-// Fifteen bodies match directly. CalcPNNPntParam retains four register fields
-// across two instructions, normalized by tools/fix_scanpath_registers.py.
-// Metadata-local scopes, assignment orders, casts and compiler options were
-// compared; O3 preserves the smallest remainder. No source spelling yet fixes
-// the load/copy allocation without regressing another body. Remove the tool
-// once source reproduces that transfer directly.
+// All sixteen surviving functions match directly from compiler output.
 
 struct MemoryAllocator {
 	u8 pad[0x134];
@@ -366,6 +361,11 @@ s32 GetStatusOnPath(PATHTAG* arg0, PATHINFO* arg1)
 	return 1;
 }
 
+// Preserve the cached angle load before its first argument copy. This scoped
+// compiler setting reproduces the native transfer without changing other
+// bodies.
+#pragma optimization_level 4
+#pragma opt_dead_assignments off
 static void CalcPNNPntParam(PATHTAG* tag, s32 point, void* out)
 {
 	s32 prev = point - 1;
@@ -446,6 +446,9 @@ static void CalcPNNPntParam(PATHTAG* tag, s32 point, void* out)
 		}
 	}
 }
+
+#pragma opt_dead_assignments reset
+#pragma optimization_level reset
 
 void GetPointDataOnPath(PATHTAG* tag, s32 point, RwV3d* out)
 {

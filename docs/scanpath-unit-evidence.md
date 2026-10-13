@@ -38,8 +38,8 @@ stores the input table at 0x28 and builds the CLASS_PATH list at 0x2c. Its
 allocation/list-building operations correlate the inlined constructor and
 SetPath. EntryPath is 3,876 bytes and requires auditing the reEntry operations
 as part of its reconstruction. All sixteen surviving bodies are now reconstructed in C++, together with
-the six metadata-named inline methods. Fifteen bodies match directly; the
-sixteenth uses the bounded register normalization described below.
+the six metadata-named inline methods. All sixteen bodies match directly from
+compiler output with the scoped settings described below.
 
 The manager virtual table referenced by construction and destruction is at
 0x80253668. The shared path manager pointer is at 0x8042C380. Linked relocation
@@ -65,18 +65,9 @@ provisional declarations with only their external symbol names updated.
 The existing Task virtual-method name mapping is updated consistently in its
 callers and existing metadata post-processors.
 
-Native comparison currently verifies instruction bytes and normalized
-relocations exactly for fifteen bodies: MargePathTag, SCPathPntNearToOnpos,
-SCPathSubCheckTheNearestPoint, SCPathOnposToPntnmb, GetStatusOnPath,
-GetPointDataOnPath, scanpathGetTheConnectedPath, scanpathGetTheNearestPath, ReleasePath, EntryPath, Disp,
-Exec, EndPath, InitPath and the destructor. All sixteen bodies have the same game/SDK direct call targets
-and counts as retail. The remaining native comparisons are:
-
-| Function | Retail bytes | Candidate bytes | objdiff similarity |
-| --- | ---: | ---: | ---: |
-| CalcPNNPntParam | 636 | 636 | 99.91% |
-
-Similarity is diagnostic, not an exact-match claim. The candidate additionally
+Native comparison verifies instruction bytes and normalized relocations exactly
+for all sixteen bodies, including the 636-byte `CalcPNNPntParam`. All game/SDK
+direct call targets and counts agree with retail. The compiler additionally
 emits a 40-byte weak definition of the existing TObject::operator delete for
 constructor exception cleanup. A diagnostic native link confirms that the
 linker selects Task's existing definition at 0x8001895C and discards the weak
@@ -85,57 +76,35 @@ The manager vtable, name pointer and shared pointer retain their retail
 addresses. The complete linked .sdata2 section is byte-identical to retail,
 including scanpath's constants and normal linker alignment.
 
-The diagnostic native link preserves every section size and address. The whole
-DOL differs in only five instruction bytes across two instructions, all within CalcPNNPntParam; every data
-and exception section is byte-identical. The remaining helper loads an angle into r4 and then copies it to r27;
-retail loads r27 and copies it to r4. All other instructions agree. Unit-wide
-`-O3,p` preserves the other fifteen exact bodies and removes the broader register
-allocation differences produced by `-O4,p`.
+## Native compiler match
 
-## Remaining compiler allocation and normalization
+All sixteen owned functions (9,580 text bytes) now match directly from compiler
+output. `CalcPNNPntParam` uses scoped `#pragma optimization_level 4` and
+`#pragma opt_dead_assignments off`, followed immediately by resets for both.
+The remaining functions retain unit-wide `-O3,p`. Applying the higher optimization
+level across the whole unit regresses `ConnectedPath`; O3 with dead assignments
+disabled alone leaves the angle load/copy mismatch. The scoped combination fixes
+that mismatch while preserving the other fifteen bodies.
 
-`tools/fix_scanpath_registers.py` changes four encoded register fields across
-those two instructions out of the helper's 159 instructions. It substitutes
-register numbers into compiler-generated instructions; it contains no retail
-instruction words. The raw source is fifteen of sixteen exact, and this is
-not a source-only match claim.
+These settings are reconstruction choices supported by compiler comparisons;
+the historical presence of these pragmas is not established. They replace the
+former four-register-field instruction normalizer, which has been removed along
+with its build rule and tests. No instruction bytes are patched after compilation.
 
-The first instruction loads the current signed-short angle into r4 instead
-of r27. Two intervening loads use neither register. The fourth instruction
-copies that angle into the other register. Both versions therefore have
-identical full register state before the next DiffAngle call, including the
-angle in both r4 and r27. No branch enters the window interior; the earlier
-index in r4 is dead, and the caller's r27 has already been saved. Loads and
-non-recording register copies leave memory and condition flags unchanged.
-Later angle calls and the existing save/restore sequence are identical. The
-independent transfer audit checks all 65,536 signed-halfword inputs.
-
-The normalizer requires exact raw/output text and helper hashes, the expected
-local function boundary and relocation records, and each instruction's opcode
-and original register fields. It is atomic and idempotent and rejects an
-unknown compiler state. No other instruction, section, symbol or relocation
-is changed. Five file bytes change in total.
-
-Source trials included metadata-local scopes, pointer/angle assignment and
-declaration orders, copies, reloads, casts, argument forms and compiler
-versions/options. O4 with dead-store optimization disabled fixes this helper
-but regresses ConnectedPath; further bound-local forms did not restore the
-whole unit. No fabricated barrier or padding was introduced. A future source
-change that fixes the transfer can remove this tool and its build step.
+The compiler emits the same existing 40-byte weak `TObject::operator delete`
+body and its 20 bytes of exception records. The native compiler object has the
+same allocated bytes and all 350 relocation records as the formerly normalized
+object. The linker discards the duplicate weak support code as documented above;
+the owned unit retains 346 relocations and normal four-byte alignment tails.
 
 ## Verification
 
-The normalized compiler object verifies all sixteen bodies and their
-relocations exactly. All seven owned sections and 346 relocations agree after
-explicitly accounting for the existing weak-delete coalescing and normal
-four-byte section tails; those linker operations are not performed by the tool.
-A fresh native link with scanpath marked Matching confirms those expectations:
-G9SE8P main DOL and all seventeen RELs compile and all eighteen retail image
-hashes pass. All-source compilation and progress/report generation pass.
-The 68 automated tests, language policy, post-processor policy and formatting
-checks pass. Six new tests cover mutation bounds, idempotence and rejection of
-unexpected input, function/relocation metadata, register fields and failed CLI
-writes/stamps.
+All sixteen owned functions match directly from the compiled object. All allocated
+bytes and 350 compiler-object relocations agree with the previously verified
+object, including the unchanged weak support body. A fresh main ELF/DOL link
+confirms linker discard and the owned data layout. All eighteen G9SE8P hashes
+(main DOL plus seventeen RELs) pass. All-source compilation, 198 automated tests,
+language policy, all 64 remaining post-processor checks and source formatting pass.
 
 PAL/Japan are not supported build targets; PS2 was used only for symbolic
-metadata. No runtime or physical-hardware validation was performed.
+metadata. Compilation does not establish runtime or physical-hardware validation.

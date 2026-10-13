@@ -2219,16 +2219,16 @@ independently confirms the class layout, virtual dispatch, object allocation,
 exception cleanup and three path-record formats. The complete sixteen-body
 GameCube unit is reconstructed together, with its six inline methods.
 
-The candidate uses ordinary C++ and compiler floating-point intrinsics. Its
-compiler settings use unit-wide `-O3,p` optimization with exceptions enabled, floating-point
-contraction disabled, no scheduling/peephole optimization, constant pooling
-disabled and automatic inlining. Fifteen functions match instruction bytes and
-normalized relocations directly. CalcPNNPntParam retains four register fields
-across two instructions; a guarded compiler-output normalizer changes only
-those fields. The load and copy reach identical register state before the
-next call. All sixteen game/SDK direct call inventories agree. See
-`scanpath-unit-evidence.md` for the published remainder, owned ranges, native
-comparisons and supported build verification.
+The reconstruction uses ordinary C++ and compiler floating-point intrinsics.
+Unit-wide `-O3,p` preserves the other fifteen bodies. `CalcPNNPntParam` uses
+scoped `optimization_level 4` and `opt_dead_assignments off`, with both settings
+reset immediately afterward. These compiler choices reproduce all sixteen
+functions directly, including their relocations; no instruction normalizer is
+used. The scoped settings are reconstruction choices, not evidence of historical
+source pragmas. Exceptions remain enabled, floating-point contraction and
+constant pooling disabled, with no scheduling/peephole optimization and automatic
+inlining. See `scanpath-unit-evidence.md` for owned ranges, compiler experiments,
+linker-discarded weak support code and supported build verification.
 
 ## c_colli_react.cpp
 

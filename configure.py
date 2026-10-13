@@ -7895,11 +7895,6 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
-        "name": "fix_scanpath_registers",
-        "command": "$python tools/fix_scanpath_registers.py $in $out",
-        "description": "FIX scanpath angle load register transfer",
-    },
-    {
         "name": "fix_object_registers",
         "command": "$python tools/fix_object_registers.py $in $out",
         "description": "FIX object.cpp resource scan register allocation",
@@ -8314,12 +8309,6 @@ config.custom_build_steps = {
             "rule": "fix_e_motion_registers",
             "inputs": "build/G9SE8P/src/game/enemy/e_motion.o",
             "implicit": ["tools/fix_e_motion_registers.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/scanpath-registers.stamp",
-            "rule": "fix_scanpath_registers",
-            "inputs": "build/G9SE8P/src/game/scanpath.o",
-            "implicit": ["tools/fix_scanpath_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/e-gadget-object.stamp",
