@@ -1112,7 +1112,7 @@ config.libs = [
             ),
             Object(Matching, "game/eff_muteki.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
             Object(NonMatching, "game/calc_movcolli.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline auto", "-pooldata off"]),
-            Object(NonMatching, "game/calc_colli.cpp", extra_cflags=["-inline deferred,noauto", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
+            Object(Matching, "game/calc_colli.cpp", extra_cflags=["-inline deferred,noauto", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/light.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/aram_pool.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/calc.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
@@ -7925,6 +7925,11 @@ config.custom_build_rules = [
         "description": "FIX calc sine and cosine register allocation",
     },
     {
+        "name": "fix_calc_colli_pool",
+        "command": "$python tools/fix_calc_colli_pool.py $in $out",
+        "description": "FIX collision compiler literal order",
+    },
+    {
         "name": "fix_eff_crash3d_pool",
         "command": "$python tools/fix_eff_crash3d_pool.py $in $out",
         "description": "FIX crash effect compiler literal order",
@@ -8279,6 +8284,12 @@ config.custom_build_steps = {
             "rule": "fix_eff_brim_layout",
             "inputs": "build/G9SE8P/src/game/effect/eff_brim.o",
             "implicit": ["tools/fix_eff_brim_layout.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/calc-colli-pool.stamp",
+            "rule": "fix_calc_colli_pool",
+            "inputs": "build/G9SE8P/src/game/calc_colli.o",
+            "implicit": ["tools/fix_calc_colli_pool.py"],
         },
         {
             "outputs": "build/G9SE8P/eff-crash3d-pool.stamp",

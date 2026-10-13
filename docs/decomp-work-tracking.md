@@ -5,6 +5,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Owner | Scope | Status |
 | --- | --- | --- |
 | Codex 2026-10-12 | `rel/o_s11_door.cpp`, complete Stage 11 door unit | Complete on `decomp/s11-door-20261012`: 15/15 functions, 5,408 code bytes, 636 owned data bytes and 353 relocations exact; all 18 artifact hashes and 187 tests pass; stacked on PR #623 |
+| Codex 2026-10-12 | `game/calc_colli.cpp`, complete collision utility unit | Complete: all eight native instruction streams, owned data and 77 relocations exact after documented scalar-atom reordering; full verification recorded in the PR |
 | Claude Code | AutoSaveD ADV units (PR #116 scope, taken over) | Complete: `adv_draw`, `adv_draw_constants`, `adv_window`, `adv_menu` ported from the matching AdvertiseD sources; all 18 hashes exact |
 | Codex 2026-10-06 | `game/matrix.cpp`, recovered matrix API declarations and symbol names | Complete locally on `decomp/whole-tu-20261006`: 16 functions, all seven owned sections and 104 relocations exact; full G9SE8P release and 18 hashes pass; publication pending |
 | Codex 2026-10-06 | `game/calc_movcolli.cpp`, all three moving-collision functions | Active on `decomp/calc-movcolli-20261006`; complete draft: all three bodies compile; point routine/constants match, triangle/segment remain nonmatching; G9SE8P build, 55 tests and 18 original-linked hashes pass |
