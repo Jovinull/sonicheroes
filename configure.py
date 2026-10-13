@@ -6338,6 +6338,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_strategy_mgun.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_strategy_modes.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
