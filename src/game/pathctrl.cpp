@@ -1,4 +1,19 @@
 #include "game/scanpath.h"
+extern "C" {
+extern const __declspec(section ".sdata2") f32 lbl_8042DC28;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC2C;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC30;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC34;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC38;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC3C;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC40;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC44;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC48;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC4C;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC50;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC54;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC5C;
+}
 
 // GameCube external object views: named fields follow metadata where corroborated;
 // unnamed gaps and field offsets describe only the observed GameCube layout.
@@ -121,12 +136,12 @@ void pathSpin1D(CLASS_PATH* pathwp)
 			pathwp->player[6] = 0x14;
 			pathwp->player[7] = 0x14;
 			pathCalcRoughArea(pathwp);
-			pathwp->maxpos.x += 15.0f;
-			pathwp->maxpos.y += 15.0f;
-			pathwp->maxpos.z += 15.0f;
-			pathwp->minpos.x -= 15.0f;
-			pathwp->minpos.y -= 15.0f;
-			pathwp->minpos.z -= 15.0f;
+			pathwp->maxpos.x += lbl_8042DC38;
+			pathwp->maxpos.y += lbl_8042DC38;
+			pathwp->maxpos.z += lbl_8042DC38;
+			pathwp->minpos.x -= lbl_8042DC38;
+			pathwp->minpos.y -= lbl_8042DC38;
+			pathwp->minpos.z -= lbl_8042DC38;
 			pathwp->mode = 1;
 			return;
 		case 1:
@@ -152,9 +167,9 @@ void pathSpin1D(CLASS_PATH* pathwp)
 								    && !(pos_Temp.y < pathwp->minpos.y)
 								    && !(pos_Temp.z < pathwp->minpos.z)
 								    && (SCPathPntNearToOnpos(
-								            tag, &pos_Temp, &pos_Temp2, &hpos, 0.0f)
-								        < 15.0f)
-								    && (fn_800DFD08(player, tag) != 0)) {
+								            tag, &pos_Temp, &pos_Temp2, &hpos, lbl_8042DC28)
+								        < lbl_8042DC38)
+								    && (fn_800DFD08((u32)player, tag) != 0)) {
 									pathwp->flag = (u8)pathwp->flag | playerMask;
 								}
 							}
@@ -187,20 +202,23 @@ void pathGliding(CLASS_PATH* pathwp)
 	pathwp->player[6] = 0xC;
 	pathwp->player[7] = 0xC;
 	pathCalcRoughArea(pathwp);
-	pathwp->maxpos.x += 50.0f;
-	pathwp->maxpos.y += 50.0f;
-	pathwp->maxpos.z += 50.0f;
-	pathwp->minpos.x -= 50.0f;
-	pathwp->minpos.y -= 50.0f;
-	pathwp->minpos.z -= 50.0f;
+	pathwp->maxpos.x += lbl_8042DC3C;
+	pathwp->maxpos.y += lbl_8042DC3C;
+	pathwp->maxpos.z += lbl_8042DC3C;
+	pathwp->minpos.x -= lbl_8042DC3C;
+	pathwp->minpos.y -= lbl_8042DC3C;
+	pathwp->minpos.z -= lbl_8042DC3C;
 	pathwp->mode = 1;
-	pathwp->n.x  = 0.0f;
-	pathwp->n.y  = 1.0f;
-	pathwp->n.z  = 0.0f;
+	pathwp->n.x  = lbl_8042DC28;
+	pathwp->n.y  = lbl_8042DC2C;
+	pathwp->n.z  = lbl_8042DC28;
 }
 
 static void pathGlidingReg(CLASS_PATH* pathwp)
 {
+	s32 pl;
+	TASKWK* pltwp;
+	PLAYERWK* pwp;
 	PATHINFO pi_Temp;
 	NJS_LINE l_Temp;
 	RwV3d pos;
@@ -208,31 +226,20 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 	RwV3d vFace_Player;
 	RwV3d pos_Path_On;
 	RwV3d pos_Temp2;
-	RwV3d pos2;
+	RwV3d plpos;
 	f32 hpos;
 	f32 hpos2;
-	s16* var_r24_2;
-	s16* var_r27;
-	PATHTAG* temp_r31;
-	PLAYERWK** var_r28;
-	PLAYERWK* temp_r19;
-	TASKWK** var_r23_2;
-	TASKWK** var_r29;
-	TASKWK* temp_r20;
+	PATHTAG* pttp;
 	TASKWK* temp_r4;
-	TObjOldPlayer** var_r23;
 	f32 temp_f1;
 	f32 temp_f1_2;
 	f32 temp_f1_3;
 	f32 temp_f1_4;
 	f32 temp_f1_5;
-	f32 temp_f1_6;
 	f32 temp_f1_7;
 	f32 temp_f2;
 	f32 temp_f2_2;
-	f32 temp_f2_3;
 	f32 temp_f3;
-	f32 temp_f3_2;
 	f32 temp_f4;
 	f32 temp_f4_2;
 	f32 temp_f5;
@@ -241,32 +248,27 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 	f32 temp_f8;
 	f32 temp_f9;
 	f32 var_f1;
-	f32 var_f31;
-	f32 var_f30;
+	f32 l;
+	f32 l_checking;
 	f32 var_f3;
 	f32 var_f4;
 	s16 temp_r0_2;
 	s16 temp_r0_3;
 	s16 temp_r3;
 	s16 temp_r3_6;
-	s32 temp_r22;
-	s32 temp_r22_2;
-	s32 var_r21;
 
-	s32 var_r25_2;
-
-	s8 temp_r19_2;
+	s32 changing_path;
 	TObjPathManage* temp_r3_2;
 	TObjPathManage* temp_r3_3;
 	TObjPathManage* temp_r3_4;
 	TObjPathManage* temp_r3_5;
 	u8 temp_r0;
 
-	temp_r31 = pathwp->tagptr;
+	pttp = pathwp->tagptr;
 	if ((s8)(u8)pathwp->mode != 0) {
 		if (((pathwp->n.z * lbl_80242B38.z)
 		        + ((pathwp->n.x * lbl_80242B38.x) + (pathwp->n.y * lbl_80242B38.y)))
-		    > 0.1f) {
+		    > lbl_8042DC44) {
 			pathwp->mode = 2;
 		} else {
 			pathwp->mode = 1;
@@ -275,132 +277,121 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 	temp_r0 = (u8)pathwp->mode;
 	switch ((s8)temp_r0) {
 		case 1:
-			var_r21 = 0;
-			var_r29 = lbl_802AD090;
-			var_r28 = lbl_802AD0D0;
-			var_r27 = pathwp->player;
+			pl = 0;
 
-			var_r23 = lbl_802AD070;
 			do {
-				temp_r20 = *var_r29;
-				if (temp_r20 != NULL) {
-					temp_r19 = *var_r28;
-					if ((pathwp->flag & (temp_r22 = 1 << var_r21)) == 0) {
-						temp_r3 = *var_r27;
+				pltwp = lbl_802AD090[pl];
+				if (pltwp != NULL) {
+					pwp = lbl_802AD0D0[pl];
+					if ((pathwp->flag & (1 << pl)) == 0) {
+						temp_r3 = pathwp->player[pl];
 						if (temp_r3 < 0xC) {
-							++*var_r27;
-							if ((s16)*var_r27 >= 4) {
-								var_f30 = 0.0f;
+							++pathwp->player[pl];
+							if ((s16)pathwp->player[pl] >= 4) {
+								l_checking = lbl_8042DC28;
 								goto block_17;
 							}
 						} else {
-							if ((s16)temp_r19->nocontimer != 0) {
-								var_f30 = 13.5f;
+							if ((s16)pwp->nocontimer != 0) {
+								l_checking = lbl_8042DC48;
 							} else {
-								var_f30 = 8.0f;
+								l_checking = lbl_8042DC4C;
 							}
 						block_17:
-							*var_r27  = 0xC;
-							temp_r0_2 = temp_r20->smode;
+							pathwp->player[pl] = 0xC;
+							temp_r0_2          = pltwp->smode;
 							if ((temp_r0_2 >= 0x41) || (temp_r0_2 < 0x3F)) {
-								temp_f1 = temp_r20->pos.x;
+								temp_f1 = pltwp->pos.x;
 								if (!(temp_f1 > pathwp->maxpos.x)
 								    && !(temp_f1 < pathwp->minpos.x)) {
-									temp_f1_2 = temp_r20->pos.z;
+									temp_f1_2 = pltwp->pos.z;
 									if (!(temp_f1_2 > pathwp->maxpos.z)
 									    && !(temp_f1_2 < pathwp->minpos.z)) {
-										temp_f1_3 = temp_r20->pos.y;
+										temp_f1_3 = pltwp->pos.y;
 										if (!(temp_f1_3 > pathwp->maxpos.y)
 										    && !(temp_f1_3 < pathwp->minpos.y)) {
-											var_f31 = SCPathPntNearToOnpos(
-											    temp_r31, &temp_r20->pos, &pos, &hpos, 0.0f);
-											if (!(var_f31 > 30.0f)) {
+											l = SCPathPntNearToOnpos(
+											    pttp, &pltwp->pos, &pos, &hpos, lbl_8042DC28);
+											if (!(l > lbl_8042DC50)) {
 												pi_Temp.onpathpos = hpos;
-												if (GetStatusOnPath(temp_r31, &pi_Temp) != 0) {
-													if ((hpos >= (temp_r31->totallen - 0.1f))
-													    || (hpos <= 0.1f)) {
-														__memcpy(&vFace_Player, &temp_r19->spd,
+												if (GetStatusOnPath(pttp, &pi_Temp) != 0) {
+													if ((hpos >= (pttp->totallen - lbl_8042DC44))
+													    || (hpos <= lbl_8042DC44)) {
+														__memcpy(&vFace_Player, &pwp->spd,
 														    sizeof(vFace_Player));
-														vFace_Player.y = 0.0f;
-														if (fn_801991B4(&vFace_Player) < 0.25f) {
-															vFace_Player.x = 1.0f;
-															vFace_Player.y = 0.0f;
-															vFace_Player.z = 0.0f;
+														vFace_Player.y = lbl_8042DC28;
+														if (fn_801991B4(&vFace_Player)
+														    < lbl_8042DC54) {
+															vFace_Player.x = lbl_8042DC2C;
+															vFace_Player.y = lbl_8042DC28;
+															vFace_Player.z = lbl_8042DC28;
 														} else {
 															fn_801990E0((RwV3d*)&vFace_Player,
 															    (RwV3d*)&vFace_Player);
 														}
-														fn_8003E9B4(
-														    temp_r20, (RwV3d*)&vFace_Player);
-														if (hpos <= 0.1f) {
+														fn_8003E9B4(pltwp, (RwV3d*)&vFace_Player);
+														if (hpos <= lbl_8042DC44) {
 															var_f3 = pi_Temp.front.x;
 															var_f4 = pi_Temp.front.y;
 															var_f1 = pi_Temp.front.z;
 														} else {
-															var_f3 = -1.0f * pi_Temp.front.x;
-															var_f4 = -1.0f * pi_Temp.front.y;
-															var_f1 = -1.0f * pi_Temp.front.z;
+															var_f3 = lbl_8042DC40 * pi_Temp.front.x;
+															var_f4 = lbl_8042DC40 * pi_Temp.front.y;
+															var_f1 = lbl_8042DC40 * pi_Temp.front.z;
 														}
 														if (!(((var_f1 * vFace_Player.z)
 														          + ((var_f3 * vFace_Player.x)
 														              + (var_f4 * vFace_Player.y)))
-														        <= 0.0f)) {
-															if (lbl_8042C380->dist_pl_Temp[var_r21]
-															    < 0.25f) {
-																var_f31
-																    = DistanceP2P__FPC5RwV3dPC5RwV3d(
-																        &temp_r20->pos, &pos);
+														        <= lbl_8042DC28)) {
+															if (lbl_8042C380->dist_pl_Temp[pl]
+															    < lbl_8042DC54) {
+																l = DistanceP2P__FPC5RwV3dPC5RwV3d(
+																    &pltwp->pos, &pos);
 																goto block_49;
 															}
 															temp_r3_2 = lbl_8042C380;
-															if (!(((temp_r3_2->dir_pl_Temp[var_r21]
-															               .z
+															if (!(((temp_r3_2->dir_pl_Temp[pl].z
 															           * pi_Temp.normal.z)
-															          + ((temp_r3_2
-															                     ->dir_pl_Temp
-															                         [var_r21]
+															          + ((temp_r3_2->dir_pl_Temp[pl]
 															                     .x
 															                 * pi_Temp.normal.x)
 															              + (temp_r3_2
-															                      ->dir_pl_Temp
-															                          [var_r21]
+															                      ->dir_pl_Temp[pl]
 															                      .y
 															                  * pi_Temp.normal.y)))
-															        > 0.0f)) {
+															        > lbl_8042DC28)) {
 																temp_f1_4
 																    = DistanceP2L__FPC5RwV3dPC8NJS_LINEP5RwV3d(
 																        &pos,
 																        &lbl_8042C380
-																            ->l_pl_Temp[var_r21],
+																            ->l_pl_Temp[pl],
 																        &pos_Player_On);
 																temp_r3_3 = lbl_8042C380;
 																temp_f3   = pos_Player_On.x;
 																if (!((((pos_Player_On.z
 																            - temp_r3_3
-																                ->pos_pl_Last
-																                    [var_r21]
+																                ->pos_pl_Last[pl]
 																                .z)
 																           * (pos_Player_On.z
-																               - temp_r20->pos.z))
+																               - pltwp->pos.z))
 																          + (((temp_f3
 																                  - temp_r3_3
 																                      ->pos_pl_Last
-																                          [var_r21]
+																                          [pl]
 																                      .x)
 																                 * (temp_f3
-																                     - temp_r20->pos
+																                     - pltwp->pos
 																                         .x))
 																              + ((pos_Player_On.y
 																                     - temp_r3_3
 																                         ->pos_pl_Last
-																                             [var_r21]
+																                             [pl]
 																                         .y)
 																                  * (pos_Player_On.y
-																                      - temp_r20
-																                          ->pos
+																                      - pltwp->pos
 																                          .y))))
-																        > 0.0f)) {
-																	var_f31 = temp_f1_4;
+																        > lbl_8042DC28)) {
+																	l = temp_f1_4;
 																}
 																goto block_49;
 															}
@@ -412,50 +403,46 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 														l_Temp.v.x = pi_Temp.front.x;
 														l_Temp.v.y = pi_Temp.front.y;
 														l_Temp.v.z = pi_Temp.front.z;
-														if (lbl_8042C380->dist_pl_Temp[var_r21]
-														    < 0.25f) {
-															var_f31
-															    = DistanceP2L__FPC5RwV3dPC8NJS_LINEP5RwV3d(
-															        &temp_r20->pos, &l_Temp,
-															        &pos_Player_On);
+														if (lbl_8042C380->dist_pl_Temp[pl]
+														    < lbl_8042DC54) {
+															l = DistanceP2L__FPC5RwV3dPC8NJS_LINEP5RwV3d(
+															    &pltwp->pos, &l_Temp,
+															    &pos_Player_On);
 															goto block_49;
 														}
-														temp_r19_2 = (s8)(u8)(*var_r23)->field9E7;
-														temp_r3_4  = lbl_8042C380;
-														if (!(((temp_r3_4->dir_pl_Temp[var_r21].z
+														changing_path
+														    = (lbl_802AD070[pl])->field9E7;
+														temp_r3_4 = lbl_8042C380;
+														if (!(((temp_r3_4->dir_pl_Temp[pl].z
 														           * pi_Temp.normal.z)
-														          + ((temp_r3_4
-														                     ->dir_pl_Temp[var_r21]
-														                     .x
+														          + ((temp_r3_4->dir_pl_Temp[pl].x
 														                 * pi_Temp.normal.x)
-														              + (temp_r3_4
-														                      ->dir_pl_Temp[var_r21]
+														              + (temp_r3_4->dir_pl_Temp[pl]
 														                      .y
 														                  * pi_Temp.normal.y)))
-														        > 0.0f)) {
+														        > lbl_8042DC28)) {
 															temp_f1_5
 															    = DistanceL2L__FPC8NJS_LINEPC8NJS_LINEP5RwV3dP5RwV3d(
 															        &l_Temp,
-															        &lbl_8042C380
-															            ->l_pl_Temp[var_r21],
+															        &lbl_8042C380->l_pl_Temp[pl],
 															        &pos_Path_On, &pos_Player_On);
 															temp_f2   = pos_Player_On.x;
 															temp_r3_5 = lbl_8042C380;
 															temp_f4   = temp_f2
-															    - temp_r3_5->pos_pl_Last[var_r21].x;
+															    - temp_r3_5->pos_pl_Last[pl].x;
 															temp_f5 = pos_Player_On.y
-															    - temp_r3_5->pos_pl_Last[var_r21].y;
-															temp_f6 = pos_Player_On.z
-															    - temp_r3_5->pos_pl_Last[var_r21].z;
-															temp_f7 = temp_f2 - temp_r20->pos.x;
+															    - temp_r3_5->pos_pl_Last[pl].y;
+															temp_f9 = pos_Player_On.z;
+															temp_f6 = temp_f9
+															    - temp_r3_5->pos_pl_Last[pl].z;
+															temp_f7 = temp_f2 - pltwp->pos.x;
 															temp_f8
-															    = pos_Player_On.y - temp_r20->pos.y;
-															temp_f9
-															    = pos_Player_On.z - temp_r20->pos.z;
+															    = pos_Player_On.y - pltwp->pos.y;
+															temp_f9 = temp_f9 - pltwp->pos.z;
 															if (((temp_f6 * temp_f9)
 															        + ((temp_f4 * temp_f7)
 															            + (temp_f5 * temp_f8)))
-															    > 0.0f) {
+															    > lbl_8042DC28) {
 																if (((temp_f9 * temp_f9)
 																        + ((temp_f7 * temp_f7)
 																            + (temp_f8 * temp_f8)))
@@ -463,31 +450,32 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 																        + ((temp_f4 * temp_f4)
 																            + (temp_f5
 																                * temp_f5)))) {
-																	if (temp_r19_2 == 0) {
-																		goto block_49;
+																	if (changing_path != 0) {
+																		goto nextGlidingPlayer;
 																	}
+																	goto block_49;
 																} else {
 																	goto block_49;
 																}
 															} else {
-																var_f31 = temp_f1_5;
+																l = temp_f1_5;
 															block_49:
-																if (0.0f == var_f30) {
-																	if (!(1.0f < var_f31)) {
-																		goto block_53;
+																if (lbl_8042DC28 == l_checking) {
+																	if (lbl_8042DC2C < l) {
+																		goto nextGlidingPlayer;
 																	}
-																} else if (!(var_f30 < var_f31)) {
+																	goto block_53;
+																} else if (!(l_checking < l)) {
 																block_53:
-																	temp_f1_6 = temp_r31->totallen;
-																	if (hpos >= temp_f1_6) {
-																		hpos = temp_f1_6 - 0.01f;
+																	if (hpos >= pttp->totallen) {
+																		hpos = pttp->totallen
+																		    - lbl_8042DC30;
 																	}
-																	if (fn_800DFA68(
-																	        var_r21, temp_r31, hpos)
+																	if (fn_800DFA68(pl, pttp, hpos)
 																	    != 0) {
 																		pathwp->flag
 																		    = (u8)pathwp->flag
-																		    | temp_r22;
+																		    | (1 << pl);
 																	}
 																}
 															}
@@ -500,34 +488,30 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 								}
 							}
 						}
-					} else if (((s32)(temp_r20->flag & 0x2000) == 0)
-					    || ((PATHTAG*)temp_r19->pathtag != temp_r31)) {
-						*var_r27     = 0;
-						pathwp->flag = (u8)pathwp->flag & ~temp_r22;
+					} else if (((s32)(pltwp->flag & 0x2000) == 0)
+					    || ((PATHTAG*)pwp->pathtag != pttp)) {
+						pathwp->player[pl] = 0;
+						pathwp->flag       = (u8)pathwp->flag & ~(1 << pl);
 					}
 				}
-				var_r29++;
-				var_r28++;
-				var_r27++;
 
-				var_r23++;
-				var_r21 += 1;
-			} while (var_r21 < 8);
+			nextGlidingPlayer:
+				pl += 1;
+			} while (pl < 8);
 			return;
 		case 2:
-			var_r25_2 = 0;
-			var_r23_2 = lbl_802AD090;
-			var_r24_2 = pathwp->player;
+			pl = 0;
+
 			do {
-				temp_r4 = *var_r23_2;
+				temp_r4 = lbl_802AD090[pl];
 				if (temp_r4 != NULL) {
-					if ((pathwp->flag & (temp_r22_2 = 1 << var_r25_2)) == 0) {
-						temp_r3_6 = *var_r24_2;
+					if ((pathwp->flag & (1 << pl)) == 0) {
+						temp_r3_6 = pathwp->player[pl];
 						if (temp_r3_6 < 0xC) {
-							++*var_r24_2;
+							++pathwp->player[pl];
 						} else {
-							*var_r24_2 = 0xC;
-							temp_r0_3  = (*var_r23_2)->smode;
+							pathwp->player[pl] = 0xC;
+							temp_r0_3          = (lbl_802AD090[pl])->smode;
 							if ((temp_r0_3 >= 0x41) || (temp_r0_3 < 0x3F)) {
 								temp_f4_2 = temp_r4->pos.x;
 								if (!(temp_f4_2 > pathwp->maxpos.x)) {
@@ -538,18 +522,15 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 										    && !(temp_f4_2 < pathwp->minpos.x)
 										    && !(temp_f1_7 < pathwp->minpos.y)
 										    && !(temp_f2_2 < pathwp->minpos.z)) {
-											pos2.x    = temp_f4_2;
-											temp_f3_2 = temp_r4->pos.y;
-											pos2.y    = temp_f3_2;
-											temp_f2_3 = temp_r4->pos.z;
-											pos2.z    = temp_f2_3;
-											pos2.x    = temp_f4_2 - (9.0f * lbl_80242B38.x);
-											pos2.y    = temp_f3_2 - (9.0f * lbl_80242B38.y);
-											pos2.z    = temp_f2_3 - (9.0f * lbl_80242B38.z);
-											if (!(4.0f < SCPathPntNearToOnpos(temp_r31,
-											          (RwV3d*)&pos2, &pos_Temp2, &hpos2, 0.0f))) {
-												fn_800DF9F0(var_r25_2, temp_r31, hpos2);
-												pathwp->flag = (u8)pathwp->flag | temp_r22_2;
+											plpos   = temp_r4->pos;
+											plpos.x = plpos.x - (9.0f * lbl_80242B38.x);
+											plpos.y = plpos.y - (9.0f * lbl_80242B38.y);
+											plpos.z = plpos.z - (9.0f * lbl_80242B38.z);
+											if (!(lbl_8042DC34 < SCPathPntNearToOnpos(pttp,
+											          (RwV3d*)&plpos, &pos_Temp2, &hpos2,
+											          lbl_8042DC28))) {
+												fn_800DF9F0(pl, pttp, hpos2);
+												pathwp->flag = (u8)pathwp->flag | (1 << pl);
 											}
 										}
 									}
@@ -557,14 +538,13 @@ static void pathGlidingReg(CLASS_PATH* pathwp)
 							}
 						}
 					} else if ((s32)(temp_r4->flag & 0x2000) == 0) {
-						*var_r24_2   = 0;
-						pathwp->flag = (u8)pathwp->flag & ~temp_r22_2;
+						pathwp->player[pl] = 0;
+						pathwp->flag       = (u8)pathwp->flag & ~(1 << pl);
 					}
 				}
-				var_r23_2++;
-				var_r24_2++;
-				var_r25_2 += 1;
-			} while (var_r25_2 < 8);
+
+				pl += 1;
+			} while (pl < 8);
 			return;
 	}
 }
@@ -582,39 +562,64 @@ static inline s32 pathCheckRangeWithinArea2(
 	    || pltwp->pos.z > pathwp->maxpos.z || pltwp->pos.x < pathwp->minpos.x
 	    || pltwp->pos.y < pathwp->minpos.y || pltwp->pos.z < pathwp->minpos.z)
 		return 0;
-	if (SCPathPntNearToOnpos(pttp, &pltwp->pos, &pos, &h, 0.0f) > catch_dist)
+	if (SCPathPntNearToOnpos(pttp, &pltwp->pos, &pos, &h, lbl_8042DC28) > catch_dist)
 		return 0;
-	if (p_point)
+	if ((u32*)p_point != NULL)
 		SCPathOnposToPntnmb(pttp, h, (u32*)p_point);
+	return 1;
+}
+
+static inline s32 pathCheckRangeWithinArea3(
+    CLASS_PATH* pathwp, s32 pl, s32* p_point, f32 catch_dist)
+{
+	s32 point_Temp;
+	if (!pathCheckRangeWithinArea2(pathwp, pl, &point_Temp, catch_dist))
+		return 0;
+	MOTIONWK* motion = lbl_802AD0B0[pl];
+	PATHTAG* tag     = pathwp->tagptr;
+	s16 count;
+	PATHTBL_P* table = (PATHTBL_P*)tag->pathtbl;
+	count            = tag->points;
+	if (count >= 2) {
+		if (point_Temp == 0) {
+			f32 delta = table->pos.z - table[1].pos.z;
+			f32 z     = delta * motion->spd.z;
+			delta     = table->pos.x - table[1].pos.x;
+			f32 x     = delta * motion->spd.x;
+			delta     = table->pos.y - table[1].pos.y;
+			if (z + (x + delta * motion->spd.y) > lbl_8042DC28)
+				return 0;
+		} else if (point_Temp >= count - 2) {
+			table += point_Temp;
+			f32 delta = table->pos.z - table[-1].pos.z;
+			f32 z     = delta * motion->spd.z;
+			delta     = table->pos.x - table[-1].pos.x;
+			f32 x     = delta * motion->spd.x;
+			delta     = table->pos.y - table[-1].pos.y;
+			if (z + (x + delta * motion->spd.y) > lbl_8042DC28)
+				return 0;
+		}
+	}
+	if (p_point)
+		*p_point = point_Temp;
 	return 1;
 }
 
 void pathSeeingPath(CLASS_PATH* pathwp)
 {
-	RwV3d pos;
-	s32 point;
-	MOTIONWK* temp_r5_2;
-	PATHTAG* temp_r25;
-	PATHTAG* temp_r4_3;
-	PATHTBL_P* temp_r3_2;
-	PATHTBL_P* temp_r3_3;
-	TASKWK* temp_r26;
-	TObjTeam** var_r30;
-	TObjTeam* temp_r22;
+	TASKWK* pltwp;
+	PATHTAG* pttp;
+	s32 team;
+	s32 role;
+	TObjTeam* pTeam;
 	s16 temp_r3;
-	s16 temp_r4_4;
-	s32* var_r31;
-	s32 temp_r27;
 	s32 temp_r4;
-	s32 var_r0;
 	s32 var_r0_2;
-	s32 var_r24;
-	u32 var_r23;
 	u8 temp_r0;
-	u8 temp_r0_2;
+	u8 pl;
 
-	temp_r25 = pathwp->tagptr;
-	temp_r0  = (u8)pathwp->mode;
+	pttp    = pathwp->tagptr;
+	temp_r0 = (u8)pathwp->mode;
 	switch ((s8)temp_r0) {
 		case 0:
 			pathwp->flag      = 0;
@@ -627,107 +632,51 @@ void pathSeeingPath(CLASS_PATH* pathwp)
 			pathwp->player[6] = 0x3C;
 			pathwp->player[7] = 0x3C;
 			pathCalcRoughArea(pathwp);
-			pathwp->maxpos.x += 40.0f;
-			pathwp->maxpos.y += 40.0f;
-			pathwp->maxpos.z += 40.0f;
-			pathwp->minpos.x -= 40.0f;
-			pathwp->minpos.y -= 40.0f;
-			pathwp->minpos.z -= 40.0f;
+			pathwp->maxpos.x += lbl_8042DC5C;
+			pathwp->maxpos.y += lbl_8042DC5C;
+			pathwp->maxpos.z += lbl_8042DC5C;
+			pathwp->minpos.x -= lbl_8042DC5C;
+			pathwp->minpos.y -= lbl_8042DC5C;
+			pathwp->minpos.z -= lbl_8042DC5C;
 			pathwp->mode = 1;
 			return;
 		case 1:
-			var_r24 = 0;
-			var_r30 = lbl_80303DC8;
-			do {
-				temp_r22 = *var_r30;
-				if (temp_r22 != NULL) {
-					var_r23 = 0U;
-					var_r31 = lbl_80253648;
-					do {
-						temp_r0_2 = (u8)temp_r22->playerNo[fn_800927D0(temp_r22, *var_r31)];
-						if ((u8)(s8)temp_r0_2 <= 8U) {
-							temp_r26 = lbl_802AD090[(u8)(s8)temp_r0_2];
-							if (temp_r26 != NULL) {
-								temp_r4 = temp_r26->flag & 0x2000;
+			for (team = 0; team < 4; team++) {
+				pTeam = lbl_80303DC8[team];
+				if (pTeam != NULL) {
+					for (role = 0; role < 3U; role++) {
+						pl = (u8)pTeam->playerNo[fn_800927D0(pTeam, lbl_80253648[role])];
+						if ((u8)(s8)pl <= 8U) {
+							pltwp = lbl_802AD090[(u8)(s8)pl];
+							if (pltwp != NULL) {
+								temp_r4 = pltwp->flag & 0x2000;
 								if (temp_r4 == 0) {
-									if ((pathwp->flag & (temp_r27 = 1 << (u8)(s8)temp_r0_2)) == 0) {
-										temp_r3 = pathwp->player[(u8)(s8)temp_r0_2];
+									if ((pathwp->flag & (1 << (u8)(s8)pl)) == 0) {
+										temp_r3 = pathwp->player[(u8)(s8)pl];
 										if (temp_r3 < 0x3C) {
-											++pathwp->player[(u8)(s8)temp_r0_2];
-										} else if ((fn_800892B0(lbl_802AD070[(u8)(s8)temp_r0_2])
-										               != 0)
-										    || ((s16)temp_r22->field1FC != 0)
-										    || (fn_800E27D8(
-										            temp_r26, lbl_802AD0D0[(u8)(s8)temp_r0_2], 0, 0)
+											++pathwp->player[(u8)(s8)pl];
+										} else if ((fn_800892B0(lbl_802AD070[(u8)(s8)pl]) != 0)
+										    || ((s16)pTeam->field1FC != 0)
+										    || (fn_800E27D8(pltwp, lbl_802AD0D0[(u8)(s8)pl], 0, 0)
 										        != 0)
-										    || ((s16)lbl_802AD0D0[(u8)(s8)temp_r0_2]->nocontimer
-										        != 0)) {
-											var_r0 = pathCheckRangeWithinArea2(
-											    pathwp, (u8)(s8)temp_r0_2, &point, 40.0f);
-											if (var_r0 == 0) {
-												var_r0_2 = 0;
-											} else {
-												temp_r5_2 = lbl_802AD0B0[(u8)(s8)temp_r0_2];
-												temp_r4_3 = pathwp->tagptr;
-												temp_r3_2 = (PATHTBL_P*)temp_r4_3->pathtbl;
-												temp_r4_4 = temp_r4_3->points;
-												if (temp_r4_4 >= 2) {
-													if (point == 0) {
-														if ((((temp_r3_2->pos.z
-														          - temp_r3_2[1].pos.z)
-														         * temp_r5_2->spd.z)
-														        + (((temp_r3_2->pos.x
-														                - temp_r3_2[1].pos.x)
-														               * temp_r5_2->spd.x)
-														            + ((temp_r3_2->pos.y
-														                   - temp_r3_2[1].pos.y)
-														                * temp_r5_2->spd.y)))
-														    > 0.0f) {
-															var_r0_2 = 0;
-														} else {
-															goto block_56;
-														}
-													} else if ((point >= (s32)(temp_r4_4 - 2))
-													    && (temp_r3_3 = &temp_r3_2[point],
-													        (((((temp_r3_3->pos.z
-													                - temp_r3_3[-1].pos.z)
-													               * temp_r5_2->spd.z)
-													              + (((temp_r3_3->pos.x
-													                      - temp_r3_3[-1].pos.x)
-													                     * temp_r5_2->spd.x)
-													                  + ((temp_r3_3->pos.y
-													                         - temp_r3_3[-1].pos.y)
-													                      * temp_r5_2->spd.y)))
-													            > 0.0f)))) {
-														var_r0_2 = 0;
-													} else {
-														goto block_56;
-													}
-												} else {
-												block_56:
-													var_r0_2 = 1;
-												}
-											}
+										    || ((s16)lbl_802AD0D0[(u8)(s8)pl]->nocontimer != 0)) {
+											var_r0_2 = pathCheckRangeWithinArea3(
+											    pathwp, (u8)(s8)pl, NULL, lbl_8042DC5C);
 											if ((var_r0_2 != 0)
-											    && (fn_800DFB88((u8)(s8)temp_r0_2, temp_r25)
-											        != 0)) {
-												pathwp->flag = (u8)pathwp->flag | temp_r27;
+											    && (fn_800DFB88((u8)(s8)pl, pttp) != 0)) {
+												pathwp->flag = (u8)pathwp->flag | (1 << (u8)(s8)pl);
 											}
 										}
 									} else if (temp_r4 == 0) {
-										pathwp->player[(u8)(s8)temp_r0_2] = 0;
-										pathwp->flag = (u8)pathwp->flag & ~temp_r27;
+										pathwp->player[(u8)(s8)pl] = 0;
+										pathwp->flag = (u8)pathwp->flag & ~(1 << (u8)(s8)pl);
 									}
 								}
 							}
 						}
-						var_r31++;
-						var_r23 += 1;
-					} while (var_r23 < 3U);
+					}
 				}
-				var_r30++;
-				var_r24 += 1;
-			} while (var_r24 < 4);
+			}
 			return;
 	}
 }
@@ -758,4 +707,20 @@ CLASS_PATH::CLASS_PATH(void (*pathtask)(CLASS_PATH*))
 	tagptr = 0;
 	next   = 0;
 	last   = 0;
+}
+
+extern "C" {
+extern const __declspec(section ".sdata2") f32 lbl_8042DC28 = 0.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC2C = 1.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC30 = 0.01f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC34 = 4.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC38 = 15.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC3C = 50.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC40 = -1.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC44 = 0.1f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC48 = 13.5f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC4C = 8.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC50 = 30.0f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC54 = 0.25f;
+extern const __declspec(section ".sdata2") f32 lbl_8042DC5C = 40.0f;
 }

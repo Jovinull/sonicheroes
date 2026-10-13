@@ -1627,7 +1627,7 @@ owned sections and 141 normalized relocations after excluding the 32-byte
 post-processor and ELF metadata regression tests pass. This is compilation and
 binary verification; no runtime or hardware validation was performed.
 
-## calc_colli.cpp (non-matching reconstruction)
+## calc_colli.cpp (complete matching unit)
 
 European PS2 DWARF identifies `calc_colli.cpp` as `C_PLUS_PLUS`, with named
 point/line-distance, coplanar-segment and triangle-intersection functions.
@@ -1637,7 +1637,7 @@ call relationships and function order independently correlate those identities.
 The two triangle-intersection helpers are file-local in the PS2 metadata.
 This does not establish identical platform implementations.
 
-The proposed GameCube unit owns eight surviving functions at
+The GameCube unit owns eight surviving functions at
 `0x800D1408`–`0x800D2ED4`, exception records at `0x80008B78`–`0x80008BB0`,
 exception indexes at `0x8000F214`–`0x8000F268`, the seven-entry switch table at
 `0x802558D0`–`0x802558EC`, and constants at `0x8042DFD0`–`0x8042DFE8`.
@@ -1652,44 +1652,28 @@ null-output behavior, comparison direction and calls are preserved. The local
 `VectorComponents` storage view is a reconstruction aid for retained vector
 writes and pointer comparisons, not a recovered original type name.
 
-This unit uses `-inline deferred,noauto` as an explicitly provisional compiler
-configuration. Natural function order from metadata is distance, coefficient
-solver, coplanar intersection, public intersection wrappers, private triangle
-helpers, then sphere contact. Default auto mode emits definitions in source
-order and can fold the private helpers into their callers. Deferred mode emits
-the reversed definitions in the observed object order; noauto preserves those
-calls while explicitly inline point/vector helpers expand in the sphere routine.
-Deferred emission also permits opaque constant declarations before the functions
-and definitions afterwards, reproducing the pool and repeated threshold loads
-without an object patcher. Thus this configuration addresses calls and data
-access as well as order. It is not proof of a finished match or the original
-source arrangement.
+The unit retains its scoped `-inline deferred,noauto` configuration. Reversed
+source definitions reproduce the native function order, while `noauto` keeps
+the private triangle calls and explicit inline point/vector helpers expand into
+the sphere routine. Opaque named epsilon/one declarations preserve observed
+loads. Literal zero uses share a single compiler-owned atom.
 
-Native G9SE8P objdiff results at the draft checkpoint:
+The point-to-line routine now uses named component caches to reproduce the
+GameCube register lifetimes. The coplanar routine preserves fresh component
+loads; the sphere helper uses a vector local and component assignments matching
+the native lifetimes. Platform-local temporaries are reconstructed from GameCube
+instructions, not claimed to be identical to PS2 locals.
 
-| Function | Match | Remaining work |
-| --- | ---: | --- |
-| `clDistanceP2L2` | 97.27% | Floating-point register allocation; 300-byte size matches |
-| `clGetTriangleVectorCoef_CrsP` | 100% | Whole-object audit still pending |
-| `clIsCrossLS2VonPlane` | 96.03% | Seven missing loads; 1160 bytes versus 1188 |
-| `clDetectLSY2T` | 100% | Whole-object audit still pending |
-| `clDetectLS2T` | 100% | Whole-object audit still pending |
-| `clIntersectTriangleY` | 100% | Whole-object audit still pending |
-| `clIntersectTriangle` | 100% | Whole-object audit still pending |
-| `clDetectS2T` | 98.96% | Floating-point register allocation; 3400-byte size matches |
-
-Constant-pool and exception-table bytes match. Exception-index sizes and switch
-relocation offsets are not yet a whole-object match because the coplanar routine
-is short. No instruction post-processor or assembly substitute is used.
-`configure.py` deliberately keeps this unit `NonMatching`; the linked image
-continues to use its original object. Matching the remainder, auditing every
-owned section/relocation and revalidating the build are required before changing
-that status.
-
-The supported G9SE8P all-source build, all eighteen output hashes and 55 language,
-post-processor and metadata regression tests pass at this checkpoint. Passing
-hashes validate the surrounding split/caller changes, not a source-linked
-collision unit. Runtime and physical-hardware behavior have not been validated.
+All eight native instruction streams match: 6,860 code bytes, 28 data bytes,
+56 exception-table bytes and 84 exception-index bytes. The remaining compiler
+pool difference is a permutation of three existing scalar atoms within 24 bytes.
+The guarded data-only transform described in
+[the constant-order evidence](calc-colli-constant-order.md) preserves every
+instruction and relocation record; all 77 resolved relocation destinations match
+after it. No instruction patching or assembly substitute is used. `Matching`
+links the reconstructed object. Full supported build, final hash and regression
+test results are recorded in the whole-unit PR; these do not establish runtime
+or physical-console validation.
 
 ## calc_movcolli.cpp
 
@@ -2207,22 +2191,24 @@ full supported G9SE8P build/report, 55 tests, both policies, object audit and
 ## pathctrl.cpp
 
 Symbolic PS2 metadata positively identifies this whole translation unit as C++
-and describes CLASS_PATH methods and private path-control helpers. GameCube
-member accesses independently establish the 88-byte class and callback ABI.
-All eight surviving GameCube bodies are reconstructed together; the metadata-named pathCalcRoughArea helper inlines into its three callers.
-The metadata-named pathCheckRangeWithinArea2 also inlines into Seeing.
-The remaining private range-helper operations stay inside their caller.
+and describes CLASS_PATH methods, private path-control helpers and local types.
+GameCube member accesses independently establish the 88-byte class and callback
+ABI. All eight surviving bodies are reconstructed together. The metadata-named
+`pathCalcRoughArea`, `pathCheckRangeWithinArea2` and `pathCheckRangeWithinArea3`
+helpers inline into the corresponding surviving callers.
 
-The unit uses ordinary C++ methods and default automatic inlining. Exception
-handling is enabled for its six owned exception records; separate multiply/add
-instructions motivate disabling floating-point contraction. Scheduling and
-peephole optimization are disabled for the current native comparison, and
-constant pooling is disabled. These settings remain subject to matching work.
-No deferred-inline override, assembly stub or instruction patcher is used.
-Four lifecycle bodies and Gliding instruction bytes are exact; three larger
-routines, constant relocation offsets, constant order and
-exception metadata remain NonMatching. See `pathctrl-unit-evidence.md` for
-whole-unit boundaries, comparison results and complete build verification.
+The unit uses ordinary C++ methods, default automatic inlining, exception
+handling for its six records, and separate multiply/add instructions. It retains
+its measured scheduling, peephole and pooling settings. Every native instruction
+byte and both exception sections match. No deferred override, assembly stub or
+instruction patcher is used.
+
+A bounded postprocessor reorders existing scalar atoms while preserving their
+referenced values and all instruction/relocation bytes. After that permutation,
+all owned sections and 110 relocation destinations match. This is not a claim
+that the raw compiler constant pool already matches. See
+`pathctrl-unit-evidence.md` and `pathctrl-constant-order.md` for the complete
+unit boundaries and verification contract.
 
 
 ## scanpath.cpp
@@ -2844,3 +2830,17 @@ Not taken from the draft: the `game/main.c` and `game/heap.c` changes (already
 resolved differently on `main`), the blanket inline overrides, and the BFBB/SMS
 headers, which the ported units do not need. Real method names for the shared
 functions remain a follow-up best done in both modules together.
+
+### Stage 11 door whole unit
+
+`rel/o_s11_door.cpp` is GameCube C++: the retained PS2 `TObjS11Door`
+method family correlates with the GameCube class-name string, vtable,
+constructor/destructor and adjustment thunk. The source restores this class
+with its `TObject`/`TObjSetObj` bases; it uses no PS2 implementation code.
+Deferred automatic inlining is scoped to this unit: reverse method-definition
+order reproduces the native function order and places its generated vtable
+after the explicit data. The prior object was NonMatching; the complete
+reconstruction now matches all 15 native functions, 5,408 instruction bytes,
+owned sections and 353 resolved relocations. Both the full G9SE8P release
+and all-source build pass, with all 18 final hashes exact. No object
+normalizer is used for this unit.
