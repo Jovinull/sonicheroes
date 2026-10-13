@@ -4,6 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Codex 2026-10-13 | `game/enemy_voice.cpp`, GameCube-inferred controller-family unit | Native 11/11 bodies, five owned sections and 113 relocations exact; class-name pointers included, two native class labels corrected, no object permutation. All 18 artifact hashes and 204 tests pass; historical filename/boundary remains an explicit hypothesis. |
 | Codex 2026-10-12 | `rel/o_s11_door.cpp`, complete Stage 11 door unit | Complete on `decomp/s11-door-20261012`: 15/15 functions, 5,408 code bytes, 636 owned data bytes and 353 relocations exact; all 18 artifact hashes and 187 tests pass; stacked on PR #623 |
 | Codex 2026-10-12 | `game/calc_colli.cpp`, complete collision utility unit | Complete: all eight native instruction streams, owned data and 77 relocations exact after documented scalar-atom reordering; full verification recorded in the PR |
 | Claude Code | AutoSaveD ADV units (PR #116 scope, taken over) | Complete: `adv_draw`, `adv_draw_constants`, `adv_window`, `adv_menu` ported from the matching AdvertiseD sources; all 18 hashes exact |
