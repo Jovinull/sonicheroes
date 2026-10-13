@@ -1516,6 +1516,9 @@ rel/bingopanel_register.cpp:
 	.text       start:0x00081CE4 end:0x00081D94
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/pawn_strategy_modes.cpp:
+	.text       start:0x00081ED4 end:0x000828B4
+
 rel/big_chip_dtor.cpp:
 	.text       start:0x00083C9C end:0x00083D9C
 

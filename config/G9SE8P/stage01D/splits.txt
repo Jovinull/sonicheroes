@@ -1734,6 +1734,9 @@ rel/s31_bob_dummy_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x000C4F68 end:0x000C4F6C
 
+rel/pawn_strategy_modes.cpp:
+	.text       start:0x000C4F6C end:0x000C594C
+
 rel/hermitcrab_search_cage.cpp:
 	.text       start:0x000C6884 end:0x000C6974
 
