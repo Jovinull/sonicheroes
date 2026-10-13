@@ -2,7 +2,7 @@
 
 // TObjEnemyPawn::CheckDamage2 (the PS2 build's name, by its member order): a
 // broken pawn loses all its hit points and counts as damaged; otherwise the
-// enemy base decides (fn_800A3F60).
+// enemy base decides (CheckDamage2__9TObjEnemyFv).
 
 typedef struct Pawn {
 	u8 unk000[0x1A4];
@@ -13,7 +13,7 @@ typedef struct Pawn {
 
 extern "C" const f32 pawnZero[1];
 
-extern "C" int fn_800A3F60(Pawn* pawn);
+extern "C" int CheckDamage2__9TObjEnemyFv(Pawn* pawn);
 
 extern "C" int CheckDamage2__13TObjEnemyPawnFv(Pawn* pawn)
 {
@@ -21,5 +21,5 @@ extern "C" int CheckDamage2__13TObjEnemyPawnFv(Pawn* pawn)
 		pawn->hp = pawnZero[0];
 		return 1;
 	}
-	return fn_800A3F60(pawn);
+	return CheckDamage2__9TObjEnemyFv(pawn);
 }

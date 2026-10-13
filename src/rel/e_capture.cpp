@@ -383,32 +383,32 @@ void fn_8_98294(void*);
 void fn_8_980F8(void*, s32);
 void fn_8_981B8(void*, void*);
 void fn_8_9CAF0(void*, void*);
-void fn_8_33D90(void);
-void fn_8_33D94(void);
-void fn_8_33D98(void);
-void fn_8_33DA0(void);
-void fn_8_33DA4(void);
-void fn_800A6F38(void);
-void fn_800A6EA8(void);
-void fn_800A6DD4(void);
+void DispOpaqOnEdit__9TObjEnemyFv(void);
+void Virtual33D94__9TObjEnemyFv(void);
+void Virtual33D98__9TObjEnemyFv(void);
+void Virtual33DA0__9TObjEnemyFv(void);
+void Virtual33DA4__9TObjEnemyFv(void);
+void Exec__9TObjEnemyFv(void);
+void Disp__9TObjEnemyFv(void);
+void TDisp__9TObjEnemyFv(void);
 void PDisp__7TObjectFv(void);
 void ImmAftSetRaster__7TObjectFv(void);
 void Debug__7TObjectFv(void);
 void Error__7TObjectFPc(void);
 void Render__7TObjectFv(void);
-void fn_800A3F60(void);
-void fn_800A2F88(void);
-void fn_800A2E24(void);
-void fn_800A327C(void);
-void fn_800A324C(void);
-void fn_800A321C(void);
-void fn_800A314C(void);
-void fn_800A6D60(void);
-void fn_800A6D58(void);
-void fn_800A3D6C(void);
-void fn_800A2C6C(void);
-void fn_800A31A0(void);
-void fn_800A3148(void);
+void CheckDamage2__9TObjEnemyFv(void);
+void DestroyMyself__9TObjEnemyFv(void);
+void Explosion__9TObjEnemyFv(void);
+void InitMode__9TObjEnemyF8ENEMY_MD(void);
+void ExecMode__9TObjEnemyF8ENEMY_MD(void);
+void ExitMode__9TObjEnemyF8ENEMY_MD(void);
+void KillMySelf__9TObjEnemyFv(void);
+void CheckCameraFrustumTest__9TObjEnemyFPC5RwV3df(void);
+void CheckCameraFrustumTestForShadow__9TObjEnemyFPC5RwV3df(void);
+void CanCheckTechnicPointForThunderShoot__9TObjEnemyFv(void);
+void IsSleep__9TObjEnemyFv(void);
+void GetCurrentLightNum__9TObjEnemyFv(void);
+void DispEnemySetting__9TObjEnemyFv(void);
 extern M2C_UNK __dt__16TEnemyMatTextureFv;
 extern M2C_UNK __ct__16TEnemyMatTextureFv;
 extern M2C_UNK fn_8_9D45C;
@@ -497,9 +497,9 @@ static M2C_UNK* lbl_8_data_15854[42]   = {
 	NULL,
 	NULL,
 	(M2C_UNK*)fn_8_9C4BC,
-	(M2C_UNK*)fn_800A6F38,
-	(M2C_UNK*)fn_800A6EA8,
-	(M2C_UNK*)fn_800A6DD4,
+	(M2C_UNK*)Exec__9TObjEnemyFv,
+	(M2C_UNK*)Disp__9TObjEnemyFv,
+	(M2C_UNK*)TDisp__9TObjEnemyFv,
 	(M2C_UNK*)PDisp__7TObjectFv,
 	(M2C_UNK*)ImmAftSetRaster__7TObjectFv,
 	(M2C_UNK*)Debug__7TObjectFv,
@@ -508,33 +508,33 @@ static M2C_UNK* lbl_8_data_15854[42]   = {
 	NULL,
 	NULL,
 	(M2C_UNK*)fn_8_9D3BC,
-	(M2C_UNK*)fn_800A3F60,
-	(M2C_UNK*)fn_800A2F88,
-	(M2C_UNK*)fn_800A2E24,
-	(M2C_UNK*)fn_800A327C,
-	(M2C_UNK*)fn_800A324C,
-	(M2C_UNK*)fn_800A321C,
+	(M2C_UNK*)CheckDamage2__9TObjEnemyFv,
+	(M2C_UNK*)DestroyMyself__9TObjEnemyFv,
+	(M2C_UNK*)Explosion__9TObjEnemyFv,
+	(M2C_UNK*)InitMode__9TObjEnemyF8ENEMY_MD,
+	(M2C_UNK*)ExecMode__9TObjEnemyF8ENEMY_MD,
+	(M2C_UNK*)ExitMode__9TObjEnemyF8ENEMY_MD,
 	(M2C_UNK*)fn_8_9AB68,
 	(M2C_UNK*)fn_8_99318,
 	(M2C_UNK*)fn_8_992E4,
 	(M2C_UNK*)fn_8_99254,
 	(M2C_UNK*)fn_8_990C4,
 	(M2C_UNK*)fn_8_98FAC,
-	(M2C_UNK*)fn_8_33D90,
-	(M2C_UNK*)fn_8_33D94,
-	(M2C_UNK*)fn_800A314C,
-	(M2C_UNK*)fn_800A6D60,
-	(M2C_UNK*)fn_800A6D58,
+	(M2C_UNK*)DispOpaqOnEdit__9TObjEnemyFv,
+	(M2C_UNK*)Virtual33D94__9TObjEnemyFv,
+	(M2C_UNK*)KillMySelf__9TObjEnemyFv,
+	(M2C_UNK*)CheckCameraFrustumTest__9TObjEnemyFPC5RwV3df,
+	(M2C_UNK*)CheckCameraFrustumTestForShadow__9TObjEnemyFPC5RwV3df,
 	(M2C_UNK*)fn_8_98294,
-	(M2C_UNK*)fn_800A3D6C,
-	(M2C_UNK*)fn_800A2C6C,
+	(M2C_UNK*)CanCheckTechnicPointForThunderShoot__9TObjEnemyFv,
+	(M2C_UNK*)IsSleep__9TObjEnemyFv,
 	(M2C_UNK*)fn_8_980F8,
-	(M2C_UNK*)fn_8_33D98,
-	(M2C_UNK*)fn_800A31A0,
+	(M2C_UNK*)Virtual33D98__9TObjEnemyFv,
+	(M2C_UNK*)GetCurrentLightNum__9TObjEnemyFv,
 	(M2C_UNK*)fn_8_981B8,
-	(M2C_UNK*)fn_800A3148,
-	(M2C_UNK*)fn_8_33DA0,
-	(M2C_UNK*)fn_8_33DA4,
+	(M2C_UNK*)DispEnemySetting__9TObjEnemyFv,
+	(M2C_UNK*)Virtual33DA0__9TObjEnemyFv,
+	(M2C_UNK*)Virtual33DA4__9TObjEnemyFv,
 	(M2C_UNK*)fn_8_9CAF0,
 };
 static char lbl_8_data_159BC[]         = "en_capture.one";
