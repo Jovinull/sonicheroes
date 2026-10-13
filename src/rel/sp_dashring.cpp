@@ -61,6 +61,15 @@ char spDashringFieldTypes[]  = "fs";
 char* spDashringFieldNames[] = { spDashringPowerField, spDashringTimerField };
 u8 spDashringRegistration[0x30];
 
+// The preceding 40-byte method belongs to this class: its UV table is the
+// same table referenced by the dash-ring resource hooks.
+extern "C" u8 lbl_16_data_44374[];
+extern "C" void fn_16_4E384(void*);
+extern "C" void fn_16_805FC(void)
+{
+	fn_16_4E384(lbl_16_data_44374);
+}
+
 extern "C" void fn_16_80624(s32* direction, SpDashringObject*)
 {
 	direction[0] = 0;

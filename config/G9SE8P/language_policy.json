@@ -151,6 +151,7 @@
     "rel/e_turtle_stage11.cpp",
     "rel/o_s11_door.cpp",
     "rel/o_s12_celestial_sphere.cpp",
-    "rel/o_spring.cpp"
+    "rel/o_spring.cpp",
+    "rel/sp_dashpanel.cpp"
   ]
 }

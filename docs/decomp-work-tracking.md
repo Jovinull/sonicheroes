@@ -4,6 +4,7 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Codex 2026-10-12 | `rel/sp_dashpanel.cpp`, whole Stage 40 dash panel | Fourteen native bodies and owned data exact; corrected original boundaries and five module-local base aliases; full verification recorded in the PR |
 | Codex 2026-10-12 | `rel/o_s11_door.cpp`, complete Stage 11 door unit | Complete on `decomp/s11-door-20261012`: 15/15 functions, 5,408 code bytes, 636 owned data bytes and 353 relocations exact; all 18 artifact hashes and 187 tests pass; stacked on PR #623 |
 | Claude Code | AutoSaveD ADV units (PR #116 scope, taken over) | Complete: `adv_draw`, `adv_draw_constants`, `adv_window`, `adv_menu` ported from the matching AdvertiseD sources; all 18 hashes exact |
 | Codex 2026-10-06 | `game/matrix.cpp`, recovered matrix API declarations and symbol names | Complete locally on `decomp/whole-tu-20261006`: 16 functions, all seven owned sections and 104 relocations exact; full G9SE8P release and 18 hashes pass; publication pending |
