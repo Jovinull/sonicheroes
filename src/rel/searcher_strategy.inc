@@ -23,13 +23,20 @@ class TObjEnemySearcher
 {
 public:
 	void Cancel();
+	int CheckHitPoint();
 	int SearchPlayerForSearcher();
 	int SearchPlayerFirst();
 	void ReqChangeGadgetMode(TEnemyGadget::eGadgetMode mode);
 	void SetUpAimPosition();
 	int GetMoveType() { return moveType; }
 
-	u8 unk000[0x320];
+	u8 unk000[0x18C];
+	u32 state; // 0x18C
+	u8 unk190[0xC];
+	s32 mode; // 0x19C
+	u8 unk1A0[0x144];
+	s32 request; // 0x2E4
+	u8 unk2E8[0x38];
 	s32 moveType; // 0x320
 	u8 unk324[0x8];
 	s32 readyWait;  // 0x32C
@@ -38,6 +45,8 @@ public:
 
 // TObjEnemy's check that the target is still in reach
 extern "C" int fn_800A6334(TObjEnemySearcher* enemy);
+// TObjEnemy's check for its destruction; returns a bool, tested whole
+extern "C" int fn_800A3ED4(TObjEnemySearcher* enemy);
 
 class TEnemySearcher_Strategy : public TEnemyStrategy<TObjEnemySearcher>
 {

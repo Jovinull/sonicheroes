@@ -1185,7 +1185,7 @@ rel/searcher_strategy_needle.cpp:
 	.text       start:0x0005321C end:0x00053688
 
 rel/searcher_strategy_modes.cpp:
-	.text       start:0x00053C04 end:0x00053FFC
+	.text       start:0x000536D4 end:0x00053FFC
 
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x00054594 end:0x00054618
