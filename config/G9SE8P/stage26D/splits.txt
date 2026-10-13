@@ -1601,6 +1601,9 @@ rel/pawn_check_damage2.cpp:
 rel/pawn_shadow_in_view.cpp:
 	.text       start:0x00098794 end:0x00098844
 
+rel/pawn_disp_shadow.cpp:
+	.text       start:0x00098844 end:0x00098930
+
 rel/pawn_disp_trans.cpp:
 	.text       start:0x00098930 end:0x00098934
 
