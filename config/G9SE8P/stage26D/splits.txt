@@ -1595,6 +1595,9 @@ rel/pawn_exec_thunder_shoot.cpp:
 rel/pawn_check_damage2.cpp:
 	.text       start:0x00098750 end:0x00098794
 
+rel/pawn_shadow_in_view.cpp:
+	.text       start:0x00098794 end:0x00098844
+
 rel/pawn_disp_trans.cpp:
 	.text       start:0x00098930 end:0x00098934
 
