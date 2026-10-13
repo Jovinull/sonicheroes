@@ -1,5 +1,8 @@
 #include "types.h"
 
+// The turtle's factory and editor record, which end this run, are the shared
+// rel/turtle_create.cpp and rel/turtle_register.cpp units.
+
 typedef s32 M2C_UNK;
 typedef void (*TFunc)(void);
 typedef struct {
@@ -458,8 +461,7 @@ void fn_8_BFF94(void* arg0, s32 arg1);                               /* static *
 void fn_8_C08C8(void* arg0, s32 arg1);                               /* static */
 void fn_8_C14B4(TObject* arg0);                                      /* static */
 void fn_8_C1BCC(TObject* arg0);                                      /* static */
-TObject* fn_8_C2018(TObject* arg0);                                  /* static */
-void turtleObjectCreate();                                           /* static */
+TObject* turtleObjectCtor(TObject* arg0);                            /* static */
 void turtleObjectLoad();                                             /* static */
 void turtleObjectUnload();                                           /* static */
 extern M2C_UNK __dt__16TEnemyMatTextureFv;
@@ -3093,7 +3095,7 @@ void* fn_8_C1ED8(void* arg0, s16 arg1)
 }
 
 #pragma dont_inline on
-TObject* fn_8_C2018(TObject* arg0)
+TObject* turtleObjectCtor(TObject* arg0)
 {
 	RwV3d sp10;
 	sParalysisParam sp8;
@@ -3204,7 +3206,7 @@ TEnemyParalysis* fn_8_C2344(void)
 
 	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
 	if (var_r0 != NULL) {
-		var_r0 = (TEnemyParalysis*)fn_8_C2018((TObject*)var_r0);
+		var_r0 = (TEnemyParalysis*)turtleObjectCtor((TObject*)var_r0);
 	}
 	return var_r0;
 }
@@ -3335,41 +3337,4 @@ void turtleObjectLoad(void)
 	    turtleObjectGlobalA, temp_r3, lbl_8_bss_1B78, (M2C_UNK*)lbl_8_data_17EA4, 2);
 	lbl_8_bss_1B9C = fn_80139984(0, 0x402D, 4);
 }
-
-void turtleObjectCreate(void)
-{
-	TEnemyParalysis* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x320);
-	if (object != NULL) {
-		fn_8_C2018((TObject*)object);
-	}
-}
-
-void turtleObjectRegister(void)
-{
-	__register_global_object((void*)__ct__16TEnemyMatTextureFv(turtleObjectGlobalA),
-	    (void*)&__dt__16TEnemyMatTextureFv, (void*)turtleObjectGlobalAChain);
-
-	turtleObjectEntry.flags      = 0;
-	turtleObjectEntry.unk18      = 0;
-	turtleObjectEntry.name       = (const char*)turtleObjectDisplayName;
-	turtleObjectEntry.load       = (void (*)(void))turtleObjectLoad;
-	turtleObjectEntry.unload     = (void (*)(void))turtleObjectUnload;
-	turtleObjectEntry.create     = (void (*)(void))turtleObjectCreate;
-	turtleObjectEntry.unk10      = (void*)0;
-	turtleObjectEntry.flags      = 0x20000;
-	turtleObjectEntry.unk18      = 0;
-	turtleObjectEntry.unk20      = 0x1E;
-	turtleObjectEntry.unk1C      = 0x1570;
-	turtleObjectEntry.unk1E      = 4;
-	turtleObjectEntry.unk21      = 0;
-	turtleObjectEntry.fieldTypes = (const char*)turtleObjectFieldTypes;
-	turtleObjectEntry.fieldNames = (const char**)turtleObjectFieldNames;
-	if ((const char*)turtleObjectFieldTypes != NULL) {
-		turtleObjectEntry.flags |= 8;
-	} else {
-		turtleObjectEntry.flags &= ~8;
-	}
-}
-
-__declspec(section ".ctors") void (*const turtleObjectCtorEntry)(void) = turtleObjectRegister;
 }

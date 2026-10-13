@@ -1,5 +1,8 @@
 #include "types.h"
 
+// The flyer's factory and editor record, which end this run, are the shared
+// rel/flyer_object_create.cpp and rel/flyer_register.cpp units.
+
 typedef s32 M2C_UNK;
 typedef struct HAnimClass HAnimClass;
 #define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
@@ -2333,7 +2336,7 @@ void* fn_8_A5E08(void* arg0, s16 arg1)
 	return arg0;
 }
 
-M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
+M2C_UNK* flyerObjectCtor(M2C_UNK* arg0, void* arg1)
 {
 	s32 sp8;
 	s32 spC, sp10, sp14, sp18, sp1C, sp20, sp24, sp28;
@@ -2575,7 +2578,7 @@ M2C_UNK* fn_8_A66D4(void)
 
 	var_r0 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x3C4);
 	if (var_r0 != NULL) {
-		var_r0 = fn_8_A5F50(var_r0, lbl_8042C10C);
+		var_r0 = flyerObjectCtor(var_r0, lbl_8042C10C);
 	}
 	return var_r0;
 }
@@ -2735,39 +2738,5 @@ void flyerObjectLoad(void)
 		var_r0 = __ct__17TEnemyMtnPathDataF14eEnemyDataBase(var_r0, 0xC);
 	}
 	lbl_8_bss_1958 = var_r0;
-}
-
-void flyerObjectCreate(void)
-{
-	M2C_UNK* temp_r3;
-
-	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x3C4);
-	if (temp_r3 != NULL) {
-		fn_8_A5F50(temp_r3, lbl_8042C10C);
-	}
-}
-
-void flyerObjectRegister(void)
-{
-	flyerObjectEntry.flags      = 0;
-	flyerObjectEntry.unk18      = 0;
-	flyerObjectEntry.name       = (const char*)flyerObjectDisplayName;
-	flyerObjectEntry.load       = (void (*)(void))flyerObjectLoad;
-	flyerObjectEntry.unload     = (void (*)(void))flyerObjectUnload;
-	flyerObjectEntry.create     = (void (*)(void))flyerObjectCreate;
-	flyerObjectEntry.unk10      = (void*)0;
-	flyerObjectEntry.flags      = 0;
-	flyerObjectEntry.unk18      = 0;
-	flyerObjectEntry.unk20      = 0x1E;
-	flyerObjectEntry.unk1C      = 0x1530;
-	flyerObjectEntry.unk1E      = 4;
-	flyerObjectEntry.unk21      = 0;
-	flyerObjectEntry.fieldTypes = (const char*)flyerObjectFieldTypes;
-	flyerObjectEntry.fieldNames = (const char**)&flyerObjectFieldNames;
-	if ((const char*)flyerObjectFieldTypes != NULL) {
-		flyerObjectEntry.flags |= 8;
-	} else {
-		flyerObjectEntry.flags &= ~8;
-	}
 }
 }

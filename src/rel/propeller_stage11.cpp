@@ -1,5 +1,8 @@
 #include "types.h"
 
+// The propeller's factory, which ends this run, is the shared
+// rel/propeller_create.cpp unit.
+
 struct Vec3;
 
 extern "C" {
@@ -75,7 +78,7 @@ void* fn_8_46898(void*, void*);
 void fn_80150958(void*);
 void fn_8014D8A4(void*);
 void* Malloc__9THeapCtrlFUi(void*, int);
-void* fn_8_48B4C(void*, void*);
+void* __ct__13TObjPropellerFP7TObject(void*, void*);
 void __ct__7TObjectFP7TObject(void*, void*);
 void __ct__10TObjSetObjFv(void*);
 void __ct__7C_COLLIFv(void*);
@@ -416,7 +419,7 @@ extern "C" void fn_8_46C88(void* self)
 	fn_8019EB94(model, &field<float>(self, 0xE4), 2);
 }
 
-extern "C" void* fn_8_48B4C(void* self, void* parent)
+extern "C" void* __ct__13TObjPropellerFP7TObject(void* self, void* parent)
 {
 	__ct__7TObjectFP7TObject(self, parent);
 	__ct__10TObjSetObjFv((u8*)self + 0x28);
@@ -746,11 +749,4 @@ extern "C" void propellerUnload()
 		}
 	}
 	lbl_8_bss_AC8 = NULL;
-}
-
-extern "C" void propellerCreate()
-{
-	void* object = Malloc__9THeapCtrlFUi(lbl_8042C148, 356);
-	if (object != NULL)
-		fn_8_48B4C(object, lbl_8042C110);
 }

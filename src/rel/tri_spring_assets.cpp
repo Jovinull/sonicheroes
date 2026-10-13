@@ -39,7 +39,7 @@ extern "C" void* lbl_8042C148;
 extern "C" void* Malloc__9THeapCtrlFUi(void* heap, u32 size);
 
 // Defined by each module, renamed to these names in its own symbols.txt.
-extern "C" void* triSpringCtor(void* object, void* owner);
+extern "C" void* __ct__13TObjTriSpringFP7TObject(void* object, void* owner);
 extern "C" void triSpringLoad(void);
 extern "C" void triSpringUnload(void);
 extern "C" void triSpringReset(void* object);
@@ -53,7 +53,7 @@ extern "C" void triSpringCreate(void)
 	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x110);
 
 	if (memory != NULL) {
-		triSpringCtor(memory, lbl_8042C110);
+		__ct__13TObjTriSpringFP7TObject(memory, lbl_8042C110);
 	}
 }
 
