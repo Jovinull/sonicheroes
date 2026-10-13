@@ -1580,6 +1580,9 @@ rel/e2000_object_register.cpp:
 	.text       start:0x00094B00 end:0x00094BFC
 	.ctors      start:0x000000F4 end:0x000000F8
 
+rel/pawn_check_direction.cpp:
+	.text       start:0x00097208 end:0x00097388
+
 rel/pawn_hit_point.cpp:
 	.text       start:0x00097B38 end:0x00097C28
 
