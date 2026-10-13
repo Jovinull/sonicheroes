@@ -6370,7 +6370,7 @@ config.libs = [
             Object(
                 Matching,
                 "rel/pawn_strategy_setup.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
             ),
             Object(
                 Matching,

@@ -13,16 +13,25 @@ class TObjEnemyPawn
 {
 public:
 	int SearchPlayerForPawn(int show);
+	int CheckHitPoint();
 	// returns a bool; the strategy tests the whole register
 	int CheckDamage();
 
-	u8 unk000[0x24C];
-	s8 start; // 0x24C
-	u8 unk24D[0xF];
+	u8 unk000[0x18C];
+	u32 state; // 0x18C
+	u8 unk190[0xC];
+	s32 mode; // 0x19C
+	u8 unk1A0[0xA8];
+	s32 request; // 0x248
+	s8 start;    // 0x24C
+	u8 unk24D[0x2];
+	s8 shielded; // 0x24F
+	u8 unk250[0xC];
 	s32 shotWait; // 0x25C
 };
 
 extern "C" void fn_800A31B8(TObjEnemyPawn* enemy, int mode);
+extern "C" int fn_800A3ED4(TObjEnemyPawn* enemy);
 
 template <class T> class TEnemyStrategy
 {

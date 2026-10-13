@@ -154,6 +154,7 @@
     "rel/o_s11_door.cpp",
     "rel/o_s12_celestial_sphere.cpp",
     "rel/o_spring.cpp",
+    "rel/pawn_strategy_setup.cpp",
     "rel/sp_dashpanel.cpp"
   ]
 }

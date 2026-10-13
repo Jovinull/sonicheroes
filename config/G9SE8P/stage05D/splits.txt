@@ -1520,8 +1520,8 @@ rel/pawn_strategy_modes.cpp:
 	.text       start:0x00081ED4 end:0x000828B4
 
 rel/pawn_strategy_setup.cpp:
-	.text       start:0x000828B4 end:0x00082AE8
-	.data       start:0x0000F7E0 end:0x0000F7FC
+	.text       start:0x000828B4 end:0x00083284
+	.data       start:0x0000F7C8 end:0x0000F89C
 
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x00083284 end:0x000832C0

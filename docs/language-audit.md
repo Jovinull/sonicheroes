@@ -503,6 +503,22 @@ helpers are named `chao*` rather than file-static so the otherwise
 unreferenced `GetHierarchy` copy can be kept with `force_active` in every
 module (a static symbol cannot be force-activated by name).
 
+### Pawn strategy
+
+`rel/pawn_strategy_setup.cpp` reconstructs `TEnemyPawn_Strategy::SetUpFirst`
+and `TEnemyPawn_Strategy::IsReqChangeMode`. The PS2 symbols name the class, a
+`TEnemyStrategy<TObjEnemyPawn>`, and order its members as the 27
+`StrategyMode_*`, `SetUpFirst`, `IsReqChangeMode`, `ExecStrategyMode`, the
+destructor and the constructor; the eleven pawn modules keep the same order on
+GameCube. The unit owns the strategy's vtable, whose key function is
+`IsReqChangeMode`, and the three jump tables of the two functions. Retail has
+the vtable first and the jump tables after it, in function order. Without
+deferred inlining the compiler emits the vtable after the jump tables; with
+`-inline deferred` it comes first, and defining `IsReqChangeMode` before
+`SetUpFirst` (the mode emits functions in reverse order) gives the retail text
+order. Both functions, their relocations and the owned `.data` match in all
+eleven modules (exato EXACT), and all 18 hashes match.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and
