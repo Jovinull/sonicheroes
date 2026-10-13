@@ -158,7 +158,7 @@ void* Malloc__9THeapCtrlFUi(void*, u32);
 void Free__9THeapCtrlFPv(void*, void*);
 void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(RpClump*, u32);
 s32 IsAnnihilated__19nEnemyCommunicationFUc(u8);
-s32 objGroupAllActive();
+s32 objGroupAllActive(u8 group);
 void fn_800B52E8(void*, s32, s32, s32);
 RpClump* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
 s32 CheckFileID__7ONEFILEFPc(void*, const char*);
@@ -412,7 +412,7 @@ void TObjS11Door::Exec()
 	}
 	switch (state) {
 		case 0:
-			if ((IsnotThereAnySameCommunicateId() != 0 || objGroupAllActive() != 0)
+			if ((IsnotThereAnySameCommunicateId() != 0 || objGroupAllActive(frame->group) != 0)
 			    && IsAnnihilated__19nEnemyCommunicationFUc(frame->group)) {
 				state = 1;
 				if (lbl_8042C388 != NULL) {

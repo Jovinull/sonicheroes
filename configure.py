@@ -4561,7 +4561,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/o_s11_door.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),

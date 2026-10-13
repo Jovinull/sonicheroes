@@ -18,5 +18,6 @@ FORCEFILES
     e_tree_stage11.o
     e_grass2_stage11.o
     e_grass_stage11.o
+    o_s11_door.o
     e_s11_flag_stage11.o
 }
