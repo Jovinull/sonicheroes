@@ -623,6 +623,9 @@ rel/pawn_disp_trans.cpp:
 rel/pawn_run_to_aim.cpp:
 	.text       start:0x0002E570 end:0x0002E6D8
 
+rel/pawn_walk_to_aim.cpp:
+	.text       start:0x0002E6D8 end:0x0002E838
+
 rel/pawn_turn_to_aim.cpp:
 	.text       start:0x0002E838 end:0x0002E95C
 
