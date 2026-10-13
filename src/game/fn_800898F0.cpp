@@ -1,11 +1,13 @@
 #include "types.h"
 
-struct TFn800898F0 {
-	u8 mPadding0[0x630];
-	s32 mValue;
+// Sets the word at 0x630 of the object.
+
+struct Fn800898F0Object {
+	u8 unk000[0x630];
+	s32 value; // 0x630
 };
 
-extern "C" void fn_800898F0(TFn800898F0* arg0, s32 arg1)
+extern "C" void fn_800898F0(Fn800898F0Object* object, s32 value)
 {
-	arg0->mValue = arg1;
+	object->value = value;
 }

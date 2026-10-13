@@ -1,18 +1,21 @@
 #include "types.h"
 
-struct TFn8004FC9CData {
-	u8 mPadding0[5];
-	volatile s8 mField5;
-	u8 mPadding6[0x16];
-	volatile s8 mField1C;
+// Reads two volatile state bytes of the game state (0x1C, then 0x5) and does
+// nothing with them: what is left of a check whose body was compiled out.
+
+struct GameFlags {
+	u8 unk00[0x5];
+	volatile s8 flag05; // 0x05
+	u8 unk06[0x16];
+	volatile s8 flag1C; // 0x1C
 };
 
-extern TFn8004FC9CData* lbl_8042C180;
+extern GameFlags* lbl_8042C180;
 
 extern "C" void fn_8004FC9C(void)
 {
-	TFn8004FC9CData* data = lbl_8042C180;
-	if (data->mField1C != 0 || data->mField5 != 0) {
+	GameFlags* flags = lbl_8042C180;
+	if (flags->flag1C != 0 || flags->flag05 != 0) {
 		return;
 	}
 }

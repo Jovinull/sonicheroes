@@ -1,22 +1,25 @@
 #include "types.h"
 
-struct TFn80051F68Angles {
-	s32 mX;
-	s32 mY;
+// Turns the module's base direction (x = y = lbl_8042D374, z = lbl_8042D388)
+// by the given Y and then X angles into out, through the current matrix stack
+// (push, identity, RotateY, RotateX, CalcVector, pop). The first argument is
+// unused.
+
+struct AngleXY {
+	s32 x;
+	s32 y;
 };
 
-struct TFn80051F68Vector {
-	f32 mX;
-	f32 mY;
-	f32 mZ;
+struct Vector3 {
+	f32 x;
+	f32 y;
+	f32 z;
 };
 
 extern "C" {
 extern f32 lbl_8042D374;
 extern f32 lbl_8042D388;
-
-void CalcVector__FPC11RwMatrixTagPC5RwV3dP5RwV3d(
-    void*, const TFn80051F68Vector*, TFn80051F68Vector*);
+void CalcVector__FPC11RwMatrixTagPC5RwV3dP5RwV3d(void*, const Vector3*, Vector3*);
 void PopMatrix__FUi(u32);
 void PushMatrix__FP11RwMatrixTag(void*);
 void RotateX__FP11RwMatrixTagi(void*, s32);
@@ -24,20 +27,20 @@ void RotateY__FP11RwMatrixTagi(void*, s32);
 void UnitMatrix__FP11RwMatrixTag(void*);
 }
 
-extern "C" void fn_80051F68(void* arg0, TFn80051F68Angles* arg1, TFn80051F68Vector* arg2)
+extern "C" void fn_80051F68(void* self, AngleXY* angle, Vector3* out)
 {
-	register TFn80051F68Angles* temp_r30 = arg1;
-	register TFn80051F68Vector* temp_r31 = arg2;
-	f32 temp_f0                          = lbl_8042D374;
+	register AngleXY* turn = angle;
+	register Vector3* dir  = out;
+	f32 base               = lbl_8042D374;
+	(void)self;
 
-	(void)arg0;
-	temp_r31->mX = temp_f0;
-	temp_r31->mY = temp_f0;
-	temp_r31->mZ = lbl_8042D388;
+	dir->x = base;
+	dir->y = base;
+	dir->z = lbl_8042D388;
 	PushMatrix__FP11RwMatrixTag(0);
 	UnitMatrix__FP11RwMatrixTag(0);
-	RotateY__FP11RwMatrixTagi(0, temp_r30->mY);
-	RotateX__FP11RwMatrixTagi(0, temp_r30->mX);
-	CalcVector__FPC11RwMatrixTagPC5RwV3dP5RwV3d(0, temp_r31, temp_r31);
+	RotateY__FP11RwMatrixTagi(0, turn->y);
+	RotateX__FP11RwMatrixTagi(0, turn->x);
+	CalcVector__FPC11RwMatrixTagPC5RwV3dP5RwV3d(0, dir, dir);
 	PopMatrix__FUi(1);
 }

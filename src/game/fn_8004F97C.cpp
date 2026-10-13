@@ -1,5 +1,8 @@
 #include "types.h"
 
+// A static initializer: lbl_8042C230 gets the offset of the 39th word of the
+// buffer at lbl_802C21E0 (0x9C).
+
 extern "C" u8 lbl_802C21E0[0xE7F5];
 extern "C" s32 lbl_8042C230;
 

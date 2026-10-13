@@ -1,11 +1,13 @@
 #include "types.h"
 
-struct Fn800A6D44Data {
-	u8 pad[0x210];
-	f32 field210;
+// Whether the given value is below the enemy's float at 0x210.
+
+struct Enemy {
+	u8 unk000[0x210];
+	f32 limit; // 0x210
 };
 
-extern "C" u32 fn_800A6D44(Fn800A6D44Data* arg0, f32 arg1)
+extern "C" u32 fn_800A6D44(Enemy* enemy, f32 value)
 {
-	return arg1 < arg0->field210;
+	return value < enemy->limit;
 }

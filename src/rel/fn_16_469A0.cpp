@@ -1,6 +1,8 @@
 #include "types.h"
 
-extern "C" void fn_16_469A0(s32 arg0, s32* arg1, u8 arg2)
+// Replaces the top byte of the pointed-to word with the given value.
+
+extern "C" void fn_16_469A0(s32 self, s32* word, u8 value)
 {
-	*arg1 = (arg2 << 24) | (*arg1 & 0x00FFFFFF);
+	*word = (value << 24) | (*word & 0x00FFFFFF);
 }

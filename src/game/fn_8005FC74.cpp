@@ -1,8 +1,10 @@
 #include "types.h"
 
-extern "C" void fn_8005FBBC(void* arg0, void* arg1, s32 arg2);
+// fn_8005FBBC with -1 as its third argument.
 
-extern "C" void fn_8005FC74(void* arg0, void* arg1)
+extern "C" void fn_8005FBBC(void* self, void* arg, s32 index);
+
+extern "C" void fn_8005FC74(void* self, void* arg)
 {
-	fn_8005FBBC(arg0, arg1, -1);
+	fn_8005FBBC(self, arg, -1);
 }

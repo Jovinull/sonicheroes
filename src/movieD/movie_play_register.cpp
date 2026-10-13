@@ -1,3 +1,7 @@
+// movieD's startup registration (a .ctors entry): fills the MoviePlay hook
+// table with the module's five routines and registers its global object's
+// destructor (fn_17_2738) with __register_global_object.
+
 typedef void (*MoviePlayRoutine)(void);
 
 typedef struct MoviePlayTable {

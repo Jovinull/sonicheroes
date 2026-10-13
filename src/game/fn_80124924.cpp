@@ -1,11 +1,13 @@
 #include "types.h"
 
-struct Fn80124924Data {
-	u8 pad[0xBC];
-	s32 fieldBC;
+// Whether the object's word at 0xBC is set.
+
+struct Fn80124924Object {
+	u8 unk00[0xBC];
+	s32 flag; // 0xBC
 };
 
-extern "C" s32 fn_80124924(Fn80124924Data* arg0)
+extern "C" s32 fn_80124924(Fn80124924Object* object)
 {
-	return arg0->fieldBC != 0;
+	return object->flag != 0;
 }

@@ -1,15 +1,17 @@
 #include "types.h"
 
-struct Fn800A5B34Data {
-	u8 pad[0x140];
-	f32 input[3];
-	u8 pad14C[0x98];
-	f32 output[3];
+// Copies the enemy's position (0x140) into its aim point (0x1E4).
+
+struct Enemy {
+	u8 unk000[0x140];
+	f32 pos[3]; // 0x140
+	u8 unk14C[0x98];
+	f32 aim[3]; // 0x1E4
 };
 
-extern "C" void fn_800A5B34(Fn800A5B34Data* arg0)
+extern "C" void fn_800A5B34(Enemy* enemy)
 {
-	arg0->output[0] = arg0->input[0];
-	arg0->output[1] = arg0->input[1];
-	arg0->output[2] = arg0->input[2];
+	enemy->aim[0] = enemy->pos[0];
+	enemy->aim[1] = enemy->pos[1];
+	enemy->aim[2] = enemy->pos[2];
 }

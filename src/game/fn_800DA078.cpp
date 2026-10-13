@@ -1,8 +1,10 @@
 #include "types.h"
 
-extern "C" void fn_800DA0C0(void* arg0, s32 arg1);
+// fn_800DA0C0 with 0.
 
-extern "C" void fn_800DA078(void* arg0)
+extern "C" void fn_800DA0C0(void* self, s32 value);
+
+extern "C" void fn_800DA078(void* self)
 {
-	fn_800DA0C0(arg0, 0);
+	fn_800DA0C0(self, 0);
 }

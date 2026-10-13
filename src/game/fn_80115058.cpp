@@ -1,5 +1,7 @@
 #include "types.h"
 
+// Clears the four words at lbl_8042C678 to lbl_8042C684.
+
 extern s32 lbl_8042C678;
 extern s32 lbl_8042C67C;
 extern s32 lbl_8042C680;

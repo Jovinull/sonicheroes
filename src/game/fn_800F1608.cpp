@@ -1,14 +1,16 @@
 #include "types.h"
 
-struct TFn800F1608 {
-	u8 mPadding0[0x10];
-	s16 mValue;
-	u8 mPadding12[0x12];
-	f32 mFloat;
+// Sets the motion's index (0x10) and its float at 0x24.
+
+struct Fn800F1608Motion {
+	u8 unk00[0x10];
+	s16 index; // 0x10
+	u8 unk12[0x12];
+	f32 value; // 0x24
 };
 
-extern "C" void fn_800F1608(TFn800F1608* arg0, s32 arg1, f32 arg2)
+extern "C" void fn_800F1608(Fn800F1608Motion* motion, s32 index, f32 value)
 {
-	arg0->mValue = arg1;
-	arg0->mFloat = arg2;
+	motion->index = index;
+	motion->value = value;
 }

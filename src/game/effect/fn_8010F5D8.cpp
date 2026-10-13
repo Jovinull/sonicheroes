@@ -1,22 +1,25 @@
 #include "types.h"
 
-struct TFn8010F5D8Child {
-	u8 mPadding[4];
-	s32 mFlags;
+// Flags the effect's child (bit 0x10 of its flags at 0x4), when it has one,
+// and clears the effect's word at 0x1A8.
+
+struct Fn8010F5D8Child {
+	u8 unk0[0x4];
+	s32 flags; // 0x4
 };
 
-struct TFn8010F5D8 {
-	u8 mPadding0[0x70];
-	TFn8010F5D8Child* mpChild;
-	u8 mPadding1[0x134];
-	s32 mValue1A8;
+struct Fn8010F5D8Effect {
+	u8 unk000[0x70];
+	Fn8010F5D8Child* child; // 0x070
+	u8 unk074[0x134];
+	s32 value; // 0x1A8
 };
 
-extern "C" void fn_8010F5D8(TFn8010F5D8* arg0)
+extern "C" void fn_8010F5D8(Fn8010F5D8Effect* effect)
 {
-	TFn8010F5D8Child* child = arg0->mpChild;
+	Fn8010F5D8Child* child = effect->child;
 	if (child != NULL) {
-		child->mFlags |= 0x10;
+		child->flags |= 0x10;
 	}
-	arg0->mValue1A8 = 0;
+	effect->value = 0;
 }

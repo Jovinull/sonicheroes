@@ -1,5 +1,9 @@
 #include "types.h"
 
+// The stage40D object record registered at startup (a .ctors entry): object
+// 0x59 with its display name, create hook fn_16_32F10, flags 0x1000 and its
+// field types and names, through setupObjClass.
+
 struct SETOBJ_PARAM {
 	u8 data[0x30];
 };

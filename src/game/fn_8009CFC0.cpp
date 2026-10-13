@@ -1,32 +1,35 @@
 #include "types.h"
 
-struct TFn8009CFC0Data {
-	u8 mPadding0[0x39];
-	s8 mMemberCount;
-	u8 mPadding3A[0x114 - 0x3A];
-	void* mMember;
-	u8 mPadding118[0x20D - 0x118];
-	u8 mStatus[0x80];
+// For each member of the team (count at 0x39, members from 0x114) it calls
+// fn_8003FC44 on the member, reports the member's motion block (0x760) to the
+// team (fn_80092814) and clears the member's status byte (0x20D + index).
+
+struct Team {
+	u8 unk000[0x39];
+	s8 memberCount; // 0x39
+	u8 unk03A[0x114 - 0x3A];
+	void* member; // 0x114 (one per slot, 4 bytes apart)
+	u8 unk118[0x20D - 0x118];
+	u8 status[0x80]; // 0x20D
 };
 
-extern "C" void fn_8003FC44(void* arg0);
-extern "C" void fn_80092814(void* arg0, void* arg1);
+extern "C" void fn_8003FC44(void* member);
+extern "C" void fn_80092814(void* team, void* motion);
 
-extern "C" void fn_8009CFC0(TFn8009CFC0Data* arg0)
+extern "C" void fn_8009CFC0(Team* team)
 {
-	u8* var_r30;
-	s32 var_r29;
-	register u32 var_r31 = 0;
+	u8* slot;
+	s32 i;
+	register u32 zero = 0;
 
-	var_r29 = 0;
-	var_r30 = (u8*)arg0;
-
-	while (var_r29 < arg0->mMemberCount) {
-		TFn8009CFC0Data* temp_r30 = (TFn8009CFC0Data*)var_r30;
-		fn_8003FC44(temp_r30->mMember);
-		fn_80092814(arg0, (u8*)temp_r30->mMember + 0x760);
-		arg0->mStatus[var_r29] = var_r31;
-		var_r30 += 4;
-		var_r29 += 1;
+	i    = 0;
+	slot = (u8*)team;
+	while (i < team->memberCount) {
+		Team* entry = (Team*)slot;
+		fn_8003FC44(entry->member);
+		fn_80092814(team, (u8*)entry->member + 0x760);
+		team->status[i] = zero;
+		slot += 4;
+		i += 1;
 	}
 }

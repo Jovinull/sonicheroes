@@ -1,14 +1,16 @@
 #include "types.h"
 
-struct TFn8005B8A0 {
-	u8 mPadding0[0x18];
-	s32 mValues[4];
+// Clears the four words at 0x18 of the object.
+
+struct Fn8005B8A0Object {
+	u8 unk00[0x18];
+	s32 values[4]; // 0x18
 };
 
-extern "C" void fn_8005B8A0(TFn8005B8A0* arg0)
+extern "C" void fn_8005B8A0(Fn8005B8A0Object* object)
 {
-	arg0->mValues[0] = 0;
-	arg0->mValues[1] = 0;
-	arg0->mValues[2] = 0;
-	arg0->mValues[3] = 0;
+	object->values[0] = 0;
+	object->values[1] = 0;
+	object->values[2] = 0;
+	object->values[3] = 0;
 }
