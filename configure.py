@@ -7920,11 +7920,6 @@ config.custom_build_rules = [
         "description": "FIX miscs compiler constant atom order",
     },
     {
-        "name": "fix_calc_registers",
-        "command": "$python tools/fix_calc_registers.py $in $out",
-        "description": "FIX calc sine and cosine register allocation",
-    },
-    {
         "name": "fix_calc_colli_pool",
         "command": "$python tools/fix_calc_colli_pool.py $in $out",
         "description": "FIX collision compiler literal order",
@@ -8356,12 +8351,6 @@ config.custom_build_steps = {
             "rule": "fix_miscs_object",
             "inputs": "build/G9SE8P/src/game/miscs.o",
             "implicit": ["tools/fix_miscs_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/calc-registers.stamp",
-            "rule": "fix_calc_registers",
-            "inputs": "build/G9SE8P/src/game/calc.o",
-            "implicit": ["tools/fix_calc_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/eff-tornado-object.stamp",
