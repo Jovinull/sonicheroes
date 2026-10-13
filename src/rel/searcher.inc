@@ -152,7 +152,8 @@ typedef struct Searcher {
 	f32 leanZ;      // 0x290
 	f32 shadowFade; // 0x294, how fast the shadow fades with height
 	s32 shadowOn;   // 0x298
-	u8 unk29C[0xC];
+	s32 aimPitch;   // 0x29C, 0x3000 down or 0xD000 up
+	u8 unk2A0[0x8];
 	f32 shownHitPoint; // 0x2A8
 	u8 unk2AC[0x4];
 	TEnemyIconMan* gauge; // 0x2B0

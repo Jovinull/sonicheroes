@@ -1847,6 +1847,9 @@ rel/searcher_disp_shadow.cpp:
 rel/searcher_disp.cpp:
 	.text       start:0x000A560C end:0x000A5690
 
+rel/searcher_check_direction.cpp:
+	.text       start:0x000A5690 end:0x000A5830
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 
