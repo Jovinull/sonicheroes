@@ -1718,20 +1718,30 @@ retail normal-component load before the multiply/negate sequence. Descriptive
 names for the Y bounds, plane distances and projection rates describe their
 GameCube computations; they do not assert original source spelling.
 
-This is a **nonmatching draft** and retains the original linked object. The
-point routine and all 32 constant bytes match exactly; all 29 direct call target
-counts agree. The triangle routine is 4,920 native versus 4,928 retail bytes
-(99.54% object match), and the segment routine is 4,232 versus 4,240 (98.94%).
-Both exception-table records and stack-frame sizes match. Instruction and
-register differences remain, along with the resulting exception-index offsets
-and sizes. No instruction patcher or inline assembly is introduced, and matching
-is not claimed for the two larger routines.
+The complete unit now matches directly from C++: the triangle routine is 4,928
+bytes, the segment routine is 4,240 bytes, and the point routine is eight bytes.
+All 9,176 text bytes, 32 constant bytes, 16 exception-table bytes, 24
+exception-index bytes and 103 normalized relocations match the target object.
+No object postprocessor, instruction patcher or inline assembly is used.
 
-Validation: G9SE8P, the sole supported target, passes the full all-source build,
-link and report generation. All 55 regression tests, both policy checks and
-all 18 original-linked DOL/REL hashes pass. These do not establish runtime
-validation of the candidate. PAL, Japan and PS2 have no configured build
-targets; no physical hardware or runtime testing was performed.
+The triangle retains the lifetimes of the signed plane distance and projection
+scale together, captures reused edge components, and keeps separate coefficient
+caches for distinct branch loads. The segment uses its local vectors directly
+instead of redundant scalar copies; its projection state retains the reused X
+component, scale and dot product. Captures on both operands of the X and Y
+products preserve the native evaluation order. These are source reconstruction
+choices supported by the complete GameCube object, not claims about original
+local spelling. Existing compiler settings remain unchanged: automatic inlining,
+no scheduling/peephole optimization, no floating-point contraction, and no data
+pooling. Common-subexpression suppression preserves repeated input-field and
+threshold reads in both larger routines.
+
+Validation covers G9SE8P, the sole supported target: the all-source build,
+release link and report, all 204 regression tests, the language-policy check,
+65 postprocessor checks, and all 18 DOL/REL hashes. This unit is linked from
+the reconstructed source.
+PAL, Japan and PS2 have no configured build targets; compilation and matching
+do not establish physical-hardware or runtime validation.
 
 ### miscs.cpp complete reconstruction
 
