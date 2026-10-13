@@ -1,265 +1,293 @@
 #!/usr/bin/env python3
+"""Bind native blinklight symbols and permute existing data atoms only.
 
-"""Normalize compiler-only ELF details for o_s13_blinklight.cpp."""
+All thirteen native bodies already have target order. Preserve complete inferred
+TU extents, including opaque residual40-byte rodata and12-byte BSS zero storage;
+neither residual is claimed as a recovered original array or class field.
+"""
 
 import argparse
+import hashlib
 import os
 import struct
 import subprocess
 import tempfile
 from pathlib import Path
 
-
-SYMBOL_RENAMES = {
-    "slot0__21BlinkLightPrimaryBaseFv": "blinkLightDtor",
-    "slot1__21BlinkLightPrimaryBaseFv": "blinkLightExec",
-    "slot2__21BlinkLightPrimaryBaseFv": "Disp__7TObjectFv",
-    "slot3__21BlinkLightPrimaryBaseFv": "TDisp__7TObjectFv",
-    "slot4__21BlinkLightPrimaryBaseFv": "PDisp__7TObjectFv",
-    "slot5__21BlinkLightPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",
-    "slot6__21BlinkLightPrimaryBaseFv": "Debug__7TObjectFv",
-    "slot7__21BlinkLightPrimaryBaseFv": "Error__7TObjectFPc",
-    "slot8__21BlinkLightPrimaryBaseFv": "Render__7TObjectFv",
+TEXT_SHA256 = "ec7a4b750f9a7399a8cc35e8c20044ebbe8d68c1f7ad2bef7b82771fe67f4d33"
+ALIASES = {
+    "CreateParticle__17TObjS13BlinkLightFv": "blinkLightCreateParticle",
+    "DestroyClump__17TObjS13BlinkLightFPP7RpClump": "blinkLightDestroyClump",
+    "CloneClump__17TObjS13BlinkLightFPP7RpClump": "blinkLightCloneClump",
+    "SetPosition__17TObjS13BlinkLightFv": "blinkLightSetPosition",
+    "Exec__17TObjS13BlinkLightFv": "blinkLightExec",
+    "EditOnChange__17TObjS13BlinkLightFP13SETDATA_PARAM": "editOnChange__17BlinkLightVirtualFPv",
+    "@40@EditOnChange__17TObjS13BlinkLightFP13SETDATA_PARAM": "@40@editOnChange__17BlinkLightVirtualFPv",
+    "__dt__17TObjS13BlinkLightFv": "blinkLightDtor",
+    "__ct__17TObjS13BlinkLightFP7TObject": "blinkLightCtor",
+    "__vt__17TObjS13BlinkLight": "__vt__17BlinkLightVirtual",
 }
-
-# The retail new-expression keeps the allocation in r0, then moves the object
-# into r30; this compiler folds the temporary and colors the object/model as
-# r31/r30.  The source carries the compiler's redundant second null branch as
-# a four-byte placeholder, keeping this normalization size- and order-neutral.
-# Every changed word is checked before replacement.  The range is confined to
-# blinkLightCreate+0x30..+0x1E0; calls, branches, immediates, and relocations are
-# otherwise untouched.
-FACTORY_REGISTER_WORDS = {
-    0x030: (0x7C7F1B78, 0x7C601B78),
-    0x034: (0x281F0000, 0x28000000),
-    0x03C: (0x418201BC, 0x7C1E0378),
-    0x050: (0x387F0028, 0x387E0028),
-    0x058: (0x387F0030, 0x387E0030),
-    0x068: (0x907F0018, 0x907E0018),
-    0x070: (0x901F002C, 0x901E002C),
-    0x080: (0x901F0000, 0x901E0000),
-    0x088: (0xB01F001E, 0xB01E001E),
-    0x098: (0xD01F00BC, 0xD01E00BC),
-    0x0A8: (0x38BF00C0, 0x38BE00C0),
-    0x0B4: (0x807F00C0, 0x807E00C0),
-    0x0CC: (0x807F00C0, 0x807E00C0),
-    0x0D0: (0x83C30004, 0x83E30004),
-    0x0D4: (0x807F0028, 0x807E0028),
-    0x0E4: (0x807F0028, 0x807E0028),
-    0x100: (0x387E0010, 0x387F0010),
-    0x118: (0x7FC3F378, 0x7FE3FB78),
-    0x120: (0x807F0028, 0x807E0028),
-    0x130: (0x807F0028, 0x807E0028),
-    0x14C: (0x387E0010, 0x387F0010),
-    0x164: (0x7FC3F378, 0x7FE3FB78),
-    0x16C: (0x807F0028, 0x807E0028),
-    0x17C: (0x807F0028, 0x807E0028),
-    0x198: (0x387E0010, 0x387F0010),
-    0x1B0: (0x7FC3F378, 0x7FE3FB78),
-    0x1B8: (0x7FC3F378, 0x7FE3FB78),
-    0x1BC: (0x809F0028, 0x809E0028),
-    0x1C8: (0x807F00C0, 0x807E00C0),
-    0x1D4: (0x907F00C4, 0x907E00C4),
-    0x1DC: (0xB01F00B8, 0xB01E00B8),
-    0x1E0: (0x387F0030, 0x387E0030),
+FUNCTION_SIZES = {
+    "blinkLightCreateParticle": 100,
+    "blinkLightDestroyClump": 36,
+    "blinkLightCloneClump": 88,
+    "blinkLightSetPosition": 316,
+    "blinkLightExec": 764,
+    "editOnChange__17BlinkLightVirtualFPv": 4,
+    "blinkLightDtor": 160,
+    "blinkLightCtor": 496,
+    "blinkLightEnd": 92,
+    "blinkLightInit": 164,
+    "blinkLightCreate": 536,
+    "blinkLightRegister": 152,
+    "@40@editOnChange__17BlinkLightVirtualFPv": 8,
 }
 
 
-def cstring(blob: bytes, offset: int) -> str:
-    return blob[offset : blob.index(0, offset)].decode("ascii")
+class Elf:
 
+    def __init__(self, data):
+        self.data = bytearray(data)
+        if self.data[:6] != b"\x7fELF\x01\x02":
+            raise ValueError("expected big-endian ELF32")
+        self.header = struct.unpack_from(">16sHHIIIIIHHHHHH", data)
+        h = self.header
+        self.sections = [
+            list(struct.unpack_from(">10I", data, h[6] + i * h[11]))
+            for i in range(h[12])
+        ]
+        names = self.payload(self.sections[h[13]])
+        self.names = [self.string(names, s[0]) for s in self.sections]
+        self.by_name = {
+            n: (i, s) for i, (n, s) in enumerate(zip(self.names, self.sections))
+        }
+        self.symbols = []
+        _, tab = self.by_name[".symtab"]
+        strings = self.payload(self.sections[tab[6]])
+        for off in range(tab[4], tab[4] + tab[5], tab[9]):
+            sym = list(struct.unpack_from(">IIIBBH", data, off))
+            self.symbols.append((self.string(strings, sym[0]), off, sym))
+        self.aliases = dict(ALIASES)
+        self.named = {self.canonical(n): (n, o, s) for n, o, s in self.symbols if n}
 
-def normalize_factory_registers(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    ehdr = struct.unpack_from(">16sHHIIIIIHHHHHH", data, 0)
-    shoff, shentsize, shnum, shstrndx = ehdr[6], ehdr[11], ehdr[12], ehdr[13]
-    sections = [
-        list(struct.unpack_from(">IIIIIIIIII", data, shoff + i * shentsize))
-        for i in range(shnum)
-    ]
-    shstr = sections[shstrndx]
-    shstr_data = data[shstr[4] : shstr[4] + shstr[5]]
-    by_name = {
-        cstring(shstr_data, section[0]): (index, section)
-        for index, section in enumerate(sections)
-    }
+    @staticmethod
+    def string(data, off):
+        return data[off : data.index(0, off)].decode("ascii")
 
-    text_index, text_section = by_name[".text"]
-    _, symtab = by_name[".symtab"]
-    strtab = sections[symtab[6]]
-    strings = data[strtab[4] : strtab[4] + strtab[5]]
-    factory = None
-    for offset in range(symtab[4], symtab[4] + symtab[5], symtab[9]):
-        symbol = struct.unpack_from(">IIIBBH", data, offset)
-        name = cstring(strings, symbol[0]) if symbol[0] else ""
-        if name == "blinkLightCreate" and symbol[5] == text_index:
-            factory = symbol
-            break
-    if factory is None or factory[2] != 0x218:
-        raise SystemExit("unexpected blinkLightCreate symbol")
+    def payload(self, s):
+        return bytes(self.data[s[4] : s[4] + s[5]]) if s[1] != 8 else bytes(s[5])
 
-    start = text_section[4] + factory[1]
-    for relative, (source, target) in FACTORY_REGISTER_WORDS.items():
-        offset = start + relative
-        actual = struct.unpack_from(">I", data, offset)[0]
-        if actual != source:
-            raise SystemExit(
-                f"unexpected blinkLightCreate+0x{relative:X}: 0x{actual:08X}"
+    def canonical(self, n):
+        return self.aliases.get(n, n)
+
+    def put_symbol(self, off, s):
+        struct.pack_into(">IIIBBH", self.data, off, *s)
+
+    def check(self):
+        sizes = {".text": 2916, ".rodata": 52, ".data": 268, ".bss": 56, ".ctors": 4}
+        if {n for n, (_, sec) in self.by_name.items() if sec[2] & 2 and sec[5]} != set(
+            sizes
+        ):
+            raise ValueError("unexpected allocated section inventory")
+        for name, size in sizes.items():
+            if self.by_name[name][1][5] != size:
+                raise ValueError("unexpected section size: " + name)
+        if (
+            hashlib.sha256(self.payload(self.by_name[".text"][1])).hexdigest()
+            != TEXT_SHA256
+        ):
+            raise ValueError("native .text fingerprint differs")
+        f = {
+            self.canonical(n): s[2]
+            for n, _, s in self.symbols
+            if s[3] & 15 == 2 and s[5] != 0
+        }
+        if f != FUNCTION_SIZES:
+            raise ValueError("unexpected native function inventory")
+        expected_offset = 0
+        for name, size in FUNCTION_SIZES.items():
+            _, _, sym = self.named[name]
+            if (
+                sym[1] != expected_offset
+                or sym[3] != (0x22 if name.startswith("@40@") else 0x12)
+                or self.names[sym[5]] != ".text"
+            ):
+                raise ValueError("unexpected native function export binding or offset")
+            expected_offset += size
+        for source, target in self.aliases.items():
+            if (
+                source != target
+                and any((n == source for n, _, _ in self.symbols))
+                and any((n == target for n, _, _ in self.symbols))
+            ):
+                raise ValueError("alias target collision: " + target)
+
+    def invariant(self):
+        """Compare atom payloads and relocation meanings independent of data order."""
+        atoms = {}
+        refs = []
+        for name, _, s in self.symbols:
+            if (
+                s[5] >= len(self.sections)
+                or s[5] == 0
+                or (not s[2])
+                or (s[3] & 15 not in (1, 2))
+            ):
+                continue
+            sec = self.sections[s[5]]
+            n = self.canonical(name)
+            atoms[n] = (
+                self.names[s[5]],
+                s[2],
+                s[3],
+                s[4],
+                self.payload(sec)[s[1] : s[1] + s[2]],
             )
-        struct.pack_into(">I", data, offset, target)
-    path.write_bytes(data)
+
+        def identity(index):
+            n, _, s = self.symbols[index]
+            return (
+                self.canonical(n),
+                s[2],
+                s[3],
+                s[4],
+                self.names[s[5]] if s[5] < len(self.sections) else s[5],
+            )
+
+        for sec in self.sections:
+            if sec[1] != 4:
+                continue
+            for off in range(sec[4], sec[4] + sec[5], sec[9]):
+                address, info, addend = struct.unpack_from(">IIi", self.data, off)
+                owner = (self.names[sec[7]], address)
+                for n, _, s in self.symbols:
+                    if (
+                        s[5] == sec[7]
+                        and s[3] & 15 in (1, 2)
+                        and (s[1] <= address < s[1] + s[2])
+                    ):
+                        owner = (self.names[sec[7]], self.canonical(n), address - s[1])
+                        break
+                refs.append((owner, info & 255, identity(info >> 8), addend))
+        return (atoms, sorted(refs, key=repr))
+
+    def reorder(self):
+        _, _, vt = self.named["__vt__17BlinkLightVirtual"]
+        _, _, display = self.named["blinkLightDisplayName"]
+        layout = (vt[1], vt[2], display[1], display[2])
+        if layout == (192, 60, 252, 16):
+            return False
+        if layout != (208, 60, 192, 16):
+            raise ValueError("unexpected data atom layout")
+        da = self.by_name[".data"][1]
+        raw = self.payload(da)
+        if raw[192:208] != b"S13D BlinkLight\0":
+            raise ValueError("unexpected display string or padding")
+        self.data[da[4] : da[4] + 268] = raw[:192] + raw[208:268] + raw[192:208]
+        for n, off, s in self.symbols:
+            section = self.names[s[5]] if s[5] < len(self.sections) else ""
+            if section == ".data" and s[3] & 15 != 3:
+                if 192 <= s[1] < 208:
+                    s[1] += 60
+                elif 208 <= s[1] < 268:
+                    s[1] -= 16
+            self.put_symbol(off, s)
+        for sec in self.sections:
+            if sec[1] != 4:
+                continue
+            if self.names[sec[7]] == ".data":
+                for off in range(sec[4], sec[4] + sec[5], sec[9]):
+                    value = struct.unpack_from(">I", self.data, off)[0]
+                    if 192 <= value < 208:
+                        value += 60
+                    elif 208 <= value < 268:
+                        value -= 16
+                    struct.pack_into(">I", self.data, off, value)
+        index, bss = self.by_name[".bss"]
+        old_alignment = bss[8]
+        if old_alignment not in (4, 8):
+            raise ValueError("unexpected native .bss alignment")
+        bss[8] = 4
+        struct.pack_into(
+            ">10I", self.data, self.header[6] + index * self.header[11], *bss
+        )
+        _, comment = self.by_name[".comment"]
+        for symbol_index, (_, _, s) in enumerate(self.symbols):
+            if s[3] & 15 == 3 and s[5] == index:
+                offset = comment[4] + 44 + symbol_index * 8
+                if (
+                    offset + 4 > comment[4] + comment[5]
+                    or struct.unpack_from(">I", self.data, offset)[0] != old_alignment
+                ):
+                    raise ValueError("unexpected compiler section alignment metadata")
+                struct.pack_into(">I", self.data, offset, 4)
+                break
+        else:
+            raise ValueError("missing .bss section symbol")
+        return True
 
 
-def reorder_text_atoms(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    ehdr = struct.unpack_from(">16sHHIIIIIHHHHHH", data, 0)
-    shoff, shentsize, shnum, shstrndx = ehdr[6], ehdr[11], ehdr[12], ehdr[13]
-    sections = [
-        list(struct.unpack_from(">IIIIIIIIII", data, shoff + i * shentsize))
-        for i in range(shnum)
+def normalize(path, objcopy):
+    path = Path(path)
+    before = Elf(path.read_bytes())
+    before.check()
+    invariant = before.invariant()
+    text = before.payload(before.by_name[".text"][1])
+    text_relocations = before.payload(before.by_name[".rela.text"][1])
+    work = Elf(path.read_bytes())
+    changed = work.reorder()
+    renames = [
+        (n, work.canonical(n)) for n, _, _ in work.symbols if n != work.canonical(n)
     ]
-    shstr = sections[shstrndx]
-    shstr_data = data[shstr[4] : shstr[4] + shstr[5]]
-    by_name = {
-        cstring(shstr_data, section[0]): (index, section)
-        for index, section in enumerate(sections)
-    }
-
-    text_index, text_section = by_name[".text"]
-    if text_section[5] != 0xB64:
-        raise SystemExit(f"unexpected .text size: 0x{text_section[5]:X}")
-    start = text_section[4]
-    old = bytes(data[start : start + text_section[5]])
-    if old[0x21C:0x220] != bytes.fromhex("4e800020"):
-        raise SystemExit("unexpected editOnChange atom")
-    data[start : start + text_section[5]] = (
-        old[:0x21C] + old[0x220:0x51C] + old[0x21C:0x220] + old[0x51C:]
-    )
-
-    _, rela_text = by_name[".rela.text"]
-    for offset in range(rela_text[4], rela_text[4] + rela_text[5], rela_text[9]):
-        relocation_offset = struct.unpack_from(">I", data, offset)[0]
-        if 0x220 <= relocation_offset < 0x51C:
-            struct.pack_into(">I", data, offset, relocation_offset - 4)
-
-    _, symtab = by_name[".symtab"]
-    strtab = sections[symtab[6]]
-    strings = data[strtab[4] : strtab[4] + strtab[5]]
-    saw_edit = False
-    saw_exec = False
-    for offset in range(symtab[4], symtab[4] + symtab[5], symtab[9]):
-        symbol = list(struct.unpack_from(">IIIBBH", data, offset))
-        if symbol[5] != text_index:
-            continue
-        name = cstring(strings, symbol[0]) if symbol[0] else ""
-        if name == "editOnChange__17BlinkLightVirtualFPv":
-            if symbol[1] != 0x21C or symbol[2] != 4:
-                raise SystemExit("unexpected editOnChange symbol")
-            symbol[1] = 0x518
-            saw_edit = True
-        elif 0x220 <= symbol[1] < 0x51C:
-            symbol[1] -= 4
-            saw_exec |= name == "blinkLightExec" and symbol[2] == 0x2FC
-        struct.pack_into(">IIIBBH", data, offset, *symbol)
-    if not saw_edit or not saw_exec:
-        raise SystemExit("missing BlinkLight text atoms")
-    path.write_bytes(data)
+    if not changed and (not renames):
+        if work.by_name[".bss"][1][8] != 4:
+            raise ValueError("unexpected normalized .bss alignment")
+        return
+    with tempfile.TemporaryDirectory(
+        dir=path.parent, prefix="blinklight-normalize-"
+    ) as tmp:
+        source = Path(tmp) / "layout.o"
+        output = Path(tmp) / "bound.o"
+        source.write_bytes(work.data)
+        command = (
+            [str(objcopy)]
+            + [f"--redefine-sym={a}={b}" for a, b in renames]
+            + [str(source), str(output)]
+        )
+        subprocess.run(command, check=True)
+        after = Elf(output.read_bytes())
+        after.check()
+        if (
+            tuple(
+                (
+                    after.named[n][2][1]
+                    for n in (
+                        "__vt__17BlinkLightVirtual",
+                        "blinkLightDisplayName",
+                    )
+                )
+            )
+            != (192, 252)
+            or after.by_name[".bss"][1][8] != 4
+        ):
+            raise ValueError("unexpected final layout")
+        if after.payload(after.by_name[".text"][1]) != text:
+            raise ValueError(".text changed during metadata normalization")
+        if after.payload(after.by_name[".rela.text"][1]) != text_relocations:
+            raise ValueError("text relocation records changed")
+        if after.invariant() != invariant:
+            raise ValueError("atom bytes or relocation meanings changed")
+        os.chmod(output, path.stat().st_mode)
+        os.replace(output, path)
 
 
-def reorder_data_atoms(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    if data[:6] != b"\x7fELF\x01\x02":
-        raise SystemExit("expected a big-endian ELF32 object")
-
-    ehdr = struct.unpack_from(">16sHHIIIIIHHHHHH", data, 0)
-    shoff, shentsize, shnum, shstrndx = ehdr[6], ehdr[11], ehdr[12], ehdr[13]
-    sections = [
-        list(struct.unpack_from(">IIIIIIIIII", data, shoff + i * shentsize))
-        for i in range(shnum)
-    ]
-    shstr = sections[shstrndx]
-    shstr_data = data[shstr[4] : shstr[4] + shstr[5]]
-    by_name = {
-        cstring(shstr_data, section[0]): (index, section)
-        for index, section in enumerate(sections)
-    }
-
-    bss_index, bss_section = by_name[".bss"]
-    if bss_section[5] != 0x38 or bss_section[8] != 8:
-        raise SystemExit("unexpected .bss layout")
-    bss_section[8] = 4
-    struct.pack_into(
-        ">IIIIIIIIII", data, shoff + bss_index * shentsize, *bss_section
-    )
-    _, symtab = by_name[".symtab"]
-    _, comment = by_name[".comment"]
-    for index, offset in enumerate(
-        range(symtab[4], symtab[4] + symtab[5], symtab[9])
-    ):
-        symbol = struct.unpack_from(">IIIBBH", data, offset)
-        if symbol[3] & 0xF == 3 and symbol[5] == bss_index:
-            struct.pack_into(">I", data, comment[4] + 0x2C + index * 8, 4)
-            break
-    else:
-        raise SystemExit("missing .bss section symbol")
-
-    data_index, data_section = by_name[".data"]
-    if data_section[5] != 0x10C:
-        raise SystemExit(f"unexpected .data size: 0x{data_section[5]:X}")
-    start = data_section[4]
-    old = bytes(data[start : start + data_section[5]])
-    data[start : start + data_section[5]] = old[:0xC0] + old[0xD0:0x10C] + old[0xC0:0xD0]
-
-    _, rela_data = by_name[".rela.data"]
-    for offset in range(rela_data[4], rela_data[4] + rela_data[5], rela_data[9]):
-        relocation_offset = struct.unpack_from(">I", data, offset)[0]
-        if 0xD0 <= relocation_offset < 0x10C:
-            struct.pack_into(">I", data, offset, relocation_offset - 0x10)
-
-    strtab = sections[symtab[6]]
-    strings = data[strtab[4] : strtab[4] + strtab[5]]
-    for offset in range(symtab[4], symtab[4] + symtab[5], symtab[9]):
-        symbol = list(struct.unpack_from(">IIIBBH", data, offset))
-        name = cstring(strings, symbol[0]) if symbol[0] else ""
-        if symbol[5] != data_index:
-            continue
-        if name == "__vt__17BlinkLightVirtual":
-            if symbol[1] != 0xD0 or symbol[2] != 0x3C:
-                raise SystemExit("unexpected BlinkLight vtable atom")
-            symbol[1] = 0xC0
-        elif name == "blinkLightDisplayName":
-            if symbol[1] != 0xC0 or symbol[2] != 0x10:
-                raise SystemExit("unexpected BlinkLight display-name atom")
-            symbol[1] = 0xFC
-        struct.pack_into(">IIIBBH", data, offset, *symbol)
-
-    path.write_bytes(data)
-
-
-def main() -> None:
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("object", type=Path)
     parser.add_argument("stamp", type=Path)
     parser.add_argument("--objcopy", type=Path, required=True)
     args = parser.parse_args()
-
-    normalize_factory_registers(args.object)
-    reorder_text_atoms(args.object)
-    reorder_data_atoms(args.object)
-    with tempfile.NamedTemporaryFile(
-        dir=args.object.parent, delete=False, suffix=".o"
-    ) as temporary:
-        output = Path(temporary.name)
-    try:
-        command = [str(args.objcopy)]
-        for source, target in SYMBOL_RENAMES.items():
-            command.extend(("--redefine-sym", f"{source}={target}"))
-        command.extend((str(args.object), str(output)))
-        subprocess.run(command, check=True)
-        os.chmod(output, args.object.stat().st_mode)
-        output.replace(args.object)
-    finally:
-        output.unlink(missing_ok=True)
+    normalize(args.object, args.objcopy)
     args.stamp.touch()
 
 

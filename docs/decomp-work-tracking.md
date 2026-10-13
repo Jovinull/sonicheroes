@@ -168,3 +168,10 @@ See [the integration proof](cri-integration-20260925.md) for exact scope,
 duplicate handling, all-target verification and limits. This entry supersedes
 older completed-unit publication statuses above; it does not claim an upstream
 merge until the remote accepts it.
+
+`decomp/blinklight-native-20261013` restores the Stage13 blink-light class and
+its native particle/clump methods. All thirteen functions emit in target order
+without instruction patches. Full configured code/data ranges remain covered;
+uncertain zero tails are retained as opaque residual storage. The remaining
+normalizer is limited to guarded data/symbol operations. See
+[blink-light evidence](blinklight-unit-evidence.md).

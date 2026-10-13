@@ -2844,3 +2844,15 @@ reconstruction now matches all 15 native functions, 5,408 instruction bytes,
 owned sections and 353 resolved relocations. Both the full G9SE8P release
 and all-source build pass, with all 18 final hashes exact. No object
 normalizer is used for this unit.
+
+### Stage13 blink-light native class reconstruction
+
+`stage13D/o_s13_blinklight.cpp` emits all thirteen functions in native target
+order. PS2 symbolic metadata identifies `TObjS13BlinkLight`, its three bases,
+particle and clump methods, and the eight-method source inventory. Native
+construction removes the factory instruction patch; only existing-data atom
+ordering and symbol/alignment metadata remain in the build helper. The full
+configured 3,296-byte scope is preserved, including explicitly opaque zero
+storage whose historical declarations and ownership remain unproven. See
+[blink-light evidence](blinklight-unit-evidence.md) for all 217 relocation
+checks, boundary qualifications, and validation.

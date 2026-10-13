@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/calc.h"
 
-// The original object retains its standalone helpers and editor storage even
-// when no external relocation names them.
+// Preserve the configured unit, including standalone methods and residual
+// storage whose original declarations have not been established.
 #pragma force_active on
 
 typedef struct Vec3 {
@@ -18,14 +18,14 @@ typedef struct Frame {
 	s32 angleX;
 } Frame;
 
-typedef struct TObject {
+typedef struct TObjectStorage {
 	const char* className;
 	u16 signal;
 	u16 tag;
-	struct TObject* prev;
-	struct TObject* next;
-	struct TObject* parent;
-	struct TObject* child;
+	struct TObjectStorage* prev;
+	struct TObjectStorage* next;
+	struct TObjectStorage* parent;
+	struct TObjectStorage* child;
 	void** vtable;
 	s16 unk1C;
 	s16 objectSize;
@@ -33,17 +33,17 @@ typedef struct TObject {
 	s16 unk22;
 	s16 unk24;
 	s16 unk26;
-} TObject;
+} TObjectStorage;
 
 typedef struct Motion {
 	Frame* frame;
 	void** vtable;
 } Motion;
 
-typedef struct ModelHolder {
+typedef struct RpClump {
 	void* resource;
 	u8* model;
-} ModelHolder;
+} RpClump;
 
 typedef struct Transform {
 	u8 pad00[0x60];
@@ -56,13 +56,13 @@ typedef struct Transform {
 } Transform;
 
 typedef struct BlinkLight {
-	TObject base;
+	TObjectStorage base;
 	Motion motion;
 	Transform transform;
 	s16 particleTimer;
 	s16 padBA;
 	f32 phase;
-	ModelHolder* model;
+	RpClump* model;
 	void* particle;
 } BlinkLight;
 
@@ -89,33 +89,65 @@ typedef struct ObjectEntry {
 	const char** fieldNames;
 } ObjectEntry;
 
-class BlinkLightPrimaryBase
+struct SETDATA_PARAM;
+struct TObjectData {
+	const char* className;
+	u16 signal, tag;
+	void* prev;
+	void* next;
+	void* parent;
+	void* child;
+};
+class TObject : public TObjectData
 {
 public:
-	virtual void slot0();
-	virtual void slot1();
-	virtual void slot2();
-	virtual void slot3();
-	virtual void slot4();
-	virtual void slot5();
-	virtual void slot6();
-	virtual void slot7();
-	virtual void slot8();
-	u8 layoutPad[0x24];
+	TObject(TObject*);
+	virtual ~TObject();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void TDisp();
+	virtual void PDisp();
+	virtual void ImmAftSetRaster();
+	virtual void Debug();
+	virtual void Error(char*);
+	virtual void Render();
+	s16 unk1C, objectSize, unk20, unk22, unk24, unk26;
+	static void* operator new(unsigned long);
+	static void operator delete(void*);
 };
-
-class BlinkLightEditBase
+struct SetObjData {
+	Frame* frame;
+};
+class TObjSetObj : public SetObjData
 {
 public:
-	virtual void editOnChange(void*);
+	TObjSetObj();
+	~TObjSetObj();
+	virtual void EditOnChange(SETDATA_PARAM*);
 };
-
-class BlinkLightVirtual : public BlinkLightPrimaryBase, public BlinkLightEditBase
+class C_COLLI
 {
 public:
-	virtual void editOnChange(void*);
+	Transform storage;
+	C_COLLI();
+	~C_COLLI();
 };
-
+class TObjS13BlinkLight : public TObject, public TObjSetObj, public C_COLLI
+{
+public:
+	TObjS13BlinkLight(TObject*);
+	virtual ~TObjS13BlinkLight();
+	virtual void Exec();
+	virtual void EditOnChange(SETDATA_PARAM*);
+	void CreateParticle();
+	void DestroyClump(RpClump**);
+	void CloneClump(RpClump**);
+	void SetPosition();
+	s16 timer;
+	f32 animTime;
+	RpClump* pClump;
+	void* ptclFrame;
+};
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 extern "C" void* lbl_8042C180;
@@ -126,10 +158,10 @@ extern "C" Vec3 AxisY;
 extern "C" Vec3 AxisZ;
 extern "C" char lbl_802FF5A0[];
 
-extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
-extern "C" void __dt__7TObjectFv(TObject*, s32);
+extern "C" void __ct__7TObjectFP7TObject(TObjectStorage*, void*);
+extern "C" void __dt__7TObjectFv(TObjectStorage*, s32);
 extern "C" void Error__7TObjectFPc(void);
-extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
+extern "C" void Free__9THeapCtrlFPv(void*, TObjectStorage*);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
@@ -150,11 +182,11 @@ extern "C" void* fn_8019E8EC(void*);
 extern "C" void fn_8019EB94(void*, Frame*, s32);
 extern "C" void fn_801A4C84(void*);
 
-extern "C" void* fn_9_752F4(ModelHolder*, s32);
-extern "C" void fn_9_75764(ModelHolder*, f32);
-extern "C" void fn_9_757C4(ModelHolder*, void*, s32);
+extern "C" void* fn_9_752F4(RpClump*, s32);
+extern "C" void fn_9_75764(RpClump*, f32);
+extern "C" void fn_9_757C4(RpClump*, void*, s32);
 extern "C" void fn_9_75888(void*);
-extern "C" void fn_9_75D2C(ModelAsset*, s32, ModelHolder**, s32);
+extern "C" void fn_9_75D2C(ModelAsset*, s32, RpClump**, s32);
 extern "C" void fn_9_76448(ModelAsset*);
 extern "C" void fn_9_765CC(ModelAsset*, s32);
 
@@ -172,11 +204,17 @@ extern "C" const u32 blinkLightCollision[24];
 extern "C" const f32 blinkLightZeroPool[11];
 extern "C" char blinkLightClassName[];
 extern "C" const char* blinkLightClassNamePtr;
-extern "C" void* __vt__17BlinkLightVirtual[];
-#define blinkLightVtable __vt__17BlinkLightVirtual
+extern "C" void* __vt__17TObjS13BlinkLight[];
+#define blinkLightVtable __vt__17TObjS13BlinkLight
 
-extern "C" void blinkLightCreateParticle(BlinkLight* object)
+inline void TObject::operator delete(void* object)
 {
+	Free__9THeapCtrlFPv(lbl_8042C148, (TObjectStorage*)object);
+}
+
+void TObjS13BlinkLight::CreateParticle()
+{
+	BlinkLight* object = (BlinkLight*)this;
 	if (object->particle != NULL) {
 		void* transform = fn_8019E8EC(object->particle);
 		Vec3 position;
@@ -192,20 +230,21 @@ extern "C" void blinkLightCreateParticle(BlinkLight* object)
 	}
 }
 
-extern "C" void blinkLightDestroyClump(BlinkLight*, ModelHolder** model)
+void TObjS13BlinkLight::DestroyClump(RpClump** model)
 {
 	fn_9_75888(model);
 }
 
-extern "C" void blinkLightCloneClump(BlinkLight*, ModelHolder** model)
+void TObjS13BlinkLight::CloneClump(RpClump** model)
 {
 	fn_9_75D2C(&blinkLightAsset, 0, model, 0);
 	fn_9_757C4(*model, &blinkLightAsset.words[5], 0);
 }
 
-extern "C" void blinkLightSetPosition(BlinkLight* object)
+void TObjS13BlinkLight::SetPosition()
 {
-	u8* model = object->model->model;
+	BlinkLight* object = (BlinkLight*)this;
+	u8* model          = object->model->model;
 	f32 c;
 	f32 s;
 
@@ -226,9 +265,10 @@ extern "C" void blinkLightSetPosition(BlinkLight* object)
 	fn_8019EB94(model, object->motion.frame, 2);
 }
 
-extern "C" void blinkLightExec(BlinkLight* object)
+void TObjS13BlinkLight::Exec()
 {
-	f32 duration = ((f32*)&blinkLightAsset)[7];
+	BlinkLight* object = (BlinkLight*)this;
+	f32 duration       = ((f32*)&blinkLightAsset)[7];
 
 	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
 	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
@@ -248,7 +288,7 @@ extern "C" void blinkLightExec(BlinkLight* object)
 	}
 
 	if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
-		blinkLightSetPosition(object);
+		((TObjS13BlinkLight*)object)->SetPosition();
 	} else {
 		object->phase += 0.0166667f;
 		if (object->phase >= duration) {
@@ -257,7 +297,7 @@ extern "C" void blinkLightExec(BlinkLight* object)
 		fn_9_75764(object->model, object->phase);
 
 		if (--object->particleTimer <= 0) {
-			blinkLightCreateParticle(object);
+			CreateParticle();
 			object->particleTimer = 60;
 		}
 		Frame* frame                       = object->motion.frame;
@@ -270,42 +310,28 @@ extern "C" void blinkLightExec(BlinkLight* object)
 	}
 }
 
-void BlinkLightVirtual::editOnChange(void*) { }
+void TObjS13BlinkLight::EditOnChange(SETDATA_PARAM*) { }
 
-extern "C" BlinkLight* blinkLightDtor(BlinkLight* object, s16 flags)
+TObjS13BlinkLight::~TObjS13BlinkLight()
 {
-	if (object != NULL) {
-		object->base.vtable   = blinkLightVtable;
-		object->motion.vtable = blinkLightVtable + 11;
-		fn_9_75888(&object->model);
-		__dt__7C_COLLIFv(&object->transform, 0);
-		__dt__10TObjSetObjFv(&object->motion, 0);
-		__dt__7TObjectFv(&object->base, 0);
-		if (flags > 0) {
-			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
-		}
-	}
-	return object;
+	fn_9_75888(&pClump);
 }
 
-extern "C" BlinkLight* blinkLightCtor(BlinkLight* object, void* owner)
+TObjS13BlinkLight::TObjS13BlinkLight(TObject* owner)
+    : TObject(owner)
+    , TObjSetObj()
+    , C_COLLI()
 {
-	__ct__7TObjectFP7TObject(&object->base, owner);
-	__ct__10TObjSetObjFv(&object->motion);
-	__ct__7C_COLLIFv(&object->transform);
 
-	object->base.vtable     = blinkLightVtable;
-	object->motion.vtable   = blinkLightVtable + 11;
-	object->base.className  = blinkLightClassNamePtr;
-	object->base.objectSize = sizeof(BlinkLight);
-	object->phase           = blinkLightZeroPool[0];
+	className  = blinkLightClassNamePtr;
+	objectSize = sizeof(TObjS13BlinkLight);
+	animTime   = blinkLightZeroPool[0];
 
-	blinkLightCloneClump(object, &object->model);
-	blinkLightSetPosition(object);
-	object->particle      = fn_9_752F4(object->model, 1);
-	object->particleTimer = 0;
-	fn_8003BF04(&object->transform, blinkLightCollision, 2, 4);
-	return object;
+	CloneClump(&pClump);
+	SetPosition();
+	ptclFrame = fn_9_752F4(pClump, 1);
+	timer     = 0;
+	fn_8003BF04(&static_cast<C_COLLI&>(*this), blinkLightCollision, 2, 4);
 }
 
 extern "C" void blinkLightEnd(void)
@@ -333,21 +359,13 @@ extern "C" void blinkLightInit(void)
 	}
 }
 
-// Placement construction preserves the original factory's inlined constructor.
-class BlinkLightAllocation
+inline void* TObject::operator new(unsigned long size)
 {
-public:
-	BlinkLight object;
-	BlinkLightAllocation(void* owner) { blinkLightCtor(&object, owner); }
-	static void* operator new(unsigned long, void* memory) { return memory; }
-};
-
+	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+}
 extern "C" void blinkLightCreate(void)
 {
-	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(BlinkLightAllocation));
-	if (memory != NULL) {
-		new (memory) BlinkLightAllocation(lbl_8042C110);
-	}
+	new TObjS13BlinkLight((TObject*)lbl_8042C110);
 }
 
 extern "C" ObjectEntry blinkLightEntry;
@@ -410,6 +428,8 @@ extern "C" const u32 blinkLightCollision[24] = {
 	0,
 	0,
 };
+// Only the first scalar is referenced. The remaining forty zero bytes retain
+// the configured extent; their original declarations and ownership are unknown.
 extern "C" const __declspec(section ".rodata") f32 blinkLightZeroPool[11] = {
 	0.0f,
 	0.0f,
@@ -429,6 +449,8 @@ extern "C" char blinkLightDisplayName[]       = "S13D BlinkLight";
 
 extern "C" {
 ObjectEntry blinkLightEntry;
+// Opaque residual zero storage under the inferred unit boundary, not recovered
+// class fields or a proven compiler-generated registration node.
 u32 blinkLightBssTail[3];
 }
 

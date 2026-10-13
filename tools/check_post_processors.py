@@ -47,7 +47,6 @@ CARRIED_RETAIL_DEBT = {
     "fix_eff_tornado_object.py": {"TEXT_PATCHES"},
     "fix_stage13_3way_colli_object.py": {"WORD_FIXES"},
     "fix_stage13_antenna_object.py": {"FACTORY_REGISTER_WORDS"},
-    "fix_stage13_blinklight_object.py": {"FACTORY_REGISTER_WORDS"},
 }
 
 
