@@ -2957,6 +2957,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
     - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
     - __ct__10ENEMY_SHOTFP7TObject
     - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
@@ -3175,6 +3176,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
     - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
     - __ct__10ENEMY_SHOTFP7TObject
     - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
@@ -3394,6 +3396,7 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
     - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
     - __ct__10ENEMY_SHOTFP7TObject
     - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
@@ -3649,6 +3652,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
     - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
     - __ct__10ENEMY_SHOTFP7TObject
     - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
@@ -3904,6 +3908,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
     - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
     - __ct__10ENEMY_SHOTFP7TObject
     - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d

@@ -12,6 +12,8 @@ public:
 	ENEMY_SHOT(TObject* parent);
 	virtual ~ENEMY_SHOT();
 
+	static void KillTask(TObject* parent, u16 id);
+	static void Cancel(u16 id);
 	static int Create(u16& id, int kind, RwV3d* vel, RwV3d* pos);
 	void SetFlagToCheckGround() { flags |= 1; }
 	void ClearFlagToCheckGround() { flags &= ~1; }

@@ -1,7 +1,8 @@
 #include "game/effect/eff_bomb.h"
 #include "game/object.h"
 
-// ENEMY_SHOT::Create and SetEnemyShot (the PS2 build's names). Create fires a
+// ENEMY_SHOT::Cancel, ENEMY_SHOT::Create and SetEnemyShot (the PS2 build's
+// names). Cancel removes the shot with a number from the enemy root; Create fires a
 // shot under the enemy root and hands back its number (from the live shot
 // count); SetEnemyShot fires an enemy shot of the given kind
 // from a point with a velocity, under the given parent (else the effect root,
@@ -10,6 +11,11 @@
 // shot sound 0x4061 where it starts. Its destructor is rel/enemy_shot_dtor.cpp.
 
 #include "src/rel/enemy_shot.inc"
+
+void ENEMY_SHOT::Cancel(u16 id)
+{
+	KillTask(lbl_8042C10C, id);
+}
 
 int ENEMY_SHOT::Create(u16& id, int kind, RwV3d* vel, RwV3d* pos)
 {
