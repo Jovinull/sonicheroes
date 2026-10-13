@@ -1794,6 +1794,11 @@ rel/capture_collision_register.cpp:
 	.text       start:0x000B9A48 end:0x000B9AF0
 	.ctors      start:0x00000190 end:0x00000194
 
+rel/e_strategy_wall_stage11.cpp:
+	.text       start:0x000BACA8 end:0x000BBD5C
+	.rodata     start:0x00001C98 end:0x00001CA8
+	.data       start:0x0001F020 end:0x0001F0D0
+
 rel/e_wall_stage11.cpp:
 	.text       start:0x000BBD5C end:0x000C14E0
 	.ctors      start:0x00000194 end:0x00000198
