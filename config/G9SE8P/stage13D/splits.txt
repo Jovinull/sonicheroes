@@ -647,6 +647,9 @@ rel/pawn_md_ctrl.cpp:
 rel/pawn_md_warp_out.cpp:
 	.text       start:0x0002FFCC end:0x00030078
 
+rel/pawn_md_warp_hide.cpp:
+	.text       start:0x00030078 end:0x00030158
+
 rel/pawn_md_fall_land.cpp:
 	.text       start:0x00030158 end:0x0003019C
 
