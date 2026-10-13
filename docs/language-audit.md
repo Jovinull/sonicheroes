@@ -169,31 +169,26 @@ Automatic emission kept definition order instead. This justifies the scoped
 deferred policy entry; it does not establish matching instruction bytes.
 Data pooling is disabled because retail addresses the individual globals.
 
-The whole-unit source produces 25 exact bodies. Expanding the existing eight-light
-restoration loop directly in EndIgnoreLight fixes its allocation without changing
-behavior. Init alone retains ten register fields across seven instructions; the
-bounded compiler-output normalizer in `tools/fix_light_registers.py` exchanges
-only its loader destination and filesize live ranges. It carries no retail
-instruction words. This is not a source-only match claim.
+The whole-unit source produces all 26 exact bodies. A local file-size state and
+an explicit default-destination check reproduce the loader allocation while
+preserving the later assignment pointer. The local aggregate is a source
+reconstruction choice, not a recovered metadata declaration. Calculations,
+access order and compiler settings remain unchanged. The register postprocessor
+has been removed; see `light-register-evidence.md` for the raw-object audit.
 
-All 26 export offsets and sizes, 263 normalized relocations, 232 exception-table
+All 26 export offsets and sizes, 263 native relocations, 232 exception-table
 bytes, 276 exception-index bytes, eight small-data bytes and 16 small-constant
 bytes agree. All 141 authored data bytes agree; retail includes three natural
 trailing alignment bytes. The compiler's conventional writable `.sdata2` flag
-is unchanged. The normalization leaves every ELF byte outside the seven
-instructions unchanged and checks exact text hashes, function boundary,
-relocations and individual instruction fields.
+is unchanged. No object bytes require postprocessing.
 
 Recovered function-scope pointer locals reproduce color and position copies.
 Angle updates preserve input arguments across rotation calls. Null destinations
-select the manager table in the inlined load/assign paths. Local-order, scope,
-helper expansion and inline-level trials did not reproduce both Init's loading
-and later assignment allocations together. The register proof and removal path
-are documented in [light-register-evidence.md](light-register-evidence.md).
+select the manager table in the inlined load/assign paths.
 
 The native G9SE8P main DOL and all seventeen RELs build with all eighteen
 retail hashes passing. All-source compilation, progress/report generation,
-63 automated tests, both policy checks and formatting pass. No runtime or
+196 automated tests, both policy checks and formatting pass. No runtime or
 physical-hardware validation was performed.
 
 ### GameCube ARAM pool translation unit
