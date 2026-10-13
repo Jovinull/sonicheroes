@@ -190,7 +190,9 @@ typedef struct Searcher {
 	u8 unk260[0x8];
 	TEnemyGadget* gadget; // 0x268
 	s32 bobAngle;         // 0x26C
-	u8 unk270[0x1C];
+	u8 unk270[0x10];
+	s32 walking; // 0x280
+	u8 unk284[0x8];
 	f32 leanX;           // 0x28C
 	f32 leanZ;           // 0x290
 	f32 shadowFade;      // 0x294, how fast the shadow fades with height
@@ -207,7 +209,8 @@ typedef struct Searcher {
 	u8 unk2C8[0x4];
 	RwV3d shadowPos;    // 0x2CC, -1000000 high: no ground
 	RwV3d shadowNormal; // 0x2D8
-	u8 unk2E4[0x2C];
+	s32 request; // 0x2E4, the enemy mode it asks the strategy for
+	u8 unk2E8[0x28];
 	RpClump* partsClump; // 0x310
 	s32 plainTexture;    // 0x314
 	s32 state;           // 0x318, 2: no shadow

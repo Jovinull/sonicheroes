@@ -6746,6 +6746,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_md_wander.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_md_siren.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],

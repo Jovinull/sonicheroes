@@ -536,6 +536,15 @@ first. `GetTargetVec` has no other caller and is kept by `force_active`. All
 three functions match in all eight modules (exato EXACT), and all 18 hashes
 match.
 
+### Searcher wander modes
+
+`rel/searcher_md_wander.cpp` reconstructs `TObjEnemySearcher::EnemyMD_WanderWithAttack`
+and `EnemyMD_Wander`, named and ordered by the PS2 symbols, in the eight
+searcher modules. `EnemyMD_WanderWithAttack` ends with `EnemyMD_Wander`'s code
+inline although `EnemyMD_Wander` comes after it, as in `rel/searcher_target.cpp`,
+so the unit uses `-inline deferred` and defines the functions last to first.
+Both match in all eight modules (exato EXACT), and all 18 hashes match.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and

@@ -1239,6 +1239,9 @@ rel/searcher_md_ready.cpp:
 rel/searcher_md_wander_turn.cpp:
 	.text       start:0x000568D8 end:0x000568E0
 
+rel/searcher_md_wander.cpp:
+	.text       start:0x000569E4 end:0x00056E50
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3B8 end:0x0005A400
 
