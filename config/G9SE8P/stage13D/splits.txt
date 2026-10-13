@@ -792,6 +792,9 @@ rel/enemy_shield_set.cpp:
 rel/enemy_shield_texture.cpp:
 	.text       start:0x00037860 end:0x00037924
 
+rel/enemy_shield_ctor.cpp:
+	.text       start:0x00037924 end:0x00037BA0
+
 rel/enemy_shield_dtor.cpp:
 	.text       start:0x000381BC end:0x00038240
 
