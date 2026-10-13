@@ -32,7 +32,15 @@ public:
 		STRATEGY_EXIT,
 	};
 
-	virtual ~TEnemyStrategy();
+	TEnemyStrategy()
+	{
+		mMode         = 0;
+		mPrevMode     = 0;
+		unk0C         = 0;
+		mpOwner       = NULL;
+		mReqEnemyMode = 0;
+	}
+	virtual ~TEnemyStrategy() { }
 	virtual void Execute(T* owner);
 	virtual void ExecStrategyMode(int mode, eStrategy sub) = 0; // 0x10
 	virtual int IsReqChangeMode()                          = 0;
@@ -56,9 +64,13 @@ public:
 class TEnemyPawn_Strategy : public TEnemyStrategy<TObjEnemyPawn>
 {
 public:
+	// IsReqChangeMode comes first: it is the key function, so the units that
+	// define the constructor or destructor do not emit this class's vtable
+	virtual int IsReqChangeMode();
 	virtual ~TEnemyPawn_Strategy();
 	virtual void ExecStrategyMode(int mode, eStrategy sub);
-	virtual int IsReqChangeMode();
+
+	TEnemyPawn_Strategy();
 
 	void StrategyMode_Idle(eStrategy sub);
 	void StrategyMode_BiteNail(eStrategy sub);

@@ -1718,6 +1718,10 @@ rel/pawn_strategy_modes.cpp:
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x000B5E50 end:0x000B5E8C
 
+rel/pawn_strategy_cdtor.cpp:
+	.text       start:0x000B5E8C end:0x000B5F74
+	.data       start:0x000133F4 end:0x0001340C
+
 rel/s04_ball_colli_dtor.cpp:
 	.text       start:0x000B6A30 end:0x000B6AC8
 

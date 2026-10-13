@@ -1522,6 +1522,10 @@ rel/pawn_strategy_modes.cpp:
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x00083284 end:0x000832C0
 
+rel/pawn_strategy_cdtor.cpp:
+	.text       start:0x000832C0 end:0x000833A8
+	.data       start:0x0000F89C end:0x0000F8B4
+
 rel/big_chip_dtor.cpp:
 	.text       start:0x00083C9C end:0x00083D9C
 

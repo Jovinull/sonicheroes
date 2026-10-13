@@ -1505,6 +1505,10 @@ rel/pawn_strategy_modes.cpp:
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x000994DC end:0x00099518
 
+rel/pawn_strategy_cdtor.cpp:
+	.text       start:0x00099518 end:0x00099600
+	.data       start:0x00019854 end:0x0001986C
+
 rel/s14_bomb_switch_register.cpp:
 	.text       start:0x0009DBE4 end:0x0009DC8C
 	.ctors      start:0x0000013C end:0x00000140

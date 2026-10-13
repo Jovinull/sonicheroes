@@ -6363,6 +6363,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_strategy_cdtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/pawn_hit_point.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

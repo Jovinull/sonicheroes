@@ -1755,6 +1755,10 @@ rel/pawn_strategy_modes.cpp:
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x000AE6AC end:0x000AE6E8
 
+rel/pawn_strategy_cdtor.cpp:
+	.text       start:0x000AE6E8 end:0x000AE7D0
+	.data       start:0x0001E6DC end:0x0001E6F4
+
 rel/rain_collision_dtor.cpp:
 	.text       start:0x000B3D04 end:0x000B3D9C
 

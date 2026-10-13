@@ -1740,6 +1740,10 @@ rel/pawn_strategy_modes.cpp:
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x000C631C end:0x000C6358
 
+rel/pawn_strategy_cdtor.cpp:
+	.text       start:0x000C6358 end:0x000C6440
+	.data       start:0x00016ABC end:0x00016AD4
+
 rel/hermitcrab_search_cage.cpp:
 	.text       start:0x000C6884 end:0x000C6974
 
