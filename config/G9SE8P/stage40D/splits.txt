@@ -22,6 +22,9 @@ rel/o_sample2.cpp:
 	.data       start:0x000000A0 end:0x000000F8
 	.bss        start:0x00000030 end:0x00000060
 
+rel/fn_16_D10.cpp:
+	.text       start:0x00000D10 end:0x00000D4C
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
@@ -63,8 +66,15 @@ rel/o_system4.cpp:
 	.data       start:0x000040B8 end:0x00004110
 	.bss        start:0x00000B68 end:0x00000B98
 
+rel/fn_16_32F60.cpp:
+	.text       start:0x00032F60 end:0x00032FE4
+	.ctors      start:0x0000009C end:0x000000A0
+
 rel/bobsleigh_set_player_position.cpp:
 	.text       start:0x0003D944 end:0x0003DB1C
+
+rel/fn_16_469A0.cpp:
+	.text       start:0x000469A0 end:0x000469BC
 
 rel/e_end_spboss.cpp:
 	.text       start:0x00058E44 end:0x000591C0

@@ -974,7 +974,8 @@ block_30:
 		temp_f2_5 = (temp_f6_2 * temp_f6_2) + ((temp_f8_5 * temp_f8_5) + (temp_f7_7 * temp_f7_7));
 		if (temp_f2_5 <= (lbl_8042DFE8 + temp_f4_4)) {
 			if (coli_pos != NULL) {
-				coli_pos->x = detect_vec->x;
+				// The retail reloads this component after using the vector to form the endpoint.
+				coli_pos->x = *(volatile const f32*)&detect_vec->x;
 				coli_pos->y = detect_vec->y;
 				coli_pos->z = detect_vec->z;
 			}
@@ -1071,7 +1072,8 @@ block_30:
 			coli_pos->y = temp_f11_2;
 			coli_pos->z = temp_f10_3;
 		}
-		if (lbl_8042DFE8 >= (f32)__fabs(temp_f4_4 - temp_f5_2)) {
+		temp_f0_30 = __fabs(temp_f4_4 - temp_f5_2);
+		if (lbl_8042DFE8 >= (f32)temp_f0_30) {
 			if (ans_vec != NULL) {
 				ans_vec->z = lbl_8042DFEC;
 				ans_vec->y = lbl_8042DFEC;
