@@ -1,280 +1,298 @@
 #!/usr/bin/env python3
+"""Bind native antenna symbols and permute data atoms; never edit .text.
 
-"""Normalize compiler-only ELF details for o_s13_antenna.cpp."""
+The compiler already emits all twelve functions in their exact retail order.
+The 13-byte display string has three compiler padding bytes; four additional
+zero bytes belong to inter-unit alignment, not to that string's object extent.
+"""
 
 import argparse
+import hashlib
 import os
 import struct
 import subprocess
 import tempfile
 from pathlib import Path
 
-
-SYMBOL_RENAMES = {
-    "slot0__18AntennaPrimaryBaseFv": "antennaDtor",
-    "slot1__18AntennaPrimaryBaseFv": "antennaExec",
-    "slot2__18AntennaPrimaryBaseFv": "Disp__7TObjectFv",
-    "slot3__18AntennaPrimaryBaseFv": "TDisp__7TObjectFv",
-    "slot4__18AntennaPrimaryBaseFv": "PDisp__7TObjectFv",
-    "slot5__18AntennaPrimaryBaseFv": "ImmAftSetRaster__7TObjectFv",
-    "slot6__18AntennaPrimaryBaseFv": "Debug__7TObjectFv",
-    "slot7__18AntennaPrimaryBaseFv": "Error__7TObjectFPc",
-    "slot8__18AntennaPrimaryBaseFv": "Render__7TObjectFv",
-    "@59": "antennaIntegerBias",
+TEXT_SHA256 = "39429da1fff3728c34d8a3d7b3707b9b18dc12ec214ec8cfc0bf484ff6699e5a"
+ALIASES = {
+    "DestroyClump__14TObjS13AntennaFPP7RpClump": "antennaDestroyClump",
+    "CloneClump__14TObjS13AntennaFPP7RpClump": "antennaCloneClump",
+    "SetPosition__14TObjS13AntennaFv": "antennaSetPosition",
+    "Exec__14TObjS13AntennaFv": "antennaExec",
+    "EditOnChange__14TObjS13AntennaFP13SETDATA_PARAM": "editOnChange__14AntennaVirtualFPv",
+    "__dt__14TObjS13AntennaFv": "antennaDtor",
+    "__ct__14TObjS13AntennaFP7TObject": "antennaCtor",
+    "__vt__14TObjS13Antenna": "__vt__14AntennaVirtual",
+    "@40@EditOnChange__14TObjS13AntennaFP13SETDATA_PARAM": "@40@editOnChange__14AntennaVirtualFPv",
 }
-
-
-FACTORY_REGISTER_WORDS = {
-    0x030: (0x7C7F1B78, 0x7C601B78),
-    0x034: (0x281F0000, 0x28000000),
-    0x03C: (0x418201A4, 0x7C1E0378),
-    0x050: (0x387F0028, 0x387E0028),
-    0x058: (0x387F0030, 0x387E0030),
-    0x068: (0x907F0018, 0x907E0018),
-    0x070: (0x901F002C, 0x901E002C),
-    0x080: (0x901F0000, 0x901E0000),
-    0x088: (0xB01F001E, 0xB01E001E),
-    0x098: (0xD01F00B8, 0xD01E00B8),
-    0x0A8: (0x38BF00BC, 0x38BE00BC),
-    0x0B4: (0x807F00BC, 0x807E00BC),
-    0x0CC: (0x807F00BC, 0x807E00BC),
-    0x0D0: (0x83C30004, 0x83E30004),
-    0x0D4: (0x807F0028, 0x807E0028),
-    0x0E4: (0x807F0028, 0x807E0028),
-    0x100: (0x387E0010, 0x387F0010),
-    0x118: (0x7FC3F378, 0x7FE3FB78),
-    0x120: (0x807F0028, 0x807E0028),
-    0x130: (0x807F0028, 0x807E0028),
-    0x14C: (0x387E0010, 0x387F0010),
-    0x164: (0x7FC3F378, 0x7FE3FB78),
-    0x16C: (0x807F0028, 0x807E0028),
-    0x17C: (0x807F0028, 0x807E0028),
-    0x198: (0x387E0010, 0x387F0010),
-    0x1B0: (0x7FC3F378, 0x7FE3FB78),
-    0x1B8: (0x7FC3F378, 0x7FE3FB78),
-    0x1BC: (0x809F0028, 0x809E0028),
-    0x1C8: (0x387F0030, 0x387E0030),
-}
-
-
-def cstring(blob: bytes, offset: int) -> str:
-    return blob[offset : blob.index(0, offset)].decode("ascii")
-
-
-def elf_sections(data: bytearray):
-    ehdr = struct.unpack_from(">16sHHIIIIIHHHHHH", data, 0)
-    shoff, shentsize, shnum, shstrndx = ehdr[6], ehdr[11], ehdr[12], ehdr[13]
-    sections = [
-        list(struct.unpack_from(">IIIIIIIIII", data, shoff + i * shentsize))
-        for i in range(shnum)
-    ]
-    shstr = sections[shstrndx]
-    names = data[shstr[4] : shstr[4] + shstr[5]]
-    by_name = {
-        cstring(names, section[0]): (index, section)
-        for index, section in enumerate(sections)
-    }
-    return shoff, shentsize, sections, by_name
-
-
-def symbols(data, sections, by_name):
-    _, symtab = by_name[".symtab"]
-    strtab = sections[symtab[6]]
-    strings = data[strtab[4] : strtab[4] + strtab[5]]
-    for offset in range(symtab[4], symtab[4] + symtab[5], symtab[9]):
-        symbol = list(struct.unpack_from(">IIIBBH", data, offset))
-        name = cstring(strings, symbol[0]) if symbol[0] else ""
-        yield offset, symbol, name
-
-
-def normalize_factory_registers(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    _, _, sections, by_name = elf_sections(data)
-    text_index, text_section = by_name[".text"]
-    factory = None
-    for _, symbol, name in symbols(data, sections, by_name):
-        if name == "antennaCreate" and symbol[5] == text_index:
-            factory = symbol
-            break
-    if factory is None or factory[2] != 0x200:
-        raise SystemExit("unexpected antennaCreate symbol")
-
-    start = text_section[4] + factory[1]
-    for relative, (source, target) in FACTORY_REGISTER_WORDS.items():
-        offset = start + relative
-        actual = struct.unpack_from(">I", data, offset)[0]
-        if actual != source:
-            raise SystemExit(
-                f"unexpected antennaCreate+0x{relative:X}: 0x{actual:08X}"
-            )
-        struct.pack_into(">I", data, offset, target)
-    path.write_bytes(data)
-
-
-def reorder_text_atoms(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    _, _, sections, by_name = elf_sections(data)
-    text_index, text_section = by_name[".text"]
-    if text_section[5] != 0xAC4:
-        raise SystemExit(f"unexpected .text size: 0x{text_section[5]:X}")
-    start = text_section[4]
-    old = bytes(data[start : start + text_section[5]])
-    if old[0x1B8:0x1BC] != bytes.fromhex("4e800020"):
-        raise SystemExit("unexpected editOnChange atom")
-    data[start : start + text_section[5]] = (
-        old[:0x1B8] + old[0x1BC:0x4AC] + old[0x1B8:0x1BC] + old[0x4AC:]
+FUNCTION_SIZES = dict(
+    zip(
+        [
+            "antennaDestroyClump",
+            "antennaCloneClump",
+            "antennaSetPosition",
+            "antennaExec",
+            "editOnChange__14AntennaVirtualFPv",
+            "antennaDtor",
+            "antennaCtor",
+            "antennaEnd",
+            "antennaInit",
+            "antennaCreate",
+            "antennaRegister",
+            "@40@editOnChange__14AntennaVirtualFPv",
+        ],
+        [36, 88, 316, 752, 4, 160, 472, 92, 164, 512, 152, 8],
     )
-
-    _, rela_text = by_name[".rela.text"]
-    for offset in range(rela_text[4], rela_text[4] + rela_text[5], rela_text[9]):
-        relocation_offset = struct.unpack_from(">I", data, offset)[0]
-        if 0x1BC <= relocation_offset < 0x4AC:
-            struct.pack_into(">I", data, offset, relocation_offset - 4)
-
-    saw_edit = False
-    saw_exec = False
-    for offset, symbol, name in symbols(data, sections, by_name):
-        if symbol[5] != text_index:
-            continue
-        if name == "editOnChange__14AntennaVirtualFPv":
-            if symbol[1] != 0x1B8 or symbol[2] != 4:
-                raise SystemExit("unexpected editOnChange symbol")
-            symbol[1] = 0x4A8
-            saw_edit = True
-        elif 0x1BC <= symbol[1] < 0x4AC:
-            symbol[1] -= 4
-            saw_exec |= name == "antennaExec" and symbol[2] == 0x2F0
-        struct.pack_into(">IIIBBH", data, offset, *symbol)
-    if not saw_edit or not saw_exec:
-        raise SystemExit("missing Antenna text atoms")
-    path.write_bytes(data)
+)
 
 
-def reorder_rodata_atoms(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    _, _, sections, by_name = elf_sections(data)
-    rodata_index, rodata = by_name[".rodata"]
-    if rodata[5] != 0x2C:
-        raise SystemExit(f"unexpected .rodata size: 0x{rodata[5]:X}")
-    start = rodata[4]
-    old = bytes(data[start : start + rodata[5]])
-    data[start : start + rodata[5]] = old[0x8:0x18] + old[0:0x8] + old[0x18:]
+class Elf:
 
-    expected = {
-        "antennaOne": (0x08, 0x00),
-        "antennaFrameStep": (0x0C, 0x04),
-        "antennaFullTurn": (0x10, 0x08),
-        "antennaRodataPad": (0x14, 0x0C),
-        "@59": (0x00, 0x10),
-    }
-    seen = set()
-    for offset, symbol, name in symbols(data, sections, by_name):
-        if symbol[5] != rodata_index or name not in expected:
-            continue
-        source, target = expected[name]
-        if symbol[1] != source:
-            raise SystemExit(f"unexpected {name} offset: 0x{symbol[1]:X}")
-        symbol[1] = target
-        struct.pack_into(">IIIBBH", data, offset, *symbol)
-        seen.add(name)
-    if seen != set(expected):
-        raise SystemExit("missing Antenna rodata atoms")
-    path.write_bytes(data)
+    def __init__(self, data):
+        self.data = bytearray(data)
+        if self.data[:6] != b"\x7fELF\x01\x02":
+            raise ValueError("expected big-endian ELF32")
+        self.header = struct.unpack_from(">16sHHIIIIIHHHHHH", data)
+        h = self.header
+        self.sections = [
+            list(struct.unpack_from(">10I", data, h[6] + i * h[11]))
+            for i in range(h[12])
+        ]
+        names = self.payload(self.sections[h[13]])
+        self.names = [self.string(names, s[0]) for s in self.sections]
+        self.by_name = {
+            n: (i, s) for i, (n, s) in enumerate(zip(self.names, self.sections))
+        }
+        self.symbols = []
+        _, tab = self.by_name[".symtab"]
+        strings = self.payload(self.sections[tab[6]])
+        for off in range(tab[4], tab[4] + tab[5], tab[9]):
+            sym = list(struct.unpack_from(">IIIBBH", data, off))
+            self.symbols.append((self.string(strings, sym[0]), off, sym))
+        self.aliases = dict(ALIASES)
+        for name, _, s in self.symbols:
+            if (
+                s[2] == 8
+                and s[5] < len(self.sections)
+                and (self.names[s[5]] == ".rodata")
+            ):
+                if self.payload(self.sections[s[5]])[s[1] : s[1] + 8] == bytes.fromhex(
+                    "4330000080000000"
+                ):
+                    self.aliases[name] = "antennaIntegerBias"
+        self.named = {self.canonical(n): (n, o, s) for n, o, s in self.symbols if n}
 
+    @staticmethod
+    def string(data, off):
+        return data[off : data.index(0, off)].decode("ascii")
 
-def reorder_data_atoms(path: Path) -> None:
-    data = bytearray(path.read_bytes())
-    shoff, shentsize, sections, by_name = elf_sections(data)
+    def payload(self, s):
+        return bytes(self.data[s[4] : s[4] + s[5]]) if s[1] != 8 else bytes(s[5])
 
-    bss_index, bss = by_name[".bss"]
-    if bss[5] != 0x3C or bss[8] != 8:
-        raise SystemExit("unexpected .bss layout")
-    bss[8] = 4
-    struct.pack_into(">IIIIIIIIII", data, shoff + bss_index * shentsize, *bss)
-    _, comment = by_name[".comment"]
-    for index, (_, symbol, _) in enumerate(symbols(data, sections, by_name)):
-        if symbol[3] & 0xF == 3 and symbol[5] == bss_index:
-            struct.pack_into(">I", data, comment[4] + 0x2C + index * 8, 4)
-            break
-    else:
-        raise SystemExit("missing .bss section symbol")
+    def canonical(self, n):
+        return self.aliases.get(n, n)
 
-    data_index, data_section = by_name[".data"]
-    if data_section[5] != 0x108:
-        raise SystemExit(f"unexpected .data size: 0x{data_section[5]:X}")
-    if data_section[8] not in (4, 8):
-        raise SystemExit("unexpected .data alignment")
-    if data_section[8] == 4:
-        data_section[8] = 8
+    def put_symbol(self, off, s):
+        struct.pack_into(">IIIBBH", self.data, off, *s)
+
+    def check(self):
+        sizes = {".text": 2756, ".rodata": 44, ".data": 260, ".bss": 60, ".ctors": 4}
+        for name, size in sizes.items():
+            if self.by_name[name][1][5] != size:
+                raise ValueError("unexpected section size: " + name)
+        if (
+            hashlib.sha256(self.payload(self.by_name[".text"][1])).hexdigest()
+            != TEXT_SHA256
+        ):
+            raise ValueError("native .text fingerprint differs")
+        f = {
+            self.canonical(n): s[2]
+            for n, _, s in self.symbols
+            if s[3] & 15 == 2 and s[5] != 0
+        }
+        if f != FUNCTION_SIZES:
+            raise ValueError("unexpected native function inventory")
+        for source, target in self.aliases.items():
+            if (
+                source != target
+                and any((n == source for n, _, _ in self.symbols))
+                and any((n == target for n, _, _ in self.symbols))
+            ):
+                raise ValueError("alias target collision: " + target)
+
+    def invariant(self):
+        """Compare atom payloads and relocation meanings independent of data order."""
+        atoms = {}
+        refs = []
+        for name, _, s in self.symbols:
+            if (
+                s[5] >= len(self.sections)
+                or s[5] == 0
+                or (not s[2])
+                or (s[3] & 15 not in (1, 2))
+            ):
+                continue
+            sec = self.sections[s[5]]
+            n = self.canonical(name)
+            atoms[n] = (
+                self.names[s[5]],
+                s[2],
+                17 if n == "antennaIntegerBias" else s[3],
+                s[4],
+                self.payload(sec)[s[1] : s[1] + s[2]],
+            )
+
+        def identity(index):
+            n, _, s = self.symbols[index]
+            return (
+                self.canonical(n),
+                s[2],
+                17 if self.canonical(n) == "antennaIntegerBias" else s[3],
+                s[4],
+                self.names[s[5]] if s[5] < len(self.sections) else s[5],
+            )
+
+        for sec in self.sections:
+            if sec[1] != 4:
+                continue
+            for off in range(sec[4], sec[4] + sec[5], sec[9]):
+                address, info, addend = struct.unpack_from(">IIi", self.data, off)
+                owner = (self.names[sec[7]], address)
+                for n, _, s in self.symbols:
+                    if (
+                        s[5] == sec[7]
+                        and s[3] & 15 in (1, 2)
+                        and (s[1] <= address < s[1] + s[2])
+                    ):
+                        owner = (self.names[sec[7]], self.canonical(n), address - s[1])
+                        break
+                refs.append((owner, info & 255, identity(info >> 8), addend))
+        return (atoms, sorted(refs, key=repr))
+
+    def reorder(self):
+        _, _, bias = self.named["antennaIntegerBias"]
+        _, _, vt = self.named["__vt__14AntennaVirtual"]
+        _, _, display = self.named["antennaDisplayName"]
+        layout = (bias[1], vt[1], display[1], display[2])
+        if layout == (16, 184, 244, 13):
+            return False
+        if layout != (0, 200, 184, 13):
+            raise ValueError("unexpected data atom layout")
+        ro = self.by_name[".rodata"][1]
+        raw = self.payload(ro)
+        self.data[ro[4] : ro[4] + 44] = raw[8:24] + raw[:8] + raw[24:]
+        da = self.by_name[".data"][1]
+        raw = self.payload(da)
+        if raw[184:197] != b"S13D ANTENNA\x00" or any(raw[197:200]):
+            raise ValueError("unexpected display string or padding")
+        self.data[da[4] : da[4] + 260] = raw[:184] + raw[200:260] + raw[184:200]
+        for n, off, s in self.symbols:
+            section = self.names[s[5]] if s[5] < len(self.sections) else ""
+            if section == ".rodata" and s[3] & 15 != 3:
+                if s[1] < 8:
+                    s[1] += 16
+                elif s[1] < 24:
+                    s[1] -= 8
+            if section == ".data" and s[3] & 15 != 3:
+                if 184 <= s[1] < 200:
+                    s[1] += 60
+                elif 200 <= s[1] < 260:
+                    s[1] -= 16
+            self.put_symbol(off, s)
+        for sec in self.sections:
+            if sec[1] != 4:
+                continue
+            if self.names[sec[7]] == ".data":
+                for off in range(sec[4], sec[4] + sec[5], sec[9]):
+                    value = struct.unpack_from(">I", self.data, off)[0]
+                    if 184 <= value < 200:
+                        value += 60
+                    elif 200 <= value < 260:
+                        value -= 16
+                    struct.pack_into(">I", self.data, off, value)
+        index, bss = self.by_name[".bss"]
+        if bss[8] != 8:
+            raise ValueError("unexpected native .bss alignment")
+        bss[8] = 4
         struct.pack_into(
-            ">IIIIIIIIII", data, shoff + data_index * shentsize, *data_section
+            ">10I", self.data, self.header[6] + index * self.header[11], *bss
         )
-        for index, (_, symbol, _) in enumerate(symbols(data, sections, by_name)):
-            if symbol[3] & 0xF == 3 and symbol[5] == data_index:
-                struct.pack_into(">I", data, comment[4] + 0x2C + index * 8, 8)
+        _, comment = self.by_name[".comment"]
+        for symbol_index, (_, _, s) in enumerate(self.symbols):
+            if s[3] & 15 == 3 and s[5] == index:
+                offset = comment[4] + 44 + symbol_index * 8
+                if (
+                    offset + 4 > comment[4] + comment[5]
+                    or struct.unpack_from(">I", self.data, offset)[0] != 8
+                ):
+                    raise ValueError("unexpected compiler section alignment metadata")
+                struct.pack_into(">I", self.data, offset, 4)
                 break
         else:
-            raise SystemExit("missing .data section symbol")
-    start = data_section[4]
-    old = bytes(data[start : start + data_section[5]])
-    data[start : start + data_section[5]] = (
-        old[:0xB8] + old[0xCC:0x108] + old[0xB8:0xCC]
-    )
-
-    _, rela_data = by_name[".rela.data"]
-    for offset in range(rela_data[4], rela_data[4] + rela_data[5], rela_data[9]):
-        relocation_offset = struct.unpack_from(">I", data, offset)[0]
-        if 0xCC <= relocation_offset < 0x108:
-            struct.pack_into(">I", data, offset, relocation_offset - 0x14)
-
-    saw_vtable = False
-    saw_display = False
-    for offset, symbol, name in symbols(data, sections, by_name):
-        if symbol[5] != data_index:
-            continue
-        if name == "__vt__14AntennaVirtual":
-            if symbol[1] != 0xCC or symbol[2] != 0x3C:
-                raise SystemExit("unexpected Antenna vtable atom")
-            symbol[1] = 0xB8
-            saw_vtable = True
-        elif name == "antennaDisplayName":
-            if symbol[1] != 0xB8 or symbol[2] != 0x11:
-                raise SystemExit("unexpected Antenna display-name atom")
-            symbol[1] = 0xF4
-            symbol[2] = 0x0D
-            saw_display = True
-        struct.pack_into(">IIIBBH", data, offset, *symbol)
-    if not saw_vtable or not saw_display:
-        raise SystemExit("missing Antenna data atoms")
-    path.write_bytes(data)
+            raise ValueError("missing .bss section symbol")
+        return True
 
 
-def main() -> None:
+def normalize(path, objcopy):
+    path = Path(path)
+    before = Elf(path.read_bytes())
+    before.check()
+    invariant = before.invariant()
+    text = before.payload(before.by_name[".text"][1])
+    work = Elf(path.read_bytes())
+    changed = work.reorder()
+    renames = [
+        (n, work.canonical(n)) for n, _, _ in work.symbols if n != work.canonical(n)
+    ]
+    if not changed and (not renames):
+        if work.by_name[".bss"][1][8] != 4:
+            raise ValueError("unexpected normalized .bss alignment")
+        return
+    with tempfile.TemporaryDirectory(
+        dir=path.parent, prefix="antenna-normalize-"
+    ) as tmp:
+        source = Path(tmp) / "layout.o"
+        output = Path(tmp) / "bound.o"
+        source.write_bytes(work.data)
+        command = (
+            [str(objcopy)]
+            + [f"--redefine-sym={a}={b}" for a, b in renames]
+            + ["--globalize-symbol=antennaIntegerBias", str(source), str(output)]
+        )
+        subprocess.run(command, check=True)
+        after = Elf(output.read_bytes())
+        after.check()
+        if (
+            tuple(
+                (
+                    after.named[n][2][1]
+                    for n in (
+                        "antennaIntegerBias",
+                        "__vt__14AntennaVirtual",
+                        "antennaDisplayName",
+                    )
+                )
+            )
+            != (16, 184, 244)
+            or after.by_name[".bss"][1][8] != 4
+        ):
+            raise ValueError("unexpected final layout")
+        if after.payload(after.by_name[".text"][1]) != text:
+            raise ValueError(".text changed during metadata normalization")
+        if after.invariant() != invariant:
+            raise ValueError("atom bytes or relocation meanings changed")
+        os.chmod(output, path.stat().st_mode)
+        os.replace(output, path)
+
+
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("object", type=Path)
     parser.add_argument("stamp", type=Path)
     parser.add_argument("--objcopy", type=Path, required=True)
     args = parser.parse_args()
-
-    normalize_factory_registers(args.object)
-    reorder_text_atoms(args.object)
-    reorder_rodata_atoms(args.object)
-    reorder_data_atoms(args.object)
-    with tempfile.NamedTemporaryFile(
-        dir=args.object.parent, delete=False, suffix=".o"
-    ) as temporary:
-        output = Path(temporary.name)
-    try:
-        command = [str(args.objcopy)]
-        for source, target in SYMBOL_RENAMES.items():
-            command.extend(("--redefine-sym", f"{source}={target}"))
-        command.extend(("--globalize-symbol", "antennaIntegerBias"))
-        command.extend((str(args.object), str(output)))
-        subprocess.run(command, check=True)
-        os.chmod(output, args.object.stat().st_mode)
-        output.replace(args.object)
-    finally:
-        output.unlink(missing_ok=True)
+    normalize(args.object, args.objcopy)
     args.stamp.touch()
 
 

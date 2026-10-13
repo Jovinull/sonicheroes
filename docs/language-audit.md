@@ -2907,3 +2907,14 @@ controller-family boundary is inferred from GameCube code/data relationships,
 with no corresponding retained PS2 file/class metadata. See
 [the evidence record](enemy-voice-unit-evidence.md) for scope, limitations and
 whole-object section/relocation verification.
+### Stage13 antenna native class reconstruction
+
+`stage13D/o_s13_antenna.cpp` now emits all twelve functions and their complete
+text order natively. PS2 symbolic metadata supports the `TObjS13Antenna`
+source and its `TObject`, `TObjSetObj`, and `C_COLLI` bases. Native construction
+and a reference conversion to the collision base remove the factory instruction
+patch. The remaining tool only permutes existing data atoms and binds metadata.
+All configured zero tails remain covered as opaque residual storage; their
+historical declarations and ownership are explicitly uncertain. See
+[antenna-unit evidence](antenna-unit-evidence.md) for the complete 3,128-byte
+scope, 213 relocation checks, and validation.
