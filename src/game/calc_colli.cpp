@@ -2,12 +2,10 @@
 
 // calc_colli.cpp is identified as C++ in the PS2 symbolic metadata.
 // GameCube arithmetic and aliasing behavior are reconstructed from this build.
-// NonMatching: remaining instruction differences are recorded in docs/language-audit.md.
 struct RwV3d {
 	f32 x, y, z;
 };
 extern const __declspec(section ".sdata2") f32 lbl_8042DFD0;
-extern const __declspec(section ".sdata2") f32 lbl_8042DFD4;
 extern const __declspec(section ".sdata2") f32 lbl_8042DFD8;
 extern "C" f64 __fabs(f64);
 
@@ -40,17 +38,22 @@ void clGetTriangleVectorCoef_CrsP(RwV3d*, RwV3d*, RwV3d*, RwV3d*, f32*, f32*);
 inline f32 clDistanceP2V2(const RwV3d* pos, const RwV3d* vec)
 {
 	f32 APAB = Dot(pos, vec);
-	if (APAB > lbl_8042DFD4) {
+	RwV3d Q;
+	if (APAB > 0.0f) {
 		f32 lABl2 = Dot(vec, vec);
 		if (lABl2 < lbl_8042DFD0)
 			return Dot(pos, pos);
 		if (APAB >= lABl2) {
-			f32 x = pos->x - vec->x, y = pos->y - vec->y, z = pos->z - vec->z;
-			return z * z + (x * x + y * y);
+			Q.x = pos->x - vec->x;
+			Q.y = pos->y - vec->y;
+			Q.z = pos->z - vec->z;
+			return Dot(&Q, &Q);
 		}
 		f32 t = APAB / lABl2;
-		f32 x = pos->x - t * vec->x, y = pos->y - t * vec->y, z = pos->z - t * vec->z;
-		return z * z + (x * x + y * y);
+		Q.x   = pos->x - t * vec->x;
+		Q.y   = pos->y - t * vec->y;
+		Q.z   = pos->z - t * vec->z;
+		return Dot(&Q, &Q);
 	}
 	return Dot(pos, pos);
 }
@@ -58,11 +61,11 @@ inline f32 clDistanceP2V2_ans(const RwV3d* pos, const RwV3d* vec, RwV3d* ans)
 {
 	f32 APAB = Dot(pos, vec);
 	RwV3d Q;
-	if (APAB > lbl_8042DFD4) {
+	if (APAB > 0.0f) {
 		f32 lABl2 = Dot(vec, vec);
 		if (lABl2 < lbl_8042DFD0) {
 			if (ans)
-				ans->x = ans->y = ans->z = lbl_8042DFD4;
+				ans->x = ans->y = ans->z = 0.0f;
 			return Dot(pos, pos);
 		}
 		if (APAB >= lABl2) {
@@ -91,7 +94,7 @@ inline f32 clDistanceP2V2_ans(const RwV3d* pos, const RwV3d* vec, RwV3d* ans)
 		return Dot(&Q, &Q);
 	}
 	if (ans)
-		ans->x = ans->y = ans->z = lbl_8042DFD4;
+		ans->x = ans->y = ans->z = 0.0f;
 	return Dot(pos, pos);
 }
 
@@ -109,7 +112,7 @@ s32 clDetectS2T(
 	Subtract(&vec_ao, sphere_pos, tri_vertex);
 	Cross(&crsP, &vec_ab, &vec_ac);
 	AOAN = Dot(&vec_ao, &crsP);
-	if (AOAN < lbl_8042DFD4)
+	if (AOAN < 0.0f)
 		return 0;
 	lANl2 = Dot(&crsP, &crsP);
 	if (lANl2 > lbl_8042DFD0) {
@@ -118,8 +121,8 @@ s32 clDetectS2T(
 		len_po2 = Dot(&vec_po, &vec_po);
 		Subtract(&pos_p, &vec_ao, &vec_po);
 	} else {
-		vec_po.x = vec_po.y = vec_po.z = lbl_8042DFD4;
-		len_po2                        = lbl_8042DFD4;
+		vec_po.x = vec_po.y = vec_po.z = 0.0f;
+		len_po2                        = 0.0f;
 		pos_p.x                        = vec_ao.x;
 		pos_p.y                        = vec_ao.y;
 		pos_p.z                        = vec_ao.z;
@@ -128,12 +131,12 @@ s32 clDetectS2T(
 		return 0;
 	f32 s, t;
 	clGetTriangleVectorCoef_CrsP(&vec_ab, &vec_ac, &pos_p, &crsP, &s, &t);
-	if (s < lbl_8042DFD4) {
-		if (t < lbl_8042DFD4) {
-			if (Dot(&vec_ab, &vec_ac) < lbl_8042DFD4) {
-				if (Dot(&vec_ab, &vec_ao) > lbl_8042DFD4)
+	if (s < 0.0f) {
+		if (t < 0.0f) {
+			if (Dot(&vec_ab, &vec_ac) < 0.0f) {
+				if (Dot(&vec_ab, &vec_ao) > 0.0f)
 					across = 1;
-				else if (Dot(&vec_ac, &vec_ao) > lbl_8042DFD4)
+				else if (Dot(&vec_ac, &vec_ao) > 0.0f)
 					across = 2;
 				else
 					across = 4;
@@ -142,11 +145,11 @@ s32 clDetectS2T(
 		} else if (s + t > lbl_8042DFD8) {
 			RwV3d vec_cb, vec_co;
 			Subtract(&vec_cb, &vec_ab, &vec_ac);
-			if (Dot(&vec_ac, &vec_cb) > lbl_8042DFD4) {
+			if (Dot(&vec_ac, &vec_cb) > 0.0f) {
 				Subtract(&vec_co, &vec_ao, &vec_ac);
-				if (Dot(&vec_ac, &vec_co) < lbl_8042DFD4)
+				if (Dot(&vec_ac, &vec_co) < 0.0f)
 					across = 2;
-				else if (Dot(&vec_cb, &vec_co) > lbl_8042DFD4)
+				else if (Dot(&vec_cb, &vec_co) > 0.0f)
 					across = 3;
 				else
 					across = 6;
@@ -154,15 +157,15 @@ s32 clDetectS2T(
 				across = 6;
 		} else
 			across = 2;
-	} else if (t < lbl_8042DFD4) {
+	} else if (t < 0.0f) {
 		if (s + t > lbl_8042DFD8) {
 			RwV3d vec_bc, vec_bo;
 			Subtract(&vec_bc, &vec_ac, &vec_ab);
-			if (Dot(&vec_ab, &vec_bc) > lbl_8042DFD4) {
+			if (Dot(&vec_ab, &vec_bc) > 0.0f) {
 				Subtract(&vec_bo, &vec_ao, &vec_ab);
-				if (Dot(&vec_ab, &vec_bo) < lbl_8042DFD4)
+				if (Dot(&vec_ab, &vec_bo) < 0.0f)
 					across = 1;
-				else if (Dot(&vec_bc, &vec_bo) > lbl_8042DFD4)
+				else if (Dot(&vec_bc, &vec_bo) > 0.0f)
 					across = 3;
 				else
 					across = 5;
@@ -222,8 +225,12 @@ s32 clDetectS2T(
 			break;
 		}
 		case 3: {
-			Subtract(&vec_ao, &vec_ao, &vec_ab);
-			Subtract(&vec_ac, &vec_ac, &vec_ab);
+			vec_ao.x = vec_ao.x - vec_ab.x;
+			vec_ao.y = vec_ao.y - vec_ab.y;
+			vec_ao.z = vec_ao.z - vec_ab.z;
+			vec_ac.x = vec_ac.x - vec_ab.x;
+			vec_ac.y = vec_ac.y - vec_ab.y;
+			vec_ac.z = vec_ac.z - vec_ab.z;
 			if (lbl_8042DFD0 + sphere_rad * sphere_rad < clDistanceP2V2(&vec_ao, &vec_ac))
 				return 0;
 			RwV3d vec_bp;
@@ -257,13 +264,13 @@ static s32 clIntersectTriangle(
 		return 0;
 	Subtract(&ao, line_pos, tri_vertex);
 	f32 u = Dot(&ao, &crsP0);
-	if (u < lbl_8042DFD4)
+	if (u < 0.0f)
 		return 0;
 	if (u > det)
 		return 0;
 	Cross(&crsP1, &ao, &ab);
 	f32 v = Dot(line_vec, &crsP1);
-	if (v < lbl_8042DFD4)
+	if (v < 0.0f)
 		return 0;
 	if (u + v > det)
 		return 0;
@@ -287,13 +294,13 @@ static s32 clIntersectTriangleY(
 		return 0;
 	Subtract(&ao, line_pos, tri_vertex);
 	f32 u = ao.x * cx + ao.z * cz;
-	if (u < lbl_8042DFD4)
+	if (u < 0.0f)
 		return 0;
 	if (u > det)
 		return 0;
 	Cross(&crsP1, &ao, &ab);
 	f32 v = line_vec->y * crsP1.y;
-	if (v < lbl_8042DFD4)
+	if (v < 0.0f)
 		return 0;
 	if (u + v > det)
 		return 0;
@@ -309,7 +316,7 @@ s32 clDetectLS2T(
 {
 	f32 t;
 	if (clIntersectTriangle(line_pos, line_vec, tri_vertex, &t)) {
-		if (t < lbl_8042DFD4 || t > lbl_8042DFD8) {
+		if (t < 0.0f || t > lbl_8042DFD8) {
 			*bits_across = 0x80;
 			return 0;
 		}
@@ -332,7 +339,7 @@ s32 clDetectLSY2T(
 {
 	f32 t;
 	if (clIntersectTriangleY(line_pos, line_vec, tri_vertex, &t)) {
-		if (t < lbl_8042DFD4 || t > lbl_8042DFD8) {
+		if (t < 0.0f || t > lbl_8042DFD8) {
 			*bits_across = 0x80;
 			return 0;
 		}
@@ -355,18 +362,19 @@ s32 clIsCrossLS2VonPlane(
 {
 	RwV3d crsP0, crsP1, vec_bp;
 	Cross(&crsP0, vector, line_pos);
-	((VectorComponents*)&vec_bp)->x = ((const VectorComponents*)vector)->x
-	    - ((const VectorComponents*)line_pos)->x - line_vec->x;
-	((VectorComponents*)&vec_bp)->y = ((const VectorComponents*)vector)->y
-	    - ((const VectorComponents*)line_pos)->y - line_vec->y;
-	((VectorComponents*)&vec_bp)->z = ((const VectorComponents*)vector)->z
-	    - ((const VectorComponents*)line_pos)->z - line_vec->z;
+	// Preserve the fresh component reads retained after the first cross product.
+	((VectorComponents*)&vec_bp)->x
+	    = ((const volatile RwV3d*)vector)->x - ((const volatile RwV3d*)line_pos)->x - line_vec->x;
+	((VectorComponents*)&vec_bp)->y
+	    = ((const volatile RwV3d*)vector)->y - ((const volatile RwV3d*)line_pos)->y - line_vec->y;
+	((VectorComponents*)&vec_bp)->z
+	    = ((const volatile RwV3d*)vector)->z - ((const volatile RwV3d*)line_pos)->z - line_vec->z;
 	Cross(&crsP1, vector, &vec_bp);
-	if ((crsP0.x * crsP1.x < lbl_8042DFD4
+	if ((crsP0.x * crsP1.x < 0.0f
 	        && ((f32)__fabs(crsP0.x) > 0.0001 || (f32)__fabs(crsP1.x) > 0.0001))
-	    || (crsP0.y * crsP1.y < lbl_8042DFD4
+	    || (crsP0.y * crsP1.y < 0.0f
 	        && ((f32)__fabs(crsP0.y) > 0.0001 || (f32)__fabs(crsP1.y) > 0.0001))
-	    || (crsP0.z * crsP1.z < lbl_8042DFD4
+	    || (crsP0.z * crsP1.z < 0.0f
 	        && ((f32)__fabs(crsP0.z) > 0.0001 || (f32)__fabs(crsP1.z) > 0.0001)))
 		return 0;
 	((VectorComponents*)&crsP0)->x = line_vec->z * line_pos->y - line_vec->y * line_pos->z;
@@ -375,11 +383,11 @@ s32 clIsCrossLS2VonPlane(
 	((VectorComponents*)&crsP1)->x = line_vec->z * vec_bp.y - line_vec->y * vec_bp.z;
 	((VectorComponents*)&crsP1)->y = line_vec->x * vec_bp.z - line_vec->z * vec_bp.x;
 	((VectorComponents*)&crsP1)->z = line_vec->y * vec_bp.x - line_vec->x * vec_bp.y;
-	if ((crsP0.x * crsP1.x >= lbl_8042DFD4
+	if ((crsP0.x * crsP1.x >= 0.0f
 	        || ((f32)__fabs(crsP0.x) < 0.0001 && (f32)__fabs(crsP1.x) < 0.0001))
-	    && (crsP0.y * crsP1.y >= lbl_8042DFD4
+	    && (crsP0.y * crsP1.y >= 0.0f
 	        || ((f32)__fabs(crsP0.y) < 0.0001 && (f32)__fabs(crsP1.y) < 0.0001))
-	    && (crsP0.z * crsP1.z >= lbl_8042DFD4
+	    && (crsP0.z * crsP1.z >= 0.0f
 	        || ((f32)__fabs(crsP0.z) < 0.0001 && (f32)__fabs(crsP1.z) < 0.0001))) {
 		if (ans) {
 			f32 t;
@@ -394,17 +402,20 @@ s32 clIsCrossLS2VonPlane(
 				Scale(ans, vector, t);
 			} else {
 				f32 OAOP = Dot(line_pos, vector), lOPl2 = Dot(vector, vector);
-				if (OAOP > lbl_8042DFD4) {
+				if (OAOP > 0.0f) {
 					if (OAOP >= lOPl2) {
 						ans->x = vector->x;
 						ans->y = vector->y;
 						ans->z = vector->z;
 					} else {
 						t = OAOP / lOPl2;
-						Scale(ans, vector, t);
+						// The output path reloads x instead of reusing the dot-product operand.
+						((VectorComponents*)ans)->x = ((const volatile RwV3d*)vector)->x * t;
+						((VectorComponents*)ans)->y = vector->y * t;
+						((VectorComponents*)ans)->z = vector->z * t;
 					}
 				} else {
-					ans->x = ans->y = ans->z = lbl_8042DFD4;
+					ans->x = ans->y = ans->z = 0.0f;
 				}
 			}
 		}
@@ -454,22 +465,40 @@ void clGetTriangleVectorCoef_CrsP(RwV3d* ab, RwV3d* ac, RwV3d* ap, RwV3d* crsP, 
 f32 clDistanceP2L2(RwV3d* point_pos, RwV3d* line_pos, RwV3d* line_vec, RwV3d* ans_pos)
 {
 	RwV3d tmpvec;
-	f32 CDCA, lCDl2, u, x, y, z;
-	Subtract(&tmpvec, point_pos, line_pos);
-	CDCA  = Dot(line_vec, &tmpvec);
-	lCDl2 = Dot(line_vec, line_vec);
+	// Component caches reconstruct the GameCube register lifetimes.
+	f32 vector_y, vector_z, origin_z, point_z, delta_y, origin_y, point_y, origin_x, point_x,
+	    vector_x, CDCA;
+	f32 lCDl2, u, tmp_vec_x, tmp_vec_y, tmp_vec_z;
+	point_x                         = point_pos->x;
+	origin_x                        = line_pos->x;
+	((VectorComponents*)&tmpvec)->x = point_x - origin_x;
+	point_y                         = point_pos->y;
+	origin_y                        = line_pos->y;
+	delta_y                         = point_y - origin_y;
+	((VectorComponents*)&tmpvec)->y = delta_y;
+	point_z                         = point_pos->z;
+	origin_z                        = line_pos->z;
+	((VectorComponents*)&tmpvec)->z = point_z - origin_z;
+	CDCA                            = (vector_z = line_vec->z) * (tmp_vec_z = tmpvec.z)
+	    + ((vector_x = line_vec->x) * (tmp_vec_x = tmpvec.x)
+	        + (vector_y = line_vec->y) * (tmp_vec_y = delta_y));
+	lCDl2 = vector_z * vector_z + (vector_x * vector_x + vector_y * vector_y);
 	if (lCDl2 < lbl_8042DFD0) {
-		x = line_pos->x - point_pos->x;
-		x = x * x;
-		y = line_pos->y - point_pos->y;
-		y = y * y;
-		z = line_pos->z - point_pos->z;
-		z = z * z;
-		return z + (x + y);
+		tmp_vec_x = origin_x - point_x;
+		tmp_vec_x *= tmp_vec_x;
+		tmp_vec_y = origin_y - point_y;
+		tmp_vec_y *= tmp_vec_y;
+		tmp_vec_z = origin_z - point_z;
+		tmp_vec_z *= tmp_vec_z;
+		return tmp_vec_z + (tmp_vec_x + tmp_vec_y);
 	}
-	u = CDCA / lCDl2;
-	Scale(&tmpvec, line_vec, u);
-	Add(&tmpvec, &tmpvec, line_pos);
+	u                               = CDCA / lCDl2;
+	((VectorComponents*)&tmpvec)->x = vector_x * u;
+	((VectorComponents*)&tmpvec)->y = vector_y * u;
+	((VectorComponents*)&tmpvec)->z = vector_z * u;
+	((VectorComponents*)&tmpvec)->x = tmpvec.x + origin_x;
+	((VectorComponents*)&tmpvec)->y = tmpvec.y + origin_y;
+	((VectorComponents*)&tmpvec)->z = tmpvec.z + origin_z;
 	if (ans_pos) {
 		ans_pos->x = tmpvec.x;
 		ans_pos->y = tmpvec.y;
@@ -480,5 +509,4 @@ f32 clDistanceP2L2(RwV3d* point_pos, RwV3d* line_pos, RwV3d* line_vec, RwV3d* an
 }
 
 const __declspec(section ".sdata2") f32 lbl_8042DFD0 = 0.000123f;
-const __declspec(section ".sdata2") f32 lbl_8042DFD4 = 0.0f;
 const __declspec(section ".sdata2") f32 lbl_8042DFD8 = 1.0f;
