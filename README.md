@@ -82,7 +82,9 @@ indices, so every section came out one index low and the header fields shifted
 with them. The project therefore pins a
 [fork](https://github.com/Jovinull/decomp-toolkit) carrying that change, tagged
 `v1.8.3-sh1`. It is reported upstream as
-[encounter/decomp-toolkit#144](https://github.com/encounter/decomp-toolkit/issues/144);
+[encounter/decomp-toolkit#144](https://github.com/encounter/decomp-toolkit/issues/144),
+with the fix proposed in
+[encounter/decomp-toolkit#145](https://github.com/encounter/decomp-toolkit/pull/145);
 point `tools/download_tool.py` back at upstream once it lands there.
 
 ## AI assistance
