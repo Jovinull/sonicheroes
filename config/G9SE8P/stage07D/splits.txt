@@ -2036,6 +2036,11 @@ rel/e_flyer_missile_stage11.cpp:
 	.data       start:0x00084368 end:0x000843E0
 	.bss        start:0x00002480 end:0x00002488
 
+rel/e_flyer_path_stage11.cpp:
+	.text       start:0x000E2988 end:0x000E3050
+	.rodata     start:0x000021A0 end:0x000021B0
+	.data       start:0x000843E0 end:0x00084410
+
 rel/rinoliner_create.cpp:
 	.text       start:0x000E6FC4 end:0x000E700C
 

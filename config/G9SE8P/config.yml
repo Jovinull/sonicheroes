@@ -1114,6 +1114,11 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
     - fn_8_B4B88
     - fn_8_B4DA4
     - fn_8_B4FF4
@@ -1456,6 +1461,11 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
     - fn_8_BE668
     - fn_8_BE770
     - fn_8_BEB1C
@@ -2301,6 +2311,11 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
     - fn_8_A8334
     - fn_8_A8384
     - fn_8_A8584
@@ -2567,6 +2582,11 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
     - fn_8_A4140
     - fn_8_A4230
     - fn_8_A4290
