@@ -772,7 +772,7 @@ rel/pawn_assets.cpp:
 	.ctors      start:0x00000060 end:0x00000064
 
 rel/enemy_shot_set.cpp:
-	.text       start:0x000343A0 end:0x0003460C
+	.text       start:0x00034134 end:0x0003460C
 
 rel/enemy_shot_pool.cpp:
 	.text       start:0x0003460C end:0x00034798
