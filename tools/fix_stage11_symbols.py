@@ -2,7 +2,6 @@
 """Rename compiler-generated stage11 data symbols to their retail names."""
 
 import argparse
-import os
 import shutil
 import subprocess
 import sys
@@ -60,8 +59,6 @@ def main() -> None:
                 raise SystemExit(f"unexpected {anonymous} size in {args.object.name}")
             pending.append((anonymous, retail, size))
         elif retail not in names or f"{size:08x} {retail}" not in symbols:
-            if os.environ.get("S11_DEV_LOCAL"):  # LOCAL-ONLY, revert before PR
-                args.stamp.touch(); return
             raise SystemExit(f"missing {retail} in {args.object.name}")
     for anonymous, retail, _size in pending:
         command.extend(["--redefine-sym", f"{anonymous}={retail}"])
