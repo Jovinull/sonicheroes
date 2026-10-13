@@ -1128,6 +1128,9 @@ rel/searcher_strategy_bomb.cpp:
 rel/searcher_strategy_laser.cpp:
 	.text       start:0x000530F0 end:0x000531F8
 
+rel/searcher_strategy_needle.cpp:
+	.text       start:0x00053238 end:0x000536A4
+
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x000545B0 end:0x00054634
 
