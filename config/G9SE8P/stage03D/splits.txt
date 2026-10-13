@@ -1715,16 +1715,10 @@ rel/s31_bob_dummy_register.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x000B4AA0 end:0x000B5480
 
-rel/pawn_strategy_setup.cpp:
-	.text       start:0x000B5480 end:0x000B5E50
-	.data       start:0x00013320 end:0x000133F4
-
-rel/pawn_strategy_exec.cpp:
-	.text       start:0x000B5E50 end:0x000B5E8C
-
-rel/pawn_strategy_cdtor.cpp:
-	.text       start:0x000B5E8C end:0x000B5F74
-	.data       start:0x000133F4 end:0x0001340C
+rel/pawn_strategy.cpp:
+	.text       start:0x000B5480 end:0x000B62E0
+	.ctors      start:0x00000168 end:0x0000016C
+	.data       start:0x00013098 end:0x0001340C
 
 rel/s04_ball_colli_dtor.cpp:
 	.text       start:0x000B6A30 end:0x000B6AC8

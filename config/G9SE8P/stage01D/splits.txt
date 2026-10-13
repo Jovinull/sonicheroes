@@ -1737,16 +1737,10 @@ rel/s31bob_exec.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x000C4F6C end:0x000C594C
 
-rel/pawn_strategy_setup.cpp:
-	.text       start:0x000C594C end:0x000C631C
-	.data       start:0x000169E8 end:0x00016ABC
-
-rel/pawn_strategy_exec.cpp:
-	.text       start:0x000C631C end:0x000C6358
-
-rel/pawn_strategy_cdtor.cpp:
-	.text       start:0x000C6358 end:0x000C6440
-	.data       start:0x00016ABC end:0x00016AD4
+rel/pawn_strategy.cpp:
+	.text       start:0x000C594C end:0x000C67AC
+	.ctors      start:0x0000015C end:0x00000160
+	.data       start:0x00016760 end:0x00016AD4
 
 rel/hermitcrab_search_cage.cpp:
 	.text       start:0x000C6884 end:0x000C6974

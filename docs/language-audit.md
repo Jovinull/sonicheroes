@@ -505,19 +505,23 @@ module (a static symbol cannot be force-activated by name).
 
 ### Pawn strategy
 
-`rel/pawn_strategy_setup.cpp` reconstructs `TEnemyPawn_Strategy::SetUpFirst`
-and `TEnemyPawn_Strategy::IsReqChangeMode`. The PS2 symbols name the class, a
-`TEnemyStrategy<TObjEnemyPawn>`, and order its members as the 27
-`StrategyMode_*`, `SetUpFirst`, `IsReqChangeMode`, `ExecStrategyMode`, the
-destructor and the constructor; the eleven pawn modules keep the same order on
-GameCube. The unit owns the strategy's vtable, whose key function is
-`IsReqChangeMode`, and the three jump tables of the two functions. Retail has
-the vtable first and the jump tables after it, in function order. Without
-deferred inlining the compiler emits the vtable after the jump tables; with
-`-inline deferred` it comes first, and defining `IsReqChangeMode` before
-`SetUpFirst` (the mode emits functions in reverse order) gives the retail text
-order. Both functions, their relocations and the owned `.data` match in all
-eleven modules (exato EXACT), and all 18 hashes match.
+`rel/pawn_strategy.cpp` reconstructs `TEnemyPawn_Strategy` apart from its 27
+`StrategyMode_*` members (`rel/pawn_strategy_modes.cpp`). The PS2 symbols name
+the class, a `TEnemyStrategy<TObjEnemyPawn>`, and order its members as the
+strategy modes, `SetUpFirst`, `IsReqChangeMode`, `ExecStrategyMode`, the
+destructor and the constructor, with `FuncTbl` as its data; the eleven pawn
+modules keep the same order on GameCube, followed by the template base's
+destructor and the startup copy of `FuncTbl`. The unit owns the member pointer
+constants, `FuncTbl`, the strategy's vtable (its key function is
+`IsReqChangeMode`), the three jump tables of `SetUpFirst` and
+`IsReqChangeMode`, and the base's vtable. Retail has the vtable before the jump
+tables; without deferred inlining the compiler emits it after them, while with
+`-inline deferred` it comes first and the functions are emitted in reverse
+definition order, so the source defines them last to first. With
+`#pragma pool_data off` the startup copy addresses each constant by its own
+symbol as in the retail. All seven functions, their relocations and the owned
+`.ctors` and `.data` match in all eleven modules (exato EXACT), and all 18
+hashes match.
 
 ### Tri-spring and switch fragments
 

@@ -2615,7 +2615,7 @@ ExecStrategyMode__19TEnemyPawn_StrategyFiQ231TEnemyStrategy<13TObjEnemyPawn>9eSt
 __dt__19TEnemyPawn_StrategyFv = .text:0x000D4C18; // type:function size:0x64
 __ct__19TEnemyPawn_StrategyFv = .text:0x000D4C7C; // type:function size:0x34
 __dt__31TEnemyStrategy<13TObjEnemyPawn>Fv = .text:0x000D4CB0; // type:function size:0x50
-fn_6_D4D00 = .text:0x000D4D00; // type:function size:0x36C
+__sinit_pawn_strategy_cpp = .text:0x000D4D00; // type:function size:0x36C
 CreateItemBox__8nItemBoxFP5RwV3d = .text:0x000D506C; // type:function size:0xD8
 fn_6_D5144 = .text:0x000D5144; // type:function size:0x98
 fn_6_D51DC = .text:0x000D51DC; // type:function size:0x24

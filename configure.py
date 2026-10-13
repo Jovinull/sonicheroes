@@ -6343,18 +6343,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/pawn_strategy_exec.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/pawn_strategy_cdtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-                data_section_alignment=4,
-            ),
-            Object(
-                Matching,
-                "rel/pawn_strategy_setup.cpp",
+                "rel/pawn_strategy.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
             ),
             Object(

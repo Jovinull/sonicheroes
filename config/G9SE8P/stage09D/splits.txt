@@ -1752,16 +1752,10 @@ rel/s31bob_exec.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x000AD2FC end:0x000ADCDC
 
-rel/pawn_strategy_setup.cpp:
-	.text       start:0x000ADCDC end:0x000AE6AC
-	.data       start:0x0001E608 end:0x0001E6DC
-
-rel/pawn_strategy_exec.cpp:
-	.text       start:0x000AE6AC end:0x000AE6E8
-
-rel/pawn_strategy_cdtor.cpp:
-	.text       start:0x000AE6E8 end:0x000AE7D0
-	.data       start:0x0001E6DC end:0x0001E6F4
+rel/pawn_strategy.cpp:
+	.text       start:0x000ADCDC end:0x000AEB3C
+	.ctors      start:0x00000184 end:0x00000188
+	.data       start:0x0001E380 end:0x0001E6F4
 
 rel/rain_collision_dtor.cpp:
 	.text       start:0x000B3D04 end:0x000B3D9C
