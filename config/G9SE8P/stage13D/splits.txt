@@ -1251,6 +1251,9 @@ rel/searcher_ctrl.cpp:
 rel/searcher_jet.cpp:
 	.text       start:0x000581CC end:0x00058308
 
+rel/searcher_destroy_clump.cpp:
+	.text       start:0x00058FF4 end:0x00059100
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3B8 end:0x0005A400
 

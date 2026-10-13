@@ -158,10 +158,16 @@ typedef struct SearcherColli {
 	u32 flags; // 0x34, 0x10: off
 } SearcherColli;
 
-typedef struct SearcherLight {
+// ENEMYMTNMAN (the PS2 build's name), the enemy's motion manager, as far as
+// these units use it
+class ENEMYMTNMAN
+{
+public:
+	~ENEMYMTNMAN();
+
 	u8 unk00[0x1C];
-	s32 on; // 0x1C
-} SearcherLight;
+	s32 active; // 0x1C
+};
 
 typedef struct Searcher {
 	char* name; // 0x00
@@ -193,11 +199,12 @@ typedef struct Searcher {
 	RwV3d aimPos; // 0x1CC
 	u8 unk1D8[0x58];
 	s32 breaker; // 0x230
-	u8 unk234[0x10];
+	u8 unk234[0xC];
+	RpClump* bodyClump; // 0x240
 	RpClump* clumps[4]; // 0x244, lit body, dark body, lit and dark parts
 	s32 lit;            // 0x254
 	u8 unk258[0x4];
-	SearcherLight* light; // 0x25C
+	ENEMYMTNMAN* motion; // 0x25C
 	u8 unk260[0x8];
 	TEnemyGadget* gadget; // 0x268
 	s32 bobAngle;         // 0x26C

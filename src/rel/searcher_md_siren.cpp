@@ -109,7 +109,7 @@ extern "C" void EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
 {
 	switch (sub) {
 		case 0:
-			searcher->light->on = 1;
+			searcher->motion->active = 1;
 			break;
 		case 1:
 			CtrlWaitPos__17TObjEnemySearcherFv(searcher);
@@ -117,7 +117,7 @@ extern "C" void EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
 		case 2:
 			break;
 		case 3:
-			searcher->light->on = 0;
+			searcher->motion->active = 0;
 			break;
 	}
 }
