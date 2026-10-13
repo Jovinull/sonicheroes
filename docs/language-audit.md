@@ -2844,3 +2844,15 @@ reconstruction now matches all 15 native functions, 5,408 instruction bytes,
 owned sections and 353 resolved relocations. Both the full G9SE8P release
 and all-source build pass, with all 18 final hashes exact. No object
 normalizer is used for this unit.
+
+### Stage13 antenna native class reconstruction
+
+`stage13D/o_s13_antenna.cpp` now emits all twelve functions and their complete
+text order natively. PS2 symbolic metadata supports the `TObjS13Antenna`
+source and its `TObject`, `TObjSetObj`, and `C_COLLI` bases. Native construction
+and a reference conversion to the collision base remove the factory instruction
+patch. The remaining tool only permutes existing data atoms and binds metadata.
+All configured zero tails remain covered as opaque residual storage; their
+historical declarations and ownership are explicitly uncertain. See
+[antenna-unit evidence](antenna-unit-evidence.md) for the complete 3,128-byte
+scope, 213 relocation checks, and validation.

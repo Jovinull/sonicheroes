@@ -168,3 +168,9 @@ See [the integration proof](cri-integration-20260925.md) for exact scope,
 duplicate handling, all-target verification and limits. This entry supersedes
 older completed-unit publication statuses above; it does not claim an upstream
 merge until the remote accepts it.
+
+`decomp/antenna-native-20261013` reconstructs the Stage13 antenna class and
+emits all twelve functions in native target order. It removes factory-word
+patching and code reordering, retaining only guarded data/symbol normalization.
+The full configured code and data extents remain covered, including explicitly
+uncertain residual zero storage; see [evidence](antenna-unit-evidence.md).

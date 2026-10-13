@@ -19,14 +19,16 @@ typedef struct Frame {
 	EulerAngles angle;
 } Frame;
 
-typedef struct TObject {
+// Explicit ABI views retained for the external C helpers and transform accesses.
+// Construction, destruction and virtual dispatch use the native classes below.
+typedef struct TObjectStorage {
 	const char* className;
 	u16 signal;
 	u16 tag;
-	struct TObject* prev;
-	struct TObject* next;
-	struct TObject* parent;
-	struct TObject* child;
+	struct TObjectStorage* prev;
+	struct TObjectStorage* next;
+	struct TObjectStorage* parent;
+	struct TObjectStorage* child;
 	void** vtable;
 	s16 unk1C;
 	s16 objectSize;
@@ -34,17 +36,18 @@ typedef struct TObject {
 	s16 unk22;
 	s16 unk24;
 	s16 unk26;
-} TObject;
+} TObjectStorage;
 
 typedef struct Motion {
 	Frame* frame;
 	void** vtable;
 } Motion;
 
-typedef struct ModelHolder {
+// Observed leading RwObject fields only; no RpClump objects are allocated here.
+typedef struct RpClump {
 	void* resource;
 	u8* model;
-} ModelHolder;
+} RpClump;
 
 typedef struct Transform {
 	u8 pad00[0x60];
@@ -56,12 +59,13 @@ typedef struct Transform {
 	Vec3 previousPosition;
 } Transform;
 
+// Layout view used inside SetPosition/Exec; never constructed separately.
 typedef struct Antenna {
-	TObject base;
+	TObjectStorage base;
 	Motion motion;
 	Transform transform;
 	f32 phase;
-	ModelHolder* model;
+	RpClump* model;
 } Antenna;
 
 typedef struct ModelAsset {
@@ -87,33 +91,6 @@ typedef struct ObjectEntry {
 	const char** fieldNames;
 } ObjectEntry;
 
-class AntennaPrimaryBase
-{
-public:
-	virtual void slot0();
-	virtual void slot1();
-	virtual void slot2();
-	virtual void slot3();
-	virtual void slot4();
-	virtual void slot5();
-	virtual void slot6();
-	virtual void slot7();
-	virtual void slot8();
-	u8 layoutPad[0x24];
-};
-
-class AntennaEditBase
-{
-public:
-	virtual void editOnChange(void*);
-};
-
-class AntennaVirtual : public AntennaPrimaryBase, public AntennaEditBase
-{
-public:
-	virtual void editOnChange(void*);
-};
-
 extern "C" void* lbl_8042C110;
 extern "C" void* lbl_8042C148;
 extern "C" void* lbl_8042C180;
@@ -124,10 +101,10 @@ extern "C" Vec3 AxisY;
 extern "C" Vec3 AxisZ;
 extern "C" char lbl_802FF5A0[];
 
-extern "C" void __ct__7TObjectFP7TObject(TObject*, void*);
-extern "C" void __dt__7TObjectFv(TObject*, s32);
+extern "C" void __ct__7TObjectFP7TObject(TObjectStorage*, void*);
+extern "C" void __dt__7TObjectFv(TObjectStorage*, s32);
 extern "C" void Error__7TObjectFPc(void);
-extern "C" void Free__9THeapCtrlFPv(void*, TObject*);
+extern "C" void Free__9THeapCtrlFPv(void*, TObjectStorage*);
 extern "C" void* Malloc__9THeapCtrlFUi(void*, u32);
 extern "C" void Entry__7C_COLLIFv(void*);
 extern "C" void fn_8003BF04(void*, const u32*, s32, s32);
@@ -146,10 +123,10 @@ extern "C" void fn_8019E880(void*);
 extern "C" void fn_8019EB94(void*, Frame*, s32);
 extern "C" void fn_801A4C84(void*);
 
-extern "C" void fn_9_75764(ModelHolder*, f32);
-extern "C" void fn_9_757C4(ModelHolder*, void*, s32);
+extern "C" void fn_9_75764(RpClump*, f32);
+extern "C" void fn_9_757C4(RpClump*, void*, s32);
 extern "C" void fn_9_75888(void*);
-extern "C" void fn_9_75D2C(ModelAsset*, s32, ModelHolder**, s32);
+extern "C" void fn_9_75D2C(ModelAsset*, s32, RpClump**, s32);
 extern "C" void fn_9_76448(ModelAsset*);
 extern "C" void fn_9_765CC(ModelAsset*, s32);
 
@@ -170,23 +147,80 @@ extern "C" const f32 antennaFullTurn;
 extern "C" const f32 antennaZeroPool[5];
 extern "C" char antennaClassName[];
 extern "C" const char* antennaClassNamePtr;
-extern "C" void* __vt__14AntennaVirtual[];
-#define antennaVtable __vt__14AntennaVirtual
 
-extern "C" void antennaDestroyClump(Antenna*, ModelHolder** model)
+struct SETDATA_PARAM;
+class TObject
+{
+public:
+	const char* ClassName;
+	u16 Signal, Tag;
+	TObject *Prev, *Next, *Parent, *Child;
+	TObject(TObject*);
+	virtual ~TObject();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void TDisp();
+	virtual void PDisp();
+	virtual void ImmAftSetRaster();
+	virtual void Debug();
+	virtual void Error(char*);
+	virtual void Render();
+	u16 ExecTime, DispTime, TDispTime, PDispTime, ImmAftSetRasterTime;
+	static void* operator new(unsigned long size)
+	{
+		return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
+	}
+	static void operator delete(void* memory)
+	{
+		Free__9THeapCtrlFPv(lbl_8042C148, (TObjectStorage*)memory);
+	}
+};
+class TObjSetObj
+{
+public:
+	Frame* ObjParam;
+	TObjSetObj();
+	~TObjSetObj();
+	virtual void EditOnChange(SETDATA_PARAM*);
+};
+class C_COLLI
+{
+	u32 fields[34];
+
+public:
+	C_COLLI();
+	~C_COLLI();
+};
+class TObjS13Antenna : public TObject, public TObjSetObj, public C_COLLI
+{
+public:
+	f32 animTime;
+	RpClump* pClump;
+	TObjS13Antenna(TObject*);
+	virtual ~TObjS13Antenna();
+	virtual void Exec();
+	virtual void EditOnChange(SETDATA_PARAM*);
+	void DestroyClump(RpClump**);
+	void CloneClump(RpClump**);
+	void SetPosition();
+};
+typedef char AntennaNativeSize[(sizeof(TObjS13Antenna) == 0xC0) ? 1 : -1];
+
+void TObjS13Antenna::DestroyClump(RpClump** model)
 {
 	fn_9_75888(model);
 }
 
-extern "C" void antennaCloneClump(Antenna*, ModelHolder** model)
+void TObjS13Antenna::CloneClump(RpClump** model)
 {
 	fn_9_75D2C(&antennaAsset, 0, model, 0);
 	fn_9_757C4(*model, &antennaAsset.words[5], 0);
 }
 
-extern "C" void antennaSetPosition(Antenna* object)
+void TObjS13Antenna::SetPosition()
 {
-	u8* model = object->model->model;
+	Antenna* object = (Antenna*)this;
+	u8* model       = object->model->model;
 	f32 c;
 	f32 s;
 
@@ -207,9 +241,10 @@ extern "C" void antennaSetPosition(Antenna* object)
 	fn_8019EB94(model, object->motion.frame, 2);
 }
 
-extern "C" void antennaExec(Antenna* object)
+void TObjS13Antenna::Exec()
 {
-	f32 duration = ((f32*)&antennaAsset)[7];
+	Antenna* object = (Antenna*)this;
+	f32 duration    = ((f32*)&antennaAsset)[7];
 
 	if (CheckRangeOut__10TObjSetObjFv(&object->motion) != 0
 	    || CheckMustKill__10TObjSetObjFv(&object->motion) != 0) {
@@ -229,7 +264,7 @@ extern "C" void antennaExec(Antenna* object)
 	}
 
 	if (OnEdit__10TObjSetObjFv(&object->motion) != 0) {
-		antennaSetPosition(object);
+		SetPosition();
 	} else {
 		object->phase += antennaFrameStep;
 		if (object->phase >= duration) {
@@ -249,40 +284,24 @@ extern "C" void antennaExec(Antenna* object)
 	}
 }
 
-void AntennaVirtual::editOnChange(void*) { }
+void TObjS13Antenna::EditOnChange(SETDATA_PARAM*) { }
 
-extern "C" Antenna* antennaDtor(Antenna* object, s16 flags)
+TObjS13Antenna::~TObjS13Antenna()
 {
-	if (object != NULL) {
-		object->base.vtable   = antennaVtable;
-		object->motion.vtable = antennaVtable + 11;
-		fn_9_75888(&object->model);
-		__dt__7C_COLLIFv(&object->transform, 0);
-		__dt__10TObjSetObjFv(&object->motion, 0);
-		__dt__7TObjectFv(&object->base, 0);
-		if (flags > 0) {
-			Free__9THeapCtrlFPv(lbl_8042C148, &object->base);
-		}
-	}
-	return object;
+	fn_9_75888(&pClump);
 }
 
-extern "C" Antenna* antennaCtor(Antenna* object, void* owner)
+TObjS13Antenna::TObjS13Antenna(TObject* owner)
+    : TObject(owner)
+    , TObjSetObj()
+    , C_COLLI()
 {
-	__ct__7TObjectFP7TObject(&object->base, owner);
-	__ct__10TObjSetObjFv(&object->motion);
-	__ct__7C_COLLIFv(&object->transform);
-
-	object->base.vtable     = antennaVtable;
-	object->motion.vtable   = antennaVtable + 11;
-	object->base.className  = antennaClassNamePtr;
-	object->base.objectSize = sizeof(Antenna);
-	object->phase           = antennaZeroPool[0];
-
-	antennaCloneClump(object, &object->model);
-	antennaSetPosition(object);
-	fn_8003BF04(&object->transform, antennaCollision, 2, 4);
-	return object;
+	ClassName = antennaClassNamePtr;
+	DispTime  = sizeof(TObjS13Antenna);
+	animTime  = antennaZeroPool[0];
+	CloneClump(&pClump);
+	SetPosition();
+	fn_8003BF04(&static_cast<C_COLLI&>(*this), antennaCollision, 2, 4);
 }
 
 extern "C" void antennaEnd(void)
@@ -310,24 +329,13 @@ extern "C" void antennaInit(void)
 	}
 }
 
-class AntennaAllocation
-{
-public:
-	Antenna object;
-	AntennaAllocation(void* owner) { antennaCtor(&object, owner); }
-	static void* operator new(unsigned long, void* memory) { return memory; }
-};
-
 extern "C" void antennaCreate(void)
 {
-	void* memory = Malloc__9THeapCtrlFUi(lbl_8042C148, sizeof(AntennaAllocation));
-	if (memory != NULL) {
-		new (memory) AntennaAllocation(lbl_8042C110);
-	}
+	new TObjS13Antenna((TObject*)lbl_8042C110);
 }
 
 extern "C" ObjectEntry antennaEntry;
-extern "C" char antennaDisplayName[17];
+extern "C" char antennaDisplayName[];
 
 extern "C" void antennaRegister(void)
 {
@@ -386,9 +394,11 @@ extern "C" const u32 antennaCollision[24] = {
 	0,
 	0x00004000,
 };
-extern "C" const __declspec(section ".rodata") f32 antennaOne         = 1.0f;
-extern "C" const __declspec(section ".rodata") f32 antennaFrameStep   = 0.0166667f;
-extern "C" const __declspec(section ".rodata") f32 antennaFullTurn    = 65536.0f;
+extern "C" const __declspec(section ".rodata") f32 antennaOne       = 1.0f;
+extern "C" const __declspec(section ".rodata") f32 antennaFrameStep = 0.0166667f;
+extern "C" const __declspec(section ".rodata") f32 antennaFullTurn  = 65536.0f;
+// Preserve the configured constant range. The unreferenced zero bytes have
+// uncertain historical ownership; these names do not recover original arrays.
 extern "C" const __declspec(section ".rodata") u32 antennaRodataPad   = 0;
 extern "C" const __declspec(section ".rodata") f32 antennaZeroPool[5] = {
 	0.0f,
@@ -399,10 +409,12 @@ extern "C" const __declspec(section ".rodata") f32 antennaZeroPool[5] = {
 };
 extern "C" char antennaClassName[]         = "TObjS13Antenna";
 extern "C" const char* antennaClassNamePtr = antennaClassName;
-extern "C" char antennaDisplayName[17]     = "S13D ANTENNA";
+extern "C" char antennaDisplayName[]       = "S13D ANTENNA";
 
 extern "C" {
 ObjectEntry antennaEntry;
+// Opaque zero storage retained from the configured unit extent. Its original
+// declarations and historical ownership have not been established.
 u32 antennaBssTail[4];
 }
 
