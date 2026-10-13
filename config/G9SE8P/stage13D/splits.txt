@@ -1651,6 +1651,10 @@ rel/e_flyer_missile_stage11.cpp:
 	.data       start:0x0001C348 end:0x0001C3C0
 	.bss        start:0x000020D0 end:0x000020D8
 
+rel/e_path_draw_stage11.cpp:
+	.text       start:0x000BB680 end:0x000BB734
+	.rodata     start:0x00002470 end:0x00002480
+
 rel/e_flyer_path_stage11.cpp:
 	.text       start:0x000BB734 end:0x000BBDFC
 	.rodata     start:0x00002480 end:0x00002490

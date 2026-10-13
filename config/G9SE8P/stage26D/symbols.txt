@@ -3510,6 +3510,7 @@ lbl_8_rodata_19EC = .rodata:0x00001EFC; // type:object size:0x4 align:4 data:flo
 lbl_8_rodata_19F0 = .rodata:0x00001F00; // type:object size:0x4 align:4 data:float
 lbl_8_rodata_19F4 = .rodata:0x00001F04; // type:object size:0x4 align:4 data:float
 lbl_8_rodata_19F8 = .rodata:0x00001F08; // type:object size:0x4 align:4 data:float
+lbl_8_rodata_1A00 = .rodata:0x00001F10; // type:object size:0xC
 lbl_8_rodata_1A10 = .rodata:0x00001F20; // type:object size:0xC
 enemyStg27CloudLow = .rodata:0x00001F3C; // type:object size:0xC align:4 data:float
 enemyStg27CloudHigh = .rodata:0x00001F48; // type:object size:0xC align:4 data:float
