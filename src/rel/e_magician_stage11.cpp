@@ -630,7 +630,7 @@ s32 Create__12TEnemySummonFUc(s32);                                             
 s32 DecreaseTimer__7nSystemFRi(void*);                                                 /* extern */
 M2C_UNK fn_8014FF2C(void*);
 M2C_UNK fn_8014FFBC(s32, void*, void*);
-s32 fn_8_90B10(s32);                          /* extern */
+s32 CreateItemBox__8nItemBoxFP5RwV3d(s32);    /* extern */
 M2C_UNK fn_8_A504(s32, void*, s32, f32, f32); /* extern */
 void* __dt__17TObjEnemyMagicianFv(void*, s16);
 void CtrlMode__17TObjEnemyMagicianF8ENEMY_MDQ29TObjEnemy10eCtrlSMode(void*, s32, s32);
@@ -1011,7 +1011,7 @@ s32 fn_8_AABC8(void* arg0)
 
 void AddItemBox__17TObjEnemyMagicianFP5RwV3d(void* arg0, s32 arg1)
 {
-	fn_8_90B10(arg1);
+	CreateItemBox__8nItemBoxFP5RwV3d(arg1);
 }
 
 void fn_8_AAC90(void* arg0, void* arg1)

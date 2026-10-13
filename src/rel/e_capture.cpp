@@ -364,7 +364,7 @@ M2C_UNK fn_8019EC30(RwFrame*, f32*, M2C_UNK);                            /* exte
 M2C_UNK fn_8019ECCC(RwFrame*, void*, M2C_UNK);                           /* extern */
 M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);                       /* extern */
 s32 rand(void*, ...);                                                    /* extern */
-M2C_UNK fn_8_90B10(s32);                                                 /* extern */
+M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);                           /* extern */
 void** fn_8_9DCE8();                                                     /* extern */
 M2C_UNK fn_8_9E43C(TObject*);                                            /* extern */
 void** fn_8_9EB28();                                                     /* extern */
@@ -610,7 +610,7 @@ void fn_8_98060(void* arg0)
 
 void fn_8_980F8(void* arg0, s32 arg1)
 {
-	fn_8_90B10(arg1);
+	CreateItemBox__8nItemBoxFP5RwV3d(arg1);
 }
 
 void fn_8_9811C(void* arg0, void* arg1)

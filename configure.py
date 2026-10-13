@@ -6322,6 +6322,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_add_item_box.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_hit_point.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

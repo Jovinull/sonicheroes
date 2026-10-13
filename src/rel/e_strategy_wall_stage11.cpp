@@ -477,7 +477,7 @@ M2C_UNK* fn_8019E8EC(u32);                                            /* extern 
 M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);                        /* extern */
 M2C_UNK fn_8019ECCC(s32, M2C_UNK*, M2C_UNK);                          /* extern */
 M2C_UNK fn_8019ED68(RwFrame*, M2C_UNK*, f32, s32);                    /* extern */
-M2C_UNK fn_8_90B10(s32);                                              /* extern */
+M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);                        /* extern */
 M2C_UNK EditOnChange__22TObjColliCommunicationFP13SETDATA_PARAM(s32); /* extern */
 void fn_8_B7C50(TObject* arg0, void* arg1);                           /* static */
 void* fn_8_B81B0(void* arg0);                                         /* static */

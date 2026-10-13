@@ -122,7 +122,7 @@ void fn_8019EB94(s32, RwV3d*, s32); /* RwFrameTranslate */  /* extern */
 M2C_UNK fn_8019EC30(s32, void*, s32);                       /* extern */
 void fn_8019ED68(s32, void*, f32, s32); /* RwFrameRotate */ /* extern */
 s32 rand();                                                 /* extern */
-M2C_UNK fn_8_90B10(s32);                                    /* extern */
+M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);              /* extern */
 M2C_UNK fn_8_A353C(void*);                                  /* extern */
 s32 fn_8_A35BC(M2C_UNK);                                    /* extern */
 struct FlyerIronBall;

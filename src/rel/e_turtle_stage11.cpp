@@ -572,7 +572,7 @@ M2C_UNK fn_8019EB94(RwFrame*, void*, M2C_UNK);              /* extern */
 M2C_UNK fn_8019ECCC(void*, s32*, M2C_UNK);                  /* extern */
 M2C_UNK fn_8019ED68(void*, RwFrame*, f32, s32);             /* extern */
 s32 rand(void);                                             /* extern */
-M2C_UNK fn_8_90B10(s32);                                    /* extern */
+M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);              /* extern */
 void fn_8_BDF6C(TEnemyWork* arg0, void* arg1);              /* static */
 void** fn_8_BE528(void* arg0);                              /* static */
 s32 fn_8_BF340(void* arg0);                                 /* static */
@@ -2885,6 +2885,6 @@ void fn_8_BE668(TEnemyWork* arg0)
 
 void AddItemBox__15TObjEnemyTurtleFP5RwV3d(void* arg0, s32 arg1)
 {
-	fn_8_90B10(arg1);
+	CreateItemBox__8nItemBoxFP5RwV3d(arg1);
 }
 }

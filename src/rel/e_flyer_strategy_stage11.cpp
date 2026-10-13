@@ -315,7 +315,7 @@ M2C_UNK fn_8_5F048(u32, RwV3d*);                /* extern */
 M2C_UNK fn_8_5F100(s32);                        /* extern */
 void fn_8_5F140(void*);                         /* extern */
 s32 fn_8_5F30C(M2C_UNK*, RwV3d*, sAngle*, f32); /* extern */
-M2C_UNK fn_8_90B10(s32);                        /* extern */
+M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);  /* extern */
 M2C_UNK fn_8_A1E94(s32);                        /* extern */
 struct sFlyerIronBall;
 void* fn_8_A8B60(const sFlyerIronBall*); /* TObjEnemyFlyerIronBall::Create */ /* extern */
