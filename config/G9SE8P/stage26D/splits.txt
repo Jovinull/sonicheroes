@@ -1652,6 +1652,9 @@ rel/pawn_md_idle.cpp:
 rel/pawn_md_mgun_fire.cpp:
 	.text       start:0x0009988C end:0x00099A84
 
+rel/pawn_md_mgun_ready.cpp:
+	.text       start:0x00099A84 end:0x00099D48
+
 rel/pawn_md_tornado_blow_shield.cpp:
 	.text       start:0x00099D48 end:0x00099E34
 
