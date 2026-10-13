@@ -1583,6 +1583,9 @@ rel/e2000_object_register.cpp:
 rel/pawn_hit_point.cpp:
 	.text       start:0x00097B38 end:0x00097C28
 
+rel/pawn_add_score.cpp:
+	.text       start:0x00097E2C end:0x00097F68
+
 rel/pawn_rcv_broken.cpp:
 	.text       start:0x00097F68 end:0x00097FA0
 

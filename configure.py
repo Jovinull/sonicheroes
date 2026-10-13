@@ -6383,6 +6383,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_add_score.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
