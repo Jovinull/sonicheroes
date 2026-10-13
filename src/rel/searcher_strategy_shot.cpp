@@ -34,7 +34,7 @@ void TEnemySearcher_StrategyShot::StrategyMode_Ready(eStrategy sub)
 		case STRATEGY_INIT:
 			if (mpOwner != NULL) {
 				mTimer2 = mpOwner->readyWait;
-				mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_READY);
+				mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_STANDBY);
 			}
 			mReqEnemyMode = 0x1F;
 			break;
@@ -103,7 +103,7 @@ void TEnemySearcher_StrategyShot::StrategyMode_Wander(eStrategy sub)
 	switch (sub) {
 		case STRATEGY_INIT:
 			if (mpOwner != NULL) {
-				mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_STOW);
+				mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_NOACTION);
 			}
 			mReqEnemyMode = 0xA;
 			break;
@@ -123,7 +123,7 @@ void TEnemySearcher_StrategyShot::StrategyMode_Walk(eStrategy sub)
 	switch (sub) {
 		case STRATEGY_INIT:
 			if (mpOwner != NULL) {
-				mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_STOW);
+				mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_NOACTION);
 			}
 			mReqEnemyMode = 2;
 			break;
@@ -143,7 +143,7 @@ void TEnemySearcher_StrategyShot::StrategyMode_Wait(eStrategy sub)
 	switch (sub) {
 		case STRATEGY_INIT:
 			if (mpOwner != NULL) {
-				mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_STOW);
+				mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_NOACTION);
 			}
 			mReqEnemyMode = 1;
 			break;

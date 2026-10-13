@@ -203,7 +203,7 @@ void TEnemySearcher_Strategy::StrategyMode_Attack(eStrategy sub)
 				nSystem::DecreaseTimer(mTimer2);
 				if (mTimer2 < 0) {
 					if (mpOwner != NULL) {
-						mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_2);
+						mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_PREATTACK);
 					}
 					InitStrategyMode(mPrevMode);
 				}

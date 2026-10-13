@@ -9,13 +9,13 @@
 class TEnemyGadget
 {
 public:
-	// the gadget modes the strategies ask for (the names are ours)
+	// as in game/enemy/e_gadget.h
 	enum eGadgetMode {
-		GADGET_MODE_STOW,
-		GADGET_MODE_READY,
-		GADGET_MODE_2,
-		GADGET_MODE_3,
-		GADGET_MODE_4,
+		E_GM_NOACTION,
+		E_GM_STANDBY,
+		E_GM_PREATTACK,
+		E_GM_ATTACK,
+		E_GM_POSTATTACK,
 	};
 };
 

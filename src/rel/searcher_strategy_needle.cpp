@@ -26,14 +26,14 @@ void TEnemySearcher_StrategyNeedle::StrategyMode_Search(eStrategy sub)
 				if (mFireTimer < 0) {
 					mFiring = 0;
 					mTimer2 = mpOwner->readyWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_4);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_POSTATTACK);
 				}
 			} else {
 				nSystem::DecreaseTimer(mTimer2);
 				if (mTimer2 < 0) {
 					mFiring    = 1;
 					mFireTimer = mpOwner->attackWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_2);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_PREATTACK);
 				}
 			}
 			nSystem::DecreaseTimer(mTimer);
@@ -45,7 +45,7 @@ void TEnemySearcher_StrategyNeedle::StrategyMode_Search(eStrategy sub)
 		case STRATEGY_PAUSE:
 			break;
 		case STRATEGY_EXIT:
-			mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_4);
+			mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_POSTATTACK);
 			break;
 	}
 }
@@ -67,21 +67,21 @@ void TEnemySearcher_StrategyNeedle::StrategyMode_Wander(eStrategy sub)
 				if (mFireTimer < 0) {
 					mFiring = 0;
 					mTimer2 = mpOwner->readyWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_4);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_POSTATTACK);
 				}
 			} else {
 				nSystem::DecreaseTimer(mTimer2);
 				if (mTimer2 < 0) {
 					mFiring    = 1;
 					mFireTimer = mpOwner->attackWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_2);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_PREATTACK);
 				}
 			}
 			break;
 		case STRATEGY_PAUSE:
 			break;
 		case STRATEGY_EXIT:
-			mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_4);
+			mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_POSTATTACK);
 			break;
 	}
 }
@@ -103,14 +103,14 @@ void TEnemySearcher_StrategyNeedle::StrategyMode_Walk(eStrategy sub)
 				if (mFireTimer < 0) {
 					mFiring = 0;
 					mTimer2 = mpOwner->readyWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_4);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_POSTATTACK);
 				}
 			} else {
 				nSystem::DecreaseTimer(mTimer2);
 				if (mTimer2 < 0) {
 					mFiring    = 1;
 					mFireTimer = mpOwner->attackWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_2);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_PREATTACK);
 				}
 			}
 			break;
@@ -137,14 +137,14 @@ void TEnemySearcher_StrategyNeedle::StrategyMode_Wait(eStrategy sub)
 				if (mFireTimer < 0) {
 					mFiring = 0;
 					mTimer2 = mpOwner->readyWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_4);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_POSTATTACK);
 				}
 			} else {
 				nSystem::DecreaseTimer(mTimer2);
 				if (mTimer2 < 0) {
 					mFiring    = 1;
 					mFireTimer = mpOwner->attackWait;
-					mpOwner->ReqChangeGadgetMode(TEnemyGadget::GADGET_MODE_2);
+					mpOwner->ReqChangeGadgetMode(TEnemyGadget::E_GM_PREATTACK);
 				}
 			}
 			break;
