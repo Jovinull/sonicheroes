@@ -1254,6 +1254,10 @@ rel/searcher_jet.cpp:
 rel/searcher_destroy_clump.cpp:
 	.text       start:0x00058FF4 end:0x00059100
 
+rel/searcher_clone_clump.cpp:
+	.text       start:0x00059100 end:0x0005956C
+	.data       start:0x000063C8 end:0x00006400
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3B8 end:0x0005A400
 

@@ -17,6 +17,12 @@ typedef struct RpClump {
 	RwFrame* frame; // 0x04
 } RpClump;
 
+struct THeapCtrl {
+	void* Malloc(u32 size);
+};
+
+extern "C" THeapCtrl* lbl_8042C148;
+
 struct TEnemyGadgetBase {
 	char* name; // 0x00
 	u16 flags;  // 0x04, 0x10: asleep
@@ -58,6 +64,8 @@ public:
 	RpClump* pClump;   // 0x2C
 	eGadgetMode gmode; // 0x30
 	s32 IsKilled;      // 0x34
+
+	static void* operator new(unsigned long size) { return lbl_8042C148->Malloc(size); }
 };
 
 // TObjEnemy's virtuals up to GetCurrentLightNum (slot 0x90), declared as
@@ -163,10 +171,12 @@ typedef struct SearcherColli {
 class ENEMYMTNMAN
 {
 public:
+	ENEMYMTNMAN();
 	~ENEMYMTNMAN();
 
 	u8 unk00[0x1C];
 	s32 active; // 0x1C
+	u8 unk20[0x2C];
 };
 
 typedef struct Searcher {
