@@ -1295,6 +1295,15 @@ rel/enemy_gadget_bomb_ctor.cpp:
 rel/gadget_search_light.cpp:
 	.text       start:0x0005B0CC end:0x0005B1C0
 
+rel/gadget_bomber.cpp:
+	.text       start:0x0005B678 end:0x0005B734
+
+rel/gadget_laser_mode.cpp:
+	.text       start:0x0005C408 end:0x0005C444
+
+rel/gadget_laser_disp.cpp:
+	.text       start:0x0005C690 end:0x0005C76C
+
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE04 end:0x0005EE78
 
