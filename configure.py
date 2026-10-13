@@ -1063,7 +1063,7 @@ config.libs = [
             Object(
                 Matching,
                 "game/enemy_voice.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-bool off", "-opt noschedule,nopeephole"],
+                extra_cflags=["-Cpp_exceptions on", "-bool off", "-opt noschedule,nopeephole", "-inline auto,deferred"],
             ),
             Object(
                 Matching,
@@ -8113,11 +8113,6 @@ config.custom_build_rules = [
         "description": "FIX e_end_spboss.cpp compiler atom order",
     },
     {
-        "name": "fix_game_enemy_voice_object",
-        "command": f"$python tools/fix_game_enemy_voice_object.py $in $out",
-        "description": "FIX enemy_voice.cpp object layout",
-    },
-    {
         "name": "fix_s01_hata_object",
         "command": (
             f"$python tools/fix_s01_hata_object.py $in $out "
@@ -8540,12 +8535,6 @@ config.custom_build_steps = {
                 "tools/fix_sp_adv_stg_failed_object.py",
                 str(binutils_dir),
             ],
-        },
-        {
-            "outputs": "build/G9SE8P/game-enemy-voice-object.stamp",
-            "rule": "fix_game_enemy_voice_object",
-            "inputs": "build/G9SE8P/src/game/enemy_voice.o",
-            "implicit": ["tools/fix_game_enemy_voice_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage01D-o-s01-hata-object.stamp",

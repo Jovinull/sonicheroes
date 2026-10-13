@@ -2888,3 +2888,15 @@ reconstruction now matches all 15 native functions, 5,408 instruction bytes,
 owned sections and 353 resolved relocations. Both the full G9SE8P release
 and all-source build pass, with all 18 final hashes exact. No object
 normalizer is used for this unit.
+
+## Enemy voice controller native order and owned pointers (2026-10-13)
+
+The reconstructed `game/enemy_voice.cpp` unit now uses native deferred automatic
+inlining to emit its eleven function bodies in target order; the function-atom
+postprocessor is removed. The three owned class-name pointers are included in
+the split, and two reconstructed native class labels are corrected against the
+GameCube runtime strings. No original filename or source order is claimed: the
+controller-family boundary is inferred from GameCube code/data relationships,
+with no corresponding retained PS2 file/class metadata. See
+[the evidence record](enemy-voice-unit-evidence.md) for scope, limitations and
+whole-object section/relocation verification.
