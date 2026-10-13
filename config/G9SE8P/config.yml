@@ -1376,6 +1376,33 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - fn_8_B85E0
+    - fn_8_B8810
+    - fn_8_B8FD0
+    - fn_8_B9174
+    - fn_8_B934C
+    - fn_8_B9724
+    - fn_8_B9D6C
+    - fn_8_B9ECC
+    - fn_8_BA8C0
+    - fn_8_BACD4
+    - fn_8_BADC4
+    - fn_8_BB178
+    - fn_8_BB17C
+    - fn_8_BB180
+    - fn_8_BB580
+    - fn_8_BB584
+    - fn_8_BB99C
+    - fn_8_BB9BC
+    - fn_8_BBA90
+    - fn_8_BBAB0
+    - fn_8_BC924
+    - fn_8_BC9AC
+    - fn_8_BCAB4
+    - fn_8_BCB5C
+    - fn_8_BD32C
+    - fn_8_BD938
+    - fn_8_BD950
     - fn_8_A8334
     - fn_8_A8384
     - fn_8_A8584
