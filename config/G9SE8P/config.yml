@@ -725,6 +725,9 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - fn_8_B4B88
+    - fn_8_B4DA4
+    - fn_8_B4FF4
     - fn_8_BE668
     - fn_8_BE770
     - fn_8_BEB1C
@@ -1111,6 +1114,9 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - fn_8_B4B88
+    - fn_8_B4DA4
+    - fn_8_B4FF4
     - fn_8_A4140
     - fn_8_A4230
     - fn_8_A4290

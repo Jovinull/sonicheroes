@@ -1787,11 +1787,11 @@ rel/rinoliner_register.cpp:
 	.text       start:0x000B23AC end:0x000B2454
 	.ctors      start:0x00000158 end:0x0000015C
 
-rel/enemy_iron_ball_dtor.cpp:
-	.text       start:0x000B29EC end:0x000B2A70
-
-rel/enemy_iron_ball_create.cpp:
-	.text       start:0x000B2BDC end:0x000B2D70
+rel/e_rinoliner_collision_stage11.cpp:
+	.text       start:0x000B245C end:0x000B36B4
+	.rodata     start:0x00001B58 end:0x00001B88
+	.data       start:0x00017AF0 end:0x00017DBC
+	.bss        start:0x00003020 end:0x00003058
 
 rel/colli_communication_check.cpp:
 	.text       start:0x000B36B4 end:0x000B440C
