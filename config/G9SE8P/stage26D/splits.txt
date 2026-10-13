@@ -602,6 +602,9 @@ rel/shield_splinter_move.cpp:
 rel/shield_splinter_dtor.cpp:
 	.text       start:0x0002FDD4 end:0x0002FE48
 
+rel/enemy_shield_set.cpp:
+	.text       start:0x00030144 end:0x00030444
+
 rel/enemy_shield_texture.cpp:
 	.text       start:0x00030444 end:0x00030508
 

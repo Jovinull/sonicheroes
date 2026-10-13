@@ -2893,6 +2893,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - SetEnemyShield__FP7TObject17ENEMY_SHIELD_KINDP5RwV3dfP5RwV3dP6sAngle
     - SetEnemyShot__FP7TObjectiP5RwV3dP5RwV3d
     - InitEnemyShot__Fv
     - EndEnemyShot__Fv
@@ -3101,6 +3102,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - SetEnemyShield__FP7TObject17ENEMY_SHIELD_KINDP5RwV3dfP5RwV3dP6sAngle
     - SetEnemyShot__FP7TObjectiP5RwV3dP5RwV3d
     - InitEnemyShot__Fv
     - EndEnemyShot__Fv
