@@ -1510,6 +1510,10 @@ rel/s31bob_exec.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x0008AA50 end:0x0008B430
 
+rel/pawn_strategy_setup.cpp:
+	.text       start:0x0008B430 end:0x0008B664
+	.data       start:0x00014348 end:0x00014364
+
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x0008BE00 end:0x0008BE3C
 

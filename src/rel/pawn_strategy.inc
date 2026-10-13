@@ -22,6 +22,8 @@ public:
 	s32 shotWait; // 0x25C
 };
 
+extern "C" void fn_800A31B8(TObjEnemyPawn* enemy, int mode);
+
 template <class T> class TEnemyStrategy
 {
 public:
@@ -36,7 +38,7 @@ public:
 	{
 		mMode         = 0;
 		mPrevMode     = 0;
-		unk0C         = 0;
+		mFirstMode    = 0;
 		mpOwner       = NULL;
 		mReqEnemyMode = 0;
 	}
@@ -44,6 +46,18 @@ public:
 	virtual void Execute(T* owner);
 	virtual void ExecStrategyMode(int mode, eStrategy sub) = 0; // 0x10
 	virtual int IsReqChangeMode()                          = 0;
+
+	// enters the first mode and passes on the enemy mode it asks for
+	void StartStrategyMode(int mode)
+	{
+		mFirstMode    = mode;
+		mReqEnemyMode = 0;
+		mMode         = mode;
+		ExecStrategyMode(mMode, STRATEGY_INIT);
+		if (mReqEnemyMode != 0) {
+			fn_800A31B8(mpOwner, mReqEnemyMode);
+		}
+	}
 
 	// leaves the current mode and enters the given one
 	void InitStrategyMode(int mode)
@@ -56,7 +70,7 @@ public:
 
 	s32 mMode;         // 0x04
 	s32 mPrevMode;     // 0x08
-	s32 unk0C;         // 0x0C
+	s32 mFirstMode;    // 0x0C
 	s32 mReqEnemyMode; // 0x10
 	T* mpOwner;        // 0x14
 };
@@ -71,6 +85,7 @@ public:
 	virtual void ExecStrategyMode(int mode, eStrategy sub);
 
 	TEnemyPawn_Strategy();
+	void SetUpFirst(TObjEnemyPawn* owner);
 
 	void StrategyMode_Idle(eStrategy sub);
 	void StrategyMode_BiteNail(eStrategy sub);

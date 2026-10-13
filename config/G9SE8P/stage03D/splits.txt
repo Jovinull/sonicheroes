@@ -1715,6 +1715,10 @@ rel/s31_bob_dummy_register.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x000B4AA0 end:0x000B5480
 
+rel/pawn_strategy_setup.cpp:
+	.text       start:0x000B5480 end:0x000B56B4
+	.data       start:0x00013338 end:0x00013354
+
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x000B5E50 end:0x000B5E8C
 

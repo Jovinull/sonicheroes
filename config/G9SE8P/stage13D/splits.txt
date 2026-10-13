@@ -1502,6 +1502,10 @@ rel/s14_fall_ashiba_register.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x0009812C end:0x00098B0C
 
+rel/pawn_strategy_setup.cpp:
+	.text       start:0x00098B0C end:0x00098D40
+	.data       start:0x00019798 end:0x000197B4
+
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x000994DC end:0x00099518
 

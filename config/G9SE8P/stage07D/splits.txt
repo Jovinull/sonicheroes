@@ -1954,6 +1954,10 @@ rel/s31bob_exec.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x000D382C end:0x000D420C
 
+rel/pawn_strategy_setup.cpp:
+	.text       start:0x000D420C end:0x000D4440
+	.data       start:0x000837F0 end:0x0008380C
+
 rel/pawn_strategy_exec.cpp:
 	.text       start:0x000D4BDC end:0x000D4C18
 
