@@ -703,6 +703,15 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - fn_8_A258C
+    - fn_8_A25AC
+    - fn_8_A25CC
+    - fn_8_A2690
+    - fn_8_A26B0
+    - fn_8_A2768
+    - fn_8_A2820
+    - fn_8_A2840
+    - fn_8_A29E0
     - fn_8_A8D98
     - fn_8_A8F7C
     - fn_8_A8FCC
