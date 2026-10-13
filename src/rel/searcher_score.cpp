@@ -7,35 +7,7 @@
 // turning toward the aim reports whether it got there (an angle difference
 // under 0x80 snaps it on).
 
-class TEnemyScoreMan
-{
-public:
-	static void CreateInstance();
-	static TEnemyScoreMan* EnemyScoreMan;
-	void AddScore(s32 playernumber, s32 score);
-};
-
-typedef struct sAngle {
-	s32 x, y, z;
-} sAngle;
-
-typedef struct Searcher {
-	u8 unk000[0x14C];
-	sAngle ang; // 0x14C
-	u8 unk158[0x1C];
-	s32 aimAngY; // 0x174
-	u8 unk178[0x8];
-	s32 turnSpeed; // 0x180
-	u8 unk184[0xAC];
-	s32 breaker; // 0x230
-	u8 unk234[0x58];
-	f32 leanX; // 0x28C
-	f32 leanZ; // 0x290
-	u8 unk294[0x30];
-	s32 turning; // 0x2C4
-	u8 unk2C8[0x54];
-	s32 kind; // 0x31C
-} Searcher;
+#include "src/rel/searcher.inc"
 
 extern "C" const f32 searcherDegToAngle;
 

@@ -6,20 +6,7 @@
 // and puts the gadget to sleep; IsSleep keeps the gadget's sleep flag in step
 // with the enemy's.
 
-typedef struct RpClump RpClump;
-
-typedef struct Gadget {
-	u8 unk00[0x4];
-	u16 flags; // 0x04, 0x10: asleep
-} Gadget;
-
-typedef struct Searcher {
-	u8 unk000[0x244];
-	RpClump* clumps[4]; // 0x244
-	s32 lit;            // 0x254
-	u8 unk258[0x10];
-	Gadget* gadget; // 0x268
-} Searcher;
+#include "src/rel/searcher.inc"
 
 void objRpClumpForAllAtomicsToRender(RpClump* clump);
 void objRpClumpForAllAtomicsToHide(RpClump* clump);
