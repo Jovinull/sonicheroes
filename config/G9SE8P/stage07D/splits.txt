@@ -2024,6 +2024,12 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000E0C38 end:0x000E0CE0
 	.ctors      start:0x000001B8 end:0x000001BC
 
+rel/e_flyer_ironball_stage11.cpp:
+	.text       start:0x000E0CE8 end:0x000E17D8
+	.rodata     start:0x00002128 end:0x00002158
+	.data       start:0x000842F0 end:0x00084368
+	.bss        start:0x00002478 end:0x00002480
+
 rel/e_flyer_missile_stage11.cpp:
 	.text       start:0x000E17D8 end:0x000E28D4
 	.rodata     start:0x00002158 end:0x00002190
