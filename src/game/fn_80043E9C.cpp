@@ -8,7 +8,7 @@ struct TFn80043E9CData {
 	s16 mField6F6;
 };
 
-extern "C" void fn_800E12FC(u8* arg0, s16 arg1);
+extern "C" void fn_800E12FC(u8* arg0, u8* arg1);
 
 extern "C" s32 fn_80043E9C(TFn80043E9CData* arg0)
 {
@@ -21,7 +21,7 @@ extern "C" s32 fn_80043E9C(TFn80043E9CData* arg0)
 	s16 temp_r5             = *(s16*)(temp_r4 + 0x10);
 	*(s16*)(temp_r4 + 0x10) = temp_r5 & ~0x4C00;
 	arg0->mField6F0         = 0x27;
-	fn_800E12FC(temp_r3, temp_r5);
+	fn_800E12FC(temp_r3, temp_r4);
 	arg0->mField6F6 &= ~0x2500;
 	return 1;
 }
