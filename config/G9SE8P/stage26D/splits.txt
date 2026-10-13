@@ -617,6 +617,9 @@ rel/enemy_shield_dtor.cpp:
 rel/enemy_shield_angle.cpp:
 	.text       start:0x00030E24 end:0x00030EF0
 
+rel/enemy_shield_status.cpp:
+	.text       start:0x00031D30 end:0x00031E3C
+
 rel/item_box_disp.cpp:
 	.text       start:0x00032AFC end:0x00032CAC
 

@@ -19,6 +19,7 @@ public:
 	void Init(ENEMY_SHIELD_KIND kind, const RwV3d* pos, f32 scale, const RwV3d* normal,
 	    const sAngle* ang);
 	virtual ~ENEMY_SHIELD();
+	void SetShieldStatusForDisp(RpClump* clump);
 
 	s8 hits;   // 0x0E8
 	u8 unkE9;  // 0x0E9
