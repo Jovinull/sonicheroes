@@ -740,6 +740,9 @@ rel/pawn_calc_start_and_aim.cpp:
 rel/pawn_destroy_clump.cpp:
 	.text       start:0x00032810 end:0x00032898
 
+rel/pawn_clone_clump.cpp:
+	.text       start:0x00032898 end:0x00032BF0
+
 rel/pawn_reset_variable.cpp:
 	.text       start:0x00032BF0 end:0x00032CE0
 
