@@ -1170,8 +1170,8 @@ rel/searcher_strategy_exec.cpp:
 	.text       start:0x00054018 end:0x000541A0
 	.data       start:0x00005C28 end:0x00005C60
 
-rel/searcher_sound_limit_dtor.cpp:
-	.text       start:0x000545B0 end:0x00054634
+rel/searcher_sound_limit.cpp:
+	.text       start:0x0005447C end:0x000547BC
 
 rel/searcher_create.cpp:
 	.text       start:0x0005A3E4 end:0x0005A42C

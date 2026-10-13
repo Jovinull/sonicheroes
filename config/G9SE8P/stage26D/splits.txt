@@ -1820,8 +1820,8 @@ rel/enemy_gadget_bomb_ctor.cpp:
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x000A472C end:0x000A47A0
 
-rel/searcher_sound_limit_dtor.cpp:
-	.text       start:0x000A4904 end:0x000A4988
+rel/searcher_sound_limit.cpp:
+	.text       start:0x000A47D0 end:0x000A4B10
 
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780

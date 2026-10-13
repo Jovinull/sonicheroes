@@ -3,6 +3,8 @@
 // TObjEnemySearcherSoundLimit's destructor (searcherSoundLimitDtor here): it
 // restores the vtable, clears the instance pointer the constructor set, runs the
 // object base down and frees the object when the delete flag asks for it.
+// This unit is for the modules with the other searcher (stage28D, 31D-33D);
+// the others have the whole object in rel/searcher_sound_limit.cpp.
 
 typedef struct TObject {
 	u8 unk00[0x18];
