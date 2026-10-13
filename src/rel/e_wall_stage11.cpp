@@ -1,5 +1,8 @@
 #include "types.h"
 
+// The wall's editor record, which ends this run, is the shared
+// rel/wall_register.cpp unit.
+
 typedef s32 M2C_UNK;
 typedef void (*TFunc)(void);
 
@@ -4159,33 +4162,4 @@ void fn_8_BD950(void* arg0, s32 arg1)
 		M2C_FIELD(arg0, s32*, 4) = (s32)(M2C_FIELD(arg0, s32*, 4) | arg1);
 	}
 }
-
-void wallObjectRegister(void)
-{
-	__register_global_object((void*)__ct__16TEnemyMatTextureFv(wallObjectGlobalA),
-	    (void*)&__dt__16TEnemyMatTextureFv, (void*)wallObjectGlobalAChain);
-
-	wallObjectEntry.flags      = 0;
-	wallObjectEntry.unk18      = 0;
-	wallObjectEntry.name       = (const char*)wallObjectDisplayName;
-	wallObjectEntry.load       = (void (*)(void))wallObjectLoad;
-	wallObjectEntry.unload     = (void (*)(void))wallObjectUnload;
-	wallObjectEntry.create     = (void (*)(void))wallObjectCreate;
-	wallObjectEntry.unk10      = (void*)0;
-	wallObjectEntry.flags      = 0x20000;
-	wallObjectEntry.unk18      = 0;
-	wallObjectEntry.unk20      = 0x1E;
-	wallObjectEntry.unk1C      = 0x1540;
-	wallObjectEntry.unk1E      = 4;
-	wallObjectEntry.unk21      = 0;
-	wallObjectEntry.fieldTypes = (const char*)wallObjectFieldTypes;
-	wallObjectEntry.fieldNames = (const char**)wallObjectFieldNames;
-	if ((const char*)wallObjectFieldTypes != NULL) {
-		wallObjectEntry.flags |= 8;
-	} else {
-		wallObjectEntry.flags &= ~8;
-	}
-}
-
-__declspec(section ".ctors") void (*const wallObjectCtorEntry)(void) = wallObjectRegister;
 }

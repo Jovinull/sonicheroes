@@ -11,7 +11,7 @@
 // constant, so it owns no rodata.
 //
 // The name is read from the layout: the run ends exactly where
-// triSpringCtor begins.
+// TObjTriSpring's constructor (rel/tri_spring_ctor.cpp) begins.
 //
 // The run is the same in all thirteen stage modules that share the engine
 // core.
@@ -72,15 +72,15 @@ typedef struct TriSpring {
 } TriSpring;          // 0x110
 
 // Defined by each module, renamed to this name in its own symbols.txt.
-extern "C" void* triSpringVtable[];
+extern "C" void* __vt__13TObjTriSpring[];
 
 extern "C" TriSpring* triSpringDtor(TriSpring* object, s16 flags)
 {
 	s32 i;
 
 	if (object != NULL) {
-		object->base.vtable   = triSpringVtable;
-		object->motion.vtable = triSpringVtable + 0xB;
+		object->base.vtable   = __vt__13TObjTriSpring;
+		object->motion.vtable = __vt__13TObjTriSpring + 0xB;
 
 		for (i = 0; i < 3; i++) {
 			if (object->meshes[i] != NULL) {

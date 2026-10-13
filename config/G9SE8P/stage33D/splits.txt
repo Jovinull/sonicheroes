@@ -39,8 +39,18 @@ rel/o_spring.cpp:
 	.rodata     start:0x00000028 end:0x00000050
 	.data       start:0x00000270 end:0x000002DC
 
+rel/tri_spring_disp.cpp:
+	.text       start:0x00001FCC end:0x00002100
+
+rel/tri_spring_exec.cpp:
+	.text       start:0x00002100 end:0x000023FC
+	.rodata     start:0x00000088 end:0x00000090
+
 rel/tri_spring_dtor.cpp:
 	.text       start:0x0000282C end:0x00002920
+
+rel/tri_spring_ctor.cpp:
+	.text       start:0x00002920 end:0x00002BA8
 
 rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
@@ -121,6 +131,9 @@ rel/ironball_dtor.cpp:
 rel/ironball_ctor.cpp:
 	.text       start:0x00006FDC end:0x00007244
 
+rel/ironball_edit.cpp:
+	.text       start:0x00007244 end:0x00007314
+
 rel/ironball_hooks.cpp:
 	.text       start:0x00007314 end:0x00007430
 
@@ -155,6 +168,9 @@ rel/dashpanel_hooks.cpp:
 rel/scroll_ring_dtor.cpp:
 	.text       start:0x00008914 end:0x00008A24
 
+rel/scroll_ring_edit.cpp:
+	.text       start:0x00008BD0 end:0x00008D68
+
 rel/scroll_ring_create.cpp:
 	.text       start:0x00008D68 end:0x00008DB0
 
@@ -170,6 +186,9 @@ rel/scroll_ring_disp.cpp:
 rel/scroll_ring_field_dtor.cpp:
 	.text       start:0x00009BCC end:0x00009C3C
 
+rel/ring_object_edit.cpp:
+	.text       start:0x0000BA30 end:0x0000BB48
+
 rel/ring_object_reset.cpp:
 	.text       start:0x0000BB48 end:0x0000BB7C
 
@@ -179,6 +198,9 @@ rel/ring_register.cpp:
 
 rel/jump_panel_dtor.cpp:
 	.text       start:0x0000C6CC end:0x0000C7AC
+
+rel/jump_panel_edit.cpp:
+	.text       start:0x0000CB64 end:0x0000CC04
 
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC04 end:0x0000CCD8
@@ -213,6 +235,9 @@ rel/checkpoint_star_disp_opaque.cpp:
 rel/checkpoint_star_exec.cpp:
 	.text       start:0x0000E9E0 end:0x0000EA00
 
+rel/checkpoint_disp.cpp:
+	.text       start:0x0000FA40 end:0x0000FC74
+
 rel/checkpoint_ctor.cpp:
 	.text       start:0x00010538 end:0x0001079C
 
@@ -232,11 +257,17 @@ rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
 
+rel/reel_disp.cpp:
+	.text       start:0x000113C8 end:0x0001147C
+
 rel/reel_dtor.cpp:
 	.text       start:0x00011B18 end:0x00011BE0
 
 rel/reel_ctor.cpp:
 	.text       start:0x00011BE0 end:0x00011F20
+
+rel/reel_edit.cpp:
+	.text       start:0x00011F20 end:0x00012018
 
 rel/reel_hooks.cpp:
 	.text       start:0x00012018 end:0x00012128
@@ -357,8 +388,38 @@ rel/unbreakable_container_register.cpp:
 	.text       start:0x00014C9C end:0x00014D44
 	.ctors      start:0x0000003C end:0x00000040
 
+rel/cannon_smoke_dtor.cpp:
+	.text       start:0x0001546C end:0x000154FC
+
+rel/cannon_smoke_ctor.cpp:
+	.text       start:0x000154FC end:0x0001565C
+
+rel/cannon_player_to_cancel.cpp:
+	.text       start:0x00016AC0 end:0x00016C90
+
+rel/cannon_set_player_position.cpp:
+	.text       start:0x000172CC end:0x000174DC
+
+rel/cannon_hold_player.cpp:
+	.text       start:0x00017D5C end:0x00018054
+
+rel/cannon_catch_leader_player.cpp:
+	.text       start:0x00018A64 end:0x00018D74
+
+rel/cannon_draw_trajectory.cpp:
+	.text       start:0x00018D74 end:0x00018EF8
+
+rel/cannon_calc_barrel_position.cpp:
+	.text       start:0x00018EF8 end:0x000191AC
+
+rel/cannon_disp.cpp:
+	.text       start:0x000191AC end:0x000191B0
+
 rel/cannon_dtor.cpp:
 	.text       start:0x00019EBC end:0x00019F84
+
+rel/cannon_set_collision_parameter.cpp:
+	.text       start:0x00019F84 end:0x00019F88
 
 rel/cannon_edit.cpp:
 	.text       start:0x0001A688 end:0x0001A870
@@ -379,6 +440,12 @@ rel/cannon_register.cpp:
 rel/laser_fence_dtor.cpp:
 	.text       start:0x0001BED4 end:0x0001BF6C
 
+rel/laser_fence_ctor.cpp:
+	.text       start:0x0001BF6C end:0x0001C238
+
+rel/laser_fence_edit.cpp:
+	.text       start:0x0001C238 end:0x0001C328
+
 rel/laser_fence_hooks.cpp:
 	.text       start:0x0001C328 end:0x0001C394
 
@@ -389,8 +456,14 @@ rel/laser_fence_assets.cpp:
 rel/big_rings_element_dtor.cpp:
 	.text       start:0x0001D0E0 end:0x0001D14C
 
+rel/big_rings_disp.cpp:
+	.text       start:0x0001D8D0 end:0x0001D964
+
 rel/big_rings_dtor.cpp:
 	.text       start:0x0001E910 end:0x0001E9D8
+
+rel/big_rings_edit.cpp:
+	.text       start:0x0001EF6C end:0x0001EFCC
 
 rel/big_rings_hooks.cpp:
 	.text       start:0x0001EFCC end:0x0001F090
@@ -409,12 +482,36 @@ rel/cage_disp.cpp:
 rel/cage_check_thunder.cpp:
 	.text       start:0x0001F348 end:0x0001F3D0
 
+rel/cage_propeler.cpp:
+	.text       start:0x0001FB28 end:0x0001FCCC
+
+rel/cage_set_parameter.cpp:
+	.text       start:0x00020FAC end:0x00021154
+
+rel/cage_destroy_clump.cpp:
+	.text       start:0x00021154 end:0x000211D8
+
+rel/cage_clone_clump.cpp:
+	.text       start:0x000211D8 end:0x0002133C
+
+rel/cage_dtor.cpp:
+	.text       start:0x0002133C end:0x0002145C
+
+rel/cage_search_inside_object.cpp:
+	.text       start:0x0002145C end:0x00021538
+
+rel/cage_edit.cpp:
+	.text       start:0x00021A38 end:0x00021B60
+
 rel/cage_hooks.cpp:
 	.text       start:0x00021B60 end:0x00021C44
 
 rel/cage_assets.cpp:
 	.text       start:0x00021C44 end:0x00021D34
 	.ctors      start:0x0000004C end:0x00000050
+
+rel/target_disp.cpp:
+	.text       start:0x00021D3C end:0x00021F68
 
 rel/cannon_smoke_bind.cpp:
 	.text       start:0x00021F68 end:0x00021FC4
@@ -461,8 +558,14 @@ rel/weight_move.cpp:
 rel/weight_checks.cpp:
 	.text       start:0x00025D0C end:0x00025DEC
 
+rel/weight_disp.cpp:
+	.text       start:0x00027374 end:0x00027440
+
 rel/weight_dtor.cpp:
 	.text       start:0x000283E8 end:0x000284C8
+
+rel/weight_edit.cpp:
+	.text       start:0x000288B8 end:0x00028A64
 
 rel/weight_hooks.cpp:
 	.text       start:0x00028A64 end:0x00028C34
@@ -471,8 +574,14 @@ rel/weight_register.cpp:
 	.text       start:0x00028C34 end:0x00028CDC
 	.ctors      start:0x00000058 end:0x0000005C
 
+rel/weight_ext_dtor.cpp:
+	.text       start:0x00029230 end:0x000292B4
+
 rel/breakable_weight_checks.cpp:
 	.text       start:0x00029798 end:0x00029878
+
+rel/breakable_weight_edit.cpp:
+	.text       start:0x0002C5DC end:0x0002C788
 
 rel/breakable_weight_hooks.cpp:
 	.text       start:0x0002C788 end:0x0002C958
@@ -481,6 +590,132 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/pawn_check_direction.cpp:
+	.text       start:0x0002CA2C end:0x0002CBAC
+
+rel/pawn_hit_point.cpp:
+	.text       start:0x0002D35C end:0x0002D44C
+
+rel/pawn_add_score.cpp:
+	.text       start:0x0002D650 end:0x0002D78C
+
+rel/pawn_rcv_broken.cpp:
+	.text       start:0x0002D78C end:0x0002D7C4
+
+rel/pawn_rcv_hp_inc.cpp:
+	.text       start:0x0002D878 end:0x0002D8E0
+
+rel/pawn_exec_thunder_shoot.cpp:
+	.text       start:0x0002DC88 end:0x0002DD24
+
+rel/pawn_check_damage2.cpp:
+	.text       start:0x0002DF74 end:0x0002DFB8
+
+rel/pawn_shadow_in_view.cpp:
+	.text       start:0x0002DFB8 end:0x0002E068
+
+rel/pawn_disp_shadow.cpp:
+	.text       start:0x0002E068 end:0x0002E154
+
+rel/pawn_disp_trans.cpp:
+	.text       start:0x0002E154 end:0x0002E158
+
+rel/pawn_bite_nail.cpp:
+	.text       start:0x0002E438 end:0x0002E58C
+
+rel/pawn_run_to_aim.cpp:
+	.text       start:0x0002E58C end:0x0002E6F4
+
+rel/pawn_walk_to_aim.cpp:
+	.text       start:0x0002E6F4 end:0x0002E854
+
+rel/pawn_turn_to_aim.cpp:
+	.text       start:0x0002E854 end:0x0002E978
+
+rel/pawn_update_on_edit.cpp:
+	.text       start:0x0002E978 end:0x0002E9AC
+
+rel/pawn_md_idle.cpp:
+	.text       start:0x0002F090 end:0x0002F0B0
+
+rel/pawn_md_tornado_blow_shield.cpp:
+	.text       start:0x0002F56C end:0x0002F658
+
+rel/pawn_md_shot_fire.cpp:
+	.text       start:0x0002F82C end:0x0002F8A0
+
+rel/pawn_md_shot_ready.cpp:
+	.text       start:0x0002F8A0 end:0x0002F8F4
+
+rel/pawn_md_bite_nail.cpp:
+	.text       start:0x0002F8F4 end:0x0002F990
+
+rel/pawn_md_run.cpp:
+	.text       start:0x0002F990 end:0x0002FA54
+
+rel/pawn_md_tornado_stirred_up.cpp:
+	.text       start:0x0002FA54 end:0x0002FBC4
+
+rel/pawn_md_dropped.cpp:
+	.text       start:0x0002FBC4 end:0x0002FC48
+
+rel/pawn_md_destroy.cpp:
+	.text       start:0x0002FC48 end:0x0002FD00
+
+rel/pawn_md_wander_walk.cpp:
+	.text       start:0x0002FD00 end:0x0002FD70
+
+rel/pawn_md_wander_turn.cpp:
+	.text       start:0x0002FD70 end:0x0002FEB4
+
+rel/pawn_md_wander.cpp:
+	.text       start:0x0002FEB4 end:0x0002FF40
+
+rel/pawn_md_ctrl.cpp:
+	.text       start:0x0002FF40 end:0x0002FFE8
+
+rel/pawn_md_warp_out.cpp:
+	.text       start:0x0002FFE8 end:0x00030094
+
+rel/pawn_md_warp_hide.cpp:
+	.text       start:0x00030094 end:0x00030174
+
+rel/pawn_md_fall_land.cpp:
+	.text       start:0x00030174 end:0x000301B8
+
+rel/pawn_md_fall_down.cpp:
+	.text       start:0x000301B8 end:0x00030240
+
+rel/pawn_md_fall_hide.cpp:
+	.text       start:0x00030240 end:0x00030320
+
+rel/pawn_md_hide_come_out.cpp:
+	.text       start:0x00030320 end:0x0003047C
+
+rel/pawn_md_hide.cpp:
+	.text       start:0x0003047C end:0x00030544
+
+rel/pawn_md_turn.cpp:
+	.text       start:0x00030544 end:0x000306C4
+
+rel/pawn_md_wait.cpp:
+	.text       start:0x000306C4 end:0x00030738
+
+rel/pawn_md_crouch_stand.cpp:
+	.text       start:0x00030738 end:0x000307C8
+
+rel/pawn_md_crouch.cpp:
+	.text       start:0x000307C8 end:0x000307E8
+
+rel/pawn_calc_start_and_aim.cpp:
+	.text       start:0x00031B0C end:0x00031C48
+
+rel/pawn_destroy_clump.cpp:
+	.text       start:0x0003282C end:0x000328B4
+
+rel/pawn_reset_variable.cpp:
+	.text       start:0x00032C0C end:0x00032CFC
+
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CFC end:0x00032ED4
 
@@ -488,8 +723,17 @@ rel/pawn_assets.cpp:
 	.text       start:0x00033C98 end:0x00033D88
 	.ctors      start:0x00000060 end:0x00000064
 
+rel/enemy_shot_dtor.cpp:
+	.text       start:0x00034E18 end:0x00034E9C
+
+rel/shield_splinter_move.cpp:
+	.text       start:0x00037060 end:0x0003720C
+
 rel/shield_splinter_dtor.cpp:
 	.text       start:0x0003720C end:0x00037280
+
+rel/item_box_disp.cpp:
+	.text       start:0x00039F34 end:0x0003A0E4
 
 rel/item_box_search_cage.cpp:
 	.text       start:0x0003A8E8 end:0x0003A9D8
@@ -506,6 +750,9 @@ rel/item_box_edit.cpp:
 rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
 	.ctors      start:0x00000064 end:0x00000068
+
+rel/scroll_itembaloon_edit.cpp:
+	.text       start:0x0003BB04 end:0x0003BBB4
 
 rel/scroll_itembaloon_dtor.cpp:
 	.text       start:0x0003BBB4 end:0x0003BC74
@@ -525,6 +772,9 @@ rel/itembaloon_object_dtor.cpp:
 rel/itembaloon_ctor.cpp:
 	.text       start:0x0003CE58 end:0x0003CFBC
 
+rel/itembaloon_edit.cpp:
+	.text       start:0x0003CFBC end:0x0003D050
+
 rel/itembaloon_create.cpp:
 	.text       start:0x0003D0B8 end:0x0003D244
 
@@ -537,6 +787,9 @@ rel/itembaloon_position.cpp:
 
 rel/pole_dtor.cpp:
 	.text       start:0x0003F870 end:0x0003F930
+
+rel/pole_edit.cpp:
+	.text       start:0x0003FD70 end:0x0003FF2C
 
 rel/pole_hooks.cpp:
 	.text       start:0x0003FF2C end:0x0003FF74
@@ -567,6 +820,12 @@ rel/case_obj_lifecycle_stage11.cpp:
 rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0
 	.ctors      start:0x00000074 end:0x00000078
+
+rel/roll_door_tdisp.cpp:
+	.text       start:0x00041DA0 end:0x00041F74
+
+rel/roll_door_set_position.cpp:
+	.text       start:0x0004354C end:0x000438CC
 
 rel/roll_door_dtor.cpp:
 	.text       start:0x0004395C end:0x00043A3C
@@ -639,6 +898,21 @@ rel/lens_flare_register.cpp:
 	.text       start:0x00045A10 end:0x00045AB8
 	.ctors      start:0x0000007C end:0x00000080
 
+rel/signal_tdisp.cpp:
+	.text       start:0x00045AC0 end:0x00045DE4
+
+rel/signal_disp.cpp:
+	.text       start:0x00045DE4 end:0x00046064
+
+rel/signal_exec.cpp:
+	.text       start:0x00046064 end:0x00046364
+
+rel/signal_set_position.cpp:
+	.text       start:0x00046364 end:0x00046470
+
+rel/signal_set_parameter.cpp:
+	.text       start:0x00046470 end:0x000464D0
+
 rel/signal_dtor.cpp:
 	.text       start:0x000464D0 end:0x00046578
 
@@ -649,12 +923,45 @@ rel/signal_assets.cpp:
 	.text       start:0x00046B24 end:0x00046C14
 	.ctors      start:0x00000080 end:0x00000084
 
+rel/propeller_set_position.cpp:
+	.text       start:0x00046C88 end:0x00046FE8
+
+rel/propeller_dtor.cpp:
+	.text       start:0x00048A6C end:0x00048B4C
+
+rel/propeller_ctor.cpp:
+	.text       start:0x00048B4C end:0x00048D04
+
 rel/propeller_create.cpp:
 	.text       start:0x00049548 end:0x00049590
 
 rel/propeller_register.cpp:
 	.text       start:0x00049590 end:0x00049630
 	.ctors      start:0x00000084 end:0x00000088
+
+rel/goal_ring_check_back.cpp:
+	.text       start:0x0004B710 end:0x0004B7C8
+
+rel/goal_ring_check_reached.cpp:
+	.text       start:0x0004B7C8 end:0x0004BA1C
+
+rel/goal_ring_tdisp.cpp:
+	.text       start:0x0004BA1C end:0x0004BB84
+
+rel/goal_ring_disp.cpp:
+	.text       start:0x0004BB84 end:0x0004BD90
+
+rel/goal_ring_dtor.cpp:
+	.text       start:0x0004CFB4 end:0x0004D0CC
+
+rel/goal_ring_ctor.cpp:
+	.text       start:0x0004D0CC end:0x0004D37C
+
+rel/goal_ring_edit.cpp:
+	.text       start:0x0004D37C end:0x0004D380
+
+rel/goal_ring_create.cpp:
+	.text       start:0x0004D4A8 end:0x0004D4F0
 
 rel/goal_ring_bind.cpp:
 	.text       start:0x0004D4F0 end:0x0004D54C
@@ -706,6 +1013,18 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_master.cpp:
+	.text       start:0x0004E2C8 end:0x0004E338
+
+rel/light_collision_manager_dtor.cpp:
+	.text       start:0x0004E588 end:0x0004E654
+
+rel/light_collision_edit.cpp:
+	.text       start:0x0004EE40 end:0x0004EFB8
+
+rel/light_collision_dtor.cpp:
+	.text       start:0x0004EFB8 end:0x0004F084
+
 rel/light_collision_ctor.cpp:
 	.text       start:0x0004F084 end:0x0004F29C
 
@@ -723,8 +1042,17 @@ rel/o_invoke_colli.cpp:
 	.data       start:0x00005824 end:0x00005980
 	.bss        start:0x00000D6C end:0x00000D98
 
+rel/push_pull_switch_set_position.cpp:
+	.text       start:0x00050E24 end:0x000510B0
+
+rel/push_pull_switch_set_parameter.cpp:
+	.text       start:0x000510B0 end:0x000511D8
+
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00051234 end:0x000512F4
+
+rel/push_pull_switch_light_render.cpp:
+	.text       start:0x000515EC end:0x0005169C
 
 rel/push_pull_switch_edit.cpp:
 	.text       start:0x0005169C end:0x000516F8
@@ -736,8 +1064,35 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/formgate_sub_exec.cpp:
+	.text       start:0x000524B8 end:0x00052744
+
+rel/formgate_sub_dtor.cpp:
+	.text       start:0x00052744 end:0x000527C8
+
+rel/formgate_sub_ctor.cpp:
+	.text       start:0x000527C8 end:0x000528C8
+
+rel/formgate_disp.cpp:
+	.text       start:0x00052E38 end:0x000530D0
+
+rel/formgate_exec.cpp:
+	.text       start:0x000530D0 end:0x00053258
+
+rel/formgate_set_parameter.cpp:
+	.text       start:0x00053720 end:0x000537A0
+
+rel/formgate_dtor.cpp:
+	.text       start:0x000537A0 end:0x00053880
+
+rel/formgate_edit.cpp:
+	.text       start:0x00053D50 end:0x00053DC0
+
 rel/formgate_unload.cpp:
 	.text       start:0x00053DC0 end:0x00053E30
+
+rel/formgate_load.cpp:
+	.text       start:0x00053E30 end:0x0005421C
 
 rel/formgate_create.cpp:
 	.text       start:0x0005421C end:0x00054264
@@ -745,6 +1100,72 @@ rel/formgate_create.cpp:
 rel/formgate_register.cpp:
 	.text       start:0x00054378 end:0x00054420
 	.ctors      start:0x000000AC end:0x000000B0
+
+rel/bobsleigh_double_path_angle.cpp:
+	.text       start:0x000546AC end:0x000548D8
+
+rel/bobsleigh_merge_path_pos.cpp:
+	.text       start:0x00055E18 end:0x00055EC0
+
+rel/bobsleigh_init_signal.cpp:
+	.text       start:0x00056430 end:0x00056700
+
+rel/bobsleigh_check_damage.cpp:
+	.text       start:0x000592A4 end:0x00059778
+
+rel/bobsleigh_riders.cpp:
+	.text       start:0x00059778 end:0x00059900
+
+rel/bobsleigh_player_ride.cpp:
+	.text       start:0x00059900 end:0x00059C1C
+
+rel/bobsleigh_players_ride.cpp:
+	.text       start:0x00059C1C end:0x0005A320
+
+rel/bobsleigh_catch_leader.cpp:
+	.text       start:0x0005A814 end:0x0005A98C
+
+rel/bobsleigh_search.cpp:
+	.text       start:0x0005A98C end:0x0005AA38
+
+rel/bobsleigh_tdisp.cpp:
+	.text       start:0x0005AA38 end:0x0005ADDC
+
+rel/bobsleigh_disp.cpp:
+	.text       start:0x0005ADDC end:0x0005B044
+
+rel/bobsleigh_launcher.cpp:
+	.text       start:0x0005C8A0 end:0x0005CA24
+
+rel/bobsleigh_set_player_position.cpp:
+	.text       start:0x0005CA24 end:0x0005CBFC
+
+rel/bobsleigh_set_camera.cpp:
+	.text       start:0x0005CBFC end:0x0005CF68
+
+rel/bobsleigh_set_position.cpp:
+	.text       start:0x0005CF68 end:0x0005D2FC
+
+rel/bobsleigh_dtor.cpp:
+	.text       start:0x0005D2FC end:0x0005D594
+
+rel/bobsleigh_hooks.cpp:
+	.text       start:0x0005E5EC end:0x0005E6CC
+
+rel/bobsleigh_set.cpp:
+	.text       start:0x0005E6CC end:0x0005E944
+
+rel/eff_spark_destroy.cpp:
+	.text       start:0x0005EC5C end:0x0005ECCC
+
+rel/eff_spark_tdisp.cpp:
+	.text       start:0x0005EE80 end:0x0005EF38
+
+rel/eff_spark.cpp:
+	.text       start:0x0005F208 end:0x0005F598
+
+rel/no_input_collision_tdisp.cpp:
+	.text       start:0x0005F598 end:0x0005F684
 
 rel/no_input_collision_parameter.cpp:
 	.text       start:0x00060168 end:0x000601B8
@@ -765,6 +1186,12 @@ rel/no_input_collision_hooks.cpp:
 rel/no_input_collision_register.cpp:
 	.text       start:0x000608BC end:0x00060964
 	.ctors      start:0x000000B0 end:0x000000B4
+
+rel/hint_ball_create_balls.cpp:
+	.text       start:0x00060DC8 end:0x00061000
+
+rel/hint_ball_ctor.cpp:
+	.text       start:0x000614A8 end:0x00061708
 
 rel/hintring_edit.cpp:
 	.text       start:0x00062D08 end:0x00062D64
@@ -828,6 +1255,9 @@ rel/bob_jump_collision_dtor.cpp:
 rel/bob_jump_collision_ctor.cpp:
 	.text       start:0x00064950 end:0x00064B64
 
+rel/bob_jump_collision_edit.cpp:
+	.text       start:0x00064B64 end:0x00064BDC
+
 rel/bob_jump_collision_hooks.cpp:
 	.text       start:0x00064BDC end:0x00064BE4
 
@@ -848,6 +1278,9 @@ rel/flower_register.cpp:
 	.text       start:0x00069160 end:0x00069210
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/searcher_sound_limit_dtor.cpp:
+	.text       start:0x0006A5B8 end:0x0006A63C
+
 rel/chao_search_cage.cpp:
 	.text       start:0x0006B66C end:0x0006B75C
 
@@ -865,6 +1298,9 @@ rel/chao_dtor.cpp:
 
 rel/chao_ctor.cpp:
 	.text       start:0x0006C398 end:0x0006C900
+
+rel/chao_edit.cpp:
+	.text       start:0x0006C900 end:0x0006C978
 
 rel/chao_hooks.cpp:
 	.text       start:0x0006C978 end:0x0006CA30
@@ -905,6 +1341,12 @@ rel/hintcolli_hooks.cpp:
 rel/hintcolli_register.cpp:
 	.text       start:0x0006EE2C end:0x0006EEDC
 	.ctors      start:0x000000D8 end:0x000000DC
+
+rel/obj_secollision_exec.cpp:
+	.text       start:0x0006EF68 end:0x0006F310
+
+rel/obj_secollision_dtor.cpp:
+	.text       start:0x0006F310 end:0x0006F3D0
 
 rel/obj_secollision_edit.cpp:
 	.text       start:0x0006F588 end:0x0006F670
@@ -977,6 +1419,51 @@ rel/s31_bob_dummy_hooks.cpp:
 
 rel/s31bob_create.cpp:
 	.text       start:0x000738F8 end:0x00073984
+
+rel/bobsleigh_light_destroy.cpp:
+	.text       start:0x00073E48 end:0x00073EF8
+
+rel/bobsleigh_light_clone.cpp:
+	.text       start:0x00073EF8 end:0x00073FE0
+
+rel/bobsleigh_light_tdisp.cpp:
+	.text       start:0x00073FE0 end:0x0007418C
+
+rel/bobsleigh_light_dtor.cpp:
+	.text       start:0x0007432C end:0x00074424
+
+rel/bobsleigh_light_ctor.cpp:
+	.text       start:0x00074424 end:0x000745B4
+
+rel/bobsleigh_signal_tdisp.cpp:
+	.text       start:0x000745B4 end:0x000748B0
+
+rel/bobsleigh_signal_disp.cpp:
+	.text       start:0x000748B0 end:0x00074B04
+
+rel/bobsleigh_signal_dtor.cpp:
+	.text       start:0x00074E70 end:0x00074F04
+
+rel/bobsleigh_vacuum_exec.cpp:
+	.text       start:0x00075C38 end:0x00075D34
+
+rel/bobsleigh_vacuum_dtor.cpp:
+	.text       start:0x00075D34 end:0x00075DB8
+
+rel/bobsleigh_vacuum_ctor.cpp:
+	.text       start:0x00075DB8 end:0x00075E60
+
+rel/bobsleigh_attack_exec.cpp:
+	.text       start:0x00075E60 end:0x00075F5C
+
+rel/bobsleigh_attack_dtor.cpp:
+	.text       start:0x00075F5C end:0x00075FE0
+
+rel/bobsleigh_attack_ctor.cpp:
+	.text       start:0x00075FE0 end:0x000760C0
+
+rel/bobsleigh_sub_end.cpp:
+	.text       start:0x000760C0 end:0x0007617C
 
 rel/s31_bob_dummy_register.cpp:
 	.text       start:0x00076408 end:0x000764A0
