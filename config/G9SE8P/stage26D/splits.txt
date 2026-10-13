@@ -1890,6 +1890,9 @@ rel/searcher_clone_clump.cpp:
 rel/searcher_reset.cpp:
 	.text       start:0x000A98DC end:0x000A99E0
 
+rel/searcher_create_instance.cpp:
+	.text       start:0x000A9FD4 end:0x000AA028
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 
