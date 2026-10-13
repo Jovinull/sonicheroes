@@ -20,6 +20,7 @@ public:
 	    const sAngle* ang);
 	virtual ~ENEMY_SHIELD();
 	void SetShieldStatusForDisp(RpClump* clump);
+	void Normal();
 
 	s8 hits;   // 0x0E8
 	u8 unkE9;  // 0x0E9
@@ -32,7 +33,7 @@ public:
 	RwV3d pos;    // 0x104
 	sAngle ang;   // 0x110
 	f32 scale;    // 0x11C
-	u8 unk120[0xC];
+	RwV3d dir;    // 0x120
 	RwV3d unk12C; // 0x12C
 	u8 unk138[0x48];
 	s32 unk180;   // 0x180

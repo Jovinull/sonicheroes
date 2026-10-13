@@ -617,6 +617,12 @@ rel/enemy_shield_dtor.cpp:
 rel/enemy_shield_angle.cpp:
 	.text       start:0x00030E24 end:0x00030EF0
 
+rel/enemy_shield_direction.cpp:
+	.text       start:0x00030EF0 end:0x00030FD8
+
+rel/enemy_shield_normal.cpp:
+	.text       start:0x00031514 end:0x00031600
+
 rel/enemy_shield_status.cpp:
 	.text       start:0x00031D30 end:0x00031E3C
 
