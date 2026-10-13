@@ -2085,12 +2085,12 @@ rel/tenkyu_register.cpp:
 	.text       start:0x000C9CD4 end:0x000C9D74
 	.ctors      start:0x0000016C end:0x00000170
 
-rel/flyer_object_create.cpp:
-	.text       start:0x000CD750 end:0x000CD798
-
-rel/flyer_register.cpp:
-	.text       start:0x000CD798 end:0x000CD83C
+rel/e_flyer_stage11.cpp:
+	.text       start:0x000C9D7C end:0x000CD844
 	.ctors      start:0x00000170 end:0x00000174
+	.rodata     start:0x00001DA0 end:0x00001E60
+	.data       start:0x00019300 end:0x000195F0
+	.bss        start:0x0000E750 end:0x0000E790
 
 rel/flyer_collision_check.cpp:
 	.text       start:0x000CD8E4 end:0x000CE528

@@ -1983,12 +1983,12 @@ rel/capture_collision_register.cpp:
 	.text       start:0x000DAA3C end:0x000DAAE4
 	.ctors      start:0x000001B0 end:0x000001B4
 
-rel/flyer_object_create.cpp:
-	.text       start:0x000DF670 end:0x000DF6B8
-
-rel/flyer_register.cpp:
-	.text       start:0x000DF6B8 end:0x000DF75C
+rel/e_flyer_stage11.cpp:
+	.text       start:0x000DBC9C end:0x000DF764
 	.ctors      start:0x000001B4 end:0x000001B8
+	.rodata     start:0x00002050 end:0x00002110
+	.data       start:0x00083E98 end:0x00084188
+	.bss        start:0x00002408 end:0x00002448
 
 rel/flyer_collision_check.cpp:
 	.text       start:0x000DF804 end:0x000E0448
