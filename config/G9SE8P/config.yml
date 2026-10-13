@@ -435,6 +435,28 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - fn_8_BE668
+    - fn_8_BE770
+    - fn_8_BEB1C
+    - fn_8_BEBC8
+    - fn_8_BED48
+    - fn_8_BEDA8
+    - fn_8_BF3CC
+    - fn_8_BF684
+    - fn_8_BF700
+    - fn_8_BFD74
+    - fn_8_BFE68
+    - fn_8_C0418
+    - fn_8_C0690
+    - fn_8_C06F0
+    - fn_8_C0730
+    - fn_8_C086C
+    - fn_8_C0C9C
+    - fn_8_C19F4
+    - fn_8_C1A34
+    - fn_8_C1A88
+    - fn_8_C1E90
+    - fn_8_C2344
     - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
     - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
     - SetCollisionParameter__13TObjEnemyPawnFv
@@ -703,6 +725,28 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - fn_8_BE668
+    - fn_8_BE770
+    - fn_8_BEB1C
+    - fn_8_BEBC8
+    - fn_8_BED48
+    - fn_8_BEDA8
+    - fn_8_BF3CC
+    - fn_8_BF684
+    - fn_8_BF700
+    - fn_8_BFD74
+    - fn_8_BFE68
+    - fn_8_C0418
+    - fn_8_C0690
+    - fn_8_C06F0
+    - fn_8_C0730
+    - fn_8_C086C
+    - fn_8_C0C9C
+    - fn_8_C19F4
+    - fn_8_C1A34
+    - fn_8_C1A88
+    - fn_8_C1E90
+    - fn_8_C2344
     - fn_8_A4140
     - fn_8_A4230
     - fn_8_A4290
@@ -1406,6 +1450,28 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - fn_8_BE668
+    - fn_8_BE770
+    - fn_8_BEB1C
+    - fn_8_BEBC8
+    - fn_8_BED48
+    - fn_8_BEDA8
+    - fn_8_BF3CC
+    - fn_8_BF684
+    - fn_8_BF700
+    - fn_8_BFD74
+    - fn_8_BFE68
+    - fn_8_C0418
+    - fn_8_C0690
+    - fn_8_C06F0
+    - fn_8_C0730
+    - fn_8_C086C
+    - fn_8_C0C9C
+    - fn_8_C19F4
+    - fn_8_C1A34
+    - fn_8_C1A88
+    - fn_8_C1E90
+    - fn_8_C2344
     - fn_8_A4140
     - fn_8_A4230
     - fn_8_A4290

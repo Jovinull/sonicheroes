@@ -1730,12 +1730,12 @@ rel/e_capture_collision.cpp:
 	.data       start:0x00014098 end:0x00014120
 	.bss        start:0x00001F20 end:0x00001F50
 
-rel/turtle_create.cpp:
-	.text       start:0x000C2624 end:0x000C266C
-
-rel/turtle_register.cpp:
-	.text       start:0x000C266C end:0x000C274C
+rel/e_turtle_stage11.cpp:
+	.text       start:0x000BE4C4 end:0x000C2754
 	.ctors      start:0x00000178 end:0x0000017C
+	.rodata     start:0x00001C20 end:0x00001CF0
+	.data       start:0x000142E8 end:0x00014798
+	.bss        start:0x00001F50 end:0x00001FA8
 
 rel/s04_floating_path_dtor.cpp:
 	.text       start:0x000C2E28 end:0x000C2EC0

@@ -1828,12 +1828,12 @@ rel/rino_col_register.cpp:
 	.text       start:0x000B4BE4 end:0x000B4C8C
 	.ctors      start:0x0000015C end:0x00000160
 
-rel/turtle_create.cpp:
-	.text       start:0x000B99E8 end:0x000B9A30
-
-rel/turtle_register.cpp:
-	.text       start:0x000B9A30 end:0x000B9B10
+rel/e_turtle_stage11.cpp:
+	.text       start:0x000B5888 end:0x000B9B18
 	.ctors      start:0x00000160 end:0x00000164
+	.rodata     start:0x00001BB8 end:0x00001C88
+	.data       start:0x00017EB8 end:0x00018368
+	.bss        start:0x00003058 end:0x000030B0
 
 rel/s06_chip_search_cage.cpp:
 	.text       start:0x000B9B18 end:0x000B9C08

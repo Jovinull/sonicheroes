@@ -2912,11 +2912,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/turtle_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/rinoliner_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3369,11 +3364,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s14_thunder_ptcl_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/turtle_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
