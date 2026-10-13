@@ -1815,6 +1815,12 @@ rel/flyer_col_register.cpp:
 	.text       start:0x000B22B0 end:0x000B2358
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/e_flyer_missile_stage11.cpp:
+	.text       start:0x000B2E50 end:0x000B3F4C
+	.rodata     start:0x00001ED8 end:0x00001F10
+	.data       start:0x0000B368 end:0x0000B3E0
+	.bss        start:0x0000D100 end:0x0000D108
+
 rel/no_ottotto_collision_exec.cpp:
 	.text       start:0x000B46C8 end:0x000B47C4
 
