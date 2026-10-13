@@ -191,13 +191,13 @@ typedef struct Searcher {
 	TEnemyGadget* gadget; // 0x268
 	s32 bobAngle;         // 0x26C
 	u8 unk270[0x1C];
-	f32 leanX; // 0x28C
-	f32 leanZ;      // 0x290
-	f32 shadowFade; // 0x294, how fast the shadow fades with height
-	s32 shadowOn;   // 0x298
+	f32 leanX;           // 0x28C
+	f32 leanZ;           // 0x290
+	f32 shadowFade;      // 0x294, how fast the shadow fades with height
+	s32 shadowOn;        // 0x298
 	s32 mgunAttackAngle; // 0x29C, 0x3000 down or 0xD000 up
 	u8 unk2A0[0x4];
-	f32 aimDistance; // 0x2A4
+	f32 aimDistance;   // 0x2A4
 	f32 shownHitPoint; // 0x2A8
 	u8 unk2AC[0x4];
 	TEnemyIconMan* gauge; // 0x2B0
@@ -220,4 +220,16 @@ typedef struct Searcher {
 static inline TObjEnemy* searcherEnemy(Searcher* searcher)
 {
 	return (TObjEnemy*)searcher;
+}
+
+extern "C" f32 fn_800D7B00(s32 angle);
+extern "C" const f32 searcherBobHeight;
+
+// bobs up and down around the home height while it moves
+static inline void searcherBob(Searcher* searcher)
+{
+	if (searcher->turning) {
+		searcher->bobAngle += 0x100;
+		searcher->pos.y = searcher->home.y + searcherBobHeight * fn_800D7B00(searcher->bobAngle);
+	}
 }

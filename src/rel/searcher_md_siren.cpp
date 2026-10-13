@@ -27,19 +27,8 @@ public:
 };
 
 extern "C" void* lbl_8042C388;
-extern "C" const f32 searcherBobHeight;
 
-extern "C" f32 fn_800D7B00(s32 angle);
 extern "C" void fn_800B4A38(void* sound, s32 id, void* position, void* owner, s32 a, s32 b, s32 c);
-
-// bobs up and down around the home height
-static inline void searcherBob(Searcher* searcher)
-{
-	if (searcher->turning) {
-		searcher->bobAngle += 0x100;
-		searcher->pos.y = searcher->home.y + searcherBobHeight * fn_800D7B00(searcher->bobAngle);
-	}
-}
 
 extern "C" void EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
     Searcher* searcher, s32 sub)

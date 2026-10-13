@@ -10,17 +10,6 @@
 #include "src/rel/searcher_check_direction.inc"
 #include "src/rel/searcher_turn_to_aim.inc"
 
-extern "C" const f32 searcherBobHeight;
-
-// bobs up and down around the home height
-static inline void searcherBob(Searcher* searcher)
-{
-	if (searcher->turning) {
-		searcher->bobAngle += 0x100;
-		searcher->pos.y = searcher->home.y + searcherBobHeight * fn_800D7B00(searcher->bobAngle);
-	}
-}
-
 extern "C" void EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode(
     Searcher* searcher, s32 sub)
 {
