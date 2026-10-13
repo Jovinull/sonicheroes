@@ -1163,6 +1163,9 @@ rel/searcher_strategy_laser.cpp:
 rel/searcher_strategy_needle.cpp:
 	.text       start:0x00053238 end:0x000536A4
 
+rel/searcher_strategy_modes.cpp:
+	.text       start:0x00053C20 end:0x00054018
+
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x000545B0 end:0x00054634
 

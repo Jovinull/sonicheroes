@@ -6363,6 +6363,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_strategy_modes.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_strategy_mgun.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

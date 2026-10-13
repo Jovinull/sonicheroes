@@ -1848,6 +1848,9 @@ rel/searcher_strategy_laser.cpp:
 rel/searcher_strategy_needle.cpp:
 	.text       start:0x000AC168 end:0x000AC5D4
 
+rel/searcher_strategy_modes.cpp:
+	.text       start:0x000ACB50 end:0x000ACF48
+
 rel/e_flyer_stage11.cpp:
 	.text       start:0x000AD314 end:0x000B0DDC
 	.ctors      start:0x00000104 end:0x00000108
