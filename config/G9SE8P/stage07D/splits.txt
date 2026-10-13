@@ -665,6 +665,9 @@ rel/pawn_md_hide_come_out.cpp:
 rel/pawn_md_hide.cpp:
 	.text       start:0x0003047C end:0x00030544
 
+rel/pawn_md_turn.cpp:
+	.text       start:0x00030544 end:0x000306C4
+
 rel/pawn_md_wait.cpp:
 	.text       start:0x000306C4 end:0x00030738
 
