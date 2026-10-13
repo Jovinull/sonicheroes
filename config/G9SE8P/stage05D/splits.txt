@@ -1768,6 +1768,11 @@ rel/capture_collision_register.cpp:
 	.text       start:0x000A8AEC end:0x000A8B94
 	.ctors      start:0x00000150 end:0x00000154
 
+rel/e_eggmobile_strategy_stage11.cpp:
+	.text       start:0x000A8B9C end:0x000A9D4C
+	.rodata     start:0x00001988 end:0x00001998
+	.data       start:0x00017160 end:0x00017268
+
 rel/e_eggmobile_stage11.cpp:
 	.text       start:0x000A9D4C end:0x000AD720
 	.ctors      start:0x00000154 end:0x00000158
