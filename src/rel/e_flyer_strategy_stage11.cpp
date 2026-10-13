@@ -312,8 +312,8 @@ void fn_8019EE04(s32);                                       /* RwFrameUpdateObj
 s32 rand();                                                  /* extern */
 M2C_UNK SetAimPosition__11TMachineGunFPC5RwV3d(u32, RwV3d*); /* extern */
 M2C_UNK SetPosition__11TMachineGunFPC5RwV3d(u32, RwV3d*);    /* extern */
-M2C_UNK fn_8_5F100(s32);                                     /* extern */
-void fn_8_5F140(void*);                                      /* extern */
+M2C_UNK Stop__11TMachineGunFv(s32);                          /* extern */
+void Run__11TMachineGunFv(void*);                            /* extern */
 s32 fn_8_5F30C(M2C_UNK*, RwV3d*, sAngle*, f32);              /* extern */
 M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);               /* extern */
 M2C_UNK fn_8_A1E94(s32);                                     /* extern */

@@ -659,6 +659,9 @@ rel/pawn_set_collision_parameter.cpp:
 rel/pawn_md_idle.cpp:
 	.text       start:0x0002F074 end:0x0002F094
 
+rel/pawn_md_mgun_fire.cpp:
+	.text       start:0x0002F094 end:0x0002F28C
+
 rel/pawn_md_tornado_blow_shield.cpp:
 	.text       start:0x0002F550 end:0x0002F63C
 

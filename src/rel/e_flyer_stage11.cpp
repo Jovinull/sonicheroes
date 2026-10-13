@@ -417,8 +417,8 @@ void fn_8019EE04(s32);                                       /* RwFrameUpdateObj
 s32 rand();                                                  /* extern */
 M2C_UNK SetAimPosition__11TMachineGunFPC5RwV3d(u32, RwV3d*); /* extern */
 M2C_UNK SetPosition__11TMachineGunFPC5RwV3d(u32, RwV3d*);    /* extern */
-M2C_UNK fn_8_5F100(s32);                                     /* extern */
-void fn_8_5F140(void*);                                      /* extern */
+M2C_UNK Stop__11TMachineGunFv(s32);                          /* extern */
+void Run__11TMachineGunFv(void*);                            /* extern */
 s32 fn_8_5F30C(M2C_UNK*, RwV3d*, sAngle*, f32);              /* extern */
 M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);               /* extern */
 M2C_UNK fn_8_A1E94(s32);                                     /* extern */
@@ -1003,7 +1003,7 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	if (FLD(arg0, s8, 0x245) == 1) {
 		FLD(arg0, s32, 0x304) = fn_8_5F30C(
 		    lbl_8042C10C, &((FlyerCtorView*)arg0)->pos, &((FlyerCtorView*)arg0)->ang, 200.0f);
-		fn_8_5F100(FLD(arg0, s32, 0x304));
+		Stop__11TMachineGunFv(FLD(arg0, s32, 0x304));
 	}
 	p = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (p != NULL) {
@@ -1320,7 +1320,7 @@ void fn_8_A4E44(M2C_UNK* arg0)
 		}
 		case 1:
 			if (FLD(arg0, void*, 0x304) != NULL) {
-				fn_8_5F140(FLD(arg0, void*, 0x304));
+				Run__11TMachineGunFv(FLD(arg0, void*, 0x304));
 				if (lbl_8042C388 != 0) {
 					fn_800B4A38(lbl_8042C388, 0x4018, (u8*)arg0 + 0x268, arg0, 3, 0, 2);
 				}
