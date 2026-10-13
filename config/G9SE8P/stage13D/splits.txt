@@ -1310,6 +1310,9 @@ rel/gadget_mgun.cpp:
 rel/gadget_shot.cpp:
 	.text       start:0x0005DE50 end:0x0005DF1C
 
+rel/gadget_needle.cpp:
+	.text       start:0x0005E7C4 end:0x0005E924
+
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE04 end:0x0005EE78
 
