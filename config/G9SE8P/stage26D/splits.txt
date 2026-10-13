@@ -1877,6 +1877,9 @@ rel/searcher_md_walk.cpp:
 rel/searcher_ctrl.cpp:
 	.text       start:0x000A7700 end:0x000A77AC
 
+rel/searcher_jet.cpp:
+	.text       start:0x000A853C end:0x000A8678
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 

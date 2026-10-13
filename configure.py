@@ -6758,6 +6758,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_jet.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_ctrl.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],

@@ -10,7 +10,12 @@ typedef struct sAngle {
 	s32 x, y, z;
 } sAngle;
 
-typedef struct RpClump RpClump;
+typedef struct RwFrame RwFrame;
+
+typedef struct RpClump {
+	u8 unk00[0x4];
+	RwFrame* frame; // 0x04
+} RpClump;
 
 struct TEnemyGadgetBase {
 	char* name; // 0x00
@@ -217,8 +222,9 @@ typedef struct Searcher {
 	RwV3d shadowNormal; // 0x2D8
 	s32 request;        // 0x2E4, the enemy mode it asks the strategy for
 	u8 unk2E8[0x14];
-	RwV3d savedAim; // 0x2FC, the walk's aim while it is away
-	u8 unk308[0x8];
+	RwV3d savedAim;    // 0x2FC, the walk's aim while it is away
+	RwFrame* jetFrame; // 0x308
+	u8 unk30C[0x4];
 	RpClump* partsClump; // 0x310
 	s32 plainTexture;    // 0x314
 	s32 state;           // 0x318, 2: no shadow
