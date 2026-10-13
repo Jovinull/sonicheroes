@@ -629,6 +629,9 @@ rel/pawn_md_bite_nail.cpp:
 rel/pawn_md_run.cpp:
 	.text       start:0x0002F974 end:0x0002FA38
 
+rel/pawn_md_tornado_stirred_up.cpp:
+	.text       start:0x0002FA38 end:0x0002FBA8
+
 rel/pawn_md_dropped.cpp:
 	.text       start:0x0002FBA8 end:0x0002FC2C
 

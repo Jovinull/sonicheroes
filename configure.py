@@ -6358,6 +6358,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_md_tornado_stirred_up.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
