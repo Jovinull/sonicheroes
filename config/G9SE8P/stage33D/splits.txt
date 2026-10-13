@@ -686,6 +686,9 @@ rel/pawn_md_crouch.cpp:
 rel/pawn_calc_start_and_aim.cpp:
 	.text       start:0x00031B0C end:0x00031C48
 
+rel/pawn_destroy_clump.cpp:
+	.text       start:0x0003282C end:0x000328B4
+
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CFC end:0x00032ED4
 
