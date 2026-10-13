@@ -593,6 +593,9 @@ rel/breakable_weight_register.cpp:
 rel/pawn_check_direction.cpp:
 	.text       start:0x0002CA2C end:0x0002CBAC
 
+rel/pawn_update_shoulder_angle.cpp:
+	.text       start:0x0002CBAC end:0x0002CD08
+
 rel/pawn_hit_point.cpp:
 	.text       start:0x0002D35C end:0x0002D44C
 
