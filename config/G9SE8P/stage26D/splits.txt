@@ -1838,6 +1838,9 @@ rel/searcher_hit_point.cpp:
 rel/searcher_gadget_mode.cpp:
 	.text       start:0x000A53C4 end:0x000A5404
 
+rel/searcher_shadow.cpp:
+	.text       start:0x000A5480 end:0x000A5544
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 
