@@ -6332,6 +6332,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_explosion.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_hit_point.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

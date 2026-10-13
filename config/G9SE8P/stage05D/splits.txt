@@ -617,6 +617,9 @@ rel/pawn_rcv_hp_inc.cpp:
 rel/pawn_exec_thunder_shoot.cpp:
 	.text       start:0x0002DC88 end:0x0002DD24
 
+rel/pawn_explosion.cpp:
+	.text       start:0x0002DDD0 end:0x0002DF74
+
 rel/pawn_check_damage2.cpp:
 	.text       start:0x0002DF74 end:0x0002DFB8
 
