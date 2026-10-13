@@ -2,11 +2,8 @@
 
 // calc.cpp: C++ file/function identities corroborated by PS2 DWARF.
 // The GameCube unit boundary is inferred from the correlated function sequence.
-// Seven bodies match directly. GetRotYXZ retains ten f30/f31 register fields
-// across ten instructions; tools/fix_calc_registers.py bounds that permutation.
-// Local declarations, expression lifetimes, helper expansion and compiler
-// choices have not reproduced the allocation. See docs/calc-register-evidence.md.
-// Remove the normalizer when a source spelling reproduces these fields.
+// All eight bodies match native compiler output. GetRotYXZ uses a scoped
+// optimization level to preserve its observed sine/cosine register allocation.
 struct RwV3d {
 	f32 x, y, z;
 };
@@ -48,6 +45,7 @@ void GetRotXYZ(RwMatrixTag* mat, s32* ax, s32* ay, s32* az)
 	*ax = (10430.381f * (f32)atan2(mat->at.x * s - mat->at.y * c, mat->up.y * c - mat->up.x * s));
 }
 
+#pragma optimization_level 1
 void GetRotYXZ(RwMatrixTag* mat, s32* ax, s32* ay, s32* az)
 {
 	f32 s, c;
@@ -69,6 +67,8 @@ void GetRotYXZ(RwMatrixTag* mat, s32* ax, s32* ay, s32* az)
 	*ay = (10430.381f
 	    * (f32)atan2(mat->at.x * c + mat->at.y * s, mat->right.x * c + mat->right.y * s));
 }
+
+#pragma optimization_level reset
 
 void GetRotZXY(RwMatrixTag* mat, s32* ax, s32* ay, s32* az)
 {
