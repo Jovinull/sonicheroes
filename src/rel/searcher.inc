@@ -41,6 +41,74 @@ public:
 	virtual void Cancel();
 };
 
+// TObjEnemy's virtuals up to GetCurrentLightNum (slot 0x90), declared as
+// rel/e_flyer_stage11.cpp has them so a virtual call takes the retail slot
+// (TObjSetObj's part of the vtable comes before TObjEnemy's own slots); only
+// declared, so nothing of the class is emitted here
+struct SETDATA_PARAM;
+enum ENEMY_MD { ENEMY_MD_0 };
+
+struct TObjectHdr {
+	u8 pad00[0x18];
+};
+
+class TObject : public TObjectHdr
+{
+public:
+	virtual ~TObject();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void TDisp();
+	virtual void PDisp();
+	virtual void ImmAftSetRaster();
+	virtual void Debug();
+	virtual void Error(char*);
+	virtual void Render();
+
+	u8 pad1C[0x94];
+};
+
+struct SetObjHdr {
+	SETDATA_PARAM* frame;
+};
+
+class TObjSetObj : public SetObjHdr
+{
+public:
+	virtual void EditOnChange(SETDATA_PARAM*);
+};
+
+class TObjEnemy : public TObject, public TObjSetObj
+{
+public:
+	enum eCtrlSMode { CTRL_SMODE_0 };
+
+	virtual ~TObjEnemy();
+	virtual void CheckDamage2();
+	virtual void DestroyMyself();
+	virtual void Explosion();
+	virtual void InitMode(ENEMY_MD);
+	virtual void ExecMode(ENEMY_MD);
+	virtual void ExitMode(ENEMY_MD);
+	virtual void CtrlMode(ENEMY_MD, eCtrlSMode);
+	virtual void Update();
+	virtual void UpdateOnEdit();
+	virtual void DispOpaq();
+	virtual void DispTrans();
+	virtual void DispShadow();
+	virtual void DispOpaqOnEdit();
+	virtual void Virtual33D94();
+	virtual void KillMySelf();
+	virtual s32 CheckCameraFrustumTest(const RwV3d*, f32);
+	virtual s32 CheckCameraFrustumTestForShadow(const RwV3d*, f32);
+	virtual void AddScore();
+	virtual s32 CanCheckTechnicPointForThunderShoot();
+	virtual s32 IsSleep();
+	virtual void AddItemBox(RwV3d*);
+	virtual RwV3d* Virtual33D98();
+	virtual s32 GetCurrentLightNum();
+};
+
 class TEnemyIconMan
 {
 public:
@@ -59,7 +127,9 @@ public:
 };
 
 typedef struct Searcher {
-	u8 unk000[0x140];
+	u8 unk000[0xE8];
+	RpClump* clump; // 0xE8
+	u8 unk0EC[0x54];
 	RwV3d pos;  // 0x140
 	sAngle ang; // 0x14C
 	u8 unk158[0x1C];
@@ -92,7 +162,15 @@ typedef struct Searcher {
 	u8 unk2C8[0x4];
 	RwV3d shadowPos;    // 0x2CC, -1000000 high: no ground
 	RwV3d shadowNormal; // 0x2D8
-	u8 unk2E4[0x34];
-	s32 state; // 0x318, 2: no shadow
+	u8 unk2E4[0x2C];
+	RpClump* partsClump; // 0x310
+	s32 plainTexture;    // 0x314
+	s32 state;           // 0x318, 2: no shadow
 	s32 kind;  // 0x31C, 6: search light
 } Searcher;
+
+// the searcher as the C++ class its virtual calls need
+static inline TObjEnemy* searcherEnemy(Searcher* searcher)
+{
+	return (TObjEnemy*)searcher;
+}
