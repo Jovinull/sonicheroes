@@ -1829,6 +1829,9 @@ rel/searcher_sleep.cpp:
 rel/searcher_cancel.cpp:
 	.text       start:0x000A4C84 end:0x000A4D2C
 
+rel/searcher_score.cpp:
+	.text       start:0x000A4E74 end:0x000A5010
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 
