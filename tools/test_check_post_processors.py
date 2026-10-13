@@ -187,7 +187,6 @@ class RepositoryTests(unittest.TestCase):
             {
                 "fix_game_action_object.py": {"TARGET_EXTAB"},
                 "fix_eff_tornado_object.py": {"TEXT_PATCHES"},
-                "fix_stage13_3way_colli_object.py": {"WORD_FIXES"},
             },
         )
 

@@ -52,7 +52,6 @@ while these stay visible instead of passing quietly:
 | --- | --- | --- |
 | `fix_game_action_object.py` | `TARGET_EXTAB` | the whole `extab` section, as hex |
 | `fix_eff_tornado_object.py` | `TEXT_PATCHES` | whole instruction words |
-| `fix_stage13_3way_colli_object.py` | `WORD_FIXES` | whole instruction words |
 
 Word tables can replace complete opcodes as well as register fields. An opcode
 replacement cannot be re-spelled as a register-field substitution.
