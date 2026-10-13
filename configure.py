@@ -8013,11 +8013,6 @@ config.custom_build_rules = [
         "description": "FIX bomb effect constructor loop register allocation",
     },
     {
-        "name": "fix_eff_footprints_registers",
-        "command": "$python tools/fix_eff_footprints_registers.py $in $out",
-        "description": "FIX footprint display loop register allocation",
-    },
-    {
         "name": "fix_c_colli_react_object",
         "command": "$python tools/fix_c_colli_react_object.py $in $out",
         "description": "FIX collision reactor weak inline atom order",
@@ -8297,12 +8292,6 @@ config.custom_build_steps = {
             "rule": "fix_eff_crash3d_pool",
             "inputs": "build/G9SE8P/src/game/effect/eff_crash3d.o",
             "implicit": ["tools/fix_eff_crash3d_pool.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/eff-footprints-registers.stamp",
-            "rule": "fix_eff_footprints_registers",
-            "inputs": "build/G9SE8P/src/game/effect/eff_footprints.o",
-            "implicit": ["tools/fix_eff_footprints_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/eff-bomb-registers.stamp",

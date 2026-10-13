@@ -2658,11 +2658,13 @@ in GameCube code and seven ordinary helpers inline into them. Both footprint
 classes and all owned sections are independently correlated; neighboring
 receiver/singleton helpers are excluded. GameCube immediate vertex layout takes
 precedence over the older platform's metadata layout. No PS2 instructions were
-inspected. Six bodies match directly from source; the display method retains
-a documented twelve-register-field permutation across eleven instructions.
-All seven bodies, owned sections and 155 relocations match after normalization.
-All eighteen supported output hashes and 77 tests pass; see
-`eff-footprints-unit-evidence.md` for the remaining allocation gap and path out.
+inspected. All seven bodies now match directly from source. Using the existing
+`RwRGBA` type for the three color temporaries reproduces the display allocation
+without changing evaluation order or compiler settings. The raw instruction
+bodies and their 119 text relocations are exact; owned data, exception records
+and discarded helpers are unchanged. The register postprocessor has been
+removed. All eighteen supported output hashes, 189 tests and required policies
+pass. See `eff-footprints-unit-evidence.md` for the complete unit audit.
 
 ## player/player_search.cpp
 
