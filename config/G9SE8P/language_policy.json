@@ -82,6 +82,7 @@
     "advertiseD/adv_2p.cpp",
     "advertiseD/adv_draw.cpp",
     "autosaveD/adv_draw.cpp",
+    "game/Memory.cpp",
     "game/c_colli_react.cpp",
     "game/calc.cpp",
     "game/calc_colli.cpp",

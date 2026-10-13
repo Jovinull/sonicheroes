@@ -962,7 +962,7 @@ config.libs = [
             Object(
                 Matching,
                 "game/Memory.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline auto,deferred"],
             ),
             Object(
                 Matching,
@@ -8067,11 +8067,6 @@ config.custom_build_rules = [
         "description": "FIX TEndSPStage.cpp data atom order",
     },
     {
-        "name": "fix_game_memory_object",
-        "command": f"$python tools/fix_game_memory_object.py $in $out --objcopy {objcopy_path}",
-        "description": "FIX Memory.cpp object layout",
-    },
-    {
         "name": "fix_game_action_object",
         "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part 0",
         "description": "FIX action.cpp part 0",
@@ -8489,12 +8484,6 @@ config.custom_build_steps = {
                 "tools/fix_tend_sp_stage_object.py",
                 str(binutils_dir),
             ],
-        },
-        {
-            "outputs": "build/G9SE8P/game-memory-object.stamp",
-            "rule": "fix_game_memory_object",
-            "inputs": "build/G9SE8P/src/game/Memory.o",
-            "implicit": ["tools/fix_game_memory_object.py", str(binutils_dir)],
         },
         {
             "outputs": "build/G9SE8P/game-action-object.stamp",
