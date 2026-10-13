@@ -1887,6 +1887,9 @@ rel/searcher_clone_clump.cpp:
 	.text       start:0x000A9470 end:0x000A98DC
 	.data       start:0x0000AAE8 end:0x0000AB20
 
+rel/searcher_reset.cpp:
+	.text       start:0x000A98DC end:0x000A99E0
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 

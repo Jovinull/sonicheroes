@@ -210,44 +210,52 @@ typedef struct Searcher {
 	u8 unk1D8[0x58];
 	s32 breaker; // 0x230
 	u8 unk234[0xC];
-	RpClump* bodyClump; // 0x240
-	RpClump* clumps[4]; // 0x244, lit body, dark body, lit and dark parts
-	s32 lit;            // 0x254
-	u8 unk258[0x4];
+	RpClump* bodyClump;  // 0x240
+	RpClump* clumps[4];  // 0x244, lit body, dark body, lit and dark parts
+	s32 lit;             // 0x254
+	s32 field258;        // 0x258
 	ENEMYMTNMAN* motion; // 0x25C
-	u8 unk260[0x8];
+	s32 field260;        // 0x260
+	u8 unk264[0x4];
 	TEnemyGadget* gadget; // 0x268
 	s32 bobAngle;         // 0x26C
-	u8 unk270[0x10];
-	s32 walking; // 0x280
+	RwV3d spin;           // 0x270
+	f32 spinSpeed;        // 0x27C
+	s32 walking;          // 0x280
 	u8 unk284[0x8];
-	f32 leanX;           // 0x28C
-	f32 leanZ;           // 0x290
-	f32 shadowFade;      // 0x294, how fast the shadow fades with height
-	s32 shadowOn;        // 0x298
-	s32 mgunAttackAngle; // 0x29C, 0x3000 down or 0xD000 up
-	u8 unk2A0[0x4];
-	f32 aimDistance;   // 0x2A4
-	f32 shownHitPoint; // 0x2A8
-	u8 unk2AC[0x4];
+	f32 leanX;            // 0x28C
+	f32 leanZ;            // 0x290
+	f32 shadowFade;       // 0x294, how fast the shadow fades with height
+	s32 shadowOn;         // 0x298
+	s32 mgunAttackAngle;  // 0x29C, 0x3000 down or 0xD000 up
+	s32 field2A0;         // 0x2A0
+	f32 aimDistance;      // 0x2A4
+	f32 shownHitPoint;    // 0x2A8
+	f32 maxHitPoint;      // 0x2AC
 	TEnemyIconMan* gauge; // 0x2B0
 	TEnemyIconMan* icon;  // 0x2B4
 	u8 unk2B8[0xC];
-	s32 turning; // 0x2C4
-	u8 unk2C8[0x4];
+	s32 turning;        // 0x2C4
+	s32 field2C8;       // 0x2C8
 	RwV3d shadowPos;    // 0x2CC, -1000000 high: no ground
 	RwV3d shadowNormal; // 0x2D8
 	s32 request;        // 0x2E4, the enemy mode it asks the strategy for
 	u8 unk2E8[0x14];
-	RwV3d savedAim;    // 0x2FC, the walk's aim while it is away
-	RwFrame* jetFrame; // 0x308
-	u8 unk30C[0x4];
+	RwV3d savedAim;      // 0x2FC, the walk's aim while it is away
+	RwFrame* jetFrame;   // 0x308
+	s32 field30C;        // 0x30C
 	RpClump* partsClump; // 0x310
 	s32 plainTexture;    // 0x314
 	s32 state;           // 0x318, 2: no shadow
 	s32 kind;            // 0x31C, 6: search light
-	u8 unk320[0x4];
-	f32 walkSpeed; // 0x324
+	s32 moveType;        // 0x320
+	f32 walkSpeed;       // 0x324
+	f32 field328;        // 0x328
+	s32 readyWait;       // 0x32C
+	s32 attackWait;      // 0x330
+	u8 unk334[0xC];
+	void* field340; // 0x340
+	void* field344; // 0x344
 } Searcher;
 
 // the searcher as the C++ class its virtual calls need

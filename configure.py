@@ -6770,6 +6770,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_reset.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_destroy_clump.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
