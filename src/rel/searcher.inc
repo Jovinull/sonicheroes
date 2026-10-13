@@ -66,6 +66,7 @@ public:
 	s32 IsKilled;      // 0x34
 
 	static void* operator new(unsigned long size) { return lbl_8042C148->Malloc(size); }
+	s32 CheckCameraFrustum(const RwV3d* pos, f32 radius);
 };
 
 // TObjEnemy's virtuals up to GetCurrentLightNum (slot 0x90), declared as

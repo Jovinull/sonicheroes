@@ -1817,6 +1817,9 @@ rel/enemy_gadget_bomb_dtor.cpp:
 rel/enemy_gadget_bomb_ctor.cpp:
 	.text       start:0x000A0854 end:0x000A09F4
 
+rel/gadget_search_light.cpp:
+	.text       start:0x000A09F4 end:0x000A0AE8
+
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x000A472C end:0x000A47A0
 
