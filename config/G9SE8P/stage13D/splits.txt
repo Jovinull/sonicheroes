@@ -1194,6 +1194,9 @@ rel/searcher_strategy_exec.cpp:
 rel/searcher_sound_limit.cpp:
 	.text       start:0x00054460 end:0x000547A0
 
+rel/searcher_sleep.cpp:
+	.text       start:0x000547A0 end:0x00054914
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3B8 end:0x0005A400
 

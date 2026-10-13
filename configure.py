@@ -6709,6 +6709,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_sleep.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_sound_limit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
