@@ -1826,6 +1826,9 @@ rel/searcher_sound_limit.cpp:
 rel/searcher_sleep.cpp:
 	.text       start:0x000A4B10 end:0x000A4C84
 
+rel/searcher_cancel.cpp:
+	.text       start:0x000A4C84 end:0x000A4D2C
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 
