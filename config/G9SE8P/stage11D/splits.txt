@@ -1153,6 +1153,9 @@ rel/searcher_score.cpp:
 rel/searcher_hit_point.cpp:
 	.text       start:0x00054CBC end:0x00054D8C
 
+rel/searcher_gadget_mode.cpp:
+	.text       start:0x00055070 end:0x000550B0
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3E4 end:0x0005A42C
 

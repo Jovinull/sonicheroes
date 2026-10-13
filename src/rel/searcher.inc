@@ -79,14 +79,20 @@ typedef struct Searcher {
 	TEnemyGadget* gadget; // 0x268
 	u8 unk26C[0x20];
 	f32 leanX; // 0x28C
-	f32 leanZ; // 0x290
-	u8 unk294[0x14];
+	f32 leanZ;      // 0x290
+	f32 shadowFade; // 0x294, how fast the shadow fades with height
+	s32 shadowOn;   // 0x298
+	u8 unk29C[0xC];
 	f32 shownHitPoint; // 0x2A8
 	u8 unk2AC[0x4];
 	TEnemyIconMan* gauge; // 0x2B0
 	TEnemyIconMan* icon;  // 0x2B4
 	u8 unk2B8[0xC];
 	s32 turning; // 0x2C4
-	u8 unk2C8[0x54];
-	s32 kind; // 0x31C, 6: search light
+	u8 unk2C8[0x4];
+	RwV3d shadowPos;    // 0x2CC, -1000000 high: no ground
+	RwV3d shadowNormal; // 0x2D8
+	u8 unk2E4[0x34];
+	s32 state; // 0x318, 2: no shadow
+	s32 kind;  // 0x31C, 6: search light
 } Searcher;
