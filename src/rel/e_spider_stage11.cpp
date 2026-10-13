@@ -1,703 +1,476 @@
 #include "types.h"
 
-typedef s32 M2C_UNK;
-#define M2C_FIELD(base, type, offset) (*(type)((u8*)(u32)(base) + (offset)))
-#define M2C_ERROR(...)
-#define M2C_BITWISE(type, value) (*(type*)&(value))
+// Retained PS2 symbols name this object TObjS11Spider and give its method
+// family in the order the GameCube text keeps: SetPosition, DestroyClump,
+// CloneClump, SetParameter, TDisp, Exec, the destructor, the TObject*
+// constructor, EditOnChange and the endObj/initObj/startObj lifecycle
+// functions. The "TObjS11Spider" class-name string in this unit's .data
+// correlates the GameCube object with that family.
+//
+// Like the other Stage 11 object units this one is built with deferred
+// inlining: the functions are emitted in reverse definition order, and the
+// compiler-generated vtable lands after the named data and ahead of the string
+// literals, where retail has it.
 
-typedef struct TObject {
-	/* 0x00 */ M2C_UNK* unk0;   /* inferred */
-	/* 0x04 */ char pad4[0x14]; /* maybe part of unk0[6]? */
-	/* 0x18 */ M2C_UNK* unk18;  /* inferred */
-	/* 0x1C */ char pad1C[2];
-	/* 0x1E */ s16 unk1E;     /* inferred */
-	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
-	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x2C */ void* unk2C;   /* inferred */
-	/* 0x30 */ M2C_UNK unk30; /* inferred */
-	/* 0x34 */ char pad34[0x84];
-	/* 0xB8 */ f32 unkB8; /* inferred */
-	/* 0xBC */ f32 unkBC; /* inferred */
-	/* 0xC0 */ f32 unkC0; /* inferred */
-	/* 0xC4 */ s32 unkC4; /* inferred */
-	/* 0xC8 */ s32 unkC8; /* inferred */
-	/* 0xCC */ s32 unkCC; /* inferred */
-	/* 0xD0 */ s32 unkD0; /* inferred */
-	/* 0xD4 */ s32 unkD4; /* inferred */
-	/* 0xD8 */ char padD8[4];
-	/* 0xDC */ f32 unkDC; /* inferred */
-	/* 0xE0 */ u32 unkE0; /* inferred */
-	/* 0xE4 */ u32 unkE4; /* inferred */
-	/* 0xE8 */ u32 unkE8; /* inferred */
-	/* 0xEC */ s32 unkEC; /* inferred */
-	/* 0xF0 */ s32 unkF0; /* inferred */
-	/* 0xF4 */ s32 unkF4; /* inferred */
-	/* 0xF8 */ u32 unkF8; /* inferred */
-} TObject;                /* size >= 0xFC */
+struct Vec3 {
+	f32 x;
+	f32 y;
+	f32 z;
+};
+
+struct sAngle {
+	s32 x;
+	s32 y;
+	s32 z;
+};
+
+struct SETDATA_PARAM {
+	Vec3 position;
+	sAngle angle;
+	u32 flags;
+	u8 pad1C[0x10];
+	s32* params;
+};
+
+struct RwFrame;
+
+struct RpClump {
+	u8 pad00[4];
+	RwFrame* frame;
+};
+
+struct GameState {
+	u8 pad00[0x1F];
+	s8 paused;
+	s8 editMode;
+};
+
+struct TObjectHdr {
+	const char* className;
+	u16 signal;
+	u8 pad06[0x12];
+};
+
+class TObject : public TObjectHdr
+{
+public:
+	TObject(TObject*);
+	virtual ~TObject();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void TDisp();
+	virtual void PDisp();
+	virtual void ImmAftSetRaster();
+	virtual void Debug();
+	virtual void Error(char*);
+	virtual void Render();
+
+	s16 pad1C;
+	s16 objectSize;
+	u8 pad20[8];
+};
+
+struct SetObjHdr {
+	SETDATA_PARAM* frame;
+};
 
 extern "C" {
-
-void* __ct__7TObjectFP7TObject(void*, void*);                                        /* extern */
-void* __dt__7TObjectFv(void*, s32);                                                  /* extern */
-M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                            /* extern */
-M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                                        /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                          /* extern */
-TObject* Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                        /* extern */
-M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                                  /* extern */
-u32 __nw__FUl(M2C_UNK);                                                              /* extern */
-s32 CheckMustKill__10TObjSetObjFv(s32);                                              /* extern */
-s32 CheckRangeOut__10TObjSetObjFv(s32);                                              /* extern */
-M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                              /* extern */
-M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(M2C_UNK); /* extern */
-u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                                  /* extern */
-s32 CheckFileID__7ONEFILEFPc(s32, M2C_UNK*);                                         /* extern */
-M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);                                     /* extern */
-f32 fn_800D7AE4(s32);                                                                /* extern */
-f32 fn_800D7B00(s32);                                                                /* extern */
-M2C_UNK DefaultColor__12DealMaterialFv(u32);                                         /* extern */
-M2C_UNK MulColor__12DealMaterialFPf(f32*);                                           /* extern */
-M2C_UNK __dt__12DealMaterialFv(void*, M2C_UNK);                                      /* extern */
-u32 __ct__12DealMaterialFP7RpClump(u32);                                             /* extern */
-M2C_UNK fn_8014FF2C(u32);                                                            /* extern */
-u32 fn_80150588(u32);                                                                /* extern */
-M2C_UNK fn_80150958(void*);                                                          /* extern */
-M2C_UNK fn_80194234(M2C_UNK, s32);                                                   /* extern */
-M2C_UNK fn_80194294(M2C_UNK, s32*);                                                  /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);                               /* extern */
-M2C_UNK fn_8019E880(s32);                                                            /* extern */
-M2C_UNK fn_8019EB94(s32, s32*, ...);                                                 /* extern */
-M2C_UNK fn_801A4C84(u32);                                                            /* extern */
-s32 rand(f32*);                                                                      /* extern */
-M2C_UNK fn_8_C2398(s32);                                                             /* extern */
-void s11spiderObjectCreate();                                                        /* static */
-void s11spiderObjectLoad(M2C_UNK arg_sp0);                                           /* static */
-void s11spiderObjectUnload();                                                        /* static */
-TObject* fn_8_C30D8(TObject*, s16, M2C_UNK);
-void fn_8_C2DE4(void*);
-void fn_8_C2C2C(void*);
-void fn_8_C33D0(void*, void*);
-void fn_8_C37E0(void*, void*);
-extern "C" {
-void Disp__7TObjectFv(void);
-void PDisp__7TObjectFv(void);
-void ImmAftSetRaster__7TObjectFv(void);
-void Debug__7TObjectFv(void);
-void Error__7TObjectFPc(char*);
-void Render__7TObjectFv(void);
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
 }
-extern M2C_UNK AxisY;
-extern M2C_UNK lbl_802FF5A0;
-extern TObject* lbl_8042C110;
-extern s32 lbl_8042C148;
-extern void* lbl_8042C180;
+
+class TObjSetObj : public SetObjHdr
+{
+public:
+	TObjSetObj();
+	virtual void EditOnChange(SETDATA_PARAM*);
+
+	s32 CheckRangeOut() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckMustKill__10TObjSetObjFv(this); }
+};
+
+class C_COLLI
+{
+public:
+	u8 pad00[0x88];
+	C_COLLI();
+	~C_COLLI();
+};
+
+class DealMaterial
+{
+public:
+	u8 pad00[0x14];
+
+	DealMaterial(RpClump*);
+	~DealMaterial();
+	void MulColor(f32*);
+	void DefaultColor();
+};
+
+extern "C" {
+extern void* lbl_8042C110;
+extern void* lbl_8042C148;
+extern GameState* lbl_8042C180;
 extern void* lbl_8042C1D0;
 extern void* lbl_8042C298;
-extern M2C_UNK lbl_8_data_18120;
-extern M2C_UNK lbl_8_data_18138;
-extern M2C_UNK lbl_8_data_18150;
-extern M2C_UNK lbl_8_data_18168;
-static M2C_UNK* lbl_8_data_18180[5] = {
-	&lbl_8_data_18120,
-	&lbl_8_data_18138,
-	&lbl_8_data_18150,
-	&lbl_8_data_18168,
-	(M2C_UNK*)0x420C0000,
+extern u8 AxisY;
+extern u8 lbl_802FF5A0;
+
+void __ct__7TObjectFP7TObject(void*, void*);
+void __dt__7TObjectFv(void*, s16);
+void __ct__10TObjSetObjFv(void*);
+void __dt__10TObjSetObjFv(void*, s16);
+void __ct__7C_COLLIFv(void*);
+void __dt__7C_COLLIFv(void*, s16);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(RpClump*, u32);
+RpClump* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
+f32 fn_800D7AE4(s32);
+f32 fn_800D7B00(s32);
+void fn_8014FF2C(RpClump*);
+RpClump* fn_80150588(RpClump*);
+void fn_80150958(RpClump*);
+void fn_80194234(s32, s32);
+void fn_80194294(s32, s32*);
+void fn_80195790(void*, void*, f32, f32, s32);
+void fn_8019E880(RwFrame*);
+void fn_8019EB94(RwFrame*, Vec3*, s32);
+void fn_801A4C84(void*);
+int rand();
+}
+
+class TObjS11Spider : public TObject, public TObjSetObj, public C_COLLI
+{
+public:
+	Vec3 position;
+	sAngle angle;
+	s32 type;
+	s32 counter;
+	f32 scale;
+	f32 target;
+	RpClump* clump;
+	DealMaterial* material;
+	RpClump* lights[4];
+	DealMaterial* lightMaterials[4];
+
+	void SetPosition();
+	void DestroyClump();
+	void CloneClump(RpClump*);
+	void SetParameter();
+	TObjS11Spider(TObject*);
+	virtual void TDisp();
+	virtual void Exec();
+	inline virtual ~TObjS11Spider();
+	virtual void EditOnChange(SETDATA_PARAM*);
+
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
+	}
 };
-static f32 lbl_8_data_18194                     = 0.6f;
-static f32 lbl_8_data_18198                     = 0.8f;
-static f32 lbl_8_data_1819C                     = 0.5f;
-static s32 lbl_8_data_181A0                     = 5;
-static f32 lbl_8_data_181A4                     = 0.55f;
-static f32 lbl_8_data_181A8                     = 0.4f;
-static f32 lbl_8_data_181AC                     = 0.35f;
-static char lbl_8_data_181B0[]                  = "type";
-static const char* s11spiderObjectFieldNames[1] = { lbl_8_data_181B0 };
-static char lbl_8_data_181BC[]                  = "TObjS11Spider";
-static M2C_UNK* lbl_8_data_181CC                = (M2C_UNK*)&lbl_8_data_181BC;
-static void* lbl_8_data_181D0[15]               = {
-	NULL,
-	NULL,
-	(void*)fn_8_C30D8,
-	(void*)fn_8_C2DE4,
-	(void*)Disp__7TObjectFv,
-	(void*)fn_8_C2C2C,
-	(void*)PDisp__7TObjectFv,
-	(void*)ImmAftSetRaster__7TObjectFv,
-	(void*)Debug__7TObjectFv,
-	(void*)Error__7TObjectFPc,
-	(void*)Render__7TObjectFv,
-	NULL,
-	NULL,
-	(void*)fn_8_C37E0,
-	(void*)fn_8_C33D0,
+
+// The constructor and destructor are written against the object's storage:
+// retail constructs and destroys the TObjSetObj and C_COLLI members through
+// out-of-line functions that keep their address names, which a C++ member
+// call would rename. The compiler still generates the class vtable and its
+// adjustor thunk from the virtual declarations above.
+extern "C" {
+TObjS11Spider* __dt__13TObjS11SpiderFv(TObjS11Spider*, s16);
+extern void* __vt__13TObjS11Spider[];
+}
+
+#define SETOBJ(self) ((void*)((u8*)(self) + 0x28))
+
+// The data names below are address names; their roles are descriptive guesses.
+extern "C" {
+char lbl_8_data_18120[] = "s11_k_spiderlight1.dff";
+char lbl_8_data_18138[] = "s11_k_spiderlight2.dff";
+char lbl_8_data_18150[] = "s11_k_spiderlight3.dff";
+char lbl_8_data_18168[] = "s11_k_spiderlight4.dff";
+char* lbl_8_data_18180[4]
+    = { lbl_8_data_18120, lbl_8_data_18138, lbl_8_data_18150, lbl_8_data_18168 };
+f32 lbl_8_data_18190               = 35.0f;
+f32 lbl_8_data_18194               = 0.6f;
+f32 lbl_8_data_18198               = 0.8f;
+f32 lbl_8_data_1819C               = 0.5f;
+s32 lbl_8_data_181A0               = 5;
+f32 lbl_8_data_181A4               = 0.55f;
+f32 lbl_8_data_181A8               = 0.4f;
+f32 lbl_8_data_181AC               = 0.35f;
+char* s11spiderObjectFieldNames[1] = { "type" };
+char* lbl_8_data_181CC             = "TObjS11Spider";
+}
+
+struct SETOBJ_PARAM {
+	char* displayName;
+	void (*init)();
+	void (*end)();
+	void (*create)();
+	u32 field10;
+	u32 flags;
+	u32 field18;
+	u16 id;
+	u16 count;
+	u8 field20;
+	u8 field21;
+	u8 pad22[2];
+	char* fieldTypes;
+	void* fields;
+	u8 pad2C[4];
 };
-static char s11spiderObjectDisplayName[] = "S11SPIDER OBJECT";
-static char s11spiderObjectFieldTypes[]  = "i";
-static u32 lbl_8_bss_1BD0[4];
-typedef struct ObjectEntry {
-	const char* name;        /* 0x00 */
-	void (*load)(void);      /* 0x04 */
-	void (*unload)(void);    /* 0x08 */
-	void (*create)(void);    /* 0x0C */
-	void* unk10;             /* 0x10 */
-	u32 flags;               /* 0x14 */
-	u32 unk18;               /* 0x18 */
-	s16 unk1C;               /* 0x1C */
-	s16 unk1E;               /* 0x1E */
-	u8 unk20;                /* 0x20 */
-	u8 unk21;                /* 0x21 */
-	u8 pad22[2];             /* 0x22 */
-	const char* fieldTypes;  /* 0x24 */
-	const char** fieldNames; /* 0x28 */
-	u8 pad2C[4];             /* 0x2C */
-} ObjectEntry;               /* 0x30 */
 
-static ObjectEntry s11spiderObjectEntry;
-extern const f32 lbl_8_rodata_1F08[1] = { 1.0f };
-extern const f32 lbl_8_rodata_1F0C[1] = { 3.0517578125e-05f };
-extern const f32 lbl_8_rodata_1F10[2] = { 176.0f, -0.0f };
-
-void fn_8_C28CC(s32 arg0)
-{
-	fn_8_C2398(arg0 - 0xB0);
+extern "C" {
+RpClump* lbl_8_bss_1BD0[4];
+SETOBJ_PARAM s11spiderObjectEntry;
+void endObjS11Spider();
+void initObjS11Spider();
+void startObjS11Spider();
 }
 
-void fn_8_C28D4(void* arg0)
+extern "C" void s11spiderObjectRegister()
 {
-	s32 sp10;
-	f32 spC;
-	s32 sp8;
-	f32 temp_f1;
-	f32 temp_f30;
-	f32 temp_f30_2;
-	s32 temp_r27;
-	s32 temp_r27_2;
-	s32 var_r26;
-	void* temp_r3;
-	void* var_r28;
-
-	temp_r3 = M2C_FIELD(arg0, void**, 0xE0);
-	if (temp_r3 != NULL) {
-		temp_r27 = M2C_FIELD(temp_r3, s32*, 4);
-		sp8      = M2C_FIELD(arg0, s32*, 0xB8);
-		spC      = M2C_FIELD(arg0, f32*, 0xBC);
-		sp10     = M2C_FIELD(arg0, s32*, 0xC0);
-		fn_8019EB94(temp_r27, (s32*)((u8*)arg0 + 0xB8), 0);
-		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(
-		    temp_r27 + 0x10, &AxisY, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30, 1);
-		fn_8019E880(temp_r27);
-		var_r26 = 0;
-		var_r28 = arg0;
-		do {
-			temp_f1    = spC;
-			spC        = temp_f1 + lbl_8_data_1819C;
-			temp_r27_2 = M2C_FIELD(M2C_FIELD(var_r28, void**, 0xE8), s32*, 4);
-			fn_8019EB94(temp_r27_2, &sp8, 0, temp_f1);
-			temp_f30_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r27_2 + 0x10, &AxisY, 1.0f - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)),
-			    temp_f30_2, 1);
-			fn_8019E880(temp_r27_2);
-			var_r28 = (u8*)var_r28 + 4;
-			var_r26 += 1;
-		} while (var_r26 < 4);
-	}
+	s11spiderObjectEntry.flags       = 0;
+	s11spiderObjectEntry.field18     = 0;
+	s11spiderObjectEntry.displayName = "S11SPIDER OBJECT";
+	s11spiderObjectEntry.init        = initObjS11Spider;
+	s11spiderObjectEntry.end         = endObjS11Spider;
+	s11spiderObjectEntry.create      = startObjS11Spider;
+	s11spiderObjectEntry.field10     = 0;
+	s11spiderObjectEntry.flags       = 0x20000;
+	s11spiderObjectEntry.field18     = 0;
+	s11spiderObjectEntry.field20     = 0x1E;
+	s11spiderObjectEntry.id          = 0x1189;
+	s11spiderObjectEntry.count       = 2;
+	s11spiderObjectEntry.field21     = 0;
+	s11spiderObjectEntry.fieldTypes  = "i";
+	s11spiderObjectEntry.fields      = s11spiderObjectFieldNames;
+	if (s11spiderObjectEntry.fieldTypes != NULL)
+		s11spiderObjectEntry.flags |= 8;
+	else
+		s11spiderObjectEntry.flags &= ~8;
 }
 
-void fn_8_C2A30(void* arg0)
-{
-	void* var_r30;
-	s32 var_r29;
+__declspec(section ".ctors") void (*const s11spiderObjectCtorEntry)() = s11spiderObjectRegister;
 
-	var_r30 = arg0;
-	if ((u32)M2C_FIELD(var_r30, u32*, 0xE4) != 0U) {
-		__dt__12DealMaterialFv((void*)M2C_FIELD(var_r30, u32*, 0xE4), 1);
-		M2C_FIELD(var_r30, u32*, 0xE4) = 0U;
-	}
-	if ((u32)M2C_FIELD(var_r30, u32*, 0xE0) != 0U) {
-		fn_80150958((void*)M2C_FIELD(var_r30, u32*, 0xE0));
-		M2C_FIELD(var_r30, u32*, 0xE0) = 0U;
-	}
-	var_r29 = 0;
-	do {
-		if ((u32)M2C_FIELD(var_r30, u32*, 0xF8) != 0U) {
-			__dt__12DealMaterialFv((void*)M2C_FIELD(var_r30, u32*, 0xF8), 1);
-			M2C_FIELD(var_r30, u32*, 0xF8) = 0U;
-		}
-		if ((u32)M2C_FIELD(var_r30, u32*, 0xE8) != 0U) {
-			fn_80150958((void*)M2C_FIELD(var_r30, u32*, 0xE8));
-			M2C_FIELD(var_r30, u32*, 0xE8) = 0U;
-		}
-		var_r30 = (u8*)var_r30 + 4;
-		var_r29 += 1;
-	} while (var_r29 < 4);
+extern "C" void startObjS11Spider()
+{
+	new (lbl_8042C148) TObjS11Spider((TObject*)lbl_8042C110);
 }
 
-void fn_8_C2AE0(void* arg0, u32 arg1)
+extern "C" void initObjS11Spider()
 {
-	void* var_r31;
-	s32 var_r30;
-	u32 var_r0;
-	u32 var_r0_2;
-
-	var_r31 = arg0;
-	if (arg1 != 0U) {
-		if ((u32)M2C_FIELD(var_r31, u32*, 0xE0) == 0U) {
-			M2C_FIELD(var_r31, u32*, 0xE0) = fn_80150588(arg1);
-			if ((u32)M2C_FIELD(var_r31, u32*, 0xE0) != 0U) {
-				objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
-				var_r0 = __nw__FUl(0x14);
-				if (var_r0 != 0U) {
-					var_r0 = __ct__12DealMaterialFP7RpClump(M2C_FIELD(var_r31, u32*, 0xE0));
-				}
-				M2C_FIELD(var_r31, u32*, 0xE4) = var_r0;
-			}
-		}
-		var_r30 = 0;
-		do {
-			if ((u32)M2C_FIELD(var_r31, u32*, 0xE8) == 0U) {
-				M2C_FIELD(var_r31, u32*, 0xE8) = fn_80150588(arg1);
-				if ((u32)M2C_FIELD(var_r31, u32*, 0xE8) != 0U) {
-					objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
-					var_r0_2 = __nw__FUl(0x14);
-					if (var_r0_2 != 0U) {
-						var_r0_2 = __ct__12DealMaterialFP7RpClump(M2C_FIELD(var_r31, u32*, 0xE8));
-					}
-					M2C_FIELD(var_r31, u32*, 0xF8) = var_r0_2;
-				}
-			}
-			var_r31 = (u8*)var_r31 + 4;
-			var_r30 += 1;
-		} while (var_r30 < 4);
-	}
-}
-
-void fn_8_C2BD8(void* arg0)
-{
-	void* temp_r4;
-	void* temp_r4_2;
-	s32* temp_r5;
-
-	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
-	temp_r5                     = M2C_FIELD(temp_r4, s32**, 0x2C);
-	M2C_FIELD(arg0, f32*, 0xB8) = (f32)M2C_FIELD(temp_r4, f32*, 0);
-	M2C_FIELD(arg0, f32*, 0xBC) = (f32)M2C_FIELD(temp_r4, f32*, 4);
-	M2C_FIELD(arg0, f32*, 0xC0) = (f32)M2C_FIELD(temp_r4, f32*, 8);
-	temp_r4_2                   = M2C_FIELD(arg0, void**, 0x28);
-	M2C_FIELD(arg0, s32*, 0xC4) = (s32)M2C_FIELD(temp_r4_2, s32*, 0xC);
-	M2C_FIELD(arg0, s32*, 0xC8) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x10);
-	M2C_FIELD(arg0, s32*, 0xCC) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x14);
-	M2C_FIELD(arg0, s32*, 0xCC) = 0;
-	M2C_FIELD(arg0, s32*, 0xC4) = 0;
-	M2C_FIELD(arg0, s32*, 0xD0) = (s32)*temp_r5;
-}
-
-void fn_8_C2C2C(void* arg0)
-{
-	f32 sp20;
-	f32 sp1C;
-	f32 sp18;
-	f32 sp14;
-	s32 sp10;
-	s32 spC;
-	s32 sp8;
-	f32 temp_f0;
-	s32 var_r30;
-	void* var_r31;
-
-	var_r31 = arg0;
-	if ((s8)M2C_FIELD(lbl_8042C180, u8*, 0x20) == 0) {
-		temp_f0 = M2C_FIELD(var_r31, f32*, 0xD8);
-		sp1C    = temp_f0;
-		sp18    = temp_f0;
-		sp14    = temp_f0;
-		sp20    = 1.0f;
-		fn_80194294(0xA, &sp10);
-		fn_80194294(0xB, &spC);
-		fn_80194294(0x14, &sp8);
-		fn_80194234(0xA, 2);
-		fn_80194234(0xB, 2);
-		fn_80194234(0x14, 1);
-		if (((u32)M2C_FIELD(var_r31, u32*, 0xE0) != 0U)
-		    && ((u32)M2C_FIELD(var_r31, u32*, 0xE4) != 0U)) {
-			MulColor__12DealMaterialFPf(&sp14);
-			fn_8014FF2C(M2C_FIELD(var_r31, u32*, 0xE0));
-			DefaultColor__12DealMaterialFv(M2C_FIELD(var_r31, u32*, 0xE4));
-		}
-		var_r30 = 0;
-		do {
-			if (var_r30 == 0) {
-				sp14 *= lbl_8_data_18194;
-				sp18 *= lbl_8_data_18194;
-				sp1C *= lbl_8_data_18194;
-			} else {
-				sp14 *= lbl_8_data_18198;
-				sp18 *= lbl_8_data_18198;
-				sp1C *= lbl_8_data_18198;
-			}
-			if (((u32)M2C_FIELD(var_r31, u32*, 0xE8) != 0U)
-			    && ((u32)M2C_FIELD(var_r31, u32*, 0xF8) != 0U)) {
-				MulColor__12DealMaterialFPf(&sp14);
-				fn_8014FF2C(M2C_FIELD(var_r31, u32*, 0xE8));
-				DefaultColor__12DealMaterialFv(M2C_FIELD(var_r31, u32*, 0xF8));
-			}
-			var_r31 = (u8*)var_r31 + 4;
-			var_r30 += 1;
-		} while (var_r30 < 4);
-		fn_80194234(0x14, sp8);
-		fn_80194234(0xA, sp10);
-		fn_80194234(0xB, spC);
-	}
-}
-
-void fn_8_C2DE4(void* arg0)
-{
-	s32 sp10;
-	f32 spC;
-	s32 sp8;
-	f32 temp_f1;
-	f32 temp_f2;
-	f32 temp_f30;
-	f32 temp_f30_2;
-	f32 temp_f30_3;
-	s32 temp_r26;
-	s32 temp_r28;
-	s32 temp_r4;
-	s32 temp_r6;
-	s32 var_r28;
-	void* temp_r3;
-	void* var_r27;
-
-	if ((CheckRangeOut__10TObjSetObjFv((s32)((u8*)arg0 + 0x28)) != 0)
-	    || (CheckMustKill__10TObjSetObjFv((s32)((u32)arg0 + 0x28)) != 0)) {
-		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
+	void* stage = *(void**)((u8*)lbl_8042C1D0 + 0x8C18);
+	if (stage != NULL) {
+		fn_801A4C84(stage);
+	} else {
 		return;
 	}
-	temp_r3 = M2C_FIELD(arg0, void**, 0xE0);
-	if (temp_r3 != NULL) {
-		temp_r28 = M2C_FIELD(temp_r3, s32*, 4);
-		sp8      = M2C_FIELD(arg0, s32*, 0xB8);
-		spC      = M2C_FIELD(arg0, f32*, 0xBC);
-		sp10     = M2C_FIELD(arg0, s32*, 0xC0);
-		fn_8019EB94(temp_r28, (s32*)((u8*)arg0 + 0xB8), 0);
-		temp_f30 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-		fn_80195790(temp_r28 + 0x10, &AxisY,
-		    lbl_8_rodata_1F08[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30, 1);
-		fn_8019E880(temp_r28);
-		var_r28 = 0;
-		var_r27 = arg0;
-		do {
-			temp_f1  = spC;
-			spC      = temp_f1 + lbl_8_data_1819C;
-			temp_r26 = M2C_FIELD(M2C_FIELD(var_r27, void**, 0xE8), s32*, 4);
-			fn_8019EB94(temp_r26, &sp8, 0, temp_f1);
-			temp_f30_2 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r26 + 0x10, &AxisY,
-			    lbl_8_rodata_1F08[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f30_2, 1);
-			fn_8019E880(temp_r26);
-			var_r27 = (u8*)var_r27 + 4;
-			var_r28 += 1;
-		} while (var_r28 < 4);
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	for (int i = 0; i < 4; i++) {
+		lbl_8_bss_1BD0[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_8_data_18180[i]),
+		    &lbl_802FF5A0);
 	}
-	if ((s8)M2C_FIELD(lbl_8042C180, u8*, 0x1F) == 0) {
-		M2C_FIELD(arg0, s32*, 0xD4) = (s32)(M2C_FIELD(arg0, s32*, 0xD4) + 1);
+}
+
+extern "C" void endObjS11Spider()
+{
+	for (int i = 0; i < 4; i++) {
+		fn_80150958(lbl_8_bss_1BD0[i]);
+		lbl_8_bss_1BD0[i] = NULL;
 	}
-	if ((s32)M2C_FIELD(arg0, s32*, 0xD4) >= (s32)(lbl_8_data_181A0 * 2)) {
-		M2C_FIELD(arg0, s32*, 0xD4) = 0;
-		temp_f30_3                  = lbl_8_data_181A4;
-		M2C_FIELD(arg0, f32*, 0xDC) = (f32)(temp_f30_3
-		    - ((temp_f30_3 - lbl_8_data_181A8) * (0.000030517578f * (f32)rand(&lbl_8_data_181A4))));
+}
+
+void TObjS11Spider::EditOnChange(SETDATA_PARAM* data)
+{
+	s32* value = data->params;
+	if (*value < 0) {
+		*value = 0;
 	}
-	temp_r4 = (s32)M2C_FIELD(arg0, s32*, 0xD4) / (s32)lbl_8_data_181A0;
-	temp_r6 = M2C_FIELD(arg0, s32*, 0xD4) % lbl_8_data_181A0;
-	temp_f2 = (M2C_FIELD(arg0, f32*, 0xDC) - lbl_8_data_181AC) / (f32)lbl_8_data_181A0;
-	switch (temp_r4) { /* irregular */
+	if (*value >= 4) {
+		*value = 3;
+	}
+}
+
+TObjS11Spider::TObjS11Spider(TObject* parent)
+    : TObject(parent)
+{
+	className  = lbl_8_data_181CC;
+	objectSize = sizeof(TObjS11Spider);
+	SetParameter();
+	clump     = NULL;
+	lights[0] = NULL;
+	lights[1] = NULL;
+	lights[2] = NULL;
+	lights[3] = NULL;
+	counter   = 0;
+	target    = 1.0f;
+	CloneClump(lbl_8_bss_1BD0[type]);
+}
+
+extern "C" TObjS11Spider* __dt__13TObjS11SpiderFv(TObjS11Spider* self, s16 flags)
+{
+	if (self != NULL) {
+		*(void***)((u8*)self + 0x18) = __vt__13TObjS11Spider;
+		*(void***)((u8*)self + 0x2C) = __vt__13TObjS11Spider + 11;
+		self->DestroyClump();
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
+		__dt__10TObjSetObjFv(SETOBJ(self), 0);
+		__dt__7TObjectFv(self, 0);
+		if (flags > 0) {
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
+		}
+	}
+	return self;
+}
+
+void TObjS11Spider::Exec()
+{
+	if (CheckRangeOut() != 0 || CheckMustKill() != 0) {
+		signal |= 1;
+		return;
+	}
+	SetPosition();
+	if (lbl_8042C180->paused == 0) {
+		counter++;
+	}
+	if (counter >= lbl_8_data_181A0 * 2) {
+		counter = 0;
+		f32 max = lbl_8_data_181A4;
+		target  = max - (max - lbl_8_data_181A8) * (3.0517578125e-05f * rand());
+	}
+	s32 phase = counter / lbl_8_data_181A0;
+	s32 step  = counter % lbl_8_data_181A0;
+	f32 rate  = (target - lbl_8_data_181AC) / lbl_8_data_181A0;
+	switch (phase) {
 		case 0:
-			M2C_FIELD(arg0, f32*, 0xD8) = (f32)(lbl_8_data_181AC + (temp_f2 * (f32)temp_r6));
-			return;
+			scale = lbl_8_data_181AC + rate * step;
+			break;
 		case 1:
-			M2C_FIELD(arg0, f32*, 0xD8)
-			    = (f32)(lbl_8_data_181AC + (temp_f2 * (f32)(lbl_8_data_181A0 - temp_r6)));
-			return;
-		case 2:
-		case 3:
+			scale = lbl_8_data_181AC + rate * (lbl_8_data_181A0 - step);
 			break;
 	}
 }
 
-TObject* fn_8_C30D8(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
+void TObjS11Spider::TDisp()
 {
-	s32 var_r29;
-	TObject* var_r28;
-
-	if (arg0 != NULL) {
-		arg0->unk18 = (M2C_UNK*)lbl_8_data_181D0;
-		arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
-		if ((u32)arg0->unkE4 != 0U) {
-			__dt__12DealMaterialFv((void*)arg0->unkE4, 1);
-			arg0->unkE4 = 0U;
+	if (lbl_8042C180->editMode == 0) {
+		f32 color[4];
+		s32 state10;
+		s32 state11;
+		s32 state20;
+		color[0] = color[1] = color[2] = scale;
+		color[3]                       = 1.0f;
+		fn_80194294(10, &state10);
+		fn_80194294(11, &state11);
+		fn_80194294(20, &state20);
+		fn_80194234(10, 2);
+		fn_80194234(11, 2);
+		fn_80194234(20, 1);
+		if (clump != NULL && material != NULL) {
+			material->MulColor(color);
+			fn_8014FF2C(clump);
+			material->DefaultColor();
 		}
-		if ((u32)arg0->unkE0 != 0U) {
-			fn_80150958((void*)arg0->unkE0);
-			arg0->unkE0 = 0U;
-		}
-		var_r29 = 0;
-		var_r28 = arg0;
-		do {
-			if ((u32)var_r28->unkF8 != 0U) {
-				__dt__12DealMaterialFv((void*)var_r28->unkF8, 1);
-				var_r28->unkF8 = 0U;
+		for (int i = 0; i < 4; i++) {
+			if (i == 0) {
+				color[0] *= lbl_8_data_18194;
+				color[1] *= lbl_8_data_18194;
+				color[2] *= lbl_8_data_18194;
+			} else {
+				color[0] *= lbl_8_data_18198;
+				color[1] *= lbl_8_data_18198;
+				color[2] *= lbl_8_data_18198;
 			}
-			if ((u32)var_r28->unkE8 != 0U) {
-				fn_80150958((void*)var_r28->unkE8);
-				var_r28->unkE8 = 0U;
+			if (lights[i] != NULL && lightMaterials[i] != NULL) {
+				lightMaterials[i]->MulColor(color);
+				fn_8014FF2C(lights[i]);
+				lightMaterials[i]->DefaultColor();
 			}
-			var_r28 += 1;
-			var_r29 += 1;
-		} while (var_r29 < 4);
-		__dt__7C_COLLIFv((u8*)arg0 + 0x30, 0);
-		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
-		__dt__7TObjectFv(arg0, 0);
-		if (arg1 > 0) {
-			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
 		}
+		fn_80194234(20, state20);
+		fn_80194234(10, state10);
+		fn_80194234(11, state11);
 	}
-	return arg0;
 }
 
-TObject* fn_8_C31F0(TObject* arg0, TObject* arg1)
+void TObjS11Spider::SetParameter()
 {
-	s32 var_r30;
-	u32 temp_r29;
-	s32 var_r28;
-	u32 var_r4;
-	void* temp_r3;
-	void* temp_r3_2;
-	s32 temp_r0;
-	u32 var_r0;
+	SETDATA_PARAM* data = frame;
+	s32* params         = data->params;
+	position            = data->position;
+	data                = frame;
+	angle               = data->angle;
+	angle.z             = 0;
+	angle.x             = 0;
+	type                = *params;
+}
 
-	__ct__7TObjectFP7TObject(arg0, arg1);
-	__ct__10TObjSetObjFv(&arg0->unk28);
-	__ct__7C_COLLIFv(&arg0->unk30);
-	arg0->unk18 = (M2C_UNK*)lbl_8_data_181D0;
-	arg0->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
-	arg0->unk0  = lbl_8_data_181CC;
-	arg0->unk1E = 0x108;
-	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
-	arg0->unkB8 = M2C_FIELD(temp_r3, f32*, 0);
-	arg0->unkBC = M2C_FIELD(temp_r3, f32*, 4);
-	arg0->unkC0 = M2C_FIELD(temp_r3, f32*, 8);
-	temp_r3_2   = M2C_FIELD(arg0, void**, 0x28);
-	arg0->unkC4 = M2C_FIELD(temp_r3_2, s32*, 0xC);
-	arg0->unkC8 = M2C_FIELD(temp_r3_2, s32*, 0x10);
-	arg0->unkCC = M2C_FIELD(temp_r3_2, s32*, 0x14);
-	arg0->unkCC = 0;
-	arg0->unkC4 = 0;
-	arg0->unkD0 = *M2C_FIELD(temp_r3, s32**, 0x2C);
-	arg0->unkE0 = 0U;
-	arg0->unkE8 = 0U;
-	arg0->unkEC = 0;
-	arg0->unkF0 = 0;
-	arg0->unkF4 = 0;
-	arg0->unkD4 = 0;
-	arg0->unkDC = 1.0f;
-	temp_r29    = lbl_8_bss_1BD0[arg0->unkD0];
-	if (temp_r29 != 0U) {
-		if ((u32)arg0->unkE0 == 0U) {
-			arg0->unkE0 = fn_80150588(temp_r29);
-			if ((u32)arg0->unkE0 != 0U) {
-				objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
-				var_r0 = __nw__FUl(0x14);
-				if (var_r0 != 0U) {
-					var_r0 = __ct__12DealMaterialFP7RpClump(arg0->unkE0);
-				}
-				arg0->unkE4 = var_r0;
+void TObjS11Spider::CloneClump(RpClump* source)
+{
+	if (source != NULL) {
+		if (clump == NULL) {
+			clump = fn_80150588(source);
+			if (clump != NULL) {
+				objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(clump, 0x10);
+				material = new DealMaterial(clump);
 			}
 		}
-		var_r30 = 0;
-		var_r28 = 0;
-		do {
-			if (*(u32*)((u8*)arg0 + var_r28 + 0xE8) == 0U) {
-				temp_r0                      = var_r28 + 0xE8;
-				*(u32*)((u8*)arg0 + temp_r0) = fn_80150588(temp_r29);
-				if (*(u32*)((u8*)arg0 + temp_r0) != 0U) {
-					objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
-					var_r4 = __nw__FUl(0x14);
-					if (var_r4 != 0U) {
-						var_r4
-						    = __ct__12DealMaterialFP7RpClump(*(u32*)((u8*)arg0 + var_r28 + 0xE8));
-					}
-					*(u32*)((u8*)arg0 + var_r28 + 0xF8) = var_r4;
+		for (int i = 0; i < 4; i++) {
+			if (lights[i] == NULL) {
+				lights[i] = fn_80150588(source);
+				if (lights[i] != NULL) {
+					objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+					    lights[i], 0x10);
+					lightMaterials[i] = new DealMaterial(lights[i]);
 				}
 			}
-			var_r28 += 1;
-			var_r30 += 1;
-		} while (var_r30 < 4);
-	}
-	return arg0;
-}
-
-void fn_8_C33D0(void* arg0, void* arg1)
-{
-	s32* temp_r3;
-
-	temp_r3 = M2C_FIELD(arg1, s32**, 0x2C);
-	if ((s32)*temp_r3 < 0) {
-		*temp_r3 = 0;
-	}
-	if ((s32)*temp_r3 >= 4) {
-		*temp_r3 = 3;
-	}
-}
-
-void s11spiderObjectUnload(void)
-{
-	u32* var_r30;
-	s32 var_r29;
-
-	var_r29 = 0;
-	var_r30 = lbl_8_bss_1BD0;
-	do {
-		fn_80150958((void*)*var_r30);
-		*var_r30 = 0U;
-		var_r30 += 1;
-		var_r29 += 1;
-	} while (var_r29 < 4);
-}
-
-void s11spiderObjectLoad(M2C_UNK arg_sp0)
-{
-	M2C_UNK** var_r29;
-	u32* var_r28;
-	s32 var_r27;
-
-	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-	} else {
-		return;
-	}
-	LoadOneFile__7ONEFILEFPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
-	var_r27 = 0;
-	var_r29 = lbl_8_data_18180;
-	var_r28 = lbl_8_bss_1BD0;
-	do {
-		*var_r28 = LoadClumpEx__7ONEFILEFUiPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
-		    CheckFileID__7ONEFILEFPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29),
-		    &lbl_802FF5A0);
-		var_r29 += 1;
-		var_r28 += 1;
-		var_r27 += 1;
-	} while (var_r27 < 4);
-}
-
-void s11spiderObjectCreate(void)
-{
-	s32 var_r30;
-	u32 temp_r29;
-	s32 var_r28;
-	u32 var_r4;
-	TObject* temp_r3;
-	void* temp_r3_2;
-	void* temp_r3_3;
-	s32 temp_r0;
-	u32 var_r0;
-
-	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x108);
-	if (temp_r3 != NULL) {
-		__ct__7TObjectFP7TObject(temp_r3, lbl_8042C110);
-		__ct__10TObjSetObjFv(&temp_r3->unk28);
-		__ct__7C_COLLIFv(&temp_r3->unk30);
-		temp_r3->unk18 = (M2C_UNK*)lbl_8_data_181D0;
-		temp_r3->unk2C = (u8*)&lbl_8_data_181D0 + 0x2C;
-		temp_r3->unk0  = lbl_8_data_181CC;
-		temp_r3->unk1E = 0x108;
-		temp_r3_2      = M2C_FIELD(temp_r3, void**, 0x28);
-		temp_r3->unkB8 = M2C_FIELD(temp_r3_2, f32*, 0);
-		temp_r3->unkBC = M2C_FIELD(temp_r3_2, f32*, 4);
-		temp_r3->unkC0 = M2C_FIELD(temp_r3_2, f32*, 8);
-		temp_r3_3      = M2C_FIELD(temp_r3, void**, 0x28);
-		temp_r3->unkC4 = M2C_FIELD(temp_r3_3, s32*, 0xC);
-		temp_r3->unkC8 = M2C_FIELD(temp_r3_3, s32*, 0x10);
-		temp_r3->unkCC = M2C_FIELD(temp_r3_3, s32*, 0x14);
-		temp_r3->unkCC = 0;
-		temp_r3->unkC4 = 0;
-		temp_r3->unkD0 = *M2C_FIELD(temp_r3_2, s32**, 0x2C);
-		temp_r3->unkE0 = 0U;
-		temp_r3->unkE8 = 0U;
-		temp_r3->unkEC = 0;
-		temp_r3->unkF0 = 0;
-		temp_r3->unkF4 = 0;
-		temp_r3->unkD4 = 0;
-		temp_r3->unkDC = 1.0f;
-		temp_r29       = lbl_8_bss_1BD0[temp_r3->unkD0];
-		if (temp_r29 != 0U) {
-			if ((u32)temp_r3->unkE0 == 0U) {
-				temp_r3->unkE0 = fn_80150588(temp_r29);
-				if ((u32)temp_r3->unkE0 != 0U) {
-					objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
-					var_r0 = __nw__FUl(0x14);
-					if (var_r0 != 0U) {
-						var_r0 = __ct__12DealMaterialFP7RpClump(temp_r3->unkE0);
-					}
-					temp_r3->unkE4 = var_r0;
-				}
-			}
-			var_r30 = 0;
-			var_r28 = 0;
-			do {
-				if (*(u32*)((u8*)temp_r3 + var_r28 + 0xE8) == 0U) {
-					temp_r0                         = var_r28 + 0xE8;
-					*(u32*)((u8*)temp_r3 + temp_r0) = fn_80150588(temp_r29);
-					if (*(u32*)((u8*)temp_r3 + temp_r0) != 0U) {
-						objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(0x10);
-						var_r4 = __nw__FUl(0x14);
-						if (var_r4 != 0U) {
-							var_r4 = __ct__12DealMaterialFP7RpClump(
-							    *(u32*)((u8*)temp_r3 + var_r28 + 0xE8));
-						}
-						*(u32*)((u8*)temp_r3 + var_r28 + 0xF8) = var_r4;
-					}
-				}
-				var_r28 += 1;
-				var_r30 += 1;
-			} while (var_r30 < 4);
 		}
 	}
 }
 
-void s11spiderObjectRegister(void)
+void TObjS11Spider::DestroyClump()
 {
-	s11spiderObjectEntry.flags      = 0;
-	s11spiderObjectEntry.unk18      = 0;
-	s11spiderObjectEntry.name       = (const char*)&s11spiderObjectDisplayName;
-	s11spiderObjectEntry.load       = (void (*)(void))s11spiderObjectLoad;
-	s11spiderObjectEntry.unload     = (void (*)(void))s11spiderObjectUnload;
-	s11spiderObjectEntry.create     = (void (*)(void))s11spiderObjectCreate;
-	s11spiderObjectEntry.unk10      = (void*)0;
-	s11spiderObjectEntry.flags      = 0x20000;
-	s11spiderObjectEntry.unk18      = 0;
-	s11spiderObjectEntry.unk20      = 0x1E;
-	s11spiderObjectEntry.unk1C      = 0x1189;
-	s11spiderObjectEntry.unk1E      = 2;
-	s11spiderObjectEntry.unk21      = 0;
-	s11spiderObjectEntry.fieldTypes = (const char*)&s11spiderObjectFieldTypes;
-	s11spiderObjectEntry.fieldNames = (const char**)&s11spiderObjectFieldNames;
-	if ((const char*)&s11spiderObjectFieldTypes != NULL) {
-		s11spiderObjectEntry.flags |= 8;
-	} else {
-		s11spiderObjectEntry.flags &= ~8;
+	if (material != NULL) {
+		delete material;
+		material = NULL;
+	}
+	if (clump != NULL) {
+		fn_80150958(clump);
+		clump = NULL;
+	}
+	for (int i = 0; i < 4; i++) {
+		if (lightMaterials[i] != NULL) {
+			delete lightMaterials[i];
+			lightMaterials[i] = NULL;
+		}
+		if (lights[i] != NULL) {
+			fn_80150958(lights[i]);
+			lights[i] = NULL;
+		}
 	}
 }
 
-__declspec(section ".ctors") void (*const s11spiderObjectCtorEntry)(void) = s11spiderObjectRegister;
-
-#pragma dont_inline on
-void fn_8_C37E0(void* arg0, void* arg1)
+void TObjS11Spider::SetPosition()
 {
-	asm {
-		subi r3, r3, 0x28
-		b fn_8_C33D0
+	if (clump != NULL) {
+		RwFrame* frame = clump->frame;
+		Vec3 pos       = position;
+		fn_8019EB94(frame, &position, 0);
+		fn_80195790(
+		    (u8*)frame + 0x10, &AxisY, 1.0f - fn_800D7AE4(angle.y), fn_800D7B00(angle.y), 1);
+		fn_8019E880(frame);
+		for (int i = 0; i < 4; i++) {
+			pos.y += lbl_8_data_1819C;
+			frame = lights[i]->frame;
+			fn_8019EB94(frame, &pos, 0);
+			fn_80195790(
+			    (u8*)frame + 0x10, &AxisY, 1.0f - fn_800D7AE4(angle.y), fn_800D7B00(angle.y), 1);
+			fn_8019E880(frame);
+		}
 	}
-}
-#pragma dont_inline reset
 }

@@ -12,6 +12,19 @@ typedef s32 M2C_UNK;
 #define M2C_ERROR(...)
 #define M2C_BITWISE(type, value) (*(type*)&(value))
 
+struct Vec3 {
+	f32 x;
+	f32 y;
+	f32 z;
+};
+
+/* The unreferenced { 0, 1.5, 0 } vector every Stage 11 object unit carries at
+ * the head of its .rodata, the way an internal-linkage const from a shared
+ * header lands in each translation unit that includes it. */
+#pragma force_active on
+static const Vec3 lbl_8_rodata_1B78 = { 0.0f, 1.5f, 0.0f };
+#pragma force_active reset
+
 /* Dispatch view of the object's vtable. The handler at vtable offset 0x10 is
  * reached through genuine virtual dispatch in retail: the target loads the
  * vtable through the already-materialised `this` in r3 and keeps the slot in
