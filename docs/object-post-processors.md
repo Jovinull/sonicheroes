@@ -44,7 +44,7 @@ branch offsets recomputed from where the blocks landed. Nothing is copied in
 from retail; the bytes all came from MWCC.
 
 The fourth shape — writing values taken from the retail object — is the one that
-is out. Five steps still do it, and all five are recorded as named debt in
+is out. The remaining steps are recorded as named debt in
 `tools/check_post_processors.py` so the rule can be enforced everywhere else
 while these stay visible instead of passing quietly:
 
@@ -52,7 +52,6 @@ while these stay visible instead of passing quietly:
 | --- | --- | --- |
 | `fix_game_action_object.py` | `TARGET_EXTAB` | the whole `extab` section, as hex |
 | `fix_eff_tornado_object.py` | `TEXT_PATCHES` | whole instruction words |
-| `fix_stage13_3way_colli_object.py` | `WORD_FIXES` | whole instruction words |
 | `fix_stage13_antenna_object.py` | `FACTORY_REGISTER_WORDS` | whole instruction words |
 | `fix_stage13_blinklight_object.py` | `FACTORY_REGISTER_WORDS` | whole instruction words |
 

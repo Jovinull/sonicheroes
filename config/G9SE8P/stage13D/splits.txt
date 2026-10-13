@@ -1474,7 +1474,7 @@ rel/s14_koware_register.cpp:
 	.text       start:0x0009EAFC end:0x0009EBA4
 	.ctors      start:0x00000140 end:0x00000144
 
-stage13D/o_s14_3way_colli.cpp:
+stage13D/o_s14_laser_colli.cpp:
 	.text       start:0x0009EBAC end:0x0009F4B0
 	.ctors      start:0x00000144 end:0x00000148
 	.rodata     start:0x000018B8 end:0x000018C8
