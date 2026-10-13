@@ -2311,6 +2311,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - systemObject2Ctor
     - fn_8_A9F48
     - fn_8_A9F68
     - fn_8_A9F88
