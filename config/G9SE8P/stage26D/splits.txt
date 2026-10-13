@@ -1842,6 +1842,9 @@ rel/searcher_strategy_shot.cpp:
 rel/searcher_strategy_bomb.cpp:
 	.text       start:0x000ABB0C end:0x000ABFE0
 
+rel/searcher_strategy_laser.cpp:
+	.text       start:0x000AC020 end:0x000AC128
+
 rel/e_flyer_stage11.cpp:
 	.text       start:0x000AD314 end:0x000B0DDC
 	.ctors      start:0x00000104 end:0x00000108
