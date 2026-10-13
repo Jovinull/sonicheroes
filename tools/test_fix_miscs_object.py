@@ -132,13 +132,15 @@ class NormalizeTests(unittest.TestCase):
             path = Path(directory) / "input.o"
             path.write_bytes(self.raw)
             path.chmod(0o640)
+            # Windows only keeps the read-only bit, so compare with what was set.
+            mode = path.stat().st_mode & 0o777
             with patch.object(fix.os, "replace", side_effect=OSError("simulated failure")):
                 with self.assertRaises(OSError):
                     fix.fix(path)
             self.assertEqual(path.read_bytes(), self.raw)
             self.assertEqual(list(Path(directory).iterdir()), [path])
             self.assertTrue(fix.fix(path))
-            self.assertEqual(path.stat().st_mode & 0o777, 0o640)
+            self.assertEqual(path.stat().st_mode & 0o777, mode)
             self.assertFalse(fix.fix(path))
 
     def test_cli_stamp_only_after_success(self):
