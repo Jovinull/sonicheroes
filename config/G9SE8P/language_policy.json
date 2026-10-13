@@ -155,6 +155,7 @@
     "rel/o_s12_celestial_sphere.cpp",
     "rel/o_spring.cpp",
     "rel/pawn_strategy.cpp",
+    "rel/searcher_target.cpp",
     "rel/sp_dashpanel.cpp"
   ]
 }

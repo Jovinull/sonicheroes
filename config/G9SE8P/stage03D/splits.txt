@@ -1200,6 +1200,9 @@ rel/searcher_disp.cpp:
 rel/searcher_check_direction.cpp:
 	.text       start:0x0005533C end:0x000554DC
 
+rel/searcher_target.cpp:
+	.text       start:0x000554DC end:0x000557A8
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3E4 end:0x0005A42C
 

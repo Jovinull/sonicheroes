@@ -6709,6 +6709,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_target.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_check_direction.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

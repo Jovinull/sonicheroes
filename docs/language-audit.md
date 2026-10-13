@@ -523,6 +523,19 @@ symbol as in the retail. All seven functions, their relocations and the owned
 `.ctors` and `.data` match in all eleven modules (exato EXACT), and all 18
 hashes match.
 
+### Searcher target
+
+`rel/searcher_target.cpp` reconstructs three `TObjEnemySearcher` members the
+PS2 symbols name and order: `GetMachineGunAttackAngle`, `GetTargetAngle` and
+`GetTargetVec`, the same order in the eight searcher modules on GameCube.
+`GetTargetAngle` contains `GetTargetVec`'s code inline (its return value copied
+from the inline's temporary), while `GetTargetVec` comes after it, so the file
+was built with deferred inlining; with `-inline deferred` the functions are
+emitted in reverse definition order and the source defines them last to
+first. `GetTargetVec` has no other caller and is kept by `force_active`. All
+three functions match in all eight modules (exato EXACT), and all 18 hashes
+match.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and

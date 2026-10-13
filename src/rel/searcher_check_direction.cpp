@@ -44,7 +44,7 @@ extern "C" void CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv(Searcher* s
 	int angle;
 
 	if (player == -1) {
-		searcher->aimPitch = 0x3000;
+		searcher->mgunAttackAngle = 0x3000;
 		return;
 	}
 	RwMatrixTag matrix;
@@ -63,8 +63,8 @@ extern "C" void CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv(Searcher* s
 
 	angle = VectorAngle(&facing, &target, &up);
 	if (angle >= 0 && angle <= 0x4000) {
-		searcher->aimPitch = 0x10000 - 0x3000;
+		searcher->mgunAttackAngle = 0x10000 - 0x3000;
 	} else {
-		searcher->aimPitch = 0x3000;
+		searcher->mgunAttackAngle = 0x3000;
 	}
 }
