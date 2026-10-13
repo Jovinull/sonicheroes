@@ -6398,6 +6398,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

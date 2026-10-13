@@ -1896,6 +1896,9 @@ rel/searcher_create_instance.cpp:
 rel/searcher_unload.cpp:
 	.text       start:0x000AA3F8 end:0x000AA4C4
 
+rel/searcher_load.cpp:
+	.text       start:0x000AA4C4 end:0x000AA738
+
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
 
