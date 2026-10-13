@@ -1625,6 +1625,9 @@ rel/pawn_disp_shadow.cpp:
 rel/pawn_disp_trans.cpp:
 	.text       start:0x00098930 end:0x00098934
 
+rel/pawn_disp_opaq.cpp:
+	.text       start:0x00098934 end:0x00098C14
+
 rel/pawn_bite_nail.cpp:
 	.text       start:0x00098C14 end:0x00098D68
 
