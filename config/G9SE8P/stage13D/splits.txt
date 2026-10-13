@@ -599,6 +599,9 @@ rel/pawn_check_direction.cpp:
 rel/pawn_update_shoulder_angle.cpp:
 	.text       start:0x0002CB90 end:0x0002CCEC
 
+rel/pawn_exec_machine_gun.cpp:
+	.text       start:0x0002CCEC end:0x0002CE74
+
 rel/pawn_hit_point.cpp:
 	.text       start:0x0002D340 end:0x0002D430
 
