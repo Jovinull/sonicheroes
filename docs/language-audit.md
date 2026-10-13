@@ -545,6 +545,17 @@ inline although `EnemyMD_Wander` comes after it, as in `rel/searcher_target.cpp`
 so the unit uses `-inline deferred` and defines the functions last to first.
 Both match in all eight modules (exato EXACT), and all 18 hashes match.
 
+### Searcher walk modes
+
+`rel/searcher_md_walk.cpp` reconstructs `TObjEnemySearcher::EnemyMD_Turn`,
+`EnemyMD_WalkWithAttack`, `EnemyMD_Walk`, `EnemyMD_Wait` and `EnemyMD_Idle`,
+named and ordered by the PS2 symbols, in the eight searcher modules.
+`EnemyMD_Walk` copies structures and inlines three earlier members; without
+deferred inlining the compiler emits such a function after the ones defined
+after it, while the retail keeps the PS2 order, as `-inline deferred` does with
+the functions defined last to first. All five match in all eight modules
+(exato EXACT), and all 18 hashes match.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and
