@@ -683,6 +683,9 @@ rel/pawn_md_crouch_stand.cpp:
 rel/pawn_md_crouch.cpp:
 	.text       start:0x000307AC end:0x000307CC
 
+rel/pawn_calc_start_and_aim.cpp:
+	.text       start:0x00031AF0 end:0x00031C2C
+
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CE0 end:0x00032EB8
 
