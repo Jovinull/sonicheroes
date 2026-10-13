@@ -3,7 +3,7 @@
 // TObjEnemyPawn::EnemyMD_Turn (the PS2 build's name, by its member order):
 // entering it (0) starts the turn (fn_800A51E4 with 5 and -1), sets the walking
 // motion (3), clears the wander timer and sets the falling speed; while in it
-// (1) the pawn searches for the player (pawnSeek) and asks for the new mode
+// (1) the pawn searches for the player (TurnToAim, inlined) and asks for the new mode
 // when it changed.
 
 #include "src/rel/pawn_seek.inc"
@@ -23,7 +23,7 @@ extern "C" void EnemyMD_Turn__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode(Pawn* paw
 			break;
 		case 1: {
 			int old  = pawn->state;
-			int next = pawnSeek(pawn, old);
+			int next = TurnToAim__13TObjEnemyPawnFv(pawn);
 
 			if (old != next) {
 				pawn->nextMode = next;

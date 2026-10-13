@@ -1,6 +1,8 @@
-// The pawn's player search shared by its seeking modes (HideComeOut, Turn and
-// WanderTurn): pawnSeek (the name is ours) returns the mode to ask for, the
-// given one when the pawn is not active (0x378). Close to the player
+// TObjEnemyPawn::TurnToAim (the PS2 build's name, by its member order), the
+// player search its seeking modes (HideComeOut, Turn and WanderTurn) inline;
+// rel/pawn_turn_to_aim.cpp has the out-of-line copy (PAWN_TURN_TO_AIM_INLINE
+// empty). It returns the mode to ask for, the current state when the pawn is
+// not active (0x378). Close to the player
 // (fn_800A59C4 under 0x80) the gait picks the attack (2: mode 0x16, 3 to 6:
 // mode 0x18, others: turn to it, mode 3), otherwise the pawn keeps turning
 // (fn_800A4668); then the enemy base steps (fn_800A5C6C), a landed pawn stops
@@ -40,10 +42,17 @@ extern "C" void fn_800A5C6C(Pawn* pawn, u32 flags);
 extern "C" int fn_800A5888(Pawn* pawn, f32 value);
 extern "C" void fn_800A5B50(Pawn* pawn, u32 flags);
 
-static inline int pawnSeek(Pawn* pawn, int mode)
+#ifndef PAWN_TURN_TO_AIM_INLINE
+#define PAWN_TURN_TO_AIM_INLINE inline
+#endif
+
+extern "C" PAWN_TURN_TO_AIM_INLINE int TurnToAim__13TObjEnemyPawnFv(Pawn* pawn)
 {
+	int state = pawn->state;
+	int mode  = state;
+
 	if (pawn->active == 0) {
-		return mode;
+		return state;
 	}
 	if (fn_800A59C4(pawn) < 0x80) {
 		switch (pawn->gait) {

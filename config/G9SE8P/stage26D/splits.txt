@@ -1607,6 +1607,9 @@ rel/pawn_disp_shadow.cpp:
 rel/pawn_disp_trans.cpp:
 	.text       start:0x00098930 end:0x00098934
 
+rel/pawn_turn_to_aim.cpp:
+	.text       start:0x00099030 end:0x00099154
+
 rel/pawn_update_on_edit.cpp:
 	.text       start:0x00099154 end:0x00099188
 
