@@ -653,6 +653,9 @@ rel/pawn_turn_to_aim.cpp:
 rel/pawn_update_on_edit.cpp:
 	.text       start:0x0002E978 end:0x0002E9AC
 
+rel/pawn_update.cpp:
+	.text       start:0x0002E9AC end:0x0002EE60
+
 rel/pawn_set_collision_parameter.cpp:
 	.text       start:0x0002EE60 end:0x0002F090
 
