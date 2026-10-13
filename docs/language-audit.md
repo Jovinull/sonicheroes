@@ -1260,10 +1260,14 @@ types, all member fields, and all six methods. The contiguous GameCube method
 order fixes the original boundary at `0x800189A4`–`0x80018C0C`. All six
 functions and every owned section match byte-for-byte in objdiff.
 
-As in `Task.cpp`, CodeWarrior emits the deleting operator before the destructor
-whose cleanup uses it. The post-compile normalizer moves the already-matching
-function and exception records into retail source order without changing
-instructions.
+The unit now uses `-inline auto,deferred` with reversed ordinary definitions.
+This keeps the deleting operator visible during destructor compilation and
+natively emits all six methods and both exception sections in the target
+order. All 616 code bytes, 80 exception bytes, and 14 relocations match without
+a post-compile layout or symbol fixer. The constructor, destructor, and
+allocation operators retain their native C++ symbols; the adjacent task unit
+uses those names without changing its code or owned data. See
+[memory-unit evidence](memory-unit-evidence.md) for ownership and validation.
 
 ### Game action translation unit
 

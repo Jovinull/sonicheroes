@@ -70,7 +70,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex | `game/Peripheral.cpp` (`0x80014154`–`0x80015AC0`) | Complete; `pr-peripheral` (stacked on `pr-skyfs-adx`) |
 | Codex | `game/main.cpp` (`0x80015AC0`–`0x80016514`) | Complete; `pr-game-main-cpp` |
 | Codex agents | `game/Task.cpp` (`0x80016514`–`0x800189A4`) | Complete; `pr-game-task-cpp` |
-| Codex | `game/Memory.cpp` (`0x800189A4`–`0x80018C0C`) | Complete; `pr-game-memory-cpp` |
+| Codex | `game/Memory.cpp` (`0x800189A4`–`0x80018C0C`) | Complete native emission; `decomp/memory-native-20261013` |
 | Codex | `game/action.cpp` (begins `0x80018C0C`) | Complete; `pr-game-action-cpp` |
 | Ares | `main/game/ares_800421b4.cpp` | Active; `ares/tu-main-game-ares_800421b4` |
 | Ares | `actionstage`, `debug`, `e_pawn`, `e_spboss`, `eff_firedunk`, `newcamera`, `particlecore` onboarding workspaces | Active; reserved |
