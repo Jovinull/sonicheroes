@@ -1145,6 +1145,9 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/searcher_strategy_search_light.cpp:
+	.text       start:0x000519F0 end:0x00051E4C
+
 rel/searcher_strategy_mgun.cpp:
 	.text       start:0x00051F00 end:0x00052450
 
