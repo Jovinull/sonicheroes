@@ -1649,6 +1649,9 @@ rel/pawn_md_fall_down.cpp:
 rel/pawn_md_fall_hide.cpp:
 	.text       start:0x0009AA1C end:0x0009AAFC
 
+rel/pawn_md_hide_come_out.cpp:
+	.text       start:0x0009AAFC end:0x0009AC58
+
 rel/pawn_md_hide.cpp:
 	.text       start:0x0009AC58 end:0x0009AD20
 
