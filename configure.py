@@ -7905,11 +7905,6 @@ config.custom_build_rules = [
         "description": "FIX object.cpp resource scan register allocation",
     },
     {
-        "name": "fix_light_registers",
-        "command": "$python tools/fix_light_registers.py $in $out",
-        "description": "FIX light loader destination and size registers",
-    },
-    {
         "name": "fix_pathctrl_pool",
         "command": "$python tools/fix_pathctrl_pool.py $in $out",
         "description": "FIX pathctrl compiler constant order",
@@ -8338,12 +8333,6 @@ config.custom_build_steps = {
             "rule": "fix_object_registers",
             "inputs": "build/G9SE8P/src/game/object.o",
             "implicit": ["tools/fix_object_registers.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/light-registers.stamp",
-            "rule": "fix_light_registers",
-            "inputs": "build/G9SE8P/src/game/light.o",
-            "implicit": ["tools/fix_light_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/pathctrl-pool.stamp",
