@@ -1733,6 +1733,9 @@ rel/pawn_md_crouch.cpp:
 rel/pawn_calc_start_and_aim.cpp:
 	.text       start:0x0009C2E8 end:0x0009C424
 
+rel/pawn_select_initial_mode.cpp:
+	.text       start:0x0009C424 end:0x0009C684
+
 rel/pawn_destroy_clump.cpp:
 	.text       start:0x0009D008 end:0x0009D090
 
