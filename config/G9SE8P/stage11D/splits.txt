@@ -1174,6 +1174,9 @@ rel/searcher_target.cpp:
 rel/searcher_aim_first.cpp:
 	.text       start:0x000557A8 end:0x000558A4
 
+rel/searcher_walk_to_aim.cpp:
+	.text       start:0x00055C84 end:0x00055D8C
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3E4 end:0x0005A42C
 

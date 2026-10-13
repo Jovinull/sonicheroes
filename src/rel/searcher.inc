@@ -137,10 +137,14 @@ typedef struct Searcher {
 	SearcherSet* set; // 0xB0
 	u8 unk0B4[0x34];
 	RpClump* clump; // 0xE8
-	u8 unk0EC[0x54];
+	u8 unk0EC[0x1A];
+	u16 colliFlags; // 0x106, 2: on the ground, 4: hit a wall
+	u8 unk108[0x38];
 	RwV3d pos;  // 0x140
 	sAngle ang; // 0x14C
-	u8 unk158[0x1C];
+	u8 unk158[0x4];
+	f32 speedY; // 0x15C
+	u8 unk160[0x14];
 	s32 aimAngY; // 0x174
 	u8 unk178[0x8];
 	s32 turnSpeed; // 0x180
@@ -148,7 +152,8 @@ typedef struct Searcher {
 	s32 mode; // 0x19C
 	u8 unk1A0[0x4];
 	f32 hitPoint; // 0x1A4
-	u8 unk1A8[0x18];
+	f32 gravity;  // 0x1A8
+	u8 unk1AC[0x14];
 	RwV3d home;   // 0x1C0
 	RwV3d aimPos; // 0x1CC
 	u8 unk1D8[0x58];
@@ -179,7 +184,9 @@ typedef struct Searcher {
 	RpClump* partsClump; // 0x310
 	s32 plainTexture;    // 0x314
 	s32 state;           // 0x318, 2: no shadow
-	s32 kind;  // 0x31C, 6: search light
+	s32 kind;            // 0x31C, 6: search light
+	u8 unk320[0x4];
+	f32 walkSpeed; // 0x324
 } Searcher;
 
 // the searcher as the C++ class its virtual calls need

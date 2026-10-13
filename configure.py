@@ -6709,6 +6709,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_walk_to_aim.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_aim_first.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
