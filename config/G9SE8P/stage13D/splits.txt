@@ -1203,6 +1203,9 @@ rel/searcher_cancel.cpp:
 rel/searcher_score.cpp:
 	.text       start:0x00054B04 end:0x00054CA0
 
+rel/searcher_hit_point.cpp:
+	.text       start:0x00054CA0 end:0x00054D70
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3B8 end:0x0005A400
 
