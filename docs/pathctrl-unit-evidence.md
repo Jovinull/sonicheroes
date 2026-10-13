@@ -36,63 +36,58 @@ Six non-leaf bodies own 48 bytes of exception records at
 `0x8000E488–0x8000E4D0`. The observed constants span
 `0x8042DC28–0x8042DC60`. `pathSeeingPath` references the role table at
 `0x80253648`. The owned data range is `0x80253648–0x80253658`: three role integers
-and four bytes of alignment. The shared path-task pointer at `0x8042C380` is also used by the
+and four bytes of alignment. Retained `pathSeeingPath` metadata names this
+static local `role_table` and gives its array bounds as 0 through 2, confirming
+the 12-byte symbol extent rather than the former inferred 16-byte extent. The shared path-task pointer at `0x8042C380` is also used by the
 following scanning unit and must not be assumed private storage.
 
 Only symbolic PS2 metadata is used; executable behavior is recovered from
-GameCube. All eight surviving bodies are now reconstructed together in C++.
-The unit remains `NonMatching`; no instruction post-processor is used.
+GameCube. All eight surviving bodies are reconstructed together in C++ and emit
+byte-exact instructions without instruction post-processing. The unit is now
+`Matching`. See [the pool-order contract](pathctrl-constant-order.md) for the
+remaining compiler constant-order correction.
 
-## Native verification
+## Whole-unit verification
 
-The constructor, destructor, Reset and Exec have byte-exact instruction bodies.
-The four larger functions still have nonmatching object comparisons:
+The native object contains 4,676 exact instruction bytes across all eight
+functions, plus exact 48-byte exception and 72-byte exception-index sections.
+Its three role integers occupy 12 bytes; the linker supplies the four zero
+alignment bytes present in the 16-byte reference range. Both data sections use
+eight-byte alignment. Fourteen float constants occupy 56 bytes. After the
+bounded constant-pool permutation, every owned section and all 110 resolved
+relocation destinations match the reference.
 
-| Function | Retail bytes | Native bytes | objdiff match |
-| --- | ---: | ---: | ---: |
-| pathSpin1D | 784 | 784 | 96.76% |
-| pathGliding | 388 | 388 | 99.85% |
-| pathGlidingReg | 2008 | 2016 | 95.45% |
-| pathSeeingPath | 1244 | 1244 | 92.22% |
+The GameCube layout uses eight player pointers and four team pointers. The
+seeing-path loop visits all four teams. Unknown external fields retain
+offset-based names. Retained symbolic metadata supplies the local types and
+private helpers `pathCalcRoughArea`, `pathCheckRangeWithinArea2` and
+`pathCheckRangeWithinArea3`; their GameCube instruction sequences independently
+confirm the correlations. No PS2 instruction implementation was imported.
 
-Gliding now has byte-exact instructions; its constant relocation offsets still
-differ because the unit constant pool is not yet ordered correctly.
-
-Spin now uses a direct timer increment, a whole-vector position copy and
-a combined flag/mask expression. These improve native instruction selection;
-its remaining instruction differences concern the promoted player index and
-register allocation. Constant relocation offsets also differ.
-
-Seeing uses direct floating-point predicates instead of comparing boolean
-results against zero. This removes three redundant condition-register extraction
-sequences. Its direct timer increment also removes an extra sign extension.
-
-Every direct game/SDK call target and its per-function count agrees with retail.
-The three role integers match. All fourteen floating-point constants match
-bit-for-bit as a multiset in a 56-byte pool, but their order differs. Exception
-records and function-size index records still differ. These checks do not
-establish behavioral equivalence for the nonmatching bodies.
-
-The GameCube layout uses eight player pointers and four team pointers; the
-team table is 16 bytes and the seeing-path loop visits all four entries.
-Unknown fields in external object views retain offset-based names.
-
-Validation: G9SE8P, the only configured target, passes the release all-source
-build, including main and all seventeen RELs. All eighteen normal-link hashes,
-55 automated tests, language policy and post-processor policy pass. Because
-this unit is NonMatching, normal linking still uses its retail object; the
-hashes do not validate the candidate implementation. No runtime or hardware
-validation was performed.
+Spin explicitly promotes its byte loop index through `u32` before calling the
+signed-int player-path API, preserving the full public signature and native
+register lifetimes. GlidingReg uses ordinary array indexing and repeated player
+mask expressions. Seeing retains its optional point output check through the
+unsigned output-pointer view also used by the called path routine. Its outer
+team loop and metadata-named locals reproduce the surviving loop registers.
 
 The position copy in Spin and facing-vector copy in GlidingReg use CodeWarrior's
-`__memcpy` builtin, already used elsewhere in the project. Each emits the
-retail integer-word loads/stores without an external call, preserving the
-vector's bits. Ordinary field/aggregate assignment produced float operations;
-ordinary `memcpy` introduced a call. Neither alternative was retained.
+`__memcpy` builtin. Each emits the reference integer-word loads and stores
+without an external call, preserving the vector bits.
 
-Temporary compiler experiments found that deferred inlining, including reversed
-definition order, does not repair the constant pool and changes the constructor
-size. The unit retains automatic inlining and its original definition order.
+The unit retains default automatic inlining and original definition order.
+Deferred inlining changes the constructor size and does not recover constant
+order. All scalar storage is reconstructed; the pool step moves existing
+compiler-emitted bytes and symbol values only.
+
+## Final build verification
+
+The supported G9SE8P release/all-source matrix passes with the reconstructed
+unit linked: freshly relinked main DOL and all seventeen RELs match all eighteen
+original hashes. The report marks all eight functions, all 4,676 code bytes and
+all 192 owned data bytes at 100%. All 195 automated tests, language policy and
+64 postprocessor checks pass. Formatting and diff checks pass. These results
+establish compilation and binary identity, not runtime or console validation.
 
 ## Player-path API parameter evidence
 
@@ -105,10 +100,9 @@ path distances and update the active tag. Their ordering and behavior correlate
 with the metadata APIs. The provisional declarations now use s32, replacing
 the earlier u8 inference from the caller's local variable.
 
-This correction introduces a compiler-held promoted player index in Spin and
-changes caller register allocation, reducing its current objdiff score. That
-remaining source-form work does not justify retaining the narrower provisional
-API. The player loop itself is still u8, as independently recorded in metadata.
+The byte-index promotion at the call site now produces the original instructions
+without narrowing either public API. The player loop remains `u8`, as recorded
+in the symbolic metadata.
 
 `pathCheckRangeWithinArea2(CLASS_PATH*, int, int*, float)` is restored under
 its metadata name and inlines into Seeing. It rejects a missing player, tests

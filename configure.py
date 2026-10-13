@@ -627,7 +627,7 @@ config.libs = [
             Object(Matching, "game/effect/eff_rocketaxel.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/effect/eff_thunderbomb.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/setObj.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
-            Object(NonMatching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/pathctrl.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/scanpath.cpp", extra_cflags=["-O3,p", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/object_defaults.cpp"),
@@ -7882,6 +7882,11 @@ config.custom_build_rules = [
         "description": "FIX light loader destination and size registers",
     },
     {
+        "name": "fix_pathctrl_pool",
+        "command": "$python tools/fix_pathctrl_pool.py $in $out",
+        "description": "FIX pathctrl compiler constant order",
+    },
+    {
         "name": "fix_miscs_object",
         "command": "$python tools/fix_miscs_object.py $in $out",
         "description": "FIX miscs compiler constant atom order",
@@ -8300,6 +8305,12 @@ config.custom_build_steps = {
             "rule": "fix_light_registers",
             "inputs": "build/G9SE8P/src/game/light.o",
             "implicit": ["tools/fix_light_registers.py"],
+        },
+        {
+            "outputs": "build/G9SE8P/pathctrl-pool.stamp",
+            "rule": "fix_pathctrl_pool",
+            "inputs": "build/G9SE8P/src/game/pathctrl.o",
+            "implicit": ["tools/fix_pathctrl_pool.py"],
         },
         {
             "outputs": "build/G9SE8P/miscs-object.stamp",
