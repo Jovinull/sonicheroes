@@ -1754,6 +1754,9 @@ rel/pawn_create_instance.cpp:
 rel/pawn_unload.cpp:
 	.text       start:0x0009DF54 end:0x0009DFF4
 
+rel/pawn_load.cpp:
+	.text       start:0x0009DFF4 end:0x0009E474
+
 rel/pawn_assets.cpp:
 	.text       start:0x0009E474 end:0x0009E564
 	.ctors      start:0x000000F8 end:0x000000FC
