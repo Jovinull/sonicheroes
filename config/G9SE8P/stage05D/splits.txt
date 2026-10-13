@@ -1768,6 +1768,13 @@ rel/capture_collision_register.cpp:
 	.text       start:0x000A8AEC end:0x000A8B94
 	.ctors      start:0x00000150 end:0x00000154
 
+rel/e_eggmobile_stage11.cpp:
+	.text       start:0x000A9D4C end:0x000AD720
+	.ctors      start:0x00000154 end:0x00000158
+	.rodata     start:0x00001998 end:0x00001A68
+	.data       start:0x00017268 end:0x00017670
+	.bss        start:0x00002F40 end:0x00002FE0
+
 rel/rinoliner_create.cpp:
 	.text       start:0x000B2364 end:0x000B23AC
 

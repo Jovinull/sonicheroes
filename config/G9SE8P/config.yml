@@ -703,6 +703,27 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - fn_8_9EED4
+    - fn_8_9EF3C
+    - fn_8_9F2E4
+    - fn_8_9F380
+    - fn_8_9F3F8
+    - fn_8_9F460
+    - fn_8_9F560
+    - fn_8_9F618
+    - fn_8_9FDF8
+    - fn_8_9FF78
+    - fn_8_A0018
+    - fn_8_A0354
+    - fn_8_A04A8
+    - fn_8_A0668
+    - fn_8_A0A10
+    - fn_8_A114C
+    - fn_8_A12D4
+    - fn_8_A13C0
+    - fn_8_A15BC
+    - fn_8_A1698
+    - fn_8_A1E30
     - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
     - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
     - SetCollisionParameter__13TObjEnemyPawnFv
