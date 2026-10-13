@@ -638,6 +638,9 @@ rel/pawn_md_destroy.cpp:
 rel/pawn_md_wander_walk.cpp:
 	.text       start:0x0002FD00 end:0x0002FD70
 
+rel/pawn_md_wander_turn.cpp:
+	.text       start:0x0002FD70 end:0x0002FEB4
+
 rel/pawn_md_wander.cpp:
 	.text       start:0x0002FEB4 end:0x0002FF40
 
