@@ -596,6 +596,9 @@ rel/enemy_shot_set.cpp:
 rel/enemy_shot_pool.cpp:
 	.text       start:0x0002D1F0 end:0x0002D37C
 
+rel/enemy_shot_ctor.cpp:
+	.text       start:0x0002D37C end:0x0002D544
+
 rel/enemy_shot_dtor.cpp:
 	.text       start:0x0002D9E0 end:0x0002DA64
 
