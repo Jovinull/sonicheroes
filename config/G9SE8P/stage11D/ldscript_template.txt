@@ -13,5 +13,6 @@ FORCEACTIVE
 
 FORCEFILES
 {
+    o_s11_door.o
     e_mask_stage11.o
 }

@@ -1,709 +1,563 @@
 #include "types.h"
 
-// Complete o_s11_door.cpp translation unit. The GameCube object boundary is
-// independently corroborated by the PS2 TObjS11Door method family and ends at
-// the following celestial-sphere object's first function.
+// Retained PS2 symbols name this object TObjS11Door and give its method family
+// in the order the GameCube text keeps: DestroyClump, CloneClump, SetPosition,
+// SetParameter, Disp, IsnotThereAnySameCommunicateId, Exec, the destructor,
+// the TObject* constructor, EditOnChange and the endObj/initObj/startObj
+// lifecycle functions. The "TObjS11Door" class-name string in this unit's
+// .data correlates the GameCube object with that family.
+//
+// Like the other Stage 11 object units this one is built with deferred
+// inlining: the functions are emitted in reverse definition order, and the
+// compiler-generated vtable lands after the named data and ahead of the string
+// literals, where retail has it.
 
-typedef s32 M2C_UNK;
-#define M2C_FIELD(base, type, offset) (*(type)((u8*)(base) + (offset)))
+struct Vec3 {
+	f32 x;
+	f32 y;
+	f32 z;
+};
 
-typedef struct TObject {
-	/* 0x00 */ s32 unk0;        /* inferred */
-	/* 0x04 */ char pad4[0x14]; /* maybe part of unk0[6]? */
-	/* 0x18 */ M2C_UNK* unk18;  /* inferred */
-	/* 0x1C */ char pad1C[2];
-	/* 0x1E */ s16 unk1E;     /* inferred */
-	/* 0x20 */ char pad20[8]; /* maybe part of unk1E[5]? */
-	/* 0x28 */ M2C_UNK unk28; /* inferred */
-	/* 0x2C */ void* unk2C;   /* inferred */
-	/* 0x30 */ M2C_UNK unk30; /* inferred */
-	/* 0x34 */ char pad34[0xC];
-	/* 0x40 */ void* unk40;      /* inferred */
-	/* 0x44 */ char pad44[0x74]; /* maybe part of unk40[0x1E]? */
-	/* 0xB8 */ f32 unkB8;        /* inferred */
-	/* 0xBC */ f32 unkBC;        /* inferred */
-	/* 0xC0 */ f32 unkC0;        /* inferred */
-	/* 0xC4 */ s32 unkC4;        /* inferred */
-	/* 0xC8 */ s32 unkC8;        /* inferred */
-	/* 0xCC */ s32 unkCC;        /* inferred */
-	/* 0xD0 */ s32 unkD0;        /* inferred */
-	/* 0xD4 */ s32 unkD4;        /* inferred */
-	/* 0xD8 */ s32 unkD8;        /* inferred */
-	/* 0xDC */ s32 unkDC;        /* inferred */
-	/* 0xE0 */ s32 unkE0;        /* inferred */
-	/* 0xE4 */ s32 unkE4;        /* inferred */
-	/* 0xE8 */ s32 unkE8;        /* inferred */
-	/* 0xEC */ s32 unkEC;        /* inferred */
-	/* 0xF0 */ s32 unkF0;        /* inferred */
-	/* 0xF4 */ void* unkF4;      /* inferred */
-	/* 0xF8 */ void* unkF8;      /* inferred */
-} TObject;                       /* size >= 0xFC */
+struct sAngle {
+	s32 x;
+	s32 y;
+	s32 z;
+};
+
+/* An unreferenced vector this family of units carries at the head of its
+ * .rodata, the way an internal-linkage const from a shared header lands in
+ * each translation unit that includes it. Its name and home are unknown. */
+#pragma force_active on
+static const Vec3 lbl_8_rodata_1628 = { 0.0f, 1.5f, 0.0f };
+#pragma force_active reset
+
+struct DoorParam {
+	s8 direction;
+};
+
+struct SETDATA_PARAM {
+	Vec3 position;
+	sAngle angle;
+	u32 flags;
+	u8 pad1C[0xE];
+	u8 group;
+	u8 pad2B[1];
+	DoorParam* params;
+};
+
+/* One entry of the stage's per-group set-object lists. */
+struct SetObjNode {
+	u8 pad00[0x38];
+	SetObjNode* next;
+};
+
+struct ObjectManager {
+	u8 pad000[0x30];
+	SetObjNode* lists[1];
+};
+
+struct RwMatrix {
+	u8 pad00[0x40];
+};
+
+struct RwFrame {
+	u8 pad00[0x10];
+	RwMatrix modelling;
+};
+
+struct RpClump {
+	u8 pad00[4];
+	RwFrame* frame;
+};
+
+struct CCL_INFO {
+	u32 attribute;
+	u32 flags;
+	f32 params[6];
+	u32 pad20[4];
+};
+
+struct TObjectHdr {
+	const char* className;
+	u16 signal;
+	u8 pad06[0x12];
+};
+
+class TObject : public TObjectHdr
+{
+public:
+	TObject(TObject*);
+	virtual ~TObject();
+	virtual void Exec();
+	virtual void Disp();
+	virtual void TDisp();
+	virtual void PDisp();
+	virtual void ImmAftSetRaster();
+	virtual void Debug();
+	virtual void Error(char*);
+	virtual void Render();
+
+	s16 pad1C;
+	s16 objectSize;
+	u8 pad20[8];
+};
+
+struct SetObjHdr {
+	SETDATA_PARAM* frame;
+};
 
 extern "C" {
+s32 CheckMustKill__10TObjSetObjFv(void*);
+s32 OnEdit__10TObjSetObjFv(void*);
+s32 CheckRangeOut__10TObjSetObjFv(void*);
+}
 
-void* __ct__7TObjectFP7TObject(TObject* self, TObject* arg0);                         /* extern */
-void* __dt__7TObjectFv(TObject* self, s16 destroyFlag);                               /* extern */
-M2C_UNK __dt__7C_COLLIFv(void*, M2C_UNK);                                             /* extern */
-M2C_UNK __dt__10TObjSetObjFv(void*, M2C_UNK);                                         /* extern */
-M2C_UNK Free__9THeapCtrlFPv(s32, TObject*);                                           /* extern */
-u32 Malloc__9THeapCtrlFUi(s32, M2C_UNK);                                              /* extern */
-M2C_UNK CalcRange__7C_COLLIFv(void*);                                                 /* extern */
-M2C_UNK Entry__7C_COLLIFv(void*);                                                     /* extern */
-M2C_UNK Init__7C_COLLIFP8CCL_INFOiUc(M2C_UNK*, M2C_UNK*, M2C_UNK, M2C_UNK);           /* extern */
-M2C_UNK __ct__7C_COLLIFv(M2C_UNK*);                                                   /* extern */
-s32 CheckMustKill__10TObjSetObjFv(void*);                                             /* extern */
-s32 OnEdit__10TObjSetObjFv(M2C_UNK*);                                                 /* extern */
-s32 CheckRangeOut__10TObjSetObjFv(void*);                                             /* extern */
-M2C_UNK __ct__10TObjSetObjFv(M2C_UNK*);                                               /* extern */
-M2C_UNK objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(u32, s32); /* extern */
-M2C_UNK fn_800B52E8(M2C_UNK, s8, M2C_UNK);                                            /* extern */
-u32 LoadClumpEx__7ONEFILEFUiPc(s32, s32, M2C_UNK*);                                   /* extern */
-s32 CheckFileID__7ONEFILEFPc(s32, s32);                                               /* extern */
-M2C_UNK LoadOneFile__7ONEFILEFPc(s32, M2C_UNK*);                                      /* extern */
-f32 fn_800D7AE4(s32);                                                                 /* extern */
-f32 fn_800D7B00(s32);                                                                 /* extern */
-s32 IsAnnihilated__19nEnemyCommunicationFUc(u8);                                      /* extern */
-u32 fn_80150588(u32);                                                                 /* extern */
-M2C_UNK fn_80150958(void*);                                                           /* extern */
-M2C_UNK fn_8015BB08(s32, u32);                                                        /* extern */
-M2C_UNK fn_8015BBF8(s32, void*);                                                      /* extern */
-M2C_UNK fn_80195790(s32, M2C_UNK*, f32, f32, M2C_UNK);                                /* extern */
-M2C_UNK fn_8019E880(s32);                                                             /* extern */
-M2C_UNK fn_8019EB94(s32, f32*, M2C_UNK);                                              /* extern */
-M2C_UNK fn_801A4C84(u32);                                                             /* extern */
-M2C_UNK s12doorEditOnChange(s32);                                                     /* extern */
-s32 objGroupAllActive();                                                              /* extern */
-extern M2C_UNK AxisY;
-extern M2C_UNK AxisZ;
-extern M2C_UNK lbl_802FF5A0;
-extern TObject* lbl_8042C110;
-extern s32 lbl_8042C148;
+class TObjSetObj : public SetObjHdr
+{
+public:
+	TObjSetObj();
+	virtual void EditOnChange(SETDATA_PARAM*);
+
+	s32 CheckRangeOut() { return CheckRangeOut__10TObjSetObjFv(this); }
+	s32 CheckMustKill() { return CheckMustKill__10TObjSetObjFv(this); }
+	s32 OnEdit() { return OnEdit__10TObjSetObjFv(this); }
+};
+
+class C_COLLI
+{
+public:
+	u8 pad00[0x10];
+	CCL_INFO* shape;
+	u8 pad14[0x4C];
+	Vec3 position;
+	sAngle angle;
+	u8 pad78[4];
+	Vec3 previous;
+
+	C_COLLI();
+	~C_COLLI();
+	void Init(CCL_INFO*, int, u8);
+	void CalcRange();
+	void Entry();
+};
+
+extern "C" {
+extern void* lbl_8042C110;
+extern void* lbl_8042C148;
 extern void* lbl_8042C1D0;
-extern void* lbl_8042C298;
-extern u32 lbl_8042C388;
-extern u8 lbl_8_data_15130;
-extern u8 lbl_8_data_15131;
-extern u32 lbl_8_data_15134[2];
-extern s32 lbl_8_data_15164;
-extern M2C_UNK lbl_8_data_1516C;
-extern s32 lbl_8_data_15174;
-extern f32 lbl_8_data_15178;
-extern f32 lbl_8_data_1517C;
-extern f32 lbl_8_data_15180;
-extern f32 lbl_8_data_15184;
-extern s32 lbl_8_data_15188;
-extern M2C_UNK lbl_8_data_151B4;
-extern M2C_UNK lbl_8_data_151BC;
-extern M2C_UNK lbl_8_data_1524C;
-extern s32 lbl_8_data_152E8;
-extern const f32 lbl_8_rodata_1634[6] = { 30.0f, 0.0f, 0.0f, -30.0f, 0.0f, 0.0f };
-extern const f32 lbl_8_rodata_164C[1] = { 1.0f };
-extern const f32 lbl_8_rodata_1650[1] = { 60.0f };
-extern M2C_UNK s11doorObjectDisplayName;
-typedef struct ObjectEntry {
-	const char* name;        /* 0x00 */
-	void (*load)(void);      /* 0x04 */
-	void (*unload)(void);    /* 0x08 */
-	void (*create)(void);    /* 0x0C */
-	void* unk10;             /* 0x10 */
-	u32 flags;               /* 0x14 */
-	u32 unk18;               /* 0x18 */
-	s16 unk1C;               /* 0x1C */
-	s16 unk1E;               /* 0x1E */
-	u8 unk20;                /* 0x20 */
-	u8 unk21;                /* 0x21 */
-	u8 pad22[2];             /* 0x22 */
-	const char* fieldTypes;  /* 0x24 */
-	const char** fieldNames; /* 0x28 */
-	u8 pad2C[4];             /* 0x2C */
-} ObjectEntry;               /* 0x30 */
+extern ObjectManager* lbl_8042C298;
+extern void* lbl_8042C388;
+extern u8 AxisY;
+extern u8 AxisZ;
+extern u8 lbl_802FF5A0;
 
-extern ObjectEntry s11doorObjectEntry;
-extern s32 s11doorObjectFieldNames;
-extern M2C_UNK s11doorObjectFieldTypes;
-extern M2C_UNK s11doorObjectVtable;
-
-void fn_8_95240(s32 arg0)
-{
-	s12doorEditOnChange(arg0 - 0x28);
+void __dt__7TObjectFv(void*, s16);
+void __dt__7C_COLLIFv(void*, s16);
+void __dt__10TObjSetObjFv(void*, s16);
+void* Malloc__9THeapCtrlFUi(void*, u32);
+void Free__9THeapCtrlFPv(void*, void*);
+void objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(RpClump*, u32);
+s32 IsAnnihilated__19nEnemyCommunicationFUc(u8);
+s32 objGroupAllActive(u8 group);
+void fn_800B52E8(void*, s32, s32, s32);
+RpClump* LoadClumpEx__7ONEFILEFUiPc(void*, s32, void*);
+s32 CheckFileID__7ONEFILEFPc(void*, const char*);
+void LoadOneFile__7ONEFILEFPc(void*, void*);
+f32 fn_800D7AE4(s32);
+f32 fn_800D7B00(s32);
+RpClump* fn_80150588(RpClump*);
+void fn_80150958(RpClump*);
+void fn_8015BB08(void*, RpClump*);
+void fn_8015BBF8(void*, RpClump*);
+void fn_80195790(void*, void*, f32, f32, s32);
+void fn_8019E880(RwFrame*);
+void fn_8019EB94(RwFrame*, Vec3*, s32);
+void fn_801A4C84(void*);
 }
 
-void fn_8_95248(void* arg0)
+class TObjS11Door : public TObject, public TObjSetObj, public C_COLLI
 {
-	void* var_r29;
-	s32 var_r28;
+public:
+	Vec3 position;
+	sAngle angle;
+	s32 state;
+	s32 timer;
+	s32 direction;
+	s32 rightStopped;
+	s32 leftStopped;
+	s32 rightSpeed;
+	s32 leftSpeed;
+	s32 rightAngle;
+	s32 leftAngle;
+	RpClump* clumps[2];
 
-	var_r28 = 0;
-	var_r29 = arg0;
-	do {
-		if ((void*)M2C_FIELD(var_r29, void**, 0xF4) != NULL) {
-			fn_8015BBF8(
-			    M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), (void*)M2C_FIELD(var_r29, void**, 0xF4));
-			fn_80150958(M2C_FIELD(var_r29, void**, 0xF4));
-			M2C_FIELD(var_r29, void**, 0xF4) = NULL;
-		}
-		var_r29 = (u8*)var_r29 + 4;
-		var_r28 += 1;
-	} while (var_r28 < 2);
-}
+	void DestroyClump();
+	void CloneClump();
+	inline void CloneClumpOnCreate();
+	void SetPosition();
+	void SetParameter();
+	virtual void Disp();
+	u8 IsnotThereAnySameCommunicateId();
+	virtual void Exec();
+	inline virtual ~TObjS11Door();
+	TObjS11Door(TObject*);
+	virtual void EditOnChange(SETDATA_PARAM*);
 
-void fn_8_952CC(void* arg0, M2C_UNK arg_sp0)
-{
-	void* var_r30;
-	u32* var_r29;
-	s32 var_r28;
-
-	var_r28 = 0;
-	var_r30 = arg0;
-	var_r29 = lbl_8_data_15134;
-	do {
-		if ((u32)M2C_FIELD(var_r30, u32*, 0xF4) == 0U) {
-			M2C_FIELD(var_r30, u32*, 0xF4) = fn_80150588(*var_r29);
-			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(var_r30, u32*, 0xF4));
-			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
-			    M2C_FIELD(var_r30, u32*, 0xF4),
-			    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
-			        + 4);
-		}
-		var_r30 = (u8*)var_r30 + 4;
-		var_r29 += 1;
-		var_r28 += 1;
-	} while (var_r28 < 2);
-}
-
-void fn_8_9536C(void* arg0)
-{
-	s32 sp1C;
-	s32 sp18;
-	f32 sp14;
-	s32 sp10;
-	s32 spC;
-	f32 sp8;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	f32 temp_f31_4;
-	f32 temp_f31_5;
-	f32 temp_f31_6;
-	s32 temp_r30;
-	s32 temp_r30_2;
-
-	sp8      = M2C_FIELD(lbl_8_rodata_1634, f32*, 0);
-	spC      = M2C_FIELD(lbl_8_rodata_1634, s32*, 4);
-	sp10     = M2C_FIELD(lbl_8_rodata_1634, s32*, 8);
-	sp14     = M2C_FIELD(lbl_8_rodata_1634, f32*, 0xC);
-	sp18     = M2C_FIELD(lbl_8_rodata_1634, s32*, 0x10);
-	sp1C     = M2C_FIELD(lbl_8_rodata_1634, s32*, 0x14);
-	temp_r30 = M2C_FIELD(M2C_FIELD(arg0, void**, 0xF4), s32*, 4);
-	fn_8019EB94(temp_r30, (f32*)((u8*)arg0 + 0xB8), 0);
-	temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-	fn_80195790(temp_r30 + 0x10, &AxisY,
-	    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
-	fn_8019E880(temp_r30);
-	if ((s32)M2C_FIELD(arg0, s32*, 0xD8) == 1) {
-		temp_f31_2 = fn_800D7B00(0x8000);
-		fn_80195790(
-		    temp_r30 + 0x10, &AxisZ, lbl_8_rodata_164C[0] - fn_800D7AE4(0x8000), temp_f31_2, 1);
-		fn_8019E880(temp_r30);
+	static void* operator new(unsigned long size, void* heap)
+	{
+		return Malloc__9THeapCtrlFUi(heap, size);
 	}
-	fn_8019EB94(temp_r30, &sp8, 1);
-	temp_f31_3 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xEC));
-	fn_80195790(temp_r30 + 0x10, &AxisY,
-	    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xEC)), temp_f31_3, 1);
-	fn_8019E880(temp_r30);
-	temp_r30_2 = M2C_FIELD(M2C_FIELD(arg0, void**, 0xF8), s32*, 4);
-	fn_8019EB94(temp_r30_2, (f32*)((u8*)arg0 + 0xB8), 0);
-	temp_f31_4 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-	fn_80195790(temp_r30_2 + 0x10, &AxisY,
-	    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31_4, 1);
-	fn_8019E880(temp_r30_2);
-	if ((s32)M2C_FIELD(arg0, s32*, 0xD8) == 1) {
-		temp_f31_5 = fn_800D7B00(0x8000);
-		fn_80195790(
-		    temp_r30_2 + 0x10, &AxisZ, lbl_8_rodata_164C[0] - fn_800D7AE4(0x8000), temp_f31_5, 1);
-		fn_8019E880(temp_r30_2);
-	}
-	fn_8019EB94(temp_r30_2, &sp14, 1);
-	temp_f31_6 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xF0));
-	fn_80195790(temp_r30_2 + 0x10, &AxisY,
-	    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xF0)), temp_f31_6, 1);
-	fn_8019E880(temp_r30_2);
+};
+
+// The destructor is written against the object's storage: retail destroys the
+// TObjSetObj and C_COLLI bases through out-of-line functions that keep their
+// address names, which a C++ base-class call would rename. The compiler still
+// generates the class vtable and its adjustor thunk from the virtual
+// declarations above.
+extern "C" {
+TObjS11Door* __dt__11TObjS11DoorFv(TObjS11Door*, s16);
+extern void* __vt__11TObjS11Door[];
 }
 
-void fn_8_955F4(void* arg0)
-{
-	void* temp_r4;
-	void* temp_r4_2;
+// The data names below are address names; their roles are descriptive guesses.
+extern "C" {
+u8 lbl_8_data_15130 = 0x40;
+u8 lbl_8_data_15131 = 0x40;
+#pragma explicit_zero_data on
+RpClump* lbl_8_data_15134[2] = { NULL, NULL };
+#pragma explicit_zero_data reset
+char* lbl_8_data_15164[2]        = { "s11_on_doorr.dff", "s11_on_doorl.dff" };
+s32 lbl_8_data_1516C[2]          = { -0x4000, 0x4000 };
+s32 lbl_8_data_15174             = 24;
+f32 lbl_8_data_15178             = 0.99f;
+f32 lbl_8_data_1517C             = 0.3333f;
+f32 lbl_8_data_15180             = -0.75f;
+f32 lbl_8_data_15184             = 0.75f;
+s32 lbl_8_data_15188             = 15;
+char* s11doorObjectFieldNames[1] = { "direction : up" };
+char* lbl_8_data_151B4[2]        = { "direction : up", "direction : down" };
+CCL_INFO lbl_8_data_151BC[3]     = {
+	{ 0x4FFE0, 0, { 0.0f, 40.0f, 3.5f, 35.0f, 45.0f, 3.5f } },
+	{ 0x4FFE0, 0x10, { 30.0f, 40.0f, -15.0f, 5.0f, 40.0f, 15.0f } },
+	{ 0x4FFE0, 0x10, { -30.0f, 40.0f, -15.0f, 5.0f, 40.0f, 15.0f } },
+};
+CCL_INFO lbl_8_data_1524C[3] = {
+	{ 0x4FFE0, 0, { 0.0f, -40.0f, 3.5f, 35.0f, 45.0f, 3.5f } },
+	{ 0x4FFE0, 0x10, { 30.0f, -40.0f, -15.0f, 5.0f, 40.0f, 15.0f } },
+	{ 0x4FFE0, 0x10, { -30.0f, -40.0f, -15.0f, 5.0f, 40.0f, 15.0f } },
+};
+char* lbl_8_data_152E8 = "TObjS11Door";
+}
 
-	temp_r4                     = M2C_FIELD(arg0, void**, 0x28);
-	M2C_FIELD(arg0, f32*, 0xB8) = (f32)M2C_FIELD(temp_r4, f32*, 0);
-	M2C_FIELD(arg0, f32*, 0xBC) = (f32)M2C_FIELD(temp_r4, f32*, 4);
-	M2C_FIELD(arg0, f32*, 0xC0) = (f32)M2C_FIELD(temp_r4, f32*, 8);
-	temp_r4_2                   = M2C_FIELD(arg0, void**, 0x28);
-	M2C_FIELD(arg0, s32*, 0xC4) = (s32)M2C_FIELD(temp_r4_2, s32*, 0xC);
-	M2C_FIELD(arg0, s32*, 0xC8) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x10);
-	M2C_FIELD(arg0, s32*, 0xCC) = (s32)M2C_FIELD(temp_r4_2, s32*, 0x14);
-	M2C_FIELD(arg0, s32*, 0xCC) = 0;
-	M2C_FIELD(arg0, s32*, 0xC4) = 0;
-	if ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x10000) != 0) {
-		M2C_FIELD(arg0, s32*, 0xD0) = 2;
+struct SETOBJ_PARAM {
+	char* displayName;
+	void (*init)();
+	void (*end)();
+	void (*create)();
+	u32 field10;
+	u32 flags;
+	u32 field18;
+	u16 id;
+	u16 count;
+	u8 field20;
+	u8 field21;
+	u8 pad22[2];
+	char* fieldTypes;
+	void* fields;
+	u8 pad2C[4];
+};
+
+extern "C" {
+SETOBJ_PARAM s11doorObjectEntry;
+void s11doorObjectUnload();
+void s11doorObjectLoad();
+void s11doorObjectCreate();
+}
+
+extern "C" void s11doorObjectRegister()
+{
+	s11doorObjectEntry.flags       = 0;
+	s11doorObjectEntry.field18     = 0;
+	s11doorObjectEntry.displayName = "S11DOOR OBJECT";
+	s11doorObjectEntry.init        = s11doorObjectLoad;
+	s11doorObjectEntry.end         = s11doorObjectUnload;
+	s11doorObjectEntry.create      = s11doorObjectCreate;
+	s11doorObjectEntry.field10     = 0;
+	s11doorObjectEntry.flags       = 0x20000;
+	s11doorObjectEntry.field18     = 0;
+	s11doorObjectEntry.field20     = 0x1E;
+	s11doorObjectEntry.id          = 0x1101;
+	s11doorObjectEntry.count       = 2;
+	s11doorObjectEntry.field21     = 0;
+	s11doorObjectEntry.fieldTypes  = "c";
+	s11doorObjectEntry.fields      = s11doorObjectFieldNames;
+	if (s11doorObjectEntry.fieldTypes != NULL)
+		s11doorObjectEntry.flags |= 8;
+	else
+		s11doorObjectEntry.flags &= ~8;
+}
+
+__declspec(section ".ctors") void (*const s11doorObjectCtorEntry)() = s11doorObjectRegister;
+
+extern "C" void s11doorObjectCreate()
+{
+	new (lbl_8042C148) TObjS11Door((TObject*)lbl_8042C110);
+}
+
+extern "C" void s11doorObjectLoad()
+{
+	void* stage = *(void**)((u8*)lbl_8042C1D0 + 0x8C18);
+	if (stage != NULL) {
+		fn_801A4C84(stage);
 	} else {
-		M2C_FIELD(arg0, s32*, 0xD0) = 0;
-	}
-	M2C_FIELD(arg0, s32*, 0xD8) = (s32)(s8)*M2C_FIELD(temp_r4, u8**, 0x2C);
-	M2C_FIELD(arg0, s32*, 0xD4) = 0;
-}
-
-void fn_8_95678(void) { }
-
-u8 fn_8_9567C(void* arg0)
-{
-	void* temp_r5;
-	void* temp_r4;
-	u8 var_r3;
-
-	temp_r5 = M2C_FIELD(arg0, void**, 0x28);
-	temp_r4 = M2C_FIELD(((u8*)lbl_8042C298 + (M2C_FIELD(temp_r5, u8*, 0x2A) * 4)), void**, 0x30);
-	var_r3  = 0;
-	if ((temp_r4 == temp_r5) && ((u32)M2C_FIELD(temp_r4, u32*, 0x38) == 0U)) {
-		var_r3 = 1;
-	}
-	return var_r3;
-}
-
-void fn_8_956C0(void* arg0)
-{
-	s32 sp1C;
-	s32 sp18;
-	f32 sp14;
-	s32 sp10;
-	s32 spC;
-	f32 sp8;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	f32 temp_f31_4;
-	f32 temp_f31_5;
-	f32 temp_f31_6;
-	s32 temp_r0;
-	s32 temp_r30;
-	s32 temp_r30_2;
-	u8 var_r4;
-	void* temp_r3;
-	void* temp_r3_2;
-	void* temp_r3_3;
-	void* temp_r3_4;
-	void* temp_r3_5;
-	void* temp_r5;
-	void* temp_r6;
-
-	if ((CheckRangeOut__10TObjSetObjFv((u8*)((u32)arg0 + 0x28)) != 0)
-	    || (CheckMustKill__10TObjSetObjFv((u8*)((u32)arg0 + 0x28)) != 0)) {
-		M2C_FIELD(arg0, u16*, 4) = (u16)(M2C_FIELD(arg0, u16*, 4) | 1);
 		return;
 	}
-	temp_r0 = M2C_FIELD(arg0, s32*, 0xD0);
-	switch (temp_r0) { /* irregular */
+	LoadOneFile__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), &lbl_802FF5A0);
+	for (int i = 0; i < 2; i++) {
+		lbl_8_data_15134[i] = LoadClumpEx__7ONEFILEFUiPc(*(void**)((u8*)lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)((u8*)lbl_8042C298 + 0xA50), lbl_8_data_15164[i]),
+		    &lbl_802FF5A0);
+	}
+}
+
+extern "C" void s11doorObjectUnload()
+{
+	for (int i = 0; i < 2; i++) {
+		if (lbl_8_data_15134[i] != NULL) {
+			fn_80150958(lbl_8_data_15134[i]);
+			lbl_8_data_15134[i] = NULL;
+		}
+	}
+}
+
+void TObjS11Door::EditOnChange(SETDATA_PARAM* data)
+{
+	DoorParam* params = data->params;
+	if (params->direction < 0)
+		params->direction = 0;
+	if (params->direction > 1)
+		params->direction = 1;
+	s11doorObjectFieldNames[0] = lbl_8_data_151B4[params->direction];
+}
+
+// CloneClump() as the constructor runs it. Retail's constructor reads the frame
+// flags ahead of reloading the clump, unlike the method; the shared Stage 11
+// constructors force that read order through a volatile view.
+inline void TObjS11Door::CloneClumpOnCreate()
+{
+	for (int i = 0; i < 2; i++) {
+		if (clumps[i] == NULL) {
+			clumps[i] = fn_80150588(lbl_8_data_15134[i]);
+			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), clumps[i]);
+			u32 flags = *(volatile u32*)&frame->flags;
+			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
+			    clumps[i], ((flags & 0x1C0000) >> 18) + 4);
+		}
+	}
+}
+
+TObjS11Door::TObjS11Door(TObject* parent)
+    : TObject(parent)
+{
+	className  = lbl_8_data_152E8;
+	objectSize = sizeof(TObjS11Door);
+	SetParameter();
+	clumps[0] = clumps[1] = NULL;
+	rightSpeed = leftSpeed = 0;
+	rightStopped = leftStopped = 0;
+	if (frame->flags & 0x10000) {
+		rightAngle = lbl_8_data_1516C[0];
+		leftAngle  = lbl_8_data_1516C[1];
+	} else {
+		rightAngle = leftAngle = 0;
+	}
+	CloneClumpOnCreate();
+	SetPosition();
+	if (OnEdit() == 0) {
+		if (direction == 1) {
+			Init(lbl_8_data_1524C, 3, 4);
+		} else {
+			Init(lbl_8_data_151BC, 3, 4);
+		}
+		if (frame->flags & 0x10000) {
+			shape[0].flags |= 0x10;
+			shape[1].flags &= ~0x10;
+			shape[2].flags &= ~0x10;
+			CalcRange();
+		}
+	}
+}
+
+extern "C" TObjS11Door* __dt__11TObjS11DoorFv(TObjS11Door* self, s16 flags)
+{
+	if (self != NULL) {
+		*(void***)((u8*)self + 0x18) = __vt__11TObjS11Door;
+		*(void***)((u8*)self + 0x2C) = __vt__11TObjS11Door + 11;
+		self->DestroyClump();
+		__dt__7C_COLLIFv((u8*)self + 0x30, 0);
+		__dt__10TObjSetObjFv((u8*)self + 0x28, 0);
+		__dt__7TObjectFv(self, 0);
+		if (flags > 0) {
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
+		}
+	}
+	return self;
+}
+
+void TObjS11Door::Exec()
+{
+	if (CheckRangeOut() != 0 || CheckMustKill() != 0) {
+		signal |= 1;
+		return;
+	}
+	switch (state) {
 		case 0:
-			temp_r6 = M2C_FIELD(arg0, void**, 0x28);
-			temp_r5 = M2C_FIELD(
-			    ((u8*)lbl_8042C298 + (M2C_FIELD(temp_r6, u8*, 0x2A) * 4)), void**, 0x30);
-			var_r4 = 0;
-			if ((temp_r5 == temp_r6) && ((u32)M2C_FIELD(temp_r5, u32*, 0x38) == 0U)) {
-				var_r4 = 1;
-			}
-			if (((var_r4 != 0) || (objGroupAllActive() != 0))
-			    && (IsAnnihilated__19nEnemyCommunicationFUc(
-			            M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), u8*, 0x2A))
-			        != 0)) {
-				M2C_FIELD(arg0, s32*, 0xD0) = 1;
-				if ((u32)lbl_8042C388 != 0U) {
-					fn_800B52E8(0x5A02, (s8)lbl_8_data_15130, 0);
+			if ((IsnotThereAnySameCommunicateId() != 0 || objGroupAllActive(frame->group) != 0)
+			    && IsAnnihilated__19nEnemyCommunicationFUc(frame->group)) {
+				state = 1;
+				if (lbl_8042C388 != NULL) {
+					fn_800B52E8(lbl_8042C388, 0x5A02, (s8)lbl_8_data_15130, 0);
 				}
-				temp_r3                        = M2C_FIELD(arg0, void**, 0x28);
-				M2C_FIELD(temp_r3, s32*, 0x18) = (s32)(M2C_FIELD(temp_r3, s32*, 0x18) | 0x10000);
-				M2C_FIELD(arg0, s32*, 0xD4)    = 0;
+				frame->flags |= 0x10000;
+				timer = 0;
 			}
 			break;
 		case 1:
-			if ((s32)M2C_FIELD(arg0, s32*, 0xDC) == 0) {
-				M2C_FIELD(arg0, s32*, 0xD4) = (s32)(M2C_FIELD(arg0, s32*, 0xD4) + 1);
-				if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == (s32)lbl_8_data_15188) {
-					temp_r3_2                     = M2C_FIELD(arg0, void**, 0x40);
-					M2C_FIELD(temp_r3_2, s32*, 4) = (s32)(M2C_FIELD(temp_r3_2, s32*, 4) | 0x10);
-					temp_r3_3                     = M2C_FIELD(arg0, void**, 0x40);
-					M2C_FIELD(temp_r3_3, s32*, 0x34)
-					    = (s32)(M2C_FIELD(temp_r3_3, s32*, 0x34) & 0xFFFFFFEF);
-					CalcRange__7C_COLLIFv((u8*)arg0 + 0x30);
+			if (rightStopped == 0) {
+				timer++;
+				if (timer == lbl_8_data_15188) {
+					shape[0].flags |= 0x10;
+					shape[1].flags &= ~0x10;
+					CalcRange();
 				}
-				M2C_FIELD(arg0, s32*, 0xE4) = (s32)(M2C_FIELD(arg0, s32*, 0xE4) - lbl_8_data_15174);
-				M2C_FIELD(arg0, s32*, 0xE4)
-				    = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE4) * lbl_8_data_15178);
-				M2C_FIELD(arg0, s32*, 0xEC)
-				    = (s32)(M2C_FIELD(arg0, s32*, 0xEC) + M2C_FIELD(arg0, s32*, 0xE4));
-				if ((s32)M2C_FIELD(arg0, s32*, 0xEC) < (s32)M2C_FIELD(&lbl_8_data_1516C, s32*, 0)) {
-					M2C_FIELD(arg0, s32*, 0xDC) = 1;
-					if ((u32)lbl_8042C388 != 0U) {
-						fn_800B52E8(0x5A03, (s8)lbl_8_data_15131, 0);
+				rightSpeed -= lbl_8_data_15174;
+				rightSpeed = rightSpeed * lbl_8_data_15178;
+				rightAngle += rightSpeed;
+				if (rightAngle < lbl_8_data_1516C[0]) {
+					rightStopped = 1;
+					if (lbl_8042C388 != NULL) {
+						fn_800B52E8(lbl_8042C388, 0x5A03, (s8)lbl_8_data_15131, 0);
 					}
-					M2C_FIELD(arg0, s32*, 0xE4)
-					    = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE4) * lbl_8_data_1517C);
-					M2C_FIELD(arg0, s32*, 0xD4) = 0;
+					rightSpeed = rightSpeed * lbl_8_data_1517C;
+					timer      = 0;
 				}
 			} else {
-				M2C_FIELD(arg0, s32*, 0xE4) = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE4)
-				    + (lbl_8_data_15180
-				        * (f32)(M2C_FIELD(arg0, s32*, 0xEC)
-				            - M2C_FIELD(&lbl_8_data_1516C, s32*, 0))));
-				M2C_FIELD(arg0, s32*, 0xE4)
-				    = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE4) * lbl_8_data_15184);
-				M2C_FIELD(arg0, s32*, 0xEC)
-				    = (s32)(M2C_FIELD(arg0, s32*, 0xEC) + M2C_FIELD(arg0, s32*, 0xE4));
-				M2C_FIELD(arg0, s32*, 0xD4) = (s32)(M2C_FIELD(arg0, s32*, 0xD4) + 1);
+				rightSpeed = rightSpeed + lbl_8_data_15180 * (rightAngle - lbl_8_data_1516C[0]);
+				rightSpeed = rightSpeed * lbl_8_data_15184;
+				rightAngle += rightSpeed;
+				timer++;
 			}
-			if ((s32)M2C_FIELD(arg0, s32*, 0xE0) == 0) {
-				if ((s32)M2C_FIELD(arg0, s32*, 0xD4) == (s32)lbl_8_data_15188) {
-					temp_r3_4                     = M2C_FIELD(arg0, void**, 0x40);
-					M2C_FIELD(temp_r3_4, s32*, 4) = (s32)(M2C_FIELD(temp_r3_4, s32*, 4) | 0x10);
-					temp_r3_5                     = M2C_FIELD(arg0, void**, 0x40);
-					M2C_FIELD(temp_r3_5, s32*, 0x64)
-					    = (s32)(M2C_FIELD(temp_r3_5, s32*, 0x64) & 0xFFFFFFEF);
-					CalcRange__7C_COLLIFv((u8*)arg0 + 0x30);
+			if (leftStopped == 0) {
+				if (timer == lbl_8_data_15188) {
+					shape[0].flags |= 0x10;
+					shape[2].flags &= ~0x10;
+					CalcRange();
 				}
-				M2C_FIELD(arg0, s32*, 0xE8) = (s32)(M2C_FIELD(arg0, s32*, 0xE8) + lbl_8_data_15174);
-				M2C_FIELD(arg0, s32*, 0xE8)
-				    = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE8) * lbl_8_data_15178);
-				M2C_FIELD(arg0, s32*, 0xF0)
-				    = (s32)(M2C_FIELD(arg0, s32*, 0xF0) + M2C_FIELD(arg0, s32*, 0xE8));
-				if ((s32)M2C_FIELD(arg0, s32*, 0xF0) > (s32)M2C_FIELD(&lbl_8_data_1516C, s32*, 4)) {
-					M2C_FIELD(arg0, s32*, 0xE0) = 1;
-					if ((u32)lbl_8042C388 != 0U) {
-						fn_800B52E8(0x5A03, (s8)lbl_8_data_15131, 0);
+				leftSpeed += lbl_8_data_15174;
+				leftSpeed = leftSpeed * lbl_8_data_15178;
+				leftAngle += leftSpeed;
+				if (leftAngle > lbl_8_data_1516C[1]) {
+					leftStopped = 1;
+					if (lbl_8042C388 != NULL) {
+						fn_800B52E8(lbl_8042C388, 0x5A03, (s8)lbl_8_data_15131, 0);
 					}
-					M2C_FIELD(arg0, s32*, 0xE8)
-					    = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE8) * lbl_8_data_1517C);
+					leftSpeed = leftSpeed * lbl_8_data_1517C;
 				}
 			} else {
-				M2C_FIELD(arg0, s32*, 0xE8) = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE8)
-				    + (lbl_8_data_15180
-				        * (f32)(M2C_FIELD(arg0, s32*, 0xF0)
-				            - M2C_FIELD(&lbl_8_data_1516C, s32*, 4))));
-				M2C_FIELD(arg0, s32*, 0xE8)
-				    = (s32)((f32)M2C_FIELD(arg0, s32*, 0xE8) * lbl_8_data_15184);
-				M2C_FIELD(arg0, s32*, 0xF0)
-				    = (s32)(M2C_FIELD(arg0, s32*, 0xF0) + M2C_FIELD(arg0, s32*, 0xE8));
+				leftSpeed = leftSpeed + lbl_8_data_15180 * (leftAngle - lbl_8_data_1516C[1]);
+				leftSpeed = leftSpeed * lbl_8_data_15184;
+				leftAngle += leftSpeed;
 			}
-			if ((f32)M2C_FIELD(arg0, s32*, 0xD4) > lbl_8_rodata_1650[0]) {
-				M2C_FIELD(arg0, s32*, 0xD0) = 2;
+			if (timer > 60.0f) {
+				state = 2;
 			}
-			sp8      = M2C_FIELD(lbl_8_rodata_1634, f32*, 0);
-			spC      = M2C_FIELD(lbl_8_rodata_1634, s32*, 4);
-			sp10     = M2C_FIELD(lbl_8_rodata_1634, s32*, 8);
-			sp14     = M2C_FIELD(lbl_8_rodata_1634, f32*, 0xC);
-			sp18     = M2C_FIELD(lbl_8_rodata_1634, s32*, 0x10);
-			sp1C     = M2C_FIELD(lbl_8_rodata_1634, s32*, 0x14);
-			temp_r30 = M2C_FIELD(M2C_FIELD(arg0, void**, 0xF4), s32*, 4);
-			fn_8019EB94(temp_r30, (f32*)((u8*)((u32)arg0 + 0xB8)), 0);
-			temp_f31 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r30 + 0x10, &AxisY,
-			    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31, 1);
-			fn_8019E880(temp_r30);
-			if ((s32)M2C_FIELD(arg0, s32*, 0xD8) == 1) {
-				temp_f31_2 = fn_800D7B00(0x8000);
-				fn_80195790(temp_r30 + 0x10, &AxisZ, lbl_8_rodata_164C[0] - fn_800D7AE4(0x8000),
-				    temp_f31_2, 1);
-				fn_8019E880(temp_r30);
-			}
-			fn_8019EB94(temp_r30, &sp8, 1);
-			temp_f31_3 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xEC));
-			fn_80195790(temp_r30 + 0x10, &AxisY,
-			    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xEC)), temp_f31_3, 1);
-			fn_8019E880(temp_r30);
-			temp_r30_2 = M2C_FIELD(M2C_FIELD(arg0, void**, 0xF8), s32*, 4);
-			fn_8019EB94(temp_r30_2, (f32*)((u8*)((u32)arg0 + 0xB8)), 0);
-			temp_f31_4 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xC8));
-			fn_80195790(temp_r30_2 + 0x10, &AxisY,
-			    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xC8)), temp_f31_4, 1);
-			fn_8019E880(temp_r30_2);
-			if ((s32)M2C_FIELD(arg0, s32*, 0xD8) == 1) {
-				temp_f31_5 = fn_800D7B00(0x8000);
-				fn_80195790(temp_r30_2 + 0x10, &AxisZ, lbl_8_rodata_164C[0] - fn_800D7AE4(0x8000),
-				    temp_f31_5, 1);
-				fn_8019E880(temp_r30_2);
-			}
-			fn_8019EB94(temp_r30_2, &sp14, 1);
-			temp_f31_6 = fn_800D7B00(M2C_FIELD(arg0, s32*, 0xF0));
-			fn_80195790(temp_r30_2 + 0x10, &AxisY,
-			    lbl_8_rodata_164C[0] - fn_800D7AE4(M2C_FIELD(arg0, s32*, 0xF0)), temp_f31_6, 1);
-			fn_8019E880(temp_r30_2);
+			SetPosition();
+			break;
+		case 2:
 			break;
 	}
-	M2C_FIELD(arg0, f32*, 0xAC) = (f32)M2C_FIELD(arg0, f32*, 0x90);
-	M2C_FIELD(arg0, f32*, 0xB0) = (f32)M2C_FIELD(arg0, f32*, 0x94);
-	M2C_FIELD(arg0, f32*, 0xB4) = (f32)M2C_FIELD(arg0, f32*, 0x98);
-	M2C_FIELD(arg0, f32*, 0x90) = (f32)M2C_FIELD(arg0, f32*, 0xB8);
-	M2C_FIELD(arg0, f32*, 0x94) = (f32)M2C_FIELD(arg0, f32*, 0xBC);
-	M2C_FIELD(arg0, f32*, 0x98) = (f32)M2C_FIELD(arg0, f32*, 0xC0);
-	M2C_FIELD(arg0, s32*, 0x9C) = (s32)M2C_FIELD(arg0, s32*, 0xC4);
-	M2C_FIELD(arg0, s32*, 0xA0) = (s32)M2C_FIELD(arg0, s32*, 0xC8);
-	M2C_FIELD(arg0, s32*, 0xA4) = (s32)M2C_FIELD(arg0, s32*, 0xCC);
-	Entry__7C_COLLIFv((u8*)arg0 + 0x30);
+	previous          = C_COLLI::position;
+	C_COLLI::position = position;
+	C_COLLI::angle    = angle;
+	Entry();
 }
 
-TObject* s11doorObjectDtor(TObject* arg0, s16 arg1, M2C_UNK arg_sp0)
+u8 TObjS11Door::IsnotThereAnySameCommunicateId()
 {
-	s32 var_r29;
-	void* var_r28;
-
-	if (arg0 != NULL) {
-		arg0->unk18 = &s11doorObjectVtable;
-		arg0->unk2C = (u8*)&s11doorObjectVtable + 0x2C;
-		var_r29     = 0;
-		var_r28     = arg0;
-		do {
-			if ((u32)M2C_FIELD(var_r28, u32*, 0xF4) != 0U) {
-				fn_8015BBF8(
-				    M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), (void*)M2C_FIELD(var_r28, u32*, 0xF4));
-				fn_80150958((void*)M2C_FIELD(var_r28, u32*, 0xF4));
-				M2C_FIELD(var_r28, u32*, 0xF4) = 0U;
-			}
-			var_r28 = (u8*)var_r28 + 4;
-			var_r29 += 1;
-		} while (var_r29 < 2);
-		__dt__7C_COLLIFv((u8*)arg0 + 0x30, 0);
-		__dt__10TObjSetObjFv((u8*)arg0 + 0x28, 0);
-		__dt__7TObjectFv(arg0, 0);
-		if (arg1 > 0) {
-			Free__9THeapCtrlFPv(lbl_8042C148, arg0);
-		}
-	}
-	return arg0;
+	SetObjNode* node = lbl_8042C298->lists[frame->group];
+	return node == (SetObjNode*)frame && node->next == NULL;
 }
 
-TObject* fn_8_96018(TObject* arg0, TObject* arg1)
-{
-	s32 sp1C;
-	s32 sp18;
-	f32 sp14;
-	s32 sp10;
-	s32 spC;
-	f32 sp8;
-	f32 temp_f31;
-	f32 temp_f31_2;
-	f32 temp_f31_3;
-	f32 temp_f31_4;
-	f32 temp_f31_5;
-	f32 temp_f31_6;
-	s32 temp_r0;
-	s32 temp_r28;
-	s32 temp_r30;
-	s32 var_r29;
-	s32 var_r30;
-	u32* var_r28;
-	void* temp_r3;
-	void* temp_r3_2;
-	void* temp_r3_3;
-	void* temp_r3_4;
-	void* temp_r3_5;
+void TObjS11Door::Disp() { }
 
-	__ct__7TObjectFP7TObject(arg0, arg1);
-	__ct__10TObjSetObjFv(&arg0->unk28);
-	__ct__7C_COLLIFv(&arg0->unk30);
-	arg0->unk18 = &s11doorObjectVtable;
-	arg0->unk2C = (u8*)&s11doorObjectVtable + 0x2C;
-	arg0->unk0  = lbl_8_data_152E8;
-	arg0->unk1E = 0xFC;
-	temp_r3     = M2C_FIELD(arg0, void**, 0x28);
-	arg0->unkB8 = M2C_FIELD(temp_r3, f32*, 0);
-	arg0->unkBC = M2C_FIELD(temp_r3, f32*, 4);
-	arg0->unkC0 = M2C_FIELD(temp_r3, f32*, 8);
-	temp_r3_2   = M2C_FIELD(arg0, void**, 0x28);
-	arg0->unkC4 = M2C_FIELD(temp_r3_2, s32*, 0xC);
-	arg0->unkC8 = M2C_FIELD(temp_r3_2, s32*, 0x10);
-	arg0->unkCC = M2C_FIELD(temp_r3_2, s32*, 0x14);
-	arg0->unkCC = 0;
-	arg0->unkC4 = 0;
-	if ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x10000) != 0) {
-		arg0->unkD0 = 2;
+void TObjS11Door::SetParameter()
+{
+	SETDATA_PARAM* data = frame;
+	DoorParam* params   = data->params;
+	position            = data->position;
+	data                = frame;
+	angle               = data->angle;
+	angle.z             = 0;
+	angle.x             = 0;
+	if (frame->flags & 0x10000) {
+		state = 2;
 	} else {
-		arg0->unkD0 = 0;
+		state = 0;
 	}
-	arg0->unkD8 = (s32)(s8)*M2C_FIELD(temp_r3, u8**, 0x2C);
-	arg0->unkD4 = 0;
-	arg0->unkF8 = NULL;
-	arg0->unkF4 = NULL;
-	arg0->unkE8 = 0;
-	arg0->unkE4 = 0;
-	arg0->unkE0 = 0;
-	arg0->unkDC = 0;
-	if ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x10000) != 0) {
-		arg0->unkEC = M2C_FIELD(&lbl_8_data_1516C, s32*, 0);
-		arg0->unkF0 = M2C_FIELD(&lbl_8_data_1516C, s32*, 4);
-	} else {
-		arg0->unkF0 = 0;
-		arg0->unkEC = 0;
+	direction = params->direction;
+	timer     = 0;
+}
+
+void TObjS11Door::SetPosition()
+{
+	Vec3 offsets[2]  = { { 30.0f, 0.0f, 0.0f }, { -30.0f, 0.0f, 0.0f } };
+	RwFrame* rwFrame = clumps[0]->frame;
+	fn_8019EB94(rwFrame, &position, 0);
+	fn_80195790(&rwFrame->modelling, &AxisY, 1.0f - fn_800D7AE4(angle.y), fn_800D7B00(angle.y), 1);
+	fn_8019E880(rwFrame);
+	if (direction == 1) {
+		fn_80195790(
+		    &rwFrame->modelling, &AxisZ, 1.0f - fn_800D7AE4(0x8000), fn_800D7B00(0x8000), 1);
+		fn_8019E880(rwFrame);
 	}
-	var_r30 = 0;
-	var_r29 = 0;
-	var_r28 = lbl_8_data_15134;
-	do {
-		if (((u32*)((u8*)arg0 + 0xF4))[var_r29 >> 2] == 0U) {
-			temp_r0                        = var_r29 + 0xF4;
-			M2C_FIELD(arg0, u32*, temp_r0) = fn_80150588(*var_r28);
-			fn_8015BB08(M2C_FIELD(lbl_8042C1D0, s32*, 0x725C), M2C_FIELD(arg0, u32*, temp_r0));
+	fn_8019EB94(rwFrame, &offsets[0], 1);
+	fn_80195790(
+	    &rwFrame->modelling, &AxisY, 1.0f - fn_800D7AE4(rightAngle), fn_800D7B00(rightAngle), 1);
+	fn_8019E880(rwFrame);
+	rwFrame = clumps[1]->frame;
+	fn_8019EB94(rwFrame, &position, 0);
+	fn_80195790(&rwFrame->modelling, &AxisY, 1.0f - fn_800D7AE4(angle.y), fn_800D7B00(angle.y), 1);
+	fn_8019E880(rwFrame);
+	if (direction == 1) {
+		fn_80195790(
+		    &rwFrame->modelling, &AxisZ, 1.0f - fn_800D7AE4(0x8000), fn_800D7B00(0x8000), 1);
+		fn_8019E880(rwFrame);
+	}
+	fn_8019EB94(rwFrame, &offsets[1], 1);
+	fn_80195790(
+	    &rwFrame->modelling, &AxisY, 1.0f - fn_800D7AE4(leftAngle), fn_800D7B00(leftAngle), 1);
+	fn_8019E880(rwFrame);
+}
+
+void TObjS11Door::CloneClump()
+{
+	for (int i = 0; i < 2; i++) {
+		if (clumps[i] == NULL) {
+			clumps[i] = fn_80150588(lbl_8_data_15134[i]);
+			fn_8015BB08(*(void**)((u8*)lbl_8042C1D0 + 0x725C), clumps[i]);
 			objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
-			    ((u32*)((u8*)arg0 + 0xF4))[var_r29 >> 2],
-			    ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x1C0000) >> 0x12U)
-			        + 4);
-		}
-		var_r29 += 1;
-		var_r28 += 1;
-		var_r30 += 1;
-	} while (var_r30 < 2);
-	sp8      = M2C_FIELD(lbl_8_rodata_1634, f32*, 0);
-	spC      = M2C_FIELD(lbl_8_rodata_1634, s32*, 4);
-	sp10     = M2C_FIELD(lbl_8_rodata_1634, s32*, 8);
-	sp14     = M2C_FIELD(lbl_8_rodata_1634, f32*, 0xC);
-	sp18     = M2C_FIELD(lbl_8_rodata_1634, s32*, 0x10);
-	sp1C     = M2C_FIELD(lbl_8_rodata_1634, s32*, 0x14);
-	temp_r30 = M2C_FIELD(arg0->unkF4, s32*, 4);
-	fn_8019EB94(temp_r30, &arg0->unkB8, 0);
-	temp_f31 = fn_800D7B00(arg0->unkC8);
-	fn_80195790(
-	    temp_r30 + 0x10, &AxisY, lbl_8_rodata_164C[0] - fn_800D7AE4(arg0->unkC8), temp_f31, 1);
-	fn_8019E880(temp_r30);
-	if ((s32)arg0->unkD8 == 1) {
-		temp_f31_2 = fn_800D7B00(0x8000);
-		fn_80195790(
-		    temp_r30 + 0x10, &AxisZ, lbl_8_rodata_164C[0] - fn_800D7AE4(0x8000), temp_f31_2, 1);
-		fn_8019E880(temp_r30);
-	}
-	fn_8019EB94(temp_r30, &sp8, 1);
-	temp_f31_3 = fn_800D7B00(arg0->unkEC);
-	fn_80195790(
-	    temp_r30 + 0x10, &AxisY, lbl_8_rodata_164C[0] - fn_800D7AE4(arg0->unkEC), temp_f31_3, 1);
-	fn_8019E880(temp_r30);
-	temp_r28 = M2C_FIELD(arg0->unkF8, s32*, 4);
-	fn_8019EB94(temp_r28, &arg0->unkB8, 0);
-	temp_f31_4 = fn_800D7B00(arg0->unkC8);
-	fn_80195790(
-	    temp_r28 + 0x10, &AxisY, lbl_8_rodata_164C[0] - fn_800D7AE4(arg0->unkC8), temp_f31_4, 1);
-	fn_8019E880(temp_r28);
-	if ((s32)arg0->unkD8 == 1) {
-		temp_f31_5 = fn_800D7B00(0x8000);
-		fn_80195790(
-		    temp_r28 + 0x10, &AxisZ, lbl_8_rodata_164C[0] - fn_800D7AE4(0x8000), temp_f31_5, 1);
-		fn_8019E880(temp_r28);
-	}
-	fn_8019EB94(temp_r28, &sp14, 1);
-	temp_f31_6 = fn_800D7B00(arg0->unkF0);
-	fn_80195790(
-	    temp_r28 + 0x10, &AxisY, lbl_8_rodata_164C[0] - fn_800D7AE4(arg0->unkF0), temp_f31_6, 1);
-	fn_8019E880(temp_r28);
-	if (OnEdit__10TObjSetObjFv(&arg0->unk28) == 0) {
-		if ((s32)arg0->unkD8 == 1) {
-			Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk30, &lbl_8_data_1524C, 3, 4);
-		} else {
-			Init__7C_COLLIFP8CCL_INFOiUc(&arg0->unk30, &lbl_8_data_151BC, 3, 4);
-		}
-		if ((u32)(M2C_FIELD(M2C_FIELD(arg0, void**, 0x28), s32*, 0x18) & 0x10000) != 0) {
-			temp_r3_3                        = arg0->unk40;
-			M2C_FIELD(temp_r3_3, s32*, 4)    = (s32)(M2C_FIELD(temp_r3_3, s32*, 4) | 0x10);
-			temp_r3_4                        = arg0->unk40;
-			M2C_FIELD(temp_r3_4, s32*, 0x34) = (s32)(M2C_FIELD(temp_r3_4, s32*, 0x34) & 0xFFFFFFEF);
-			temp_r3_5                        = arg0->unk40;
-			M2C_FIELD(temp_r3_5, s32*, 0x64) = (s32)(M2C_FIELD(temp_r3_5, s32*, 0x64) & 0xFFFFFFEF);
-			CalcRange__7C_COLLIFv(&arg0->unk30);
+			    clumps[i], ((frame->flags & 0x1C0000) >> 18) + 4);
 		}
 	}
-	return arg0;
 }
 
-void fn_8_964DC(void* arg0, void* arg1)
+void TObjS11Door::DestroyClump()
 {
-	u8* temp_r3;
-
-	temp_r3 = M2C_FIELD(arg1, u8**, 0x2C);
-	if ((s8)*temp_r3 < 0) {
-		*temp_r3 = 0;
-	}
-	if ((s8)*temp_r3 > 1) {
-		*temp_r3 = 1;
-	}
-	s11doorObjectFieldNames = *(&lbl_8_data_151B4 + (s8)*temp_r3);
-}
-
-void s11doorObjectUnload(void)
-{
-	u32* var_r30;
-	s32 var_r29;
-
-	var_r29 = 0;
-	var_r30 = lbl_8_data_15134;
-	do {
-		if ((u32)*var_r30 != 0U) {
-			fn_80150958((void*)*var_r30);
-			*var_r30 = 0U;
+	for (int i = 0; i < 2; i++) {
+		if (clumps[i] != NULL) {
+			fn_8015BBF8(*(void**)((u8*)lbl_8042C1D0 + 0x725C), clumps[i]);
+			fn_80150958(clumps[i]);
+			clumps[i] = NULL;
 		}
-		var_r30 += 1;
-		var_r29 += 1;
-	} while (var_r29 < 2);
-}
-
-void s11doorObjectLoad(M2C_UNK arg_sp0)
-{
-	s32* var_r29;
-	u32* var_r28;
-	s32 var_r27;
-
-	if ((u32)M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18) != 0U) {
-		fn_801A4C84(M2C_FIELD(lbl_8042C1D0, u32*, 0x8C18));
-	} else {
-		return;
 	}
-	LoadOneFile__7ONEFILEFPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50), &lbl_802FF5A0);
-	var_r27 = 0;
-	var_r29 = &lbl_8_data_15164;
-	var_r28 = lbl_8_data_15134;
-	do {
-		*var_r28 = LoadClumpEx__7ONEFILEFUiPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50),
-		    CheckFileID__7ONEFILEFPc(M2C_FIELD(lbl_8042C298, s32*, 0xA50), *var_r29),
-		    &lbl_802FF5A0);
-		var_r29 += 1;
-		var_r28 += 1;
-		var_r27 += 1;
-	} while (var_r27 < 2);
-}
-
-void s11doorObjectCreate(void)
-{
-	TObject* object = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0xFC);
-	if (object != NULL) {
-		fn_8_96018(object, lbl_8042C110);
-	}
-}
-
-void s11doorObjectRegister(void)
-{
-	s11doorObjectEntry.flags      = 0;
-	s11doorObjectEntry.unk18      = 0;
-	s11doorObjectEntry.name       = (const char*)&s11doorObjectDisplayName;
-	s11doorObjectEntry.load       = (void (*)(void))s11doorObjectLoad;
-	s11doorObjectEntry.unload     = (void (*)(void))s11doorObjectUnload;
-	s11doorObjectEntry.create     = (void (*)(void))s11doorObjectCreate;
-	s11doorObjectEntry.unk10      = (void*)0;
-	s11doorObjectEntry.flags      = 0x20000;
-	s11doorObjectEntry.unk18      = 0;
-	s11doorObjectEntry.unk20      = 0x1E;
-	s11doorObjectEntry.unk1C      = 0x1101;
-	s11doorObjectEntry.unk1E      = 2;
-	s11doorObjectEntry.unk21      = 0;
-	s11doorObjectEntry.fieldTypes = (const char*)&s11doorObjectFieldTypes;
-	s11doorObjectEntry.fieldNames = (const char**)&s11doorObjectFieldNames;
-	if ((const char*)&s11doorObjectFieldTypes != NULL) {
-		s11doorObjectEntry.flags |= 8;
-	} else {
-		s11doorObjectEntry.flags &= ~8;
-	}
-}
 }

@@ -2844,3 +2844,17 @@ Not taken from the draft: the `game/main.c` and `game/heap.c` changes (already
 resolved differently on `main`), the blanket inline overrides, and the BFBB/SMS
 headers, which the ported units do not need. Real method names for the shared
 functions remain a follow-up best done in both modules together.
+
+### Stage 11 door whole unit
+
+`rel/o_s11_door.cpp` is GameCube C++: the retained PS2 `TObjS11Door`
+method family correlates with the GameCube class-name string, vtable,
+constructor/destructor and adjustment thunk. The source restores this class
+with its `TObject`/`TObjSetObj` bases; it uses no PS2 implementation code.
+Deferred automatic inlining is scoped to this unit: reverse method-definition
+order reproduces the native function order and places its generated vtable
+after the explicit data. The prior object was NonMatching; the complete
+reconstruction now matches all 15 native functions, 5,408 instruction bytes,
+owned sections and 353 resolved relocations. Both the full G9SE8P release
+and all-source build pass, with all 18 final hashes exact. No object
+normalizer is used for this unit.
