@@ -1211,6 +1211,9 @@ rel/searcher_reset.cpp:
 rel/searcher_create_instance.cpp:
 	.text       start:0x00059C80 end:0x00059CD4
 
+rel/searcher_unload.cpp:
+	.text       start:0x0005A0A4 end:0x0005A170
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3E4 end:0x0005A42C
 
