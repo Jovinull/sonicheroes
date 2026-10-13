@@ -24,6 +24,14 @@ struct TEnemyGadgetBase {
 class TEnemyGadget : public TEnemyGadgetBase
 {
 public:
+	enum eGadgetMode {
+		E_GM_NOACTION,
+		E_GM_STANDBY,
+		E_GM_PREATTACK,
+		E_GM_ATTACK,
+		E_GM_POSTATTACK,
+	};
+
 	virtual ~TEnemyGadget();
 	virtual void Exec();
 	virtual void Disp();
@@ -37,7 +45,7 @@ public:
 	virtual void Update();
 	virtual void DispOpaq();
 	virtual void DispTrans();
-	virtual s32 ReqGadgetMode(s32 mode);
+	virtual s32 ReqGadgetMode(eGadgetMode mode);
 	virtual void Cancel();
 };
 
@@ -130,10 +138,26 @@ typedef struct SearcherSet {
 	RwV3d pos; // 0x00
 	u8 unk0C[0x4];
 	s32 angle; // 0x10
+	u8 unk14[0x16];
+	u8 group; // 0x2A, the summoning group
 } SearcherSet;
 
+typedef struct SearcherColli {
+	u8 unk00[0x34];
+	u32 flags; // 0x34, 0x10: off
+} SearcherColli;
+
+typedef struct SearcherLight {
+	u8 unk00[0x1C];
+	s32 on; // 0x1C
+} SearcherLight;
+
 typedef struct Searcher {
-	u8 unk000[0xB0];
+	char* name; // 0x00
+	u16 signal; // 0x04, 1: kill
+	u8 unk06[0x32];
+	SearcherColli* colli; // 0x38
+	u8 unk3C[0x74];
 	SearcherSet* set; // 0xB0
 	u8 unk0B4[0x34];
 	RpClump* clump; // 0xE8
@@ -161,9 +185,12 @@ typedef struct Searcher {
 	u8 unk234[0x10];
 	RpClump* clumps[4]; // 0x244, lit body, dark body, lit and dark parts
 	s32 lit;            // 0x254
-	u8 unk258[0x10];
+	u8 unk258[0x4];
+	SearcherLight* light; // 0x25C
+	u8 unk260[0x8];
 	TEnemyGadget* gadget; // 0x268
-	u8 unk26C[0x20];
+	s32 bobAngle;         // 0x26C
+	u8 unk270[0x1C];
 	f32 leanX; // 0x28C
 	f32 leanZ;      // 0x290
 	f32 shadowFade; // 0x294, how fast the shadow fades with height

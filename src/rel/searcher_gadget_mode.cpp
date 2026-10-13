@@ -6,7 +6,7 @@
 #include "src/rel/searcher.inc"
 
 extern "C" s32 ReqChangeGadgetMode__17TObjEnemySearcherFQ212TEnemyGadget11eGadgetMode(
-    Searcher* searcher, s32 mode)
+    Searcher* searcher, TEnemyGadget::eGadgetMode mode)
 {
 	if (searcher->gadget != NULL) {
 		return searcher->gadget->ReqGadgetMode(mode);

@@ -1209,6 +1209,9 @@ rel/searcher_aim_first.cpp:
 rel/searcher_walk_to_aim.cpp:
 	.text       start:0x00055C84 end:0x00055D8C
 
+rel/searcher_md_siren.cpp:
+	.text       start:0x0005631C end:0x0005666C
+
 rel/searcher_create.cpp:
 	.text       start:0x0005A3E4 end:0x0005A42C
 
