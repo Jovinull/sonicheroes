@@ -196,3 +196,6 @@ rel/tenkyu_goalring.cpp:
 
 rel/event_script_update_endian.cpp:
 	.text       start:0x00091C00 end:0x00091CB4
+
+rel/event_script_address.cpp:
+	.text       start:0x00091D4C end:0x00091DA8
