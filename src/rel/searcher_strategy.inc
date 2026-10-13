@@ -27,8 +27,11 @@ public:
 	int SearchPlayerFirst();
 	void ReqChangeGadgetMode(TEnemyGadget::eGadgetMode mode);
 	void SetUpAimPosition();
+	int GetMoveType() { return moveType; }
 
-	u8 unk000[0x32C];
+	u8 unk000[0x320];
+	s32 moveType; // 0x320
+	u8 unk324[0x8];
 	s32 readyWait;  // 0x32C
 	s32 attackWait; // 0x330
 };
@@ -106,4 +109,49 @@ public:
 	virtual void StrategyMode_ThunderShoot(eStrategy sub);
 
 	TEnemySearcher_StrategyShot();
+};
+
+class TEnemySearcher_StrategyBomb : public TEnemySearcher_Strategy
+{
+public:
+	// the real destructor is implicit; declared here so that the units with
+	// only the modes do not emit this class's vtable
+	virtual ~TEnemySearcher_StrategyBomb();
+	virtual void StrategyMode_Wait(eStrategy sub);
+	virtual void StrategyMode_Walk(eStrategy sub);
+	virtual void StrategyMode_Wander(eStrategy sub);
+	virtual void StrategyMode_Search(eStrategy sub);
+	virtual void StrategyMode_Attack(eStrategy sub);
+
+	TEnemySearcher_StrategyBomb();
+};
+
+class TEnemySearcher_StrategyLaser : public TEnemySearcher_Strategy
+{
+public:
+	// the real destructor is implicit; declared here so that the units with
+	// only the modes do not emit this class's vtable
+	virtual ~TEnemySearcher_StrategyLaser();
+	virtual void StrategyMode_Wait(eStrategy sub);
+	virtual void StrategyMode_Walk(eStrategy sub);
+	virtual void StrategyMode_Wander(eStrategy sub);
+
+	TEnemySearcher_StrategyLaser();
+};
+
+class TEnemySearcher_StrategyNeedle : public TEnemySearcher_Strategy
+{
+public:
+	// the real destructor is implicit; declared here so that the units with
+	// only the modes do not emit this class's vtable
+	virtual ~TEnemySearcher_StrategyNeedle();
+	virtual void StrategyMode_Wait(eStrategy sub);
+	virtual void StrategyMode_Walk(eStrategy sub);
+	virtual void StrategyMode_Wander(eStrategy sub);
+	virtual void StrategyMode_Search(eStrategy sub);
+
+	TEnemySearcher_StrategyNeedle();
+
+	s32 mFireTimer; // 0x20
+	s32 mFiring;    // 0x24
 };

@@ -1839,6 +1839,9 @@ rel/searcher_strategy_mgun.cpp:
 rel/searcher_strategy_shot.cpp:
 	.text       start:0x000AB434 end:0x000ABA58
 
+rel/searcher_strategy_bomb.cpp:
+	.text       start:0x000ABB0C end:0x000ABFE0
+
 rel/e_flyer_stage11.cpp:
 	.text       start:0x000AD314 end:0x000B0DDC
 	.ctors      start:0x00000104 end:0x00000108

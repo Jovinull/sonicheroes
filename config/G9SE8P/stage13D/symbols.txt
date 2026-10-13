@@ -901,11 +901,11 @@ StrategyMode_Walk__27TEnemySearcher_StrategyShotFQ235TEnemyStrategy<17TObjEnemyS
 StrategyMode_Wait__27TEnemySearcher_StrategyShotFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00052A4C; // type:function size:0xC0
 fn_9_52B0C = .text:0x00052B0C; // type:function size:0x74
 fn_9_52B80 = .text:0x00052B80; // type:function size:0x40
-fn_9_52BC0 = .text:0x00052BC0; // type:function size:0x154
-fn_9_52D14 = .text:0x00052D14; // type:function size:0x100
-fn_9_52E14 = .text:0x00052E14; // type:function size:0xD0
-fn_9_52EE4 = .text:0x00052EE4; // type:function size:0xD8
-fn_9_52FBC = .text:0x00052FBC; // type:function size:0xD8
+StrategyMode_Attack__27TEnemySearcher_StrategyBombFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00052BC0; // type:function size:0x154
+StrategyMode_Search__27TEnemySearcher_StrategyBombFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00052D14; // type:function size:0x100
+StrategyMode_Wander__27TEnemySearcher_StrategyBombFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00052E14; // type:function size:0xD0
+StrategyMode_Walk__27TEnemySearcher_StrategyBombFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00052EE4; // type:function size:0xD8
+StrategyMode_Wait__27TEnemySearcher_StrategyBombFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00052FBC; // type:function size:0xD8
 fn_9_53094 = .text:0x00053094; // type:function size:0x40
 fn_9_530D4 = .text:0x000530D4; // type:function size:0x58
 fn_9_5312C = .text:0x0005312C; // type:function size:0x58
