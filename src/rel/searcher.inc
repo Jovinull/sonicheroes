@@ -209,8 +209,10 @@ typedef struct Searcher {
 	u8 unk2C8[0x4];
 	RwV3d shadowPos;    // 0x2CC, -1000000 high: no ground
 	RwV3d shadowNormal; // 0x2D8
-	s32 request; // 0x2E4, the enemy mode it asks the strategy for
-	u8 unk2E8[0x28];
+	s32 request;        // 0x2E4, the enemy mode it asks the strategy for
+	u8 unk2E8[0x14];
+	RwV3d savedAim; // 0x2FC, the walk's aim while it is away
+	u8 unk308[0x8];
 	RpClump* partsClump; // 0x310
 	s32 plainTexture;    // 0x314
 	s32 state;           // 0x318, 2: no shadow
