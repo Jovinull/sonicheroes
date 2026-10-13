@@ -932,7 +932,7 @@ StrategyMode_Search__23TEnemySearcher_StrategyFQ235TEnemyStrategy<17TObjEnemySea
 StrategyMode_Wander__23TEnemySearcher_StrategyFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00053FB8; // type:function size:0x20
 StrategyMode_Walk__23TEnemySearcher_StrategyFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00053FD8; // type:function size:0x20
 StrategyMode_Wait__23TEnemySearcher_StrategyFQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00053FF8; // type:function size:0x20
-fn_8_54018 = .text:0x00054018; // type:function size:0x188
+ExecStrategyMode__23TEnemySearcher_StrategyFiQ235TEnemyStrategy<17TObjEnemySearcher>9eStrategy = .text:0x00054018; // type:function size:0x188
 fn_8_541A0 = .text:0x000541A0; // type:function size:0x64
 fn_8_54204 = .text:0x00054204; // type:function size:0x34
 fn_8_54238 = .text:0x00054238; // type:function size:0x50
