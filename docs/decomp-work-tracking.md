@@ -176,3 +176,9 @@ emits all twelve functions in native target order. It removes factory-word
 patching and code reordering, retaining only guarded data/symbol normalization.
 The full configured code and data extents remain covered, including explicitly
 uncertain residual zero storage; see [evidence](antenna-unit-evidence.md).
+`decomp/blinklight-native-20261013` restores the Stage13 blink-light class and
+its native particle/clump methods. All thirteen functions emit in target order
+without instruction patches. Full configured code/data ranges remain covered;
+uncertain zero tails are retained as opaque residual storage. The remaining
+normalizer is limited to guarded data/symbol operations. See
+[blink-light evidence](blinklight-unit-evidence.md).

@@ -2918,3 +2918,14 @@ All configured zero tails remain covered as opaque residual storage; their
 historical declarations and ownership are explicitly uncertain. See
 [antenna-unit evidence](antenna-unit-evidence.md) for the complete 3,128-byte
 scope, 213 relocation checks, and validation.
+### Stage13 blink-light native class reconstruction
+
+`stage13D/o_s13_blinklight.cpp` emits all thirteen functions in native target
+order. PS2 symbolic metadata identifies `TObjS13BlinkLight`, its three bases,
+particle and clump methods, and the eight-method source inventory. Native
+construction removes the factory instruction patch; only existing-data atom
+ordering and symbol/alignment metadata remain in the build helper. The full
+configured 3,296-byte scope is preserved, including explicitly opaque zero
+storage whose historical declarations and ownership remain unproven. See
+[blink-light evidence](blinklight-unit-evidence.md) for all 217 relocation
+checks, boundary qualifications, and validation.
