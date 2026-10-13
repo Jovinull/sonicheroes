@@ -126,8 +126,16 @@ public:
 	void AddScore(s32 playernumber, s32 score);
 };
 
+typedef struct SearcherSet {
+	RwV3d pos; // 0x00
+	u8 unk0C[0x4];
+	s32 angle; // 0x10
+} SearcherSet;
+
 typedef struct Searcher {
-	u8 unk000[0xE8];
+	u8 unk000[0xB0];
+	SearcherSet* set; // 0xB0
+	u8 unk0B4[0x34];
 	RpClump* clump; // 0xE8
 	u8 unk0EC[0x54];
 	RwV3d pos;  // 0x140
@@ -140,7 +148,10 @@ typedef struct Searcher {
 	s32 mode; // 0x19C
 	u8 unk1A0[0x4];
 	f32 hitPoint; // 0x1A4
-	u8 unk1A8[0x88];
+	u8 unk1A8[0x18];
+	RwV3d home;   // 0x1C0
+	RwV3d aimPos; // 0x1CC
+	u8 unk1D8[0x58];
 	s32 breaker; // 0x230
 	u8 unk234[0x10];
 	RpClump* clumps[4]; // 0x244, lit body, dark body, lit and dark parts
@@ -153,7 +164,8 @@ typedef struct Searcher {
 	f32 shadowFade; // 0x294, how fast the shadow fades with height
 	s32 shadowOn;   // 0x298
 	s32 mgunAttackAngle; // 0x29C, 0x3000 down or 0xD000 up
-	u8 unk2A0[0x8];
+	u8 unk2A0[0x4];
+	f32 aimDistance; // 0x2A4
 	f32 shownHitPoint; // 0x2A8
 	u8 unk2AC[0x4];
 	TEnemyIconMan* gauge; // 0x2B0
