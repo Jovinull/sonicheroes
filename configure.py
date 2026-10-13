@@ -1111,7 +1111,7 @@ config.libs = [
                 ],
             ),
             Object(Matching, "game/eff_muteki.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
-            Object(NonMatching, "game/calc_movcolli.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline auto", "-pooldata off"]),
+            Object(Matching, "game/calc_movcolli.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline auto", "-pooldata off"]),
             Object(Matching, "game/calc_colli.cpp", extra_cflags=["-inline deferred,noauto", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/light.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/aram_pool.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),

@@ -1,6 +1,6 @@
 #include "game/calc_movcolli.h"
 // Complete GameCube moving-collision unit, 0x800D2ED4--0x800D52AC.
-// NonMatching: typed control-flow reconstruction under native comparison.
+// Native code and owned data verified against the GameCube object.
 // Names and signatures correlated with C++ symbolic metadata; behavior is GameCube.
 // Separate component-store view, as used in the neighboring collision unit.
 struct VectorComponents {
@@ -49,6 +49,11 @@ enum ENUM_CL_MOVING clDetectMS2T(const RwV3d* sphere_pos, f32 sphere_rad, const 
 	RwV3d sp28;
 	RwV3d sp1C;
 	RwV3d sp10;
+	f32 motion_x;
+	f32 edge_x, edge_y, edge_z;
+	f32 coef_z, coef_t, coef_s;
+	f32 coef_later_z, coef_later_t, coef_later_s;
+	f32 coef_edge_z, coef_edge_t, coef_edge_second_t, coef_edge_s;
 	f32 s;
 	f32 t;
 	enum ENUM_CL_MOVING temp_r3;
@@ -70,11 +75,11 @@ enum ENUM_CL_MOVING clDetectMS2T(const RwV3d* sphere_pos, f32 sphere_rad, const 
 	f32 inverseNormalLength;
 	f32 temp_f1_5;
 	f32 temp_f1_6;
-	f32 temp_f1_8;
 	f32 AOAN;
-	f32 planeDistance;
 	f32 expandedRadius;
-	f32 signedPlaneDistance;
+	f32 planeDistance;
+	f32 projectionValues[2]; // Signed plane distance, then projection scale.
+	f64 planeAbsolute;
 	f32 projectionRate;
 	f32 motionRate;
 	f32 projectedOffsetLengthSquared;
@@ -167,20 +172,23 @@ block_18:
 	((VectorComponents*)&vec_ao)->z = sphere_pos->z - tri_vertex->z;
 	AOAN                = (vec_ao.z * crsP.z) + ((vec_ao.x * crsP.x) + (vec_ao.y * crsP.y));
 	inverseNormalLength = fn_80199248((crsP.z * crsP.z) + ((crsP.x * crsP.x) + (crsP.y * crsP.y)));
-	signedPlaneDistance = AOAN * inverseNormalLength;
-	if (signedPlaneDistance <= -sphere_rad) {
+	projectionValues[0] = AOAN * inverseNormalLength;
+	if (projectionValues[0] <= -sphere_rad) {
 		return CL_MOVING_NONE;
 	}
-	((VectorComponents*)&vec_oq)->x = crsP.x * (-(inverseNormalLength * signedPlaneDistance));
-	((VectorComponents*)&vec_oq)->y = crsP.y * (-(inverseNormalLength * signedPlaneDistance));
-	((VectorComponents*)&vec_oq)->z = crsP.z * (-(inverseNormalLength * signedPlaneDistance));
-	planeDistance                   = (f32)__fabs(signedPlaneDistance);
+	((VectorComponents*)&vec_oq)->x
+	    = crsP.x * (projectionValues[1] = -(inverseNormalLength * projectionValues[0]));
+	((VectorComponents*)&vec_oq)->y = crsP.y * projectionValues[1];
+	((VectorComponents*)&vec_oq)->z = crsP.z * projectionValues[1];
+	planeAbsolute                   = __fabs(projectionValues[0]);
+	planeDistance                   = (f32)planeAbsolute;
 	if (planeDistance <= expandedRadius) {
 		((VectorComponents*)&vec_aq)->x = vec_ao.x + vec_oq.x;
 		((VectorComponents*)&vec_aq)->y = vec_ao.y + vec_oq.y;
 		((VectorComponents*)&vec_aq)->z = vec_ao.z + vec_oq.z;
 		clGetTriangleVectorCoef_CrsP(&vec_ab, &vec_ac, &vec_aq, &crsP, &s, &t);
-		if ((s >= lbl_8042DFEC) && (t >= lbl_8042DFEC) && ((s + t) <= lbl_8042DFF0)) {
+		if (((coef_s = s) >= (coef_z = lbl_8042DFEC)) && ((coef_t = t) >= coef_z)
+		    && ((coef_s + coef_t) <= lbl_8042DFF0)) {
 			if (coli_pos != NULL) {
 				coli_pos->x = tri_vertex->x + vec_aq.x;
 				coli_pos->y = tri_vertex->y + vec_aq.y;
@@ -218,8 +226,8 @@ block_18:
 	((VectorComponents*)&vec_oq_)->x = vec_oq.x * projectionRate;
 	((VectorComponents*)&vec_oq_)->y = vec_oq.y * projectionRate;
 	((VectorComponents*)&vec_oq_)->z = vec_oq.z * projectionRate;
-	projectedMotionDot
-	    = (vec_oq_.z * sphere_vec->z) + ((vec_oq_.x * sphere_vec->x) + (vec_oq_.y * sphere_vec->y));
+	projectedMotionDot               = (vec_oq_.z * sphere_vec->z)
+	    + ((vec_oq_.x * (motion_x = sphere_vec->x)) + (vec_oq_.y * sphere_vec->y));
 	projectedOffsetLengthSquared
 	    = (vec_oq_.z * vec_oq_.z) + ((vec_oq_.x * vec_oq_.x) + (vec_oq_.y * vec_oq_.y));
 	if (projectedMotionDot <= lbl_8042DFF4) {
@@ -229,7 +237,7 @@ block_18:
 		return CL_MOVING_NONE;
 	}
 	motionRate                        = projectedOffsetLengthSquared / projectedMotionDot;
-	((VectorComponents*)&vec_ov_)->x  = sphere_vec->x * motionRate;
+	((VectorComponents*)&vec_ov_)->x  = motion_x * motionRate;
 	((VectorComponents*)&vec_ov_)->y  = sphere_vec->y * motionRate;
 	((VectorComponents*)&vec_ov_)->z  = sphere_vec->z * motionRate;
 	((VectorComponents*)&vec_av_)->x  = vec_ao.x + vec_ov_.x;
@@ -242,7 +250,9 @@ block_18:
 	((VectorComponents*)&vec_av__)->y = vec_av_.y + vec_q_q.y;
 	((VectorComponents*)&vec_av__)->z = vec_av_.z + vec_q_q.z;
 	clGetTriangleVectorCoef_CrsP(&vec_ab, &vec_ac, &vec_av__, &crsP, &s, &t);
-	if ((s >= lbl_8042DFEC) && (t >= lbl_8042DFEC) && ((s + t) <= lbl_8042DFF0)) {
+	if (((coef_later_s = s) >= (coef_later_z = lbl_8042DFEC))
+	    && ((coef_later_t = t) >= coef_later_z)
+	    && ((coef_later_s + coef_later_t) <= lbl_8042DFF0)) {
 		if (coli_pos != NULL) {
 			coli_pos->x = tri_vertex->x + vec_av__.x;
 			coli_pos->y = tri_vertex->y + vec_av__.y;
@@ -256,8 +266,8 @@ block_18:
 		return CL_MOVING_COLLISION;
 	}
 block_61:
-	if (s < lbl_8042DFEC) {
-		if (t < lbl_8042DFEC) {
+	if ((coef_edge_s = s) < (coef_edge_z = lbl_8042DFEC)) {
+		if ((coef_edge_t = t) < coef_edge_z) {
 			temp_r3_3
 			    = clDetectMS2LS_(&vec_ao, sphere_rad, sphere_vec, &vec_ab, &crsP, &sp70, &sp58);
 			if (temp_r3_3 == CL_MOVING_INTERSECTION) {
@@ -348,14 +358,13 @@ block_61:
 			}
 			return var_r3;
 		}
-		if ((s + t) > lbl_8042DFF0) {
-			temp_f1_8                       = vec_ac.x;
-			((VectorComponents*)&vec_ab)->x = vec_ab.x - temp_f1_8;
-			((VectorComponents*)&vec_ab)->y -= vec_ac.y;
-			((VectorComponents*)&vec_ab)->z -= vec_ac.z;
-			((VectorComponents*)&vec_ao)->x = vec_ao.x - temp_f1_8;
-			((VectorComponents*)&vec_ao)->y -= vec_ac.y;
-			((VectorComponents*)&vec_ao)->z -= vec_ac.z;
+		if ((coef_edge_s + coef_edge_t) > lbl_8042DFF0) {
+			((VectorComponents*)&vec_ab)->x = vec_ab.x - (edge_x = vec_ac.x);
+			((VectorComponents*)&vec_ab)->y = vec_ab.y - (edge_y = vec_ac.y);
+			((VectorComponents*)&vec_ab)->z = vec_ab.z - (edge_z = vec_ac.z);
+			((VectorComponents*)&vec_ao)->x = vec_ao.x - edge_x;
+			((VectorComponents*)&vec_ao)->y -= edge_y;
+			((VectorComponents*)&vec_ao)->z -= edge_z;
 			temp_r3_2 = clDetectMS2LS_(
 			    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ab, &crsP, &sp4C, &sp34);
 			if (temp_r3_2 == CL_MOVING_INTERSECTION) {
@@ -464,14 +473,14 @@ block_61:
 		}
 		return var_r3;
 	}
-	if (t < lbl_8042DFEC) {
-		if ((s + t) > lbl_8042DFF0) {
-			((VectorComponents*)&vec_ac)->x -= vec_ab.x;
-			((VectorComponents*)&vec_ac)->y -= vec_ab.y;
-			((VectorComponents*)&vec_ac)->z -= vec_ab.z;
-			((VectorComponents*)&vec_ao)->x -= vec_ab.x;
-			((VectorComponents*)&vec_ao)->y -= vec_ab.y;
-			((VectorComponents*)&vec_ao)->z -= vec_ab.z;
+	if ((coef_edge_second_t = t) < coef_edge_z) {
+		if ((coef_edge_s + coef_edge_second_t) > lbl_8042DFF0) {
+			((VectorComponents*)&vec_ac)->x = vec_ac.x - (edge_x = vec_ab.x);
+			((VectorComponents*)&vec_ac)->y = vec_ac.y - (edge_y = vec_ab.y);
+			((VectorComponents*)&vec_ac)->z = vec_ac.z - (edge_z = vec_ab.z);
+			((VectorComponents*)&vec_ao)->x -= edge_x;
+			((VectorComponents*)&vec_ao)->y -= edge_y;
+			((VectorComponents*)&vec_ao)->z -= edge_z;
 			temp_r3 = clDetectMS2LS_(
 			    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ac, &crsP, &sp28, &sp10);
 			if (temp_r3 == CL_MOVING_INTERSECTION) {
@@ -580,13 +589,13 @@ block_61:
 		}
 		return var_r3;
 	}
-	if ((s + t) > lbl_8042DFF0) {
-		((VectorComponents*)&vec_ac)->x -= vec_ab.x;
-		((VectorComponents*)&vec_ac)->y -= vec_ab.y;
-		((VectorComponents*)&vec_ac)->z -= vec_ab.z;
-		((VectorComponents*)&vec_ao)->x -= vec_ab.x;
-		((VectorComponents*)&vec_ao)->y -= vec_ab.y;
-		((VectorComponents*)&vec_ao)->z -= vec_ab.z;
+	if ((coef_edge_s + coef_edge_second_t) > lbl_8042DFF0) {
+		((VectorComponents*)&vec_ac)->x = vec_ac.x - (edge_x = vec_ab.x);
+		((VectorComponents*)&vec_ac)->y = vec_ac.y - (edge_y = vec_ab.y);
+		((VectorComponents*)&vec_ac)->z = vec_ac.z - (edge_z = vec_ab.z);
+		((VectorComponents*)&vec_ao)->x -= edge_x;
+		((VectorComponents*)&vec_ao)->y -= edge_y;
+		((VectorComponents*)&vec_ao)->z -= edge_z;
 		var_r3 = clDetectMS2LS_(
 		    (RwV3d*)&vec_ao, sphere_rad, sphere_vec, (RwV3d*)&vec_ac, &crsP, ans_vec, coli_pos);
 		if (var_r3 != CL_MOVING_NONE) {
@@ -609,6 +618,9 @@ block_61:
 enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, const RwV3d* sphere_vec,
     const RwV3d* detect_vec, const RwV3d* safe_vec, RwV3d* ans_vec, RwV3d* coli_pos)
 {
+	f32 coefficient[3]; // Cached direction.x, projection rate, and dot product.
+	f32 projectionPointX, projectionDirectionY, projectionPointY;
+	f32 point_y, point_x, point_z;
 	RwV3d crsP;
 	RwV3d circlePos;
 	RwV3d coliPos;
@@ -634,14 +646,9 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	volatile f32 sp8;
 	enum ENUM_CL_MOVING var_r31;
 	enum ENUM_CL_MOVING var_r3;
-	f32 temp_f0_16;
-	f32 temp_f0_26;
 	f32 temp_f0_39;
 	f32 temp_f0_40;
 	f32 temp_f10_2;
-	f32 temp_f10_3;
-	f32 temp_f11_2;
-	f32 temp_f12_2;
 	f32 temp_f1;
 	f32 temp_f1_10;
 	f32 temp_f1_11;
@@ -660,16 +667,12 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	f32 temp_f1_7;
 	f32 temp_f1_8;
 	f32 temp_f1_9;
-	f32 temp_f27;
-	f32 temp_f28;
+
 	f32 temp_f2_4;
 	f32 temp_f2_5;
 	f32 temp_f2_6;
 	f32 temp_f3_4;
-	f32 temp_f3_5;
-	f32 temp_f3_6;
 	f32 temp_f3_7;
-	f32 temp_f4_10;
 	f32 temp_f4_11;
 	f32 temp_f4_12;
 	f32 temp_f4_2;
@@ -677,7 +680,6 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	f32 temp_f4_4;
 	f32 temp_f4_5;
 	f32 temp_f4_6;
-	f32 temp_f4_7;
 	f32 temp_f4_8;
 	f32 temp_f4_9;
 	f32 temp_f5;
@@ -685,13 +687,10 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	f32 temp_f6;
 	f32 temp_f6_2;
 	f32 temp_f7_4;
-	f32 temp_f7_5;
 	f32 temp_f7_6;
 	f32 temp_f7_7;
 	f32 temp_f8_3;
-	f32 temp_f8_4;
 	f32 temp_f8_5;
-	f32 temp_f9_3;
 	f32 var_f1;
 	f32 var_f1_2;
 	f32 var_f1_3;
@@ -744,19 +743,20 @@ enum ENUM_CL_MOVING clDetectMS2LS_(const RwV3d* sphere_pos, f32 sphere_rad, cons
 	    = (detect_vec->z * sphere_vec->x) - (detect_vec->x * sphere_vec->z);
 	((VectorComponents*)&crsP)->z
 	    = (detect_vec->x * sphere_vec->y) - (detect_vec->y * sphere_vec->x);
-	temp_f1    = (crsP.z * sphere_pos->z) + ((crsP.x * sphere_pos->x) + (crsP.y * sphere_pos->y));
+	temp_f1 = (crsP.z * (point_z = sphere_pos->z))
+	    + ((crsP.x * (point_x = sphere_pos->x)) + (crsP.y * (point_y = sphere_pos->y)));
 	temp_f10_2 = (crsP.z * crsP.z) + ((crsP.x * crsP.x) + (crsP.y * crsP.y));
 	temp_f5    = sphere_rad * sphere_rad;
 	if (temp_f10_2 < lbl_8042DFE8) {
-		temp_f8_3 = ((detect_vec->z * sphere_pos->z)
-		                + ((detect_vec->x * sphere_pos->x) + (detect_vec->y * sphere_pos->y)))
+		temp_f8_3
+		    = ((detect_vec->z * point_z) + ((detect_vec->x * point_x) + (detect_vec->y * point_y)))
 		    / temp_f6;
 		((VectorComponents*)&spAC)->x = detect_vec->x * temp_f8_3;
 		((VectorComponents*)&spAC)->y = detect_vec->y * temp_f8_3;
 		((VectorComponents*)&spAC)->z = detect_vec->z * temp_f8_3;
-		((VectorComponents*)&spA0)->x = sphere_pos->x - spAC.x;
-		((VectorComponents*)&spA0)->y = sphere_pos->y - spAC.y;
-		((VectorComponents*)&spA0)->z = sphere_pos->z - spAC.z;
+		((VectorComponents*)&spA0)->x = point_x - spAC.x;
+		((VectorComponents*)&spA0)->y = point_y - spAC.y;
+		((VectorComponents*)&spA0)->z = point_z - spAC.z;
 		temp_f4_2                     = (spA0.z * spA0.z) + ((spA0.x * spA0.x) + (spA0.y * spA0.y));
 		if (temp_f4_2 > temp_f5) {
 			return CL_MOVING_NONE;
@@ -858,24 +858,19 @@ block_30:
 		}
 		return CL_MOVING_NONE;
 	}
-	temp_f4_4 = temp_f5 - temp_f7_4;
-	temp_f28
-	    = (detect_vec->z * temp_f1_5) + ((detect_vec->x * temp_f3_4) + (detect_vec->y * temp_f2_4));
-	temp_f27                      = temp_f28 / temp_f6;
-	temp_f12_2                    = detect_vec->x * temp_f27;
-	((VectorComponents*)&sp88)->x = temp_f12_2;
-	temp_f11_2                    = detect_vec->y * temp_f27;
-	((VectorComponents*)&sp88)->y = temp_f11_2;
-	temp_f10_3                    = detect_vec->z * temp_f27;
-	((VectorComponents*)&sp88)->z = temp_f10_3;
-	temp_f9_3                     = temp_f12_2 - temp_f3_4;
-	((VectorComponents*)&sp70)->x = temp_f9_3;
-	temp_f8_4                     = temp_f11_2 - temp_f2_4;
-	((VectorComponents*)&sp70)->y = temp_f8_4;
-	temp_f7_5                     = temp_f10_3 - temp_f1_5;
-	((VectorComponents*)&sp70)->z = temp_f7_5;
-	temp_f5_2 = (temp_f7_5 * temp_f7_5) + ((temp_f9_3 * temp_f9_3) + (temp_f8_4 * temp_f8_4));
-	if (temp_f28 <= lbl_8042DFEC) {
+	temp_f4_4      = temp_f5 - temp_f7_4;
+	coefficient[2] = (detect_vec->z * temp_f1_5)
+	    + (((coefficient[0] = detect_vec->x) * (projectionPointX = temp_f3_4))
+	        + ((projectionDirectionY = detect_vec->y) * (projectionPointY = temp_f2_4)));
+	coefficient[1]                = coefficient[2] / temp_f6;
+	((VectorComponents*)&sp88)->x = coefficient[0] * coefficient[1];
+	((VectorComponents*)&sp88)->y = detect_vec->y * coefficient[1];
+	((VectorComponents*)&sp88)->z = detect_vec->z * coefficient[1];
+	((VectorComponents*)&sp70)->x = sp88.x - temp_f3_4;
+	((VectorComponents*)&sp70)->y = sp88.y - temp_f2_4;
+	((VectorComponents*)&sp70)->z = sp88.z - temp_f1_5;
+	temp_f5_2                     = (sp70.z * sp70.z) + ((sp70.x * sp70.x) + (sp70.y * sp70.y));
+	if (coefficient[2] <= lbl_8042DFEC) {
 		temp_f7_6 = (temp_f1_5 * temp_f1_5) + ((temp_f3_4 * temp_f3_4) + (temp_f2_4 * temp_f2_4));
 		if (temp_f7_6 <= (lbl_8042DFE8 + temp_f4_4)) {
 			if (coli_pos != NULL) {
@@ -964,8 +959,8 @@ block_30:
 		}
 		goto block_120;
 	}
-	if (temp_f27 >= lbl_8042DFF0) {
-		temp_f8_5                     = detect_vec->x - temp_f3_4;
+	if (coefficient[1] >= lbl_8042DFF0) {
+		temp_f8_5                     = coefficient[0] - temp_f3_4;
 		((VectorComponents*)&sp64)->x = temp_f8_5;
 		temp_f7_7                     = detect_vec->y - temp_f2_4;
 		((VectorComponents*)&sp64)->y = temp_f7_7;
@@ -988,14 +983,10 @@ block_30:
 				return CL_MOVING_COLLISION;
 			}
 			if (ans_vec != NULL) {
-				temp_f4_7                     = sphere_pos->x - detect_vec->x;
-				((VectorComponents*)&sp58)->x = temp_f4_7;
-				temp_f3_5                     = sphere_pos->y - detect_vec->y;
-				((VectorComponents*)&sp58)->y = temp_f3_5;
-				temp_f0_16                    = sphere_pos->z - detect_vec->z;
-				((VectorComponents*)&sp58)->z = temp_f0_16;
-				temp_f4_8                     = (temp_f0_16 * temp_f0_16)
-				    + ((temp_f4_7 * temp_f4_7) + (temp_f3_5 * temp_f3_5));
+				((VectorComponents*)&sp58)->x = sphere_pos->x - detect_vec->x;
+				((VectorComponents*)&sp58)->y = sphere_pos->y - detect_vec->y;
+				((VectorComponents*)&sp58)->z = sphere_pos->z - detect_vec->z;
+				temp_f4_8 = (sp58.z * sp58.z) + ((sp58.x * sp58.x) + (sp58.y * sp58.y));
 				if (temp_f4_8 < lbl_8042DFE8) {
 					temp_f4_9 = (sphere_vec->z * sphere_vec->z)
 					    + ((sphere_vec->x * sphere_vec->x) + (sphere_vec->y * sphere_vec->y));
@@ -1068,9 +1059,9 @@ block_30:
 	}
 	if ((lbl_8042DFE8 + temp_f4_4) >= temp_f5_2) {
 		if (coli_pos != NULL) {
-			coli_pos->x = temp_f12_2;
-			coli_pos->y = temp_f11_2;
-			coli_pos->z = temp_f10_3;
+			coli_pos->x = sp88.x;
+			coli_pos->y = sp88.y;
+			coli_pos->z = sp88.z;
 		}
 		temp_f0_30 = __fabs(temp_f4_4 - temp_f5_2);
 		if (lbl_8042DFE8 >= (f32)temp_f0_30) {
@@ -1082,14 +1073,10 @@ block_30:
 			return CL_MOVING_COLLISION;
 		}
 		if (ans_vec != NULL) {
-			temp_f4_10                    = sphere_pos->x - sp88.x;
-			((VectorComponents*)&sp4C)->x = temp_f4_10;
-			temp_f3_6                     = sphere_pos->y - sp88.y;
-			((VectorComponents*)&sp4C)->y = temp_f3_6;
-			temp_f0_26                    = sphere_pos->z - sp88.z;
-			((VectorComponents*)&sp4C)->z = temp_f0_26;
-			temp_f4_11
-			    = (temp_f0_26 * temp_f0_26) + ((temp_f4_10 * temp_f4_10) + (temp_f3_6 * temp_f3_6));
+			((VectorComponents*)&sp4C)->x = sphere_pos->x - sp88.x;
+			((VectorComponents*)&sp4C)->y = sphere_pos->y - sp88.y;
+			((VectorComponents*)&sp4C)->z = sphere_pos->z - sp88.z;
+			temp_f4_11 = (sp4C.z * sp4C.z) + ((sp4C.x * sp4C.x) + (sp4C.y * sp4C.y));
 			if (temp_f4_11 < lbl_8042DFE8) {
 				temp_f4_12 = (sphere_vec->z * sphere_vec->z)
 				    + ((sphere_vec->x * sphere_vec->x) + (sphere_vec->y * sphere_vec->y));
@@ -1152,7 +1139,7 @@ block_30:
 		}
 		return CL_MOVING_INTERSECTION;
 	}
-	if (((temp_f7_5 * sphere_vec->z) + ((temp_f9_3 * sphere_vec->x) + (temp_f8_4 * sphere_vec->y)))
+	if (((sp70.z * sphere_vec->z) + ((sp70.x * sphere_vec->x) + (sp70.y * sphere_vec->y)))
 	    < lbl_8042DFEC) {
 		return CL_MOVING_NONE;
 	}
