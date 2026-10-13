@@ -8000,7 +8000,7 @@ config.custom_build_rules = [
     {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
-        "description": "FIX ef_sparkle compiler-owned atom order",
+        "description": "FIX ef_sparkle data atom order",
     },
     {
         "name": "fix_e_gadget_object",

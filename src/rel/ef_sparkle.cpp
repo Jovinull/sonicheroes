@@ -8,19 +8,32 @@ struct RwV3d {
 
 static u32 CalcInt(u32, u32);
 
-struct PARTICLE_INSTANCE {
-	u8 pad00[0x0C];
-	s16 angle;
-	s16 angleStep;
-	u8 pad10[4];
-	f32 scale;
-	u8 pad18[4];
-	RwV3d position;
-	f32 field28;
-	u8 pad2C[4];
-	RwV3d velocity;
-	f32 phase;
+class PARTICLE_MATERIAL;
+struct IMPRIM_WORK;
+struct sAngle {
+	s32 x, y, z;
 };
+struct PARTICLE_INSTANCE {
+	PARTICLE_INSTANCE* pNext;
+	PARTICLE_MATERIAL* pMaterial;
+	u8 nowFlag;
+	s16 timer;
+	s16 nowRot;
+	s16 nowRotSpd;
+	u32 nowColor;
+	f32 nowScl;
+	f32 nowSclSpd;
+	RwV3d nowPos;
+	f32 nowPattern;
+	f32 nowPatternSpd;
+	RwV3d nowSpd;
+	f32 zofs;
+	void* others;
+	IMPRIM_WORK* ImPrimWork;
+};
+
+struct SPRITE_INFO;
+enum Pt_FLAGS { Pt_NON_FLAG = 0, ALL_Pt_FLAGS = -1 };
 
 class ParticleHeader
 {
@@ -31,7 +44,7 @@ public:
 class PARTICLE_MATERIAL : public ParticleHeader
 {
 public:
-	PARTICLE_MATERIAL(s32, const void*);
+	PARTICLE_MATERIAL(Pt_FLAGS, SPRITE_INFO*);
 	~PARTICLE_MATERIAL();
 
 	virtual void MoveManager();
@@ -40,13 +53,15 @@ public:
 	virtual void Disp(PARTICLE_INSTANCE*);
 	virtual PARTICLE_INSTANCE* AllocInstance();
 	virtual PARTICLE_INSTANCE* CreateInstance();
+	RwV3d pos;
+	sAngle ang;
+	RwV3d vec;
 };
 
 class EfSparkle : public PARTICLE_MATERIAL
 {
 public:
-	u8 pad58[0x24];
-	u32 kind;
+	u32 type;
 
 	EfSparkle(u32);
 	~EfSparkle();
@@ -54,12 +69,9 @@ public:
 };
 
 extern "C" {
-EfSparkle* __dt__9EfSparkleFv(EfSparkle*, s16);
-EfSparkle* __ct__9EfSparkleFUi(EfSparkle*, u32);
 void fn_800657EC(void*, s32, const void*);
 void dtor_800654F4(void*, s16);
 void fn_80064380(void*);
-void* __nw__FUl(u32);
 void __dl__FPv(void*);
 void* fn_8005FAE8(const char*, void*);
 void fn_8005FA8C(void*, void*);
@@ -71,11 +83,11 @@ u32 __cvt_fp2unsigned(f32);
 
 extern void* lbl_16_data_3D00[];
 
-extern EfSparkle* check_16_bss_A24;
-extern EfSparkle* check_16_bss_A28;
-extern EfSparkle* check_16_bss_A2C;
-extern EfSparkle* check_16_bss_A30;
-extern void* check_16_bss_A34;
+extern EfSparkle* lbl_16_bss_A24;
+extern EfSparkle* lbl_16_bss_A28;
+extern EfSparkle* lbl_16_bss_A2C;
+extern EfSparkle* lbl_16_bss_A30;
+extern void* lbl_16_bss_A34;
 extern void* lbl_8042C180;
 
 extern void* lbl_802435D8;
@@ -105,11 +117,11 @@ extern void* lbl_802435D8;
 
 struct SPRITE_INFO {
 	u32 flags;
+	s16 maxNum;
 	u32 color;
-	s32 field08;
 	void* texture;
-	void* offsets;
-	u32 field14;
+	void* uvTable;
+	void* data;
 };
 
 struct TEXTURE_ENTRY {
@@ -124,8 +136,8 @@ struct TEXTURE_LIST {
 
 SPRITE_INFO lbl_16_data_3CD0 = {
 	0x502,
-	0x00300000,
-	-1,
+	48,
+	0xFFFFFFFF,
 	0,
 	&lbl_802435D8,
 	0,
@@ -152,23 +164,23 @@ void* lbl_16_bss_A34;
 
 void ReleaseTextureEfSparkle()
 {
-	if (check_16_bss_A30 != 0) {
-		__dt__9EfSparkleFv(lbl_16_bss_A30, 1);
+	if (lbl_16_bss_A30 != 0) {
+		delete lbl_16_bss_A30;
 		lbl_16_bss_A30 = 0;
 	}
-	if (check_16_bss_A2C != 0) {
-		__dt__9EfSparkleFv(lbl_16_bss_A2C, 1);
+	if (lbl_16_bss_A2C != 0) {
+		delete lbl_16_bss_A2C;
 		lbl_16_bss_A2C = 0;
 	}
-	if (check_16_bss_A28 != 0) {
-		__dt__9EfSparkleFv(lbl_16_bss_A28, 1);
+	if (lbl_16_bss_A28 != 0) {
+		delete lbl_16_bss_A28;
 		lbl_16_bss_A28 = 0;
 	}
-	if (check_16_bss_A24 != 0) {
-		__dt__9EfSparkleFv(lbl_16_bss_A24, 1);
+	if (lbl_16_bss_A24 != 0) {
+		delete lbl_16_bss_A24;
 		lbl_16_bss_A24 = 0;
 	}
-	if (check_16_bss_A34 != 0) {
+	if (lbl_16_bss_A34 != 0) {
 		fn_8005FA8C(lbl_16_bss_A34, &lbl_16_data_3CF8);
 		lbl_16_bss_A20 = 0;
 		lbl_16_bss_A34 = 0;
@@ -185,31 +197,19 @@ void LoadTextureEfSparkle()
 	objChangeTextureFilterMode__FP15RwTexDictionary19RwTextureFilterMode(lbl_16_bss_A34, 2);
 
 	if (lbl_16_bss_A24 == 0) {
-		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
-		if (sparkle != 0)
-			sparkle = __ct__9EfSparkleFUi(sparkle, 0);
-		lbl_16_bss_A24 = sparkle;
+		lbl_16_bss_A24 = new EfSparkle(0);
 	}
 
 	if (lbl_16_bss_A28 == 0) {
-		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
-		if (sparkle != 0)
-			sparkle = __ct__9EfSparkleFUi(sparkle, 1);
-		lbl_16_bss_A28 = sparkle;
+		lbl_16_bss_A28 = new EfSparkle(1);
 	}
 
 	if (lbl_16_bss_A2C == 0) {
-		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
-		if (sparkle != 0)
-			sparkle = __ct__9EfSparkleFUi(sparkle, 2);
-		lbl_16_bss_A2C = sparkle;
+		lbl_16_bss_A2C = new EfSparkle(2);
 	}
 
 	if (lbl_16_bss_A30 == 0) {
-		EfSparkle* sparkle = (EfSparkle*)__nw__FUl(0x80);
-		if (sparkle != 0)
-			sparkle = __ct__9EfSparkleFUi(sparkle, 3);
-		lbl_16_bss_A30 = sparkle;
+		lbl_16_bss_A30 = new EfSparkle(3);
 	}
 }
 
@@ -219,15 +219,15 @@ PARTICLE_INSTANCE* CreateSparkleR(RwV3d* position, RwV3d* velocity, f32 scale, f
 	if (particle == 0)
 		return 0;
 
-	copyVec3(&particle->position, position);
-	copyVec3(&particle->velocity, velocity);
-	particle->scale     = scale;
-	particle->angle     = (s16)(s32)(lbl_16_rodata_9B0
+	copyVec3(&particle->nowPos, position);
+	copyVec3(&particle->nowSpd, velocity);
+	particle->nowScl    = scale;
+	particle->nowRot    = (s16)(s32)(lbl_16_rodata_9B0
 	    * (RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9B4 - lbl_16_rodata_9BC));
-	particle->angleStep = (s16)(s32)(lbl_16_rodata_9B0
+	particle->nowRotSpd = (s16)(s32)(lbl_16_rodata_9B0
 	    * (RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9C0 - lbl_16_rodata_9C4));
-	particle->field28 += RANDOM_UNIT() * lbl_16_rodata_9B8;
-	particle->phase = phase;
+	particle->nowPattern += RANDOM_UNIT() * lbl_16_rodata_9B8;
+	particle->zofs = phase;
 	return particle;
 }
 
@@ -237,19 +237,19 @@ PARTICLE_INSTANCE* CreateSparkle(RwV3d* position, RwV3d* velocity, f32 scale, f3
 	if (particle == 0)
 		return 0;
 
-	copyVec3(&particle->position, position);
-	copyVec3(&particle->velocity, velocity);
-	particle->scale = scale;
-	particle->angle
+	copyVec3(&particle->nowPos, position);
+	copyVec3(&particle->nowSpd, velocity);
+	particle->nowScl = scale;
+	particle->nowRot
 	    = (s16)(s32)(RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9D0 * lbl_16_rodata_9B0);
-	particle->angleStep = (s16)(s32)(lbl_16_rodata_9B0
+	particle->nowRotSpd = (s16)(s32)(lbl_16_rodata_9B0
 	    * (RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9D4 - lbl_16_rodata_9D8));
-	particle->field28 += RANDOM_UNIT() * lbl_16_rodata_9B8;
-	particle->phase = phase;
+	particle->nowPattern += RANDOM_UNIT() * lbl_16_rodata_9B8;
+	particle->zofs = phase;
 	return particle;
 }
 
-extern "C" PARTICLE_INSTANCE* fn_16_2E3C4(RwV3d* position, RwV3d* velocity, f32 scale)
+PARTICLE_INSTANCE* CreateSparkle(RwV3d* position, RwV3d* velocity, f32 scale)
 {
 	PARTICLE_INSTANCE* particle;
 	if (fn_16_F20(lbl_8042C180, 0x1F) != 0)
@@ -259,41 +259,41 @@ extern "C" PARTICLE_INSTANCE* fn_16_2E3C4(RwV3d* position, RwV3d* velocity, f32 
 	if (particle == 0)
 		return 0;
 
-	copyVec3(&particle->position, position);
-	copyVec3(&particle->velocity, velocity);
-	particle->scale     = scale;
-	particle->angle     = (s16)(s32)(lbl_16_rodata_9B0
+	copyVec3(&particle->nowPos, position);
+	copyVec3(&particle->nowSpd, velocity);
+	particle->nowScl    = scale;
+	particle->nowRot    = (s16)(s32)(lbl_16_rodata_9B0
 	    * (RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9B4 - lbl_16_rodata_9BC));
-	particle->angleStep = (s16)(s32)(lbl_16_rodata_9B0
+	particle->nowRotSpd = (s16)(s32)(lbl_16_rodata_9B0
 	    * (RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9DC - lbl_16_rodata_9E0));
-	particle->field28 += RANDOM_UNIT() * lbl_16_rodata_9B8;
-	particle->phase = RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9E4;
+	particle->nowPattern += RANDOM_UNIT() * lbl_16_rodata_9B8;
+	particle->zofs = RANDOM_UNIT() * lbl_16_rodata_9B8 * lbl_16_rodata_9E4;
 	return particle;
 }
 
 s32 EfSparkle::Move(PARTICLE_INSTANCE* particle)
 {
-	particle->angle += particle->angleStep;
-	particle->scale += *(f32*)(base + 0x20);
-	particle->position.x += particle->velocity.x;
-	particle->position.y += particle->velocity.y;
-	particle->position.z += particle->velocity.z;
-	particle->velocity.x *= *(f32*)(base + 0x18);
-	particle->velocity.y = *(f32*)(base + 0x1C) + particle->velocity.y * *(f32*)(base + 0x18);
-	particle->velocity.z *= *(f32*)(base + 0x18);
+	particle->nowRot += particle->nowRotSpd;
+	particle->nowScl += *(f32*)(base + 0x20);
+	particle->nowPos.x += particle->nowSpd.x;
+	particle->nowPos.y += particle->nowSpd.y;
+	particle->nowPos.z += particle->nowSpd.z;
+	particle->nowSpd.x *= *(f32*)(base + 0x18);
+	particle->nowSpd.y = *(f32*)(base + 0x1C) + particle->nowSpd.y * *(f32*)(base + 0x18);
+	particle->nowSpd.z *= *(f32*)(base + 0x18);
 
-	if (kind == 0) {
-		particle->angle
+	if (type == 0) {
+		particle->nowRot
 		    = (s16)((s32)(lbl_16_rodata_9B0
-		                * (f32)((s32)CalcInt(__cvt_fp2unsigned(particle->phase), 0x10) - 8))
+		                * (f32)((s32)CalcInt(__cvt_fp2unsigned(particle->zofs), 0x10) - 8))
 		        + 0x4000);
-		particle->phase += lbl_16_rodata_9E8;
+		particle->zofs += lbl_16_rodata_9E8;
 	}
 
 	if (*(u32*)(base + 0x34) != 0) {
-		particle->field28 += *(f32*)(base + 0x10);
-		if ((u16)(s32)particle->field28 >= *(s16*)(base + 0xE)) {
-			particle->field28 = (f32)(*(s16*)(base + 0xE) - 1);
+		particle->nowPattern += *(f32*)(base + 0x10);
+		if ((u16)(s32)particle->nowPattern >= *(s16*)(base + 0xE)) {
+			particle->nowPattern = (f32)(*(s16*)(base + 0xE) - 1);
 			return 0;
 		}
 		return 1;
@@ -311,9 +311,9 @@ static u32 CalcInt(u32 value, u32 range)
 }
 
 EfSparkle::EfSparkle(u32 materialKind)
-    : PARTICLE_MATERIAL(5, &lbl_16_data_3CD0)
+    : PARTICLE_MATERIAL((Pt_FLAGS)5, &lbl_16_data_3CD0)
 {
-	kind                = materialKind;
+	type                = materialKind;
 	*(u16*)(base + 0xC) = 0;
 	*(u16*)(base + 0xE) = 0x10;
 
@@ -341,8 +341,6 @@ EfSparkle::EfSparkle(u32 materialKind)
 	}
 }
 
-EfSparkle::~EfSparkle() { }
-
 extern "C" void __sinit_ef_sparkle_cpp()
 {
 	*(void**)((u8*)&lbl_16_data_3CD0 + 0xC) = lbl_16_bss_A20;
@@ -350,6 +348,9 @@ extern "C" void __sinit_ef_sparkle_cpp()
 
 __declspec(section ".ctors") void (*const EfSparkleCtorEntry)() = __sinit_ef_sparkle_cpp;
 
+EfSparkle::~EfSparkle() { }
+
 #pragma force_active on
+// Preserve the configured residual zero extent; original declaration is unknown.
 extern const u32 efSparkleRodataPadding = 0;
 #pragma force_active reset
