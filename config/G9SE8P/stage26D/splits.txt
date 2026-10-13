@@ -1841,6 +1841,9 @@ rel/searcher_gadget_mode.cpp:
 rel/searcher_shadow.cpp:
 	.text       start:0x000A5480 end:0x000A5544
 
+rel/searcher_disp_shadow.cpp:
+	.text       start:0x000A5544 end:0x000A560C
+
 rel/searcher_disp.cpp:
 	.text       start:0x000A560C end:0x000A5690
 

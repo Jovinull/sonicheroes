@@ -6714,6 +6714,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_disp_shadow.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_shadow.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
