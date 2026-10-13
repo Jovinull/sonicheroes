@@ -6347,6 +6347,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_set_collision_parameter.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_hit_point.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
