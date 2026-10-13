@@ -1514,6 +1514,9 @@ rel/s31bob_exec.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x000764A4 end:0x00076E84
 
+rel/pawn_strategy_exec.cpp:
+	.text       start:0x00077854 end:0x00077890
+
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000780A4 end:0x000780D4
 

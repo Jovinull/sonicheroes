@@ -1755,6 +1755,9 @@ rel/pawn_assets.cpp:
 rel/pawn_strategy_modes.cpp:
 	.text       start:0x0009E604 end:0x0009EFE4
 
+rel/pawn_strategy_exec.cpp:
+	.text       start:0x0009F9B4 end:0x0009F9F0
+
 rel/enemy_gadget_bomb_disp.cpp:
 	.text       start:0x0009FE44 end:0x0009FF68
 

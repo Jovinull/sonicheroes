@@ -89,4 +89,6 @@ public:
 	void StrategyMode_Crouch(eStrategy sub);
 
 	s32 mTimer; // 0x18
+
+	static void (TEnemyPawn_Strategy::* FuncTbl[27])(eStrategy sub);
 };
