@@ -82,6 +82,7 @@
     "advertiseD/adv_2p.cpp",
     "advertiseD/adv_draw.cpp",
     "autosaveD/adv_draw.cpp",
+    "game/Memory.cpp",
     "game/c_colli_react.cpp",
     "game/calc.cpp",
     "game/calc_colli.cpp",
@@ -123,6 +124,7 @@
     "game/enemy/e_powercore.cpp",
     "game/enemy/e_ringlaser.cpp",
     "game/enemy/e_shockwave.cpp",
+    "game/enemy_voice.cpp",
     "game/gParam.cpp",
     "game/game2pTable.cpp",
     "game/light.cpp",
@@ -151,6 +153,7 @@
     "rel/e_turtle_stage11.cpp",
     "rel/o_s11_door.cpp",
     "rel/o_s12_celestial_sphere.cpp",
-    "rel/o_spring.cpp"
+    "rel/o_spring.cpp",
+    "rel/sp_dashpanel.cpp"
   ]
 }

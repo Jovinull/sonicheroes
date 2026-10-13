@@ -32,8 +32,8 @@ have position at zero, normal at 0x0C, color at 0x18 and UV at 0x1C/0x20;
 this differs from the older platform metadata. The source must preserve the
 GameCube layout, original render ordering, list lifetimes and resource guards.
 
-The complete unit is enabled as Matching with the narrow allocation
-normalization disclosed below.
+The complete unit is enabled as Matching with native compiler output and no
+object postprocessor.
 
 Independent review verifies all 276 table floats (1,104 bytes) against their
 GameCube bit patterns. List execution advances the current pointer before
@@ -53,32 +53,29 @@ and separate texture-null/mode gates preserve the out-of-line display call.
 No per-function inline barrier is introduced. Historical source order and
 compiler flags remain unknown; these are source reconstruction choices.
 
-Six surviving bodies match directly from MWCC. Disp has exactly the original
-420-byte instruction sequence except for twelve GPR fields in eleven of its
-105 instructions. The remaining allocation cycle is position cursor r6 to r9,
-green r7 to r6, blue r8 to r7 and alpha r9 to r8. Bounded declaration, cursor,
-index and read-only color lifetime trials did not recover that allocation.
-`tools/fix_eff_footprints_registers.py` permutes only those compiler-produced
-register fields, with no retail input or instruction-word injection. Complete
-object/text/function and section/symbol/relocation contracts guard the input and
-output; synthetic tests check bounds, corruption, idempotence and atomic failure.
-Recovering the register allocation from source is the path to deleting the step.
+All seven surviving bodies now match directly from MWCC. The display method
+uses the existing `RwRGBA` type for its green, blue and alpha temporaries;
+red is written directly to the vertex as before. Grouping the color values in
+their native aggregate reproduces the original register allocation without
+changing calculations, access order, branches or compiler settings. The unused
+local red member is never read. This is a source reconstruction choice, not a
+claim to have recovered the original local declaration.
 
-Independent review proves the position cursor is freshly defined after its
-previous uses, and each color temporary is defined before its sole store on
-every iteration. The left-foot branch changes only the UV cursor. There are no
-calls in this loop, and all mapped values die before transform/render calls.
-All affected registers are caller-clobbered; callee-save state, stack layout,
-exception records and instruction PCs remain unchanged. All 155 effective
-relocations and every non-text section already match in the raw object.
-All seven normalized bodies, their bindings and all owned sections match.
-The complete G9SE8P main DOL and all seventeen RELs compile in the documented
-release configuration and pass all eighteen reference hashes. All 77 tests
-pass, including fifteen synthetic normalizer tests; language and post-processor
-policies pass. Final ELF/map review confirms every surviving address and byte
-of all seven owned ranges. Seven unused ordinary helpers (1,252 text bytes)
-and weak TObject delete (40 bytes), with their 176 exception/96 index bytes,
-are discarded normally. The existing strong Task delete remains selected at
-0x8001895C. Four source consumers and three fixers contain only mechanically
-verified same-address canonical renames and formatting. Compilation and byte
-matching do not establish runtime or physical-hardware validation.
+The raw object audit verifies all seven instruction bodies and their 119 text
+relocations. All other emitted functions, non-text section bytes, alignments and
+relocations remain unchanged. Owned data includes four zero alignment bytes
+following the 1,396 initialized bytes and another four following the four-byte
+small-data class pointer. The compiler still emits eight unused helpers; their
+code and exception entries are unchanged and discarded normally by the linker.
+The register postprocessor and its synthetic tests have been removed.
+
+An independent final-ELF audit verifies all seven owned ranges, all seven
+function addresses and sizes, and all 155 resolved relocation sites against
+the original DOL. This also verifies that the extra helper exception entries
+are discarded correctly.
+
+The supported G9SE8P all-source and release builds pass. A freshly linked main
+DOL and all seventeen RELs match all eighteen reference hashes. All 189 automated
+tests, the language policy and all 64 remaining postprocessor checks pass.
+Formatting and diff checks pass. Compilation and byte matching do not establish
+runtime or physical-hardware validation.

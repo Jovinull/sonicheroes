@@ -1,232 +1,272 @@
 #!/usr/bin/env python3
+"""Bind Sparkle symbols and reorder existing data atoms, never modifying .text.
 
-"""Restore ef_sparkle's retail compiler-owned atom order and symbol identities.
-
-The reconstructed C++ emits identical function atoms, but MWCC places the
-destructor before the static initializer and emits the vtable after the
-filename. The retail object used the opposite order in both cases. This step
-only moves complete atoms and their metadata; it never edits instructions.
+The source emits its destructor after the static initializer. This tool only
+moves the filename behind the vtable and binds equivalent native symbol names.
+Scalar sizes and explicit residual padding remain separate and unchanged.
 """
 
 import argparse
+import hashlib
+import os
 import struct
 import subprocess
+import tempfile
 from pathlib import Path
 
+TEXT_SHA256 = "c7aae955fb0f3d1826f6e81d9921ae5447ed54414814bee56777ce760c879b2f"
+ALIASES = {}
+FUNCTION_SIZES = {
+    "CalcInt__FUiUi": 60,
+    "ReleaseTextureEfSparkle__Fv": 328,
+    "LoadTextureEfSparkle__Fv": 456,
+    "CreateSparkleR__FP5RwV3dP5RwV3dff": 460,
+    "CreateSparkle__FP5RwV3dP5RwV3dff": 444,
+    "CreateSparkle__FP5RwV3dP5RwV3df": 588,
+    "Move__9EfSparkleFP17PARTICLE_INSTANCE": 448,
+    "__ct__9EfSparkleFUi": 356,
+    "__sinit_ef_sparkle_cpp": 28,
+    "__dt__9EfSparkleFv": 100,
+}
 
-DTOR_START = 0xC44
-SINIT_START = 0xCA8
-TEXT_END = 0xCC4
-FILENAME_START = 0x30
-VTABLE_START = 0x48
-DATA_END = 0x68
+POOL_ALIASES = {
+    0: ("lbl_16_rodata_9B0", 4),
+    4: ("lbl_16_rodata_9B4", 4),
+    8: ("lbl_16_rodata_9B8", 4),
+    12: ("lbl_16_rodata_9BC", 4),
+    16: ("lbl_16_rodata_9C0", 4),
+    20: ("lbl_16_rodata_9C4", 4),
+    24: ("lbl_16_rodata_9C8", 8),
+    32: ("lbl_16_rodata_9D0", 4),
+    36: ("lbl_16_rodata_9D4", 4),
+    40: ("lbl_16_rodata_9D8", 4),
+    44: ("lbl_16_rodata_9DC", 4),
+    48: ("lbl_16_rodata_9E0", 4),
+    52: ("lbl_16_rodata_9E4", 4),
+    56: ("lbl_16_rodata_9E8", 4),
+    60: ("lbl_16_rodata_9EC", 4),
+    64: ("lbl_16_rodata_9F0", 4),
+    68: ("lbl_16_rodata_9F4", 4),
+    72: ("lbl_16_rodata_9F8", 4),
+    76: ("lbl_16_rodata_9FC", 4),
+    80: ("lbl_16_rodata_A00", 4),
+    84: ("lbl_16_rodata_A04", 4),
+    88: ("lbl_16_rodata_A08", 4),
+}
 
 
-def cstring(blob: bytes, offset: int) -> str:
-    return blob[offset : blob.index(0, offset)].decode("ascii")
+class Elf:
+
+    def __init__(self, data):
+        self.data = bytearray(data)
+        if self.data[:6] != b"\x7fELF\x01\x02":
+            raise ValueError("expected big-endian ELF32")
+        self.header = struct.unpack_from(">16sHHIIIIIHHHHHH", data)
+        h = self.header
+        self.sections = [
+            list(struct.unpack_from(">10I", data, h[6] + i * h[11]))
+            for i in range(h[12])
+        ]
+        names = self.payload(self.sections[h[13]])
+        self.names = [self.string(names, s[0]) for s in self.sections]
+        self.by_name = {
+            n: (i, s) for i, (n, s) in enumerate(zip(self.names, self.sections))
+        }
+        self.symbols = []
+        _, tab = self.by_name[".symtab"]
+        strings = self.payload(self.sections[tab[6]])
+        for off in range(tab[4], tab[4] + tab[5], tab[9]):
+            sym = list(struct.unpack_from(">IIIBBH", data, off))
+            self.symbols.append((self.string(strings, sym[0]), off, sym))
+        self.aliases = dict(ALIASES)
+        for name, _, symbol in self.symbols:
+            if (
+                name.startswith("@")
+                and symbol[5] < len(self.sections)
+                and self.names[symbol[5]] == ".rodata"
+                and symbol[3] & 15 == 1
+            ):
+                target = POOL_ALIASES.get(symbol[1])
+                if target is None or symbol[2] != target[1]:
+                    raise ValueError("unexpected compiler pool atom")
+                self.aliases[name] = target[0]
+        self.named = {self.canonical(n): (n, o, s) for n, o, s in self.symbols if n}
+
+    @staticmethod
+    def string(data, off):
+        return data[off : data.index(0, off)].decode("ascii")
+
+    def payload(self, s):
+        return bytes(self.data[s[4] : s[4] + s[5]]) if s[1] != 8 else bytes(s[5])
+
+    def canonical(self, n):
+        return self.aliases.get(n, n)
+
+    def put_symbol(self, off, s):
+        struct.pack_into(">IIIBBH", self.data, off, *s)
+
+    def check(self):
+        sizes = {".text": 3268, ".rodata": 96, ".data": 104, ".bss": 24, ".ctors": 4}
+        for name, size in sizes.items():
+            if self.by_name[name][1][5] != size:
+                raise ValueError("unexpected section size: " + name)
+        if (
+            hashlib.sha256(self.payload(self.by_name[".text"][1])).hexdigest()
+            != TEXT_SHA256
+        ):
+            raise ValueError("native .text fingerprint differs")
+        f = {
+            self.canonical(n): s[2]
+            for n, _, s in self.symbols
+            if s[3] & 15 == 2 and s[5] != 0
+        }
+        if f != FUNCTION_SIZES:
+            raise ValueError("unexpected native function inventory")
+        for source, target in self.aliases.items():
+            if (
+                source != target
+                and any((n == source for n, _, _ in self.symbols))
+                and any((n == target for n, _, _ in self.symbols))
+            ):
+                raise ValueError("alias target collision: " + target)
+
+    def invariant(self):
+        """Compare atom payloads and relocation meanings independent of data order."""
+        atoms = {}
+        refs = []
+        for name, _, s in self.symbols:
+            if (
+                s[5] >= len(self.sections)
+                or s[5] == 0
+                or (not s[2])
+                or (s[3] & 15 not in (1, 2))
+            ):
+                continue
+            sec = self.sections[s[5]]
+            n = self.canonical(name)
+            atoms[n] = (
+                self.names[s[5]],
+                s[2],
+                17 if n.startswith("lbl_16_rodata_") else s[3],
+                s[4],
+                self.payload(sec)[s[1] : s[1] + s[2]],
+            )
+
+        def identity(index):
+            n, _, s = self.symbols[index]
+            return (
+                self.canonical(n),
+                s[2],
+                17 if self.canonical(n).startswith("lbl_16_rodata_") else s[3],
+                s[4],
+                self.names[s[5]] if s[5] < len(self.sections) else s[5],
+            )
+
+        for sec in self.sections:
+            if sec[1] != 4:
+                continue
+            for off in range(sec[4], sec[4] + sec[5], sec[9]):
+                address, info, addend = struct.unpack_from(">IIi", self.data, off)
+                owner = (self.names[sec[7]], address)
+                for n, _, s in self.symbols:
+                    if (
+                        s[5] == sec[7]
+                        and s[3] & 15 in (1, 2)
+                        and (s[1] <= address < s[1] + s[2])
+                    ):
+                        owner = (self.names[sec[7]], self.canonical(n), address - s[1])
+                        break
+                refs.append((owner, info & 255, identity(info >> 8), addend))
+        return (atoms, sorted(refs, key=repr))
+
+    def reorder(self):
+        vtable = self.named["__vt__9EfSparkle"][2]
+        filename = self.named["lbl_16_data_3D20"][2]
+        layout = (vtable[1], vtable[2], filename[1], filename[2])
+        if layout == (48, 32, 80, 23):
+            return False
+        if layout != (72, 32, 48, 23):
+            raise ValueError("unexpected data atom layout")
+        data = self.by_name[".data"][1]
+        raw = self.payload(data)
+        if raw[48:71] != b"./textures/ef_uv00.txd\0" or raw[71] != 0:
+            raise ValueError("unexpected filename or padding")
+        self.data[data[4] : data[4] + 104] = raw[:48] + raw[72:] + raw[48:72]
+
+        def move(value):
+            if 48 <= value < 72:
+                return value + 32
+            if 72 <= value < 104:
+                return value - 24
+            return value
+
+        for name, offset, sym in self.symbols:
+            if (
+                sym[5] < len(self.sections)
+                and self.names[sym[5]] == ".data"
+                and sym[3] & 15 != 3
+            ):
+                sym[1] = move(sym[1])
+                self.put_symbol(offset, sym)
+        for section in self.sections:
+            if section[1] == 4 and self.names[section[7]] == ".data":
+                for offset in range(section[4], section[4] + section[5], section[9]):
+                    value = struct.unpack_from(">I", self.data, offset)[0]
+                    struct.pack_into(">I", self.data, offset, move(value))
+        return True
 
 
-def move_text_offset(value: int) -> int:
-    if DTOR_START <= value < SINIT_START:
-        return value + (TEXT_END - SINIT_START)
-    if SINIT_START <= value < TEXT_END:
-        return value - (SINIT_START - DTOR_START)
-    return value
+def normalize(path, objcopy):
+    path = Path(path)
+    before = Elf(path.read_bytes())
+    before.check()
+    invariant = before.invariant()
+    text = before.payload(before.by_name[".text"][1])
+    work = Elf(path.read_bytes())
+    changed = work.reorder()
+    renames = [
+        (n, work.canonical(n)) for n, _, _ in work.symbols if n != work.canonical(n)
+    ]
+    if not changed and (not renames):
+        return
+    with tempfile.TemporaryDirectory(
+        dir=path.parent, prefix="sparkle-normalize-"
+    ) as tmp:
+        source = Path(tmp) / "layout.o"
+        output = Path(tmp) / "bound.o"
+        source.write_bytes(work.data)
+        command = (
+            [str(objcopy)]
+            + [f"--redefine-sym={a}={b}" for a, b in renames]
+            + [
+                f"--globalize-symbol={name}"
+                for name in work.aliases.values()
+                if name.startswith("lbl_16_rodata_")
+            ]
+            + [str(source), str(output)]
+        )
+        subprocess.run(command, check=True)
+        after = Elf(output.read_bytes())
+        after.check()
+        if tuple(
+            after.named[n][2][1] for n in ("__vt__9EfSparkle", "lbl_16_data_3D20")
+        ) != (48, 80):
+            raise ValueError("unexpected final layout")
+        if after.payload(after.by_name[".text"][1]) != text:
+            raise ValueError(".text changed during metadata normalization")
+        if after.invariant() != invariant:
+            raise ValueError("atom bytes or relocation meanings changed")
+        os.chmod(output, path.stat().st_mode)
+        os.replace(output, path)
 
 
-def move_data_offset(value: int) -> int:
-    if FILENAME_START <= value < VTABLE_START:
-        return value + 0x20
-    if VTABLE_START <= value < DATA_END:
-        return value - 0x18
-    return value
-
-
-def main() -> None:
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("object", type=Path)
     parser.add_argument("stamp", type=Path)
-    parser.add_argument("--objcopy", required=True, type=Path)
+    parser.add_argument("--objcopy", type=Path, required=True)
     args = parser.parse_args()
-
-    blob = bytearray(args.object.read_bytes())
-    if (
-        b"gap_04_00003D37_data\0" in blob
-        and b"ReleaseTextureEfSparkle__Fv\0" in blob
-    ):
-        args.stamp.parent.mkdir(parents=True, exist_ok=True)
-        args.stamp.touch()
-        return
-
-    header = struct.unpack_from(">16sHHIIIIIHHHHHH", blob, 0)
-    shoff, shentsize, shnum, shstrndx = header[6], header[11], header[12], header[13]
-    sections = [
-        list(struct.unpack_from(">IIIIIIIIII", blob, shoff + i * shentsize))
-        for i in range(shnum)
-    ]
-    shstr = sections[shstrndx]
-    names = blob[shstr[4] : shstr[4] + shstr[5]]
-    by_name = {
-        cstring(names, section[0]): (index, section)
-        for index, section in enumerate(sections)
-    }
-
-    _, text = by_name[".text"]
-    if text[5] != TEXT_END:
-        raise SystemExit(f"unexpected .text size: {text[5]:#x}")
-    text_start = text[4]
-    dtor = bytes(blob[text_start + DTOR_START : text_start + SINIT_START])
-    sinit = bytes(blob[text_start + SINIT_START : text_start + TEXT_END])
-    blob[text_start + DTOR_START : text_start + TEXT_END] = sinit + dtor
-
-    _, data = by_name[".data"]
-    if data[5] != DATA_END:
-        raise SystemExit(f"unexpected .data size: {data[5]:#x}")
-    data_start = data[4]
-    filename = bytes(blob[data_start + FILENAME_START : data_start + VTABLE_START])
-    vtable = bytes(blob[data_start + VTABLE_START : data_start + DATA_END])
-    blob[data_start + FILENAME_START : data_start + DATA_END] = vtable + filename
-
-    for relocation_name, mover in (
-        (".rela.text", move_text_offset),
-        (".rela.data", move_data_offset),
-    ):
-        _, relocations = by_name[relocation_name]
-        for offset in range(
-            relocations[4], relocations[4] + relocations[5], relocations[9]
-        ):
-            value = struct.unpack_from(">I", blob, offset)[0]
-            struct.pack_into(">I", blob, offset, mover(value))
-        entries = [
-            bytes(blob[offset : offset + relocations[9]])
-            for offset in range(
-                relocations[4], relocations[4] + relocations[5], relocations[9]
-            )
-        ]
-        entries.sort(key=lambda entry: struct.unpack_from(">I", entry, 0)[0])
-        blob[relocations[4] : relocations[4] + relocations[5]] = b"".join(entries)
-
-    text_index = by_name[".text"][0]
-    data_index = by_name[".data"][0]
-    rodata_index = by_name[".rodata"][0]
-    _, symtab = by_name[".symtab"]
-    _, strtab = by_name[".strtab"]
-    strings = blob[strtab[4] : strtab[4] + strtab[5]]
-    for offset in range(symtab[4], symtab[4] + symtab[5], symtab[9]):
-        name_offset, value, size = struct.unpack_from(">III", blob, offset)
-        section_index = struct.unpack_from(">H", blob, offset + 14)[0]
-        name = cstring(strings, name_offset) if name_offset else ""
-        if section_index == text_index:
-            struct.pack_into(">I", blob, offset + 4, move_text_offset(value))
-        elif section_index == data_index:
-            struct.pack_into(">I", blob, offset + 4, move_data_offset(value))
-        elif section_index == rodata_index and name == "@122":
-            # Retail folds the final float and four-byte tail padding into one atom.
-            if value != 0x58 or size != 4:
-                raise SystemExit("unexpected final rodata atom")
-            struct.pack_into(">I", blob, offset + 8, 8)
-
-    args.object.write_bytes(blob)
-
-    renames = {
-        "__ct__17PARTICLE_MATERIALFiPCv": "__ct__17PARTICLE_MATERIALF8Pt_FLAGSP11SPRITE_INFO",
-        "check_16_bss_A24": "lbl_16_bss_A24",
-        "check_16_bss_A28": "lbl_16_bss_A28",
-        "check_16_bss_A2C": "lbl_16_bss_A2C",
-        "check_16_bss_A30": "lbl_16_bss_A30",
-        "check_16_bss_A34": "lbl_16_bss_A34",
-        "@43": "lbl_16_rodata_9B0",
-        "@44": "lbl_16_rodata_9B4",
-        "@45": "lbl_16_rodata_9B8",
-        "@46": "lbl_16_rodata_9BC",
-        "@47": "lbl_16_rodata_9C0",
-        "@48": "lbl_16_rodata_9C4",
-        "@50": "lbl_16_rodata_9C8",
-        "@61": "lbl_16_rodata_9D0",
-        "@62": "lbl_16_rodata_9D4",
-        "@63": "lbl_16_rodata_9D8",
-        "@78": "lbl_16_rodata_9DC",
-        "@79": "lbl_16_rodata_9E0",
-        "@80": "lbl_16_rodata_9E4",
-        "@97": "lbl_16_rodata_9E8",
-        "@115": "lbl_16_rodata_9EC",
-        "@116": "lbl_16_rodata_9F0",
-        "@117": "lbl_16_rodata_9F4",
-        "@118": "lbl_16_rodata_9F8",
-        "@119": "lbl_16_rodata_9FC",
-        "@120": "lbl_16_rodata_A00",
-        "@121": "lbl_16_rodata_A04",
-        "@122": "lbl_16_rodata_A08",
-    }
-    command = [str(args.objcopy)]
-    for old, new in renames.items():
-        command.extend(["--redefine-sym", f"{old}={new}"])
-    for symbol in (
-        "lbl_16_rodata_9B0",
-        "lbl_16_rodata_9B4",
-        "lbl_16_rodata_9B8",
-        "lbl_16_rodata_9BC",
-        "lbl_16_rodata_9C0",
-        "lbl_16_rodata_9C4",
-        "lbl_16_rodata_9C8",
-        "lbl_16_rodata_9D0",
-        "lbl_16_rodata_9D4",
-        "lbl_16_rodata_9D8",
-        "lbl_16_rodata_9DC",
-        "lbl_16_rodata_9E0",
-        "lbl_16_rodata_9E4",
-        "lbl_16_rodata_9E8",
-        "lbl_16_rodata_9EC",
-        "lbl_16_rodata_9F0",
-        "lbl_16_rodata_9F4",
-        "lbl_16_rodata_9F8",
-        "lbl_16_rodata_9FC",
-        "lbl_16_rodata_A00",
-        "lbl_16_rodata_A04",
-        "lbl_16_rodata_A08",
-    ):
-        command.extend(["--globalize-symbol", symbol])
-    command.extend(
-        [
-            "--strip-symbol",
-            "efSparkleRodataPadding",
-            "--add-symbol",
-            "gap_04_00003D37_data=.data:0x67,global,object",
-            str(args.object),
-        ]
-    )
-    subprocess.run(command, check=True)
-
-    # objcopy cannot set an added symbol's size or ELF visibility.
-    blob = bytearray(args.object.read_bytes())
-    header = struct.unpack_from(">16sHHIIIIIHHHHHH", blob, 0)
-    shoff, shentsize, shnum, shstrndx = header[6], header[11], header[12], header[13]
-    sections = [
-        list(struct.unpack_from(">IIIIIIIIII", blob, shoff + i * shentsize))
-        for i in range(shnum)
-    ]
-    shstr = sections[shstrndx]
-    names = blob[shstr[4] : shstr[4] + shstr[5]]
-    by_name = {
-        cstring(names, section[0]): (index, section)
-        for index, section in enumerate(sections)
-    }
-    _, symtab = by_name[".symtab"]
-    _, strtab = by_name[".strtab"]
-    strings = blob[strtab[4] : strtab[4] + strtab[5]]
-    found_gap = False
-    for offset in range(symtab[4], symtab[4] + symtab[5], symtab[9]):
-        name_offset = struct.unpack_from(">I", blob, offset)[0]
-        name = cstring(strings, name_offset) if name_offset else ""
-        if name == "gap_04_00003D37_data":
-            struct.pack_into(">I", blob, offset + 8, 1)
-            blob[offset + 13] = 2  # STV_HIDDEN
-            found_gap = True
-    if not found_gap:
-        raise SystemExit("objcopy did not add the retail data-padding symbol")
-    args.object.write_bytes(blob)
-
-    args.stamp.parent.mkdir(parents=True, exist_ok=True)
+    normalize(args.object, args.objcopy)
     args.stamp.touch()
 
 

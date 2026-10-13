@@ -19,6 +19,10 @@ struct THeapCtrl {
 	static void* operator new(unsigned long size);
 };
 
+// TaskHeap belongs to the heap-controller unit; retain the current link name.
+#define TaskHeap lbl_8042C148
+THeapCtrl* TaskHeap;
+
 struct MemoryAllocator {
 	u8 pad[308];
 	void* (*Alloc)(u32 size);
@@ -28,32 +32,35 @@ struct MemoryAllocator {
 extern MemoryAllocator* lbl_8042C9A4;
 extern "C" void* memset(void* destination, int value, unsigned long size);
 
-#pragma opt_common_subs off
-void THeapCtrl::Free(void* address)
+// Deferred emission keeps the native function and exception-record order.
+void* THeapCtrl::operator new(unsigned long size)
 {
-	if (address == 0)
-		return;
+	return lbl_8042C9A4->Alloc(size);
+}
 
-	sHeap* prev = HeapTop;
-	sHeap* next;
-	while ((next = prev->Next) < (sHeap*)((u32)address - sizeof(sHeap)))
-		prev = next;
+void THeapCtrl::operator delete(void* address)
+{
+	lbl_8042C9A4->Free(address);
+}
 
-	if ((char*)((sHeap*)address - 1) + ((sHeap*)address - 1)->Size == (char*)next) {
-		((sHeap*)address)[-1].Next = next->Next;
-		((sHeap*)address)[-1].Size += next->Size;
-	} else {
-		((sHeap*)address)[-1].Next = next;
-	}
-
-	if ((char*)prev + prev->Size == (char*)((sHeap*)address - 1)) {
-		prev->Next = ((sHeap*)address)[-1].Next;
-		prev->Size += ((sHeap*)address)[-1].Size;
-	} else {
-		prev->Next = (sHeap*)address - 1;
+THeapCtrl::THeapCtrl(u32 size, u32 boundary)
+{
+	Boundary = boundary;
+	HeapTop  = (sHeap*)lbl_8042C9A4->Alloc(size);
+	if (HeapTop != 0) {
+		memset(HeapTop, 0, size);
+		sHeap* next   = HeapTop + 1;
+		HeapTop->Next = next;
+		HeapTop->Size = 0;
+		next->Next    = 0;
+		next->Size    = size - sizeof(sHeap);
 	}
 }
-#pragma opt_common_subs reset
+
+THeapCtrl::~THeapCtrl()
+{
+	lbl_8042C9A4->Free(HeapTop);
+}
 
 void* THeapCtrl::Malloc(u32 size)
 {
@@ -81,31 +88,29 @@ void* THeapCtrl::Malloc(u32 size)
 	return 0;
 }
 
-void THeapCtrl::operator delete(void* address)
+#pragma opt_common_subs off
+void THeapCtrl::Free(void* address)
 {
-	lbl_8042C9A4->Free(address);
-}
+	if (address == 0)
+		return;
 
-THeapCtrl::~THeapCtrl()
-{
-	lbl_8042C9A4->Free(HeapTop);
-}
+	sHeap* prev = HeapTop;
+	sHeap* next;
+	while ((next = prev->Next) < (sHeap*)((u32)address - sizeof(sHeap)))
+		prev = next;
 
-THeapCtrl::THeapCtrl(u32 size, u32 boundary)
-{
-	Boundary = boundary;
-	HeapTop  = (sHeap*)lbl_8042C9A4->Alloc(size);
-	if (HeapTop != 0) {
-		memset(HeapTop, 0, size);
-		sHeap* next   = HeapTop + 1;
-		HeapTop->Next = next;
-		HeapTop->Size = 0;
-		next->Next    = 0;
-		next->Size    = size - sizeof(sHeap);
+	if ((char*)((sHeap*)address - 1) + ((sHeap*)address - 1)->Size == (char*)next) {
+		((sHeap*)address)[-1].Next = next->Next;
+		((sHeap*)address)[-1].Size += next->Size;
+	} else {
+		((sHeap*)address)[-1].Next = next;
+	}
+
+	if ((char*)prev + prev->Size == (char*)((sHeap*)address - 1)) {
+		prev->Next = ((sHeap*)address)[-1].Next;
+		prev->Size += ((sHeap*)address)[-1].Size;
+	} else {
+		prev->Next = (sHeap*)address - 1;
 	}
 }
-
-void* THeapCtrl::operator new(unsigned long size)
-{
-	return lbl_8042C9A4->Alloc(size);
-}
+#pragma opt_common_subs reset

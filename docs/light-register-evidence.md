@@ -1,62 +1,37 @@
-# Light loader register evidence
+# Native light unit evidence
 
-The complete `light.cpp` unit reconstructs 26 bodies across
+The complete `light.cpp` unit reconstructs all 26 bodies across
 `0x80052184–0x80053FB8`, with the C++ language/type evidence recorded in
-[language-audit.md](language-audit.md). Twenty-five bodies now match directly.
-The accepted source change expands the existing restoration loop directly in
-`EndIgnoreLight`; the SDK calls, cached-world behavior and eight-light bound
-are unchanged.
+[language-audit.md](language-audit.md). All 7,732 instruction bytes now match
+native compiler output, without an object postprocessor.
 
-## Published remainder
+The loader keeps the file size in a local file-state aggregate and selects the
+default destination with an explicit null check. Together these source choices
+reproduce both the loader allocation and the later `AssignData` pointer
+lifetime. The checks, allocation, bounded copy, release and error paths remain
+unchanged. The aggregate is a reconstruction choice; retained metadata names a
+scalar file-size local and does not establish this original source declaration.
+No instruction bytes are rewritten and compiler settings remain unchanged.
 
-`CLIGHT::Init` has ten register-field differences across seven of its 152
-instructions (608 bytes). The destination and file-size values exchange r28
-and r29 during loading. The entire unit is 7,732 text bytes. A fail-closed
-normalizer changes only those register fields in compiler output. It does not
-carry retail instruction words, change opcodes or inject data. This is not a
-source-only byte-match claim.
+The earlier direct eight-light restoration loop in `EndIgnoreLight` is
+unchanged, including its SDK calls and cached-world behavior.
 
-The destination is defined at function offset 0x16c and size at 0x178. The
-size checks consume the latter at 0x17c and 0x1ac. Destination copies at 0x1b4
-and 0x1c8 and the size copy at 0x1d0 cover their remaining consumers. Both
-registers are nonvolatile and explicitly saved/restored. The earlier table
-initialization values are dead before these definitions.
+An independent raw-object audit verifies all 26 instruction bodies in order,
+all 263 effective relocations, and every owned non-text section and alignment.
+The owned sections contain 232 exception-table bytes, 276 exception-index bytes,
+144 data bytes, eight small-data bytes and 16 constant bytes. Three natural
+zero alignment bytes follow the 141 authored data bytes. No extra functions
+are emitted. Only `Init` differs from the former unnormalized compiler output;
+all other functions and non-text storage are unchanged. The register fixer,
+its build rule and its synthetic tests have been removed.
 
-Nonpositive size and allocation failure bypass the consumers. Both lifetimes
-end by 0x1d4. The subsequent assignment pointer freshly defines r29 at 0x208;
-that independent lifetime is unchanged. No path consumes either renamed value
-through its old register or overwrites an overlapping unrelated value. Calls,
-loads/stores, control flow, exception cleanup and saved incoming registers
-therefore remain equivalent.
+An independent final-ELF audit verifies all six owned ranges, all 26 function
+addresses and sizes, and all 263 resolved relocation sites against the original
+DOL.
 
-## Guards and source path forward
-
-The tool checks ELF32 big-endian PowerPC shape, complete input/output text and
-function hashes, global Init binding/offset/size, all 24 target relocations,
-opcodes, plain register-copy form and each expected register field. The second
-application repeats all guards and leaves the file unchanged. Atomic output
-replacement and success-only stamps prevent failed runs from publishing an
-incomplete object. Eight synthetic tests cover bounds, idempotence, malformed
-input and metadata, instruction corruption and failed replacement cleanup.
-
-Source trials compared metadata-local declarations, scopes, direct helper
-bodies, expression forms, references and whole-unit inline/lifetime options.
-Some direct-loading forms reproduce loading allocation but move the mismatch
-to the subsequent assignment pointer. No fake use, barrier or padding was
-introduced. Once source reproduces both lifetimes, remove the tool and build
-step; its hash guards intentionally reject changed compiler output.
-
-## Verification
-
-Independent object comparison verifies all 26 normalized bodies, 263 effective
-relocations, exception tables, small data and constant data. The data section
-matches with its three natural trailing alignment bytes. Only ten file bytes
-change across the seven instructions; all other bytes, symbols, sections and
-relocation records stay intact.
-
-A fresh native build with light marked Matching compiles G9SE8P main DOL and
-all 17 RELs; all eighteen retail image hashes pass. All-source compilation,
-progress/report generation, 63 automated tests, both policies and formatting
-pass. An independent second review confirmed the live ranges and normalized
-whole-object/relocation comparison. PS2 is a symbolic metadata reference only.
-No runtime or physical-hardware validation was performed.
+The supported G9SE8P all-source and release builds pass. A freshly linked main
+DOL and all seventeen RELs match all eighteen reference hashes. All 196 automated
+tests, the language policy and all 64 remaining postprocessor checks pass.
+Formatting and diff checks pass. PS2 is a symbolic metadata reference only.
+Compilation and byte matching do not establish runtime or physical-hardware
+validation.

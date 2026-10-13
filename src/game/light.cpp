@@ -1,12 +1,6 @@
 #include "game/light.h"
 // Whole-unit reconstruction, GameCube 0x80052184--0x80053FB8.
-// Native remainder: Init's loader destination/filesize exchange r28/r29 across
-// seven words (ten register fields); tools/fix_light_registers.py bounds the
-// permutation to those live ranges and guards the complete compiler text.
-// Direct EndIgnoreLight restoration matches its original allocation. Loader
-// declaration orders, direct bodies, scopes and whole-TU inline/lifetime options
-// did not reproduce both Init loader and later AssignData allocation together.
-// Remove the normalization when source/compiler choices reproduce both ranges.
+// Local file-size state preserves the loader and later assignment lifetimes.
 // C++ names/layouts correlated with PS2 metadata. No PS2 instructions used.
 // Pointer-only prefix view of the SDK light object; SDK allocation owns its size.
 struct RpLight {
@@ -217,18 +211,21 @@ struct LightRwGlobals {
 extern "C" LightRwGlobals* lbl_8042C9A4;
 inline s32 CLIGHT::LoadLightData(REGLIGHT_STRUCT* data, char* filename)
 {
-	s32 size;
+	struct {
+		s32 size;
+	} file;
 	void* buffer;
-	data = data ? data : reglight_struct;
-	size = fn_80042554(filename);
-	if (size > 0) {
-		buffer = lbl_8042C9A4->allocate(size);
+	if (!data)
+		data = reglight_struct;
+	file.size = fn_80042554(filename);
+	if (file.size > 0) {
+		buffer = lbl_8042C9A4->allocate(file.size);
 		if (buffer) {
 			fn_80042048(filename, buffer);
-			if ((u32)size >= 16 * sizeof(REGLIGHT_STRUCT))
+			if ((u32)file.size >= 16 * sizeof(REGLIGHT_STRUCT))
 				memcpy(data, buffer, 16 * sizeof(REGLIGHT_STRUCT));
 			else
-				memcpy(data, buffer, size);
+				memcpy(data, buffer, file.size);
 			lbl_8042C9A4->release(buffer);
 			return 1;
 		}

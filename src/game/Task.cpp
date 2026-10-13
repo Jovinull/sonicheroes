@@ -109,7 +109,7 @@ u32 ImmAftSetRasterSleepFlag;
 u32 ImmAftSetRasterSleepFlagOld;
 struct RwRaster;
 RwRaster* charSet_Debug;
-THeapCtrl* TaskHeap;
+extern THeapCtrl* TaskHeap;
 
 #define lbl_8042ADA0 CL_TObject
 #define lbl_8042ADB0 CL_TL_SU
@@ -150,7 +150,7 @@ extern void* __vt__7TObject[];
 u64 OSGetTime();
 void fn_8005751C();
 void fn_80057574();
-void fn_80018AB0(THeapCtrl*, int);
+void __dt__9THeapCtrlFv(THeapCtrl*, int);
 void* Malloc__9THeapCtrlFUi(THeapCtrl*, u32);
 void fn_80057520(char*);
 }
@@ -255,7 +255,7 @@ void TMainTask::Finalize()
 	destroyAndClear(lbl_8042C118);
 	destroyAndClear(lbl_8042C11C);
 	destroyAndClear(lbl_8042C120);
-	fn_80018AB0(lbl_8042C148, 1);
+	__dt__9THeapCtrlFv(lbl_8042C148, 1);
 	lbl_8042C148 = 0;
 }
 
@@ -364,7 +364,7 @@ TObject::~TObject()
 TMainTask::~TMainTask()
 {
 	DeleteChild();
-	fn_80018AB0(lbl_8042C148, 1);
+	__dt__9THeapCtrlFv(lbl_8042C148, 1);
 }
 
 int TObject::CheckAlive()

@@ -4,16 +4,18 @@ This file records active ownership so parallel decompilation work does not overl
 
 | Owner | Scope | Status |
 | --- | --- | --- |
+| Codex 2026-10-12 | `rel/sp_dashpanel.cpp`, whole Stage 40 dash panel | Fourteen native bodies and owned data exact; corrected original boundaries and five module-local base aliases; full verification recorded in the PR |
+| Codex 2026-10-13 | `game/enemy_voice.cpp`, GameCube-inferred controller-family unit | Native 11/11 bodies, five owned sections and 113 relocations exact; class-name pointers included, two native class labels corrected, no object permutation. All 18 artifact hashes and 204 tests pass; historical filename/boundary remains an explicit hypothesis. |
 | Codex 2026-10-12 | `rel/o_s11_door.cpp`, complete Stage 11 door unit | Complete on `decomp/s11-door-20261012`: 15/15 functions, 5,408 code bytes, 636 owned data bytes and 353 relocations exact; all 18 artifact hashes and 187 tests pass; stacked on PR #623 |
 | Codex 2026-10-12 | `game/calc_colli.cpp`, complete collision utility unit | Complete: all eight native instruction streams, owned data and 77 relocations exact after documented scalar-atom reordering; full verification recorded in the PR |
 | Claude Code | AutoSaveD ADV units (PR #116 scope, taken over) | Complete: `adv_draw`, `adv_draw_constants`, `adv_window`, `adv_menu` ported from the matching AdvertiseD sources; all 18 hashes exact |
 | Codex 2026-10-06 | `game/matrix.cpp`, recovered matrix API declarations and symbol names | Complete locally on `decomp/whole-tu-20261006`: 16 functions, all seven owned sections and 104 relocations exact; full G9SE8P release and 18 hashes pass; publication pending |
-| Codex 2026-10-06 | `game/calc_movcolli.cpp`, all three moving-collision functions | Active on `decomp/calc-movcolli-20261006`; complete draft: all three bodies compile; point routine/constants match, triangle/segment remain nonmatching; G9SE8P build, 55 tests and 18 original-linked hashes pass |
+| Codex 2026-10-12 | `game/calc_movcolli.cpp`, complete moving-collision unit | Complete on `decomp/calc-movcolli-whole-20261012`: all three functions, 9,176 code bytes, 72 owned data/EH bytes and 103 relocations match directly from C++; no normalizer; full G9SE8P all-source/release verification, 204 tests and 18 artifact hashes |
 | Codex 2026-10-07 | `game/miscs.cpp`, complete eleven-function utility unit | Complete on PR #557; eleven source bodies exact, six compiler scalar atoms reordered; native DOL and all 17 RELs byte-identical |
-| Codex 2026-10-07 | `game/calc.cpp`, complete interpolation and matrix-rotation unit | Complete on `decomp/calc-20261006`; eight bodies, seven source-exact; ten GetRotYXZ register fields normalized; all 18 native image hashes and 63 tests pass |
+| Codex 2026-10-12 | `game/calc.cpp`, complete interpolation and matrix-rotation unit | All eight bodies compile natively; scoped optimization fixes `GetRotYXZ` and removes the ten-field instruction normalizer. All-source compilation, fresh main DOL plus 17 REL hashes, 196 tests and 64 post-processor checks pass; see `docs/calc-register-evidence.md`. |
 | Codex 2026-10-06 | `game/octreeColli.cpp`, complete collision-query unit | Active on `decomp/octree-colli-20261006`; PR #562 ready: all nine native functions, owned sections and 103 relocations exact; native G9SE8P build, 18 hashes, 55 tests and policies pass |
 | Codex 2026-10-06 | `game/octree.cpp`, complete octree and collision-list unit | Ready on `decomp/octree-20261006`; all ten functions and owned sections native-match, 37 relocations exact; full G9SE8P build, 18 hashes, 55 tests and policies pass |
-| Codex 2026-10-06 | `game/light.cpp`, complete CLIGHT/RP_Light unit | Complete on `decomp/light-20261006`; all 26 surviving bodies reconstructed at 0x80052184–0x80053FB8; 25 source-exact, ten register fields across seven Init instructions normalized; all 18 native image hashes and 63 tests pass |
+| Codex 2026-10-13 | `game/light.cpp`, complete CLIGHT/RP_Light unit | Complete on `decomp/light-native-20261013`: 26/26 native functions, 7,732 code bytes, 676 owned non-text bytes and 263 relocations exact; register postprocessor removed; all 18 artifact hashes, 196 tests and policies pass |
 | Codex 2026-10-06 | `game/gParam.cpp`, game parameter unit at `0x800663D0`–`0x80067050` | Active on `decomp/gparam-20261006`; complete: 27 functions and 191 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Codex 2026-10-06 | `game/locateTable.cpp`, five functions and owned locator/timer tables | Active on `decomp/locate-table-20261006`; complete: five functions, owned data and 43 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Codex 2026-10-07 | `game/enemy/e_database.cpp`, complete twelve-function enemy resource database | Complete on `decomp/e-database-20261007`; twelve source-exact methods, 2,380 text bytes, 67 exact relocations and all owned sections; all 18 native image hashes and 55 tests pass |
@@ -46,7 +48,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex 2026-10-07 | `game/enemy/e_shockwave.cpp`, complete enemy shock-wave unit | Complete on `decomp/e-shockwave-20261007`; eight bodies / 2,780 bytes, 297 relocations and owned storage exact; no normalizer. Main DOL + 17 REL hashes and 62 tests pass. |
 | Codex 2026-10-07 | `game/effect/eff_bomb.cpp`, complete bomb-effect unit | Complete on `decomp/eff-bomb-20261007`; nine bodies and owned storage exact after documented eight-field constructor register normalization; all eighteen outputs and 77 tests pass |
 | Codex 2026-10-07 | `game/effect/eff_dush.cpp`, complete dash-effect unit | Complete on `decomp/eff-dush-20261007`; seven bodies and all owned sections exact from source, no normalizer; all eighteen outputs and 62 tests pass |
-| Codex 2026-10-07 | `game/effect/eff_footprints.cpp`, complete footprint-effect unit | Complete on `decomp/eff-footprints-20261007`; seven bodies and owned storage exact after documented twelve-field display register normalization; all eighteen outputs and 77 tests pass |
+| Codex 2026-10-13 | `game/effect/eff_footprints.cpp`, complete footprint-effect unit | Complete on `decomp/footprints-native-20261013`: all seven native bodies and owned storage exact; register postprocessor removed; all-source/release builds, all eighteen output hashes, 189 tests and policies pass |
 | Codex 2026-10-07 | `game/player/player_search.cpp`, complete player search unit | Complete on `decomp/player-search-20261007`; four bodies, four owned sections and 32 relocations raw exact; all 18 target hashes and 62 tests pass; no object normalizer |
 | Codex 2026-10-07 | `game/player/player_barrier.cpp`, complete player barrier unit | Complete on `decomp/player-barrier-20261007`; seven definitions, six raw-exact bodies, eight owned ranges and 132 relocations; all 18 hashes and 62 tests pass; no object normalizer |
 | Codex 2026-10-07 | `game/effect/eff_crash3d.cpp`, complete crash effect unit | Complete on `decomp/eff-crash3d-20261007`; 26 definitions, 21 survivors, 504 relocations and seven owned ranges; guarded existing-pool order correction, all 18 output hashes and 76 tests pass; awaiting PR review |
@@ -56,7 +58,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex 2026-10-07 | `game/effect/eff_thunderbomb.cpp`, complete thunder-bomb effect unit | Complete on `decomp/eff-thunderbomb-20261007`; 18 definitions, 10 survivors, eight ranges/185 relocations match from C++ source; all 18 output hashes and 62 tests pass; awaiting PR review |
 | Codex 2026-10-06 | `game/setObj.cpp`, complete set-object base unit | Complete on `decomp/setobj-20261006`; nine bodies and all owned sections exact; byte-identical native DOL, no object normalizer |
 | Codex 2026-10-06 | `game/c_colli_react.cpp`, complete collision reactor unit | Complete Matching C++ reconstruction; 42 bodies, all owned sections and linked image exact with documented single-inline-atom normalization; PR preparation |
-| Codex 2026-10-06 | `game/scanpath.cpp`, complete path scanning/manager unit | Complete on `decomp/scanpath-complete-20261007`; sixteen surviving bodies at `0x800AEE80–0x800B13EC`, plus six inlined metadata methods; fifteen source-exact, four register fields across two instructions normalized; native main DOL plus 17 REL hashes and 68 tests pass |
+| Codex 2026-10-12 | `game/scanpath.cpp`, complete path scanning/manager unit | All sixteen surviving bodies compile natively with scoped optimization for `CalcPNNPntParam`; removed the four-field instruction normalizer. Fresh main DOL plus all 17 REL hashes, all-source compilation, 198 tests and 64 post-processor checks pass; see `docs/scanpath-unit-evidence.md`. |
 | Codex 2026-10-12 | `game/pathctrl.cpp`, complete CLASS_PATH control unit | Complete on `decomp/pathctrl-20261012`; eight native bodies, all owned data and 110 relocations exact after existing scalar atom order correction; 100% code/data report, all 18 artifact hashes and 195 tests pass |
 | Codex 2026-10-06 | `game/message.cpp`, complete GameCube font/message unit | In progress on `decomp/message-20261006`; complete: nine surviving functions, eight owned sections and 141 relocations exact; native G9SE8P build, 18 hashes and 55 tests pass |
 | Codex 2026-10-06 | `game/mobject.cpp`, complete GameCube module support and default world/camera unit | Complete native object on `decomp/mobject-20261006`: 11/11 functions, owned data and 147 relocations exact; depends on linker metadata fix PR #550; full G9SE8P native-source release/all-source build, 55 tests and all 18 hashes pass |
@@ -70,7 +72,7 @@ This file records active ownership so parallel decompilation work does not overl
 | Codex | `game/Peripheral.cpp` (`0x80014154`–`0x80015AC0`) | Complete; `pr-peripheral` (stacked on `pr-skyfs-adx`) |
 | Codex | `game/main.cpp` (`0x80015AC0`–`0x80016514`) | Complete; `pr-game-main-cpp` |
 | Codex agents | `game/Task.cpp` (`0x80016514`–`0x800189A4`) | Complete; `pr-game-task-cpp` |
-| Codex | `game/Memory.cpp` (`0x800189A4`–`0x80018C0C`) | Complete; `pr-game-memory-cpp` |
+| Codex | `game/Memory.cpp` (`0x800189A4`–`0x80018C0C`) | Complete native emission; `decomp/memory-native-20261013` |
 | Codex | `game/action.cpp` (begins `0x80018C0C`) | Complete; `pr-game-action-cpp` |
 | Ares | `main/game/ares_800421b4.cpp` | Active; `ares/tu-main-game-ares_800421b4` |
 | Ares | `actionstage`, `debug`, `e_pawn`, `e_spboss`, `eff_firedunk`, `newcamera`, `particlecore` onboarding workspaces | Active; reserved |
@@ -168,3 +170,15 @@ See [the integration proof](cri-integration-20260925.md) for exact scope,
 duplicate handling, all-target verification and limits. This entry supersedes
 older completed-unit publication statuses above; it does not claim an upstream
 merge until the remote accepts it.
+
+`decomp/antenna-native-20261013` reconstructs the Stage13 antenna class and
+emits all twelve functions in native target order. It removes factory-word
+patching and code reordering, retaining only guarded data/symbol normalization.
+The full configured code and data extents remain covered, including explicitly
+uncertain residual zero storage; see [evidence](antenna-unit-evidence.md).
+`decomp/blinklight-native-20261013` restores the Stage13 blink-light class and
+its native particle/clump methods. All thirteen functions emit in target order
+without instruction patches. Full configured code/data ranges remain covered;
+uncertain zero tails are retained as opaque residual storage. The remaining
+normalizer is limited to guarded data/symbol operations. See
+[blink-light evidence](blinklight-unit-evidence.md).

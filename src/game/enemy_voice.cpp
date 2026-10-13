@@ -1,3 +1,5 @@
+// Deferred automatic inlining emits these ordinary definitions in reverse order.
+// Together they reproduce the complete native code and exception layout.
 #include "types.h"
 
 struct Vec3 {
@@ -31,14 +33,14 @@ struct VoiceEntry {
 	Vec3 position;
 };
 
-struct TEnemyVoiceCtrlEx : TObject {
+struct TEnemySELimit : TObject {
 	s32 capacity;
 	s32 count;
 	u32 voice;
 	s32 mode;
 	VoiceEntry* entries;
 
-	TEnemyVoiceCtrlEx(s32, u32, s32);
+	TEnemySELimit(s32, u32, s32);
 };
 
 struct SEEntry {
@@ -46,12 +48,12 @@ struct SEEntry {
 	s32 type;
 };
 
-struct TEnemySELimit : TObject {
+struct TEnemyVoiceCtrlEx : TObject {
 	SEEntry* entries;
 	s32 count;
 	s32 index;
 
-	TEnemySELimit(void*, const SEEntry*);
+	TEnemyVoiceCtrlEx(void*, const SEEntry*);
 };
 
 struct TEnemyVoiceCtrl : TObject {
@@ -123,12 +125,12 @@ inline void* TObject::operator new(unsigned long size)
 	return Malloc__9THeapCtrlFUi(lbl_8042C148, size);
 }
 
-inline TEnemyVoiceCtrlEx::TEnemyVoiceCtrlEx(s32 mode_, u32 voice_, s32 capacity_)
+inline TEnemySELimit::TEnemySELimit(s32 mode_, u32 voice_, s32 capacity_)
     : TObject(lbl_8042C114)
 {
 	vtable     = lbl_8028CFE4;
 	className  = lbl_8042BCB8;
-	objectSize = sizeof(TEnemyVoiceCtrlEx);
+	objectSize = sizeof(TEnemySELimit);
 	capacity   = capacity_;
 	count      = 0;
 	voice      = voice_;
@@ -136,12 +138,12 @@ inline TEnemyVoiceCtrlEx::TEnemyVoiceCtrlEx(s32 mode_, u32 voice_, s32 capacity_
 	entries    = (VoiceEntry*)__nwa__FUl(capacity * sizeof(VoiceEntry));
 }
 
-inline TEnemySELimit::TEnemySELimit(void* owner, const SEEntry* source)
+inline TEnemyVoiceCtrlEx::TEnemyVoiceCtrlEx(void* owner, const SEEntry* source)
     : TObject((TObject*)owner)
 {
 	vtable               = lbl_8028D010;
 	className            = lbl_8042BCB4;
-	objectSize           = sizeof(TEnemySELimit);
+	objectSize           = sizeof(TEnemyVoiceCtrlEx);
 	entries              = NULL;
 	count                = 0;
 	index                = 0;
@@ -185,71 +187,78 @@ static inline s32 IsInvalidGameMode(s32 mode)
 	return mode == GAME_MODE_ONE || mode == GAME_MODE_TWO || mode == GAME_MODE_THREE;
 }
 
-extern "C" void fn_80139738(TEnemyVoiceCtrlEx* self, const VoiceEntry* entry)
+extern "C" void fn_80139738(TEnemySELimit* self, const VoiceEntry* entry);
+extern "C" void fn_80139784(TEnemySELimit* self, s32 id, const Vec3* position);
+extern "C" void fn_801397DC(TEnemySELimit* self);
+extern "C" TEnemySELimit* fn_801398E4(TEnemySELimit* self, s16 flags);
+extern "C" TEnemySELimit* fn_80139984(s32 mode, u32 voice, s32 capacity);
+extern "C" void fn_80139A24(TEnemyVoiceCtrlEx* self);
+extern "C" TEnemyVoiceCtrlEx* fn_80139BB8(TEnemyVoiceCtrlEx* self, s16 flags);
+extern "C" void fn_80139C40(void* owner, const SEEntry* source);
+extern "C" void fn_80139D28(TEnemyVoiceCtrl* self);
+extern "C" TEnemyVoiceCtrl* fn_80139E54(TEnemyVoiceCtrl* self, s16 flags);
+extern "C" void fn_80139EDC(void* owner, const s32* source);
+extern "C" void fn_80139EDC(void* owner, const s32* source)
 {
-	if (self->count >= self->capacity)
-		return;
-	self->entries[self->count] = *entry;
-	self->count++;
+	new TEnemyVoiceCtrl(owner, source);
 }
-
-extern "C" void fn_80139784(TEnemyVoiceCtrlEx* self, s32 id, const Vec3* position)
-{
-	if (self->count >= self->capacity)
-		return;
-	self->entries[self->count].id       = id;
-	self->entries[self->count].position = *position;
-	self->count++;
-}
-
-extern "C" void fn_801397DC(TEnemyVoiceCtrlEx* self)
-{
-	s32 i;
-	s32 j;
-	switch (self->mode) {
-		case 0:
-			for (i = 0; i < self->count; i++) {
-				if (lbl_8042C388 != NULL)
-					fn_800B4A38(
-					    lbl_8042C388, (u16)self->voice, &self->entries[i].position, 0, 1, 0, 0);
-			}
-			break;
-		case 1:
-			for (j = 0; j < self->count; j++) {
-				if (lbl_8042C388 != NULL)
-					fn_800B4A38(lbl_8042C388, (u16)self->voice, &self->entries[j].position,
-					    self->entries[j].id, 3, 0, 2);
-			}
-			break;
-	}
-	self->count = 0;
-}
-
-extern "C" TEnemyVoiceCtrlEx* fn_801398E4(TEnemyVoiceCtrlEx* self, s16 flags)
+extern "C" TEnemyVoiceCtrl* fn_80139E54(TEnemyVoiceCtrl* self, s16 flags)
 {
 	if (self != NULL) {
-		self->vtable = lbl_8028CFE4;
+		self->vtable = lbl_8028D03C;
 		if (self->entries != NULL) {
 			__dla__FPv(self->entries);
 			self->entries = NULL;
 		}
-		self->voice    = 0;
-		self->count    = 0;
-		self->capacity = 0;
-		self->mode     = 2;
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
-
-extern "C" TEnemyVoiceCtrlEx* fn_80139984(s32 mode, u32 voice, s32 capacity)
+extern "C" void fn_80139D28(TEnemyVoiceCtrl* self)
 {
-	return new TEnemyVoiceCtrlEx(mode, voice, capacity);
+	if (*(volatile s32*)&self->count == 0) {
+		self->signal |= 1;
+		return;
+	}
+	s32 invalid = IsInvalidGameMode(lbl_8029C310.mode);
+	if (invalid) {
+		self->signal |= 1;
+		return;
+	}
+	if (self->index > self->count - 1) {
+		self->signal |= 1;
+		return;
+	}
+	AudioState* audio = lbl_8042C610;
+	s32 ready         = 0;
+	if (audio->field30 == 0 && audio->field3C == 0 && audio->field58 == -1)
+		ready = 1;
+	if (!ready)
+		return;
+	fn_801112F0(audio, self->entries[self->index]);
+	self->index++;
 }
-
-extern "C" void fn_80139A24(TEnemySELimit* self)
+extern "C" void fn_80139C40(void* owner, const SEEntry* source)
+{
+	new TEnemyVoiceCtrlEx(owner, source);
+}
+extern "C" TEnemyVoiceCtrlEx* fn_80139BB8(TEnemyVoiceCtrlEx* self, s16 flags)
+{
+	if (self != NULL) {
+		self->vtable = lbl_8028D010;
+		if (self->entries != NULL) {
+			__dla__FPv(self->entries);
+			self->entries = NULL;
+		}
+		__dt__7TObjectFv(self, 0);
+		if (flags > 0)
+			Free__9THeapCtrlFPv(lbl_8042C148, self);
+	}
+	return self;
+}
+extern "C" void fn_80139A24(TEnemyVoiceCtrlEx* self)
 {
 	s32 ready;
 	if (*(volatile s32*)&self->count == 0) {
@@ -286,72 +295,65 @@ extern "C" void fn_80139A24(TEnemySELimit* self)
 		self->signal |= 1;
 	}
 }
-
-extern "C" TEnemySELimit* fn_80139BB8(TEnemySELimit* self, s16 flags)
+extern "C" TEnemySELimit* fn_80139984(s32 mode, u32 voice, s32 capacity)
+{
+	return new TEnemySELimit(mode, voice, capacity);
+}
+extern "C" TEnemySELimit* fn_801398E4(TEnemySELimit* self, s16 flags)
 {
 	if (self != NULL) {
-		self->vtable = lbl_8028D010;
+		self->vtable = lbl_8028CFE4;
 		if (self->entries != NULL) {
 			__dla__FPv(self->entries);
 			self->entries = NULL;
 		}
+		self->voice    = 0;
+		self->count    = 0;
+		self->capacity = 0;
+		self->mode     = 2;
 		__dt__7TObjectFv(self, 0);
 		if (flags > 0)
 			Free__9THeapCtrlFPv(lbl_8042C148, self);
 	}
 	return self;
 }
-
-extern "C" void fn_80139C40(void* owner, const SEEntry* source)
+extern "C" void fn_801397DC(TEnemySELimit* self)
 {
-	new TEnemySELimit(owner, source);
+	s32 i;
+	s32 j;
+	switch (self->mode) {
+		case 0:
+			for (i = 0; i < self->count; i++) {
+				if (lbl_8042C388 != NULL)
+					fn_800B4A38(
+					    lbl_8042C388, (u16)self->voice, &self->entries[i].position, 0, 1, 0, 0);
+			}
+			break;
+		case 1:
+			for (j = 0; j < self->count; j++) {
+				if (lbl_8042C388 != NULL)
+					fn_800B4A38(lbl_8042C388, (u16)self->voice, &self->entries[j].position,
+					    self->entries[j].id, 3, 0, 2);
+			}
+			break;
+	}
+	self->count = 0;
 }
-
-extern "C" void fn_80139D28(TEnemyVoiceCtrl* self)
+extern "C" void fn_80139784(TEnemySELimit* self, s32 id, const Vec3* position)
 {
-	if (*(volatile s32*)&self->count == 0) {
-		self->signal |= 1;
+	if (self->count >= self->capacity)
 		return;
-	}
-	s32 invalid = IsInvalidGameMode(lbl_8029C310.mode);
-	if (invalid) {
-		self->signal |= 1;
-		return;
-	}
-	if (self->index > self->count - 1) {
-		self->signal |= 1;
-		return;
-	}
-	AudioState* audio = lbl_8042C610;
-	s32 ready         = 0;
-	if (audio->field30 == 0 && audio->field3C == 0 && audio->field58 == -1)
-		ready = 1;
-	if (!ready)
-		return;
-	fn_801112F0(audio, self->entries[self->index]);
-	self->index++;
+	self->entries[self->count].id       = id;
+	self->entries[self->count].position = *position;
+	self->count++;
 }
-
-extern "C" TEnemyVoiceCtrl* fn_80139E54(TEnemyVoiceCtrl* self, s16 flags)
+extern "C" void fn_80139738(TEnemySELimit* self, const VoiceEntry* entry)
 {
-	if (self != NULL) {
-		self->vtable = lbl_8028D03C;
-		if (self->entries != NULL) {
-			__dla__FPv(self->entries);
-			self->entries = NULL;
-		}
-		__dt__7TObjectFv(self, 0);
-		if (flags > 0)
-			Free__9THeapCtrlFPv(lbl_8042C148, self);
-	}
-	return self;
+	if (self->count >= self->capacity)
+		return;
+	self->entries[self->count] = *entry;
+	self->count++;
 }
-
-extern "C" void fn_80139EDC(void* owner, const s32* source)
-{
-	new TEnemyVoiceCtrl(owner, source);
-}
-
 extern "C" {
 char lbl_8028CFB0[] = "TEnemyVoiceCtrl";
 char lbl_8028CFC0[] = "TEnemyVoiceCtrlEx";
@@ -398,4 +400,10 @@ void* lbl_8028D03C[] = {
 	(void*)Error__7TObjectFPc,
 	(void*)Render__7TObjectFv,
 };
+}
+
+extern "C" {
+const char* lbl_8042BCB0 = lbl_8028CFB0;
+const char* lbl_8042BCB4 = lbl_8028CFC0;
+const char* lbl_8042BCB8 = lbl_8028CFD4;
 }

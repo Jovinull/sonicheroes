@@ -3,11 +3,7 @@
 // eff_footprints.cpp: complete C++ unit. Symbolic metadata supplies identities;
 // GameCube code and data determine platform layouts and behavior.
 // Deferred whole-unit emission preserves the ordinary helper definitions.
-// Disp retains a 12-register-field allocation remainder across 11 instructions;
-// a source-only replacement must preserve all bodies, relocations and storage.
-// Cursor/index/color-lifetime source trials are recorded in
-// docs/eff-footprints-unit-evidence.md; replace the bounded step when those
-// source/compiler choices recover the same allocation naturally.
+// Native color temporaries preserve the display loop allocation.
 // Historical definition order and local-variable spelling are not established.
 struct RwMatrix {
 	RwV3d right;
@@ -290,7 +286,7 @@ s32 EffFootPrints::Disp()
 {
 	if (nowAlpha <= 0.0f)
 		return 0;
-	u8 green, blue, alpha;
+	RwRGBA color;
 	f32 y, z;
 	f32 _a = 0.003921f * nowAlpha;
 	RxObjSpace3DVertex vtx_fp[4];
@@ -305,13 +301,13 @@ s32 EffFootPrints::Disp()
 		pI3DV->u           = pUV[0];
 		pI3DV->v           = pUV[1];
 		pUV += 2;
-		green          = (u8)(rgba.green * _a);
-		blue           = (u8)(rgba.blue * _a);
-		alpha          = rgba.alpha;
+		color.green    = (u8)(rgba.green * _a);
+		color.blue     = (u8)(rgba.blue * _a);
+		color.alpha    = rgba.alpha;
 		pI3DV->c.red   = (u8)(rgba.red * _a);
-		pI3DV->c.green = green;
-		pI3DV->c.blue  = blue;
-		pI3DV->c.alpha = alpha;
+		pI3DV->c.green = color.green;
+		pI3DV->c.blue  = color.blue;
+		pI3DV->c.alpha = color.alpha;
 		++pI3DV;
 		if (flagLeft && i == 1)
 			pUV -= 8;

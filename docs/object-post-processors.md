@@ -44,7 +44,7 @@ branch offsets recomputed from where the blocks landed. Nothing is copied in
 from retail; the bytes all came from MWCC.
 
 The fourth shape — writing values taken from the retail object — is the one that
-is out. Five steps still do it, and all five are recorded as named debt in
+is out. The remaining steps are recorded as named debt in
 `tools/check_post_processors.py` so the rule can be enforced everywhere else
 while these stay visible instead of passing quietly:
 
@@ -52,14 +52,9 @@ while these stay visible instead of passing quietly:
 | --- | --- | --- |
 | `fix_game_action_object.py` | `TARGET_EXTAB` | the whole `extab` section, as hex |
 | `fix_eff_tornado_object.py` | `TEXT_PATCHES` | whole instruction words |
-| `fix_stage13_3way_colli_object.py` | `WORD_FIXES` | whole instruction words |
-| `fix_stage13_antenna_object.py` | `FACTORY_REGISTER_WORDS` | whole instruction words |
-| `fix_stage13_blinklight_object.py` | `FACTORY_REGISTER_WORDS` | whole instruction words |
 
-The word tables are mostly register differences spelled the long way, but not
-only: `fix_stage13_antenna_object.py` turns `0x418201A4` into `0x7C1E0378`,
-which is a `beq` replaced by a `mr`. That is a different instruction, not a
-different register, and it cannot be re-spelled as a field substitution.
+Word tables can replace complete opcodes as well as register fields. An opcode
+replacement cannot be re-spelled as a register-field substitution.
 
 **Nothing may be added to that list.** A test asserts it, and it only ever
 shrinks — `fix_fn_80055470_object.py` and `fix_fn_800546F4_object.py` were

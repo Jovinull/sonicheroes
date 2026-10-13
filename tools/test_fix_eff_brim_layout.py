@@ -218,9 +218,11 @@ class LayoutTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir='/tmp') as tmp:
             obj, stamp = Path(tmp) / 'synthetic.o', Path(tmp) / 'stamp'
             obj.write_bytes(self.raw); obj.chmod(0o640)
+            # Windows only keeps the read-only bit, so compare with what was set.
+            mode = obj.stat().st_mode & 0o777
             fix.main([str(obj), str(stamp)])
             self.assertEqual(obj.read_bytes(), self.expected)
-            self.assertEqual(obj.stat().st_mode & 0o777, 0o640)
+            self.assertEqual(obj.stat().st_mode & 0o777, mode)
             self.assertTrue(stamp.exists())
             fix.main([str(obj), str(stamp)])
             self.assertEqual(sorted(p.name for p in Path(tmp).iterdir()), ['stamp', 'synthetic.o'])

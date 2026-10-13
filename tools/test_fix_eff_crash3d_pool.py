@@ -141,9 +141,11 @@ class PoolNormalizationTests(unittest.TestCase):
             stamp = Path(directory) / 'output.stamp'
             path.write_bytes(self.raw)
             path.chmod(0o640)
+            # Windows only keeps the read-only bit, so compare with what was set.
+            mode = path.stat().st_mode & 0o777
             fixer.main([str(path), str(stamp)])
             self.assertEqual(path.read_bytes(), self.expected)
-            self.assertEqual(path.stat().st_mode & 0o777, 0o640)
+            self.assertEqual(path.stat().st_mode & 0o777, mode)
             self.assertTrue(stamp.exists())
             self.assertEqual(sorted(p.name for p in Path(directory).iterdir()), ['object.o', 'output.stamp'])
 

@@ -962,7 +962,7 @@ config.libs = [
             Object(
                 Matching,
                 "game/Memory.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"],
+                extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline auto,deferred"],
             ),
             Object(
                 Matching,
@@ -1063,7 +1063,7 @@ config.libs = [
             Object(
                 Matching,
                 "game/enemy_voice.cpp",
-                extra_cflags=["-Cpp_exceptions on", "-bool off", "-opt noschedule,nopeephole"],
+                extra_cflags=["-Cpp_exceptions on", "-bool off", "-opt noschedule,nopeephole", "-inline auto,deferred"],
             ),
             Object(
                 Matching,
@@ -1111,7 +1111,7 @@ config.libs = [
                 ],
             ),
             Object(Matching, "game/eff_muteki.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred"]),
-            Object(NonMatching, "game/calc_movcolli.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline auto", "-pooldata off"]),
+            Object(Matching, "game/calc_movcolli.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline auto", "-pooldata off"]),
             Object(Matching, "game/calc_colli.cpp", extra_cflags=["-inline deferred,noauto", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off"]),
             Object(Matching, "game/light.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/aram_pool.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
@@ -1576,10 +1576,10 @@ config.libs = [
                 ],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/sp_dashpanel.cpp",
                 extra_cflags=[
-                    "-inline noauto",
+                    "-inline deferred,noauto",
                     "-opt noschedule,nopropagation,nopeephole",
                     "-pool off",
                     "-bool off",
@@ -7769,7 +7769,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "stage13D/o_s14_3way_colli.cpp",
+                "stage13D/o_s14_laser_colli.cpp",
                 cflags=cflags_rel_nofma,
                 data_section_alignment=8,
                 extra_cflags=["-opt noschedule,nopeephole"],
@@ -7895,19 +7895,14 @@ objdump_path = binutils_dir / (
 
 config.custom_build_rules = [
     {
-        "name": "fix_scanpath_registers",
-        "command": "$python tools/fix_scanpath_registers.py $in $out",
-        "description": "FIX scanpath angle load register transfer",
+        "name": "fix_sp_dashpanel_symbols",
+        "command": f"$python tools/fix_sp_dashpanel_symbols.py $in $out --objcopy {objcopy_path}",
+        "description": "BIND dash-panel module-local base symbols",
     },
     {
         "name": "fix_object_registers",
         "command": "$python tools/fix_object_registers.py $in $out",
         "description": "FIX object.cpp resource scan register allocation",
-    },
-    {
-        "name": "fix_light_registers",
-        "command": "$python tools/fix_light_registers.py $in $out",
-        "description": "FIX light loader destination and size registers",
     },
     {
         "name": "fix_pathctrl_pool",
@@ -7918,11 +7913,6 @@ config.custom_build_rules = [
         "name": "fix_miscs_object",
         "command": "$python tools/fix_miscs_object.py $in $out",
         "description": "FIX miscs compiler constant atom order",
-    },
-    {
-        "name": "fix_calc_registers",
-        "command": "$python tools/fix_calc_registers.py $in $out",
-        "description": "FIX calc sine and cosine register allocation",
     },
     {
         "name": "fix_calc_colli_pool",
@@ -8000,7 +7990,7 @@ config.custom_build_rules = [
     {
         "name": "fix_ef_sparkle_object",
         "command": f"$python tools/fix_ef_sparkle_object.py $in $out --objcopy {objcopy_path}",
-        "description": "FIX ef_sparkle compiler-owned atom order",
+        "description": "FIX ef_sparkle data atom order",
     },
     {
         "name": "fix_e_gadget_object",
@@ -8016,11 +8006,6 @@ config.custom_build_rules = [
         "name": "fix_eff_bomb_registers",
         "command": "$python tools/fix_eff_bomb_registers.py $in $out",
         "description": "FIX bomb effect constructor loop register allocation",
-    },
-    {
-        "name": "fix_eff_footprints_registers",
-        "command": "$python tools/fix_eff_footprints_registers.py $in $out",
-        "description": "FIX footprint display loop register allocation",
     },
     {
         "name": "fix_c_colli_react_object",
@@ -8082,11 +8067,6 @@ config.custom_build_rules = [
         "description": "FIX TEndSPStage.cpp data atom order",
     },
     {
-        "name": "fix_game_memory_object",
-        "command": f"$python tools/fix_game_memory_object.py $in $out --objcopy {objcopy_path}",
-        "description": "FIX Memory.cpp object layout",
-    },
-    {
         "name": "fix_game_action_object",
         "command": f"$python tools/fix_game_action_object.py $in $out --objcopy {objcopy_path} --part 0",
         "description": "FIX action.cpp part 0",
@@ -8126,11 +8106,6 @@ config.custom_build_rules = [
         "name": "fix_e_end_spboss_object",
         "command": f"$python tools/fix_e_end_spboss_object.py $in $out --objcopy {objcopy_path}",
         "description": "FIX e_end_spboss.cpp compiler atom order",
-    },
-    {
-        "name": "fix_game_enemy_voice_object",
-        "command": f"$python tools/fix_game_enemy_voice_object.py $in $out",
-        "description": "FIX enemy_voice.cpp object layout",
     },
     {
         "name": "fix_s01_hata_object",
@@ -8269,9 +8244,9 @@ config.custom_build_rules = [
         "description": "FIX stage13 Antenna object metadata",
     },
     {
-        "name": "fix_stage13_3way_colli_object",
+        "name": "fix_stage13_laser_colli_object",
         "command": (
-            f"$python tools/fix_stage13_3way_colli_object.py $in $out "
+            f"$python tools/fix_stage13_laser_colli_object.py $in $out "
             f"--objcopy {objcopy_path}"
         ),
         "description": "FIX stage13 3WAY collision compiler-only atoms",
@@ -8279,6 +8254,12 @@ config.custom_build_rules = [
 ]
 config.custom_build_steps = {
     "post-compile": [
+        {
+            "outputs": "build/G9SE8P/stage40D/sp-dashpanel-symbols.stamp",
+            "rule": "fix_sp_dashpanel_symbols",
+            "inputs": "build/G9SE8P/src/rel/sp_dashpanel.o",
+            "implicit": ["tools/fix_sp_dashpanel_symbols.py", str(binutils_dir)],
+        },
         {
             "outputs": "build/G9SE8P/eff-brim-layout.stamp",
             "rule": "fix_eff_brim_layout",
@@ -8298,12 +8279,6 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_eff_crash3d_pool.py"],
         },
         {
-            "outputs": "build/G9SE8P/eff-footprints-registers.stamp",
-            "rule": "fix_eff_footprints_registers",
-            "inputs": "build/G9SE8P/src/game/effect/eff_footprints.o",
-            "implicit": ["tools/fix_eff_footprints_registers.py"],
-        },
-        {
             "outputs": "build/G9SE8P/eff-bomb-registers.stamp",
             "rule": "fix_eff_bomb_registers",
             "inputs": "build/G9SE8P/src/game/effect/eff_bomb.o",
@@ -8314,12 +8289,6 @@ config.custom_build_steps = {
             "rule": "fix_e_motion_registers",
             "inputs": "build/G9SE8P/src/game/enemy/e_motion.o",
             "implicit": ["tools/fix_e_motion_registers.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/scanpath-registers.stamp",
-            "rule": "fix_scanpath_registers",
-            "inputs": "build/G9SE8P/src/game/scanpath.o",
-            "implicit": ["tools/fix_scanpath_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/e-gadget-object.stamp",
@@ -8340,12 +8309,6 @@ config.custom_build_steps = {
             "implicit": ["tools/fix_object_registers.py"],
         },
         {
-            "outputs": "build/G9SE8P/light-registers.stamp",
-            "rule": "fix_light_registers",
-            "inputs": "build/G9SE8P/src/game/light.o",
-            "implicit": ["tools/fix_light_registers.py"],
-        },
-        {
             "outputs": "build/G9SE8P/pathctrl-pool.stamp",
             "rule": "fix_pathctrl_pool",
             "inputs": "build/G9SE8P/src/game/pathctrl.o",
@@ -8356,12 +8319,6 @@ config.custom_build_steps = {
             "rule": "fix_miscs_object",
             "inputs": "build/G9SE8P/src/game/miscs.o",
             "implicit": ["tools/fix_miscs_object.py"],
-        },
-        {
-            "outputs": "build/G9SE8P/calc-registers.stamp",
-            "rule": "fix_calc_registers",
-            "inputs": "build/G9SE8P/src/game/calc.o",
-            "implicit": ["tools/fix_calc_registers.py"],
         },
         {
             "outputs": "build/G9SE8P/eff-tornado-object.stamp",
@@ -8529,12 +8486,6 @@ config.custom_build_steps = {
             ],
         },
         {
-            "outputs": "build/G9SE8P/game-memory-object.stamp",
-            "rule": "fix_game_memory_object",
-            "inputs": "build/G9SE8P/src/game/Memory.o",
-            "implicit": ["tools/fix_game_memory_object.py", str(binutils_dir)],
-        },
-        {
             "outputs": "build/G9SE8P/game-action-object.stamp",
             "rule": "fix_game_action_object",
             "inputs": "build/G9SE8P/src/game/action.o",
@@ -8573,12 +8524,6 @@ config.custom_build_steps = {
                 "tools/fix_sp_adv_stg_failed_object.py",
                 str(binutils_dir),
             ],
-        },
-        {
-            "outputs": "build/G9SE8P/game-enemy-voice-object.stamp",
-            "rule": "fix_game_enemy_voice_object",
-            "inputs": "build/G9SE8P/src/game/enemy_voice.o",
-            "implicit": ["tools/fix_game_enemy_voice_object.py"],
         },
         {
             "outputs": "build/G9SE8P/stage01D-o-s01-hata-object.stamp",
@@ -8752,11 +8697,11 @@ config.custom_build_steps = {
             ],
         },
         {
-            "outputs": "build/G9SE8P/stage13-3way-colli-object.stamp",
-            "rule": "fix_stage13_3way_colli_object",
-            "inputs": "build/G9SE8P/src/stage13D/o_s14_3way_colli.o",
+            "outputs": "build/G9SE8P/stage13-laser-colli-object.stamp",
+            "rule": "fix_stage13_laser_colli_object",
+            "inputs": "build/G9SE8P/src/stage13D/o_s14_laser_colli.o",
             "implicit": [
-                "tools/fix_stage13_3way_colli_object.py",
+                "tools/fix_stage13_laser_colli_object.py",
                 str(binutils_dir),
             ],
         },
