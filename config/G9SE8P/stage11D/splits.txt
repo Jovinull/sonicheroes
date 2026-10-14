@@ -1260,6 +1260,9 @@ rel/gadget_mgun_fire.cpp:
 rel/gadget_shot.cpp:
 	.text       start:0x0005DE7C end:0x0005DF48
 
+rel/gadget_shot_fire.cpp:
+	.text       start:0x0005DF48 end:0x0005E2BC
+
 rel/gadget_needle.cpp:
 	.text       start:0x0005E7F0 end:0x0005E950
 

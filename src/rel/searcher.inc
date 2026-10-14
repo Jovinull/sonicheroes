@@ -251,7 +251,7 @@ typedef struct Searcher {
 	s32 kind;            // 0x31C, 6: search light
 	s32 moveType;        // 0x320
 	f32 walkSpeed;       // 0x324
-	f32 field328;        // 0x328
+	f32 shotSpeed;       // 0x328
 	s32 readyWait;       // 0x32C
 	s32 attackWait;      // 0x330
 	u8 unk334[0xC];

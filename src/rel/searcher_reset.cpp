@@ -23,8 +23,8 @@ extern "C" void ResetVariable__17TObjEnemySearcherFv(Searcher* searcher)
 	searcher->spinSpeed                                    = searcherZero;
 	searcher->gadget                                       = NULL;
 	searcher->kind                                         = 0;
-	searcher->field328 = searcher->walkSpeed = searcherDefaultWalkSpeed;
-	searcher->field260                       = 0;
+	searcher->shotSpeed = searcher->walkSpeed = searcherDefaultWalkSpeed;
+	searcher->field260                        = 0;
 	searcher->attackWait = searcher->readyWait = 180;
 	searcher->shadowPos.x                      = searcherZero;
 	searcher->shadowPos.y                      = searcherNoGround;

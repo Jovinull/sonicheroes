@@ -6815,6 +6815,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gadget_shot_fire.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
                 "rel/gadget_mgun_fire.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],

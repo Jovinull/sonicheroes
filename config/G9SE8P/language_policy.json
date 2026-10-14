@@ -152,6 +152,7 @@
     "rel/e_tree_stage11.cpp",
     "rel/e_turtle_stage11.cpp",
     "rel/gadget_mgun_fire.cpp",
+    "rel/gadget_shot_fire.cpp",
     "rel/o_s11_door.cpp",
     "rel/o_s12_celestial_sphere.cpp",
     "rel/o_spring.cpp",
