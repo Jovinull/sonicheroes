@@ -1331,6 +1331,9 @@ rel/gadget_shot_fire.cpp:
 rel/gadget_needle.cpp:
 	.text       start:0x0005E7C4 end:0x0005E924
 
+rel/gadget_needle_static.cpp:
+	.text       start:0x0005ECE4 end:0x0005EE04
+
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE04 end:0x0005EE78
 
