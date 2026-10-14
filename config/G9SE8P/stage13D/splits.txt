@@ -1298,6 +1298,12 @@ rel/gadget_search_light.cpp:
 rel/gadget_bomber.cpp:
 	.text       start:0x0005B678 end:0x0005B734
 
+rel/gadget_bomber_clump.cpp:
+	.text       start:0x0005BFA8 end:0x0005C100
+
+rel/gadget_bomber_static.cpp:
+	.text       start:0x0005C32C end:0x0005C408
+
 rel/gadget_laser_mode.cpp:
 	.text       start:0x0005C408 end:0x0005C444
 

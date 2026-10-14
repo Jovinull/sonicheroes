@@ -177,7 +177,10 @@ public:
 
 	u8 unk00[0x1C];
 	s32 active; // 0x1C
-	u8 unk20[0x2C];
+	u8 unk20[0xC];
+	struct ENEMY_MOTION* motions; // 0x2C
+	RpClump* clump;               // 0x30
+	u8 unk34[0x18];
 };
 
 typedef struct Searcher {
