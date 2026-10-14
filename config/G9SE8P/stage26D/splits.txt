@@ -1850,14 +1850,23 @@ rel/gadget_mgun.cpp:
 rel/gadget_mgun_fire.cpp:
 	.text       start:0x000A2DCC end:0x000A3178
 
+rel/gadget_mgun_cdtor.cpp:
+	.text       start:0x000A3630 end:0x000A36D4
+
 rel/gadget_shot.cpp:
 	.text       start:0x000A3778 end:0x000A3844
 
 rel/gadget_shot_fire.cpp:
 	.text       start:0x000A3844 end:0x000A3BB8
 
+rel/gadget_shot_cdtor.cpp:
+	.text       start:0x000A3FD8 end:0x000A4074
+
 rel/gadget_needle.cpp:
 	.text       start:0x000A40EC end:0x000A424C
+
+rel/gadget_needle_cdtor.cpp:
+	.text       start:0x000A44D0 end:0x000A460C
 
 rel/gadget_needle_static.cpp:
 	.text       start:0x000A460C end:0x000A472C

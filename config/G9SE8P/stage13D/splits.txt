@@ -1325,14 +1325,23 @@ rel/gadget_mgun.cpp:
 rel/gadget_mgun_fire.cpp:
 	.text       start:0x0005D4A4 end:0x0005D850
 
+rel/gadget_mgun_cdtor.cpp:
+	.text       start:0x0005DD08 end:0x0005DDAC
+
 rel/gadget_shot.cpp:
 	.text       start:0x0005DE50 end:0x0005DF1C
 
 rel/gadget_shot_fire.cpp:
 	.text       start:0x0005DF1C end:0x0005E290
 
+rel/gadget_shot_cdtor.cpp:
+	.text       start:0x0005E6B0 end:0x0005E74C
+
 rel/gadget_needle.cpp:
 	.text       start:0x0005E7C4 end:0x0005E924
+
+rel/gadget_needle_cdtor.cpp:
+	.text       start:0x0005EBA8 end:0x0005ECE4
 
 rel/gadget_needle_static.cpp:
 	.text       start:0x0005ECE4 end:0x0005EE04
