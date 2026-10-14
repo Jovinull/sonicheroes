@@ -222,25 +222,25 @@ footer{border-top:1px solid var(--line); padding:48px 0; background:#080b12}
     <div class="grid">
       <div class="stat">
         <div class="k">Code matched</div>
-        <div class="v"><span data-num="code">0.05</span><span class="pct">%</span></div>
+        <div class="v"><span data-num="code">&mdash;</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="code">...</span> of total code bytes</div>
         <div class="bar" role="progressbar" aria-label="Code matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="code"></i></div>
       </div>
       <div class="stat">
         <div class="k">Data matched</div>
-        <div class="v"><span data-num="data">0.00</span><span class="pct">%</span></div>
+        <div class="v"><span data-num="data">&mdash;</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="data">...</span> of total data bytes</div>
         <div class="bar" role="progressbar" aria-label="Data matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="data"></i></div>
       </div>
       <div class="stat fn">
         <div class="k">Functions</div>
-        <div class="v"><span data-num="fn">0.27</span><span class="pct">%</span></div>
+        <div class="v"><span data-num="fn">&mdash;</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="fn">...</span> functions matched</div>
         <div class="bar" role="progressbar" aria-label="Functions matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="fn"></i></div>
       </div>
       <div class="stat units">
         <div class="k">Complete units</div>
-        <div class="v"><span data-num="units">0</span><span class="pct">%</span></div>
+        <div class="v"><span data-num="units">&mdash;</span><span class="pct">%</span></div>
         <div class="d"><span data-abs="units">...</span> translation units done</div>
         <div class="bar" role="progressbar" aria-label="Complete translation units" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i data-bar="units"></i></div>
       </div>
@@ -264,9 +264,9 @@ footer{border-top:1px solid var(--line); padding:48px 0; background:#080b12}
         <h3>It is</h3>
         <ul>
           <li>Hand-written C, C++ and inline assembly source</li>
-          <li>Verified byte-for-byte against the retail <code>main.dol</code></li>
+          <li>Verified byte-for-byte against the retail <code>main.dol</code> and all 17 REL modules</li>
           <li>A non-commercial study &amp; preservation effort</li>
-          <li>CI-checked: every push verifies the built DOL's SHA-1</li>
+          <li>CI-checked: every push verifies the SHA-1 of the DOL and every REL</li>
           <li>Free and open, under its repository license</li>
         </ul>
       </div>
@@ -310,7 +310,7 @@ footer{border-top:1px solid var(--line); padding:48px 0; background:#080b12}
       <div class="panel">
         <h3>CI-verified</h3>
         <p>The disc ships no <code>.map</code>, so symbols and unit boundaries are worked out by
-        hand. Every push rebuilds and checks the DOL's SHA-1.</p>
+        hand. Every push rebuilds the DOL and all 17 RELs and checks their SHA-1.</p>
       </div>
     </div>
 
@@ -362,7 +362,7 @@ ninja</pre>
       <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">Legal</a>
       <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a>
     </div>
-    <div class="copy">Built and maintained by Jovinull · Progress data © decomp.dev · Fan project, no commercial use.</div>
+    <div class="copy">Maintained by Jovinull, built with <a href="https://github.com/Jovinull/sonicheroes/graphs/contributors">its contributors</a> · Progress data © decomp.dev · Fan project, no commercial use.</div>
   </div>
 </footer>
 
