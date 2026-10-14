@@ -1820,6 +1820,9 @@ rel/enemy_gadget_bomb_ctor.cpp:
 rel/gadget_search_light.cpp:
 	.text       start:0x000A09F4 end:0x000A0AE8
 
+rel/gadget_search_light_cdtor.cpp:
+	.text       start:0x000A0E34 end:0x000A0FA0
+
 rel/gadget_bomber.cpp:
 	.text       start:0x000A0FA0 end:0x000A105C
 

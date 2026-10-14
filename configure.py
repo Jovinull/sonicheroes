@@ -6803,6 +6803,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gadget_search_light_cdtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gadget_bomber_static.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
