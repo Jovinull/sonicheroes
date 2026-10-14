@@ -1310,6 +1310,12 @@ rel/gadget_laser_mode.cpp:
 rel/gadget_laser_disp.cpp:
 	.text       start:0x0005C690 end:0x0005C76C
 
+rel/gadget_laser_update.cpp:
+	.text       start:0x0005CC98 end:0x0005CF84
+
+rel/gadget_laser_static.cpp:
+	.text       start:0x0005D304 end:0x0005D3A8
+
 rel/gadget_mgun.cpp:
 	.text       start:0x0005D41C end:0x0005D4A4
 
