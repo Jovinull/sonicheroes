@@ -413,15 +413,15 @@ RwMatrix* fn_8019E8EC(void*);                                                /* 
 void fn_8019EB94(void*, RwV3d*, s32); /* RwFrameTranslate */                 /* extern */
 void fn_8019ECCC(void*, RwMatrix*, s32);                                     /* RwFrameTransform */
 void fn_8019ED68(void*, void*, f32, s32);                                    /* RwFrameRotate */
-void fn_8019EE04(s32);                          /* RwFrameUpdateObjects */
-s32 rand();                                     /* extern */
-M2C_UNK fn_8_5EF94(u32, RwV3d*);                /* extern */
-M2C_UNK fn_8_5F048(u32, RwV3d*);                /* extern */
-M2C_UNK fn_8_5F100(s32);                        /* extern */
-void fn_8_5F140(void*);                         /* extern */
-s32 fn_8_5F30C(M2C_UNK*, RwV3d*, sAngle*, f32); /* extern */
-M2C_UNK fn_8_90B10(s32);                        /* extern */
-M2C_UNK fn_8_A1E94(s32);                        /* extern */
+void fn_8019EE04(s32);                                       /* RwFrameUpdateObjects */
+s32 rand();                                                  /* extern */
+M2C_UNK SetAimPosition__11TMachineGunFPC5RwV3d(u32, RwV3d*); /* extern */
+M2C_UNK SetPosition__11TMachineGunFPC5RwV3d(u32, RwV3d*);    /* extern */
+M2C_UNK Stop__11TMachineGunFv(s32);                          /* extern */
+void Run__11TMachineGunFv(void*);                            /* extern */
+s32 Create__11TMachineGunFP7TObjectPC5RwV3dPC6sAnglef(M2C_UNK*, RwV3d*, sAngle*, f32); /* extern */
+M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);                                         /* extern */
+M2C_UNK fn_8_A1E94(s32);                                                               /* extern */
 struct sFlyerIronBall;
 void* fn_8_A8B60(const sFlyerIronBall*); /* TObjEnemyFlyerIronBall::Create */ /* extern */
 M2C_UNK fn_8_A8D1C();                                                         /* extern */
@@ -1001,9 +1001,9 @@ M2C_UNK* fn_8_A5F50(M2C_UNK* arg0, void* arg1)
 	}
 	FLD(arg0, void*, 0x228) = p;
 	if (FLD(arg0, s8, 0x245) == 1) {
-		FLD(arg0, s32, 0x304) = fn_8_5F30C(
+		FLD(arg0, s32, 0x304) = Create__11TMachineGunFP7TObjectPC5RwV3dPC6sAnglef(
 		    lbl_8042C10C, &((FlyerCtorView*)arg0)->pos, &((FlyerCtorView*)arg0)->ang, 200.0f);
-		fn_8_5F100(FLD(arg0, s32, 0x304));
+		Stop__11TMachineGunFv(FLD(arg0, s32, 0x304));
 	}
 	p = Malloc__9THeapCtrlFUi(lbl_8042C148, 0xD0);
 	if (p != NULL) {
@@ -1220,8 +1220,8 @@ void fn_8_A549C(void* arg0)
 		ltm          = fn_8019E8EC(FLD(arg0, void*, 0x28C));
 		RwV3d muzzle = lbl_8_rodata_18D8;
 		fn_8019941C(&muzzle, &muzzle, 1, ltm);
-		fn_8_5F048(FLD(arg0, u32, 0x304), &ltm->pos);
-		fn_8_5EF94(FLD(arg0, u32, 0x304), &muzzle);
+		SetPosition__11TMachineGunFPC5RwV3d(FLD(arg0, u32, 0x304), &ltm->pos);
+		SetAimPosition__11TMachineGunFPC5RwV3d(FLD(arg0, u32, 0x304), &muzzle);
 	}
 	if (FLD(arg0, void*, 0x280) == NULL) {
 		flyerFindBoneFrame(arg0, 0x3EA, &FLD(arg0, void*, 0x280));
@@ -1320,7 +1320,7 @@ void fn_8_A4E44(M2C_UNK* arg0)
 		}
 		case 1:
 			if (FLD(arg0, void*, 0x304) != NULL) {
-				fn_8_5F140(FLD(arg0, void*, 0x304));
+				Run__11TMachineGunFv(FLD(arg0, void*, 0x304));
 				if (lbl_8042C388 != 0) {
 					fn_800B4A38(lbl_8042C388, 0x4018, (u8*)arg0 + 0x268, arg0, 3, 0, 2);
 				}
@@ -1793,7 +1793,7 @@ void AddScore__14TObjEnemyFlyerFv(void* arg0)
 
 void AddItemBox__14TObjEnemyFlyerFP5RwV3d(void* arg0, s32 arg1)
 {
-	fn_8_90B10(arg1);
+	CreateItemBox__8nItemBoxFP5RwV3d(arg1);
 }
 
 #pragma opt_common_subs off

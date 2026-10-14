@@ -590,6 +590,15 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/enemy_shot_set.cpp:
+	.text       start:0x0002CCE8 end:0x0002D1F0
+
+rel/enemy_shot_pool.cpp:
+	.text       start:0x0002D1F0 end:0x0002D37C
+
+rel/enemy_shot_ctor.cpp:
+	.text       start:0x0002D37C end:0x0002D544
+
 rel/enemy_shot_dtor.cpp:
 	.text       start:0x0002D9E0 end:0x0002DA64
 
@@ -598,6 +607,30 @@ rel/shield_splinter_move.cpp:
 
 rel/shield_splinter_dtor.cpp:
 	.text       start:0x0002FDD4 end:0x0002FE48
+
+rel/enemy_shield_set.cpp:
+	.text       start:0x00030144 end:0x00030444
+
+rel/enemy_shield_texture.cpp:
+	.text       start:0x00030444 end:0x00030508
+
+rel/enemy_shield_ctor.cpp:
+	.text       start:0x00030508 end:0x00030784
+
+rel/enemy_shield_dtor.cpp:
+	.text       start:0x00030DA0 end:0x00030E24
+
+rel/enemy_shield_angle.cpp:
+	.text       start:0x00030E24 end:0x00030EF0
+
+rel/enemy_shield_direction.cpp:
+	.text       start:0x00030EF0 end:0x00030FD8
+
+rel/enemy_shield_normal.cpp:
+	.text       start:0x00031514 end:0x00031600
+
+rel/enemy_shield_status.cpp:
+	.text       start:0x00031D30 end:0x00031E3C
 
 rel/item_box_disp.cpp:
 	.text       start:0x00032AFC end:0x00032CAC

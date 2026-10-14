@@ -396,7 +396,7 @@ M2C_UNK fn_800B4A38(u32, s32, void*, s32, s32, s32, s32); /* extern */
 M2C_UNK AddScore__14TEnemyScoreManFii(u32, s32, s32);     /* extern */
 M2C_UNK CreateInstance__14TEnemyScoreManFv();             /* extern */
 M2C_UNK fn_8014FF2C(void*);                               /* extern */
-M2C_UNK fn_8_90B10(s32);                                  /* extern */
+M2C_UNK CreateItemBox__8nItemBoxFP5RwV3d(s32);            /* extern */
 M2C_UNK fn_8_B5160(IronBallParam*);                       /* extern */
 extern GameFlags* lbl_8042C180;
 extern M2C_UNK lbl_8042C1A4;
@@ -871,7 +871,7 @@ s32 fn_8_B0974(void* arg0)
 /* AddItemBox. */
 void fn_8_B09F8(void* arg0, s32 arg1)
 {
-	fn_8_90B10(arg1);
+	CreateItemBox__8nItemBoxFP5RwV3d(arg1);
 }
 
 /* AddScore. */

@@ -151,9 +151,15 @@
     "rel/e_spider_stage11.cpp",
     "rel/e_tree_stage11.cpp",
     "rel/e_turtle_stage11.cpp",
+    "rel/gadget_mgun_fire.cpp",
+    "rel/gadget_shot_fire.cpp",
     "rel/o_s11_door.cpp",
     "rel/o_s12_celestial_sphere.cpp",
     "rel/o_spring.cpp",
+    "rel/pawn_strategy.cpp",
+    "rel/searcher_md_walk.cpp",
+    "rel/searcher_md_wander.cpp",
+    "rel/searcher_target.cpp",
     "rel/sp_dashpanel.cpp"
   ]
 }

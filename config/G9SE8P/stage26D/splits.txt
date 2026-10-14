@@ -590,11 +590,44 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/enemy_shot_set.cpp:
+	.text       start:0x0002CCE8 end:0x0002D1F0
+
+rel/enemy_shot_pool.cpp:
+	.text       start:0x0002D1F0 end:0x0002D37C
+
+rel/enemy_shot_ctor.cpp:
+	.text       start:0x0002D37C end:0x0002D544
+
 rel/shield_splinter_move.cpp:
 	.text       start:0x0002FC28 end:0x0002FDD4
 
 rel/shield_splinter_dtor.cpp:
 	.text       start:0x0002FDD4 end:0x0002FE48
+
+rel/enemy_shield_set.cpp:
+	.text       start:0x00030144 end:0x00030444
+
+rel/enemy_shield_texture.cpp:
+	.text       start:0x00030444 end:0x00030508
+
+rel/enemy_shield_ctor.cpp:
+	.text       start:0x00030508 end:0x00030784
+
+rel/enemy_shield_dtor.cpp:
+	.text       start:0x00030DA0 end:0x00030E24
+
+rel/enemy_shield_angle.cpp:
+	.text       start:0x00030E24 end:0x00030EF0
+
+rel/enemy_shield_direction.cpp:
+	.text       start:0x00030EF0 end:0x00030FD8
+
+rel/enemy_shield_normal.cpp:
+	.text       start:0x00031514 end:0x00031600
+
+rel/enemy_shield_status.cpp:
+	.text       start:0x00031D30 end:0x00031E3C
 
 rel/item_box_disp.cpp:
 	.text       start:0x00032AFC end:0x00032CAC
@@ -1580,11 +1613,26 @@ rel/e2000_object_register.cpp:
 	.text       start:0x00094B00 end:0x00094BFC
 	.ctors      start:0x000000F4 end:0x000000F8
 
+rel/pawn_add_item_box.cpp:
+	.text       start:0x000971E4 end:0x00097208
+
 rel/pawn_check_direction.cpp:
 	.text       start:0x00097208 end:0x00097388
 
+rel/pawn_update_shoulder_angle.cpp:
+	.text       start:0x00097388 end:0x000974E4
+
+rel/pawn_exec_machine_gun.cpp:
+	.text       start:0x000974E4 end:0x0009766C
+
+rel/pawn_exec_shot_ready.cpp:
+	.text       start:0x0009766C end:0x00097944
+
 rel/pawn_hit_point.cpp:
 	.text       start:0x00097B38 end:0x00097C28
+
+rel/pawn_play_se_for_foot.cpp:
+	.text       start:0x00097C28 end:0x00097E2C
 
 rel/pawn_add_score.cpp:
 	.text       start:0x00097E2C end:0x00097F68
@@ -1598,6 +1646,9 @@ rel/pawn_rcv_hp_inc.cpp:
 rel/pawn_exec_thunder_shoot.cpp:
 	.text       start:0x00098464 end:0x00098500
 
+rel/pawn_explosion.cpp:
+	.text       start:0x000985AC end:0x00098750
+
 rel/pawn_check_damage2.cpp:
 	.text       start:0x00098750 end:0x00098794
 
@@ -1609,6 +1660,9 @@ rel/pawn_disp_shadow.cpp:
 
 rel/pawn_disp_trans.cpp:
 	.text       start:0x00098930 end:0x00098934
+
+rel/pawn_disp_opaq.cpp:
+	.text       start:0x00098934 end:0x00098C14
 
 rel/pawn_bite_nail.cpp:
 	.text       start:0x00098C14 end:0x00098D68
@@ -1625,8 +1679,20 @@ rel/pawn_turn_to_aim.cpp:
 rel/pawn_update_on_edit.cpp:
 	.text       start:0x00099154 end:0x00099188
 
+rel/pawn_update.cpp:
+	.text       start:0x00099188 end:0x0009963C
+
+rel/pawn_set_collision_parameter.cpp:
+	.text       start:0x0009963C end:0x0009986C
+
 rel/pawn_md_idle.cpp:
 	.text       start:0x0009986C end:0x0009988C
+
+rel/pawn_md_mgun_fire.cpp:
+	.text       start:0x0009988C end:0x00099A84
+
+rel/pawn_md_mgun_ready.cpp:
+	.text       start:0x00099A84 end:0x00099D48
 
 rel/pawn_md_tornado_blow_shield.cpp:
 	.text       start:0x00099D48 end:0x00099E34
@@ -1700,8 +1766,14 @@ rel/pawn_md_crouch.cpp:
 rel/pawn_calc_start_and_aim.cpp:
 	.text       start:0x0009C2E8 end:0x0009C424
 
+rel/pawn_select_initial_mode.cpp:
+	.text       start:0x0009C424 end:0x0009C684
+
 rel/pawn_destroy_clump.cpp:
 	.text       start:0x0009D008 end:0x0009D090
+
+rel/pawn_clone_clump.cpp:
+	.text       start:0x0009D090 end:0x0009D3E8
 
 rel/pawn_reset_variable.cpp:
 	.text       start:0x0009D3E8 end:0x0009D4D8
@@ -1709,9 +1781,26 @@ rel/pawn_reset_variable.cpp:
 rel/pawn_dtor.cpp:
 	.text       start:0x0009D4D8 end:0x0009D6B0
 
+rel/pawn_create_instance.cpp:
+	.text       start:0x0009DC3C end:0x0009DC90
+
+rel/pawn_unload.cpp:
+	.text       start:0x0009DF54 end:0x0009DFF4
+
+rel/pawn_load.cpp:
+	.text       start:0x0009DFF4 end:0x0009E474
+
 rel/pawn_assets.cpp:
 	.text       start:0x0009E474 end:0x0009E564
 	.ctors      start:0x000000F8 end:0x000000FC
+
+rel/pawn_strategy_modes.cpp:
+	.text       start:0x0009E604 end:0x0009EFE4
+
+rel/pawn_strategy.cpp:
+	.text       start:0x0009EFE4 end:0x0009FE44
+	.ctors      start:0x000000FC end:0x00000100
+	.data       start:0x00009EC0 end:0x0000A234
 
 rel/enemy_gadget_bomb_disp.cpp:
 	.text       start:0x0009FE44 end:0x0009FF68
@@ -1728,11 +1817,144 @@ rel/enemy_gadget_bomb_dtor.cpp:
 rel/enemy_gadget_bomb_ctor.cpp:
 	.text       start:0x000A0854 end:0x000A09F4
 
+rel/gadget_search_light.cpp:
+	.text       start:0x000A09F4 end:0x000A0AE8
+
+rel/gadget_search_light_cdtor.cpp:
+	.text       start:0x000A0E34 end:0x000A0FA0
+
+rel/gadget_bomber.cpp:
+	.text       start:0x000A0FA0 end:0x000A105C
+
+rel/gadget_bomber_clump.cpp:
+	.text       start:0x000A18D0 end:0x000A1A28
+
+rel/gadget_bomber_cdtor.cpp:
+	.text       start:0x000A1A28 end:0x000A1C54
+
+rel/gadget_bomber_static.cpp:
+	.text       start:0x000A1C54 end:0x000A1D30
+
+rel/gadget_laser_mode.cpp:
+	.text       start:0x000A1D30 end:0x000A1D6C
+
+rel/gadget_laser_disp.cpp:
+	.text       start:0x000A1FB8 end:0x000A2094
+
+rel/gadget_laser_update.cpp:
+	.text       start:0x000A25C0 end:0x000A28AC
+
+rel/gadget_laser_static.cpp:
+	.text       start:0x000A2C2C end:0x000A2CD0
+
+rel/gadget_mgun.cpp:
+	.text       start:0x000A2D44 end:0x000A2DCC
+
+rel/gadget_mgun_fire.cpp:
+	.text       start:0x000A2DCC end:0x000A3178
+
+rel/gadget_mgun_cdtor.cpp:
+	.text       start:0x000A3630 end:0x000A36D4
+
+rel/gadget_shot.cpp:
+	.text       start:0x000A3778 end:0x000A3844
+
+rel/gadget_shot_fire.cpp:
+	.text       start:0x000A3844 end:0x000A3BB8
+
+rel/gadget_shot_cdtor.cpp:
+	.text       start:0x000A3FD8 end:0x000A4074
+
+rel/gadget_needle.cpp:
+	.text       start:0x000A40EC end:0x000A424C
+
+rel/gadget_needle_cdtor.cpp:
+	.text       start:0x000A44D0 end:0x000A460C
+
+rel/gadget_needle_static.cpp:
+	.text       start:0x000A460C end:0x000A472C
+
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x000A472C end:0x000A47A0
 
-rel/searcher_sound_limit_dtor.cpp:
-	.text       start:0x000A4904 end:0x000A4988
+rel/searcher_sound_limit.cpp:
+	.text       start:0x000A47D0 end:0x000A4B10
+
+rel/searcher_sleep.cpp:
+	.text       start:0x000A4B10 end:0x000A4C84
+
+rel/searcher_cancel.cpp:
+	.text       start:0x000A4C84 end:0x000A4D2C
+
+rel/searcher_score.cpp:
+	.text       start:0x000A4E74 end:0x000A5010
+
+rel/searcher_hit_point.cpp:
+	.text       start:0x000A5010 end:0x000A50E0
+
+rel/searcher_gadget_mode.cpp:
+	.text       start:0x000A53C4 end:0x000A5404
+
+rel/searcher_shadow.cpp:
+	.text       start:0x000A5480 end:0x000A5544
+
+rel/searcher_disp_shadow.cpp:
+	.text       start:0x000A5544 end:0x000A560C
+
+rel/searcher_disp.cpp:
+	.text       start:0x000A560C end:0x000A5690
+
+rel/searcher_check_direction.cpp:
+	.text       start:0x000A5690 end:0x000A5830
+
+rel/searcher_target.cpp:
+	.text       start:0x000A5830 end:0x000A5AFC
+
+rel/searcher_aim_first.cpp:
+	.text       start:0x000A5AFC end:0x000A5BF8
+
+rel/searcher_walk_to_aim.cpp:
+	.text       start:0x000A5FD8 end:0x000A60E0
+
+rel/searcher_md_siren.cpp:
+	.text       start:0x000A6670 end:0x000A69C0
+
+rel/searcher_md_ready.cpp:
+	.text       start:0x000A69C0 end:0x000A6C48
+
+rel/searcher_md_wander_turn.cpp:
+	.text       start:0x000A6C48 end:0x000A6C50
+
+rel/searcher_md_wander.cpp:
+	.text       start:0x000A6D54 end:0x000A71C0
+
+rel/searcher_md_walk.cpp:
+	.text       start:0x000A71C0 end:0x000A7700
+
+rel/searcher_ctrl.cpp:
+	.text       start:0x000A7700 end:0x000A77AC
+
+rel/searcher_jet.cpp:
+	.text       start:0x000A853C end:0x000A8678
+
+rel/searcher_destroy_clump.cpp:
+	.text       start:0x000A9364 end:0x000A9470
+
+rel/searcher_clone_clump.cpp:
+	.text       start:0x000A9470 end:0x000A98DC
+	.data       start:0x0000AAE8 end:0x0000AB20
+
+rel/searcher_reset.cpp:
+	.text       start:0x000A98DC end:0x000A99E0
+
+rel/searcher_create_instance.cpp:
+	.text       start:0x000A9FD4 end:0x000AA028
+
+rel/searcher_unload.cpp:
+	.text       start:0x000AA3F8 end:0x000AA4C4
+
+rel/searcher_load.cpp:
+	.text       start:0x000AA4C4 end:0x000AA738
 
 rel/searcher_create.cpp:
 	.text       start:0x000AA738 end:0x000AA780
@@ -1741,12 +1963,37 @@ rel/searcher_register.cpp:
 	.text       start:0x000AA818 end:0x000AA918
 	.ctors      start:0x00000100 end:0x00000104
 
-rel/flyer_object_create.cpp:
-	.text       start:0x000B0CE8 end:0x000B0D30
+rel/searcher_strategy_search_light.cpp:
+	.text       start:0x000AA920 end:0x000AAD7C
 
-rel/flyer_register.cpp:
-	.text       start:0x000B0D30 end:0x000B0DD4
+rel/searcher_strategy_mgun.cpp:
+	.text       start:0x000AAE30 end:0x000AB380
+
+rel/searcher_strategy_shot.cpp:
+	.text       start:0x000AB434 end:0x000ABA58
+
+rel/searcher_strategy_bomb.cpp:
+	.text       start:0x000ABB0C end:0x000ABFE0
+
+rel/searcher_strategy_laser.cpp:
+	.text       start:0x000AC020 end:0x000AC128
+
+rel/searcher_strategy_needle.cpp:
+	.text       start:0x000AC168 end:0x000AC5D4
+
+rel/searcher_strategy_modes.cpp:
+	.text       start:0x000AC620 end:0x000ACF48
+
+rel/searcher_strategy_exec.cpp:
+	.text       start:0x000ACF48 end:0x000AD0D0
+	.data       start:0x0000AC68 end:0x0000ACA0
+
+rel/e_flyer_stage11.cpp:
+	.text       start:0x000AD314 end:0x000B0DDC
 	.ctors      start:0x00000104 end:0x00000108
+	.rodata     start:0x00001DD0 end:0x00001E90
+	.data       start:0x0000AE98 end:0x0000B188
+	.bss        start:0x0000D088 end:0x0000D0C8
 
 rel/flyer_collision_check.cpp:
 	.text       start:0x000B0E7C end:0x000B1AC0
@@ -1781,6 +2028,27 @@ rel/flyer_collision_create.cpp:
 rel/flyer_col_register.cpp:
 	.text       start:0x000B22B0 end:0x000B2358
 	.ctors      start:0x00000108 end:0x0000010C
+
+rel/e_flyer_ironball_stage11.cpp:
+	.text       start:0x000B2360 end:0x000B2E50
+	.rodata     start:0x00001EA8 end:0x00001ED8
+	.data       start:0x0000B2F0 end:0x0000B368
+	.bss        start:0x0000D0F8 end:0x0000D100
+
+rel/e_flyer_missile_stage11.cpp:
+	.text       start:0x000B2E50 end:0x000B3F4C
+	.rodata     start:0x00001ED8 end:0x00001F10
+	.data       start:0x0000B368 end:0x0000B3E0
+	.bss        start:0x0000D100 end:0x0000D108
+
+rel/e_path_draw_stage11.cpp:
+	.text       start:0x000B3F4C end:0x000B4000
+	.rodata     start:0x00001F10 end:0x00001F20
+
+rel/e_flyer_path_stage11.cpp:
+	.text       start:0x000B4000 end:0x000B46C8
+	.rodata     start:0x00001F20 end:0x00001F30
+	.data       start:0x0000B3E0 end:0x0000B410
 
 rel/no_ottotto_collision_exec.cpp:
 	.text       start:0x000B46C8 end:0x000B47C4

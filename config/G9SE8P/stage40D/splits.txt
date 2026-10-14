@@ -193,3 +193,9 @@ rel/tenkyu_goalring.cpp:
 	.rodata     start:0x00001FA8 end:0x00001FB4
 	.data       start:0x00044DE4 end:0x00045048
 	.bss        start:0x00006758 end:0x00006778
+
+rel/event_script_update_endian.cpp:
+	.text       start:0x00091C00 end:0x00091CB4
+
+rel/event_script_address.cpp:
+	.text       start:0x00091D4C end:0x00091DA8

@@ -590,11 +590,26 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/pawn_add_item_box.cpp:
+	.text       start:0x0002CA08 end:0x0002CA2C
+
 rel/pawn_check_direction.cpp:
 	.text       start:0x0002CA2C end:0x0002CBAC
 
+rel/pawn_update_shoulder_angle.cpp:
+	.text       start:0x0002CBAC end:0x0002CD08
+
+rel/pawn_exec_machine_gun.cpp:
+	.text       start:0x0002CD08 end:0x0002CE90
+
+rel/pawn_exec_shot_ready.cpp:
+	.text       start:0x0002CE90 end:0x0002D168
+
 rel/pawn_hit_point.cpp:
 	.text       start:0x0002D35C end:0x0002D44C
+
+rel/pawn_play_se_for_foot.cpp:
+	.text       start:0x0002D44C end:0x0002D650
 
 rel/pawn_add_score.cpp:
 	.text       start:0x0002D650 end:0x0002D78C
@@ -608,6 +623,9 @@ rel/pawn_rcv_hp_inc.cpp:
 rel/pawn_exec_thunder_shoot.cpp:
 	.text       start:0x0002DC88 end:0x0002DD24
 
+rel/pawn_explosion.cpp:
+	.text       start:0x0002DDD0 end:0x0002DF74
+
 rel/pawn_check_damage2.cpp:
 	.text       start:0x0002DF74 end:0x0002DFB8
 
@@ -619,6 +637,9 @@ rel/pawn_disp_shadow.cpp:
 
 rel/pawn_disp_trans.cpp:
 	.text       start:0x0002E154 end:0x0002E158
+
+rel/pawn_disp_opaq.cpp:
+	.text       start:0x0002E158 end:0x0002E438
 
 rel/pawn_bite_nail.cpp:
 	.text       start:0x0002E438 end:0x0002E58C
@@ -635,8 +656,20 @@ rel/pawn_turn_to_aim.cpp:
 rel/pawn_update_on_edit.cpp:
 	.text       start:0x0002E978 end:0x0002E9AC
 
+rel/pawn_update.cpp:
+	.text       start:0x0002E9AC end:0x0002EE60
+
+rel/pawn_set_collision_parameter.cpp:
+	.text       start:0x0002EE60 end:0x0002F090
+
 rel/pawn_md_idle.cpp:
 	.text       start:0x0002F090 end:0x0002F0B0
+
+rel/pawn_md_mgun_fire.cpp:
+	.text       start:0x0002F0B0 end:0x0002F2A8
+
+rel/pawn_md_mgun_ready.cpp:
+	.text       start:0x0002F2A8 end:0x0002F56C
 
 rel/pawn_md_tornado_blow_shield.cpp:
 	.text       start:0x0002F56C end:0x0002F658
@@ -710,8 +743,14 @@ rel/pawn_md_crouch.cpp:
 rel/pawn_calc_start_and_aim.cpp:
 	.text       start:0x00031B0C end:0x00031C48
 
+rel/pawn_select_initial_mode.cpp:
+	.text       start:0x00031C48 end:0x00031EA8
+
 rel/pawn_destroy_clump.cpp:
 	.text       start:0x0003282C end:0x000328B4
+
+rel/pawn_clone_clump.cpp:
+	.text       start:0x000328B4 end:0x00032C0C
 
 rel/pawn_reset_variable.cpp:
 	.text       start:0x00032C0C end:0x00032CFC
@@ -719,9 +758,27 @@ rel/pawn_reset_variable.cpp:
 rel/pawn_dtor.cpp:
 	.text       start:0x00032CFC end:0x00032ED4
 
+rel/pawn_create_instance.cpp:
+	.text       start:0x00033460 end:0x000334B4
+
+rel/pawn_unload.cpp:
+	.text       start:0x00033778 end:0x00033818
+
+rel/pawn_load.cpp:
+	.text       start:0x00033818 end:0x00033C98
+
 rel/pawn_assets.cpp:
 	.text       start:0x00033C98 end:0x00033D88
 	.ctors      start:0x00000060 end:0x00000064
+
+rel/enemy_shot_set.cpp:
+	.text       start:0x00034120 end:0x00034628
+
+rel/enemy_shot_pool.cpp:
+	.text       start:0x00034628 end:0x000347B4
+
+rel/enemy_shot_ctor.cpp:
+	.text       start:0x000347B4 end:0x0003497C
 
 rel/enemy_shot_dtor.cpp:
 	.text       start:0x00034E18 end:0x00034E9C
@@ -731,6 +788,30 @@ rel/shield_splinter_move.cpp:
 
 rel/shield_splinter_dtor.cpp:
 	.text       start:0x0003720C end:0x00037280
+
+rel/enemy_shield_set.cpp:
+	.text       start:0x0003757C end:0x0003787C
+
+rel/enemy_shield_texture.cpp:
+	.text       start:0x0003787C end:0x00037940
+
+rel/enemy_shield_ctor.cpp:
+	.text       start:0x00037940 end:0x00037BBC
+
+rel/enemy_shield_dtor.cpp:
+	.text       start:0x000381D8 end:0x0003825C
+
+rel/enemy_shield_angle.cpp:
+	.text       start:0x0003825C end:0x00038328
+
+rel/enemy_shield_direction.cpp:
+	.text       start:0x00038328 end:0x00038410
+
+rel/enemy_shield_normal.cpp:
+	.text       start:0x0003894C end:0x00038A38
+
+rel/enemy_shield_status.cpp:
+	.text       start:0x00039168 end:0x00039274
 
 rel/item_box_disp.cpp:
 	.text       start:0x00039F34 end:0x0003A0E4
@@ -1064,8 +1145,109 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
-rel/searcher_sound_limit_dtor.cpp:
-	.text       start:0x000545B0 end:0x00054634
+rel/searcher_strategy_search_light.cpp:
+	.text       start:0x000519F0 end:0x00051E4C
+
+rel/searcher_strategy_mgun.cpp:
+	.text       start:0x00051F00 end:0x00052450
+
+rel/searcher_strategy_shot.cpp:
+	.text       start:0x00052504 end:0x00052B28
+
+rel/searcher_strategy_bomb.cpp:
+	.text       start:0x00052BDC end:0x000530B0
+
+rel/searcher_strategy_laser.cpp:
+	.text       start:0x000530F0 end:0x000531F8
+
+rel/searcher_strategy_needle.cpp:
+	.text       start:0x00053238 end:0x000536A4
+
+rel/searcher_strategy_modes.cpp:
+	.text       start:0x000536F0 end:0x00054018
+
+rel/searcher_strategy_exec.cpp:
+	.text       start:0x00054018 end:0x000541A0
+	.data       start:0x00005C28 end:0x00005C60
+
+rel/searcher_sound_limit.cpp:
+	.text       start:0x0005447C end:0x000547BC
+
+rel/searcher_sleep.cpp:
+	.text       start:0x000547BC end:0x00054930
+
+rel/searcher_cancel.cpp:
+	.text       start:0x00054930 end:0x000549D8
+
+rel/searcher_score.cpp:
+	.text       start:0x00054B20 end:0x00054CBC
+
+rel/searcher_hit_point.cpp:
+	.text       start:0x00054CBC end:0x00054D8C
+
+rel/searcher_gadget_mode.cpp:
+	.text       start:0x00055070 end:0x000550B0
+
+rel/searcher_shadow.cpp:
+	.text       start:0x0005512C end:0x000551F0
+
+rel/searcher_disp_shadow.cpp:
+	.text       start:0x000551F0 end:0x000552B8
+
+rel/searcher_disp.cpp:
+	.text       start:0x000552B8 end:0x0005533C
+
+rel/searcher_check_direction.cpp:
+	.text       start:0x0005533C end:0x000554DC
+
+rel/searcher_target.cpp:
+	.text       start:0x000554DC end:0x000557A8
+
+rel/searcher_aim_first.cpp:
+	.text       start:0x000557A8 end:0x000558A4
+
+rel/searcher_walk_to_aim.cpp:
+	.text       start:0x00055C84 end:0x00055D8C
+
+rel/searcher_md_siren.cpp:
+	.text       start:0x0005631C end:0x0005666C
+
+rel/searcher_md_ready.cpp:
+	.text       start:0x0005666C end:0x000568F4
+
+rel/searcher_md_wander_turn.cpp:
+	.text       start:0x000568F4 end:0x000568FC
+
+rel/searcher_md_wander.cpp:
+	.text       start:0x00056A00 end:0x00056E6C
+
+rel/searcher_md_walk.cpp:
+	.text       start:0x00056E6C end:0x000573AC
+
+rel/searcher_ctrl.cpp:
+	.text       start:0x000573AC end:0x00057458
+
+rel/searcher_jet.cpp:
+	.text       start:0x000581E8 end:0x00058324
+
+rel/searcher_destroy_clump.cpp:
+	.text       start:0x00059010 end:0x0005911C
+
+rel/searcher_clone_clump.cpp:
+	.text       start:0x0005911C end:0x00059588
+	.data       start:0x00006340 end:0x00006378
+
+rel/searcher_reset.cpp:
+	.text       start:0x00059588 end:0x0005968C
+
+rel/searcher_create_instance.cpp:
+	.text       start:0x00059C80 end:0x00059CD4
+
+rel/searcher_unload.cpp:
+	.text       start:0x0005A0A4 end:0x0005A170
+
+rel/searcher_load.cpp:
+	.text       start:0x0005A170 end:0x0005A3E4
 
 rel/searcher_create.cpp:
 	.text       start:0x0005A3E4 end:0x0005A42C
@@ -1088,6 +1270,63 @@ rel/enemy_gadget_bomb_dtor.cpp:
 
 rel/enemy_gadget_bomb_ctor.cpp:
 	.text       start:0x0005AF58 end:0x0005B0F8
+
+rel/gadget_search_light.cpp:
+	.text       start:0x0005B0F8 end:0x0005B1EC
+
+rel/gadget_search_light_cdtor.cpp:
+	.text       start:0x0005B538 end:0x0005B6A4
+
+rel/gadget_bomber.cpp:
+	.text       start:0x0005B6A4 end:0x0005B760
+
+rel/gadget_bomber_clump.cpp:
+	.text       start:0x0005BFD4 end:0x0005C12C
+
+rel/gadget_bomber_cdtor.cpp:
+	.text       start:0x0005C12C end:0x0005C358
+
+rel/gadget_bomber_static.cpp:
+	.text       start:0x0005C358 end:0x0005C434
+
+rel/gadget_laser_mode.cpp:
+	.text       start:0x0005C434 end:0x0005C470
+
+rel/gadget_laser_disp.cpp:
+	.text       start:0x0005C6BC end:0x0005C798
+
+rel/gadget_laser_update.cpp:
+	.text       start:0x0005CCC4 end:0x0005CFB0
+
+rel/gadget_laser_static.cpp:
+	.text       start:0x0005D330 end:0x0005D3D4
+
+rel/gadget_mgun.cpp:
+	.text       start:0x0005D448 end:0x0005D4D0
+
+rel/gadget_mgun_fire.cpp:
+	.text       start:0x0005D4D0 end:0x0005D87C
+
+rel/gadget_mgun_cdtor.cpp:
+	.text       start:0x0005DD34 end:0x0005DDD8
+
+rel/gadget_shot.cpp:
+	.text       start:0x0005DE7C end:0x0005DF48
+
+rel/gadget_shot_fire.cpp:
+	.text       start:0x0005DF48 end:0x0005E2BC
+
+rel/gadget_shot_cdtor.cpp:
+	.text       start:0x0005E6DC end:0x0005E778
+
+rel/gadget_needle.cpp:
+	.text       start:0x0005E7F0 end:0x0005E950
+
+rel/gadget_needle_cdtor.cpp:
+	.text       start:0x0005EBD4 end:0x0005ED10
+
+rel/gadget_needle_static.cpp:
+	.text       start:0x0005ED10 end:0x0005EE30
 
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE30 end:0x0005EEA4
@@ -1457,6 +1696,9 @@ rel/bob_jump_collision_dtor.cpp:
 rel/bob_jump_collision_ctor.cpp:
 	.text       start:0x0009C448 end:0x0009C65C
 
+rel/bob_jump_collision_edit.cpp:
+	.text       start:0x0009C65C end:0x0009C6D4
+
 rel/bob_jump_collision_hooks.cpp:
 	.text       start:0x0009C6D4 end:0x0009C6DC
 
@@ -1670,6 +1912,14 @@ rel/s31_bob_dummy_register.cpp:
 	.text       start:0x000B4A08 end:0x000B4AA0
 	.ctors      start:0x00000164 end:0x00000168
 
+rel/pawn_strategy_modes.cpp:
+	.text       start:0x000B4AA0 end:0x000B5480
+
+rel/pawn_strategy.cpp:
+	.text       start:0x000B5480 end:0x000B62E0
+	.ctors      start:0x00000168 end:0x0000016C
+	.data       start:0x00013098 end:0x0001340C
+
 rel/s04_ball_colli_dtor.cpp:
 	.text       start:0x000B6A30 end:0x000B6AC8
 
@@ -1697,12 +1947,17 @@ rel/e_capture_collision.cpp:
 	.data       start:0x00014098 end:0x00014120
 	.bss        start:0x00001F20 end:0x00001F50
 
-rel/turtle_create.cpp:
-	.text       start:0x000C2624 end:0x000C266C
+rel/e_strategy_turtle_stage11.cpp:
+	.text       start:0x000BD8D0 end:0x000BE4C4
+	.rodata     start:0x00001C10 end:0x00001C20
+	.data       start:0x00014228 end:0x000142E8
 
-rel/turtle_register.cpp:
-	.text       start:0x000C266C end:0x000C274C
+rel/e_turtle_stage11.cpp:
+	.text       start:0x000BE4C4 end:0x000C2754
 	.ctors      start:0x00000178 end:0x0000017C
+	.rodata     start:0x00001C20 end:0x00001CF0
+	.data       start:0x000142E8 end:0x00014798
+	.bss        start:0x00001F50 end:0x00001FA8
 
 rel/s04_floating_path_dtor.cpp:
 	.text       start:0x000C2E28 end:0x000C2EC0

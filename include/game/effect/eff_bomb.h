@@ -79,6 +79,7 @@ public:
 	~C_COLLI();
 	void ClearInfo();
 	void Init(CCL_INFO*, int, u8);
+	void SetRange(f32);
 	void CalcRange();
 	void Entry();
 	u16 id;

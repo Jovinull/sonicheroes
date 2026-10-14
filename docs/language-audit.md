@@ -503,6 +503,78 @@ helpers are named `chao*` rather than file-static so the otherwise
 unreferenced `GetHierarchy` copy can be kept with `force_active` in every
 module (a static symbol cannot be force-activated by name).
 
+### Pawn strategy
+
+`rel/pawn_strategy.cpp` reconstructs `TEnemyPawn_Strategy` apart from its 27
+`StrategyMode_*` members (`rel/pawn_strategy_modes.cpp`). The PS2 symbols name
+the class, a `TEnemyStrategy<TObjEnemyPawn>`, and order its members as the
+strategy modes, `SetUpFirst`, `IsReqChangeMode`, `ExecStrategyMode`, the
+destructor and the constructor, with `FuncTbl` as its data; the eleven pawn
+modules keep the same order on GameCube, followed by the template base's
+destructor and the startup copy of `FuncTbl`. The unit owns the member pointer
+constants, `FuncTbl`, the strategy's vtable (its key function is
+`IsReqChangeMode`), the three jump tables of `SetUpFirst` and
+`IsReqChangeMode`, and the base's vtable. Retail has the vtable before the jump
+tables; without deferred inlining the compiler emits it after them, while with
+`-inline deferred` it comes first and the functions are emitted in reverse
+definition order, so the source defines them last to first. With
+`#pragma pool_data off` the startup copy addresses each constant by its own
+symbol as in the retail. All seven functions, their relocations and the owned
+`.ctors` and `.data` match in all eleven modules (exato EXACT), and all 18
+hashes match.
+
+### Searcher target
+
+`rel/searcher_target.cpp` reconstructs three `TObjEnemySearcher` members the
+PS2 symbols name and order: `GetMachineGunAttackAngle`, `GetTargetAngle` and
+`GetTargetVec`, the same order in the eight searcher modules on GameCube.
+`GetTargetAngle` contains `GetTargetVec`'s code inline (its return value copied
+from the inline's temporary), while `GetTargetVec` comes after it, so the file
+was built with deferred inlining; with `-inline deferred` the functions are
+emitted in reverse definition order and the source defines them last to
+first. `GetTargetVec` has no other caller and is kept by `force_active`. All
+three functions match in all eight modules (exato EXACT), and all 18 hashes
+match.
+
+### Searcher wander modes
+
+`rel/searcher_md_wander.cpp` reconstructs `TObjEnemySearcher::EnemyMD_WanderWithAttack`
+and `EnemyMD_Wander`, named and ordered by the PS2 symbols, in the eight
+searcher modules. `EnemyMD_WanderWithAttack` ends with `EnemyMD_Wander`'s code
+inline although `EnemyMD_Wander` comes after it, as in `rel/searcher_target.cpp`,
+so the unit uses `-inline deferred` and defines the functions last to first.
+Both match in all eight modules (exato EXACT), and all 18 hashes match.
+
+### Searcher walk modes
+
+`rel/searcher_md_walk.cpp` reconstructs `TObjEnemySearcher::EnemyMD_Turn`,
+`EnemyMD_WalkWithAttack`, `EnemyMD_Walk`, `EnemyMD_Wait` and `EnemyMD_Idle`,
+named and ordered by the PS2 symbols, in the eight searcher modules.
+`EnemyMD_Walk` copies structures and inlines three earlier members; without
+deferred inlining the compiler emits such a function after the ones defined
+after it, while the retail keeps the PS2 order, as `-inline deferred` does with
+the functions defined last to first. All five match in all eight modules
+(exato EXACT), and all 18 hashes match.
+
+### Searcher machine gun gadget modes
+
+`rel/gadget_mgun_fire.cpp` reconstructs `TEnemyGadgetMGun::Fire`, `SetUpFire`,
+`StandBy` and `NoAction`, named and ordered by the PS2 symbols, in the eight
+searcher modules. `Fire` and `StandBy` copy structures and `StandBy` uses the
+`nVariable::Limit` template; without deferred inlining the compiler emits such
+functions after the ones defined after them, while the retail keeps the PS2
+order, as `-inline deferred` does with the functions defined last to first.
+All four match in all eight modules (exato EXACT), and all 18 hashes match.
+
+### Searcher shot gadget modes
+
+`rel/gadget_shot_fire.cpp` reconstructs `TEnemyGadgetShot::Fire`, `StandBy`
+and `NoAction`, named and ordered by the PS2 symbols, in the eight searcher
+modules. Like `rel/gadget_mgun_fire.cpp`, `Fire` and `StandBy` copy structures
+(and `StandBy` uses `nVariable::Limit`), so only `-inline deferred`, with the
+functions defined last to first, keeps the retail order. All three match in
+all eight modules (exato EXACT), and all 18 hashes match.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and

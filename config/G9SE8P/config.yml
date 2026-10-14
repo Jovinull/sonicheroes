@@ -157,6 +157,63 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -430,6 +487,85 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - fn_8_BE668
+    - fn_8_BE770
+    - fn_8_BEB1C
+    - fn_8_BEBC8
+    - fn_8_BED48
+    - fn_8_BEDA8
+    - fn_8_BF3CC
+    - fn_8_BF684
+    - fn_8_BF700
+    - fn_8_BFD74
+    - fn_8_BFE68
+    - fn_8_C0418
+    - fn_8_C0690
+    - fn_8_C06F0
+    - fn_8_C0730
+    - fn_8_C086C
+    - fn_8_C0C9C
+    - fn_8_C19F4
+    - fn_8_C1A34
+    - fn_8_C1A88
+    - fn_8_C1E90
+    - fn_8_C2344
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -693,6 +829,144 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - fn_8_B4B88
+    - fn_8_B4DA4
+    - fn_8_B4FF4
+    - fn_8_BE668
+    - fn_8_BE770
+    - fn_8_BEB1C
+    - fn_8_BEBC8
+    - fn_8_BED48
+    - fn_8_BEDA8
+    - fn_8_BF3CC
+    - fn_8_BF684
+    - fn_8_BF700
+    - fn_8_BFD74
+    - fn_8_BFE68
+    - fn_8_C0418
+    - fn_8_C0690
+    - fn_8_C06F0
+    - fn_8_C0730
+    - fn_8_C086C
+    - fn_8_C0C9C
+    - fn_8_C19F4
+    - fn_8_C1A34
+    - fn_8_C1A88
+    - fn_8_C1E90
+    - fn_8_C2344
+    - fn_8_A4140
+    - fn_8_A4230
+    - fn_8_A4290
+    - fn_8_A4394
+    - fn_8_A4478
+    - fn_8_A4830
+    - fn_8_A4AC0
+    - fn_8_A4B90
+    - fn_8_A4CB0
+    - fn_8_A53E4
+    - fn_8_A5A04
+    - fn_8_A5A8C
+    - fn_8_A5C70
+    - fn_8_A5D48
+    - fn_8_A66D4
+    - fn_8_A8334
+    - fn_8_A8384
+    - fn_8_A8584
+    - fn_8_A89D4
+    - fn_8_A258C
+    - fn_8_A25AC
+    - fn_8_A25CC
+    - fn_8_A2690
+    - fn_8_A26B0
+    - fn_8_A2768
+    - fn_8_A2820
+    - fn_8_A2840
+    - fn_8_A29E0
+    - fn_8_A8D98
+    - fn_8_A8F7C
+    - fn_8_A8FCC
+    - fn_8_A90C8
+    - fn_8_A92E0
+    - fn_8_A9848
+    - fn_8_A9AF0
+    - fn_8_9EED4
+    - fn_8_9EF3C
+    - fn_8_9F2E4
+    - fn_8_9F380
+    - fn_8_9F3F8
+    - fn_8_9F460
+    - fn_8_9F560
+    - fn_8_9F618
+    - fn_8_9FDF8
+    - fn_8_9FF78
+    - fn_8_A0018
+    - fn_8_A0354
+    - fn_8_A04A8
+    - fn_8_A0668
+    - fn_8_A0A10
+    - fn_8_A114C
+    - fn_8_A12D4
+    - fn_8_A13C0
+    - fn_8_A15BC
+    - fn_8_A1698
+    - fn_8_A1E30
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -996,6 +1270,97 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
+    - fn_8_B4B88
+    - fn_8_B4DA4
+    - fn_8_B4FF4
+    - fn_8_A4140
+    - fn_8_A4230
+    - fn_8_A4290
+    - fn_8_A4394
+    - fn_8_A4478
+    - fn_8_A4830
+    - fn_8_A4AC0
+    - fn_8_A4B90
+    - fn_8_A4CB0
+    - fn_8_A53E4
+    - fn_8_A5A04
+    - fn_8_A5A8C
+    - fn_8_A5C70
+    - fn_8_A5D48
+    - fn_8_A66D4
+    - fn_8_A8334
+    - fn_8_A8384
+    - fn_8_A8584
+    - fn_8_A89D4
+    - fn_8_A8D98
+    - fn_8_A8F7C
+    - fn_8_A8FCC
+    - fn_8_A90C8
+    - fn_8_A92E0
+    - fn_8_A9848
+    - fn_8_A9AF0
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -1304,6 +1669,143 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
+    - fn_8_BE668
+    - fn_8_BE770
+    - fn_8_BEB1C
+    - fn_8_BEBC8
+    - fn_8_BED48
+    - fn_8_BEDA8
+    - fn_8_BF3CC
+    - fn_8_BF684
+    - fn_8_BF700
+    - fn_8_BFD74
+    - fn_8_BFE68
+    - fn_8_C0418
+    - fn_8_C0690
+    - fn_8_C06F0
+    - fn_8_C0730
+    - fn_8_C086C
+    - fn_8_C0C9C
+    - fn_8_C19F4
+    - fn_8_C1A34
+    - fn_8_C1A88
+    - fn_8_C1E90
+    - fn_8_C2344
+    - fn_8_A4140
+    - fn_8_A4230
+    - fn_8_A4290
+    - fn_8_A4394
+    - fn_8_A4478
+    - fn_8_A4830
+    - fn_8_A4AC0
+    - fn_8_A4B90
+    - fn_8_A4CB0
+    - fn_8_A53E4
+    - fn_8_A5A04
+    - fn_8_A5A8C
+    - fn_8_A5C70
+    - fn_8_A5D48
+    - fn_8_A66D4
+    - fn_8_B85E0
+    - fn_8_B8810
+    - fn_8_B8FD0
+    - fn_8_B9174
+    - fn_8_B934C
+    - fn_8_B9724
+    - fn_8_B9D6C
+    - fn_8_B9ECC
+    - fn_8_BA8C0
+    - fn_8_BACD4
+    - fn_8_BADC4
+    - fn_8_BB178
+    - fn_8_BB17C
+    - fn_8_BB180
+    - fn_8_BB580
+    - fn_8_BB584
+    - fn_8_BB99C
+    - fn_8_BB9BC
+    - fn_8_BBA90
+    - fn_8_BBAB0
+    - fn_8_BC924
+    - fn_8_BC9AC
+    - fn_8_BCAB4
+    - fn_8_BCB5C
+    - fn_8_BD32C
+    - fn_8_BD938
+    - fn_8_BD950
+    - fn_8_A8334
+    - fn_8_A8384
+    - fn_8_A8584
+    - fn_8_A89D4
+    - fn_8_A8D98
+    - fn_8_A8F7C
+    - fn_8_A8FCC
+    - fn_8_A90C8
+    - fn_8_A92E0
+    - fn_8_A9848
+    - fn_8_A9AF0
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -1579,6 +2081,63 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -2064,6 +2623,80 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - systemObject2Ctor
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
+    - fn_8_A8334
+    - fn_8_A8384
+    - fn_8_A8584
+    - fn_8_A89D4
+    - fn_8_A8D98
+    - fn_8_A8F7C
+    - fn_8_A8FCC
+    - fn_8_A90C8
+    - fn_8_A92E0
+    - fn_8_A9848
+    - fn_8_A9AF0
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -2314,6 +2947,94 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - CloneClump__17TEnemyGadgetLaserFv
+    - DestroyClump__17TEnemyGadgetLaserFv
+    - Update__17TEnemyGadgetLaserFv
+    - CloneClump__18TEnemyGadgetBomberFv
+    - DestroyClump__18TEnemyGadgetBomberFv
+    - NoAction__16TEnemyGadgetShotFv
+    - StandBy__16TEnemyGadgetShotFv
+    - Fire__16TEnemyGadgetShotFv
+    - NoAction__16TEnemyGadgetMGunFv
+    - StandBy__16TEnemyGadgetMGunFv
+    - SetUpFire__16TEnemyGadgetMGunFv
+    - Fire__16TEnemyGadgetMGunFv
+    - CreateInstance__17TObjEnemySearcherFv
+    - DestroyClump__17TObjEnemySearcherFv
+    - UpdateJetFrame__17TObjEnemySearcherFv
+    - CtrlGadget__17TObjEnemySearcherFi
+    - CtrlWaitPos__17TObjEnemySearcherFv
+    - EnemyMD_Idle__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wait__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Walk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WalkWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Turn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Wander__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWithAttack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderWalk__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_WanderTurn__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Ready__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Search__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Attack__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Destroy__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_Siren__17TObjEnemySearcherFQ29TObjEnemy10eCtrlSMode
+    - WalkToAim__17TObjEnemySearcherFv
+    - SetUpAimPositionFirst__17TObjEnemySearcherFv
+    - GetTargetVec__17TObjEnemySearcherFv
+    - CheckDirectionOfPlayerRangeIn__17TObjEnemySearcherFv
+    - TurnToAimForSearcher__17TObjEnemySearcherFv
+    - searcherPlaySound
+    - searcherSoundLimitEntry
+    - searcherSoundLimitCtor
+    - searcherSoundLimitAdd
+    - searcherSoundLimitCreate
+    - searcherSoundLimitForget
+    - searcherSoundLimitForget2
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - fn_8_A9F48
+    - fn_8_A9F68
+    - fn_8_A9F88
+    - fn_8_AA04C
+    - fn_8_AA06C
+    - fn_8_A4140
+    - fn_8_A4230
+    - fn_8_A4290
+    - fn_8_A4394
+    - fn_8_A4478
+    - fn_8_A4830
+    - fn_8_A4AC0
+    - fn_8_A4B90
+    - fn_8_A4CB0
+    - fn_8_A53E4
+    - fn_8_A5A04
+    - fn_8_A5A8C
+    - fn_8_A5C70
+    - fn_8_A5D48
+    - fn_8_A66D4
+    - fn_8_A8334
+    - fn_8_A8384
+    - fn_8_A8584
+    - fn_8_A89D4
+    - fn_8_A8D98
+    - fn_8_A8F7C
+    - fn_8_A8FCC
+    - fn_8_A90C8
+    - fn_8_A92E0
+    - fn_8_A9848
+    - fn_8_A9AF0
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -2580,6 +3301,22 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - SetEnemyShield__FP7TObject17ENEMY_SHIELD_KINDP5RwV3dfP5RwV3dP6sAngle
+    - SetEnemyShot__FP7TObjectiP5RwV3dP5RwV3d
+    - InitEnemyShot__Fv
+    - EndEnemyShot__Fv
+    - LoadEnemyShieldTexture__Fv
+    - ReleaseEnemyShieldTexture__Fv
     - effSparkDestroy
     - effSparkClearAll
     - effSparkLoad
@@ -2783,6 +3520,22 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - SetEnemyShield__FP7TObject17ENEMY_SHIELD_KINDP5RwV3dfP5RwV3dP6sAngle
+    - SetEnemyShot__FP7TObjectiP5RwV3dP5RwV3d
+    - InitEnemyShot__Fv
+    - EndEnemyShot__Fv
+    - LoadEnemyShieldTexture__Fv
+    - ReleaseEnemyShieldTexture__Fv
     - effSparkDestroy
     - effSparkClearAll
     - effSparkLoad
@@ -2987,6 +3740,22 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -3227,6 +3996,22 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv
@@ -3467,6 +4252,22 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - Cancel__10ENEMY_SHOTFUs
+    - Init__10ENEMY_SHOTFPC5RwV3dPC5RwV3d
+    - __ct__10ENEMY_SHOTFP7TObject
+    - Create__10ENEMY_SHOTFRUsiP5RwV3dP5RwV3d
+    - Normal__12ENEMY_SHIELDFv
+    - enemyShieldCalcDirection
+    - SetShieldStatusForDisp__12ENEMY_SHIELDFP7RpClump
+    - Init__12ENEMY_SHIELDF17ENEMY_SHIELD_KINDPC5RwV3dfPC5RwV3dPC6sAngle
+    - __ct__12ENEMY_SHIELDFP7TObject
+    - CalcShieldAngle__12ENEMY_SHIELDFv
+    - CreateInstance__13TObjEnemyPawnFv
+    - EnemyMD_MgunReady__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - EnemyMD_MgunFire__13TObjEnemyPawnFQ29TObjEnemy10eCtrlSMode
+    - SetCollisionParameter__13TObjEnemyPawnFv
+    - ExecMachineGun__13TObjEnemyPawnFv
+    - UpdateShoulderAngle__13TObjEnemyPawnFv
     - BiteNail__13TObjEnemyPawnFv
     - WalkToAim__13TObjEnemyPawnFv
     - RunToAim__13TObjEnemyPawnFv

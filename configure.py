@@ -2279,21 +2279,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/system_object2_ctor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/system_object2_dtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/system_object2_exec.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/system_object2_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2789,16 +2774,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/enemy_iron_ball_dtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/enemy_iron_ball_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/container_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2908,11 +2883,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/bobcontainer_dtor.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/turtle_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3103,6 +3073,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/itembaloon_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_create_instance.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3369,11 +3344,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s14_thunder_ptcl_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/turtle_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6317,6 +6287,192 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_update_shoulder_angle.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_add_item_box.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_exec_machine_gun.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_explosion.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_play_se_for_foot.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_disp_opaq.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_set_collision_parameter.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_clone_clump.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_update.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_exec_shot_ready.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_select_initial_mode.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_shot.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_search_light.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_bomb.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_laser.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_needle.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_modes.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_strategy_mgun.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_strategy_modes.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_strategy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_create_instance.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_texture.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shot_pool.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shot_set.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_set.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_angle.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_status.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_direction.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shield_normal.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_shot_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_hit_point.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -6348,6 +6504,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/pawn_disp_trans.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_md_mgun_fire.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pawn_md_mgun_ready.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6554,6 +6720,246 @@ config.libs = [
             Object(
                 Matching,
                 "rel/boss_voice_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_walk_to_aim.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_aim_first.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_target.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_check_direction.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_md_ready.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_md_wander_turn.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_md_walk.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_md_wander.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_jet.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_clone_clump.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_reset.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_destroy_clump.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_bomber_clump.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_mgun_cdtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_shot_cdtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_bomber_cdtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_needle_cdtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_search_light_cdtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_bomber_static.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_laser_update.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_needle_static.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_laser_static.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_bomber.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_laser_mode.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_laser_disp.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_shot_fire.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_mgun_fire.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole", "-inline deferred"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_mgun.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_shot.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_needle.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/gadget_search_light.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_ctrl.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_md_siren.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_disp_shadow.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_shadow.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_gadget_mode.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_hit_point.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_score.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_cancel.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_sleep.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/searcher_sound_limit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
