@@ -556,6 +556,16 @@ after it, while the retail keeps the PS2 order, as `-inline deferred` does with
 the functions defined last to first. All five match in all eight modules
 (exato EXACT), and all 18 hashes match.
 
+### Searcher machine gun gadget modes
+
+`rel/gadget_mgun_fire.cpp` reconstructs `TEnemyGadgetMGun::Fire`, `SetUpFire`,
+`StandBy` and `NoAction`, named and ordered by the PS2 symbols, in the eight
+searcher modules. `Fire` and `StandBy` copy structures and `StandBy` uses the
+`nVariable::Limit` template; without deferred inlining the compiler emits such
+functions after the ones defined after them, while the retail keeps the PS2
+order, as `-inline deferred` does with the functions defined last to first.
+All four match in all eight modules (exato EXACT), and all 18 hashes match.
+
 ### Tri-spring and switch fragments
 
 Migrated 13 `rel/tri_spring_*`, `rel/switch_*` and
