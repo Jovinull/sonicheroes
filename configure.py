@@ -6815,6 +6815,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gadget_bomber_cdtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gadget_needle_cdtor.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],

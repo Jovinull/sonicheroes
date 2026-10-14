@@ -1829,6 +1829,9 @@ rel/gadget_bomber.cpp:
 rel/gadget_bomber_clump.cpp:
 	.text       start:0x000A18D0 end:0x000A1A28
 
+rel/gadget_bomber_cdtor.cpp:
+	.text       start:0x000A1A28 end:0x000A1C54
+
 rel/gadget_bomber_static.cpp:
 	.text       start:0x000A1C54 end:0x000A1D30
 
