@@ -641,6 +641,9 @@ rel/enemy_mgun_switch.cpp:
 rel/enemy_mgun_calc_fire_angle.cpp:
 	.text       start:0x0002F11C end:0x0002F1E8
 
+rel/enemy_mgun_calc_fire_vector.cpp:
+	.text       start:0x0002F1E8 end:0x0002F2C8
+
 rel/shield_splinter_move.cpp:
 	.text       start:0x0002FC28 end:0x0002FDD4
 

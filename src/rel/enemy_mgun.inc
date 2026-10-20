@@ -32,6 +32,7 @@ public:
 	void Off();
 	void On();
 	void CalcFireAngle();
+	void CalcFireVector();
 
 	void SetFlagVectorHasBeenAlreadyCalculated() { flags |= 4; }
 
@@ -59,7 +60,8 @@ public:
 	RwV3d pos;             // 0x0F0
 	RwV3d aim;             // 0x0FC
 	sAngle angle;          // 0x108
-	u8 unk114[0x8];        // 0x114
+	u8 unk114[0x4];        // 0x114
+	f32 speed;             // 0x118
 	u32 flags;             // 0x11C
 	u8 unk120[0x4];        // 0x120
 	s32 bulletNum;         // 0x124
