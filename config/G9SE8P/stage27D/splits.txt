@@ -817,6 +817,9 @@ rel/roll_door_tdisp.cpp:
 rel/roll_door_set_position.cpp:
 	.text       start:0x0003C114 end:0x0003C494
 
+rel/roll_door_set_parameter.cpp:
+	.text       start:0x0003C494 end:0x0003C524
+
 rel/roll_door_dtor.cpp:
 	.text       start:0x0003C524 end:0x0003C604
 

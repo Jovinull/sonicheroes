@@ -8129,6 +8129,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/roll_door_set_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roll_door_check_power.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

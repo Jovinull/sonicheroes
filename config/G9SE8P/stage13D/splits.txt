@@ -1001,6 +1001,9 @@ rel/roll_door_check_power.cpp:
 rel/roll_door_set_position.cpp:
 	.text       start:0x00043534 end:0x000438B4
 
+rel/roll_door_set_parameter.cpp:
+	.text       start:0x000438B4 end:0x00043944
+
 rel/roll_door_dtor.cpp:
 	.text       start:0x00043944 end:0x00043A24
 
