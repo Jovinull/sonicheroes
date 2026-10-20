@@ -881,7 +881,7 @@ s32 VectorAngleOnPlane(RwV3d* v1, RwV3d* v2, RwV3d* vn)
 	return angle;
 }
 
-static f32 fn_800D7920Dot(const RwV3d& left, const RwV3d& right)
+static inline f32 fn_800D7920Dot(const RwV3d& left, const RwV3d& right)
 {
 	return left.x * right.x + left.y * right.y + left.z * right.z;
 }
