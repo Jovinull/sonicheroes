@@ -936,7 +936,7 @@ ExecStrategyMode__23TEnemySearcher_StrategyFiQ235TEnemyStrategy<17TObjEnemySearc
 fn_5_541A0 = .text:0x000541A0; // type:function size:0x64
 fn_5_54204 = .text:0x00054204; // type:function size:0x34
 fn_5_54238 = .text:0x00054238; // type:function size:0x50
-fn_5_54288 = .text:0x00054288; // type:function size:0x98
+Execute__35TEnemyStrategy<17TObjEnemySearcher>FP17TObjEnemySearcher = .text:0x00054288; // type:function size:0x98
 fn_5_54320 = .text:0x00054320; // type:function size:0x74
 fn_5_54394 = .text:0x00054394; // type:function size:0x74
 fn_5_54408 = .text:0x00054408; // type:function size:0x74

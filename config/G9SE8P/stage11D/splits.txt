@@ -1222,6 +1222,9 @@ rel/searcher_strategy_exec.cpp:
 	.text       start:0x00054018 end:0x000541A0
 	.data       start:0x00005C20 end:0x00005C58
 
+rel/searcher_strategy_execute.cpp:
+	.text       start:0x00054288 end:0x00054320
+
 rel/searcher_sound_limit.cpp:
 	.text       start:0x0005447C end:0x000547BC
 
