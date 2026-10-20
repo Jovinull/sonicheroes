@@ -635,6 +635,9 @@ rel/enemy_shot_ctor.cpp:
 rel/enemy_shot_dtor.cpp:
 	.text       start:0x0002D9E0 end:0x0002DA64
 
+rel/enemy_shot_move.cpp:
+	.text       start:0x0002E3E8 end:0x0002E420
+
 rel/enemy_mgun_switch.cpp:
 	.text       start:0x0002E554 end:0x0002E5F0
 

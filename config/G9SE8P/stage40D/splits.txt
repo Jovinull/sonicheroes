@@ -107,6 +107,9 @@ rel/TEnemyAppearChaosEmerald.cpp:
 rel/TEnemyAppearChaosEmerald_strings.cpp:
 	.data       start:0x00042AA8 end:0x00042AC8
 
+rel/enemy_shot_move.cpp:
+	.text       start:0x0007A424 end:0x0007A45C
+
 rel/TEndSkyBob.cpp:
 	.text       start:0x0007E830 end:0x0007EDF4
 	.ctors      start:0x00000104 end:0x00000108
