@@ -18,13 +18,40 @@ struct EnemyMGunFlash {
 	u32 flags;     // 0x04
 };
 
+// EmptyBulletNum's own unit returns a bool (no zero extension of the compare)
+// while its callers test an int (cmpwi, not clrlwi + cmplwi): the unit that
+// defines it sets ENEMY_MGUN_EMPTY_TYPE to bool.
+#ifndef ENEMY_MGUN_EMPTY_TYPE
+#define ENEMY_MGUN_EMPTY_TYPE s32
+#endif
+
 class ENEMY_MGUN
 {
 public:
-	bool EmptyBulletNum();
+	ENEMY_MGUN_EMPTY_TYPE EmptyBulletNum();
 	void Off();
 	void On();
 	void CalcFireAngle();
+
+	void SetFlagVectorHasBeenAlreadyCalculated() { flags |= 4; }
+
+	// aims along the vector
+	void SetAimVector(const RwV3d* vector)
+	{
+		aim = *vector;
+		CalcFireAngle();
+		SetFlagVectorHasBeenAlreadyCalculated();
+	}
+
+	// aims at the position, from the gun
+	void SetAimPosition(const RwV3d* target)
+	{
+		aim.x = target->x - pos.x;
+		aim.y = target->y - pos.y;
+		aim.z = target->z - pos.z;
+		CalcFireAngle();
+		SetFlagVectorHasBeenAlreadyCalculated();
+	}
 
 	u8 unk000[0x70];       // 0x000
 	EnemyMGunFlash* flash; // 0x070

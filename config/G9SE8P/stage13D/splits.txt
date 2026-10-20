@@ -1400,6 +1400,9 @@ rel/gadget_needle_static.cpp:
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE04 end:0x0005EE78
 
+rel/machine_gun_control.cpp:
+	.text       start:0x0005EEDC end:0x0005F154
+
 rel/formgate_sub_dtor.cpp:
 	.text       start:0x0005FBD0 end:0x0005FC54
 

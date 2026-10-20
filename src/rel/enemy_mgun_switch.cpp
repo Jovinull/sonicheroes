@@ -5,6 +5,7 @@
 // flash and stops the gun; On shows the flash, clears the bullets and starts
 // the gun.
 
+#define ENEMY_MGUN_EMPTY_TYPE bool
 #include "src/rel/enemy_mgun.inc"
 
 extern "C" void* memset(void* dst, s32 value, u32 size);

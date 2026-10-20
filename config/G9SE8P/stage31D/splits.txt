@@ -1193,6 +1193,9 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
 
+rel/machine_gun_control.cpp:
+	.text       start:0x00051A38 end:0x00051CB0
+
 rel/formgate_sub_exec.cpp:
 	.text       start:0x000524B8 end:0x00052744
 

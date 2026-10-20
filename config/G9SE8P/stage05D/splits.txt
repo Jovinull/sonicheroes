@@ -1379,6 +1379,9 @@ rel/gadget_needle_static.cpp:
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE30 end:0x0005EEA4
 
+rel/machine_gun_control.cpp:
+	.text       start:0x0005EF08 end:0x0005F180
+
 rel/formgate_sub_exec.cpp:
 	.text       start:0x0005F988 end:0x0005FC14
 
