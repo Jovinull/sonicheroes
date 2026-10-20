@@ -15,7 +15,7 @@ extern "C" s32 breakableWeightCheckPlayerTrespassArea(BreakableWeight* object, s
 
 	SetWeightMatrix(object);
 	for (int i = 0; i < 8; i++) {
-		if (fn_8003E2E4(i, 0, &pos, 0) == 0) {
+		if (fn_8003E2E4(i, 0, &pos, NULL) == 0) {
 			continue;
 		}
 		if (active) {

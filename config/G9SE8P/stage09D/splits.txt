@@ -604,6 +604,9 @@ rel/breakable_weight_check_down.cpp:
 rel/breakable_weight_area_check.cpp:
 	.text       start:0x0002A3E0 end:0x0002A5C8
 
+rel/breakable_weight_player.cpp:
+	.text       start:0x0002A5C8 end:0x0002A858
+
 rel/breakable_weight_matrix.cpp:
 	.text       start:0x0002A858 end:0x0002A96C
 
