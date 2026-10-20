@@ -2025,6 +2025,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/weight_area_check.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/weight_area_checks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

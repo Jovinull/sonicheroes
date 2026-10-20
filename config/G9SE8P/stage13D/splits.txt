@@ -561,6 +561,9 @@ rel/weight_checks.cpp:
 rel/weight_area_checks.cpp:
 	.text       start:0x00025DD0 end:0x00026178
 
+rel/weight_area_check.cpp:
+	.text       start:0x00026938 end:0x00026B20
+
 rel/weight_matrix.cpp:
 	.text       start:0x00026D34 end:0x00026E48
 
