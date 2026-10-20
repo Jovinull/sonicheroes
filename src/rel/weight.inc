@@ -68,11 +68,12 @@ extern "C" s32 fn_8003E2E4(s32 player, s32 kind, RwV3d* position, s32 arg3);
 extern "C" s32 fn_800AB32C(void* task);
 extern "C" void fn_8019941C(RwV3d* out, RwV3d* in, s32 count, RwMatrixTag* matrix);
 
-// whether some player stands under the weight (with its matrix built): its
-// position seen in the weight's frame no higher than the weight's height above
-// its base (plus a margin) and within its scaled half width and half depth;
-// with `active`, only the players whose state has bit 0 set count
-inline s32 PlayerUnderWeight(Weight* object, s32 active)
+// CheckPlayerTrespassArea (the PS2 build's name): builds the weight's matrix
+// and answers whether some player stands under the weight: its position seen
+// in the weight's frame no higher than the weight's height above its base
+// (plus a margin) and within its scaled half width and half depth. With
+// `active`, only the players whose state has bit 0 set count.
+inline s32 CheckPlayerTrespassArea(Weight* object, s32 active)
 {
 	RwV3d pos;
 

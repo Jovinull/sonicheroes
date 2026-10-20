@@ -1,14 +1,14 @@
 #include "types.h"
 
-// TObjWeight's area check (weightCheckPlayerUnderEx here), with the
-// active-state filter as an argument. Nothing calls this copy; the weight's
-// code inlines the check (PlayerUnderWeight of weight.inc, the same body).
-// Written out here: calling the inline from this function gives other
-// registers.
+// TObjWeight's CheckPlayerTrespassArea (the PS2 build's name;
+// weightCheckPlayerTrespassArea here), with the active-state filter as an
+// argument. Nothing calls this copy; the weight's checks inline it (the inline
+// of weight.inc, the same body). Written out here: calling the inline from
+// this function gives other registers.
 
 #include "src/rel/weight.inc"
 
-extern "C" s32 weightCheckPlayerUnderEx(Weight* object, s32 active)
+extern "C" s32 weightCheckPlayerTrespassArea(Weight* object, s32 active)
 {
 	RwV3d pos;
 
