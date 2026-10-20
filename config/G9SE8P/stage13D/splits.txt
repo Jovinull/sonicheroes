@@ -816,6 +816,9 @@ rel/enemy_shot_ctor.cpp:
 rel/enemy_shot_dtor.cpp:
 	.text       start:0x00034DFC end:0x00034E80
 
+rel/enemy_mgun_switch.cpp:
+	.text       start:0x00035970 end:0x00035A0C
+
 rel/shield_splinter_move.cpp:
 	.text       start:0x00037044 end:0x000371F0
 
