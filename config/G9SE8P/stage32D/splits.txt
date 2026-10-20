@@ -804,6 +804,9 @@ rel/pawn_assets.cpp:
 	.text       start:0x00033C98 end:0x00033D88
 	.ctors      start:0x00000060 end:0x00000064
 
+rel/enemy_shot_kill.cpp:
+	.text       start:0x00033E40 end:0x00034120
+
 rel/enemy_shot_set.cpp:
 	.text       start:0x00034120 end:0x00034628
 

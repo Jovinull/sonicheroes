@@ -6549,6 +6549,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_shot_kill.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_shot_set.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

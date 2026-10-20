@@ -623,6 +623,9 @@ rel/breakable_weight_register.cpp:
 	.text       start:0x0002C958 end:0x0002CA00
 	.ctors      start:0x0000005C end:0x00000060
 
+rel/enemy_shot_kill.cpp:
+	.text       start:0x0002CA08 end:0x0002CCE8
+
 rel/enemy_shot_set.cpp:
 	.text       start:0x0002CCE8 end:0x0002D1F0
 
