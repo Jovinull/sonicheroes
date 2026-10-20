@@ -37,7 +37,7 @@ public:
 	{
 		if (mgun != NULL) {
 			Stop();
-			mgun->signal |= 1;
+			mgun->Signal |= 1;
 			mgun = NULL;
 		}
 	}

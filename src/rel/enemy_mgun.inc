@@ -1,15 +1,18 @@
 // ENEMY_MGUN (the PS2 build's class): the machine gun's bullets and muzzle
-// flash, which TMachineGun drives. Declared with the fields its small members
-// use; its virtual members (Exec, TDisp, the destructor) are elsewhere.
+// flash, which TMachineGun drives; like ENEMY_SHOT it is a TObject with
+// ground movement and a collision.
 
 #ifndef ENEMY_MGUN_INC
 #define ENEMY_MGUN_INC
 
-#include "game/pathctrl.h"
+#include "game/effect/eff_bomb.h"
+#include "game/object.h"
 
 // sMachineGunBullet (the PS2 build's struct): one bullet, flying along the
 // gun's fire vector until it passes its range or its life runs out.
 struct sMachineGunBullet {
+	sMachineGunBullet();
+
 	f32 speed; // 0x0
 	f32 dist;  // 0x4
 	f32 range; // 0x8
@@ -33,11 +36,6 @@ struct sMachineGunBullet {
 	}
 };
 
-struct EnemyMGunFlash {
-	u8 unk00[0x4]; // 0x00
-	u32 flags;     // 0x04
-};
-
 // EmptyBulletNum's own unit returns a bool (no zero extension of the compare)
 // while its callers test an int (cmpwi, not clrlwi + cmplwi): the unit that
 // defines it sets ENEMY_MGUN_EMPTY_TYPE to bool.
@@ -45,9 +43,14 @@ struct EnemyMGunFlash {
 #define ENEMY_MGUN_EMPTY_TYPE s32
 #endif
 
-class ENEMY_MGUN
+class ENEMY_MGUN : public TObject, public OBJ_MoveOnGround, public C_COLLI
 {
 public:
+	// Exec comes first so that it is the key function: no unit of ours emits
+	// the vtable, which stays in each module's data
+	virtual void Exec();
+	virtual ~ENEMY_MGUN();
+	ENEMY_MGUN(TObject* parent);
 	ENEMY_MGUN_EMPTY_TYPE EmptyBulletNum();
 	void Off();
 	void On();
@@ -75,14 +78,9 @@ public:
 		SetFlagVectorHasBeenAlreadyCalculated();
 	}
 
-	char* className;               // 0x000
-	u16 signal;                    // 0x004
-	u8 unk006[0x12];               // 0x006
-	void** vtable;                 // 0x018
-	u8 unk01C[0x44];               // 0x01C
-	u8 colli[0x10];                // 0x060 (C_COLLI, to 0x0E8)
-	EnemyMGunFlash* flash;         // 0x070, the collision's info
-	u8 unk074[0x7C];               // 0x074
+	// OBJ_MoveOnGround at 0x028, C_COLLI at 0x060
+	s32 done;                      // 0x0E8
+	s16 hits;                      // 0x0EC
 	RwV3d pos;                     // 0x0F0
 	RwV3d aim;                     // 0x0FC
 	sAngle angle;                  // 0x108
@@ -96,6 +94,7 @@ public:
 	u8 unk32C[0x4];                // 0x32C
 	struct RpClump* clump;         // 0x330
 	s32 active;                    // 0x334
-};
+	s32 unk338;                    // 0x338
+}; // 0x33C
 
 #endif

@@ -1,9 +1,9 @@
 #include "types.h"
 
 // ENEMY_MGUN's EmptyBulletNum, Off and On (the PS2 build's names):
-// EmptyBulletNum answers whether no bullet is flying; Off hides the muzzle
-// flash and stops the gun; On shows the flash, clears the bullets and starts
-// the gun.
+// EmptyBulletNum answers whether no bullet is flying; Off turns the
+// collision's attribute bit 0x10 on and stops the gun; On turns it off,
+// clears the bullets and starts the gun.
 
 #define ENEMY_MGUN_EMPTY_TYPE bool
 #include "src/rel/enemy_mgun.inc"
@@ -17,16 +17,16 @@ bool ENEMY_MGUN::EmptyBulletNum()
 
 void ENEMY_MGUN::Off()
 {
-	if (flash != NULL) {
-		flash->flags |= 0x10;
+	if (info != NULL) {
+		info->attr |= 0x10;
 	}
 	active = 0;
 }
 
 void ENEMY_MGUN::On()
 {
-	if (flash != NULL) {
-		flash->flags &= ~0x10;
+	if (info != NULL) {
+		info->attr &= ~0x10;
 	}
 	unk128    = 4;
 	bulletNum = 0;
