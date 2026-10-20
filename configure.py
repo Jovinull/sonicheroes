@@ -6143,6 +6143,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_mgun_init.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_mgun_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

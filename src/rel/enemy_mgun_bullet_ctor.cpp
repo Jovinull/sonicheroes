@@ -7,7 +7,6 @@
 
 extern "C" const f32 machineGunBulletSpeed[1];
 extern "C" const f32 machineGunBulletRange[1];
-extern "C" const f32 enemyMGunZero[1];
 
 sMachineGunBullet::sMachineGunBullet()
 {

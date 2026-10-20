@@ -11,7 +11,6 @@ extern "C" char* CL_EnemyMGun;
 extern "C" CCL_INFO enemyMGunCclInfo[];
 extern "C" const f32 enemyMGunSpeed[1];
 extern "C" const f32 enemyMGunSize[1];
-extern "C" const f32 enemyMGunOne[1];
 
 ENEMY_MGUN::ENEMY_MGUN(TObject* parent)
     : TObject(parent)
@@ -27,6 +26,6 @@ ENEMY_MGUN::ENEMY_MGUN(TObject* parent)
 	radObject = enemyMGunOne[0];
 	active    = 0;
 	unk338    = 0;
-	unk32C    = 0;
+	model     = NULL;
 	clump     = NULL;
 }

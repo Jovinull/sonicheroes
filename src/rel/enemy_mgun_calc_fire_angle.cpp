@@ -6,7 +6,6 @@
 
 #include "src/rel/enemy_mgun.inc"
 
-extern "C" const f32 enemyMGunZero[1];
 extern "C" const f32 enemyMGunRadToAngle[1];
 
 extern "C" f32 fn_801991B4(RwV3d* v);
