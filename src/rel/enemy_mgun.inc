@@ -60,6 +60,8 @@ public:
 	void Init(const RwV3d* place, const sAngle* turn);
 
 	void SetFlagVectorHasBeenAlreadyCalculated() { flags |= 4; }
+	void SetFlagToCheckGround() { flags |= 1; }
+	void ClearFlagToCheckGround() { flags &= ~1; }
 
 	// aims along the vector
 	void SetAimVector(const RwV3d* vector)
@@ -88,7 +90,7 @@ public:
 	f32 size;                      // 0x114
 	f32 speed;                     // 0x118
 	u32 flags;                     // 0x11C
-	u8 unk120[0x4];                // 0x120
+	f32 height;                    // 0x120
 	s32 bulletNum;                 // 0x124
 	s32 unk128;                    // 0x128
 	sMachineGunBullet bullets[32]; // 0x12C
@@ -134,6 +136,76 @@ ENEMY_MGUN_CALC_FIRE_VECTOR_INLINE void ENEMY_MGUN::CalcFireVector()
 	sin = fn_800D7B00(angle.y);
 	fn_80195790(&matrix, &AxisY, enemyMGunOne[0] - fn_800D7AE4(angle.y), sin, 2);
 	fn_8019947C(&aim, &vector, 1, &matrix);
+}
+
+#include "game/enemy/e_database.h"
+
+extern "C" char* CL_EnemyMGun;
+extern "C" CCL_INFO enemyMGunCclInfo[];
+extern "C" const f32 enemyMGunSpeed[1];
+extern "C" const f32 enemyMGunSize[1];
+extern "C" const f32 enemyMGunRangePad[1];
+
+extern "C" void* memset(void* dst, s32 value, u32 size);
+extern "C" RpClump* fn_80150588(RpClump* clump);
+void objRpClumpForAllGeometrysToIgnoreLights(RpClump* clump);
+
+// The constructor and Init, which SetEnemyMGun inlines;
+// rel/enemy_mgun_ctor.cpp and rel/enemy_mgun_init.cpp have the out-of-line
+// copies (ENEMY_MGUN_CTOR_INLINE and ENEMY_MGUN_INIT_INLINE empty). The
+// constructor is like ENEMY_SHOT's: a collision of one sphere (attribute bit
+// 0x40 cleared), the bullet speed and size, and the gun stopped with no
+// models. Init places and turns the gun, sizes its collision for the bullet
+// speed, works out its fire vector, clears the bullets, and takes the common
+// enemy file's models 8 (as it is) and 9 (a copy), both drawn without lights.
+#ifndef ENEMY_MGUN_CTOR_INLINE
+#define ENEMY_MGUN_CTOR_INLINE inline
+#endif
+#ifndef ENEMY_MGUN_INIT_INLINE
+#define ENEMY_MGUN_INIT_INLINE inline
+#endif
+
+ENEMY_MGUN_CTOR_INLINE ENEMY_MGUN::ENEMY_MGUN(TObject* parent)
+    : TObject(parent)
+{
+	ClassName = CL_EnemyMGun;
+	DispTime  = sizeof(ENEMY_MGUN);
+	hits      = 0;
+	done      = 0;
+	C_COLLI::Init(enemyMGunCclInfo, 1, 3);
+	flag &= ~0x40;
+	speed     = enemyMGunSpeed[0];
+	size      = enemyMGunSize[0];
+	radObject = enemyMGunOne[0];
+	active    = 0;
+	unk338    = 0;
+	model     = NULL;
+	clump     = NULL;
+}
+
+ENEMY_MGUN_INIT_INLINE void ENEMY_MGUN::Init(const RwV3d* place, const sAngle* turn)
+{
+	pos.x = place->x;
+	pos.y = place->y;
+	pos.z = place->z;
+	angle = *turn;
+	SetRange(enemyMGunRangePad[0] + speed);
+	CalcFireVector();
+	posCenter.x = pos.x;
+	posCenter.y = pos.y;
+	posCenter.z = pos.z;
+	unk128      = 4;
+	bulletNum   = 0;
+	memset(bullets, 0, sizeof(bullets));
+	model = TEnemyDataBase::GetInstance()->SearchClump(ENEMY_DB_COMMON, 8);
+	if (model != NULL) {
+		objRpClumpForAllGeometrysToIgnoreLights(model);
+	}
+	RpClump* source = TEnemyDataBase::GetInstance()->SearchClump(ENEMY_DB_COMMON, 9);
+	if (source != NULL) {
+		clump = fn_80150588(source);
+		objRpClumpForAllGeometrysToIgnoreLights(clump);
+	}
 }
 
 #endif
