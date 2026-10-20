@@ -5,13 +5,7 @@
 #ifndef ENEMY_MGUN_INC
 #define ENEMY_MGUN_INC
 
-typedef struct RwV3d {
-	f32 x, y, z;
-} RwV3d;
-
-typedef struct sAngle {
-	s32 x, y, z;
-} sAngle;
+#include "game/pathctrl.h"
 
 // sMachineGunBullet (the PS2 build's struct): one bullet, flying along the
 // gun's fire vector until it passes its range or its life runs out.
@@ -81,7 +75,9 @@ public:
 		SetFlagVectorHasBeenAlreadyCalculated();
 	}
 
-	u8 unk000[0x70];               // 0x000
+	u8 unk000[0x4];                // 0x000
+	u16 signal;                    // 0x004
+	u8 unk006[0x6A];               // 0x006
 	EnemyMGunFlash* flash;         // 0x070
 	u8 unk074[0x7C];               // 0x074
 	RwV3d pos;                     // 0x0F0

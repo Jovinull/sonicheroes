@@ -1391,6 +1391,9 @@ rel/enemy_gadget_dtor.cpp:
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
 
+rel/machine_gun_cdtor.cpp:
+	.text       start:0x0005F180 end:0x0005F40C
+
 rel/formgate_sub_exec.cpp:
 	.text       start:0x0005F988 end:0x0005FC14
 

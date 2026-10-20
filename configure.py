@@ -6143,6 +6143,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/machine_gun_cdtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/machine_gun_control.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
