@@ -6604,6 +6604,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_shot_check_collision.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_shot_move.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
