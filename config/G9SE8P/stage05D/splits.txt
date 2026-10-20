@@ -797,6 +797,9 @@ rel/pawn_dtor.cpp:
 rel/pawn_create_instance.cpp:
 	.text       start:0x00033460 end:0x000334B4
 
+rel/pawn_edit.cpp:
+	.text       start:0x000334B4 end:0x00033778
+
 rel/pawn_unload.cpp:
 	.text       start:0x00033778 end:0x00033818
 
