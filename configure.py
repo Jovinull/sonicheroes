@@ -6148,7 +6148,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/particle_unlink.cpp",
+                "rel/particle_chain.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

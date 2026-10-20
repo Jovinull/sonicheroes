@@ -1107,8 +1107,8 @@ rel/propeller_register.cpp:
 	.text       start:0x00049578 end:0x00049618
 	.ctors      start:0x00000084 end:0x00000088
 
-rel/particle_unlink.cpp:
-	.text       start:0x0004AC58 end:0x0004ACF4
+rel/particle_chain.cpp:
+	.text       start:0x0004AC38 end:0x0004AD48
 
 rel/itempanel_hooks.cpp:
 	.text       start:0x0004B558 end:0x0004B6F4
