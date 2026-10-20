@@ -43,7 +43,7 @@ typedef struct RollDoor {
 extern "C" void* lbl_8042C388;
 extern "C" const f32 rollDoorRadToAngle[1];
 extern "C" const f32 rollDoorPushBack[1];
-extern "C" const f32 rollDoorPushSpeed[1];
+extern "C" const f32 rollDoorFifteen[1];
 
 extern "C" void fn_80021824(void* colli);
 extern "C" RollDoorHit* fn_80020BD8(void* colli, s32 kind);
@@ -91,7 +91,7 @@ extern "C" s32 CheckCollisionOfPowerToChangeMode__12TObjRolldoorFv(RollDoor* obj
 		object->side = rollDoorPushBack[0];
 		object->mode = 2;
 	} else {
-		object->side = rollDoorPushSpeed[0];
+		object->side = rollDoorFifteen[0];
 		object->mode = 3;
 	}
 	if (lbl_8042C388 != NULL) {
