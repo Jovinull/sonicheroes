@@ -1961,6 +1961,9 @@ rel/gadget_needle_static.cpp:
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x000A472C end:0x000A47A0
 
+rel/gadget_laser_sleep.cpp:
+	.text       start:0x000A47B8 end:0x000A47D0
+
 rel/searcher_sound_limit.cpp:
 	.text       start:0x000A47D0 end:0x000A4B10
 

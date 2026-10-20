@@ -6983,6 +6983,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gadget_laser_sleep.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gadget_laser_static.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
