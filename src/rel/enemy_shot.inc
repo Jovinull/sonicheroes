@@ -22,6 +22,8 @@ public:
 	// that no unit of ours emits the vtable
 	void Disp();
 	void Move();
+	void Explosion();
+	void CheckCollision();
 
 	// OBJ_MoveOnGround at 0x028, C_COLLI at 0x060
 	s32 done;   // 0x0E8

@@ -819,6 +819,9 @@ rel/enemy_shot_ctor.cpp:
 rel/enemy_shot_dtor.cpp:
 	.text       start:0x00034DFC end:0x00034E80
 
+rel/enemy_shot_explosion.cpp:
+	.text       start:0x000350A4 end:0x00035124
+
 rel/enemy_shot_move.cpp:
 	.text       start:0x00035804 end:0x0003583C
 
