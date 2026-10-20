@@ -84,14 +84,14 @@ public:
 	RwV3d pos;                     // 0x0F0
 	RwV3d aim;                     // 0x0FC
 	sAngle angle;                  // 0x108
-	u8 unk114[0x4];                // 0x114
+	f32 size;                      // 0x114
 	f32 speed;                     // 0x118
 	u32 flags;                     // 0x11C
 	u8 unk120[0x4];                // 0x120
 	s32 bulletNum;                 // 0x124
 	s32 unk128;                    // 0x128
 	sMachineGunBullet bullets[32]; // 0x12C
-	u8 unk32C[0x4];                // 0x32C
+	s32 unk32C;                    // 0x32C
 	struct RpClump* clump;         // 0x330
 	s32 active;                    // 0x334
 	s32 unk338;                    // 0x338
