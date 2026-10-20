@@ -6133,6 +6133,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/flyer_strategy_execute.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_strategy_execute.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

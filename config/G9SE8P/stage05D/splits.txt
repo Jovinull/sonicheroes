@@ -2418,6 +2418,9 @@ rel/e_flyer_stage11.cpp:
 	.data       start:0x00019300 end:0x000195F0
 	.bss        start:0x0000E750 end:0x0000E790
 
+rel/flyer_strategy_execute.cpp:
+	.text       start:0x000CD84C end:0x000CD8E4
+
 rel/flyer_collision_check.cpp:
 	.text       start:0x000CD8E4 end:0x000CE528
 
