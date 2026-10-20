@@ -638,6 +638,9 @@ rel/item_box_disp.cpp:
 rel/item_box_search_cage.cpp:
 	.text       start:0x000334B0 end:0x000335A0
 
+rel/item_box_set_position.cpp:
+	.text       start:0x000335A0 end:0x000337BC
+
 rel/item_box_dtor.cpp:
 	.text       start:0x000337BC end:0x00033864
 
