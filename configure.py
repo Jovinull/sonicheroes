@@ -7167,6 +7167,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_hit_point.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
