@@ -819,6 +819,9 @@ rel/enemy_shot_dtor.cpp:
 rel/enemy_mgun_switch.cpp:
 	.text       start:0x00035970 end:0x00035A0C
 
+rel/enemy_mgun_calc_fire_angle.cpp:
+	.text       start:0x00036538 end:0x00036604
+
 rel/shield_splinter_move.cpp:
 	.text       start:0x00037044 end:0x000371F0
 
