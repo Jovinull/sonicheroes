@@ -805,6 +805,9 @@ rel/case_assets.cpp:
 	.text       start:0x0003A178 end:0x0003A268
 	.ctors      start:0x00000070 end:0x00000074
 
+rel/roll_door_check_power.cpp:
+	.text       start:0x0003A784 end:0x0003A968
+
 rel/roll_door_tdisp.cpp:
 	.text       start:0x0003A968 end:0x0003AB3C
 

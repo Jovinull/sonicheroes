@@ -992,6 +992,9 @@ rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0
 	.ctors      start:0x00000074 end:0x00000078
 
+rel/roll_door_check_power.cpp:
+	.text       start:0x00041BBC end:0x00041DA0
+
 rel/roll_door_tdisp.cpp:
 	.text       start:0x00041DA0 end:0x00041F74
 
