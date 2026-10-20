@@ -397,6 +397,9 @@ rel/cannon_smoke_ctor.cpp:
 rel/cannon_player_to_cancel.cpp:
 	.text       start:0x00016AC4 end:0x00016C94
 
+rel/cannon_player.cpp:
+	.text       start:0x00016C94 end:0x00017080
+
 rel/cannon_set_player_position.cpp:
 	.text       start:0x000172D0 end:0x000174E0
 

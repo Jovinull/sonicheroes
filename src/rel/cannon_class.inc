@@ -3,9 +3,12 @@
 // inline it (rel/cannon_hold_player.cpp). It is inline here and defined plain by
 // the unit that emits the copy.
 
+#ifndef CANNON_RWV3D
+#define CANNON_RWV3D
 typedef struct RwV3d {
 	f32 x, y, z;
 } RwV3d;
+#endif
 
 struct RwMatrixTag {
 	RwV3d right; // 0x00
@@ -22,12 +25,17 @@ typedef struct Cannon {
 	u8 unk00[0xB8];
 	u8 replace[0x4]; // 0xB8, OBJ_ReplacePlayer
 	RwV3d pos;       // 0xBC
-	u8 unkC8[0x14];
-	s16 timer;       // 0xDC
-	u8 unkDE[0x1E];
-	s32 barrelPitch; // 0xFC
-	s32 barrelYaw;   // 0x100
-	u8 unk104[0x38];
+	u8 unkC8[0xD];
+	s8 formation; // 0xD5
+	u8 unkD6[0x6];
+	s16 timer;         // 0xDC
+	s16 launchKind[3]; // 0xDE, by formation: 0, 2, 1
+	u8 unkE4[0x18];
+	s32 barrelPitch;    // 0xFC
+	s32 barrelYaw;      // 0x100
+	f32 launchSpeed[3]; // 0x104, by formation: 0, 2, 1
+	f32 recoil;         // 0x110
+	u8 unk114[0x28];
 	RwV3d tip;  // 0x13C
 	RwV3d tip2; // 0x148
 } Cannon;
