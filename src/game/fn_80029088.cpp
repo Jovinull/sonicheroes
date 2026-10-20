@@ -1,6 +1,7 @@
 #include "game/matrix.h"
 
 #pragma opt_common_subs off
+#pragma opt_propagation off
 
 struct CollisionActor {
 	u8 pad0[0x60];
@@ -196,7 +197,7 @@ extern "C" void fn_80029088(
 
 		fn_8019941C(sp118, collision.points, 5, &collision.matrix288);
 		secondOutput = sp154;
-		secondOutput = fn_8019941C(secondOutput, secondPoints, 5, matrix2C8Ptr);
+		fn_8019941C(secondOutput, secondPoints, 5, matrix2C8Ptr);
 		fn_8019941C(spA0, sp118, 5, matrix248Ptr);
 		fn_8019941C(spDC, secondOutput, 5, &collision.matrix208);
 

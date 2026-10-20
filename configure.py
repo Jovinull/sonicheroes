@@ -631,7 +631,7 @@ config.libs = [
             Object(Matching, "game/scanpath.cpp", extra_cflags=["-O3,p", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/c_colli_react.cpp", extra_cflags=["-bool off", "-inline auto,deferred", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/object_defaults.cpp"),
-            Object(NonMatching, "game/fn_80029088.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
+            Object(Matching, "game/fn_80029088.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_8003C618.cpp", extra_cflags=["-opt noschedule"]),
             Object(Matching, "game/fn_8003F300.cpp"),
             Object(Matching, "game/fn_8004D99C.cpp", extra_cflags=["-opt noschedule"]),
