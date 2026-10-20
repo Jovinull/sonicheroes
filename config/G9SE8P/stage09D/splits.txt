@@ -825,6 +825,9 @@ rel/enemy_mgun_calc_fire_angle.cpp:
 rel/enemy_mgun_calc_fire_vector.cpp:
 	.text       start:0x00036620 end:0x00036700
 
+rel/enemy_mgun_calc_bullet.cpp:
+	.text       start:0x00036AD0 end:0x00036BA8
+
 rel/shield_splinter_move.cpp:
 	.text       start:0x00037060 end:0x0003720C
 
