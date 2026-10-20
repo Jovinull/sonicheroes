@@ -2080,6 +2080,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/breakable_weight_move.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/breakable_weight_checks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
