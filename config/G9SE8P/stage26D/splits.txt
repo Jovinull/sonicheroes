@@ -52,6 +52,9 @@ rel/tri_spring_dtor.cpp:
 rel/tri_spring_ctor.cpp:
 	.text       start:0x00002920 end:0x00002BA8
 
+rel/tri_spring_edit.cpp:
+	.text       start:0x00002BA8 end:0x00002C9C
+
 rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
 

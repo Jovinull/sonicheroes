@@ -1727,6 +1727,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tri_spring_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tri_spring_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
