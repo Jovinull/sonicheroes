@@ -1928,6 +1928,9 @@ rel/gadget_laser_update.cpp:
 rel/gadget_laser_static.cpp:
 	.text       start:0x000A2C2C end:0x000A2CD0
 
+rel/gadget_laser_beam.cpp:
+	.text       start:0x000A2CD0 end:0x000A2D44
+
 rel/gadget_mgun.cpp:
 	.text       start:0x000A2D44 end:0x000A2DCC
 
