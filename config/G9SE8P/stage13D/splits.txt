@@ -1017,6 +1017,9 @@ rel/propeller_register.cpp:
 	.text       start:0x00049578 end:0x00049618
 	.ctors      start:0x00000084 end:0x00000088
 
+rel/itempanel_hooks.cpp:
+	.text       start:0x0004B558 end:0x0004B6F4
+
 rel/goal_ring_check_back.cpp:
 	.text       start:0x0004B6F4 end:0x0004B7AC
 
