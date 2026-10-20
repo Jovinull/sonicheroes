@@ -75,10 +75,13 @@ public:
 		SetFlagVectorHasBeenAlreadyCalculated();
 	}
 
-	u8 unk000[0x4];                // 0x000
+	char* className;               // 0x000
 	u16 signal;                    // 0x004
-	u8 unk006[0x6A];               // 0x006
-	EnemyMGunFlash* flash;         // 0x070
+	u8 unk006[0x12];               // 0x006
+	void** vtable;                 // 0x018
+	u8 unk01C[0x44];               // 0x01C
+	u8 colli[0x10];                // 0x060 (C_COLLI, to 0x0E8)
+	EnemyMGunFlash* flash;         // 0x070, the collision's info
 	u8 unk074[0x7C];               // 0x074
 	RwV3d pos;                     // 0x0F0
 	RwV3d aim;                     // 0x0FC
@@ -90,7 +93,8 @@ public:
 	s32 bulletNum;                 // 0x124
 	s32 unk128;                    // 0x128
 	sMachineGunBullet bullets[32]; // 0x12C
-	u8 unk32C[0x8];                // 0x32C
+	u8 unk32C[0x4];                // 0x32C
+	struct RpClump* clump;         // 0x330
 	s32 active;                    // 0x334
 };
 
