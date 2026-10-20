@@ -52,6 +52,9 @@ rel/tri_spring_dtor.cpp:
 rel/tri_spring_ctor.cpp:
 	.text       start:0x00002920 end:0x00002BA8
 
+rel/tri_spring_edit.cpp:
+	.text       start:0x00002BA8 end:0x00002C9C
+
 rel/tri_spring_reset.cpp:
 	.text       start:0x00002C9C end:0x00002CD0
 
@@ -397,6 +400,9 @@ rel/cannon_smoke_ctor.cpp:
 rel/cannon_player_to_cancel.cpp:
 	.text       start:0x00016AC0 end:0x00016C90
 
+rel/cannon_player.cpp:
+	.text       start:0x00016C90 end:0x0001707C
+
 rel/cannon_set_player_position.cpp:
 	.text       start:0x000172CC end:0x000174DC
 
@@ -558,6 +564,21 @@ rel/weight_move.cpp:
 rel/weight_checks.cpp:
 	.text       start:0x00025D0C end:0x00025DEC
 
+rel/weight_area_checks.cpp:
+	.text       start:0x00025DEC end:0x00026194
+
+rel/weight_check_down.cpp:
+	.text       start:0x00026194 end:0x00026954
+
+rel/weight_area_check.cpp:
+	.text       start:0x00026954 end:0x00026B3C
+
+rel/weight_player.cpp:
+	.text       start:0x00026B3C end:0x00026D50
+
+rel/weight_matrix.cpp:
+	.text       start:0x00026D50 end:0x00026E64
+
 rel/weight_disp.cpp:
 	.text       start:0x00027374 end:0x00027440
 
@@ -579,6 +600,21 @@ rel/weight_ext_dtor.cpp:
 
 rel/breakable_weight_checks.cpp:
 	.text       start:0x00029798 end:0x00029878
+
+rel/breakable_weight_area_checks.cpp:
+	.text       start:0x00029878 end:0x00029C20
+
+rel/breakable_weight_check_down.cpp:
+	.text       start:0x00029C20 end:0x0002A3E0
+
+rel/breakable_weight_area_check.cpp:
+	.text       start:0x0002A3E0 end:0x0002A5C8
+
+rel/breakable_weight_player.cpp:
+	.text       start:0x0002A5C8 end:0x0002A858
+
+rel/breakable_weight_matrix.cpp:
+	.text       start:0x0002A858 end:0x0002A96C
 
 rel/breakable_weight_edit.cpp:
 	.text       start:0x0002C5DC end:0x0002C788
@@ -761,6 +797,9 @@ rel/pawn_dtor.cpp:
 rel/pawn_create_instance.cpp:
 	.text       start:0x00033460 end:0x000334B4
 
+rel/pawn_edit.cpp:
+	.text       start:0x000334B4 end:0x00033778
+
 rel/pawn_unload.cpp:
 	.text       start:0x00033778 end:0x00033818
 
@@ -770,6 +809,12 @@ rel/pawn_load.cpp:
 rel/pawn_assets.cpp:
 	.text       start:0x00033C98 end:0x00033D88
 	.ctors      start:0x00000060 end:0x00000064
+
+rel/pawn_strategy_execute.cpp:
+	.text       start:0x00033DA8 end:0x00033E40
+
+rel/enemy_shot_kill.cpp:
+	.text       start:0x00033E40 end:0x00034120
 
 rel/enemy_shot_set.cpp:
 	.text       start:0x00034120 end:0x00034628
@@ -782,6 +827,45 @@ rel/enemy_shot_ctor.cpp:
 
 rel/enemy_shot_dtor.cpp:
 	.text       start:0x00034E18 end:0x00034E9C
+
+rel/enemy_shot_explosion.cpp:
+	.text       start:0x000350C0 end:0x00035140
+
+rel/enemy_shot_check_collision.cpp:
+	.text       start:0x000353E0 end:0x00035474
+
+rel/enemy_shot_move.cpp:
+	.text       start:0x00035820 end:0x00035858
+
+rel/enemy_shot_helpers.cpp:
+	.text       start:0x00035858 end:0x00035884
+
+rel/enemy_mgun_switch.cpp:
+	.text       start:0x0003598C end:0x00035A28
+
+rel/enemy_mgun_set.cpp:
+	.text       start:0x00035A28 end:0x00035E88
+
+rel/enemy_mgun_ctor.cpp:
+	.text       start:0x00035E88 end:0x00035F80
+
+rel/enemy_mgun_init.cpp:
+	.text       start:0x00035F80 end:0x00036190
+
+rel/enemy_mgun_dtor.cpp:
+	.text       start:0x000364B8 end:0x00036554
+
+rel/enemy_mgun_calc_fire_angle.cpp:
+	.text       start:0x00036554 end:0x00036620
+
+rel/enemy_mgun_calc_fire_vector.cpp:
+	.text       start:0x00036620 end:0x00036700
+
+rel/enemy_mgun_calc_bullet.cpp:
+	.text       start:0x00036AD0 end:0x00036BA8
+
+rel/enemy_mgun_bullet_ctor.cpp:
+	.text       start:0x00037024 end:0x00037060
 
 rel/shield_splinter_move.cpp:
 	.text       start:0x00037060 end:0x0003720C
@@ -819,6 +903,9 @@ rel/item_box_disp.cpp:
 rel/item_box_search_cage.cpp:
 	.text       start:0x0003A8E8 end:0x0003A9D8
 
+rel/item_box_set_position.cpp:
+	.text       start:0x0003A9D8 end:0x0003ABF4
+
 rel/item_box_dtor.cpp:
 	.text       start:0x0003ABF4 end:0x0003AC9C
 
@@ -827,6 +914,9 @@ rel/item_box_ctor.cpp:
 
 rel/item_box_edit.cpp:
 	.text       start:0x0003AF2C end:0x0003AFD4
+
+rel/item_box_hooks.cpp:
+	.text       start:0x0003AFD4 end:0x0003B2CC
 
 rel/item_box_assets.cpp:
 	.text       start:0x0003B2CC end:0x0003B3BC
@@ -902,11 +992,20 @@ rel/case_assets.cpp:
 	.text       start:0x000415B0 end:0x000416A0
 	.ctors      start:0x00000074 end:0x00000078
 
+rel/roll_door_player.cpp:
+	.text       start:0x00041904 end:0x00041BBC
+
+rel/roll_door_check_power.cpp:
+	.text       start:0x00041BBC end:0x00041DA0
+
 rel/roll_door_tdisp.cpp:
 	.text       start:0x00041DA0 end:0x00041F74
 
 rel/roll_door_set_position.cpp:
 	.text       start:0x0004354C end:0x000438CC
+
+rel/roll_door_set_parameter.cpp:
+	.text       start:0x000438CC end:0x0004395C
 
 rel/roll_door_dtor.cpp:
 	.text       start:0x0004395C end:0x00043A3C
@@ -1019,6 +1118,15 @@ rel/propeller_create.cpp:
 rel/propeller_register.cpp:
 	.text       start:0x00049590 end:0x00049630
 	.ctors      start:0x00000084 end:0x00000088
+
+rel/particle_ping_pong.cpp:
+	.text       start:0x0004A334 end:0x0004A354
+
+rel/particle_chain.cpp:
+	.text       start:0x0004AC50 end:0x0004AD60
+
+rel/itempanel_hooks.cpp:
+	.text       start:0x0004B574 end:0x0004B710
 
 rel/goal_ring_check_back.cpp:
 	.text       start:0x0004B710 end:0x0004B7C8
@@ -1170,6 +1278,9 @@ rel/searcher_strategy_exec.cpp:
 	.text       start:0x00054018 end:0x000541A0
 	.data       start:0x00005C28 end:0x00005C60
 
+rel/searcher_strategy_execute.cpp:
+	.text       start:0x00054288 end:0x00054320
+
 rel/searcher_sound_limit.cpp:
 	.text       start:0x0005447C end:0x000547BC
 
@@ -1243,6 +1354,9 @@ rel/searcher_reset.cpp:
 rel/searcher_create_instance.cpp:
 	.text       start:0x00059C80 end:0x00059CD4
 
+rel/searcher_edit.cpp:
+	.text       start:0x00059CD4 end:0x0005A0A4
+
 rel/searcher_unload.cpp:
 	.text       start:0x0005A0A4 end:0x0005A170
 
@@ -1301,6 +1415,9 @@ rel/gadget_laser_update.cpp:
 rel/gadget_laser_static.cpp:
 	.text       start:0x0005D330 end:0x0005D3D4
 
+rel/gadget_laser_beam.cpp:
+	.text       start:0x0005D3D4 end:0x0005D448
+
 rel/gadget_mgun.cpp:
 	.text       start:0x0005D448 end:0x0005D4D0
 
@@ -1330,6 +1447,15 @@ rel/gadget_needle_static.cpp:
 
 rel/enemy_gadget_dtor.cpp:
 	.text       start:0x0005EE30 end:0x0005EEA4
+
+rel/gadget_laser_sleep.cpp:
+	.text       start:0x0005EEA8 end:0x0005EEC0
+
+rel/machine_gun_control.cpp:
+	.text       start:0x0005EF08 end:0x0005F180
+
+rel/machine_gun_cdtor.cpp:
+	.text       start:0x0005F180 end:0x0005F40C
 
 rel/formgate_sub_exec.cpp:
 	.text       start:0x0005F988 end:0x0005FC14
@@ -1711,6 +1837,9 @@ rel/bob_jump_collision_register.cpp:
 
 rel/flower_hierarchy.cpp:
 	.text       start:0x000A08BC end:0x000A09D0
+
+rel/flower_edit.cpp:
+	.text       start:0x000A09D0 end:0x000A0A90
 
 rel/flower_hooks.cpp:
 	.text       start:0x000A0A90 end:0x000A0C58

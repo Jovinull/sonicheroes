@@ -5,9 +5,12 @@
 // The cannon units use C-style structs, so TObject is declared here with just
 // what the smoke needs (its ctor/dtor names and the heap's new and delete).
 
+#ifndef CANNON_RWV3D
+#define CANNON_RWV3D
 typedef struct RwV3d {
 	f32 x, y, z;
 } RwV3d;
+#endif
 
 typedef struct sAngle {
 	s32 x, y, z;
