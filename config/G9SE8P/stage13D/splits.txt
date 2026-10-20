@@ -1567,6 +1567,9 @@ rel/obj_set_particle_register.cpp:
 rel/flower_hierarchy.cpp:
 	.text       start:0x0006B078 end:0x0006B18C
 
+rel/flower_edit.cpp:
+	.text       start:0x0006B18C end:0x0006B24C
+
 rel/flower_hooks.cpp:
 	.text       start:0x0006B24C end:0x0006B414
 

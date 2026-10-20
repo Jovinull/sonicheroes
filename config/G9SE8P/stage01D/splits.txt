@@ -1863,6 +1863,9 @@ rel/bob_jump_collision_register.cpp:
 rel/flower_hierarchy.cpp:
 	.text       start:0x000B5F84 end:0x000B6098
 
+rel/flower_edit.cpp:
+	.text       start:0x000B6098 end:0x000B6158
+
 rel/flower_hooks.cpp:
 	.text       start:0x000B6158 end:0x000B6320
 

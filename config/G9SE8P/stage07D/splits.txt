@@ -2023,6 +2023,9 @@ rel/bob_jump_collision_register.cpp:
 rel/flower_hierarchy.cpp:
 	.text       start:0x0009B6AC end:0x0009B7C0
 
+rel/flower_edit.cpp:
+	.text       start:0x0009B7C0 end:0x0009B880
+
 rel/flower_hooks.cpp:
 	.text       start:0x0009B880 end:0x0009BA48
 
