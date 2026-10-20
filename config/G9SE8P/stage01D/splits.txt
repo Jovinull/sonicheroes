@@ -1778,6 +1778,9 @@ rel/s02_water_register.cpp:
 	.text       start:0x000A35B0 end:0x000A365C
 	.ctors      start:0x00000120 end:0x00000124
 
+rel/s02_green_edit.cpp:
+	.text       start:0x000AE7D8 end:0x000AE82C
+
 rel/s02_green_register.cpp:
 	.text       start:0x000AECF0 end:0x000AED9C
 	.ctors      start:0x00000124 end:0x00000128
