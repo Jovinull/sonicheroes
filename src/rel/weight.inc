@@ -13,7 +13,9 @@ struct RwMatrixTag {
 };
 
 typedef struct Weight {
-	u8 unk00[0xDC];      // 0x00
+	u8 unk00[0xB8];      // 0x00
+	s8 kind;             // 0xB8
+	u8 unkB9[0x23];      // 0xB9
 	RwMatrixTag* matrix; // 0xDC
 	u8 unkE0[0x4];       // 0xE0
 	RwV3d pos;           // 0xE4
