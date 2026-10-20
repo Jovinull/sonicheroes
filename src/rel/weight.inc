@@ -12,9 +12,17 @@ struct RwMatrixTag {
 	u8 data[0x40];
 };
 
+typedef struct sAngle {
+	s32 x, y, z;
+} sAngle;
+
 typedef struct Weight {
-	u8 unk00[0xB8];      // 0x00
-	s8 kind;             // 0xB8
+	u8 unk00[0x30]; // 0x00
+	u8 colli[0x88]; // 0x30 (C_COLLI)
+	union {         // 0xB8
+		u8 replace; // the OBJ_ReplacePlayer part, which has no fields
+		s8 kind;
+	};
 	u8 unkB9[0x23];      // 0xB9
 	RwMatrixTag* matrix; // 0xDC
 	u8 unkE0[0x4];       // 0xE0
@@ -66,7 +74,7 @@ extern "C" const f32 weightHalfDepth[1];
 extern "C" const f32 weightHalfWidth[1];
 extern "C" const f32 weightTopMargin[1];
 
-extern "C" s32 fn_8003E2E4(s32 player, s32 kind, RwV3d* position, s32 arg3);
+extern "C" s32 fn_8003E2E4(s32 player, s32 kind, RwV3d* position, sAngle* angle);
 extern "C" s32 fn_800AB32C(void* task);
 extern "C" void fn_8019941C(RwV3d* out, RwV3d* in, s32 count, RwMatrixTag* matrix);
 
@@ -81,7 +89,7 @@ inline s32 CheckPlayerTrespassArea(Weight* object, s32 active)
 
 	SetWeightMatrix(object);
 	for (int i = 0; i < 8; i++) {
-		if (fn_8003E2E4(i, 0, &pos, 0) == 0) {
+		if (fn_8003E2E4(i, 0, &pos, NULL) == 0) {
 			continue;
 		}
 		if (active) {
