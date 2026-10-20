@@ -6148,6 +6148,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/particle_unlink.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
