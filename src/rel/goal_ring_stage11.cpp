@@ -314,7 +314,7 @@ extern "C" void* fn_8_4B14C(
 	return self;
 }
 
-extern "C" void fn_8_4B574()
+extern "C" void endObjItempanel__Fv()
 {
 	for (int i = 0; i < 4; i++) {
 		if (lbl_8_data_4E28[i] != NULL)
@@ -325,7 +325,7 @@ extern "C" void fn_8_4B574()
 		lbl_8_data_4EAC[i * 2] = NULL;
 }
 
-extern "C" void fn_8_4B684()
+extern "C" void initObjItempanel__Fv()
 {
 	for (int i = 0; i < 4; i++)
 		lbl_8_data_4E28[i] = NULL;
