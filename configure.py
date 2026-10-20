@@ -6885,6 +6885,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_colli_for_quake_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
