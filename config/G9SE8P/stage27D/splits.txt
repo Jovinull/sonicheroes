@@ -647,6 +647,9 @@ rel/item_box_ctor.cpp:
 rel/item_box_edit.cpp:
 	.text       start:0x00033AF4 end:0x00033B9C
 
+rel/item_box_hooks.cpp:
+	.text       start:0x00033B9C end:0x00033E94
+
 rel/item_box_assets.cpp:
 	.text       start:0x00033E94 end:0x00033F84
 	.ctors      start:0x00000060 end:0x00000064
