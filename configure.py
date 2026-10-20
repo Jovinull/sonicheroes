@@ -6905,6 +6905,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s66_star_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
