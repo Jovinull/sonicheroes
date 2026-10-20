@@ -6148,6 +6148,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/particle_ping_pong.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/particle_chain.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
