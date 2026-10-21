@@ -1901,6 +1901,9 @@ rel/s14_thunder_register.cpp:
 	.text       start:0x000A12A0 end:0x000A13F4
 	.ctors      start:0x00000148 end:0x0000014C
 
+rel/s14_thunder_light_dtor.cpp:
+	.text       start:0x000A1AD0 end:0x000A1B44
+
 rel/s14_thunder_chain.cpp:
 	.text       start:0x000A20F4 end:0x000A21B4
 
