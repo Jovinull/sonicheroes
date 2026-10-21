@@ -6276,6 +6276,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/breakable_weight_position.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/weight_position.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
