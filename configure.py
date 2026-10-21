@@ -7735,6 +7735,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04_egg_cap2_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

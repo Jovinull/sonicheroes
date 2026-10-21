@@ -1760,6 +1760,9 @@ rel/s04_e_bubble_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x00089F80 end:0x00089F84
 
+rel/s04_egg_cap2_edit.cpp:
+	.text       start:0x0008BC40 end:0x0008BC9C
+
 rel/s04_egg_cap2_create.cpp:
 	.text       start:0x0008C684 end:0x0008C6CC
 
