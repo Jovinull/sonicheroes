@@ -595,6 +595,10 @@ rel/weight_register.cpp:
 	.text       start:0x00028C34 end:0x00028CDC
 	.ctors      start:0x00000058 end:0x0000005C
 
+rel/weight_ext_check_break.cpp:
+	.text       start:0x00028CE4 end:0x00028E4C
+	.data       start:0x00002BC0 end:0x00002BEC
+
 rel/weight_ext_exec.cpp:
 	.text       start:0x000291A0 end:0x00029230
 
