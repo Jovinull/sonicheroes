@@ -2131,6 +2131,9 @@ rel/hawk_gun_flash_create.cpp:
 rel/hawk_gun_flash_dtor.cpp:
 	.text       start:0x000AF7FC end:0x000AF870
 
+rel/hawk_mgun_search.cpp:
+	.text       start:0x000AF980 end:0x000AF9F4
+
 rel/hawk_mgun_switch.cpp:
 	.text       start:0x000AF9F4 end:0x000AFB18
 

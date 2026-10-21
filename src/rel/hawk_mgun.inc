@@ -65,6 +65,9 @@ public:
 	void Off();
 	void On();
 	void CalcFireAngle();
+	static void SetBulletClump(RpClump* clump);
+
+	static RpClump* pSrcClumpBullet;
 
 	void SetFlagVectorHasBeenAlreadyCalculated() { flags |= 4; }
 
