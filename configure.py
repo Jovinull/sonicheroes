@@ -7730,6 +7730,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_train_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
