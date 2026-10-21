@@ -1848,6 +1848,9 @@ rel/hawk_mgun_search.cpp:
 rel/hawk_mgun_switch.cpp:
 	.text       start:0x000A9184 end:0x000A92A8
 
+rel/hawk_mgun_ctor.cpp:
+	.text       start:0x000A96E8 end:0x000A97C0
+
 rel/hawk_mgun_bullet.cpp:
 	.text       start:0x000AA728 end:0x000AA978
 

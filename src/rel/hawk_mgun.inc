@@ -57,10 +57,14 @@ HAWK_MGUN_BULLET_INIT_INLINE void bMachineGunBullet::Init()
 class HAWK_MGUN : public TObject, public OBJ_MoveOnGround, public C_COLLI
 {
 public:
-	// Exec comes first so that it is the key function: no unit of ours emits
-	// the vtable, which stays in each module's data
+	// declared first, and defined nowhere (HAWK_MGUN has no Debug of its own),
+	// so that it is the key function: no unit of ours emits the vtable, which
+	// stays in each module's data
+	virtual void Debug();
 	virtual void Exec();
 	virtual ~HAWK_MGUN();
+	HAWK_MGUN(TObject* parent);
+	void Normal();
 	HAWK_MGUN_EMPTY_TYPE EmptyBulletNum();
 	void Off();
 	void On();
@@ -96,13 +100,13 @@ public:
 	RwV3d aim;                 // 0x0FC
 	sAngle angle;              // 0x108
 	f32 size;                  // 0x114
-	f32 unk118;                // 0x118
+	f32 speed;                 // 0x118
 	u32 flags;                 // 0x11C
 	f32 height;                // 0x120
 	s32 bulletNum;             // 0x124
 	s32 unk128;                // 0x128
 	s32 interval;              // 0x12C
-	f32 speed;                 // 0x130
+	f32 bulletSpeed;           // 0x130
 	bMachineGunBullet bullets[40]; // 0x134
 	u8 unk1AD4[0xC];           // 0x1AD4
 	s32 active;                // 0x1AE0

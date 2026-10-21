@@ -48,7 +48,7 @@ void TObjHawkMachineGun::Close()
 void TObjHawkMachineGun::SetBulletSpeed(f32 speed)
 {
 	if (mgun != NULL) {
-		mgun->speed = speed;
+		mgun->bulletSpeed = speed;
 	}
 }
 
