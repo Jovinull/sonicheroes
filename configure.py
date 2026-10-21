@@ -7720,6 +7720,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_baloon_wk_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
