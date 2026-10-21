@@ -2248,6 +2248,9 @@ rel/wheel_register.cpp:
 	.text       start:0x000CD708 end:0x000CD7B8
 	.ctors      start:0x00000198 end:0x0000019C
 
+rel/cannon_path_ctrl_dtor.cpp:
+	.text       start:0x000CE404 end:0x000CE478
+
 rel/obj_secollision_exec.cpp:
 	.text       start:0x000CECAC end:0x000CF054
 
