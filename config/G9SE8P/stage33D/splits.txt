@@ -635,6 +635,9 @@ rel/breakable_weight_player.cpp:
 rel/breakable_weight_matrix.cpp:
 	.text       start:0x0002A858 end:0x0002A96C
 
+rel/breakable_weight_disp.cpp:
+	.text       start:0x0002AE88 end:0x0002B02C
+
 rel/breakable_weight_position.cpp:
 	.text       start:0x0002BCA8 end:0x0002BE14
 
