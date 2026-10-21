@@ -2134,6 +2134,9 @@ rel/hawk_gun_flash_dtor.cpp:
 rel/hawk_mgun_switch.cpp:
 	.text       start:0x000AF9F4 end:0x000AFB18
 
+rel/hawk_mgun_bullet.cpp:
+	.text       start:0x000B0F98 end:0x000B11E8
+
 rel/warp_exec.cpp:
 	.text       start:0x000C32A8 end:0x000C3404
 

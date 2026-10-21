@@ -157,6 +157,9 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - Init__17bMachineGunBulletFv
+    - Alive__17bMachineGunBulletFv
+    - Move__17bMachineGunBulletFv
     - __ct__18TObjHawkMachineGunFP7TObjectPC5RwV3dPC6sAnglefPC7RpClump
     - hawkMachineGunSetAimPosition
     - breakableWeightCloneClump
@@ -1401,6 +1404,9 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - Init__17bMachineGunBulletFv
+    - Alive__17bMachineGunBulletFv
+    - Move__17bMachineGunBulletFv
     - __ct__18TObjHawkMachineGunFP7TObjectPC5RwV3dPC6sAnglefPC7RpClump
     - hawkMachineGunSetAimPosition
     - breakableWeightCloneClump

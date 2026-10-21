@@ -19,6 +19,8 @@ struct bMachineGunBullet : public C_COLLI {
 	bMachineGunBullet();
 	~bMachineGunBullet();
 	void Init();
+	bool Alive();
+	void Move();
 
 	RwV3d pos; // 0x88
 	RwV3d vel; // 0x94
