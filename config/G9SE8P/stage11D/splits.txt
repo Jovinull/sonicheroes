@@ -582,6 +582,9 @@ rel/weight_matrix.cpp:
 rel/weight_disp.cpp:
 	.text       start:0x00027374 end:0x00027440
 
+rel/weight_position.cpp:
+	.text       start:0x00028070 end:0x0002822C
+
 rel/weight_dtor.cpp:
 	.text       start:0x000283E8 end:0x000284C8
 
