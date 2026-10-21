@@ -5001,6 +5001,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_ring_light_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_screw_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
