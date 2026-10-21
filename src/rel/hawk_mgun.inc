@@ -65,6 +65,10 @@ public:
 	virtual ~HAWK_MGUN();
 	HAWK_MGUN(TObject* parent);
 	void Normal();
+	void Move();
+	void CalcBullet();
+	virtual void PDisp();
+	virtual void Disp();
 	HAWK_MGUN_EMPTY_TYPE EmptyBulletNum();
 	void Off();
 	void On();
