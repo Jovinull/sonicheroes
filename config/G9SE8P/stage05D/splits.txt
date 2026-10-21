@@ -1689,6 +1689,9 @@ rel/bob_jump_collision_register.cpp:
 	.text       start:0x000721F0 end:0x00072298
 	.ctors      start:0x000000C4 end:0x000000C8
 
+rel/flower_common_search.cpp:
+	.text       start:0x000722A0 end:0x00072378
+
 rel/flower_hierarchy.cpp:
 	.text       start:0x00076194 end:0x000762A8
 
