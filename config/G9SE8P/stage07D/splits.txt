@@ -2219,6 +2219,9 @@ rel/roompillar_register.cpp:
 	.text       start:0x000C8AF8 end:0x000C8B98
 	.ctors      start:0x00000184 end:0x00000188
 
+rel/torch_dtor.cpp:
+	.text       start:0x000C90C4 end:0x000C91B0
+
 rel/torch_edit.cpp:
 	.text       start:0x000C92D0 end:0x000C9300
 
