@@ -8095,6 +8095,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/piston_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/goal_ring_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
