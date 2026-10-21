@@ -1497,6 +1497,9 @@ rel/stg26_colli_cc_register.cpp:
 rel/king_pawn_voice_dtor.cpp:
 	.text       start:0x0007779C end:0x00077810
 
+rel/king_pawn_speed_dtor.cpp:
+	.text       start:0x0007837C end:0x000783F0
+
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000784D8 end:0x00078508
 
