@@ -13,13 +13,20 @@ extern "C" void fn_8003BF04(C_COLLI* colli, CCL_INFO* info, int count, u8 kind);
 extern "C" const f32 hawkMGunZero[1];
 extern "C" CCL_INFO hawkMGunCclInfo;
 
+// Alive's own unit returns a bool (no zero extension of the compare) while
+// HAWK_MGUN::CalcBullet, which inlines it, tests a u8 (clrlwi + cmplwi): the
+// unit that defines it sets HAWK_MGUN_ALIVE_TYPE to bool.
+#ifndef HAWK_MGUN_ALIVE_TYPE
+#define HAWK_MGUN_ALIVE_TYPE u8
+#endif
+
 // bMachineGunBullet (the PS2 build's struct): one bullet with its own
 // collision, flying along its velocity until its life runs out.
 struct bMachineGunBullet : public C_COLLI {
 	bMachineGunBullet();
 	~bMachineGunBullet();
 	void Init();
-	bool Alive();
+	HAWK_MGUN_ALIVE_TYPE Alive();
 	void Move();
 
 	RwV3d pos; // 0x88
@@ -115,5 +122,12 @@ public:
 	u8 unk1AD4[0xC];           // 0x1AD4
 	s32 active;                // 0x1AE0
 };
+
+// Alive and Move, which CalcBullet inlines; rel/hawk_mgun_bullet.cpp includes
+// them itself, out of line, after the constructor
+#ifndef HAWK_MGUN_BULLET_MOVE_INLINE
+#define HAWK_MGUN_BULLET_MOVE_INLINE inline
+#include "src/rel/hawk_mgun_bullet_move.inc"
+#endif
 
 #endif
