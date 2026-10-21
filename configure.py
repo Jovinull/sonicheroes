@@ -4991,6 +4991,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_senkan_shut_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_screw_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
