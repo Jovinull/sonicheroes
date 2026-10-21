@@ -4426,6 +4426,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dispfruit_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roulette_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
