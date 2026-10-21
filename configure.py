@@ -4431,6 +4431,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/treeleaf_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roulette_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
