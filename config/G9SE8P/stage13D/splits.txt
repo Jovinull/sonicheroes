@@ -1980,6 +1980,9 @@ rel/capture_collision_register.cpp:
 	.text       start:0x000AC6B8 end:0x000AC760
 	.ctors      start:0x00000158 end:0x0000015C
 
+rel/e2000_turn_to_aim.cpp:
+	.text       start:0x000AECC4 end:0x000AED40
+
 rel/e2000_object_register.cpp:
 	.text       start:0x000B2370 end:0x000B246C
 	.ctors      start:0x0000015C end:0x00000160

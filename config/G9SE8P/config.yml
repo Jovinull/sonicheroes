@@ -2893,6 +2893,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - TurnToAimForE2000__14TObjEnemyE2000Fv
     - breakableWeightCloneClump
     - breakableWeightDestroyClump
     - breakableWeightSetCollisionParameter
@@ -3260,6 +3261,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - TurnToAimForE2000__14TObjEnemyE2000Fv
     - breakableWeightCloneClump
     - breakableWeightDestroyClump
     - breakableWeightSetCollisionParameter

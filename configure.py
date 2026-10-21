@@ -7418,6 +7418,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/e2000_turn_to_aim.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_score.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
