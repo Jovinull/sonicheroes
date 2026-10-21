@@ -7131,6 +7131,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_thunder_set2_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/boss_voice_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
