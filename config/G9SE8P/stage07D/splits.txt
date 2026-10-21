@@ -2122,6 +2122,9 @@ rel/chao_register.cpp:
 rel/hawk_machine_gun_control.cpp:
 	.text       start:0x000AEC08 end:0x000AEEF0
 
+rel/hawk_machine_gun_cdtor.cpp:
+	.text       start:0x000AEEF0 end:0x000AF194
+
 rel/hawk_gun_flash_create.cpp:
 	.text       start:0x000AF194 end:0x000AF2D8
 
