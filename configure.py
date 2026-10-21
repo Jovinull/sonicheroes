@@ -4416,6 +4416,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/eggmaso_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roulette_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
