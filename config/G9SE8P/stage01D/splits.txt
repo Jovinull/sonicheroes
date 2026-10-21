@@ -1857,6 +1857,9 @@ rel/hawk_mgun_exec.cpp:
 rel/hawk_mgun_normal.cpp:
 	.text       start:0x000A9D4C end:0x000A9D90
 
+rel/hawk_mgun_disp.cpp:
+	.text       start:0x000AA048 end:0x000AA04C
+
 rel/hawk_mgun_bullet.cpp:
 	.text       start:0x000AA728 end:0x000AA978
 
