@@ -3,8 +3,9 @@
 // The record that registers HERMITCRAB OBJECT with the editor.
 //
 // The claim is .text 0xC83D0 to 0xC8480 and the .ctors word at 0x160 that names
-// it. Only the record is taken: the four hooks it points at stay assembly and
-// are reached by the names each module's symbols.txt gives them.
+// it. Only the record is taken: the four hooks it points at are reached by the
+// names each module's symbols.txt gives them (rel/hermitcrab_hooks.cpp,
+// rel/hermitcrab_load.cpp and rel/hermitcrab_create.cpp match them).
 //
 // The object's name is the display string the record itself installs, which is
 // what names every symbol here.

@@ -2132,6 +2132,9 @@ rel/hermitcrab_hooks.cpp:
 rel/hermitcrab_load.cpp:
 	.text       start:0x000C8298 end:0x000C8388
 
+rel/hermitcrab_create.cpp:
+	.text       start:0x000C8388 end:0x000C83D0
+
 rel/hermitcrab_register.cpp:
 	.text       start:0x000C83D0 end:0x000C8480
 	.ctors      start:0x00000160 end:0x00000164
