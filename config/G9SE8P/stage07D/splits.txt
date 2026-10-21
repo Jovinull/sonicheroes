@@ -1697,6 +1697,9 @@ rel/dfan_register.cpp:
 	.text       start:0x00079E08 end:0x00079EB8
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/duct_dtor.cpp:
+	.text       start:0x0007A834 end:0x0007A920
+
 rel/duct_register.cpp:
 	.text       start:0x0007ACFC end:0x0007ADAC
 	.ctors      start:0x000000DC end:0x000000E0
