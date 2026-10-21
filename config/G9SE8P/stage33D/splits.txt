@@ -601,6 +601,9 @@ rel/weight_ext_exec.cpp:
 rel/weight_ext_dtor.cpp:
 	.text       start:0x00029230 end:0x000292B4
 
+rel/weight_ext_ctor.cpp:
+	.text       start:0x000292B4 end:0x00029398
+
 rel/breakable_weight_move.cpp:
 	.text       start:0x00029650 end:0x00029798
 
