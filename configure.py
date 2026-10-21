@@ -7920,6 +7920,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_breakruin_s_hierarchy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/flower_hierarchy.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
