@@ -8105,6 +8105,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/barrel_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/goal_ring_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
