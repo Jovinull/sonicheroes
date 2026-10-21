@@ -1758,6 +1758,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x00083C74 end:0x00083D1C
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/e_thunder_light_dtor.cpp:
+	.text       start:0x00084304 end:0x00084378
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x00085320 end:0x00085394
 
