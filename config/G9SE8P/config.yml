@@ -157,6 +157,9 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - s02KameWaveGetHierarchy__FP7RpClump
+    - s02BreakruinSGetHierarchy__FP7RpClump
+    - s02BreakruinLGetHierarchy__FP7RpClump
     - __ct__9HAWK_MGUNFP7TObject
     - SearchClumpAtomic__FP7RpClumpPP8RpAtomic
     - SetBulletClump__9HAWK_MGUNFP7RpClump

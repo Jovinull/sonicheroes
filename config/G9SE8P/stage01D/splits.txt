@@ -1786,6 +1786,9 @@ rel/s02_break_gareki_register.cpp:
 	.text       start:0x00097CCC end:0x00097D74
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/s02_breakruin_l_hierarchy.cpp:
+	.text       start:0x000980AC end:0x000981C0
+
 rel/s02_breakruin_l_unload.cpp:
 	.text       start:0x00099764 end:0x00099784
 
