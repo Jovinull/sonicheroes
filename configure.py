@@ -6244,6 +6244,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hawk_machine_gun_control.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/machine_gun_control.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
