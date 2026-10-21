@@ -2001,6 +2001,9 @@ rel/s20d_lighthouse_register.cpp:
 	.text       start:0x000BCB98 end:0x000BCC34
 	.ctors      start:0x00000144 end:0x00000148
 
+rel/sky_sphere_stage04_dtor.cpp:
+	.text       start:0x000BDC50 end:0x000BDCC4
+
 rel/warp_exec.cpp:
 	.text       start:0x000BDD94 end:0x000BDEF0
 

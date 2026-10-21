@@ -1810,6 +1810,9 @@ rel/s04_wall_register.cpp:
 	.text       start:0x0009A318 end:0x0009A3B4
 	.ctors      start:0x00000128 end:0x0000012C
 
+rel/sky_sphere_stage04_dtor.cpp:
+	.text       start:0x0009B134 end:0x0009B1A8
+
 rel/obj_set_particle_dtor.cpp:
 	.text       start:0x0009B750 end:0x0009B808
 
