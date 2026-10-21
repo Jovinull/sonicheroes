@@ -2425,6 +2425,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D5A28 end:0x000D5AD0
 	.ctors      start:0x0000016C end:0x00000170
 
+rel/boss_voice_dtor.cpp:
+	.text       start:0x000D87EC end:0x000D8860
+
 rel/bgmcolli_edit.cpp:
 	.text       start:0x000DCCAC end:0x000DCD2C
 

@@ -1756,6 +1756,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000827DC end:0x00082884
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/boss_voice_dtor.cpp:
+	.text       start:0x00083E88 end:0x00083EFC
+
 rel/no_ottotto_collision_exec.cpp:
 	.text       start:0x00084808 end:0x00084904
 
