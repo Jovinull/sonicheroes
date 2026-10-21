@@ -1725,6 +1725,9 @@ rel/piston_register.cpp:
 	.text       start:0x0007D70C end:0x0007D7AC
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/pulley_create.cpp:
+	.text       start:0x0007EED0 end:0x0007EF18
+
 rel/pulley_register.cpp:
 	.text       start:0x0007EF18 end:0x0007EFB8
 	.ctors      start:0x000000F0 end:0x000000F4
