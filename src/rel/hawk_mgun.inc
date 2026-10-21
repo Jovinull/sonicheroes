@@ -9,6 +9,43 @@
 #include "game/effect/eff_bomb.h"
 #include "game/object.h"
 
+extern "C" void fn_8003BF04(C_COLLI* colli, CCL_INFO* info, int count, u8 kind);
+extern "C" const f32 hawkMGunZero[1];
+extern "C" CCL_INFO hawkMGunCclInfo;
+
+// bMachineGunBullet (the PS2 build's struct): one bullet with its own
+// collision, flying along its velocity until its life runs out.
+struct bMachineGunBullet : public C_COLLI {
+	bMachineGunBullet();
+	~bMachineGunBullet();
+	void Init();
+
+	RwV3d pos; // 0x88
+	RwV3d vel; // 0x94
+	s32 life;  // 0xA0
+}; // 0xA4
+
+// Init (the PS2 build's name): at rest at the origin, and the collision set up
+// (one sphere, attribute bit 0x40 cleared) the first time. HAWK_MGUN::On and
+// the constructor inline it; rel/hawk_mgun_bullet.cpp has the out-of-line copy
+// (HAWK_MGUN_BULLET_INIT_INLINE empty).
+#ifndef HAWK_MGUN_BULLET_INIT_INLINE
+#define HAWK_MGUN_BULLET_INIT_INLINE inline
+#endif
+
+HAWK_MGUN_BULLET_INIT_INLINE void bMachineGunBullet::Init()
+{
+	f32 zero = hawkMGunZero[0];
+
+	pos.x = pos.y = pos.z = zero;
+	vel.x = vel.y = vel.z = zero;
+	life                  = 0;
+	if (info == NULL) {
+		fn_8003BF04(this, &hawkMGunCclInfo, 1, 3);
+		flag &= ~0x40;
+	}
+}
+
 // EmptyBulletNum's own unit returns a bool while its callers test an int, as
 // with ENEMY_MGUN (rel/enemy_mgun.inc)
 #ifndef HAWK_MGUN_EMPTY_TYPE
@@ -61,7 +98,7 @@ public:
 	s32 unk128;                // 0x128
 	s32 interval;              // 0x12C
 	f32 speed;                 // 0x130
-	u8 bullets[40][0xA4];      // 0x134
+	bMachineGunBullet bullets[40]; // 0x134
 	u8 unk1AD4[0xC];           // 0x1AD4
 	s32 active;                // 0x1AE0
 };
