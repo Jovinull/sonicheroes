@@ -2830,6 +2830,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_cloud2_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_cloud1_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

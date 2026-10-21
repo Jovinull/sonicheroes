@@ -1490,6 +1490,9 @@ rel/s31_bob_dummy_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x00077834 end:0x00077838
 
+rel/s13_cloud2_edit.cpp:
+	.text       start:0x00078410 end:0x000784A8
+
 rel/s13_cloud1_tdisp.cpp:
 	.text       start:0x00078788 end:0x000787F0
 
