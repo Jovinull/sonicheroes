@@ -7126,6 +7126,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_vector_fire_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/boss_voice_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
