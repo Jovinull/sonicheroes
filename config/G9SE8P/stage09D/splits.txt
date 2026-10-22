@@ -547,6 +547,9 @@ rel/target_assets.cpp:
 rel/fan_parameter.cpp:
 	.text       start:0x00024FD4 end:0x000250E4
 
+rel/fan_clump.cpp:
+	.text       start:0x000250E4 end:0x000251E8
+
 rel/fan_dtor.cpp:
 	.text       start:0x000251E8 end:0x000252B0
 

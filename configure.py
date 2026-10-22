@@ -8599,6 +8599,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/fan_clump.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/fan_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
