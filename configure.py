@@ -2011,6 +2011,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/goal_ring_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ring_object_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

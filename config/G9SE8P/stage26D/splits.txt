@@ -1002,6 +1002,9 @@ rel/goal_ring_ctor.cpp:
 rel/goal_ring_edit.cpp:
 	.text       start:0x00045F44 end:0x00045F48
 
+rel/goal_ring_hooks.cpp:
+	.text       start:0x00045F48 end:0x00046070
+
 rel/goal_ring_create.cpp:
 	.text       start:0x00046070 end:0x000460B8
 
