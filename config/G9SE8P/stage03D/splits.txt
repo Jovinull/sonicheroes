@@ -1905,6 +1905,9 @@ rel/bob_jump_collision_register.cpp:
 rel/flower_common_search.cpp:
 	.text       start:0x0009C9C8 end:0x0009CAA0
 
+rel/flower_common_disp.cpp:
+	.text       start:0x0009D1A8 end:0x0009D280
+
 rel/flower_common_warp.cpp:
 	.text       start:0x0009F46C end:0x0009F4C0
 

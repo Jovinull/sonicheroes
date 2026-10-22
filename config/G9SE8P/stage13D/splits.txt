@@ -1631,6 +1631,9 @@ rel/obj_set_particle_register.cpp:
 rel/flower_common_search.cpp:
 	.text       start:0x0006717C end:0x00067254
 
+rel/flower_common_disp.cpp:
+	.text       start:0x00067964 end:0x00067A3C
+
 rel/flower_common_warp.cpp:
 	.text       start:0x00069C28 end:0x00069C7C
 
