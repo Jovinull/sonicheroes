@@ -1710,6 +1710,9 @@ rel/bob_jump_collision_register.cpp:
 rel/flower_common_search.cpp:
 	.text       start:0x000722A0 end:0x00072378
 
+rel/flower_common_case.cpp:
+	.text       start:0x000756D8 end:0x000757E4
+
 rel/flower_hierarchy.cpp:
 	.text       start:0x00076194 end:0x000762A8
 
