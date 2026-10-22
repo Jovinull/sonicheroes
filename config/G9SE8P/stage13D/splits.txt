@@ -1599,6 +1599,9 @@ rel/hintring_tdisp.cpp:
 rel/hintring_set_position.cpp:
 	.text       start:0x000655F8 end:0x00065718
 
+rel/hintring_dtor.cpp:
+	.text       start:0x00065718 end:0x000658B8
+
 rel/hintring_edit.cpp:
 	.text       start:0x00065C78 end:0x00065CD4
 
