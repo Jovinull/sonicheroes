@@ -544,6 +544,9 @@ rel/target_assets.cpp:
 	.text       start:0x000240D0 end:0x000241C0
 	.ctors      start:0x00000050 end:0x00000054
 
+rel/fan_parameter.cpp:
+	.text       start:0x00024FB8 end:0x000250C8
+
 rel/fan_dtor.cpp:
 	.text       start:0x000251CC end:0x00025294
 
