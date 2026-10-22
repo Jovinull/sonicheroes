@@ -644,6 +644,9 @@ rel/breakable_weight_position.cpp:
 rel/breakable_weight_clump.cpp:
 	.text       start:0x0002BF20 end:0x0002BF94
 
+rel/breakable_weight_dtor.cpp:
+	.text       start:0x0002BF94 end:0x0002C0EC
+
 rel/breakable_weight_edit.cpp:
 	.text       start:0x0002C5C0 end:0x0002C76C
 

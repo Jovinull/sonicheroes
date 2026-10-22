@@ -6397,6 +6397,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/breakable_weight_dtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/breakable_weight_clump.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
