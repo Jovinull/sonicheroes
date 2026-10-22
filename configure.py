@@ -6596,6 +6596,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/flower_common_flower.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/flower_common_search.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
