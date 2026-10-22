@@ -28,6 +28,9 @@ rel/fn_16_D10.cpp:
 rel/stg40_spring_edit.cpp:
 	.text       start:0x00001750 end:0x000017E0
 
+rel/stg40_dashpanel_edit.cpp:
+	.text       start:0x00006F08 end:0x00006F98
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070

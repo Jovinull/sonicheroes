@@ -1586,6 +1586,15 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/stg40_dashpanel_edit.cpp",
+                extra_cflags=[
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                    "-bool off",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/sp_dashpanel.cpp",
                 extra_cflags=[
                     "-inline deferred,noauto",
