@@ -1250,6 +1250,9 @@ rel/hint_ball_ctor.cpp:
 rel/hintring_tdisp.cpp:
 	.text       start:0x0005A558 end:0x0005A618
 
+rel/hintring_set_position.cpp:
+	.text       start:0x0005B250 end:0x0005B370
+
 rel/hintring_edit.cpp:
 	.text       start:0x0005B8D0 end:0x0005B92C
 
