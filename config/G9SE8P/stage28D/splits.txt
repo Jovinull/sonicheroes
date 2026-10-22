@@ -1337,6 +1337,9 @@ rel/flower_common_above.cpp:
 rel/flower_common_warp.cpp:
 	.text       start:0x0006043C end:0x00060490
 
+rel/flower_common_stem.cpp:
+	.text       start:0x00060710 end:0x000607C4
+
 rel/flower_common_draw_stem.cpp:
 	.text       start:0x000607C4 end:0x00060850
 
