@@ -1975,6 +1975,9 @@ rel/flower_common_disp.cpp:
 rel/flower_common_warp.cpp:
 	.text       start:0x000B4B34 end:0x000B4B88
 
+rel/flower_common_draw_stem.cpp:
+	.text       start:0x000B4EBC end:0x000B4F48
+
 rel/flower_common_case.cpp:
 	.text       start:0x000B54C8 end:0x000B55D4
 
