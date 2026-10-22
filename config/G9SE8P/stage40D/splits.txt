@@ -25,6 +25,9 @@ rel/o_sample2.cpp:
 rel/fn_16_D10.cpp:
 	.text       start:0x00000D10 end:0x00000D4C
 
+rel/stg40_spring_edit.cpp:
+	.text       start:0x00001750 end:0x000017E0
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
