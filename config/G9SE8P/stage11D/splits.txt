@@ -1675,6 +1675,9 @@ rel/flower_common_colli.cpp:
 rel/flower_common_case.cpp:
 	.text       start:0x000756D8 end:0x000757E4
 
+rel/flower_common_dtor.cpp:
+	.text       start:0x000757E4 end:0x0007590C
+
 rel/flower_hierarchy.cpp:
 	.text       start:0x00076194 end:0x000762A8
 
