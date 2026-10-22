@@ -1149,6 +1149,9 @@ rel/propeller_dtor.cpp:
 rel/propeller_ctor.cpp:
 	.text       start:0x00048B34 end:0x00048CEC
 
+rel/propeller_unload.cpp:
+	.text       start:0x00049484 end:0x00049530
+
 rel/propeller_create.cpp:
 	.text       start:0x00049530 end:0x00049578
 
