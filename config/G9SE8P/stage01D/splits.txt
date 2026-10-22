@@ -1972,6 +1972,9 @@ rel/flower_common_search.cpp:
 rel/flower_common_disp.cpp:
 	.text       start:0x000B2870 end:0x000B2948
 
+rel/flower_common_check.cpp:
+	.text       start:0x000B2948 end:0x000B2D48
+
 rel/flower_common_warp.cpp:
 	.text       start:0x000B4B34 end:0x000B4B88
 

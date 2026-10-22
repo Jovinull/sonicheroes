@@ -1515,6 +1515,9 @@ rel/flower_common_search.cpp:
 rel/flower_common_disp.cpp:
 	.text       start:0x000656B0 end:0x00065788
 
+rel/flower_common_check.cpp:
+	.text       start:0x00065788 end:0x00065B88
+
 rel/flower_common_warp.cpp:
 	.text       start:0x00067974 end:0x000679C8
 

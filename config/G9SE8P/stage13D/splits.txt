@@ -1634,6 +1634,9 @@ rel/flower_common_search.cpp:
 rel/flower_common_disp.cpp:
 	.text       start:0x00067964 end:0x00067A3C
 
+rel/flower_common_check.cpp:
+	.text       start:0x00067A3C end:0x00067E3C
+
 rel/flower_common_warp.cpp:
 	.text       start:0x00069C28 end:0x00069C7C
 
