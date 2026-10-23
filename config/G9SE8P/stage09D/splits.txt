@@ -2100,6 +2100,9 @@ rel/warp_register.cpp:
 	.text       start:0x000A4674 end:0x000A4720
 	.ctors      start:0x00000168 end:0x0000016C
 
+rel/hintcolli_disp.cpp:
+	.text       start:0x000A4874 end:0x000A498C
+
 rel/hintcolli_edit.cpp:
 	.text       start:0x000A645C end:0x000A64F4
 

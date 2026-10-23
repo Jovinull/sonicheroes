@@ -1932,6 +1932,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hintcolli_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/hintcolli_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
