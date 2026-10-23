@@ -1834,6 +1834,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/target_check_hit_point.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
