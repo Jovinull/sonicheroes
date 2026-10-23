@@ -2150,6 +2150,9 @@ rel/hintcolli_disp.cpp:
 rel/hintcolli_position.cpp:
 	.text       start:0x000BF688 end:0x000BF8D8
 
+rel/hintcolli_dtor.cpp:
+	.text       start:0x000BF9E4 end:0x000BFAB4
+
 rel/hintcolli_edit.cpp:
 	.text       start:0x000BFF1C end:0x000BFFB4
 

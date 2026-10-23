@@ -2295,6 +2295,9 @@ rel/hintcolli_disp.cpp:
 rel/hintcolli_position.cpp:
 	.text       start:0x000C4B9C end:0x000C4DEC
 
+rel/hintcolli_dtor.cpp:
+	.text       start:0x000C4EF8 end:0x000C4FC8
+
 rel/hintcolli_edit.cpp:
 	.text       start:0x000C5430 end:0x000C54C8
 

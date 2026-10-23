@@ -1482,6 +1482,9 @@ rel/hintcolli_disp.cpp:
 rel/hintcolli_position.cpp:
 	.text       start:0x00064BF4 end:0x00064E44
 
+rel/hintcolli_dtor.cpp:
+	.text       start:0x00064F50 end:0x00065020
+
 rel/hintcolli_edit.cpp:
 	.text       start:0x00065488 end:0x00065520
 
