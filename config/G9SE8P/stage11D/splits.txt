@@ -278,6 +278,9 @@ rel/reel_disp.cpp:
 rel/reel_set_position.cpp:
 	.text       start:0x000118D4 end:0x00011A48
 
+rel/reel_parameter.cpp:
+	.text       start:0x00011A48 end:0x00011B18
+
 rel/reel_dtor.cpp:
 	.text       start:0x00011B18 end:0x00011BE0
 
