@@ -278,6 +278,9 @@ rel/checkpoint_register.cpp:
 	.text       start:0x00010ACC end:0x00010B74
 	.ctors      start:0x0000002C end:0x00000030
 
+rel/reel_up_and_down.cpp:
+	.text       start:0x00010B7C end:0x00010EF4
+
 rel/reel_disp.cpp:
 	.text       start:0x000113C8 end:0x0001147C
 
