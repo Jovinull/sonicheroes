@@ -1839,6 +1839,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/target_rotate.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
