@@ -192,6 +192,9 @@ rel/scroll_ring_field_dtor.cpp:
 rel/ring_object_tdisp.cpp:
 	.text       start:0x0000A730 end:0x0000A7A8
 
+rel/ring_object_storage.cpp:
+	.text       start:0x0000AF14 end:0x0000AF20
+
 rel/ring_exec.cpp:
 	.text       start:0x0000B840 end:0x0000B92C
 
