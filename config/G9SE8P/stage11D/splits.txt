@@ -582,6 +582,9 @@ rel/cannon_smoke_field.cpp:
 rel/target_check_hit_point.cpp:
 	.text       start:0x000220A8 end:0x00022288
 
+rel/target_check_fire_dunk.cpp:
+	.text       start:0x00022288 end:0x00022564
+
 rel/target_rotate.cpp:
 	.text       start:0x00022868 end:0x00022B04
 
