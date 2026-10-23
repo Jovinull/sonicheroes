@@ -1157,6 +1157,9 @@ rel/machine_gun_control.cpp:
 rel/machine_gun_cdtor.cpp:
 	.text       start:0x0004A878 end:0x0004AB04
 
+rel/formgate_sub_check.cpp:
+	.text       start:0x0004AFA8 end:0x0004B080
+
 rel/formgate_sub_exec.cpp:
 	.text       start:0x0004B080 end:0x0004B30C
 
