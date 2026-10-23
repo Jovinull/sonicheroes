@@ -253,6 +253,9 @@ rel/checkpoint_disp.cpp:
 rel/checkpoint_entered.cpp:
 	.text       start:0x0000FC78 end:0x0000FC90
 
+rel/checkpoint_dtor.cpp:
+	.text       start:0x000103FC end:0x0001053C
+
 rel/checkpoint_ctor.cpp:
 	.text       start:0x0001053C end:0x000107A0
 
