@@ -284,6 +284,9 @@ rel/reel_up_and_down.cpp:
 rel/reel_player.cpp:
 	.text       start:0x00010EF4 end:0x00011138
 
+rel/reel_check_hanged.cpp:
+	.text       start:0x00011138 end:0x000113C8
+
 rel/reel_disp.cpp:
 	.text       start:0x000113C8 end:0x0001147C
 
