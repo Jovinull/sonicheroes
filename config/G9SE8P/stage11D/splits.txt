@@ -290,6 +290,9 @@ rel/reel_check_hanged.cpp:
 rel/reel_disp.cpp:
 	.text       start:0x000113C8 end:0x0001147C
 
+rel/reel_exec.cpp:
+	.text       start:0x0001147C end:0x000118D4
+
 rel/reel_set_position.cpp:
 	.text       start:0x000118D4 end:0x00011A48
 
