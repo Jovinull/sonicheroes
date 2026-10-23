@@ -244,6 +244,9 @@ rel/checkpoint_star_exec.cpp:
 rel/checkpoint_star.cpp:
 	.text       start:0x0000F0C4 end:0x0000F224
 
+rel/checkpoint_star_ctor.cpp:
+	.text       start:0x0000F224 end:0x0000F290
+
 rel/checkpoint_disp.cpp:
 	.text       start:0x0000FA40 end:0x0000FC74
 
