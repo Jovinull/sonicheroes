@@ -1669,6 +1669,9 @@ rel/warp_register.cpp:
 rel/hintcolli_disp.cpp:
 	.text       start:0x0006D158 end:0x0006D270
 
+rel/hintcolli_position.cpp:
+	.text       start:0x0006E4AC end:0x0006E6FC
+
 rel/hintcolli_edit.cpp:
 	.text       start:0x0006ED40 end:0x0006EDD8
 
