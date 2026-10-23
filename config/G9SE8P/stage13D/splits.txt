@@ -489,6 +489,9 @@ rel/big_rings_light.cpp:
 rel/big_rings_pointer.cpp:
 	.text       start:0x0001E5B4 end:0x0001E5D8
 
+rel/big_rings_parameter.cpp:
+	.text       start:0x0001E898 end:0x0001E914
+
 rel/big_rings_dtor.cpp:
 	.text       start:0x0001E914 end:0x0001E9DC
 
