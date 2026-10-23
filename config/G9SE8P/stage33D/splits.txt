@@ -250,6 +250,9 @@ rel/checkpoint_star_ctor.cpp:
 rel/checkpoint_disp.cpp:
 	.text       start:0x0000FA40 end:0x0000FC74
 
+rel/checkpoint_entered.cpp:
+	.text       start:0x0000FC74 end:0x0000FC8C
+
 rel/checkpoint_ctor.cpp:
 	.text       start:0x00010538 end:0x0001079C
 
