@@ -275,6 +275,9 @@ rel/checkpoint_register.cpp:
 rel/reel_disp.cpp:
 	.text       start:0x000113C8 end:0x0001147C
 
+rel/reel_set_position.cpp:
+	.text       start:0x000118D4 end:0x00011A48
+
 rel/reel_dtor.cpp:
 	.text       start:0x00011B18 end:0x00011BE0
 

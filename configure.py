@@ -8731,6 +8731,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/reel_set_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/reel_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
