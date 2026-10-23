@@ -1035,6 +1035,9 @@ rel/itembaloon_register.cpp:
 rel/itembaloon_position.cpp:
 	.text       start:0x0003D3A0 end:0x0003D3C4
 
+rel/pole_set_position.cpp:
+	.text       start:0x0003F4B8 end:0x0003F6CC
+
 rel/pole_dtor.cpp:
 	.text       start:0x0003F870 end:0x0003F930
 
