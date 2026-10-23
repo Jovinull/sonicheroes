@@ -483,6 +483,9 @@ rel/big_rings_disp.cpp:
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
 
+rel/big_rings_pointer.cpp:
+	.text       start:0x0001E5B0 end:0x0001E5D4
+
 rel/big_rings_dtor.cpp:
 	.text       start:0x0001E910 end:0x0001E9D8
 
