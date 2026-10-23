@@ -192,6 +192,9 @@ rel/scroll_ring_field_dtor.cpp:
 rel/ring_exec.cpp:
 	.text       start:0x0000B844 end:0x0000B930
 
+rel/ring_cdtor.cpp:
+	.text       start:0x0000B930 end:0x0000BA34
+
 rel/ring_object_edit.cpp:
 	.text       start:0x0000BA34 end:0x0000BB4C
 
