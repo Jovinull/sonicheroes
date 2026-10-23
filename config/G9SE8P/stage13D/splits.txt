@@ -208,6 +208,9 @@ rel/jump_panel_set_position.cpp:
 rel/jump_panel_dtor.cpp:
 	.text       start:0x0000C6D0 end:0x0000C7B0
 
+rel/jump_panel_colli.cpp:
+	.text       start:0x0000C7B0 end:0x0000C7F8
+
 rel/jump_panel_edit.cpp:
 	.text       start:0x0000CB68 end:0x0000CC08
 
