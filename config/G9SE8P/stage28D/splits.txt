@@ -1271,6 +1271,9 @@ rel/hintring_field.cpp:
 rel/hintring_render.cpp:
 	.text       start:0x0005BB04 end:0x0005BBBC
 
+rel/hintring_rgb.cpp:
+	.text       start:0x0005BBBC end:0x0005BC10
+
 rel/hintring_register.cpp:
 	.text       start:0x0005BED4 end:0x0005BFA8
 	.ctors      start:0x000000B0 end:0x000000B4

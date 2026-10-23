@@ -1617,6 +1617,9 @@ rel/hintring_field.cpp:
 rel/hintring_render.cpp:
 	.text       start:0x00065EAC end:0x00065F64
 
+rel/hintring_rgb.cpp:
+	.text       start:0x00065F64 end:0x00065FB8
+
 rel/hintring_register.cpp:
 	.text       start:0x0006627C end:0x00066350
 	.ctors      start:0x000000B8 end:0x000000BC
