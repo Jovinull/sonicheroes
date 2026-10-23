@@ -458,6 +458,9 @@ rel/cannon_register.cpp:
 	.text       start:0x0001A9B4 end:0x0001AA64
 	.ctors      start:0x00000040 end:0x00000044
 
+rel/laser_fence_parameter.cpp:
+	.text       start:0x0001BCE0 end:0x0001BED4
+
 rel/laser_fence_dtor.cpp:
 	.text       start:0x0001BED4 end:0x0001BF6C
 

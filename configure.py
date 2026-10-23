@@ -8696,6 +8696,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/laser_fence_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/laser_fence_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
