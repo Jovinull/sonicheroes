@@ -1824,6 +1824,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/target_destroy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
