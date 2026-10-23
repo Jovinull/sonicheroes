@@ -1247,6 +1247,9 @@ rel/hint_ball_create_balls.cpp:
 rel/hint_ball_ctor.cpp:
 	.text       start:0x0005A070 end:0x0005A2D0
 
+rel/hintring_same_id.cpp:
+	.text       start:0x0005A2D0 end:0x0005A314
+
 rel/hintring_tdisp.cpp:
 	.text       start:0x0005A558 end:0x0005A618
 

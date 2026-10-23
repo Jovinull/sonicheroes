@@ -1632,6 +1632,9 @@ rel/hint_ball_create_balls.cpp:
 rel/hint_ball_ctor.cpp:
 	.text       start:0x0006E978 end:0x0006EBD8
 
+rel/hintring_same_id.cpp:
+	.text       start:0x0006EBD8 end:0x0006EC1C
+
 rel/hintring_tdisp.cpp:
 	.text       start:0x0006EE60 end:0x0006EF20
 
