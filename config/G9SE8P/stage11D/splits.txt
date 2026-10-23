@@ -480,6 +480,9 @@ rel/big_rings_element_ctor.cpp:
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
 
+rel/big_rings_light.cpp:
+	.text       start:0x0001E388 end:0x0001E430
+
 rel/big_rings_dtor.cpp:
 	.text       start:0x0001E910 end:0x0001E9D8
 

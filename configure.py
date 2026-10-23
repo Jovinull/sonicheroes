@@ -8741,6 +8741,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_rings_light.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/big_rings_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
