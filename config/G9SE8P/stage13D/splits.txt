@@ -582,6 +582,9 @@ rel/cannon_smoke_bind.cpp:
 rel/cannon_smoke_field.cpp:
 	.text       start:0x00021FC8 end:0x00022000
 
+rel/target_set_position.cpp:
+	.text       start:0x000239FC end:0x00023B40
+
 rel/target_reload.cpp:
 	.text       start:0x00023BC8 end:0x00023C1C
 
