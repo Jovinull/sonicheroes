@@ -477,6 +477,9 @@ rel/laser_fence_assets.cpp:
 rel/big_rings_element_dtor.cpp:
 	.text       start:0x0001D0E4 end:0x0001D150
 
+rel/big_rings_element_ctor.cpp:
+	.text       start:0x0001D150 end:0x0001D1BC
+
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D4 end:0x0001D968
 
