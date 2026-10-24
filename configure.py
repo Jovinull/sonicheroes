@@ -4035,6 +4035,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bingogate_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bingogate_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
