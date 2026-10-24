@@ -2024,6 +2024,9 @@ rel/railburbwire_register.cpp:
 rel/railboard_hooks.cpp:
 	.text       start:0x00080C5C end:0x00080D7C
 
+rel/railboard_create.cpp:
+	.text       start:0x00080D7C end:0x00080DC4
+
 rel/railboard_register.cpp:
 	.text       start:0x00080DC4 end:0x00080E74
 	.ctors      start:0x000000F8 end:0x000000FC
