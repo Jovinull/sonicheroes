@@ -2050,6 +2050,9 @@ rel/rainleaf_register.cpp:
 	.text       start:0x00087148 end:0x000871F8
 	.ctors      start:0x00000104 end:0x00000108
 
+rel/rainmush_reset.cpp:
+	.text       start:0x000888F0 end:0x000888F4
+
 rel/rainmush_create.cpp:
 	.text       start:0x00088A10 end:0x00088A58
 
