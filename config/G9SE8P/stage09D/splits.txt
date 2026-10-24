@@ -1886,6 +1886,9 @@ rel/froggreen_register.cpp:
 	.text       start:0x0007717C end:0x0007722C
 	.ctors      start:0x000000D0 end:0x000000D4
 
+rel/ivyjump_hooks.cpp:
+	.text       start:0x00079250 end:0x000792B4
+
 rel/ivyjump_create.cpp:
 	.text       start:0x00079548 end:0x00079590
 
