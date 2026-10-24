@@ -943,6 +943,9 @@ rel/itembaloon_ctor.cpp:
 rel/itembaloon_edit.cpp:
 	.text       start:0x00035B84 end:0x00035C18
 
+rel/itembaloon_hooks.cpp:
+	.text       start:0x00035C18 end:0x00035C80
+
 rel/itembaloon_create.cpp:
 	.text       start:0x00035C80 end:0x00035E0C
 
