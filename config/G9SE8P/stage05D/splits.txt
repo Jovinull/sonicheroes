@@ -2133,6 +2133,9 @@ rel/bingogate_register.cpp:
 	.text       start:0x00080504 end:0x000805B4
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/bingopanel_hooks.cpp:
+	.text       start:0x0008192C end:0x00081998
+
 rel/bingopanel_register.cpp:
 	.text       start:0x00081CE4 end:0x00081D94
 	.ctors      start:0x000000E8 end:0x000000EC
