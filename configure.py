@@ -10351,6 +10351,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gokurakucho_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gokurakucho_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
