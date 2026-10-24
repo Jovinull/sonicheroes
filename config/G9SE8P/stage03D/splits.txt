@@ -1876,6 +1876,9 @@ rel/s03_baloon_wk_register.cpp:
 	.text       start:0x00075878 end:0x00075920
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/s03_big_bridge2_edit.cpp:
+	.text       start:0x00076D6C end:0x00076DE4
+
 rel/s03_big_bridge2_create.cpp:
 	.text       start:0x000775F0 end:0x00077638
 
