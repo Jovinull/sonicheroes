@@ -4415,6 +4415,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pepe_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pepe_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
