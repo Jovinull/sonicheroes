@@ -2216,6 +2216,9 @@ rel/aligator_reset.cpp:
 rel/aligator_unload.cpp:
 	.text       start:0x00093160 end:0x000931CC
 
+rel/aligator_load.cpp:
+	.text       start:0x000931CC end:0x00093324
+
 rel/aligator_create.cpp:
 	.text       start:0x00093324 end:0x0009336C
 
