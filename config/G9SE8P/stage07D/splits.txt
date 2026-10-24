@@ -2175,6 +2175,9 @@ rel/railendex_register.cpp:
 rel/railmechtypeabc_hooks.cpp:
 	.text       start:0x00088534 end:0x00088598
 
+rel/railmechtypeabc_create.cpp:
+	.text       start:0x000886DC end:0x00088724
+
 rel/railmechtypeabc_register.cpp:
 	.text       start:0x00088724 end:0x000887D4
 	.ctors      start:0x00000120 end:0x00000124
