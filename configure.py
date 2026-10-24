@@ -5460,6 +5460,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04d_ashiba_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04d_ashiba_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
