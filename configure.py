@@ -1577,6 +1577,33 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/stg40_spring_edit.cpp",
+                extra_cflags=[
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                    "-bool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/stg40_dashpanel_edit.cpp",
+                extra_cflags=[
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                    "-bool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/stg40_dashring_edit.cpp",
+                extra_cflags=[
+                    "-opt noschedule,nopropagation,nopeephole",
+                    "-pool off",
+                    "-bool off",
+                ],
+            ),
+            Object(
+                Matching,
                 "rel/sp_dashpanel.cpp",
                 extra_cflags=[
                     "-inline deferred,noauto",
@@ -1787,6 +1814,51 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/target_set_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_destroy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_check_escape.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_check_hit_point.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_rotate.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_check_fire_dunk.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_check_thunder_shoot.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/target_present_prize.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/target_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -1797,8 +1869,19 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/item_box_create_at.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/item_box_disp.cpp",
                 cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/itempanel_effect_all.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -1854,6 +1937,42 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hintring_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintring_set_position.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintring_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintring_render.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintring_rgb_u32.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintring_rgb.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintring_same_id.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/hintring_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -1870,6 +1989,21 @@ config.libs = [
             Object(
                 Matching,
                 "rel/obj_secollision_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintcolli_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintcolli_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hintcolli_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -1984,6 +2118,91 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/goal_ring_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_object_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_cdtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_object_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_object_storage.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_object_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/ring_object_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scroll_ring_field_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scattered_ring_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scattered_ring_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scroll_ring_field_init.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scattered_ring_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scattered_ring_scatter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/scattered_ring_scatter_se.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ring_object_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2010,6 +2229,26 @@ config.libs = [
             Object(
                 Matching,
                 "rel/checkpoint_star_disp_opaque.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/checkpoint_star.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/checkpoint_star_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/checkpoint_entered.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/checkpoint_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -2076,6 +2315,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/breakable_weight_area_checks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/breakable_weight_move.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -2210,6 +2454,36 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/propeller_check_collision.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/propeller_player_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/propeller_handle_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/propeller_snatch.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/propeller_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/propeller_create_all.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/propeller_set_position.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2221,6 +2495,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/propeller_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/propeller_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/propeller_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -2825,6 +3109,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_cloud2_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_cloud1_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -2879,6 +3168,12 @@ config.libs = [
                 Matching,
                 "rel/container_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/weight_ext_check_break.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+                data_section_alignment=4,
             ),
             Object(
                 Matching,
@@ -3063,6 +3358,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_rings_element_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/big_rings_element_destroy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/big_rings_element_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3114,6 +3419,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/itembaloon_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/itembaloon_player.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/itembaloon_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3470,7 +3785,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_cloud2_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_cloud_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13_houdai_fix_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_houdai_hi_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13_houdai_s_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3480,7 +3815,32 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj456dice_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/obj456dice_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/456dice_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/aligator_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/aligator_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/aligator_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3490,7 +3850,32 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/autodoor_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/autodoor_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/autodoor_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/autodoor_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/barrel_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/barrel_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3510,7 +3895,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigcannon_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bigcannon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigcannon_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bigcannontop_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bigcannontop_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3535,6 +3940,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigchip_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigchip_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3555,7 +3965,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigdice_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigdice_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bigfireworks_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3580,7 +4000,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigslot_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigslot_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bingogate_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bingogate_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3590,7 +4025,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bingopanel_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bingopanel_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/blowfan_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/blowfan_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/blowfan_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3615,6 +4070,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobin_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobin_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3631,6 +4091,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/bobin_air_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bobinair_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3655,6 +4120,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bridge_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bridge_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bridge_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3675,7 +4150,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bumper_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bumper_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bush_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bush_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bush_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3685,7 +4180,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bushsq_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bushsq_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bushsq_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bush_zenmai_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/bush_zenmai_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3700,6 +4215,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bushzenmai_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bushzenmai_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3710,7 +4230,32 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/butterfly_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/butterfly_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/butterfly_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/casinodoor_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/casinodoor_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/casinodoor_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3720,7 +4265,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/casinodush_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/casinodush_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/crossing_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/crossing_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3745,7 +4305,32 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/destructrail_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/destructrail_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/destructrail_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/dfan_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/dfan_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/dfan_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3760,7 +4345,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dispfruit_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/dispfruit_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dispfruit_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/duct_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/duct_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3790,12 +4395,32 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/egghorn_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/egghorn_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/eggmaso_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/eggmaso_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flipper_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flipper_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3820,6 +4445,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/floatj_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/floatj_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/floatj_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3830,7 +4465,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/froggreen_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/froggreen_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/froggreen_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/glassfloor_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/glassfloor_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3850,6 +4505,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ikaribakuhatu_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ikaribakuhatu_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3860,7 +4520,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ivyjump_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ivyjump_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/kazariobj_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/kazariobj_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3885,6 +4560,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/leafaa_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/leafaa_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/leafaa_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3892,6 +4577,11 @@ config.libs = [
                 Matching,
                 "rel/e_mask_stage11.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
+            ),
+            Object(
+                Matching,
+                "rel/metal_sonic_1st_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
@@ -3915,7 +4605,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/moji_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/moji_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/mushanim_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/mushanim_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/mushanim_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3930,7 +4640,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/mushroom_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/mushroom_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/palm_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3945,12 +4665,37 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pepe_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pepe_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/piston_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/piston_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/piston_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pond_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pond_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -3975,12 +4720,42 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/powder_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/powder_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/powder_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/pulley_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pulley_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pulley_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railboard_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railboard_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4001,6 +4776,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/rail_bulletrack_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railbulletrack_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4030,6 +4810,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railburbwire_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railburbwire_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4046,6 +4831,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/rail_bush_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railbush_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railbush_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4070,6 +4865,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railcapen_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railcapen_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4086,6 +4886,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/rail_cap_ex_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railcapex_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4115,6 +4920,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railchangerail_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railchangerail_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4135,7 +4945,32 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railchimney_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railchimney_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raildash_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raildash_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raildash_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raildash_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4160,6 +4995,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railenden_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railenden_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4180,7 +5020,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railendex_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railendex_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railmechtypeabc_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railmechtypeabc_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4205,6 +5060,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railpollex_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railpollex_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4221,6 +5081,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/rail_poll_gol_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railpollgol_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4245,6 +5110,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railpollgor_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railpollgor_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4261,6 +5131,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/rail_tie_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railtie_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4286,6 +5161,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/rail_water_supply_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railwatersupply_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/railwatersupply_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4320,6 +5205,21 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainfloor_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainfloor_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainfloor_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainfloor_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4330,7 +5230,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainfruit_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainfruit_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainfruit_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainfruitmi_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4340,7 +5255,37 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainivy_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainivy_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainivy_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainivy_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainleaf_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainleaf_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainleaf_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4350,7 +5295,47 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainmush_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainmush_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainmush_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/rainmush_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainmush_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raintree_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raintree_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raintree_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/raintree_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4360,12 +5345,47 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/reafredgreen_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reafredgreen_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reafredgreen_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/reafredgreen_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/redleaves_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/redleaves_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/redleaves_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/redweed_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/redweed_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4390,6 +5410,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/roompillar_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roompillar_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4400,12 +5425,47 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/duct_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/eggmaso_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/torch_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/dispfruit_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/treeleaf_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roulette_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
                 "rel/roulette_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/roulette_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/roulette_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4431,6 +5491,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s03_baloon_wk_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s03_big_bridge2_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4540,6 +5605,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03d_light_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03d_light_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4576,6 +5646,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s04_ball_colli_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s04_ball_colli_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4675,6 +5750,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04d_ashiba_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04d_ashiba_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4761,6 +5841,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s06_chip_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s06_chip_object_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4870,6 +5955,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_design_pipe_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_design_pipe_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4910,6 +6000,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_missilepod_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_missilepod_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4920,12 +6015,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_senkan_belt_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_senkan_belt_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
                 "rel/s13_senkan_mov_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13_senkan_mov_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4950,6 +6055,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_senkan_yuka_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_senkan_yuka_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -4970,12 +6080,42 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_tsuitate_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_tsuitate_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/s13d_bigfan_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_bigfan_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13_senkan_shut_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13d_screw_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_ring_light_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14d_search_light_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -4995,12 +6135,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_bomb_switch_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_bomb_switch_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/s14_fall_ashiba_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_fall_ashiba_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_koware_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5045,6 +6200,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_laser_light_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_laser_light_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5065,7 +6225,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_laser_sign_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_laser_sign_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_railend_sign_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5076,6 +6246,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s14_red_light_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_red_light_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5095,7 +6270,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_roadlight_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_roadlight_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_wall_side_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5120,6 +6305,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14d_crush_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14d_crush_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5136,6 +6326,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s14d_eggman_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14d_eggman_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5180,6 +6375,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_key_object_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14key_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5201,6 +6401,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s23_warppos_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s23_warp_pos_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5245,6 +6450,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sida_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/sida_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sida_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5255,12 +6470,42 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/slotlarge_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/slotlarge_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/slotsmall_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/slotsmall_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/slotsmall_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/spring_mush_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/spring_mush_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/spring_mush_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5275,6 +6520,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/springblk_air_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/springblk_air_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/springblk_air_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5285,7 +6540,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/springblk_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/springblk_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/stationdoor_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/stationdoor_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/stationdoor_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5345,7 +6620,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tenkyu_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tenkyu_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/torch_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5380,6 +6665,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traincapsule_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/traincapsule_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traincapsule_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5396,6 +6691,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/train_change_board_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/trainchangeboard_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/trainchangeboard_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5425,6 +6730,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/trainchangerail_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/trainchangerail_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5441,6 +6751,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/train_change_switch_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/trainchangeswitch_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/trainchangeswitch_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5475,6 +6795,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traincore_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/traincore_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traincore_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5491,6 +6821,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/train_roll_tunnel_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/trainrolltunnel_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5515,7 +6850,22 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traintop_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traintop_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/traintrain_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/traintrain_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5535,6 +6885,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/treeleaf_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/treeleaf_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/treeleaf_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5545,7 +6905,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/trispring_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/trispring_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/tsukushi_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5555,7 +6925,32 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tutaetc_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/tutaetc_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/tutaetc_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tutaetc_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wanibreak_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wanibreak_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5575,6 +6970,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/waterplant_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/waterplant_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/waterplant_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5590,12 +6995,42 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/watersurface_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/watersurface_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/wcannon_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wcannon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wcannon_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/wcannon_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wheel_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wheel_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5620,6 +7055,21 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/x_sign_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/x_sign_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/x_sign_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/x_sign_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5636,6 +7086,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/xxx_sign_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/xxxsign_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5660,7 +7115,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/yajirusi_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/yajirusi_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s02_kame_wave_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5715,7 +7180,27 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_rail_arrow3_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13d_rail_arrow1_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_rail_arrow_1_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13d_rail_cap_back_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13d_rail_cap_fore_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5730,7 +7215,42 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_senkan_middle2_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13d_senkan_middle1_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_senkan_middle_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_goal_neon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_wall_rneon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_wall_lneon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_holeb_neon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_holea_neon_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5741,6 +7261,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s14_road_side_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_roadside_a_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -5780,6 +7305,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_tower_neon_b_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_tower_neon_a_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_tower_neon_a_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -5791,6 +7326,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/stg26_colli_cc_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e2000_object_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6198,7 +7738,17 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_mgun_bullet_alive.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_mgun_bullet_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6208,12 +7758,57 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hawk_machine_gun_cdtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/machine_gun_cdtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
                 Matching,
+                "rel/hawk_machine_gun_control.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/machine_gun_control.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_switch.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_bullet.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_search.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_normal.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/hawk_mgun_calc_bullet.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6224,6 +7819,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/enemy_shot_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/weight_ext_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/weight_ext_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6245,6 +7850,42 @@ config.libs = [
             Object(
                 Matching,
                 "rel/formgate_set_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/breakable_weight_dtor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/breakable_weight_clump.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/weight_clump.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/breakable_weight_position.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/weight_position.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/breakable_weight_disp.cpp",
+                cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6347,6 +7988,62 @@ config.libs = [
             Object(
                 Matching,
                 "rel/bobsleigh_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_case.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_warp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_disp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_draw_stem.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_colli.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_check.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_above.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_stem.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_flower.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/flower_common_search.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6565,6 +8262,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/searcher_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/capture_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6935,6 +8637,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/formgate_callback.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/formgate_sub_check.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_sub_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -6946,6 +8658,91 @@ config.libs = [
             Object(
                 Matching,
                 "rel/formgate_sub_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/sky_sphere_stage04_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s03_set_light_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s04_set_light_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/cannon_path_ctrl_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13_ship_piece_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_thunder_light_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_laser_light_atomic_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_crush_piece_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/king_pawn_voice_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/king_pawn_speed_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e_thunder_light_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/enemy_vector_fire_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_thunder_set2_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_thunder_set2_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_thunder_set3_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14_thunder_set3_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/stg26_colli_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -7188,6 +8985,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/searcher_hit_point.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/e2000_turn_to_aim.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -7499,6 +9301,41 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_baloon_wk_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s03_plane_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s03_train_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s04_egg_cap2_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s04_energy_pipe_up_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13_kankyohakai_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s04_set_light_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -7650,6 +9487,21 @@ config.libs = [
             Object(
                 Matching,
                 "rel/hermitcrab_hierarchy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s02_breakruin_l_hierarchy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s02_breakruin_s_hierarchy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s02_kame_wave_hierarchy.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -7934,6 +9786,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s01_truck_rail_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s01_truck_rail_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -8039,6 +9896,31 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hermitcrab_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/piston_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/pulley_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/barrel_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/wheel_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/goal_ring_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -8114,6 +9996,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pole_set_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pole_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -8179,6 +10066,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_smoke_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_smoke_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -8235,6 +10127,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/laser_fence_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/laser_fence_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/laser_fence_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -8250,7 +10152,47 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/fan_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/fan_clump.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/fan_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reel_set_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reel_parameter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reel_up_and_down.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reel_player.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reel_check_hanged.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/reel_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -8261,6 +10203,26 @@ config.libs = [
             Object(
                 Matching,
                 "rel/dash_ring_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/big_rings_element_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/big_rings_light.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/big_rings_pointer.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/big_rings_parameter.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -8335,6 +10297,16 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/jump_panel_set_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/jump_panel_colli.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/jump_panel_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -8351,6 +10323,12 @@ config.libs = [
             Object(
                 Matching,
                 "rel/itembaloon_object_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/push_pull_switch_check.cpp",
+                cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

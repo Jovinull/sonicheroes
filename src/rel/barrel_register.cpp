@@ -3,8 +3,8 @@
 // The record that registers BARREL with the editor.
 //
 // The claim is .text 0x726AC to 0x7274C and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// Only the record is taken: the hooks it points at are reached by the names
+// each module's symbols.txt gives them (the factory is rel/barrel_create.cpp).
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

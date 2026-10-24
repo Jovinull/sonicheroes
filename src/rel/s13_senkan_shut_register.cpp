@@ -3,8 +3,9 @@
 // The record that registers S13 SENKAN SHUT with the editor.
 //
 // The claim is .text 0x78908 to 0x789B0 and the .ctors word that names it.
-// Only the record is taken: the hooks it points at stay assembly and are
-// reached by the names each module's symbols.txt gives them.
+// Only the record is taken: the hooks it points at are reached by the names
+// each module's symbols.txt gives them (the load and unload are
+// rel/s13_senkan_shut_hooks.cpp).
 //
 // The object's name is the display string the record itself installs, and each
 // hook is named from the entry offset it is stored into.

@@ -18,23 +18,34 @@ struct sMachineGunBullet {
 	f32 range; // 0x8
 	s32 life;  // 0xC
 
-	s32 Alive()
-	{
-		if (life < 0) {
-			return 0;
-		}
-		if (range < dist) {
-			return 0;
-		}
-		return 1;
-	}
+	s32 Alive();
 
-	void Move()
-	{
-		dist += speed;
-		life--;
-	}
+	void Move();
 };
+
+// Alive and Move (the PS2 build's names), which the gun inlines;
+// rel/enemy_mgun_bullet_alive.cpp has the out-of-line copies
+// (ENEMY_MGUN_BULLET_ALIVE_INLINE empty)
+#ifndef ENEMY_MGUN_BULLET_ALIVE_INLINE
+#define ENEMY_MGUN_BULLET_ALIVE_INLINE inline
+#endif
+
+ENEMY_MGUN_BULLET_ALIVE_INLINE s32 sMachineGunBullet::Alive()
+{
+	if (life < 0) {
+		return 0;
+	}
+	if (range < dist) {
+		return 0;
+	}
+	return 1;
+}
+
+ENEMY_MGUN_BULLET_ALIVE_INLINE void sMachineGunBullet::Move()
+{
+	dist += speed;
+	life--;
+}
 
 // EmptyBulletNum's own unit returns a bool (no zero extension of the compare)
 // while its callers test an int (cmpwi, not clrlwi + cmplwi): the unit that
