@@ -4445,6 +4445,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/floatj_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/floatj_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
