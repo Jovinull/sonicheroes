@@ -2110,6 +2110,9 @@ rel/treeleaf_register.cpp:
 rel/water_plant_dtor.cpp:
 	.text       start:0x0009C344 end:0x0009C420
 
+rel/waterplant_hooks.cpp:
+	.text       start:0x0009C564 end:0x0009C5B4
+
 rel/water_plant_create.cpp:
 	.text       start:0x0009C73C end:0x0009C85C
 
