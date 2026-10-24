@@ -2215,6 +2215,9 @@ rel/pawn_strategy.cpp:
 rel/s14_bomb_switch_edit.cpp:
 	.text       start:0x0009D0B4 end:0x0009D110
 
+rel/s14_bomb_switch_hooks.cpp:
+	.text       start:0x0009DA98 end:0x0009DB98
+
 rel/s14_bomb_switch_create.cpp:
 	.text       start:0x0009DB98 end:0x0009DBE0
 
