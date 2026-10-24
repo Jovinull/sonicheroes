@@ -1980,6 +1980,9 @@ rel/piston_register.cpp:
 	.text       start:0x0007D70C end:0x0007D7AC
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/pulley_hooks.cpp:
+	.text       start:0x0007ED78 end:0x0007EDC0
+
 rel/pulley_create.cpp:
 	.text       start:0x0007EED0 end:0x0007EF18
 
