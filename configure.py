@@ -9816,6 +9816,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s01_koware_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s01_koware_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
