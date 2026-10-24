@@ -1924,6 +1924,9 @@ rel/s03_pipe_register.cpp:
 	.text       start:0x0008228C end:0x00082334
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s03d_pipe_design_edit.cpp:
+	.text       start:0x00082B38 end:0x00082BC4
+
 rel/s03d_pipe_design_create.cpp:
 	.text       start:0x000832BC end:0x00083304
 
