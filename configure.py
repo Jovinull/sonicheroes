@@ -6480,6 +6480,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traincapsule_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traincapsule_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
