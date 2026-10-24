@@ -1760,6 +1760,9 @@ rel/s31bob_exec.cpp:
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x00078410 end:0x000784A8
 
+rel/s13_cloud2_create.cpp:
+	.text       start:0x00078740 end:0x00078788
+
 rel/s13_cloud1_tdisp.cpp:
 	.text       start:0x00078788 end:0x000787F0
 

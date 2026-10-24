@@ -2347,6 +2347,9 @@ rel/wall_register.cpp:
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x000C312C end:0x000C31C4
 
+rel/s13_cloud2_create.cpp:
+	.text       start:0x000C345C end:0x000C34A4
+
 rel/s13_cloud1_tdisp.cpp:
 	.text       start:0x000C34A4 end:0x000C350C
 

@@ -3785,6 +3785,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_cloud2_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_cloud_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
