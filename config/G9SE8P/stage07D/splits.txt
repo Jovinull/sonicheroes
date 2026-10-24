@@ -2215,7 +2215,7 @@ rel/railmechtypeabc_edit.cpp:
 	.text       start:0x000884B4 end:0x00088534
 
 rel/railmechtypeabc_hooks.cpp:
-	.text       start:0x00088534 end:0x00088598
+	.text       start:0x00088534 end:0x000886DC
 
 rel/railmechtypeabc_create.cpp:
 	.text       start:0x000886DC end:0x00088724
