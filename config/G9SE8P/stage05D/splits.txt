@@ -2255,7 +2255,7 @@ rel/bobinair_edit.cpp:
 	.rodata     start:0x000014C8 end:0x000014CC
 
 rel/bobinair_hooks.cpp:
-	.text       start:0x00089AA4 end:0x00089AF4
+	.text       start:0x00089AA4 end:0x00089C40
 
 rel/bobin_air_create.cpp:
 	.text       start:0x00089CD4 end:0x00089E4C
