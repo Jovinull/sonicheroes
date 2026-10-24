@@ -2183,6 +2183,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/scattered_ring_scatter.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ring_object_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
