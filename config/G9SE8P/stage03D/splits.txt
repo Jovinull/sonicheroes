@@ -1947,6 +1947,9 @@ rel/s03d_light_register.cpp:
 	.text       start:0x0007E99C end:0x0007EA44
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/s03_pipe_hooks.cpp:
+	.text       start:0x00081DB0 end:0x000820E8
+
 rel/s03_pipe_register.cpp:
 	.text       start:0x0008228C end:0x00082334
 	.ctors      start:0x000000E0 end:0x000000E4

@@ -5685,6 +5685,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_pipe_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_pipe_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
