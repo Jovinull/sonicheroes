@@ -2032,6 +2032,9 @@ rel/bushsq_register.cpp:
 rel/bush_zenmai_dtor.cpp:
 	.text       start:0x00094650 end:0x00094738
 
+rel/bush_zenmai_ctor.cpp:
+	.text       start:0x00094738 end:0x00094850
+
 rel/bush_zenmai_create.cpp:
 	.text       start:0x00094A74 end:0x00094BB4
 

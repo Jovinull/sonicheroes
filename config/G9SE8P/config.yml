@@ -2128,6 +2128,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - __ct__14TObjBushZenmaiFP7TObject
     - targetPresentPrize
     - ObjRingScatteringNonSE__FUiP5RwV3dP11sRealAngle3ff
     - __ct__17TObjScatteredRingFP7TObjectUiP5RwV3dP11sRealAngle3ffi
