@@ -5665,6 +5665,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_plane_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_plane_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
