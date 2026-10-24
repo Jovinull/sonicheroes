@@ -2282,6 +2282,9 @@ rel/flipper_edit.cpp:
 rel/flipper_hooks.cpp:
 	.text       start:0x00090304 end:0x00090370
 
+rel/flipper_create.cpp:
+	.text       start:0x0009046C end:0x000904B4
+
 rel/flipper_register.cpp:
 	.text       start:0x000904B4 end:0x00090564
 	.ctors      start:0x00000114 end:0x00000118
