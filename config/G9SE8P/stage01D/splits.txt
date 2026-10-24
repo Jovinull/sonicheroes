@@ -2277,6 +2277,9 @@ rel/s20d_curb_stone_dtor.cpp:
 rel/s20d_curbstone_edit.cpp:
 	.text       start:0x000BB288 end:0x000BB2C0
 
+rel/s20d_curbstone_hooks.cpp:
+	.text       start:0x000BB2C0 end:0x000BB42C
+
 rel/s20d_curb_stone_register.cpp:
 	.text       start:0x000BB5BC end:0x000BB668
 	.ctors      start:0x0000013C end:0x00000140
