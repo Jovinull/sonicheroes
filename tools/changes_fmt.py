@@ -39,6 +39,24 @@ def get_changes(changes_file: str) -> Tuple[list[Change], list[Change]]:
     regressions = []
     progressions = []
 
+    # Where each function of the new report lives: carving a unit out of an
+    # auto-generated range (or absorbing a unit into a bigger one) moves its
+    # functions to another unit at the same address, often under a new name.
+    moved_to = {}
+    for unit in changes_json.get("units", []):
+        module = unit.get("metadata", {}).get("module_name")
+        for func in unit.get("functions", []):
+            address = func.get("metadata", {}).get("virtual_address")
+            if "to" in func and address is not None:
+                value = func["to"].get("fuzzy_match_percent", 0.0)
+                key = (module, address)
+                moved_to[key] = max(value, moved_to.get(key, 0.0))
+
+    def found_elsewhere(module: Optional[str], func: dict) -> bool:
+        address = func.get("metadata", {}).get("virtual_address")
+        from_value = func.get("from", {}).get("fuzzy_match_percent", 0.0)
+        return address is not None and moved_to.get((module, address), -1.0) >= from_value
+
     def diff_key(object_name: Optional[str], object: dict, key: str):
         from_value = object.get("from", {}).get(key, 0.0)
         to_value = object.get("to", {}).get(key, 0.0)
@@ -54,10 +72,24 @@ def get_changes(changes_file: str) -> Tuple[list[Change], list[Change]]:
 
     for unit in changes_json.get("units", []):
         unit_name = unit["name"]
-        for key in UNIT_KEYS_TO_DIFF:
-            diff_key(unit_name, unit, key)
+        module = unit.get("metadata", {}).get("module_name")
+        functions = unit.get("functions", [])
+        # A unit gone from the new report with no data of its own and whose
+        # every function is at the same address elsewhere, at least as well
+        # matched, lost nothing: its percentages (data at a vacuous 100%)
+        # would otherwise read as a drop to 0%.
+        moved = (
+            "to" not in unit
+            and int(unit.get("from", {}).get("total_data", 0)) == 0
+            and all(found_elsewhere(module, func) for func in functions)
+        )
+        if not moved:
+            for key in UNIT_KEYS_TO_DIFF:
+                diff_key(unit_name, unit, key)
         # Ignore sections
-        for func in unit.get("functions", []):
+        for func in functions:
+            if "to" not in func and found_elsewhere(module, func):
+                continue
             func_name = func["name"]
             for key in FUNCTION_KEYS_TO_DIFF:
                 diff_key(func_name, func, key)
