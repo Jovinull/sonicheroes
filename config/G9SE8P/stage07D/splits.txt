@@ -2080,6 +2080,9 @@ rel/rail_bush_dtor.cpp:
 rel/rail_bush_ctor.cpp:
 	.text       start:0x00081DD0 end:0x00081ED0
 
+rel/railbush_edit.cpp:
+	.text       start:0x00081ED0 end:0x00081F1C
+
 rel/railbush_hooks.cpp:
 	.text       start:0x00081F1C end:0x00082004
 
