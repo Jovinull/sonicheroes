@@ -1864,6 +1864,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/item_box_create_at.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/item_box_disp.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],

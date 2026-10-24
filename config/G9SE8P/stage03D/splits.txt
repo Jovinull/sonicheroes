@@ -1048,6 +1048,9 @@ rel/enemy_shield_normal.cpp:
 rel/enemy_shield_status.cpp:
 	.text       start:0x00039168 end:0x00039274
 
+rel/item_box_create_at.cpp:
+	.text       start:0x00039BA0 end:0x00039BFC
+
 rel/item_box_disp.cpp:
 	.text       start:0x00039F34 end:0x0003A0E4
 
