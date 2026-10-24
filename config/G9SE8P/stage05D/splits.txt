@@ -2249,6 +2249,9 @@ rel/bumper_dtor.cpp:
 rel/bumper_ctor.cpp:
 	.text       start:0x0008AFA4 end:0x0008B11C
 
+rel/bumper_hooks.cpp:
+	.text       start:0x0008B1A4 end:0x0008B210
+
 rel/bumper_create.cpp:
 	.text       start:0x0008B418 end:0x0008B5B8
 
