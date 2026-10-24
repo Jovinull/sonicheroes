@@ -2069,6 +2069,9 @@ rel/s04d_energy_fire_register.cpp:
 rel/s04d_energy_up_edit.cpp:
 	.text       start:0x00095A98 end:0x00095AD8
 
+rel/s04d_energy_up_unload.cpp:
+	.text       start:0x00095EEC end:0x00095F78
+
 rel/s04d_energy_up_register.cpp:
 	.text       start:0x00096230 end:0x000962D8
 	.ctors      start:0x00000118 end:0x0000011C
