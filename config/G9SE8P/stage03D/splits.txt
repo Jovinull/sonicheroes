@@ -2302,6 +2302,9 @@ rel/warp_register.cpp:
 rel/s04_set_light_edit.cpp:
 	.text       start:0x000A5130 end:0x000A518C
 
+rel/s04d_floor_light_hooks.cpp:
+	.text       start:0x000A55C4 end:0x000A57F8
+
 rel/s04_set_light_dtor.cpp:
 	.text       start:0x000A5B44 end:0x000A5BB8
 
