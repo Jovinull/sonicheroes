@@ -5945,6 +5945,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04_energy_pipe_up_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04_energy_pipe_up_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
