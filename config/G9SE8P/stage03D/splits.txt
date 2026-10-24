@@ -1941,6 +1941,9 @@ rel/s03_plane_register.cpp:
 	.text       start:0x00084128 end:0x000841D4
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/s03d_pole_edit.cpp:
+	.text       start:0x00084D94 end:0x00084E04
+
 rel/s03d_pole_create.cpp:
 	.text       start:0x000855E4 end:0x0008562C
 
