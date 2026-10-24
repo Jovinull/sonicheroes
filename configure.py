@@ -6940,6 +6940,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_goal_neon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_wall_rneon_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
