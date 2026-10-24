@@ -7290,6 +7290,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_kame_wave_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_kame_wave_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
