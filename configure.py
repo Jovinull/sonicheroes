@@ -4780,6 +4780,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pond_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pond_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
