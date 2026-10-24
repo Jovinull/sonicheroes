@@ -1990,6 +1990,9 @@ rel/sida_dtor.cpp:
 rel/sida_ctor.cpp:
 	.text       start:0x0008B7F0 end:0x0008B8F0
 
+rel/sida_hooks.cpp:
+	.text       start:0x0008B920 end:0x0008BA08
+
 rel/sida_create.cpp:
 	.text       start:0x0008BA08 end:0x0008BB30
 

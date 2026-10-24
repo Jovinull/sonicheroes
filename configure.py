@@ -5665,6 +5665,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sida_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sida_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
