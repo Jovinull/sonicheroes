@@ -3302,6 +3302,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_rings_element_destroy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/big_rings_element_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

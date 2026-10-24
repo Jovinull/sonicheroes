@@ -531,6 +531,9 @@ rel/laser_fence_assets.cpp:
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC18 end:0x0001CC54
 
+rel/big_rings_element_destroy.cpp:
+	.text       start:0x0001D0A4 end:0x0001D0E4
+
 rel/big_rings_element_dtor.cpp:
 	.text       start:0x0001D0E4 end:0x0001D150
 
