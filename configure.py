@@ -4205,6 +4205,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/butterfly_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/butterfly_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

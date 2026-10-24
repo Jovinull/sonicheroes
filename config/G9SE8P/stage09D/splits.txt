@@ -1868,6 +1868,9 @@ rel/bush_register.cpp:
 rel/butterfly_reset.cpp:
 	.text       start:0x00072724 end:0x00072728
 
+rel/butterfly_unload.cpp:
+	.text       start:0x00072728 end:0x00072790
+
 rel/butterfly_create.cpp:
 	.text       start:0x00072938 end:0x00072980
 
