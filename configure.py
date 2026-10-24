@@ -4415,6 +4415,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/piston_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/piston_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
