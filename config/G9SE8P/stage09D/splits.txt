@@ -1871,6 +1871,9 @@ rel/bush_register.cpp:
 	.text       start:0x000717F0 end:0x000718A0
 	.ctors      start:0x000000C0 end:0x000000C4
 
+rel/butterfly_edit.cpp:
+	.text       start:0x000726A4 end:0x00072724
+
 rel/butterfly_reset.cpp:
 	.text       start:0x00072724 end:0x00072728
 
