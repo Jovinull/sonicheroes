@@ -1916,6 +1916,9 @@ rel/leafaa_edit.cpp:
 rel/leafaa_hooks.cpp:
 	.text       start:0x0007AC0C end:0x0007AC5C
 
+rel/leafaa_load.cpp:
+	.text       start:0x0007AC5C end:0x0007ACD8
+
 rel/leaf_aa_create.cpp:
 	.text       start:0x0007ACD8 end:0x0007AE00
 
