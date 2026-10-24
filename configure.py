@@ -3860,6 +3860,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigcannontop_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigcannontop_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
