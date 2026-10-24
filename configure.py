@@ -4720,6 +4720,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railpollgol_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railpollgol_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
