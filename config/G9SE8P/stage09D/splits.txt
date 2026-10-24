@@ -1875,6 +1875,9 @@ rel/float_j_dtor.cpp:
 rel/float_j_ctor.cpp:
 	.text       start:0x00073014 end:0x0007312C
 
+rel/floatj_hooks.cpp:
+	.text       start:0x00073150 end:0x00073214
+
 rel/float_j_create.cpp:
 	.text       start:0x00073214 end:0x00073354
 
