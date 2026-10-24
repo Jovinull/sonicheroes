@@ -7065,7 +7065,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/xSign_edit.cpp",
+                "rel/x_sign_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
