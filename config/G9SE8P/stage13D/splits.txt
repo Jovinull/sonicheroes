@@ -1245,6 +1245,9 @@ rel/propeller_snatch.cpp:
 rel/propeller_set_position.cpp:
 	.text       start:0x00046C70 end:0x00046FD0
 
+rel/propeller_tdisp.cpp:
+	.text       start:0x00046FD0 end:0x00046FD4
+
 rel/propeller_check_collision.cpp:
 	.text       start:0x00046FD4 end:0x00047254
 
