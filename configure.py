@@ -6590,6 +6590,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/wcannon_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/wcannon_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
