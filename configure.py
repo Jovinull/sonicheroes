@@ -10246,6 +10246,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s66_star_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s66_star_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
