@@ -1,12 +1,13 @@
 name: Pages
 
 # Only when the site itself changes. Decompilation commits touch src and config
-# on their own and have no business redeploying the page.
+# on their own and have no business redeploying the page. The site lives in
+# site/; docs/ is the project's documentation and is read on GitHub.
 on:
   push:
     branches: [main]
     paths:
-      - 'docs/**'
+      - 'site/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -33,10 +34,10 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
-      - name: Upload docs
+      - name: Upload site
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: docs
+          path: site
 
       - name: Deploy
         id: deployment
