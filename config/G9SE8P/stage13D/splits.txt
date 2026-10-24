@@ -2065,6 +2065,9 @@ rel/s13_missilepod_register.cpp:
 	.text       start:0x000867F4 end:0x00086890
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/s13d_bigfan_hooks.cpp:
+	.text       start:0x00086F60 end:0x00087060
+
 rel/s13d_bigfan_register.cpp:
 	.text       start:0x0008729C end:0x00087344
 	.ctors      start:0x00000104 end:0x00000108
