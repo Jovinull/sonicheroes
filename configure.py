@@ -4605,6 +4605,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railpollex_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railpollex_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
