@@ -9571,6 +9571,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_moving_land_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_moving_land_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
