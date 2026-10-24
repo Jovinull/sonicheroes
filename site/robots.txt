@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jovinull.github.io/sonicheroes/sitemap.xml

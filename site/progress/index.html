@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonic Heroes Decompilation Progress: live stats and milestones</title>
+<meta name="description" content="Live progress of the Sonic Heroes GameCube decompilation: code, data, functions and units matched, by main executable, stage modules and SDK, plus a timeline of milestones since July 2026.">
+<meta name="author" content="Jovinull">
+<link rel="canonical" href="https://jovinull.github.io/sonicheroes/progress/">
+<link rel="alternate" hreflang="en" href="https://jovinull.github.io/sonicheroes/progress/">
+<link rel="alternate" hreflang="pt-BR" href="https://jovinull.github.io/sonicheroes/pt-br/progress/">
+<link rel="alternate" hreflang="x-default" href="https://jovinull.github.io/sonicheroes/progress/">
+<meta name="theme-color" content="#090d16">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sonic Heroes Decompilation">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:title" content="Sonic Heroes Decompilation Progress: live stats and milestones">
+<meta property="og:description" content="Live progress of the Sonic Heroes GameCube decompilation: code, data, functions and units matched, by main executable, stage modules and SDK, plus a timeline of milestones since July 2026.">
+<meta property="og:url" content="https://jovinull.github.io/sonicheroes/progress/">
+<meta property="og:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sonic Heroes, a matching decompilation for the Nintendo GameCube">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sonic Heroes Decompilation Progress: live stats and milestones">
+<meta name="twitter:description" content="Live progress of the Sonic Heroes GameCube decompilation: code, data, functions and units matched, by main executable, stage modules and SDK, plus a timeline of milestones since July 2026.">
+<meta name="twitter:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://jovinull.github.io/sonicheroes/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Progress",
+   "item": "https://jovinull.github.io/sonicheroes/progress/"
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="langbar" role="region" aria-label="Language">
+  <div class="wrap"><span>This page is also available in <a href="../pt-br/progress/">Portuguese</a>.</span><button type="button">Dismiss</button></div>
+</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../"><span class="tri" aria-hidden="true"><i></i><i></i><i></i></span>Sonic Heroes Decomp</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="../">Home</a><a href="../progress/" aria-current="page">Progress</a><a href="../about/">About &amp; FAQ</a><a href="../credits/">Credits</a><a href="../contribute/">Contribute</a>
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a class="lang" href="../pt-br/progress/" hreflang="pt-BR" lang="pt-BR" title="Ler em português">PT</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Home</a> / <span aria-current="page">Progress</span></nav>
+  <h1>Decompilation progress</h1>
+  <p class="lead">How much of Sonic Heroes has been rebuilt from source so far, measured from the objdiff report that every build on <code>main</code> produces.</p>
+<div class="grid">
+  <div class="stat ">
+    <div class="k">Code matched</div>
+    <div class="v"><span data-num="code">35.4</span><small>%</small></div>
+    <div class="d"><span data-abs="code">4,618,108 / 13,039,060 bytes</span></div>
+    <div class="bar" role="progressbar" aria-label="Code matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="35.42"><i data-bar="code" style="width:35.42%"></i></div>
+  </div>
+  <div class="stat fly">
+    <div class="k">Data matched</div>
+    <div class="v"><span data-num="data">9.47</span><small>%</small></div>
+    <div class="d"><span data-abs="data">679,064 / 7,167,586 bytes</span></div>
+    <div class="bar" role="progressbar" aria-label="Data matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="9.47"><i data-bar="data" style="width:9.47%"></i></div>
+  </div>
+  <div class="stat power">
+    <div class="k">Functions matched</div>
+    <div class="v"><span data-num="fn">52.6</span><small>%</small></div>
+    <div class="d"><span data-abs="fn">20,559 / 39,062 functions</span></div>
+    <div class="bar" role="progressbar" aria-label="Functions matched" aria-valuemin="0" aria-valuemax="100" aria-valuenow="52.63"><i data-bar="fn" style="width:52.63%"></i></div>
+  </div>
+  <div class="stat ok">
+    <div class="k">Complete units</div>
+    <div class="v"><span data-num="units">66.6</span><small>%</small></div>
+    <div class="d"><span data-abs="units">11,012 / 16,538 units</span></div>
+    <div class="bar" role="progressbar" aria-label="Complete units" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66.59"><i data-bar="units" style="width:66.59%"></i></div>
+  </div>
+</div>
+<div class="meta">
+  <span><span class="dot" aria-hidden="true"></span><span id="live-label">Last published: 2026-10-24</span></span>
+  <span>Latest commit: <a class="mono" id="commit" href="https://github.com/Jovinull/sonicheroes/commits/main" rel="noopener">…</a></span>
+  <span id="updated"></span>
+</div>
+</div></div>
+
+<section>
+  <div class="wrap">
+    <h2>By part of the game</h2>
+    <p class="lead">The game is one main executable (<code>main.dol</code>) plus 17 REL modules loaded per stage or screen. The Dolphin SDK libraries are counted separately.</p>
+<div class="grid">
+<div class="stat" data-cat="dol"><div class="k">Main executable</div><p class="d" style="margin:8px 0 14px">Engine, RenderWare, CRI middleware, the SDK and shared game code.</p><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Code</span><span class="mono"><span data-num="code">28.1</span>%</span></div><div class="bar" role="progressbar" aria-label="Main executable: Code" aria-valuemin="0" aria-valuemax="100" aria-valuenow="28.15" style="margin:6px 0 12px"><i data-bar="code" style="width:28.15%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Data</span><span class="mono"><span data-num="data">27.6</span>%</span></div><div class="bar" role="progressbar" aria-label="Main executable: Data" aria-valuemin="0" aria-valuemax="100" aria-valuenow="27.64" style="margin:6px 0 12px"><i data-bar="data" style="width:27.64%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Functions</span><span class="mono"><span data-num="fn">43.3</span>%</span></div><div class="bar" role="progressbar" aria-label="Main executable: Functions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="43.27" style="margin:6px 0 12px"><i data-bar="fn" style="width:43.27%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Units</span><span class="mono"><span data-num="units">19.4</span>%</span></div><div class="bar" role="progressbar" aria-label="Main executable: Units" aria-valuemin="0" aria-valuemax="100" aria-valuenow="19.44" style="margin:6px 0 12px"><i data-bar="units" style="width:19.44%"></i></div></div>
+<div class="stat" data-cat="modules"><div class="k">REL modules</div><p class="d" style="margin:8px 0 14px">Stages, menus and the objects that live in them.</p><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Code</span><span class="mono"><span data-num="code">36.9</span>%</span></div><div class="bar" role="progressbar" aria-label="REL modules: Code" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36.94" style="margin:6px 0 12px"><i data-bar="code" style="width:36.94%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Data</span><span class="mono"><span data-num="data">1.90</span>%</span></div><div class="bar" role="progressbar" aria-label="REL modules: Data" aria-valuemin="0" aria-valuemax="100" aria-valuenow="1.9" style="margin:6px 0 12px"><i data-bar="data" style="width:1.9%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Functions</span><span class="mono"><span data-num="fn">54.4</span>%</span></div><div class="bar" role="progressbar" aria-label="REL modules: Functions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="54.41" style="margin:6px 0 12px"><i data-bar="fn" style="width:54.41%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Units</span><span class="mono"><span data-num="units">72.7</span>%</span></div><div class="bar" role="progressbar" aria-label="REL modules: Units" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72.66" style="margin:6px 0 12px"><i data-bar="units" style="width:72.66%"></i></div></div>
+<div class="stat" data-cat="sdk"><div class="k">Dolphin SDK</div><p class="d" style="margin:8px 0 14px">Nintendo's GameCube libraries linked into the game.</p><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Code</span><span class="mono"><span data-num="code">100</span>%</span></div><div class="bar" role="progressbar" aria-label="Dolphin SDK: Code" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100.0" style="margin:6px 0 12px"><i data-bar="code" style="width:100.0%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Data</span><span class="mono"><span data-num="data">99.8</span>%</span></div><div class="bar" role="progressbar" aria-label="Dolphin SDK: Data" aria-valuemin="0" aria-valuemax="100" aria-valuenow="99.78" style="margin:6px 0 12px"><i data-bar="data" style="width:99.78%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Functions</span><span class="mono"><span data-num="fn">100</span>%</span></div><div class="bar" role="progressbar" aria-label="Dolphin SDK: Functions" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100.0" style="margin:6px 0 12px"><i data-bar="fn" style="width:100.0%"></i></div><div class="d" style="display:flex;justify-content:space-between;gap:10px"><span>Units</span><span class="mono"><span data-num="units">100</span>%</span></div><div class="bar" role="progressbar" aria-label="Dolphin SDK: Units" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100.0" style="margin:6px 0 12px"><i data-bar="units" style="width:100.0%"></i></div></div>
+</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What the numbers mean</h2>
+    <div class="how"><div class="panel"><h3>Code matched</h3><p>Bytes of machine code whose source has been rewritten and compiles to exactly the original instructions.</p></div><div class="panel"><h3>Data matched</h3><p>Bytes of tables, strings and constants that the rewritten source now owns and emits identically.</p></div><div class="panel"><h3>Functions matched</h3><p>Functions that are byte-identical to the original, counted one by one.</p></div><div class="panel"><h3>Complete units</h3><p>Translation units (the original source files, as best they can be reconstructed) in which everything matches.</p></div></div>
+    <p class="note">The rebuilt <code>main.dol</code> and all 17 RELs already hash identically to the retail disc. That does not mean the game is fully decompiled: parts that have not been rewritten yet are still carried through the build, which is why progress is read from objdiff and not from the final SHA-1.</p>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="wrap">
+    <h2>Timeline</h2>
+    <p class="lead">Milestones as reported in the project's Discord and pull requests. Percentages are code matched at the time.</p>
+<ol class="timeline">
+  <li><time datetime="2026-07-19">2026-07-19</time><h3>Repository created</h3><p>The project starts from the GameCube decompilation template, configured for the North American disc (G9SE8P).</p></li>
+  <li><time datetime="2026-07-22">2026-07-22</time><h3>Discord opens and the first contributor arrives</h3><p>Cypress, a Dreamcast homebrew developer, joins with matching functions ready. The rule that AI use is disclosed and verified is agreed the same day.</p></li>
+  <li><time datetime="2026-07-23">2026-07-23</time><h3>First community pull requests merged</h3><p>The Dolphin SDK operating-system modules start landing, beginning with the OS stopwatch (#3).</p></li>
+  <li><time datetime="2026-07-26">2026-07-26</time><h3><span class="pct">2%</span> of code</h3><p>Progress doubles in two days as SDK and CRI middleware libraries are matched.</p></li>
+  <li><time datetime="2026-07-28">2026-07-28</time><h3>Game code moves to C++</h3><p>A language audit, backed by mangled names, vtables and class records, settles that the game's own code is C++ (<a href="https://github.com/Jovinull/sonicheroes/discussions/117" rel="noopener">discussion #117</a>).</p></li>
+  <li><time datetime="2026-07-29">2026-07-29</time><h3>The front end is complete</h3><p>The whole <code>advertiseD</code> overlay (attract sequence, title screen, file select, menus and staff roll) is reconstructed by Cypress (<a href="https://github.com/Jovinull/sonicheroes/pull/125" rel="noopener">#125</a>). Progress passes 4%.</p></li>
+  <li><time datetime="2026-08-24">2026-08-24</time><h3><span class="pct">7%</span> of code</h3><p>Stage modules and shared engine code start falling into place.</p></li>
+  <li><time datetime="2026-10-08">2026-10-08</time><h3>61 reconstruction pull requests integrated</h3><p>A large batch from Cypress lands in one integration (<a href="https://github.com/Jovinull/sonicheroes/pull/612" rel="noopener">#612</a>).</p></li>
+  <li><time datetime="2026-10-12">2026-10-12</time><h3><span class="pct">23.7%</span> of code</h3><p>Code shared between stages is written once and linked into every module that uses it, sometimes 13 at a time.</p></li>
+  <li><time datetime="2026-10-15">2026-10-15</time><h3>decomp.dev closes its public index</h3><p>The progress tracker the project used since July stops listing projects. Tracking moves to ByteMatch, which reads the same CI reports.</p></li>
+  <li><time datetime="2026-10-24">2026-10-24</time><h3><span class="pct">35.4%</span> of code, over half of all functions</h3><p>20,559 of 39,062 functions match, and every SDK library function is done.</p></li>
+</ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Trackers</h2>
+    <p>Progress is published on <a href="https://bytematch.dev/Jovinull/sonicheroes" rel="noopener">ByteMatch</a>, which reads the CI report directly. <a href="https://decomp.dev/Jovinull/sonicheroes" rel="noopener">decomp.dev</a>, which tracked the project from July 2026, stopped listing new projects in October 2026 and keeps its existing page for now.</p>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="legal"><strong>Legal.</strong> This is not legal advice. <strong>Sonic Heroes</strong> and all related trademarks are the property of <strong>SEGA</strong>. This project is not affiliated with, sponsored by, or endorsed by SEGA. It is a non-commercial study and preservation project and contains <strong>no game code, no game assets and no extracted assembly</strong>. It distributes no ROM, disc image or playable build, and it needs a legally obtained copy of the game to build. See <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">LEGAL.md</a>.</div>
+    <div class="flinks">
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a href="https://bytematch.dev/Jovinull/sonicheroes" rel="noopener">ByteMatch</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">Legal</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">Contributing</a>
+    </div>
+    <div class="copy">Maintained by Jovinull and <a href="https://github.com/Jovinull/sonicheroes/graphs/contributors" rel="noopener">its contributors</a> · MIT-licensed source · fan project, no commercial use.</div>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

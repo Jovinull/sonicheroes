@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contribua com a decompilação de Sonic Heroes: compile e faça funções corresponderem</title>
+<meta name="description" content="Como compilar a decompilação de Sonic Heroes para GameCube a partir da sua cópia do jogo, configurar o objdiff e começar a fazer funções corresponderem. Não precisa de experiência prévia.">
+<meta name="author" content="Jovinull">
+<link rel="canonical" href="https://jovinull.github.io/sonicheroes/pt-br/contribute/">
+<link rel="alternate" hreflang="en" href="https://jovinull.github.io/sonicheroes/contribute/">
+<link rel="alternate" hreflang="pt-BR" href="https://jovinull.github.io/sonicheroes/pt-br/contribute/">
+<link rel="alternate" hreflang="x-default" href="https://jovinull.github.io/sonicheroes/contribute/">
+<meta name="theme-color" content="#090d16">
+<link rel="icon" href="../../favicon.ico" sizes="32x32">
+<link rel="icon" href="../../icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sonic Heroes Decompilation">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Contribua com a decompilação de Sonic Heroes: compile e faça funções corresponderem">
+<meta property="og:description" content="Como compilar a decompilação de Sonic Heroes para GameCube a partir da sua cópia do jogo, configurar o objdiff e começar a fazer funções corresponderem. Não precisa de experiência prévia.">
+<meta property="og:url" content="https://jovinull.github.io/sonicheroes/pt-br/contribute/">
+<meta property="og:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sonic Heroes, a matching decompilation for the Nintendo GameCube">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contribua com a decompilação de Sonic Heroes: compile e faça funções corresponderem">
+<meta name="twitter:description" content="Como compilar a decompilação de Sonic Heroes para GameCube a partir da sua cópia do jogo, configurar o objdiff e começar a fazer funções corresponderem. Não precisa de experiência prévia.">
+<meta name="twitter:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Início",
+   "item": "https://jovinull.github.io/sonicheroes/pt-br/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Contribuir",
+   "item": "https://jovinull.github.io/sonicheroes/pt-br/contribute/"
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="langbar" role="region" aria-label="Language">
+  <div class="wrap"><span>Esta página também está disponível em <a href="../../contribute/">inglês</a>.</span><button type="button">Fechar</button></div>
+</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../../pt-br/"><span class="tri" aria-hidden="true"><i></i><i></i><i></i></span>Sonic Heroes Decomp</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="../../pt-br/">Início</a><a href="../../pt-br/progress/">Progresso</a><a href="../../pt-br/about/">Sobre e FAQ</a><a href="../../pt-br/credits/">Créditos</a><a href="../../pt-br/contribute/" aria-current="page">Contribuir</a>
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a class="lang" href="../../contribute/" hreflang="en" lang="en" title="Read in English">EN</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../pt-br/">Início</a> / <span aria-current="page">Contribuir</span></nav>
+  <h1>Contribuir</h1>
+  <p class="lead">Você não precisa de experiência com decompilação, só de paciência e disposição para ler assembly de PowerPC. A maioria começa por uma função pequena e aprende o resto no caminho.</p>
+</div></div>
+<section>
+  <div class="wrap">
+    <h2>Como o trabalho acontece</h2>
+    <div class="how"><div class="panel accent-speed"><h3>1. Diga no que vai mexer</h3><p>Avise no canal <code>#decomp</code> do <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a> antes de começar, para duas pessoas não passarem o fim de semana na mesma função.</p></div><div class="panel accent-fly"><h3>2. Abra no objdiff</h3><p>O seu código compilado de um lado, o original do outro. O trabalho é deixá-los idênticos.</p></div><div class="panel accent-power"><h3>3. Escreva o código na linguagem original</h3><p>C ou C++ que o compilador CodeWarrior de 2003 transforme exatamente naquelas instruções, não código que só se comporta igual.</p></div><div class="panel accent-speed"><h3>4. Abra um pull request</h3><p>Quando corresponder, abra um pull request. O CI recompila o jogo inteiro e confere todos os hashes.</p></div></div>
+  </div>
+</section>
+<section id="build">
+  <div class="wrap">
+    <h2>Compile você mesmo</h2>
+    <p class="lead">Você fornece o jogo; as ferramentas e a configuração estão no repositório. É preciso ter Python e ninja no <code>PATH</code>.</p>
+<pre><span class="c"># 1. clone</span>
+git clone https://github.com/Jovinull/sonicheroes.git
+cd sonicheroes
+
+<span class="c"># 2. ative o hook de segurança (recusa commits com dados do jogo)</span>
+git config core.hooksPath .githooks
+
+<span class="c"># 3. coloque a SUA cópia do jogo em orig/G9SE8P/ e então</span>
+python configure.py
+ninja</pre>
+    <p class="note">Guia completo (em inglês): <a href="https://github.com/Jovinull/sonicheroes/blob/main/docs/getting_started.md" rel="noopener">docs/getting_started.md</a> · regras: <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a> e <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">LEGAL.md</a> · dúvidas de iniciante: <code>#decomp-help</code> no Discord.</p>
+    <figure style="margin-top:28px">
+      <img src="../../objdiff.webp" width="1003" height="802" alt="objdiff showing a fully matching object" loading="lazy">
+      <figcaption>objdiff depois de uma correspondência: cada instrução bate com a original.</figcaption>
+    </figure>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="legal"><strong>Aviso legal.</strong> Isto não é aconselhamento jurídico. <strong>Sonic Heroes</strong> e todas as marcas relacionadas pertencem à <strong>SEGA</strong>. Este projeto não é afiliado, patrocinado nem endossado pela SEGA. É um projeto não comercial de estudo e preservação e <strong>não contém código do jogo, assets do jogo nem assembly extraído</strong>. Não distribui ROM, imagem de disco nem build jogável, e precisa de uma cópia do jogo obtida legalmente para compilar. Veja o <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">LEGAL.md</a>.</div>
+    <div class="flinks">
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a href="https://bytematch.dev/Jovinull/sonicheroes" rel="noopener">ByteMatch</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">Aviso legal</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">Como contribuir</a>
+    </div>
+    <div class="copy">Mantido por Jovinull e <a href="https://github.com/Jovinull/sonicheroes/graphs/contributors" rel="noopener">seus contribuidores</a> · código sob licença MIT · projeto de fã, sem uso comercial.</div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

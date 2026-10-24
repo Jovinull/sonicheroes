@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sobre a decompilação de Sonic Heroes e perguntas frequentes</title>
+<meta name="description" content="O que é a decompilação de Sonic Heroes para GameCube, como funciona e respostas às perguntas mais comuns: é um port, dá para jogar, quando termina, usa IA e é legal.">
+<meta name="author" content="Jovinull">
+<link rel="canonical" href="https://jovinull.github.io/sonicheroes/pt-br/about/">
+<link rel="alternate" hreflang="en" href="https://jovinull.github.io/sonicheroes/about/">
+<link rel="alternate" hreflang="pt-BR" href="https://jovinull.github.io/sonicheroes/pt-br/about/">
+<link rel="alternate" hreflang="x-default" href="https://jovinull.github.io/sonicheroes/about/">
+<meta name="theme-color" content="#090d16">
+<link rel="icon" href="../../favicon.ico" sizes="32x32">
+<link rel="icon" href="../../icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sonic Heroes Decompilation">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Sobre a decompilação de Sonic Heroes e perguntas frequentes">
+<meta property="og:description" content="O que é a decompilação de Sonic Heroes para GameCube, como funciona e respostas às perguntas mais comuns: é um port, dá para jogar, quando termina, usa IA e é legal.">
+<meta property="og:url" content="https://jovinull.github.io/sonicheroes/pt-br/about/">
+<meta property="og:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sonic Heroes, a matching decompilation for the Nintendo GameCube">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sobre a decompilação de Sonic Heroes e perguntas frequentes">
+<meta name="twitter:description" content="O que é a decompilação de Sonic Heroes para GameCube, como funciona e respostas às perguntas mais comuns: é um port, dá para jogar, quando termina, usa IA e é legal.">
+<meta name="twitter:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<link rel="stylesheet" href="../../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Início",
+   "item": "https://jovinull.github.io/sonicheroes/pt-br/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Sobre e FAQ",
+   "item": "https://jovinull.github.io/sonicheroes/pt-br/about/"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "inLanguage": "pt-BR",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "O que é uma decompilação correspondente?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "É código-fonte escrito à mão que, compilado com o mesmo compilador usado pelos desenvolvedores, gera exatamente o mesmo código de máquina do jogo original. Cada função é comparada byte a byte, então o resultado não é uma aproximação: é a lógica do jogo recuperada em C e C++ legíveis."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Isto é um port para PC? Dá para jogar?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Não. Este repositório só reconstrói o executável original do GameCube, e só para quem fornece a própria cópia do jogo. Ele não gera nada jogável sozinho e não distribui dados do jogo."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Vai ter port para PC, Dreamcast ou outra plataforma?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Não por este projeto. Quando a decompilação estiver completa, outras pessoas poderão construir ports, mods ou correções em cima dela, e vários desenvolvedores de ports já disseram ter interesse. Seriam projetos separados. Os vídeos de \"Sonic Heroes no Dreamcast\" ou em outras plataformas que circulam hoje não são deste projeto e não se baseiam numa decompilação terminada."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Quando vai terminar?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Não há data. A página de progresso é atualizada a cada mudança e é a única resposta honesta."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Qual versão é decompilada, e por que GameCube?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A versão norte-americana de GameCube, revisão 0 (G9SE8P). Os jogos de GameCube foram compilados com versões conhecidas do Metrowerks CodeWarrior, e as ferramentas de decompilação correspondente do console (decomp-toolkit, objdiff) são maduras. Bater byte a byte builds de PC feitos com compiladores x86 do começo dos anos 2000 é bem menos previsível. As versões PAL e japonesa podem vir depois."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Vocês usam IA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Sim, e isso é declarado. Modelos de linguagem ajudam a escrever código, mas nada é aceito na confiança: uma função só conta como correspondente quando o objdiff mostra que ela é idêntica byte a byte ao original, e o CI recompila o jogo inteiro e confere o SHA-1 a cada mudança."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "O repositório contém o jogo?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Não. Ele não contém código do jogo, assets, imagens de disco nem assembly extraído, e compilar exige uma cópia do jogo obtida legalmente. Veja o LEGAL.md."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "De onde vêm os nomes das funções?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "O disco de GameCube não traz mapa de símbolos. Nomes e limites de arquivo são deduzidos de evidências dentro do binário do GameCube e de metadados de símbolos preservados em alguns builds de PlayStation 2 do jogo, usados só localmente como pista e sempre confirmados contra o código do GameCube."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Por que o progresso tem sido tão rápido?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Um compilador correspondente, nomes de símbolos da era do PS2, muito código compartilhado entre os módulos de fase (escrito uma vez e ligado em até 13 deles) e ferramentas assistidas por IA rodando em sessões longas. Cada uma dessas correspondências continua sendo conferida byte a byte."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Isto é afiliado à SEGA?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Não. Sonic Heroes e todas as marcas relacionadas pertencem à SEGA. Este é um projeto de fã, sem fins comerciais, de estudo e preservação. Não recebe dinheiro: sem anúncios, doações ou builds pagos."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Como posso ajudar?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Veja como contribuir. Não é preciso ter experiência com decompilação, e o Discord tem um canal para iniciantes."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="langbar" role="region" aria-label="Language">
+  <div class="wrap"><span>Esta página também está disponível em <a href="../../about/">inglês</a>.</span><button type="button">Fechar</button></div>
+</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../../pt-br/"><span class="tri" aria-hidden="true"><i></i><i></i><i></i></span>Sonic Heroes Decomp</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="../../pt-br/">Início</a><a href="../../pt-br/progress/">Progresso</a><a href="../../pt-br/about/" aria-current="page">Sobre e FAQ</a><a href="../../pt-br/credits/">Créditos</a><a href="../../pt-br/contribute/">Contribuir</a>
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a class="lang" href="../../about/" hreflang="en" lang="en" title="Read in English">EN</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../../pt-br/">Início</a> / <span aria-current="page">Sobre e FAQ</span></nav>
+  <h1>Sobre o projeto</h1>
+  <div class="lead"><p>A decompilação de Sonic Heroes é um esforço de código aberto, iniciado em julho de 2026 por Jovinull, para recuperar o código-fonte de <strong>Sonic Heroes</strong> (Sonic Team, 2003) para o Nintendo GameCube. Cada parte do jogo é reescrita em C ou C++ até que o compilador CodeWarrior original a transforme exatamente nos mesmos bytes que estão no disco original.</p><p>O projeto reconstrói o executável principal e os 17 módulos de overlay da versão norte-americana, e a integração contínua confere cada um deles contra os hashes originais a cada mudança. Não tem fins comerciais, não recebe dinheiro e não distribui nada do jogo.</p></div>
+</div></div>
+<section id="faq">
+  <div class="wrap faq">
+    <h2>Perguntas frequentes</h2>
+<details><summary>O que é uma decompilação correspondente?</summary><div><p>É código-fonte escrito à mão que, compilado com o mesmo compilador usado pelos desenvolvedores, gera exatamente o mesmo código de máquina do jogo original. Cada função é comparada byte a byte, então o resultado não é uma aproximação: é a lógica do jogo recuperada em C e C++ legíveis.</p></div></details>
+<details><summary>Isto é um port para PC? Dá para jogar?</summary><div><p>Não. Este repositório só reconstrói o executável original do GameCube, e só para quem fornece a própria cópia do jogo. Ele não gera nada jogável sozinho e não distribui dados do jogo.</p></div></details>
+<details><summary>Vai ter port para PC, Dreamcast ou outra plataforma?</summary><div><p>Não por este projeto. Quando a decompilação estiver completa, outras pessoas poderão construir ports, mods ou correções em cima dela, e vários desenvolvedores de ports já disseram ter interesse. Seriam projetos separados.</p><p>Os vídeos de "Sonic Heroes no Dreamcast" ou em outras plataformas que circulam hoje não são deste projeto e não se baseiam numa decompilação terminada.</p></div></details>
+<details><summary>Quando vai terminar?</summary><div><p>Não há data. A <a href="../progress/">página de progresso</a> é atualizada a cada mudança e é a única resposta honesta.</p></div></details>
+<details><summary>Qual versão é decompilada, e por que GameCube?</summary><div><p>A versão norte-americana de GameCube, revisão 0 (<code>G9SE8P</code>). Os jogos de GameCube foram compilados com versões conhecidas do Metrowerks CodeWarrior, e as ferramentas de decompilação correspondente do console (decomp-toolkit, objdiff) são maduras. Bater byte a byte builds de PC feitos com compiladores x86 do começo dos anos 2000 é bem menos previsível. As versões PAL e japonesa podem vir depois.</p></div></details>
+<details><summary>Vocês usam IA?</summary><div><p>Sim, e isso é declarado. Modelos de linguagem ajudam a escrever código, mas nada é aceito na confiança: uma função só conta como correspondente quando o objdiff mostra que ela é idêntica byte a byte ao original, e o CI recompila o jogo inteiro e confere o SHA-1 a cada mudança.</p></div></details>
+<details><summary>O repositório contém o jogo?</summary><div><p>Não. Ele não contém código do jogo, assets, imagens de disco nem assembly extraído, e compilar exige uma cópia do jogo obtida legalmente. Veja o <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">LEGAL.md</a>.</p></div></details>
+<details><summary>De onde vêm os nomes das funções?</summary><div><p>O disco de GameCube não traz mapa de símbolos. Nomes e limites de arquivo são deduzidos de evidências dentro do binário do GameCube e de metadados de símbolos preservados em alguns builds de PlayStation 2 do jogo, usados só localmente como pista e sempre confirmados contra o código do GameCube.</p></div></details>
+<details><summary>Por que o progresso tem sido tão rápido?</summary><div><p>Um compilador correspondente, nomes de símbolos da era do PS2, muito código compartilhado entre os módulos de fase (escrito uma vez e ligado em até 13 deles) e ferramentas assistidas por IA rodando em sessões longas. Cada uma dessas correspondências continua sendo conferida byte a byte.</p></div></details>
+<details><summary>Isto é afiliado à SEGA?</summary><div><p>Não. Sonic Heroes e todas as marcas relacionadas pertencem à SEGA. Este é um projeto de fã, sem fins comerciais, de estudo e preservação. Não recebe dinheiro: sem anúncios, doações ou builds pagos.</p></div></details>
+<details><summary>Como posso ajudar?</summary><div><p>Veja <a href="../contribute/">como contribuir</a>. Não é preciso ter experiência com decompilação, e o Discord tem um canal para iniciantes.</p></div></details>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="legal"><strong>Aviso legal.</strong> Isto não é aconselhamento jurídico. <strong>Sonic Heroes</strong> e todas as marcas relacionadas pertencem à <strong>SEGA</strong>. Este projeto não é afiliado, patrocinado nem endossado pela SEGA. É um projeto não comercial de estudo e preservação e <strong>não contém código do jogo, assets do jogo nem assembly extraído</strong>. Não distribui ROM, imagem de disco nem build jogável, e precisa de uma cópia do jogo obtida legalmente para compilar. Veja o <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">LEGAL.md</a>.</div>
+    <div class="flinks">
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a href="https://bytematch.dev/Jovinull/sonicheroes" rel="noopener">ByteMatch</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">Aviso legal</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">Como contribuir</a>
+    </div>
+    <div class="copy">Mantido por Jovinull e <a href="https://github.com/Jovinull/sonicheroes/graphs/contributors" rel="noopener">seus contribuidores</a> · código sob licença MIT · projeto de fã, sem uso comercial.</div>
+  </div>
+</footer>
+<script src="../../assets/site.js" defer></script>
+</body>
+</html>

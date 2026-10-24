@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decompilação de Sonic Heroes: código do GameCube reconstruído byte a byte</title>
+<meta name="description" content="Sonic Heroes (2003) está sendo decompilado para o Nintendo GameCube: código C e C++ que reconstrói o jogo original byte a byte. Progresso ao vivo, como funciona, FAQ e créditos. Sem fins comerciais, sem assets do jogo.">
+<meta name="author" content="Jovinull">
+<link rel="canonical" href="https://jovinull.github.io/sonicheroes/pt-br/">
+<link rel="alternate" hreflang="en" href="https://jovinull.github.io/sonicheroes/">
+<link rel="alternate" hreflang="pt-BR" href="https://jovinull.github.io/sonicheroes/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://jovinull.github.io/sonicheroes/">
+<meta name="theme-color" content="#090d16">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sonic Heroes Decompilation">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Decompilação de Sonic Heroes: código do GameCube reconstruído byte a byte">
+<meta property="og:description" content="Sonic Heroes (2003) está sendo decompilado para o Nintendo GameCube: código C e C++ que reconstrói o jogo original byte a byte. Progresso ao vivo, como funciona, FAQ e créditos. Sem fins comerciais, sem assets do jogo.">
+<meta property="og:url" content="https://jovinull.github.io/sonicheroes/pt-br/">
+<meta property="og:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sonic Heroes, a matching decompilation for the Nintendo GameCube">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Decompilação de Sonic Heroes: código do GameCube reconstruído byte a byte">
+<meta name="twitter:description" content="Sonic Heroes (2003) está sendo decompilado para o Nintendo GameCube: código C e C++ que reconstrói o jogo original byte a byte. Progresso ao vivo, como funciona, FAQ e créditos. Sem fins comerciais, sem assets do jogo.">
+<meta name="twitter:image" content="https://jovinull.github.io/sonicheroes/og.jpg">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "Sonic Heroes Decompilation",
+ "alternateName": "Sonic Heroes decomp",
+ "url": "https://jovinull.github.io/sonicheroes/",
+ "inLanguage": [
+  "en",
+  "pt-BR"
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "SoftwareSourceCode",
+ "name": "Sonic Heroes Decompilation",
+ "alternateName": [
+  "sonicheroes",
+  "Sonic Heroes decomp",
+  "Sonic Heroes GameCube decompilation"
+ ],
+ "description": "A work-in-progress, non-commercial matching decompilation of Sonic Heroes (2003) for the Nintendo GameCube: C and C++ source that rebuilds the retail game byte for byte. Contains no game code, assets or extracted assembly.",
+ "codeRepository": "https://github.com/Jovinull/sonicheroes",
+ "url": "https://jovinull.github.io/sonicheroes/",
+ "programmingLanguage": [
+  "C++",
+  "C"
+ ],
+ "runtimePlatform": "Nintendo GameCube",
+ "license": "https://opensource.org/licenses/MIT",
+ "author": {
+  "@type": "Person",
+  "name": "Jovinull",
+  "url": "https://github.com/Jovinull"
+ },
+ "about": {
+  "@type": "VideoGame",
+  "name": "Sonic Heroes",
+  "gamePlatform": "Nintendo GameCube",
+  "publisher": {
+   "@type": "Organization",
+   "name": "Sega"
+  },
+  "datePublished": "2003"
+ },
+ "keywords": "Sonic Heroes decompilation, Sonic Heroes decomp, Sonic Heroes source code, matching decompilation, GameCube, reverse engineering, game preservation, objdiff, decomp-toolkit, CodeWarrior"
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="langbar" role="region" aria-label="Language">
+  <div class="wrap"><span>Esta página também está disponível em <a href="../">inglês</a>.</span><button type="button">Fechar</button></div>
+</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../pt-br/"><span class="tri" aria-hidden="true"><i></i><i></i><i></i></span>Sonic Heroes Decomp</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="../pt-br/" aria-current="page">Início</a><a href="../pt-br/progress/">Progresso</a><a href="../pt-br/about/">Sobre e FAQ</a><a href="../pt-br/credits/">Créditos</a><a href="../pt-br/contribute/">Contribuir</a>
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a class="lang" href="../" hreflang="en" lang="en" title="Read in English">EN</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="hero">
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Nintendo GameCube · Decompilação correspondente</div>
+      <h1>Decompilação de <span>Sonic Heroes</span></h1>
+      <p class="sub">Uma decompilação em andamento e sem fins comerciais de <strong>Sonic Heroes</strong> (SEGA, 2003) para o Nintendo GameCube: código C e C++ que, compilado com os compiladores originais, reproduz o jogo original <em>byte a byte</em>. Sem código do jogo, sem assets, sem download.</p>
+      <div class="chips"><span class="chip">G9SE8P · NTSC-U · rev 0</span><span class="chip">main.dol + 17 módulos REL</span><span class="chip">Metrowerks CodeWarrior</span><span class="chip">SHA-1 verificado no CI</span></div>
+      <div class="cta"><a class="btn primary" href="https://github.com/Jovinull/sonicheroes" rel="noopener">Ver o código no GitHub</a><a class="btn " href="progress/" rel="noopener">Progresso ao vivo</a><a class="btn " href="https://discord.gg/VGCHZMXUWN" rel="noopener">Entrar no Discord</a></div>
+    </div>
+    <figure class="codecard">
+      <div class="cc-head"><span class="cc-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>src/rel/itembaloon_hooks.cpp</span></div>
+      <pre><code><span class="kw">extern</span> <span class="st">"C"</span> <span class="kw">void</span> <span class="fn">itembaloonObjectUnload</span>(<span class="kw">void</span>)
+{
+    <span class="fn">endObjItempanel</span>();
+    itembaloonResource = <span class="kw">NULL</span>;
+}
+
+<span class="kw">extern</span> <span class="st">"C"</span> <span class="kw">void</span> <span class="fn">itembaloonObjectLoad</span>(<span class="kw">void</span>)
+{
+    itembaloonResource =
+        <span class="fn">objPointerReadFromClumpAnim</span>(itembaloonModelName);
+    <span class="fn">initObjItempanel</span>();
+}</code></pre>
+      <div class="cc-foot"><span class="cc-ok">✓ objdiff</span><span>2/2 funções · 100% correspondente</span></div>
+      <figcaption class="sr-only">Código real do repositório: os hooks de descarga e carga do balão de itens.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section id="progress">
+  <div class="wrap">
+    <div class="eyebrow">Status ao vivo</div>
+    <h2>Progresso da decompilação</h2>
+    <p class="lead">Os números vêm do relatório do objdiff de cada build na <code>main</code>. Uma função só conta quando compila exatamente para os mesmos bytes do original. <a href="progress/">Progresso completo e marcos →</a></p>
+<div class="grid">
+  <div class="stat ">
+    <div class="k">Código correspondente</div>
+    <div class="v"><span data-num="code">35,4</span><small>%</small></div>
+    <div class="d"><span data-abs="code">4.618.108 / 13.039.060 bytes</span></div>
+    <div class="bar" role="progressbar" aria-label="Código correspondente" aria-valuemin="0" aria-valuemax="100" aria-valuenow="35.42"><i data-bar="code" style="width:35.42%"></i></div>
+  </div>
+  <div class="stat fly">
+    <div class="k">Dados correspondentes</div>
+    <div class="v"><span data-num="data">9,47</span><small>%</small></div>
+    <div class="d"><span data-abs="data">679.064 / 7.167.586 bytes</span></div>
+    <div class="bar" role="progressbar" aria-label="Dados correspondentes" aria-valuemin="0" aria-valuemax="100" aria-valuenow="9.47"><i data-bar="data" style="width:9.47%"></i></div>
+  </div>
+  <div class="stat power">
+    <div class="k">Funções correspondentes</div>
+    <div class="v"><span data-num="fn">52,6</span><small>%</small></div>
+    <div class="d"><span data-abs="fn">20.559 / 39.062 funções</span></div>
+    <div class="bar" role="progressbar" aria-label="Funções correspondentes" aria-valuemin="0" aria-valuemax="100" aria-valuenow="52.63"><i data-bar="fn" style="width:52.63%"></i></div>
+  </div>
+  <div class="stat ok">
+    <div class="k">Unidades completas</div>
+    <div class="v"><span data-num="units">66,6</span><small>%</small></div>
+    <div class="d"><span data-abs="units">11.012 / 16.538 unidades</span></div>
+    <div class="bar" role="progressbar" aria-label="Unidades completas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66.59"><i data-bar="units" style="width:66.59%"></i></div>
+  </div>
+</div>
+<div class="meta">
+  <span><span class="dot" aria-hidden="true"></span><span id="live-label">Última publicação: 2026-10-24</span></span>
+  <span>Último commit: <a class="mono" id="commit" href="https://github.com/Jovinull/sonicheroes/commits/main" rel="noopener">…</a></span>
+  <span id="updated"></span>
+</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Escopo</div>
+    <h2>O que este projeto é, e o que não é</h2>
+    <div class="cols">
+      <div class="panel yes"><h3>É</h3><ul><li>Código C, C++ e assembly inline escrito à mão</li><li>Verificado byte a byte contra o <code>main.dol</code> original e os 17 módulos REL</li><li>Um esforço sem fins comerciais de estudo e preservação</li><li>Conferido pelo CI: cada mudança recompila o DOL e todos os RELs e compara o SHA-1</li><li>Código aberto sob a licença MIT (apenas o nosso código)</li></ul></div>
+      <div class="panel no"><h3>Não é</h3><ul><li>Um jogo jogável, um port ou um download do jogo</li><li>Distribuição de ROM, imagem de disco ou asset do jogo</li><li>Distribuição de código binário original ou assembly extraído do disco</li><li>Afiliado ou endossado pela SEGA</li><li>Monetizado: sem anúncios, sem doações, sem builds pagos</li></ul></div>
+    </div>
+    <p class="note">Você precisa de uma cópia do jogo <strong>obtida legalmente</strong> para compilar qualquer coisa. Um build só serve para quem já tem o jogo.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="eyebrow">Método</div>
+    <h2>Como funciona uma decompilação correspondente</h2>
+    <p class="lead">O objetivo não é um código que apenas se comporte como o jogo. O objetivo é um código que, compilado com as ferramentas originais, gere <em>exatamente os mesmos bytes</em> do disco.</p>
+    <div class="how"><div class="panel accent-speed"><h3>Byte a byte</h3><p>Cada função é reescrita até que o resultado compilado seja idêntico ao original, conferido no <a href="https://github.com/encounter/objdiff" rel="noopener">objdiff</a>. Qualquer coisa menos que isso não conta.</p></div><div class="panel accent-fly"><h3>Ferramentas originais</h3><p>O jogo foi compilado com o Metrowerks CodeWarrior. As mesmas versões do compilador são baixadas na hora do build (e rodam pelo <a href="https://github.com/decompals/wibo" rel="noopener">wibo</a> no Linux e no macOS). Nenhum binário de compilador fica no repositório.</p></div><div class="panel accent-power"><h3>Verificado a cada mudança</h3><p>O disco não traz arquivo <code>.map</code>, então nomes e limites de arquivo são deduzidos por evidências. Cada push recompila o <code>main.dol</code> e os 17 RELs e confere o SHA-1 contra o disco original.</p></div></div>
+    <figure>
+      <img src="../objdiff.webp" width="1003" height="802" alt="objdiff showing a fully matching object" loading="lazy">
+      <figcaption>objdiff: um objeto correspondente, código original e recompilado lado a lado, todo verde.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Por quê</div>
+    <h2>Por que decompilar Sonic Heroes?</h2>
+    <div class="how"><div class="panel accent-speed"><h3>Preservação</h3><p>Sonic Heroes saiu em 2003 para GameCube, PlayStation 2, Xbox e PC. Um código legível é o registro mais durável de como um jogo funciona de verdade, muito depois de o hardware sumir.</p></div><div class="panel accent-fly"><h3>Entendimento</h3><p>A física, o sistema de formação dos três personagens, os objetos das fases e a renderização em RenderWare viram código documentado que qualquer pessoa pode ler, em vez de suposições.</p></div><div class="panel accent-power"><h3>Uma base</h3><p>Uma decompilação correspondente completa é a base em que ports de fãs, mods e correções costumam ser construídos. Este repositório só reproduz o jogo original; o que outras pessoas construírem depois é com elas.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Transparência</div>
+    <h2>Assistido por IA, verificado pelos bytes</h2>
+    <div class="panel accent-speed"><p>Modelos de linguagem ajudam a escrever partes desta decompilação, e dizemos isso abertamente. Eles nunca decidem o que está pronto: uma função só é marcada como correspondente quando os bytes compilados são idênticos aos do original no objdiff, e o CI recompila e confere o hash do jogo inteiro a cada mudança.</p><p>Essa verificação não é enganada por código que só parece certo. Código que não reproduz exatamente as instruções, os dados e as relocações do original simplesmente não entra como correspondente.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Marcos</div>
+    <h2>Marcos recentes</h2>
+<ol class="timeline">
+  <li><time datetime="2026-10-08">08/10/2026</time><h3>61 pull requests de reconstrução integrados</h3><p>Um lote grande de Cypress entra numa integração só (<a href="https://github.com/Jovinull/sonicheroes/pull/612" rel="noopener">#612</a>).</p></li>
+  <li><time datetime="2026-10-12">12/10/2026</time><h3><span class="pct">23,7%</span> do código</h3><p>O código compartilhado entre fases é escrito uma vez e ligado em todos os módulos que o usam, às vezes 13 de uma vez.</p></li>
+  <li><time datetime="2026-10-15">15/10/2026</time><h3>decomp.dev encerra o índice público</h3><p>O rastreador de progresso usado desde julho para de listar projetos. O acompanhamento passa para o ByteMatch, que lê os mesmos relatórios do CI.</p></li>
+  <li><time datetime="2026-10-24">24/10/2026</time><h3><span class="pct">35,4%</span> do código, mais da metade das funções</h3><p>20.559 de 39.062 funções correspondem, e todas as funções das bibliotecas do SDK estão prontas.</p></li>
+</ol>
+    <p><a href="progress/">Ver a linha do tempo completa →</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Comunidade</div>
+    <h2>Feito em público</h2>
+    <p class="lead">Pessoas das cenas de decompilação de GameCube, homebrew de Dreamcast e modding de Sonic ajudam desde o primeiro dia. Dúvidas, pesquisa e divisão de tarefas acontecem no Discord; o código passa por pull requests no GitHub.</p>
+    <div class="cta"><a class="btn" href="credits/" rel="noopener">Créditos e agradecimentos</a><a class="btn" href="contribute/" rel="noopener">Como contribuir</a><a class="btn" href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a></div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="legal"><strong>Aviso legal.</strong> Isto não é aconselhamento jurídico. <strong>Sonic Heroes</strong> e todas as marcas relacionadas pertencem à <strong>SEGA</strong>. Este projeto não é afiliado, patrocinado nem endossado pela SEGA. É um projeto não comercial de estudo e preservação e <strong>não contém código do jogo, assets do jogo nem assembly extraído</strong>. Não distribui ROM, imagem de disco nem build jogável, e precisa de uma cópia do jogo obtida legalmente para compilar. Veja o <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">LEGAL.md</a>.</div>
+    <div class="flinks">
+      <a href="https://github.com/Jovinull/sonicheroes" rel="noopener">GitHub</a>
+      <a href="https://discord.gg/VGCHZMXUWN" rel="noopener">Discord</a>
+      <a href="https://bytematch.dev/Jovinull/sonicheroes" rel="noopener">ByteMatch</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md" rel="noopener">Aviso legal</a>
+      <a href="https://github.com/Jovinull/sonicheroes/blob/main/CONTRIBUTING.md" rel="noopener">Como contribuir</a>
+    </div>
+    <div class="copy">Mantido por Jovinull e <a href="https://github.com/Jovinull/sonicheroes/graphs/contributors" rel="noopener">seus contribuidores</a> · código sob licença MIT · projeto de fã, sem uso comercial.</div>
+  </div>
+</footer>
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
