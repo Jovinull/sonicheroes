@@ -4965,6 +4965,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/redleaves_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/redleaves_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
