@@ -10276,6 +10276,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/shachi_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/shachi_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
