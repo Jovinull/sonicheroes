@@ -3835,6 +3835,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj456dice_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj456dice_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
