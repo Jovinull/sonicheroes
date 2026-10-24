@@ -3830,6 +3830,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/aligator_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/aligator_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
