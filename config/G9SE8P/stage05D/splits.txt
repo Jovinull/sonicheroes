@@ -2170,6 +2170,9 @@ rel/big_dice_dtor.cpp:
 rel/big_dice_ctor.cpp:
 	.text       start:0x00084DEC end:0x00084EF0
 
+rel/bigdice_hooks.cpp:
+	.text       start:0x00084FA8 end:0x00085014
+
 rel/big_dice_create.cpp:
 	.text       start:0x000851E0 end:0x0008530C
 
