@@ -1735,6 +1735,9 @@ rel/hintring_render.cpp:
 rel/hintring_rgb.cpp:
 	.text       start:0x000704C4 end:0x00070518
 
+rel/hintring_rgb_u32.cpp:
+	.text       start:0x00070790 end:0x000707DC
+
 rel/hintring_register.cpp:
 	.text       start:0x000707DC end:0x000708B0
 	.ctors      start:0x000000B8 end:0x000000BC

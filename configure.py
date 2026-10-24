@@ -1948,6 +1948,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/hintring_rgb_u32.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/hintring_rgb.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
