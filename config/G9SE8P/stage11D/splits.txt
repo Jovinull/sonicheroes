@@ -1003,6 +1003,9 @@ rel/enemy_mgun_calc_fire_vector.cpp:
 rel/enemy_mgun_calc_bullet.cpp:
 	.text       start:0x00036AD0 end:0x00036BA8
 
+rel/enemy_mgun_bullet_alive.cpp:
+	.text       start:0x00036FD0 end:0x00037024
+
 rel/enemy_mgun_bullet_ctor.cpp:
 	.text       start:0x00037024 end:0x00037060
 

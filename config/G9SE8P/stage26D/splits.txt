@@ -819,6 +819,9 @@ rel/enemy_mgun_calc_fire_vector.cpp:
 rel/enemy_mgun_calc_bullet.cpp:
 	.text       start:0x0002F698 end:0x0002F770
 
+rel/enemy_mgun_bullet_alive.cpp:
+	.text       start:0x0002FB98 end:0x0002FBEC
+
 rel/enemy_mgun_bullet_ctor.cpp:
 	.text       start:0x0002FBEC end:0x0002FC28
 
