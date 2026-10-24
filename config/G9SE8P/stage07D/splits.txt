@@ -2267,6 +2267,9 @@ rel/train_top_dtor.cpp:
 rel/train_top_ctor.cpp:
 	.text       start:0x00095D2C end:0x00095E2C
 
+rel/traintop_hooks.cpp:
+	.text       start:0x00095E30 end:0x00095F18
+
 rel/train_top_create.cpp:
 	.text       start:0x00095F18 end:0x00096040
 
