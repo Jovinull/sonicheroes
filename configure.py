@@ -7442,6 +7442,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/formgate_callback.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/formgate_sub_check.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

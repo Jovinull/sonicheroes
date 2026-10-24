@@ -1325,6 +1325,9 @@ rel/formgate_load.cpp:
 rel/formgate_create.cpp:
 	.text       start:0x0004CDE4 end:0x0004CE2C
 
+rel/formgate_callback.cpp:
+	.text       start:0x0004CE2C end:0x0004CF40
+
 rel/formgate_register.cpp:
 	.text       start:0x0004CF40 end:0x0004CFE8
 	.ctors      start:0x000000A8 end:0x000000AC
