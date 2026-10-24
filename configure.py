@@ -5865,6 +5865,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14d_eggman_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14d_eggman_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -2482,6 +2482,9 @@ rel/s14d_eggman_dtor.cpp:
 rel/s14d_eggman_ctor.cpp:
 	.text       start:0x000D3904 end:0x000D3A68
 
+rel/s14d_eggman_hooks.cpp:
+	.text       start:0x000D3A68 end:0x000D3B68
+
 rel/s14d_eggman_create.cpp:
 	.text       start:0x000D3B68 end:0x000D3CF4
 
