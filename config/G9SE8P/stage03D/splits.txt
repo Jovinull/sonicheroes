@@ -2088,6 +2088,9 @@ rel/s04d_e_cylinder_register.cpp:
 rel/s04d_elevator_edit.cpp:
 	.text       start:0x00094254 end:0x00094294
 
+rel/s04d_elevator_hooks.cpp:
+	.text       start:0x00094A94 end:0x00094CEC
+
 rel/s04d_elevator_create.cpp:
 	.text       start:0x00094CEC end:0x00094D34
 
