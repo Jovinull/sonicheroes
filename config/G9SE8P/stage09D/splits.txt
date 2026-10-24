@@ -1897,6 +1897,9 @@ rel/floatj_register.cpp:
 rel/froggreen_reset.cpp:
 	.text       start:0x00076E38 end:0x00076E3C
 
+rel/froggreen_unload.cpp:
+	.text       start:0x00076E3C end:0x00076EA4
+
 rel/froggreen_create.cpp:
 	.text       start:0x00077134 end:0x0007717C
 
