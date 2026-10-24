@@ -10381,6 +10381,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_pole_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_pole_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
