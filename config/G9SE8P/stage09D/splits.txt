@@ -1867,6 +1867,9 @@ rel/bush_reset.cpp:
 rel/bush_unload.cpp:
 	.text       start:0x000714FC end:0x00071548
 
+rel/bush_load.cpp:
+	.text       start:0x00071548 end:0x0007163C
+
 rel/bush_register.cpp:
 	.text       start:0x000717F0 end:0x000718A0
 	.ctors      start:0x000000C0 end:0x000000C4
