@@ -6445,6 +6445,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/sida_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/sida_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
