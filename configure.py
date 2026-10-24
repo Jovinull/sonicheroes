@@ -6790,6 +6790,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traincore_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traincore_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
