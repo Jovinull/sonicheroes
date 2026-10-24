@@ -2035,6 +2035,9 @@ rel/bush_zenmai_dtor.cpp:
 rel/bush_zenmai_ctor.cpp:
 	.text       start:0x00094738 end:0x00094850
 
+rel/bush_zenmai_edit.cpp:
+	.text       start:0x00094850 end:0x0009489C
+
 rel/bush_zenmai_create.cpp:
 	.text       start:0x00094A74 end:0x00094BB4
 
