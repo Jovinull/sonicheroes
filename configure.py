@@ -3975,6 +3975,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobinair_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobinair_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
