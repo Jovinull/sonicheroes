@@ -3895,6 +3895,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigslot_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigslot_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
