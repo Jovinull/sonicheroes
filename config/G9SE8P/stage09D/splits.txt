@@ -2255,6 +2255,9 @@ rel/dispfruit_edit.cpp:
 rel/dispfruit_hooks.cpp:
 	.text       start:0x00095D64 end:0x00095DB4
 
+rel/dispfruit_load.cpp:
+	.text       start:0x00095DB4 end:0x00095EA8
+
 rel/dispfruit_create.cpp:
 	.text       start:0x00095F3C end:0x00095F84
 
