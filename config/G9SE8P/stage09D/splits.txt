@@ -1992,6 +1992,9 @@ rel/rainivy_register.cpp:
 	.text       start:0x0008581C end:0x000858CC
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/rainleaf_hooks.cpp:
+	.text       start:0x00087030 end:0x00087060
+
 rel/rainleaf_register.cpp:
 	.text       start:0x00087148 end:0x000871F8
 	.ctors      start:0x00000104 end:0x00000108

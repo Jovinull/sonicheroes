@@ -4930,6 +4930,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainleaf_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainleaf_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
