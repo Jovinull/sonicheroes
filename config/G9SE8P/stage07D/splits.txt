@@ -2282,6 +2282,9 @@ rel/trainappear_register.cpp:
 	.text       start:0x0008E78C end:0x0008E83C
 	.ctors      start:0x0000013C end:0x00000140
 
+rel/traincapsule_create.cpp:
+	.text       start:0x0008F760 end:0x0008F7A8
+
 rel/traincapsule_register.cpp:
 	.text       start:0x0008F7A8 end:0x0008F858
 	.ctors      start:0x00000140 end:0x00000144
