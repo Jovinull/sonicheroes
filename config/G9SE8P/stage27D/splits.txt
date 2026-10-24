@@ -1782,6 +1782,9 @@ rel/s13_cloud_register.cpp:
 	.text       start:0x00078F1C end:0x00079058
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/s14_thunder_set3_edit.cpp:
+	.text       start:0x00079600 end:0x00079668
+
 rel/s14_thunder_set3_dtor.cpp:
 	.text       start:0x00079668 end:0x000796F4
 

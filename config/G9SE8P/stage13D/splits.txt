@@ -2490,6 +2490,9 @@ rel/s14_roadside_a_register.cpp:
 	.text       start:0x000C9A54 end:0x000C9B70
 	.ctors      start:0x00000188 end:0x0000018C
 
+rel/s14_thunder_set3_edit.cpp:
+	.text       start:0x000CA0BC end:0x000CA124
+
 rel/s14_thunder_set3_dtor.cpp:
 	.text       start:0x000CA124 end:0x000CA1B0
 
