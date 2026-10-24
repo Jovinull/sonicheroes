@@ -3950,6 +3950,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigfireworks_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigfireworks_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
