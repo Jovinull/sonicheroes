@@ -2013,6 +2013,9 @@ rel/s13_senkan_shut_register.cpp:
 	.text       start:0x00078908 end:0x000789B0
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/s13_houdai_yoko_edit.cpp:
+	.text       start:0x0007DFCC end:0x0007E018
+
 rel/s13_houdai_yoko_create.cpp:
 	.text       start:0x0007E610 end:0x0007E658
 
