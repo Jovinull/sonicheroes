@@ -2127,6 +2127,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ring_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ring_object_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
