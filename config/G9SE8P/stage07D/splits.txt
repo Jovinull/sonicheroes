@@ -1880,6 +1880,9 @@ rel/railwatersupply_register.cpp:
 rel/barrel_hooks.cpp:
 	.text       start:0x000724D4 end:0x00072538
 
+rel/barrel_load.cpp:
+	.text       start:0x00072538 end:0x00072664
+
 rel/barrel_create.cpp:
 	.text       start:0x00072664 end:0x000726AC
 
