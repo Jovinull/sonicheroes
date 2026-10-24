@@ -2204,6 +2204,9 @@ rel/bushzenmai_register.cpp:
 rel/dispfruit_dtor.cpp:
 	.text       start:0x00095880 end:0x00095968
 
+rel/dispfruit_edit.cpp:
+	.text       start:0x00095D18 end:0x00095D64
+
 rel/dispfruit_hooks.cpp:
 	.text       start:0x00095D64 end:0x00095DB4
 
