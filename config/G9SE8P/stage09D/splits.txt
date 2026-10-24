@@ -1966,6 +1966,9 @@ rel/powder_ctor.cpp:
 rel/powder_hooks.cpp:
 	.text       start:0x00080114 end:0x00080180
 
+rel/powder_load.cpp:
+	.text       start:0x00080180 end:0x00080218
+
 rel/powder_create.cpp:
 	.text       start:0x00080218 end:0x000802FC
 
