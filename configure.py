@@ -5075,6 +5075,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/reafredgreen_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/reafredgreen_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
