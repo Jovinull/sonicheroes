@@ -4615,6 +4615,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/mushanim_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/mushanim_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
