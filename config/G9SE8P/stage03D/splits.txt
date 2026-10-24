@@ -2148,6 +2148,9 @@ rel/s04d_shutter_register.cpp:
 	.text       start:0x00099914 end:0x000999BC
 	.ctors      start:0x00000124 end:0x00000128
 
+rel/s04_wall_hooks.cpp:
+	.text       start:0x00099F48 end:0x0009A184
+
 rel/s04_wall_register.cpp:
 	.text       start:0x0009A318 end:0x0009A3B4
 	.ctors      start:0x00000128 end:0x0000012C
