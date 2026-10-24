@@ -4290,6 +4290,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/leafaa_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/leafaa_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

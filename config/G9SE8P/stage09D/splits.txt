@@ -1904,6 +1904,9 @@ rel/leafaa_edit.cpp:
 	.text       start:0x0007ABE8 end:0x0007AC0C
 	.rodata     start:0x00001388 end:0x0000138C
 
+rel/leafaa_hooks.cpp:
+	.text       start:0x0007AC0C end:0x0007AC5C
+
 rel/leaf_aa_create.cpp:
 	.text       start:0x0007ACD8 end:0x0007AE00
 
