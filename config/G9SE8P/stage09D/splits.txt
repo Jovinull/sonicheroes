@@ -1883,6 +1883,9 @@ rel/butterfly_reset.cpp:
 rel/butterfly_unload.cpp:
 	.text       start:0x00072728 end:0x00072790
 
+rel/butterfly_load.cpp:
+	.text       start:0x00072790 end:0x000728A4
+
 rel/butterfly_create.cpp:
 	.text       start:0x00072938 end:0x00072980
 
