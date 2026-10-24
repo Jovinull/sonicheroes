@@ -1890,6 +1890,9 @@ rel/barrel_register.cpp:
 rel/bigcannon_hooks.cpp:
 	.text       start:0x00073AB0 end:0x00073B14
 
+rel/bigcannon_create.cpp:
+	.text       start:0x00073C24 end:0x00073C6C
+
 rel/bigcannon_register.cpp:
 	.text       start:0x00073C6C end:0x00073D1C
 	.ctors      start:0x000000C8 end:0x000000CC
