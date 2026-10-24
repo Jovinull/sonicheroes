@@ -2178,6 +2178,9 @@ rel/rail_poll_gor_dtor.cpp:
 rel/rail_poll_gor_ctor.cpp:
 	.text       start:0x0008A764 end:0x0008A8CC
 
+rel/railpollgor_hooks.cpp:
+	.text       start:0x0008A8D0 end:0x0008A9F0
+
 rel/rail_poll_gor_create.cpp:
 	.text       start:0x0008A9F0 end:0x0008AB80
 
