@@ -1922,6 +1922,9 @@ rel/dfan_register.cpp:
 rel/duct_dtor.cpp:
 	.text       start:0x0007A834 end:0x0007A920
 
+rel/duct_hooks.cpp:
+	.text       start:0x0007ABCC end:0x0007ACB4
+
 rel/duct_register.cpp:
 	.text       start:0x0007ACFC end:0x0007ADAC
 	.ctors      start:0x000000DC end:0x000000E0
