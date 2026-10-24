@@ -2552,6 +2552,9 @@ rel/tutaetc_reset.cpp:
 rel/tutaetc_unload.cpp:
 	.text       start:0x000A7DC8 end:0x000A7E40
 
+rel/tutaetc_load.cpp:
+	.text       start:0x000A7E40 end:0x000A808C
+
 rel/tutaetc_create.cpp:
 	.text       start:0x000A808C end:0x000A80D4
 
