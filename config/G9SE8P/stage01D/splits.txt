@@ -1955,6 +1955,9 @@ rel/s01_koware_register.cpp:
 	.text       start:0x00085F54 end:0x00085FEC
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s01_move_iseki_hooks.cpp:
+	.text       start:0x00087F48 end:0x00088270
+
 rel/s01_move_iseki_create.cpp:
 	.text       start:0x00088270 end:0x000882B8
 

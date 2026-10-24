@@ -3263,6 +3263,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s01_move_iseki_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s01_move_iseki_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
