@@ -4095,6 +4095,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/crossing_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/crossing_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

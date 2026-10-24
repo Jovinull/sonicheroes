@@ -1901,6 +1901,9 @@ rel/bridge_register.cpp:
 	.text       start:0x00074678 end:0x00074728
 	.ctors      start:0x000000CC end:0x000000D0
 
+rel/crossing_hooks.cpp:
+	.text       start:0x00077758 end:0x000777C4
+
 rel/crossing_register.cpp:
 	.text       start:0x00077A88 end:0x00077B38
 	.ctors      start:0x000000D0 end:0x000000D4
