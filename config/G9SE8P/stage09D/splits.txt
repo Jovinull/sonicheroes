@@ -2187,6 +2187,9 @@ rel/dispfruit_register.cpp:
 	.text       start:0x00095F84 end:0x00096034
 	.ctors      start:0x00000134 end:0x00000138
 
+rel/reafredgreen_reset.cpp:
+	.text       start:0x00096F94 end:0x00096F98
+
 rel/reafredgreen_create.cpp:
 	.text       start:0x000970C0 end:0x00097108
 
