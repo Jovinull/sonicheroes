@@ -2072,6 +2072,9 @@ rel/rail_chimney_dtor.cpp:
 rel/rail_chimney_ctor.cpp:
 	.text       start:0x000848A4 end:0x000849BC
 
+rel/railchimney_hooks.cpp:
+	.text       start:0x000849C0 end:0x00084AA8
+
 rel/rail_chimney_create.cpp:
 	.text       start:0x00084AA8 end:0x00084BE8
 
