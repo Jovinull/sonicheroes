@@ -2403,6 +2403,9 @@ rel/x_sign_dtor.cpp:
 rel/x_sign_ctor.cpp:
 	.text       start:0x0009DE6C end:0x0009DF6C
 
+rel/xSign_reset.cpp:
+	.text       start:0x0009DFB8 end:0x0009DFBC
+
 rel/x_sign_create.cpp:
 	.text       start:0x0009E0DC end:0x0009E204
 
