@@ -1987,6 +1987,9 @@ rel/rainfruit_register.cpp:
 	.text       start:0x00082ED4 end:0x00082F84
 	.ctors      start:0x000000F8 end:0x000000FC
 
+rel/rainfruitmi_hooks.cpp:
+	.text       start:0x0008427C end:0x00084340
+
 rel/rainfruitmi_register.cpp:
 	.text       start:0x000844D0 end:0x00084570
 	.ctors      start:0x000000FC end:0x00000100

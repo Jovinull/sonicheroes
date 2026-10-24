@@ -4930,6 +4930,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainfruitmi_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainfruitmi_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
