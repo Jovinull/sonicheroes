@@ -4055,6 +4055,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/casinodush_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/casinodush_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

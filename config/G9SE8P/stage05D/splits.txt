@@ -2373,6 +2373,9 @@ rel/yajirusi_register.cpp:
 	.text       start:0x0009FA10 end:0x0009FAC0
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/casinodush_hooks.cpp:
+	.text       start:0x000A2930 end:0x000A2A50
+
 rel/casinodush_register.cpp:
 	.text       start:0x000A2C78 end:0x000A2D28
 	.ctors      start:0x00000148 end:0x0000014C
