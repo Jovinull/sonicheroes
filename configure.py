@@ -5905,6 +5905,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04d_ball_glass_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04d_ball_glass_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
