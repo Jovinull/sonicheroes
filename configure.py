@@ -5630,6 +5630,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_tsuitate_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_tsuitate_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
