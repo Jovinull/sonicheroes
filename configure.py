@@ -4040,6 +4040,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bingopanel_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bingopanel_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
