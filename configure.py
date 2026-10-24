@@ -6280,6 +6280,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_laser_sign_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_laser_sign_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
