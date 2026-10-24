@@ -6670,6 +6670,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traintrain_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traintrain_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
