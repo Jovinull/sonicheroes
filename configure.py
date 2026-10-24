@@ -7425,6 +7425,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_rail_cap_fore_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_rail_cap_fore_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
