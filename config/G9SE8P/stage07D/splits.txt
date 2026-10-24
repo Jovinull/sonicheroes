@@ -1927,6 +1927,9 @@ rel/destructrail_register.cpp:
 	.text       start:0x00078F78 end:0x00079018
 	.ctors      start:0x000000D4 end:0x000000D8
 
+rel/dfan_hooks.cpp:
+	.text       start:0x00079C30 end:0x00079C94
+
 rel/dfan_register.cpp:
 	.text       start:0x00079E08 end:0x00079EB8
 	.ctors      start:0x000000D8 end:0x000000DC
