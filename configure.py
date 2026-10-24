@@ -5560,6 +5560,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_missilepod_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_missilepod_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
