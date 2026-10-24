@@ -195,6 +195,9 @@ rel/scroll_ring_field_ctor.cpp:
 rel/scattered_ring_exec.cpp:
 	.text       start:0x00009F1C end:0x0000A02C
 
+rel/scattered_ring_dtor.cpp:
+	.text       start:0x0000A02C end:0x0000A100
+
 rel/ring_object_tdisp.cpp:
 	.text       start:0x0000A730 end:0x0000A7A8
 
