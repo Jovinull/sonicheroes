@@ -2261,6 +2261,9 @@ rel/train_change_switch_dtor.cpp:
 rel/train_change_switch_ctor.cpp:
 	.text       start:0x0009271C end:0x00092870
 
+rel/trainchangeswitch_hooks.cpp:
+	.text       start:0x0009289C end:0x00092908
+
 rel/train_change_switch_create.cpp:
 	.text       start:0x000929A0 end:0x00092B1C
 
