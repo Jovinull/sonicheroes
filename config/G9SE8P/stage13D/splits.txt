@@ -2380,6 +2380,9 @@ rel/s14_laser_light_register.cpp:
 	.text       start:0x000C6168 end:0x000C6210
 	.ctors      start:0x00000174 end:0x00000178
 
+rel/s14_railend_sign_hooks.cpp:
+	.text       start:0x000C6AFC end:0x000C6BFC
+
 rel/s14_railend_sign_register.cpp:
 	.text       start:0x000C6F08 end:0x000C6FA0
 	.ctors      start:0x00000178 end:0x0000017C

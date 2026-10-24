@@ -5780,6 +5780,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_railend_sign_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_railend_sign_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
