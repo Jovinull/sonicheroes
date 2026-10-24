@@ -1929,7 +1929,7 @@ rel/froggreen_register.cpp:
 	.ctors      start:0x000000D0 end:0x000000D4
 
 rel/ivyjump_hooks.cpp:
-	.text       start:0x00079250 end:0x000792B4
+	.text       start:0x00079250 end:0x000794B4
 
 rel/ivyjump_create.cpp:
 	.text       start:0x00079548 end:0x00079590
