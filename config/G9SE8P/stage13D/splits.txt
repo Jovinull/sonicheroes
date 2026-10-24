@@ -2501,6 +2501,9 @@ rel/s14d_crush_dtor.cpp:
 rel/s14d_crush_ctor.cpp:
 	.text       start:0x000D5618 end:0x000D577C
 
+rel/s14d_crush_hooks.cpp:
+	.text       start:0x000D577C end:0x000D587C
+
 rel/s14d_crush_create.cpp:
 	.text       start:0x000D587C end:0x000D5A08
 
