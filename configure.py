@@ -5700,6 +5700,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/slotsmall_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/slotsmall_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

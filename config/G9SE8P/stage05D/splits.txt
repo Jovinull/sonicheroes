@@ -2302,6 +2302,9 @@ rel/slotlarge_register.cpp:
 	.text       start:0x00097384 end:0x00097434
 	.ctors      start:0x00000124 end:0x00000128
 
+rel/slotsmall_hooks.cpp:
+	.text       start:0x00099098 end:0x000991B8
+
 rel/slotsmall_register.cpp:
 	.text       start:0x00099200 end:0x000992B0
 	.ctors      start:0x00000128 end:0x0000012C
