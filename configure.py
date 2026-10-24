@@ -2128,7 +2128,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/s02_breakruin_s_unload.cpp",
+                "rel/s02_breakruin_s_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

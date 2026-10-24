@@ -2054,8 +2054,8 @@ rel/s02_break_ruin_l_register.cpp:
 rel/s02_breakruin_s_hierarchy.cpp:
 	.text       start:0x00099D60 end:0x00099E74
 
-rel/s02_breakruin_s_unload.cpp:
-	.text       start:0x0009C170 end:0x0009C190
+rel/s02_breakruin_s_hooks.cpp:
+	.text       start:0x0009C170 end:0x0009C1F0
 
 rel/s02_breakruin_s_create.cpp:
 	.text       start:0x0009C1F0 end:0x0009C238
