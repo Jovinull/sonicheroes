@@ -1983,6 +1983,9 @@ rel/pepe_register.cpp:
 rel/pond_reset.cpp:
 	.text       start:0x0007EBA0 end:0x0007EBA4
 
+rel/pond_unload.cpp:
+	.text       start:0x0007EBA4 end:0x0007EC14
+
 rel/pond_register.cpp:
 	.text       start:0x0007EEB4 end:0x0007EF64
 	.ctors      start:0x000000EC end:0x000000F0
