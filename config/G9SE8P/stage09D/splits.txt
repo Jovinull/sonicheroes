@@ -2000,6 +2000,9 @@ rel/rainfruitmi_register.cpp:
 rel/rainivy_hooks.cpp:
 	.text       start:0x0008567C end:0x000856C4
 
+rel/rainivy_create.cpp:
+	.text       start:0x000857D4 end:0x0008581C
+
 rel/rainivy_register.cpp:
 	.text       start:0x0008581C end:0x000858CC
 	.ctors      start:0x00000100 end:0x00000104
