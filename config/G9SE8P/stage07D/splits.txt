@@ -2039,6 +2039,9 @@ rel/rail_cap_en_dtor.cpp:
 rel/rail_cap_en_ctor.cpp:
 	.text       start:0x00082984 end:0x00082AEC
 
+rel/railcapen_hooks.cpp:
+	.text       start:0x00082AF0 end:0x00082C10
+
 rel/rail_cap_en_create.cpp:
 	.text       start:0x00082C10 end:0x00082DA0
 
