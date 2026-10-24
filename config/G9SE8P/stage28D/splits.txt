@@ -189,6 +189,9 @@ rel/scroll_ring_disp.cpp:
 rel/scroll_ring_field_dtor.cpp:
 	.text       start:0x00009BCC end:0x00009C3C
 
+rel/scroll_ring_field_init.cpp:
+	.text       start:0x00009C3C end:0x00009DF0
+
 rel/scroll_ring_field_ctor.cpp:
 	.text       start:0x00009DF0 end:0x00009F1C
 
