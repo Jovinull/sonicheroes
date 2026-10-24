@@ -5665,6 +5665,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_egg_cap_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_egg_cap_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
