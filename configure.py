@@ -4615,6 +4615,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pond_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pond_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
