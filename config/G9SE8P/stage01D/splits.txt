@@ -1942,6 +1942,9 @@ rel/kamome_register.cpp:
 rel/s01_koware_unload.cpp:
 	.text       start:0x00085B38 end:0x00085BA8
 
+rel/s01_koware_load.cpp:
+	.text       start:0x00085BA8 end:0x00085CD0
+
 rel/s01_koware_register.cpp:
 	.text       start:0x00085F54 end:0x00085FEC
 	.ctors      start:0x000000E0 end:0x000000E4
