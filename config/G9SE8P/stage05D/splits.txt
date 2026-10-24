@@ -2336,6 +2336,9 @@ rel/roulette_dtor.cpp:
 rel/roulette_ctor.cpp:
 	.text       start:0x00092BA0 end:0x00092CB8
 
+rel/roulette_edit.cpp:
+	.text       start:0x00092CB8 end:0x00092D04
+
 rel/roulette_hooks.cpp:
 	.text       start:0x00092D04 end:0x00092DEC
 
