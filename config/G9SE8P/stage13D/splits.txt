@@ -1977,6 +1977,9 @@ rel/key_register.cpp:
 	.text       start:0x00070DC0 end:0x00070E58
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/s13_houdai_s_hooks.cpp:
+	.text       start:0x00074CC4 end:0x00074EB0
+
 rel/s13_houdai_fix_create.cpp:
 	.text       start:0x00074EB0 end:0x00074EFC
 
