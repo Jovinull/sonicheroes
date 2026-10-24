@@ -2383,6 +2383,9 @@ rel/xxx_sign_dtor.cpp:
 rel/xxx_sign_ctor.cpp:
 	.text       start:0x0009E7DC end:0x0009E8DC
 
+rel/xxxsign_hooks.cpp:
+	.text       start:0x0009E8E0 end:0x0009E930
+
 rel/xxx_sign_create.cpp:
 	.text       start:0x0009EA04 end:0x0009EB2C
 
