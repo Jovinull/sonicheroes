@@ -2272,6 +2272,9 @@ rel/s14_thunder_ctor.cpp:
 rel/s14_thunder_create.cpp:
 	.text       start:0x000A1054 end:0x000A1188
 
+rel/s14_thunder_hooks.cpp:
+	.text       start:0x000A1188 end:0x000A12A0
+
 rel/s14_thunder_register.cpp:
 	.text       start:0x000A12A0 end:0x000A13F4
 	.ctors      start:0x00000148 end:0x0000014C
