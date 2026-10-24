@@ -1986,6 +1986,9 @@ rel/s13_houdai_register.cpp:
 	.text       start:0x0008635C end:0x0008654C
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/capture_object_unload.cpp:
+	.text       start:0x0008E1A8 end:0x0008E248
+
 rel/capture_object_create.cpp:
 	.text       start:0x0008E640 end:0x0008E688
 

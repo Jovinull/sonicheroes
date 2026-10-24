@@ -2754,6 +2754,9 @@ rel/pawn_strategy.cpp:
 	.ctors      start:0x000001A8 end:0x000001AC
 	.data       start:0x00083550 end:0x000838C4
 
+rel/capture_object_unload.cpp:
+	.text       start:0x000D9DBC end:0x000D9E5C
+
 rel/capture_object_create.cpp:
 	.text       start:0x000DA254 end:0x000DA29C
 
