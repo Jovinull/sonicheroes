@@ -1,8 +1,12 @@
 #include "types.h"
 
-// The trispring family's Reset and Unload hooks (trispringReset and
-// trispringUnload here): nothing to reset; the model files' models are
-// released. Its Load does more than load the files and is not here.
+// The trispring family's Reset, Unload and Load hooks (trispringReset,
+// trispringUnload and trispringLoad here): nothing to reset; the model files'
+// models are released; the module's texture dictionary is made current, the
+// family's material animation is set up and the module's model archive is read
+// and each model file's model loaded, its atomics going through the family's
+// callback when it loads and it is handed to the module's texture setup with
+// the family's texture name prefix.
 
 // One of the module's model files: its name, the archive it is read from, the
 // world slot its clones go into, and the model once loaded.
@@ -15,7 +19,31 @@ struct ModelFile {
 
 extern "C" ModelFile trispringModelFiles[4];
 
+// the family's material animation (fn_8015C6F8 and its neighbours set it up)
+typedef struct MatAnim {
+	u8 unk00[0x18];
+} MatAnim;
+
+extern "C" MatAnim trispringMatAnim;
+extern "C" char trispringTexturePrefix[];
+extern "C" u8 lbl_5_bss_2668[];
+extern "C" u8* lbl_8042C1D0;
+extern "C" u8* lbl_8042C298;
+extern "C" u8 lbl_802FF5A0[];
+
 extern "C" void fn_80150958(void* clump);
+extern "C" void fn_801A4C84(void* resource);
+extern "C" void fn_8015C728(MatAnim* anim);
+extern "C" void fn_8015C6F8(MatAnim* anim, s32 a, s32 b);
+extern "C" void fn_8015C704(MatAnim* anim, s32 a, s32 b);
+extern "C" void fn_8015C710(MatAnim* anim, s32 a, s32 b, s32 c);
+extern "C" void fn_8015C720(MatAnim* anim, s32 a);
+extern "C" void fn_8014FFBC(void* clump, void* (*callback)(void*), void* data);
+extern "C" void* fn_5_9D6DC(void* atomic);
+extern "C" void fn_5_A0238(void* setup, void* clump, char* prefix, s32 a, s32 b, s32 c);
+extern "C" void LoadOneFile__7ONEFILEFPc(void* onefile, void* name);
+extern "C" void* CheckFileID__7ONEFILEFPc(void* onefile, const char* name);
+extern "C" void* LoadClumpEx__7ONEFILEFUiPc(void* onefile, void* id, void* archive);
 
 extern "C" void trispringReset(void) { }
 
@@ -28,5 +56,27 @@ extern "C" void trispringUnload(void)
 			fn_80150958(files[i].model);
 			files[i].model = NULL;
 		}
+	}
+}
+
+extern "C" void trispringLoad(void)
+{
+	fn_801A4C84(*(void**)(lbl_8042C1D0 + 0x8C18));
+	fn_8015C728(&trispringMatAnim);
+	fn_8015C6F8(&trispringMatAnim, 3, 4);
+	fn_8015C704(&trispringMatAnim, 1, 0);
+	fn_8015C710(&trispringMatAnim, 1, 3, 8);
+	fn_8015C720(&trispringMatAnim, 0);
+	LoadOneFile__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	ModelFile* files = trispringModelFiles;
+
+	for (int i = 0; i < 4; i++) {
+		files[i].model = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), files[i].name),
+		    files[i].archive);
+		if (files[i].model != NULL) {
+			fn_8014FFBC(files[i].model, fn_5_9D6DC, NULL);
+		}
+		fn_5_A0238(lbl_5_bss_2668, files[i].model, trispringTexturePrefix, 1, 2, 20);
 	}
 }
