@@ -4645,6 +4645,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railenden_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railenden_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
