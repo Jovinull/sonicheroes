@@ -2452,6 +2452,9 @@ rel/xxx_sign_ctor.cpp:
 rel/xxxsign_hooks.cpp:
 	.text       start:0x0009E8E0 end:0x0009E930
 
+rel/xxxsign_load.cpp:
+	.text       start:0x0009E930 end:0x0009EA04
+
 rel/xxx_sign_create.cpp:
 	.text       start:0x0009EA04 end:0x0009EB2C
 
