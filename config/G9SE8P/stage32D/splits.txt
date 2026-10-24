@@ -1257,6 +1257,9 @@ rel/propeller_check_collision.cpp:
 rel/propeller_player_position.cpp:
 	.text       start:0x0004726C end:0x00047414
 
+rel/propeller_handle_position.cpp:
+	.text       start:0x00047E9C end:0x00047FBC
+
 rel/propeller_dtor.cpp:
 	.text       start:0x00048A6C end:0x00048B4C
 
