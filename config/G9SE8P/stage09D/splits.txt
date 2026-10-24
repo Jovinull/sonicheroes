@@ -2163,6 +2163,9 @@ rel/stop_rain_dtor.cpp:
 rel/stop_rain_ctor.cpp:
 	.text       start:0x0008D100 end:0x0008D1F4
 
+rel/stoprain_edit.cpp:
+	.text       start:0x0008D1F4 end:0x0008D270
+
 rel/stoprain_hooks.cpp:
 	.text       start:0x0008D270 end:0x0008D274
 
