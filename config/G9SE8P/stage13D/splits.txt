@@ -2149,6 +2149,9 @@ rel/pawn_strategy.cpp:
 	.ctors      start:0x00000138 end:0x0000013C
 	.data       start:0x000194F8 end:0x0001986C
 
+rel/s14_bomb_switch_create.cpp:
+	.text       start:0x0009DB98 end:0x0009DBE0
+
 rel/s14_bomb_switch_register.cpp:
 	.text       start:0x0009DBE4 end:0x0009DC8C
 	.ctors      start:0x0000013C end:0x00000140
