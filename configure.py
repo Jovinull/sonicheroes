@@ -5990,6 +5990,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04d_energy_up_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04d_energy_up_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
