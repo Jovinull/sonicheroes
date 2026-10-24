@@ -2051,6 +2051,9 @@ rel/s04d_e_cylinder_edit.cpp:
 rel/s04d_e_cylinder_unload.cpp:
 	.text       start:0x00092368 end:0x000923F4
 
+rel/s04d_e_cylinder_load.cpp:
+	.text       start:0x000923F4 end:0x0009253C
+
 rel/s04d_ecylinder_create.cpp:
 	.text       start:0x0009253C end:0x00092584
 
