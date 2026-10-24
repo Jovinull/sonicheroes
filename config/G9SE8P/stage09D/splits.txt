@@ -1858,6 +1858,9 @@ rel/o_setDamegeCollision.cpp:
 	.data       start:0x0000719C end:0x00007280
 	.bss        start:0x000010A8 end:0x000010D8
 
+rel/bush_edit.cpp:
+	.text       start:0x000714C8 end:0x000714F8
+
 rel/bush_reset.cpp:
 	.text       start:0x000714F8 end:0x000714FC
 
