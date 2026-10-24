@@ -1308,6 +1308,9 @@ rel/propeller_ctor.cpp:
 rel/propeller_create_all.cpp:
 	.text       start:0x00049354 end:0x00049480
 
+rel/propeller_reset.cpp:
+	.text       start:0x00049480 end:0x00049484
+
 rel/propeller_unload.cpp:
 	.text       start:0x00049484 end:0x00049530
 
