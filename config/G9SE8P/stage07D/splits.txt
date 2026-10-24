@@ -2151,6 +2151,9 @@ rel/railchimney_register.cpp:
 rel/raildash_hooks.cpp:
 	.text       start:0x00085F28 end:0x00085F94
 
+rel/raildash_load.cpp:
+	.text       start:0x00085F94 end:0x0008602C
+
 rel/raildash_create.cpp:
 	.text       start:0x0008602C end:0x00086074
 
