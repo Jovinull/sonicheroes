@@ -1975,6 +1975,9 @@ rel/rail_barbwire_ctor.cpp:
 rel/rail_barbwire_edit.cpp:
 	.text       start:0x0007F648 end:0x0007F658
 
+rel/railburbwire_hooks.cpp:
+	.text       start:0x0007F658 end:0x0007F740
+
 rel/rail_barbwire_create.cpp:
 	.text       start:0x0007F740 end:0x0007F880
 
