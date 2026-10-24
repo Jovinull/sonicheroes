@@ -198,6 +198,9 @@ rel/ring_object_disp.cpp:
 rel/ring_object_storage.cpp:
 	.text       start:0x0000AF14 end:0x0000AF20
 
+rel/ring_object_dtor.cpp:
+	.text       start:0x0000AF20 end:0x0000B008
+
 rel/ring_tdisp.cpp:
 	.text       start:0x0000B334 end:0x0000B5D4
 
