@@ -4595,6 +4595,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/froggreen_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/froggreen_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
