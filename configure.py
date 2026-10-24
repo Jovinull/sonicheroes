@@ -4190,6 +4190,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/crossing_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/crossing_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
