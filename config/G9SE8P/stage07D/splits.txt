@@ -1909,6 +1909,9 @@ rel/bridge_dtor.cpp:
 rel/bridge_ctor.cpp:
 	.text       start:0x0007431C end:0x0007441C
 
+rel/bridge_edit.cpp:
+	.text       start:0x0007441C end:0x00074468
+
 rel/bridge_hooks.cpp:
 	.text       start:0x00074468 end:0x00074550
 

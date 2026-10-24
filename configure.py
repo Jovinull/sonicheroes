@@ -4125,6 +4125,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bridge_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bridge_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
