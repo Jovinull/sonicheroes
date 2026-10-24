@@ -2072,6 +2072,9 @@ rel/tsukushi_register.cpp:
 	.text       start:0x0008E174 end:0x0008E224
 	.ctors      start:0x00000120 end:0x00000124
 
+rel/aligator_create.cpp:
+	.text       start:0x00093324 end:0x0009336C
+
 rel/aligator_register.cpp:
 	.text       start:0x0009336C end:0x0009341C
 	.ctors      start:0x00000128 end:0x0000012C
