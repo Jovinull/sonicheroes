@@ -2325,6 +2325,9 @@ rel/train_change_board_ctor.cpp:
 rel/trainchangeboard_hooks.cpp:
 	.text       start:0x000905B0 end:0x0009061C
 
+rel/trainchangeboard_load.cpp:
+	.text       start:0x0009061C end:0x000906B4
+
 rel/train_change_board_create.cpp:
 	.text       start:0x000906B4 end:0x00090818
 
