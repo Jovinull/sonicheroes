@@ -3900,6 +3900,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigcannontop_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigcannontop_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
