@@ -2224,6 +2224,9 @@ rel/s14_thunder_set2_edit.cpp:
 rel/s14_thunder_set2_dtor.cpp:
 	.text       start:0x000A0548 end:0x000A05D4
 
+rel/s14_thunder_set_edit.cpp:
+	.text       start:0x000A0E78 end:0x000A0EB8
+
 rel/s14_thunder_dtor.cpp:
 	.text       start:0x000A0EB8 end:0x000A0F48
 

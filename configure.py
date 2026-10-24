@@ -5960,6 +5960,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_thunder_set_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_bigmovship_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
