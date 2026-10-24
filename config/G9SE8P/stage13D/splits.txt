@@ -2407,6 +2407,9 @@ rel/s14_ring_light_register.cpp:
 	.text       start:0x000C823C end:0x000C82D4
 	.ctors      start:0x00000180 end:0x00000184
 
+rel/s14_roadlight_hooks.cpp:
+	.text       start:0x000C8B68 end:0x000C8C68
+
 rel/s14_roadlight_register.cpp:
 	.text       start:0x000C8F3C end:0x000C8FE4
 	.ctors      start:0x00000184 end:0x00000188

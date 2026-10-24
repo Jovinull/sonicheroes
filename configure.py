@@ -5815,6 +5815,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_roadlight_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_roadlight_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
