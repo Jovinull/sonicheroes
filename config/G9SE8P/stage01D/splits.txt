@@ -1973,6 +1973,9 @@ rel/o_s01_taihostull.cpp:
 	.data       start:0x0000B59C end:0x0000B610
 	.bss        start:0x000017B8 end:0x000017F4
 
+rel/s01_truck_rail_create.cpp:
+	.text       start:0x0008FA14 end:0x0008FA5C
+
 rel/s01_truck_rail_register.cpp:
 	.text       start:0x0008FBCC end:0x0008FC74
 	.ctors      start:0x000000F8 end:0x000000FC

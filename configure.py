@@ -9256,6 +9256,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s01_truck_rail_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s01_truck_rail_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
