@@ -6840,6 +6840,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/e2000_object_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/e2000_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

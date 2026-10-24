@@ -2268,6 +2268,9 @@ rel/capture_collision_register.cpp:
 rel/e2000_turn_to_aim.cpp:
 	.text       start:0x000AECC4 end:0x000AED40
 
+rel/e2000_object_create.cpp:
+	.text       start:0x000B22F8 end:0x000B2340
+
 rel/e2000_object_register.cpp:
 	.text       start:0x000B2370 end:0x000B246C
 	.ctors      start:0x0000015C end:0x00000160
