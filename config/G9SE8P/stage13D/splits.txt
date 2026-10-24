@@ -1312,6 +1312,9 @@ rel/propeller_register.cpp:
 rel/particle_ping_pong.cpp:
 	.text       start:0x0004A31C end:0x0004A33C
 
+rel/itempanel_effect_all.cpp:
+	.text       start:0x0004A4B4 end:0x0004A624
+
 rel/particle_chain.cpp:
 	.text       start:0x0004AC38 end:0x0004AD48
 

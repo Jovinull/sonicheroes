@@ -1876,6 +1876,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/itempanel_effect_all.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/itempanel_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
