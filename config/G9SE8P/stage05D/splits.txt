@@ -2388,7 +2388,7 @@ rel/slotsmall_register.cpp:
 	.ctors      start:0x00000128 end:0x0000012C
 
 rel/springblk_hooks.cpp:
-	.text       start:0x0009A3D8 end:0x0009A444
+	.text       start:0x0009A3D8 end:0x0009A554
 
 rel/springblk_create.cpp:
 	.text       start:0x0009A5E8 end:0x0009A630
