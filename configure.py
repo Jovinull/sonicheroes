@@ -5160,6 +5160,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainfruit_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainfruit_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
