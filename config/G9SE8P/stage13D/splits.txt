@@ -2137,6 +2137,9 @@ rel/s13_bigmovship_register.cpp:
 	.text       start:0x00092C78 end:0x00092D20
 	.ctors      start:0x00000124 end:0x00000128
 
+rel/s13d_rail_arrow3_create.cpp:
+	.text       start:0x00093C24 end:0x00093C70
+
 rel/s13d_rail_arrow_1_register.cpp:
 	.text       start:0x00093CBC end:0x00093DE8
 	.ctors      start:0x00000128 end:0x0000012C

@@ -6890,6 +6890,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_rail_arrow3_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_rail_arrow_1_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
