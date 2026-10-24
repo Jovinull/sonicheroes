@@ -2268,6 +2268,9 @@ rel/bumper_register.cpp:
 	.text       start:0x0008B5B8 end:0x0008B668
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/casinodoor_reset.cpp:
+	.text       start:0x0008C520 end:0x0008C524
+
 rel/casinodoor_create.cpp:
 	.text       start:0x0008C7E8 end:0x0008C830
 
