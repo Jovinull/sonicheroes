@@ -2438,6 +2438,9 @@ rel/obj_se_collision_register.cpp:
 	.text       start:0x000A7170 end:0x000A7204
 	.ctors      start:0x00000170 end:0x00000174
 
+rel/tutaetc_reset.cpp:
+	.text       start:0x000A7DC4 end:0x000A7DC8
+
 rel/tutaetc_create.cpp:
 	.text       start:0x000A808C end:0x000A80D4
 
