@@ -2016,6 +2016,9 @@ rel/rainivy_register.cpp:
 rel/rainleaf_hooks.cpp:
 	.text       start:0x00087030 end:0x00087060
 
+rel/rainleaf_load.cpp:
+	.text       start:0x00087060 end:0x00087100
+
 rel/rainleaf_create.cpp:
 	.text       start:0x00087100 end:0x00087148
 

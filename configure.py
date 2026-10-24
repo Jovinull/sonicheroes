@@ -5110,6 +5110,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainleaf_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainleaf_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
