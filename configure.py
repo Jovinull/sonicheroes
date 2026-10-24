@@ -7620,6 +7620,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02d_kameashi_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02d_kameashi_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
