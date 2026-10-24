@@ -2726,6 +2726,9 @@ rel/tenkyu_dtor.cpp:
 rel/tenkyu_ctor.cpp:
 	.text       start:0x000C99C0 end:0x000C9AC0
 
+rel/tenkyu_hooks.cpp:
+	.text       start:0x000C9AC4 end:0x000C9BAC
+
 rel/tenkyu_create.cpp:
 	.text       start:0x000C9BAC end:0x000C9CD4
 
