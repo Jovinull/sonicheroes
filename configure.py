@@ -4290,6 +4290,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/destructrail_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/destructrail_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

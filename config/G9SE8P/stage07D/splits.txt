@@ -1938,6 +1938,9 @@ rel/destruct_rail_ctor.cpp:
 rel/destructrail_reset.cpp:
 	.text       start:0x00078C90 end:0x00078C94
 
+rel/destructrail_unload.cpp:
+	.text       start:0x00078C94 end:0x00078D0C
+
 rel/destruct_rail_create.cpp:
 	.text       start:0x00078E8C end:0x00078F78
 
