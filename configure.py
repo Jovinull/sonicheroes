@@ -5295,6 +5295,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainivy_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainivy_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

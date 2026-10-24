@@ -2054,6 +2054,9 @@ rel/rainfruitmi_register.cpp:
 	.text       start:0x000844D0 end:0x00084570
 	.ctors      start:0x000000FC end:0x00000100
 
+rel/rainivy_edit.cpp:
+	.text       start:0x00085628 end:0x0008567C
+
 rel/rainivy_hooks.cpp:
 	.text       start:0x0008567C end:0x000856C4
 
