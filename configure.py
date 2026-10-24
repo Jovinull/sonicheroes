@@ -7555,6 +7555,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_tower_neon_a_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_tower_neon_a_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
