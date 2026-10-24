@@ -2503,6 +2503,9 @@ rel/room_pillar_dtor.cpp:
 rel/room_pillar_ctor.cpp:
 	.text       start:0x000C87B4 end:0x000C88CC
 
+rel/roompillar_hooks.cpp:
+	.text       start:0x000C88D0 end:0x000C89B8
+
 rel/room_pillar_create.cpp:
 	.text       start:0x000C89B8 end:0x000C8AF8
 

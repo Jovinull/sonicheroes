@@ -4755,6 +4755,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/roompillar_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/roompillar_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
