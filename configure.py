@@ -5695,6 +5695,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_sign_board_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_sign_board_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
