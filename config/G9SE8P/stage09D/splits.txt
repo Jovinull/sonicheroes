@@ -2031,6 +2031,9 @@ rel/rainfloor_register.cpp:
 	.text       start:0x00080FB0 end:0x00081060
 	.ctors      start:0x000000F4 end:0x000000F8
 
+rel/rainfruit_edit.cpp:
+	.text       start:0x00082BEC end:0x00082C30
+
 rel/rainfruit_reset.cpp:
 	.text       start:0x00082C30 end:0x00082C34
 
