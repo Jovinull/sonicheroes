@@ -1944,6 +1944,9 @@ rel/kazariobj_reset.cpp:
 rel/kazariobj_unload.cpp:
 	.text       start:0x00079FD0 end:0x0007A038
 
+rel/kazariobj_load.cpp:
+	.text       start:0x0007A038 end:0x0007A14C
+
 rel/kazariobj_register.cpp:
 	.text       start:0x0007A3BC end:0x0007A46C
 	.ctors      start:0x000000D8 end:0x000000DC
