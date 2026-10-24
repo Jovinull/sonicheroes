@@ -6285,6 +6285,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/slotlarge_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/slotlarge_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
