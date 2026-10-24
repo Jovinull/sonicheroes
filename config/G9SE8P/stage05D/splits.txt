@@ -2475,7 +2475,7 @@ rel/yajirusi_ctor.cpp:
 	.text       start:0x0009F4CC end:0x0009F620
 
 rel/yajirusi_hooks.cpp:
-	.text       start:0x0009F72C end:0x0009F798
+	.text       start:0x0009F72C end:0x0009F894
 
 rel/yajirusi_create.cpp:
 	.text       start:0x0009F894 end:0x0009FA10
