@@ -2032,6 +2032,9 @@ rel/s13_houdai_yoko_register.cpp:
 rel/s13_houdai_l_edit.cpp:
 	.text       start:0x00080E84 end:0x00080F24
 
+rel/s13_houdai_l_hooks.cpp:
+	.text       start:0x00081504 end:0x000816B8
+
 rel/s13_houdai_l_create.cpp:
 	.text       start:0x000816B8 end:0x00081700
 
