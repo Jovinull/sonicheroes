@@ -6225,6 +6225,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/watersurface_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/watersurface_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

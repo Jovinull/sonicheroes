@@ -2123,6 +2123,9 @@ rel/waterplant_register.cpp:
 rel/water_surface_dtor.cpp:
 	.text       start:0x0009CE08 end:0x0009CEE4
 
+rel/watersurface_hooks.cpp:
+	.text       start:0x0009CFE0 end:0x0009D030
+
 rel/water_surface_create.cpp:
 	.text       start:0x0009D0E4 end:0x0009D204
 
