@@ -2321,6 +2321,9 @@ rel/s20d_whale_stone_register.cpp:
 	.text       start:0x000BC130 end:0x000BC1DC
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/s20d_lighthouse_hooks.cpp:
+	.text       start:0x000BC914 end:0x000BC9B0
+
 rel/s20d_lighthouse_register.cpp:
 	.text       start:0x000BCB98 end:0x000BCC34
 	.ctors      start:0x00000144 end:0x00000148
