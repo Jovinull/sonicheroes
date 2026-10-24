@@ -4180,6 +4180,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/glassfloor_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/glassfloor_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

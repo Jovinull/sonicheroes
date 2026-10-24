@@ -2256,6 +2256,9 @@ rel/flipper_register.cpp:
 	.text       start:0x000904B4 end:0x00090564
 	.ctors      start:0x00000114 end:0x00000118
 
+rel/glassfloor_hooks.cpp:
+	.text       start:0x000912DC end:0x000913FC
+
 rel/glassfloor_register.cpp:
 	.text       start:0x00091444 end:0x000914F4
 	.ctors      start:0x00000118 end:0x0000011C
