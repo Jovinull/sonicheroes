@@ -8697,6 +8697,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_thunder_set2_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_thunder_set2_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

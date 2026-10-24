@@ -2206,6 +2206,9 @@ stage13D/o_s14_laser_colli.cpp:
 	.data       start:0x0001A020 end:0x0001A320
 	.bss        start:0x00001B8C end:0x00001BC4
 
+rel/s14_thunder_set2_edit.cpp:
+	.text       start:0x000A04E0 end:0x000A0548
+
 rel/s14_thunder_set2_dtor.cpp:
 	.text       start:0x000A0548 end:0x000A05D4
 
