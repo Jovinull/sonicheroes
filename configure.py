@@ -7405,6 +7405,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_senkan_far_move_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_senkan_far_move_top_l_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
