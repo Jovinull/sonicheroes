@@ -5695,6 +5695,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04_e_bubble_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04_e_bubble_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
