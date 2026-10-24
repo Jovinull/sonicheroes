@@ -2270,6 +2270,9 @@ rel/456dice_register.cpp:
 rel/flipper_edit.cpp:
 	.text       start:0x00090268 end:0x00090304
 
+rel/flipper_hooks.cpp:
+	.text       start:0x00090304 end:0x00090370
+
 rel/flipper_register.cpp:
 	.text       start:0x000904B4 end:0x00090564
 	.ctors      start:0x00000114 end:0x00000118

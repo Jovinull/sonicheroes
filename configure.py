@@ -4185,6 +4185,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/flipper_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/flipper_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
