@@ -1958,6 +1958,9 @@ rel/s01_koware_register.cpp:
 rel/s01_move_iseki_create.cpp:
 	.text       start:0x00088270 end:0x000882B8
 
+rel/wave_hooks.cpp:
+	.text       start:0x00089108 end:0x000893F0
+
 rel/wave_create.cpp:
 	.text       start:0x000893F0 end:0x00089438
 
