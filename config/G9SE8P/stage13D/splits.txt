@@ -2019,6 +2019,9 @@ rel/s13_senkan_shut_register.cpp:
 rel/s13_houdai_yoko_edit.cpp:
 	.text       start:0x0007DFCC end:0x0007E018
 
+rel/s13_houdai_yoko_hooks.cpp:
+	.text       start:0x0007E508 end:0x0007E610
+
 rel/s13_houdai_yoko_create.cpp:
 	.text       start:0x0007E610 end:0x0007E658
 
