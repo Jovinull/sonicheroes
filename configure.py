@@ -3825,6 +3825,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bigcannon_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bigcannon_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
