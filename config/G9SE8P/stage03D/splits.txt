@@ -2042,6 +2042,9 @@ rel/s04_egg_cap_elev_register.cpp:
 rel/s04d_e_cylinder_edit.cpp:
 	.text       start:0x00091AD0 end:0x00091B60
 
+rel/s04d_e_cylinder_unload.cpp:
+	.text       start:0x00092368 end:0x000923F4
+
 rel/s04d_ecylinder_create.cpp:
 	.text       start:0x0009253C end:0x00092584
 
