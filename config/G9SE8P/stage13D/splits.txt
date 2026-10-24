@@ -1980,6 +1980,9 @@ rel/key_register.cpp:
 rel/s13_houdai_fix_create.cpp:
 	.text       start:0x00074EB0 end:0x00074EFC
 
+rel/s14_houdai_hi_create.cpp:
+	.text       start:0x00074EFC end:0x00074F48
+
 rel/s13_houdai_register.cpp:
 	.text       start:0x00074F94 end:0x00075184
 	.ctors      start:0x000000DC end:0x000000E0

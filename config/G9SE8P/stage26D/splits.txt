@@ -1985,6 +1985,9 @@ rel/unbreakable_bob_container_register.cpp:
 rel/s13_houdai_fix_create.cpp:
 	.text       start:0x00086278 end:0x000862C4
 
+rel/s14_houdai_hi_create.cpp:
+	.text       start:0x000862C4 end:0x00086310
+
 rel/s13_houdai_register.cpp:
 	.text       start:0x0008635C end:0x0008654C
 	.ctors      start:0x000000E8 end:0x000000EC
