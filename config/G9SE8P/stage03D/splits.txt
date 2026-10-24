@@ -2276,6 +2276,9 @@ rel/s04_solar_robo_register.cpp:
 	.text       start:0x000A8AA0 end:0x000A8B4C
 	.ctors      start:0x0000014C end:0x00000150
 
+rel/s04d_crane_hooks.cpp:
+	.text       start:0x000A93C0 end:0x000A9520
+
 rel/s04d_crane_register.cpp:
 	.text       start:0x000A97E4 end:0x000A9890
 	.ctors      start:0x00000150 end:0x00000154
