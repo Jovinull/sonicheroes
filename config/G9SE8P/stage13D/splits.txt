@@ -2147,6 +2147,9 @@ rel/s13d_rail_arrow_1_register.cpp:
 	.text       start:0x00093CBC end:0x00093DE8
 	.ctors      start:0x00000128 end:0x0000012C
 
+rel/s13d_rail_cap_back_create.cpp:
+	.text       start:0x00094974 end:0x000949C0
+
 rel/s13d_rail_cap_fore_register.cpp:
 	.text       start:0x00094A0C end:0x00094B38
 	.ctors      start:0x0000012C end:0x00000130
