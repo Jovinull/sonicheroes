@@ -2252,6 +2252,9 @@ rel/s14_thunder_light_dtor.cpp:
 rel/s14_thunder_chain.cpp:
 	.text       start:0x000A20F4 end:0x000A21B4
 
+rel/s14_laser_beam_edit.cpp:
+	.text       start:0x000A397C end:0x000A39C8
+
 rel/s14_laser_beam_dtor.cpp:
 	.text       start:0x000A39C8 end:0x000A3A58
 
