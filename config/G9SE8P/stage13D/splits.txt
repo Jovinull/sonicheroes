@@ -207,6 +207,9 @@ rel/scattered_ring_ctor.cpp:
 rel/scattered_ring_scatter.cpp:
 	.text       start:0x0000A300 end:0x0000A508
 
+rel/scattered_ring_scatter_se.cpp:
+	.text       start:0x0000A508 end:0x0000A734
+
 rel/ring_object_tdisp.cpp:
 	.text       start:0x0000A734 end:0x0000A7AC
 
