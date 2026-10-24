@@ -475,6 +475,9 @@ rel/unbreakable_container_register.cpp:
 	.text       start:0x00014CA0 end:0x00014D48
 	.ctors      start:0x0000003C end:0x00000040
 
+rel/cannon_smoke_tdisp.cpp:
+	.text       start:0x00014EE4 end:0x00015030
+
 rel/cannon_smoke_dtor.cpp:
 	.text       start:0x00015470 end:0x00015500
 

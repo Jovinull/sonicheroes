@@ -8851,6 +8851,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/cannon_smoke_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/cannon_smoke_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
