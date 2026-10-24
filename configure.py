@@ -7495,6 +7495,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_holea_neon_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_holea_neon_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
