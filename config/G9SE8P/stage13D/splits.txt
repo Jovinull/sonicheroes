@@ -1977,6 +1977,9 @@ rel/key_register.cpp:
 	.text       start:0x00070DC0 end:0x00070E58
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/s13_houdai_s_hooks.cpp:
+	.text       start:0x00074CC4 end:0x00074EB0
+
 rel/s13_houdai_fix_create.cpp:
 	.text       start:0x00074EB0 end:0x00074EFC
 
@@ -1990,6 +1993,9 @@ rel/s13_houdai_register.cpp:
 	.text       start:0x00074F94 end:0x00075184
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/s13_senkan_yuka_edit.cpp:
+	.text       start:0x00077474 end:0x00077564
+
 rel/s13_senkan_yuka_hooks.cpp:
 	.text       start:0x000777EC end:0x000778EC
 
@@ -1999,6 +2005,9 @@ rel/s13_senkan_yuka_create.cpp:
 rel/s13_senkan_yuka_register.cpp:
 	.text       start:0x00077AFC end:0x00077BA4
 	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/s13_senkan_shut_edit.cpp:
+	.text       start:0x00078298 end:0x000782DC
 
 rel/s13_senkan_shut_hooks.cpp:
 	.text       start:0x000787C0 end:0x000788C0
@@ -2010,12 +2019,24 @@ rel/s13_senkan_shut_register.cpp:
 	.text       start:0x00078908 end:0x000789B0
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/s13_houdai_yoko_edit.cpp:
+	.text       start:0x0007DFCC end:0x0007E018
+
+rel/s13_houdai_yoko_hooks.cpp:
+	.text       start:0x0007E508 end:0x0007E610
+
 rel/s13_houdai_yoko_create.cpp:
 	.text       start:0x0007E610 end:0x0007E658
 
 rel/s13_houdai_yoko_register.cpp:
 	.text       start:0x0007E658 end:0x0007E700
 	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/s13_houdai_l_edit.cpp:
+	.text       start:0x00080E84 end:0x00080F24
+
+rel/s13_houdai_l_hooks.cpp:
+	.text       start:0x00081504 end:0x000816B8
 
 rel/s13_houdai_l_create.cpp:
 	.text       start:0x000816B8 end:0x00081700
@@ -2024,12 +2045,21 @@ rel/s13_houdai_l_register.cpp:
 	.text       start:0x00081700 end:0x000817A8
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/s13_houdai_fumi_edit.cpp:
+	.text       start:0x00082CB0 end:0x00082CF0
+
+rel/s13_houdai_fumi_hooks.cpp:
+	.text       start:0x00083110 end:0x00083218
+
 rel/s13_houdai_fumi_create.cpp:
 	.text       start:0x00083218 end:0x00083260
 
 rel/s13_houdai_fumi_register.cpp:
 	.text       start:0x00083260 end:0x00083308
 	.ctors      start:0x000000F0 end:0x000000F4
+
+rel/s13_senkan_mov_edit.cpp:
+	.text       start:0x000840D0 end:0x000840F4
 
 rel/s13_senkan_mov_hooks.cpp:
 	.text       start:0x00084518 end:0x00084618
@@ -2057,6 +2087,9 @@ rel/s13_tsuitate_register.cpp:
 	.text       start:0x00084FE4 end:0x0008507C
 	.ctors      start:0x000000F8 end:0x000000FC
 
+rel/s13_senkan_belt_edit.cpp:
+	.text       start:0x00085898 end:0x000858BC
+
 rel/s13_senkan_belt_hooks.cpp:
 	.text       start:0x00085CB8 end:0x00085DB8
 
@@ -2073,6 +2106,9 @@ rel/s13_missilepod_hooks.cpp:
 rel/s13_missilepod_register.cpp:
 	.text       start:0x000867F4 end:0x00086890
 	.ctors      start:0x00000100 end:0x00000104
+
+rel/s13d_bigfan_edit.cpp:
+	.text       start:0x00086C80 end:0x00086CA4
 
 rel/s13d_bigfan_hooks.cpp:
 	.text       start:0x00086F60 end:0x00087060
@@ -2118,9 +2154,18 @@ stage13D/o_s13_blinklight.cpp:
 rel/s13d_senkan_far_create.cpp:
 	.text       start:0x0008C12C end:0x0008CF2C
 
+rel/s13d_senkan_far_move_edit.cpp:
+	.text       start:0x0008E19C end:0x0008E280
+
+rel/s13d_senkan_far_move_top_l_hooks.cpp:
+	.text       start:0x0008F300 end:0x0008F468
+
 rel/s13d_senkan_far_move_top_l_register.cpp:
 	.text       start:0x0008F468 end:0x0008FC40
 	.ctors      start:0x00000118 end:0x0000011C
+
+rel/s13d_senkan_middle1_hooks.cpp:
+	.text       start:0x00090A6C end:0x00090BD4
 
 rel/s13d_senkan_middle2_create.cpp:
 	.text       start:0x00090BD4 end:0x00090C20
@@ -2146,6 +2191,9 @@ rel/s13_bigmovship_register.cpp:
 	.text       start:0x00092C78 end:0x00092D20
 	.ctors      start:0x00000124 end:0x00000128
 
+rel/s13d_rail_arrow_1_hooks.cpp:
+	.text       start:0x00093ABC end:0x00093C24
+
 rel/s13d_rail_arrow3_create.cpp:
 	.text       start:0x00093C24 end:0x00093C70
 
@@ -2155,6 +2203,9 @@ rel/s13d_rail_arrow1_create.cpp:
 rel/s13d_rail_arrow_1_register.cpp:
 	.text       start:0x00093CBC end:0x00093DE8
 	.ctors      start:0x00000128 end:0x0000012C
+
+rel/s13d_rail_cap_fore_hooks.cpp:
+	.text       start:0x0009480C end:0x00094974
 
 rel/s13d_rail_cap_back_create.cpp:
 	.text       start:0x00094974 end:0x000949C0
@@ -2185,12 +2236,21 @@ rel/pawn_strategy.cpp:
 	.ctors      start:0x00000138 end:0x0000013C
 	.data       start:0x000194F8 end:0x0001986C
 
+rel/s14_bomb_switch_edit.cpp:
+	.text       start:0x0009D0B4 end:0x0009D110
+
+rel/s14_bomb_switch_hooks.cpp:
+	.text       start:0x0009DA98 end:0x0009DB98
+
 rel/s14_bomb_switch_create.cpp:
 	.text       start:0x0009DB98 end:0x0009DBE0
 
 rel/s14_bomb_switch_register.cpp:
 	.text       start:0x0009DBE4 end:0x0009DC8C
 	.ctors      start:0x0000013C end:0x00000140
+
+rel/s14_koware_edit.cpp:
+	.text       start:0x0009E4F4 end:0x0009E518
 
 rel/s14_koware_hooks.cpp:
 	.text       start:0x0009E7D4 end:0x0009E8D4
@@ -2212,6 +2272,9 @@ rel/s14_thunder_set2_edit.cpp:
 rel/s14_thunder_set2_dtor.cpp:
 	.text       start:0x000A0548 end:0x000A05D4
 
+rel/s14_thunder_set_edit.cpp:
+	.text       start:0x000A0E78 end:0x000A0EB8
+
 rel/s14_thunder_dtor.cpp:
 	.text       start:0x000A0EB8 end:0x000A0F48
 
@@ -2220,6 +2283,9 @@ rel/s14_thunder_ctor.cpp:
 
 rel/s14_thunder_create.cpp:
 	.text       start:0x000A1054 end:0x000A1188
+
+rel/s14_thunder_hooks.cpp:
+	.text       start:0x000A1188 end:0x000A12A0
 
 rel/s14_thunder_register.cpp:
 	.text       start:0x000A12A0 end:0x000A13F4
@@ -2230,6 +2296,9 @@ rel/s14_thunder_light_dtor.cpp:
 
 rel/s14_thunder_chain.cpp:
 	.text       start:0x000A20F4 end:0x000A21B4
+
+rel/s14_laser_beam_edit.cpp:
+	.text       start:0x000A397C end:0x000A39C8
 
 rel/s14_laser_beam_dtor.cpp:
 	.text       start:0x000A39C8 end:0x000A3A58
@@ -2243,6 +2312,9 @@ rel/s14_laser_beam_create.cpp:
 rel/s14_laser_beam_register.cpp:
 	.text       start:0x000A3D00 end:0x000A3DAC
 	.ctors      start:0x0000014C end:0x00000150
+
+rel/s14_laser_sign_edit.cpp:
+	.text       start:0x000A69DC end:0x000A6A14
 
 rel/s14_laser_sign_dtor.cpp:
 	.text       start:0x000A6A14 end:0x000A6AA4
@@ -2408,6 +2480,9 @@ rel/s13_cloud_register.cpp:
 	.text       start:0x000C3C38 end:0x000C3D74
 	.ctors      start:0x0000016C end:0x00000170
 
+rel/s14_holea_neon_hooks.cpp:
+	.text       start:0x000C47E4 end:0x000C494C
+
 rel/s14_wall_rneon_create.cpp:
 	.text       start:0x000C494C end:0x000C4998
 
@@ -2473,6 +2548,9 @@ rel/s14_ring_light_register.cpp:
 	.text       start:0x000C823C end:0x000C82D4
 	.ctors      start:0x00000180 end:0x00000184
 
+rel/s14_roadlight_edit.cpp:
+	.text       start:0x000C87E8 end:0x000C8828
+
 rel/s14_roadlight_hooks.cpp:
 	.text       start:0x000C8B68 end:0x000C8C68
 
@@ -2537,12 +2615,18 @@ rel/s14key_object_register.cpp:
 	.text       start:0x000D0C30 end:0x000D0CC8
 	.ctors      start:0x0000019C end:0x000001A0
 
+rel/s14d_search_light_edit.cpp:
+	.text       start:0x000D1118 end:0x000D1158
+
 rel/s14d_search_light_hooks.cpp:
 	.text       start:0x000D147C end:0x000D157C
 
 rel/s14d_search_light_register.cpp:
 	.text       start:0x000D1834 end:0x000D18DC
 	.ctors      start:0x000001A0 end:0x000001A4
+
+rel/s14_tower_neon_a_hooks.cpp:
+	.text       start:0x000D2378 end:0x000D24C0
 
 rel/s14_tower_neon_b_create.cpp:
 	.text       start:0x000D24C0 end:0x000D250C
@@ -2588,6 +2672,9 @@ rel/s14d_crush_create.cpp:
 rel/s14d_crush_register.cpp:
 	.text       start:0x000D5A08 end:0x000D5AA4
 	.ctors      start:0x000001AC end:0x000001B0
+
+rel/s14_wall_side_edit.cpp:
+	.text       start:0x000D6118 end:0x000D613C
 
 rel/s14_wall_side_hooks.cpp:
 	.text       start:0x000D6540 end:0x000D6640

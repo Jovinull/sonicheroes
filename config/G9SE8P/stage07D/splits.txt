@@ -1967,6 +1967,9 @@ rel/dfan_register.cpp:
 rel/duct_dtor.cpp:
 	.text       start:0x0007A834 end:0x0007A920
 
+rel/duct_edit.cpp:
+	.text       start:0x0007ABA8 end:0x0007ABCC
+
 rel/duct_hooks.cpp:
 	.text       start:0x0007ABCC end:0x0007ACB4
 
@@ -2208,6 +2211,9 @@ rel/railendex_register.cpp:
 	.text       start:0x000878DC end:0x0008797C
 	.ctors      start:0x0000011C end:0x00000120
 
+rel/railmechtypeabc_edit.cpp:
+	.text       start:0x000884B4 end:0x00088534
+
 rel/railmechtypeabc_hooks.cpp:
 	.text       start:0x00088534 end:0x00088598
 
@@ -2326,6 +2332,9 @@ rel/trainappear_register.cpp:
 
 rel/traincapsule_reset.cpp:
 	.text       start:0x0008F4F8 end:0x0008F4FC
+
+rel/traincapsule_hooks.cpp:
+	.text       start:0x0008F4FC end:0x0008F760
 
 rel/traincapsule_create.cpp:
 	.text       start:0x0008F760 end:0x0008F7A8
@@ -2647,6 +2656,9 @@ rel/bigcannontop_create.cpp:
 rel/bigcannontop_register.cpp:
 	.text       start:0x000C675C end:0x000C6810
 	.ctors      start:0x00000178 end:0x0000017C
+
+rel/blowfan_edit.cpp:
+	.text       start:0x000C7148 end:0x000C719C
 
 rel/blowfan_hooks.cpp:
 	.text       start:0x000C719C end:0x000C71E4

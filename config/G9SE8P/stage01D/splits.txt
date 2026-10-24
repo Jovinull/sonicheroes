@@ -1939,6 +1939,12 @@ rel/kamome_register.cpp:
 	.text       start:0x00084518 end:0x000845C4
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/s01_koware_unload.cpp:
+	.text       start:0x00085B38 end:0x00085BA8
+
+rel/s01_koware_load.cpp:
+	.text       start:0x00085BA8 end:0x00085CD0
+
 rel/s01_koware_register.cpp:
 	.text       start:0x00085F54 end:0x00085FEC
 	.ctors      start:0x000000E0 end:0x000000E4
@@ -1952,6 +1958,9 @@ rel/wave_create.cpp:
 rel/wave_register.cpp:
 	.text       start:0x00089438 end:0x000894E4
 	.ctors      start:0x000000E8 end:0x000000EC
+
+rel/shachi_hooks.cpp:
+	.text       start:0x0008A61C end:0x0008A760
 
 rel/shachi_create.cpp:
 	.text       start:0x0008A760 end:0x0008A7A8
@@ -1997,6 +2006,9 @@ rel/s02_colli_for_quake_register.cpp:
 rel/s02_breakdoor_edit.cpp:
 	.text       start:0x00095678 end:0x000956A0
 
+rel/s02_break_door_hooks.cpp:
+	.text       start:0x00095C84 end:0x00095E34
+
 rel/s02_breakdoor_create.cpp:
 	.text       start:0x00095E34 end:0x00095E7C
 
@@ -2040,6 +2052,9 @@ rel/s02_break_ruin_s_register.cpp:
 rel/s02_kame_wave_hierarchy.cpp:
 	.text       start:0x0009C694 end:0x0009C7A8
 
+rel/s02_kame_wave_edit.cpp:
+	.text       start:0x0009C9B8 end:0x0009CA0C
+
 rel/s02_kame_wave_create.cpp:
 	.text       start:0x0009CE8C end:0x0009CED4
 
@@ -2049,6 +2064,12 @@ rel/s02d_kameashi_edit.cpp:
 rel/s02d_kameashi_register.cpp:
 	.text       start:0x0009E794 end:0x0009E8D0
 	.ctors      start:0x00000114 end:0x00000118
+
+rel/s02_moving_land_unload.cpp:
+	.text       start:0x0009F184 end:0x0009F1F4
+
+rel/s02_moving_land_load.cpp:
+	.text       start:0x0009F1F4 end:0x0009F2CC
 
 rel/s02_moving_land_register.cpp:
 	.text       start:0x0009F2CC end:0x0009F378
@@ -2105,6 +2126,9 @@ rel/hawk_mgun_bullet.cpp:
 
 rel/s02_green_edit.cpp:
 	.text       start:0x000AE7D8 end:0x000AE82C
+
+rel/s02_green_hooks.cpp:
+	.text       start:0x000AE82C end:0x000AEA20
 
 rel/s02_green_register.cpp:
 	.text       start:0x000AECF0 end:0x000AED9C
@@ -2255,6 +2279,9 @@ rel/s20d_curb_stone_dtor.cpp:
 
 rel/s20d_curbstone_edit.cpp:
 	.text       start:0x000BB288 end:0x000BB2C0
+
+rel/s20d_curbstone_hooks.cpp:
+	.text       start:0x000BB2C0 end:0x000BB42C
 
 rel/s20d_curb_stone_register.cpp:
 	.text       start:0x000BB5BC end:0x000BB668
@@ -2456,6 +2483,9 @@ rel/s03_train_dtor.cpp:
 
 rel/s66_star_edit.cpp:
 	.text       start:0x000CAD1C end:0x000CAD40
+
+rel/s66_star_hooks.cpp:
+	.text       start:0x000CAD40 end:0x000CAED0
 
 rel/s66_star_register.cpp:
 	.text       start:0x000CB010 end:0x000CB0BC

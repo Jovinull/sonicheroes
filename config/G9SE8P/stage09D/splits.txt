@@ -1867,9 +1867,15 @@ rel/bush_reset.cpp:
 rel/bush_unload.cpp:
 	.text       start:0x000714FC end:0x00071548
 
+rel/bush_load.cpp:
+	.text       start:0x00071548 end:0x0007163C
+
 rel/bush_register.cpp:
 	.text       start:0x000717F0 end:0x000718A0
 	.ctors      start:0x000000C0 end:0x000000C4
+
+rel/butterfly_edit.cpp:
+	.text       start:0x000726A4 end:0x00072724
 
 rel/butterfly_reset.cpp:
 	.text       start:0x00072724 end:0x00072728
@@ -1902,6 +1908,9 @@ rel/float_j_create.cpp:
 rel/floatj_register.cpp:
 	.text       start:0x00073354 end:0x00073400
 	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/obj_flower_edit.cpp:
+	.text       start:0x00074654 end:0x000746E4
 
 rel/froggreen_reset.cpp:
 	.text       start:0x00076E38 end:0x00076E3C
@@ -2002,6 +2011,9 @@ rel/powder_dtor.cpp:
 rel/powder_ctor.cpp:
 	.text       start:0x0007FF54 end:0x00080010
 
+rel/powder_edit.cpp:
+	.text       start:0x00080010 end:0x00080114
+
 rel/powder_hooks.cpp:
 	.text       start:0x00080114 end:0x00080180
 
@@ -2028,6 +2040,9 @@ rel/rainfloor_register.cpp:
 	.text       start:0x00080FB0 end:0x00081060
 	.ctors      start:0x000000F4 end:0x000000F8
 
+rel/rainfruit_edit.cpp:
+	.text       start:0x00082BEC end:0x00082C30
+
 rel/rainfruit_reset.cpp:
 	.text       start:0x00082C30 end:0x00082C34
 
@@ -2047,6 +2062,9 @@ rel/rainfruitmi_hooks.cpp:
 rel/rainfruitmi_register.cpp:
 	.text       start:0x000844D0 end:0x00084570
 	.ctors      start:0x000000FC end:0x00000100
+
+rel/rainivy_edit.cpp:
+	.text       start:0x00085628 end:0x0008567C
 
 rel/rainivy_hooks.cpp:
 	.text       start:0x0008567C end:0x000856C4
@@ -2083,6 +2101,9 @@ rel/rainmush_reset.cpp:
 rel/rainmush_unload.cpp:
 	.text       start:0x000888F4 end:0x00088944
 
+rel/rainmush_load.cpp:
+	.text       start:0x00088944 end:0x00088A10
+
 rel/rainmush_create.cpp:
 	.text       start:0x00088A10 end:0x00088A58
 
@@ -2105,6 +2126,9 @@ rel/raintree_create.cpp:
 rel/raintree_register.cpp:
 	.text       start:0x00089E28 end:0x00089ED4
 	.ctors      start:0x0000010C end:0x00000110
+
+rel/redweed_edit.cpp:
+	.text       start:0x0008AF6C end:0x0008AFCC
 
 rel/redweed_hooks.cpp:
 	.text       start:0x0008AFCC end:0x0008AFFC
@@ -2157,6 +2181,9 @@ rel/stop_rain_dtor.cpp:
 rel/stop_rain_ctor.cpp:
 	.text       start:0x0008D100 end:0x0008D1F4
 
+rel/stoprain_edit.cpp:
+	.text       start:0x0008D1F4 end:0x0008D270
+
 rel/stoprain_hooks.cpp:
 	.text       start:0x0008D270 end:0x0008D274
 
@@ -2193,6 +2220,9 @@ rel/bushsq_edit.cpp:
 rel/bushsq_hooks.cpp:
 	.text       start:0x00093BB4 end:0x00093C04
 
+rel/bushsq_load.cpp:
+	.text       start:0x00093C04 end:0x00093CF8
+
 rel/bushsq_register.cpp:
 	.text       start:0x00093FF4 end:0x000940A4
 	.ctors      start:0x0000012C end:0x00000130
@@ -2209,6 +2239,9 @@ rel/bush_zenmai_edit.cpp:
 rel/bushzenmai_hooks.cpp:
 	.text       start:0x0009489C end:0x000948EC
 
+rel/bushzenmai_load.cpp:
+	.text       start:0x000948EC end:0x000949E0
+
 rel/bush_zenmai_create.cpp:
 	.text       start:0x00094A74 end:0x00094BB4
 
@@ -2224,6 +2257,9 @@ rel/dispfruit_edit.cpp:
 
 rel/dispfruit_hooks.cpp:
 	.text       start:0x00095D64 end:0x00095DB4
+
+rel/dispfruit_load.cpp:
+	.text       start:0x00095DB4 end:0x00095EA8
 
 rel/dispfruit_create.cpp:
 	.text       start:0x00095F3C end:0x00095F84
