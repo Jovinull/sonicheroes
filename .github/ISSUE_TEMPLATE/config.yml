@@ -4,7 +4,7 @@ contact_links:
     url: https://github.com/Jovinull/sonicheroes/discussions
     about: Anything that is not a reproducible problem with the build goes here.
   - name: Progress and matching status
-    url: https://decomp.dev/Jovinull/sonicheroes
+    url: https://jovinull.github.io/sonicheroes/progress/
     about: Live code, data and function match percentages.
   - name: What this project will not accept
     url: https://github.com/Jovinull/sonicheroes/blob/main/LEGAL.md

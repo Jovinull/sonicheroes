@@ -1,26 +1,36 @@
-# Sonic Heroes
+# Sonic Heroes Decompilation
 
-[![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![SDK Progress]][progress] [![Game Progress]][progress] [![Discord]][chat]
+[![Build Status]][actions] [![Code Progress]][progress] [![Data Progress]][progress] [![SDK Progress]][progress] [![Discord]][chat]
 
 [Build Status]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/Jovinull/sonicheroes/actions/workflows/build.yml
-[Code Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&label=Code
-[Data Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=data&label=Data
-[SDK Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&category=sdk&label=SDK
-[Game Progress]: https://decomp.dev/Jovinull/sonicheroes.svg?mode=shield&measure=code&category=game&label=Game
-[progress]: https://jovinull.github.io/sonicheroes/
+[Code Progress]: https://bytematch.dev/Jovinull/sonicheroes.svg?mode=shield&measure=matched_code_percent&label=Code
+[Data Progress]: https://bytematch.dev/Jovinull/sonicheroes.svg?mode=shield&measure=matched_data_percent&label=Data
+[SDK Progress]: https://bytematch.dev/Jovinull/sonicheroes.svg?mode=shield&measure=matched_code_percent&category=sdk&label=SDK
+[progress]: https://jovinull.github.io/sonicheroes/progress/
 [Discord]: https://img.shields.io/discord/1529475492200059032?label=chat&logo=discord&logoColor=white&color=7289da
 [chat]: https://discord.gg/VGCHZMXUWN
 
-A work in progress decompilation of Sonic Heroes for the Nintendo GameCube.
+A work-in-progress matching decompilation of **Sonic Heroes** (SEGA, 2003) for
+the Nintendo GameCube: C and C++ source that, built with the original
+CodeWarrior compilers, reproduces the retail game byte for byte.
+
+**[Website](https://jovinull.github.io/sonicheroes/)** ·
+**[Live progress](https://jovinull.github.io/sonicheroes/progress/)** ·
+**[FAQ](https://jovinull.github.io/sonicheroes/about/)** ·
+**[Credits](https://jovinull.github.io/sonicheroes/credits/)** ·
+**[Getting started](docs/getting_started.md)** ·
+**[Discord](https://discord.gg/VGCHZMXUWN)** ·
+[Português](https://jovinull.github.io/sonicheroes/pt-br/)
 
 This is a non-commercial study and preservation project. It is not affiliated
-with SEGA.
+with SEGA, and it takes no money: no ads, donations or paid builds.
 
 This repository contains no game code, no game assets and no extracted
 assembly. Some functions are written as inline assembly in the source, which is
 explained under Status. You need your own legally obtained copy of the game to
-build it. The project does not produce a playable game and is not a port.
+build it. The project does not produce a playable game and is not a port; once
+it is complete, ports or mods built on it would be separate projects.
 
 Supported version:
 
@@ -94,6 +104,11 @@ function has to match the original byte for byte in objdiff, and CI checks the
 SHA-1 of the built DOL on every push. A function either reproduces the original
 binary exactly or it does not get marked as matching.
 
+## Getting started
+
+The short version is below. [docs/getting_started.md](docs/getting_started.md)
+walks through the whole workflow, from the first build to a pull request.
+
 ## Dependencies
 
 You need Python and ninja on your `PATH`.
@@ -159,7 +174,7 @@ point `Project directory` at this repository. It picks up the config on its own.
 Pick an object in the sidebar to start diffing. It rebuilds automatically when
 you edit source, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 
-![objdiff showing dolphin/base/PPCArch fully matching](docs/objdiff.webp)
+![objdiff showing dolphin/base/PPCArch fully matching](site/objdiff.webp)
 
 ## Contributing
 
@@ -175,6 +190,19 @@ accepted. The exact policy and migration checklist are in
 External resources that help with naming functions and structs (community
 disassemblies, SDK headers, format documentation) are tracked in
 [REFERENCES.md](REFERENCES.md).
+
+## Credits
+
+Built by [Jovinull](https://github.com/Jovinull),
+[Cypress](https://github.com/cypressru) and
+[everyone in the contributor list](https://github.com/Jovinull/sonicheroes/graphs/contributors),
+with help from the community on Discord. The full credits, the tools this
+project builds on and where it has been featured are on the
+[credits page](https://jovinull.github.io/sonicheroes/credits/).
+
+Progress is tracked on [ByteMatch](https://bytematch.dev/Jovinull/sonicheroes);
+[decomp.dev](https://decomp.dev/Jovinull/sonicheroes) tracked it from July to
+October 2026.
 
 ## Legal
 
