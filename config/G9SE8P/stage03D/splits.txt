@@ -1903,6 +1903,9 @@ rel/s03_door_register.cpp:
 	.text       start:0x0007A3FC end:0x0007A494
 	.ctors      start:0x000000D4 end:0x000000D8
 
+rel/s03_egg_cap_edit.cpp:
+	.text       start:0x0007C7AC end:0x0007C870
+
 rel/s03_egg_cap_create.cpp:
 	.text       start:0x0007D444 end:0x0007D48C
 
