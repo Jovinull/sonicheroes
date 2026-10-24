@@ -2031,6 +2031,9 @@ rel/s13_houdai_fumi_register.cpp:
 	.text       start:0x00083260 end:0x00083308
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/s13_senkan_mov_edit.cpp:
+	.text       start:0x000840D0 end:0x000840F4
+
 rel/s13_senkan_mov_hooks.cpp:
 	.text       start:0x00084518 end:0x00084618
 
