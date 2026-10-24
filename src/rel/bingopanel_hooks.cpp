@@ -1,8 +1,11 @@
 #include "types.h"
 
-// The bingopanel family's Reset and Unload hooks (bingopanelReset and
-// bingopanelUnload here): nothing to reset; the model files' models are
-// released. Its Load does more than load the files and is not here.
+// The bingopanel family's Reset, Unload and Load hooks (bingopanelReset,
+// bingopanelUnload and bingopanelLoad here): nothing to reset; the model files'
+// models are released; the module's texture dictionary is made current, the
+// module's model archive is read and each model file's model loaded, and the
+// first two models are handed to the module's texture setup with each of the
+// family's three texture name prefixes.
 
 // One of the module's model files: its name, the archive it is read from, the
 // world slot its clones go into, and the model once loaded.
@@ -15,7 +18,20 @@ struct ModelFile {
 
 extern "C" ModelFile bingopanelModelFiles[19];
 
+extern "C" char bingopanelTexturePrefix1[];
+extern "C" char bingopanelTexturePrefix2[];
+extern "C" char bingopanelTexturePrefix3[];
+extern "C" u8 lbl_5_bss_2668[];
+extern "C" u8* lbl_8042C1D0;
+extern "C" u8* lbl_8042C298;
+extern "C" u8 lbl_802FF5A0[];
+
 extern "C" void fn_80150958(void* clump);
+extern "C" void fn_801A4C84(void* resource);
+extern "C" void fn_5_A0238(void* setup, void* clump, char* prefix, s32 a, s32 b, s32 c);
+extern "C" void LoadOneFile__7ONEFILEFPc(void* onefile, void* name);
+extern "C" void* CheckFileID__7ONEFILEFPc(void* onefile, const char* name);
+extern "C" void* LoadClumpEx__7ONEFILEFUiPc(void* onefile, void* id, void* archive);
 
 extern "C" void bingopanelReset(void) { }
 
@@ -29,4 +45,23 @@ extern "C" void bingopanelUnload(void)
 			files[i].model = NULL;
 		}
 	}
+}
+
+extern "C" void bingopanelLoad(void)
+{
+	fn_801A4C84(*(void**)(lbl_8042C1D0 + 0x8C18));
+	LoadOneFile__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
+	ModelFile* files = bingopanelModelFiles;
+
+	for (int i = 0; i < 19; i++) {
+		files[i].model = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
+		    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), files[i].name),
+		    files[i].archive);
+	}
+	fn_5_A0238(lbl_5_bss_2668, bingopanelModelFiles[0].model, bingopanelTexturePrefix1, 1, 8, 7);
+	fn_5_A0238(lbl_5_bss_2668, bingopanelModelFiles[0].model, bingopanelTexturePrefix2, 1, 2, 30);
+	fn_5_A0238(lbl_5_bss_2668, bingopanelModelFiles[0].model, bingopanelTexturePrefix3, 1, 6, 13);
+	fn_5_A0238(lbl_5_bss_2668, bingopanelModelFiles[1].model, bingopanelTexturePrefix1, 1, 8, 7);
+	fn_5_A0238(lbl_5_bss_2668, bingopanelModelFiles[1].model, bingopanelTexturePrefix2, 1, 2, 30);
+	fn_5_A0238(lbl_5_bss_2668, bingopanelModelFiles[1].model, bingopanelTexturePrefix3, 1, 6, 13);
 }
