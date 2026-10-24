@@ -6070,6 +6070,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/wanibreak_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/wanibreak_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
