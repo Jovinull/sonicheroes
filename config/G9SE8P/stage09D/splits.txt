@@ -2097,6 +2097,9 @@ rel/redleaves_register.cpp:
 rel/treeleaf_dtor.cpp:
 	.text       start:0x00099434 end:0x0009951C
 
+rel/treeleaf_hooks.cpp:
+	.text       start:0x000997C0 end:0x00099810
+
 rel/treeleaf_create.cpp:
 	.text       start:0x00099998 end:0x000999E0
 
