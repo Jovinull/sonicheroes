@@ -2265,6 +2265,9 @@ rel/s04_big_shutter_register.cpp:
 	.text       start:0x000A6C18 end:0x000A6CB4
 	.ctors      start:0x00000144 end:0x00000148
 
+rel/s04d_room_light_hooks.cpp:
+	.text       start:0x000A7488 end:0x000A75E8
+
 rel/s04d_room_light_register.cpp:
 	.text       start:0x000A784C end:0x000A78F8
 	.ctors      start:0x00000148 end:0x0000014C
