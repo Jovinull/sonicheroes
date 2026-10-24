@@ -2110,6 +2110,9 @@ rel/reafredgreen_register.cpp:
 	.text       start:0x00097108 end:0x000971B8
 	.ctors      start:0x00000138 end:0x0000013C
 
+rel/mushanim_hooks.cpp:
+	.text       start:0x00098108 end:0x00098138
+
 rel/mushanim_register.cpp:
 	.text       start:0x00098254 end:0x00098304
 	.ctors      start:0x0000013C end:0x00000140
