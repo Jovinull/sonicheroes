@@ -2148,6 +2148,9 @@ rel/big_chip_dtor.cpp:
 rel/big_chip_ctor.cpp:
 	.text       start:0x00083D9C end:0x00083EF0
 
+rel/bigchip_hooks.cpp:
+	.text       start:0x00084040 end:0x00084160
+
 rel/big_chip_create.cpp:
 	.text       start:0x00084160 end:0x000842DC
 
