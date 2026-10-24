@@ -2134,6 +2134,9 @@ rel/s13d_ufo_register.cpp:
 	.text       start:0x00096518 end:0x000965C0
 	.ctors      start:0x00000130 end:0x00000134
 
+rel/s14_fall_ashiba_hooks.cpp:
+	.text       start:0x00097CF8 end:0x00097DF8
+
 rel/s14_fall_ashiba_register.cpp:
 	.text       start:0x0009807C end:0x00098124
 	.ctors      start:0x00000134 end:0x00000138
