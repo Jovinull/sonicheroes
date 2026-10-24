@@ -2160,6 +2160,9 @@ rel/railchimney_register.cpp:
 	.text       start:0x00084BE8 end:0x00084C88
 	.ctors      start:0x00000110 end:0x00000114
 
+rel/raildash_edit.cpp:
+	.text       start:0x00085EDC end:0x00085F28
+
 rel/raildash_hooks.cpp:
 	.text       start:0x00085F28 end:0x00085F94
 

@@ -4945,6 +4945,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/raildash_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/raildash_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
