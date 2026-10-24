@@ -4145,6 +4145,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/dispfruit_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/dispfruit_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
