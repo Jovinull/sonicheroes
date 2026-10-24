@@ -6400,7 +6400,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/springMush_reset.cpp",
+                "rel/spring_mush_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6415,7 +6415,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/springblkAir_reset.cpp",
+                "rel/springblk_air_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6930,7 +6930,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/xSign_reset.cpp",
+                "rel/x_sign_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

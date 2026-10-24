@@ -2373,7 +2373,7 @@ rel/springblk_register.cpp:
 	.text       start:0x0009A630 end:0x0009A6E0
 	.ctors      start:0x0000012C end:0x00000130
 
-rel/springblkAir_reset.cpp:
+rel/springblk_air_reset.cpp:
 	.text       start:0x0009B874 end:0x0009B878
 
 rel/springblk_air_unload.cpp:
@@ -2406,7 +2406,7 @@ rel/x_sign_dtor.cpp:
 rel/x_sign_ctor.cpp:
 	.text       start:0x0009DE6C end:0x0009DF6C
 
-rel/xSign_reset.cpp:
+rel/x_sign_reset.cpp:
 	.text       start:0x0009DFB8 end:0x0009DFBC
 
 rel/x_sign_create.cpp:
