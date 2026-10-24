@@ -2433,6 +2433,9 @@ rel/x_sign_reset.cpp:
 rel/x_sign_unload.cpp:
 	.text       start:0x0009DFBC end:0x0009E008
 
+rel/x_sign_load.cpp:
+	.text       start:0x0009E008 end:0x0009E0DC
+
 rel/x_sign_create.cpp:
 	.text       start:0x0009E0DC end:0x0009E204
 
