@@ -1864,6 +1864,9 @@ rel/rail_water_supply_ctor.cpp:
 rel/rail_water_supply_edit.cpp:
 	.text       start:0x00071510 end:0x00071520
 
+rel/railwatersupply_hooks.cpp:
+	.text       start:0x00071520 end:0x0007158C
+
 rel/rail_water_supply_create.cpp:
 	.text       start:0x00071640 end:0x000717BC
 
