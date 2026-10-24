@@ -1932,6 +1932,9 @@ rel/o_s01_iwamizu.cpp:
 rel/kamome_ctor.cpp:
 	.text       start:0x00083B28 end:0x00083D8C
 
+rel/kamome_hooks.cpp:
+	.text       start:0x000841E8 end:0x000844D0
+
 rel/kamome_create.cpp:
 	.text       start:0x000844D0 end:0x00084518
 
