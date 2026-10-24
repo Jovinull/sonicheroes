@@ -2354,6 +2354,9 @@ rel/trispring_edit.cpp:
 	.text       start:0x0009D440 end:0x0009D4F4
 	.rodata     start:0x00001730 end:0x00001734
 
+rel/trispring_hooks.cpp:
+	.text       start:0x0009D4F4 end:0x0009D560
+
 rel/trispring_create.cpp:
 	.text       start:0x0009D744 end:0x0009D78C
 
