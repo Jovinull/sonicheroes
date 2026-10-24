@@ -9886,6 +9886,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_water_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_water_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
