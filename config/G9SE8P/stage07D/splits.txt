@@ -2219,6 +2219,9 @@ rel/railtie_register.cpp:
 	.text       start:0x0008B4DC end:0x0008B57C
 	.ctors      start:0x00000130 end:0x00000134
 
+rel/autodoor_hooks.cpp:
+	.text       start:0x0008C2E4 end:0x0008C348
+
 rel/autodoor_register.cpp:
 	.text       start:0x0008C4BC end:0x0008C56C
 	.ctors      start:0x00000134 end:0x00000138
