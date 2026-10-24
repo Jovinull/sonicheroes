@@ -4895,6 +4895,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainfloor_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainfloor_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

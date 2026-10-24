@@ -1967,6 +1967,9 @@ rel/powder_register.cpp:
 	.text       start:0x000802FC end:0x000803AC
 	.ctors      start:0x000000F0 end:0x000000F4
 
+rel/rainfloor_hooks.cpp:
+	.text       start:0x00080ED4 end:0x00080F04
+
 rel/rainfloor_register.cpp:
 	.text       start:0x00080FB0 end:0x00081060
 	.ctors      start:0x000000F4 end:0x000000F8
