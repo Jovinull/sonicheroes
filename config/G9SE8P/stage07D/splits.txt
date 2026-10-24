@@ -1991,6 +1991,9 @@ rel/ikaribakuhatu_register.cpp:
 rel/piston_hooks.cpp:
 	.text       start:0x0007D56C end:0x0007D5B4
 
+rel/piston_load.cpp:
+	.text       start:0x0007D5B4 end:0x0007D6C4
+
 rel/piston_create.cpp:
 	.text       start:0x0007D6C4 end:0x0007D70C
 
