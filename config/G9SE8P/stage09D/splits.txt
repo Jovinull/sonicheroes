@@ -2036,6 +2036,9 @@ rel/rainmush_register.cpp:
 rel/raintree_hooks.cpp:
 	.text       start:0x00089D10 end:0x00089D40
 
+rel/raintree_load.cpp:
+	.text       start:0x00089D40 end:0x00089DE0
+
 rel/raintree_create.cpp:
 	.text       start:0x00089DE0 end:0x00089E28
 
