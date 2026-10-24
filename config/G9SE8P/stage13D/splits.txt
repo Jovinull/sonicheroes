@@ -1411,6 +1411,9 @@ rel/system_object3_dtor.cpp:
 rel/system_object3_ctor.cpp:
 	.text       start:0x0004DC38 end:0x0004DC9C
 
+rel/system_object3_hooks.cpp:
+	.text       start:0x0004DC9C end:0x0004DCD0
+
 rel/system_object3_create.cpp:
 	.text       start:0x0004DCD0 end:0x0004DD5C
 
