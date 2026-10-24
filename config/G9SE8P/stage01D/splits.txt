@@ -2040,6 +2040,9 @@ rel/s02_break_ruin_s_register.cpp:
 rel/s02_kame_wave_hierarchy.cpp:
 	.text       start:0x0009C694 end:0x0009C7A8
 
+rel/s02_kame_wave_create.cpp:
+	.text       start:0x0009CE8C end:0x0009CED4
+
 rel/s02d_kameashi_edit.cpp:
 	.text       start:0x0009E024 end:0x0009E064
 
