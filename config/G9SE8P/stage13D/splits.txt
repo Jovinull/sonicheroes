@@ -2000,6 +2000,9 @@ rel/s13_senkan_yuka_register.cpp:
 	.text       start:0x00077AFC end:0x00077BA4
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s13_senkan_shut_edit.cpp:
+	.text       start:0x00078298 end:0x000782DC
+
 rel/s13_senkan_shut_hooks.cpp:
 	.text       start:0x000787C0 end:0x000788C0
 
