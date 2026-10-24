@@ -5420,6 +5420,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/redweed_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/redweed_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
