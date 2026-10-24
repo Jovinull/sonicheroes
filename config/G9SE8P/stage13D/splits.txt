@@ -2152,6 +2152,9 @@ rel/s13d_senkan_far_move_top_l_register.cpp:
 	.text       start:0x0008F468 end:0x0008FC40
 	.ctors      start:0x00000118 end:0x0000011C
 
+rel/s13d_senkan_middle1_hooks.cpp:
+	.text       start:0x00090A6C end:0x00090BD4
+
 rel/s13d_senkan_middle2_create.cpp:
 	.text       start:0x00090BD4 end:0x00090C20
 
