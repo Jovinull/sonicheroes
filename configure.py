@@ -6910,6 +6910,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_senkan_middle1_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_senkan_middle_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
