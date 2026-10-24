@@ -4575,6 +4575,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pulley_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pulley_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
