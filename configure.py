@@ -5580,6 +5580,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_baloon_design_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_baloon_design_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

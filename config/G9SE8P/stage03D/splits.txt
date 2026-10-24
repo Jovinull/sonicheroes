@@ -1865,6 +1865,9 @@ rel/s03_aircar_register.cpp:
 rel/s03_baloon_design_edit.cpp:
 	.text       start:0x00073DE0 end:0x00073E74
 
+rel/s03_baloon_design_hooks.cpp:
+	.text       start:0x00074248 end:0x000743A8
+
 rel/s03_baloon_design_register.cpp:
 	.text       start:0x00074764 end:0x00074810
 	.ctors      start:0x000000C4 end:0x000000C8
