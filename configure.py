@@ -6850,6 +6850,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/treeleaf_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/treeleaf_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
