@@ -2161,6 +2161,9 @@ rel/rail_tie_dtor.cpp:
 rel/rail_tie_ctor.cpp:
 	.text       start:0x0008B198 end:0x0008B2B0
 
+rel/railtie_hooks.cpp:
+	.text       start:0x0008B2B4 end:0x0008B39C
+
 rel/rail_tie_create.cpp:
 	.text       start:0x0008B39C end:0x0008B4DC
 
