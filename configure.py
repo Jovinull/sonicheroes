@@ -3980,6 +3980,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/blowfan_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/blowfan_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
