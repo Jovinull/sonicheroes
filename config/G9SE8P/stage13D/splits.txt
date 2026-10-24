@@ -2208,6 +2208,9 @@ rel/s14_laser_sign_dtor.cpp:
 rel/s14_laser_sign_ctor.cpp:
 	.text       start:0x000A6AA4 end:0x000A6B48
 
+rel/s14_laser_sign_hooks.cpp:
+	.text       start:0x000A6B48 end:0x000A6C48
+
 rel/s14_laser_sign_create.cpp:
 	.text       start:0x000A6C48 end:0x000A6D14
 
