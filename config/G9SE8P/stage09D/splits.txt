@@ -2311,7 +2311,7 @@ rel/treeleaf_edit.cpp:
 	.text       start:0x00099774 end:0x000997C0
 
 rel/treeleaf_hooks.cpp:
-	.text       start:0x000997C0 end:0x00099810
+	.text       start:0x000997C0 end:0x00099904
 
 rel/treeleaf_create.cpp:
 	.text       start:0x00099998 end:0x000999E0
