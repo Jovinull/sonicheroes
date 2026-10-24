@@ -922,6 +922,9 @@ rel/scroll_itembaloon_dtor.cpp:
 rel/scroll_itembaloon_create.cpp:
 	.text       start:0x00034BA4 end:0x00034BEC
 
+rel/itembaloon_player.cpp:
+	.text       start:0x00034BEC end:0x00034E38
+
 rel/itembaloon_tdisp.cpp:
 	.text       start:0x00034E38 end:0x00034F5C
 
