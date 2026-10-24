@@ -2232,6 +2232,9 @@ rel/train_change_board_dtor.cpp:
 rel/train_change_board_ctor.cpp:
 	.text       start:0x00090448 end:0x00090584
 
+rel/trainchangeboard_hooks.cpp:
+	.text       start:0x000905B0 end:0x0009061C
+
 rel/train_change_board_create.cpp:
 	.text       start:0x000906B4 end:0x00090818
 
