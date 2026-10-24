@@ -2114,6 +2114,9 @@ rel/rail_end_ex_dtor.cpp:
 rel/rail_end_ex_ctor.cpp:
 	.text       start:0x00087518 end:0x00087654
 
+rel/railendex_hooks.cpp:
+	.text       start:0x00087658 end:0x00087778
+
 rel/rail_end_ex_create.cpp:
 	.text       start:0x00087778 end:0x000878DC
 
