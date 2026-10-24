@@ -2371,6 +2371,9 @@ rel/train_change_rail_ctor.cpp:
 rel/trainchangerail_reset.cpp:
 	.text       start:0x00091310 end:0x00091314
 
+rel/trainchangerail_hooks.cpp:
+	.text       start:0x00091314 end:0x000916D8
+
 rel/train_change_rail_create.cpp:
 	.text       start:0x000916D8 end:0x000917CC
 
