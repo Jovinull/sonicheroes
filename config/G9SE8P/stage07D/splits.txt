@@ -2252,6 +2252,9 @@ rel/railtie_register.cpp:
 rel/autodoor_hooks.cpp:
 	.text       start:0x0008C2E4 end:0x0008C348
 
+rel/autodoor_load.cpp:
+	.text       start:0x0008C348 end:0x0008C474
+
 rel/autodoor_create.cpp:
 	.text       start:0x0008C474 end:0x0008C4BC
 
