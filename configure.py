@@ -6150,6 +6150,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tsukushi_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tsukushi_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -2032,6 +2032,9 @@ rel/stoprain_register.cpp:
 	.text       start:0x0008D390 end:0x0008D430
 	.ctors      start:0x0000011C end:0x00000120
 
+rel/tsukushi_hooks.cpp:
+	.text       start:0x0008DD84 end:0x0008DDF0
+
 rel/tsukushi_register.cpp:
 	.text       start:0x0008E174 end:0x0008E224
 	.ctors      start:0x00000120 end:0x00000124
