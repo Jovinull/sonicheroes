@@ -2514,6 +2514,9 @@ rel/o_s01_taihostull.cpp:
 rel/s04d_pipe_elev_unload.cpp:
 	.text       start:0x000C45C0 end:0x000C464C
 
+rel/s04d_pipe_elev_load.cpp:
+	.text       start:0x000C464C end:0x000C4794
+
 rel/s04d_pipe_elev_register.cpp:
 	.text       start:0x000C4970 end:0x000C4A08
 	.ctors      start:0x00000184 end:0x00000188

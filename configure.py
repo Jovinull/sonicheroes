@@ -6000,6 +6000,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04d_pipe_elev_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04d_pipe_elev_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
