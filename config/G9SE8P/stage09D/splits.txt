@@ -1921,6 +1921,9 @@ rel/mushroom_register.cpp:
 rel/yajirusi_dtor.cpp:
 	.text       start:0x0007C544 end:0x0007C644
 
+rel/palm_hooks.cpp:
+	.text       start:0x0007C930 end:0x0007CA50
+
 rel/palm_register.cpp:
 	.text       start:0x0007CC2C end:0x0007CCDC
 	.ctors      start:0x000000E4 end:0x000000E8

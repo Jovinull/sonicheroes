@@ -4300,6 +4300,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/palm_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/palm_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
