@@ -5070,6 +5070,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railmechtypeabc_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railmechtypeabc_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
