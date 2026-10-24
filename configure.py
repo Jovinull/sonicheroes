@@ -6290,6 +6290,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/wheel_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/wheel_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

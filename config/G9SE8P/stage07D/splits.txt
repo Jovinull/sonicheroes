@@ -2619,6 +2619,9 @@ rel/wcannon_register.cpp:
 	.text       start:0x000CC964 end:0x000CCA14
 	.ctors      start:0x00000194 end:0x00000198
 
+rel/wheel_hooks.cpp:
+	.text       start:0x000CD530 end:0x000CD594
+
 rel/wheel_create.cpp:
 	.text       start:0x000CD6C0 end:0x000CD708
 
