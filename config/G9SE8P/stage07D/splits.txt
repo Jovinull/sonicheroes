@@ -2056,6 +2056,9 @@ rel/rail_change_rail_ctor.cpp:
 rel/rail_change_rail_edit.cpp:
 	.text       start:0x00084054 end:0x00084064
 
+rel/railchangerail_hooks.cpp:
+	.text       start:0x00084064 end:0x0008414C
+
 rel/rail_change_rail_create.cpp:
 	.text       start:0x0008414C end:0x0008428C
 
