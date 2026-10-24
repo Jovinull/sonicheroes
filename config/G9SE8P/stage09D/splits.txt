@@ -2101,6 +2101,9 @@ rel/rainmush_reset.cpp:
 rel/rainmush_unload.cpp:
 	.text       start:0x000888F4 end:0x00088944
 
+rel/rainmush_load.cpp:
+	.text       start:0x00088944 end:0x00088A10
+
 rel/rainmush_create.cpp:
 	.text       start:0x00088A10 end:0x00088A58
 
