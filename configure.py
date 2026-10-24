@@ -6390,6 +6390,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s23_warp_pos_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s23_warppos_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
