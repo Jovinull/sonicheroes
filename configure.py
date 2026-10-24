@@ -5210,6 +5210,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_big_bridge2_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_big_bridge2_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
