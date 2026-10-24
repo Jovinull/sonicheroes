@@ -1906,6 +1906,9 @@ rel/floatj_register.cpp:
 	.text       start:0x00073354 end:0x00073400
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/obj_flower_edit.cpp:
+	.text       start:0x00074654 end:0x000746E4
+
 rel/froggreen_reset.cpp:
 	.text       start:0x00076E38 end:0x00076E3C
 
