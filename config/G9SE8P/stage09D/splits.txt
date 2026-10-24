@@ -2153,6 +2153,9 @@ rel/mushanim_register.cpp:
 rel/redleaves_hooks.cpp:
 	.text       start:0x00098DAC end:0x00098DDC
 
+rel/redleaves_create.cpp:
+	.text       start:0x00098EB0 end:0x00098EF8
+
 rel/redleaves_register.cpp:
 	.text       start:0x00098EF8 end:0x00098FA8
 	.ctors      start:0x00000140 end:0x00000144
