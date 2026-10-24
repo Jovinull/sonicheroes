@@ -2090,6 +2090,9 @@ rel/rainmush_register.cpp:
 	.text       start:0x00088A58 end:0x00088B08
 	.ctors      start:0x00000108 end:0x0000010C
 
+rel/raintree_edit.cpp:
+	.text       start:0x00089CD8 end:0x00089D10
+
 rel/raintree_hooks.cpp:
 	.text       start:0x00089D10 end:0x00089D40
 
