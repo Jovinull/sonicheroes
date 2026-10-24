@@ -5965,6 +5965,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/traincore_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/traincore_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
