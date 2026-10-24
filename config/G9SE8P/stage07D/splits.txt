@@ -1874,6 +1874,9 @@ rel/railwatersupply_register.cpp:
 	.text       start:0x000717BC end:0x0007185C
 	.ctors      start:0x000000C0 end:0x000000C4
 
+rel/barrel_hooks.cpp:
+	.text       start:0x000724D4 end:0x00072538
+
 rel/barrel_create.cpp:
 	.text       start:0x00072664 end:0x000726AC
 
