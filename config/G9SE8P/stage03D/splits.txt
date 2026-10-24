@@ -2383,6 +2383,9 @@ rel/s04_ball_colli_dtor.cpp:
 rel/s04_ball_colli_ctor.cpp:
 	.text       start:0x000B6AC8 end:0x000B6BA8
 
+rel/s04_ball_colli_edit.cpp:
+	.text       start:0x000B6BA8 end:0x000B6BCC
+
 rel/s04_ball_colli_create.cpp:
 	.text       start:0x000B6BCC end:0x000B6CD4
 
