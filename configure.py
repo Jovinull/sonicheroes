@@ -4145,6 +4145,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/casinodoor_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/casinodoor_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
