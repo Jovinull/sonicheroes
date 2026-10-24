@@ -19,15 +19,15 @@ extern "C" ModelFile s13ScrewModels[1];
 
 extern "C" void fn_801A4C84(void* dictionary);
 extern "C" void LoadOneFile__7ONEFILEFPc(void* file, char* name);
-extern "C" void fn_9_76448(ModelFile* file);
-extern "C" void fn_9_765CC(ModelFile* file, s32 flags);
+extern "C" void s13ModelInfoExRelease(ModelFile* file);
+extern "C" void s13ModelInfoExLoad(ModelFile* file, s32 flags);
 
 extern "C" void s13dScrewUnload(void)
 {
 	ModelFile* file = s13ScrewModels;
 
 	for (u8 i = 0; i < 1; i++) {
-		fn_9_76448(file);
+		s13ModelInfoExRelease(file);
 		file++;
 	}
 }
@@ -45,7 +45,7 @@ extern "C" void s13dScrewLoad(void)
 	ModelFile* file = s13ScrewModels;
 
 	for (u8 i = 0; i < 1; i++) {
-		fn_9_765CC(file, 0);
+		s13ModelInfoExLoad(file, 0);
 		file++;
 	}
 }
