@@ -6540,6 +6540,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/trainchangerail_reset.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/trainchangerail_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

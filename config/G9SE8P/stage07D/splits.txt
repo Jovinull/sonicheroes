@@ -2347,6 +2347,9 @@ rel/train_change_rail_dtor.cpp:
 rel/train_change_rail_ctor.cpp:
 	.text       start:0x00090F78 end:0x00091044
 
+rel/trainchangerail_reset.cpp:
+	.text       start:0x00091310 end:0x00091314
+
 rel/train_change_rail_create.cpp:
 	.text       start:0x000916D8 end:0x000917CC
 
