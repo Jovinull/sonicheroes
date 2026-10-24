@@ -5230,6 +5230,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rainmush_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rainmush_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
