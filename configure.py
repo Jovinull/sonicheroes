@@ -5760,6 +5760,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03d_light_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03d_light_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
