@@ -2461,6 +2461,9 @@ rel/s14_key_dtor.cpp:
 rel/s14_key_ctor.cpp:
 	.text       start:0x000D06D0 end:0x000D08FC
 
+rel/s14_key_object_hooks.cpp:
+	.text       start:0x000D08FC end:0x000D09DC
+
 rel/s14_key_create.cpp:
 	.text       start:0x000D09DC end:0x000D0C30
 

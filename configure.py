@@ -5935,6 +5935,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_key_object_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14key_object_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
