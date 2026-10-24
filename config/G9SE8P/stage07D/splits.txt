@@ -2508,6 +2508,9 @@ rel/blowfan_register.cpp:
 rel/eggmaso_dtor.cpp:
 	.text       start:0x000C7CB8 end:0x000C7DA4
 
+rel/eggmaso_hooks.cpp:
+	.text       start:0x000C7EC8 end:0x000C7FE8
+
 rel/eggmaso_register.cpp:
 	.text       start:0x000C8130 end:0x000C81CC
 	.ctors      start:0x00000180 end:0x00000184
