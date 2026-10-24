@@ -5625,6 +5625,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s03_walk_way_edit.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s03_walk_way_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
