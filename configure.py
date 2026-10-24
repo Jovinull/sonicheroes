@@ -9801,6 +9801,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_green_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_green_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -2127,6 +2127,9 @@ rel/hawk_mgun_bullet.cpp:
 rel/s02_green_edit.cpp:
 	.text       start:0x000AE7D8 end:0x000AE82C
 
+rel/s02_green_hooks.cpp:
+	.text       start:0x000AE82C end:0x000AEA20
+
 rel/s02_green_register.cpp:
 	.text       start:0x000AECF0 end:0x000AED9C
 	.ctors      start:0x00000124 end:0x00000128
