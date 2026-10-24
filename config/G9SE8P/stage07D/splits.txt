@@ -2046,6 +2046,9 @@ rel/rail_cap_ex_dtor.cpp:
 rel/rail_cap_ex_ctor.cpp:
 	.text       start:0x00083550 end:0x00083694
 
+rel/railcapex_hooks.cpp:
+	.text       start:0x00083698 end:0x000837B8
+
 rel/rail_cap_ex_create.cpp:
 	.text       start:0x000837B8 end:0x00083924
 
