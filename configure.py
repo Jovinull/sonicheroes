@@ -4995,6 +4995,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/railwatersupply_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/railwatersupply_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
