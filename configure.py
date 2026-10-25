@@ -6500,6 +6500,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_kankyohakai_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_senkan_mov_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
