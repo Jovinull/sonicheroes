@@ -79,6 +79,8 @@ they are, kept for review. Source files link to the note that covers them.
 * [Memory.cpp native matching evidence](memory-unit-evidence.md)
 * [miscs.cpp compiler constant ordering](miscs-constant-order.md)
 * [Complete object.cpp reconstruction](object-unit-evidence.md)
+* [object.cpp semantic audit](object-semantic-audit.md): grouped review of all
+  79 symbols, source structure, port risks and the remaining register gap.
 * [ONEFILE translation unit evidence](one-unit-evidence.md)
 * [Path-control compiler constant order](pathctrl-constant-order.md)
 * [Path control translation unit evidence](pathctrl-unit-evidence.md)
