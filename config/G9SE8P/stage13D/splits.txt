@@ -2422,6 +2422,9 @@ rel/e2000_object_register.cpp:
 	.text       start:0x000B2370 end:0x000B246C
 	.ctors      start:0x0000015C end:0x00000160
 
+rel/e2000_object_array_dtor.cpp:
+	.text       start:0x000B246C end:0x000B24A4
+
 rel/e2000_strategy_execute.cpp:
 	.text       start:0x000B24AC end:0x000B2544
 
