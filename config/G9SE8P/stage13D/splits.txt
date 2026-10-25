@@ -2271,6 +2271,9 @@ rel/s13d_rail_cap_fore_register.cpp:
 rel/s13d_ufo_unload.cpp:
 	.text       start:0x00095EC4 end:0x00095F8C
 
+rel/s13d_ufo_create.cpp:
+	.text       start:0x0009616C end:0x00096518
+
 rel/s13d_ufo_register.cpp:
 	.text       start:0x00096518 end:0x000965C0
 	.ctors      start:0x00000130 end:0x00000134
