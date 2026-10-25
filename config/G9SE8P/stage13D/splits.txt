@@ -2591,6 +2591,9 @@ rel/s14d_ufo_register.cpp:
 	.text       start:0x000CBFFC end:0x000CC0A4
 	.ctors      start:0x00000190 end:0x00000194
 
+rel/s14d_walllight_side_hooks.cpp:
+	.text       start:0x000CCCE0 end:0x000CCF20
+
 rel/s14d_walllight_side_register.cpp:
 	.text       start:0x000CD498 end:0x000CD5C4
 	.ctors      start:0x00000194 end:0x00000198

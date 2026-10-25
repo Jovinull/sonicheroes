@@ -7945,6 +7945,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14d_walllight_side_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14d_walllight_side_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
