@@ -2040,6 +2040,9 @@ rel/s13_model_info_release_stage26.cpp:
 rel/s13_model_info_load_stage26.cpp:
 	.text       start:0x00088050 end:0x00088288
 
+rel/s13_model_record_release.cpp:
+	.text       start:0x00088288 end:0x0008840C
+
 rel/capture_object_unload.cpp:
 	.text       start:0x0008E1A8 end:0x0008E248
 
