@@ -2136,6 +2136,9 @@ rel/s13_senkan_belt_register.cpp:
 rel/s13_missilepod_hooks.cpp:
 	.text       start:0x000864C8 end:0x000865C8
 
+rel/s13_missilepod_create.cpp:
+	.text       start:0x000865C8 end:0x000867F4
+
 rel/s13_missilepod_register.cpp:
 	.text       start:0x000867F4 end:0x00086890
 	.ctors      start:0x00000100 end:0x00000104
