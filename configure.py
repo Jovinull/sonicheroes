@@ -4750,6 +4750,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/metal_sonic_1st_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/metal_sonic_1st_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
