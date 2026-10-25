@@ -2238,6 +2238,9 @@ rel/s02_green_edit.cpp:
 rel/s13_bigmovship_hooks.cpp:
 	.text       start:0x000928F8 end:0x00092A5C
 
+rel/s13_bigmovship_create.cpp:
+	.text       start:0x00092A5C end:0x00092C78
+
 rel/s13_bigmovship_register.cpp:
 	.text       start:0x00092C78 end:0x00092D20
 	.ctors      start:0x00000124 end:0x00000128
