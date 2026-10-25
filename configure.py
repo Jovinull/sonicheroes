@@ -4715,6 +4715,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/kazariobj_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/kazariobj_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
