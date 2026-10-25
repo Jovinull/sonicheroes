@@ -10267,6 +10267,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_moving_land_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s02_moving_land_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
