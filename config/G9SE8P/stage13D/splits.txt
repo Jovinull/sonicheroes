@@ -2315,6 +2315,9 @@ rel/s14_laser_beam_dtor.cpp:
 rel/s14_laser_beam_ctor.cpp:
 	.text       start:0x000A3A58 end:0x000A3AFC
 
+rel/s14_laser_beam_hooks.cpp:
+	.text       start:0x000A3AFC end:0x000A3C34
+
 rel/s14_laser_beam_create.cpp:
 	.text       start:0x000A3C34 end:0x000A3D00
 
