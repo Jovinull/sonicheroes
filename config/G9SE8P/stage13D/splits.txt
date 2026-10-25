@@ -2182,6 +2182,9 @@ rel/s13_kankyohakai_edit.cpp:
 rel/s13_kankyohakai_hooks.cpp:
 	.text       start:0x0008ABA4 end:0x0008AD70
 
+rel/s13_kankyohakai_create.cpp:
+	.text       start:0x0008AD70 end:0x0008AFA8
+
 rel/s13_kankyohakai_register.cpp:
 	.text       start:0x0008AFA8 end:0x0008B050
 	.ctors      start:0x00000110 end:0x00000114
