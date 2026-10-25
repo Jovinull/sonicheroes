@@ -7650,6 +7650,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tsukushi_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tsukushi_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
