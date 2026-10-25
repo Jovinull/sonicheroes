@@ -1876,6 +1876,9 @@ rel/o_setDamegeCollision.cpp:
 rel/s03_aircar_hooks.cpp:
 	.text       start:0x0007314C end:0x00073420
 
+rel/s03_aircar_create.cpp:
+	.text       start:0x00073420 end:0x00073650
+
 rel/s03_aircar_register.cpp:
 	.text       start:0x00073650 end:0x000736FC
 	.ctors      start:0x000000C0 end:0x000000C4
@@ -2139,6 +2142,9 @@ rel/s04d_elevator_register.cpp:
 
 rel/s04d_energy_fire_hooks.cpp:
 	.text       start:0x000950EC end:0x000950F4
+
+rel/s04d_energy_fire_create.cpp:
+	.text       start:0x000950F4 end:0x000951C4
 
 rel/s04d_energy_fire_register.cpp:
 	.text       start:0x000951C4 end:0x0009526C
@@ -2561,12 +2567,18 @@ rel/s04_ball_colli_register.cpp:
 rel/capture_object_unload.cpp:
 	.text       start:0x000BB9F0 end:0x000BBA90
 
+rel/capture_object_load.cpp:
+	.text       start:0x000BBA90 end:0x000BBE88
+
 rel/capture_object_create.cpp:
 	.text       start:0x000BBE88 end:0x000BBED0
 
 rel/capture_register.cpp:
 	.text       start:0x000BBFA0 end:0x000BC09C
 	.ctors      start:0x00000170 end:0x00000174
+
+rel/capture_object_array_dtor.cpp:
+	.text       start:0x000BC09C end:0x000BC0D4
 
 rel/e_capture_collision.cpp:
 	.text       start:0x000BC1C0 end:0x000BC720

@@ -1943,6 +1943,9 @@ rel/crossing_hooks.cpp:
 rel/crossing_load.cpp:
 	.text       start:0x000777C4 end:0x0007785C
 
+rel/crossing_create.cpp:
+	.text       start:0x0007785C end:0x00077A88
+
 rel/crossing_register.cpp:
 	.text       start:0x00077A88 end:0x00077B38
 	.ctors      start:0x000000D0 end:0x000000D4
@@ -2907,12 +2910,18 @@ rel/pawn_strategy.cpp:
 rel/capture_object_unload.cpp:
 	.text       start:0x000D9DBC end:0x000D9E5C
 
+rel/capture_object_load.cpp:
+	.text       start:0x000D9E5C end:0x000DA254
+
 rel/capture_object_create.cpp:
 	.text       start:0x000DA254 end:0x000DA29C
 
 rel/capture_register.cpp:
 	.text       start:0x000DA36C end:0x000DA468
 	.ctors      start:0x000001AC end:0x000001B0
+
+rel/capture_object_array_dtor.cpp:
+	.text       start:0x000DA468 end:0x000DA4A0
 
 rel/capture_strategy_execute.cpp:
 	.text       start:0x000DA4A8 end:0x000DA540
@@ -3012,6 +3021,9 @@ rel/e_flyer_path_stage11.cpp:
 
 rel/rinoliner_object_unload.cpp:
 	.text       start:0x000E6D60 end:0x000E6DF8
+
+rel/rinoliner_object_load.cpp:
+	.text       start:0x000E6DF8 end:0x000E6FC4
 
 rel/rinoliner_create.cpp:
 	.text       start:0x000E6FC4 end:0x000E700C

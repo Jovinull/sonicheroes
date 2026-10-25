@@ -1618,6 +1618,12 @@ rel/chao_register.cpp:
 rel/king_pawn_create.cpp:
 	.text       start:0x0006AD28 end:0x0006AD8C
 
+rel/king_pawn_unload.cpp:
+	.text       start:0x0006AD8C end:0x0006AF4C
+
+rel/king_pawn_load.cpp:
+	.text       start:0x0006AF4C end:0x0006B1F0
+
 rel/king_pawn_register.cpp:
 	.text       start:0x0006B1F0 end:0x0006B29C
 	.ctors      start:0x000000C8 end:0x000000CC
@@ -2022,12 +2028,18 @@ rel/s13_houdai_register.cpp:
 rel/capture_object_unload.cpp:
 	.text       start:0x0008E1A8 end:0x0008E248
 
+rel/capture_object_load.cpp:
+	.text       start:0x0008E248 end:0x0008E640
+
 rel/capture_object_create.cpp:
 	.text       start:0x0008E640 end:0x0008E688
 
 rel/capture_register.cpp:
 	.text       start:0x0008E758 end:0x0008E854
 	.ctors      start:0x000000EC end:0x000000F0
+
+rel/capture_object_array_dtor.cpp:
+	.text       start:0x0008E854 end:0x0008E88C
 
 rel/capture_collision_kill.cpp:
 	.text       start:0x0008E990 end:0x0008E9E4
@@ -2066,12 +2078,18 @@ rel/e2000_turn_to_aim.cpp:
 rel/e2000_object_unload.cpp:
 	.text       start:0x00094654 end:0x000946F8
 
+rel/e2000_object_load.cpp:
+	.text       start:0x000946F8 end:0x00094A88
+
 rel/e2000_object_create.cpp:
 	.text       start:0x00094A88 end:0x00094AD0
 
 rel/e2000_object_register.cpp:
 	.text       start:0x00094B00 end:0x00094BFC
 	.ctors      start:0x000000F4 end:0x000000F8
+
+rel/e2000_object_array_dtor.cpp:
+	.text       start:0x00094BFC end:0x00094C34
 
 rel/e2000_strategy_execute.cpp:
 	.text       start:0x00094C3C end:0x00094CD4

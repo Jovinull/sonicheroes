@@ -1673,6 +1673,9 @@ rel/enemy_vector_fire_dtor.cpp:
 rel/metal_sonic_1st_unload.cpp:
 	.text       start:0x0006BD04 end:0x0006BDC0
 
+rel/metal_sonic_1st_load.cpp:
+	.text       start:0x0006BDC0 end:0x0006C10C
+
 rel/metal_sonic_1st_create.cpp:
 	.text       start:0x0006C10C end:0x0006C154
 

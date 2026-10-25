@@ -2521,12 +2521,18 @@ rel/casinodush_register.cpp:
 rel/capture_object_unload.cpp:
 	.text       start:0x000A7E6C end:0x000A7F0C
 
+rel/capture_object_load.cpp:
+	.text       start:0x000A7F0C end:0x000A8304
+
 rel/capture_object_create.cpp:
 	.text       start:0x000A8304 end:0x000A834C
 
 rel/capture_register.cpp:
 	.text       start:0x000A841C end:0x000A8518
 	.ctors      start:0x0000014C end:0x00000150
+
+rel/capture_object_array_dtor.cpp:
+	.text       start:0x000A8518 end:0x000A8550
 
 rel/capture_collision_kill.cpp:
 	.text       start:0x000A863C end:0x000A8690
@@ -2578,6 +2584,9 @@ rel/e_flyer_strategy_stage11.cpp:
 
 rel/rinoliner_object_unload.cpp:
 	.text       start:0x000B2100 end:0x000B2198
+
+rel/rinoliner_object_load.cpp:
+	.text       start:0x000B2198 end:0x000B2364
 
 rel/rinoliner_create.cpp:
 	.text       start:0x000B2364 end:0x000B23AC

@@ -2011,6 +2011,21 @@ rel/s13_houdai_register.cpp:
 	.text       start:0x00074F94 end:0x00075184
 	.ctors      start:0x000000DC end:0x000000E0
 
+rel/s13_part_info.cpp:
+	.text       start:0x00075E60 end:0x0007610C
+
+rel/s13_model_info_release.cpp:
+	.text       start:0x0007610C end:0x00076210
+
+rel/s13_model_info_load.cpp:
+	.text       start:0x00076210 end:0x00076448
+
+rel/s13_model_record_release.cpp:
+	.text       start:0x00076448 end:0x000765CC
+
+rel/s13_model_record_load.cpp:
+	.text       start:0x000765CC end:0x000769E0
+
 rel/s13_senkan_yuka_edit.cpp:
 	.text       start:0x00077474 end:0x00077564
 
@@ -2365,12 +2380,18 @@ rel/s14_laser_sign_register.cpp:
 rel/capture_object_unload.cpp:
 	.text       start:0x000ABA38 end:0x000ABAD8
 
+rel/capture_object_load.cpp:
+	.text       start:0x000ABAD8 end:0x000ABED0
+
 rel/capture_object_create.cpp:
 	.text       start:0x000ABED0 end:0x000ABF18
 
 rel/capture_register.cpp:
 	.text       start:0x000ABFE8 end:0x000AC0E4
 	.ctors      start:0x00000154 end:0x00000158
+
+rel/capture_object_array_dtor.cpp:
+	.text       start:0x000AC0E4 end:0x000AC11C
 
 rel/capture_strategy_execute.cpp:
 	.text       start:0x000AC124 end:0x000AC1BC
@@ -2412,12 +2433,18 @@ rel/e2000_turn_to_aim.cpp:
 rel/e2000_object_unload.cpp:
 	.text       start:0x000B1EC4 end:0x000B1F68
 
+rel/e2000_object_load.cpp:
+	.text       start:0x000B1F68 end:0x000B22F8
+
 rel/e2000_object_create.cpp:
 	.text       start:0x000B22F8 end:0x000B2340
 
 rel/e2000_object_register.cpp:
 	.text       start:0x000B2370 end:0x000B246C
 	.ctors      start:0x0000015C end:0x00000160
+
+rel/e2000_object_array_dtor.cpp:
+	.text       start:0x000B246C end:0x000B24A4
 
 rel/e2000_strategy_execute.cpp:
 	.text       start:0x000B24AC end:0x000B2544
@@ -2427,6 +2454,9 @@ rel/e2000_object_clear_slots.cpp:
 
 rel/flyer_object_unload.cpp:
 	.text       start:0x000B8080 end:0x000B8168
+
+rel/flyer_object_load.cpp:
+	.text       start:0x000B8168 end:0x000B8420
 
 rel/flyer_object_create.cpp:
 	.text       start:0x000B8420 end:0x000B8468
@@ -2492,6 +2522,9 @@ rel/e_flyer_path_stage11.cpp:
 
 rel/wall_object_unload.cpp:
 	.text       start:0x000C2144 end:0x000C21B8
+
+rel/wall_object_load.cpp:
+	.text       start:0x000C21B8 end:0x000C24CC
 
 rel/wall_object_create.cpp:
 	.text       start:0x000C24CC end:0x000C2514
