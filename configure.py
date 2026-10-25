@@ -4710,6 +4710,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/king_pawn_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/king_pawn_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

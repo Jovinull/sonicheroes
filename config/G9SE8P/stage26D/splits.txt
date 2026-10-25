@@ -1621,6 +1621,9 @@ rel/king_pawn_create.cpp:
 rel/king_pawn_unload.cpp:
 	.text       start:0x0006AD8C end:0x0006AF4C
 
+rel/king_pawn_load.cpp:
+	.text       start:0x0006AF4C end:0x0006B1F0
+
 rel/king_pawn_register.cpp:
 	.text       start:0x0006B1F0 end:0x0006B29C
 	.ctors      start:0x000000C8 end:0x000000CC
