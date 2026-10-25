@@ -2907,6 +2907,9 @@ rel/pawn_strategy.cpp:
 rel/capture_object_unload.cpp:
 	.text       start:0x000D9DBC end:0x000D9E5C
 
+rel/capture_object_load.cpp:
+	.text       start:0x000D9E5C end:0x000DA254
+
 rel/capture_object_create.cpp:
 	.text       start:0x000DA254 end:0x000DA29C
 

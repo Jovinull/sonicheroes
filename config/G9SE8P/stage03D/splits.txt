@@ -2561,6 +2561,9 @@ rel/s04_ball_colli_register.cpp:
 rel/capture_object_unload.cpp:
 	.text       start:0x000BB9F0 end:0x000BBA90
 
+rel/capture_object_load.cpp:
+	.text       start:0x000BBA90 end:0x000BBE88
+
 rel/capture_object_create.cpp:
 	.text       start:0x000BBE88 end:0x000BBED0
 
