@@ -4850,6 +4850,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/palm_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/palm_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
