@@ -7015,6 +7015,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_wall_side_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_wall_side_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
