@@ -77,10 +77,21 @@ octree collision list, filters moving-sphere candidates, resolves polygon
 contacts, adjusts velocity and stores ground angles. This unit uses static
 `OBJ_MoveOnGround::vMove`, a current-instance pointer and other shared
 traversal state; reentrancy and multi-thread safety are not established. The
-source constructor clears selected `flagMOG` bit ranges using read/modify/write
-operations rather than assigning the entire field. Whether callers zero the
-remaining bits before construction is **UNKNOWN**; changing this would require
-matching evidence and caller-lifecycle evidence.
+source constructor clears bits 0–3 and 8–11 of `flagMOG` with read/modify/write
+operations, leaving bits 4–7 and 12–15 unchanged. Follow-up inspection found
+`ENEMY_SHOT` embeds this base and is created with `new`; it has no class-specific
+allocator, while inherited `TObject::operator new` uses `THeapCtrl::Malloc`,
+which does not clear each returned block. The heap region is cleared when its
+controller is constructed, but freed blocks are reused without being cleared;
+whether a given shot receives an untouched or reused block is **UNKNOWN**.
+Zero initialization of the preserved bits is therefore **not guaranteed**.
+The shown readers use the result/request masks, and `CheckGroundCollision`
+clears results and sets request bits before collision traversal; whether every
+reader runs after the relevant initialization remains **UNKNOWN**. This
+confirms partial initialization and a potential stale-value concern, not a
+demonstrated gameplay failure. Do not change the matching constructor; a port
+should define all flag bits explicitly after confirming which bits are
+reserved.
 
 ### Camera and near-camera rendering (11)
 
@@ -124,10 +135,14 @@ The source installs/removes render callbacks, sets RenderWare visibility flags,
 modifies vertex pre-lighting using integer alpha arithmetic, invokes light and
 shadow helpers, and hides atomics by frame ancestry or skin bone indices. The
 bone callback loops while `i <= geometry->numVertices` and consumes four bytes
-per iteration. This is a **HYPOTHESIS** for a possible one-vertex overread when
-there is no early bone match. It may reproduce an original boundary convention
-or an original bug; GameCube instructions plus the skin-index buffer contract
-are required before classifying or changing it.
+per iteration. Follow-up inspection of `rw_gcn_raster.c` found that
+`fn_80226578` reads the plugin record's `+0x14` word (declared `u8*` at this
+call site and `s32` at its definition), and `fn_80227AA8` processes one packed
+word for each vertex count supplied by the geometry. This corroborates a
+logical `numVertices`-word index array, but the allocation extent and any
+sentinel remain **UNKNOWN**. The inclusive loop is therefore a **CORROBORATED
+possible overread**, not a proven out-of-bounds access. Preserve it pending the
+actual plugin allocation contract or target evidence.
 
 ### Hierarchy and material state (9)
 
@@ -276,12 +291,23 @@ search.
   functions, overloads and C-linked globals. `object-unit-evidence.md` records
   how declaration order and deferred inlining reproduce function/data ordering;
   this audit cannot independently regenerate that ordering.
-- **HYPOTHESIS:** global mutable callback state and static `vMove` require
-  serialized traversal/collision calls. A port or mod API should encapsulate or
-  synchronize that state only at an adapter boundary.
-- **HYPOTHESIS:** the inclusive bone-index loop may overread, and the selected
-  `flagMOG` bits may rely on caller initialization. Both need target evidence
-  and real call-site/storage analysis before being described as bugs.
+- **VERIFIED (source dataflow):** traversal wrappers assign file-local state
+  such as `pSerchingFrame`, `pCurrentGeometry`, `pCurrentMaterialNum`, and
+  `idBoneToHide` before passing callbacks to visitor functions. The callbacks
+  read or update that state, and callers consume traversal results immediately
+  after the visitor returns. Collision callbacks similarly read `pCurrentMOG`
+  and static `vMove` established before the collision walk. This makes nested
+  or overlapping calls non-reentrant without external serialization.
+- **UNKNOWN (runtime scheduling):** `adx_mgc.c` creates and resumes audio
+  threads, but the inspected call paths do not show those threads invoking
+  `object.cpp` callbacks or collision functions. Actual concurrent access to
+  this state is unproven; do not infer that the whole game is single-threaded.
+- **CORROBORATED:** the skin loop may read beyond the logical per-vertex data;
+  its actual allocation extent is not established. **VERIFIED:** the movement
+  constructor preserves bits which it does not initialize, and the allocator
+  can reuse payloads without clearing them on the `ENEMY_SHOT` path. Neither
+  finding justifies changing matching source without target and lifecycle
+  evidence.
 - **UNKNOWN:** behavior of exception/allocator paths, malformed archive names,
   decompression failures, missing resources and malformed RenderWare objects.
   The source's calls and null checks do not reveal all callee contracts.
