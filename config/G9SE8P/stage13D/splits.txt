@@ -2623,6 +2623,9 @@ rel/s14_thunder_ptcl_register.cpp:
 	.text       start:0x000CA4F8 end:0x000CA594
 	.ctors      start:0x0000018C end:0x00000190
 
+rel/s14d_ufo_unload.cpp:
+	.text       start:0x000CB958 end:0x000CBA20
+
 rel/s14d_ufo_register.cpp:
 	.text       start:0x000CBFFC end:0x000CC0A4
 	.ctors      start:0x00000190 end:0x00000194
