@@ -6580,6 +6580,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_model_record_release.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_model_info_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
