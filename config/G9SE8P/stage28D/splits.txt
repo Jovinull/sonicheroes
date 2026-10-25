@@ -1815,6 +1815,9 @@ rel/enemy_cloud_ctor.cpp:
 rel/enemy_cloud_create.cpp:
 	.text       start:0x0007B994 end:0x0007BAD4
 
+rel/stg28_obj_create.cpp:
+	.text       start:0x0007BD58 end:0x0007BD5C
+
 rel/stg28_obj_register.cpp:
 	.text       start:0x0007BFE0 end:0x0007C088
 	.ctors      start:0x000000EC end:0x000000F0

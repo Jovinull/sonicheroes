@@ -7140,6 +7140,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/stg28_obj_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/stg28_obj_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
