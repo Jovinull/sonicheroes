@@ -2216,6 +2216,9 @@ rel/bigfireworks_reset.cpp:
 rel/bigfireworks_hooks.cpp:
 	.text       start:0x0008613C end:0x000862EC
 
+rel/bigfireworks_create.cpp:
+	.text       start:0x000862EC end:0x00086484
+
 rel/bigfireworks_register.cpp:
 	.text       start:0x00086484 end:0x00086534
 	.ctors      start:0x000000F8 end:0x000000FC
