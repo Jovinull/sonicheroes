@@ -6665,6 +6665,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_ufo_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_ufo_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
