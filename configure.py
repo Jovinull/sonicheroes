@@ -6885,6 +6885,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14d_wall_neon_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14d_wall_neon_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
