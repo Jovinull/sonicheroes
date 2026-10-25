@@ -2440,6 +2440,9 @@ rel/e2000_object_clear_slots.cpp:
 rel/flyer_object_unload.cpp:
 	.text       start:0x000B8080 end:0x000B8168
 
+rel/flyer_object_load.cpp:
+	.text       start:0x000B8168 end:0x000B8420
+
 rel/flyer_object_create.cpp:
 	.text       start:0x000B8420 end:0x000B8468
 
