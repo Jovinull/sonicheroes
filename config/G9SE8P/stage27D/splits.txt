@@ -1819,6 +1819,9 @@ rel/enemy_stg27_cloud_dtor.cpp:
 rel/enemy_stg27_cloud_create.cpp:
 	.text       start:0x0007A4DC end:0x0007A63C
 
+rel/stg27_obj_create.cpp:
+	.text       start:0x0007A8C0 end:0x0007A8C4
+
 rel/stg27_obj_register.cpp:
 	.text       start:0x0007AB48 end:0x0007ABF0
 	.ctors      start:0x000000EC end:0x000000F0
