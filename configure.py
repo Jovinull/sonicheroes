@@ -6760,6 +6760,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13d_bigfan_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13d_bigfan_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
