@@ -1968,6 +1968,9 @@ rel/kazariobj_unload.cpp:
 rel/kazariobj_load.cpp:
 	.text       start:0x0007A038 end:0x0007A14C
 
+rel/kazariobj_create.cpp:
+	.text       start:0x0007A1E0 end:0x0007A3BC
+
 rel/kazariobj_register.cpp:
 	.text       start:0x0007A3BC end:0x0007A46C
 	.ctors      start:0x000000D8 end:0x000000DC
@@ -2002,11 +2005,14 @@ rel/mushroom_register.cpp:
 	.text       start:0x0007BEE8 end:0x0007BF98
 	.ctors      start:0x000000E0 end:0x000000E4
 
-rel/yajirusi_dtor.cpp:
+rel/palm_dtor.cpp:
 	.text       start:0x0007C544 end:0x0007C644
 
 rel/palm_hooks.cpp:
 	.text       start:0x0007C930 end:0x0007CA50
+
+rel/palm_create.cpp:
+	.text       start:0x0007CA50 end:0x0007CC2C
 
 rel/palm_register.cpp:
 	.text       start:0x0007CC2C end:0x0007CCDC
@@ -2030,6 +2036,9 @@ rel/pond_unload.cpp:
 
 rel/pond_load.cpp:
 	.text       start:0x0007EC14 end:0x0007ED0C
+
+rel/pond_create.cpp:
+	.text       start:0x0007ED0C end:0x0007EEB4
 
 rel/pond_register.cpp:
 	.text       start:0x0007EEB4 end:0x0007EF64
@@ -2088,6 +2097,9 @@ rel/rainfruit_register.cpp:
 
 rel/rainfruitmi_hooks.cpp:
 	.text       start:0x0008427C end:0x00084340
+
+rel/rainfruitmi_create.cpp:
+	.text       start:0x00084340 end:0x000844D0
 
 rel/rainfruitmi_register.cpp:
 	.text       start:0x000844D0 end:0x00084570
@@ -2229,6 +2241,9 @@ rel/stoprain_register.cpp:
 
 rel/tsukushi_hooks.cpp:
 	.text       start:0x0008DD84 end:0x0008DF0C
+
+rel/tsukushi_create.cpp:
+	.text       start:0x0008DFA0 end:0x0008E174
 
 rel/tsukushi_register.cpp:
 	.text       start:0x0008E174 end:0x0008E224

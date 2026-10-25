@@ -2023,6 +2023,9 @@ rel/egghorn_register.cpp:
 rel/ikaribakuhatu_hooks.cpp:
 	.text       start:0x0007C87C end:0x0007C99C
 
+rel/ikaribakuhatu_create.cpp:
+	.text       start:0x0007C99C end:0x0007CB18
+
 rel/ikaribakuhatu_register.cpp:
 	.text       start:0x0007CB18 end:0x0007CBC8
 	.ctors      start:0x000000E4 end:0x000000E8
@@ -2709,6 +2712,9 @@ rel/eggmaso_dtor.cpp:
 rel/eggmaso_hooks.cpp:
 	.text       start:0x000C7EC8 end:0x000C7FE8
 
+rel/eggmaso_create.cpp:
+	.text       start:0x000C7FE8 end:0x000C8130
+
 rel/eggmaso_register.cpp:
 	.text       start:0x000C8130 end:0x000C81CC
 	.ctors      start:0x00000180 end:0x00000184
@@ -2738,6 +2744,9 @@ rel/torch_edit.cpp:
 rel/torch_hooks.cpp:
 	.text       start:0x000C9300 end:0x000C93E8
 
+rel/torch_create.cpp:
+	.text       start:0x000C93E8 end:0x000C9530
+
 rel/torch_register.cpp:
 	.text       start:0x000C9530 end:0x000C95E0
 	.ctors      start:0x00000188 end:0x0000018C
@@ -2747,6 +2756,9 @@ rel/traincore_edit.cpp:
 
 rel/traincore_hooks.cpp:
 	.text       start:0x000CA18C end:0x000CA2AC
+
+rel/traincore_create.cpp:
+	.text       start:0x000CA2AC end:0x000CA4A8
 
 rel/traincore_register.cpp:
 	.text       start:0x000CA4A8 end:0x000CA558

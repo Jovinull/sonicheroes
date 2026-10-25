@@ -2032,6 +2032,9 @@ rel/s01_truck_path_register.cpp:
 rel/s02_colli_for_quake_edit.cpp:
 	.text       start:0x00092B48 end:0x00092BD4
 
+rel/s02_colli_for_quake_create.cpp:
+	.text       start:0x00092BD4 end:0x00092D80
+
 rel/s02_colli_for_quake_register.cpp:
 	.text       start:0x00092D80 end:0x00092E14
 	.ctors      start:0x00000100 end:0x00000104
@@ -2100,6 +2103,9 @@ rel/s02d_kameashi_hooks.cpp:
 rel/s02d_kameashi_register.cpp:
 	.text       start:0x0009E794 end:0x0009E8D0
 	.ctors      start:0x00000114 end:0x00000118
+
+rel/s02_moving_land_create.cpp:
+	.text       start:0x0009EFC4 end:0x0009F184
 
 rel/s02_moving_land_unload.cpp:
 	.text       start:0x0009F184 end:0x0009F1F4

@@ -2163,6 +2163,9 @@ rel/bingopanel_edit.cpp:
 rel/bingopanel_hooks.cpp:
 	.text       start:0x0008192C end:0x00081B34
 
+rel/bingopanel_create.cpp:
+	.text       start:0x00081B34 end:0x00081CE4
+
 rel/bingopanel_register.cpp:
 	.text       start:0x00081CE4 end:0x00081D94
 	.ctors      start:0x000000E8 end:0x000000EC
@@ -2215,6 +2218,9 @@ rel/bigfireworks_reset.cpp:
 
 rel/bigfireworks_hooks.cpp:
 	.text       start:0x0008613C end:0x000862EC
+
+rel/bigfireworks_create.cpp:
+	.text       start:0x000862EC end:0x00086484
 
 rel/bigfireworks_register.cpp:
 	.text       start:0x00086484 end:0x00086534

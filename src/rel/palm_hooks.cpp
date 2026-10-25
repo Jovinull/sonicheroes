@@ -13,7 +13,7 @@ struct ModelFile {
 	void* model;      // 0x0C
 };
 
-extern "C" ModelFile yajirusiModelFiles[2];
+extern "C" ModelFile palmModelFiles[2];
 extern "C" u8* lbl_8042C1D0;
 extern "C" u8* lbl_8042C298;
 extern "C" u8 lbl_802FF5A0[];
@@ -28,7 +28,7 @@ extern "C" void palmReset(void) { }
 
 extern "C" void palmUnload(void)
 {
-	ModelFile* files = yajirusiModelFiles;
+	ModelFile* files = palmModelFiles;
 
 	for (int i = 0; i < 2; i++) {
 		if (files[i].model != NULL) {
@@ -42,7 +42,7 @@ extern "C" void palmLoad(void)
 {
 	fn_801A4C84(*(void**)(lbl_8042C1D0 + 0x8C18));
 	LoadOneFile__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), lbl_802FF5A0);
-	ModelFile* files = yajirusiModelFiles;
+	ModelFile* files = palmModelFiles;
 	for (int i = 0; i < 2; i++) {
 		files[i].model = LoadClumpEx__7ONEFILEFUiPc(*(void**)(lbl_8042C298 + 0xA50),
 		    CheckFileID__7ONEFILEFPc(*(void**)(lbl_8042C298 + 0xA50), files[i].name),

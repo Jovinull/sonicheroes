@@ -2136,6 +2136,9 @@ rel/s13_senkan_belt_register.cpp:
 rel/s13_missilepod_hooks.cpp:
 	.text       start:0x000864C8 end:0x000865C8
 
+rel/s13_missilepod_create.cpp:
+	.text       start:0x000865C8 end:0x000867F4
+
 rel/s13_missilepod_register.cpp:
 	.text       start:0x000867F4 end:0x00086890
 	.ctors      start:0x00000100 end:0x00000104
@@ -2145,6 +2148,9 @@ rel/s13d_bigfan_edit.cpp:
 
 rel/s13d_bigfan_hooks.cpp:
 	.text       start:0x00086F60 end:0x00087060
+
+rel/s13d_bigfan_create.cpp:
+	.text       start:0x00087060 end:0x0008729C
 
 rel/s13d_bigfan_register.cpp:
 	.text       start:0x0008729C end:0x00087344
@@ -2163,6 +2169,9 @@ rel/s13d_screw_register.cpp:
 rel/s13_design_pipe_hooks.cpp:
 	.text       start:0x00088244 end:0x00088344
 
+rel/s13_design_pipe_create.cpp:
+	.text       start:0x00088344 end:0x00088508
+
 rel/s13_design_pipe_register.cpp:
 	.text       start:0x00088508 end:0x000885A0
 	.ctors      start:0x0000010C end:0x00000110
@@ -2175,6 +2184,9 @@ rel/s13_kankyohakai_edit.cpp:
 
 rel/s13_kankyohakai_hooks.cpp:
 	.text       start:0x0008ABA4 end:0x0008AD70
+
+rel/s13_kankyohakai_create.cpp:
+	.text       start:0x0008AD70 end:0x0008AFA8
 
 rel/s13_kankyohakai_register.cpp:
 	.text       start:0x0008AFA8 end:0x0008B050
@@ -2266,6 +2278,9 @@ rel/s13d_ufo_register.cpp:
 rel/s14_fall_ashiba_hooks.cpp:
 	.text       start:0x00097CF8 end:0x00097DF8
 
+rel/s14_fall_ashiba_create.cpp:
+	.text       start:0x00097DF8 end:0x0009807C
+
 rel/s14_fall_ashiba_register.cpp:
 	.text       start:0x0009807C end:0x00098124
 	.ctors      start:0x00000134 end:0x00000138
@@ -2296,6 +2311,9 @@ rel/s14_koware_edit.cpp:
 
 rel/s14_koware_hooks.cpp:
 	.text       start:0x0009E7D4 end:0x0009E8D4
+
+rel/s14_koware_create.cpp:
+	.text       start:0x0009E8D4 end:0x0009EAFC
 
 rel/s14_koware_register.cpp:
 	.text       start:0x0009EAFC end:0x0009EBA4
@@ -2602,6 +2620,9 @@ rel/s14_laser_light_register.cpp:
 rel/s14_railend_sign_hooks.cpp:
 	.text       start:0x000C6AFC end:0x000C6BFC
 
+rel/s14_railend_sign_create.cpp:
+	.text       start:0x000C6BFC end:0x000C6F08
+
 rel/s14_railend_sign_register.cpp:
 	.text       start:0x000C6F08 end:0x000C6FA0
 	.ctors      start:0x00000178 end:0x0000017C
@@ -2631,6 +2652,9 @@ rel/s14_roadlight_edit.cpp:
 
 rel/s14_roadlight_hooks.cpp:
 	.text       start:0x000C8B68 end:0x000C8C68
+
+rel/s14_roadlight_create.cpp:
+	.text       start:0x000C8C68 end:0x000C8F3C
 
 rel/s14_roadlight_register.cpp:
 	.text       start:0x000C8F3C end:0x000C8FE4
@@ -2765,6 +2789,9 @@ rel/s14_wall_side_edit.cpp:
 
 rel/s14_wall_side_hooks.cpp:
 	.text       start:0x000D6540 end:0x000D6640
+
+rel/s14_wall_side_create.cpp:
+	.text       start:0x000D6640 end:0x000D69D0
 
 rel/s14_wall_side_register.cpp:
 	.text       start:0x000D69D0 end:0x000D6A78
