@@ -34,6 +34,27 @@ GameCube target. All 25 bodies are reconstructed and now match directly from
 C++, together with every function offset and size and all 422 normalized
 relocations. No instruction postprocessor is required.
 
+## Ownership and caller limits
+
+`LoadOneFile` owns the archive buffer it allocates; `flagBW` selects the
+allocator and `ReleaseOneFile` uses the `fname` markers to distinguish owned
+storage from a borrowed buffer installed by `SetOneFile` or the memory-stream
+setter. The shared C-ABI `fn_80012994` wrapper now declares and returns the
+pointer produced by `fn_800129B4`; the compiled `heap.o` remained byte-identical.
+`exBuffer` is caller-owned scratch: the loaders receive no capacity, so
+each caller must keep that buffer alive and large enough. The TMB loader copies
+expanded bytes into the heap allocator; the enemy database routes that resource
+to its separate cleanup helper. The ARAM helper rounds the chunk size to 32
+bytes, completes the transfer, then frees its temporary main-memory buffer.
+
+The matching control flow also retains several retail assumptions. If archive
+allocation fails after `LoadOneFile` opens its stream, that path returns without
+closing the stream. `CheckFileID` can fill all 64 bytes of its local comparison
+buffer without adding a terminator, and the ARAM helper returns an uninitialized
+address when the requested chunk is absent. This audit does not establish that
+these paths are reachable for valid retail assets. Preserve them in the matching
+source; hardening them belongs in a separately validated port.
+
 ## Chunk-address expression
 
 The shared OpenData helper and the ARAM resource loader compute the address of
