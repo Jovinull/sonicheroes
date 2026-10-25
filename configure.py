@@ -3810,6 +3810,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/capture_object_array_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -2029,6 +2029,9 @@ rel/capture_register.cpp:
 	.text       start:0x0008E758 end:0x0008E854
 	.ctors      start:0x000000EC end:0x000000F0
 
+rel/capture_object_array_dtor.cpp:
+	.text       start:0x0008E854 end:0x0008E88C
+
 rel/capture_collision_kill.cpp:
 	.text       start:0x0008E990 end:0x0008E9E4
 
