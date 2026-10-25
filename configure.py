@@ -7050,6 +7050,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/spring_mush_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/spring_mush_reset.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -2174,6 +2174,9 @@ rel/sida_register.cpp:
 rel/spring_mush_reset.cpp:
 	.text       start:0x0008CC54 end:0x0008CC58
 
+rel/spring_mush_unload.cpp:
+	.text       start:0x0008CC58 end:0x0008CC84
+
 rel/spring_mush_load.cpp:
 	.text       start:0x0008CC84 end:0x0008CD04
 
