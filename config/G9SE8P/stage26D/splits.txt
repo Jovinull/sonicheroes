@@ -2037,6 +2037,9 @@ rel/s13_part_info.cpp:
 rel/s13_model_info_release_stage26.cpp:
 	.text       start:0x00087F4C end:0x00088050
 
+rel/s13_model_info_load_stage26.cpp:
+	.text       start:0x00088050 end:0x00088288
+
 rel/capture_object_unload.cpp:
 	.text       start:0x0008E1A8 end:0x0008E248
 

@@ -6700,6 +6700,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_model_info_load_stage26.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_model_info_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
