@@ -573,6 +573,9 @@ rel/big_rings_element_ctor.cpp:
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D4 end:0x0001D968
 
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E338 end:0x0001E38C
+
 rel/big_rings_light.cpp:
 	.text       start:0x0001E38C end:0x0001E434
 

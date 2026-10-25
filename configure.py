@@ -9909,6 +9909,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/big_rings_matches_number.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/big_rings_set_state.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
