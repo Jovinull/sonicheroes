@@ -3273,6 +3273,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/rinoliner_object_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/rinoliner_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

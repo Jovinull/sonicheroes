@@ -2558,6 +2558,9 @@ rel/e_flyer_strategy_stage11.cpp:
 	.rodata     start:0x00001A68 end:0x00001A88
 	.data       start:0x00017670 end:0x000176C8
 
+rel/rinoliner_object_unload.cpp:
+	.text       start:0x000B2100 end:0x000B2198
+
 rel/rinoliner_create.cpp:
 	.text       start:0x000B2364 end:0x000B23AC
 
