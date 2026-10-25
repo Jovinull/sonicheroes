@@ -1244,6 +1244,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x00046BC8 end:0x00046C6C
 	.ctors      start:0x00000098 end:0x0000009C
 
+rel/light_collision_find.cpp:
+	.text       start:0x00046E58 end:0x00046E90
+
 rel/light_collision_master.cpp:
 	.text       start:0x00046E90 end:0x00046F00
 
