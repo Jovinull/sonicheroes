@@ -2058,6 +2058,9 @@ rel/e2000_object_register.cpp:
 rel/e2000_strategy_execute.cpp:
 	.text       start:0x00094C3C end:0x00094CD4
 
+rel/e2000_object_clear_slots.cpp:
+	.text       start:0x00095A40 end:0x00095A78
+
 rel/pawn_add_item_box.cpp:
 	.text       start:0x000971E4 end:0x00097208
 

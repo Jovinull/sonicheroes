@@ -2404,6 +2404,9 @@ rel/e2000_object_register.cpp:
 rel/e2000_strategy_execute.cpp:
 	.text       start:0x000B24AC end:0x000B2544
 
+rel/e2000_object_clear_slots.cpp:
+	.text       start:0x000B32B0 end:0x000B32E8
+
 rel/flyer_object_unload.cpp:
 	.text       start:0x000B8080 end:0x000B8168
 
