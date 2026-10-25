@@ -1674,6 +1674,9 @@ rel/enemy_gadget_dtor.cpp:
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EEA8 end:0x0005EEC0
 
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EEC0 end:0x0005EF08
+
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
 

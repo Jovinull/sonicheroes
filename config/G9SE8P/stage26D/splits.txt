@@ -1289,6 +1289,9 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0004A4E4 end:0x0004A594
 	.ctors      start:0x000000A4 end:0x000000A8
 
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0004A5B8 end:0x0004A600
+
 rel/machine_gun_control.cpp:
 	.text       start:0x0004A600 end:0x0004A878
 

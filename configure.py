@@ -9526,6 +9526,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_release_buffer.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gadget_mgun_cdtor.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
