@@ -2874,6 +2874,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_rolling_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/event_manager_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

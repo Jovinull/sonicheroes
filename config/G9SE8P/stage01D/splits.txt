@@ -2130,6 +2130,10 @@ rel/s02_rolling_cl_ctor.cpp:
 rel/s02_rolling_cl_create.cpp:
 	.text       start:0x0009FC0C end:0x0009FD64
 
+rel/s02_rolling_register.cpp:
+	.text       start:0x000A28C4 end:0x000A2A28
+	.ctors      start:0x0000011C end:0x00000120
+
 rel/s02_water_dtor.cpp:
 	.text       start:0x000A2EA8 end:0x000A2F68
 
