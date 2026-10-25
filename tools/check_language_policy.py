@@ -166,7 +166,7 @@ def parse_source_commands() -> dict[str, dict[str, Any]]:
         raise RuntimeError(f"could not read Ninja commands: {detail}") from exc
 
     commands: dict[str, dict[str, Any]] = {}
-    source_pattern = re.compile(r"(?:^|\s)-c\s+src/([^\s\"']+)")
+    source_pattern = re.compile(r"(?:^|\s)-c\s+src[\\/]([^\s\"']+)")
     language_pattern = re.compile(r"(?:^|\s)-lang=(c\+\+|c)(?=\s|$)")
     inline_pattern = re.compile(r"(?:^|\s)-inline\s+(.+?)(?=\s+-[A-Za-z]|\s+&&|$)")
 
@@ -175,7 +175,7 @@ def parse_source_commands() -> dict[str, dict[str, Any]]:
         if source_match is None or "mwcceppc.exe" not in line:
             continue
 
-        source = source_match.group(1)
+        source = source_match.group(1).replace("\\", "/")
         languages = language_pattern.findall(line)
         if languages:
             language = languages[-1]

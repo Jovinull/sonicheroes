@@ -41,6 +41,28 @@ def clean_git_environment() -> dict[str, str]:
     }
 
 
+class SourceCommandParsingTests(unittest.TestCase):
+    def test_windows_source_path_is_normalized(self) -> None:
+        command = (
+            r"build\tools\sjiswrap.exe build\compilers\GC\1.3.2\mwcceppc.exe "
+            r"-lang=c++ -c src\game\unit.cpp -o build\G9SE8P\src\game\unit.o"
+        )
+        result = subprocess.CompletedProcess(
+            args=["ninja", "-t", "commands", "all_source"],
+            returncode=0,
+            stdout=command,
+            stderr="",
+        )
+
+        with patch.object(checker.subprocess, "run", return_value=result):
+            commands = checker.parse_source_commands()
+
+        self.assertEqual(
+            commands,
+            {"game/unit.cpp": {"language": "c++", "inline_modes": []}},
+        )
+
+
 class PolicyValidationTests(unittest.TestCase):
     def load_policy(self, policy: dict[str, list[str]]) -> dict[str, list[str]]:
         with tempfile.TemporaryDirectory() as directory:
