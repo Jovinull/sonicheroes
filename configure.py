@@ -7115,6 +7115,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14d_ufo_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14d_ufo_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
