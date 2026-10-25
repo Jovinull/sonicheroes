@@ -7,6 +7,8 @@ Start with [getting_started.md](getting_started.md). The project's public site
 
 * [Getting started](getting_started.md): build, verify, find work, match in
   objdiff, open a pull request.
+* [Codex engineering baseline](codex-engineering-baseline.md): commit-scoped
+  engineering risks, verification state and semantic audit candidates.
 * [Source language and compiler evidence](language-policy.md): which units are
   C and which are C++, and how that is decided.
 * [Source-language migration audit](language-audit.md): reviewed decisions.
