@@ -9382,6 +9382,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/stg26_colli_cc_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/stg26_colli_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
