@@ -4680,6 +4680,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ikaribakuhatu_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ikaribakuhatu_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

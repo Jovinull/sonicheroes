@@ -2023,6 +2023,9 @@ rel/egghorn_register.cpp:
 rel/ikaribakuhatu_hooks.cpp:
 	.text       start:0x0007C87C end:0x0007C99C
 
+rel/ikaribakuhatu_create.cpp:
+	.text       start:0x0007C99C end:0x0007CB18
+
 rel/ikaribakuhatu_register.cpp:
 	.text       start:0x0007CB18 end:0x0007CBC8
 	.ctors      start:0x000000E4 end:0x000000E8
