@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB80 end:0x0000BC3C
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC3C end:0x0000BD2C
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD3C end:0x0000BE98
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C398 end:0x0001C488
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C490 end:0x0001C4A0
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC18 end:0x0001CC54
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D4 end:0x0001D968
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E338 end:0x0001E38C
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E38C end:0x0001E434
@@ -1411,6 +1420,9 @@ rel/system_object3_dtor.cpp:
 rel/system_object3_ctor.cpp:
 	.text       start:0x0004DC38 end:0x0004DC9C
 
+rel/system_object3_hooks.cpp:
+	.text       start:0x0004DC9C end:0x0004DCD0
+
 rel/system_object3_create.cpp:
 	.text       start:0x0004DCD0 end:0x0004DD5C
 
@@ -1436,6 +1448,9 @@ rel/system_object4_create.cpp:
 rel/system_object4_register.cpp:
 	.text       start:0x0004DFE4 end:0x0004E088
 	.ctors      start:0x0000009C end:0x000000A0
+
+rel/light_collision_find.cpp:
+	.text       start:0x0004E274 end:0x0004E2AC
 
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2AC end:0x0004E31C
@@ -1685,6 +1700,9 @@ rel/enemy_gadget_dtor.cpp:
 
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EE7C end:0x0005EE94
+
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EE94 end:0x0005EEDC
 
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EEDC end:0x0005F154
@@ -2140,6 +2158,9 @@ rel/s13_ship_piece_dtor.cpp:
 rel/s13_kankyohakai_edit.cpp:
 	.text       start:0x0008A8A4 end:0x0008A900
 
+rel/s13_kankyohakai_hooks.cpp:
+	.text       start:0x0008ABA4 end:0x0008AD70
+
 rel/s13_kankyohakai_register.cpp:
 	.text       start:0x0008AFA8 end:0x0008B050
 	.ctors      start:0x00000110 end:0x00000114
@@ -2187,6 +2208,9 @@ stage13D/o_s13_antenna.cpp:
 rel/s02_green_edit.cpp:
 	.text       start:0x000925F4 end:0x00092648
 
+rel/s13_bigmovship_hooks.cpp:
+	.text       start:0x000928F8 end:0x00092A5C
+
 rel/s13_bigmovship_register.cpp:
 	.text       start:0x00092C78 end:0x00092D20
 	.ctors      start:0x00000124 end:0x00000128
@@ -2216,6 +2240,9 @@ rel/s13d_rail_cap_fore_create.cpp:
 rel/s13d_rail_cap_fore_register.cpp:
 	.text       start:0x00094A0C end:0x00094B38
 	.ctors      start:0x0000012C end:0x00000130
+
+rel/s13d_ufo_unload.cpp:
+	.text       start:0x00095EC4 end:0x00095F8C
 
 rel/s13d_ufo_register.cpp:
 	.text       start:0x00096518 end:0x000965C0
@@ -2306,6 +2333,9 @@ rel/s14_laser_beam_dtor.cpp:
 rel/s14_laser_beam_ctor.cpp:
 	.text       start:0x000A3A58 end:0x000A3AFC
 
+rel/s14_laser_beam_hooks.cpp:
+	.text       start:0x000A3AFC end:0x000A3C34
+
 rel/s14_laser_beam_create.cpp:
 	.text       start:0x000A3C34 end:0x000A3D00
 
@@ -2379,6 +2409,9 @@ rel/capture_collision_register.cpp:
 rel/e2000_turn_to_aim.cpp:
 	.text       start:0x000AECC4 end:0x000AED40
 
+rel/e2000_object_unload.cpp:
+	.text       start:0x000B1EC4 end:0x000B1F68
+
 rel/e2000_object_create.cpp:
 	.text       start:0x000B22F8 end:0x000B2340
 
@@ -2388,6 +2421,12 @@ rel/e2000_object_register.cpp:
 
 rel/e2000_strategy_execute.cpp:
 	.text       start:0x000B24AC end:0x000B2544
+
+rel/e2000_object_clear_slots.cpp:
+	.text       start:0x000B32B0 end:0x000B32E8
+
+rel/flyer_object_unload.cpp:
+	.text       start:0x000B8080 end:0x000B8168
 
 rel/flyer_object_create.cpp:
 	.text       start:0x000B8420 end:0x000B8468
@@ -2450,6 +2489,12 @@ rel/e_flyer_path_stage11.cpp:
 	.text       start:0x000BB734 end:0x000BBDFC
 	.rodata     start:0x00002480 end:0x00002490
 	.data       start:0x0001C3C0 end:0x0001C3F0
+
+rel/wall_object_unload.cpp:
+	.text       start:0x000C2144 end:0x000C21B8
+
+rel/wall_object_create.cpp:
+	.text       start:0x000C24CC end:0x000C2514
 
 rel/wall_register.cpp:
 	.text       start:0x000C2544 end:0x000C2624
@@ -2578,13 +2623,22 @@ rel/s14_thunder_ptcl_register.cpp:
 	.text       start:0x000CA4F8 end:0x000CA594
 	.ctors      start:0x0000018C end:0x00000190
 
+rel/s14d_ufo_unload.cpp:
+	.text       start:0x000CB958 end:0x000CBA20
+
 rel/s14d_ufo_register.cpp:
 	.text       start:0x000CBFFC end:0x000CC0A4
 	.ctors      start:0x00000190 end:0x00000194
 
+rel/s14d_walllight_side_hooks.cpp:
+	.text       start:0x000CCCE0 end:0x000CCF20
+
 rel/s14d_walllight_side_register.cpp:
 	.text       start:0x000CD498 end:0x000CD5C4
 	.ctors      start:0x00000194 end:0x00000198
+
+rel/s14d_wall_neon_hooks.cpp:
+	.text       start:0x000CE10C end:0x000CE2E4
 
 rel/s14d_wall_neon_register.cpp:
 	.text       start:0x000CE574 end:0x000CE60C

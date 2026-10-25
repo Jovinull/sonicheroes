@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB7C end:0x0000BC38
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C48C end:0x0001C49C
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC14 end:0x0001CC50
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
@@ -1422,6 +1431,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_find.cpp:
+	.text       start:0x0004E290 end:0x0004E2C8
+
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2C8 end:0x0004E338
 
@@ -1674,6 +1686,9 @@ rel/enemy_gadget_dtor.cpp:
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EEA8 end:0x0005EEC0
 
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EEC0 end:0x0005EF08
+
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
 
@@ -1895,11 +1910,17 @@ rel/o_s01_object_a34c_sinit.cpp:
 	.text       start:0x0007D8BC end:0x0007D968
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/gokurakucho_atomic_callback.cpp:
+	.text       start:0x0007D970 end:0x0007D9A0
+
 rel/gokuracho_ctor.cpp:
 	.text       start:0x0007E76C end:0x0007ECDC
 
 rel/gokurakucho_edit.cpp:
 	.text       start:0x0007ECDC end:0x0007ED1C
+
+rel/gokurakucho_hooks.cpp:
+	.text       start:0x0007ED1C end:0x0007EF38
 
 rel/gokurakucho_create.cpp:
 	.text       start:0x0007EF38 end:0x0007EF80
@@ -1932,6 +1953,9 @@ rel/o_s01_iwamizu.cpp:
 rel/kamome_ctor.cpp:
 	.text       start:0x00083B28 end:0x00083D8C
 
+rel/kamome_hooks.cpp:
+	.text       start:0x000841E8 end:0x000844D0
+
 rel/kamome_create.cpp:
 	.text       start:0x000844D0 end:0x00084518
 
@@ -1949,8 +1973,14 @@ rel/s01_koware_register.cpp:
 	.text       start:0x00085F54 end:0x00085FEC
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/s01_move_iseki_hooks.cpp:
+	.text       start:0x00087F48 end:0x00088270
+
 rel/s01_move_iseki_create.cpp:
 	.text       start:0x00088270 end:0x000882B8
+
+rel/wave_hooks.cpp:
+	.text       start:0x00089108 end:0x000893F0
 
 rel/wave_create.cpp:
 	.text       start:0x000893F0 end:0x00089438
@@ -1981,6 +2011,9 @@ rel/o_s01_taihostull.cpp:
 	.rodata     start:0x000016D8 end:0x00001720
 	.data       start:0x0000B59C end:0x0000B610
 	.bss        start:0x000017B8 end:0x000017F4
+
+rel/s01_truck_rail_hooks.cpp:
+	.text       start:0x0008F754 end:0x0008FA14
 
 rel/s01_truck_rail_create.cpp:
 	.text       start:0x0008FA14 end:0x0008FA5C
@@ -2026,8 +2059,8 @@ rel/s02_break_gareki_register.cpp:
 rel/s02_breakruin_l_hierarchy.cpp:
 	.text       start:0x000980AC end:0x000981C0
 
-rel/s02_breakruin_l_unload.cpp:
-	.text       start:0x00099764 end:0x00099784
+rel/s02_breakruin_l_hooks.cpp:
+	.text       start:0x00099764 end:0x000997C0
 
 rel/s02_breakruin_l_create.cpp:
 	.text       start:0x000997C0 end:0x00099808
@@ -2039,8 +2072,8 @@ rel/s02_break_ruin_l_register.cpp:
 rel/s02_breakruin_s_hierarchy.cpp:
 	.text       start:0x00099D60 end:0x00099E74
 
-rel/s02_breakruin_s_unload.cpp:
-	.text       start:0x0009C170 end:0x0009C190
+rel/s02_breakruin_s_hooks.cpp:
+	.text       start:0x0009C170 end:0x0009C1F0
 
 rel/s02_breakruin_s_create.cpp:
 	.text       start:0x0009C1F0 end:0x0009C238
@@ -2060,6 +2093,9 @@ rel/s02_kame_wave_create.cpp:
 
 rel/s02d_kameashi_edit.cpp:
 	.text       start:0x0009E024 end:0x0009E064
+
+rel/s02d_kameashi_hooks.cpp:
+	.text       start:0x0009E064 end:0x0009E440
 
 rel/s02d_kameashi_register.cpp:
 	.text       start:0x0009E794 end:0x0009E8D0
@@ -2089,6 +2125,9 @@ rel/s02_water_dtor.cpp:
 
 rel/s02_water_edit.cpp:
 	.text       start:0x000A3148 end:0x000A319C
+
+rel/s02_water_hooks.cpp:
+	.text       start:0x000A319C end:0x000A33A8
 
 rel/s02_water_register.cpp:
 	.text       start:0x000A35B0 end:0x000A365C
@@ -2149,6 +2188,9 @@ rel/obj_set_particle_register.cpp:
 
 rel/s02_pole_edit.cpp:
 	.text       start:0x000AFF5C end:0x000AFFB0
+
+rel/s02_pole_hooks.cpp:
+	.text       start:0x000AFFB0 end:0x000B0284
 
 rel/s02_pole_register.cpp:
 	.text       start:0x000B05CC end:0x000B0678
@@ -2290,9 +2332,15 @@ rel/s20d_curb_stone_register.cpp:
 rel/s20d_whalestone_edit.cpp:
 	.text       start:0x000BBE18 end:0x000BBE50
 
+rel/s20d_whalestone_hooks.cpp:
+	.text       start:0x000BBE50 end:0x000BBEEC
+
 rel/s20d_whale_stone_register.cpp:
 	.text       start:0x000BC130 end:0x000BC1DC
 	.ctors      start:0x00000140 end:0x00000144
+
+rel/s20d_lighthouse_hooks.cpp:
+	.text       start:0x000BC914 end:0x000BC9B0
 
 rel/s20d_lighthouse_register.cpp:
 	.text       start:0x000BCB98 end:0x000BCC34

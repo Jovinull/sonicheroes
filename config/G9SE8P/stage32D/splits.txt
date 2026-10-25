@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB7C end:0x0000BC38
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C48C end:0x0001C49C
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC14 end:0x0001CC50
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
@@ -1422,6 +1431,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_find.cpp:
+	.text       start:0x0004E290 end:0x0004E2C8
+
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2C8 end:0x0004E338
 
@@ -1475,6 +1487,9 @@ rel/push_pull_switch_hooks.cpp:
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0005191C end:0x000519CC
 	.ctors      start:0x000000A8 end:0x000000AC
+
+rel/pawn_release_buffer.cpp:
+	.text       start:0x000519F0 end:0x00051A38
 
 rel/machine_gun_control.cpp:
 	.text       start:0x00051A38 end:0x00051CB0

@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB7C end:0x0000BC38
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C48C end:0x0001C49C
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC14 end:0x0001CC50
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
@@ -1422,6 +1431,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_find.cpp:
+	.text       start:0x0004E290 end:0x0004E2C8
+
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2C8 end:0x0004E338
 
@@ -1674,6 +1686,9 @@ rel/enemy_gadget_dtor.cpp:
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EEA8 end:0x0005EEC0
 
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EEC0 end:0x0005EF08
+
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
 
@@ -1883,6 +1898,9 @@ rel/butterfly_reset.cpp:
 rel/butterfly_unload.cpp:
 	.text       start:0x00072728 end:0x00072790
 
+rel/butterfly_load.cpp:
+	.text       start:0x00072790 end:0x000728A4
+
 rel/butterfly_create.cpp:
 	.text       start:0x00072938 end:0x00072980
 
@@ -1918,6 +1936,9 @@ rel/froggreen_reset.cpp:
 rel/froggreen_unload.cpp:
 	.text       start:0x00076E3C end:0x00076EA4
 
+rel/froggreen_load.cpp:
+	.text       start:0x00076EA4 end:0x000770A0
+
 rel/froggreen_create.cpp:
 	.text       start:0x00077134 end:0x0007717C
 
@@ -1926,7 +1947,7 @@ rel/froggreen_register.cpp:
 	.ctors      start:0x000000D0 end:0x000000D4
 
 rel/ivyjump_hooks.cpp:
-	.text       start:0x00079250 end:0x000792B4
+	.text       start:0x00079250 end:0x000794B4
 
 rel/ivyjump_create.cpp:
 	.text       start:0x00079548 end:0x00079590
@@ -1940,6 +1961,9 @@ rel/kazariobj_reset.cpp:
 
 rel/kazariobj_unload.cpp:
 	.text       start:0x00079FD0 end:0x0007A038
+
+rel/kazariobj_load.cpp:
+	.text       start:0x0007A038 end:0x0007A14C
 
 rel/kazariobj_register.cpp:
 	.text       start:0x0007A3BC end:0x0007A46C
@@ -1966,7 +1990,7 @@ rel/leafaa_register.cpp:
 	.ctors      start:0x000000DC end:0x000000E0
 
 rel/mushroom_hooks.cpp:
-	.text       start:0x0007BC04 end:0x0007BC68
+	.text       start:0x0007BC04 end:0x0007BE0C
 
 rel/mushroom_create.cpp:
 	.text       start:0x0007BEA0 end:0x0007BEE8
@@ -1986,7 +2010,7 @@ rel/palm_register.cpp:
 	.ctors      start:0x000000E4 end:0x000000E8
 
 rel/pepe_hooks.cpp:
-	.text       start:0x0007DAA8 end:0x0007DAF0
+	.text       start:0x0007DAA8 end:0x0007DCA8
 
 rel/pepe_create.cpp:
 	.text       start:0x0007DD3C end:0x0007DD84
@@ -2000,6 +2024,9 @@ rel/pond_reset.cpp:
 
 rel/pond_unload.cpp:
 	.text       start:0x0007EBA4 end:0x0007EC14
+
+rel/pond_load.cpp:
+	.text       start:0x0007EC14 end:0x0007ED0C
 
 rel/pond_register.cpp:
 	.text       start:0x0007EEB4 end:0x0007EF64
@@ -2162,6 +2189,9 @@ rel/sida_register.cpp:
 rel/spring_mush_reset.cpp:
 	.text       start:0x0008CC54 end:0x0008CC58
 
+rel/spring_mush_unload.cpp:
+	.text       start:0x0008CC58 end:0x0008CC84
+
 rel/spring_mush_load.cpp:
 	.text       start:0x0008CC84 end:0x0008CD04
 
@@ -2195,7 +2225,7 @@ rel/stoprain_register.cpp:
 	.ctors      start:0x0000011C end:0x00000120
 
 rel/tsukushi_hooks.cpp:
-	.text       start:0x0008DD84 end:0x0008DDF0
+	.text       start:0x0008DD84 end:0x0008DF0C
 
 rel/tsukushi_register.cpp:
 	.text       start:0x0008E174 end:0x0008E224
@@ -2206,6 +2236,9 @@ rel/aligator_reset.cpp:
 
 rel/aligator_unload.cpp:
 	.text       start:0x00093160 end:0x000931CC
+
+rel/aligator_load.cpp:
+	.text       start:0x000931CC end:0x00093324
 
 rel/aligator_create.cpp:
 	.text       start:0x00093324 end:0x0009336C
@@ -2311,7 +2344,7 @@ rel/treeleaf_edit.cpp:
 	.text       start:0x00099774 end:0x000997C0
 
 rel/treeleaf_hooks.cpp:
-	.text       start:0x000997C0 end:0x00099810
+	.text       start:0x000997C0 end:0x00099904
 
 rel/treeleaf_create.cpp:
 	.text       start:0x00099998 end:0x000999E0
@@ -2327,7 +2360,7 @@ rel/waterplant_edit.cpp:
 	.text       start:0x0009C518 end:0x0009C564
 
 rel/waterplant_hooks.cpp:
-	.text       start:0x0009C564 end:0x0009C5B4
+	.text       start:0x0009C564 end:0x0009C6A8
 
 rel/water_plant_create.cpp:
 	.text       start:0x0009C73C end:0x0009C85C
@@ -2340,7 +2373,7 @@ rel/water_surface_dtor.cpp:
 	.text       start:0x0009CE08 end:0x0009CEE4
 
 rel/watersurface_hooks.cpp:
-	.text       start:0x0009CFE0 end:0x0009D030
+	.text       start:0x0009CFE0 end:0x0009D0E4
 
 rel/water_surface_create.cpp:
 	.text       start:0x0009D0E4 end:0x0009D204
@@ -2536,6 +2569,9 @@ rel/tutaetc_reset.cpp:
 
 rel/tutaetc_unload.cpp:
 	.text       start:0x000A7DC8 end:0x000A7E40
+
+rel/tutaetc_load.cpp:
+	.text       start:0x000A7E40 end:0x000A808C
 
 rel/tutaetc_create.cpp:
 	.text       start:0x000A808C end:0x000A80D4

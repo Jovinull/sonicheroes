@@ -3,7 +3,7 @@
 // The bird of paradise's constructor (gokurakuchoCtor here), called by the
 // module's factory. It builds the object's bases and makes its two models: its
 // own, added to one world slot, and the stage's, added to another, whose
-// atomics the module walks (gokurakuchoAtomicCallback, still assembly) with the object's
+// atomics the module walks (rel/gokurakucho_atomic_callback.cpp) with the object's
 // atomic slot. The first atomic of the stage's model takes the bounding sphere
 // of the reference atomic (both brought up to date first, as
 // RpAtomicGetBoundingSphere does), and the second model's frame is hung under

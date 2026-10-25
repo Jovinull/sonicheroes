@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB7C end:0x0000BC38
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C48C end:0x0001C49C
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC14 end:0x0001CC50
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
@@ -1422,6 +1431,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_find.cpp:
+	.text       start:0x0004E290 end:0x0004E2C8
+
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2C8 end:0x0004E338
 
@@ -1674,6 +1686,9 @@ rel/enemy_gadget_dtor.cpp:
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EEA8 end:0x0005EEC0
 
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EEC0 end:0x0005EF08
+
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
 
@@ -1894,7 +1909,7 @@ rel/barrel_register.cpp:
 	.ctors      start:0x000000C4 end:0x000000C8
 
 rel/bigcannon_hooks.cpp:
-	.text       start:0x00073AB0 end:0x00073B14
+	.text       start:0x00073AB0 end:0x00073C24
 
 rel/bigcannon_create.cpp:
 	.text       start:0x00073C24 end:0x00073C6C
@@ -1943,6 +1958,9 @@ rel/destructrail_reset.cpp:
 
 rel/destructrail_unload.cpp:
 	.text       start:0x00078C94 end:0x00078D0C
+
+rel/destructrail_load.cpp:
+	.text       start:0x00078D0C end:0x00078E8C
 
 rel/destruct_rail_create.cpp:
 	.text       start:0x00078E8C end:0x00078F78
@@ -2186,7 +2204,7 @@ rel/rail_end_en_ctor.cpp:
 	.text       start:0x0008692C end:0x00086A94
 
 rel/railenden_hooks.cpp:
-	.text       start:0x00086A98 end:0x00086B04
+	.text       start:0x00086A98 end:0x00086BD8
 
 rel/rail_end_en_create.cpp:
 	.text       start:0x00086BD8 end:0x00086D68
@@ -2215,7 +2233,7 @@ rel/railmechtypeabc_edit.cpp:
 	.text       start:0x000884B4 end:0x00088534
 
 rel/railmechtypeabc_hooks.cpp:
-	.text       start:0x00088534 end:0x00088598
+	.text       start:0x00088534 end:0x000886DC
 
 rel/railmechtypeabc_create.cpp:
 	.text       start:0x000886DC end:0x00088724
@@ -2371,6 +2389,9 @@ rel/train_change_rail_ctor.cpp:
 rel/trainchangerail_reset.cpp:
 	.text       start:0x00091310 end:0x00091314
 
+rel/trainchangerail_hooks.cpp:
+	.text       start:0x00091314 end:0x000916D8
+
 rel/train_change_rail_create.cpp:
 	.text       start:0x000916D8 end:0x000917CC
 
@@ -2415,6 +2436,9 @@ rel/traincollision_register.cpp:
 
 rel/traintrain_reset.cpp:
 	.text       start:0x00094F68 end:0x00094F6C
+
+rel/traintrain_hooks.cpp:
+	.text       start:0x00094F6C end:0x000952F4
 
 rel/traintrain_create.cpp:
 	.text       start:0x000952F4 end:0x0009533C
@@ -2649,6 +2673,9 @@ rel/hintcolli_register.cpp:
 
 rel/bigcannontop_reset.cpp:
 	.text       start:0x000C64D0 end:0x000C64D4
+
+rel/bigcannontop_hooks.cpp:
+	.text       start:0x000C64D4 end:0x000C6704
 
 rel/bigcannontop_create.cpp:
 	.text       start:0x000C6704 end:0x000C674C
@@ -2983,6 +3010,9 @@ rel/e_flyer_path_stage11.cpp:
 	.rodata     start:0x000021A0 end:0x000021B0
 	.data       start:0x000843E0 end:0x00084410
 
+rel/rinoliner_object_unload.cpp:
+	.text       start:0x000E6D60 end:0x000E6DF8
+
 rel/rinoliner_create.cpp:
 	.text       start:0x000E6FC4 end:0x000E700C
 
@@ -3270,6 +3300,9 @@ rel/no_ottotto_collision_register.cpp:
 
 rel/s08_bob_range_colli_dtor.cpp:
 	.text       start:0x000F4C44 end:0x000F4CDC
+
+rel/s08bob_colli_object_reset.cpp:
+	.text       start:0x000F4DC4 end:0x000F4DF8
 
 rel/s08_bob_range_colli_create.cpp:
 	.text       start:0x000F4DF8 end:0x000F4F08

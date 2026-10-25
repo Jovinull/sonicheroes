@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB7C end:0x0000BC38
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C48C end:0x0001C49C
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC14 end:0x0001CC50
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
@@ -1235,6 +1244,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x00046BC8 end:0x00046C6C
 	.ctors      start:0x00000098 end:0x0000009C
 
+rel/light_collision_find.cpp:
+	.text       start:0x00046E58 end:0x00046E90
+
 rel/light_collision_master.cpp:
 	.text       start:0x00046E90 end:0x00046F00
 
@@ -1288,6 +1300,9 @@ rel/push_pull_switch_hooks.cpp:
 rel/push_pull_switch_register.cpp:
 	.text       start:0x0004A4E4 end:0x0004A594
 	.ctors      start:0x000000A4 end:0x000000A8
+
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0004A5B8 end:0x0004A600
 
 rel/machine_gun_control.cpp:
 	.text       start:0x0004A600 end:0x0004A878
@@ -1600,6 +1615,9 @@ rel/chao_register.cpp:
 	.text       start:0x00063178 end:0x00063228
 	.ctors      start:0x000000C4 end:0x000000C8
 
+rel/king_pawn_create.cpp:
+	.text       start:0x0006AD28 end:0x0006AD8C
+
 rel/king_pawn_register.cpp:
 	.text       start:0x0006B1F0 end:0x0006B29C
 	.ctors      start:0x000000C8 end:0x000000CC
@@ -1756,6 +1774,12 @@ rel/s31bob_exec.cpp:
 
 rel/stg26_colli_dtor.cpp:
 	.text       start:0x00074F4C end:0x00074FD8
+
+rel/stg26_colli_cc_unload.cpp:
+	.text       start:0x00075384 end:0x00075418
+
+rel/stg26_colli_cc_load.cpp:
+	.text       start:0x00075630 end:0x000756F4
 
 rel/stg26_colli_cc_register.cpp:
 	.text       start:0x000756F4 end:0x00075840
@@ -2039,6 +2063,9 @@ rel/capture_collision_register.cpp:
 rel/e2000_turn_to_aim.cpp:
 	.text       start:0x0009144C end:0x000914C8
 
+rel/e2000_object_unload.cpp:
+	.text       start:0x00094654 end:0x000946F8
+
 rel/e2000_object_create.cpp:
 	.text       start:0x00094A88 end:0x00094AD0
 
@@ -2048,6 +2075,9 @@ rel/e2000_object_register.cpp:
 
 rel/e2000_strategy_execute.cpp:
 	.text       start:0x00094C3C end:0x00094CD4
+
+rel/e2000_object_clear_slots.cpp:
+	.text       start:0x00095A40 end:0x00095A78
 
 rel/pawn_add_item_box.cpp:
 	.text       start:0x000971E4 end:0x00097208
@@ -2549,6 +2579,9 @@ rel/enemy_stg27_cloud_dtor.cpp:
 
 rel/enemy_stg27_cloud_create.cpp:
 	.text       start:0x000B55FC end:0x000B575C
+
+rel/stg27_obj_create.cpp:
+	.text       start:0x000B59E0 end:0x000B59E4
 
 rel/stg27_obj_register.cpp:
 	.text       start:0x000B5C68 end:0x000B5D10

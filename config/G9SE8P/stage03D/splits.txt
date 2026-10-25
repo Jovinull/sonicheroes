@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB7C end:0x0000BC38
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C48C end:0x0001C49C
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC14 end:0x0001CC50
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
@@ -1422,6 +1431,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_find.cpp:
+	.text       start:0x0004E290 end:0x0004E2C8
+
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2C8 end:0x0004E338
 
@@ -1674,6 +1686,9 @@ rel/enemy_gadget_dtor.cpp:
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EEA8 end:0x0005EEC0
 
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EEC0 end:0x0005EF08
+
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
 
@@ -1858,6 +1873,9 @@ rel/o_setDamegeCollision.cpp:
 	.data       start:0x00007184 end:0x00007268
 	.bss        start:0x000010A8 end:0x000010D8
 
+rel/s03_aircar_hooks.cpp:
+	.text       start:0x0007314C end:0x00073420
+
 rel/s03_aircar_register.cpp:
 	.text       start:0x00073650 end:0x000736FC
 	.ctors      start:0x000000C0 end:0x000000C4
@@ -1888,6 +1906,9 @@ rel/s03_baloon_wk_register.cpp:
 rel/s03_big_bridge2_edit.cpp:
 	.text       start:0x00076D6C end:0x00076DE4
 
+rel/s03_big_bridge2_hooks.cpp:
+	.text       start:0x000773C8 end:0x000775F0
+
 rel/s03_big_bridge2_create.cpp:
 	.text       start:0x000775F0 end:0x00077638
 
@@ -1895,12 +1916,18 @@ rel/s03_big_bridge2_register.cpp:
 	.text       start:0x0007763C end:0x000776E4
 	.ctors      start:0x000000CC end:0x000000D0
 
+rel/s03_bridge_hooks.cpp:
+	.text       start:0x00078CD0 end:0x000790FC
+
 rel/s03_bridge_create.cpp:
 	.text       start:0x000791C0 end:0x00079208
 
 rel/s03_bridge_register.cpp:
 	.text       start:0x00079208 end:0x000792A0
 	.ctors      start:0x000000D0 end:0x000000D4
+
+rel/s03_door_hooks.cpp:
+	.text       start:0x0007A0D8 end:0x0007A3B4
 
 rel/s03_door_create.cpp:
 	.text       start:0x0007A3B4 end:0x0007A3FC
@@ -1911,6 +1938,9 @@ rel/s03_door_register.cpp:
 
 rel/s03_egg_cap_edit.cpp:
 	.text       start:0x0007C7AC end:0x0007C870
+
+rel/s03_egg_cap_hooks.cpp:
+	.text       start:0x0007D218 end:0x0007D444
 
 rel/s03_egg_cap_create.cpp:
 	.text       start:0x0007D444 end:0x0007D48C
@@ -1934,6 +1964,9 @@ rel/s03_set_light_dtor.cpp:
 rel/s03d_light_register.cpp:
 	.text       start:0x0007E99C end:0x0007EA44
 	.ctors      start:0x000000DC end:0x000000E0
+
+rel/s03_pipe_hooks.cpp:
+	.text       start:0x00081DB0 end:0x000820E8
 
 rel/s03_pipe_register.cpp:
 	.text       start:0x0008228C end:0x00082334
@@ -1964,6 +1997,9 @@ rel/s03_plane_register.cpp:
 
 rel/s03d_pole_edit.cpp:
 	.text       start:0x00084D94 end:0x00084E04
+
+rel/s03d_pole_hooks.cpp:
+	.text       start:0x00085318 end:0x000855E4
 
 rel/s03d_pole_create.cpp:
 	.text       start:0x000855E4 end:0x0008562C
@@ -2026,6 +2062,9 @@ rel/s04d_ball_glass_register.cpp:
 rel/s04_e_bubble_edit.cpp:
 	.text       start:0x000895AC end:0x000895D0
 
+rel/s04_e_bubble_hooks.cpp:
+	.text       start:0x00089BC4 end:0x00089E88
+
 rel/s04_ebubble_create.cpp:
 	.text       start:0x00089E88 end:0x00089ED0
 
@@ -2049,12 +2088,18 @@ rel/s04_egg_cap2_register.cpp:
 	.text       start:0x0008C6CC end:0x0008C774
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/s04_egg_cap_big_hooks.cpp:
+	.text       start:0x0008EB08 end:0x0008ED9C
+
 rel/s04_egg_cap_big_create.cpp:
 	.text       start:0x0008ED9C end:0x0008EDE4
 
 rel/s04_egg_cap_big_register.cpp:
 	.text       start:0x0008EDE4 end:0x0008EE7C
 	.ctors      start:0x00000104 end:0x00000108
+
+rel/s04_egg_cap_elev_hooks.cpp:
+	.text       start:0x00090DCC end:0x00091014
 
 rel/s04_egg_cap_elev_create.cpp:
 	.text       start:0x00091014 end:0x0009105C
@@ -2082,12 +2127,18 @@ rel/s04d_e_cylinder_register.cpp:
 rel/s04d_elevator_edit.cpp:
 	.text       start:0x00094254 end:0x00094294
 
+rel/s04d_elevator_hooks.cpp:
+	.text       start:0x00094A94 end:0x00094CEC
+
 rel/s04d_elevator_create.cpp:
 	.text       start:0x00094CEC end:0x00094D34
 
 rel/s04d_elevator_register.cpp:
 	.text       start:0x00094D34 end:0x00094DDC
 	.ctors      start:0x00000110 end:0x00000114
+
+rel/s04d_energy_fire_hooks.cpp:
+	.text       start:0x000950EC end:0x000950F4
 
 rel/s04d_energy_fire_register.cpp:
 	.text       start:0x000951C4 end:0x0009526C
@@ -2101,6 +2152,9 @@ rel/s04d_energy_up_unload.cpp:
 
 rel/s04d_energy_up_load.cpp:
 	.text       start:0x00095F78 end:0x00096150
+
+rel/s04d_energy_up_create.cpp:
+	.text       start:0x000961E4 end:0x00096230
 
 rel/s04d_energy_up_register.cpp:
 	.text       start:0x00096230 end:0x000962D8
@@ -2122,6 +2176,9 @@ rel/s04d_ashiba_register.cpp:
 rel/s04_energy_pipe_up_edit.cpp:
 	.text       start:0x0009869C end:0x000986F8
 
+rel/s04_energy_pipe_up_hooks.cpp:
+	.text       start:0x00098908 end:0x00098BD8
+
 rel/s04_energy_pipe_up_register.cpp:
 	.text       start:0x00098D88 end:0x00098E30
 	.ctors      start:0x00000120 end:0x00000124
@@ -2141,6 +2198,9 @@ rel/s04d_shutter_create.cpp:
 rel/s04d_shutter_register.cpp:
 	.text       start:0x00099914 end:0x000999BC
 	.ctors      start:0x00000124 end:0x00000128
+
+rel/s04_wall_hooks.cpp:
+	.text       start:0x00099F48 end:0x0009A184
 
 rel/s04_wall_register.cpp:
 	.text       start:0x0009A318 end:0x0009A3B4
@@ -2312,6 +2372,9 @@ rel/s04d_floor_light_register.cpp:
 	.text       start:0x000A5BC4 end:0x000A5C6C
 	.ctors      start:0x00000140 end:0x00000144
 
+rel/s04_big_shutter_hooks.cpp:
+	.text       start:0x000A69AC end:0x000A6BD0
+
 rel/s04_big_shutter_create.cpp:
 	.text       start:0x000A6BD0 end:0x000A6C18
 
@@ -2325,6 +2388,9 @@ rel/s04d_room_light_hooks.cpp:
 rel/s04d_room_light_register.cpp:
 	.text       start:0x000A784C end:0x000A78F8
 	.ctors      start:0x00000148 end:0x0000014C
+
+rel/s04_solar_robo_hooks.cpp:
+	.text       start:0x000A8780 end:0x000A8A58
 
 rel/s04_solar_robo_create.cpp:
 	.text       start:0x000A8A58 end:0x000A8AA0
@@ -2371,6 +2437,9 @@ rel/obj_secollision_edit.cpp:
 rel/obj_se_collision_register.cpp:
 	.text       start:0x000AC0DC end:0x000AC170
 	.ctors      start:0x00000158 end:0x0000015C
+
+rel/s03_sign_board_hooks.cpp:
+	.text       start:0x000ACBC0 end:0x000ACDFC
 
 rel/s03_sign_board_create.cpp:
 	.text       start:0x000ACDFC end:0x000ACE44

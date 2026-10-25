@@ -243,6 +243,9 @@ rel/ring_object_reset.cpp:
 rel/ring_object_hooks.cpp:
 	.text       start:0x0000BB7C end:0x0000BC38
 
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -552,6 +555,9 @@ rel/laser_fence_assets.cpp:
 	.text       start:0x0001C394 end:0x0001C484
 	.ctors      start:0x00000044 end:0x00000048
 
+rel/big_rings_set_state.cpp:
+	.text       start:0x0001C48C end:0x0001C49C
+
 rel/big_rings_element_disp.cpp:
 	.text       start:0x0001CC14 end:0x0001CC50
 
@@ -566,6 +572,9 @@ rel/big_rings_element_ctor.cpp:
 
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
+
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
 
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
@@ -1422,6 +1431,9 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004E000 end:0x0004E0A4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_find.cpp:
+	.text       start:0x0004E290 end:0x0004E2C8
+
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2C8 end:0x0004E338
 
@@ -1673,6 +1685,9 @@ rel/enemy_gadget_dtor.cpp:
 
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EEA8 end:0x0005EEC0
+
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EEC0 end:0x0005EF08
 
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
@@ -2146,7 +2161,7 @@ rel/bingopanel_edit.cpp:
 	.text       start:0x000818A4 end:0x0008192C
 
 rel/bingopanel_hooks.cpp:
-	.text       start:0x0008192C end:0x00081998
+	.text       start:0x0008192C end:0x00081B34
 
 rel/bingopanel_register.cpp:
 	.text       start:0x00081CE4 end:0x00081D94
@@ -2183,7 +2198,7 @@ rel/big_dice_ctor.cpp:
 	.text       start:0x00084DEC end:0x00084EF0
 
 rel/bigdice_hooks.cpp:
-	.text       start:0x00084FA8 end:0x00085014
+	.text       start:0x00084FA8 end:0x0008514C
 
 rel/big_dice_create.cpp:
 	.text       start:0x000851E0 end:0x0008530C
@@ -2255,7 +2270,7 @@ rel/bobinair_edit.cpp:
 	.rodata     start:0x000014C8 end:0x000014CC
 
 rel/bobinair_hooks.cpp:
-	.text       start:0x00089AA4 end:0x00089AF4
+	.text       start:0x00089AA4 end:0x00089C40
 
 rel/bobin_air_create.cpp:
 	.text       start:0x00089CD4 end:0x00089E4C
@@ -2271,7 +2286,7 @@ rel/bumper_ctor.cpp:
 	.text       start:0x0008AFA4 end:0x0008B11C
 
 rel/bumper_hooks.cpp:
-	.text       start:0x0008B1A4 end:0x0008B210
+	.text       start:0x0008B1A4 end:0x0008B384
 
 rel/bumper_create.cpp:
 	.text       start:0x0008B418 end:0x0008B5B8
@@ -2285,6 +2300,9 @@ rel/casinodoor_reset.cpp:
 
 rel/casinodoor_unload.cpp:
 	.text       start:0x0008C524 end:0x0008C58C
+
+rel/casinodoor_load.cpp:
+	.text       start:0x0008C58C end:0x0008C7E8
 
 rel/casinodoor_create.cpp:
 	.text       start:0x0008C7E8 end:0x0008C830
@@ -2302,6 +2320,9 @@ rel/obj456dice_reset.cpp:
 rel/obj456dice_unload.cpp:
 	.text       start:0x0008E42C end:0x0008E480
 
+rel/obj456dice_load.cpp:
+	.text       start:0x0008E480 end:0x0008E59C
+
 rel/456dice_register.cpp:
 	.text       start:0x0008E8A4 end:0x0008E954
 	.ctors      start:0x00000110 end:0x00000114
@@ -2310,7 +2331,7 @@ rel/flipper_edit.cpp:
 	.text       start:0x00090268 end:0x00090304
 
 rel/flipper_hooks.cpp:
-	.text       start:0x00090304 end:0x00090370
+	.text       start:0x00090304 end:0x0009046C
 
 rel/flipper_create.cpp:
 	.text       start:0x0009046C end:0x000904B4
@@ -2336,7 +2357,7 @@ rel/moji_ctor.cpp:
 	.text       start:0x00091E20 end:0x00091F6C
 
 rel/moji_hooks.cpp:
-	.text       start:0x00092078 end:0x000920E4
+	.text       start:0x00092078 end:0x00092264
 
 rel/moji_create.cpp:
 	.text       start:0x000922F8 end:0x0009246C
@@ -2370,6 +2391,9 @@ rel/slotlarge_edit.cpp:
 rel/slotlarge_reset.cpp:
 	.text       start:0x0009704C end:0x00097050
 
+rel/slotlarge_hooks.cpp:
+	.text       start:0x00097050 end:0x000972A8
+
 rel/slotlarge_create.cpp:
 	.text       start:0x0009733C end:0x00097384
 
@@ -2388,7 +2412,7 @@ rel/slotsmall_register.cpp:
 	.ctors      start:0x00000128 end:0x0000012C
 
 rel/springblk_hooks.cpp:
-	.text       start:0x0009A3D8 end:0x0009A444
+	.text       start:0x0009A3D8 end:0x0009A554
 
 rel/springblk_create.cpp:
 	.text       start:0x0009A5E8 end:0x0009A630
@@ -2403,6 +2427,9 @@ rel/springblk_air_reset.cpp:
 rel/springblk_air_unload.cpp:
 	.text       start:0x0009B878 end:0x0009B8E0
 
+rel/springblk_air_load.cpp:
+	.text       start:0x0009B8E0 end:0x0009B9F0
+
 rel/springblk_air_create.cpp:
 	.text       start:0x0009BA84 end:0x0009BACC
 
@@ -2415,7 +2442,7 @@ rel/trispring_edit.cpp:
 	.rodata     start:0x00001730 end:0x00001734
 
 rel/trispring_hooks.cpp:
-	.text       start:0x0009D4F4 end:0x0009D560
+	.text       start:0x0009D4F4 end:0x0009D6B0
 
 rel/trispring_create.cpp:
 	.text       start:0x0009D744 end:0x0009D78C
@@ -2475,7 +2502,7 @@ rel/yajirusi_ctor.cpp:
 	.text       start:0x0009F4CC end:0x0009F620
 
 rel/yajirusi_hooks.cpp:
-	.text       start:0x0009F72C end:0x0009F798
+	.text       start:0x0009F72C end:0x0009F894
 
 rel/yajirusi_create.cpp:
 	.text       start:0x0009F894 end:0x0009FA10
@@ -2548,6 +2575,9 @@ rel/e_flyer_strategy_stage11.cpp:
 	.text       start:0x000AD720 end:0x000AE3F0
 	.rodata     start:0x00001A68 end:0x00001A88
 	.data       start:0x00017670 end:0x000176C8
+
+rel/rinoliner_object_unload.cpp:
+	.text       start:0x000B2100 end:0x000B2198
 
 rel/rinoliner_create.cpp:
 	.text       start:0x000B2364 end:0x000B23AC
