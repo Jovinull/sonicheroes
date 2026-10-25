@@ -3019,6 +3019,9 @@ rel/e_flyer_path_stage11.cpp:
 rel/rinoliner_object_unload.cpp:
 	.text       start:0x000E6D60 end:0x000E6DF8
 
+rel/rinoliner_object_load.cpp:
+	.text       start:0x000E6DF8 end:0x000E6FC4
+
 rel/rinoliner_create.cpp:
 	.text       start:0x000E6FC4 end:0x000E700C
 
