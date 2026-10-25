@@ -7975,6 +7975,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/flyer_object_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/wall_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
