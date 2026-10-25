@@ -2478,6 +2478,9 @@ rel/e_flyer_path_stage11.cpp:
 rel/wall_object_unload.cpp:
 	.text       start:0x000C2144 end:0x000C21B8
 
+rel/wall_object_create.cpp:
+	.text       start:0x000C24CC end:0x000C2514
+
 rel/wall_register.cpp:
 	.text       start:0x000C2544 end:0x000C2624
 	.ctors      start:0x00000168 end:0x0000016C
