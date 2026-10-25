@@ -2031,6 +2031,9 @@ rel/s13_houdai_register.cpp:
 	.text       start:0x0008635C end:0x0008654C
 	.ctors      start:0x000000E8 end:0x000000EC
 
+rel/s13_part_info.cpp:
+	.text       start:0x00087CA0 end:0x00087F4C
+
 rel/capture_object_unload.cpp:
 	.text       start:0x0008E1A8 end:0x0008E248
 

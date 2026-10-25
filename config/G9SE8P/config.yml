@@ -3739,6 +3739,8 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - fn_9_75E60
+    - fn_9_75F08
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize
