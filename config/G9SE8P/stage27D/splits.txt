@@ -1670,6 +1670,9 @@ rel/obj_se_collision_register.cpp:
 rel/enemy_vector_fire_dtor.cpp:
 	.text       start:0x00066638 end:0x000666BC
 
+rel/metal_sonic_1st_unload.cpp:
+	.text       start:0x0006BD04 end:0x0006BDC0
+
 rel/metal_sonic_1st_create.cpp:
 	.text       start:0x0006C10C end:0x0006C154
 
