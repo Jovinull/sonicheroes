@@ -6840,6 +6840,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14_fall_ashiba_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14_fall_ashiba_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
