@@ -1898,6 +1898,9 @@ rel/o_s01_object_a34c_sinit.cpp:
 	.text       start:0x0007D8BC end:0x0007D968
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/gokurakucho_atomic_callback.cpp:
+	.text       start:0x0007D970 end:0x0007D9A0
+
 rel/gokuracho_ctor.cpp:
 	.text       start:0x0007E76C end:0x0007ECDC
 
