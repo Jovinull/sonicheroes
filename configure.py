@@ -7365,6 +7365,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/torch_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/torch_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

@@ -2741,6 +2741,9 @@ rel/torch_edit.cpp:
 rel/torch_hooks.cpp:
 	.text       start:0x000C9300 end:0x000C93E8
 
+rel/torch_create.cpp:
+	.text       start:0x000C93E8 end:0x000C9530
+
 rel/torch_register.cpp:
 	.text       start:0x000C9530 end:0x000C95E0
 	.ctors      start:0x00000188 end:0x0000018C
