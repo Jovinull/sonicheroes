@@ -108,7 +108,7 @@ class NormalizeTests(unittest.TestCase):
                        struct.unpack_from(">I", self.raw, 32)[0] + 40 + 35):
             damaged = bytearray(self.raw)
             damaged[offset] ^= 1
-            with self.subTest(offset=offset), tempfile.TemporaryDirectory(dir="/tmp") as directory:
+            with self.subTest(offset=offset), tempfile.TemporaryDirectory() as directory:
                 path = Path(directory) / "input.o"
                 path.write_bytes(damaged)
                 with self.assertRaises(ValueError):
@@ -128,7 +128,7 @@ class NormalizeTests(unittest.TestCase):
             fix.normalize(bytes(output))
 
     def test_atomic_replace_failure_and_success(self):
-        with tempfile.TemporaryDirectory(dir="/tmp") as directory:
+        with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "input.o"
             path.write_bytes(self.raw)
             path.chmod(0o640)
@@ -144,7 +144,7 @@ class NormalizeTests(unittest.TestCase):
             self.assertFalse(fix.fix(path))
 
     def test_cli_stamp_only_after_success(self):
-        with tempfile.TemporaryDirectory(dir="/tmp") as directory:
+        with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "input.o"
             stamp = Path(directory) / "new" / "output.stamp"
             path.write_bytes(b"malformed")

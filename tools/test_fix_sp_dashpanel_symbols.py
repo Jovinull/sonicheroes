@@ -1,6 +1,7 @@
 """Exercise native symbol binding, collision guards and atomic rejection."""
 
 import os
+import shutil
 import struct
 import subprocess
 import tempfile
@@ -51,12 +52,24 @@ def elf_fixture(defined_source=False, defined_target=False):
 
 class SymbolBindingTests(unittest.TestCase):
     def setUp(self):
-        self.scratch = tempfile.TemporaryDirectory(dir="/tmp", prefix="dashpanel-symbol-test-")
+        self.scratch = tempfile.TemporaryDirectory(prefix="dashpanel-symbol-test-")
         self.addCleanup(self.scratch.cleanup)
         self.path = Path(self.scratch.name) / "test.o"
-        self.objcopy = Path(__file__).resolve().parents[1] / "build/binutils/powerpc-eabi-objcopy"
-        if not self.objcopy.exists():
-            self.skipTest("PowerPC binutils is not installed")
+        binutils = Path(__file__).resolve().parents[1] / "build/binutils"
+        executable_names = (
+            ("powerpc-eabi-objcopy.exe", "powerpc-eabi-objcopy")
+            if os.name == "nt"
+            else ("powerpc-eabi-objcopy",)
+        )
+        candidates = [binutils / name for name in executable_names]
+        candidates.extend(
+            Path(path)
+            for name in ("powerpc-eabi-objcopy", "llvm-objcopy")
+            if (path := shutil.which(name))
+        )
+        self.objcopy = next((path for path in candidates if path.is_file()), None)
+        if self.objcopy is None:
+            self.skipTest("PowerPC binutils or llvm-objcopy is not installed")
         self.path.write_bytes(elf_fixture())
         os.utime(self.path, ns=(1_000_000_000, 2_000_000_000))
 

@@ -151,7 +151,7 @@ def fixture():
 
 class AntennaNormalizationTests(unittest.TestCase):
     def setUp(self):
-        tmp = tempfile.TemporaryDirectory(dir="/tmp", prefix="antenna-test-")
+        tmp = tempfile.TemporaryDirectory(prefix="antenna-test-")
         self.addCleanup(tmp.cleanup)
         self.path = Path(tmp.name) / "test.o"
         self.path.write_bytes(fixture())

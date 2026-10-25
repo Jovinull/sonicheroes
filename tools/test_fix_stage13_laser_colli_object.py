@@ -153,7 +153,7 @@ def fixture():
 
 class LaserCollisionNormalizationTests(unittest.TestCase):
     def setUp(self):
-        tmp = tempfile.TemporaryDirectory(dir="/tmp", prefix="laser-colli-test-")
+        tmp = tempfile.TemporaryDirectory(prefix="laser-colli-test-")
         self.addCleanup(tmp.cleanup)
         self.path = Path(tmp.name) / "test.o"
         self.path.write_bytes(fixture())

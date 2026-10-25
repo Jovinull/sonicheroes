@@ -200,7 +200,7 @@ class NormalizeTests(unittest.TestCase):
             self.assertEqual(fix.normalize(out), out)
 
     def test_cli_failure_is_atomic_and_success_is_idempotent(self):
-        with tempfile.TemporaryDirectory(prefix="gadget-test-", dir="/tmp") as d:
+        with tempfile.TemporaryDirectory(prefix="gadget-test-") as d:
             obj, stamp = Path(d) / "fixture.o", Path(d) / "stamps" / "ok"
             obj.write_bytes(self.raw)
             with contract(self.raw):

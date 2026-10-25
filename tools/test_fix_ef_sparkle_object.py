@@ -153,7 +153,7 @@ def fixture(collision=False):
 
 class SparkleNormalizationTests(unittest.TestCase):
     def setUp(self):
-        tmp = tempfile.TemporaryDirectory(dir="/tmp", prefix="sparkle-test-")
+        tmp = tempfile.TemporaryDirectory(prefix="sparkle-test-")
         self.addCleanup(tmp.cleanup)
         self.path = Path(tmp.name) / "test.o"
         self.path.write_bytes(fixture())
