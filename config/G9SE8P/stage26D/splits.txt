@@ -1784,6 +1784,9 @@ rel/stg26_colli_dtor.cpp:
 rel/stg26_colli_cc_unload.cpp:
 	.text       start:0x00075384 end:0x00075418
 
+rel/stg26_colli_cp_create.cpp:
+	.text       start:0x00075418 end:0x00075524
+
 rel/stg26_colli_cc_load.cpp:
 	.text       start:0x00075630 end:0x000756F4
 

@@ -23,7 +23,7 @@ typedef struct Stg26Colli {
 } Stg26Colli;
 
 extern "C" void* lbl_8042C148;
-extern "C" void* stg26ColliVtable[];
+extern "C" void* __vt__14TObjStg26Colli[];
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
@@ -32,8 +32,8 @@ extern "C" void __dt__10TObjSetObjFv(SetObj* setObj, s32 flags);
 extern "C" Stg26Colli* stg26ColliDtor(Stg26Colli* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = stg26ColliVtable;
-		object->setObj.vtable = stg26ColliVtable + 0xB;
+		object->base.vtable   = __vt__14TObjStg26Colli;
+		object->setObj.vtable = __vt__14TObjStg26Colli + 0xB;
 		__dt__10TObjSetObjFv(&object->setObj, 0);
 		__dt__7TObjectFv(&object->base, 0);
 		if (flags > 0) {
