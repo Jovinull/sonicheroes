@@ -37,7 +37,7 @@ typedef struct GameState {
 
 extern "C" GameState lbl_8029C310;
 extern "C" MatAnim* s13ModelInfoMatAnim;
-extern "C" void* lbl_9_bss_1350;
+extern "C" void* s13ModelInfoMatAnimData;
 
 extern "C" void fn_800B8ADC(RpClump* clump);
 extern "C" void fn_80150958(RpClump* clump);
@@ -64,9 +64,9 @@ extern "C" void s13ModelInfoRelease(S13ModelInfo* info)
 			delete s13ModelInfoMatAnim;
 			s13ModelInfoMatAnim = NULL;
 		}
-		if (lbl_9_bss_1350 != NULL) {
-			delete (u8*)lbl_9_bss_1350;
-			lbl_9_bss_1350 = NULL;
+		if (s13ModelInfoMatAnimData != NULL) {
+			delete (u8*)s13ModelInfoMatAnimData;
+			s13ModelInfoMatAnimData = NULL;
 		}
 	}
 	fn_80150958(info->model);

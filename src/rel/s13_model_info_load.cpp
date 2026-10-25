@@ -5,7 +5,7 @@
 // name given (or the info's own), and its flags (the info's second set on
 // stage 15 when the info asks for it) choose what is done to it: two kinds of
 // set-up (fn_800B8BEC), fn_800BDF30, fn_8003C640, ignoring lights, modulating
-// the material colour, and an atomic walk (fn_9_76DAC) with the stage's shared
+// the material colour, and an atomic walk (s13ModelInfoAtomicCallback) with the stage's shared
 // material animation, made on first use.
 
 struct RpClump;
@@ -54,7 +54,7 @@ extern "C" void fn_8015C704(MatAnim* anim, s32 a, s32 b);
 extern "C" void fn_8015C710(MatAnim* anim, s32 a, s32 b, s32 c);
 extern "C" void fn_8015C720(MatAnim* anim, s32 a);
 extern "C" void fn_8014FFBC(RpClump* clump, void* (*callback)(void*), void* data);
-extern "C" void* fn_9_76DAC(void* atomic);
+extern "C" void* s13ModelInfoAtomicCallback(void* atomic);
 void objRpClumpForAllGeometrysToIgnoreLights(RpClump* clump);
 void objRpClumpForAllGeometrysToModulateMaterialColor(RpClump* clump);
 
@@ -113,7 +113,7 @@ extern "C" void s13ModelInfoLoad(S13ModelInfo* info, const char* name)
 		RpClump* model = info->model;
 		MatAnim* anim  = s13ModelInfoGetMatAnim();
 		if (anim != NULL) {
-			fn_8014FFBC(model, fn_9_76DAC, anim);
+			fn_8014FFBC(model, s13ModelInfoAtomicCallback, anim);
 		}
 	}
 }

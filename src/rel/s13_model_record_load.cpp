@@ -85,7 +85,7 @@ extern "C" void fn_8015C704(MatAnim* anim, s32 a, s32 b);
 extern "C" void fn_8015C710(MatAnim* anim, s32 a, s32 b, s32 c);
 extern "C" void fn_8015C720(MatAnim* anim, s32 a);
 extern "C" void fn_8014FFBC(RpClump* clump, void* (*callback)(void*), void* data);
-extern "C" void* fn_9_76DAC(void* atomic);
+extern "C" void* s13ModelInfoAtomicCallback(void* atomic);
 void objRpClumpForAllGeometrysToIgnoreLights(RpClump* clump);
 void objRpClumpForAllGeometrysToModulateMaterialColor(RpClump* clump);
 RpAtomic* objRpClumpGetAtomic(RpClump* clump, RpAtomic* after);
@@ -155,7 +155,7 @@ extern "C" void fn_9_765CC(S13ModelRecord* record, const char* name)
 			RpClump* model = record->model;
 			MatAnim* anim  = s13ModelInfoGetMatAnim();
 			if (anim != NULL) {
-				fn_8014FFBC(model, fn_9_76DAC, anim);
+				fn_8014FFBC(model, s13ModelInfoAtomicCallback, anim);
 			}
 		}
 	}
