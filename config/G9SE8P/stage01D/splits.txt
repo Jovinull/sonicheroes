@@ -1979,6 +1979,10 @@ rel/s01_move_iseki_hooks.cpp:
 rel/s01_move_iseki_create.cpp:
 	.text       start:0x00088270 end:0x000882B8
 
+rel/s01_move_iseki_register.cpp:
+	.text       start:0x000882B8 end:0x00088368
+	.ctors      start:0x000000E4 end:0x000000E8
+
 rel/wave_hooks.cpp:
 	.text       start:0x00089108 end:0x000893F0
 
