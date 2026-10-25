@@ -8060,6 +8060,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/e2000_object_load.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/e2000_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

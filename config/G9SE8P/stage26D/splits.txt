@@ -2072,6 +2072,9 @@ rel/e2000_turn_to_aim.cpp:
 rel/e2000_object_unload.cpp:
 	.text       start:0x00094654 end:0x000946F8
 
+rel/e2000_object_load.cpp:
+	.text       start:0x000946F8 end:0x00094A88
+
 rel/e2000_object_create.cpp:
 	.text       start:0x00094A88 end:0x00094AD0
 
