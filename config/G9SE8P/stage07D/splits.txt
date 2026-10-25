@@ -2712,6 +2712,9 @@ rel/eggmaso_dtor.cpp:
 rel/eggmaso_hooks.cpp:
 	.text       start:0x000C7EC8 end:0x000C7FE8
 
+rel/eggmaso_create.cpp:
+	.text       start:0x000C7FE8 end:0x000C8130
+
 rel/eggmaso_register.cpp:
 	.text       start:0x000C8130 end:0x000C81CC
 	.ctors      start:0x00000180 end:0x00000184

@@ -4575,6 +4575,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/eggmaso_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/eggmaso_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
