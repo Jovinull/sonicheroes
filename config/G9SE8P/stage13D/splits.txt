@@ -2238,6 +2238,9 @@ rel/s02_green_edit.cpp:
 rel/s13_bigmovship_hooks.cpp:
 	.text       start:0x000928F8 end:0x00092A5C
 
+rel/s13_bigmovship_create.cpp:
+	.text       start:0x00092A5C end:0x00092C78
+
 rel/s13_bigmovship_register.cpp:
 	.text       start:0x00092C78 end:0x00092D20
 	.ctors      start:0x00000124 end:0x00000128
@@ -2270,6 +2273,9 @@ rel/s13d_rail_cap_fore_register.cpp:
 
 rel/s13d_ufo_unload.cpp:
 	.text       start:0x00095EC4 end:0x00095F8C
+
+rel/s13d_ufo_create.cpp:
+	.text       start:0x0009616C end:0x00096518
 
 rel/s13d_ufo_register.cpp:
 	.text       start:0x00096518 end:0x000965C0
@@ -2683,6 +2689,9 @@ rel/s14_thunder_ptcl_register.cpp:
 rel/s14d_ufo_unload.cpp:
 	.text       start:0x000CB958 end:0x000CBA20
 
+rel/s14d_ufo_create.cpp:
+	.text       start:0x000CBC20 end:0x000CBFFC
+
 rel/s14d_ufo_register.cpp:
 	.text       start:0x000CBFFC end:0x000CC0A4
 	.ctors      start:0x00000190 end:0x00000194
@@ -2731,6 +2740,9 @@ rel/s14d_search_light_edit.cpp:
 
 rel/s14d_search_light_hooks.cpp:
 	.text       start:0x000D147C end:0x000D157C
+
+rel/s14d_search_light_create.cpp:
+	.text       start:0x000D157C end:0x000D1834
 
 rel/s14d_search_light_register.cpp:
 	.text       start:0x000D1834 end:0x000D18DC

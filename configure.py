@@ -2874,6 +2874,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s02_rolling_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/event_manager_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3304,6 +3309,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s01_move_iseki_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s01_move_iseki_register.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6645,6 +6655,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_bigmovship_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_bigmovship_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -6665,6 +6680,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_model_info_release_stage26.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_model_info_release.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -6676,6 +6696,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s13_model_record_release.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13_model_info_load_stage26.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -6795,6 +6820,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s14d_search_light_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s14d_search_light_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -6811,6 +6841,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s13d_ufo_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s13d_ufo_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
@@ -7101,6 +7136,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/s14d_ufo_unload.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
+                "rel/s14d_ufo_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
