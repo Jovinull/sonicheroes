@@ -4840,6 +4840,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/metal_sonic_2nd_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/metal_sonic_1st_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

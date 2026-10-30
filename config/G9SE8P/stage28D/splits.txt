@@ -1698,6 +1698,9 @@ rel/key_register.cpp:
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x000680B8 end:0x0006813C
 
+rel/metal_sonic_2nd_create.cpp:
+	.text       start:0x0006EE74 end:0x0006EEBC
+
 rel/pawn_strategy_execute.cpp:
 	.text       start:0x0006EF50 end:0x0006EFE8
 
