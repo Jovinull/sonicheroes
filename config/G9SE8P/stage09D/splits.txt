@@ -1933,6 +1933,9 @@ rel/floatj_register.cpp:
 rel/obj_flower_edit.cpp:
 	.text       start:0x00074654 end:0x000746E4
 
+rel/flower_create.cpp:
+	.text       start:0x000747E8 end:0x00074830
+
 rel/froggreen_reset.cpp:
 	.text       start:0x00076E38 end:0x00076E3C
 
