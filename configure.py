@@ -7800,6 +7800,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/tuta_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/tutaetc_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
