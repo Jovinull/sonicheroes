@@ -2380,6 +2380,9 @@ rel/treeleaf_register.cpp:
 rel/tutab_create.cpp:
 	.text       start:0x0009AB28 end:0x0009AB70
 
+rel/tutac_create.cpp:
+	.text       start:0x0009BCD8 end:0x0009BD20
+
 rel/water_plant_dtor.cpp:
 	.text       start:0x0009C344 end:0x0009C420
 
