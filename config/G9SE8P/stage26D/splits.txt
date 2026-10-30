@@ -1615,6 +1615,9 @@ rel/chao_register.cpp:
 	.text       start:0x00063178 end:0x00063228
 	.ctors      start:0x000000C4 end:0x000000C8
 
+rel/king_pawn_missile_dtor.cpp:
+	.text       start:0x000644F4 end:0x000645C0
+
 rel/king_pawn_armor_dtor.cpp:
 	.text       start:0x00064BCC end:0x00064C40
 
