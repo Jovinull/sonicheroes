@@ -1717,6 +1717,9 @@ rel/key_register.cpp:
 	.text       start:0x00071094 end:0x0007112C
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/king_pawn_part_dtor.cpp:
+	.text       start:0x00071E2C end:0x00071EB0
+
 rel/s31_bob_dummy_dtor.cpp:
 	.text       start:0x00071F9C end:0x00072028
 
