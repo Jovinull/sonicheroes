@@ -1640,6 +1640,9 @@ rel/king_pawn_shield_dtor.cpp:
 rel/king_pawn_slash_dtor.cpp:
 	.text       start:0x0006C07C end:0x0006C118
 
+rel/king_pawn_wing_dtor.cpp:
+	.text       start:0x0006C7D8 end:0x0006C888
+
 rel/stg26_ctrl_dtor.cpp:
 	.text       start:0x0006CAA0 end:0x0006CB14
 

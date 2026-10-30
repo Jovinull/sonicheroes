@@ -9712,6 +9712,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/king_pawn_wing_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/king_pawn_part_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
