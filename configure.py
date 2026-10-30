@@ -2544,6 +2544,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/propeller07_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/push_pull_switch_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
