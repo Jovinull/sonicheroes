@@ -3303,16 +3303,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/rinoliner_object_load.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/rinoliner_object_unload.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/rinoliner_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3785,6 +3775,16 @@ config.libs = [
             Object(
                 Matching,
                 "rel/e_rinoliner_stage11.cpp",
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-fp_contract off"],
+            ),
+            Object(
+                Matching,
+                "rel/e_rinoliner_stage05.cpp",
+                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-fp_contract off"],
+            ),
+            Object(
+                Matching,
+                "rel/e_rinoliner_stage07.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-fp_contract off"],
             ),
             Object(
