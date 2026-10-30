@@ -3708,6 +3708,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/e_flyer_path_stage05.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
+                Matching,
                 "rel/e_strategy_rinoliner_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-bool off"],
             ),
