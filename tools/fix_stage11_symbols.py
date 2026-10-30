@@ -15,6 +15,7 @@ SYMBOL_RENAMES = {
     ],
     "e_strategy_wall_stage11.o": [("@288", "jumptable_8_data_17338", 0x40)],
     "e_wall_stage11.o": [("@86", "lbl_8_rodata_1D90", 0x8)],
+    "e_wall_stage13.o": [("@86", "lbl_8_rodata_1D90", 0x8)],
     "e_strategy_turtle_stage11.o": [
         ("@204", "jumptable_8_data_17BF0", 0x40),
         ("@221", "jumptable_8_data_17C30", 0x28),

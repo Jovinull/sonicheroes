@@ -3814,11 +3814,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/wall_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/e_strategy_wall_stage11.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off",
                     "-use_lmw_stmw on",
@@ -3828,6 +3823,14 @@ config.libs = [
             Object(
                 Matching,
                 "rel/e_wall_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off",
+                    "-use_lmw_stmw on",
+                    "-bool off",
+                ],
+            ),
+            Object(
+                Matching,
+                "rel/e_wall_stage13.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off",
                     "-use_lmw_stmw on",
                     "-bool off",
@@ -8320,21 +8323,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/wall_object_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/wall_object_load.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/wall_object_unload.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/e2000_object_clear_slots.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -12223,6 +12211,12 @@ config.custom_build_steps = {
             "outputs": "build/G9SE8P/wall-symbols.stamp",
             "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/e_wall_stage11.o",
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/wall13-symbols.stamp",
+            "rule": "fix_stage11_symbols",
+            "inputs": "build/G9SE8P/src/rel/e_wall_stage13.o",
             "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {
