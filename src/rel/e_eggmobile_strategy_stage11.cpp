@@ -759,6 +759,13 @@ s32 fn_8_9E510(void* arg0)
  * 15B0C and the shared mode table at 15B24 follow the switch table). */
 M2C_UNK** fn_8_9DC74(M2C_UNK** arg0, s16 arg1);
 void fn_8_9D3C4();
+// TEnemyStrategy<TObjEnemyCapture>::Execute, the strategies' shared hook. Its
+// copy lives in each module's capture unit, which stage07D and stage13D build
+// as C++ (rel/e_eggmobile_strategy_stage07_13.cpp names it that way; a static
+// member mangles like the virtual one).
+#ifndef E_EGGMOBILE_CAPTURE_EXECUTE
+#define E_EGGMOBILE_CAPTURE_EXECUTE fn_8_9D3C4
+#endif
 void fn_8_9E924(void** arg0, u32 arg1, s32 arg2);
 s32 fn_8_9E510(void* arg0);
 void fn_8_9E324(void* arg0, s32 arg1);
@@ -781,7 +788,7 @@ void* lbl_8_data_15A70[21] = {
 	NULL,
 	NULL,
 	(void*)fn_8_9DC74,
-	(void*)fn_8_9D3C4,
+	(void*)E_EGGMOBILE_CAPTURE_EXECUTE,
 	(void*)fn_8_9E924,
 	(void*)fn_8_9E510,
 	(void*)fn_8_9E324,
@@ -861,13 +868,14 @@ void fn_8_9EBB4();
 void fn_8_9EBB0();
 void fn_8_9EBAC();
 
-void* lbl_8_data_15B0C[6] = { NULL, NULL, (void*)fn_8_9EB5C, (void*)fn_8_9D3C4, NULL, NULL };
+void* lbl_8_data_15B0C[6]
+    = { NULL, NULL, (void*)fn_8_9EB5C, (void*)E_EGGMOBILE_CAPTURE_EXECUTE, NULL, NULL };
 
 void* lbl_8_data_15B24[21] = {
 	NULL,
 	NULL,
 	(void*)fn_8_9EAC4,
-	(void*)fn_8_9D3C4,
+	(void*)E_EGGMOBILE_CAPTURE_EXECUTE,
 	(void*)fn_8_9E924,
 	(void*)fn_8_9E510,
 	(void*)fn_8_9E324,

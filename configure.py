@@ -3593,6 +3593,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/e_eggmobile_strategy_stage07_13.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
+                Matching,
                 "rel/e_eggmobile_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),
