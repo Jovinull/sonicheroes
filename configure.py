@@ -4350,6 +4350,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_flower_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bush_zenmai_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

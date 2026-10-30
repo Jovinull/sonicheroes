@@ -1936,6 +1936,10 @@ rel/obj_flower_edit.cpp:
 rel/flower_create.cpp:
 	.text       start:0x000747E8 end:0x00074830
 
+rel/obj_flower_register.cpp:
+	.text       start:0x00074830 end:0x000748E0
+	.ctors      start:0x000000CC end:0x000000D0
+
 rel/froggreen_reset.cpp:
 	.text       start:0x00076E38 end:0x00076E3C
 
