@@ -20,13 +20,13 @@ extern "C" char* CL_TObjS14ThunderSet;
 extern "C" const f32 s14ThunderZero[1];
 extern "C" const f32 s14ThunderOne[1];
 extern "C" TObject* lbl_8042C110;
-extern "C" void fn_9_A215C(TObjS14ThunderSet* set);
+extern "C" void s14ThunderLink(TObjS14ThunderSet* set);
 
 class TObjS14ThunderSet : public TObject, public TObjSetObj
 {
 public:
 	s32 unk30;               // 0x30
-	TObjS14ThunderSet* next; // 0x34, the chain fn_9_A215C links into
+	TObjS14ThunderSet* next; // 0x34, the chain s14ThunderLink links into
 	SETOBJ_PARAM* placement; // 0x38
 	sAngle* angle;           // 0x3C
 
@@ -60,5 +60,5 @@ S14_THUNDER_CTOR TObjS14ThunderSet::TObjS14ThunderSet(TObject* parent)
 	placement = ObjParam;
 	angle     = &ObjParam->setData.ang;
 	unk30     = 0;
-	fn_9_A215C(this);
+	s14ThunderLink(this);
 }
