@@ -1618,6 +1618,9 @@ rel/chao_register.cpp:
 rel/king_pawn_armor_dtor.cpp:
 	.text       start:0x00064BCC end:0x00064C40
 
+rel/king_pawn_lance_dtor.cpp:
+	.text       start:0x00064FF0 end:0x00065064
+
 rel/king_pawn_create.cpp:
 	.text       start:0x0006AD28 end:0x0006AD8C
 
