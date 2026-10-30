@@ -1827,6 +1827,9 @@ rel/king_pawn_core_dtor.cpp:
 rel/king_pawn_shield_core_dtor.cpp:
 	.text       start:0x00076C30 end:0x00076CDC
 
+rel/king_pawn_charge_dtor.cpp:
+	.text       start:0x00077384 end:0x00077434
+
 rel/king_pawn_voice_dtor.cpp:
 	.text       start:0x0007779C end:0x00077810
 
