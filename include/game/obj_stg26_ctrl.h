@@ -29,8 +29,10 @@ public:
 		child     = new TObject(this);
 		fn_800CCC6C(stg26CtrlMusic);
 	}
-	virtual ~TStg26Ctrl();
+	// Exec comes first so that it is the key function: no unit of ours emits
+	// the vtable, which stays in the module's data.
 	virtual void Exec();
+	virtual ~TStg26Ctrl();
 };
 
 extern "C" TStg26Ctrl* stg26CtrlInstance;

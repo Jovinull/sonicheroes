@@ -2854,6 +2854,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/stg26_ctrl_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/stg26_ctrl_start.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
