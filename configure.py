@@ -6295,6 +6295,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s04d_energy_fire_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s04d_energy_fire_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
