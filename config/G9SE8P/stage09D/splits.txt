@@ -2265,6 +2265,9 @@ rel/aligator_register.cpp:
 	.text       start:0x0009336C end:0x0009341C
 	.ctors      start:0x00000128 end:0x0000012C
 
+rel/bushsq_dtor.cpp:
+	.text       start:0x00093854 end:0x00093930
+
 rel/bushsq_edit.cpp:
 	.text       start:0x00093B68 end:0x00093BB4
 
