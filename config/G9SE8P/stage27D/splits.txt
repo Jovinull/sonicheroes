@@ -2065,6 +2065,9 @@ rel/unbreakable_bob_container_register.cpp:
 rel/e_thunder_light_dtor.cpp:
 	.text       start:0x00082E6C end:0x00082EE0
 
+rel/s14_thunder_chain.cpp:
+	.text       start:0x0008344C end:0x0008350C
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x00083E88 end:0x00083EFC
 

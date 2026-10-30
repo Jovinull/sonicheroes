@@ -4209,6 +4209,8 @@ modules:
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
     - pawnReleaseBuffer
+    - s14ThunderUnlink
+    - s14ThunderLink
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize
@@ -4546,6 +4548,8 @@ modules:
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
     - pawnReleaseBuffer
+    - s14ThunderUnlink
+    - s14ThunderLink
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize
