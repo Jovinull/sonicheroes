@@ -2476,18 +2476,12 @@ rel/e2000_strategy_execute.cpp:
 rel/e2000_object_clear_slots.cpp:
 	.text       start:0x000B32B0 end:0x000B32E8
 
-rel/flyer_object_unload.cpp:
-	.text       start:0x000B8080 end:0x000B8168
-
-rel/flyer_object_load.cpp:
-	.text       start:0x000B8168 end:0x000B8420
-
-rel/flyer_object_create.cpp:
-	.text       start:0x000B8420 end:0x000B8468
-
-rel/flyer_register.cpp:
-	.text       start:0x000B8468 end:0x000B850C
+rel/e_flyer_stage13.cpp:
+	.text       start:0x000B4A54 end:0x000B8514
 	.ctors      start:0x00000160 end:0x00000164
+	.rodata     start:0x00002330 end:0x000023F0
+	.data       start:0x0001BE78 end:0x0001C168
+	.bss        start:0x00002058 end:0x00002098
 
 rel/flyer_collision_check.cpp:
 	.text       start:0x000B85B4 end:0x000B91F8

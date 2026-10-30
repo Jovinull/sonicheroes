@@ -3538,16 +3538,6 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/flyer_object_create.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/flyer_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
                 "rel/capture_collision_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -3619,6 +3609,11 @@ config.libs = [
             Object(
                 Matching,
                 "rel/e_flyer_stage11.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
+            ),
+            Object(
+                Matching,
+                "rel/e_flyer_stage13.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off", "-inline deferred,auto"],
             ),
             Object(
@@ -8309,16 +8304,6 @@ config.libs = [
             Object(
                 Matching,
                 "rel/stg26_colli_cc_register.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/flyer_object_load.cpp",
-                extra_cflags=["-opt noschedule,nopeephole"],
-            ),
-            Object(
-                Matching,
-                "rel/flyer_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(

@@ -914,6 +914,14 @@ void flyerObjectUnload(void)
 	Delete__14TEnemyDataBaseF14eEnemyDataBase(mpDataBase__14TEnemyDataBase, 5);
 }
 
+// stage13D's copy (rel/e_flyer_stage13.cpp) copies the two clamped bytes
+// unsigned, without the sign extension the other modules have.
+#ifdef E_FLYER_UNSIGNED_EDIT
+#define FLYER_SET_BYTE(dst, value) (*(u8*)&(dst) = *(const u8*)&(value))
+#else
+#define FLYER_SET_BYTE(dst, value) ((dst) = (value))
+#endif
+
 /* TObjEnemyFlyer::EditOnChange: clamps the edited fields and names the chosen
  * weapon and path type in the editor's labels. */
 void TObjEnemyFlyer::EditOnChange(SETDATA_PARAM* data)
@@ -924,8 +932,9 @@ void TObjEnemyFlyer::EditOnChange(SETDATA_PARAM* data)
 	static const s32 maxUnk14 = 0x100;
 	FlyerParam* param         = M2C_FIELD(data, FlyerParam**, 0x2C);
 
-	param->kind              = flyerClamp(param->kind, lbl_8_data_161B0, lbl_8_data_161B1);
-	param->pathType          = flyerClamp(param->pathType, lbl_8_data_161B2, lbl_8_data_161B3);
+	FLYER_SET_BYTE(param->kind, flyerClamp(param->kind, lbl_8_data_161B0, lbl_8_data_161B1));
+	FLYER_SET_BYTE(
+	    param->pathType, flyerClamp(param->pathType, lbl_8_data_161B2, lbl_8_data_161B3));
 	param->moveSpeed         = flyerClamp(param->moveSpeed, minSpeed, maxSpeed);
 	param->unk14             = flyerClamp(param->unk14, minUnk14, maxUnk14);
 	flyerObjectFieldNames[0] = lbl_8_data_16180[param->kind];
