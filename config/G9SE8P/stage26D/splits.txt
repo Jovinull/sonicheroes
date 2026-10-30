@@ -1818,6 +1818,9 @@ rel/stg26_colli_cc_register.cpp:
 	.text       start:0x000756F4 end:0x00075840
 	.ctors      start:0x000000E0 end:0x000000E4
 
+rel/king_pawn_shield_core_dtor.cpp:
+	.text       start:0x00076C30 end:0x00076CDC
+
 rel/king_pawn_voice_dtor.cpp:
 	.text       start:0x0007779C end:0x00077810
 
