@@ -8,7 +8,7 @@
 // In the editor an all-zero parameter block gets the defaults 100, 10 and 100,
 // and a zero float at 0x8 becomes 1 with the next one cleared; the 0 and 1 are
 // the module's constants, read as externals. The set keeps pointers to its
-// placement and to the placement's angle, and finishes in fn_9_A215C, a
+// placement and to the placement's angle, and finishes in s14ThunderLink, a
 // function of the class the PS2 build's names do not settle. The parameter
 // block pointer is read first, before the class name.
 

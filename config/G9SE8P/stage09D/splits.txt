@@ -1933,6 +1933,13 @@ rel/floatj_register.cpp:
 rel/obj_flower_edit.cpp:
 	.text       start:0x00074654 end:0x000746E4
 
+rel/flower_create.cpp:
+	.text       start:0x000747E8 end:0x00074830
+
+rel/obj_flower_register.cpp:
+	.text       start:0x00074830 end:0x000748E0
+	.ctors      start:0x000000CC end:0x000000D0
+
 rel/froggreen_reset.cpp:
 	.text       start:0x00076E38 end:0x00076E3C
 
@@ -2249,6 +2256,9 @@ rel/tsukushi_register.cpp:
 	.text       start:0x0008E174 end:0x0008E224
 	.ctors      start:0x00000120 end:0x00000124
 
+rel/tuta_create.cpp:
+	.text       start:0x0008F270 end:0x0008F2B8
+
 rel/aligator_reset.cpp:
 	.text       start:0x0009315C end:0x00093160
 
@@ -2264,6 +2274,9 @@ rel/aligator_create.cpp:
 rel/aligator_register.cpp:
 	.text       start:0x0009336C end:0x0009341C
 	.ctors      start:0x00000128 end:0x0000012C
+
+rel/bushsq_dtor.cpp:
+	.text       start:0x00093854 end:0x00093930
 
 rel/bushsq_edit.cpp:
 	.text       start:0x00093B68 end:0x00093BB4
@@ -2370,6 +2383,12 @@ rel/treeleaf_create.cpp:
 rel/treeleaf_register.cpp:
 	.text       start:0x000999E0 end:0x00099A90
 	.ctors      start:0x00000144 end:0x00000148
+
+rel/tutab_create.cpp:
+	.text       start:0x0009AB28 end:0x0009AB70
+
+rel/tutac_create.cpp:
+	.text       start:0x0009BCD8 end:0x0009BD20
 
 rel/water_plant_dtor.cpp:
 	.text       start:0x0009C344 end:0x0009C420

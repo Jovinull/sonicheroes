@@ -1301,6 +1301,9 @@ rel/push_pull_switch_register.cpp:
 	.text       start:0x0004A4E4 end:0x0004A594
 	.ctors      start:0x000000A4 end:0x000000A8
 
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0004A5B8 end:0x0004A600
+
 rel/machine_gun_control.cpp:
 	.text       start:0x0004A600 end:0x0004A878
 
@@ -1695,8 +1698,15 @@ rel/key_register.cpp:
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x000680B8 end:0x0006813C
 
+rel/metal_sonic_2nd_create.cpp:
+	.text       start:0x0006EE74 end:0x0006EEBC
+
 rel/pawn_strategy_execute.cpp:
 	.text       start:0x0006EF50 end:0x0006EFE8
+
+rel/metal_sonic_2nd_register.cpp:
+	.text       start:0x0006F014 end:0x0006F0C8
+	.ctors      start:0x000000D8 end:0x000000DC
 
 rel/s31_bob_dummy_dtor.cpp:
 	.text       start:0x00075F4C end:0x00075FD8
@@ -2051,6 +2061,9 @@ rel/unbreakable_bob_container_register.cpp:
 
 rel/e_thunder_light_dtor.cpp:
 	.text       start:0x00084304 end:0x00084378
+
+rel/s14_thunder_chain.cpp:
+	.text       start:0x000848E4 end:0x000849A4
 
 rel/boss_voice_dtor.cpp:
 	.text       start:0x00085320 end:0x00085394

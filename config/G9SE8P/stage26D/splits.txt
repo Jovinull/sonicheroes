@@ -1615,6 +1615,15 @@ rel/chao_register.cpp:
 	.text       start:0x00063178 end:0x00063228
 	.ctors      start:0x000000C4 end:0x000000C8
 
+rel/king_pawn_missile_dtor.cpp:
+	.text       start:0x000644F4 end:0x000645C0
+
+rel/king_pawn_armor_dtor.cpp:
+	.text       start:0x00064BCC end:0x00064C40
+
+rel/king_pawn_lance_dtor.cpp:
+	.text       start:0x00064FF0 end:0x00065064
+
 rel/king_pawn_create.cpp:
 	.text       start:0x0006AD28 end:0x0006AD8C
 
@@ -1627,6 +1636,18 @@ rel/king_pawn_load.cpp:
 rel/king_pawn_register.cpp:
 	.text       start:0x0006B1F0 end:0x0006B29C
 	.ctors      start:0x000000C8 end:0x000000CC
+
+rel/king_pawn_shield_dtor.cpp:
+	.text       start:0x0006B710 end:0x0006B784
+
+rel/king_pawn_slash_dtor.cpp:
+	.text       start:0x0006C07C end:0x0006C118
+
+rel/king_pawn_wing_dtor.cpp:
+	.text       start:0x0006C7D8 end:0x0006C888
+
+rel/stg26_ctrl_dtor.cpp:
+	.text       start:0x0006CAA0 end:0x0006CB14
 
 rel/stg26_ctrl_reset.cpp:
 	.text       start:0x0006CBB4 end:0x0006CCB8
@@ -1714,6 +1735,9 @@ rel/key_register.cpp:
 	.text       start:0x00071094 end:0x0007112C
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/king_pawn_part_dtor.cpp:
+	.text       start:0x00071E2C end:0x00071EB0
+
 rel/s31_bob_dummy_dtor.cpp:
 	.text       start:0x00071F9C end:0x00072028
 
@@ -1796,6 +1820,15 @@ rel/stg26_colli_cc_load.cpp:
 rel/stg26_colli_cc_register.cpp:
 	.text       start:0x000756F4 end:0x00075840
 	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/king_pawn_core_dtor.cpp:
+	.text       start:0x0007622C end:0x000762F0
+
+rel/king_pawn_shield_core_dtor.cpp:
+	.text       start:0x00076C30 end:0x00076CDC
+
+rel/king_pawn_charge_dtor.cpp:
+	.text       start:0x00077384 end:0x00077434
 
 rel/king_pawn_voice_dtor.cpp:
 	.text       start:0x0007779C end:0x00077810
