@@ -4855,6 +4855,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/metal_sonic_2nd_register.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/moji_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
