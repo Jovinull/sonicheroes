@@ -157,6 +157,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize
@@ -610,6 +611,7 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize
@@ -1064,6 +1066,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - fn_8_A9F48
     - fn_8_A9F68
     - fn_8_A9F88
@@ -1642,6 +1645,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - fn_8_B0B00
     - fn_8_B0B94
     - fn_8_B134C
@@ -2181,6 +2185,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - bigRingsMatchesNumber
     - bigRingsSetState
     - __ct__14TObjBushZenmaiFP7TObject
@@ -2706,6 +2711,7 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - ObjRingScatteringNonSE__FUiP5RwV3dP11sRealAngle3ff
     - __ct__17TObjScatteredRingFP7TObjectUiP5RwV3dP11sRealAngle3ffi
     - scrollRingFieldCtorInit
@@ -3349,6 +3355,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - fn_8_A4140
     - fn_8_A4230
     - fn_8_A4290
@@ -3826,6 +3833,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - fn_9_75E60
     - fn_9_75F08
     - bigRingsMatchesNumber
@@ -4295,6 +4303,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - pawnReleaseBuffer
     - s14ThunderUnlink
     - s14ThunderLink
@@ -4634,6 +4643,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - pawnReleaseBuffer
     - s14ThunderUnlink
     - s14ThunderLink
@@ -4974,6 +4984,7 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize
@@ -5340,6 +5351,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize
@@ -5706,6 +5718,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - pushPullSwitchChangeTextureForLightPart
     - bigRingsMatchesNumber
     - bigRingsSetState
     - targetPresentPrize

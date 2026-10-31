@@ -1285,6 +1285,9 @@ rel/push_pull_switch_set_position.cpp:
 rel/push_pull_switch_set_parameter.cpp:
 	.text       start:0x00049C78 end:0x00049DA0
 
+rel/push_pull_switch_change_texture.cpp:
+	.text       start:0x00049DA0 end:0x00049DFC
+
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00049DFC end:0x00049EBC
 
