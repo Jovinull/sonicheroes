@@ -630,8 +630,8 @@ s32 Create__12TEnemySummonFUc(s32);                                             
 s32 DecreaseTimer__7nSystemFRi(void*);                                                 /* extern */
 M2C_UNK fn_8014FF2C(void*);
 M2C_UNK fn_8014FFBC(s32, void*, void*);
-s32 CreateItemBox__8nItemBoxFP5RwV3d(s32);    /* extern */
-M2C_UNK fn_8_A504(s32, void*, s32, f32, f32); /* extern */
+s32 CreateItemBox__8nItemBoxFP5RwV3d(s32);                                        /* extern */
+M2C_UNK ObjRingScattering__FUiP5RwV3dP11sRealAngle3ff(s32, void*, s32, f32, f32); /* extern */
 void* __dt__17TObjEnemyMagicianFv(void*, s16);
 void CtrlMode__17TObjEnemyMagicianF8ENEMY_MDQ29TObjEnemy10eCtrlSMode(void*, s32, s32);
 void AddScore__17TObjEnemyMagicianFv(void);
@@ -1647,7 +1647,8 @@ void fn_8_AC338(void* arg0, s32 arg1)
 					fn_800B4A38(lbl_8042C388, 0x404F, (u8*)arg0 + 0x140, NULL, 1, 0, 0);
 				}
 				if (M2C_FIELD(arg0, s32*, 0x2D4) > 0) {
-					fn_8_A504(M2C_FIELD(arg0, s32*, 0x2D4), (u8*)arg0 + 0x140, 0, 0.5f, 2.0f);
+					ObjRingScattering__FUiP5RwV3dP11sRealAngle3ff(
+					    M2C_FIELD(arg0, s32*, 0x2D4), (u8*)arg0 + 0x140, 0, 0.5f, 2.0f);
 					M2C_FIELD(arg0, s32*, 0x2D4) = 0;
 					M2C_FIELD(arg0, s32*, 0x2D8) = 0;
 				}
