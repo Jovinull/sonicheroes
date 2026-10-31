@@ -10812,11 +10812,6 @@ config.libs = [
             ),
             Object(
                 NonMatching,
-                "rel/propeller_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole"],
-            ),
-            Object(
-                NonMatching,
                 "rel/object_effects_stage11.cpp",
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off"],
             ),
