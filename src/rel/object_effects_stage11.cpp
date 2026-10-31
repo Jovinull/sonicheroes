@@ -67,7 +67,7 @@ static void destroyMaterial(void*& material)
 	material = NULL;
 }
 
-extern "C" void fn_8_49630()
+extern "C" void ReleaseTextureEfSparkle__Fv()
 {
 	destroyMaterial(lbl_8_bss_BA0);
 	destroyMaterial(lbl_8_bss_B9C);
@@ -113,7 +113,7 @@ extern "C" void* fn_8_4A354(void* self, int type)
 	return self;
 }
 
-extern "C" void fn_8_497B0()
+extern "C" void LoadTextureEfSparkle__Fv()
 {
 	if (lbl_8_bss_BA4 == NULL)
 		lbl_8_bss_BA4 = fn_8005FAE8(lbl_8_data_4E10, &lbl_8_data_4DE8);
