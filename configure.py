@@ -10816,14 +10816,6 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off"],
             ),
             Object(
-                NonMatching,
-                "rel/light_collision_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole",
-                    "-use_lmw_stmw on",
-                    
-                ],
-            ),
-            Object(
                 Matching,
                 "rel/s01_truck_path_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
