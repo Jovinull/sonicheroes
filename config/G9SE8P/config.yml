@@ -2711,6 +2711,11 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - LinkChainInstance__17PARTICLE_MATERIALFP17PARTICLE_INSTANCE
+    - particleChainCount
+    - UnlinkChainInstance__17PARTICLE_MATERIALFP17PARTICLE_INSTANCE
+    - CheckAndSetPlayerReached__12TObjGoalringFv
+    - CheckDispBackRing__12TObjGoalringFv
     - CreatePropellers__Fii
     - propellerSnatchPlayer
     - propellerSetHandlePosition

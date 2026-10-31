@@ -10824,11 +10824,6 @@ config.libs = [
                 ],
             ),
             Object(
-                NonMatching,
-                "rel/goal_ring_stage11.cpp",
-                extra_cflags=["-opt noschedule,nopropagation,nopeephole", "-bool off"],
-            ),
-            Object(
                 Matching,
                 "rel/s01_truck_path_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],

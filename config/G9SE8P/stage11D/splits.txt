@@ -1325,8 +1325,41 @@ rel/object_effects_stage11.cpp:
 	.text       start:0x00049630 end:0x0004A4CC
 	.ctors      start:0x00000088 end:0x0000008C
 
-rel/goal_ring_stage11.cpp:
-	.text       start:0x0004A4CC end:0x0004D4F0
+rel/itempanel_effect_all.cpp:
+	.text       start:0x0004A4CC end:0x0004A63C
+
+rel/particle_chain.cpp:
+	.text       start:0x0004AC50 end:0x0004AD60
+
+rel/itempanel_hooks.cpp:
+	.text       start:0x0004B574 end:0x0004B710
+
+rel/goal_ring_check_back.cpp:
+	.text       start:0x0004B710 end:0x0004B7C8
+
+rel/goal_ring_check_reached.cpp:
+	.text       start:0x0004B7C8 end:0x0004BA1C
+
+rel/goal_ring_tdisp.cpp:
+	.text       start:0x0004BA1C end:0x0004BB84
+
+rel/goal_ring_disp.cpp:
+	.text       start:0x0004BB84 end:0x0004BD90
+
+rel/goal_ring_dtor.cpp:
+	.text       start:0x0004CFB4 end:0x0004D0CC
+
+rel/goal_ring_ctor.cpp:
+	.text       start:0x0004D0CC end:0x0004D37C
+
+rel/goal_ring_edit.cpp:
+	.text       start:0x0004D37C end:0x0004D380
+
+rel/goal_ring_hooks.cpp:
+	.text       start:0x0004D380 end:0x0004D4A8
+
+rel/goal_ring_create.cpp:
+	.text       start:0x0004D4A8 end:0x0004D4F0
 
 rel/goal_ring_bind.cpp:
 	.text       start:0x0004D4F0 end:0x0004D54C
