@@ -8,7 +8,15 @@ extern double fabs(double);
 
 typedef struct HAnimClass HAnimClass;
 typedef struct RwFrame RwFrame;
-typedef struct RwV3d RwV3d;
+typedef struct {
+	s32 words[3];
+} M2C_BLOCK12;
+
+typedef struct RwV3d {
+	f32 x;
+	f32 y;
+	f32 z;
+} RwV3d;
 typedef struct TEnemyParalysis TEnemyParalysis;
 typedef struct sAngle sAngle;
 typedef struct sParalysisParam sParalysisParam;
@@ -308,7 +316,7 @@ s32 fn_800A6334(void*);                                         /* extern */
 M2C_UNK fn_800A7088(void*, M2C_UNK);                            /* extern */
 M2C_UNK fn_800A714C();                                          /* extern */
 s32 fn_800AB104(s32);                                           /* extern */
-s32 fn_800AB25C();                                              /* extern */
+s32 fn_800AB25C(s32);                                           /* extern */
 s32 fn_800AB2E0(u32);                                           /* extern */
 M2C_UNK fn_800B4A38(u32, M2C_UNK, void*, s32, s32, s32, s32);   /* extern */
 M2C_UNK fn_800B7514(void*, void*, f32*, f32);                   /* extern */
@@ -329,8 +337,8 @@ u32 SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(u32, M2C_UNK, M2C_UNK);    
 M2C_UNK Delete__14TEnemyDataBaseF14eEnemyDataBase(u32, M2C_UNK);                    /* extern */
 M2C_UNK Add__14TEnemyDataBaseF14eEnemyDataBasePc(u32, M2C_UNK, const char*);        /* extern */
 M2C_UNK __ct__14TEnemyDataBaseFv();                                                 /* extern */
-s32 GetTeamNoFromPlayerNum__13nSearchPlayerFi();                                    /* extern */
-s32 GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(f32*, f32*, f32);                /* extern */
+s32 GetTeamNoFromPlayerNum__13nSearchPlayerFi(s32);                                 /* extern */
+s32 GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(const RwV3d*, f32);              /* extern */
 s32 GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(void*, f32*, f32);               /* extern */
 s32 IsOn__13TEnemyIconManFv(u32);                                                   /* extern */
 M2C_UNK Close__13TEnemyIconManFv(void*);                                            /* extern */
@@ -590,7 +598,7 @@ void fn_8_98060(void* arg0)
 	void* temp_r3_2;
 
 	if ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1) {
-		temp_r3 = GetTeamNoFromPlayerNum__13nSearchPlayerFi();
+		temp_r3 = GetTeamNoFromPlayerNum__13nSearchPlayerFi(M2C_FIELD(arg0, s32*, 0x278));
 		if (temp_r3 != -1) {
 			temp_r3_2 = *(void**)((u8*)&lbl_80303DC8 + (temp_r3 * 4));
 			if (temp_r3_2 != NULL) {
@@ -876,9 +884,7 @@ void fn_8_98548(void* arg0)
 
 s32 fn_8_987A8(void* arg0)
 {
-	s32 sp10;
-	f32 spC;
-	f32 sp8;
+	RwV3d sp8;
 	s32 temp_r0;
 	s32 temp_r0_2;
 	u32 temp_r30;
@@ -897,13 +903,12 @@ s32 fn_8_987A8(void* arg0)
 			return 0;
 	}
 block_10:
-	sp8  = M2C_FIELD(arg0, f32*, 0x140);
-	spC  = M2C_FIELD(arg0, f32*, 0x144);
-	sp10 = M2C_FIELD(arg0, s32*, 0x148);
-	spC -= 40.0f;
-	M2C_FIELD(arg0, s32*, 0x274) = GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(
-	    &sp8, (f32*)lbl_8_rodata_1718, lbl_8_rodata_1718[0]);
-	if (((s32)M2C_FIELD(arg0, s32*, 0x274) != -1) && (fn_800AB25C() == 1)) {
+	*(M2C_BLOCK12*)&sp8 = *(M2C_BLOCK12*)((u8*)arg0 + 0x140);
+	sp8.y -= 40.0f;
+	M2C_FIELD(arg0, s32*, 0x274)
+	    = GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(&sp8, lbl_8_rodata_1718[0]);
+	if (((s32)M2C_FIELD(arg0, s32*, 0x274) != -1)
+	    && (fn_800AB25C(M2C_FIELD(arg0, s32*, 0x274)) == 1)) {
 		temp_r0_2 = M2C_FIELD(arg0, s32*, 0x274);
 		if (temp_r0_2 != -1) {
 			temp_r30 = *(u32*)((u8*)&lbl_802AD070 + (temp_r0_2 * 4));
@@ -1272,9 +1277,7 @@ void fn_8_992E4(TObject* arg0)
 
 void fn_8_99318(TObject* arg0)
 {
-	f32 sp10;
-	f32 spC;
-	f32 sp8;
+	RwV3d sp8;
 	RwFrame* temp_r30_2;
 	RwFrame* temp_r30_3;
 	RwFrame* temp_r30_4;
@@ -1336,13 +1339,11 @@ void fn_8_99318(TObject* arg0)
 				case 9:
 				case 0x2C:
 				block_25:
-					sp8  = arg0->unk140;
-					spC  = arg0->unk144;
-					sp10 = arg0->unk148;
-					spC -= 40.0f;
+					*(M2C_BLOCK12*)&sp8 = *(M2C_BLOCK12*)&arg0->unk140;
+					sp8.y -= 40.0f;
 					arg0->unk274 = GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(
-					    &sp8, (f32*)lbl_8_rodata_1718, 20.0f);
-					if (((s32)arg0->unk274 != -1) && (fn_800AB25C() == 1)) {
+					    &sp8, lbl_8_rodata_1718[0]);
+					if (((s32)arg0->unk274 != -1) && (fn_800AB25C(arg0->unk274) == 1)) {
 						temp_r0_2 = arg0->unk274;
 						if (temp_r0_2 != -1) {
 							temp_r30 = *(u32*)((u8*)&lbl_802AD070 + (temp_r0_2 * 4));
@@ -1377,7 +1378,7 @@ void fn_8_99318(TObject* arg0)
 	}
 	((TRenderer*)arg0)->Slot50(arg0->unk19C, 1);
 	if ((s32)arg0->unk278 != -1) {
-		temp_r3_2 = GetTeamNoFromPlayerNum__13nSearchPlayerFi();
+		temp_r3_2 = GetTeamNoFromPlayerNum__13nSearchPlayerFi(arg0->unk278);
 		if (temp_r3_2 != -1) {
 			temp_r3_3 = *(void**)((u8*)&lbl_80303DC8 + (temp_r3_2 * 4));
 			if (temp_r3_3 != NULL) {
