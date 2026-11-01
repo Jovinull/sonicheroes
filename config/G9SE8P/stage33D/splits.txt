@@ -1692,6 +1692,9 @@ rel/hint_ball_ctor.cpp:
 rel/hintring_same_id.cpp:
 	.text       start:0x00061708 end:0x0006174C
 
+rel/hintring_check_touched.cpp:
+	.text       start:0x0006174C end:0x00061990
+
 rel/hintring_tdisp.cpp:
 	.text       start:0x00061990 end:0x00061A50
 
