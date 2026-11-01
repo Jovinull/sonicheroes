@@ -955,6 +955,9 @@ rel/itembaloon_tdisp.cpp:
 rel/itembaloon_disp.cpp:
 	.text       start:0x00034F5C end:0x00034FE8
 
+rel/itembaloon_set_position.cpp:
+	.text       start:0x0003579C end:0x00035978
+
 rel/itembaloon_object_dtor.cpp:
 	.text       start:0x00035978 end:0x00035A20
 

@@ -3570,6 +3570,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/itembaloon_set_position.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/itembaloon_disp.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
