@@ -86,10 +86,26 @@ delete or a query before a subsequent successful `SetUpFiles` would use stale
 state; repeated unload was not found in the inspected caller paths, so this is
 a verified state hazard with practical reachability unproven. `SetUpFiles`
 counts all non-empty names, then processes only IDs `[0, count + 1]`; this
-assumes archive IDs are densely populated from 2. The embedded ONE payloads
-were not available as extracted source fixtures in this audit, so that asset
-assumption remains unverified. These failure cases are not changed in the
-matching source.
+assumes archive IDs are densely populated from 2. A read-only inspection of
+the local retail image resolved that assumption for the enemy package set
+referenced by the DOL/REL filename strings: 16 static `en_*.one` packages and
+nine stage-specific `%s_flyer.one` resolutions. All 25 packages had populated,
+NUL-terminated names at dense IDs 2 through the last entry; each ID had an
+in-bounds data chunk with the same ID, and the outer, directory, and data chunk
+lengths consumed the archive exactly. This confirms only those 25 packages,
+not every ONE archive on the disc.
+
+Across those packages, 544 entries were inspected. Each of the 16 static
+enemy packages contained one TXD, while the nine stage flyer packages
+contained none; the first-successful-TXD break therefore skips no additional
+TXD in this set. A bounded expansion matching `Expand2`'s bitstream rules
+decoded all 544 entries with a 16 MiB per-entry cap. The 531 DFF/TXD/ANM/UVB
+outputs had the expected RenderWare chunk type and declared length; 13 TMB
+streams terminated within their chunk bounds but were not runtime-parsed. The
+largest expanded resource was 649,470 bytes, below the `0xAF000` (716,800 byte)
+scratch buffer. This validates the sampled file data and capacity comparison;
+it does not prove allocator success, RenderWare object construction, or runtime
+behavior. None of these failure cases are changed in the matching source.
 
 The audit also replaced divergent local declarations of `TEnemyDataBase` and
 `eEnemyDataBase` in the six game consumers with the canonical header. The two
