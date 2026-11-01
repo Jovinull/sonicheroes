@@ -1176,6 +1176,9 @@ rel/itempanel_effect_all.cpp:
 rel/particle_chain.cpp:
 	.text       start:0x00043818 end:0x00043928
 
+rel/itempanel_control_ctor.cpp:
+	.text       start:0x00043A7C end:0x00043B2C
+
 rel/itempanel_hooks.cpp:
 	.text       start:0x0004413C end:0x000442D8
 
