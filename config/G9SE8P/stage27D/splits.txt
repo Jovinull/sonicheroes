@@ -1831,6 +1831,9 @@ rel/bobsleigh_signal_disp.cpp:
 rel/bobsleigh_signal_dtor.cpp:
 	.text       start:0x00076204 end:0x00076298
 
+rel/bobsleigh_goal_exec.cpp:
+	.text       start:0x000769A0 end:0x00076A9C
+
 rel/bobsleigh_goal_dtor.cpp:
 	.text       start:0x00076A9C end:0x00076B70
 
