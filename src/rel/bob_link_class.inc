@@ -32,16 +32,23 @@ extern "C" void fn_8004D99C(void* world);
 extern "C" void* fn_8004E608(void* world);
 extern "C" void fn_8004DEC0(void* world, void* list, s32 slot);
 
+// Takes a linked object's slot out of the world's list and tells the sound
+// side.
+static inline void bobLinkSlotOut(BobLink* object)
+{
+	if (object->linked != 0) {
+		fn_8004D99C(lbl_8042C1F8);
+		fn_8004DEC0(lbl_8042C1F8, fn_8004E608(lbl_8042C1F8), object->slotOut);
+		fn_80130F78(0xE, object);
+		object->linked = 0;
+	}
+}
+
 static inline void bobLinkBaseDtor(BobLink* object)
 {
 	if (object != NULL) {
 		object->base.vtable = bobLinkVtable;
-		if (object->linked != 0) {
-			fn_8004D99C(lbl_8042C1F8);
-			fn_8004DEC0(lbl_8042C1F8, fn_8004E608(lbl_8042C1F8), object->slotOut);
-			fn_80130F78(0xE, object);
-			object->linked = 0;
-		}
+		bobLinkSlotOut(object);
 		if (object == bobLinkCurrent) {
 			bobLinkCurrent = NULL;
 		}

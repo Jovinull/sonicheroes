@@ -2922,6 +2922,9 @@ rel/boss_voice_play.cpp:
 rel/boss_voice_play_auto.cpp:
 	.text       start:0x000D3C18 end:0x000D3EF4
 
+rel/bob_link_attach_exec.cpp:
+	.text       start:0x000D4158 end:0x000D4318
+
 rel/bob_link_attach.cpp:
 	.text       start:0x000D4318 end:0x000D43DC
 
