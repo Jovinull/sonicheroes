@@ -43,6 +43,9 @@ SYMBOL_RENAMES = {
     # TObjEnemyPawn::SearchPlayerForPawn's 0.0, which the module's other pawn
     # code reads as pawnZero.
     "pawn_search_player.o": [("@14", "pawnZero", 0x4, True)],
+    # TObjPole::SetAngle3FromNormal's 1.0, which the module's other pole code
+    # reads as poleOne.
+    "pole_set_angle3.o": [("@31", "poleOne", 0x4, True)],
 }
 
 SECTION_ALIGNMENTS = {

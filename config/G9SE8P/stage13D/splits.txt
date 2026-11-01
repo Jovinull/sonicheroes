@@ -1183,6 +1183,10 @@ rel/pole_check_team_leaders.cpp:
 rel/pole_tdisp.cpp:
 	.text       start:0x0003E084 end:0x0003E0A4
 
+rel/pole_set_angle3.cpp:
+	.text       start:0x0003F050 end:0x0003F49C
+	.rodata     start:0x000009D0 end:0x000009D4
+
 rel/pole_set_position.cpp:
 	.text       start:0x0003F49C end:0x0003F6B0
 
