@@ -1983,6 +1983,10 @@ rel/event_script_pop_light.cpp:
 rel/event_script_push_light.cpp:
 	.text       start:0x0007D108 end:0x0007D140
 
+rel/event_script_disp_message.cpp:
+	.text       start:0x0007D140 end:0x0007D308
+	.rodata     start:0x000015F8 end:0x00001608
+
 rel/event_script_start_message.cpp:
 	.text       start:0x0007D308 end:0x0007D38C
 

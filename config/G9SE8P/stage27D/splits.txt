@@ -1994,6 +1994,10 @@ rel/event_script_pop_light.cpp:
 rel/event_script_push_light.cpp:
 	.text       start:0x0007F820 end:0x0007F858
 
+rel/event_script_disp_message.cpp:
+	.text       start:0x0007F858 end:0x0007FA20
+	.rodata     start:0x000015F0 end:0x00001600
+
 rel/event_script_start_message.cpp:
 	.text       start:0x0007FA20 end:0x0007FAA4
 

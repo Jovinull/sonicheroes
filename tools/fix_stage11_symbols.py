@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Rename compiler-generated stage11 data symbols to their retail names."""
+"""Rename compiler-generated stage11 data symbols to their retail names.
+
+An entry may carry a fourth item, True, when the literal is shared with code
+left in the module's assembly: the renamed symbol is then made global."""
 
 import argparse
 import shutil
@@ -25,6 +28,14 @@ SYMBOL_RENAMES = {
         ("@895", "lbl_8_rodata_1E80", 0x8),
     ],
     "e_tree_stage11.o": [("@125", "lbl_8_rodata_1F28", 0x4)],
+    # EventScript::dispEventMessage's literals, read by name by the module's
+    # ScriptExec too.
+    "event_script_disp_message.o": [
+        ("@28", "eventMessageShadowX", 0x4, True),
+        ("@29", "eventMessageShadowY", 0x4, True),
+        ("@30", "eventMessageZero", 0x4, True),
+        ("@31", "eventMessageY", 0x4, True),
+    ],
 }
 
 
@@ -54,15 +65,17 @@ def main() -> None:
     temporary = args.object.parent / (args.object.name + ".symbols.tmp")
     command = [str(args.objcopy)]
     pending = []
-    for anonymous, retail, size in renames:
+    for anonymous, retail, size, *exported in renames:
         if anonymous in names:
             if f"{size:08x} {anonymous}" not in symbols:
                 raise SystemExit(f"unexpected {anonymous} size in {args.object.name}")
-            pending.append((anonymous, retail, size))
+            pending.append((anonymous, retail, bool(exported and exported[0])))
         elif retail not in names or f"{size:08x} {retail}" not in symbols:
             raise SystemExit(f"missing {retail} in {args.object.name}")
-    for anonymous, retail, _size in pending:
+    for anonymous, retail, exported in pending:
         command.extend(["--redefine-sym", f"{anonymous}={retail}"])
+        if exported:
+            command.extend(["--globalize-symbol", retail])
     if pending:
         subprocess.run(command + [str(args.object), str(temporary)], check=True)
         shutil.copystat(args.object, temporary)
@@ -75,7 +88,7 @@ def main() -> None:
         text=True,
     ).stdout
     updated_names = symbol_names(updated)
-    for anonymous, retail, size in renames:
+    for anonymous, retail, size, *_exported in renames:
         if (
             anonymous in updated_names
             or retail not in updated_names

@@ -2826,6 +2826,10 @@ rel/event_script_pop_light.cpp:
 rel/event_script_push_light.cpp:
 	.text       start:0x000C0130 end:0x000C0168
 
+rel/event_script_disp_message.cpp:
+	.text       start:0x000C0168 end:0x000C0330
+	.rodata     start:0x00001D08 end:0x00001D18
+
 rel/event_script_start_message.cpp:
 	.text       start:0x000C0330 end:0x000C03B4
 
