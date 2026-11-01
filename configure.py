@@ -2304,6 +2304,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/checkpoint_star_move.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/checkpoint_star_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
