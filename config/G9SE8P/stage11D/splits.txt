@@ -1790,6 +1790,9 @@ rel/formgate_register.cpp:
 	.text       start:0x00061848 end:0x000618F0
 	.ctors      start:0x000000B0 end:0x000000B4
 
+rel/bobsleigh_set_arrow_position.cpp:
+	.text       start:0x000618F8 end:0x00061B7C
+
 rel/bobsleigh_double_path_angle.cpp:
 	.text       start:0x00061B7C end:0x00061DA8
 

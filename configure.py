@@ -9165,6 +9165,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bobsleigh_set_arrow_position.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobsleigh_tdisp.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
