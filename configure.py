@@ -2449,6 +2449,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ironball_clone.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ironball_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
