@@ -1711,6 +1711,9 @@ rel/machine_gun_control.cpp:
 rel/machine_gun_cdtor.cpp:
 	.text       start:0x0005F180 end:0x0005F40C
 
+rel/searcher_ground_move.cpp:
+	.text       start:0x0005F40C end:0x0005F680
+
 rel/searcher_ground_exec.cpp:
 	.text       start:0x0005F680 end:0x0005F77C
 
