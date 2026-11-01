@@ -10760,6 +10760,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/obj_set_particle_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/obj_set_particle_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

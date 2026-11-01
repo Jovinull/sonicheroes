@@ -2529,6 +2529,10 @@ rel/watersurface_register.cpp:
 	.text       start:0x0009D204 end:0x0009D2A4
 	.ctors      start:0x00000154 end:0x00000158
 
+rel/obj_set_particle_exec.cpp:
+	.text       start:0x0009D4BC end:0x0009D6F4
+	.rodata     start:0x000018B0 end:0x000018BC
+
 rel/obj_set_particle_dtor.cpp:
 	.text       start:0x0009D6F4 end:0x0009D7AC
 

@@ -24,9 +24,18 @@ public:
 	void* particle; // 0x30
 
 	TObjSetParticle(TObject* parent);
+	// The first virtual declared is the key function, and the unit that defines
+	// it emits the vtable. These are all overrides, whose order does not move
+	// their slots: rel/obj_set_particle_exec.cpp (Exec) declares EditOnChange
+	// first, the others Exec.
+#ifdef OBJ_SET_PARTICLE_EDIT_FIRST
+	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 	virtual void Exec();
 	virtual ~TObjSetParticle();
+#ifndef OBJ_SET_PARTICLE_EDIT_FIRST
 	virtual void EditOnChange(SETDATA_PARAM*);
+#endif
 };
 
 OBJ_SET_PARTICLE_CTOR TObjSetParticle::TObjSetParticle(TObject* parent)

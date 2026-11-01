@@ -1594,6 +1594,10 @@ rel/o_setDamegeCollision.cpp:
 	.data       start:0x0000587C end:0x00005960
 	.bss        start:0x00000E10 end:0x00000E40
 
+rel/obj_set_particle_exec.cpp:
+	.text       start:0x0005C4E8 end:0x0005C720
+	.rodata     start:0x00000E90 end:0x00000E9C
+
 rel/obj_set_particle_dtor.cpp:
 	.text       start:0x0005C720 end:0x0005C7D8
 
