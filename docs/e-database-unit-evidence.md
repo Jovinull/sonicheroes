@@ -134,3 +134,123 @@ all eighteen reference hashes pass. All-source compilation, progress/report
 generation, 55 automated tests and both language/post-processor policies pass.
 Independent code/layout and ELF audits agree. Compilation and binary comparison
 do not establish runtime or physical-hardware validation.
+
+## ANM stream and runtime ownership
+
+This is a static reconstruction from `one.cpp`, `e_database.cpp`, the matching
+G9SE8P DOL at the named symbols, and a read-only parse of the 25 enemy ONE
+packages listed above. Dolphin breakpoints were not run, so the callback and
+consumer behavior below is not presented as a runtime observation.
+
+```mermaid
+flowchart LR
+    A["ONE entry: PRS-compressed bytes"] --> B["ONEFILE::OpenData / Expand2"]
+    B -->|writes| C["caller scratch buffer"]
+    C -->|borrowed RwMemory stream| D["RenderWare chunk type 27"]
+    D --> E["fn_8020C398: version, type ID, frame count, flags, duration"]
+    E --> F["fn_8020C1AC: one RwEngine allocation"]
+    F -->|type 1| G["fn_8022CF5C: type 2 animation"]
+    F -->|other type| H["database stores loaded animation"]
+    G --> I["fn_8020C2D8 frees original type 1 block"]
+    G --> J["database owns converted type 2 block"]
+    H --> K["SearchHAnim / motion tables / interpolators borrow"]
+    J --> K
+    K --> L["consumer and hierarchy teardown"]
+    L --> M["database Delete frees stored animation block"]
+```
+
+`OpenData` expands an archive entry into the caller's scratch buffer, and
+`OneFileLoadHAnimation` opens a memory stream over that buffer, checks for
+RenderWare chunk type 27, calls `fn_8020C398`, then closes the stream. The
+returned animation is separately allocated; its lifetime does not depend on
+the scratch buffer. The loader does not check the memory-stream constructor
+for null. In the retail DOL, `fn_8020C398` checks the animation version marker
+(`0x100`), resolves `typeID` through the interpolation-info registry, reads
+the common header fields and invokes the registered stream callback. It does
+not check that callback's return value before returning the animation.
+
+The relevant stream helpers read the requested bytes and byte-swap each
+32-bit word with `stwbrx`. At the `fn_8020C398` call sites this applies to the
+version/type/count/flags words and the 32-bit duration field. The inspected
+enemy files encode those values little-endian. This establishes the byte order
+of those fields only; it does not establish one byte order for every RenderWare
+or ONE field.
+
+The retail `fn_8020C1AC` uses the registry entry's frame stride and custom-data
+size to request one block of `0x18 + frameCount * frameStride + customSize`
+bytes from the RwEngine allocator. It puts the `RtAnimAnimation` header first,
+frames immediately after it, and optional custom data after the frames;
+`interpInfo` points to the registry, not to owned animation memory. The
+allocator result is dereferenced without a null check. `fn_8020C2D8` passes the
+animation base to the RwEngine release callback once, so these fields are
+released as one block rather than recursively.
+
+`TEnemyDataBase::SetUpFiles` converts loaded type-1 animations with
+`fn_8022CF5C`. That function requests a type-2 animation, reads source records
+with a `0x24`-byte stride, emits `0x18`-byte records, quantizes four rotation
+and three normalized translation components, and writes six translation
+bounds values into the type-2 custom-data area. Its type-2 registration in
+`fn_8022CEB0` specifies a `0x18` frame stride and `0x18` custom-data bytes;
+`Initialize3D` calls that registration before normal game setup. The converter
+rewrites the per-frame link into the new frame block. The database then frees
+the source type-1 block and stores the type-2 block. This is a representation
+conversion, separate from PRS archive decompression.
+
+`SearchHAnim`, `nEnemyMotion::LoadAnimationDataFromONEFILE`, and
+`TEnemyMtnPathData::SetUpMotionTable` store borrowed animation pointers.
+`fn_8020C72C` binds an animation to an interpolator and reads its frame data;
+it does not transfer ownership. The inspected searcher, pawn, and capture
+unload hooks clear their motion-table pointers before `TEnemyDataBase::Delete`.
+`ENEMYMTNMAN` destroys its hierarchy objects in its destructor. Static source
+does not prove that every active hierarchy in every enemy module is gone
+before database deletion; that lifetime ordering remains a runtime question.
+
+The local archive/PRS pass used the .NET parser and PRS implementation from
+[`HeroesONE-Reloaded`](https://github.com/Sewer56/HeroesONE-Reloaded/tree/f8cc6d784273eb9b10b55ed028007a536aba5733);
+that third-party tool was not treated as an ANM semantic decoder. The pass
+covered 25 enemy packages, 544 entries, and all 308 ANM entries. It found no
+outer type/length mismatch, animation header mismatch, type-1 frame-length
+mismatch, or expansion above its 16 MiB inspection cap. Every inspected ANM was
+type 1, with 4–1740 frames, and its expanded length was exactly
+`32 + frameCount * 0x24`. This corroborates the reader's input shape for these
+packages; it does not test interpolation-info callbacks, object construction,
+allocation success, playback, or teardown.
+
+The same bounded pass inspected all three translation floats in the type-1
+frame records. All inspected source frame values were finite, but nine
+animations each have one constant translation axis (nine axes total). For
+their 387 corresponding frames, the converter's `(value - center) / halfRange`
+formula has a zero denominator and produces a non-finite intermediate under
+IEEE single-precision arithmetic. This does not by itself establish a bad
+runtime position: `fn_8022B3E4` saturates the custom 1/4/11 float code, and the
+type-2 interpolation path decodes that code before multiplying by the stored
+zero half-range and adding the center. The source formulas therefore reduce
+those constant axes back to their center. This is a source-and-data arithmetic
+analysis, not an emulator observation; it did not identify a justified source
+change.
+
+Failure paths remain unchanged in matching source. A failed `OpenData` or
+malformed outer chunk can make the loader return null, which `SetUpFiles`
+dereferences. A failed stream allocation is not checked before use. The
+animation allocator has no OOM guard, and the reader callback's status is
+ignored. These are verified unchecked paths; whether they occur with valid
+retail assets is unknown. The 308-file inspection found structurally valid
+ANM streams but cannot establish runtime success. No null guard or ownership
+change is justified in the matching source without a separate binary-backed
+reconstruction.
+
+### Runtime-debugging limit
+
+The official Dolphin 2609a binary is in the ignored local build scratch area;
+its command line supports a user-folder option for profile isolation. Its GUI
+has a debugger/breakpoint pane, but this agent environment has no
+desktop-control channel to operate it. The
+alternative GDB stub was not started: the official implementation binds its
+server socket to all interfaces, while the active Windows Public firewall
+profile is disabled. Starting that server would expose an unauthenticated
+debugger on the network. No emulator run, breakpoint, memory inspection,
+animation playback, or runtime destruction observation was performed. A
+future runtime pass needs an interactive debugger session or an isolated
+network environment before enabling GDB. Dolphin's GUI debugger and breakpoint
+controls are part of its upstream application; the GDB socket behavior is
+visible in its [official implementation](https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/PowerPC/GDBStub.cpp).
