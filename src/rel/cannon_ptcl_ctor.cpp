@@ -1,6 +1,6 @@
 #include "types.h"
 
-// The constructor of the particle material in rel/cannon_ptcl_move.cpp, the
+// The constructor of the particle material in rel/cannon_ptcl_spawn.cpp, the
 // same in the thirteen stage modules that share the engine core: the engine's
 // material is built with flag 0x20000 and the description beside its virtual
 // table, which then replaces the engine's.
