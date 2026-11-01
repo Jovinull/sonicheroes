@@ -1087,6 +1087,9 @@ rel/enemy_shield_ccl.cpp:
 rel/item_box_create_at.cpp:
 	.text       start:0x00039BA0 end:0x00039BFC
 
+rel/item_box_player.cpp:
+	.text       start:0x00039BFC end:0x00039F34
+
 rel/item_box_disp.cpp:
 	.text       start:0x00039F34 end:0x0003A0E4
 
