@@ -11294,6 +11294,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pole_check_team_leaders.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pole_set_position.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
