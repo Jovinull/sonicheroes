@@ -2872,6 +2872,9 @@ rel/boss_voice_dtor.cpp:
 rel/boss_voice_ctor.cpp:
 	.text       start:0x000D8860 end:0x000D8A5C
 
+rel/boss_voice_create.cpp:
+	.text       start:0x000D8A5C end:0x000D8B7C
+
 rel/bgmcolli_edit.cpp:
 	.text       start:0x000DCCAC end:0x000DCD2C
 

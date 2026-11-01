@@ -3042,6 +3042,9 @@ rel/boss_voice_dtor.cpp:
 rel/boss_voice_ctor.cpp:
 	.text       start:0x000C5F24 end:0x000C6120
 
+rel/boss_voice_create.cpp:
+	.text       start:0x000C6120 end:0x000C6240
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 
