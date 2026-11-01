@@ -2,9 +2,13 @@
 """Rename compiler-generated stage11 data symbols to their retail names.
 
 An entry may carry a fourth item, True, when the literal is shared with code
-left in the module's assembly: the renamed symbol is then made global."""
+left in the module's assembly: the renamed symbol is then made global.
+
+SECTION_ALIGNMENTS lowers a section's alignment for objects whose literal
+lands on an address the compiler's 8-byte .rodata alignment would move."""
 
 import argparse
+import os
 import shutil
 import subprocess
 import sys
@@ -36,6 +40,13 @@ SYMBOL_RENAMES = {
         ("@30", "eventMessageZero", 0x4, True),
         ("@31", "eventMessageY", 0x4, True),
     ],
+    # TObjEnemyPawn::SearchPlayerForPawn's 0.0, which the module's other pawn
+    # code reads as pawnZero.
+    "pawn_search_player.o": [("@14", "pawnZero", 0x4, True)],
+}
+
+SECTION_ALIGNMENTS = {
+    "pawn_search_player.o": [(".rodata", 4)],
 }
 
 
@@ -80,6 +91,21 @@ def main() -> None:
         subprocess.run(command + [str(args.object), str(temporary)], check=True)
         shutil.copystat(args.object, temporary)
         temporary.replace(args.object)
+    # MWLD reads a section's alignment from the CodeWarrior .comment entry as
+    # well as sh_addralign; set_elf_section_alignment.py keeps both in step.
+    times = args.object.stat()
+    for section, alignment in SECTION_ALIGNMENTS.get(args.object.name, []):
+        subprocess.run(
+            [
+                sys.executable,
+                str(Path(__file__).with_name("set_elf_section_alignment.py")),
+                str(args.object),
+                section,
+                str(alignment),
+            ],
+            check=True,
+        )
+        os.utime(args.object, ns=(times.st_atime_ns, times.st_mtime_ns))
 
     updated = subprocess.run(
         [str(args.objdump), "-t", str(args.object)],

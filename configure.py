@@ -9536,6 +9536,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pawn_search_player.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pawn_check_damage2.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -12411,6 +12416,12 @@ config.custom_build_steps = {
             "outputs": "build/G9SE8P/event-message-symbols.stamp",
             "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/event_script_disp_message.o",
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/pawn-search-player-symbols.stamp",
+            "rule": "fix_stage11_symbols",
+            "inputs": "build/G9SE8P/src/rel/pawn_search_player.o",
             "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {

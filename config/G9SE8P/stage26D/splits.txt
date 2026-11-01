@@ -2316,6 +2316,10 @@ rel/pawn_rcv_hp_inc.cpp:
 rel/pawn_exec_thunder_shoot.cpp:
 	.text       start:0x00098464 end:0x00098500
 
+rel/pawn_search_player.cpp:
+	.text       start:0x00098500 end:0x000985AC
+	.rodata     start:0x00001AD4 end:0x00001AD8
+
 rel/pawn_explosion.cpp:
 	.text       start:0x000985AC end:0x00098750
 
