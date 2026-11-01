@@ -2043,6 +2043,9 @@ rel/chao_register.cpp:
 	.text       start:0x00077A80 end:0x00077B30
 	.ctors      start:0x000000CC end:0x000000D0
 
+rel/warp_check_collision.cpp:
+	.text       start:0x00077B38 end:0x00077C08
+
 rel/warp_exec.cpp:
 	.text       start:0x00077C08 end:0x00077D64
 

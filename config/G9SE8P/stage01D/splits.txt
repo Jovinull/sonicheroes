@@ -2423,6 +2423,9 @@ rel/s20d_lighthouse_register.cpp:
 rel/sky_sphere_stage04_dtor.cpp:
 	.text       start:0x000BDC50 end:0x000BDCC4
 
+rel/warp_check_collision.cpp:
+	.text       start:0x000BDCC4 end:0x000BDD94
+
 rel/warp_exec.cpp:
 	.text       start:0x000BDD94 end:0x000BDEF0
 

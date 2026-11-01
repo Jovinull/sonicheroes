@@ -10677,6 +10677,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/warp_check_collision.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/warp_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
