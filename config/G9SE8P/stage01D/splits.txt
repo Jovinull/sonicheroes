@@ -2925,6 +2925,9 @@ rel/boss_voice_play_auto.cpp:
 rel/bob_link_attach.cpp:
 	.text       start:0x000D4318 end:0x000D43DC
 
+rel/bob_link_attach_dtor.cpp:
+	.text       start:0x000D43DC end:0x000D44D8
+
 rel/bob_link_attach_point.cpp:
 	.text       start:0x000D4B68 end:0x000D4C3C
 
