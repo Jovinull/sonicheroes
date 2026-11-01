@@ -10063,6 +10063,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bob_link_turn_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bob_link_detach_current.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

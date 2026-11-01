@@ -3478,6 +3478,9 @@ rel/bob_link_attach_point.cpp:
 rel/bob_link_detach_current.cpp:
 	.text       start:0x000F37B4 end:0x000F3870
 
+rel/bob_link_turn_create.cpp:
+	.text       start:0x000F3870 end:0x000F38BC
+
 rel/bob_link_attach_turn.cpp:
 	.text       start:0x000F3AE0 end:0x000F3BB0
 
