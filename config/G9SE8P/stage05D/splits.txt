@@ -3039,6 +3039,9 @@ rel/unbreakable_bob_container_register.cpp:
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000C5EB0 end:0x000C5F24
 
+rel/boss_voice_ctor.cpp:
+	.text       start:0x000C5F24 end:0x000C6120
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 

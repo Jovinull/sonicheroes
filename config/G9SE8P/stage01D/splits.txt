@@ -2910,6 +2910,9 @@ rel/unbreakable_bob_container_register.cpp:
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000D3574 end:0x000D35E8
 
+rel/boss_voice_ctor.cpp:
+	.text       start:0x000D35E8 end:0x000D37E4
+
 rel/no_ottotto_collision_exec.cpp:
 	.text       start:0x000D5B68 end:0x000D5C64
 
