@@ -2250,6 +2250,9 @@ rel/obj_set_particle_dtor.cpp:
 rel/obj_set_particle_ctor.cpp:
 	.text       start:0x000AF094 end:0x000AF198
 
+rel/obj_set_particle_edit.cpp:
+	.text       start:0x000AF198 end:0x000AF26C
+
 rel/obj_set_particle_create.cpp:
 	.text       start:0x000AF26C end:0x000AF398
 

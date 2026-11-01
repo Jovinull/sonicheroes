@@ -1894,6 +1894,9 @@ rel/obj_set_particle_dtor.cpp:
 rel/obj_set_particle_ctor.cpp:
 	.text       start:0x00066DD4 end:0x00066ED8
 
+rel/obj_set_particle_edit.cpp:
+	.text       start:0x00066ED8 end:0x00066FAC
+
 rel/obj_set_particle_create.cpp:
 	.text       start:0x00066FAC end:0x000670D8
 
