@@ -3,7 +3,7 @@
 // The Disp and Exec of the object each searcher builds into its +0x2F0 field
 // (rel/searcher_ground_ctor.cpp), the same in the thirteen stage modules that
 // share the engine core. Disp draws nothing. Exec moves the object
-// (searcherGroundMove, still assembly); when its owner has died it marks the
+// (searcherGroundMove, rel/searcher_ground_move.cpp); when its owner has died it marks the
 // placement and asks to be killed. Otherwise its collision volume is entered
 // while the object is alive, and cleared while the game state's three pause
 // flags (0x1F to 0x21) are not all clear.
