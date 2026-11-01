@@ -1264,6 +1264,9 @@ rel/lens_flare_set_dtor.cpp:
 rel/lens_flare_ctor.cpp:
 	.text       start:0x00044C38 end:0x00044E04
 
+rel/lens_flare_disp_ptcl.cpp:
+	.text       start:0x00044E04 end:0x0004521C
+
 rel/lens_flare_dtor.cpp:
 	.text       start:0x0004521C end:0x00045328
 
