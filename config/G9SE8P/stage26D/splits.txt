@@ -2142,6 +2142,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000800C4 end:0x0008016C
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/s13_houdai_s_hooks.cpp:
+	.text       start:0x0008608C end:0x00086278
+
 rel/s13_houdai_fix_create.cpp:
 	.text       start:0x00086278 end:0x000862C4
 
