@@ -24,6 +24,11 @@ typedef struct sCaptureSetParam {
 	/* 0x14 */ f32 weaponSpeed;
 } sCaptureSetParam;
 
+// stage13D's copy stores the two clamped bytes unsigned.
+#ifndef CAPTURE_EDIT_BYTE
+#define CAPTURE_EDIT_BYTE s8
+#endif
+
 template <class T> static inline const T& Clamp(const T& value, const T& lo, const T& hi)
 {
 	if (value < lo) {
@@ -63,8 +68,10 @@ void TObjEnemyCapture::EditOnChange(SETDATA_PARAM* data)
 {
 	sCaptureSetParam* param = (sCaptureSetParam*)data->setBuffer;
 
-	param->captureType    = Clamp(param->captureType, captureTypeMin, captureTypeMax);
-	param->appearType     = Clamp(param->appearType, captureAppearMin, captureAppearMax);
+	*(CAPTURE_EDIT_BYTE*)&param->captureType
+	    = Clamp(param->captureType, captureTypeMin, captureTypeMax);
+	*(CAPTURE_EDIT_BYTE*)&param->appearType
+	    = Clamp(param->appearType, captureAppearMin, captureAppearMax);
 	param->moveRange      = Clamp(param->moveRange, captureMoveRangeMin, captureMoveRangeMax);
 	param->scopeRange     = Clamp(param->scopeRange, captureScopeRangeMin, captureScopeRangeMax);
 	param->attackInterval = Clamp(param->attackInterval, captureIntervalMin, captureIntervalMax);
