@@ -676,6 +676,9 @@ rel/target_assets.cpp:
 	.text       start:0x000240DC end:0x000241CC
 	.ctors      start:0x00000050 end:0x00000054
 
+rel/fan_rotate.cpp:
+	.text       start:0x000241DC end:0x00024344
+
 rel/fan_parameter.cpp:
 	.text       start:0x00024FD4 end:0x000250E4
 
