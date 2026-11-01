@@ -1352,6 +1352,9 @@ rel/particle_chain.cpp:
 rel/itempanel_control_ctor.cpp:
 	.text       start:0x0004AEB4 end:0x0004AF64
 
+rel/itempanel_instance_dtor.cpp:
+	.text       start:0x0004B068 end:0x0004B14C
+
 rel/itempanel_hooks.cpp:
 	.text       start:0x0004B574 end:0x0004B710
 

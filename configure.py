@@ -1881,6 +1881,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/itempanel_instance_dtor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/itempanel_control_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
