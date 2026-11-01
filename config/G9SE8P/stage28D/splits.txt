@@ -1262,6 +1262,9 @@ rel/light_collision_manager_dtor.cpp:
 rel/light_collision_manager_ctor.cpp:
 	.text       start:0x0004721C end:0x000472C8
 
+rel/light_collision_tdisp.cpp:
+	.text       start:0x000472C8 end:0x000472CC
+
 rel/light_collision_check_body.cpp:
 	.text       start:0x000472CC end:0x000476DC
 

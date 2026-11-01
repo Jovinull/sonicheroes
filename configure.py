@@ -2569,6 +2569,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/light_collision_tdisp.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/light_collision_check_body.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
