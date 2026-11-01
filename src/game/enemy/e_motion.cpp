@@ -6,18 +6,11 @@
 // Ordinary definitions preserve pool order; unused authentic helper copies are
 // discarded by the linker. See docs/e-motion-unit-evidence.md.
 #include "game/enemy/e_motion.h"
+#include "game/rtanim.h"
 // GC SDK layouts accessed by this translation unit. Unrecovered SDK entry names
 // retain address-based linkage; ignored return contracts remain provisional.
 struct RpAtomic;
 struct RwFrame;
-struct RtAnimAnimation {
-	void* interpInfo;
-	s32 numFrames;
-	s32 flags;
-	f32 duration;
-	void* pFrames;
-	void* customData;
-};
 struct RtAnimInterpolator {
 	unsigned char unknown00[0x24];
 	s32 currentInterpKeyFrameSize;
@@ -31,24 +24,6 @@ struct RpHAnimHierarchy {
 	RpHAnimHierarchy* parentHierarchy;
 	s32 rootParentOffset;
 	RtAnimInterpolator* currentAnim;
-};
-struct sEnemyDataBase {
-	void* addr;
-	s32 filenum;
-};
-class TEnemyDataBase
-{
-public:
-	TEnemyDataBase();
-	RtAnimAnimation* SearchHAnim(eEnemyDataBase, u32);
-	static TEnemyDataBase* GetInstance()
-	{
-		if (!mpDataBase)
-			new TEnemyDataBase;
-		return mpDataBase;
-	}
-	sEnemyDataBase EnemyDataBase[ENEMY_DB_NUM];
-	static TEnemyDataBase* mpDataBase;
 };
 struct MotionModeSwitchView {
 	signed char modeswitchflags[0x20];

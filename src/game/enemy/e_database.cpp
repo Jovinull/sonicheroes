@@ -1,20 +1,11 @@
 // Complete C++ enemy/e_database.cpp; resource cleanup remains separate
 // from destruction of the database record container.
 #include "game/enemy/e_database.h"
-struct RtAnimInterpolatorInfo {
-	s32 typeID;
-}; // accessed prefix only
-struct RtAnimAnimation {
-	RtAnimInterpolatorInfo* interpInfo;
-	s32 numFrames, flags;
-	f32 duration;
-	void* pFrames;
-	void* customData;
-};
+#include "game/rtanim.h"
 extern "C" {
 extern u8 lbl_8029C310[];
 s32 fn_800194A8(void*);                         // ACTION stage getter
-void* fn_80012994(s32);                         // temporary allocation
+void* fn_80012994(u32);                         // temporary allocation
 void fn_800126C8(void*);                        // temporary release
 RwTexDictionary* fn_801A4C84(RwTexDictionary*); // set current dictionary
 RtAnimAnimation* fn_8022CF5C(RtAnimAnimation*); // animation compression

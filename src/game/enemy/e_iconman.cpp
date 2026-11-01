@@ -1,6 +1,7 @@
 // Complete enemy/e_iconman.cpp, including the GC-added mission-failure task.
 // PS2 symbolic metadata supplies names/types; GC supplies behavior and ownership.
 #include "game/enemy/e_iconman.h"
+#include "game/enemy/e_database.h"
 
 // Partial external views: only the fields accessed by this unit are exposed.
 struct IconActionView {
@@ -155,28 +156,6 @@ public:
 private:
 	u8 externalState[0x8];
 };
-// Database ABI already independently established by the complete database TU.
-enum eEnemyDataBase { ENEMY_DB_ICON = 1 };
-struct IconDataBaseEntry {
-	void* addr;
-	s32 filenum;
-};
-class TEnemyDataBase
-{
-public:
-	TEnemyDataBase();
-	s32 Delete(eEnemyDataBase);
-	s32 Add(eEnemyDataBase, char*);
-	static TEnemyDataBase* mpDataBase;
-	static TEnemyDataBase* GetInstance()
-	{
-		if (!mpDataBase)
-			new TEnemyDataBase;
-		return mpDataBase;
-	}
-	IconDataBaseEntry entries[14];
-};
-
 inline TMissionFailure::TMissionFailure()
     : TObject(lbl_8042C2A0)
 {

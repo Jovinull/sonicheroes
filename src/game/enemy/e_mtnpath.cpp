@@ -92,31 +92,6 @@ TEnemyMtnPath::TEnemyMtnPath(TObject* ptp, TEnemyMtnPathData* pathdata)
 	}
 }
 
-// Metadata-backed external database view; append to common declarations.
-struct sEnemyData;
-struct sEnemyDataBase {
-	sEnemyData* addr;
-	s32 filenum;
-};
-class TEnemyDataBase
-{
-public:
-	TEnemyDataBase();
-	s32 GetFileNum(eEnemyDataBase);
-	s32 GetAnimationNum(eEnemyDataBase);
-	RtAnimAnimation* SearchHAnim(eEnemyDataBase, u32);
-	RpClump* SearchClump(eEnemyDataBase, u32);
-	static TEnemyDataBase* GetInstance()
-	{
-		if (!mpDataBase) {
-			new TEnemyDataBase;
-		}
-		return mpDataBase;
-	}
-	sEnemyDataBase EnemyDataBase[ENEMY_DB_NUM];
-	static TEnemyDataBase* mpDataBase;
-};
-
 s32 TEnemyMtnPathData::SetUpMotionTable(eEnemyDataBase database)
 {
 	TEnemyDataBase* pDB = TEnemyDataBase::GetInstance();
