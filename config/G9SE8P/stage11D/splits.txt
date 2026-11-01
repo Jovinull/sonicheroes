@@ -1155,6 +1155,9 @@ rel/itembaloon_position.cpp:
 rel/pole_check_team_leaders.cpp:
 	.text       start:0x0003DEF8 end:0x0003E0A0
 
+rel/pole_tdisp.cpp:
+	.text       start:0x0003E0A0 end:0x0003E0C0
+
 rel/pole_set_position.cpp:
 	.text       start:0x0003F4B8 end:0x0003F6CC
 

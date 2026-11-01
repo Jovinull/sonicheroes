@@ -11299,6 +11299,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/pole_tdisp.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/pole_set_position.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
