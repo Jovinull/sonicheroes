@@ -356,11 +356,11 @@ s32 fn_8_98B94(u32);           /* extern */
 M2C_UNK fn_8_9D81C(s32);       /* extern */
 void fn_8_A2A00(void*, void*); /* TEnemyFlyer_Strategy setup (rel/e_flyer_stage11.cpp) */
 void fn_8_A2A78(void*, void*);
-void* fn_8_A31D4(void*);                       /* TEnemyFlyer_Strategy::TEnemyFlyer_Strategy() */
-M2C_UNK EventRewind__12EventManagerFv(u32);    /* extern */
-M2C_UNK EventStart__12EventManagerFv(u32);     /* extern */
-s32 Exist__12EventManagerFv(u32);              /* extern */
-M2C_UNK fn_8_D8E90(M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+void* fn_8_A31D4(void*);                    /* TEnemyFlyer_Strategy::TEnemyFlyer_Strategy() */
+M2C_UNK EventRewind__12EventManagerFv(u32); /* extern */
+M2C_UNK EventStart__12EventManagerFv(u32);  /* extern */
+s32 Exist__12EventManagerFv(u32);           /* extern */
+M2C_UNK bossVoicePlayAuto(M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
 }
 extern M2C_UNK SetAtomicCustomFXData__FP8RpAtomicPv;
 extern RwV3d AxisY;
@@ -1494,16 +1494,16 @@ void fn_8_A04A8(void* arg0, s32 arg1)
 			line = M2C_FIELD(arg0, s32*, 0x274);
 			if (line == 0) {
 				if (0.000030517578f * (f32)rand() < 0.5f) {
-					fn_8_D8E90(0x13, 0, -1);
+					bossVoicePlayAuto(0x13, 0, -1);
 				} else {
-					fn_8_D8E90(0x14, 0, -1);
+					bossVoicePlayAuto(0x14, 0, -1);
 				}
 			} else if (line == 1) {
-				fn_8_D8E90(0x15, 0, -1);
+				bossVoicePlayAuto(0x15, 0, -1);
 			} else if (line == 2) {
-				fn_8_D8E90(0x16, 0, -1);
+				bossVoicePlayAuto(0x16, 0, -1);
 			} else if (line == 3) {
-				fn_8_D8E90(0x17, 0, -1);
+				bossVoicePlayAuto(0x17, 0, -1);
 			}
 			M2C_FIELD(arg0, s32*, 0x274) = 0;
 			break;
@@ -1563,7 +1563,7 @@ void fn_8_A0078(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x290)                          = 0;
 			M2C_FIELD(arg0, s32*, 0x294)                          = 0;
 			M2C_FIELD(M2C_FIELD(arg0, void**, 0x2B0), s32*, 0x1C) = 1;
-			fn_8_D8E90(0x12, 0, -1);
+			bossVoicePlayAuto(0x12, 0, -1);
 			fn_800CCC6C(lbl_8_data_15E7C);
 			return;
 		case 1:
@@ -1671,7 +1671,7 @@ void fn_8_9FDF8(void* arg0, s32 arg1)
 			M2C_FIELD(arg0, s32*, 0x150)                          = 0;
 			M2C_FIELD(arg0, s32*, 0x14C)                          = 0;
 			M2C_FIELD(M2C_FIELD(arg0, void**, 0x2B0), s32*, 0x1C) = 2;
-			fn_8_D8E90(0x17, 0, -1);
+			bossVoicePlayAuto(0x17, 0, -1);
 			eggLockPlayers();
 			M2C_FIELD(&lbl_8029C310, s32*, 0x290) = 1;
 			return;

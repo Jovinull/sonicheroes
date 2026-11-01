@@ -10038,6 +10038,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/boss_voice_play_auto.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/boss_voice_play.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

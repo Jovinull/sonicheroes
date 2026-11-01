@@ -3048,6 +3048,9 @@ rel/boss_voice_create.cpp:
 rel/boss_voice_play.cpp:
 	.text       start:0x000C6240 end:0x000C63C4
 
+rel/boss_voice_play_auto.cpp:
+	.text       start:0x000C6554 end:0x000C6830
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 
