@@ -2928,6 +2928,9 @@ rel/bob_link_attach.cpp:
 rel/bob_link_attach_point.cpp:
 	.text       start:0x000D4B68 end:0x000D4C3C
 
+rel/bob_link_attach_turn.cpp:
+	.text       start:0x000D52AC end:0x000D537C
+
 rel/no_ottotto_collision_exec.cpp:
 	.text       start:0x000D5B68 end:0x000D5C64
 
