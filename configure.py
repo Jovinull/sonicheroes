@@ -8546,6 +8546,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s11wall_check_damage.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+                data_section_alignment=4,
+            ),
+            Object(
+                Matching,
                 "rel/iron_container_check_break.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
