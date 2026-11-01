@@ -137,10 +137,11 @@ do not establish runtime or physical-hardware validation.
 
 ## ANM stream and runtime ownership
 
-This is a static reconstruction from `one.cpp`, `e_database.cpp`, the matching
-G9SE8P DOL at the named symbols, and a read-only parse of the 25 enemy ONE
-packages listed above. Dolphin breakpoints were not run, so the callback and
-consumer behavior below is not presented as a runtime observation.
+This is a reconstruction from `one.cpp`, `e_database.cpp`, the matching G9SE8P
+DOL, and a read-only parse of the 25 enemy ONE packages listed above. The
+runtime section below adds a limited Dolphin observation for one non-constant
+Searcher animation. It does not cover a constant-axis animation, prove that the
+sample was evaluated by its consumer, or establish full teardown behavior.
 
 ```mermaid
 flowchart LR
@@ -213,8 +214,10 @@ outer type/length mismatch, animation header mismatch, type-1 frame-length
 mismatch, or expansion above its 16 MiB inspection cap. Every inspected ANM was
 type 1, with 4–1740 frames, and its expanded length was exactly
 `32 + frameCount * 0x24`. This corroborates the reader's input shape for these
-packages; it does not test interpolation-info callbacks, object construction,
-allocation success, playback, or teardown.
+packages. A limited runtime sample below confirms one parser/conversion/free
+path and separately reaches the type-2 interpolation callback. The callback's
+frame pointers do not identify the converted sample, so playback of that
+sample and teardown remain unverified.
 
 The same bounded pass inspected all three translation floats in the type-1
 frame records. All inspected source frame values were finite, but nine
@@ -239,18 +242,42 @@ ANM streams but cannot establish runtime success. No null guard or ownership
 change is justified in the matching source without a separate binary-backed
 reconstruction.
 
-### Runtime-debugging limit
+### Runtime observations (Dolphin 2609a)
 
-The official Dolphin 2609a binary is in the ignored local build scratch area;
-its command line supports a user-folder option for profile isolation. Its GUI
-has a debugger/breakpoint pane, but this agent environment has no
-desktop-control channel to operate it. The
-alternative GDB stub was not started: the official implementation binds its
-server socket to all interfaces, while the active Windows Public firewall
-profile is disabled. Starting that server would expose an unauthenticated
-debugger on the network. No emulator run, breakpoint, memory inspection,
-animation playback, or runtime destruction observation was performed. A
-future runtime pass needs an interactive debugger session or an isolated
-network environment before enabling GDB. Dolphin's GUI debugger and breakpoint
-controls are part of its upstream application; the GDB socket behavior is
-visible in its [official implementation](https://github.com/dolphin-emu/dolphin/blob/master/Source/Core/Core/PowerPC/GDBStub.cpp).
+Dolphin 2609a was run with an isolated user directory under ignored
+`build/codex-anm-runtime`. The GUI debugger was brought to the foreground and
+used directly. The GDB stub was not enabled; no debugger listener was opened,
+and no firewall setting was changed.
+
+On Stage 01, `TEnemyDataBase::SetUpFiles` was reached for database ID 2 and a
+live ONEFILE object identified in memory as `en_searcher.one`. The
+`OneFileLoadHAnimation` breakpoint then observed entry ID `0x1A`, which the
+read-only package listing maps to `EN_SEARCHER.ANM` (19 frames, no constant
+translation axis). The loader, `fn_8020C398`, `fn_8022CF5C`, and allocator
+`fn_8020C1AC` breakpoints were reached for that load. At the type-2 allocator,
+the arguments requested type ID 2 and 19 frames.
+
+The live source animation header at `0x814DC3C0` showed `interpInfo=0x8040EBA4`,
+19 frames, zero flags, duration bits `0x3EAAAAAB`, and `pFrames=0x814DC3D8`.
+Before release, the converted animation header was visible at `0x814DC6C0`:
+`interpInfo=0x8040EB64`, 19 frames, zero flags, the same duration bits,
+`pFrames=0x814DC6D8`, and `customData=0x814DC8A0`. The custom-data address is
+exactly `0x18 + 19 * 0x18` bytes from the new object base. The subsequent
+`fn_8020C2D8` breakpoint received the original source pointer `0x814DC3C0`;
+the debugger registers still held the new object pointer `0x814DC6C0`. This
+observes destination construction before source release for this one path.
+
+After resuming, the type-2 interpolation callback `fn_8022B5FC` was reached.
+Its arguments included frame pointers `0x817DCE80` and `0x817DD3D8`, which lie
+outside the converted sample's frame range `[0x814DC6D8, 0x814DC8A0)`. This
+proves that the registered type-2 callback executed in the Stage 01 session,
+but does not attribute that evaluation to `EN_SEARCHER.ANM`. A hit at
+`fn_8020C72C` was not established. No constant-axis asset, frame from the
+converted sample, resource unload, or final deallocation was observed. The
+animation playback and teardown portions of the lifecycle therefore remain
+open; the nine constant-axis cases still have only static numeric analysis.
+
+This is a single emulated run and does not establish behavior across all 308
+ANMs or on physical hardware. The observed register values and headers are
+runtime evidence for the described path only; they do not prove absence of
+other failure paths or leaks.
