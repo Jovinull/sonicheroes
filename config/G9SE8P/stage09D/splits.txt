@@ -2551,6 +2551,9 @@ rel/flower_register.cpp:
 	.text       start:0x000A2BFC end:0x000A2CAC
 	.ctors      start:0x00000160 end:0x00000164
 
+rel/flower_tail.cpp:
+	.text       start:0x000A2CB4 end:0x000A2D88
+
 rel/chao_search_cage.cpp:
 	.text       start:0x000A2D88 end:0x000A2E78
 

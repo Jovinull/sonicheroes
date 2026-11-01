@@ -1807,6 +1807,9 @@ rel/flower_register.cpp:
 	.text       start:0x00069160 end:0x00069210
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/flower_tail.cpp:
+	.text       start:0x00069218 end:0x000692EC
+
 rel/enemy_score_man_dtor.cpp:
 	.text       start:0x00069CB8 end:0x00069D2C
 
