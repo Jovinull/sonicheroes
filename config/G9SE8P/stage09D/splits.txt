@@ -3001,6 +3001,9 @@ rel/event_manager_error_stop.cpp:
 rel/event_manager_cut_extention.cpp:
 	.text       start:0x000CD79C end:0x000CD7D8
 
+rel/event_check_hierarchy.cpp:
+	.text       start:0x000CDCD4 end:0x000CDE98
+
 rel/event_manager_disp.cpp:
 	.text       start:0x000CE4B0 end:0x000CE4EC
 

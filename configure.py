@@ -3047,6 +3047,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/event_check_hierarchy.cpp",
+                extra_cflags=["-opt noschedule,nopeephole", "-pool off"],
+            ),
+            Object(
+                Matching,
                 "rel/event_script_disp_message.cpp",
                 extra_cflags=["-opt noschedule,nopeephole", "-pool off"],
             ),
