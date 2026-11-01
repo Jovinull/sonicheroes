@@ -9819,6 +9819,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/ef_sparkle_release.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/ef_sparkle_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

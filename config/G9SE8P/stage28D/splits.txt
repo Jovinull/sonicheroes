@@ -1179,6 +1179,9 @@ rel/propeller_register.cpp:
 	.text       start:0x00042158 end:0x000421F8
 	.ctors      start:0x00000080 end:0x00000084
 
+rel/ef_sparkle_release.cpp:
+	.text       start:0x000421F8 end:0x00042378
+
 rel/particle_ping_pong.cpp:
 	.text       start:0x00042EFC end:0x00042F1C
 
