@@ -1256,6 +1256,9 @@ rel/light_collision_master.cpp:
 rel/light_collision_manager_dtor.cpp:
 	.text       start:0x00047150 end:0x0004721C
 
+rel/light_collision_manager_ctor.cpp:
+	.text       start:0x0004721C end:0x000472C8
+
 rel/light_collision_edit.cpp:
 	.text       start:0x00047A08 end:0x00047B80
 

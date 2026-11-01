@@ -2574,6 +2574,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/light_collision_manager_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/light_collision_manager_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
