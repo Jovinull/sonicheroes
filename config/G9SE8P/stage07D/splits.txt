@@ -3490,6 +3490,9 @@ rel/bob_link_turn_create.cpp:
 rel/bob_link_attach_turn.cpp:
 	.text       start:0x000F3AE0 end:0x000F3BB0
 
+rel/bob_link_turn_dtor.cpp:
+	.text       start:0x000F3BB0 end:0x000F3CAC
+
 rel/bob_link_slot.cpp:
 	.text       start:0x000F3FF4 end:0x000F4194
 
