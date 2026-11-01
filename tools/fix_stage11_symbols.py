@@ -46,6 +46,8 @@ SYMBOL_RENAMES = {
     # TObjPole::SetAngle3FromNormal's 1.0, which the module's other pole code
     # reads as poleOne.
     "pole_set_angle3.o": [("@31", "poleOne", 0x4, True)],
+    # TObjSetParticle::Exec's aggregate template for the speed it builds.
+    "obj_set_particle_exec.o": [("@45", "setParticleSpeedTemplate", 0xC)],
 }
 
 SECTION_ALIGNMENTS = {
