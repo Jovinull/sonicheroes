@@ -2209,6 +2209,9 @@ rel/boss_voice_ctor.cpp:
 rel/boss_voice_create.cpp:
 	.text       start:0x00085590 end:0x000856B0
 
+rel/boss_voice_play.cpp:
+	.text       start:0x000856B0 end:0x00085834
+
 rel/no_ottotto_collision_exec.cpp:
 	.text       start:0x00088484 end:0x00088580
 
