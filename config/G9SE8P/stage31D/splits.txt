@@ -1440,6 +1440,9 @@ rel/light_collision_find.cpp:
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2C8 end:0x0004E338
 
+rel/light_collision_master_exec.cpp:
+	.text       start:0x0004E338 end:0x0004E588
+
 rel/light_collision_manager_dtor.cpp:
 	.text       start:0x0004E588 end:0x0004E654
 
