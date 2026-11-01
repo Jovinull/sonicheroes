@@ -9747,6 +9747,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/searcher_ground_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/searcher_ground_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
