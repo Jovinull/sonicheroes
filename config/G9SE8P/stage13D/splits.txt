@@ -1743,6 +1743,9 @@ rel/machine_gun_control.cpp:
 rel/machine_gun_cdtor.cpp:
 	.text       start:0x0005F154 end:0x0005F3E0
 
+rel/searcher_ground_dtor.cpp:
+	.text       start:0x0005F750 end:0x0005F7D4
+
 rel/formgate_sub_check.cpp:
 	.text       start:0x0005F884 end:0x0005F95C
 
