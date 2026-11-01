@@ -11681,6 +11681,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/jump_panel_player.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/jump_panel_colli.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

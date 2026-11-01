@@ -253,6 +253,9 @@ rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
 
+rel/jump_panel_player.cpp:
+	.text       start:0x0000BEA4 end:0x0000C240
+
 rel/jump_panel_set_position.cpp:
 	.text       start:0x0000C5F4 end:0x0000C6CC
 
