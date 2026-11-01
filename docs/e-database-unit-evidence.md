@@ -52,6 +52,54 @@ and exception cleanup. The filename helper uses the first dot and a four-byte
 comparison, matching both symbolic inline-helper metadata and GameCube code.
 No additional null guards or ownership changes are introduced.
 
+## Caller ownership and failure paths
+
+| Entry kind | ONEFILE loader | Database cleanup | Ownership evidence |
+| --- | --- | --- | --- |
+| `CLUMP` | `OneFileLoadClump` | `fn_80150958` | Database owns the loaded clump; `SearchClump` returns the stored pointer. |
+| `ANIMATION` | `OneFileLoadHAnimation` | `fn_8020C2D8` | Database owns the stored or compressed animation; motion tables clear `pHAA` before unload. |
+| `UVANIMATION` | `OneFileLoadUVAnim` | `fn_8011B7CC` | Database owns the animation; callers use returned pointers as references. |
+| `SPLINE` | `OneFileLoadSpline` | `fn_8014D8A4` | Database owns the loaded spline. |
+| `CAMERAMOTION` | `OneFileLoadCameraTmb` | `fn_80132750` | Loader allocates through the ONE memory-function table; the paired release helper is external. |
+| `TEX` | `OneFileLoadTextureDictionay` | `fn_801A46D0` | Database owns the dictionary; `SetUpFiles` also installs it as the current dictionary. |
+
+The public `Search*` methods return raw pointers without retaining them. The
+searcher, pawn, capture, and stage enemy unload hooks end their texture wrappers
+and clear motion-table references before deleting the corresponding database
+entry. `TEnemyMtnPathData` retains database pointers; `TEnemyMtnPath` passes its
+model through `fn_80150588` and later destroys its own `mpClump`. That copy
+relationship is corroborated by the separate teardown, but the helper's exact
+RenderWare contract is not recovered here.
+
+Failure behavior remains retail behavior. `fn_80012994` can return null when
+the game heap has no fitting high-pool block, but `SetUpFiles` does not check
+its temporary buffer before passing it to `OpenData`/`Expand2`; the expander
+writes through its destination for non-empty data. `OneFileLoadHAnimation` can
+return null, while `SetUpFiles` dereferences `anim->interpInfo` immediately.
+Other typed loaders store their result after setting the entry kind, so cleanup
+may pass a null resource to an external destructor whose null contract is
+unknown. `ONEFILE::LoadOneFile` separately leaves its opened stream unclosed if
+its archive allocation fails; see `one-unit-evidence.md`.
+
+`Delete` frees the entry array but retains its address and count. A second
+delete or a query before a subsequent successful `SetUpFiles` would use stale
+state; repeated unload was not found in the inspected caller paths, so this is
+a verified state hazard with practical reachability unproven. `SetUpFiles`
+counts all non-empty names, then processes only IDs `[0, count + 1]`; this
+assumes archive IDs are densely populated from 2. The embedded ONE payloads
+were not available as extracted source fixtures in this audit, so that asset
+assumption remains unverified. These failure cases are not changed in the
+matching source.
+
+The audit also replaced divergent local declarations of `TEnemyDataBase` and
+`eEnemyDataBase` in the six game consumers with the canonical header. The two
+translation-unit views of the accessed `RtAnimAnimation` prefix are now shared
+in `game/rtanim.h`. A CodeWarrior build and direct object diffs against the
+pre-change object snapshots preserved the relevant function, data, exception,
+and relocation content; the complete G9SE8P build retained all 18 reference
+hashes. The `e_database.cpp` object remained byte-identical after correcting
+the local allocator declaration from signed to unsigned size.
+
 The animation-destroy return is a pointer, corroborated by its GameCube body;
 UV-animation destruction returns signed int, also corroborated by symbolic SDK
 metadata. Camera-motion release remains a provisional void declaration whose
