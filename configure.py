@@ -9443,6 +9443,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_shield_ccl.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_shield_ctor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
