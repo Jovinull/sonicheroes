@@ -2937,6 +2937,9 @@ rel/bob_link_turn_create.cpp:
 rel/bob_link_attach_turn.cpp:
 	.text       start:0x000D52AC end:0x000D537C
 
+rel/bob_link_slot.cpp:
+	.text       start:0x000D57C0 end:0x000D5960
+
 rel/no_ottotto_collision_exec.cpp:
 	.text       start:0x000D5B68 end:0x000D5C64
 
