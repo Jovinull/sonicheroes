@@ -548,6 +548,9 @@ rel/laser_fence_tdisp.cpp:
 rel/laser_fence_disp.cpp:
 	.text       start:0x0001B154 end:0x0001B630
 
+rel/laser_fence_exec.cpp:
+	.text       start:0x0001B630 end:0x0001BCE0
+
 rel/laser_fence_parameter.cpp:
 	.text       start:0x0001BCE0 end:0x0001BED4
 
