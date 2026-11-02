@@ -2744,6 +2744,9 @@ rel/capture_object_create.cpp:
 rel/capture_bubble_done.cpp:
 	.text       start:0x000BBED0 end:0x000BBEF0
 
+rel/capture_bubble_init.cpp:
+	.text       start:0x000BBF54 end:0x000BBFA0
+
 rel/capture_register.cpp:
 	.text       start:0x000BBFA0 end:0x000BC09C
 	.ctors      start:0x00000170 end:0x00000174
