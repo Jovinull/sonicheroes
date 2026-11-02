@@ -3120,6 +3120,9 @@ rel/boss_voice_play_auto.cpp:
 rel/bob_link_attach_create.cpp:
 	.text       start:0x000C76A4 end:0x000C7908
 
+rel/bob_link_attach_exec.cpp:
+	.text       start:0x000C7908 end:0x000C7AC8
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 
