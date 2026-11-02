@@ -444,7 +444,7 @@ extern const s32 lbl_8_rodata_16E4[8] = { 0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0xFFF
 extern const f32 lbl_8_rodata_1704[1] = { 0.0f };
 extern const f32 lbl_8_rodata_1708[1] = { 40.0f };
 extern const f32 lbl_8_rodata_170C[1] = { -0.4000000059604645f };
-extern const f32 lbl_8_rodata_1710[1] = { 0.20000000298023224f };
+extern const f32 captureRiseSpeed[1]  = { 0.20000000298023224f };
 extern const f32 lbl_8_rodata_1714[1] = { 3.0f };
 extern const f32 lbl_8_rodata_1718[1] = { 20.0f };
 extern const f32 lbl_8_rodata_171C[1] = { -20.0f };
@@ -1088,7 +1088,7 @@ s32 fn_8_98C34(void* arg0, f32 farg0, f32 farg1)
 	return var_r30;
 }
 
-s32 fn_8_98DA4(void* arg0)
+s32 captureRise(void* arg0)
 {
 	f32 temp_f2;
 	s32 var_r5;
@@ -1098,7 +1098,7 @@ s32 fn_8_98DA4(void* arg0)
 		return 1;
 	}
 	temp_f2                      = M2C_FIELD(arg0, f32*, 0x1C4);
-	M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + lbl_8_rodata_1710[0]);
+	M2C_FIELD(arg0, f32*, 0x144) = (f32)(M2C_FIELD(arg0, f32*, 0x144) + captureRiseSpeed[0]);
 	if (M2C_FIELD(arg0, f32*, 0x144) >= temp_f2) {
 		M2C_FIELD(arg0, f32*, 0x144) = temp_f2;
 	} else {
@@ -1685,7 +1685,7 @@ void fn_8_99E34(void* arg0, s32 arg1)
 			} else {
 				temp_f2 = M2C_FIELD(arg0, f32*, 0x1C4);
 				M2C_FIELD(arg0, f32*, 0x144)
-				    = (f32)(M2C_FIELD(arg0, f32*, 0x144) + lbl_8_rodata_1710[0]);
+				    = (f32)(M2C_FIELD(arg0, f32*, 0x144) + captureRiseSpeed[0]);
 				if (M2C_FIELD(arg0, f32*, 0x144) >= temp_f2) {
 					M2C_FIELD(arg0, f32*, 0x144) = temp_f2;
 				} else {
@@ -2394,7 +2394,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 					} else {
 						temp_f2 = M2C_FIELD(arg0, f32*, 0x1C4);
 						M2C_FIELD(arg0, f32*, 0x144)
-						    = (f32)(M2C_FIELD(arg0, f32*, 0x144) + lbl_8_rodata_1710[0]);
+						    = (f32)(M2C_FIELD(arg0, f32*, 0x144) + captureRiseSpeed[0]);
 						if (M2C_FIELD(arg0, f32*, 0x144) >= temp_f2) {
 							M2C_FIELD(arg0, f32*, 0x144) = temp_f2;
 						} else {
@@ -2812,7 +2812,7 @@ void fn_8_9C054(TObject* arg0)
 	sp8[1]       = 0.0f;
 	sp8[2]       = arg0->unk254;
 	temp_f3
-	    = (160.0f * (0.000030517578f * (f32)rand((void*)lbl_8_rodata_1710, temp_r4, 0.0f))) - 80.0f;
+	    = (160.0f * (0.000030517578f * (f32)rand((void*)captureRiseSpeed, temp_r4, 0.0f))) - 80.0f;
 	fn_80195A74(&sp14, &AxisY, 0,
 	    180.0f + (0.005493164f * (f32)M2C_FIELD(arg0->unkB0, s32*, 0x10)) + temp_f3, 180.0f,
 	    temp_f3);

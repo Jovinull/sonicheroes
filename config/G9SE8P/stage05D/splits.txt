@@ -2674,6 +2674,9 @@ rel/capture_update_icons.cpp:
 rel/capture_free_player.cpp:
 	.text       start:0x000A3AAC end:0x000A3B58
 
+rel/capture_rise.cpp:
+	.text       start:0x000A3F38 end:0x000A3F90
+
 rel/capture_edit.cpp:
 	.text       start:0x000A7C84 end:0x000A7E6C
 
