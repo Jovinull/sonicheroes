@@ -3111,6 +3111,9 @@ rel/bmodel_compressed_geometry.cpp:
 rel/bmodel_light_shadow.cpp:
 	.text       start:0x000C33E0 end:0x000C3500
 
+rel/bmodel_deal_material.cpp:
+	.text       start:0x000C3500 end:0x000C3B00
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000C5EB0 end:0x000C5F24
 

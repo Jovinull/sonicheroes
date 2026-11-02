@@ -1211,6 +1211,12 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
     - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
     - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
     - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
@@ -1901,6 +1907,12 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
     - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
     - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
     - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
@@ -3129,6 +3141,12 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
     - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
     - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
     - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
