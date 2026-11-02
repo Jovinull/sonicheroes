@@ -978,7 +978,7 @@ void fn_8_989C4(void* arg0)
 	}
 }
 
-s32 fn_8_98A4C(void* arg0)
+s32 captureCatchPlayer(void* arg0)
 {
 	s32 temp_r0;
 	u32 temp_r31;
