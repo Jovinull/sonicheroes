@@ -1894,6 +1894,9 @@ rel/flower_register.cpp:
 rel/flower_tail.cpp:
 	.text       start:0x00069218 end:0x000692EC
 
+rel/enemy_score_man_count.cpp:
+	.text       start:0x000697B0 end:0x0006988C
+
 rel/enemy_score_man_dtor.cpp:
 	.text       start:0x00069CD8 end:0x00069D4C
 

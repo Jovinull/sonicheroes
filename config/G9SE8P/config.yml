@@ -6390,6 +6390,10 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - ParalyzeEnemy__14TEnemyScoreManFi
+    - TornadoEnemy__14TEnemyScoreManFi
+    - DestroyEnemy__14TEnemyScoreManFi
+    - AddScore__14TEnemyScoreManFii
     - Exec__15TEnemyPowerCoreFv
     - Exec__18TEnemyPowerCoreManFv
     - EntryEx__18TEnemyPowerCoreManFPC5RwV3di
@@ -6807,6 +6811,10 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - ParalyzeEnemy__14TEnemyScoreManFi
+    - TornadoEnemy__14TEnemyScoreManFi
+    - DestroyEnemy__14TEnemyScoreManFi
+    - AddScore__14TEnemyScoreManFii
     - Exec__15TEnemyPowerCoreFv
     - Exec__18TEnemyPowerCoreManFv
     - EntryEx__18TEnemyPowerCoreManFPC5RwV3di
