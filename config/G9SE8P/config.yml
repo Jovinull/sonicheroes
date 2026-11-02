@@ -157,6 +157,9 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightPointer__FP7RpClumpPSc
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightPointer__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightPointer__FP8RpAtomic
     - teamSetModeF
     - teamSetMode9
     - teamFlagLeaders

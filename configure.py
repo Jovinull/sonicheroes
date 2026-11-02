@@ -9532,6 +9532,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bmodel_light_pointer.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/prop_base_class.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
