@@ -1134,7 +1134,7 @@ s32 fn_8_98DFC(void* arg0, f32 farg0, f32 farg1)
 	return var_r31;
 }
 
-s32 fn_8_98F30(void* arg0)
+s32 captureTurn(void* arg0)
 {
 	s32 temp_r31;
 
