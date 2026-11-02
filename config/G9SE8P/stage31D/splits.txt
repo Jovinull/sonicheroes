@@ -1909,6 +1909,9 @@ rel/power_core_man.cpp:
 rel/power_core_man_create.cpp:
 	.text       start:0x0006A7D4 end:0x0006A8B0
 
+rel/power_core_check_hit.cpp:
+	.text       start:0x0006A8B0 end:0x0006A92C
+
 rel/chao_search_cage.cpp:
 	.text       start:0x0006B64C end:0x0006B73C
 
