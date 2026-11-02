@@ -9527,6 +9527,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/prop_base_place_parts.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/prop_base_class.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
