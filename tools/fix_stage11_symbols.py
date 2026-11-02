@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 SYMBOL_RENAMES = {
-    "e_capture.o": [("@560", "lbl_8_rodata_1748", 0x4)],
+    "e_capture.o": [("@560", "captureHalf", 0x4)],
     "e_flyer_strategy_stage11.o": [
         ("@97", "lbl_8_rodata_18B4", 0x4),
         ("@99", "lbl_8_rodata_18B8", 0x8),

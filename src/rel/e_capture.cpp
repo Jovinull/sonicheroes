@@ -457,8 +457,8 @@ extern const f32 lbl_8_rodata_1734[1]  = { 1.0f };
 extern const f32 lbl_8_rodata_1738[1]  = { 0.004000000189989805f };
 extern const f32 lbl_8_rodata_173C[1]  = { 10.0f };
 extern const f32 lbl_8_rodata_1740[1]  = { 16.0f };
-extern const f32 lbl_8_rodata_1744[1]  = { 180.0f };
-extern const f32 lbl_8_rodata_1748[1]  = { 0.5f };
+extern const f32 captureHalfTurn[1]    = { 180.0f };
+extern const f32 captureHalf[1]        = { 0.5f };
 extern const f32 lbl_8_rodata_174C[1]  = { 0.15000000596046448f };
 extern const f32 lbl_8_rodata_1750[1]  = { 2.0f };
 extern const f32 lbl_8_rodata_1754[1]  = { 1000000.0f };
@@ -1405,13 +1405,13 @@ void fn_8_99318(TObject* arg0)
 		temp_r3_4 = arg0->unk2DC;
 		if ((temp_r3_4 != NULL) && ((u32)arg0->unk268 != 0U)) {
 			temp_r30_3 = M2C_FIELD(temp_r3_4, RwFrame**, 4);
-			fn_8019ED68(temp_r30_3, &AxisY, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_3, &AxisY, captureHalfTurn[0], 0);
 			fn_8019ECCC(temp_r30_3, fn_8019E8EC((void*)arg0->unk268), 2);
 		}
 		temp_r3_5 = arg0->unk2E0;
 		if ((temp_r3_5 != NULL) && ((u32)arg0->unk26C != 0U)) {
 			temp_r30_4 = M2C_FIELD(temp_r3_5, RwFrame**, 4);
-			fn_8019ED68(temp_r30_4, &AxisY, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_4, &AxisY, captureHalfTurn[0], 0);
 			fn_8019ECCC(temp_r30_4, fn_8019E8EC((void*)arg0->unk26C), 2);
 		}
 		arg0->unk284 += 0x1000;
@@ -2558,7 +2558,7 @@ void fn_8_9B69C(void* arg0)
 	M2C_FIELD(arg0, f32*, 0x254) = (f32)(M2C_FIELD(arg0, f32*, 0x254) * -1.0f);
 }
 
-void fn_8_9B7E0(void* arg0)
+void captureSpinParts(void* arg0)
 {
 	RwFrame* temp_r30;
 	RwFrame* temp_r30_2;
@@ -2576,13 +2576,13 @@ void fn_8_9B7E0(void* arg0)
 		temp_r3 = M2C_FIELD(arg0, void**, 0x2DC);
 		if ((temp_r3 != NULL) && ((u32)M2C_FIELD(arg0, u32*, 0x268) != 0U)) {
 			temp_r30_2 = M2C_FIELD(temp_r3, RwFrame**, 4);
-			fn_8019ED68(temp_r30_2, &AxisY, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_2, &AxisY, captureHalfTurn[0], 0);
 			fn_8019ECCC(temp_r30_2, fn_8019E8EC((void*)M2C_FIELD(arg0, u32*, 0x268)), 2);
 		}
 		temp_r3_2 = M2C_FIELD(arg0, void**, 0x2E0);
 		if ((temp_r3_2 != NULL) && ((u32)M2C_FIELD(arg0, u32*, 0x26C) != 0U)) {
 			temp_r30_3 = M2C_FIELD(temp_r3_2, RwFrame**, 4);
-			fn_8019ED68(temp_r30_3, &AxisY, lbl_8_rodata_1744[0], 0);
+			fn_8019ED68(temp_r30_3, &AxisY, captureHalfTurn[0], 0);
 			fn_8019ECCC(temp_r30_3, fn_8019E8EC((void*)M2C_FIELD(arg0, u32*, 0x26C)), 2);
 		}
 		M2C_FIELD(arg0, s32*, 0x284) = (s32)(M2C_FIELD(arg0, s32*, 0x284) + 0x1000);

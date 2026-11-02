@@ -2695,6 +2695,9 @@ rel/capture_mode_release.cpp:
 rel/capture_mode_idle.cpp:
 	.text       start:0x000A5C50 end:0x000A5CFC
 
+rel/capture_spin_parts.cpp:
+	.text       start:0x000A6974 end:0x000A6AB4
+
 rel/capture_release_parts.cpp:
 	.text       start:0x000A7000 end:0x000A70B8
 
