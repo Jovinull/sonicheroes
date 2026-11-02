@@ -10098,6 +10098,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bob_link_point_exec.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bob_link_point_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
