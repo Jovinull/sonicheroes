@@ -2881,6 +2881,9 @@ rel/bmodel_deal_material.cpp:
 rel/bmodel_entry_node_frames.cpp:
 	.text       start:0x000D643C end:0x000D64C8
 
+rel/bmodel_load_ex.cpp:
+	.text       start:0x000D64C8 end:0x000D6C88
+
 rel/bmodel_search.cpp:
 	.text       start:0x000D6C88 end:0x000D6F04
 
