@@ -754,7 +754,7 @@ loop_8:
 	goto loop_8;
 }
 
-s32 fn_8_98464(void* arg0)
+s32 captureIsHurt(void* arg0)
 {
 	return M2C_FIELD(arg0, f32*, 0x250) != M2C_FIELD(arg0, f32*, 0x1A4);
 }

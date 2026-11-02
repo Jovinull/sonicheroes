@@ -209,7 +209,7 @@ void fn_8019ED68(s32, RwV3d*, f32, s32);  /* RwFrameRotate */
 
 s32 rand();                        /* extern */
 s32 fn_8_9832C(s32);               /* extern */
-s32 fn_8_98464(u32);               /* extern */
+s32 captureIsHurt(u32);            /* extern */
 M2C_UNK captureUpdateIcons(void*); /* extern */
 M2C_UNK captureFreePlayer();       /* extern */
 s32 fn_8_98B08(u32);               /* extern */
@@ -621,7 +621,7 @@ void fn_8_9E324(void* arg0, s32 arg1)
 				return;
 			}
 			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U)
-			    && (fn_8_98464(M2C_FIELD(arg0, u32*, 0x14)) != 0)) {
+			    && (captureIsHurt(M2C_FIELD(arg0, u32*, 0x14)) != 0)) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 1;

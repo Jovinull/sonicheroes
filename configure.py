@@ -3929,6 +3929,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/capture_is_hurt.cpp",
+                extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_edit.cpp",
                 extra_cflags=["-fp_contract off", "-opt noschedule,nopropagation,nopeephole", "-pool off", "-bool off"],
             ),
