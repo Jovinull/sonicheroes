@@ -9532,6 +9532,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bmodel_light_shadow.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bmodel_compressed_geometry.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
