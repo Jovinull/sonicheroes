@@ -2872,6 +2872,9 @@ rel/bmodel_light_pointer.cpp:
 rel/bmodel_compressed_geometry.cpp:
 	.text       start:0x000D5BEC end:0x000D5D1C
 
+rel/bmodel_light_shadow.cpp:
+	.text       start:0x000D5D1C end:0x000D5E3C
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000D87EC end:0x000D8860
 
