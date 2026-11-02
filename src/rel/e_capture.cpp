@@ -449,8 +449,8 @@ extern const f32 captureBubbleMax[1]   = { 3.0f };
 extern const f32 captureSearchRange[1] = { 20.0f };
 extern const f32 lbl_8_rodata_171C[1]  = { -20.0f };
 extern const f32 lbl_8_rodata_1720[1]  = { 2.4000000953674316f };
-extern const f32 lbl_8_rodata_1724[1]  = { 1.5f };
-extern const f32 lbl_8_rodata_1728[1]  = { -1.0f };
+extern const f32 captureOneAndHalf[1]  = { 1.5f };
+extern const f32 captureMinusOne[1]    = { -1.0f };
 extern const f32 lbl_8_rodata_172C[1]  = { 0.20000000298023224f };
 extern const f32 lbl_8_rodata_1730[1]  = { 1.0f };
 extern const f32 lbl_8_rodata_1734[1]  = { 1.0f };
@@ -1081,7 +1081,7 @@ s32 fn_8_98C34(void* arg0, f32 farg0, f32 farg1)
 	    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 		M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 	}
-	if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+	if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 		fn_800A5B50(arg0, 0xF00);
 		var_r30 = 0;
 	}
@@ -1107,7 +1107,7 @@ s32 captureRise(void* arg0)
 	return var_r5;
 }
 
-s32 fn_8_98DFC(void* arg0, f32 farg0, f32 farg1)
+s32 captureApproach(void* arg0, f32 farg0, f32 farg1)
 {
 	s32 var_r31;
 
@@ -1127,7 +1127,7 @@ s32 fn_8_98DFC(void* arg0, f32 farg0, f32 farg1)
 	    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 		M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 	}
-	if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+	if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 		fn_800A5B50(arg0, 0xF00);
 		var_r31 = 2;
 	}
@@ -1493,7 +1493,7 @@ void fn_8_99800(void* arg0, s32 arg1)
 					    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 						M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 					}
-					if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+					if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 						fn_800A5B50(arg0, 0xF00);
 						var_r30 = 2;
 					}
@@ -1961,7 +1961,7 @@ void fn_8_9A514(void* arg0, s32 arg1)
 				    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 					M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 				}
-				if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+				if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 					fn_800A5B50(arg0, 0xF00);
 					var_r29 = 0;
 				}
@@ -2035,7 +2035,7 @@ void fn_8_9A710(void* arg0, s32 arg1)
 					    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 						M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 					}
-					if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+					if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 						fn_800A5B50(arg0, 0xF00);
 						var_r30 = 2;
 					}
@@ -2222,7 +2222,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 						        < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 							M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 						}
-						if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+						if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 							fn_800A5B50(arg0, 0xF00);
 							var_r29 = 0;
 						}
@@ -2508,7 +2508,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 							        < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 								M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 							}
-							if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+							if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 								fn_800A5B50(arg0, 0xF00);
 								var_r29_2 = 2;
 							}
