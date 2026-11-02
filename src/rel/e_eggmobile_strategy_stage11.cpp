@@ -207,15 +207,15 @@ void fn_8019EB94(s32, RwV3d*, s32);       /* RwFrameTranslate */
 M2C_UNK fn_8019ECCC(s32, void*, M2C_UNK); /* extern */
 void fn_8019ED68(s32, RwV3d*, f32, s32);  /* RwFrameRotate */
 
-s32 rand();                    /* extern */
-s32 fn_8_9832C(s32);           /* extern */
-s32 fn_8_98464(u32);           /* extern */
-M2C_UNK fn_8_98480(void*);     /* extern */
-M2C_UNK fn_8_9897C();          /* extern */
-s32 fn_8_98B08(u32);           /* extern */
-s32 fn_8_98B94(u32);           /* extern */
-M2C_UNK fn_8_9D81C(s32);       /* extern */
-void fn_8_A2A00(void*, void*); /* TEnemyFlyer_Strategy setup (rel/e_flyer_stage11.cpp) */
+s32 rand();                        /* extern */
+s32 fn_8_9832C(s32);               /* extern */
+s32 fn_8_98464(u32);               /* extern */
+M2C_UNK captureUpdateIcons(void*); /* extern */
+M2C_UNK fn_8_9897C();              /* extern */
+s32 fn_8_98B08(u32);               /* extern */
+s32 fn_8_98B94(u32);               /* extern */
+M2C_UNK fn_8_9D81C(s32);           /* extern */
+void fn_8_A2A00(void*, void*);     /* TEnemyFlyer_Strategy setup (rel/e_flyer_stage11.cpp) */
 void fn_8_A2A78(void*, void*);
 void* fn_8_A31D4(void*);                    /* TEnemyFlyer_Strategy::TEnemyFlyer_Strategy() */
 M2C_UNK EventRewind__12EventManagerFv(u32); /* extern */
@@ -685,7 +685,7 @@ s32 fn_8_9E510(void* arg0)
 	u32 flags;
 	s32 mode;
 
-	fn_8_98480(M2C_FIELD(arg0, void**, 0x14));
+	captureUpdateIcons(M2C_FIELD(arg0, void**, 0x14));
 	if (fn_800A3ED4(M2C_FIELD(arg0, void**, 0x14)) != 0
 	    && M2C_FIELD(M2C_FIELD(arg0, void**, 0x14), s32*, 0x19C) != 0x1D) {
 		eggChangeMode(arg0, 5);

@@ -2872,6 +2872,9 @@ rel/raincollision_register.cpp:
 	.text       start:0x000B4098 end:0x000B4148
 	.ctors      start:0x00000188 end:0x0000018C
 
+rel/capture_update_icons.cpp:
+	.text       start:0x000B4570 end:0x000B4638
+
 rel/capture_edit.cpp:
 	.text       start:0x000B8BE0 end:0x000B8DC8
 

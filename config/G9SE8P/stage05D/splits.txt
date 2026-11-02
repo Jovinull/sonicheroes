@@ -2656,6 +2656,9 @@ rel/casinodush_register.cpp:
 	.text       start:0x000A2C78 end:0x000A2D28
 	.ctors      start:0x00000148 end:0x0000014C
 
+rel/capture_update_icons.cpp:
+	.text       start:0x000A3614 end:0x000A36DC
+
 rel/capture_edit.cpp:
 	.text       start:0x000A7C84 end:0x000A7E6C
 

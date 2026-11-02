@@ -434,7 +434,7 @@ extern s32 lbl_8042C298;
 extern u32 lbl_8042C388;
 extern u32 mpDataBase__14TEnemyDataBase;
 extern u32 EnemyScoreMan__14TEnemyScoreMan;
-extern const f32 lbl_8_rodata_16A4[3] = { 13.0f, 20.0f, 0.0f };
+extern const f32 captureIconOffset[3] = { 13.0f, 20.0f, 0.0f };
 extern const f32 lbl_8_rodata_16B0[3]
     = { -0.05000000074505806f, 0.10000000149011612f, -0.05000000074505806f };
 extern const f32 lbl_8_rodata_16BC[4] = { -1.0f, -1.0f, -1.0f, 0.0f };
@@ -759,7 +759,7 @@ s32 fn_8_98464(void* arg0)
 	return M2C_FIELD(arg0, f32*, 0x250) != M2C_FIELD(arg0, f32*, 0x1A4);
 }
 
-s32 fn_8_98480(void* arg0)
+s32 captureUpdateIcons(void* arg0)
 {
 	f32 temp_f1;
 	s32 var_r31;
@@ -784,11 +784,11 @@ s32 fn_8_98480(void* arg0)
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2F0) != 0U) {
 		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
-		    M2C_FIELD(arg0, u32*, 0x2F0), (u8*)arg0 + 0x140, (s32*)lbl_8_rodata_16A4);
+		    M2C_FIELD(arg0, u32*, 0x2F0), (u8*)arg0 + 0x140, (s32*)captureIconOffset);
 	}
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2F4) != 0U) {
 		SetPos__13TEnemyIconManFPC5RwV3dPC5RwV3d(
-		    M2C_FIELD(arg0, u32*, 0x2F4), (u8*)arg0 + 0x140, (s32*)lbl_8_rodata_16A4);
+		    M2C_FIELD(arg0, u32*, 0x2F4), (u8*)arg0 + 0x140, (s32*)captureIconOffset);
 	}
 	return var_r31;
 }
