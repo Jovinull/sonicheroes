@@ -2701,6 +2701,9 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x000A44AC end:0x000A4994
 
+rel/capture_mode_wait.cpp:
+	.text       start:0x000A4BA0 end:0x000A4BF4
+
 rel/capture_mode_shrink.cpp:
 	.text       start:0x000A4BF4 end:0x000A4D4C
 

@@ -9632,6 +9632,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/capture_mode_wait.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

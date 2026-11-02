@@ -1509,7 +1509,7 @@ void fn_8_99800(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99A0C(void* arg0, s32 arg1)
+void captureModeWait(void* arg0, s32 arg1)
 {
 	if (arg1 != 0) {
 		if (arg1 >= 0) {
