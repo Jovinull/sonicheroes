@@ -9437,6 +9437,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/capture_drop_item.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

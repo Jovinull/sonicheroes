@@ -3061,6 +3061,9 @@ rel/pawn_strategy.cpp:
 rel/capture_free_player_check.cpp:
 	.text       start:0x000D5144 end:0x000D51DC
 
+rel/capture_drop_item.cpp:
+	.text       start:0x000D51DC end:0x000D5200
+
 rel/capture_add_score.cpp:
 	.text       start:0x000D5378 end:0x000D5410
 

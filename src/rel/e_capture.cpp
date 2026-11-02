@@ -388,7 +388,7 @@ void fn_8_99254(void*);
 void fn_8_990C4(void*, M2C_UNK);
 void fn_8_98FAC(void*);
 void captureAddScore(void*);
-void fn_8_980F8(void*, s32);
+void captureDropItem(void*, s32);
 void fn_8_981B8(void*, void*);
 void fn_8_9CAF0(void*, void*);
 void DispOpaqOnEdit__9TObjEnemyFv(void);
@@ -536,7 +536,7 @@ static M2C_UNK* lbl_8_data_15854[42]   = {
 	(M2C_UNK*)captureAddScore,
 	(M2C_UNK*)CanCheckTechnicPointForThunderShoot__9TObjEnemyFv,
 	(M2C_UNK*)IsSleep__9TObjEnemyFv,
-	(M2C_UNK*)fn_8_980F8,
+	(M2C_UNK*)captureDropItem,
 	(M2C_UNK*)Virtual33D98__9TObjEnemyFv,
 	(M2C_UNK*)GetCurrentLightNum__9TObjEnemyFv,
 	(M2C_UNK*)fn_8_981B8,
@@ -616,7 +616,7 @@ void captureFreePlayerCheck(void* arg0)
 	}
 }
 
-void fn_8_980F8(void* arg0, s32 arg1)
+void captureDropItem(void* arg0, s32 arg1)
 {
 	CreateItemBox__8nItemBoxFP5RwV3d(arg1);
 }
