@@ -3147,6 +3147,9 @@ rel/bob_link_point_dtor.cpp:
 rel/bob_link_point_ctor.cpp:
 	.text       start:0x000C84E8 end:0x000C8730
 
+rel/bob_link_detach_current.cpp:
+	.text       start:0x000C8730 end:0x000C87EC
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 

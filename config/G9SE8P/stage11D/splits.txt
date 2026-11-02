@@ -2911,6 +2911,9 @@ rel/bob_link_point_dtor.cpp:
 rel/bob_link_point_ctor.cpp:
 	.text       start:0x000DAE24 end:0x000DB06C
 
+rel/bob_link_detach_current.cpp:
+	.text       start:0x000DB06C end:0x000DB128
+
 rel/bgmcolli_edit.cpp:
 	.text       start:0x000DCCAC end:0x000DCD2C
 
