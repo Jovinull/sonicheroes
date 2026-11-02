@@ -6395,6 +6395,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - Exec__14TEnemyScoreManFv
     - scoreManCountDestroy
     - scoreManCountExtra
     - SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv
@@ -6820,6 +6821,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - Exec__14TEnemyScoreManFv
     - scoreManCountDestroy
     - scoreManCountExtra
     - SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv
