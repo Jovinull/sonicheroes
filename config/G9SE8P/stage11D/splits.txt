@@ -2884,6 +2884,9 @@ rel/boss_voice_play_auto.cpp:
 rel/prop_base_hooks.cpp:
 	.text       start:0x000D916C end:0x000D93EC
 
+rel/prop_base_blink.cpp:
+	.text       start:0x000D93EC end:0x000D96D8
+
 rel/bob_link_attach_create.cpp:
 	.text       start:0x000D9FE0 end:0x000DA244
 

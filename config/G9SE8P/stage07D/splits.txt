@@ -2765,6 +2765,9 @@ rel/hawk_mgun_bullet.cpp:
 rel/prop_base_hooks.cpp:
 	.text       start:0x000B95E8 end:0x000B9868
 
+rel/prop_base_blink.cpp:
+	.text       start:0x000B9868 end:0x000B9B54
+
 rel/warp_check_collision.cpp:
 	.text       start:0x000C31D8 end:0x000C32A8
 
