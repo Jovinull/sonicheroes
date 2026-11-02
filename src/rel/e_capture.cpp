@@ -461,7 +461,7 @@ extern const f32 captureHalfTurn[1]    = { 180.0f };
 extern const f32 captureHalf[1]        = { 0.5f };
 extern const f32 captureDefaultRate[1] = { 0.15000000596046448f };
 extern const f32 captureReturnNear[1]  = { 2.0f };
-extern const f32 lbl_8_rodata_1754[1]  = { 1000000.0f };
+extern const f32 captureCarryRange[1]  = { 1000000.0f };
 extern const f64 lbl_8_rodata_1758[1]  = { 4503601774854144.0 };
 extern const f32 captureFarAway[1]     = { 100000000.0f };
 extern const f32 lbl_8_rodata_1764[1]  = { 0.0054931640625f };
@@ -1570,7 +1570,7 @@ void captureModeShrink(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99BB8(void* arg0, s32 arg1)
+void captureModeCarryHome(void* arg0, s32 arg1)
 {
 	s32 sp10;
 	f32 spC;
@@ -2414,7 +2414,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 			captureModeCarry(arg0, arg2);
 			return;
 		case 47: /* switch 1 */
-			fn_8_99BB8(arg0, arg2);
+			captureModeCarryHome(arg0, arg2);
 			return;
 		case 21:            /* switch 1 */
 			switch (arg2) { /* switch 9; irregular */

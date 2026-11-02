@@ -3172,6 +3172,9 @@ rel/capture_mode_wait.cpp:
 rel/capture_mode_shrink.cpp:
 	.text       start:0x000D6B44 end:0x000D6C9C
 
+rel/capture_mode_carry_home.cpp:
+	.text       start:0x000D6C9C end:0x000D6E48
+
 rel/capture_mode_carry.cpp:
 	.text       start:0x000D6E48 end:0x000D6F18
 
