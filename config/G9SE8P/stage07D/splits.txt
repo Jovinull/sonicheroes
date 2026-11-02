@@ -2762,6 +2762,9 @@ rel/hawk_mgun_calc_bullet.cpp:
 rel/hawk_mgun_bullet.cpp:
 	.text       start:0x000B0F98 end:0x000B11E8
 
+rel/bmodel_light_pointer.cpp:
+	.text       start:0x000B70E8 end:0x000B7204
+
 rel/prop_base_hooks.cpp:
 	.text       start:0x000B95E8 end:0x000B9868
 

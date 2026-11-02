@@ -3102,6 +3102,9 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000C30EC end:0x000C3194
 	.ctors      start:0x00000168 end:0x0000016C
 
+rel/bmodel_light_pointer.cpp:
+	.text       start:0x000C3194 end:0x000C32B0
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000C5EB0 end:0x000C5F24
 
