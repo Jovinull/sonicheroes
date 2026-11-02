@@ -157,6 +157,10 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - propBaseBlink
+    - propBaseBlinkColor
+    - propBaseTeamReady
+    - propBaseTimersDown
     - propBaseOn
     - propBaseOff
     - propBaseClearHit
