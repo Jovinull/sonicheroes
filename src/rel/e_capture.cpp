@@ -2705,7 +2705,7 @@ void fn_8_9B920(TObject* arg0)
 	}
 }
 
-void fn_8_9BE6C(void* arg0)
+void captureReleaseParts(void* arg0)
 {
 	if ((u32)M2C_FIELD(arg0, u32*, 0x2E8) != 0U) {
 		fn_80150958((void*)M2C_FIELD(arg0, u32*, 0x2E8));

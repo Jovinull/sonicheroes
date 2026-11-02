@@ -2692,6 +2692,9 @@ rel/capture_mode_release.cpp:
 rel/capture_mode_idle.cpp:
 	.text       start:0x000A5C50 end:0x000A5CFC
 
+rel/capture_release_parts.cpp:
+	.text       start:0x000A7000 end:0x000A70B8
+
 rel/capture_object_new.cpp:
 	.text       start:0x000A7C30 end:0x000A7C84
 
