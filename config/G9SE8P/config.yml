@@ -1232,6 +1232,10 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
     - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
     - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
     - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
@@ -1945,6 +1949,10 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
     - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
     - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
     - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
@@ -3196,6 +3204,10 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
     - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
     - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
     - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc

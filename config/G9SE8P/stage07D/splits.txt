@@ -2783,6 +2783,9 @@ rel/bmodel_search.cpp:
 rel/bmodel_anim.cpp:
 	.text       start:0x000B851C end:0x000B87E0
 
+rel/bmodel_clump.cpp:
+	.text       start:0x000B87E0 end:0x000B8BCC
+
 rel/prop_base_hooks.cpp:
 	.text       start:0x000B95E8 end:0x000B9868
 
