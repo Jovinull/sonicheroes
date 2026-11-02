@@ -2456,6 +2456,9 @@ rel/prop_base_hooks.cpp:
 rel/prop_base_blink.cpp:
 	.text       start:0x000B7D18 end:0x000B8004
 
+rel/prop_base_class.cpp:
+	.text       start:0x000B8794 end:0x000B8904
+
 rel/s20d_curb_stone_dtor.cpp:
 	.text       start:0x000BB060 end:0x000BB120
 
