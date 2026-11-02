@@ -3114,6 +3114,9 @@ rel/bmodel_light_shadow.cpp:
 rel/bmodel_deal_material.cpp:
 	.text       start:0x000C3500 end:0x000C3B00
 
+rel/bmodel_search.cpp:
+	.text       start:0x000C434C end:0x000C45C8
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000C5EB0 end:0x000C5F24
 

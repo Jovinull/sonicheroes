@@ -2774,6 +2774,9 @@ rel/bmodel_light_shadow.cpp:
 rel/bmodel_deal_material.cpp:
 	.text       start:0x000B7454 end:0x000B7A54
 
+rel/bmodel_search.cpp:
+	.text       start:0x000B82A0 end:0x000B851C
+
 rel/prop_base_hooks.cpp:
 	.text       start:0x000B95E8 end:0x000B9868
 

@@ -1219,6 +1219,14 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
     - DestroyDealMaterial__6BMODELFP7RpClump
     - callbackDestroyDealMaterial__FP8RpAtomicPv
     - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
@@ -1915,6 +1923,14 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
     - DestroyDealMaterial__6BMODELFP7RpClump
     - callbackDestroyDealMaterial__FP8RpAtomicPv
     - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
@@ -3149,6 +3165,14 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
     - DestroyDealMaterial__6BMODELFP7RpClump
     - callbackDestroyDealMaterial__FP8RpAtomicPv
     - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
