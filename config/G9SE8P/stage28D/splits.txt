@@ -1941,6 +1941,9 @@ rel/enemy_sky_disp.cpp:
 rel/enemy_sky_exec.cpp:
 	.text       start:0x0007B0B0 end:0x0007B15C
 
+rel/enemy_sky_helpers.cpp:
+	.text       start:0x0007B15C end:0x0007B248
+
 rel/enemy_sky_dtor.cpp:
 	.text       start:0x0007B248 end:0x0007B2D8
 

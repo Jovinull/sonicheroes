@@ -2969,6 +2969,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_sky_helpers.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_sky_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

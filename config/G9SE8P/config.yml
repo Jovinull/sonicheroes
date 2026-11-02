@@ -5617,6 +5617,10 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - SetPosition__12TObjEnemySkyFv
+    - DestroyClump__12TObjEnemySkyFv
+    - CloneClump__12TObjEnemySkyFv
+    - ResetVariable__12TObjEnemySkyFv
     - stg28ObjUnload
     - stg28ObjLoad
     - Finalize__14TObjEnemyCloudFv
