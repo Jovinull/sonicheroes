@@ -2913,6 +2913,9 @@ rel/enemy_stg27_sky_disp.cpp:
 rel/enemy_stg27_sky_exec.cpp:
 	.text       start:0x000B4CDC end:0x000B4D88
 
+rel/enemy_stg27_sky_helpers.cpp:
+	.text       start:0x000B4D88 end:0x000B4E7C
+
 rel/enemy_stg27_sky_dtor.cpp:
 	.text       start:0x000B4E7C end:0x000B4F0C
 

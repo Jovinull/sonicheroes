@@ -1,6 +1,13 @@
 // TObjEnemySky, shared by rel/enemy_sky_create.cpp, which defines ENEMY_SKY_CTOR
 // as inline so its factory inlines the constructor, and rel/enemy_sky_ctor.cpp,
 // which defines it empty to emit the out-of-line copy the module also keeps.
+// ENEMY_SKY_HELPER, inline unless a unit defines it empty
+// (rel/enemy_sky_helpers.cpp), does the same for the small members the
+// constructor and destructor inline.
+
+#ifndef ENEMY_SKY_HELPER
+#define ENEMY_SKY_HELPER inline
+#endif
 
 #include "game/effect/eff_bomb.h"
 
@@ -9,6 +16,7 @@ extern "C" void* enemySkyModels[3];
 extern "C" const f32 enemySkyZero[1];
 extern "C" TObject* lbl_8042C10C;
 extern "C" RpClump* fn_80150588(void* model);
+extern "C" void fn_80150958(RpClump* clump);
 extern "C" void fn_8019EB94(void* frame, RwV3d* translation, s32 combine);
 
 class TObjEnemySky : public TObject
@@ -20,28 +28,10 @@ public:
 
 	TObjEnemySky(TObject* parent);
 
-	void ResetVariable()
-	{
-		pos.z = pos.y = pos.x = enemySkyZero[0];
-
-		ang.x = 0;
-		ang.y = 0;
-		ang.z = 0;
-	}
-
-	void CloneClump()
-	{
-		if (enemySkyModels[0] != NULL) {
-			clump = fn_80150588(enemySkyModels[0]);
-		}
-	}
-
-	void SetPosition()
-	{
-		if (clump != NULL) {
-			fn_8019EB94(*(void**)((u8*)clump + 4), &pos, 0);
-		}
-	}
+	void SetPosition();
+	void DestroyClump();
+	void CloneClump();
+	void ResetVariable();
 
 	// The first virtual declared is the key function, and the unit that defines
 	// it emits the vtable. These are all overrides, whose order does not move
@@ -57,6 +47,37 @@ public:
 
 	static void Create();
 };
+
+ENEMY_SKY_HELPER void TObjEnemySky::SetPosition()
+{
+	if (clump != NULL) {
+		fn_8019EB94(*(void**)((u8*)clump + 4), &pos, 0);
+	}
+}
+
+ENEMY_SKY_HELPER void TObjEnemySky::DestroyClump()
+{
+	if (clump != NULL) {
+		fn_80150958(clump);
+		clump = NULL;
+	}
+}
+
+ENEMY_SKY_HELPER void TObjEnemySky::CloneClump()
+{
+	if (enemySkyModels[0] != NULL) {
+		clump = fn_80150588(enemySkyModels[0]);
+	}
+}
+
+ENEMY_SKY_HELPER void TObjEnemySky::ResetVariable()
+{
+	pos.z = pos.y = pos.x = enemySkyZero[0];
+
+	ang.x = 0;
+	ang.y = 0;
+	ang.z = 0;
+}
 
 ENEMY_SKY_CTOR TObjEnemySky::TObjEnemySky(TObject* parent)
     : TObject(parent)

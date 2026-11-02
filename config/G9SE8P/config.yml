@@ -4657,6 +4657,10 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - SetPosition__17TObjEnemyStg27SkyFv
+    - DestroyClump__17TObjEnemyStg27SkyFv
+    - CloneClump__17TObjEnemyStg27SkyFv
+    - ResetVariable__17TObjEnemyStg27SkyFv
     - stg27ObjUnload
     - stg27ObjLoad
     - Finalize__19TObjEnemyStg27CloudFv
@@ -5223,6 +5227,10 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - SetPosition__17TObjEnemyStg27SkyFv
+    - DestroyClump__17TObjEnemyStg27SkyFv
+    - CloneClump__17TObjEnemyStg27SkyFv
+    - ResetVariable__17TObjEnemyStg27SkyFv
     - stg27ObjUnload
     - stg27ObjLoad
     - Finalize__19TObjEnemyStg27CloudFv
