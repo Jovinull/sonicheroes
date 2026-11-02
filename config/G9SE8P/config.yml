@@ -5969,6 +5969,8 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv
+    - SaveDestroyEnemyTotal__14TEnemyScoreManFv
     - ParalyzeEnemy__14TEnemyScoreManFi
     - TornadoEnemy__14TEnemyScoreManFi
     - DestroyEnemy__14TEnemyScoreManFi
