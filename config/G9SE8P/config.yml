@@ -6373,6 +6373,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - CheckHitCollision__15TEnemyPowerCoreFv
     - CreateInstance__18TEnemyPowerCoreManFv
     - Entry__18TEnemyPowerCoreManFPC5RwV3di
     - __ct__18TEnemyPowerCoreManFP7TObject
@@ -6776,6 +6777,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - CheckHitCollision__15TEnemyPowerCoreFv
     - CreateInstance__18TEnemyPowerCoreManFv
     - Entry__18TEnemyPowerCoreManFPC5RwV3di
     - __ct__18TEnemyPowerCoreManFP7TObject
