@@ -3112,6 +3112,9 @@ rel/capture_drop_item.cpp:
 rel/capture_add_score.cpp:
 	.text       start:0x000D5378 end:0x000D5410
 
+rel/capture_marker.cpp:
+	.text       start:0x000D5410 end:0x000D5548
+
 rel/capture_is_hurt.cpp:
 	.text       start:0x000D5548 end:0x000D5564
 

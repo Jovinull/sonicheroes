@@ -696,7 +696,7 @@ void captureAddScore(void* arg0)
 	    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0x190);
 }
 
-s32 fn_8_9832C(void* arg0)
+s32 captureFindHome(void* arg0)
 {
 	s32* temp_r4;
 	s32 var_r0;
@@ -726,7 +726,7 @@ s32 fn_8_9832C(void* arg0)
 	return var_r0;
 }
 
-s32 fn_8_983D8(void* arg0, void* arg1, s32 arg2, u8 arg3)
+s32 captureFindMarker(void* arg0, void* arg1, s32 arg2, u8 arg3)
 {
 	s32* temp_r6;
 	void* temp_r0;

@@ -208,7 +208,7 @@ M2C_UNK fn_8019ECCC(s32, void*, M2C_UNK); /* extern */
 void fn_8019ED68(s32, RwV3d*, f32, s32);  /* RwFrameRotate */
 
 s32 rand();                        /* extern */
-s32 fn_8_9832C(s32);               /* extern */
+s32 captureFindHome(s32);          /* extern */
 s32 captureIsHurt(u32);            /* extern */
 M2C_UNK captureUpdateIcons(void*); /* extern */
 M2C_UNK captureFreePlayer();       /* extern */
@@ -302,7 +302,7 @@ void fn_8_9DA48(void* arg0, s32 arg1)
 		case 1:
 			DecreaseTimer__7nSystemFRi((u8*)((u32)arg0 + 0x18));
 			if ((s32)M2C_FIELD(arg0, s32*, 0x18) < 0) {
-				if (fn_8_9832C(M2C_FIELD(arg0, s32*, 0x14)) != 0) {
+				if (captureFindHome(M2C_FIELD(arg0, s32*, 0x14)) != 0) {
 					M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 					((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 					M2C_FIELD(arg0, s32*, 4) = 0xE;
