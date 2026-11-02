@@ -9542,6 +9542,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/team_modes.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/prop_base_hooks.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
