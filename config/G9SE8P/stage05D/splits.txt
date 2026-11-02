@@ -3162,6 +3162,9 @@ rel/bob_link_attach_turn.cpp:
 rel/bob_link_turn_dtor.cpp:
 	.text       start:0x000C8B2C end:0x000C8C28
 
+rel/bob_link_slot.cpp:
+	.text       start:0x000C8F70 end:0x000C9110
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 

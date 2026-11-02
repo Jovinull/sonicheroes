@@ -2926,6 +2926,9 @@ rel/bob_link_attach_turn.cpp:
 rel/bob_link_turn_dtor.cpp:
 	.text       start:0x000DB468 end:0x000DB564
 
+rel/bob_link_slot.cpp:
+	.text       start:0x000DB8AC end:0x000DBA4C
+
 rel/bgmcolli_edit.cpp:
 	.text       start:0x000DCCAC end:0x000DCD2C
 
