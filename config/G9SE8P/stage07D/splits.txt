@@ -3085,6 +3085,9 @@ rel/capture_rise.cpp:
 rel/capture_turn.cpp:
 	.text       start:0x000D6014 end:0x000D6090
 
+rel/capture_event.cpp:
+	.text       start:0x000D726C end:0x000D72FC
+
 rel/capture_object_new.cpp:
 	.text       start:0x000D9B80 end:0x000D9BD4
 

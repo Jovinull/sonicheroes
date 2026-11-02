@@ -1781,7 +1781,7 @@ void fn_8_9A0B0(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A188(void* arg0, s32 arg1)
+void captureEvent(void* arg0, s32 arg1)
 {
 	switch (arg1) { /* irregular */
 		case 0:
