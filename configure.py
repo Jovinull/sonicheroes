@@ -2869,6 +2869,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_stg27_cloud_helpers.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_stg27_cloud_exec.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
