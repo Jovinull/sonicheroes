@@ -5609,6 +5609,8 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - stg28ObjUnload
+    - stg28ObjLoad
     - Finalize__14TObjEnemyCloudFv
     - Initialize__14TObjEnemyCloudFv
     - SetPosition__14TObjEnemyCloudFv
