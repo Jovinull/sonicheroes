@@ -9532,6 +9532,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bmodel_clump.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bmodel_anim.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

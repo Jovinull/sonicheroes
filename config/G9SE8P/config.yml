@@ -157,6 +157,10 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
     - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
     - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
     - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc

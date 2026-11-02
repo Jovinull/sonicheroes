@@ -2486,6 +2486,9 @@ rel/bmodel_search.cpp:
 rel/bmodel_anim.cpp:
 	.text       start:0x000B9D38 end:0x000B9FFC
 
+rel/bmodel_clump.cpp:
+	.text       start:0x000B9FFC end:0x000BA3E8
+
 rel/s20d_curb_stone_dtor.cpp:
 	.text       start:0x000BB060 end:0x000BB120
 
