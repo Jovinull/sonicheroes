@@ -2554,6 +2554,9 @@ rel/capture_turn.cpp:
 rel/capture_event.cpp:
 	.text       start:0x000A8EF0 end:0x000A8F80
 
+rel/capture_mode_idle.cpp:
+	.text       start:0x000A9824 end:0x000A98D0
+
 rel/capture_object_new.cpp:
 	.text       start:0x000AB804 end:0x000AB858
 

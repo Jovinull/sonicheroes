@@ -2091,7 +2091,7 @@ void fn_8_9A710(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9AABC(void* arg0, s32 arg1)
+void captureModeIdle(void* arg0, s32 arg1)
 {
 	s32 temp_r0;
 
