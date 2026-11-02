@@ -3299,6 +3299,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/s13_cloud_ptcl_chain.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/s13_cloud2_edit.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

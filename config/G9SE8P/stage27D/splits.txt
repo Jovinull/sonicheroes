@@ -1906,6 +1906,9 @@ rel/s31_bob_dummy_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x00077834 end:0x00077838
 
+rel/s13_cloud_ptcl_chain.cpp:
+	.text       start:0x00077910 end:0x000779A8
+
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x00078410 end:0x000784A8
 
