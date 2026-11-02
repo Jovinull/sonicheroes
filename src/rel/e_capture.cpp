@@ -1666,7 +1666,7 @@ void fn_8_99D64(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99E34(void* arg0, s32 arg1)
+void captureModeRise(void* arg0, s32 arg1)
 {
 	f32 temp_f2;
 	s32 var_r4;
