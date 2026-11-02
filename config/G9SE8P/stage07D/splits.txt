@@ -2768,6 +2768,9 @@ rel/prop_base_hooks.cpp:
 rel/prop_base_blink.cpp:
 	.text       start:0x000B9868 end:0x000B9B54
 
+rel/prop_base_class.cpp:
+	.text       start:0x000BA2E4 end:0x000BA454
+
 rel/warp_check_collision.cpp:
 	.text       start:0x000C31D8 end:0x000C32A8
 

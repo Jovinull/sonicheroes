@@ -2887,6 +2887,9 @@ rel/prop_base_hooks.cpp:
 rel/prop_base_blink.cpp:
 	.text       start:0x000D93EC end:0x000D96D8
 
+rel/prop_base_class.cpp:
+	.text       start:0x000D9E68 end:0x000D9FD8
+
 rel/bob_link_attach_create.cpp:
 	.text       start:0x000D9FE0 end:0x000DA244
 
