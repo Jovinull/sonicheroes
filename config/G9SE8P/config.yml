@@ -157,6 +157,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - bobLinkTurnExec
     - bobLinkPointExec
     - bobLinkPointCreate
     - __ct__13BobLinkAttachFP19BobLinkAttachParams
@@ -1766,6 +1767,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - bobLinkTurnExec
     - bobLinkPointExec
     - bobLinkPointCreate
     - __ct__13BobLinkAttachFP19BobLinkAttachParams
