@@ -10711,6 +10711,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/power_core_man_entry_ex.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/power_core_create.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
