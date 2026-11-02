@@ -1632,7 +1632,7 @@ void fn_8_99BB8(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99D64(void* arg0, s32 arg1)
+void captureModeCarry(void* arg0, s32 arg1)
 {
 	s32 sp10;
 	f32 spC;
@@ -2411,7 +2411,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 			captureModeHold(arg0, arg2);
 			return;
 		case 46: /* switch 1 */
-			fn_8_99D64(arg0, arg2);
+			captureModeCarry(arg0, arg2);
 			return;
 		case 47: /* switch 1 */
 			fn_8_99BB8(arg0, arg2);
