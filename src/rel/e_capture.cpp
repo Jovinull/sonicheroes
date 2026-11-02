@@ -3008,7 +3008,7 @@ void* fn_8_9C4BC(void* arg0, s16 arg1)
 	return arg0;
 }
 
-TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
+TObject* captureObjectCtor(TObject* arg0, TObject* arg1)
 {
 	TEnemyParalysis* temp_r3_2;
 	TEnemyParalysis* var_r0_3;
@@ -3132,13 +3132,13 @@ TObject* fn_8_9C694(TObject* arg0, TObject* arg1)
 	return arg0;
 }
 
-TObject* fn_8_9CA9C(void)
+TObject* captureObjectNew(void)
 {
 	TObject* var_r0;
 
 	var_r0 = (TObject*)Malloc__9THeapCtrlFUi(lbl_8042C148, 0x58C);
 	if (var_r0 != NULL) {
-		var_r0 = fn_8_9C694((TObject*)var_r0, lbl_8042C10C);
+		var_r0 = captureObjectCtor((TObject*)var_r0, lbl_8042C10C);
 	}
 	return var_r0;
 }
@@ -3355,7 +3355,7 @@ void captureObjectCreate(void)
 
 	temp_r3 = Malloc__9THeapCtrlFUi(lbl_8042C148, 0x58C);
 	if (temp_r3 != NULL) {
-		fn_8_9C694((TObject*)temp_r3, lbl_8042C10C);
+		captureObjectCtor((TObject*)temp_r3, lbl_8042C10C);
 	}
 }
 
