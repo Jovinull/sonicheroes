@@ -3123,6 +3123,9 @@ rel/prop_base_hooks.cpp:
 rel/prop_base_blink.cpp:
 	.text       start:0x000C6AB0 end:0x000C6D9C
 
+rel/prop_base_place_parts.cpp:
+	.text       start:0x000C7368 end:0x000C752C
+
 rel/prop_base_class.cpp:
 	.text       start:0x000C752C end:0x000C769C
 

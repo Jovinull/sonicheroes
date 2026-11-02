@@ -1863,6 +1863,9 @@ rel/prop_base_hooks.cpp:
 rel/prop_base_blink.cpp:
 	.text       start:0x000713AC end:0x00071698
 
+rel/prop_base_place_parts.cpp:
+	.text       start:0x00071C64 end:0x00071E28
+
 rel/king_pawn_part_dtor.cpp:
 	.text       start:0x00071E2C end:0x00071EB0
 
