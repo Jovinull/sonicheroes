@@ -9442,6 +9442,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/power_core_initialize.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_object_load.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
