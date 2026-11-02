@@ -1835,7 +1835,7 @@ void fn_8_9A218(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A2F4(void* arg0, s32 arg1)
+void captureModeRelease(void* arg0, s32 arg1)
 {
 	s32 temp_r0;
 	void* temp_r3;
