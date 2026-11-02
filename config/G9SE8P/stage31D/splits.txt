@@ -1903,6 +1903,9 @@ rel/enemy_score_man_destroy_count.cpp:
 rel/enemy_score_man_count.cpp:
 	.text       start:0x00069790 end:0x0006986C
 
+rel/enemy_score_man_exec.cpp:
+	.text       start:0x0006986C end:0x00069C88
+
 rel/enemy_score_man_dtor.cpp:
 	.text       start:0x00069CB8 end:0x00069D2C
 
