@@ -2893,6 +2893,9 @@ rel/bmodel_anim.cpp:
 rel/bmodel_clump.cpp:
 	.text       start:0x000D71C8 end:0x000D75B4
 
+rel/bmodel_load.cpp:
+	.text       start:0x000D75B4 end:0x000D7FD0
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000D87EC end:0x000D8860
 

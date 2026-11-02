@@ -3129,6 +3129,9 @@ rel/bmodel_anim.cpp:
 rel/bmodel_clump.cpp:
 	.text       start:0x000C488C end:0x000C4C78
 
+rel/bmodel_load.cpp:
+	.text       start:0x000C4C78 end:0x000C5694
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000C5EB0 end:0x000C5F24
 
