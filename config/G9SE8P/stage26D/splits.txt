@@ -2271,6 +2271,9 @@ rel/capture_approach.cpp:
 rel/capture_turn.cpp:
 	.text       start:0x0008A400 end:0x0008A47C
 
+rel/capture_shadow.cpp:
+	.text       start:0x0008A47C end:0x0008A594
+
 rel/capture_disp_model.cpp:
 	.text       start:0x0008A724 end:0x0008A7B4
 

@@ -733,6 +733,7 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - captureShadow
     - captureBubbleUpdate
     - captureHoldPlayer
     - captureFindHome
@@ -1255,6 +1256,7 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - captureShadow
     - captureBubbleUpdate
     - captureHoldPlayer
     - captureFindHome
@@ -1995,6 +1997,7 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - captureShadow
     - captureBubbleUpdate
     - captureHoldPlayer
     - captureFindHome
@@ -2694,6 +2697,7 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - captureShadow
     - captureBubbleUpdate
     - captureHoldPlayer
     - captureFindHome
@@ -4065,6 +4069,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - captureShadow
     - captureBubbleUpdate
     - captureHoldPlayer
     - captureFindHome
@@ -4627,6 +4632,7 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - captureShadow
     - captureBubbleUpdate
     - captureHoldPlayer
     - captureFindHome

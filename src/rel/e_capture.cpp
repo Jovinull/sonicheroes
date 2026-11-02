@@ -386,7 +386,7 @@ void captureExec(TObject*);
 void captureRestart(TObject*);
 void captureDispModel(void*);
 void fn_8_990C4(void*, M2C_UNK);
-void fn_8_98FAC(void*);
+void captureShadow(void*);
 void captureAddScore(void*);
 void captureDropItem(void*, s32);
 void fn_8_981B8(void*, void*);
@@ -439,7 +439,7 @@ extern const f32 captureShrinkStep[3]
     = { -0.05000000074505806f, 0.10000000149011612f, -0.05000000074505806f };
 extern const f32 lbl_8_rodata_16BC[4]  = { -1.0f, -1.0f, -1.0f, 0.0f };
 extern const f32 lbl_8_rodata_16CC[3]  = { 0.0f, 1.0f, 0.0f };
-extern const f32 lbl_8_rodata_16D8[3]  = { 18.0f, 1.0f, 18.0f };
+extern const f32 captureShadowSize[3]  = { 18.0f, 1.0f, 18.0f };
 extern const s32 lbl_8_rodata_16E4[8]  = { 0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0xFFFFFFFF };
 extern const f32 captureZero[1]        = { 0.0f };
 extern const f32 captureSearchDrop[1]  = { 40.0f };
@@ -451,12 +451,12 @@ extern const f32 captureHoldDrop[1]    = { -20.0f };
 extern const f32 captureHoldPull[1]    = { 2.4000000953674316f };
 extern const f32 captureOneAndHalf[1]  = { 1.5f };
 extern const f32 captureMinusOne[1]    = { -1.0f };
-extern const f32 lbl_8_rodata_172C[1]  = { 0.20000000298023224f };
-extern const f32 lbl_8_rodata_1730[1]  = { 1.0f };
+extern const f32 captureShadowMin[1]   = { 0.20000000298023224f };
+extern const f32 captureShadowMax[1]   = { 1.0f };
 extern const f32 captureOne[1]         = { 1.0f };
-extern const f32 lbl_8_rodata_1738[1]  = { 0.004000000189989805f };
-extern const f32 lbl_8_rodata_173C[1]  = { 10.0f };
-extern const f32 lbl_8_rodata_1740[1]  = { 16.0f };
+extern const f32 captureShadowFade[1]  = { 0.004000000189989805f };
+extern const f32 captureShadowWidth[1] = { 10.0f };
+extern const f32 captureShadowDepth[1] = { 16.0f };
 extern const f32 captureHalfTurn[1]    = { 180.0f };
 extern const f32 captureHalf[1]        = { 0.5f };
 extern const f32 lbl_8_rodata_174C[1]  = { 0.15000000596046448f };
@@ -527,7 +527,7 @@ static M2C_UNK* __vt__16TObjEnemyCapture[42] = {
 	(M2C_UNK*)captureRestart,
 	(M2C_UNK*)captureDispModel,
 	(M2C_UNK*)fn_8_990C4,
-	(M2C_UNK*)fn_8_98FAC,
+	(M2C_UNK*)captureShadow,
 	(M2C_UNK*)DispOpaqOnEdit__9TObjEnemyFv,
 	(M2C_UNK*)Virtual33D94__9TObjEnemyFv,
 	(M2C_UNK*)KillMySelf__9TObjEnemyFv,
@@ -1151,7 +1151,7 @@ s32 captureTurn(void* arg0)
 	return 0;
 }
 
-void fn_8_98FAC(void* arg0)
+void captureShadow(void* arg0)
 {
 	f32 sp14;
 	s32 sp10;
@@ -1162,16 +1162,16 @@ void fn_8_98FAC(void* arg0)
 	f32 temp_f1_2;
 
 	fn_800B7864(0);
-	spC     = M2C_FIELD(lbl_8_rodata_16D8, f32*, 0);
-	sp10    = M2C_FIELD(lbl_8_rodata_16D8, s32*, 4);
-	sp14    = M2C_FIELD(lbl_8_rodata_16D8, f32*, 8);
+	spC     = M2C_FIELD(captureShadowSize, f32*, 0);
+	sp10    = M2C_FIELD(captureShadowSize, s32*, 4);
+	sp14    = M2C_FIELD(captureShadowSize, f32*, 8);
 	temp_f1 = 1.0f - (0.004f * (M2C_FIELD(arg0, f32*, 0x144) - M2C_FIELD(arg0, f32*, 0x2FC)));
 	sp8     = temp_f1;
-	var_r3  = lbl_8_rodata_172C;
+	var_r3  = captureShadowMin;
 	if (temp_f1 < 0.2f) {
 
 	} else {
-		var_r3 = lbl_8_rodata_1730;
+		var_r3 = captureShadowMax;
 		if (temp_f1 > 1.0f) {
 
 		} else {

@@ -3148,6 +3148,9 @@ rel/capture_approach.cpp:
 rel/capture_turn.cpp:
 	.text       start:0x000D6014 end:0x000D6090
 
+rel/capture_shadow.cpp:
+	.text       start:0x000D6090 end:0x000D61A8
+
 rel/capture_disp_model.cpp:
 	.text       start:0x000D6338 end:0x000D63C8
 
