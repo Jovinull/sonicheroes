@@ -9532,6 +9532,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bmodel_search.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bmodel_deal_material.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),

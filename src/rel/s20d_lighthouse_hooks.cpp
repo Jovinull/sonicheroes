@@ -8,7 +8,7 @@ extern "C" u8 s20dLighthouseModelList[];
 extern "C" void* s20dLighthouseModels[2];
 
 extern "C" void fn_3_B92FC(void* list, void* a, void* b);
-extern "C" void* fn_3_B9D10(void* list, s16 index);
+extern "C" void* SearchClump__6BMODELFP11BMODEL_DATAs(void* list, s16 index);
 extern "C" void fn_3_BA3E8(s32 a, void* list, void* b, void* c);
 
 extern "C" void s20dLighthouseUnload(void)
@@ -19,6 +19,6 @@ extern "C" void s20dLighthouseUnload(void)
 extern "C" void s20dLighthouseLoad(void)
 {
 	fn_3_B92FC(s20dLighthouseModelList, NULL, NULL);
-	s20dLighthouseModels[0] = fn_3_B9D10(s20dLighthouseModelList, 3);
-	s20dLighthouseModels[1] = fn_3_B9D10(s20dLighthouseModelList, 4);
+	s20dLighthouseModels[0] = SearchClump__6BMODELFP11BMODEL_DATAs(s20dLighthouseModelList, 3);
+	s20dLighthouseModels[1] = SearchClump__6BMODELFP11BMODEL_DATAs(s20dLighthouseModelList, 4);
 }

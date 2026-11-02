@@ -157,6 +157,14 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
     - DestroyDealMaterial__6BMODELFP7RpClump
     - callbackDestroyDealMaterial__FP8RpAtomicPv
     - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
