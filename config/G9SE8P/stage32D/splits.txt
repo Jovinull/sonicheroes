@@ -1927,6 +1927,9 @@ rel/power_core_ctor.cpp:
 rel/power_core_finalize.cpp:
 	.text       start:0x0006B278 end:0x0006B29C
 
+rel/power_core_initialize.cpp:
+	.text       start:0x0006B29C end:0x0006B43C
+
 rel/power_core_create.cpp:
 	.text       start:0x0006B43C end:0x0006B608
 
