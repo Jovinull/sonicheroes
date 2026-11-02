@@ -437,51 +437,51 @@ extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern const f32 captureIconOffset[3] = { 13.0f, 20.0f, 0.0f };
 extern const f32 lbl_8_rodata_16B0[3]
     = { -0.05000000074505806f, 0.10000000149011612f, -0.05000000074505806f };
-extern const f32 lbl_8_rodata_16BC[4] = { -1.0f, -1.0f, -1.0f, 0.0f };
-extern const f32 lbl_8_rodata_16CC[3] = { 0.0f, 1.0f, 0.0f };
-extern const f32 lbl_8_rodata_16D8[3] = { 18.0f, 1.0f, 18.0f };
-extern const s32 lbl_8_rodata_16E4[8] = { 0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0xFFFFFFFF };
-extern const f32 captureZero[1]       = { 0.0f };
-extern const f32 lbl_8_rodata_1708[1] = { 40.0f };
-extern const f32 captureBubbleSink[1] = { -0.4000000059604645f };
-extern const f32 captureRiseSpeed[1]  = { 0.20000000298023224f };
-extern const f32 lbl_8_rodata_1714[1] = { 3.0f };
-extern const f32 lbl_8_rodata_1718[1] = { 20.0f };
-extern const f32 lbl_8_rodata_171C[1] = { -20.0f };
-extern const f32 lbl_8_rodata_1720[1] = { 2.4000000953674316f };
-extern const f32 lbl_8_rodata_1724[1] = { 1.5f };
-extern const f32 lbl_8_rodata_1728[1] = { -1.0f };
-extern const f32 lbl_8_rodata_172C[1] = { 0.20000000298023224f };
-extern const f32 lbl_8_rodata_1730[1] = { 1.0f };
-extern const f32 lbl_8_rodata_1734[1] = { 1.0f };
-extern const f32 lbl_8_rodata_1738[1] = { 0.004000000189989805f };
-extern const f32 lbl_8_rodata_173C[1] = { 10.0f };
-extern const f32 lbl_8_rodata_1740[1] = { 16.0f };
-extern const f32 lbl_8_rodata_1744[1] = { 180.0f };
-extern const f32 lbl_8_rodata_1748[1] = { 0.5f };
-extern const f32 lbl_8_rodata_174C[1] = { 0.15000000596046448f };
-extern const f32 lbl_8_rodata_1750[1] = { 2.0f };
-extern const f32 lbl_8_rodata_1754[1] = { 1000000.0f };
-extern const f64 lbl_8_rodata_1758[1] = { 4503601774854144.0 };
-extern const f32 lbl_8_rodata_1760[1] = { 100000000.0f };
-extern const f32 lbl_8_rodata_1764[1] = { 0.0054931640625f };
-extern const f32 lbl_8_rodata_1768[1] = { 160.0f };
-extern const f32 lbl_8_rodata_176C[1] = { 3.0517578125e-05f };
-extern const f32 lbl_8_rodata_1770[1] = { 80.0f };
-extern const f32 lbl_8_rodata_1774[1] = { 0.0010000000474974513f };
-extern const f32 lbl_8_rodata_1778[1] = { 0.9800000190734863f };
-extern const f32 lbl_8_rodata_177C[1] = { 0.30000001192092896f };
-extern const f32 lbl_8_rodata_1780[1] = { -1000000.0f };
-extern const f32 lbl_8_rodata_1784[1] = { 6.0f };
-extern const f32 lbl_8_rodata_1788[1] = { 0.800000011920929f };
-extern const f32 lbl_8_rodata_178C[1] = { 0.0f };
-extern const f32 lbl_8_rodata_1790[1] = { 10000.0f };
-extern const f32 lbl_8_rodata_1794[1] = { 0.0f };
-extern const f32 lbl_8_rodata_1798[1] = { 10000.0f };
-extern const s32 lbl_8_rodata_179C[1] = { 0 };
-extern const s32 lbl_8_rodata_17A0[1] = { 0x2710 };
-extern const f32 lbl_8_rodata_17A4[1] = { 0.0f };
-extern const f32 lbl_8_rodata_17A8[5] = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f };
+extern const f32 lbl_8_rodata_16BC[4]  = { -1.0f, -1.0f, -1.0f, 0.0f };
+extern const f32 lbl_8_rodata_16CC[3]  = { 0.0f, 1.0f, 0.0f };
+extern const f32 lbl_8_rodata_16D8[3]  = { 18.0f, 1.0f, 18.0f };
+extern const s32 lbl_8_rodata_16E4[8]  = { 0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0xFFFFFFFF };
+extern const f32 captureZero[1]        = { 0.0f };
+extern const f32 captureSearchDrop[1]  = { 40.0f };
+extern const f32 captureBubbleSink[1]  = { -0.4000000059604645f };
+extern const f32 captureRiseSpeed[1]   = { 0.20000000298023224f };
+extern const f32 lbl_8_rodata_1714[1]  = { 3.0f };
+extern const f32 captureSearchRange[1] = { 20.0f };
+extern const f32 lbl_8_rodata_171C[1]  = { -20.0f };
+extern const f32 lbl_8_rodata_1720[1]  = { 2.4000000953674316f };
+extern const f32 lbl_8_rodata_1724[1]  = { 1.5f };
+extern const f32 lbl_8_rodata_1728[1]  = { -1.0f };
+extern const f32 lbl_8_rodata_172C[1]  = { 0.20000000298023224f };
+extern const f32 lbl_8_rodata_1730[1]  = { 1.0f };
+extern const f32 lbl_8_rodata_1734[1]  = { 1.0f };
+extern const f32 lbl_8_rodata_1738[1]  = { 0.004000000189989805f };
+extern const f32 lbl_8_rodata_173C[1]  = { 10.0f };
+extern const f32 lbl_8_rodata_1740[1]  = { 16.0f };
+extern const f32 lbl_8_rodata_1744[1]  = { 180.0f };
+extern const f32 lbl_8_rodata_1748[1]  = { 0.5f };
+extern const f32 lbl_8_rodata_174C[1]  = { 0.15000000596046448f };
+extern const f32 lbl_8_rodata_1750[1]  = { 2.0f };
+extern const f32 lbl_8_rodata_1754[1]  = { 1000000.0f };
+extern const f64 lbl_8_rodata_1758[1]  = { 4503601774854144.0 };
+extern const f32 lbl_8_rodata_1760[1]  = { 100000000.0f };
+extern const f32 lbl_8_rodata_1764[1]  = { 0.0054931640625f };
+extern const f32 lbl_8_rodata_1768[1]  = { 160.0f };
+extern const f32 lbl_8_rodata_176C[1]  = { 3.0517578125e-05f };
+extern const f32 lbl_8_rodata_1770[1]  = { 80.0f };
+extern const f32 lbl_8_rodata_1774[1]  = { 0.0010000000474974513f };
+extern const f32 lbl_8_rodata_1778[1]  = { 0.9800000190734863f };
+extern const f32 lbl_8_rodata_177C[1]  = { 0.30000001192092896f };
+extern const f32 lbl_8_rodata_1780[1]  = { -1000000.0f };
+extern const f32 lbl_8_rodata_1784[1]  = { 6.0f };
+extern const f32 lbl_8_rodata_1788[1]  = { 0.800000011920929f };
+extern const f32 lbl_8_rodata_178C[1]  = { 0.0f };
+extern const f32 lbl_8_rodata_1790[1]  = { 10000.0f };
+extern const f32 lbl_8_rodata_1794[1]  = { 0.0f };
+extern const f32 lbl_8_rodata_1798[1]  = { 10000.0f };
+extern const s32 lbl_8_rodata_179C[1]  = { 0 };
+extern const s32 lbl_8_rodata_17A0[1]  = { 0x2710 };
+extern const f32 lbl_8_rodata_17A4[1]  = { 0.0f };
+extern const f32 lbl_8_rodata_17A8[5]  = { 10000.0f, 0.0f, 0.0f, 1.5f, 0.0f };
 static M2C_UNK lbl_8_data_15608; /* unable to generate initializer: unknown type */
 static u32 lbl_8_data_156BC[24] = { 0x0000FF21, 0x00000400, 0x00000000, 0x40A00000, 0x00000000,
 	0x41200000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x0000F021,
@@ -882,7 +882,7 @@ void fn_8_98548(void* arg0)
 	}
 }
 
-s32 fn_8_987A8(void* arg0)
+s32 captureSearchCatch(void* arg0)
 {
 	RwV3d sp8;
 	s32 temp_r0;
@@ -906,7 +906,7 @@ block_10:
 	*(M2C_BLOCK12*)&sp8 = *(M2C_BLOCK12*)((u8*)arg0 + 0x140);
 	sp8.y -= 40.0f;
 	M2C_FIELD(arg0, s32*, 0x274)
-	    = GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(&sp8, lbl_8_rodata_1718[0]);
+	    = GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(&sp8, captureSearchRange[0]);
 	if (((s32)M2C_FIELD(arg0, s32*, 0x274) != -1)
 	    && (fn_800AB25C(M2C_FIELD(arg0, s32*, 0x274)) == 1)) {
 		temp_r0_2 = M2C_FIELD(arg0, s32*, 0x274);
@@ -1342,7 +1342,7 @@ void fn_8_99318(TObject* arg0)
 					*(M2C_BLOCK12*)&sp8 = *(M2C_BLOCK12*)&arg0->unk140;
 					sp8.y -= 40.0f;
 					arg0->unk274 = GetNearestPlayerNum__13nSearchPlayerFPC5RwV3df(
-					    &sp8, lbl_8_rodata_1718[0]);
+					    &sp8, captureSearchRange[0]);
 					if (((s32)arg0->unk274 != -1) && (fn_800AB25C(arg0->unk274) == 1)) {
 						temp_r0_2 = arg0->unk274;
 						if (temp_r0_2 != -1) {

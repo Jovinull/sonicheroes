@@ -2887,6 +2887,9 @@ rel/capture_is_hurt.cpp:
 rel/capture_update_icons.cpp:
 	.text       start:0x000B4570 end:0x000B4638
 
+rel/capture_search_catch.cpp:
+	.text       start:0x000B4898 end:0x000B4A08
+
 rel/capture_free_player.cpp:
 	.text       start:0x000B4A08 end:0x000B4AB4
 
