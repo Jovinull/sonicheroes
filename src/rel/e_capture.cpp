@@ -460,7 +460,7 @@ extern const f32 captureShadowDepth[1] = { 16.0f };
 extern const f32 captureHalfTurn[1]    = { 180.0f };
 extern const f32 captureHalf[1]        = { 0.5f };
 extern const f32 captureDefaultRate[1] = { 0.15000000596046448f };
-extern const f32 lbl_8_rodata_1750[1]  = { 2.0f };
+extern const f32 captureReturnNear[1]  = { 2.0f };
 extern const f32 lbl_8_rodata_1754[1]  = { 1000000.0f };
 extern const f64 lbl_8_rodata_1758[1]  = { 4503601774854144.0 };
 extern const f32 captureFarAway[1]     = { 100000000.0f };
@@ -1438,7 +1438,7 @@ void captureExec(TObject* arg0)
 	}
 }
 
-void fn_8_99800(void* arg0, s32 arg1)
+void captureModeReturn(void* arg0, s32 arg1)
 {
 	f32 temp_f31;
 	s32 temp_r30;
