@@ -25,7 +25,7 @@ typedef struct BobLink {
 
 extern "C" BobLink* bobLinkCurrent;
 extern "C" const char* bobLinkClassName;
-extern "C" void* bobLinkVtable[];
+extern "C" void* __vt__7BobLink[];
 extern "C" void* lbl_8042C1F8;
 extern "C" void* lbl_8042C148;
 extern "C" TObject* lbl_8042C110;
@@ -51,7 +51,7 @@ static inline void bobLinkSlotOut(BobLink* object)
 extern "C" BobLink* bobLinkDtor(BobLink* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable = bobLinkVtable;
+		object->base.vtable = __vt__7BobLink;
 		bobLinkSlotOut(object);
 		if (object == bobLinkCurrent) {
 			bobLinkCurrent = NULL;
@@ -69,7 +69,7 @@ extern "C" BobLink* bobLinkDtor(BobLink* object, s16 flags)
 extern "C" BobLink* bobLinkCtor(BobLink* object)
 {
 	__ct__7TObjectFP7TObject(&object->base, lbl_8042C110);
-	object->base.vtable    = bobLinkVtable;
+	object->base.vtable    = __vt__7BobLink;
 	object->base.className = bobLinkClassName;
 	object->base.dispTime  = 0x34;
 

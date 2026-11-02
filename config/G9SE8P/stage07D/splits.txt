@@ -3484,6 +3484,9 @@ rel/bob_link_attach_point.cpp:
 rel/bob_link_point_dtor.cpp:
 	.text       start:0x000F3470 end:0x000F356C
 
+rel/bob_link_point_ctor.cpp:
+	.text       start:0x000F356C end:0x000F37B4
+
 rel/bob_link_detach_current.cpp:
 	.text       start:0x000F37B4 end:0x000F3870
 

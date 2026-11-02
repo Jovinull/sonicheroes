@@ -6,4 +6,4 @@
 
 #include "src/rel/bob_link_class.inc"
 
-BOB_LINK_DTOR(bobLinkPointDtor, bobLinkPointVtable)
+BOB_LINK_DTOR(bobLinkPointDtor, __vt__12BobLinkPoint)
