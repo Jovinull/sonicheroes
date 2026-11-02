@@ -2777,6 +2777,9 @@ rel/bmodel_deal_material.cpp:
 rel/bmodel_search.cpp:
 	.text       start:0x000B82A0 end:0x000B851C
 
+rel/bmodel_anim.cpp:
+	.text       start:0x000B851C end:0x000B87E0
+
 rel/prop_base_hooks.cpp:
 	.text       start:0x000B95E8 end:0x000B9868
 

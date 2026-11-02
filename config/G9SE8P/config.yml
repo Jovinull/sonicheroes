@@ -1227,6 +1227,14 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
+    - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
+    - UpdateUVBAnimAdd__6BMODELFP7RpClumpP15BMODEL_ANIMDATAf
+    - UpdateHAnimAnimation__6BMODELFP7RpClumpfi
+    - SetupHAnimAnimation__6BMODELFP7RpClumpP15BMODEL_ANIMDATA
+    - callbackSetDMorphAnimation__FP8RpAtomicPv
+    - GetAnimFromTable__6BMODELFP15BMODEL_ANIMDATAs
     - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
     - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
     - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
@@ -1931,6 +1939,14 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
+    - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
+    - UpdateUVBAnimAdd__6BMODELFP7RpClumpP15BMODEL_ANIMDATAf
+    - UpdateHAnimAnimation__6BMODELFP7RpClumpfi
+    - SetupHAnimAnimation__6BMODELFP7RpClumpP15BMODEL_ANIMDATA
+    - callbackSetDMorphAnimation__FP8RpAtomicPv
+    - GetAnimFromTable__6BMODELFP15BMODEL_ANIMDATAs
     - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
     - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
     - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
@@ -3173,6 +3189,14 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
+    - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
+    - UpdateUVBAnimAdd__6BMODELFP7RpClumpP15BMODEL_ANIMDATAf
+    - UpdateHAnimAnimation__6BMODELFP7RpClumpfi
+    - SetupHAnimAnimation__6BMODELFP7RpClumpP15BMODEL_ANIMDATA
+    - callbackSetDMorphAnimation__FP8RpAtomicPv
+    - GetAnimFromTable__6BMODELFP15BMODEL_ANIMDATAs
     - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
     - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
     - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
