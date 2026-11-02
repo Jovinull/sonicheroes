@@ -3121,6 +3121,9 @@ rel/capture_is_hurt.cpp:
 rel/capture_update_icons.cpp:
 	.text       start:0x000D5564 end:0x000D562C
 
+rel/capture_bubble_update.cpp:
+	.text       start:0x000D562C end:0x000D588C
+
 rel/capture_search_catch.cpp:
 	.text       start:0x000D588C end:0x000D59FC
 
