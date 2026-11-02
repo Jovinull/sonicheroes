@@ -2875,6 +2875,9 @@ rel/raincollision_register.cpp:
 rel/capture_free_player_check.cpp:
 	.text       start:0x000B4150 end:0x000B41E8
 
+rel/capture_add_score.cpp:
+	.text       start:0x000B4384 end:0x000B441C
+
 rel/capture_update_icons.cpp:
 	.text       start:0x000B4570 end:0x000B4638
 

@@ -387,7 +387,7 @@ void fn_8_992E4(TObject*);
 void fn_8_99254(void*);
 void fn_8_990C4(void*, M2C_UNK);
 void fn_8_98FAC(void*);
-void fn_8_98294(void*);
+void captureAddScore(void*);
 void fn_8_980F8(void*, s32);
 void fn_8_981B8(void*, void*);
 void fn_8_9CAF0(void*, void*);
@@ -533,7 +533,7 @@ static M2C_UNK* lbl_8_data_15854[42]   = {
 	(M2C_UNK*)KillMySelf__9TObjEnemyFv,
 	(M2C_UNK*)CheckCameraFrustumTest__9TObjEnemyFPC5RwV3df,
 	(M2C_UNK*)CheckCameraFrustumTestForShadow__9TObjEnemyFPC5RwV3df,
-	(M2C_UNK*)fn_8_98294,
+	(M2C_UNK*)captureAddScore,
 	(M2C_UNK*)CanCheckTechnicPointForThunderShoot__9TObjEnemyFv,
 	(M2C_UNK*)IsSleep__9TObjEnemyFv,
 	(M2C_UNK*)fn_8_980F8,
@@ -679,7 +679,7 @@ void fn_8_981B8(void* arg0, void* arg1)
 	}
 }
 
-void fn_8_98294(void* arg0)
+void captureAddScore(void* arg0)
 {
 	if ((s32)M2C_FIELD(arg0, s32*, 0x57C) == 0) {
 		if ((u32)EnemyScoreMan__14TEnemyScoreMan == 0U) {

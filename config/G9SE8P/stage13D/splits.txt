@@ -2527,6 +2527,9 @@ rel/s14_laser_sign_register.cpp:
 rel/capture_free_player_check.cpp:
 	.text       start:0x000A6DC8 end:0x000A6E60
 
+rel/capture_add_score.cpp:
+	.text       start:0x000A6FFC end:0x000A7094
+
 rel/capture_update_icons.cpp:
 	.text       start:0x000A71E8 end:0x000A72B0
 
