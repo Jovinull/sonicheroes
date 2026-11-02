@@ -1897,6 +1897,9 @@ rel/flower_tail.cpp:
 rel/enemy_score_man_dtor.cpp:
 	.text       start:0x00069CB8 end:0x00069D2C
 
+rel/power_core_man_entry.cpp:
+	.text       start:0x0006A30C end:0x0006A340
+
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x0006A598 end:0x0006A61C
 
