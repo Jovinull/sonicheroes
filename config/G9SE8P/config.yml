@@ -6376,6 +6376,9 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - DestroyClump__15TEnemyPowerCoreFv
+    - CloneClump__15TEnemyPowerCoreFv
+    - __dt__15TEnemyPowerCoreFv
     - CheckHitCollision__15TEnemyPowerCoreFv
     - CreateInstance__18TEnemyPowerCoreManFv
     - Entry__18TEnemyPowerCoreManFPC5RwV3di
@@ -6780,6 +6783,9 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - DestroyClump__15TEnemyPowerCoreFv
+    - CloneClump__15TEnemyPowerCoreFv
+    - __dt__15TEnemyPowerCoreFv
     - CheckHitCollision__15TEnemyPowerCoreFv
     - CreateInstance__18TEnemyPowerCoreManFv
     - Entry__18TEnemyPowerCoreManFPC5RwV3di
