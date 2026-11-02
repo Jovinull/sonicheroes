@@ -1956,6 +1956,9 @@ rel/enemy_cloud_disp.cpp:
 rel/enemy_cloud_exec.cpp:
 	.text       start:0x0007B594 end:0x0007B664
 
+rel/enemy_cloud_helpers.cpp:
+	.text       start:0x0007B664 end:0x0007B7D4
+
 rel/enemy_cloud_dtor.cpp:
 	.text       start:0x0007B7D4 end:0x0007B87C
 
