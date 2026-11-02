@@ -3126,6 +3126,9 @@ rel/bob_link_attach_exec.cpp:
 rel/bob_link_attach.cpp:
 	.text       start:0x000C7AC8 end:0x000C7B8C
 
+rel/bob_link_attach_dtor.cpp:
+	.text       start:0x000C7B8C end:0x000C7C88
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 
