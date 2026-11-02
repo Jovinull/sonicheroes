@@ -2474,6 +2474,9 @@ rel/bmodel_compressed_geometry.cpp:
 rel/bmodel_light_shadow.cpp:
 	.text       start:0x000B8B50 end:0x000B8C70
 
+rel/bmodel_deal_material.cpp:
+	.text       start:0x000B8C70 end:0x000B9270
+
 rel/s20d_curb_stone_dtor.cpp:
 	.text       start:0x000BB060 end:0x000BB120
 

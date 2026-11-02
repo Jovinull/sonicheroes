@@ -157,6 +157,12 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
     - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
     - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
     - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
