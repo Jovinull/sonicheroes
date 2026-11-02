@@ -1,10 +1,10 @@
 #include "types.h"
 
-// TEnemyPowerCoreMan's constructor, DeleteInstance and CreateInstance (the
+// TEnemyPowerCoreMan's constructor, DeleteInstance and GetInstance (the
 // PS2 build's names), the same in the bonus stages (31D-33D). The manager is a
 // single object that later spawns the power cores; the constructor clears its
 // spawn parameters (2.5 at 0x40) and becomes the instance, DeleteInstance asks
-// the instance to be killed and CreateInstance makes it once (the constructor
+// the instance to be killed and GetInstance makes it once (the constructor
 // inlined) and returns it. Its destructor is the one
 // rel/searcher_sound_limit_dtor.cpp names (28D's manager shares the body), so
 // the vtable and instance keep the searcherSoundLimit names here.
@@ -86,7 +86,7 @@ static inline void powerCoreManNew(void)
 	}
 }
 
-extern "C" PowerCoreMan* CreateInstance__18TEnemyPowerCoreManFv(void)
+extern "C" PowerCoreMan* GetInstance__18TEnemyPowerCoreManFv(void)
 {
 	if (searcherSoundLimitInstance == NULL) {
 		powerCoreManNew();

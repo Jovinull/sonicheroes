@@ -5972,7 +5972,7 @@ modules:
     - Entry__18TEnemyPowerCoreManFPC5RwV3di
     - __ct__18TEnemyPowerCoreManFP7TObject
     - DeleteInstance__18TEnemyPowerCoreManFv
-    - CreateInstance__18TEnemyPowerCoreManFv
+    - GetInstance__18TEnemyPowerCoreManFv
     - eventCheckHierarchy
     - LoadTextureEfSparkle__Fv
     - ReleaseTextureEfSparkle__Fv
@@ -6374,7 +6374,7 @@ modules:
     - Entry__18TEnemyPowerCoreManFPC5RwV3di
     - __ct__18TEnemyPowerCoreManFP7TObject
     - DeleteInstance__18TEnemyPowerCoreManFv
-    - CreateInstance__18TEnemyPowerCoreManFv
+    - GetInstance__18TEnemyPowerCoreManFv
     - eventCheckHierarchy
     - LoadTextureEfSparkle__Fv
     - ReleaseTextureEfSparkle__Fv
@@ -6776,7 +6776,7 @@ modules:
     - Entry__18TEnemyPowerCoreManFPC5RwV3di
     - __ct__18TEnemyPowerCoreManFP7TObject
     - DeleteInstance__18TEnemyPowerCoreManFv
-    - CreateInstance__18TEnemyPowerCoreManFv
+    - GetInstance__18TEnemyPowerCoreManFv
     - eventCheckHierarchy
     - LoadTextureEfSparkle__Fv
     - ReleaseTextureEfSparkle__Fv
