@@ -19,7 +19,8 @@ struct CCL_INFO;
 
 struct TObjectBase {
 	const char* name; // 0x00
-	u8 unk04[0x14];
+	u16 signal;       // 0x04
+	u8 unk06[0x12];
 };
 
 extern "C" void* lbl_8042C148;
@@ -41,13 +42,24 @@ public:
 	u8 unk20[0x8];
 }; // 0x28
 
+typedef struct sAngleView {
+	s32 x, y, z;
+} sAngleView;
+
 class C_COLLI
 {
 public:
 	C_COLLI();
 	void Init(CCL_INFO* info, s32 count, u8 kind);
+	void Entry();
 
-	u8 unk00[0x88];
+	u8 unk00[0x8];
+	u16 flags; // 0x08
+	u8 unk0A[0x56];
+	RwV3d pos;      // 0x60
+	sAngleView ang; // 0x6C
+	u8 unk78[0x4];
+	RwV3d prev; // 0x7C
 }; // 0x88
 
 extern "C" const f32 powerCoreManZero;

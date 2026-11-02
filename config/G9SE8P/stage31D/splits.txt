@@ -1924,6 +1924,9 @@ rel/power_core_tdisp.cpp:
 rel/power_core_disp.cpp:
 	.text       start:0x0006AA0C end:0x0006AB3C
 
+rel/power_core_exec.cpp:
+	.text       start:0x0006AB3C end:0x0006AF78
+
 rel/power_core_clump.cpp:
 	.text       start:0x0006AF78 end:0x0006B0D4
 
