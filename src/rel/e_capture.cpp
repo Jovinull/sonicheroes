@@ -957,7 +957,7 @@ void captureFreePlayer(void* arg0)
 	}
 }
 
-void fn_8_989C4(void* arg0)
+void captureHoldPlayer(void* arg0)
 {
 	s32 sp10;
 	f32 spC;

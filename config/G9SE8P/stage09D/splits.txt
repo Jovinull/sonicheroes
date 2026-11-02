@@ -2896,6 +2896,9 @@ rel/capture_search_catch.cpp:
 rel/capture_free_player.cpp:
 	.text       start:0x000B4A08 end:0x000B4AB4
 
+rel/capture_hold_player.cpp:
+	.text       start:0x000B4AB4 end:0x000B4B3C
+
 rel/capture_catch_player.cpp:
 	.text       start:0x000B4B3C end:0x000B4BF8
 
