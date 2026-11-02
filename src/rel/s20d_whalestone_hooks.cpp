@@ -7,7 +7,8 @@
 extern "C" u8 s20dWhalestoneModelList[];
 extern "C" void* s20dWhalestoneModels[2];
 
-extern "C" void fn_3_B92FC(void* list, void* a, void* b);
+extern "C" void LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+    void* list, void* a, void* b);
 extern "C" void* SearchClump__6BMODELFP11BMODEL_DATAs(void* list, s16 index);
 extern "C" void fn_3_BA3E8(s32 a, void* list, void* b, void* c);
 
@@ -18,7 +19,8 @@ extern "C" void s20dWhalestoneUnload(void)
 
 extern "C" void s20dWhalestoneLoad(void)
 {
-	fn_3_B92FC(s20dWhalestoneModelList, NULL, NULL);
+	LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+	    s20dWhalestoneModelList, NULL, NULL);
 	s20dWhalestoneModels[0] = SearchClump__6BMODELFP11BMODEL_DATAs(s20dWhalestoneModelList, 6);
 	s20dWhalestoneModels[1] = SearchClump__6BMODELFP11BMODEL_DATAs(s20dWhalestoneModelList, 7);
 }

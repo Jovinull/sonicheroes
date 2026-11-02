@@ -157,6 +157,10 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbDataEx__FP17BMODEL_CAMERADATA
+    - LoadAnimDataEx__FP15BMODEL_ANIMDATA
+    - LoadDataEx__FP11BMODEL_DATA
     - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
     - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
     - DestroyClump__6BMODELFPP7RpClump

@@ -9547,6 +9547,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/bmodel_load_ex.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bmodel_entry_node_frames.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
