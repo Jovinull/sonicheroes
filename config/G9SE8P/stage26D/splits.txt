@@ -2250,6 +2250,9 @@ rel/capture_free_player.cpp:
 rel/capture_catch_player.cpp:
 	.text       start:0x00089F1C end:0x00089FD8
 
+rel/capture_turn_approach.cpp:
+	.text       start:0x0008A104 end:0x0008A274
+
 rel/capture_rise.cpp:
 	.text       start:0x0008A274 end:0x0008A2CC
 

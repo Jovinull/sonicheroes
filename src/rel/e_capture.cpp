@@ -1050,7 +1050,7 @@ block_10:
 	return 0;
 }
 
-s32 fn_8_98C34(void* arg0, f32 farg0, f32 farg1)
+s32 captureTurnApproach(void* arg0, f32 farg0, f32 farg1)
 {
 	s32 temp_cr0_eq;
 	s32 temp_r31;
