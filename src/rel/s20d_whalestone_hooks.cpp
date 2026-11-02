@@ -10,11 +10,14 @@ extern "C" void* s20dWhalestoneModels[2];
 extern "C" void LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
     void* list, void* a, void* b);
 extern "C" void* SearchClump__6BMODELFP11BMODEL_DATAs(void* list, s16 index);
-extern "C" void fn_3_BA3E8(s32 a, void* list, void* b, void* c);
+extern "C" void
+ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+    s32 a, void* list, void* b, void* c);
 
 extern "C" void s20dWhalestoneUnload(void)
 {
-	fn_3_BA3E8(0, s20dWhalestoneModelList, NULL, NULL);
+	ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+	    0, s20dWhalestoneModelList, NULL, NULL);
 }
 
 extern "C" void s20dWhalestoneLoad(void)
