@@ -2738,6 +2738,9 @@ rel/capture_approach.cpp:
 rel/capture_turn.cpp:
 	.text       start:0x000B7C48 end:0x000B7CC4
 
+rel/capture_disp_model.cpp:
+	.text       start:0x000B7F6C end:0x000B7FFC
+
 rel/capture_restart.cpp:
 	.text       start:0x000B7FFC end:0x000B8030
 

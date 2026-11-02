@@ -384,7 +384,7 @@ void* fn_8_9D3BC(void*, s16);
 void fn_8_9AB68(void*, u32, s32);
 void captureExec(TObject*);
 void captureRestart(TObject*);
-void fn_8_99254(void*);
+void captureDispModel(void*);
 void fn_8_990C4(void*, M2C_UNK);
 void fn_8_98FAC(void*);
 void captureAddScore(void*);
@@ -525,7 +525,7 @@ static M2C_UNK* __vt__16TObjEnemyCapture[42] = {
 	(M2C_UNK*)fn_8_9AB68,
 	(M2C_UNK*)captureExec,
 	(M2C_UNK*)captureRestart,
-	(M2C_UNK*)fn_8_99254,
+	(M2C_UNK*)captureDispModel,
 	(M2C_UNK*)fn_8_990C4,
 	(M2C_UNK*)fn_8_98FAC,
 	(M2C_UNK*)DispOpaqOnEdit__9TObjEnemyFv,
@@ -1249,7 +1249,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 	}
 }
 
-void fn_8_99254(void* arg0)
+void captureDispModel(void* arg0)
 {
 	M2C_UNK* var_r31;
 	s32 var_r30;
