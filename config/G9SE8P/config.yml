@@ -6381,6 +6381,7 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - __ct__15TEnemyPowerCoreFP7TObjectPC15sEnemyPowerCore
     - Disp__15TEnemyPowerCoreFv
     - TDisp__15TEnemyPowerCoreFv
     - __ct__15sEnemyPowerCoreFv
@@ -6792,6 +6793,7 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - __ct__15TEnemyPowerCoreFP7TObjectPC15sEnemyPowerCore
     - Disp__15TEnemyPowerCoreFv
     - TDisp__15TEnemyPowerCoreFv
     - __ct__15sEnemyPowerCoreFv

@@ -1921,6 +1921,9 @@ rel/power_core_disp.cpp:
 rel/power_core_clump.cpp:
 	.text       start:0x0006AF98 end:0x0006B0F4
 
+rel/power_core_ctor.cpp:
+	.text       start:0x0006B0F4 end:0x0006B298
+
 rel/power_core_finalize.cpp:
 	.text       start:0x0006B298 end:0x0006B2BC
 
