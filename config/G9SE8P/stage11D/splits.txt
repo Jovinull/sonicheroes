@@ -2893,6 +2893,9 @@ rel/bob_link_attach.cpp:
 rel/bob_link_attach_dtor.cpp:
 	.text       start:0x000DA4C8 end:0x000DA5C4
 
+rel/bob_link_attach_ctor.cpp:
+	.text       start:0x000DA5C4 end:0x000DA810
+
 rel/bgmcolli_edit.cpp:
 	.text       start:0x000DCCAC end:0x000DCD2C
 
