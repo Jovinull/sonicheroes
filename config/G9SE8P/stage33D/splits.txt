@@ -1909,6 +1909,9 @@ rel/enemy_score_man_exec.cpp:
 rel/enemy_score_man_dtor.cpp:
 	.text       start:0x00069CD8 end:0x00069D4C
 
+rel/enemy_score_man_instance.cpp:
+	.text       start:0x00069DDC end:0x00069EE0
+
 rel/power_core_man_entry_ex.cpp:
 	.text       start:0x0006A130 end:0x0006A32C
 
