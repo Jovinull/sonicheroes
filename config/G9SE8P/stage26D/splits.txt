@@ -2316,6 +2316,9 @@ rel/capture_mode_release.cpp:
 rel/capture_mode_face.cpp:
 	.text       start:0x0008B908 end:0x0008B9E4
 
+rel/capture_mode_chase.cpp:
+	.text       start:0x0008B9E4 end:0x0008BBE0
+
 rel/capture_mode_idle.cpp:
 	.text       start:0x0008BF8C end:0x0008C038
 

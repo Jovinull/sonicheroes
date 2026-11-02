@@ -1909,7 +1909,7 @@ void captureModeFace(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A514(void* arg0, s32 arg1)
+void captureModeChase(void* arg0, s32 arg1)
 {
 	f32 temp_f31;
 	s32 temp_cr0_eq;
