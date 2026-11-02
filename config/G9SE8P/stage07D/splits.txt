@@ -2774,6 +2774,9 @@ rel/prop_base_place_parts.cpp:
 rel/prop_base_class.cpp:
 	.text       start:0x000BA2E4 end:0x000BA454
 
+rel/team_modes.cpp:
+	.text       start:0x000BA454 end:0x000BA5C4
+
 rel/warp_check_collision.cpp:
 	.text       start:0x000C31D8 end:0x000C32A8
 
