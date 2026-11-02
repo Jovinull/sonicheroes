@@ -10706,6 +10706,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/power_core_ctor.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/power_core_clump.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
