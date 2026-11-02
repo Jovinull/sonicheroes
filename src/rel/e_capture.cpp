@@ -591,7 +591,7 @@ char* captureObjectFieldNames[9] = {
 	lbl_8_data_157D4,
 };
 
-void fn_8_98060(void* arg0)
+void captureFreePlayerCheck(void* arg0)
 {
 	s32 var_r0;
 	s32 temp_r3;

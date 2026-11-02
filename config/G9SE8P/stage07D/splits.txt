@@ -3058,6 +3058,9 @@ rel/pawn_strategy.cpp:
 	.ctors      start:0x000001A8 end:0x000001AC
 	.data       start:0x00083550 end:0x000838C4
 
+rel/capture_free_player_check.cpp:
+	.text       start:0x000D5144 end:0x000D51DC
+
 rel/capture_update_icons.cpp:
 	.text       start:0x000D5564 end:0x000D562C
 

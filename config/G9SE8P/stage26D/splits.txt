@@ -2217,6 +2217,9 @@ rel/s13_model_record_release.cpp:
 rel/s13_model_record_load.cpp:
 	.text       start:0x0008840C end:0x00088820
 
+rel/capture_free_player_check.cpp:
+	.text       start:0x00089530 end:0x000895C8
+
 rel/capture_update_icons.cpp:
 	.text       start:0x00089950 end:0x00089A18
 
