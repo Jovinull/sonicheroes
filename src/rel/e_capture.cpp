@@ -377,13 +377,13 @@ void** fn_8_9DCE8();                                                     /* exte
 M2C_UNK fn_8_9E43C(TObject*);                                            /* extern */
 void** fn_8_9EB28();                                                     /* extern */
 void captureObjectGlobalArrayDtor();                                     /* static */
-void fn_8_9B920(TObject* arg0);                                          /* static */
-void fn_8_9C054(TObject* arg0);                                          /* static */
+void captureUpdateFrame(TObject* arg0);                                  /* static */
+void captureInitFromPlacement(TObject* arg0);                            /* static */
 void* fn_8_9C4BC(void*, s16);
 void* fn_8_9D3BC(void*, s16);
 void fn_8_9AB68(void*, u32, s32);
 void fn_8_99318(TObject*);
-void fn_8_992E4(TObject*);
+void captureRestart(TObject*);
 void fn_8_99254(void*);
 void fn_8_990C4(void*, M2C_UNK);
 void fn_8_98FAC(void*);
@@ -524,7 +524,7 @@ static M2C_UNK* lbl_8_data_15854[42]   = {
 	(M2C_UNK*)ExitMode__9TObjEnemyF8ENEMY_MD,
 	(M2C_UNK*)fn_8_9AB68,
 	(M2C_UNK*)fn_8_99318,
-	(M2C_UNK*)fn_8_992E4,
+	(M2C_UNK*)captureRestart,
 	(M2C_UNK*)fn_8_99254,
 	(M2C_UNK*)fn_8_990C4,
 	(M2C_UNK*)fn_8_98FAC,
@@ -1269,10 +1269,10 @@ void fn_8_99254(void* arg0)
 	}
 }
 
-void fn_8_992E4(TObject* arg0)
+void captureRestart(TObject* arg0)
 {
-	fn_8_9C054((TObject*)arg0);
-	fn_8_9B920(arg0);
+	captureInitFromPlacement((TObject*)arg0);
+	captureUpdateFrame(arg0);
 }
 
 void fn_8_99318(TObject* arg0)
@@ -1394,7 +1394,7 @@ void fn_8_99318(TObject* arg0)
 			}
 		}
 	}
-	fn_8_9B920(arg0);
+	captureUpdateFrame(arg0);
 	fn_800A3D48(arg0);
 	if (((s32)arg0->unk578 != 0) && ((s32)arg0->unk28C != 0)) {
 		temp_r4 = arg0->unk2D8;
@@ -2591,7 +2591,7 @@ void captureSpinParts(void* arg0)
 	}
 }
 
-void fn_8_9B920(TObject* arg0)
+void captureUpdateFrame(TObject* arg0)
 {
 	s32 sp10;
 	s32 sp8;
@@ -2767,7 +2767,7 @@ void captureMakeParts(void* arg0)
 	M2C_FIELD(arg0, void**, 0x2E8) = fn_80150588(M2C_FIELD(&captureModels, s32*, 0x14));
 }
 
-void fn_8_9C054(TObject* arg0)
+void captureInitFromPlacement(TObject* arg0)
 {
 	M2C_UNK sp14;
 	f32 sp8[3];
@@ -3026,7 +3026,7 @@ TObject* captureObjectCtor(TObject* arg0, TObject* arg1)
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_15850;
 	arg0->unk1E = 0x58C;
 	fn_8_9C318(arg0);
-	fn_8_9C054(arg0);
+	captureInitFromPlacement(arg0);
 	arg0->unk188 &= 0xFFFF3FFF;
 	arg0->unk188 |= 0x8000;
 	arg0->unk160 = 0.0f;
@@ -3070,7 +3070,7 @@ TObject* captureObjectCtor(TObject* arg0, TObject* arg1)
 	arg0->unk2E0 = fn_80150588(M2C_FIELD(&captureModels, s32*, 0xC));
 	arg0->unk2E4 = fn_80150588(M2C_FIELD(&captureModels, s32*, 0x10));
 	arg0->unk2E8 = fn_80150588(M2C_FIELD(&captureModels, s32*, 0x14));
-	fn_8_9B920(arg0);
+	captureUpdateFrame(arg0);
 	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
 	    arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
 	arg0->unkE4 = &lbl_8_data_15608;
