@@ -2731,6 +2731,9 @@ rel/capture_object_create.cpp:
 rel/capture_bubble_done.cpp:
 	.text       start:0x000A834C end:0x000A836C
 
+rel/capture_bubble_move.cpp:
+	.text       start:0x000A836C end:0x000A83D0
+
 rel/capture_bubble_init.cpp:
 	.text       start:0x000A83D0 end:0x000A841C
 

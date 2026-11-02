@@ -445,7 +445,7 @@ extern const f32 captureZero[1]        = { 0.0f };
 extern const f32 captureSearchDrop[1]  = { 40.0f };
 extern const f32 captureBubbleSink[1]  = { -0.4000000059604645f };
 extern const f32 captureRiseSpeed[1]   = { 0.20000000298023224f };
-extern const f32 lbl_8_rodata_1714[1]  = { 3.0f };
+extern const f32 captureBubbleMax[1]   = { 3.0f };
 extern const f32 captureSearchRange[1] = { 20.0f };
 extern const f32 lbl_8_rodata_171C[1]  = { -20.0f };
 extern const f32 lbl_8_rodata_1720[1]  = { 2.4000000953674316f };
@@ -3363,7 +3363,7 @@ s32 captureBubbleDone(void* arg0)
 	return (M2C_FIELD(arg0, f32*, 4) < M2C_FIELD(arg0, f32*, 0x20)) == 0;
 }
 
-void fn_8_9D1D8(void* arg0)
+void captureBubbleMove(void* arg0)
 {
 	M2C_FIELD(arg0, f32*, 0)    = (f32)(M2C_FIELD(arg0, f32*, 0) + M2C_FIELD(arg0, f32*, 0xC));
 	M2C_FIELD(arg0, f32*, 4)    = (f32)(M2C_FIELD(arg0, f32*, 4) + M2C_FIELD(arg0, f32*, 0x10));
