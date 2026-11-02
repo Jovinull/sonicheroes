@@ -2226,6 +2226,9 @@ rel/capture_add_score.cpp:
 rel/capture_update_icons.cpp:
 	.text       start:0x00089950 end:0x00089A18
 
+rel/capture_free_player.cpp:
+	.text       start:0x00089DE8 end:0x00089E94
+
 rel/capture_edit.cpp:
 	.text       start:0x0008DFC0 end:0x0008E1A8
 

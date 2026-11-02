@@ -932,7 +932,7 @@ block_10:
 	return 0;
 }
 
-void fn_8_98918(void* arg0)
+void captureDropPlayer(void* arg0)
 {
 	s32 temp_r0;
 	void* temp_r3;
@@ -949,7 +949,7 @@ void fn_8_98918(void* arg0)
 	}
 }
 
-void fn_8_9897C(void* arg0)
+void captureFreePlayer(void* arg0)
 {
 	if ((s32)M2C_FIELD(arg0, s32*, 0x278) != -1) {
 		fn_800E1208(M2C_FIELD(arg0, s32*, 0x278), 0xF, 0);

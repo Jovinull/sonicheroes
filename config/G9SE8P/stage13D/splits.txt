@@ -2533,6 +2533,9 @@ rel/capture_add_score.cpp:
 rel/capture_update_icons.cpp:
 	.text       start:0x000A71E8 end:0x000A72B0
 
+rel/capture_free_player.cpp:
+	.text       start:0x000A7680 end:0x000A772C
+
 rel/capture_edit_stage13.cpp:
 	.text       start:0x000AB858 end:0x000ABA38
 

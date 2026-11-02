@@ -350,7 +350,7 @@ s32 rand();                        /* extern */
 s32 fn_8_9832C(s32);               /* extern */
 s32 fn_8_98464(u32);               /* extern */
 M2C_UNK captureUpdateIcons(void*); /* extern */
-M2C_UNK fn_8_9897C();              /* extern */
+M2C_UNK captureFreePlayer();       /* extern */
 s32 fn_8_98B08(u32);               /* extern */
 s32 fn_8_98B94(u32);               /* extern */
 M2C_UNK fn_8_9D81C(s32);           /* extern */

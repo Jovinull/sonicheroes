@@ -9432,6 +9432,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/capture_free_player.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
