@@ -463,7 +463,7 @@ extern const f32 lbl_8_rodata_174C[1]  = { 0.15000000596046448f };
 extern const f32 lbl_8_rodata_1750[1]  = { 2.0f };
 extern const f32 lbl_8_rodata_1754[1]  = { 1000000.0f };
 extern const f64 lbl_8_rodata_1758[1]  = { 4503601774854144.0 };
-extern const f32 lbl_8_rodata_1760[1]  = { 100000000.0f };
+extern const f32 captureFarAway[1]     = { 100000000.0f };
 extern const f32 lbl_8_rodata_1764[1]  = { 0.0054931640625f };
 extern const f32 lbl_8_rodata_1768[1]  = { 160.0f };
 extern const f32 lbl_8_rodata_176C[1]  = { 3.0517578125e-05f };
@@ -1876,7 +1876,7 @@ void captureModeRelease(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A438(void* arg0, s32 arg1)
+void captureModeFace(void* arg0, s32 arg1)
 {
 	s32 temp_r0;
 	s32 temp_r31;
@@ -1889,7 +1889,7 @@ void fn_8_9A438(void* arg0, s32 arg1)
 		return;
 	}
 	M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-	    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+	    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 	temp_r0 = M2C_FIELD(arg0, s32*, 0x274);
 	if (temp_r0 != -1) {
 		temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));
@@ -1925,7 +1925,7 @@ void fn_8_9A514(void* arg0, s32 arg1)
 			return;
 		case 1:
 			M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-			    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+			    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x274);
 			if (temp_r0 != -1) {
 				temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));
@@ -2183,7 +2183,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 					return;
 				case 1: /* switch 3 */
 					M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-					    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+					    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 					temp_r0_2 = M2C_FIELD(arg0, s32*, 0x274);
 					if (temp_r0_2 != -1) {
 						temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0_2 * 4));
@@ -2242,7 +2242,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 				return;
 			}
 			M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-			    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+			    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 			temp_r0_3 = M2C_FIELD(arg0, s32*, 0x274);
 			if (temp_r0_3 != -1) {
 				temp_r3_2 = *(void**)((u8*)&lbl_802AD090 + (temp_r0_3 * 4));
