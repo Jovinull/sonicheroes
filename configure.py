@@ -10691,7 +10691,7 @@ config.libs = [
             ),
             Object(
                 Matching,
-                "rel/searcher_sound_limit_air.cpp",
+                "rel/power_core_man.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
