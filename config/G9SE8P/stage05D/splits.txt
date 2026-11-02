@@ -3153,6 +3153,9 @@ rel/bob_link_detach_current.cpp:
 rel/bob_link_turn_create.cpp:
 	.text       start:0x000C87EC end:0x000C8838
 
+rel/bob_link_turn_exec.cpp:
+	.text       start:0x000C8838 end:0x000C8A5C
+
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0
 
