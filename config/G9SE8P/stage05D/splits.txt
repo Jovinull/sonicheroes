@@ -2749,6 +2749,9 @@ rel/capture_release_parts.cpp:
 rel/capture_make_parts.cpp:
 	.text       start:0x000A70B8 end:0x000A71E8
 
+rel/capture_reset.cpp:
+	.text       start:0x000A74AC end:0x000A7650
+
 rel/capture_dtor.cpp:
 	.text       start:0x000A7650 end:0x000A7828
 

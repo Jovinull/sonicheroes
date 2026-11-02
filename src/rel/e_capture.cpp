@@ -459,7 +459,7 @@ extern const f32 captureShadowWidth[1] = { 10.0f };
 extern const f32 captureShadowDepth[1] = { 16.0f };
 extern const f32 captureHalfTurn[1]    = { 180.0f };
 extern const f32 captureHalf[1]        = { 0.5f };
-extern const f32 lbl_8_rodata_174C[1]  = { 0.15000000596046448f };
+extern const f32 captureDefaultRate[1] = { 0.15000000596046448f };
 extern const f32 lbl_8_rodata_1750[1]  = { 2.0f };
 extern const f32 lbl_8_rodata_1754[1]  = { 1000000.0f };
 extern const f64 lbl_8_rodata_1758[1]  = { 4503601774854144.0 };
@@ -2842,7 +2842,7 @@ void captureInitFromPlacement(TObject* arg0)
 	}
 }
 
-void fn_8_9C318(TObject* arg0)
+void captureReset(TObject* arg0)
 {
 	TObject* var_r5;
 	s32 var_ctr;
@@ -3025,7 +3025,7 @@ TObject* captureObjectCtor(TObject* arg0, TObject* arg1)
 	__construct_array((M2C_UNK*)((u8*)arg0 + 0x330), &fn_8_9D45C, (M2C_UNK*)NULL, 0x24, 0x10);
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_15850;
 	arg0->unk1E = 0x58C;
-	fn_8_9C318(arg0);
+	captureReset(arg0);
 	captureInitFromPlacement(arg0);
 	arg0->unk188 &= 0xFFFF3FFF;
 	arg0->unk188 |= 0x8000;
