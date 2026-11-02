@@ -379,7 +379,7 @@ void** fn_8_9EB28();                                                     /* exte
 void captureObjectGlobalArrayDtor();                                     /* static */
 void captureUpdateFrame(TObject* arg0);                                  /* static */
 void captureInitFromPlacement(TObject* arg0);                            /* static */
-void* fn_8_9C4BC(void*, s16);
+void* captureDtor(void*, s16);
 void* fn_8_9D3BC(void*, s16);
 void fn_8_9AB68(void*, u32, s32);
 void fn_8_99318(TObject*);
@@ -489,22 +489,22 @@ static u32 lbl_8_data_156BC[24] = { 0x0000FF21, 0x00000400, 0x00000000, 0x40A000
 	0x00000000, 0x00000000, 0x00000000 };
 static M2C_UNK lbl_8_data_1572C; /* unable to generate initializer: unknown type */
 static M2C_UNK lbl_8_data_1575C; /* unable to generate initializer: unknown type */
-static char lbl_8_data_15808[]         = "NORMAL";
-static char lbl_8_data_15810[]         = "SPECIAL";
-static const char* lbl_8_data_15818[2] = { lbl_8_data_15808, lbl_8_data_15810 };
-static char lbl_8_data_15820[]         = "WAIT";
-static char lbl_8_data_15828[]         = "WALK";
-static const char* lbl_8_data_15830[2] = { lbl_8_data_15820, lbl_8_data_15828 };
-static u8 lbl_8_data_15838             = 0;
-static u8 lbl_8_data_15839             = 1;
-static u8 lbl_8_data_1583A             = 0;
-static u8 lbl_8_data_1583B             = 1;
-static char lbl_8_data_1583C[]         = "TObjEnemyCapture";
-static const char* lbl_8_data_15850    = lbl_8_data_1583C;
-static M2C_UNK* lbl_8_data_15854[42]   = {
+static char lbl_8_data_15808[]               = "NORMAL";
+static char lbl_8_data_15810[]               = "SPECIAL";
+static const char* lbl_8_data_15818[2]       = { lbl_8_data_15808, lbl_8_data_15810 };
+static char lbl_8_data_15820[]               = "WAIT";
+static char lbl_8_data_15828[]               = "WALK";
+static const char* lbl_8_data_15830[2]       = { lbl_8_data_15820, lbl_8_data_15828 };
+static u8 lbl_8_data_15838                   = 0;
+static u8 lbl_8_data_15839                   = 1;
+static u8 lbl_8_data_1583A                   = 0;
+static u8 lbl_8_data_1583B                   = 1;
+static char lbl_8_data_1583C[]               = "TObjEnemyCapture";
+static const char* lbl_8_data_15850          = lbl_8_data_1583C;
+static M2C_UNK* __vt__16TObjEnemyCapture[42] = {
 	NULL,
 	NULL,
-	(M2C_UNK*)fn_8_9C4BC,
+	(M2C_UNK*)captureDtor,
 	(M2C_UNK*)Exec__9TObjEnemyFv,
 	(M2C_UNK*)Disp__9TObjEnemyFv,
 	(M2C_UNK*)TDisp__9TObjEnemyFv,
@@ -2933,7 +2933,7 @@ void fn_8_9C318(TObject* arg0)
 	arg0->unk278 = -1;
 }
 
-void* fn_8_9C4BC(void* arg0, s16 arg1)
+void* captureDtor(void* arg0, s16 arg1)
 {
 	s32 temp_cr0_eq;
 	s32 temp_r0;
@@ -2942,8 +2942,8 @@ void* fn_8_9C4BC(void* arg0, s16 arg1)
 	void* temp_r3_2;
 
 	if (arg0 != NULL) {
-		M2C_FIELD(arg0, M2C_UNK**, 0x18) = (M2C_UNK*)&lbl_8_data_15854;
-		M2C_FIELD(arg0, void**, 0xB4)    = (void*)((u8*)&lbl_8_data_15854 + 0x2C);
+		M2C_FIELD(arg0, M2C_UNK**, 0x18) = (M2C_UNK*)&__vt__16TObjEnemyCapture;
+		M2C_FIELD(arg0, void**, 0xB4)    = (void*)((u8*)&__vt__16TObjEnemyCapture + 0x2C);
 		temp_r0                          = M2C_FIELD(arg0, s32*, 0x278);
 		if (temp_r0 != -1) {
 			temp_r3 = *(void**)((u8*)&lbl_802AD070 + (temp_r0 * 4));
@@ -3020,8 +3020,8 @@ TObject* captureObjectCtor(TObject* arg0, TObject* arg1)
 
 	fn_800A714C();
 	__ct__10HAnimClassFv((HAnimClass*)((u8*)arg0 + 0x240));
-	arg0->unk18 = (M2C_UNK*)&lbl_8_data_15854;
-	arg0->unkB4 = (u8*)&lbl_8_data_15854 + 0x2C;
+	arg0->unk18 = (M2C_UNK*)&__vt__16TObjEnemyCapture;
+	arg0->unkB4 = (u8*)&__vt__16TObjEnemyCapture + 0x2C;
 	__construct_array((M2C_UNK*)((u8*)arg0 + 0x330), &fn_8_9D45C, (M2C_UNK*)NULL, 0x24, 0x10);
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_15850;
 	arg0->unk1E = 0x58C;
