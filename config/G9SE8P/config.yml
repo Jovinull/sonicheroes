@@ -4089,6 +4089,7 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
     - UnlinkChain__16TObjS13CloudPtclFv
     - LinkChain__16TObjS13CloudPtclFv
     - captureModeChase
@@ -5229,6 +5230,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
     - UnlinkChain__16TObjS13CloudPtclFv
     - LinkChain__16TObjS13CloudPtclFv
     - SetPosition__17TObjEnemyStg27SkyFv
@@ -5621,6 +5623,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
     - UnlinkChain__16TObjS13CloudPtclFv
     - LinkChain__16TObjS13CloudPtclFv
     - SetPosition__12TObjEnemySkyFv
