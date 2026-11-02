@@ -2477,6 +2477,9 @@ rel/bmodel_light_shadow.cpp:
 rel/bmodel_deal_material.cpp:
 	.text       start:0x000B8C70 end:0x000B9270
 
+rel/bmodel_entry_node_frames.cpp:
+	.text       start:0x000B9270 end:0x000B92FC
+
 rel/bmodel_search.cpp:
 	.text       start:0x000B9ABC end:0x000B9D38
 

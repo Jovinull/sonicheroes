@@ -157,6 +157,7 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
     - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
     - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
     - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
