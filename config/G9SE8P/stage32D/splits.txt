@@ -1915,6 +1915,9 @@ rel/enemy_score_man_reset.cpp:
 rel/enemy_score_man_dtor.cpp:
 	.text       start:0x00069CB8 end:0x00069D2C
 
+rel/enemy_score_man_ctor.cpp:
+	.text       start:0x00069D2C end:0x00069DBC
+
 rel/enemy_score_man_instance.cpp:
 	.text       start:0x00069DBC end:0x00069EC0
 
