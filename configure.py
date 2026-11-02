@@ -9767,6 +9767,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/enemy_score_man_instance.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/enemy_score_man_dtor.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
