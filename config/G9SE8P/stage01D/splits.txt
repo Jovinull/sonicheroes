@@ -2450,6 +2450,9 @@ rel/chao_register.cpp:
 	.text       start:0x000B7870 end:0x000B7920
 	.ctors      start:0x00000138 end:0x0000013C
 
+rel/prop_base_hooks.cpp:
+	.text       start:0x000B7A98 end:0x000B7D18
+
 rel/s20d_curb_stone_dtor.cpp:
 	.text       start:0x000BB060 end:0x000BB120
 

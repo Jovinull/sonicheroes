@@ -9527,6 +9527,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/prop_base_hooks.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/capture_object_unload.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
