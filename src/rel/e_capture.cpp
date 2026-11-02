@@ -385,7 +385,7 @@ void fn_8_9AB68(void*, u32, s32);
 void captureExec(TObject*);
 void captureRestart(TObject*);
 void captureDispModel(void*);
-void fn_8_990C4(void*, M2C_UNK);
+void captureDispShine(void*, M2C_UNK);
 void captureShadow(void*);
 void captureAddScore(void*);
 void captureDropItem(void*, s32);
@@ -437,8 +437,8 @@ extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern const f32 captureIconOffset[3] = { 13.0f, 20.0f, 0.0f };
 extern const f32 captureShrinkStep[3]
     = { -0.05000000074505806f, 0.10000000149011612f, -0.05000000074505806f };
-extern const f32 lbl_8_rodata_16BC[4]  = { -1.0f, -1.0f, -1.0f, 0.0f };
-extern const f32 lbl_8_rodata_16CC[3]  = { 0.0f, 1.0f, 0.0f };
+extern const f32 captureShineColor[4]  = { -1.0f, -1.0f, -1.0f, 0.0f };
+extern const f32 captureShineScale[3]  = { 0.0f, 1.0f, 0.0f };
 extern const f32 captureShadowSize[3]  = { 18.0f, 1.0f, 18.0f };
 extern const s32 lbl_8_rodata_16E4[8]  = { 0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0xFFFFFFFF };
 extern const f32 captureZero[1]        = { 0.0f };
@@ -526,7 +526,7 @@ static M2C_UNK* __vt__16TObjEnemyCapture[42] = {
 	(M2C_UNK*)captureExec,
 	(M2C_UNK*)captureRestart,
 	(M2C_UNK*)captureDispModel,
-	(M2C_UNK*)fn_8_990C4,
+	(M2C_UNK*)captureDispShine,
 	(M2C_UNK*)captureShadow,
 	(M2C_UNK*)DispOpaqOnEdit__9TObjEnemyFv,
 	(M2C_UNK*)Virtual33D94__9TObjEnemyFv,
@@ -1188,7 +1188,7 @@ void captureShadow(void* arg0)
 	fn_800B7820();
 }
 
-void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
+void captureDispShine(void* arg0, M2C_UNK arg_sp0)
 {
 	struct _rodata_16BC sp14;
 	struct _rodata_16CC sp8;
@@ -1205,7 +1205,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 		SaveRenderState__7nRenderFv();
 		SetRenderStateForBlendAdd__7nRenderFv();
 		SetLightNum__7nRenderFUi(0x10);
-		sp14                        = *(const struct _rodata_16BC*)lbl_8_rodata_16BC;
+		sp14                        = *(const struct _rodata_16BC*)captureShineColor;
 		M2C_FIELD(&sp14, f32*, 0xC) = M2C_FIELD(arg0, f32*, 0x288);
 		objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
 		    M2C_FIELD(arg0, u32*, 0x2D8), (s32*)&sp14);
@@ -1234,7 +1234,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 		var_r29_2 = (u8*)arg0;
 	loop_11:
 		if (var_r27 < (s32)M2C_FIELD(arg0, s32*, 0x32C)) {
-			sp8                      = *(const struct _rodata_16CC*)lbl_8_rodata_16CC;
+			sp8                      = *(const struct _rodata_16CC*)captureShineScale;
 			temp_f0                  = M2C_FIELD(var_r29_2, f32*, 0x348);
 			M2C_FIELD(&sp8, f32*, 0) = temp_f0;
 			M2C_FIELD(&sp8, f32*, 8) = temp_f0;

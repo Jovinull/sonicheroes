@@ -2704,6 +2704,9 @@ rel/capture_turn.cpp:
 rel/capture_shadow.cpp:
 	.text       start:0x000A4140 end:0x000A4258
 
+rel/capture_disp_shine.cpp:
+	.text       start:0x000A4258 end:0x000A43E8
+
 rel/capture_disp_model.cpp:
 	.text       start:0x000A43E8 end:0x000A4478
 
