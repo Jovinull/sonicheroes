@@ -157,6 +157,10 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - VtxFmtInit__6BMODELFv
+    - RpClumpForAllGeometrysToSetCompressedGeometry__6BMODELFP7RpClump
+    - callbackSetCompressedGeometry__FP8RpAtomicPv
+    - RpAtomicToSetCompressedGeometry__6BMODELFP8RpAtomic
     - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightPointer__FP7RpClumpPSc
     - objCallbackRpAtomicToSetRenderCallbackToUseLightPointer__FP8RpAtomicPv
     - objCallbackRpAtomicRenderToUseLightPointer__FP8RpAtomic

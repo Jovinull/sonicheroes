@@ -2468,6 +2468,9 @@ rel/prop_base_class.cpp:
 rel/bmodel_light_pointer.cpp:
 	.text       start:0x000B8904 end:0x000B8A20
 
+rel/bmodel_compressed_geometry.cpp:
+	.text       start:0x000B8A20 end:0x000B8B50
+
 rel/s20d_curb_stone_dtor.cpp:
 	.text       start:0x000BB060 end:0x000BB120
 
