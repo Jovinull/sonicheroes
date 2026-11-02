@@ -1900,6 +1900,9 @@ rel/enemy_score_man_dtor.cpp:
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x0006A5B8 end:0x0006A63C
 
+rel/searcher_sound_limit_air.cpp:
+	.text       start:0x0006A63C end:0x0006A7F4
+
 rel/chao_search_cage.cpp:
 	.text       start:0x0006B66C end:0x0006B75C
 
