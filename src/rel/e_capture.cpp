@@ -382,7 +382,7 @@ void captureInitFromPlacement(TObject* arg0);                            /* stat
 void* captureDtor(void*, s16);
 void* fn_8_9D3BC(void*, s16);
 void fn_8_9AB68(void*, u32, s32);
-void fn_8_99318(TObject*);
+void captureExec(TObject*);
 void captureRestart(TObject*);
 void fn_8_99254(void*);
 void fn_8_990C4(void*, M2C_UNK);
@@ -523,7 +523,7 @@ static M2C_UNK* __vt__16TObjEnemyCapture[42] = {
 	(M2C_UNK*)ExecMode__9TObjEnemyF8ENEMY_MD,
 	(M2C_UNK*)ExitMode__9TObjEnemyF8ENEMY_MD,
 	(M2C_UNK*)fn_8_9AB68,
-	(M2C_UNK*)fn_8_99318,
+	(M2C_UNK*)captureExec,
 	(M2C_UNK*)captureRestart,
 	(M2C_UNK*)fn_8_99254,
 	(M2C_UNK*)fn_8_990C4,
@@ -1275,7 +1275,7 @@ void captureRestart(TObject* arg0)
 	captureUpdateFrame(arg0);
 }
 
-void fn_8_99318(TObject* arg0)
+void captureExec(TObject* arg0)
 {
 	RwV3d sp8;
 	RwFrame* temp_r30_2;

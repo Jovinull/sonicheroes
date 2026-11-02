@@ -2735,6 +2735,9 @@ rel/capture_turn.cpp:
 rel/capture_restart.cpp:
 	.text       start:0x000B7FFC end:0x000B8030
 
+rel/capture_exec.cpp:
+	.text       start:0x000B8030 end:0x000B8518
+
 rel/capture_event.cpp:
 	.text       start:0x000B8EA0 end:0x000B8F30
 
