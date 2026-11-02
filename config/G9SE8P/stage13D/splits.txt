@@ -2175,6 +2175,18 @@ rel/s13_senkan_shut_register.cpp:
 	.text       start:0x00078908 end:0x000789B0
 	.ctors      start:0x000000E4 end:0x000000E8
 
+rel/prop_base_hooks.cpp:
+	.text       start:0x000789B8 end:0x00078C38
+
+rel/prop_base_blink.cpp:
+	.text       start:0x00078C38 end:0x00078F24
+
+rel/prop_base_place_parts.cpp:
+	.text       start:0x000794F0 end:0x000796B4
+
+rel/prop_base_class.cpp:
+	.text       start:0x000796B4 end:0x00079824
+
 rel/s13_houdai_yoko_edit.cpp:
 	.text       start:0x0007DFCC end:0x0007E018
 
@@ -2533,11 +2545,17 @@ rel/capture_drop_item.cpp:
 rel/capture_add_score.cpp:
 	.text       start:0x000A6FFC end:0x000A7094
 
+rel/capture_marker.cpp:
+	.text       start:0x000A7094 end:0x000A71CC
+
 rel/capture_is_hurt.cpp:
 	.text       start:0x000A71CC end:0x000A71E8
 
 rel/capture_update_icons.cpp:
 	.text       start:0x000A71E8 end:0x000A72B0
+
+rel/capture_bubble_update.cpp:
+	.text       start:0x000A72B0 end:0x000A7510
 
 rel/capture_search_catch.cpp:
 	.text       start:0x000A7510 end:0x000A7680
@@ -2545,14 +2563,32 @@ rel/capture_search_catch.cpp:
 rel/capture_free_player.cpp:
 	.text       start:0x000A7680 end:0x000A772C
 
+rel/capture_hold_player.cpp:
+	.text       start:0x000A772C end:0x000A77B4
+
 rel/capture_catch_player.cpp:
 	.text       start:0x000A77B4 end:0x000A7870
+
+rel/capture_turn_approach.cpp:
+	.text       start:0x000A799C end:0x000A7B0C
 
 rel/capture_rise.cpp:
 	.text       start:0x000A7B0C end:0x000A7B64
 
+rel/capture_approach.cpp:
+	.text       start:0x000A7B64 end:0x000A7C98
+
 rel/capture_turn.cpp:
 	.text       start:0x000A7C98 end:0x000A7D14
+
+rel/capture_shadow.cpp:
+	.text       start:0x000A7D14 end:0x000A7E2C
+
+rel/capture_disp_shine.cpp:
+	.text       start:0x000A7E2C end:0x000A7FBC
+
+rel/capture_disp_model.cpp:
+	.text       start:0x000A7FBC end:0x000A804C
 
 rel/capture_restart.cpp:
 	.text       start:0x000A804C end:0x000A8080
@@ -2560,11 +2596,38 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x000A8080 end:0x000A8568
 
+rel/capture_mode_return.cpp:
+	.text       start:0x000A8568 end:0x000A8774
+
+rel/capture_mode_wait.cpp:
+	.text       start:0x000A8774 end:0x000A87C8
+
+rel/capture_mode_shrink.cpp:
+	.text       start:0x000A87C8 end:0x000A8920
+
+rel/capture_mode_carry_home.cpp:
+	.text       start:0x000A8920 end:0x000A8ACC
+
+rel/capture_mode_carry.cpp:
+	.text       start:0x000A8ACC end:0x000A8B9C
+
+rel/capture_mode_rise.cpp:
+	.text       start:0x000A8B9C end:0x000A8C5C
+
 rel/capture_event.cpp:
 	.text       start:0x000A8EF0 end:0x000A8F80
 
+rel/capture_mode_hold.cpp:
+	.text       start:0x000A8F80 end:0x000A905C
+
 rel/capture_mode_release.cpp:
 	.text       start:0x000A905C end:0x000A91A0
+
+rel/capture_mode_face.cpp:
+	.text       start:0x000A91A0 end:0x000A927C
+
+rel/capture_mode_chase.cpp:
+	.text       start:0x000A927C end:0x000A9478
 
 rel/capture_mode_idle.cpp:
 	.text       start:0x000A9824 end:0x000A98D0
@@ -2577,6 +2640,9 @@ rel/capture_release_parts.cpp:
 
 rel/capture_make_parts.cpp:
 	.text       start:0x000AAC8C end:0x000AADBC
+
+rel/capture_reset.cpp:
+	.text       start:0x000AB080 end:0x000AB224
 
 rel/capture_dtor.cpp:
 	.text       start:0x000AB224 end:0x000AB3FC
@@ -2598,6 +2664,9 @@ rel/capture_object_create.cpp:
 
 rel/capture_bubble_done.cpp:
 	.text       start:0x000ABF18 end:0x000ABF38
+
+rel/capture_bubble_move.cpp:
+	.text       start:0x000ABF38 end:0x000ABF9C
 
 rel/capture_bubble_init.cpp:
 	.text       start:0x000ABF9C end:0x000ABFE8
@@ -2746,6 +2815,12 @@ rel/e_wall_stage13.cpp:
 	.rodata     start:0x000024A0 end:0x00002610
 	.data       start:0x0001C4A0 end:0x0001CCC0
 	.bss        start:0x000020D8 end:0x00002188
+
+rel/s13_cloud_ptcl_chain.cpp:
+	.text       start:0x000C262C end:0x000C26C4
+
+rel/s13_cloud_ptcl_move.cpp:
+	.text       start:0x000C26C4 end:0x000C27C0
 
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x000C312C end:0x000C31C4

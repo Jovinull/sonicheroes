@@ -1894,11 +1894,80 @@ rel/flower_register.cpp:
 rel/flower_tail.cpp:
 	.text       start:0x00069218 end:0x000692EC
 
+rel/enemy_score_man_technic.cpp:
+	.text       start:0x000694DC end:0x000696BC
+
+rel/enemy_score_man_save.cpp:
+	.text       start:0x000696BC end:0x000696E0
+
+rel/enemy_score_man_destroy_count.cpp:
+	.text       start:0x000696E0 end:0x00069790
+
+rel/enemy_score_man_count.cpp:
+	.text       start:0x00069790 end:0x0006986C
+
+rel/enemy_score_man_exec.cpp:
+	.text       start:0x0006986C end:0x00069C88
+
+rel/enemy_score_man_reset.cpp:
+	.text       start:0x00069C88 end:0x00069CB8
+
 rel/enemy_score_man_dtor.cpp:
 	.text       start:0x00069CB8 end:0x00069D2C
 
+rel/enemy_score_man_ctor.cpp:
+	.text       start:0x00069D2C end:0x00069DBC
+
+rel/enemy_score_man_instance.cpp:
+	.text       start:0x00069DBC end:0x00069EC0
+
+rel/power_core_man_entry_ex.cpp:
+	.text       start:0x0006A110 end:0x0006A30C
+
+rel/power_core_man_entry.cpp:
+	.text       start:0x0006A30C end:0x0006A340
+
+rel/power_core_man_exec.cpp:
+	.text       start:0x0006A340 end:0x0006A598
+
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x0006A598 end:0x0006A61C
+
+rel/power_core_man.cpp:
+	.text       start:0x0006A61C end:0x0006A7D4
+
+rel/power_core_man_create.cpp:
+	.text       start:0x0006A7D4 end:0x0006A8B0
+
+rel/power_core_check_hit.cpp:
+	.text       start:0x0006A8B0 end:0x0006A92C
+
+rel/power_core_tdisp.cpp:
+	.text       start:0x0006A92C end:0x0006AA0C
+
+rel/power_core_disp.cpp:
+	.text       start:0x0006AA0C end:0x0006AB3C
+
+rel/power_core_exec.cpp:
+	.text       start:0x0006AB3C end:0x0006AF78
+
+rel/power_core_clump.cpp:
+	.text       start:0x0006AF78 end:0x0006B0D4
+
+rel/power_core_ctor.cpp:
+	.text       start:0x0006B0D4 end:0x0006B278
+
+rel/power_core_finalize.cpp:
+	.text       start:0x0006B278 end:0x0006B29C
+
+rel/power_core_initialize.cpp:
+	.text       start:0x0006B29C end:0x0006B43C
+
+rel/power_core_create.cpp:
+	.text       start:0x0006B43C end:0x0006B608
+
+rel/power_core_params.cpp:
+	.text       start:0x0006B608 end:0x0006B64C
 
 rel/chao_search_cage.cpp:
 	.text       start:0x0006B64C end:0x0006B73C

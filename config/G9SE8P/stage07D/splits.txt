@@ -2762,6 +2762,51 @@ rel/hawk_mgun_calc_bullet.cpp:
 rel/hawk_mgun_bullet.cpp:
 	.text       start:0x000B0F98 end:0x000B11E8
 
+rel/bmodel_light_pointer.cpp:
+	.text       start:0x000B70E8 end:0x000B7204
+
+rel/bmodel_compressed_geometry.cpp:
+	.text       start:0x000B7204 end:0x000B7334
+
+rel/bmodel_light_shadow.cpp:
+	.text       start:0x000B7334 end:0x000B7454
+
+rel/bmodel_deal_material.cpp:
+	.text       start:0x000B7454 end:0x000B7A54
+
+rel/bmodel_entry_node_frames.cpp:
+	.text       start:0x000B7A54 end:0x000B7AE0
+
+rel/bmodel_load_ex.cpp:
+	.text       start:0x000B7AE0 end:0x000B82A0
+
+rel/bmodel_search.cpp:
+	.text       start:0x000B82A0 end:0x000B851C
+
+rel/bmodel_anim.cpp:
+	.text       start:0x000B851C end:0x000B87E0
+
+rel/bmodel_clump.cpp:
+	.text       start:0x000B87E0 end:0x000B8BCC
+
+rel/bmodel_load.cpp:
+	.text       start:0x000B8BCC end:0x000B95E8
+
+rel/prop_base_hooks.cpp:
+	.text       start:0x000B95E8 end:0x000B9868
+
+rel/prop_base_blink.cpp:
+	.text       start:0x000B9868 end:0x000B9B54
+
+rel/prop_base_place_parts.cpp:
+	.text       start:0x000BA120 end:0x000BA2E4
+
+rel/prop_base_class.cpp:
+	.text       start:0x000BA2E4 end:0x000BA454
+
+rel/team_modes.cpp:
+	.text       start:0x000BA454 end:0x000BA5C4
+
 rel/warp_check_collision.cpp:
 	.text       start:0x000C31D8 end:0x000C32A8
 
@@ -3067,11 +3112,17 @@ rel/capture_drop_item.cpp:
 rel/capture_add_score.cpp:
 	.text       start:0x000D5378 end:0x000D5410
 
+rel/capture_marker.cpp:
+	.text       start:0x000D5410 end:0x000D5548
+
 rel/capture_is_hurt.cpp:
 	.text       start:0x000D5548 end:0x000D5564
 
 rel/capture_update_icons.cpp:
 	.text       start:0x000D5564 end:0x000D562C
+
+rel/capture_bubble_update.cpp:
+	.text       start:0x000D562C end:0x000D588C
 
 rel/capture_search_catch.cpp:
 	.text       start:0x000D588C end:0x000D59FC
@@ -3079,14 +3130,32 @@ rel/capture_search_catch.cpp:
 rel/capture_free_player.cpp:
 	.text       start:0x000D59FC end:0x000D5AA8
 
+rel/capture_hold_player.cpp:
+	.text       start:0x000D5AA8 end:0x000D5B30
+
 rel/capture_catch_player.cpp:
 	.text       start:0x000D5B30 end:0x000D5BEC
+
+rel/capture_turn_approach.cpp:
+	.text       start:0x000D5D18 end:0x000D5E88
 
 rel/capture_rise.cpp:
 	.text       start:0x000D5E88 end:0x000D5EE0
 
+rel/capture_approach.cpp:
+	.text       start:0x000D5EE0 end:0x000D6014
+
 rel/capture_turn.cpp:
 	.text       start:0x000D6014 end:0x000D6090
+
+rel/capture_shadow.cpp:
+	.text       start:0x000D6090 end:0x000D61A8
+
+rel/capture_disp_shine.cpp:
+	.text       start:0x000D61A8 end:0x000D6338
+
+rel/capture_disp_model.cpp:
+	.text       start:0x000D6338 end:0x000D63C8
 
 rel/capture_restart.cpp:
 	.text       start:0x000D63C8 end:0x000D63FC
@@ -3094,11 +3163,38 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x000D63FC end:0x000D68E4
 
+rel/capture_mode_return.cpp:
+	.text       start:0x000D68E4 end:0x000D6AF0
+
+rel/capture_mode_wait.cpp:
+	.text       start:0x000D6AF0 end:0x000D6B44
+
+rel/capture_mode_shrink.cpp:
+	.text       start:0x000D6B44 end:0x000D6C9C
+
+rel/capture_mode_carry_home.cpp:
+	.text       start:0x000D6C9C end:0x000D6E48
+
+rel/capture_mode_carry.cpp:
+	.text       start:0x000D6E48 end:0x000D6F18
+
+rel/capture_mode_rise.cpp:
+	.text       start:0x000D6F18 end:0x000D6FD8
+
 rel/capture_event.cpp:
 	.text       start:0x000D726C end:0x000D72FC
 
+rel/capture_mode_hold.cpp:
+	.text       start:0x000D72FC end:0x000D73D8
+
 rel/capture_mode_release.cpp:
 	.text       start:0x000D73D8 end:0x000D751C
+
+rel/capture_mode_face.cpp:
+	.text       start:0x000D751C end:0x000D75F8
+
+rel/capture_mode_chase.cpp:
+	.text       start:0x000D75F8 end:0x000D77F4
 
 rel/capture_mode_idle.cpp:
 	.text       start:0x000D7BA0 end:0x000D7C4C
@@ -3111,6 +3207,9 @@ rel/capture_release_parts.cpp:
 
 rel/capture_make_parts.cpp:
 	.text       start:0x000D9008 end:0x000D9138
+
+rel/capture_reset.cpp:
+	.text       start:0x000D93FC end:0x000D95A0
 
 rel/capture_dtor.cpp:
 	.text       start:0x000D95A0 end:0x000D9778
@@ -3132,6 +3231,9 @@ rel/capture_object_create.cpp:
 
 rel/capture_bubble_done.cpp:
 	.text       start:0x000DA29C end:0x000DA2BC
+
+rel/capture_bubble_move.cpp:
+	.text       start:0x000DA2BC end:0x000DA320
 
 rel/capture_bubble_init.cpp:
 	.text       start:0x000DA320 end:0x000DA36C

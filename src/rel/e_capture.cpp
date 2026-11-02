@@ -384,9 +384,9 @@ void* fn_8_9D3BC(void*, s16);
 void fn_8_9AB68(void*, u32, s32);
 void captureExec(TObject*);
 void captureRestart(TObject*);
-void fn_8_99254(void*);
-void fn_8_990C4(void*, M2C_UNK);
-void fn_8_98FAC(void*);
+void captureDispModel(void*);
+void captureDispShine(void*, M2C_UNK);
+void captureShadow(void*);
 void captureAddScore(void*);
 void captureDropItem(void*, s32);
 void fn_8_981B8(void*, void*);
@@ -435,35 +435,35 @@ extern u32 lbl_8042C388;
 extern u32 mpDataBase__14TEnemyDataBase;
 extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern const f32 captureIconOffset[3] = { 13.0f, 20.0f, 0.0f };
-extern const f32 lbl_8_rodata_16B0[3]
+extern const f32 captureShrinkStep[3]
     = { -0.05000000074505806f, 0.10000000149011612f, -0.05000000074505806f };
-extern const f32 lbl_8_rodata_16BC[4]  = { -1.0f, -1.0f, -1.0f, 0.0f };
-extern const f32 lbl_8_rodata_16CC[3]  = { 0.0f, 1.0f, 0.0f };
-extern const f32 lbl_8_rodata_16D8[3]  = { 18.0f, 1.0f, 18.0f };
+extern const f32 captureShineColor[4]  = { -1.0f, -1.0f, -1.0f, 0.0f };
+extern const f32 captureShineScale[3]  = { 0.0f, 1.0f, 0.0f };
+extern const f32 captureShadowSize[3]  = { 18.0f, 1.0f, 18.0f };
 extern const s32 lbl_8_rodata_16E4[8]  = { 0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0xFFFFFFFF };
 extern const f32 captureZero[1]        = { 0.0f };
 extern const f32 captureSearchDrop[1]  = { 40.0f };
 extern const f32 captureBubbleSink[1]  = { -0.4000000059604645f };
 extern const f32 captureRiseSpeed[1]   = { 0.20000000298023224f };
-extern const f32 lbl_8_rodata_1714[1]  = { 3.0f };
+extern const f32 captureBubbleMax[1]   = { 3.0f };
 extern const f32 captureSearchRange[1] = { 20.0f };
-extern const f32 lbl_8_rodata_171C[1]  = { -20.0f };
-extern const f32 lbl_8_rodata_1720[1]  = { 2.4000000953674316f };
-extern const f32 lbl_8_rodata_1724[1]  = { 1.5f };
-extern const f32 lbl_8_rodata_1728[1]  = { -1.0f };
-extern const f32 lbl_8_rodata_172C[1]  = { 0.20000000298023224f };
-extern const f32 lbl_8_rodata_1730[1]  = { 1.0f };
-extern const f32 lbl_8_rodata_1734[1]  = { 1.0f };
-extern const f32 lbl_8_rodata_1738[1]  = { 0.004000000189989805f };
-extern const f32 lbl_8_rodata_173C[1]  = { 10.0f };
-extern const f32 lbl_8_rodata_1740[1]  = { 16.0f };
+extern const f32 captureHoldDrop[1]    = { -20.0f };
+extern const f32 captureHoldPull[1]    = { 2.4000000953674316f };
+extern const f32 captureOneAndHalf[1]  = { 1.5f };
+extern const f32 captureMinusOne[1]    = { -1.0f };
+extern const f32 captureShadowMin[1]   = { 0.20000000298023224f };
+extern const f32 captureShadowMax[1]   = { 1.0f };
+extern const f32 captureOne[1]         = { 1.0f };
+extern const f32 captureShadowFade[1]  = { 0.004000000189989805f };
+extern const f32 captureShadowWidth[1] = { 10.0f };
+extern const f32 captureShadowDepth[1] = { 16.0f };
 extern const f32 captureHalfTurn[1]    = { 180.0f };
 extern const f32 captureHalf[1]        = { 0.5f };
-extern const f32 lbl_8_rodata_174C[1]  = { 0.15000000596046448f };
-extern const f32 lbl_8_rodata_1750[1]  = { 2.0f };
-extern const f32 lbl_8_rodata_1754[1]  = { 1000000.0f };
+extern const f32 captureDefaultRate[1] = { 0.15000000596046448f };
+extern const f32 captureReturnNear[1]  = { 2.0f };
+extern const f32 captureCarryRange[1]  = { 1000000.0f };
 extern const f64 lbl_8_rodata_1758[1]  = { 4503601774854144.0 };
-extern const f32 lbl_8_rodata_1760[1]  = { 100000000.0f };
+extern const f32 captureFarAway[1]     = { 100000000.0f };
 extern const f32 lbl_8_rodata_1764[1]  = { 0.0054931640625f };
 extern const f32 lbl_8_rodata_1768[1]  = { 160.0f };
 extern const f32 lbl_8_rodata_176C[1]  = { 3.0517578125e-05f };
@@ -525,9 +525,9 @@ static M2C_UNK* __vt__16TObjEnemyCapture[42] = {
 	(M2C_UNK*)fn_8_9AB68,
 	(M2C_UNK*)captureExec,
 	(M2C_UNK*)captureRestart,
-	(M2C_UNK*)fn_8_99254,
-	(M2C_UNK*)fn_8_990C4,
-	(M2C_UNK*)fn_8_98FAC,
+	(M2C_UNK*)captureDispModel,
+	(M2C_UNK*)captureDispShine,
+	(M2C_UNK*)captureShadow,
 	(M2C_UNK*)DispOpaqOnEdit__9TObjEnemyFv,
 	(M2C_UNK*)Virtual33D94__9TObjEnemyFv,
 	(M2C_UNK*)KillMySelf__9TObjEnemyFv,
@@ -696,7 +696,7 @@ void captureAddScore(void* arg0)
 	    EnemyScoreMan__14TEnemyScoreMan, M2C_FIELD(arg0, s32*, 0x230), 0x190);
 }
 
-s32 fn_8_9832C(void* arg0)
+s32 captureFindHome(void* arg0)
 {
 	s32* temp_r4;
 	s32 var_r0;
@@ -726,7 +726,7 @@ s32 fn_8_9832C(void* arg0)
 	return var_r0;
 }
 
-s32 fn_8_983D8(void* arg0, void* arg1, s32 arg2, u8 arg3)
+s32 captureFindMarker(void* arg0, void* arg1, s32 arg2, u8 arg3)
 {
 	s32* temp_r6;
 	void* temp_r0;
@@ -793,7 +793,7 @@ s32 captureUpdateIcons(void* arg0)
 	return var_r31;
 }
 
-void fn_8_98548(void* arg0)
+void captureBubbleUpdate(void* arg0)
 {
 	s32 temp_r0;
 	s32 temp_r0_2;
@@ -957,7 +957,7 @@ void captureFreePlayer(void* arg0)
 	}
 }
 
-void fn_8_989C4(void* arg0)
+void captureHoldPlayer(void* arg0)
 {
 	s32 sp10;
 	f32 spC;
@@ -973,7 +973,7 @@ void fn_8_989C4(void* arg0)
 			spC  = M2C_FIELD(arg0, f32*, 0x144);
 			sp10 = M2C_FIELD(arg0, s32*, 0x148);
 			spC += -20.0f;
-			AdjustPoint__FP5RwV3dPC5RwV3df((void*)(temp_r5 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+			AdjustPoint__FP5RwV3dPC5RwV3df((void*)(temp_r5 + 0x18), &sp8, captureHoldPull, 2.4f);
 		}
 	}
 }
@@ -1050,7 +1050,7 @@ block_10:
 	return 0;
 }
 
-s32 fn_8_98C34(void* arg0, f32 farg0, f32 farg1)
+s32 captureTurnApproach(void* arg0, f32 farg0, f32 farg1)
 {
 	s32 temp_cr0_eq;
 	s32 temp_r31;
@@ -1081,7 +1081,7 @@ s32 fn_8_98C34(void* arg0, f32 farg0, f32 farg1)
 	    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 		M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 	}
-	if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+	if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 		fn_800A5B50(arg0, 0xF00);
 		var_r30 = 0;
 	}
@@ -1107,7 +1107,7 @@ s32 captureRise(void* arg0)
 	return var_r5;
 }
 
-s32 fn_8_98DFC(void* arg0, f32 farg0, f32 farg1)
+s32 captureApproach(void* arg0, f32 farg0, f32 farg1)
 {
 	s32 var_r31;
 
@@ -1127,7 +1127,7 @@ s32 fn_8_98DFC(void* arg0, f32 farg0, f32 farg1)
 	    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 		M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 	}
-	if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+	if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 		fn_800A5B50(arg0, 0xF00);
 		var_r31 = 2;
 	}
@@ -1151,7 +1151,7 @@ s32 captureTurn(void* arg0)
 	return 0;
 }
 
-void fn_8_98FAC(void* arg0)
+void captureShadow(void* arg0)
 {
 	f32 sp14;
 	s32 sp10;
@@ -1162,16 +1162,16 @@ void fn_8_98FAC(void* arg0)
 	f32 temp_f1_2;
 
 	fn_800B7864(0);
-	spC     = M2C_FIELD(lbl_8_rodata_16D8, f32*, 0);
-	sp10    = M2C_FIELD(lbl_8_rodata_16D8, s32*, 4);
-	sp14    = M2C_FIELD(lbl_8_rodata_16D8, f32*, 8);
+	spC     = M2C_FIELD(captureShadowSize, f32*, 0);
+	sp10    = M2C_FIELD(captureShadowSize, s32*, 4);
+	sp14    = M2C_FIELD(captureShadowSize, f32*, 8);
 	temp_f1 = 1.0f - (0.004f * (M2C_FIELD(arg0, f32*, 0x144) - M2C_FIELD(arg0, f32*, 0x2FC)));
 	sp8     = temp_f1;
-	var_r3  = lbl_8_rodata_172C;
+	var_r3  = captureShadowMin;
 	if (temp_f1 < 0.2f) {
 
 	} else {
-		var_r3 = lbl_8_rodata_1730;
+		var_r3 = captureShadowMax;
 		if (temp_f1 > 1.0f) {
 
 		} else {
@@ -1188,7 +1188,7 @@ void fn_8_98FAC(void* arg0)
 	fn_800B7820();
 }
 
-void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
+void captureDispShine(void* arg0, M2C_UNK arg_sp0)
 {
 	struct _rodata_16BC sp14;
 	struct _rodata_16CC sp8;
@@ -1205,7 +1205,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 		SaveRenderState__7nRenderFv();
 		SetRenderStateForBlendAdd__7nRenderFv();
 		SetLightNum__7nRenderFUi(0x10);
-		sp14                        = *(const struct _rodata_16BC*)lbl_8_rodata_16BC;
+		sp14                        = *(const struct _rodata_16BC*)captureShineColor;
 		M2C_FIELD(&sp14, f32*, 0xC) = M2C_FIELD(arg0, f32*, 0x288);
 		objRpClumpForAllMaterialsToChangeMaterialColor__FP7RpClumpP10RwRGBAReal(
 		    M2C_FIELD(arg0, u32*, 0x2D8), (s32*)&sp14);
@@ -1234,7 +1234,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 		var_r29_2 = (u8*)arg0;
 	loop_11:
 		if (var_r27 < (s32)M2C_FIELD(arg0, s32*, 0x32C)) {
-			sp8                      = *(const struct _rodata_16CC*)lbl_8_rodata_16CC;
+			sp8                      = *(const struct _rodata_16CC*)captureShineScale;
 			temp_f0                  = M2C_FIELD(var_r29_2, f32*, 0x348);
 			M2C_FIELD(&sp8, f32*, 0) = temp_f0;
 			M2C_FIELD(&sp8, f32*, 8) = temp_f0;
@@ -1249,7 +1249,7 @@ void fn_8_990C4(void* arg0, M2C_UNK arg_sp0)
 	}
 }
 
-void fn_8_99254(void* arg0)
+void captureDispModel(void* arg0)
 {
 	M2C_UNK* var_r31;
 	s32 var_r30;
@@ -1438,7 +1438,7 @@ void captureExec(TObject* arg0)
 	}
 }
 
-void fn_8_99800(void* arg0, s32 arg1)
+void captureModeReturn(void* arg0, s32 arg1)
 {
 	f32 temp_f31;
 	s32 temp_r30;
@@ -1493,7 +1493,7 @@ void fn_8_99800(void* arg0, s32 arg1)
 					    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 						M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 					}
-					if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+					if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 						fn_800A5B50(arg0, 0xF00);
 						var_r30 = 2;
 					}
@@ -1509,7 +1509,7 @@ void fn_8_99800(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99A0C(void* arg0, s32 arg1)
+void captureModeWait(void* arg0, s32 arg1)
 {
 	if (arg1 != 0) {
 		if (arg1 >= 0) {
@@ -1522,7 +1522,7 @@ void fn_8_99A0C(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99A60(void* arg0, s32 arg1)
+void captureModeShrink(void* arg0, s32 arg1)
 {
 	s32 temp_r0;
 	void* temp_r3;
@@ -1550,9 +1550,9 @@ void fn_8_99A60(void* arg0, s32 arg1)
 		case 1:
 			M2C_FIELD(arg0, f32*, 0x2C4) = (f32)(M2C_FIELD(arg0, f32*, 0x2C4) + -0.05f);
 			M2C_FIELD(arg0, f32*, 0x2C8)
-			    = (f32)(M2C_FIELD(arg0, f32*, 0x2C8) + M2C_FIELD(lbl_8_rodata_16B0, f32*, 4));
+			    = (f32)(M2C_FIELD(arg0, f32*, 0x2C8) + M2C_FIELD(captureShrinkStep, f32*, 4));
 			M2C_FIELD(arg0, f32*, 0x2CC)
-			    = (f32)(M2C_FIELD(arg0, f32*, 0x2CC) + M2C_FIELD(lbl_8_rodata_16B0, f32*, 8));
+			    = (f32)(M2C_FIELD(arg0, f32*, 0x2CC) + M2C_FIELD(captureShrinkStep, f32*, 8));
 			M2C_FIELD(arg0, f32*, 0x2B8)
 			    = (f32)(M2C_FIELD(arg0, f32*, 0x2B8) + M2C_FIELD(arg0, f32*, 0x2C4));
 			M2C_FIELD(arg0, f32*, 0x2BC)
@@ -1570,7 +1570,7 @@ void fn_8_99A60(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99BB8(void* arg0, s32 arg1)
+void captureModeCarryHome(void* arg0, s32 arg1)
 {
 	s32 sp10;
 	f32 spC;
@@ -1602,10 +1602,10 @@ void fn_8_99BB8(void* arg0, s32 arg1)
 					sp10 = M2C_FIELD(arg0, s32*, 0x148);
 					spC += -20.0f;
 					AdjustPoint__FP5RwV3dPC5RwV3df(
-					    (void*)(temp_r4 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+					    (void*)(temp_r4 + 0x18), &sp8, captureHoldPull, 2.4f);
 				}
 			}
-			fn_8_98548(arg0);
+			captureBubbleUpdate(arg0);
 			temp_cr0_eq = (s32)M2C_FIELD(arg0, s32*, 0x574) == 0;
 			if (temp_cr0_eq == 0) {
 				if (temp_cr0_eq == 0) {
@@ -1632,7 +1632,7 @@ void fn_8_99BB8(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99D64(void* arg0, s32 arg1)
+void captureModeCarry(void* arg0, s32 arg1)
 {
 	s32 sp10;
 	f32 spC;
@@ -1655,10 +1655,10 @@ void fn_8_99D64(void* arg0, s32 arg1)
 					sp10 = M2C_FIELD(arg0, s32*, 0x148);
 					spC += -20.0f;
 					AdjustPoint__FP5RwV3dPC5RwV3df(
-					    (void*)(temp_r4 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+					    (void*)(temp_r4 + 0x18), &sp8, captureHoldPull, 2.4f);
 				}
 			}
-			fn_8_98548(arg0);
+			captureBubbleUpdate(arg0);
 			return;
 		case 2:
 		case 3:
@@ -1666,7 +1666,7 @@ void fn_8_99D64(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99E34(void* arg0, s32 arg1)
+void captureModeRise(void* arg0, s32 arg1)
 {
 	f32 temp_f2;
 	s32 var_r4;
@@ -1800,7 +1800,7 @@ void captureEvent(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A218(void* arg0, s32 arg1)
+void captureModeHold(void* arg0, s32 arg1)
 {
 	s32 sp10;
 	f32 spC;
@@ -1822,10 +1822,10 @@ void fn_8_9A218(void* arg0, s32 arg1)
 					sp10 = M2C_FIELD(arg0, s32*, 0x148);
 					spC += -20.0f;
 					AdjustPoint__FP5RwV3dPC5RwV3df(
-					    (void*)(temp_r4 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+					    (void*)(temp_r4 + 0x18), &sp8, captureHoldPull, 2.4f);
 				}
 			}
-			fn_8_98548(arg0);
+			captureBubbleUpdate(arg0);
 			return;
 		case 3:
 			M2C_FIELD(arg0, s32*, 0x28C) = 0;
@@ -1876,7 +1876,7 @@ void captureModeRelease(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A438(void* arg0, s32 arg1)
+void captureModeFace(void* arg0, s32 arg1)
 {
 	s32 temp_r0;
 	s32 temp_r31;
@@ -1889,7 +1889,7 @@ void fn_8_9A438(void* arg0, s32 arg1)
 		return;
 	}
 	M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-	    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+	    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 	temp_r0 = M2C_FIELD(arg0, s32*, 0x274);
 	if (temp_r0 != -1) {
 		temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));
@@ -1909,7 +1909,7 @@ void fn_8_9A438(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A514(void* arg0, s32 arg1)
+void captureModeChase(void* arg0, s32 arg1)
 {
 	f32 temp_f31;
 	s32 temp_cr0_eq;
@@ -1925,7 +1925,7 @@ void fn_8_9A514(void* arg0, s32 arg1)
 			return;
 		case 1:
 			M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-			    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+			    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 			temp_r0 = M2C_FIELD(arg0, s32*, 0x274);
 			if (temp_r0 != -1) {
 				temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0 * 4));
@@ -1961,7 +1961,7 @@ void fn_8_9A514(void* arg0, s32 arg1)
 				    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 					M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 				}
-				if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+				if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 					fn_800A5B50(arg0, 0xF00);
 					var_r29 = 0;
 				}
@@ -2035,7 +2035,7 @@ void fn_8_9A710(void* arg0, s32 arg1)
 					    && (M2C_FIELD(arg0, f32*, 0x15C) < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 						M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 					}
-					if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+					if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 						fn_800A5B50(arg0, 0xF00);
 						var_r30 = 2;
 					}
@@ -2183,7 +2183,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 					return;
 				case 1: /* switch 3 */
 					M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-					    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+					    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 					temp_r0_2 = M2C_FIELD(arg0, s32*, 0x274);
 					if (temp_r0_2 != -1) {
 						temp_r3 = *(void**)((u8*)&lbl_802AD090 + (temp_r0_2 * 4));
@@ -2222,7 +2222,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 						        < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 							M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 						}
-						if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+						if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 							fn_800A5B50(arg0, 0xF00);
 							var_r29 = 0;
 						}
@@ -2242,7 +2242,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 				return;
 			}
 			M2C_FIELD(arg0, s32*, 0x274) = GetNearestLeaderNum__13nSearchPlayerFPC5RwV3df(
-			    (u8*)arg0 + 0x140, (f32*)lbl_8_rodata_1760, 1e8f);
+			    (u8*)arg0 + 0x140, (f32*)captureFarAway, 1e8f);
 			temp_r0_3 = M2C_FIELD(arg0, s32*, 0x274);
 			if (temp_r0_3 != -1) {
 				temp_r3_2 = *(void**)((u8*)&lbl_802AD090 + (temp_r0_3 * 4));
@@ -2408,13 +2408,13 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 			}
 			break;
 		case 45: /* switch 1 */
-			fn_8_9A218(arg0, arg2);
+			captureModeHold(arg0, arg2);
 			return;
 		case 46: /* switch 1 */
-			fn_8_99D64(arg0, arg2);
+			captureModeCarry(arg0, arg2);
 			return;
 		case 47: /* switch 1 */
-			fn_8_99BB8(arg0, arg2);
+			captureModeCarryHome(arg0, arg2);
 			return;
 		case 21:            /* switch 1 */
 			switch (arg2) { /* switch 9; irregular */
@@ -2440,9 +2440,9 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 				case 1: /* switch 9 */
 					M2C_FIELD(arg0, f32*, 0x2C4) = (f32)(M2C_FIELD(arg0, f32*, 0x2C4) + -0.05f);
 					M2C_FIELD(arg0, f32*, 0x2C8) = (f32)(M2C_FIELD(arg0, f32*, 0x2C8)
-					    + M2C_FIELD(lbl_8_rodata_16B0, f32*, 4));
+					    + M2C_FIELD(captureShrinkStep, f32*, 4));
 					M2C_FIELD(arg0, f32*, 0x2CC) = (f32)(M2C_FIELD(arg0, f32*, 0x2CC)
-					    + M2C_FIELD(lbl_8_rodata_16B0, f32*, 8));
+					    + M2C_FIELD(captureShrinkStep, f32*, 8));
 					M2C_FIELD(arg0, f32*, 0x2B8)
 					    = (f32)(M2C_FIELD(arg0, f32*, 0x2B8) + M2C_FIELD(arg0, f32*, 0x2C4));
 					M2C_FIELD(arg0, f32*, 0x2BC)
@@ -2508,7 +2508,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 							        < (1.5f * M2C_FIELD(arg0, f32*, 0x1A8)))) {
 								M2C_FIELD(arg0, f32*, 0x15C) = 0.0f;
 							}
-							if (fn_800A5888(arg0, (f32*)lbl_8_rodata_1728, -1.0f) != 0) {
+							if (fn_800A5888(arg0, (f32*)captureMinusOne, -1.0f) != 0) {
 								fn_800A5B50(arg0, 0xF00);
 								var_r29_2 = 2;
 							}
@@ -2842,7 +2842,7 @@ void captureInitFromPlacement(TObject* arg0)
 	}
 }
 
-void fn_8_9C318(TObject* arg0)
+void captureReset(TObject* arg0)
 {
 	TObject* var_r5;
 	s32 var_ctr;
@@ -3025,7 +3025,7 @@ TObject* captureObjectCtor(TObject* arg0, TObject* arg1)
 	__construct_array((M2C_UNK*)((u8*)arg0 + 0x330), &fn_8_9D45C, (M2C_UNK*)NULL, 0x24, 0x10);
 	arg0->unk0  = (M2C_UNK*)lbl_8_data_15850;
 	arg0->unk1E = 0x58C;
-	fn_8_9C318(arg0);
+	captureReset(arg0);
 	captureInitFromPlacement(arg0);
 	arg0->unk188 &= 0xFFFF3FFF;
 	arg0->unk188 |= 0x8000;
@@ -3363,7 +3363,7 @@ s32 captureBubbleDone(void* arg0)
 	return (M2C_FIELD(arg0, f32*, 4) < M2C_FIELD(arg0, f32*, 0x20)) == 0;
 }
 
-void fn_8_9D1D8(void* arg0)
+void captureBubbleMove(void* arg0)
 {
 	M2C_FIELD(arg0, f32*, 0)    = (f32)(M2C_FIELD(arg0, f32*, 0) + M2C_FIELD(arg0, f32*, 0xC));
 	M2C_FIELD(arg0, f32*, 4)    = (f32)(M2C_FIELD(arg0, f32*, 4) + M2C_FIELD(arg0, f32*, 0x10));

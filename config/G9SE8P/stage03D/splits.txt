@@ -2711,11 +2711,17 @@ rel/capture_drop_item.cpp:
 rel/capture_add_score.cpp:
 	.text       start:0x000B6FAC end:0x000B7044
 
+rel/capture_marker.cpp:
+	.text       start:0x000B7044 end:0x000B717C
+
 rel/capture_is_hurt.cpp:
 	.text       start:0x000B717C end:0x000B7198
 
 rel/capture_update_icons.cpp:
 	.text       start:0x000B7198 end:0x000B7260
+
+rel/capture_bubble_update.cpp:
+	.text       start:0x000B7260 end:0x000B74C0
 
 rel/capture_search_catch.cpp:
 	.text       start:0x000B74C0 end:0x000B7630
@@ -2723,14 +2729,32 @@ rel/capture_search_catch.cpp:
 rel/capture_free_player.cpp:
 	.text       start:0x000B7630 end:0x000B76DC
 
+rel/capture_hold_player.cpp:
+	.text       start:0x000B76DC end:0x000B7764
+
 rel/capture_catch_player.cpp:
 	.text       start:0x000B7764 end:0x000B7820
+
+rel/capture_turn_approach.cpp:
+	.text       start:0x000B794C end:0x000B7ABC
 
 rel/capture_rise.cpp:
 	.text       start:0x000B7ABC end:0x000B7B14
 
+rel/capture_approach.cpp:
+	.text       start:0x000B7B14 end:0x000B7C48
+
 rel/capture_turn.cpp:
 	.text       start:0x000B7C48 end:0x000B7CC4
+
+rel/capture_shadow.cpp:
+	.text       start:0x000B7CC4 end:0x000B7DDC
+
+rel/capture_disp_shine.cpp:
+	.text       start:0x000B7DDC end:0x000B7F6C
+
+rel/capture_disp_model.cpp:
+	.text       start:0x000B7F6C end:0x000B7FFC
 
 rel/capture_restart.cpp:
 	.text       start:0x000B7FFC end:0x000B8030
@@ -2738,11 +2762,38 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x000B8030 end:0x000B8518
 
+rel/capture_mode_return.cpp:
+	.text       start:0x000B8518 end:0x000B8724
+
+rel/capture_mode_wait.cpp:
+	.text       start:0x000B8724 end:0x000B8778
+
+rel/capture_mode_shrink.cpp:
+	.text       start:0x000B8778 end:0x000B88D0
+
+rel/capture_mode_carry_home.cpp:
+	.text       start:0x000B88D0 end:0x000B8A7C
+
+rel/capture_mode_carry.cpp:
+	.text       start:0x000B8A7C end:0x000B8B4C
+
+rel/capture_mode_rise.cpp:
+	.text       start:0x000B8B4C end:0x000B8C0C
+
 rel/capture_event.cpp:
 	.text       start:0x000B8EA0 end:0x000B8F30
 
+rel/capture_mode_hold.cpp:
+	.text       start:0x000B8F30 end:0x000B900C
+
 rel/capture_mode_release.cpp:
 	.text       start:0x000B900C end:0x000B9150
+
+rel/capture_mode_face.cpp:
+	.text       start:0x000B9150 end:0x000B922C
+
+rel/capture_mode_chase.cpp:
+	.text       start:0x000B922C end:0x000B9428
 
 rel/capture_mode_idle.cpp:
 	.text       start:0x000B97D4 end:0x000B9880
@@ -2755,6 +2806,9 @@ rel/capture_release_parts.cpp:
 
 rel/capture_make_parts.cpp:
 	.text       start:0x000BAC3C end:0x000BAD6C
+
+rel/capture_reset.cpp:
+	.text       start:0x000BB030 end:0x000BB1D4
 
 rel/capture_dtor.cpp:
 	.text       start:0x000BB1D4 end:0x000BB3AC
@@ -2776,6 +2830,9 @@ rel/capture_object_create.cpp:
 
 rel/capture_bubble_done.cpp:
 	.text       start:0x000BBED0 end:0x000BBEF0
+
+rel/capture_bubble_move.cpp:
+	.text       start:0x000BBEF0 end:0x000BBF54
 
 rel/capture_bubble_init.cpp:
 	.text       start:0x000BBF54 end:0x000BBFA0

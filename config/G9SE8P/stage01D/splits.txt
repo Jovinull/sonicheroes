@@ -2450,6 +2450,51 @@ rel/chao_register.cpp:
 	.text       start:0x000B7870 end:0x000B7920
 	.ctors      start:0x00000138 end:0x0000013C
 
+rel/team_modes.cpp:
+	.text       start:0x000B7928 end:0x000B7A98
+
+rel/prop_base_hooks.cpp:
+	.text       start:0x000B7A98 end:0x000B7D18
+
+rel/prop_base_blink.cpp:
+	.text       start:0x000B7D18 end:0x000B8004
+
+rel/prop_base_place_parts.cpp:
+	.text       start:0x000B85D0 end:0x000B8794
+
+rel/prop_base_class.cpp:
+	.text       start:0x000B8794 end:0x000B8904
+
+rel/bmodel_light_pointer.cpp:
+	.text       start:0x000B8904 end:0x000B8A20
+
+rel/bmodel_compressed_geometry.cpp:
+	.text       start:0x000B8A20 end:0x000B8B50
+
+rel/bmodel_light_shadow.cpp:
+	.text       start:0x000B8B50 end:0x000B8C70
+
+rel/bmodel_deal_material.cpp:
+	.text       start:0x000B8C70 end:0x000B9270
+
+rel/bmodel_entry_node_frames.cpp:
+	.text       start:0x000B9270 end:0x000B92FC
+
+rel/bmodel_load_ex.cpp:
+	.text       start:0x000B92FC end:0x000B9ABC
+
+rel/bmodel_search.cpp:
+	.text       start:0x000B9ABC end:0x000B9D38
+
+rel/bmodel_anim.cpp:
+	.text       start:0x000B9D38 end:0x000B9FFC
+
+rel/bmodel_clump.cpp:
+	.text       start:0x000B9FFC end:0x000BA3E8
+
+rel/bmodel_load.cpp:
+	.text       start:0x000BA3E8 end:0x000BAE04
+
 rel/s20d_curb_stone_dtor.cpp:
 	.text       start:0x000BB060 end:0x000BB120
 

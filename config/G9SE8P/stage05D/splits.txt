@@ -2665,11 +2665,17 @@ rel/capture_drop_item.cpp:
 rel/capture_add_score.cpp:
 	.text       start:0x000A3428 end:0x000A34C0
 
+rel/capture_marker.cpp:
+	.text       start:0x000A34C0 end:0x000A35F8
+
 rel/capture_is_hurt.cpp:
 	.text       start:0x000A35F8 end:0x000A3614
 
 rel/capture_update_icons.cpp:
 	.text       start:0x000A3614 end:0x000A36DC
+
+rel/capture_bubble_update.cpp:
+	.text       start:0x000A36DC end:0x000A393C
 
 rel/capture_search_catch.cpp:
 	.text       start:0x000A393C end:0x000A3AAC
@@ -2677,14 +2683,32 @@ rel/capture_search_catch.cpp:
 rel/capture_free_player.cpp:
 	.text       start:0x000A3AAC end:0x000A3B58
 
+rel/capture_hold_player.cpp:
+	.text       start:0x000A3B58 end:0x000A3BE0
+
 rel/capture_catch_player.cpp:
 	.text       start:0x000A3BE0 end:0x000A3C9C
+
+rel/capture_turn_approach.cpp:
+	.text       start:0x000A3DC8 end:0x000A3F38
 
 rel/capture_rise.cpp:
 	.text       start:0x000A3F38 end:0x000A3F90
 
+rel/capture_approach.cpp:
+	.text       start:0x000A3F90 end:0x000A40C4
+
 rel/capture_turn.cpp:
 	.text       start:0x000A40C4 end:0x000A4140
+
+rel/capture_shadow.cpp:
+	.text       start:0x000A4140 end:0x000A4258
+
+rel/capture_disp_shine.cpp:
+	.text       start:0x000A4258 end:0x000A43E8
+
+rel/capture_disp_model.cpp:
+	.text       start:0x000A43E8 end:0x000A4478
 
 rel/capture_restart.cpp:
 	.text       start:0x000A4478 end:0x000A44AC
@@ -2692,11 +2716,38 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x000A44AC end:0x000A4994
 
+rel/capture_mode_return.cpp:
+	.text       start:0x000A4994 end:0x000A4BA0
+
+rel/capture_mode_wait.cpp:
+	.text       start:0x000A4BA0 end:0x000A4BF4
+
+rel/capture_mode_shrink.cpp:
+	.text       start:0x000A4BF4 end:0x000A4D4C
+
+rel/capture_mode_carry_home.cpp:
+	.text       start:0x000A4D4C end:0x000A4EF8
+
+rel/capture_mode_carry.cpp:
+	.text       start:0x000A4EF8 end:0x000A4FC8
+
+rel/capture_mode_rise.cpp:
+	.text       start:0x000A4FC8 end:0x000A5088
+
 rel/capture_event.cpp:
 	.text       start:0x000A531C end:0x000A53AC
 
+rel/capture_mode_hold.cpp:
+	.text       start:0x000A53AC end:0x000A5488
+
 rel/capture_mode_release.cpp:
 	.text       start:0x000A5488 end:0x000A55CC
+
+rel/capture_mode_face.cpp:
+	.text       start:0x000A55CC end:0x000A56A8
+
+rel/capture_mode_chase.cpp:
+	.text       start:0x000A56A8 end:0x000A58A4
 
 rel/capture_mode_idle.cpp:
 	.text       start:0x000A5C50 end:0x000A5CFC
@@ -2709,6 +2760,9 @@ rel/capture_release_parts.cpp:
 
 rel/capture_make_parts.cpp:
 	.text       start:0x000A70B8 end:0x000A71E8
+
+rel/capture_reset.cpp:
+	.text       start:0x000A74AC end:0x000A7650
 
 rel/capture_dtor.cpp:
 	.text       start:0x000A7650 end:0x000A7828
@@ -2730,6 +2784,9 @@ rel/capture_object_create.cpp:
 
 rel/capture_bubble_done.cpp:
 	.text       start:0x000A834C end:0x000A836C
+
+rel/capture_bubble_move.cpp:
+	.text       start:0x000A836C end:0x000A83D0
 
 rel/capture_bubble_init.cpp:
 	.text       start:0x000A83D0 end:0x000A841C
@@ -3102,6 +3159,36 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000C30EC end:0x000C3194
 	.ctors      start:0x00000168 end:0x0000016C
 
+rel/bmodel_light_pointer.cpp:
+	.text       start:0x000C3194 end:0x000C32B0
+
+rel/bmodel_compressed_geometry.cpp:
+	.text       start:0x000C32B0 end:0x000C33E0
+
+rel/bmodel_light_shadow.cpp:
+	.text       start:0x000C33E0 end:0x000C3500
+
+rel/bmodel_deal_material.cpp:
+	.text       start:0x000C3500 end:0x000C3B00
+
+rel/bmodel_entry_node_frames.cpp:
+	.text       start:0x000C3B00 end:0x000C3B8C
+
+rel/bmodel_load_ex.cpp:
+	.text       start:0x000C3B8C end:0x000C434C
+
+rel/bmodel_search.cpp:
+	.text       start:0x000C434C end:0x000C45C8
+
+rel/bmodel_anim.cpp:
+	.text       start:0x000C45C8 end:0x000C488C
+
+rel/bmodel_clump.cpp:
+	.text       start:0x000C488C end:0x000C4C78
+
+rel/bmodel_load.cpp:
+	.text       start:0x000C4C78 end:0x000C5694
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000C5EB0 end:0x000C5F24
 
@@ -3116,6 +3203,72 @@ rel/boss_voice_play.cpp:
 
 rel/boss_voice_play_auto.cpp:
 	.text       start:0x000C6554 end:0x000C6830
+
+rel/prop_base_hooks.cpp:
+	.text       start:0x000C6830 end:0x000C6AB0
+
+rel/prop_base_blink.cpp:
+	.text       start:0x000C6AB0 end:0x000C6D9C
+
+rel/prop_base_place_parts.cpp:
+	.text       start:0x000C7368 end:0x000C752C
+
+rel/prop_base_class.cpp:
+	.text       start:0x000C752C end:0x000C769C
+
+rel/bob_link_attach_create.cpp:
+	.text       start:0x000C76A4 end:0x000C7908
+
+rel/bob_link_attach_exec.cpp:
+	.text       start:0x000C7908 end:0x000C7AC8
+
+rel/bob_link_attach.cpp:
+	.text       start:0x000C7AC8 end:0x000C7B8C
+
+rel/bob_link_attach_dtor.cpp:
+	.text       start:0x000C7B8C end:0x000C7C88
+
+rel/bob_link_attach_ctor.cpp:
+	.text       start:0x000C7C88 end:0x000C7ED4
+
+rel/bob_link_point_create.cpp:
+	.text       start:0x000C7ED4 end:0x000C8134
+
+rel/bob_link_point_exec.cpp:
+	.text       start:0x000C8134 end:0x000C8318
+
+rel/bob_link_attach_point.cpp:
+	.text       start:0x000C8318 end:0x000C83EC
+
+rel/bob_link_point_dtor.cpp:
+	.text       start:0x000C83EC end:0x000C84E8
+
+rel/bob_link_point_ctor.cpp:
+	.text       start:0x000C84E8 end:0x000C8730
+
+rel/bob_link_detach_current.cpp:
+	.text       start:0x000C8730 end:0x000C87EC
+
+rel/bob_link_turn_create.cpp:
+	.text       start:0x000C87EC end:0x000C8838
+
+rel/bob_link_turn_exec.cpp:
+	.text       start:0x000C8838 end:0x000C8A5C
+
+rel/bob_link_attach_turn.cpp:
+	.text       start:0x000C8A5C end:0x000C8B2C
+
+rel/bob_link_turn_dtor.cpp:
+	.text       start:0x000C8B2C end:0x000C8C28
+
+rel/bob_link_slot.cpp:
+	.text       start:0x000C8F70 end:0x000C9110
+
+rel/bob_link_base.cpp:
+	.text       start:0x000C9110 end:0x000C9318
+
+rel/team_modes.cpp:
+	.text       start:0x000C9318 end:0x000C9488
 
 rel/tenkyu_dtor.cpp:
 	.text       start:0x000C98D4 end:0x000C99C0

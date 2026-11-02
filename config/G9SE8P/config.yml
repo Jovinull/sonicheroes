@@ -157,6 +157,72 @@ modules:
   # surviving relocation reaches them. Preserve them when the reconstructed
   # compiler object replaces dtk's exported object.
   force_active:
+    - ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadFiles__6BMODELFPcPcPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbData__FP7ONEFILEPvP17BMODEL_CAMERADATA
+    - LoadAnimData__FP7ONEFILEPvP15BMODEL_ANIMDATA
+    - LoadData__FP7ONEFILEPvP11BMODEL_DATA
+    - LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbDataEx__FP17BMODEL_CAMERADATA
+    - LoadAnimDataEx__FP15BMODEL_ANIMDATA
+    - LoadDataEx__FP11BMODEL_DATA
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
+    - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
+    - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
+    - UpdateUVBAnimAdd__6BMODELFP7RpClumpP15BMODEL_ANIMDATAf
+    - UpdateHAnimAnimation__6BMODELFP7RpClumpfi
+    - SetupHAnimAnimation__6BMODELFP7RpClumpP15BMODEL_ANIMDATA
+    - callbackSetDMorphAnimation__FP8RpAtomicPv
+    - GetAnimFromTable__6BMODELFP15BMODEL_ANIMDATAs
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
+    - VtxFmtInit__6BMODELFv
+    - RpClumpForAllGeometrysToSetCompressedGeometry__6BMODELFP7RpClump
+    - callbackSetCompressedGeometry__FP8RpAtomicPv
+    - RpAtomicToSetCompressedGeometry__6BMODELFP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightPointer__FP7RpClumpPSc
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightPointer__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightPointer__FP8RpAtomic
+    - teamSetModeF
+    - teamSetMode9
+    - teamFlagLeaders
+    - propBasePlaceParts
+    - propBaseExec
+    - propBaseDtor
+    - propBaseCtor
+    - propBaseBlink
+    - propBaseBlinkColor
+    - propBaseTeamReady
+    - propBaseTimersDown
+    - propBaseOn
+    - propBaseOff
+    - propBaseClearHit
+    - propBaseSetHit
+    - propBaseCheckRelease
+    - propBaseCheckHit
+    - propBaseSetSounds
+    - propBaseScore
+    - propBaseWakePlayer
     - bobLinkTurnExec
     - bobLinkPointExec
     - bobLinkPointCreate
@@ -667,6 +733,26 @@ modules:
   symbols: config/G9SE8P/stage03D/symbols.txt
   splits: config/G9SE8P/stage03D/splits.txt
   force_active:
+    - captureModeChase
+    - captureModeCarryHome
+    - captureModeReturn
+    - captureDispShine
+    - captureReset
+    - captureShadow
+    - captureBubbleUpdate
+    - captureHoldPlayer
+    - captureFindHome
+    - captureFindMarker
+    - captureModeCarry
+    - captureModeHold
+    - captureModeFace
+    - captureModeWait
+    - captureDispModel
+    - captureTurnApproach
+    - captureModeShrink
+    - captureApproach
+    - captureModeRise
+    - captureBubbleMove
     - captureExec
     - captureDtor
     - captureRestart
@@ -1175,6 +1261,114 @@ modules:
   symbols: config/G9SE8P/stage05D/symbols.txt
   splits: config/G9SE8P/stage05D/splits.txt
   force_active:
+    - captureModeChase
+    - captureModeCarryHome
+    - captureModeReturn
+    - captureDispShine
+    - captureReset
+    - captureShadow
+    - captureBubbleUpdate
+    - captureHoldPlayer
+    - captureFindHome
+    - captureFindMarker
+    - captureModeCarry
+    - captureModeHold
+    - captureModeFace
+    - captureModeWait
+    - captureDispModel
+    - captureTurnApproach
+    - captureModeShrink
+    - captureApproach
+    - captureModeRise
+    - captureBubbleMove
+    - ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadFiles__6BMODELFPcPcPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbData__FP7ONEFILEPvP17BMODEL_CAMERADATA
+    - LoadAnimData__FP7ONEFILEPvP15BMODEL_ANIMDATA
+    - LoadData__FP7ONEFILEPvP11BMODEL_DATA
+    - LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbDataEx__FP17BMODEL_CAMERADATA
+    - LoadAnimDataEx__FP15BMODEL_ANIMDATA
+    - LoadDataEx__FP11BMODEL_DATA
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
+    - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
+    - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
+    - UpdateUVBAnimAdd__6BMODELFP7RpClumpP15BMODEL_ANIMDATAf
+    - UpdateHAnimAnimation__6BMODELFP7RpClumpfi
+    - SetupHAnimAnimation__6BMODELFP7RpClumpP15BMODEL_ANIMDATA
+    - callbackSetDMorphAnimation__FP8RpAtomicPv
+    - GetAnimFromTable__6BMODELFP15BMODEL_ANIMDATAs
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
+    - VtxFmtInit__6BMODELFv
+    - RpClumpForAllGeometrysToSetCompressedGeometry__6BMODELFP7RpClump
+    - callbackSetCompressedGeometry__FP8RpAtomicPv
+    - RpAtomicToSetCompressedGeometry__6BMODELFP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightPointer__FP7RpClumpPSc
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightPointer__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightPointer__FP8RpAtomic
+    - teamSetModeF
+    - teamSetMode9
+    - teamFlagLeaders
+    - propBasePlaceParts
+    - propBaseExec
+    - propBaseDtor
+    - propBaseCtor
+    - propBaseBlink
+    - propBaseBlinkColor
+    - propBaseTeamReady
+    - propBaseTimersDown
+    - propBaseOn
+    - propBaseOff
+    - propBaseClearHit
+    - propBaseSetHit
+    - propBaseCheckRelease
+    - propBaseCheckHit
+    - propBaseSetSounds
+    - propBaseScore
+    - propBaseWakePlayer
+    - bobLinkDtor
+    - bobLinkCtor
+    - bobLinkUnlinkKill
+    - bobLinkUnlink
+    - bobLinkLink
+    - bobLinkTurnDtor
+    - bobLinkAttachTurn
+    - bobLinkTurnExec
+    - bobLinkTurnCreate
+    - bobLinkDetachCurrent
+    - __ct__12BobLinkPointFP18BobLinkPointParams
+    - bobLinkPointDtor
+    - bobLinkAttachPoint
+    - bobLinkPointExec
+    - bobLinkPointCreate
+    - __ct__13BobLinkAttachFP19BobLinkAttachParams
+    - bobLinkAttachDtor
+    - bobLinkAttach
+    - bobLinkAttachExec
+    - bobLinkUnlinkKill
+    - bobLinkAttachCreate
+    - bobLinkAttach
     - captureExec
     - captureDtor
     - captureRestart
@@ -1813,6 +2007,92 @@ modules:
   symbols: config/G9SE8P/stage07D/symbols.txt
   splits: config/G9SE8P/stage07D/splits.txt
   force_active:
+    - captureModeChase
+    - captureModeCarryHome
+    - captureModeReturn
+    - captureDispShine
+    - captureReset
+    - captureShadow
+    - captureBubbleUpdate
+    - captureHoldPlayer
+    - captureFindHome
+    - captureFindMarker
+    - captureModeCarry
+    - captureModeHold
+    - captureModeFace
+    - captureModeWait
+    - captureDispModel
+    - captureTurnApproach
+    - captureModeShrink
+    - captureApproach
+    - captureModeRise
+    - captureBubbleMove
+    - ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadFiles__6BMODELFPcPcPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbData__FP7ONEFILEPvP17BMODEL_CAMERADATA
+    - LoadAnimData__FP7ONEFILEPvP15BMODEL_ANIMDATA
+    - LoadData__FP7ONEFILEPvP11BMODEL_DATA
+    - LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbDataEx__FP17BMODEL_CAMERADATA
+    - LoadAnimDataEx__FP15BMODEL_ANIMDATA
+    - LoadDataEx__FP11BMODEL_DATA
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
+    - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
+    - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
+    - UpdateUVBAnimAdd__6BMODELFP7RpClumpP15BMODEL_ANIMDATAf
+    - UpdateHAnimAnimation__6BMODELFP7RpClumpfi
+    - SetupHAnimAnimation__6BMODELFP7RpClumpP15BMODEL_ANIMDATA
+    - callbackSetDMorphAnimation__FP8RpAtomicPv
+    - GetAnimFromTable__6BMODELFP15BMODEL_ANIMDATAs
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
+    - VtxFmtInit__6BMODELFv
+    - RpClumpForAllGeometrysToSetCompressedGeometry__6BMODELFP7RpClump
+    - callbackSetCompressedGeometry__FP8RpAtomicPv
+    - RpAtomicToSetCompressedGeometry__6BMODELFP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightPointer__FP7RpClumpPSc
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightPointer__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightPointer__FP8RpAtomic
+    - teamSetModeF
+    - teamSetMode9
+    - teamFlagLeaders
+    - propBasePlaceParts
+    - propBaseExec
+    - propBaseDtor
+    - propBaseCtor
+    - propBaseBlink
+    - propBaseBlinkColor
+    - propBaseTeamReady
+    - propBaseTimersDown
+    - propBaseOn
+    - propBaseOff
+    - propBaseClearHit
+    - propBaseSetHit
+    - propBaseCheckRelease
+    - propBaseCheckHit
+    - propBaseSetSounds
+    - propBaseScore
+    - propBaseWakePlayer
     - captureExec
     - captureDtor
     - captureRestart
@@ -2432,6 +2712,26 @@ modules:
   symbols: config/G9SE8P/stage09D/symbols.txt
   splits: config/G9SE8P/stage09D/splits.txt
   force_active:
+    - captureModeChase
+    - captureModeCarryHome
+    - captureModeReturn
+    - captureDispShine
+    - captureReset
+    - captureShadow
+    - captureBubbleUpdate
+    - captureHoldPlayer
+    - captureFindHome
+    - captureFindMarker
+    - captureModeCarry
+    - captureModeHold
+    - captureModeFace
+    - captureModeWait
+    - captureDispModel
+    - captureTurnApproach
+    - captureModeShrink
+    - captureApproach
+    - captureModeRise
+    - captureBubbleMove
     - captureExec
     - captureDtor
     - captureRestart
@@ -3011,6 +3311,94 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadFiles__6BMODELFPcPcPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbData__FP7ONEFILEPvP17BMODEL_CAMERADATA
+    - LoadAnimData__FP7ONEFILEPvP15BMODEL_ANIMDATA
+    - LoadData__FP7ONEFILEPvP11BMODEL_DATA
+    - LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
+    - LoadTmbDataEx__FP17BMODEL_CAMERADATA
+    - LoadAnimDataEx__FP15BMODEL_ANIMDATA
+    - LoadDataEx__FP11BMODEL_DATA
+    - ClumpSetAnim__6BMODELFP15BMODEL_ANIMDATAP7RpClump
+    - ClumpSetAnim__6BMODELFP11BMODEL_DATAsP7RpClump
+    - DestroyClump__6BMODELFPP7RpClump
+    - CloneClump__6BMODELFP11BMODEL_DATAsPP7RpClumpP7RwFrame
+    - EntryNodeFrames__6BMODELFP16RpHAnimHierarchyPP7RwFramePii
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP8RpAtomicPSc
+    - ChangeRenderCallbackToSetLightNum__6BMODELFP7RpClumpPSc
+    - ClrAnimationUpdateFlag__6BMODELFP15BMODEL_ANIMDATA
+    - UpdateUVBAnimAdd__6BMODELFP7RpClumpP15BMODEL_ANIMDATAf
+    - UpdateHAnimAnimation__6BMODELFP7RpClumpfi
+    - SetupHAnimAnimation__6BMODELFP7RpClumpP15BMODEL_ANIMDATA
+    - callbackSetDMorphAnimation__FP8RpAtomicPv
+    - GetAnimFromTable__6BMODELFP15BMODEL_ANIMDATAs
+    - SearchAtomicFromFrame__6BMODELFP7RpClumpP7RwFrame
+    - SearchAtomicFromNodeID__6BMODELFP7RpClumpi
+    - bmodelSearchAtomicFromFrameCallBack__FP8RpAtomicPv
+    - SearchFrameFromNodeID__6BMODELFP16RpHAnimHierarchyi
+    - DetachHierarchy__6BMODELFP7RpClump
+    - AttachHierarchy__6BMODELFP7RpClump
+    - SearchClump__6BMODELFP11BMODEL_DATAs
+    - GetLightNumber__6BMODELFP11BMODEL_DATAs
+    - DestroyDealMaterial__6BMODELFP7RpClump
+    - callbackDestroyDealMaterial__FP8RpAtomicPv
+    - SetupDealMaterialAndCallback__6BMODELFP8RpAtomicPiScScP6RwRGBA
+    - SetupDealMaterialAndCallback__6BMODELFP7RpClumpPiScScP6RwRGBA
+    - callbackCreateDealMaterialAndSetCallback__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseDealMaterial__FP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightAndShadow__FP7RpClumpUi
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightAndShadow__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightAndShadow__FP8RpAtomic
+    - VtxFmtInit__6BMODELFv
+    - RpClumpForAllGeometrysToSetCompressedGeometry__6BMODELFP7RpClump
+    - callbackSetCompressedGeometry__FP8RpAtomicPv
+    - RpAtomicToSetCompressedGeometry__6BMODELFP8RpAtomic
+    - objRpClumpForAllAtomicsToSetRenderCallbackToUseLightPointer__FP7RpClumpPSc
+    - objCallbackRpAtomicToSetRenderCallbackToUseLightPointer__FP8RpAtomicPv
+    - objCallbackRpAtomicRenderToUseLightPointer__FP8RpAtomic
+    - teamSetModeF
+    - teamSetMode9
+    - teamFlagLeaders
+    - propBasePlaceParts
+    - propBaseExec
+    - propBaseDtor
+    - propBaseCtor
+    - propBaseBlink
+    - propBaseBlinkColor
+    - propBaseTeamReady
+    - propBaseTimersDown
+    - propBaseOn
+    - propBaseOff
+    - propBaseClearHit
+    - propBaseSetHit
+    - propBaseCheckRelease
+    - propBaseCheckHit
+    - propBaseSetSounds
+    - propBaseScore
+    - propBaseWakePlayer
+    - bobLinkDtor
+    - bobLinkCtor
+    - bobLinkUnlinkKill
+    - bobLinkUnlink
+    - bobLinkLink
+    - bobLinkTurnDtor
+    - bobLinkAttachTurn
+    - bobLinkTurnExec
+    - bobLinkTurnCreate
+    - bobLinkDetachCurrent
+    - __ct__12BobLinkPointFP18BobLinkPointParams
+    - bobLinkPointDtor
+    - bobLinkAttachPoint
+    - bobLinkPointExec
+    - bobLinkPointCreate
+    - __ct__13BobLinkAttachFP19BobLinkAttachParams
+    - bobLinkAttachDtor
+    - bobLinkAttach
+    - bobLinkAttachExec
+    - bobLinkUnlinkKill
+    - bobLinkAttachCreate
+    - bobLinkAttach
     - bossVoicePlayAuto
     - bossVoicePlay
     - bossVoiceInterrupt
@@ -3701,6 +4089,46 @@ modules:
   symbols: config/G9SE8P/stage13D/symbols.txt
   splits: config/G9SE8P/stage13D/splits.txt
   force_active:
+    - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
+    - UnlinkChain__16TObjS13CloudPtclFv
+    - LinkChain__16TObjS13CloudPtclFv
+    - captureModeChase
+    - captureModeCarryHome
+    - captureModeReturn
+    - captureDispShine
+    - captureReset
+    - captureShadow
+    - captureBubbleUpdate
+    - captureHoldPlayer
+    - captureFindHome
+    - captureFindMarker
+    - captureModeCarry
+    - captureModeHold
+    - captureModeFace
+    - captureModeWait
+    - captureDispModel
+    - captureTurnApproach
+    - captureModeShrink
+    - captureApproach
+    - captureModeRise
+    - captureBubbleMove
+    - propBasePlaceParts
+    - propBaseExec
+    - propBaseDtor
+    - propBaseCtor
+    - propBaseBlink
+    - propBaseBlinkColor
+    - propBaseTeamReady
+    - propBaseTimersDown
+    - propBaseOn
+    - propBaseOff
+    - propBaseClearHit
+    - propBaseSetHit
+    - propBaseCheckRelease
+    - propBaseCheckHit
+    - propBaseSetSounds
+    - propBaseScore
+    - propBaseWakePlayer
     - captureExec
     - captureDtor
     - captureRestart
@@ -4232,6 +4660,53 @@ modules:
   symbols: config/G9SE8P/stage26D/symbols.txt
   splits: config/G9SE8P/stage26D/splits.txt
   force_active:
+    - SetPosition__17TObjEnemyStg27SkyFv
+    - DestroyClump__17TObjEnemyStg27SkyFv
+    - CloneClump__17TObjEnemyStg27SkyFv
+    - ResetVariable__17TObjEnemyStg27SkyFv
+    - stg27ObjUnload
+    - stg27ObjLoad
+    - Finalize__19TObjEnemyStg27CloudFv
+    - Initialize__19TObjEnemyStg27CloudFv
+    - __ct__19TObjEnemyStg27CloudFP7TObjectRC19sObjEnemyStg27Cloud
+    - SetPosition__19TObjEnemyStg27CloudFv
+    - DestroyClump__19TObjEnemyStg27CloudFv
+    - CloneClump__19TObjEnemyStg27CloudFv
+    - ResetVariable__19TObjEnemyStg27CloudFv
+    - captureModeChase
+    - captureModeCarryHome
+    - captureModeReturn
+    - captureDispShine
+    - captureReset
+    - captureShadow
+    - captureBubbleUpdate
+    - captureHoldPlayer
+    - captureFindHome
+    - captureFindMarker
+    - captureModeCarry
+    - captureModeHold
+    - captureModeFace
+    - captureModeWait
+    - captureDispModel
+    - captureTurnApproach
+    - captureModeShrink
+    - captureApproach
+    - captureModeRise
+    - captureBubbleMove
+    - propBasePlaceParts
+    - propBaseBlink
+    - propBaseBlinkColor
+    - propBaseTeamReady
+    - propBaseTimersDown
+    - propBaseOn
+    - propBaseOff
+    - propBaseClearHit
+    - propBaseSetHit
+    - propBaseCheckRelease
+    - propBaseCheckHit
+    - propBaseSetSounds
+    - propBaseScore
+    - propBaseWakePlayer
     - captureExec
     - captureDtor
     - captureRestart
@@ -4755,6 +5230,22 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
+    - UnlinkChain__16TObjS13CloudPtclFv
+    - LinkChain__16TObjS13CloudPtclFv
+    - SetPosition__17TObjEnemyStg27SkyFv
+    - DestroyClump__17TObjEnemyStg27SkyFv
+    - CloneClump__17TObjEnemyStg27SkyFv
+    - ResetVariable__17TObjEnemyStg27SkyFv
+    - stg27ObjUnload
+    - stg27ObjLoad
+    - Finalize__19TObjEnemyStg27CloudFv
+    - Initialize__19TObjEnemyStg27CloudFv
+    - __ct__19TObjEnemyStg27CloudFP7TObjectRC19sObjEnemyStg27Cloud
+    - SetPosition__19TObjEnemyStg27CloudFv
+    - DestroyClump__19TObjEnemyStg27CloudFv
+    - CloneClump__19TObjEnemyStg27CloudFv
+    - ResetVariable__19TObjEnemyStg27CloudFv
     - bossVoicePlayAuto
     - bossVoicePlay
     - bossVoiceInterrupt
@@ -5132,6 +5623,21 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
+    - UnlinkChain__16TObjS13CloudPtclFv
+    - LinkChain__16TObjS13CloudPtclFv
+    - SetPosition__12TObjEnemySkyFv
+    - DestroyClump__12TObjEnemySkyFv
+    - CloneClump__12TObjEnemySkyFv
+    - ResetVariable__12TObjEnemySkyFv
+    - stg28ObjUnload
+    - stg28ObjLoad
+    - Finalize__14TObjEnemyCloudFv
+    - Initialize__14TObjEnemyCloudFv
+    - SetPosition__14TObjEnemyCloudFv
+    - DestroyClump__14TObjEnemyCloudFv
+    - CloneClump__14TObjEnemyCloudFv
+    - ResetVariable__14TObjEnemyCloudFv
     - bossVoicePlayAuto
     - bossVoicePlay
     - bossVoiceInterrupt
@@ -5510,6 +6016,41 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - __ct__14TEnemyScoreManFP7TObject
+    - ResetVariable__14TEnemyScoreManFv
+    - AddTechnicPointForParalyzeEnemy__14TEnemyScoreManFii
+    - AddTechnicPointForTornadoEnemy__14TEnemyScoreManFii
+    - AddTechnicPointForDestroyEnemy__14TEnemyScoreManFii
+    - DeleteInstance__14TEnemyScoreManFv
+    - CreateInstance__14TEnemyScoreManFv
+    - Exec__14TEnemyScoreManFv
+    - scoreManCountDestroy
+    - scoreManCountExtra
+    - SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv
+    - SaveDestroyEnemyTotal__14TEnemyScoreManFv
+    - ParalyzeEnemy__14TEnemyScoreManFi
+    - TornadoEnemy__14TEnemyScoreManFi
+    - DestroyEnemy__14TEnemyScoreManFi
+    - AddScore__14TEnemyScoreManFii
+    - Exec__15TEnemyPowerCoreFv
+    - Exec__18TEnemyPowerCoreManFv
+    - EntryEx__18TEnemyPowerCoreManFPC5RwV3di
+    - Initialize__15TEnemyPowerCoreFv
+    - Create__15TEnemyPowerCoreFPC15sEnemyPowerCore
+    - __ct__15TEnemyPowerCoreFP7TObjectPC15sEnemyPowerCore
+    - Disp__15TEnemyPowerCoreFv
+    - TDisp__15TEnemyPowerCoreFv
+    - __ct__15sEnemyPowerCoreFv
+    - Finalize__15TEnemyPowerCoreFv
+    - DestroyClump__15TEnemyPowerCoreFv
+    - CloneClump__15TEnemyPowerCoreFv
+    - __dt__15TEnemyPowerCoreFv
+    - CheckHitCollision__15TEnemyPowerCoreFv
+    - CreateInstance__18TEnemyPowerCoreManFv
+    - Entry__18TEnemyPowerCoreManFPC5RwV3di
+    - __ct__18TEnemyPowerCoreManFP7TObject
+    - DeleteInstance__18TEnemyPowerCoreManFv
+    - GetInstance__18TEnemyPowerCoreManFv
     - eventCheckHierarchy
     - LoadTextureEfSparkle__Fv
     - ReleaseTextureEfSparkle__Fv
@@ -5908,6 +6449,41 @@ modules:
   symbols: config/G9SE8P/stage32D/symbols.txt
   splits: config/G9SE8P/stage32D/splits.txt
   force_active:
+    - __ct__14TEnemyScoreManFP7TObject
+    - ResetVariable__14TEnemyScoreManFv
+    - AddTechnicPointForParalyzeEnemy__14TEnemyScoreManFii
+    - AddTechnicPointForTornadoEnemy__14TEnemyScoreManFii
+    - AddTechnicPointForDestroyEnemy__14TEnemyScoreManFii
+    - DeleteInstance__14TEnemyScoreManFv
+    - CreateInstance__14TEnemyScoreManFv
+    - Exec__14TEnemyScoreManFv
+    - scoreManCountDestroy
+    - scoreManCountExtra
+    - SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv
+    - SaveDestroyEnemyTotal__14TEnemyScoreManFv
+    - ParalyzeEnemy__14TEnemyScoreManFi
+    - TornadoEnemy__14TEnemyScoreManFi
+    - DestroyEnemy__14TEnemyScoreManFi
+    - AddScore__14TEnemyScoreManFii
+    - Exec__15TEnemyPowerCoreFv
+    - Exec__18TEnemyPowerCoreManFv
+    - EntryEx__18TEnemyPowerCoreManFPC5RwV3di
+    - Initialize__15TEnemyPowerCoreFv
+    - Create__15TEnemyPowerCoreFPC15sEnemyPowerCore
+    - __ct__15TEnemyPowerCoreFP7TObjectPC15sEnemyPowerCore
+    - Disp__15TEnemyPowerCoreFv
+    - TDisp__15TEnemyPowerCoreFv
+    - __ct__15sEnemyPowerCoreFv
+    - Finalize__15TEnemyPowerCoreFv
+    - DestroyClump__15TEnemyPowerCoreFv
+    - CloneClump__15TEnemyPowerCoreFv
+    - __dt__15TEnemyPowerCoreFv
+    - CheckHitCollision__15TEnemyPowerCoreFv
+    - CreateInstance__18TEnemyPowerCoreManFv
+    - Entry__18TEnemyPowerCoreManFPC5RwV3di
+    - __ct__18TEnemyPowerCoreManFP7TObject
+    - DeleteInstance__18TEnemyPowerCoreManFv
+    - GetInstance__18TEnemyPowerCoreManFv
     - eventCheckHierarchy
     - LoadTextureEfSparkle__Fv
     - ReleaseTextureEfSparkle__Fv
@@ -6306,6 +6882,41 @@ modules:
   symbols: config/G9SE8P/stage33D/symbols.txt
   splits: config/G9SE8P/stage33D/splits.txt
   force_active:
+    - __ct__14TEnemyScoreManFP7TObject
+    - ResetVariable__14TEnemyScoreManFv
+    - AddTechnicPointForParalyzeEnemy__14TEnemyScoreManFii
+    - AddTechnicPointForTornadoEnemy__14TEnemyScoreManFii
+    - AddTechnicPointForDestroyEnemy__14TEnemyScoreManFii
+    - DeleteInstance__14TEnemyScoreManFv
+    - CreateInstance__14TEnemyScoreManFv
+    - Exec__14TEnemyScoreManFv
+    - scoreManCountDestroy
+    - scoreManCountExtra
+    - SaveDestroyEnemyTotalGoal__14TEnemyScoreManFv
+    - SaveDestroyEnemyTotal__14TEnemyScoreManFv
+    - ParalyzeEnemy__14TEnemyScoreManFi
+    - TornadoEnemy__14TEnemyScoreManFi
+    - DestroyEnemy__14TEnemyScoreManFi
+    - AddScore__14TEnemyScoreManFii
+    - Exec__15TEnemyPowerCoreFv
+    - Exec__18TEnemyPowerCoreManFv
+    - EntryEx__18TEnemyPowerCoreManFPC5RwV3di
+    - Initialize__15TEnemyPowerCoreFv
+    - Create__15TEnemyPowerCoreFPC15sEnemyPowerCore
+    - __ct__15TEnemyPowerCoreFP7TObjectPC15sEnemyPowerCore
+    - Disp__15TEnemyPowerCoreFv
+    - TDisp__15TEnemyPowerCoreFv
+    - __ct__15sEnemyPowerCoreFv
+    - Finalize__15TEnemyPowerCoreFv
+    - DestroyClump__15TEnemyPowerCoreFv
+    - CloneClump__15TEnemyPowerCoreFv
+    - __dt__15TEnemyPowerCoreFv
+    - CheckHitCollision__15TEnemyPowerCoreFv
+    - CreateInstance__18TEnemyPowerCoreManFv
+    - Entry__18TEnemyPowerCoreManFPC5RwV3di
+    - __ct__18TEnemyPowerCoreManFP7TObject
+    - DeleteInstance__18TEnemyPowerCoreManFv
+    - GetInstance__18TEnemyPowerCoreManFv
     - eventCheckHierarchy
     - LoadTextureEfSparkle__Fv
     - ReleaseTextureEfSparkle__Fv

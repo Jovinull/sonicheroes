@@ -1900,6 +1900,12 @@ rel/s31_bob_dummy_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x00078D28 end:0x00078D2C
 
+rel/s13_cloud_ptcl_chain.cpp:
+	.text       start:0x00078E04 end:0x00078E9C
+
+rel/s13_cloud_ptcl_move.cpp:
+	.text       start:0x00078E9C end:0x00078F98
+
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x00079904 end:0x0007999C
 
@@ -1941,6 +1947,9 @@ rel/enemy_sky_disp.cpp:
 rel/enemy_sky_exec.cpp:
 	.text       start:0x0007B0B0 end:0x0007B15C
 
+rel/enemy_sky_helpers.cpp:
+	.text       start:0x0007B15C end:0x0007B248
+
 rel/enemy_sky_dtor.cpp:
 	.text       start:0x0007B248 end:0x0007B2D8
 
@@ -1956,6 +1965,9 @@ rel/enemy_cloud_disp.cpp:
 rel/enemy_cloud_exec.cpp:
 	.text       start:0x0007B594 end:0x0007B664
 
+rel/enemy_cloud_helpers.cpp:
+	.text       start:0x0007B664 end:0x0007B7D4
+
 rel/enemy_cloud_dtor.cpp:
 	.text       start:0x0007B7D4 end:0x0007B87C
 
@@ -1965,8 +1977,14 @@ rel/enemy_cloud_ctor.cpp:
 rel/enemy_cloud_create.cpp:
 	.text       start:0x0007B994 end:0x0007BAD4
 
+rel/enemy_cloud_load.cpp:
+	.text       start:0x0007BAD4 end:0x0007BD58
+
 rel/stg28_obj_create.cpp:
 	.text       start:0x0007BD58 end:0x0007BD5C
+
+rel/stg28_obj_load.cpp:
+	.text       start:0x0007BD5C end:0x0007BFE0
 
 rel/stg28_obj_register.cpp:
 	.text       start:0x0007BFE0 end:0x0007C088

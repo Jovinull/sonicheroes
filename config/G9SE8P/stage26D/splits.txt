@@ -1857,6 +1857,15 @@ rel/key_register.cpp:
 	.text       start:0x00071094 end:0x0007112C
 	.ctors      start:0x000000D8 end:0x000000DC
 
+rel/prop_base_hooks.cpp:
+	.text       start:0x0007112C end:0x000713AC
+
+rel/prop_base_blink.cpp:
+	.text       start:0x000713AC end:0x00071698
+
+rel/prop_base_place_parts.cpp:
+	.text       start:0x00071C64 end:0x00071E28
+
 rel/king_pawn_part_dtor.cpp:
 	.text       start:0x00071E2C end:0x00071EB0
 
@@ -2226,11 +2235,17 @@ rel/capture_drop_item.cpp:
 rel/capture_add_score.cpp:
 	.text       start:0x00089764 end:0x000897FC
 
+rel/capture_marker.cpp:
+	.text       start:0x000897FC end:0x00089934
+
 rel/capture_is_hurt.cpp:
 	.text       start:0x00089934 end:0x00089950
 
 rel/capture_update_icons.cpp:
 	.text       start:0x00089950 end:0x00089A18
+
+rel/capture_bubble_update.cpp:
+	.text       start:0x00089A18 end:0x00089C78
 
 rel/capture_search_catch.cpp:
 	.text       start:0x00089C78 end:0x00089DE8
@@ -2238,14 +2253,32 @@ rel/capture_search_catch.cpp:
 rel/capture_free_player.cpp:
 	.text       start:0x00089DE8 end:0x00089E94
 
+rel/capture_hold_player.cpp:
+	.text       start:0x00089E94 end:0x00089F1C
+
 rel/capture_catch_player.cpp:
 	.text       start:0x00089F1C end:0x00089FD8
+
+rel/capture_turn_approach.cpp:
+	.text       start:0x0008A104 end:0x0008A274
 
 rel/capture_rise.cpp:
 	.text       start:0x0008A274 end:0x0008A2CC
 
+rel/capture_approach.cpp:
+	.text       start:0x0008A2CC end:0x0008A400
+
 rel/capture_turn.cpp:
 	.text       start:0x0008A400 end:0x0008A47C
+
+rel/capture_shadow.cpp:
+	.text       start:0x0008A47C end:0x0008A594
+
+rel/capture_disp_shine.cpp:
+	.text       start:0x0008A594 end:0x0008A724
+
+rel/capture_disp_model.cpp:
+	.text       start:0x0008A724 end:0x0008A7B4
 
 rel/capture_restart.cpp:
 	.text       start:0x0008A7B4 end:0x0008A7E8
@@ -2253,11 +2286,38 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x0008A7E8 end:0x0008ACD0
 
+rel/capture_mode_return.cpp:
+	.text       start:0x0008ACD0 end:0x0008AEDC
+
+rel/capture_mode_wait.cpp:
+	.text       start:0x0008AEDC end:0x0008AF30
+
+rel/capture_mode_shrink.cpp:
+	.text       start:0x0008AF30 end:0x0008B088
+
+rel/capture_mode_carry_home.cpp:
+	.text       start:0x0008B088 end:0x0008B234
+
+rel/capture_mode_carry.cpp:
+	.text       start:0x0008B234 end:0x0008B304
+
+rel/capture_mode_rise.cpp:
+	.text       start:0x0008B304 end:0x0008B3C4
+
 rel/capture_event.cpp:
 	.text       start:0x0008B658 end:0x0008B6E8
 
+rel/capture_mode_hold.cpp:
+	.text       start:0x0008B6E8 end:0x0008B7C4
+
 rel/capture_mode_release.cpp:
 	.text       start:0x0008B7C4 end:0x0008B908
+
+rel/capture_mode_face.cpp:
+	.text       start:0x0008B908 end:0x0008B9E4
+
+rel/capture_mode_chase.cpp:
+	.text       start:0x0008B9E4 end:0x0008BBE0
 
 rel/capture_mode_idle.cpp:
 	.text       start:0x0008BF8C end:0x0008C038
@@ -2270,6 +2330,9 @@ rel/capture_release_parts.cpp:
 
 rel/capture_make_parts.cpp:
 	.text       start:0x0008D3F4 end:0x0008D524
+
+rel/capture_reset.cpp:
+	.text       start:0x0008D7E8 end:0x0008D98C
 
 rel/capture_dtor.cpp:
 	.text       start:0x0008D98C end:0x0008DB64
@@ -2291,6 +2354,9 @@ rel/capture_object_create.cpp:
 
 rel/capture_bubble_done.cpp:
 	.text       start:0x0008E688 end:0x0008E6A8
+
+rel/capture_bubble_move.cpp:
+	.text       start:0x0008E6A8 end:0x0008E70C
 
 rel/capture_bubble_init.cpp:
 	.text       start:0x0008E70C end:0x0008E758
@@ -2847,6 +2913,9 @@ rel/enemy_stg27_sky_disp.cpp:
 rel/enemy_stg27_sky_exec.cpp:
 	.text       start:0x000B4CDC end:0x000B4D88
 
+rel/enemy_stg27_sky_helpers.cpp:
+	.text       start:0x000B4D88 end:0x000B4E7C
+
 rel/enemy_stg27_sky_dtor.cpp:
 	.text       start:0x000B4E7C end:0x000B4F0C
 
@@ -2862,14 +2931,26 @@ rel/enemy_stg27_cloud_disp.cpp:
 rel/enemy_stg27_cloud_exec.cpp:
 	.text       start:0x000B51D8 end:0x000B52A8
 
+rel/enemy_stg27_cloud_helpers.cpp:
+	.text       start:0x000B52A8 end:0x000B541C
+
 rel/enemy_stg27_cloud_dtor.cpp:
 	.text       start:0x000B541C end:0x000B54C4
+
+rel/enemy_stg27_cloud_ctor.cpp:
+	.text       start:0x000B54C4 end:0x000B55FC
 
 rel/enemy_stg27_cloud_create.cpp:
 	.text       start:0x000B55FC end:0x000B575C
 
+rel/enemy_stg27_cloud_load.cpp:
+	.text       start:0x000B575C end:0x000B59E0
+
 rel/stg27_obj_create.cpp:
 	.text       start:0x000B59E0 end:0x000B59E4
+
+rel/stg27_obj_load.cpp:
+	.text       start:0x000B59E4 end:0x000B5C68
 
 rel/stg27_obj_register.cpp:
 	.text       start:0x000B5C68 end:0x000B5D10

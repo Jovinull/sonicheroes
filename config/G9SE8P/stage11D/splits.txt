@@ -2866,6 +2866,36 @@ rel/unbreakable_bob_container_register.cpp:
 	.text       start:0x000D5A28 end:0x000D5AD0
 	.ctors      start:0x0000016C end:0x00000170
 
+rel/bmodel_light_pointer.cpp:
+	.text       start:0x000D5AD0 end:0x000D5BEC
+
+rel/bmodel_compressed_geometry.cpp:
+	.text       start:0x000D5BEC end:0x000D5D1C
+
+rel/bmodel_light_shadow.cpp:
+	.text       start:0x000D5D1C end:0x000D5E3C
+
+rel/bmodel_deal_material.cpp:
+	.text       start:0x000D5E3C end:0x000D643C
+
+rel/bmodel_entry_node_frames.cpp:
+	.text       start:0x000D643C end:0x000D64C8
+
+rel/bmodel_load_ex.cpp:
+	.text       start:0x000D64C8 end:0x000D6C88
+
+rel/bmodel_search.cpp:
+	.text       start:0x000D6C88 end:0x000D6F04
+
+rel/bmodel_anim.cpp:
+	.text       start:0x000D6F04 end:0x000D71C8
+
+rel/bmodel_clump.cpp:
+	.text       start:0x000D71C8 end:0x000D75B4
+
+rel/bmodel_load.cpp:
+	.text       start:0x000D75B4 end:0x000D7FD0
+
 rel/boss_voice_dtor.cpp:
 	.text       start:0x000D87EC end:0x000D8860
 
@@ -2880,6 +2910,72 @@ rel/boss_voice_play.cpp:
 
 rel/boss_voice_play_auto.cpp:
 	.text       start:0x000D8E90 end:0x000D916C
+
+rel/prop_base_hooks.cpp:
+	.text       start:0x000D916C end:0x000D93EC
+
+rel/prop_base_blink.cpp:
+	.text       start:0x000D93EC end:0x000D96D8
+
+rel/prop_base_place_parts.cpp:
+	.text       start:0x000D9CA4 end:0x000D9E68
+
+rel/prop_base_class.cpp:
+	.text       start:0x000D9E68 end:0x000D9FD8
+
+rel/bob_link_attach_create.cpp:
+	.text       start:0x000D9FE0 end:0x000DA244
+
+rel/bob_link_attach_exec.cpp:
+	.text       start:0x000DA244 end:0x000DA404
+
+rel/bob_link_attach.cpp:
+	.text       start:0x000DA404 end:0x000DA4C8
+
+rel/bob_link_attach_dtor.cpp:
+	.text       start:0x000DA4C8 end:0x000DA5C4
+
+rel/bob_link_attach_ctor.cpp:
+	.text       start:0x000DA5C4 end:0x000DA810
+
+rel/bob_link_point_create.cpp:
+	.text       start:0x000DA810 end:0x000DAA70
+
+rel/bob_link_point_exec.cpp:
+	.text       start:0x000DAA70 end:0x000DAC54
+
+rel/bob_link_attach_point.cpp:
+	.text       start:0x000DAC54 end:0x000DAD28
+
+rel/bob_link_point_dtor.cpp:
+	.text       start:0x000DAD28 end:0x000DAE24
+
+rel/bob_link_point_ctor.cpp:
+	.text       start:0x000DAE24 end:0x000DB06C
+
+rel/bob_link_detach_current.cpp:
+	.text       start:0x000DB06C end:0x000DB128
+
+rel/bob_link_turn_create.cpp:
+	.text       start:0x000DB128 end:0x000DB174
+
+rel/bob_link_turn_exec.cpp:
+	.text       start:0x000DB174 end:0x000DB398
+
+rel/bob_link_attach_turn.cpp:
+	.text       start:0x000DB398 end:0x000DB468
+
+rel/bob_link_turn_dtor.cpp:
+	.text       start:0x000DB468 end:0x000DB564
+
+rel/bob_link_slot.cpp:
+	.text       start:0x000DB8AC end:0x000DBA4C
+
+rel/bob_link_base.cpp:
+	.text       start:0x000DBA4C end:0x000DBC54
+
+rel/team_modes.cpp:
+	.text       start:0x000DBC54 end:0x000DBDC4
 
 rel/bgmcolli_edit.cpp:
 	.text       start:0x000DCCAC end:0x000DCD2C

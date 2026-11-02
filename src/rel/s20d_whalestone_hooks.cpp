@@ -7,18 +7,23 @@
 extern "C" u8 s20dWhalestoneModelList[];
 extern "C" void* s20dWhalestoneModels[2];
 
-extern "C" void fn_3_B92FC(void* list, void* a, void* b);
-extern "C" void* fn_3_B9D10(void* list, s16 index);
-extern "C" void fn_3_BA3E8(s32 a, void* list, void* b, void* c);
+extern "C" void LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+    void* list, void* a, void* b);
+extern "C" void* SearchClump__6BMODELFP11BMODEL_DATAs(void* list, s16 index);
+extern "C" void
+ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+    s32 a, void* list, void* b, void* c);
 
 extern "C" void s20dWhalestoneUnload(void)
 {
-	fn_3_BA3E8(0, s20dWhalestoneModelList, NULL, NULL);
+	ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+	    0, s20dWhalestoneModelList, NULL, NULL);
 }
 
 extern "C" void s20dWhalestoneLoad(void)
 {
-	fn_3_B92FC(s20dWhalestoneModelList, NULL, NULL);
-	s20dWhalestoneModels[0] = fn_3_B9D10(s20dWhalestoneModelList, 6);
-	s20dWhalestoneModels[1] = fn_3_B9D10(s20dWhalestoneModelList, 7);
+	LoadFilesEx__6BMODELFP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA(
+	    s20dWhalestoneModelList, NULL, NULL);
+	s20dWhalestoneModels[0] = SearchClump__6BMODELFP11BMODEL_DATAs(s20dWhalestoneModelList, 6);
+	s20dWhalestoneModels[1] = SearchClump__6BMODELFP11BMODEL_DATAs(s20dWhalestoneModelList, 7);
 }
