@@ -122,3 +122,33 @@ POWER_CORE_CTOR TEnemyPowerCore::TEnemyPowerCore(TObject* parent, const sEnemyPo
 		params.ground += powerCoreRadius;
 	}
 }
+
+typedef struct GameState {
+	u8 unk00[0x18];
+	s32 mode; // 0x18
+} GameState;
+
+extern "C" GameState lbl_8029C310;
+
+// Whether the game is in modes 1 to 3, where the power cores stand still.
+static inline u8 powerCoreGameRange(s32 mode)
+{
+	u8 in = 1;
+
+	if (!((u32)(mode - 1) <= 1)) {
+		in = 0;
+	}
+	return in;
+}
+
+static inline s32 powerCoreGameStopped(void)
+{
+	u8 stop;
+	s32 mode = lbl_8029C310.mode;
+
+	stop = 1;
+	if (!powerCoreGameRange(mode) && mode != 3) {
+		stop = 0;
+	}
+	return stop;
+}

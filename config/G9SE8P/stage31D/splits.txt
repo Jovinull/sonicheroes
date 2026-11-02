@@ -1903,6 +1903,9 @@ rel/power_core_man_entry_ex.cpp:
 rel/power_core_man_entry.cpp:
 	.text       start:0x0006A30C end:0x0006A340
 
+rel/power_core_man_exec.cpp:
+	.text       start:0x0006A340 end:0x0006A598
+
 rel/searcher_sound_limit_dtor.cpp:
 	.text       start:0x0006A598 end:0x0006A61C
 
