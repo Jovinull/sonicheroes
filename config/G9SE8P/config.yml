@@ -5969,6 +5969,9 @@ modules:
   symbols: config/G9SE8P/stage31D/symbols.txt
   splits: config/G9SE8P/stage31D/splits.txt
   force_active:
+    - searcherSoundLimitCtor
+    - searcherSoundLimitKill
+    - searcherSoundLimitCreate
     - eventCheckHierarchy
     - LoadTextureEfSparkle__Fv
     - ReleaseTextureEfSparkle__Fv
