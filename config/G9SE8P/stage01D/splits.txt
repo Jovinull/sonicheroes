@@ -2480,6 +2480,9 @@ rel/bmodel_deal_material.cpp:
 rel/bmodel_search.cpp:
 	.text       start:0x000B9ABC end:0x000B9D38
 
+rel/bmodel_anim.cpp:
+	.text       start:0x000B9D38 end:0x000B9FFC
+
 rel/s20d_curb_stone_dtor.cpp:
 	.text       start:0x000BB060 end:0x000BB120
 
