@@ -2917,6 +2917,9 @@ rel/capture_spin_parts.cpp:
 rel/capture_release_parts.cpp:
 	.text       start:0x000B7F5C end:0x000B8014
 
+rel/capture_make_parts.cpp:
+	.text       start:0x000B8014 end:0x000B8144
+
 rel/capture_object_new.cpp:
 	.text       start:0x000B8B8C end:0x000B8BE0
 

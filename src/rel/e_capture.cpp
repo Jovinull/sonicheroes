@@ -548,7 +548,7 @@ static M2C_UNK* lbl_8_data_15854[42]   = {
 static char lbl_8_data_159BC[]         = "en_capture.one";
 static char captureObjectDisplayName[] = "CAPTURE OBJECT";
 static char captureObjectFieldTypes[]  = "ccccfffif";
-static u32 lbl_8_bss_1780[6];
+static u32 captureModels[6];
 static u32 captureObjectGlobalArrayChain[3];
 static u32 captureObjectGlobalArray[40];
 typedef struct ObjectEntry {
@@ -2733,7 +2733,7 @@ void captureReleaseParts(void* arg0)
 	}
 }
 
-void fn_8_9BF24(void* arg0)
+void captureMakeParts(void* arg0)
 {
 	if ((void*)M2C_FIELD(arg0, void**, 0x2E8) != NULL) {
 		fn_80150958((void*)M2C_FIELD(arg0, void**, 0x2E8));
@@ -2759,12 +2759,12 @@ void fn_8_9BF24(void* arg0)
 		fn_80150958((void*)M2C_FIELD(arg0, void**, 0xE8));
 		M2C_FIELD(arg0, void**, 0xE8) = NULL;
 	}
-	M2C_FIELD(arg0, void**, 0xE8)  = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0));
-	M2C_FIELD(arg0, void**, 0x2D8) = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 4));
-	M2C_FIELD(arg0, void**, 0x2DC) = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 8));
-	M2C_FIELD(arg0, void**, 0x2E0) = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0xC));
-	M2C_FIELD(arg0, void**, 0x2E4) = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0x10));
-	M2C_FIELD(arg0, void**, 0x2E8) = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0x14));
+	M2C_FIELD(arg0, void**, 0xE8)  = fn_80150588(M2C_FIELD(&captureModels, s32*, 0));
+	M2C_FIELD(arg0, void**, 0x2D8) = fn_80150588(M2C_FIELD(&captureModels, s32*, 4));
+	M2C_FIELD(arg0, void**, 0x2DC) = fn_80150588(M2C_FIELD(&captureModels, s32*, 8));
+	M2C_FIELD(arg0, void**, 0x2E0) = fn_80150588(M2C_FIELD(&captureModels, s32*, 0xC));
+	M2C_FIELD(arg0, void**, 0x2E4) = fn_80150588(M2C_FIELD(&captureModels, s32*, 0x10));
+	M2C_FIELD(arg0, void**, 0x2E8) = fn_80150588(M2C_FIELD(&captureModels, s32*, 0x14));
 }
 
 void fn_8_9C054(TObject* arg0)
@@ -3064,12 +3064,12 @@ TObject* captureObjectCtor(TObject* arg0, TObject* arg1)
 		fn_80150958((void*)arg0->unkE8);
 		arg0->unkE8 = NULL;
 	}
-	arg0->unkE8  = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0));
-	arg0->unk2D8 = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 4));
-	arg0->unk2DC = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 8));
-	arg0->unk2E0 = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0xC));
-	arg0->unk2E4 = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0x10));
-	arg0->unk2E8 = fn_80150588(M2C_FIELD(&lbl_8_bss_1780, s32*, 0x14));
+	arg0->unkE8  = fn_80150588(M2C_FIELD(&captureModels, s32*, 0));
+	arg0->unk2D8 = fn_80150588(M2C_FIELD(&captureModels, s32*, 4));
+	arg0->unk2DC = fn_80150588(M2C_FIELD(&captureModels, s32*, 8));
+	arg0->unk2E0 = fn_80150588(M2C_FIELD(&captureModels, s32*, 0xC));
+	arg0->unk2E4 = fn_80150588(M2C_FIELD(&captureModels, s32*, 0x10));
+	arg0->unk2E8 = fn_80150588(M2C_FIELD(&captureModels, s32*, 0x14));
 	fn_8_9B920(arg0);
 	objRpClumpForAllAtomicsToSetRenderCallbackToUseLight__FP7RpClumpUi(
 	    arg0->unkE8, ((u32)(M2C_FIELD(arg0->unkB0, s32*, 0x18) & 0x1C0000) >> 0x12U) + 8);
@@ -3284,68 +3284,68 @@ void captureObjectLoad(M2C_UNK arg_sp0)
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1780, u32*, 0)
+	M2C_FIELD(&captureModels, u32*, 0)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 7, 3);
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1780, u32*, 4)
+	M2C_FIELD(&captureModels, u32*, 4)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 7, 9);
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1780, u32*, 8)
+	M2C_FIELD(&captureModels, u32*, 8)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 7, 0xA);
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC)
+	M2C_FIELD(&captureModels, u32*, 0xC)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 7, 0xB);
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1780, u32*, 0x10)
+	M2C_FIELD(&captureModels, u32*, 0x10)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 7, 0xC);
 	if (((u32)mpDataBase__14TEnemyDataBase == 0U) && (__nw__FUl(0x70) != NULL)) {
 		__ct__14TEnemyDataBaseFv();
 	}
-	M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14)
+	M2C_FIELD(&captureModels, u32*, 0x14)
 	    = SearchClump__14TEnemyDataBaseF14eEnemyDataBaseUi(mpDataBase__14TEnemyDataBase, 7, 7);
 	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 4));
+	    M2C_FIELD(&captureModels, u32*, 4));
 	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 8));
+	    M2C_FIELD(&captureModels, u32*, 8));
 	objRpClumpForAllGeometrysToModulateMaterialColor__FP7RpClump(
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC));
-	if ((u32)M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14) != 0U) {
-		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(M2C_FIELD(&lbl_8_bss_1780, u32*, 0x14));
+	    M2C_FIELD(&captureModels, u32*, 0xC));
+	if ((u32)M2C_FIELD(&captureModels, u32*, 0x14) != 0U) {
+		objRpClumpForAllGeometrysToIgnoreLights__FP7RpClump(M2C_FIELD(&captureModels, u32*, 0x14));
 	}
 	LoadAnimationDataFromONEFILE__12nEnemyMotionF14eEnemyDataBaseP12ENEMY_MOTION(
 	    7, &lbl_8_data_15608);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
-	    (int*)&captureObjectGlobalArray, temp_r3, M2C_FIELD(&lbl_8_bss_1780, u32*, 0),
+	    (int*)&captureObjectGlobalArray, temp_r3, M2C_FIELD(&captureModels, u32*, 0),
 	    &lbl_8_data_1572C, 2);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
 	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x14), temp_r3,
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0), &lbl_8_data_1575C, 2);
+	    M2C_FIELD(&captureModels, u32*, 0), &lbl_8_data_1575C, 2);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
 	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x28), temp_r3,
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 4), &lbl_8_data_1572C, 2);
+	    M2C_FIELD(&captureModels, u32*, 4), &lbl_8_data_1572C, 2);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
 	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x3C), temp_r3,
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 4), &lbl_8_data_1575C, 2);
+	    M2C_FIELD(&captureModels, u32*, 4), &lbl_8_data_1575C, 2);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
 	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x50), temp_r3,
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 8), &lbl_8_data_1572C, 2);
+	    M2C_FIELD(&captureModels, u32*, 8), &lbl_8_data_1572C, 2);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
 	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x64), temp_r3,
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 8), &lbl_8_data_1575C, 2);
+	    M2C_FIELD(&captureModels, u32*, 8), &lbl_8_data_1575C, 2);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
 	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x78), temp_r3,
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC), &lbl_8_data_1572C, 2);
+	    M2C_FIELD(&captureModels, u32*, 0xC), &lbl_8_data_1572C, 2);
 	Init__16TEnemyMatTextureFP15RwTexDictionaryP7RpClumpP10sEnTexturei(
 	    (M2C_UNK*)((u8*)&captureObjectGlobalArray + 0x8C), temp_r3,
-	    M2C_FIELD(&lbl_8_bss_1780, u32*, 0xC), &lbl_8_data_1575C, 2);
+	    M2C_FIELD(&captureModels, u32*, 0xC), &lbl_8_data_1575C, 2);
 }
 
 void captureObjectCreate(void)
