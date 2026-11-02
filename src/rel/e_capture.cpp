@@ -3359,7 +3359,7 @@ void captureObjectCreate(void)
 	}
 }
 
-s32 fn_8_9D1B8(void* arg0)
+s32 captureBubbleDone(void* arg0)
 {
 	return (M2C_FIELD(arg0, f32*, 4) < M2C_FIELD(arg0, f32*, 0x20)) == 0;
 }
