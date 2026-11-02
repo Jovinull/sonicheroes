@@ -435,7 +435,7 @@ extern u32 lbl_8042C388;
 extern u32 mpDataBase__14TEnemyDataBase;
 extern u32 EnemyScoreMan__14TEnemyScoreMan;
 extern const f32 captureIconOffset[3] = { 13.0f, 20.0f, 0.0f };
-extern const f32 lbl_8_rodata_16B0[3]
+extern const f32 captureShrinkStep[3]
     = { -0.05000000074505806f, 0.10000000149011612f, -0.05000000074505806f };
 extern const f32 lbl_8_rodata_16BC[4]  = { -1.0f, -1.0f, -1.0f, 0.0f };
 extern const f32 lbl_8_rodata_16CC[3]  = { 0.0f, 1.0f, 0.0f };
@@ -453,7 +453,7 @@ extern const f32 captureOneAndHalf[1]  = { 1.5f };
 extern const f32 captureMinusOne[1]    = { -1.0f };
 extern const f32 lbl_8_rodata_172C[1]  = { 0.20000000298023224f };
 extern const f32 lbl_8_rodata_1730[1]  = { 1.0f };
-extern const f32 lbl_8_rodata_1734[1]  = { 1.0f };
+extern const f32 captureOne[1]         = { 1.0f };
 extern const f32 lbl_8_rodata_1738[1]  = { 0.004000000189989805f };
 extern const f32 lbl_8_rodata_173C[1]  = { 10.0f };
 extern const f32 lbl_8_rodata_1740[1]  = { 16.0f };
@@ -1522,7 +1522,7 @@ void fn_8_99A0C(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_99A60(void* arg0, s32 arg1)
+void captureModeShrink(void* arg0, s32 arg1)
 {
 	s32 temp_r0;
 	void* temp_r3;
@@ -1550,9 +1550,9 @@ void fn_8_99A60(void* arg0, s32 arg1)
 		case 1:
 			M2C_FIELD(arg0, f32*, 0x2C4) = (f32)(M2C_FIELD(arg0, f32*, 0x2C4) + -0.05f);
 			M2C_FIELD(arg0, f32*, 0x2C8)
-			    = (f32)(M2C_FIELD(arg0, f32*, 0x2C8) + M2C_FIELD(lbl_8_rodata_16B0, f32*, 4));
+			    = (f32)(M2C_FIELD(arg0, f32*, 0x2C8) + M2C_FIELD(captureShrinkStep, f32*, 4));
 			M2C_FIELD(arg0, f32*, 0x2CC)
-			    = (f32)(M2C_FIELD(arg0, f32*, 0x2CC) + M2C_FIELD(lbl_8_rodata_16B0, f32*, 8));
+			    = (f32)(M2C_FIELD(arg0, f32*, 0x2CC) + M2C_FIELD(captureShrinkStep, f32*, 8));
 			M2C_FIELD(arg0, f32*, 0x2B8)
 			    = (f32)(M2C_FIELD(arg0, f32*, 0x2B8) + M2C_FIELD(arg0, f32*, 0x2C4));
 			M2C_FIELD(arg0, f32*, 0x2BC)
@@ -2440,9 +2440,9 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 				case 1: /* switch 9 */
 					M2C_FIELD(arg0, f32*, 0x2C4) = (f32)(M2C_FIELD(arg0, f32*, 0x2C4) + -0.05f);
 					M2C_FIELD(arg0, f32*, 0x2C8) = (f32)(M2C_FIELD(arg0, f32*, 0x2C8)
-					    + M2C_FIELD(lbl_8_rodata_16B0, f32*, 4));
+					    + M2C_FIELD(captureShrinkStep, f32*, 4));
 					M2C_FIELD(arg0, f32*, 0x2CC) = (f32)(M2C_FIELD(arg0, f32*, 0x2CC)
-					    + M2C_FIELD(lbl_8_rodata_16B0, f32*, 8));
+					    + M2C_FIELD(captureShrinkStep, f32*, 8));
 					M2C_FIELD(arg0, f32*, 0x2B8)
 					    = (f32)(M2C_FIELD(arg0, f32*, 0x2B8) + M2C_FIELD(arg0, f32*, 0x2C4));
 					M2C_FIELD(arg0, f32*, 0x2BC)

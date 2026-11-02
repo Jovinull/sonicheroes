@@ -2575,6 +2575,9 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x000A8080 end:0x000A8568
 
+rel/capture_mode_shrink.cpp:
+	.text       start:0x000A87C8 end:0x000A8920
+
 rel/capture_mode_rise.cpp:
 	.text       start:0x000A8B9C end:0x000A8C5C
 

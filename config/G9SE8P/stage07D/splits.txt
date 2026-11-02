@@ -3142,6 +3142,9 @@ rel/capture_restart.cpp:
 rel/capture_exec.cpp:
 	.text       start:0x000D63FC end:0x000D68E4
 
+rel/capture_mode_shrink.cpp:
+	.text       start:0x000D6B44 end:0x000D6C9C
+
 rel/capture_mode_rise.cpp:
 	.text       start:0x000D6F18 end:0x000D6FD8
 
