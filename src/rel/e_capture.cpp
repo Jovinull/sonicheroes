@@ -447,8 +447,8 @@ extern const f32 captureBubbleSink[1]  = { -0.4000000059604645f };
 extern const f32 captureRiseSpeed[1]   = { 0.20000000298023224f };
 extern const f32 captureBubbleMax[1]   = { 3.0f };
 extern const f32 captureSearchRange[1] = { 20.0f };
-extern const f32 lbl_8_rodata_171C[1]  = { -20.0f };
-extern const f32 lbl_8_rodata_1720[1]  = { 2.4000000953674316f };
+extern const f32 captureHoldDrop[1]    = { -20.0f };
+extern const f32 captureHoldPull[1]    = { 2.4000000953674316f };
 extern const f32 captureOneAndHalf[1]  = { 1.5f };
 extern const f32 captureMinusOne[1]    = { -1.0f };
 extern const f32 lbl_8_rodata_172C[1]  = { 0.20000000298023224f };
@@ -793,7 +793,7 @@ s32 captureUpdateIcons(void* arg0)
 	return var_r31;
 }
 
-void fn_8_98548(void* arg0)
+void captureBubbleUpdate(void* arg0)
 {
 	s32 temp_r0;
 	s32 temp_r0_2;
@@ -973,7 +973,7 @@ void fn_8_989C4(void* arg0)
 			spC  = M2C_FIELD(arg0, f32*, 0x144);
 			sp10 = M2C_FIELD(arg0, s32*, 0x148);
 			spC += -20.0f;
-			AdjustPoint__FP5RwV3dPC5RwV3df((void*)(temp_r5 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+			AdjustPoint__FP5RwV3dPC5RwV3df((void*)(temp_r5 + 0x18), &sp8, captureHoldPull, 2.4f);
 		}
 	}
 }
@@ -1602,10 +1602,10 @@ void fn_8_99BB8(void* arg0, s32 arg1)
 					sp10 = M2C_FIELD(arg0, s32*, 0x148);
 					spC += -20.0f;
 					AdjustPoint__FP5RwV3dPC5RwV3df(
-					    (void*)(temp_r4 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+					    (void*)(temp_r4 + 0x18), &sp8, captureHoldPull, 2.4f);
 				}
 			}
-			fn_8_98548(arg0);
+			captureBubbleUpdate(arg0);
 			temp_cr0_eq = (s32)M2C_FIELD(arg0, s32*, 0x574) == 0;
 			if (temp_cr0_eq == 0) {
 				if (temp_cr0_eq == 0) {
@@ -1655,10 +1655,10 @@ void fn_8_99D64(void* arg0, s32 arg1)
 					sp10 = M2C_FIELD(arg0, s32*, 0x148);
 					spC += -20.0f;
 					AdjustPoint__FP5RwV3dPC5RwV3df(
-					    (void*)(temp_r4 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+					    (void*)(temp_r4 + 0x18), &sp8, captureHoldPull, 2.4f);
 				}
 			}
-			fn_8_98548(arg0);
+			captureBubbleUpdate(arg0);
 			return;
 		case 2:
 		case 3:
@@ -1800,7 +1800,7 @@ void captureEvent(void* arg0, s32 arg1)
 	}
 }
 
-void fn_8_9A218(void* arg0, s32 arg1)
+void captureModeHold(void* arg0, s32 arg1)
 {
 	s32 sp10;
 	f32 spC;
@@ -1822,10 +1822,10 @@ void fn_8_9A218(void* arg0, s32 arg1)
 					sp10 = M2C_FIELD(arg0, s32*, 0x148);
 					spC += -20.0f;
 					AdjustPoint__FP5RwV3dPC5RwV3df(
-					    (void*)(temp_r4 + 0x18), &sp8, lbl_8_rodata_1720, 2.4f);
+					    (void*)(temp_r4 + 0x18), &sp8, captureHoldPull, 2.4f);
 				}
 			}
-			fn_8_98548(arg0);
+			captureBubbleUpdate(arg0);
 			return;
 		case 3:
 			M2C_FIELD(arg0, s32*, 0x28C) = 0;
@@ -2408,7 +2408,7 @@ void fn_8_9AB68(void* arg0, u32 arg1, s32 arg2)
 			}
 			break;
 		case 45: /* switch 1 */
-			fn_8_9A218(arg0, arg2);
+			captureModeHold(arg0, arg2);
 			return;
 		case 46: /* switch 1 */
 			fn_8_99D64(arg0, arg2);

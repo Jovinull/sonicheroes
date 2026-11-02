@@ -2929,6 +2929,9 @@ rel/capture_mode_rise.cpp:
 rel/capture_event.cpp:
 	.text       start:0x000B6278 end:0x000B6308
 
+rel/capture_mode_hold.cpp:
+	.text       start:0x000B6308 end:0x000B63E4
+
 rel/capture_mode_release.cpp:
 	.text       start:0x000B63E4 end:0x000B6528
 
