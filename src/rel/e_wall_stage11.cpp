@@ -3434,6 +3434,12 @@ TEnemyWork* fn_8_BD32C(void)
 	return var_r0;
 }
 
+// stage13D's copy (rel/e_wall_stage13.cpp) stores the two clamped bytes as
+// unsigned, without the sign extension stage09D and stage11D have.
+#ifndef E_WALL_EDIT_BYTE
+#define E_WALL_EDIT_BYTE s8
+#endif
+
 void TObjEnemyWall::EditOnChange(SETDATA_PARAM* arg1)
 {
 	const f32* var_r4_3;
@@ -3459,8 +3465,8 @@ void TObjEnemyWall::EditOnChange(SETDATA_PARAM* arg1)
 	} else {
 		var_r4 = temp_r3;
 	}
-	M2C_FIELD(temp_r3, s8*, 0) = (s8)*var_r4;
-	temp_r0_2                  = M2C_FIELD(temp_r3, u8*, 1);
+	M2C_FIELD(temp_r3, E_WALL_EDIT_BYTE*, 0) = (E_WALL_EDIT_BYTE)*var_r4;
+	temp_r0_2                                = M2C_FIELD(temp_r3, u8*, 1);
 	if ((s8)temp_r0_2 < (s8)lbl_8_data_1797E) {
 		var_r4_2 = &lbl_8_data_1797E;
 	} else if ((s8)temp_r0_2 > (s8)lbl_8_data_1797F) {
@@ -3468,8 +3474,8 @@ void TObjEnemyWall::EditOnChange(SETDATA_PARAM* arg1)
 	} else {
 		var_r4_2 = temp_r3 + 1;
 	}
-	M2C_FIELD(temp_r3, s8*, 1) = (s8)*var_r4_2;
-	temp_f1                    = M2C_FIELD(temp_r3, f32*, 8);
+	M2C_FIELD(temp_r3, E_WALL_EDIT_BYTE*, 1) = (E_WALL_EDIT_BYTE)*var_r4_2;
+	temp_f1                                  = M2C_FIELD(temp_r3, f32*, 8);
 	if (temp_f1 < lbl_8_rodata_1E04[0]) {
 		var_r4_3 = lbl_8_rodata_1E04;
 	} else if (temp_f1 > lbl_8_rodata_1E08[0]) {

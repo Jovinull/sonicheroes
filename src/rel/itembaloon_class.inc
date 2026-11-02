@@ -33,6 +33,7 @@ public:
 	RpClump* clump; // 0xF0
 
 	TObjItembaloon(TObject* parent);
+	void SetPosition();
 	virtual ~TObjItembaloon();
 	virtual void Exec();
 	virtual void Disp();

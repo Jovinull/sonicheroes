@@ -207,21 +207,21 @@ void fn_8019EB94(s32, RwV3d*, s32);       /* RwFrameTranslate */
 M2C_UNK fn_8019ECCC(s32, void*, M2C_UNK); /* extern */
 void fn_8019ED68(s32, RwV3d*, f32, s32);  /* RwFrameRotate */
 
-s32 rand();                    /* extern */
-s32 fn_8_9832C(s32);           /* extern */
-s32 fn_8_98464(u32);           /* extern */
-M2C_UNK fn_8_98480(void*);     /* extern */
-M2C_UNK fn_8_9897C();          /* extern */
-s32 fn_8_98B08(u32);           /* extern */
-s32 fn_8_98B94(u32);           /* extern */
-M2C_UNK fn_8_9D81C(s32);       /* extern */
-void fn_8_A2A00(void*, void*); /* TEnemyFlyer_Strategy setup (rel/e_flyer_stage11.cpp) */
+s32 rand();                        /* extern */
+s32 fn_8_9832C(s32);               /* extern */
+s32 captureIsHurt(u32);            /* extern */
+M2C_UNK captureUpdateIcons(void*); /* extern */
+M2C_UNK captureFreePlayer();       /* extern */
+s32 fn_8_98B08(u32);               /* extern */
+s32 fn_8_98B94(u32);               /* extern */
+M2C_UNK fn_8_9D81C(s32);           /* extern */
+void fn_8_A2A00(void*, void*);     /* TEnemyFlyer_Strategy setup (rel/e_flyer_stage11.cpp) */
 void fn_8_A2A78(void*, void*);
-void* fn_8_A31D4(void*);                       /* TEnemyFlyer_Strategy::TEnemyFlyer_Strategy() */
-M2C_UNK EventRewind__12EventManagerFv(u32);    /* extern */
-M2C_UNK EventStart__12EventManagerFv(u32);     /* extern */
-s32 Exist__12EventManagerFv(u32);              /* extern */
-M2C_UNK fn_8_D8E90(M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
+void* fn_8_A31D4(void*);                    /* TEnemyFlyer_Strategy::TEnemyFlyer_Strategy() */
+M2C_UNK EventRewind__12EventManagerFv(u32); /* extern */
+M2C_UNK EventStart__12EventManagerFv(u32);  /* extern */
+s32 Exist__12EventManagerFv(u32);           /* extern */
+M2C_UNK bossVoicePlayAuto(M2C_UNK, M2C_UNK, M2C_UNK); /* extern */
 }
 extern M2C_UNK SetAtomicCustomFXData__FP8RpAtomicPv;
 extern RwV3d AxisY;
@@ -621,7 +621,7 @@ void fn_8_9E324(void* arg0, s32 arg1)
 				return;
 			}
 			if (((u32)M2C_FIELD(arg0, u32*, 0x14) != 0U)
-			    && (fn_8_98464(M2C_FIELD(arg0, u32*, 0x14)) != 0)) {
+			    && (captureIsHurt(M2C_FIELD(arg0, u32*, 0x14)) != 0)) {
 				M2C_FIELD(arg0, s32*, 8) = (s32)M2C_FIELD(arg0, s32*, 4);
 				((TObjectDispatch*)arg0)->Release((s32)M2C_FIELD(arg0, s32*, 4), 3);
 				M2C_FIELD(arg0, s32*, 4) = 1;
@@ -685,7 +685,7 @@ s32 fn_8_9E510(void* arg0)
 	u32 flags;
 	s32 mode;
 
-	fn_8_98480(M2C_FIELD(arg0, void**, 0x14));
+	captureUpdateIcons(M2C_FIELD(arg0, void**, 0x14));
 	if (fn_800A3ED4(M2C_FIELD(arg0, void**, 0x14)) != 0
 	    && M2C_FIELD(M2C_FIELD(arg0, void**, 0x14), s32*, 0x19C) != 0x1D) {
 		eggChangeMode(arg0, 5);
@@ -701,7 +701,7 @@ s32 fn_8_9E510(void* arg0)
 				eggChangeMode(arg0, 0xC);
 				return 1;
 		}
-		fn_8_9897C();
+		captureFreePlayer();
 	}
 	if (M2C_FIELD(M2C_FIELD(arg0, void**, 0x14), s32*, 0x248) != 0) {
 		changed = 0;
@@ -759,6 +759,13 @@ s32 fn_8_9E510(void* arg0)
  * 15B0C and the shared mode table at 15B24 follow the switch table). */
 M2C_UNK** fn_8_9DC74(M2C_UNK** arg0, s16 arg1);
 void fn_8_9D3C4();
+// TEnemyStrategy<TObjEnemyCapture>::Execute, the strategies' shared hook. Its
+// copy lives in each module's capture unit, which stage07D and stage13D build
+// as C++ (rel/e_eggmobile_strategy_stage07_13.cpp names it that way; a static
+// member mangles like the virtual one).
+#ifndef E_EGGMOBILE_CAPTURE_EXECUTE
+#define E_EGGMOBILE_CAPTURE_EXECUTE fn_8_9D3C4
+#endif
 void fn_8_9E924(void** arg0, u32 arg1, s32 arg2);
 s32 fn_8_9E510(void* arg0);
 void fn_8_9E324(void* arg0, s32 arg1);
@@ -781,7 +788,7 @@ void* lbl_8_data_15A70[21] = {
 	NULL,
 	NULL,
 	(void*)fn_8_9DC74,
-	(void*)fn_8_9D3C4,
+	(void*)E_EGGMOBILE_CAPTURE_EXECUTE,
 	(void*)fn_8_9E924,
 	(void*)fn_8_9E510,
 	(void*)fn_8_9E324,
@@ -861,13 +868,14 @@ void fn_8_9EBB4();
 void fn_8_9EBB0();
 void fn_8_9EBAC();
 
-void* lbl_8_data_15B0C[6] = { NULL, NULL, (void*)fn_8_9EB5C, (void*)fn_8_9D3C4, NULL, NULL };
+void* lbl_8_data_15B0C[6]
+    = { NULL, NULL, (void*)fn_8_9EB5C, (void*)E_EGGMOBILE_CAPTURE_EXECUTE, NULL, NULL };
 
 void* lbl_8_data_15B24[21] = {
 	NULL,
 	NULL,
 	(void*)fn_8_9EAC4,
-	(void*)fn_8_9D3C4,
+	(void*)E_EGGMOBILE_CAPTURE_EXECUTE,
 	(void*)fn_8_9E924,
 	(void*)fn_8_9E510,
 	(void*)fn_8_9E324,

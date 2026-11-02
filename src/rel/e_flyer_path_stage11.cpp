@@ -42,6 +42,12 @@ s32 DecreaseTimer__7nSystemFRi(void*);
 M2C_UNK fn_8_A353C(void*);
 s32 fn_8_A35BC(M2C_UNK);
 void fn_8_A6D2C(void*, s32);
+// TEnemyStrategy<TObjEnemyFlyer>::Execute, which stage05D builds as C++
+// (rel/flyer_strategy_execute.cpp), so its copy of this unit
+// (rel/e_flyer_path_stage05.cpp) takes it by that name.
+#ifndef E_FLYER_PATH_FLYER_EXECUTE
+#define E_FLYER_PATH_FLYER_EXECUTE fn_8_A6D2C
+#endif
 M2C_UNK** fn_8_AA528(M2C_UNK**, s16);
 s32 fn_8_AA100(void*);
 void fn_8_AA3B8(void*, s32, s32);
@@ -53,7 +59,7 @@ void* lbl_8_data_16520[6] = {
 	NULL,
 	NULL,
 	(void*)fn_8_AA528,
-	(void*)fn_8_A6D2C,
+	(void*)E_FLYER_PATH_FLYER_EXECUTE,
 	(void*)fn_8_AA3B8,
 	(void*)fn_8_AA100,
 };
@@ -61,7 +67,7 @@ void* lbl_8_data_16538[6] = {
 	NULL,
 	NULL,
 	(void*)fn_8_AA5C0,
-	(void*)fn_8_A6D2C,
+	(void*)E_FLYER_PATH_FLYER_EXECUTE,
 	NULL,
 	NULL,
 };

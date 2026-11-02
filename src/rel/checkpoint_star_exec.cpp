@@ -1,7 +1,7 @@
 #include "types.h"
 
 // The checkpoint star's Exec (checkpointStarExec here): it moves the star
-// (checkpointStarMove, still assembly).
+// (checkpointStarMove, rel/checkpoint_star_move.cpp).
 
 typedef struct CheckpointStar CheckpointStar;
 

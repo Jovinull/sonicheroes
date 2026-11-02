@@ -13,6 +13,7 @@ class TObjWarp : public TObject, public TObjSetObj, public C_COLLI
 {
 public:
 	TObjWarp(TObject* parent);
+	void checkCollision();
 	// The first virtual declared is the key function, and the unit that defines
 	// it emits the vtable. These are all overrides, whose order does not move
 	// their slots, so each fragment unit can put first one it does not define:

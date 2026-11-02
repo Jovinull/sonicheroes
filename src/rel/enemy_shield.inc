@@ -21,6 +21,7 @@ public:
 	virtual ~ENEMY_SHIELD();
 	void SetShieldStatusForDisp(RpClump* clump);
 	void Normal();
+	void SetCCLParameter();
 
 	s8 hits;   // 0x0E8
 	u8 unkE9;  // 0x0E9

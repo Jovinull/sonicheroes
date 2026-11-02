@@ -3,7 +3,7 @@
 // ExecuteAndDisplayItempanelEffectForAll (the PS2 build's name): for a team
 // (0 to 3) and an item (0 to 12), the team's item panel control is made the
 // first time (TObjItempanelControl's constructor inlined) and a new panel of
-// the item joins it. (stage11D has its own copy, in rel/goal_ring_stage11.cpp.)
+// the item joins it.
 
 // the item kinds (0 to 12)
 enum EnumTypeItem { ITEM_COUNT = 13 };

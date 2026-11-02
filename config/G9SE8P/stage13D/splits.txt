@@ -128,6 +128,9 @@ rel/set_collision_object.cpp:
 rel/set_collision_hooks.cpp:
 	.text       start:0x00006174 end:0x00006178
 
+rel/ironball_clone.cpp:
+	.text       start:0x00006D2C end:0x00006E78
+
 rel/ironball_dtor.cpp:
 	.text       start:0x00006E78 end:0x00006FDC
 
@@ -250,6 +253,9 @@ rel/ring_register.cpp:
 	.text       start:0x0000BD3C end:0x0000BE98
 	.ctors      start:0x00000020 end:0x00000024
 
+rel/jump_panel_player.cpp:
+	.text       start:0x0000BEA8 end:0x0000C244
+
 rel/jump_panel_set_position.cpp:
 	.text       start:0x0000C5F8 end:0x0000C6D0
 
@@ -294,6 +300,9 @@ rel/checkpoint_star_disp_opaque.cpp:
 
 rel/checkpoint_star_exec.cpp:
 	.text       start:0x0000E9E4 end:0x0000EA04
+
+rel/checkpoint_star_move.cpp:
+	.text       start:0x0000ECC4 end:0x0000F0C8
 
 rel/checkpoint_star.cpp:
 	.text       start:0x0000F0C8 end:0x0000F228
@@ -533,8 +542,20 @@ rel/cannon_register.cpp:
 	.text       start:0x0001A9B8 end:0x0001AA68
 	.ctors      start:0x00000040 end:0x00000044
 
+rel/cannon_ptcl_spawn.cpp:
+	.text       start:0x0001AA70 end:0x0001AAB8
+
+rel/cannon_ptcl_ctor.cpp:
+	.text       start:0x0001ADEC end:0x0001AE34
+
 rel/laser_fence_tdisp.cpp:
 	.text       start:0x0001AE34 end:0x0001B158
+
+rel/laser_fence_disp.cpp:
+	.text       start:0x0001B158 end:0x0001B634
+
+rel/laser_fence_exec.cpp:
+	.text       start:0x0001B634 end:0x0001BCE4
 
 rel/laser_fence_parameter.cpp:
 	.text       start:0x0001BCE4 end:0x0001BED8
@@ -684,6 +705,9 @@ rel/target_hooks.cpp:
 rel/target_assets.cpp:
 	.text       start:0x000240D0 end:0x000241C0
 	.ctors      start:0x00000050 end:0x00000054
+
+rel/fan_rotate.cpp:
+	.text       start:0x000241D0 end:0x00024338
 
 rel/fan_parameter.cpp:
 	.text       start:0x00024FB8 end:0x000250C8
@@ -836,6 +860,10 @@ rel/pawn_rcv_hp_inc.cpp:
 
 rel/pawn_exec_thunder_shoot.cpp:
 	.text       start:0x0002DC6C end:0x0002DD08
+
+rel/pawn_search_player.cpp:
+	.text       start:0x0002DD08 end:0x0002DDB4
+	.rodata     start:0x00000724 end:0x00000728
 
 rel/pawn_explosion.cpp:
 	.text       start:0x0002DDB4 end:0x0002DF58
@@ -1078,8 +1106,14 @@ rel/enemy_shield_normal.cpp:
 rel/enemy_shield_status.cpp:
 	.text       start:0x0003914C end:0x00039258
 
+rel/enemy_shield_ccl.cpp:
+	.text       start:0x00039B48 end:0x00039B84
+
 rel/item_box_create_at.cpp:
 	.text       start:0x00039B84 end:0x00039BE0
+
+rel/item_box_player.cpp:
+	.text       start:0x00039BE0 end:0x00039F18
 
 rel/item_box_disp.cpp:
 	.text       start:0x00039F18 end:0x0003A0C8
@@ -1124,6 +1158,9 @@ rel/itembaloon_tdisp.cpp:
 rel/itembaloon_disp.cpp:
 	.text       start:0x0003C378 end:0x0003C404
 
+rel/itembaloon_set_position.cpp:
+	.text       start:0x0003CBB8 end:0x0003CD94
+
 rel/itembaloon_object_dtor.cpp:
 	.text       start:0x0003CD94 end:0x0003CE3C
 
@@ -1145,6 +1182,16 @@ rel/itembaloon_register.cpp:
 
 rel/itembaloon_position.cpp:
 	.text       start:0x0003D384 end:0x0003D3A8
+
+rel/pole_check_team_leaders.cpp:
+	.text       start:0x0003DEDC end:0x0003E084
+
+rel/pole_tdisp.cpp:
+	.text       start:0x0003E084 end:0x0003E0A4
+
+rel/pole_set_angle3.cpp:
+	.text       start:0x0003F050 end:0x0003F49C
+	.rodata     start:0x000009D0 end:0x000009D4
 
 rel/pole_set_position.cpp:
 	.text       start:0x0003F49C end:0x0003F6B0
@@ -1236,6 +1283,9 @@ rel/lens_flare_set_dtor.cpp:
 
 rel/lens_flare_ctor.cpp:
 	.text       start:0x00044C20 end:0x00044DEC
+
+rel/lens_flare_disp_ptcl.cpp:
+	.text       start:0x00044DEC end:0x00045204
 
 rel/lens_flare_dtor.cpp:
 	.text       start:0x00045204 end:0x00045310
@@ -1333,14 +1383,32 @@ rel/propeller_register.cpp:
 	.text       start:0x00049578 end:0x00049618
 	.ctors      start:0x00000084 end:0x00000088
 
+rel/ef_sparkle_release.cpp:
+	.text       start:0x00049618 end:0x00049798
+
+rel/ef_sparkle_load.cpp:
+	.text       start:0x00049798 end:0x00049AD0
+
 rel/particle_ping_pong.cpp:
 	.text       start:0x0004A31C end:0x0004A33C
+
+rel/ef_sparkle_ctor.cpp:
+	.text       start:0x0004A33C end:0x0004A498
 
 rel/itempanel_effect_all.cpp:
 	.text       start:0x0004A4B4 end:0x0004A624
 
 rel/particle_chain.cpp:
 	.text       start:0x0004AC38 end:0x0004AD48
+
+rel/itempanel_control_ctor.cpp:
+	.text       start:0x0004AE9C end:0x0004AF4C
+
+rel/itempanel_instance_disp.cpp:
+	.text       start:0x0004AF4C end:0x0004B04C
+
+rel/itempanel_instance_dtor.cpp:
+	.text       start:0x0004B050 end:0x0004B134
 
 rel/itempanel_hooks.cpp:
 	.text       start:0x0004B558 end:0x0004B6F4
@@ -1449,14 +1517,32 @@ rel/system_object4_register.cpp:
 	.text       start:0x0004DFE4 end:0x0004E088
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/light_collision_color.cpp:
+	.text       start:0x0004E128 end:0x0004E274
+
 rel/light_collision_find.cpp:
 	.text       start:0x0004E274 end:0x0004E2AC
 
 rel/light_collision_master.cpp:
 	.text       start:0x0004E2AC end:0x0004E31C
 
+rel/light_collision_master_exec.cpp:
+	.text       start:0x0004E31C end:0x0004E56C
+
 rel/light_collision_manager_dtor.cpp:
 	.text       start:0x0004E56C end:0x0004E638
+
+rel/light_collision_manager_ctor.cpp:
+	.text       start:0x0004E638 end:0x0004E6E4
+
+rel/light_collision_tdisp.cpp:
+	.text       start:0x0004E6E4 end:0x0004E6E8
+
+rel/light_collision_check_body.cpp:
+	.text       start:0x0004E6E8 end:0x0004EAF8
+
+rel/light_collision_exec.cpp:
+	.text       start:0x0004EAF8 end:0x0004EE24
 
 rel/light_collision_edit.cpp:
 	.text       start:0x0004EE24 end:0x0004EF9C
@@ -1489,6 +1575,9 @@ rel/push_pull_switch_set_position.cpp:
 
 rel/push_pull_switch_set_parameter.cpp:
 	.text       start:0x00051094 end:0x000511BC
+
+rel/push_pull_switch_change_texture.cpp:
+	.text       start:0x000511BC end:0x00051218
 
 rel/push_pull_switch_dtor.cpp:
 	.text       start:0x00051218 end:0x000512D8
@@ -1710,6 +1799,18 @@ rel/machine_gun_control.cpp:
 rel/machine_gun_cdtor.cpp:
 	.text       start:0x0005F154 end:0x0005F3E0
 
+rel/searcher_ground_move.cpp:
+	.text       start:0x0005F3E0 end:0x0005F654
+
+rel/searcher_ground_exec.cpp:
+	.text       start:0x0005F654 end:0x0005F750
+
+rel/searcher_ground_dtor.cpp:
+	.text       start:0x0005F750 end:0x0005F7D4
+
+rel/searcher_ground_ctor.cpp:
+	.text       start:0x0005F7D4 end:0x0005F884
+
 rel/formgate_sub_check.cpp:
 	.text       start:0x0005F884 end:0x0005F95C
 
@@ -1718,6 +1819,9 @@ rel/formgate_sub_dtor.cpp:
 
 rel/formgate_sub_ctor.cpp:
 	.text       start:0x0005FC54 end:0x0005FD54
+
+rel/formgate_sub_spheres.cpp:
+	.text       start:0x0005FD54 end:0x0005FE44
 
 rel/formgate_disp.cpp:
 	.text       start:0x000602C4 end:0x0006055C
@@ -1791,6 +1895,9 @@ rel/hint_ball_ctor.cpp:
 rel/hintring_same_id.cpp:
 	.text       start:0x00064678 end:0x000646BC
 
+rel/hintring_check_touched.cpp:
+	.text       start:0x000646BC end:0x00064900
+
 rel/hintring_tdisp.cpp:
 	.text       start:0x00064900 end:0x000649C0
 
@@ -1831,11 +1938,18 @@ rel/o_setDamegeCollision.cpp:
 	.data       start:0x0000701C end:0x00007100
 	.bss        start:0x00001080 end:0x000010B0
 
+rel/obj_set_particle_exec.cpp:
+	.text       start:0x00066AE4 end:0x00066D1C
+	.rodata     start:0x00001150 end:0x0000115C
+
 rel/obj_set_particle_dtor.cpp:
 	.text       start:0x00066D1C end:0x00066DD4
 
 rel/obj_set_particle_ctor.cpp:
 	.text       start:0x00066DD4 end:0x00066ED8
+
+rel/obj_set_particle_edit.cpp:
+	.text       start:0x00066ED8 end:0x00066FAC
 
 rel/obj_set_particle_create.cpp:
 	.text       start:0x00066FAC end:0x000670D8
@@ -1890,6 +2004,9 @@ rel/flower_register.cpp:
 	.text       start:0x0006B414 end:0x0006B4C4
 	.ctors      start:0x000000C4 end:0x000000C8
 
+rel/flower_tail.cpp:
+	.text       start:0x0006B4CC end:0x0006B5A0
+
 rel/chao_search_cage.cpp:
 	.text       start:0x0006B5A0 end:0x0006B690
 
@@ -1918,6 +2035,9 @@ rel/chao_register.cpp:
 	.text       start:0x0006C964 end:0x0006CA14
 	.ctors      start:0x000000C8 end:0x000000CC
 
+rel/warp_check_collision.cpp:
+	.text       start:0x0006CC48 end:0x0006CD18
+
 rel/warp_exec.cpp:
 	.text       start:0x0006CD18 end:0x0006CE74
 
@@ -1943,6 +2063,9 @@ rel/warp_register.cpp:
 
 rel/hintcolli_disp.cpp:
 	.text       start:0x0006D2B8 end:0x0006D3D0
+
+rel/hintcolli_disp_exec.cpp:
+	.text       start:0x0006D3D0 end:0x0006D4AC
 
 rel/hintcolli_position.cpp:
 	.text       start:0x0006E60C end:0x0006E85C
@@ -2401,6 +2524,69 @@ rel/s14_laser_sign_register.cpp:
 	.text       start:0x000A6D14 end:0x000A6DC0
 	.ctors      start:0x00000150 end:0x00000154
 
+rel/capture_free_player_check.cpp:
+	.text       start:0x000A6DC8 end:0x000A6E60
+
+rel/capture_drop_item.cpp:
+	.text       start:0x000A6E60 end:0x000A6E84
+
+rel/capture_add_score.cpp:
+	.text       start:0x000A6FFC end:0x000A7094
+
+rel/capture_is_hurt.cpp:
+	.text       start:0x000A71CC end:0x000A71E8
+
+rel/capture_update_icons.cpp:
+	.text       start:0x000A71E8 end:0x000A72B0
+
+rel/capture_search_catch.cpp:
+	.text       start:0x000A7510 end:0x000A7680
+
+rel/capture_free_player.cpp:
+	.text       start:0x000A7680 end:0x000A772C
+
+rel/capture_catch_player.cpp:
+	.text       start:0x000A77B4 end:0x000A7870
+
+rel/capture_rise.cpp:
+	.text       start:0x000A7B0C end:0x000A7B64
+
+rel/capture_turn.cpp:
+	.text       start:0x000A7C98 end:0x000A7D14
+
+rel/capture_restart.cpp:
+	.text       start:0x000A804C end:0x000A8080
+
+rel/capture_exec.cpp:
+	.text       start:0x000A8080 end:0x000A8568
+
+rel/capture_event.cpp:
+	.text       start:0x000A8EF0 end:0x000A8F80
+
+rel/capture_mode_release.cpp:
+	.text       start:0x000A905C end:0x000A91A0
+
+rel/capture_mode_idle.cpp:
+	.text       start:0x000A9824 end:0x000A98D0
+
+rel/capture_spin_parts.cpp:
+	.text       start:0x000AA548 end:0x000AA688
+
+rel/capture_release_parts.cpp:
+	.text       start:0x000AABD4 end:0x000AAC8C
+
+rel/capture_make_parts.cpp:
+	.text       start:0x000AAC8C end:0x000AADBC
+
+rel/capture_dtor.cpp:
+	.text       start:0x000AB224 end:0x000AB3FC
+
+rel/capture_object_new.cpp:
+	.text       start:0x000AB804 end:0x000AB858
+
+rel/capture_edit_stage13.cpp:
+	.text       start:0x000AB858 end:0x000ABA38
+
 rel/capture_object_unload.cpp:
 	.text       start:0x000ABA38 end:0x000ABAD8
 
@@ -2409,6 +2595,12 @@ rel/capture_object_load.cpp:
 
 rel/capture_object_create.cpp:
 	.text       start:0x000ABED0 end:0x000ABF18
+
+rel/capture_bubble_done.cpp:
+	.text       start:0x000ABF18 end:0x000ABF38
+
+rel/capture_bubble_init.cpp:
+	.text       start:0x000ABF9C end:0x000ABFE8
 
 rel/capture_register.cpp:
 	.text       start:0x000ABFE8 end:0x000AC0E4
@@ -2451,6 +2643,11 @@ rel/capture_collision_register.cpp:
 	.text       start:0x000AC6B8 end:0x000AC760
 	.ctors      start:0x00000158 end:0x0000015C
 
+rel/e_eggmobile_strategy_stage07_13.cpp:
+	.text       start:0x000AC768 end:0x000AD918
+	.rodata     start:0x000021A8 end:0x000021B8
+	.data       start:0x0001B6E0 end:0x0001B7E8
+
 rel/e2000_turn_to_aim.cpp:
 	.text       start:0x000AECC4 end:0x000AED40
 
@@ -2476,18 +2673,12 @@ rel/e2000_strategy_execute.cpp:
 rel/e2000_object_clear_slots.cpp:
 	.text       start:0x000B32B0 end:0x000B32E8
 
-rel/flyer_object_unload.cpp:
-	.text       start:0x000B8080 end:0x000B8168
-
-rel/flyer_object_load.cpp:
-	.text       start:0x000B8168 end:0x000B8420
-
-rel/flyer_object_create.cpp:
-	.text       start:0x000B8420 end:0x000B8468
-
-rel/flyer_register.cpp:
-	.text       start:0x000B8468 end:0x000B850C
+rel/e_flyer_stage13.cpp:
+	.text       start:0x000B4A54 end:0x000B8514
 	.ctors      start:0x00000160 end:0x00000164
+	.rodata     start:0x00002330 end:0x000023F0
+	.data       start:0x0001BE78 end:0x0001C168
+	.bss        start:0x00002058 end:0x00002098
 
 rel/flyer_collision_check.cpp:
 	.text       start:0x000B85B4 end:0x000B91F8
@@ -2544,18 +2735,17 @@ rel/e_flyer_path_stage11.cpp:
 	.rodata     start:0x00002480 end:0x00002490
 	.data       start:0x0001C3C0 end:0x0001C3F0
 
-rel/wall_object_unload.cpp:
-	.text       start:0x000C2144 end:0x000C21B8
+rel/e_strategy_wall_stage11.cpp:
+	.text       start:0x000BBDFC end:0x000BCEB0
+	.rodata     start:0x00002490 end:0x000024A0
+	.data       start:0x0001C3F0 end:0x0001C4A0
 
-rel/wall_object_load.cpp:
-	.text       start:0x000C21B8 end:0x000C24CC
-
-rel/wall_object_create.cpp:
-	.text       start:0x000C24CC end:0x000C2514
-
-rel/wall_register.cpp:
-	.text       start:0x000C2544 end:0x000C2624
+rel/e_wall_stage13.cpp:
+	.text       start:0x000BCEB0 end:0x000C262C
 	.ctors      start:0x00000168 end:0x0000016C
+	.rodata     start:0x000024A0 end:0x00002610
+	.data       start:0x0001C4A0 end:0x0001CCC0
+	.bss        start:0x000020D8 end:0x00002188
 
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x000C312C end:0x000C31C4
@@ -2821,6 +3011,9 @@ rel/event_manager_error_stop.cpp:
 rel/event_manager_cut_extention.cpp:
 	.text       start:0x000D6B04 end:0x000D6B40
 
+rel/event_check_hierarchy.cpp:
+	.text       start:0x000D703C end:0x000D7200
+
 rel/event_manager_disp.cpp:
 	.text       start:0x000D7818 end:0x000D7854
 
@@ -2928,6 +3121,10 @@ rel/event_script_pop_light.cpp:
 
 rel/event_script_push_light.cpp:
 	.text       start:0x000DB6B0 end:0x000DB6E8
+
+rel/event_script_disp_message.cpp:
+	.text       start:0x000DB6E8 end:0x000DB8B0
+	.rodata     start:0x00002858 end:0x00002868
 
 rel/event_script_start_message.cpp:
 	.text       start:0x000DB8B0 end:0x000DB934

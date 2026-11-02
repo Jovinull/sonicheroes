@@ -478,6 +478,18 @@ extern void* lbl_8_data_17060[];
 void fn_8_B49D8();
 void fn_8_B49E0();
 void DispShadow__9TObjEnemyFv();
+void fn_8_B49E0();
+// TObjEnemy::DispShadow's slot: stage07D points it at the empty function
+// of rel/e_rinoliner_collision_stage11.cpp (fn_8_B49E0).
+#ifndef E_RINOLINER_DISP_SHADOW
+#define E_RINOLINER_DISP_SHADOW DispShadow__9TObjEnemyFv
+#endif
+// The empty hook before it: stage07D has its own copy right after the
+// rinoliner's register (fn_6_E70BC).
+void fn_6_E70BC();
+#ifndef E_RINOLINER_EMPTY_SLOT
+#define E_RINOLINER_EMPTY_SLOT fn_8_B49E0
+#endif
 void Virtual33D94__9TObjEnemyFv();
 void Virtual33D98__9TObjEnemyFv();
 void Virtual33DA0__9TObjEnemyFv();
@@ -538,7 +550,12 @@ const sAngle lbl_8_rodata_1BC4 = { 0, 0, 0 };
 
 /* TEnemyStrategy's vtable (base of the rinoliner strategy): the destructor
  * and the shared SetUp. */
+// stage05D and stage07D (rel/e_rinoliner_stage05_07.cpp) keep only the copy
+// of TEnemyStrategy's vtable and destructor that the unit before this one
+// emits, so their copy of this unit has neither.
+#ifndef E_RINOLINER_SHARED_STRATEGY
 void* lbl_8_data_16B98[6] = { 0, 0, (void*)fn_8_B0924, (void*)fn_8_AF86C, 0, 0 };
+#endif
 
 /* The rinoliner's collision setup. */
 u32 lbl_8_data_16BB0[12] = { 0x1600FF21, 0x00000400, 0x00000000, 0x41400000, 0xC0800000, 0x41500000,
@@ -651,8 +668,8 @@ void* lbl_8_data_16E38[42] = {
 	(void*)fn_8_B1C1C,
 	(void*)fn_8_B1AE8,
 	(void*)fn_8_B1A94,
-	(void*)fn_8_B49E0,
-	(void*)DispShadow__9TObjEnemyFv,
+	(void*)E_RINOLINER_EMPTY_SLOT,
+	(void*)E_RINOLINER_DISP_SHADOW,
 	(void*)fn_8_B1A90,
 	(void*)Virtual33D94__9TObjEnemyFv,
 	(void*)fn_8_B0B64,
@@ -835,6 +852,7 @@ static inline PathTag* GetNextPathTag(TObject* self, const RwV3d* pos, f32 dist)
 	return nearest;
 }
 
+#ifndef E_RINOLINER_SHARED_STRATEGY
 /* TEnemyStrategy's destructor, emitted with its vtable here. */
 M2C_UNK** fn_8_B0924(M2C_UNK** arg0, s16 arg1)
 {
@@ -846,6 +864,8 @@ M2C_UNK** fn_8_B0924(M2C_UNK** arg0, s16 arg1)
 	}
 	return arg0;
 }
+
+#endif
 
 /* CheckDamage2: an electric hit stuns the rinoliner instead of hurting it. */
 s32 fn_8_B0974(void* arg0)

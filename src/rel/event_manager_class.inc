@@ -62,6 +62,9 @@ struct EventObject {
 }; // 0x14
 
 // The message board the script shows text on, defined in src/game/message.cpp.
+enum Rt2dJustificationType {
+};
+
 class MESSAGE
 {
 public:
@@ -70,7 +73,10 @@ public:
 	~MESSAGE();
 	s32 LoadFontFile(char* name);
 	void ReleaseFontFile();
+	s32 DisplayMessage(char* text, f32 x, f32 y, Rt2dJustificationType justify, f32 offsetX, f32 offsetY);
 };
+
+extern MESSAGE* MessageEuc;
 
 // A subtitle of the language's table, which ends with a negative event.
 struct EventSubtitle {
@@ -115,6 +121,7 @@ public:
 	s32 LoadScript(s32 event);
 	void popGameLightData();
 	void pushGameLightData();
+	void dispEventMessage();
 	void startEventMessage(u16 id, s16 time);
 	char* getEventBgmName(u16 bgm);
 };
