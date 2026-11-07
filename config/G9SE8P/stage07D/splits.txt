@@ -1410,6 +1410,9 @@ rel/itempanel_effect_all.cpp:
 rel/particle_chain.cpp:
 	.text       start:0x0004AC50 end:0x0004AD60
 
+rel/itempanel_control_dtor.cpp:
+	.text       start:0x0004AD60 end:0x0004AEB4
+
 rel/itempanel_control_ctor.cpp:
 	.text       start:0x0004AEB4 end:0x0004AF64
 
