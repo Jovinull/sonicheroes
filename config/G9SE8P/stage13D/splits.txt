@@ -709,6 +709,10 @@ rel/target_assets.cpp:
 rel/fan_rotate.cpp:
 	.text       start:0x000241D0 end:0x00024338
 
+rel/fan_check_ascend_stage13.cpp:
+	.text       start:0x00024338 end:0x00024838
+	.rodata     start:0x0000056C end:0x00000570
+
 rel/fan_parameter.cpp:
 	.text       start:0x00024FB8 end:0x000250C8
 

@@ -10,6 +10,11 @@
 // left, kept between the stage's floor and ceiling for the character. A player
 // in mode 0x43 has its fall scaled, and nobody rises faster than the cap.
 
+// stage13D's copy reads the sound slot as unsigned (rel/fan_check_ascend_stage13.cpp).
+#ifndef FAN_SOUND_SLOT_TYPE
+#define FAN_SOUND_SLOT_TYPE s8
+#endif
+
 typedef struct RwV3d {
 	f32 x;
 	f32 y;
@@ -172,10 +177,12 @@ extern "C" s32 fanCheckAscend(Fan* fan)
 					at.y = fan->pos.y + fan->top;
 				}
 				if (lbl_8042C388 != NULL) {
-					fn_800B4A38(lbl_8042C388, 0x1058, &at, (u8*)fan + 1, 3, (s8)fanSoundSlot, 5);
+					fn_800B4A38(lbl_8042C388, 0x1058, &at, (u8*)fan + 1, 3,
+					    (FAN_SOUND_SLOT_TYPE)fanSoundSlot, 5);
 				}
 			} else if (lbl_8042C388 != NULL) {
-				fn_800B4A38(lbl_8042C388, 0x1058, &fan->pos, (u8*)fan + 1, 3, (s8)fanSoundSlot, 5);
+				fn_800B4A38(lbl_8042C388, 0x1058, &fan->pos, (u8*)fan + 1, 3,
+				    (FAN_SOUND_SLOT_TYPE)fanSoundSlot, 5);
 			}
 			sounded = 1;
 		}

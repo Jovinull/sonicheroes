@@ -49,6 +49,7 @@ SYMBOL_RENAMES = {
     # TObjFan::CheckAscend's 0.0, which its comparisons and the module's other fan
     # code read as fanStopSpeed.
     "fan_check_ascend.o": [("@107", "fanStopSpeed", 0x4, True)],
+    "fan_check_ascend_stage13.o": [("@107", "fanStopSpeed", 0x4, True)],
     # TObjSetParticle::Exec's aggregate template for the speed it builds.
     "obj_set_particle_exec.o": [("@45", "setParticleSpeedTemplate", 0xC)],
 }
@@ -56,6 +57,7 @@ SYMBOL_RENAMES = {
 SECTION_ALIGNMENTS = {
     "pawn_search_player.o": [(".rodata", 4)],
     "fan_check_ascend.o": [(".rodata", 4)],
+    "fan_check_ascend_stage13.o": [(".rodata", 4)],
 }
 
 
