@@ -9,11 +9,6 @@
 // the team's formation; it plays sound 0x102A, has the team do its launch
 // reaction, kicks the barrel back, shakes the camera for the first players
 // and leaves smoke at the barrel's mouth.
-//
-// NonMatching (2 words): the team's index (an s8) is compared with the player
-// count after `lbz r0; extsb r4, r0`; the retail sign-extends it in place
-// (`lbz r4; extsb r4, r4`). Locals of every width, inline helpers, a cast, the
-// reversed compare and opt_propagation off did not change it.
 
 typedef struct CannonTeam {
 	u8 unk000[0x38];
@@ -91,7 +86,11 @@ extern "C" void CannonPlayer__10TObjCannonFi(Cannon* object, s32 player)
 	}
 	fn_8001F674(team->kind, 4, 0xF, 0);
 	object->recoil = cannonRecoil[0];
-	if (team->index < lbl_8042C204) {
+	// The index is read once and sign-extended in place (`lbz r4; extsb r4, r4`).
+	// A volatile read into an int local reproduces that; a plain s8 field, a
+	// local of any width or a cast load into r0 and extend into r4 instead.
+	s32 index = *(volatile s8*)&team->index;
+	if (index < lbl_8042C204) {
 		fn_8004CC7C(lbl_8042C1F8);
 		fn_8004D5F4(lbl_8042C1F8, cannonShakePower[0], 10);
 		fn_8004CC3C(lbl_8042C1F8);

@@ -12016,7 +12016,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "rel/cannon_player.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
