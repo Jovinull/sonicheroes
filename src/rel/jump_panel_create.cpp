@@ -41,9 +41,11 @@ struct JumpPanelParams {
 	s16 kind;   // 0x08
 };
 
+// RenderWare custom render slot of an atomic: the data word comes first, then the
+// callback it feeds (game/object.cpp's render callbacks read them in this order).
 struct OBJ_CUSTOMRENDER {
-	void* callback;
 	void* pData;
+	void* callback;
 };
 
 extern "C" JumpPanelClump* fn_80150588(RpClump* clump);
@@ -128,7 +130,7 @@ inline TObjJumppanel::TObjJumppanel(TObject* parent)
 	    clump, ((flag & 0x1C0000) >> 18) + 4);
 	OBJ_CUSTOMRENDER* cr = RpAtomicMCCGetCustomRenderCallBack(
 	    objRpClumpGetAtomicWithTexture__FP7RpClumpP8RpAtomicPc(clump, NULL, jumpPanelTexture));
-	cr->callback = (void*)0x10;
+	cr->pData = (void*)0x10;
 }
 
 extern "C" void jumpPanelCreate(void)
