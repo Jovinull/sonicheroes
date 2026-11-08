@@ -956,6 +956,9 @@ game/fn_80146BC8.cpp:
 game/fn_8019044C.cpp:
 	.text       start:0x8019044C end:0x8019047C
 
+game/fn_80190604.cpp:
+	.text       start:0x80190604 end:0x80190634
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
