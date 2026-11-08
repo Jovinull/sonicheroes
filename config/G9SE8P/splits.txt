@@ -950,6 +950,9 @@ game/SpAdvStgFailed.cpp:
 	.sbss       start:0x8042C810 end:0x8042C818
 	.sdata2     start:0x8042F198 end:0x8042F19C
 
+game/fn_80146BC8.cpp:
+	.text       start:0x80146BC8 end:0x80146BF8
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
