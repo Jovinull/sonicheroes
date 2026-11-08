@@ -3418,6 +3418,11 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/jump_panel_create.cpp",
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/bobcontainer_set_position.cpp",
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
@@ -13059,6 +13064,12 @@ config.custom_build_steps = {
             "outputs": "build/G9SE8P/pawn-search-player-symbols.stamp",
             "rule": "fix_stage11_symbols",
             "inputs": "build/G9SE8P/src/rel/pawn_search_player.o",
+            "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
+        },
+        {
+            "outputs": "build/G9SE8P/jump-panel-create-symbols.stamp",
+            "rule": "fix_stage11_symbols",
+            "inputs": "build/G9SE8P/src/rel/jump_panel_create.o",
             "implicit": ["tools/fix_stage11_symbols.py", str(binutils_dir)],
         },
         {

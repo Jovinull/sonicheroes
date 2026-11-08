@@ -271,6 +271,10 @@ rel/jump_panel_edit.cpp:
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC08 end:0x0000CCDC
 
+rel/jump_panel_create.cpp:
+	.text       start:0x0000CCDC end:0x0000CFB8
+	.rodata     start:0x00000248 end:0x00000250
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB8 end:0x0000D060
 	.ctors      start:0x00000024 end:0x00000028
