@@ -2829,6 +2829,9 @@ rel/s13_cloud_ptcl_chain.cpp:
 rel/s13_cloud_ptcl_move.cpp:
 	.text       start:0x000C26C4 end:0x000C27C0
 
+rel/s13_cloud_ptcl_ctor.cpp:
+	.text       start:0x000C27C0 end:0x000C29B0
+
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x000C312C end:0x000C31C4
 
