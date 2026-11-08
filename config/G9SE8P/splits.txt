@@ -1728,6 +1728,9 @@ dolphin/exi/EXIUart.c:
 	.text       start:0x801FBDF4 end:0x801FC3C8
 	.sbss       start:0x8042CF38 end:0x8042CF48
 
+game/fn_80206804.cpp:
+	.text       start:0x80206804 end:0x80206834
+
 game/cri/adx_inis.c:
 	.text       start:0x8020D1FC end:0x8020D4A8
 	.rodata     start:0x8023D648 end:0x8023D680
