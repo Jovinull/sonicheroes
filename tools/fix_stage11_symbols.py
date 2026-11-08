@@ -48,9 +48,9 @@ SYMBOL_RENAMES = {
     "pole_set_angle3.o": [("@31", "poleOne", 0x4, True)],
     # TObjFan::CheckAscend's 0.0, which its comparisons and the module's other fan
     # code read as fanStopSpeed.
-    # TObjEnemySearcher::SearchPlayerForSearcher's 0.0, which the module's other searcher
+    # TObjEnemySearcher::SearchPlayerForSearcher's and SearchPlayerFirst's 0.0, which the module's other searcher
     # code reads as searcherZero.
-    "searcher_search_player_for.o": [("@13", "searcherZero", 0x4, True)],
+    "searcher_search_player_for.o": [("@20", "searcherZero", 0x4, True)],
     "fan_check_ascend.o": [("@107", "fanStopSpeed", 0x4, True)],
     "fan_check_ascend_stage13.o": [("@107", "fanStopSpeed", 0x4, True)],
     # TObjSetParticle::Exec's aggregate template for the speed it builds.
