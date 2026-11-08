@@ -10732,6 +10732,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gadget_needle_update.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gadget_needle.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],

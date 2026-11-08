@@ -1788,6 +1788,9 @@ rel/gadget_shot_cdtor.cpp:
 rel/gadget_needle.cpp:
 	.text       start:0x0005E7C4 end:0x0005E924
 
+rel/gadget_needle_update.cpp:
+	.text       start:0x0005E924 end:0x0005EBA8
+
 rel/gadget_needle_cdtor.cpp:
 	.text       start:0x0005EBA8 end:0x0005ECE4
 
