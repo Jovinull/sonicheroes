@@ -2176,6 +2176,10 @@ rel/pawn_strategy.cpp:
 	.ctors      start:0x000000E8 end:0x000000EC
 	.data       start:0x0000BFD8 end:0x0000C34C
 
+rel/item_box_create.cpp:
+	.text       start:0x00075308 end:0x000753E0
+	.rodata     start:0x000011E8 end:0x000011F0
+
 rel/event_manager_bounding_sphere.cpp:
 	.text       start:0x000753E0 end:0x00075410
 

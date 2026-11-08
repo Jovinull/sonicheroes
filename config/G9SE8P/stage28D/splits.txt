@@ -1915,6 +1915,10 @@ rel/s31_bob_dummy_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x00078D28 end:0x00078D2C
 
+rel/item_box_create.cpp:
+	.text       start:0x00078D2C end:0x00078E04
+	.rodata     start:0x00001480 end:0x00001488
+
 rel/s13_cloud_ptcl_chain.cpp:
 	.text       start:0x00078E04 end:0x00078E9C
 

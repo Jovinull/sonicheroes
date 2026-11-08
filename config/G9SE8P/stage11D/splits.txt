@@ -2356,6 +2356,10 @@ rel/s12thunder_object_register.cpp:
 	.text       start:0x000909C4 end:0x00090B08
 	.ctors      start:0x00000100 end:0x00000104
 
+rel/item_box_create.cpp:
+	.text       start:0x00090B10 end:0x00090BE8
+	.rodata     start:0x00001590 end:0x00001598
+
 rel/s11wall_check_damage.cpp:
 	.text       start:0x00090D70 end:0x00090F2C
 	.data       start:0x00014BBC end:0x00014BE8

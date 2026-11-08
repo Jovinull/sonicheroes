@@ -52,6 +52,8 @@ SYMBOL_RENAMES = {
     # code reads as searcherZero.
     # objSecollisionCreate's u16 to float bias, shared with the module's other code.
     # TObjContainer::SetPosition's s32 to float bias, shared with the module's other crate code.
+    # nItemBox::CreateItemBox's s32 to float bias, shared with the module's other item box code.
+    "item_box_create.o": [("@11", "itemBoxBias", 0x8, True)],
     "container_set_position.o": [("@9", "containerBias", 0x8, True)],
     "secollision_create.o": [("@42", "secollisionBias", 0x8, True)],
     "searcher_search_player_for.o": [("@20", "searcherZero", 0x4, True)],

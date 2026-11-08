@@ -2884,6 +2884,10 @@ rel/pawn_strategy.cpp:
 	.ctors      start:0x00000184 end:0x00000188
 	.data       start:0x0001E380 end:0x0001E6F4
 
+rel/item_box_create.cpp:
+	.text       start:0x000B3998 end:0x000B3A70
+	.rodata     start:0x00001B50 end:0x00001B58
+
 rel/rain_collision_dtor.cpp:
 	.text       start:0x000B3D04 end:0x000B3D9C
 

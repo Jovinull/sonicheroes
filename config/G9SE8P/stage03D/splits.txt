@@ -2714,6 +2714,10 @@ rel/pawn_strategy.cpp:
 	.ctors      start:0x00000168 end:0x0000016C
 	.data       start:0x00013098 end:0x0001340C
 
+rel/item_box_create.cpp:
+	.text       start:0x000B6844 end:0x000B691C
+	.rodata     start:0x00001AC8 end:0x00001AD0
+
 rel/s04_ball_colli_dtor.cpp:
 	.text       start:0x000B6A30 end:0x000B6AC8
 

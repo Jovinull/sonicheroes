@@ -5231,6 +5231,7 @@ modules:
   symbols: config/G9SE8P/stage27D/symbols.txt
   splits: config/G9SE8P/stage27D/splits.txt
   force_active:
+    - CreateItemBox__8nItemBoxFP5RwV3d
     - __ct__16TObjS13CloudPtclFP12TObjS13CloudUisP5RwV3dP6sAngle
     - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
     - UnlinkChain__16TObjS13CloudPtclFv
@@ -5625,6 +5626,7 @@ modules:
   symbols: config/G9SE8P/stage28D/symbols.txt
   splits: config/G9SE8P/stage28D/splits.txt
   force_active:
+    - CreateItemBox__8nItemBoxFP5RwV3d
     - __ct__16TObjS13CloudPtclFP12TObjS13CloudUisP5RwV3dP6sAngle
     - Move__16TObjS13CloudPtclFP17PARTICLE_INSTANCE
     - UnlinkChain__16TObjS13CloudPtclFv
