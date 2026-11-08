@@ -125,6 +125,9 @@ game/action_cont4.cpp:
 game/object_defaults.cpp:
 	.text       start:0x8001ED40 end:0x8001ED60
 
+game/fn_8001EECC.cpp:
+	.text       start:0x8001EECC end:0x8001EED8
+
 game/matrix.cpp:
 	extab       start:0x80005B68 end:0x80005BA8
 	extabindex  start:0x8000C244 end:0x8000C2A4
