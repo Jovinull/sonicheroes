@@ -398,6 +398,10 @@ rel/container_disp.cpp:
 rel/container_broken_se.cpp:
 	.text       start:0x00013844 end:0x00013884
 
+rel/container_set_position.cpp:
+	.text       start:0x00013884 end:0x00013920
+	.rodata     start:0x00000398 end:0x000003A0
+
 rel/container_set_parameter.cpp:
 	.text       start:0x00013920 end:0x00013970
 
