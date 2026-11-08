@@ -642,6 +642,9 @@ game/fn_800ECA8C.cpp:
 game/fn_800ECAE0.cpp:
 	.text       start:0x800ECAE0 end:0x800ECAE8
 
+game/fn_800ECAE8.cpp:
+	.text       start:0x800ECAE8 end:0x800ECAF0
+
 game/fn_800F1608.cpp:
 	.text       start:0x800F1608 end:0x800F1618
 
