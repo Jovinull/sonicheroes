@@ -10636,6 +10636,12 @@ config.libs = [
             ),
             Object(
                 Matching,
+                "rel/gadget_laser_ctor.cpp",
+                cflags=cflags_rel_nofma,
+                extra_cflags=["-opt noschedule,nopeephole"],
+            ),
+            Object(
+                Matching,
                 "rel/gadget_laser_dtor.cpp",
                 cflags=cflags_rel_nofma,
                 extra_cflags=["-opt noschedule,nopeephole"],
