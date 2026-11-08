@@ -1795,6 +1795,10 @@ rel/obj_secollision_dtor.cpp:
 rel/obj_secollision_edit.cpp:
 	.text       start:0x00065CD0 end:0x00065DB8
 
+rel/secollision_create.cpp:
+	.text       start:0x00065DB8 end:0x00065F98
+	.rodata     start:0x00000F68 end:0x00000F70
+
 rel/obj_se_collision_register.cpp:
 	.text       start:0x00065F98 end:0x0006602C
 	.ctors      start:0x000000D0 end:0x000000D4

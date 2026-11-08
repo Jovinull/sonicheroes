@@ -50,6 +50,8 @@ SYMBOL_RENAMES = {
     # code read as fanStopSpeed.
     # TObjEnemySearcher::SearchPlayerForSearcher's and SearchPlayerFirst's 0.0, which the module's other searcher
     # code reads as searcherZero.
+    # objSecollisionCreate's u16 to float bias, shared with the module's other code.
+    "secollision_create.o": [("@42", "secollisionBias", 0x8, True)],
     "searcher_search_player_for.o": [("@20", "searcherZero", 0x4, True)],
     "fan_check_ascend.o": [("@107", "fanStopSpeed", 0x4, True)],
     "fan_check_ascend_stage13.o": [("@107", "fanStopSpeed", 0x4, True)],

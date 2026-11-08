@@ -25,7 +25,7 @@ typedef struct ObjSecollision {
 } ObjSecollision;
 
 extern "C" void* lbl_8042C148;
-extern "C" void* objSecollisionVtable[];
+extern "C" void* __vt__15TObjSECollision[];
 
 extern "C" void __dt__7TObjectFv(TObject* object, s32 flags);
 extern "C" void Free__9THeapCtrlFPv(void* heap, TObject* object);
@@ -42,8 +42,8 @@ static inline s32 objSecollisionTstConditionBit(ObjSecollision* object, u32 flag
 extern "C" ObjSecollision* objSecollisionDtor(ObjSecollision* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable = objSecollisionVtable;
-		object->vtable2     = objSecollisionVtable + 0xB;
+		object->base.vtable = __vt__15TObjSECollision;
+		object->vtable2     = __vt__15TObjSECollision + 0xB;
 
 		if (objSecollisionTstConditionBit(object, 0x10000) == 1) {
 			SetEnd__10TObjSetObjFv(&object->setdata);
