@@ -354,6 +354,9 @@ game/gParam.cpp:
 	.sbss       start:0x8042C2F0 end:0x8042C308
 	.sdata2     start:0x8042D4F0 end:0x8042D508
 
+game/fn_80068B20.cpp:
+	.text       start:0x80068B20 end:0x80068B28
+
 game/fn_800898F0.cpp:
 	.text       start:0x800898F0 end:0x800898F8
 
