@@ -190,6 +190,14 @@ game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
 
+game/fn_8004D538.cpp:
+	extab       start:0x80006208 end:0x80006210
+	extabindex  start:0x8000CAFC end:0x8000CB08
+	.text       start:0x8004D538 end:0x8004D568
+
+game/fn_8004D5C4.cpp:
+	.text       start:0x8004D5C4 end:0x8004D5F4
+
 game/fn_8004D99C.cpp:
 	.text       start:0x8004D99C end:0x8004D9B8
 
