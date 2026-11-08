@@ -1055,6 +1055,9 @@ game/fn_80142E38.cpp:
 game/fn_801439D8.cpp:
 	.text       start:0x801439D8 end:0x801439E0
 
+game/fn_801468B4.cpp:
+	.text       start:0x801468B4 end:0x801468BC
+
 game/fn_80146BC8.cpp:
 	.text       start:0x80146BC8 end:0x80146BF8
 
