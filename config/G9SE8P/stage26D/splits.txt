@@ -2740,6 +2740,10 @@ rel/searcher_score.cpp:
 rel/searcher_hit_point.cpp:
 	.text       start:0x000A5010 end:0x000A50E0
 
+rel/searcher_search_player_for.cpp:
+	.text       start:0x000A520C end:0x000A52A4
+	.rodata     start:0x00001D2C end:0x00001D30
+
 rel/searcher_gadget_mode.cpp:
 	.text       start:0x000A53C4 end:0x000A5404
 
