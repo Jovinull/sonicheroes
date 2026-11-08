@@ -838,6 +838,9 @@ game/SeqFlagCtrl.cpp:
 game/fn_80115058.cpp:
 	.text       start:0x80115058 end:0x80115070
 
+game/fn_8011534C.cpp:
+	.text       start:0x8011534C end:0x80115358
+
 game/material.cpp:
 	extab       start:0x8000AA64 end:0x8000AB24
 	extabindex  start:0x80010B1C end:0x80010C3C
