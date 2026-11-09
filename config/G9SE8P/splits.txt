@@ -2041,6 +2041,9 @@ game/eventCore.cpp:
 game/fn_8011E5F0.cpp:
 	.text       start:0x8011E5F0 end:0x8011E5F4
 
+game/fn_8011E5F4.cpp:
+	.text       start:0x8011E5F4 end:0x8011E5F8
+
 game/fn_8011EC08.cpp:
 	extab       start:0x8000AE70 end:0x8000AE78
 	extabindex  start:0x80010EC4 end:0x80010ED0
