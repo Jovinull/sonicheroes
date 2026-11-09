@@ -4501,6 +4501,9 @@ game/ADXSJD_GetNumChan.cpp:
 game/ADXSJD_GetSfreq.cpp:
 	.text       start:0x8020D71C end:0x8020D740
 
+game/ADXSJD_GetFormat.cpp:
+	.text       start:0x8020D740 end:0x8020D764
+
 game/ADXSJD_SetTrapDtLen.cpp:
 	.text       start:0x8020D764 end:0x8020D76C
 
