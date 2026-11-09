@@ -2076,6 +2076,9 @@ game/fn_8011EC08.cpp:
 	extabindex  start:0x80010EC4 end:0x80010ED0
 	.text       start:0x8011EC08 end:0x8011ECAC
 
+game/fn_8011EF18.cpp:
+	.text       start:0x8011EF18 end:0x8011EF24
+
 game/fn_8011EFB0.cpp:
 	.text       start:0x8011EFB0 end:0x8011EFB8
 
