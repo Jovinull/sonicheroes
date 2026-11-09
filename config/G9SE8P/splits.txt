@@ -2724,6 +2724,9 @@ game/fn_8016B7BC.cpp:
 game/fn_8016E0AC.cpp:
 	.text       start:0x8016E0AC end:0x8016E0C0
 
+game/fn_8016EF60.cpp:
+	.text       start:0x8016EF60 end:0x8016EF70
+
 game/fn_8016F860.cpp:
 	.text       start:0x8016F860 end:0x8016F894
 
