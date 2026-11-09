@@ -996,6 +996,7 @@ config.libs = [
             Object(Matching, "game/RwFreeListCreate.cpp"),
             Object(Matching, "game/RwEngineRegisterPlugin.cpp"),
             Object(Matching, "game/ADXB_Init.cpp"),
+            Object(Matching, "game/ADXB_CheckSpsd.cpp"),
             Object(Matching, "game/ADXB_SetAhxDecSmpl.cpp"),
             Object(Matching, "game/ADXB_Destroy.cpp"),
             Object(Matching, "game/adxb_DefAddWr.cpp"),
