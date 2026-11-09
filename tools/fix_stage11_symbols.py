@@ -46,12 +46,30 @@ SYMBOL_RENAMES = {
     # TObjPole::SetAngle3FromNormal's 1.0, which the module's other pole code
     # reads as poleOne.
     "pole_set_angle3.o": [("@31", "poleOne", 0x4, True)],
+    # TObjFan::CheckAscend's 0.0, which its comparisons and the module's other fan
+    # code read as fanStopSpeed.
+    # TObjEnemySearcher::SearchPlayerForSearcher's and SearchPlayerFirst's 0.0, which the module's other searcher
+    # code reads as searcherZero.
+    # objSecollisionCreate's u16 to float bias, shared with the module's other code.
+    # TObjContainer::SetPosition's s32 to float bias, shared with the module's other crate code.
+    # nItemBox::CreateItemBox's s32 to float bias, shared with the module's other item box code.
+    # TObjJumppanel's constructor's s32 to float bias, shared with the module's other jump panel code.
+    "jump_panel_create.o": [("@28", "jumpPanelIntBias", 0x8, True)],
+    "item_box_create.o": [("@11", "itemBoxBias", 0x8, True)],
+    "container_set_position.o": [("@9", "containerBias", 0x8, True)],
+    "secollision_create.o": [("@42", "secollisionBias", 0x8, True)],
+    "searcher_search_player_for.o": [("@20", "searcherZero", 0x4, True)],
+    "fan_check_ascend.o": [("@107", "fanStopSpeed", 0x4, True)],
+    "fan_check_ascend_stage13.o": [("@107", "fanStopSpeed", 0x4, True)],
     # TObjSetParticle::Exec's aggregate template for the speed it builds.
     "obj_set_particle_exec.o": [("@45", "setParticleSpeedTemplate", 0xC)],
 }
 
 SECTION_ALIGNMENTS = {
     "pawn_search_player.o": [(".rodata", 4)],
+    "searcher_search_player_for.o": [(".rodata", 4)],
+    "fan_check_ascend.o": [(".rodata", 4)],
+    "fan_check_ascend_stage13.o": [(".rodata", 4)],
 }
 
 

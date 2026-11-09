@@ -75,13 +75,13 @@ typedef struct JumpPanel {
 } JumpPanel;        // 0xF4
 
 // Defined by each module, renamed to this name in its own symbols.txt.
-extern "C" void* jumpPanelVtable[];
+extern "C" void* __vt__13TObjJumppanel[];
 
 extern "C" JumpPanel* jumpPanelDtor(JumpPanel* object, s16 flags)
 {
 	if (object != NULL) {
-		object->base.vtable   = jumpPanelVtable;
-		object->motion.vtable = jumpPanelVtable + 0xB;
+		object->base.vtable   = __vt__13TObjJumppanel;
+		object->motion.vtable = __vt__13TObjJumppanel + 0xB;
 
 		if (object->mesh != NULL) {
 			fn_8015BBF8(lbl_8042C1D0->scene, object->mesh);

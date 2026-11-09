@@ -271,6 +271,10 @@ rel/jump_panel_edit.cpp:
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC08 end:0x0000CCDC
 
+rel/jump_panel_create.cpp:
+	.text       start:0x0000CCDC end:0x0000CFB8
+	.rodata     start:0x00000248 end:0x00000250
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB8 end:0x0000D060
 	.ctors      start:0x00000024 end:0x00000028
@@ -397,6 +401,10 @@ rel/container_disp.cpp:
 
 rel/container_broken_se.cpp:
 	.text       start:0x00013844 end:0x00013884
+
+rel/container_set_position.cpp:
+	.text       start:0x00013884 end:0x00013920
+	.rodata     start:0x00000398 end:0x000003A0
 
 rel/container_set_parameter.cpp:
 	.text       start:0x00013920 end:0x00013970
@@ -708,6 +716,10 @@ rel/target_assets.cpp:
 
 rel/fan_rotate.cpp:
 	.text       start:0x000241D0 end:0x00024338
+
+rel/fan_check_ascend_stage13.cpp:
+	.text       start:0x00024338 end:0x00024838
+	.rodata     start:0x0000056C end:0x00000570
 
 rel/fan_parameter.cpp:
 	.text       start:0x00024FB8 end:0x000250C8
@@ -1401,6 +1413,9 @@ rel/itempanel_effect_all.cpp:
 rel/particle_chain.cpp:
 	.text       start:0x0004AC38 end:0x0004AD48
 
+rel/itempanel_control_dtor.cpp:
+	.text       start:0x0004AD48 end:0x0004AE9C
+
 rel/itempanel_control_ctor.cpp:
 	.text       start:0x0004AE9C end:0x0004AF4C
 
@@ -1638,6 +1653,10 @@ rel/searcher_score.cpp:
 rel/searcher_hit_point.cpp:
 	.text       start:0x00054CA0 end:0x00054D70
 
+rel/searcher_search_player_for.cpp:
+	.text       start:0x00054E9C end:0x00055054
+	.rodata     start:0x00000E1C end:0x00000E20
+
 rel/searcher_gadget_mode.cpp:
 	.text       start:0x00055054 end:0x00055094
 
@@ -1751,6 +1770,12 @@ rel/gadget_laser_disp.cpp:
 rel/gadget_laser_update.cpp:
 	.text       start:0x0005CC98 end:0x0005CF84
 
+rel/gadget_laser_dtor.cpp:
+	.text       start:0x0005CF84 end:0x0005D07C
+
+rel/gadget_laser_ctor.cpp:
+	.text       start:0x0005D07C end:0x0005D304
+
 rel/gadget_laser_static.cpp:
 	.text       start:0x0005D304 end:0x0005D3A8
 
@@ -1777,6 +1802,9 @@ rel/gadget_shot_cdtor.cpp:
 
 rel/gadget_needle.cpp:
 	.text       start:0x0005E7C4 end:0x0005E924
+
+rel/gadget_needle_update.cpp:
+	.text       start:0x0005E924 end:0x0005EBA8
 
 rel/gadget_needle_cdtor.cpp:
 	.text       start:0x0005EBA8 end:0x0005ECE4
@@ -2088,6 +2116,10 @@ rel/obj_secollision_dtor.cpp:
 
 rel/obj_secollision_edit.cpp:
 	.text       start:0x0006F6D8 end:0x0006F7C0
+
+rel/secollision_create.cpp:
+	.text       start:0x0006F7C0 end:0x0006F9A0
+	.rodata     start:0x00001218 end:0x00001220
 
 rel/obj_se_collision_register.cpp:
 	.text       start:0x0006F9A0 end:0x0006FA34
@@ -2498,6 +2530,10 @@ rel/s14_thunder_light_dtor.cpp:
 rel/s14_thunder_chain.cpp:
 	.text       start:0x000A20F4 end:0x000A21B4
 
+rel/item_box_create.cpp:
+	.text       start:0x000A2314 end:0x000A23EC
+	.rodata     start:0x00001958 end:0x00001960
+
 rel/s14_laser_beam_edit.cpp:
 	.text       start:0x000A397C end:0x000A39C8
 
@@ -2821,6 +2857,9 @@ rel/s13_cloud_ptcl_chain.cpp:
 
 rel/s13_cloud_ptcl_move.cpp:
 	.text       start:0x000C26C4 end:0x000C27C0
+
+rel/s13_cloud_ptcl_ctor.cpp:
+	.text       start:0x000C27C0 end:0x000C29B0
 
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x000C312C end:0x000C31C4

@@ -271,6 +271,10 @@ rel/jump_panel_edit.cpp:
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC04 end:0x0000CCD8
 
+rel/jump_panel_create.cpp:
+	.text       start:0x0000CCD8 end:0x0000CFB4
+	.rodata     start:0x00000238 end:0x00000240
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
@@ -397,6 +401,10 @@ rel/container_disp.cpp:
 
 rel/container_broken_se.cpp:
 	.text       start:0x00013840 end:0x00013880
+
+rel/container_set_position.cpp:
+	.text       start:0x00013880 end:0x0001391C
+	.rodata     start:0x00000388 end:0x00000390
 
 rel/container_set_parameter.cpp:
 	.text       start:0x0001391C end:0x0001396C
@@ -714,6 +722,10 @@ rel/target_assets.cpp:
 
 rel/fan_rotate.cpp:
 	.text       start:0x000241DC end:0x00024344
+
+rel/fan_check_ascend.cpp:
+	.text       start:0x00024344 end:0x0002484C
+	.rodata     start:0x0000055C end:0x00000560
 
 rel/fan_parameter.cpp:
 	.text       start:0x00024FD4 end:0x000250E4
@@ -1218,6 +1230,9 @@ rel/itempanel_effect_all.cpp:
 
 rel/particle_chain.cpp:
 	.text       start:0x00043818 end:0x00043928
+
+rel/itempanel_control_dtor.cpp:
+	.text       start:0x00043928 end:0x00043A7C
 
 rel/itempanel_control_ctor.cpp:
 	.text       start:0x00043A7C end:0x00043B2C
@@ -1788,6 +1803,10 @@ rel/obj_secollision_dtor.cpp:
 rel/obj_secollision_edit.cpp:
 	.text       start:0x00065CD0 end:0x00065DB8
 
+rel/secollision_create.cpp:
+	.text       start:0x00065DB8 end:0x00065F98
+	.rodata     start:0x00000F68 end:0x00000F70
+
 rel/obj_se_collision_register.cpp:
 	.text       start:0x00065F98 end:0x0006602C
 	.ctors      start:0x000000D0 end:0x000000D4
@@ -1900,11 +1919,18 @@ rel/s31_bob_dummy_register.cpp:
 rel/s31bob_exec.cpp:
 	.text       start:0x00078D28 end:0x00078D2C
 
+rel/item_box_create.cpp:
+	.text       start:0x00078D2C end:0x00078E04
+	.rodata     start:0x00001480 end:0x00001488
+
 rel/s13_cloud_ptcl_chain.cpp:
 	.text       start:0x00078E04 end:0x00078E9C
 
 rel/s13_cloud_ptcl_move.cpp:
 	.text       start:0x00078E9C end:0x00078F98
+
+rel/s13_cloud_ptcl_ctor.cpp:
+	.text       start:0x00078F98 end:0x00079188
 
 rel/s13_cloud2_edit.cpp:
 	.text       start:0x00079904 end:0x0007999C

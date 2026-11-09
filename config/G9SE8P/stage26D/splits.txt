@@ -271,6 +271,10 @@ rel/jump_panel_edit.cpp:
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC04 end:0x0000CCD8
 
+rel/jump_panel_create.cpp:
+	.text       start:0x0000CCD8 end:0x0000CFB4
+	.rodata     start:0x00000238 end:0x00000240
+
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
 	.ctors      start:0x00000024 end:0x00000028
@@ -397,6 +401,10 @@ rel/container_disp.cpp:
 
 rel/container_broken_se.cpp:
 	.text       start:0x00013840 end:0x00013880
+
+rel/container_set_position.cpp:
+	.text       start:0x00013880 end:0x0001391C
+	.rodata     start:0x00000388 end:0x00000390
 
 rel/container_set_parameter.cpp:
 	.text       start:0x0001391C end:0x0001396C
@@ -714,6 +722,10 @@ rel/target_assets.cpp:
 
 rel/fan_rotate.cpp:
 	.text       start:0x000241DC end:0x00024344
+
+rel/fan_check_ascend.cpp:
+	.text       start:0x00024344 end:0x0002484C
+	.rodata     start:0x0000055C end:0x00000560
 
 rel/fan_parameter.cpp:
 	.text       start:0x00024FD4 end:0x000250E4
@@ -1218,6 +1230,9 @@ rel/itempanel_effect_all.cpp:
 
 rel/particle_chain.cpp:
 	.text       start:0x00043818 end:0x00043928
+
+rel/itempanel_control_dtor.cpp:
+	.text       start:0x00043928 end:0x00043A7C
 
 rel/itempanel_control_ctor.cpp:
 	.text       start:0x00043A7C end:0x00043B2C
@@ -1828,6 +1843,10 @@ rel/obj_secollision_dtor.cpp:
 rel/obj_secollision_edit.cpp:
 	.text       start:0x0006F9AC end:0x0006FA94
 
+rel/secollision_create.cpp:
+	.text       start:0x0006FA94 end:0x0006FC74
+	.rodata     start:0x00001380 end:0x00001388
+
 rel/obj_se_collision_register.cpp:
 	.text       start:0x0006FC74 end:0x0006FD08
 	.ctors      start:0x000000D4 end:0x000000D8
@@ -1957,6 +1976,10 @@ rel/stg26_colli_cc_load.cpp:
 rel/stg26_colli_cc_register.cpp:
 	.text       start:0x000756F4 end:0x00075840
 	.ctors      start:0x000000E0 end:0x000000E4
+
+rel/item_box_create.cpp:
+	.text       start:0x00075840 end:0x00075918
+	.rodata     start:0x00001498 end:0x000014A0
 
 rel/king_pawn_core_dtor.cpp:
 	.text       start:0x0007622C end:0x000762F0
@@ -2670,6 +2693,12 @@ rel/gadget_laser_disp.cpp:
 rel/gadget_laser_update.cpp:
 	.text       start:0x000A25C0 end:0x000A28AC
 
+rel/gadget_laser_dtor.cpp:
+	.text       start:0x000A28AC end:0x000A29A4
+
+rel/gadget_laser_ctor.cpp:
+	.text       start:0x000A29A4 end:0x000A2C2C
+
 rel/gadget_laser_static.cpp:
 	.text       start:0x000A2C2C end:0x000A2CD0
 
@@ -2697,6 +2726,9 @@ rel/gadget_shot_cdtor.cpp:
 rel/gadget_needle.cpp:
 	.text       start:0x000A40EC end:0x000A424C
 
+rel/gadget_needle_update.cpp:
+	.text       start:0x000A424C end:0x000A44D0
+
 rel/gadget_needle_cdtor.cpp:
 	.text       start:0x000A44D0 end:0x000A460C
 
@@ -2723,6 +2755,10 @@ rel/searcher_score.cpp:
 
 rel/searcher_hit_point.cpp:
 	.text       start:0x000A5010 end:0x000A50E0
+
+rel/searcher_search_player_for.cpp:
+	.text       start:0x000A520C end:0x000A53C4
+	.rodata     start:0x00001D2C end:0x00001D30
 
 rel/searcher_gadget_mode.cpp:
 	.text       start:0x000A53C4 end:0x000A5404

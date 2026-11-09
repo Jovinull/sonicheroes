@@ -243,6 +243,12 @@ rel/ring_object_edit.cpp:
 rel/ring_object_reset.cpp:
 	.text       start:0x0000BB48 end:0x0000BB7C
 
+rel/ring_object_hooks.cpp:
+	.text       start:0x0000BB7C end:0x0000BC38
+
+rel/ring_object_create.cpp:
+	.text       start:0x0000BC38 end:0x0000BD28
+
 rel/ring_register.cpp:
 	.text       start:0x0000BD38 end:0x0000BE94
 	.ctors      start:0x00000020 end:0x00000024
@@ -264,6 +270,10 @@ rel/jump_panel_edit.cpp:
 
 rel/jump_panel_hooks.cpp:
 	.text       start:0x0000CC04 end:0x0000CCD8
+
+rel/jump_panel_create.cpp:
+	.text       start:0x0000CCD8 end:0x0000CFB4
+	.rodata     start:0x00000238 end:0x00000240
 
 rel/jump_panel_register.cpp:
 	.text       start:0x0000CFB4 end:0x0000D05C
@@ -391,6 +401,10 @@ rel/container_disp.cpp:
 
 rel/container_broken_se.cpp:
 	.text       start:0x00013840 end:0x00013880
+
+rel/container_set_position.cpp:
+	.text       start:0x00013880 end:0x0001391C
+	.rodata     start:0x00000388 end:0x00000390
 
 rel/container_set_parameter.cpp:
 	.text       start:0x0001391C end:0x0001396C
@@ -699,6 +713,10 @@ rel/target_assets.cpp:
 
 rel/fan_rotate.cpp:
 	.text       start:0x000241DC end:0x00024344
+
+rel/fan_check_ascend.cpp:
+	.text       start:0x00024344 end:0x0002484C
+	.rodata     start:0x0000055C end:0x00000560
 
 rel/fan_parameter.cpp:
 	.text       start:0x00024FD4 end:0x000250E4
@@ -1387,6 +1405,9 @@ rel/itempanel_effect_all.cpp:
 rel/particle_chain.cpp:
 	.text       start:0x0004AC50 end:0x0004AD60
 
+rel/itempanel_control_dtor.cpp:
+	.text       start:0x0004AD60 end:0x0004AEB4
+
 rel/itempanel_control_ctor.cpp:
 	.text       start:0x0004AEB4 end:0x0004AF64
 
@@ -1597,6 +1618,10 @@ rel/searcher_score.cpp:
 rel/searcher_hit_point.cpp:
 	.text       start:0x00054CBC end:0x00054D8C
 
+rel/searcher_search_player_for.cpp:
+	.text       start:0x00054EB8 end:0x00055070
+	.rodata     start:0x00000E0C end:0x00000E10
+
 rel/searcher_gadget_mode.cpp:
 	.text       start:0x00055070 end:0x000550B0
 
@@ -1713,6 +1738,12 @@ rel/gadget_laser_disp.cpp:
 rel/gadget_laser_update.cpp:
 	.text       start:0x0005CCC4 end:0x0005CFB0
 
+rel/gadget_laser_dtor.cpp:
+	.text       start:0x0005CFB0 end:0x0005D0A8
+
+rel/gadget_laser_ctor.cpp:
+	.text       start:0x0005D0A8 end:0x0005D330
+
 rel/gadget_laser_static.cpp:
 	.text       start:0x0005D330 end:0x0005D3D4
 
@@ -1740,6 +1771,9 @@ rel/gadget_shot_cdtor.cpp:
 rel/gadget_needle.cpp:
 	.text       start:0x0005E7F0 end:0x0005E950
 
+rel/gadget_needle_update.cpp:
+	.text       start:0x0005E950 end:0x0005EBD4
+
 rel/gadget_needle_cdtor.cpp:
 	.text       start:0x0005EBD4 end:0x0005ED10
 
@@ -1751,6 +1785,9 @@ rel/enemy_gadget_dtor.cpp:
 
 rel/gadget_laser_sleep.cpp:
 	.text       start:0x0005EEA8 end:0x0005EEC0
+
+rel/pawn_release_buffer.cpp:
+	.text       start:0x0005EEC0 end:0x0005EF08
 
 rel/machine_gun_control.cpp:
 	.text       start:0x0005EF08 end:0x0005F180
@@ -2151,6 +2188,10 @@ rel/obj_secollision_dtor.cpp:
 rel/obj_secollision_edit.cpp:
 	.text       start:0x0007A5D8 end:0x0007A6C0
 
+rel/secollision_create.cpp:
+	.text       start:0x0007A6C0 end:0x0007A8A0
+	.rodata     start:0x000012C8 end:0x000012D0
+
 rel/obj_se_collision_register.cpp:
 	.text       start:0x0007A8A0 end:0x0007A934
 	.ctors      start:0x000000D8 end:0x000000DC
@@ -2318,6 +2359,10 @@ rel/s12thunder_edit.cpp:
 rel/s12thunder_object_register.cpp:
 	.text       start:0x000909C4 end:0x00090B08
 	.ctors      start:0x00000100 end:0x00000104
+
+rel/item_box_create.cpp:
+	.text       start:0x00090B10 end:0x00090BE8
+	.rodata     start:0x00001590 end:0x00001598
 
 rel/s11wall_check_damage.cpp:
 	.text       start:0x00090D70 end:0x00090F2C
