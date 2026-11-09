@@ -993,6 +993,7 @@ config.libs = [
             Object(Matching, "game/fn_8005776C.cpp"),
             Object(Matching, "game/ADXSJD_GetDefPan.cpp"),
             Object(Matching, "game/ADXSJD_GetDefOutVol.cpp"),
+            Object(Matching, "game/RwFreeListCreate.cpp"),
             Object(Matching, "game/ADXB_SetAhxDecSmpl.cpp"),
             Object(Matching, "game/ADXB_Destroy.cpp"),
             Object(Matching, "game/adxb_DefAddWr.cpp"),

@@ -3352,6 +3352,9 @@ game/fn_80196414.cpp:
 game/fn_80196504.cpp:
 	.text       start:0x80196504 end:0x8019650C
 
+game/RwFreeListCreate.cpp:
+	.text       start:0x801966A4 end:0x801966CC
+
 game/fn_801966CC.cpp:
 	.text       start:0x801966CC end:0x801966EC
 
