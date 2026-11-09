@@ -3832,6 +3832,9 @@ dolphin/exi/EXIUart.c:
 	.text       start:0x801FBDF4 end:0x801FC3C8
 	.sbss       start:0x8042CF38 end:0x8042CF48
 
+game/fn_801FC3C8.cpp:
+	.text       start:0x801FC3C8 end:0x801FC3D8
+
 game/fn_801FC470.cpp:
 	.text       start:0x801FC470 end:0x801FC4F0
 
