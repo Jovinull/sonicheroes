@@ -373,6 +373,9 @@ game/fn_8004D99C.cpp:
 game/fn_8004DB18.cpp:
 	.text       start:0x8004DB18 end:0x8004DB3C
 
+game/fn_8004DCE0.cpp:
+	.text       start:0x8004DCE0 end:0x8004DCF4
+
 game/fn_8004DD18.cpp:
 	.text       start:0x8004DD18 end:0x8004DD3C
 
