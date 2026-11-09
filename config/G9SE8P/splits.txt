@@ -552,6 +552,11 @@ game/gParam.cpp:
 	.sbss       start:0x8042C2F0 end:0x8042C308
 	.sdata2     start:0x8042D4F0 end:0x8042D508
 
+game/fn_80067050.cpp:
+	extab       start:0x80006C58 end:0x80006C60
+	extabindex  start:0x8000D6CC end:0x8000D6D8
+	.text       start:0x80067050 end:0x800670F8
+
 game/fn_80068B20.cpp:
 	.text       start:0x80068B20 end:0x80068B28
 
@@ -618,6 +623,16 @@ game/fn_8009E744.cpp:
 	extab       start:0x8000781C end:0x80007824
 	extabindex  start:0x8000DE04 end:0x8000DE10
 	.text       start:0x8009E744 end:0x8009E7B0
+
+game/fn_8009FB78.cpp:
+	extab       start:0x80007874 end:0x8000787C
+	extabindex  start:0x8000DE58 end:0x8000DE64
+	.text       start:0x8009FB78 end:0x8009FBFC
+
+game/fn_800A1960.cpp:
+	extab       start:0x800078B8 end:0x800078C0
+	extabindex  start:0x8000DEA0 end:0x8000DEAC
+	.text       start:0x800A1960 end:0x800A19E4
 
 game/fn_800A201C.cpp:
 	extab       start:0x800078D0 end:0x800078D8
