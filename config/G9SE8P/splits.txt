@@ -182,10 +182,20 @@ game/fn_8003C74C.cpp:
 	extabindex  start:0x8000C514 end:0x8000C520
 	.text       start:0x8003C74C end:0x8003C778
 
+game/fn_8003C9D8.cpp:
+	extab       start:0x80005D78 end:0x80005D80
+	extabindex  start:0x8000C544 end:0x8000C550
+	.text       start:0x8003C9D8 end:0x8003CA34
+
 game/fn_8003CB38.cpp:
 	extab       start:0x80005D90 end:0x80005D98
 	extabindex  start:0x8000C568 end:0x8000C574
 	.text       start:0x8003CB38 end:0x8003CB98
+
+game/fn_8003CB98.cpp:
+	extab       start:0x80005D98 end:0x80005DA0
+	extabindex  start:0x8000C574 end:0x8000C580
+	.text       start:0x8003CB98 end:0x8003CC18
 
 game/fn_8003F300.cpp:
 	.text       start:0x8003F300 end:0x8003F308
