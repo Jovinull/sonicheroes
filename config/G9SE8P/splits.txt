@@ -349,6 +349,11 @@ game/fn_8004F97C.cpp:
 game/fn_8004FC9C.cpp:
 	.text       start:0x8004FC9C end:0x8004FCC4
 
+game/fn_8004FFB4.cpp:
+	extab       start:0x80006340 end:0x80006348
+	extabindex  start:0x8000CC4C end:0x8000CC58
+	.text       start:0x8004FFB4 end:0x80050000
+
 game/fn_80051F68.cpp:
 	extab       start:0x80006404 end:0x8000640C
 	extabindex  start:0x8000CD54 end:0x8000CD60
@@ -436,10 +441,25 @@ game/fn_8005FA0C.cpp:
 	extabindex  start:0x8000D468 end:0x8000D474
 	.text       start:0x8005FA0C end:0x8005FA44
 
+game/fn_8005FA44.cpp:
+	extab       start:0x80006A0C end:0x80006A14
+	extabindex  start:0x8000D474 end:0x8000D480
+	.text       start:0x8005FA44 end:0x8005FA8C
+
 game/fn_8005FC74.cpp:
 	extab       start:0x80006A2C end:0x80006A34
 	extabindex  start:0x8000D4A4 end:0x8000D4B0
 	.text       start:0x8005FC74 end:0x8005FC98
+
+game/fn_80062858.cpp:
+	extab       start:0x80006AA4 end:0x80006AAC
+	extabindex  start:0x8000D528 end:0x8000D534
+	.text       start:0x80062858 end:0x80062894
+
+game/fn_80062894.cpp:
+	extab       start:0x80006AAC end:0x80006AB4
+	extabindex  start:0x8000D534 end:0x8000D540
+	.text       start:0x80062894 end:0x800628D0
 
 game/fn_800643E8.cpp:
 	.text       start:0x800643E8 end:0x8006441C
