@@ -2026,6 +2026,9 @@ game/enemy/e_powercore.cpp:
 	.sbss       start:0x8042C6D8 end:0x8042C6E0
 	.sdata2     start:0x8042EB38 end:0x8042EB68
 
+game/fn_8011D770.cpp:
+	.text       start:0x8011D770 end:0x8011D774
+
 game/fn_8011E528.cpp:
 	extab       start:0x8000AE58 end:0x8000AE60
 	extabindex  start:0x80010EA0 end:0x80010EAC
