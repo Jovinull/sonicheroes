@@ -4489,6 +4489,9 @@ game/ADXB_GetLpEndOfst.cpp:
 game/ADXB_GetLpEndPos.cpp:
 	.text       start:0x80211574 end:0x8021157C
 
+game/ADXB_GetLpStartPos.cpp:
+	.text       start:0x80211594 end:0x8021159C
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
