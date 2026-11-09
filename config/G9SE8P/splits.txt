@@ -2007,6 +2007,31 @@ game/fn_801269EC.cpp:
 	extabindex  start:0x8001123C end:0x80011248
 	.text       start:0x801269EC end:0x80126A44
 
+game/fn_80126B68.cpp:
+	extab       start:0x8000B298 end:0x8000B2A0
+	extabindex  start:0x80011254 end:0x80011260
+	.text       start:0x80126B68 end:0x80126BEC
+
+game/fn_80126BEC.cpp:
+	extab       start:0x8000B2A0 end:0x8000B2A8
+	extabindex  start:0x80011260 end:0x8001126C
+	.text       start:0x80126BEC end:0x80126C88
+
+game/fn_80126E0C.cpp:
+	extab       start:0x8000B2B0 end:0x8000B2B8
+	extabindex  start:0x80011278 end:0x80011284
+	.text       start:0x80126E0C end:0x80126E90
+
+game/fn_80126E90.cpp:
+	extab       start:0x8000B2B8 end:0x8000B2C0
+	extabindex  start:0x80011284 end:0x80011290
+	.text       start:0x80126E90 end:0x80126F14
+
+game/fn_80126FF4.cpp:
+	extab       start:0x8000B2C8 end:0x8000B2D0
+	extabindex  start:0x8001129C end:0x800112A8
+	.text       start:0x80126FF4 end:0x80127078
+
 game/fn_80127808.cpp:
 	extab       start:0x8000B318 end:0x8000B320
 	extabindex  start:0x80011314 end:0x80011320
@@ -2027,10 +2052,30 @@ game/fn_80127960.cpp:
 	extabindex  start:0x80011338 end:0x80011344
 	.text       start:0x80127960 end:0x801279C8
 
+game/fn_80127EA8.cpp:
+	extab       start:0x8000B348 end:0x8000B350
+	extabindex  start:0x8001135C end:0x80011368
+	.text       start:0x80127EA8 end:0x80127F30
+
+game/fn_80127F30.cpp:
+	extab       start:0x8000B350 end:0x8000B358
+	extabindex  start:0x80011368 end:0x80011374
+	.text       start:0x80127F30 end:0x80127FC4
+
+game/fn_80127FC4.cpp:
+	extab       start:0x8000B358 end:0x8000B360
+	extabindex  start:0x80011374 end:0x80011380
+	.text       start:0x80127FC4 end:0x80128058
+
 game/fn_80128058.cpp:
 	extab       start:0x8000B360 end:0x8000B368
 	extabindex  start:0x80011380 end:0x8001138C
 	.text       start:0x80128058 end:0x801280CC
+
+game/fn_801280CC.cpp:
+	extab       start:0x8000B368 end:0x8000B370
+	extabindex  start:0x8001138C end:0x80011398
+	.text       start:0x801280CC end:0x80128158
 
 game/fn_80128158.cpp:
 	extab       start:0x8000B370 end:0x8000B378
