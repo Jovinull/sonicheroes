@@ -2472,6 +2472,9 @@ game/fn_8013C248.cpp:
 game/fn_8013C258.cpp:
 	.text       start:0x8013C258 end:0x8013C2B0
 
+game/fn_8013C2B0.cpp:
+	.text       start:0x8013C2B0 end:0x8013C2B4
+
 game/fn_8013C99C.cpp:
 	.text       start:0x8013C99C end:0x8013CA1C
 
