@@ -1900,6 +1900,9 @@ game/fn_801A4E40.cpp:
 game/fn_801A53E4.cpp:
 	.text       start:0x801A53E4 end:0x801A540C
 
+game/fn_801A5448.cpp:
+	.text       start:0x801A5448 end:0x801A5490
+
 game/fn_801ABC80.cpp:
 	.text       start:0x801ABC80 end:0x801ABC88
 
