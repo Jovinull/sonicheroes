@@ -2033,6 +2033,11 @@ game/fn_8011B81C.cpp:
 	extabindex  start:0x80010D20 end:0x80010D2C
 	.text       start:0x8011B81C end:0x8011B844
 
+game/fn_8011B9AC.cpp:
+	extab       start:0x8000AC50 end:0x8000AC58
+	extabindex  start:0x80010D44 end:0x80010D50
+	.text       start:0x8011B9AC end:0x8011BA54
+
 game/fn_8011BB2C.cpp:
 	.text       start:0x8011BB2C end:0x8011BB38
 
@@ -2041,6 +2046,11 @@ game/fn_8011BB38.cpp:
 
 game/fn_8011BB3C.cpp:
 	.text       start:0x8011BB3C end:0x8011BB40
+
+game/fn_8011BD58.cpp:
+	extab       start:0x8000AC70 end:0x8000AC78
+	extabindex  start:0x80010D74 end:0x80010D80
+	.text       start:0x8011BD58 end:0x8011BE00
 
 game/fn_8011BEEC.cpp:
 	.text       start:0x8011BEEC end:0x8011BEF8
