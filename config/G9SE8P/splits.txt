@@ -4622,6 +4622,9 @@ game/ADXB_ExecOneWav.cpp:
 game/ADXB_CheckWav.cpp:
 	.text       start:0x8020E600 end:0x8020E668
 
+game/ADXB_DecodeHeaderWav.cpp:
+	.text       start:0x8020F0E8 end:0x8020F1D4
+
 game/ADXB_SetAhxDecSmpl.cpp:
 	.text       start:0x8020F468 end:0x8020F48C
 
@@ -4720,6 +4723,9 @@ game/ADXB_Init.cpp:
 
 game/ADXB_CheckSpsd.cpp:
 	.text       start:0x80212084 end:0x802120B8
+
+game/ADXB_DecodeHeaderSpsd.cpp:
+	.text       start:0x80212390 end:0x8021247C
 
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
