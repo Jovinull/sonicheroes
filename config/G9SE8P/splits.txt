@@ -4498,6 +4498,9 @@ game/ADXB_GetNumLoop.cpp:
 game/ADXB_GetTotalNumSmpl.cpp:
 	.text       start:0x802115A4 end:0x802115AC
 
+game/ADXB_GetBlkSmpl.cpp:
+	.text       start:0x802115AC end:0x802115B4
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
