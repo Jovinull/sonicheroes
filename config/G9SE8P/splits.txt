@@ -2403,6 +2403,9 @@ game/fn_80148AB4.cpp:
 game/fn_80148AC4.cpp:
 	.text       start:0x80148AC4 end:0x80148AD4
 
+game/fn_80148AD4.cpp:
+	.text       start:0x80148AD4 end:0x80148AF0
+
 game/fn_80148AF0.cpp:
 	.text       start:0x80148AF0 end:0x80148B24
 
