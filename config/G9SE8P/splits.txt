@@ -4583,6 +4583,9 @@ game/ADXSJD_Init.cpp:
 game/ADXB_CheckWav.cpp:
 	.text       start:0x8020E600 end:0x8020E668
 
+game/ADXB_SetAhxDecSmpl.cpp:
+	.text       start:0x8020F468 end:0x8020F48C
+
 game/ADXB_CheckAiff.cpp:
 	.text       start:0x8020FD64 end:0x8020FDCC
 
