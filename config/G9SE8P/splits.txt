@@ -793,6 +793,11 @@ game/fn_80067050.cpp:
 game/fn_80068B20.cpp:
 	.text       start:0x80068B20 end:0x80068B28
 
+game/fn_8006A1F8.cpp:
+	extab       start:0x80006C90 end:0x80006C98
+	extabindex  start:0x8000D720 end:0x8000D72C
+	.text       start:0x8006A1F8 end:0x8006A2C4
+
 game/dtor_80071908.cpp:
 	extab       start:0x80006CF8 end:0x80006D00
 	extabindex  start:0x8000D7BC end:0x8000D7C8
