@@ -1902,6 +1902,9 @@ dolphin/exi/EXIUart.c:
 game/fn_801FD8A8.cpp:
 	.text       start:0x801FD8A8 end:0x801FD8B0
 
+game/fn_80202E74.cpp:
+	.text       start:0x80202E74 end:0x80202E7C
+
 game/fn_80206804.cpp:
 	.text       start:0x80206804 end:0x80206834
 
