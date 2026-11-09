@@ -4486,6 +4486,9 @@ game/ADXSJD_GetLpStartPos.cpp:
 game/ADXSJD_GetNumLoop.cpp:
 	.text       start:0x8020D668 end:0x8020D68C
 
+game/ADXSJD_GetTotalNumSmpl.cpp:
+	.text       start:0x8020D68C end:0x8020D6B0
+
 game/ADXSJD_SetTrapDtLen.cpp:
 	.text       start:0x8020D764 end:0x8020D76C
 
