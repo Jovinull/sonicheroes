@@ -2022,6 +2022,9 @@ game/fn_8015C988.cpp:
 game/fn_8015C9C8.cpp:
 	.text       start:0x8015C9C8 end:0x8015C9D0
 
+game/fn_8015D47C.cpp:
+	.text       start:0x8015D47C end:0x8015D4B8
+
 game/fn_8015D860.cpp:
 	.text       start:0x8015D860 end:0x8015D898
 
