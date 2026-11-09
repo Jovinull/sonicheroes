@@ -997,6 +997,7 @@ config.libs = [
             Object(Matching, "game/ADXB_GetDefPan.cpp"),
             Object(Matching, "game/ADXB_GetLpStartOfst.cpp"),
             Object(Matching, "game/ADXB_RestoreSnapshot.cpp"),
+            Object(Matching, "game/ADXB_TakeSnapshot.cpp"),
             Object(Matching, "game/RwOsGetFileInterface.cpp"),
             Object(Matching, "game/ADXSJD_GetSpsdInfo.cpp"),
             Object(Matching, "game/ADXSJD_Stop.cpp"),
