@@ -1910,10 +1910,20 @@ game/enemy/e_mtnpath.cpp:
 game/fn_80120060.cpp:
 	.text       start:0x80120060 end:0x80120088
 
+game/fn_801201C8.cpp:
+	extab       start:0x8000AFC4 end:0x8000AFCC
+	extabindex  start:0x80010FCC end:0x80010FD8
+	.text       start:0x801201C8 end:0x8012024C
+
 game/fn_801218B4.cpp:
 	extab       start:0x8000B01C end:0x8000B024
 	extabindex  start:0x80011020 end:0x8001102C
 	.text       start:0x801218B4 end:0x80121928
+
+game/fn_801227A4.cpp:
+	extab       start:0x8000B0D0 end:0x8000B0D8
+	extabindex  start:0x80011074 end:0x80011080
+	.text       start:0x801227A4 end:0x8012282C
 
 game/fn_80122B74.cpp:
 	.text       start:0x80122B74 end:0x80122B84
@@ -1942,6 +1952,41 @@ game/fn_80124924.cpp:
 
 game/fn_80125530.cpp:
 	.text       start:0x80125530 end:0x8012554C
+
+game/fn_8012554C.cpp:
+	extab       start:0x8000B17C end:0x8000B184
+	extabindex  start:0x80011140 end:0x8001114C
+	.text       start:0x8012554C end:0x801255DC
+
+game/fn_801255DC.cpp:
+	extab       start:0x8000B184 end:0x8000B18C
+	extabindex  start:0x8001114C end:0x80011158
+	.text       start:0x801255DC end:0x80125664
+
+game/fn_80125664.cpp:
+	extab       start:0x8000B18C end:0x8000B194
+	extabindex  start:0x80011158 end:0x80011164
+	.text       start:0x80125664 end:0x80125708
+
+game/fn_801257D0.cpp:
+	extab       start:0x8000B19C end:0x8000B1A4
+	extabindex  start:0x80011170 end:0x8001117C
+	.text       start:0x801257D0 end:0x8012586C
+
+game/fn_8012586C.cpp:
+	extab       start:0x8000B1A4 end:0x8000B1AC
+	extabindex  start:0x8001117C end:0x80011188
+	.text       start:0x8012586C end:0x80125900
+
+game/fn_80125900.cpp:
+	extab       start:0x8000B1AC end:0x8000B1B4
+	extabindex  start:0x80011188 end:0x80011194
+	.text       start:0x80125900 end:0x80125990
+
+game/fn_80125990.cpp:
+	extab       start:0x8000B1B4 end:0x8000B1BC
+	extabindex  start:0x80011194 end:0x800111A0
+	.text       start:0x80125990 end:0x80125A20
 
 game/fn_80126598.cpp:
 	.text       start:0x80126598 end:0x801265B4
