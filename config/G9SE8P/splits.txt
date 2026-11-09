@@ -1962,6 +1962,9 @@ game/material.cpp:
 	.sbss       start:0x8042C6A0 end:0x8042C6A8
 	.sdata2     start:0x8042EAA8 end:0x8042EAB0
 
+game/fn_80119FE8.cpp:
+	.text       start:0x80119FE8 end:0x80119FEC
+
 game/fn_8011A79C.cpp:
 	extab       start:0x8000AB44 end:0x8000AB4C
 	extabindex  start:0x80010C6C end:0x80010C78
