@@ -987,6 +987,11 @@ game/fn_800A6D44.cpp:
 game/CheckCameraFrustumTestForShadow__9TObjEnemyFPC5RwV3df.cpp:
 	.text       start:0x800A6D58 end:0x800A6D60
 
+game/CheckCameraFrustumTest__9TObjEnemyFPC5RwV3df.cpp:
+	extab       start:0x80007A38 end:0x80007A40
+	extabindex  start:0x8000E0C8 end:0x8000E0D4
+	.text       start:0x800A6D60 end:0x800A6DD4
+
 game/fn_800A7338.cpp:
 	extab       start:0x80007AB8 end:0x80007AC0
 	extabindex  start:0x8000E110 end:0x8000E11C
