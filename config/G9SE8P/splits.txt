@@ -2079,6 +2079,9 @@ game/fn_8011EC08.cpp:
 game/fn_8011EF18.cpp:
 	.text       start:0x8011EF18 end:0x8011EF24
 
+game/fn_8011EF24.cpp:
+	.text       start:0x8011EF24 end:0x8011EF2C
+
 game/fn_8011EFB0.cpp:
 	.text       start:0x8011EFB0 end:0x8011EFB8
 
