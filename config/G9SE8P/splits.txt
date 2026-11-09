@@ -242,6 +242,9 @@ game/fn_80041C00.cpp:
 game/fn_80041C08.cpp:
 	.text       start:0x80041C08 end:0x80041C3C
 
+game/fn_80041C58.cpp:
+	.text       start:0x80041C58 end:0x80041C5C
+
 game/player/player_search.cpp:
 	extab       start:0x80005F20 end:0x80005F30
 	extabindex  start:0x8000C718 end:0x8000C730
