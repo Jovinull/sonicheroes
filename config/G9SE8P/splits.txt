@@ -2737,6 +2737,9 @@ game/fn_801B55F4.cpp:
 game/fn_801B66E0.cpp:
 	.text       start:0x801B66E0 end:0x801B6738
 
+game/fn_801B6B98.cpp:
+	.text       start:0x801B6B98 end:0x801B6C18
+
 game/fn_801B7FE4.cpp:
 	.text       start:0x801B7FE4 end:0x801B802C
 
