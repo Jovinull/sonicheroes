@@ -995,6 +995,7 @@ config.libs = [
             Object(Matching, "game/fn_8015AD00.cpp"),
             Object(Matching, "game/fn_8015C5E4.cpp"),
             Object(Matching, "game/fn_8015D47C.cpp"),
+            Object(Matching, "game/fn_8015E82C.cpp"),
             Object(Matching, "game/fn_80146C2C.cpp"),
             Object(Matching, "game/fn_8014F168.cpp"),
             Object(Matching, "game/fn_80152828.cpp"),
