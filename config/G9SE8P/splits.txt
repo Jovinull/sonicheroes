@@ -4685,6 +4685,9 @@ game/adxb_DefAddWr.cpp:
 game/adxb_DefGetWr.cpp:
 	.text       start:0x8021200C end:0x8021203C
 
+game/ADXB_Init.cpp:
+	.text       start:0x8021203C end:0x80212084
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
