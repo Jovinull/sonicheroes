@@ -4583,6 +4583,9 @@ game/ADXB_GetDecDtLen.cpp:
 game/ADXB_Reset.cpp:
 	.text       start:0x802113A4 end:0x802113EC
 
+game/ADXB_Stop.cpp:
+	.text       start:0x802113EC end:0x80211424
+
 game/ADXB_GetDefOutVol.cpp:
 	.text       start:0x8021155C end:0x80211564
 
