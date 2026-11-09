@@ -3311,6 +3311,7 @@ modules:
   # out-of-line copies, and a static symbol cannot be force-activated by name.
   ldscript_template: config/G9SE8P/stage11D/ldscript_template.txt
   force_active:
+    - bigRingsMatchesNumber
     - ReleaseFiles__6BMODELFPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
     - LoadFiles__6BMODELFPcPcPP15RwTexDictionaryP11BMODEL_DATAP15BMODEL_ANIMDATAP17BMODEL_CAMERADATA
     - LoadTmbData__FP7ONEFILEPvP17BMODEL_CAMERADATA
