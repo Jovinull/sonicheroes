@@ -3460,6 +3460,9 @@ Runtime.PPCEABI.H/Gecko_ExceptionPPC.cpp:
 	.data       start:0x802912F0 end:0x802913BC
 	.bss        start:0x803EDC68 end:0x803EDC78
 
+game/fn_801BB13C.cpp:
+	.text       start:0x801BB13C end:0x801BB148
+
 MSL_C/GCN_Mem_Alloc.c:
 	.text       start:0x801BB148 end:0x801BB2B8
 	.rodata     start:0x8023CA98 end:0x8023CB10
