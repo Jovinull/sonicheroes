@@ -4709,6 +4709,9 @@ game/ADXB_GetPcmBuf.cpp:
 game/ADXB_EntryGetWrFunc.cpp:
 	.text       start:0x80211644 end:0x80211650
 
+game/ADXB_DecodeHeader.cpp:
+	.text       start:0x80211650 end:0x80211738
+
 game/ADXB_Destroy.cpp:
 	.text       start:0x80211DD4 end:0x80211E28
 
