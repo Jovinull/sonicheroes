@@ -998,6 +998,9 @@ game/fn_800BEE6C.cpp:
 game/fn_800C0270.cpp:
 	.text       start:0x800C0270 end:0x800C0288
 
+game/fn_800C0288.cpp:
+	.text       start:0x800C0288 end:0x800C02A0
+
 game/fn_800C8C28.cpp:
 	extab       start:0x800087D8 end:0x800087E0
 	extabindex  start:0x8000EDC4 end:0x8000EDD0
