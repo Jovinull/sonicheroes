@@ -996,6 +996,7 @@ config.libs = [
             Object(Matching, "game/adxb_DefAddWr.cpp"),
             Object(Matching, "game/adxb_DefGetWr.cpp"),
             Object(Matching, "game/ADXB_ExecOneWav.cpp"),
+            Object(Matching, "game/ADXB_ExecOneAiff.cpp"),
             Object(Matching, "game/ADXB_Reset.cpp"),
             Object(Matching, "game/ADXB_Stop.cpp"),
             Object(Matching, "game/ADXB_Start.cpp"),
