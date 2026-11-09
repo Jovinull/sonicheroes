@@ -1673,6 +1673,9 @@ game/enemy/e_utility_search.cpp:
 	extabindex  start:0x8000FF88 end:0x8000FFAC
 	.text       start:0x80103178 end:0x8010346C
 
+game/fn_8010346C.cpp:
+	.text       start:0x8010346C end:0x80103470
+
 game/fn_80103470.cpp:
 	extab       start:0x80009A28 end:0x80009A30
 	extabindex  start:0x8000FFAC end:0x8000FFB8
