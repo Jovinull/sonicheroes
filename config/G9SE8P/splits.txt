@@ -464,6 +464,9 @@ game/octreeColli.cpp:
 	.data       start:0x80242B28 end:0x80242B38
 	.sdata2     start:0x8042D3B8 end:0x8042D3D0
 
+game/fn_80056C38.cpp:
+	.text       start:0x80056C38 end:0x80056C50
+
 game/fn_80057524.cpp:
 	extab       start:0x800065E4 end:0x800065EC
 	extabindex  start:0x8000CF94 end:0x8000CFA0
