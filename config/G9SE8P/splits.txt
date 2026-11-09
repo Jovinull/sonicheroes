@@ -943,6 +943,9 @@ game/fn_800E254C.cpp:
 game/fn_800E2574.cpp:
 	.text       start:0x800E2574 end:0x800E259C
 
+game/fn_800E259C.cpp:
+	.text       start:0x800E259C end:0x800E25C4
+
 game/fn_800EA94C.cpp:
 	extab       start:0x80008EB0 end:0x80008EB8
 	extabindex  start:0x8000F6E8 end:0x8000F6F4
