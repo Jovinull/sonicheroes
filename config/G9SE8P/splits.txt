@@ -1115,6 +1115,9 @@ game/fn_800CB1E8.cpp:
 game/fn_800CB5BC.cpp:
 	.text       start:0x800CB5BC end:0x800CB5D8
 
+game/fn_800CB6EC.cpp:
+	.text       start:0x800CB6EC end:0x800CB750
+
 game/fn_800CBB18.cpp:
 	extab       start:0x800088D0 end:0x800088D8
 	extabindex  start:0x8000EF20 end:0x8000EF2C
