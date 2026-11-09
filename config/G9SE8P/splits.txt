@@ -2500,6 +2500,9 @@ game/fn_80172F94.cpp:
 game/fn_80173048.cpp:
 	.text       start:0x80173048 end:0x8017306C
 
+game/fn_801732C0.cpp:
+	.text       start:0x801732C0 end:0x80173340
+
 game/fn_801733C0.cpp:
 	.text       start:0x801733C0 end:0x801733E8
 
