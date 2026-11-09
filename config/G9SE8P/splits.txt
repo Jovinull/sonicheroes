@@ -2017,6 +2017,9 @@ game/fn_8011B81C.cpp:
 	extabindex  start:0x80010D20 end:0x80010D2C
 	.text       start:0x8011B81C end:0x8011B844
 
+game/fn_8011BB2C.cpp:
+	.text       start:0x8011BB2C end:0x8011BB38
+
 game/fn_8011BB38.cpp:
 	.text       start:0x8011BB38 end:0x8011BB3C
 
