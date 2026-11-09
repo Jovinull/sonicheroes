@@ -913,6 +913,9 @@ game/fn_800A7374.cpp:
 	extabindex  start:0x8000E11C end:0x8000E128
 	.text       start:0x800A7374 end:0x800A73B4
 
+game/fn_800A7488.cpp:
+	.text       start:0x800A7488 end:0x800A748C
+
 game/fn_800A74A8.cpp:
 	.text       start:0x800A74A8 end:0x800A74B0
 
