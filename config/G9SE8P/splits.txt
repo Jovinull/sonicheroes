@@ -3670,6 +3670,9 @@ game/fn_80209E58.cpp:
 game/fn_8020AAD4.cpp:
 	.text       start:0x8020AAD4 end:0x8020AADC
 
+game/fn_8020AD44.cpp:
+	.text       start:0x8020AD44 end:0x8020AD88
+
 game/fn_8020B0EC.cpp:
 	.text       start:0x8020B0EC end:0x8020B14C
 
