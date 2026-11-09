@@ -1889,6 +1889,9 @@ game/SeqFlagCtrl.cpp:
 	.text       start:0x801143E0 end:0x801144E0
 	.bss        start:0x803E75E8 end:0x803E7668
 
+game/fn_801144E0.cpp:
+	.text       start:0x801144E0 end:0x801144E4
+
 game/fn_80115058.cpp:
 	.text       start:0x80115058 end:0x80115070
 
