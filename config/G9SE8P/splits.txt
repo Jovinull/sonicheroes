@@ -1908,6 +1908,9 @@ game/fn_80202E74.cpp:
 game/fn_802043AC.cpp:
 	.text       start:0x802043AC end:0x802043B4
 
+game/fn_80204918.cpp:
+	.text       start:0x80204918 end:0x80204920
+
 game/fn_80206804.cpp:
 	.text       start:0x80206804 end:0x80206834
 
