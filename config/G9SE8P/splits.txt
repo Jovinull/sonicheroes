@@ -917,6 +917,11 @@ game/fn_800A2B78.cpp:
 game/fn_800A2E1C.cpp:
 	.text       start:0x800A2E1C end:0x800A2E24
 
+game/KillMySelf__9TObjEnemyFv.cpp:
+	extab       start:0x80007928 end:0x80007930
+	extabindex  start:0x8000DF30 end:0x8000DF3C
+	.text       start:0x800A314C end:0x800A31A0
+
 game/fn_800A31A0.cpp:
 	.text       start:0x800A31A0 end:0x800A31B8
 
@@ -1114,6 +1119,11 @@ game/fn_800B7820.cpp:
 
 game/fn_800B7B30.cpp:
 	.text       start:0x800B7B30 end:0x800B7BDC
+
+game/__dt__9EffShadowFv.cpp:
+	extab       start:0x80008180 end:0x80008188
+	extabindex  start:0x8000E7D0 end:0x8000E7DC
+	.text       start:0x800B8384 end:0x800B8424
 
 game/fn_800B8594.cpp:
 	extab       start:0x80008198 end:0x800081A0
@@ -2201,8 +2211,18 @@ game/fn_80122B74.cpp:
 game/fn_8012316C.cpp:
 	.text       start:0x8012316C end:0x801231AC
 
+game/dtor_80123CE0.cpp:
+	extab       start:0x8000B12C end:0x8000B134
+	extabindex  start:0x800110C8 end:0x800110D4
+	.text       start:0x80123CE0 end:0x80123D60
+
 game/fn_80123D60.cpp:
 	.text       start:0x80123D60 end:0x80123D64
+
+game/dtor_801247C0.cpp:
+	extab       start:0x8000B144 end:0x8000B14C
+	extabindex  start:0x800110EC end:0x800110F8
+	.text       start:0x801247C0 end:0x80124820
 
 game/fn_80124820.cpp:
 	extab       start:0x8000B14C end:0x8000B154
@@ -2468,6 +2488,11 @@ game/fn_80136C10.cpp:
 
 game/fn_80136C24.cpp:
 	.text       start:0x80136C24 end:0x80136C2C
+
+game/dtor_80136EA8.cpp:
+	extab       start:0x8000B80C end:0x8000B814
+	extabindex  start:0x8001186C end:0x80011878
+	.text       start:0x80136EA8 end:0x80136F14
 
 game/fn_8013718C.cpp:
 	extab       start:0x8000B82C end:0x8000B834
