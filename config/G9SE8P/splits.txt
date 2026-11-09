@@ -2467,6 +2467,11 @@ game/fn_8012ECE0.cpp:
 	extabindex  start:0x8001156C end:0x80011578
 	.text       start:0x8012ECE0 end:0x8012ED38
 
+game/fn_8012F14C.cpp:
+	extab       start:0x8000B5E0 end:0x8000B5E8
+	extabindex  start:0x8001159C end:0x800115A8
+	.text       start:0x8012F14C end:0x8012F1F8
+
 game/fn_80130464.cpp:
 	.text       start:0x80130464 end:0x80130478
 
@@ -2490,6 +2495,11 @@ game/GetSpParam.cpp:
 
 game/fn_80130F74.cpp:
 	.text       start:0x80130F74 end:0x80130F78
+
+game/fn_80130F78.cpp:
+	extab       start:0x8000B6B0 end:0x8000B6B8
+	extabindex  start:0x80011680 end:0x8001168C
+	.text       start:0x80130F78 end:0x80131020
 
 game/fn_80131020.cpp:
 	extab       start:0x8000B6B8 end:0x8000B6C0
