@@ -944,6 +944,9 @@ game/rankTable.cpp:
 	.text       start:0x8012D440 end:0x8012D97C
 	.data       start:0x8028A2C0 end:0x8028A89C
 
+game/fn_8012D9D0.cpp:
+	.text       start:0x8012D9D0 end:0x8012DA08
+
 game/fn_80130464.cpp:
 	.text       start:0x80130464 end:0x80130478
 
