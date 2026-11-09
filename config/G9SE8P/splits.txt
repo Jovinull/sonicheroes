@@ -4658,6 +4658,9 @@ game/ADXB_EntryGetWrFunc.cpp:
 game/ADXB_Destroy.cpp:
 	.text       start:0x80211DD4 end:0x80211E28
 
+game/adxb_DefAddWr.cpp:
+	.text       start:0x80211FF0 end:0x8021200C
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
