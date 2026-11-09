@@ -4498,6 +4498,9 @@ game/ADXSJD_GetOutBps.cpp:
 game/ADXSJD_GetNumChan.cpp:
 	.text       start:0x8020D6F8 end:0x8020D71C
 
+game/ADXSJD_GetSfreq.cpp:
+	.text       start:0x8020D71C end:0x8020D740
+
 game/ADXSJD_SetTrapDtLen.cpp:
 	.text       start:0x8020D764 end:0x8020D76C
 

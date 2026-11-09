@@ -1001,6 +1001,7 @@ config.libs = [
             Object(Matching, "game/ADXSJD_GetBlkSmpl.cpp"),
             Object(Matching, "game/ADXSJD_GetOutBps.cpp"),
             Object(Matching, "game/ADXSJD_GetNumChan.cpp"),
+            Object(Matching, "game/ADXSJD_GetSfreq.cpp"),
             Object(Matching, "game/CheckCameraFrustumTestForShadow__9TObjEnemyFPC5RwV3df.cpp"),
             Object(Matching, "game/RpDMorphAnimationGetNumDMorphTargets.cpp"),
             Object(Matching, "game/ADXSJD_GetDecNumSmpl.cpp"),
