@@ -4559,6 +4559,9 @@ game/fn_8020B5B4.cpp:
 game/fn_8020BF9C.cpp:
 	.text       start:0x8020BF9C end:0x8020BFF8
 
+game/fn_8020C044.cpp:
+	.text       start:0x8020C044 end:0x8020C088
+
 game/fn_8020C92C.cpp:
 	.text       start:0x8020C92C end:0x8020C968
 
