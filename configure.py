@@ -996,6 +996,7 @@ config.libs = [
             Object(Matching, "game/fn_801489CC.cpp"),
             Object(Matching, "game/fn_801489DC.cpp"),
             Object(Matching, "game/fn_80148AB4.cpp"),
+            Object(Matching, "game/fn_80148AC4.cpp"),
             Object(Matching, "game/fn_80147DFC.cpp"),
             Object(Matching, "game/fn_8014FE38.cpp"),
             Object(Matching, "game/fn_801369EC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),

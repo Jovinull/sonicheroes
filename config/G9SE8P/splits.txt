@@ -2400,6 +2400,9 @@ game/fn_80148A2C.cpp:
 game/fn_80148AB4.cpp:
 	.text       start:0x80148AB4 end:0x80148AC4
 
+game/fn_80148AC4.cpp:
+	.text       start:0x80148AC4 end:0x80148AD4
+
 game/fn_80148AF0.cpp:
 	.text       start:0x80148AF0 end:0x80148B24
 
