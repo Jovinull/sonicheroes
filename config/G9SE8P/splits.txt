@@ -161,6 +161,16 @@ game/fn_80029088.cpp:
 game/fn_8003C618.cpp:
 	.text       start:0x8003C618 end:0x8003C640
 
+game/fn_8003C640.cpp:
+	extab       start:0x80005D40 end:0x80005D48
+	extabindex  start:0x8000C4F0 end:0x8000C4FC
+	.text       start:0x8003C640 end:0x8003C66C
+
+game/fn_8003C74C.cpp:
+	extab       start:0x80005D58 end:0x80005D60
+	extabindex  start:0x8000C514 end:0x8000C520
+	.text       start:0x8003C74C end:0x8003C778
+
 game/fn_8003F300.cpp:
 	.text       start:0x8003F300 end:0x8003F308
 
@@ -254,6 +264,11 @@ game/fn_8004D538.cpp:
 
 game/fn_8004D5C4.cpp:
 	.text       start:0x8004D5C4 end:0x8004D5F4
+
+game/fn_8004D650.cpp:
+	extab       start:0x80006220 end:0x80006228
+	extabindex  start:0x8000CB20 end:0x8000CB2C
+	.text       start:0x8004D650 end:0x8004D678
 
 game/fn_8004D99C.cpp:
 	.text       start:0x8004D99C end:0x8004D9B8
@@ -410,6 +425,11 @@ game/fn_800A3D48.cpp:
 game/fn_800A3D6C.cpp:
 	.text       start:0x800A3D6C end:0x800A3D94
 
+game/fn_800A5998.cpp:
+	extab       start:0x800079F0 end:0x800079F8
+	extabindex  start:0x8000E05C end:0x8000E068
+	.text       start:0x800A5998 end:0x800A59C4
+
 game/fn_800A5B34.cpp:
 	.text       start:0x800A5B34 end:0x800A5B50
 
@@ -489,6 +509,31 @@ game/c_colli_react.cpp:
 	.data       start:0x80253698 end:0x802537E0
 	.sdata2     start:0x8042DCA0 end:0x8042DCD0
 
+game/fn_800B85D8.cpp:
+	extab       start:0x800081A0 end:0x800081A8
+	extabindex  start:0x8000E800 end:0x8000E80C
+	.text       start:0x800B85D8 end:0x800B8604
+
+game/fn_800B8ADC.cpp:
+	extab       start:0x800081D0 end:0x800081D8
+	extabindex  start:0x8000E848 end:0x8000E854
+	.text       start:0x800B8ADC end:0x800B8B08
+
+game/fn_800B8B48.cpp:
+	extab       start:0x800081E0 end:0x800081E8
+	extabindex  start:0x8000E860 end:0x8000E86C
+	.text       start:0x800B8B48 end:0x800B8B78
+
+game/fn_800B8B78.cpp:
+	extab       start:0x800081E8 end:0x800081F0
+	extabindex  start:0x8000E86C end:0x8000E878
+	.text       start:0x800B8B78 end:0x800B8BA4
+
+game/fn_800B8C1C.cpp:
+	extab       start:0x80008200 end:0x80008208
+	extabindex  start:0x8000E890 end:0x8000E89C
+	.text       start:0x800B8C1C end:0x800B8C48
+
 game/one.cpp:
 	extab       start:0x80008240 end:0x80008300
 	extabindex  start:0x8000E8F0 end:0x8000EA10
@@ -514,6 +559,16 @@ game/effect/eff_bomb.cpp:
 	.sdata      start:0x8042B3A8 end:0x8042B3B8
 	.sbss       start:0x8042C3D8 end:0x8042C3E8
 	.sdata2     start:0x8042DDC8 end:0x8042DE28
+
+game/fn_800BDF30.cpp:
+	extab       start:0x800083B8 end:0x800083C0
+	extabindex  start:0x8000EAD0 end:0x8000EADC
+	.text       start:0x800BDF30 end:0x800BDF5C
+
+game/fn_800BDF9C.cpp:
+	extab       start:0x800083C8 end:0x800083D0
+	extabindex  start:0x8000EAE8 end:0x8000EAF4
+	.text       start:0x800BDF9C end:0x800BDFC8
 
 game/fn_800C8E84.cpp:
 	.text       start:0x800C8E84 end:0x800C8EA0
@@ -755,6 +810,11 @@ game/fn_80103470.cpp:
 	extabindex  start:0x8000FFAC end:0x8000FFB8
 	.text       start:0x80103470 end:0x80103490
 
+game/fn_801043EC.cpp:
+	extab       start:0x80009A84 end:0x80009A8C
+	extabindex  start:0x80010000 end:0x8001000C
+	.text       start:0x801043EC end:0x80104410
+
 game/fn_8010A0E8.cpp:
 	.text       start:0x8010A0E8 end:0x8010A110
 
@@ -825,6 +885,11 @@ game/fn_80111578.cpp:
 	extab       start:0x8000A67C end:0x8000A684
 	extabindex  start:0x8001078C end:0x80010798
 	.text       start:0x80111578 end:0x801115A0
+
+game/fn_80112718.cpp:
+	extab       start:0x8000A724 end:0x8000A72C
+	extabindex  start:0x80010810 end:0x8001081C
+	.text       start:0x80112718 end:0x8011273C
 
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
