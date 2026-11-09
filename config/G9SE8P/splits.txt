@@ -2038,6 +2038,9 @@ game/eventCore.cpp:
 	.text       start:0x8011E5A4 end:0x8011E5F0
 	.rodata     start:0x8023AAB0 end:0x8023ACB0
 
+game/fn_8011E5F0.cpp:
+	.text       start:0x8011E5F0 end:0x8011E5F4
+
 game/fn_8011EC08.cpp:
 	extab       start:0x8000AE70 end:0x8000AE78
 	extabindex  start:0x80010EC4 end:0x80010ED0
