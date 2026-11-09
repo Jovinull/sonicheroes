@@ -1358,6 +1358,9 @@ game/fn_801966CC.cpp:
 game/fn_80199984.cpp:
 	.text       start:0x80199984 end:0x8019998C
 
+game/fn_8019A1DC.cpp:
+	.text       start:0x8019A1DC end:0x8019A218
+
 game/fn_8019D41C.cpp:
 	.text       start:0x8019D41C end:0x8019D448
 
