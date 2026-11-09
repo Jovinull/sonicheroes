@@ -1226,6 +1226,9 @@ game/fn_800E2634.cpp:
 game/fn_800E2654.cpp:
 	.text       start:0x800E2654 end:0x800E2674
 
+game/fn_800E2674.cpp:
+	.text       start:0x800E2674 end:0x800E2694
+
 game/fn_800EA94C.cpp:
 	extab       start:0x80008EB0 end:0x80008EB8
 	extabindex  start:0x8000F6E8 end:0x8000F6F4
