@@ -4504,6 +4504,9 @@ game/ADXB_GetBlkSmpl.cpp:
 game/ADXB_GetSfreq.cpp:
 	.text       start:0x8021162C end:0x80211634
 
+game/ADXB_GetFormat.cpp:
+	.text       start:0x80211634 end:0x8021163C
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
