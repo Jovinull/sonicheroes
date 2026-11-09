@@ -1653,6 +1653,16 @@ game/effect/eff_footprints.cpp:
 game/fn_80110C18.cpp:
 	.text       start:0x80110C18 end:0x80110C38
 
+game/fn_80111260.cpp:
+	extab       start:0x8000A65C end:0x8000A664
+	extabindex  start:0x8001075C end:0x80010768
+	.text       start:0x80111260 end:0x801112F0
+
+game/fn_801112F0.cpp:
+	extab       start:0x8000A664 end:0x8000A66C
+	extabindex  start:0x80010768 end:0x80010774
+	.text       start:0x801112F0 end:0x8011137C
+
 game/fn_80111558.cpp:
 	extab       start:0x8000A674 end:0x8000A67C
 	extabindex  start:0x80010780 end:0x8001078C
@@ -1703,6 +1713,11 @@ game/fn_80112F3C.cpp:
 
 game/fn_80112F80.cpp:
 	.text       start:0x80112F80 end:0x80112F9C
+
+game/fn_80112F9C.cpp:
+	extab       start:0x8000A78C end:0x8000A794
+	extabindex  start:0x80010864 end:0x80010870
+	.text       start:0x80112F9C end:0x80113038
 
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
@@ -1759,6 +1774,11 @@ game/fn_80115358.cpp:
 
 game/fn_80115460.cpp:
 	.text       start:0x80115460 end:0x80115478
+
+game/fn_801169A4.cpp:
+	extab       start:0x8000A9AC end:0x8000A9B4
+	extabindex  start:0x80010A5C end:0x80010A68
+	.text       start:0x801169A4 end:0x80116A48
 
 game/fn_80116A8C.cpp:
 	.text       start:0x80116A8C end:0x80116AE4
