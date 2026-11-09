@@ -1906,6 +1906,9 @@ game/fn_801A5448.cpp:
 game/fn_801A9514.cpp:
 	.text       start:0x801A9514 end:0x801A9564
 
+game/fn_801A9564.cpp:
+	.text       start:0x801A9564 end:0x801A95B4
+
 game/fn_801ABC80.cpp:
 	.text       start:0x801ABC80 end:0x801ABC88
 
