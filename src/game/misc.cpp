@@ -57,6 +57,20 @@ static inline f32 MiscSqrt(f32 value, f32 zero)
 	return value;
 }
 
+static inline f32 MiscSqrtNR(f32 value, f32 zero)
+{
+	if (value > zero) {
+		f64 estimate      = __frsqrte(value);
+		estimate          = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
+		estimate          = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
+		estimate          = lbl_8042E018 * estimate * (lbl_8042E020 - estimate * estimate * value);
+		f32 result        = (f32)(value * estimate);
+		volatile f32 sink = result;
+		return result;
+	}
+	return value;
+}
+
 void ClosePositionToCamera(RwV3d* arg0, f32 farg0)
 {
 	RwV3d delta;
@@ -679,6 +693,27 @@ f32 DistanceP2PL(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 	return temp_f5 * (lbl_8042E00C / MiscSqrt(temp_f0, lbl_8042E008));
 }
 
+static inline f32 DistanceP2PLNR(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
+{
+	f32 temp_f0;
+	f32 temp_f3;
+	f32 temp_f4_2;
+	f32 temp_f5;
+
+	temp_f3 = -((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
+	    + ((arg1->v.z * arg0->z) + ((arg1->v.x * arg0->x) + (arg1->v.y * arg0->y)));
+	temp_f0 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
+	if (arg2 != NULL) {
+		temp_f4_2 = -temp_f3 / temp_f0;
+		arg2->x   = arg0->x + (arg1->v.x * temp_f4_2);
+		arg2->y   = arg0->y + (arg1->v.y * temp_f4_2);
+		arg2->z   = arg0->z + (arg1->v.z * temp_f4_2);
+	}
+	f64 absolute = __fabs(temp_f3);
+	temp_f5      = (f32)absolute;
+	return temp_f5 * (lbl_8042E00C / MiscSqrtNR(temp_f0, lbl_8042E008));
+}
+
 f32 DistanceP2L(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
 {
 	f32 temp_f3;
@@ -849,8 +884,8 @@ s32 VectorAngleOnPlane(RwV3d* v1, RwV3d* v2, RwV3d* vn)
 	RwV3d v2s;
 	pl.v   = *vn;
 	pl.p.x = pl.p.y = pl.p.z = lbl_8042E008;
-	DistanceP2PL(v1, &pl, &v1s);
-	DistanceP2PL(v2, &pl, &v2s);
+	DistanceP2PLNR(v1, &pl, &v1s);
+	DistanceP2PLNR(v2, &pl, &v2s);
 
 	if (fn_800D75CCDot(v1s, v1s) <= lbl_8042E034) {
 		return -1;
