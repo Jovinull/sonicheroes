@@ -153,6 +153,9 @@ game/vibration.cpp:
 	.data       start:0x80241308 end:0x80241358
 	.sdata2     start:0x8042D038 end:0x8042D048
 
+game/fn_80020348.cpp:
+	.text       start:0x80020348 end:0x80020370
+
 game/fn_80029088.cpp:
 	extab       start:0x80005C70 end:0x80005C78
 	extabindex  start:0x8000C3B8 end:0x8000C3C4
@@ -165,6 +168,11 @@ game/fn_8003C640.cpp:
 	extab       start:0x80005D40 end:0x80005D48
 	extabindex  start:0x8000C4F0 end:0x8000C4FC
 	.text       start:0x8003C640 end:0x8003C66C
+
+game/fn_8003C6FC.cpp:
+	extab       start:0x80005D50 end:0x80005D58
+	extabindex  start:0x8000C508 end:0x8000C514
+	.text       start:0x8003C6FC end:0x8003C74C
 
 game/fn_8003C74C.cpp:
 	extab       start:0x80005D58 end:0x80005D60
@@ -184,6 +192,11 @@ game/fn_8003FB9C.cpp:
 	extabindex  start:0x8000C640 end:0x8000C64C
 	.text       start:0x8003FB9C end:0x8003FBD8
 
+game/fn_8004014C.cpp:
+	extab       start:0x80005EB8 end:0x80005EC0
+	extabindex  start:0x8000C67C end:0x8000C688
+	.text       start:0x8004014C end:0x80040198
+
 game/fn_80041C00.cpp:
 	.text       start:0x80041C00 end:0x80041C08
 
@@ -195,6 +208,11 @@ game/player/player_search.cpp:
 	extabindex  start:0x8000C718 end:0x8000C730
 	.text       start:0x80041C5C end:0x80041FF4
 	.sdata2     start:0x8042D1A8 end:0x8042D1B0
+
+game/fn_80041FF4.cpp:
+	extab       start:0x80005F30 end:0x80005F38
+	extabindex  start:0x8000C730 end:0x8000C73C
+	.text       start:0x80041FF4 end:0x80042048
 
 game/fn_800421B4.cpp:
 	.text       start:0x800421B4 end:0x800421C8
@@ -266,6 +284,11 @@ game/fn_800484A4.cpp:
 
 game/fn_800487A0.cpp:
 	.text       start:0x800487A0 end:0x800487B8
+
+game/fn_8004AF04.cpp:
+	extab       start:0x80006168 end:0x80006170
+	extabindex  start:0x8000CA3C end:0x8000CA48
+	.text       start:0x8004AF04 end:0x8004AF4C
 
 game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
