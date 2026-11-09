@@ -174,6 +174,16 @@ game/fn_8003C74C.cpp:
 game/fn_8003F300.cpp:
 	.text       start:0x8003F300 end:0x8003F308
 
+game/fn_8003FB60.cpp:
+	extab       start:0x80005E4C end:0x80005E54
+	extabindex  start:0x8000C634 end:0x8000C640
+	.text       start:0x8003FB60 end:0x8003FB9C
+
+game/fn_8003FB9C.cpp:
+	extab       start:0x80005E54 end:0x80005E5C
+	extabindex  start:0x8000C640 end:0x8000C64C
+	.text       start:0x8003FB9C end:0x8003FBD8
+
 game/fn_80041C00.cpp:
 	.text       start:0x80041C00 end:0x80041C08
 
@@ -238,6 +248,11 @@ game/fn_80044A5C.cpp:
 
 game/fn_80045D88.cpp:
 	.text       start:0x80045D88 end:0x80045DC0
+
+game/fn_800469CC.cpp:
+	extab       start:0x800060A8 end:0x800060B0
+	extabindex  start:0x8000C934 end:0x8000C940
+	.text       start:0x800469CC end:0x80046A04
 
 game/fn_80047B14.cpp:
 	extab       start:0x800060D0 end:0x800060D8
@@ -409,6 +424,11 @@ game/locateTable.cpp:
 	.text       start:0x800A2090 end:0x800A23CC
 	.data       start:0x8024FEB0 end:0x80252FA8
 	.bss        start:0x80303E48 end:0x80303EB8
+
+game/fn_800A23CC.cpp:
+	extab       start:0x800078D8 end:0x800078E0
+	extabindex  start:0x8000DED0 end:0x8000DEDC
+	.text       start:0x800A23CC end:0x800A2404
 
 game/fn_800A26EC.cpp:
 	.text       start:0x800A26EC end:0x800A2704
@@ -1047,6 +1067,11 @@ game/enemy/e_mtnpath.cpp:
 game/fn_8012316C.cpp:
 	.text       start:0x8012316C end:0x801231AC
 
+game/fn_80124820.cpp:
+	extab       start:0x8000B14C end:0x8000B154
+	extabindex  start:0x800110F8 end:0x80011104
+	.text       start:0x80124820 end:0x80124858
+
 game/fn_801248E8.cpp:
 	.text       start:0x801248E8 end:0x801248F8
 
@@ -1294,6 +1319,9 @@ game/fn_80159F3C.cpp:
 
 game/fn_80159F7C.cpp:
 	.text       start:0x80159F7C end:0x80159FB8
+
+game/fn_8015B170.cpp:
+	.text       start:0x8015B170 end:0x8015B1A8
 
 game/fn_8015B3C0.cpp:
 	.text       start:0x8015B3C0 end:0x8015B3E4
