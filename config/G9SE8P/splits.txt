@@ -1796,6 +1796,9 @@ game/fn_80111578.cpp:
 game/fn_801125D0.cpp:
 	.text       start:0x801125D0 end:0x801125D4
 
+game/fn_801125D4.cpp:
+	.text       start:0x801125D4 end:0x801125D8
+
 game/fn_801125D8.cpp:
 	extab       start:0x8000A704 end:0x8000A70C
 	extabindex  start:0x800107E0 end:0x800107EC
