@@ -372,10 +372,20 @@ game/fn_8004F97C.cpp:
 game/fn_8004FC9C.cpp:
 	.text       start:0x8004FC9C end:0x8004FCC4
 
+game/fn_8004FF40.cpp:
+	extab       start:0x80006338 end:0x80006340
+	extabindex  start:0x8000CC40 end:0x8000CC4C
+	.text       start:0x8004FF40 end:0x8004FFB4
+
 game/fn_8004FFB4.cpp:
 	extab       start:0x80006340 end:0x80006348
 	extabindex  start:0x8000CC4C end:0x8000CC58
 	.text       start:0x8004FFB4 end:0x80050000
+
+game/fn_8005000C.cpp:
+	extab       start:0x80006348 end:0x80006350
+	extabindex  start:0x8000CC58 end:0x8000CC64
+	.text       start:0x8005000C end:0x80050080
 
 game/fn_80051F68.cpp:
 	extab       start:0x80006404 end:0x8000640C
@@ -430,6 +440,11 @@ game/fn_80058E20.cpp:
 	extab       start:0x8000667C end:0x80006684
 	extabindex  start:0x8000D018 end:0x8000D024
 	.text       start:0x80058E20 end:0x80058E54
+
+game/fn_80058E54.cpp:
+	extab       start:0x80006684 end:0x8000668C
+	extabindex  start:0x8000D024 end:0x8000D030
+	.text       start:0x80058E54 end:0x80058ED0
 
 game/fn_8005957C.cpp:
 	extab       start:0x800066A4 end:0x800066AC
@@ -545,6 +560,11 @@ game/fn_8007D064.cpp:
 	extabindex  start:0x8000D924 end:0x8000D930
 	.text       start:0x8007D064 end:0x8007D0D4
 
+game/fn_8007D0D4.cpp:
+	extab       start:0x80007200 end:0x80007208
+	extabindex  start:0x8000D930 end:0x8000D93C
+	.text       start:0x8007D0D4 end:0x8007D13C
+
 game/fn_8007DC44.cpp:
 	.text       start:0x8007DC44 end:0x8007DC70
 
@@ -590,6 +610,11 @@ game/fn_8009E744.cpp:
 	extab       start:0x8000781C end:0x80007824
 	extabindex  start:0x8000DE04 end:0x8000DE10
 	.text       start:0x8009E744 end:0x8009E7B0
+
+game/fn_800A201C.cpp:
+	extab       start:0x800078D0 end:0x800078D8
+	extabindex  start:0x8000DEC4 end:0x8000DED0
+	.text       start:0x800A201C end:0x800A2090
 
 game/locateTable.cpp:
 	.text       start:0x800A2090 end:0x800A23CC
@@ -737,6 +762,11 @@ game/c_colli_react.cpp:
 
 game/fn_800B4814.cpp:
 	.text       start:0x800B4814 end:0x800B4864
+
+game/fn_800B52E8.cpp:
+	extab       start:0x80008068 end:0x80008070
+	extabindex  start:0x8000E680 end:0x8000E68C
+	.text       start:0x800B52E8 end:0x800B5350
 
 game/fn_800B6418.cpp:
 	extab       start:0x800080A8 end:0x800080B0
