@@ -554,6 +554,11 @@ game/fn_800B8ADC.cpp:
 	extabindex  start:0x8000E848 end:0x8000E854
 	.text       start:0x800B8ADC end:0x800B8B08
 
+game/fn_800B8B08.cpp:
+	extab       start:0x800081D8 end:0x800081E0
+	extabindex  start:0x8000E854 end:0x8000E860
+	.text       start:0x800B8B08 end:0x800B8B48
+
 game/fn_800B8B48.cpp:
 	extab       start:0x800081E0 end:0x800081E8
 	extabindex  start:0x8000E860 end:0x8000E86C
@@ -610,10 +615,20 @@ game/fn_800BDF30.cpp:
 	extabindex  start:0x8000EAD0 end:0x8000EADC
 	.text       start:0x800BDF30 end:0x800BDF5C
 
+game/fn_800BDF5C.cpp:
+	extab       start:0x800083C0 end:0x800083C8
+	extabindex  start:0x8000EADC end:0x8000EAE8
+	.text       start:0x800BDF5C end:0x800BDF9C
+
 game/fn_800BDF9C.cpp:
 	extab       start:0x800083C8 end:0x800083D0
 	extabindex  start:0x8000EAE8 end:0x8000EAF4
 	.text       start:0x800BDF9C end:0x800BDFC8
+
+game/fn_800C8C28.cpp:
+	extab       start:0x800087D8 end:0x800087E0
+	extabindex  start:0x8000EDC4 end:0x8000EDD0
+	.text       start:0x800C8C28 end:0x800C8C5C
 
 game/fn_800C8E84.cpp:
 	.text       start:0x800C8E84 end:0x800C8EA0
@@ -784,6 +799,11 @@ game/fn_800F4880.cpp:
 	extab       start:0x80009158 end:0x80009160
 	extabindex  start:0x8000F9A0 end:0x8000F9AC
 	.text       start:0x800F4880 end:0x800F48A4
+
+game/fn_800FD298.cpp:
+	extab       start:0x80009720 end:0x80009728
+	extabindex  start:0x8000FCF4 end:0x8000FD00
+	.text       start:0x800FD298 end:0x800FD2D4
 
 game/enemy/e_gadget.cpp:
 	extab       start:0x80009738 end:0x80009768
@@ -1144,6 +1164,11 @@ game/GetSpParam.cpp:
 	.ctors      start:0x80239904 end:0x80239908
 	.bss        start:0x803EA488 end:0x803EA4B8
 	.sdata2     start:0x8042EE88 end:0x8042EEA8
+
+game/fn_80131088.cpp:
+	extab       start:0x8000B6C0 end:0x8000B6C8
+	extabindex  start:0x80011698 end:0x800116A4
+	.text       start:0x80131088 end:0x801310C8
 
 game/fn_80132750.cpp:
 	extab       start:0x8000B6F8 end:0x8000B700
