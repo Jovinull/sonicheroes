@@ -220,6 +220,9 @@ game/fn_8004014C.cpp:
 	extabindex  start:0x8000C67C end:0x8000C688
 	.text       start:0x8004014C end:0x80040198
 
+game/fn_80040550.cpp:
+	.text       start:0x80040550 end:0x80040554
+
 game/fn_800412DC.cpp:
 	extab       start:0x80005EF8 end:0x80005F00
 	extabindex  start:0x8000C6DC end:0x8000C6E8
