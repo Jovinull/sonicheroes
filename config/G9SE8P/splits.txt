@@ -1849,6 +1849,9 @@ game/fn_80112F3C.cpp:
 	extabindex  start:0x80010858 end:0x80010864
 	.text       start:0x80112F3C end:0x80112F74
 
+game/fn_80112F74.cpp:
+	.text       start:0x80112F74 end:0x80112F80
+
 game/fn_80112F80.cpp:
 	.text       start:0x80112F80 end:0x80112F9C
 
