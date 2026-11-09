@@ -1399,6 +1399,9 @@ game/fn_800F6C80.cpp:
 	extabindex  start:0x8000FA9C end:0x8000FAA8
 	.text       start:0x800F6C80 end:0x800F6D08
 
+game/fn_800F6FDC.cpp:
+	.text       start:0x800F6FDC end:0x800F7038
+
 game/fn_800F7308.cpp:
 	extab       start:0x800093B0 end:0x800093B8
 	extabindex  start:0x8000FAE4 end:0x8000FAF0
@@ -1581,6 +1584,11 @@ game/effect/eff_brim.cpp:
 game/effect/fn_8010F5D8.cpp:
 	.text       start:0x8010F5D8 end:0x8010F5FC
 
+game/fn_8010F5FC.cpp:
+	extab       start:0x8000A534 end:0x8000A53C
+	extabindex  start:0x80010690 end:0x8001069C
+	.text       start:0x8010F5FC end:0x8010F670
+
 game/fn_8010FB50.cpp:
 	extab       start:0x8000A594 end:0x8000A59C
 	extabindex  start:0x800106B4 end:0x800106C0
@@ -1617,6 +1625,11 @@ game/fn_80112618.cpp:
 	extab       start:0x8000A70C end:0x8000A714
 	extabindex  start:0x800107EC end:0x800107F8
 	.text       start:0x80112618 end:0x8011264C
+
+game/fn_8011264C.cpp:
+	extab       start:0x8000A714 end:0x8000A71C
+	extabindex  start:0x800107F8 end:0x80010804
+	.text       start:0x8011264C end:0x801126B4
 
 game/fn_801126B4.cpp:
 	extab       start:0x8000A71C end:0x8000A724
