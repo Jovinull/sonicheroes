@@ -1179,6 +1179,9 @@ game/fn_800BEE6C.cpp:
 	extabindex  start:0x8000EB6C end:0x8000EB78
 	.text       start:0x800BEE6C end:0x800BEEF0
 
+game/fn_800BFAEC.cpp:
+	.text       start:0x800BFAEC end:0x800BFAF0
+
 game/fn_800C0270.cpp:
 	.text       start:0x800C0270 end:0x800C0288
 
