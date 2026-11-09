@@ -4471,6 +4471,9 @@ game/cri/adx_inis.c:
 game/ADXSJD_RestoreSnapshot.cpp:
 	.text       start:0x8020D4A8 end:0x8020D4CC
 
+game/ADXSJD_TakeSnapshot.cpp:
+	.text       start:0x8020D4CC end:0x8020D4F0
+
 game/ADXSJD_SetTrapDtLen.cpp:
 	.text       start:0x8020D764 end:0x8020D76C
 
