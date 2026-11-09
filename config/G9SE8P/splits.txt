@@ -1200,6 +1200,9 @@ game/fn_800DAFD0.cpp:
 game/fn_800E01E4.cpp:
 	.text       start:0x800E01E4 end:0x800E021C
 
+game/fn_800E1194.cpp:
+	.text       start:0x800E1194 end:0x800E1208
+
 game/fn_800E1208.cpp:
 	.text       start:0x800E1208 end:0x800E124C
 
