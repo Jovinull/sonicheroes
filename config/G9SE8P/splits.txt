@@ -4569,6 +4569,9 @@ game/fn_80203E38.cpp:
 game/fn_8020407C.cpp:
 	.text       start:0x8020407C end:0x802040A0
 
+game/fn_80204308.cpp:
+	.text       start:0x80204308 end:0x802043AC
+
 game/fn_802043AC.cpp:
 	.text       start:0x802043AC end:0x802043B4
 
