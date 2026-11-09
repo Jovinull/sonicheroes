@@ -2238,6 +2238,9 @@ rel/s11warp_object_register.cpp:
 rel/s11ghost_edit.cpp:
 	.text       start:0x00083D48 end:0x00083DA8
 
+rel/aligator_create.cpp:
+	.text       start:0x00084010 end:0x00084058
+
 rel/s11ghost_object_register.cpp:
 	.text       start:0x00084058 end:0x00084108
 	.ctors      start:0x000000E8 end:0x000000EC
