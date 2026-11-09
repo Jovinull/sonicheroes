@@ -2605,6 +2605,9 @@ game/SpAdvStgFailed.cpp:
 game/RpDMorphAnimationGetNumDMorphTargets.cpp:
 	.text       start:0x8013BE00 end:0x8013BE08
 
+game/RpDMorphAnimationGetNumFrames.cpp:
+	.text       start:0x8013BE08 end:0x8013BE18
+
 game/fn_8013C248.cpp:
 	.text       start:0x8013C248 end:0x8013C258
 
