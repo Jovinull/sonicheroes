@@ -210,6 +210,11 @@ game/fn_8003EDA8.cpp:
 	extabindex  start:0x8000C5D4 end:0x8000C5E0
 	.text       start:0x8003EDA8 end:0x8003EE58
 
+game/dtor_8003F010.cpp:
+	extab       start:0x80005DE8 end:0x80005DF0
+	extabindex  start:0x8000C5EC end:0x8000C5F8
+	.text       start:0x8003F010 end:0x8003F07C
+
 game/fn_8003F300.cpp:
 	.text       start:0x8003F300 end:0x8003F308
 
@@ -222,6 +227,11 @@ game/fn_8003FB9C.cpp:
 	extab       start:0x80005E54 end:0x80005E5C
 	extabindex  start:0x8000C640 end:0x8000C64C
 	.text       start:0x8003FB9C end:0x8003FBD8
+
+game/dtor_8003FFB8.cpp:
+	extab       start:0x80005E6C end:0x80005E74
+	extabindex  start:0x8000C664 end:0x8000C670
+	.text       start:0x8003FFB8 end:0x80040058
 
 game/fn_8004014C.cpp:
 	extab       start:0x80005EB8 end:0x80005EC0
@@ -470,6 +480,11 @@ game/fn_8004DDDC.cpp:
 
 game/fn_8004E588.cpp:
 	.text       start:0x8004E588 end:0x8004E5AC
+
+game/dtor_8004E624.cpp:
+	extab       start:0x80006278 end:0x80006280
+	extabindex  start:0x8000CBA4 end:0x8000CBB0
+	.text       start:0x8004E624 end:0x8004E690
 
 game/fn_8004E690.cpp:
 	.text       start:0x8004E690 end:0x8004E6AC
@@ -756,10 +771,20 @@ game/fn_80067050.cpp:
 game/fn_80068B20.cpp:
 	.text       start:0x80068B20 end:0x80068B28
 
+game/dtor_80071908.cpp:
+	extab       start:0x80006CF8 end:0x80006D00
+	extabindex  start:0x8000D7BC end:0x8000D7C8
+	.text       start:0x80071908 end:0x80071968
+
 game/fn_80072964.cpp:
 	extab       start:0x80006EA0 end:0x80006EA8
 	extabindex  start:0x8000D7F8 end:0x8000D804
 	.text       start:0x80072964 end:0x800729DC
+
+game/dtor_8007C02C.cpp:
+	extab       start:0x80006F40 end:0x80006F48
+	extabindex  start:0x8000D8E8 end:0x8000D8F4
+	.text       start:0x8007C02C end:0x8007C0A4
 
 game/fn_8007D064.cpp:
 	extab       start:0x800071F8 end:0x80007200
