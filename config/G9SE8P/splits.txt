@@ -1432,6 +1432,9 @@ game/fn_80136884.cpp:
 game/fn_80136C24.cpp:
 	.text       start:0x80136C24 end:0x80136C2C
 
+game/fn_80137F54.cpp:
+	.text       start:0x80137F54 end:0x80137FA4
+
 game/enemy/e_utility_system.cpp:
 	.text       start:0x80137FE8 end:0x801380B8
 
