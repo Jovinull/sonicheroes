@@ -3423,6 +3423,9 @@ game/fn_801B8198.cpp:
 game/fn_801B81A8.cpp:
 	.text       start:0x801B81A8 end:0x801B81B4
 
+game/fn_801B8DFC.cpp:
+	.text       start:0x801B8DFC end:0x801B8E08
+
 Runtime.PPCEABI.H/__va_arg.c:
 	.text       start:0x801B8E08 end:0x801B8ED0
 
