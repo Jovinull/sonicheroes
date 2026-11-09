@@ -998,6 +998,7 @@ config.libs = [
             Object(Matching, "game/ADXB_GetDecDtLen.cpp"),
             Object(Matching, "game/ADXB_GetDefOutVol.cpp"),
             Object(Matching, "game/ADXB_GetAinfLen.cpp"),
+            Object(Matching, "game/ADXB_GetLpEndOfst.cpp"),
             Object(Matching, "game/dtor_8003F010.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/dtor_80071908.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/dtor_8007C02C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),

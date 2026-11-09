@@ -4483,6 +4483,9 @@ game/ADXB_GetDefOutVol.cpp:
 game/ADXB_GetAinfLen.cpp:
 	.text       start:0x80211564 end:0x8021156C
 
+game/ADXB_GetLpEndOfst.cpp:
+	.text       start:0x8021156C end:0x80211574
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
