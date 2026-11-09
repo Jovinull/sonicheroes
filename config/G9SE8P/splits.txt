@@ -940,6 +940,9 @@ game/fn_800A74A4.cpp:
 game/fn_800A74A8.cpp:
 	.text       start:0x800A74A8 end:0x800A74B0
 
+game/fn_800A74B0.cpp:
+	.text       start:0x800A74B0 end:0x800A74B4
+
 game/mobject.cpp:
 	extab       start:0x80007AF8 end:0x80007B40
 	extabindex  start:0x8000E140 end:0x8000E1AC
