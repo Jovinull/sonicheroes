@@ -4495,6 +4495,9 @@ game/ADXSJD_GetBlkSmpl.cpp:
 game/ADXSJD_GetOutBps.cpp:
 	.text       start:0x8020D6D4 end:0x8020D6F8
 
+game/ADXSJD_GetNumChan.cpp:
+	.text       start:0x8020D6F8 end:0x8020D71C
+
 game/ADXSJD_SetTrapDtLen.cpp:
 	.text       start:0x8020D764 end:0x8020D76C
 
