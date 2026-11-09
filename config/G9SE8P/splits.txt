@@ -2874,6 +2874,9 @@ game/fn_8019044C.cpp:
 game/fn_80190604.cpp:
 	.text       start:0x80190604 end:0x80190634
 
+game/fn_801910E0.cpp:
+	.text       start:0x801910E0 end:0x80191104
+
 game/fn_80191104.cpp:
 	.text       start:0x80191104 end:0x8019112C
 
