@@ -125,6 +125,9 @@ game/action_cont4.cpp:
 game/object_defaults.cpp:
 	.text       start:0x8001ED40 end:0x8001ED60
 
+game/fn_8001EEA8.cpp:
+	.text       start:0x8001EEA8 end:0x8001EECC
+
 game/fn_8001EECC.cpp:
 	.text       start:0x8001EECC end:0x8001EED8
 
