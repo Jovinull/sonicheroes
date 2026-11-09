@@ -1612,6 +1612,9 @@ game/fn_80153E7C.cpp:
 game/fn_801541BC.cpp:
 	.text       start:0x801541BC end:0x801541FC
 
+game/fn_80154704.cpp:
+	.text       start:0x80154704 end:0x8015472C
+
 game/fn_801549E8.cpp:
 	.text       start:0x801549E8 end:0x80154A28
 
