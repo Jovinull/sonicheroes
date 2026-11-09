@@ -999,6 +999,7 @@ config.libs = [
             Object(Matching, "game/ADXSJD_GetNumLoop.cpp"),
             Object(Matching, "game/ADXSJD_GetTotalNumSmpl.cpp"),
             Object(Matching, "game/ADXSJD_GetBlkSmpl.cpp"),
+            Object(Matching, "game/ADXSJD_GetOutBps.cpp"),
             Object(Matching, "game/CheckCameraFrustumTestForShadow__9TObjEnemyFPC5RwV3df.cpp"),
             Object(Matching, "game/RpDMorphAnimationGetNumDMorphTargets.cpp"),
             Object(Matching, "game/ADXSJD_GetDecNumSmpl.cpp"),
