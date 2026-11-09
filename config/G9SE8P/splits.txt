@@ -1758,6 +1758,9 @@ game/fn_8010FB50.cpp:
 	extabindex  start:0x800106B4 end:0x800106C0
 	.text       start:0x8010FB50 end:0x8010FBCC
 
+game/fn_8010FF68.cpp:
+	.text       start:0x8010FF68 end:0x8010FF6C
+
 game/effect/eff_footprints.cpp:
 	extab       start:0x8000A5B4 end:0x8000A634
 	extabindex  start:0x800106E4 end:0x80010738
