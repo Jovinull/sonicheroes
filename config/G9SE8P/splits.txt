@@ -529,10 +529,20 @@ game/fn_800B8B78.cpp:
 	extabindex  start:0x8000E86C end:0x8000E878
 	.text       start:0x800B8B78 end:0x800B8BA4
 
+game/fn_800B8BEC.cpp:
+	extab       start:0x800081F8 end:0x80008200
+	extabindex  start:0x8000E884 end:0x8000E890
+	.text       start:0x800B8BEC end:0x800B8C1C
+
 game/fn_800B8C1C.cpp:
 	extab       start:0x80008200 end:0x80008208
 	extabindex  start:0x8000E890 end:0x8000E89C
 	.text       start:0x800B8C1C end:0x800B8C48
+
+game/fn_800B8D68.cpp:
+	extab       start:0x80008220 end:0x80008228
+	extabindex  start:0x8000E8C0 end:0x8000E8CC
+	.text       start:0x800B8D68 end:0x800B8D98
 
 game/one.cpp:
 	extab       start:0x80008240 end:0x80008300
@@ -890,6 +900,11 @@ game/fn_80112718.cpp:
 	extab       start:0x8000A724 end:0x8000A72C
 	extabindex  start:0x80010810 end:0x8001081C
 	.text       start:0x80112718 end:0x8011273C
+
+game/fn_80112F10.cpp:
+	extab       start:0x8000A77C end:0x8000A784
+	extabindex  start:0x8001084C end:0x80010858
+	.text       start:0x80112F10 end:0x80112F3C
 
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
@@ -1390,6 +1405,9 @@ game/fn_8019D138.cpp:
 
 game/fn_8019D41C.cpp:
 	.text       start:0x8019D41C end:0x8019D448
+
+game/fn_8019E85C.cpp:
+	.text       start:0x8019E85C end:0x8019E880
 
 game/fn_8019EEC0.cpp:
 	.text       start:0x8019EEC0 end:0x8019EF00
