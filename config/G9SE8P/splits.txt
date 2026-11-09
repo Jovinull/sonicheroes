@@ -4568,6 +4568,9 @@ game/ADXSJD_Start.cpp:
 game/ADXSJD_SetMaxDecSmpl.cpp:
 	.text       start:0x8020E208 end:0x8020E230
 
+game/ADXSJD_SetInSj.cpp:
+	.text       start:0x8020E230 end:0x8020E258
+
 game/ADXB_GetDecNumSmpl.cpp:
 	.text       start:0x80211394 end:0x8021139C
 
