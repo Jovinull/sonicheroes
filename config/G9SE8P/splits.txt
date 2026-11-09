@@ -2494,6 +2494,9 @@ game/fn_80172F10.cpp:
 game/fn_80172F4C.cpp:
 	.text       start:0x80172F4C end:0x80172F94
 
+game/fn_80172F94.cpp:
+	.text       start:0x80172F94 end:0x8017300C
+
 game/fn_80173048.cpp:
 	.text       start:0x80173048 end:0x8017306C
 
