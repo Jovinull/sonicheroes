@@ -4580,6 +4580,9 @@ game/ADXSJD_Finish.cpp:
 game/ADXSJD_Init.cpp:
 	.text       start:0x8020E580 end:0x8020E5B4
 
+game/ADXB_ExecOneWav.cpp:
+	.text       start:0x8020E5B4 end:0x8020E600
+
 game/ADXB_CheckWav.cpp:
 	.text       start:0x8020E600 end:0x8020E668
 
