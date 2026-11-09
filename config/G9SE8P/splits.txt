@@ -944,6 +944,11 @@ game/fn_800B8C1C.cpp:
 	extabindex  start:0x8000E890 end:0x8000E89C
 	.text       start:0x800B8C1C end:0x800B8C48
 
+game/fn_800B8C48.cpp:
+	extab       start:0x80008208 end:0x80008210
+	extabindex  start:0x8000E89C end:0x8000E8A8
+	.text       start:0x800B8C48 end:0x800B8CC4
+
 game/fn_800B8CC4.cpp:
 	extab       start:0x80008210 end:0x80008218
 	extabindex  start:0x8000E8A8 end:0x8000E8B4
@@ -999,6 +1004,16 @@ game/fn_800BDF9C.cpp:
 	extab       start:0x800083C8 end:0x800083D0
 	extabindex  start:0x8000EAE8 end:0x8000EAF4
 	.text       start:0x800BDF9C end:0x800BDFC8
+
+game/fn_800BE1F4.cpp:
+	extab       start:0x800083E0 end:0x800083E8
+	extabindex  start:0x8000EB0C end:0x8000EB18
+	.text       start:0x800BE1F4 end:0x800BE274
+
+game/fn_800BE274.cpp:
+	extab       start:0x800083E8 end:0x800083F0
+	extabindex  start:0x8000EB18 end:0x8000EB24
+	.text       start:0x800BE274 end:0x800BE2E8
 
 game/fn_800BEE6C.cpp:
 	extab       start:0x80008420 end:0x80008428
@@ -1285,6 +1300,16 @@ game/fn_800F3020.cpp:
 	extab       start:0x80008FD0 end:0x80008FD8
 	extabindex  start:0x8000F898 end:0x8000F8A4
 	.text       start:0x800F3020 end:0x800F3074
+
+game/fn_800F3074.cpp:
+	extab       start:0x80008FD8 end:0x80008FE0
+	extabindex  start:0x8000F8A4 end:0x8000F8B0
+	.text       start:0x800F3074 end:0x800F30D0
+
+game/fn_800F30D0.cpp:
+	extab       start:0x80008FE0 end:0x80008FE8
+	extabindex  start:0x8000F8B0 end:0x8000F8BC
+	.text       start:0x800F30D0 end:0x800F3134
 
 game/effect/eff_rocketaxel.cpp:
 	extab       start:0x80008FE8 end:0x80009140
