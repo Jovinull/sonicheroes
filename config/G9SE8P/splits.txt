@@ -900,6 +900,11 @@ game/fn_800BDF9C.cpp:
 	extabindex  start:0x8000EAE8 end:0x8000EAF4
 	.text       start:0x800BDF9C end:0x800BDFC8
 
+game/fn_800BEE6C.cpp:
+	extab       start:0x80008420 end:0x80008428
+	extabindex  start:0x8000EB6C end:0x8000EB78
+	.text       start:0x800BEE6C end:0x800BEEF0
+
 game/fn_800C8C28.cpp:
 	extab       start:0x800087D8 end:0x800087E0
 	extabindex  start:0x8000EDC4 end:0x8000EDD0
@@ -919,11 +924,21 @@ game/effect/eff_ball.cpp:
 	.sdata      start:0x8042B610 end:0x8042B620
 	.sdata2     start:0x8042DEE8 end:0x8042DF08
 
+game/fn_800C9AEC.cpp:
+	extab       start:0x80008838 end:0x80008840
+	extabindex  start:0x8000EE54 end:0x8000EE60
+	.text       start:0x800C9AEC end:0x800C9B7C
+
 game/fn_800CA724.cpp:
 	.text       start:0x800CA724 end:0x800CA77C
 
 game/fn_800CAF14.cpp:
 	.text       start:0x800CAF14 end:0x800CAF2C
+
+game/fn_800CAF2C.cpp:
+	extab       start:0x80008878 end:0x80008880
+	extabindex  start:0x8000EEB4 end:0x8000EEC0
+	.text       start:0x800CAF2C end:0x800CAFCC
 
 game/fn_800CB1E8.cpp:
 	extab       start:0x800088A0 end:0x800088A8
@@ -937,6 +952,11 @@ game/fn_800CBB18.cpp:
 	extab       start:0x800088D0 end:0x800088D8
 	extabindex  start:0x8000EF20 end:0x8000EF2C
 	.text       start:0x800CBB18 end:0x800CBB70
+
+game/fn_800CC280.cpp:
+	extab       start:0x800088F0 end:0x800088F8
+	extabindex  start:0x8000EF50 end:0x8000EF5C
+	.text       start:0x800CC280 end:0x800CC300
 
 game/fn_800CC300.cpp:
 	extab       start:0x800088F8 end:0x80008900
@@ -1054,6 +1074,11 @@ game/fn_800DA09C.cpp:
 	extab       start:0x80008CC8 end:0x80008CD0
 	extabindex  start:0x8000F40C end:0x8000F418
 	.text       start:0x800DA09C end:0x800DA0C0
+
+game/fn_800DAFD0.cpp:
+	extab       start:0x80008CE8 end:0x80008CF0
+	extabindex  start:0x8000F43C end:0x8000F448
+	.text       start:0x800DAFD0 end:0x800DB060
 
 game/fn_800E01E4.cpp:
 	.text       start:0x800E01E4 end:0x800E021C
