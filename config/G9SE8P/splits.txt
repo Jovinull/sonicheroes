@@ -708,6 +708,9 @@ game/fn_800663C4.cpp:
 game/fn_800663C8.cpp:
 	.text       start:0x800663C8 end:0x800663CC
 
+game/fn_800663CC.cpp:
+	.text       start:0x800663CC end:0x800663D0
+
 game/gParam.cpp:
 	extab       start:0x80006C40 end:0x80006C58
 	extabindex  start:0x8000D6A8 end:0x8000D6CC
