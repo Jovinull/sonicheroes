@@ -536,6 +536,27 @@ f32 DistancePL2PL(const RwV3d* arg0, const RwV3d* arg1, NJS_LINE* arg2)
 	return lbl_8042E008;
 }
 
+static inline f32 DistP2PLInl(const RwV3d* arg0, const NJS_LINE* arg1, RwV3d* arg2)
+{
+	f32 temp_f0;
+	f32 temp_f3;
+	f32 temp_f4_2;
+	f32 temp_f5;
+
+	temp_f3 = -((arg1->v.z * arg1->p.z) + ((arg1->v.x * arg1->p.x) + (arg1->v.y * arg1->p.y)))
+	    + ((arg1->v.z * arg0->z) + ((arg1->v.x * arg0->x) + (arg1->v.y * arg0->y)));
+	temp_f0 = (arg1->v.z * arg1->v.z) + ((arg1->v.x * arg1->v.x) + (arg1->v.y * arg1->v.y));
+	if (arg2 != NULL) {
+		temp_f4_2 = -temp_f3 / temp_f0;
+		arg2->x   = arg0->x + (arg1->v.x * temp_f4_2);
+		arg2->y   = arg0->y + (arg1->v.y * temp_f4_2);
+		arg2->z   = arg0->z + (arg1->v.z * temp_f4_2);
+	}
+	f64 absolute = __fabs(temp_f3);
+	temp_f5      = (f32)absolute;
+	return temp_f5 * (lbl_8042E00C / MiscSqrt(temp_f0, lbl_8042E008));
+}
+
 f32 DistancePL2PL(const NJS_LINE* pl1, const NJS_LINE* pl2, NJS_LINE* l)
 {
 	RwV3d p;
@@ -596,25 +617,7 @@ f32 DistancePL2PL(const NJS_LINE* pl1, const NJS_LINE* pl2, NJS_LINE* l)
 			l->v.z = lbl_8042E008;
 		}
 
-		f32 normalY      = pl2->v.y;
-		f32 normalX      = pl2->v.x;
-		f32 normalZ      = pl2->v.z;
-		f32 signedOffset = (-((normalZ * pl2->p.z) + ((normalX * pl2->p.x) + (normalY * pl2->p.y)))
-		    + ((normalZ * p.z) + ((normalX * p.x) + (normalY * p.y))));
-		var_f5           = (normalZ * normalZ) + ((normalX * normalX) + (normalY * normalY));
-		temp_f4          = (f32)__fabs(signedOffset);
-		if (var_f5 > lbl_8042E008) {
-			temp_f0_5 = __frsqrte(var_f5);
-			temp_f0_6 = lbl_8042E018 * temp_f0_5
-			    * (lbl_8042E020 - ((f64)var_f5 * (temp_f0_5 * temp_f0_5)));
-			temp_f0_7 = lbl_8042E018 * temp_f0_6
-			    * (lbl_8042E020 - ((f64)var_f5 * (temp_f0_6 * temp_f0_6)));
-			sp8    = (f32)((f64)var_f5
-			    * (lbl_8042E018 * temp_f0_7
-			        * (lbl_8042E020 - ((f64)var_f5 * (temp_f0_7 * temp_f0_7)))));
-			var_f5 = sp8;
-		}
-		return temp_f4 * (lbl_8042E00C / var_f5);
+		return DistP2PLInl(&p, pl2, 0);
 	}
 	if (l != NULL) {
 		l->v.x = (pl1->v.y * pl2->v.z) - (pl2->v.y * pl1->v.z);
