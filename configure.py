@@ -996,6 +996,7 @@ config.libs = [
             Object(Matching, "game/dtor_80136EA8.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/__dt__9EffShadowFv.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/RpDMorphAnimationGetNumFrames.cpp"),
+            Object(Matching, "game/KillMySelf__9TObjEnemyFv.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/ADXSJD_RestoreSnapshot.cpp"),
             Object(Matching, "game/ADXSJD_TakeSnapshot.cpp"),
             Object(Matching, "game/ADXSJD_GetLpEndOfst.cpp"),
