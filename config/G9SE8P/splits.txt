@@ -4477,6 +4477,9 @@ game/ADXSJD_TakeSnapshot.cpp:
 game/ADXSJD_GetLpEndOfst.cpp:
 	.text       start:0x8020D5C8 end:0x8020D5EC
 
+game/ADXSJD_GetLpEndPos.cpp:
+	.text       start:0x8020D5EC end:0x8020D610
+
 game/ADXSJD_SetTrapDtLen.cpp:
 	.text       start:0x8020D764 end:0x8020D76C
 
