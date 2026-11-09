@@ -3539,6 +3539,9 @@ game/fn_80202364.cpp:
 game/fn_80202384.cpp:
 	.text       start:0x80202384 end:0x802023D0
 
+game/fn_8020277C.cpp:
+	.text       start:0x8020277C end:0x802027F0
+
 game/fn_80202BD0.cpp:
 	.text       start:0x80202BD0 end:0x80202C1C
 
