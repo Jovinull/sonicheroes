@@ -4471,6 +4471,9 @@ game/cri/adx_inis.c:
 game/ADXSJD_GetDecNumSmpl.cpp:
 	.text       start:0x8020D790 end:0x8020D798
 
+game/ADXB_GetDecNumSmpl.cpp:
+	.text       start:0x80211394 end:0x8021139C
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
