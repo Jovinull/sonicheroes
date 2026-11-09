@@ -992,6 +992,7 @@ config.libs = [
             Object(Matching, "game/fn_80057524.cpp", extra_cflags=["-Cpp_exceptions on"]),
             Object(Matching, "game/fn_8005776C.cpp"),
             Object(Matching, "game/ADXB_ExecHndl.cpp"),
+            Object(Matching, "game/ADXB_EntryData.cpp"),
             Object(Matching, "game/ADXSJD_GetDefPan.cpp"),
             Object(Matching, "game/ADXSJD_GetDefOutVol.cpp"),
             Object(Matching, "game/RwFreeListCreate.cpp"),
