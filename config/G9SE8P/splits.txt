@@ -1985,6 +1985,9 @@ game/fn_8011A79C.cpp:
 	extabindex  start:0x80010C6C end:0x80010C78
 	.text       start:0x8011A79C end:0x8011A840
 
+game/fn_8011AA70.cpp:
+	.text       start:0x8011AA70 end:0x8011AA7C
+
 game/fn_8011AA84.cpp:
 	extab       start:0x8000AB8C end:0x8000AB94
 	extabindex  start:0x80010C84 end:0x80010C90
