@@ -1112,6 +1112,9 @@ game/fn_8017AB1C.cpp:
 game/fn_8017E7B0.cpp:
 	.text       start:0x8017E7B0 end:0x8017E7C0
 
+game/fn_8017E7C0.cpp:
+	.text       start:0x8017E7C0 end:0x8017E7D0
+
 game/fn_8019044C.cpp:
 	.text       start:0x8019044C end:0x8019047C
 
