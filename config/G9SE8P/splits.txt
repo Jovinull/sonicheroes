@@ -1996,6 +1996,9 @@ game/fn_8011B81C.cpp:
 	extabindex  start:0x80010D20 end:0x80010D2C
 	.text       start:0x8011B81C end:0x8011B844
 
+game/fn_8011BB38.cpp:
+	.text       start:0x8011BB38 end:0x8011BB3C
+
 game/enemy/e_scoreman.cpp:
 	extab       start:0x8000AC88 end:0x8000ACC8
 	extabindex  start:0x80010D98 end:0x80010DE0
