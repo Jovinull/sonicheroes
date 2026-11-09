@@ -4507,6 +4507,9 @@ game/ADXB_GetSfreq.cpp:
 game/ADXB_GetFormat.cpp:
 	.text       start:0x80211634 end:0x8021163C
 
+game/ADXB_GetPcmBuf.cpp:
+	.text       start:0x8021163C end:0x80211644
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
