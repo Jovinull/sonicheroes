@@ -1391,6 +1391,9 @@ game/fn_8019D138.cpp:
 game/fn_8019D41C.cpp:
 	.text       start:0x8019D41C end:0x8019D448
 
+game/fn_8019EEC0.cpp:
+	.text       start:0x8019EEC0 end:0x8019EF00
+
 game/fn_801A4B8C.cpp:
 	.text       start:0x801A4B8C end:0x801A4BBC
 
