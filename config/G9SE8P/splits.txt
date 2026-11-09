@@ -2799,6 +2799,9 @@ game/fn_8015A924.cpp:
 game/fn_8015AA20.cpp:
 	.text       start:0x8015AA20 end:0x8015AA64
 
+game/fn_8015AA64.cpp:
+	.text       start:0x8015AA64 end:0x8015AA68
+
 game/fn_8015AD00.cpp:
 	.text       start:0x8015AD00 end:0x8015AD28
 
