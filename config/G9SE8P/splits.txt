@@ -4477,6 +4477,9 @@ game/ADXB_GetDecNumSmpl.cpp:
 game/ADXB_GetDecDtLen.cpp:
 	.text       start:0x8021139C end:0x802113A4
 
+game/ADXB_GetDefOutVol.cpp:
+	.text       start:0x8021155C end:0x80211564
+
 game/cri/adx_amp.c:
 	.text       start:0x802125A0 end:0x802127B0
 
