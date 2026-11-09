@@ -388,6 +388,11 @@ game/locateTable.cpp:
 game/fn_800A26EC.cpp:
 	.text       start:0x800A26EC end:0x800A2704
 
+game/fn_800A2B58.cpp:
+	extab       start:0x800078F0 end:0x800078F8
+	extabindex  start:0x8000DEF4 end:0x8000DF00
+	.text       start:0x800A2B58 end:0x800A2B78
+
 game/fn_800A2E1C.cpp:
 	.text       start:0x800A2E1C end:0x800A2E24
 
@@ -529,6 +534,11 @@ game/fn_800CAF14.cpp:
 
 game/fn_800CB5BC.cpp:
 	.text       start:0x800CB5BC end:0x800CB5D8
+
+game/fn_800CD528.cpp:
+	extab       start:0x80008988 end:0x80008990
+	extabindex  start:0x8000EFC8 end:0x8000EFD4
+	.text       start:0x800CD528 end:0x800CD548
 
 game/perf.cpp:
 	extab       start:0x800089A0 end:0x800089C8
@@ -740,6 +750,11 @@ game/enemy/e_utility_search.cpp:
 	extabindex  start:0x8000FF88 end:0x8000FFAC
 	.text       start:0x80103178 end:0x8010346C
 
+game/fn_80103470.cpp:
+	extab       start:0x80009A28 end:0x80009A30
+	extabindex  start:0x8000FFAC end:0x8000FFB8
+	.text       start:0x80103470 end:0x80103490
+
 game/fn_8010A0E8.cpp:
 	.text       start:0x8010A0E8 end:0x8010A110
 
@@ -800,6 +815,11 @@ game/effect/eff_footprints.cpp:
 
 game/fn_80110C18.cpp:
 	.text       start:0x80110C18 end:0x80110C38
+
+game/fn_80111558.cpp:
+	extab       start:0x8000A674 end:0x8000A67C
+	extabindex  start:0x80010780 end:0x8001078C
+	.text       start:0x80111558 end:0x80111578
 
 game/fn_80111578.cpp:
 	extab       start:0x8000A67C end:0x8000A684
@@ -994,6 +1014,11 @@ game/GetSpParam.cpp:
 	.ctors      start:0x80239904 end:0x80239908
 	.bss        start:0x803EA488 end:0x803EA4B8
 	.sdata2     start:0x8042EE88 end:0x8042EEA8
+
+game/fn_80132750.cpp:
+	extab       start:0x8000B6F8 end:0x8000B700
+	extabindex  start:0x800116EC end:0x800116F8
+	.text       start:0x80132750 end:0x80132770
 
 game/fn_801354A4.cpp:
 	.text       start:0x801354A4 end:0x801354B8
