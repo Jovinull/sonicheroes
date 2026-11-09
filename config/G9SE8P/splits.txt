@@ -1281,6 +1281,11 @@ game/fn_80112618.cpp:
 	extabindex  start:0x800107EC end:0x800107F8
 	.text       start:0x80112618 end:0x8011264C
 
+game/fn_801126B4.cpp:
+	extab       start:0x8000A71C end:0x8000A724
+	extabindex  start:0x80010804 end:0x80010810
+	.text       start:0x801126B4 end:0x80112718
+
 game/fn_80112718.cpp:
 	extab       start:0x8000A724 end:0x8000A72C
 	extabindex  start:0x80010810 end:0x8001081C
@@ -1412,6 +1417,11 @@ game/enemy/e_powercore.cpp:
 	.sbss       start:0x8042C6D8 end:0x8042C6E0
 	.sdata2     start:0x8042EB38 end:0x8042EB68
 
+game/fn_8011E528.cpp:
+	extab       start:0x8000AE58 end:0x8000AE60
+	extabindex  start:0x80010EA0 end:0x80010EAC
+	.text       start:0x8011E528 end:0x8011E59C
+
 game/eventCore.cpp:
 	.text       start:0x8011E5A4 end:0x8011E5F0
 	.rodata     start:0x8023AAB0 end:0x8023ACB0
@@ -1435,6 +1445,11 @@ game/enemy/e_mtnpath.cpp:
 
 game/fn_80120060.cpp:
 	.text       start:0x80120060 end:0x80120088
+
+game/fn_801218B4.cpp:
+	extab       start:0x8000B01C end:0x8000B024
+	extabindex  start:0x80011020 end:0x8001102C
+	.text       start:0x801218B4 end:0x80121928
 
 game/fn_8012316C.cpp:
 	.text       start:0x8012316C end:0x801231AC
