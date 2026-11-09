@@ -1892,6 +1892,16 @@ game/fn_80127904.cpp:
 	extabindex  start:0x8001132C end:0x80011338
 	.text       start:0x80127904 end:0x80127960
 
+game/fn_80127960.cpp:
+	extab       start:0x8000B330 end:0x8000B338
+	extabindex  start:0x80011338 end:0x80011344
+	.text       start:0x80127960 end:0x801279C8
+
+game/fn_80128058.cpp:
+	extab       start:0x8000B360 end:0x8000B368
+	extabindex  start:0x80011380 end:0x8001138C
+	.text       start:0x80128058 end:0x801280CC
+
 game/fn_80128158.cpp:
 	extab       start:0x8000B370 end:0x8000B378
 	extabindex  start:0x80011398 end:0x800113A4
@@ -1928,6 +1938,11 @@ game/fn_8012DAA0.cpp:
 game/fn_8012DABC.cpp:
 	.text       start:0x8012DABC end:0x8012DAD8
 
+game/fn_8012EB74.cpp:
+	extab       start:0x8000B5B0 end:0x8000B5B8
+	extabindex  start:0x80011554 end:0x80011560
+	.text       start:0x8012EB74 end:0x8012EBD4
+
 game/fn_8012ECA8.cpp:
 	.text       start:0x8012ECA8 end:0x8012ECE0
 
@@ -1956,6 +1971,11 @@ game/GetSpParam.cpp:
 	.ctors      start:0x80239904 end:0x80239908
 	.bss        start:0x803EA488 end:0x803EA4B8
 	.sdata2     start:0x8042EE88 end:0x8042EEA8
+
+game/fn_80131020.cpp:
+	extab       start:0x8000B6B8 end:0x8000B6C0
+	extabindex  start:0x8001168C end:0x80011698
+	.text       start:0x80131020 end:0x80131088
 
 game/fn_80131088.cpp:
 	extab       start:0x8000B6C0 end:0x8000B6C8
