@@ -1794,6 +1794,9 @@ game/SpAdvStgFailed.cpp:
 game/fn_8013C258.cpp:
 	.text       start:0x8013C258 end:0x8013C2B0
 
+game/fn_8013D274.cpp:
+	.text       start:0x8013D274 end:0x8013D2B8
+
 game/fn_8013F47C.cpp:
 	.text       start:0x8013F47C end:0x8013F484
 
