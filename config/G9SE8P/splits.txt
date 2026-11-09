@@ -1790,6 +1790,9 @@ game/fn_8012D9D0.cpp:
 game/fn_8012DA08.cpp:
 	.text       start:0x8012DA08 end:0x8012DA30
 
+game/fn_8012DA84.cpp:
+	.text       start:0x8012DA84 end:0x8012DAA0
+
 game/fn_8012ECA8.cpp:
 	.text       start:0x8012ECA8 end:0x8012ECE0
 
