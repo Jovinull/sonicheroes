@@ -539,6 +539,11 @@ game/c_colli_react.cpp:
 	.data       start:0x80253698 end:0x802537E0
 	.sdata2     start:0x8042DCA0 end:0x8042DCD0
 
+game/fn_800B6418.cpp:
+	extab       start:0x800080A8 end:0x800080B0
+	extabindex  start:0x8000E6E0 end:0x8000E6EC
+	.text       start:0x800B6418 end:0x800B6450
+
 game/fn_800B85D8.cpp:
 	extab       start:0x800081A0 end:0x800081A8
 	extabindex  start:0x8000E800 end:0x8000E80C
@@ -940,6 +945,11 @@ game/fn_80112F10.cpp:
 	extab       start:0x8000A77C end:0x8000A784
 	extabindex  start:0x8001084C end:0x80010858
 	.text       start:0x80112F10 end:0x80112F3C
+
+game/fn_80112F3C.cpp:
+	extab       start:0x8000A784 end:0x8000A78C
+	extabindex  start:0x80010858 end:0x80010864
+	.text       start:0x80112F3C end:0x80112F74
 
 game/obj_set_damage_collision.cpp:
 	extab       start:0x8000A794 end:0x8000A79C
