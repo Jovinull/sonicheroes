@@ -790,6 +790,11 @@ game/fn_800A2B58.cpp:
 	extabindex  start:0x8000DEF4 end:0x8000DF00
 	.text       start:0x800A2B58 end:0x800A2B78
 
+game/fn_800A2B78.cpp:
+	extab       start:0x800078F8 end:0x80007900
+	extabindex  start:0x8000DF00 end:0x8000DF0C
+	.text       start:0x800A2B78 end:0x800A2BE0
+
 game/fn_800A2E1C.cpp:
 	.text       start:0x800A2E1C end:0x800A2E24
 
@@ -1355,6 +1360,11 @@ game/effect/eff_rocketaxel.cpp:
 	.sdata      start:0x8042B6D0 end:0x8042B6E0
 	.sbss       start:0x8042C4A8 end:0x8042C4C0
 	.sdata2     start:0x8042E490 end:0x8042E4E0
+
+game/fn_800F474C.cpp:
+	extab       start:0x80009148 end:0x80009150
+	extabindex  start:0x8000F988 end:0x8000F994
+	.text       start:0x800F474C end:0x800F47B0
 
 game/fn_800F4880.cpp:
 	extab       start:0x80009158 end:0x80009160
