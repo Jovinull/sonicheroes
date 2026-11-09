@@ -418,6 +418,11 @@ game/fn_800576C4.cpp:
 	extabindex  start:0x8000CFDC end:0x8000CFE8
 	.text       start:0x800576C4 end:0x80057700
 
+game/fn_80057700.cpp:
+	extab       start:0x8000665C end:0x80006664
+	extabindex  start:0x8000CFE8 end:0x8000CFF4
+	.text       start:0x80057700 end:0x8005776C
+
 game/fn_8005776C.cpp:
 	.text       start:0x8005776C end:0x80057774
 
@@ -527,6 +532,16 @@ game/gParam.cpp:
 game/fn_80068B20.cpp:
 	.text       start:0x80068B20 end:0x80068B28
 
+game/fn_80072964.cpp:
+	extab       start:0x80006EA0 end:0x80006EA8
+	extabindex  start:0x8000D7F8 end:0x8000D804
+	.text       start:0x80072964 end:0x800729DC
+
+game/fn_8007D064.cpp:
+	extab       start:0x800071F8 end:0x80007200
+	extabindex  start:0x8000D924 end:0x8000D930
+	.text       start:0x8007D064 end:0x8007D0D4
+
 game/fn_8007DC44.cpp:
 	.text       start:0x8007DC44 end:0x8007DC70
 
@@ -567,6 +582,11 @@ game/fn_8009CFC0.cpp:
 	extab       start:0x80007754 end:0x8000775C
 	extabindex  start:0x8000DD98 end:0x8000DDA4
 	.text       start:0x8009CFC0 end:0x8009D048
+
+game/fn_8009E744.cpp:
+	extab       start:0x8000781C end:0x80007824
+	extabindex  start:0x8000DE04 end:0x8000DE10
+	.text       start:0x8009E744 end:0x8009E7B0
 
 game/locateTable.cpp:
 	.text       start:0x800A2090 end:0x800A23CC
@@ -670,6 +690,11 @@ game/easySelect.cpp:
 	.data       start:0x80253124 end:0x80253158
 	.sbss       start:0x8042C348 end:0x8042C34C
 	.sdata2     start:0x8042DB48 end:0x8042DB70
+
+game/fn_800AAD90.cpp:
+	extab       start:0x80007CB8 end:0x80007CC0
+	extabindex  start:0x8000E344 end:0x8000E350
+	.text       start:0x800AAD90 end:0x800AADFC
 
 game/fn_800AB32C.cpp:
 	.text       start:0x800AB32C end:0x800AB35C
