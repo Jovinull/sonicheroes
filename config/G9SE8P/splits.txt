@@ -4580,6 +4580,9 @@ game/ADXB_CheckWav.cpp:
 game/ADXB_CheckAiff.cpp:
 	.text       start:0x8020FD64 end:0x8020FDCC
 
+game/ADXB_CheckAu.cpp:
+	.text       start:0x80210CA4 end:0x80210D0C
+
 game/ADXB_GetDecNumSmpl.cpp:
 	.text       start:0x80211394 end:0x8021139C
 
