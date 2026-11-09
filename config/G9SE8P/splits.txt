@@ -4474,6 +4474,9 @@ game/ADXSJD_SetTrapDtLen.cpp:
 game/ADXSJD_SetTrapCnt.cpp:
 	.text       start:0x8020D76C end:0x8020D774
 
+game/ADXSJD_SetTrapNumSmpl.cpp:
+	.text       start:0x8020D774 end:0x8020D77C
+
 game/ADXSJD_GetDecNumSmpl.cpp:
 	.text       start:0x8020D790 end:0x8020D798
 

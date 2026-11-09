@@ -1009,6 +1009,7 @@ config.libs = [
             Object(Matching, "game/ADXB_GetPcmBuf.cpp"),
             Object(Matching, "game/ADXSJD_SetTrapDtLen.cpp"),
             Object(Matching, "game/ADXSJD_SetTrapCnt.cpp"),
+            Object(Matching, "game/ADXSJD_SetTrapNumSmpl.cpp"),
             Object(Matching, "game/dtor_8003F010.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/dtor_80071908.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/dtor_8007C02C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
