@@ -2436,6 +2436,9 @@ game/fn_80149AFC.cpp:
 game/fn_80149CE0.cpp:
 	.text       start:0x80149CE0 end:0x80149D28
 
+game/fn_8014A32C.cpp:
+	.text       start:0x8014A32C end:0x8014A350
+
 game/fn_8014D194.cpp:
 	.text       start:0x8014D194 end:0x8014D208
 
