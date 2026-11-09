@@ -902,6 +902,11 @@ game/fn_800CA724.cpp:
 game/fn_800CAF14.cpp:
 	.text       start:0x800CAF14 end:0x800CAF2C
 
+game/fn_800CB1E8.cpp:
+	extab       start:0x800088A0 end:0x800088A8
+	extabindex  start:0x8000EED8 end:0x8000EEE4
+	.text       start:0x800CB1E8 end:0x800CB264
+
 game/fn_800CB5BC.cpp:
 	.text       start:0x800CB5BC end:0x800CB5D8
 
@@ -1195,6 +1200,11 @@ game/fn_8010A0E8.cpp:
 
 game/fn_8010AD10.cpp:
 	.text       start:0x8010AD10 end:0x8010AD48
+
+game/fn_8010AD48.cpp:
+	extab       start:0x8000A0FC end:0x8000A104
+	extabindex  start:0x800103D8 end:0x800103E4
+	.text       start:0x8010AD48 end:0x8010ADA4
 
 game/enemy/e_iconman.cpp:
 	extab       start:0x8000A104 end:0x8000A298
