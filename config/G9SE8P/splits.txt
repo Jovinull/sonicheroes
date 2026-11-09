@@ -1694,6 +1694,9 @@ game/fn_801043EC.cpp:
 game/fn_8010A0E8.cpp:
 	.text       start:0x8010A0E8 end:0x8010A110
 
+game/fn_8010A238.cpp:
+	.text       start:0x8010A238 end:0x8010A23C
+
 game/fn_8010AD10.cpp:
 	.text       start:0x8010AD10 end:0x8010AD48
 
