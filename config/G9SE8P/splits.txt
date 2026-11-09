@@ -1221,6 +1221,9 @@ game/fn_800C2244.cpp:
 game/fn_800C2914.cpp:
 	.text       start:0x800C2914 end:0x800C2918
 
+game/fn_800C2BD4.cpp:
+	.text       start:0x800C2BD4 end:0x800C2BD8
+
 game/fn_800C8C28.cpp:
 	extab       start:0x800087D8 end:0x800087E0
 	extabindex  start:0x8000EDC4 end:0x8000EDD0
