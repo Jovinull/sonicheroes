@@ -1855,6 +1855,9 @@ game/fn_801966CC.cpp:
 game/fn_80196E98.cpp:
 	.text       start:0x80196E98 end:0x80196EE8
 
+game/fn_801982B0.cpp:
+	.text       start:0x801982B0 end:0x801982F4
+
 game/fn_801982F4.cpp:
 	.text       start:0x801982F4 end:0x80198330
 
