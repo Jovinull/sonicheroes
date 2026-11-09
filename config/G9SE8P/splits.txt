@@ -2147,6 +2147,9 @@ game/fn_80145FD4.cpp:
 game/fn_801468B4.cpp:
 	.text       start:0x801468B4 end:0x801468BC
 
+game/fn_801468BC.cpp:
+	.text       start:0x801468BC end:0x80146918
+
 game/fn_80146918.cpp:
 	.text       start:0x80146918 end:0x80146920
 
