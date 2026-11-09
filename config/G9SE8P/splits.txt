@@ -345,6 +345,9 @@ game/fn_8004CD24.cpp:
 game/fn_8004CD84.cpp:
 	.text       start:0x8004CD84 end:0x8004CD98
 
+game/fn_8004CD98.cpp:
+	.text       start:0x8004CD98 end:0x8004CDBC
+
 game/fn_8004CDBC.cpp:
 	.text       start:0x8004CDBC end:0x8004CDD8
 
