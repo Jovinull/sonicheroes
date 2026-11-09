@@ -1045,6 +1045,9 @@ game/fn_800B8D68.cpp:
 	extabindex  start:0x8000E8C0 end:0x8000E8CC
 	.text       start:0x800B8D68 end:0x800B8D98
 
+game/fn_800BA754.cpp:
+	.text       start:0x800BA754 end:0x800BA7F8
+
 game/one.cpp:
 	extab       start:0x80008240 end:0x80008300
 	extabindex  start:0x8000E8F0 end:0x8000EA10
