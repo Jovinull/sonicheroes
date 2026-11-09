@@ -2337,6 +2337,11 @@ game/fn_80125990.cpp:
 game/fn_80125A20.cpp:
 	.text       start:0x80125A20 end:0x80125A24
 
+game/fn_801262DC.cpp:
+	extab       start:0x8000B208 end:0x8000B210
+	extabindex  start:0x800111DC end:0x800111E8
+	.text       start:0x801262DC end:0x80126374
+
 game/fn_80126598.cpp:
 	.text       start:0x80126598 end:0x801265B4
 
@@ -3488,6 +3493,9 @@ game/fn_80199934.cpp:
 
 game/fn_80199984.cpp:
 	.text       start:0x80199984 end:0x8019998C
+
+game/fn_80199B80.cpp:
+	.text       start:0x80199B80 end:0x80199C18
 
 game/fn_80199E3C.cpp:
 	.text       start:0x80199E3C end:0x80199E40
