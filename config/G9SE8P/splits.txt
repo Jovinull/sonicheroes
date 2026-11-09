@@ -2928,6 +2928,9 @@ game/fn_8015BFA4.cpp:
 game/fn_8015BFFC.cpp:
 	.text       start:0x8015BFFC end:0x8015C004
 
+game/fn_8015C358.cpp:
+	.text       start:0x8015C358 end:0x8015C364
+
 game/fn_8015C59C.cpp:
 	.text       start:0x8015C59C end:0x8015C5A8
 
