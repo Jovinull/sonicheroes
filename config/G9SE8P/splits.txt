@@ -2080,6 +2080,9 @@ game/fn_801201C8.cpp:
 	extabindex  start:0x80010FCC end:0x80010FD8
 	.text       start:0x801201C8 end:0x8012024C
 
+game/fn_8012158C.cpp:
+	.text       start:0x8012158C end:0x80121590
+
 game/fn_801218B4.cpp:
 	extab       start:0x8000B01C end:0x8000B024
 	extabindex  start:0x80011020 end:0x8001102C
