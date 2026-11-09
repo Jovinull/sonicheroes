@@ -2402,6 +2402,9 @@ game/fn_8020AAD4.cpp:
 game/fn_8020B5B4.cpp:
 	.text       start:0x8020B5B4 end:0x8020B5E8
 
+game/fn_8020C92C.cpp:
+	.text       start:0x8020C92C end:0x8020C968
+
 game/cri/adx_inis.c:
 	.text       start:0x8020D1FC end:0x8020D4A8
 	.rodata     start:0x8023D648 end:0x8023D680
