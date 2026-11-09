@@ -4505,6 +4505,9 @@ game/ADXSJD_RestoreSnapshot.cpp:
 game/ADXSJD_TakeSnapshot.cpp:
 	.text       start:0x8020D4CC end:0x8020D4F0
 
+game/ADXSJD_GetSpsdInfo.cpp:
+	.text       start:0x8020D4F0 end:0x8020D4F8
+
 game/ADXSJD_GetLpEndOfst.cpp:
 	.text       start:0x8020D5C8 end:0x8020D5EC
 
