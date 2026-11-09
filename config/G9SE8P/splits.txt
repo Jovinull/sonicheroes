@@ -814,10 +814,20 @@ game/fn_800B7820.cpp:
 	extabindex  start:0x8000E788 end:0x8000E794
 	.text       start:0x800B7820 end:0x800B7864
 
+game/fn_800B8594.cpp:
+	extab       start:0x80008198 end:0x800081A0
+	extabindex  start:0x8000E7F4 end:0x8000E800
+	.text       start:0x800B8594 end:0x800B85D8
+
 game/fn_800B85D8.cpp:
 	extab       start:0x800081A0 end:0x800081A8
 	extabindex  start:0x8000E800 end:0x8000E80C
 	.text       start:0x800B85D8 end:0x800B8604
+
+game/fn_800B8604.cpp:
+	extab       start:0x800081A8 end:0x800081B0
+	extabindex  start:0x8000E80C end:0x8000E818
+	.text       start:0x800B8604 end:0x800B864C
 
 game/fn_800B8ADC.cpp:
 	extab       start:0x800081D0 end:0x800081D8
@@ -1508,6 +1518,11 @@ game/material.cpp:
 	.text       start:0x80119588 end:0x80119FE8
 	.sbss       start:0x8042C6A0 end:0x8042C6A8
 	.sdata2     start:0x8042EAA8 end:0x8042EAB0
+
+game/fn_8011AA84.cpp:
+	extab       start:0x8000AB8C end:0x8000AB94
+	extabindex  start:0x80010C84 end:0x80010C90
+	.text       start:0x8011AA84 end:0x8011AACC
 
 game/enemy/e_shockwave.cpp:
 	extab       start:0x8000AB94 end:0x8000AC08
