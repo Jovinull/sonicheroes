@@ -4595,6 +4595,9 @@ game/ADXB_ExecOneAiff.cpp:
 game/ADXB_CheckAiff.cpp:
 	.text       start:0x8020FD64 end:0x8020FDCC
 
+game/ADXB_ExecOneAu.cpp:
+	.text       start:0x8021003C end:0x80210080
+
 game/ADXB_CheckAu.cpp:
 	.text       start:0x80210CA4 end:0x80210D0C
 
