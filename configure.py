@@ -993,6 +993,7 @@ config.libs = [
             Object(Matching, "game/fn_8005776C.cpp"),
             Object(Matching, "game/ADXB_Reset.cpp"),
             Object(Matching, "game/ADXB_Stop.cpp"),
+            Object(Matching, "game/ADXB_Start.cpp"),
             Object(Matching, "game/RwOsGetFileInterface.cpp"),
             Object(Matching, "game/ADXSJD_GetSpsdInfo.cpp"),
             Object(Matching, "game/ADXSJD_Stop.cpp"),
