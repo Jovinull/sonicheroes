@@ -925,6 +925,9 @@ game/fn_800A7490.cpp:
 game/fn_800A7494.cpp:
 	.text       start:0x800A7494 end:0x800A7498
 
+game/fn_800A7498.cpp:
+	.text       start:0x800A7498 end:0x800A749C
+
 game/fn_800A74A8.cpp:
 	.text       start:0x800A74A8 end:0x800A74B0
 
