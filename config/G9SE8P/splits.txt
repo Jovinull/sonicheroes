@@ -3444,6 +3444,9 @@ game/fn_80171B54.cpp:
 game/fn_80171BA0.cpp:
 	.text       start:0x80171BA0 end:0x80171BFC
 
+game/fn_80171D84.cpp:
+	.text       start:0x80171D84 end:0x80171E0C
+
 game/fn_801724B4.cpp:
 	.text       start:0x801724B4 end:0x801724D4
 
