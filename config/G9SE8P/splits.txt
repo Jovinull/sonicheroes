@@ -1613,8 +1613,18 @@ game/fn_800C28F4.cpp:
 game/fn_800C2914.cpp:
 	.text       start:0x800C2914 end:0x800C2918
 
+game/fn_800C2918.cpp:
+	extab       start:0x8000851C end:0x80008524
+	extabindex  start:0x8000ECB0 end:0x8000ECBC
+	.text       start:0x800C2918 end:0x800C29E4
+
 game/fn_800C2BD4.cpp:
 	.text       start:0x800C2BD4 end:0x800C2BD8
+
+game/fn_800C2BD8.cpp:
+	extab       start:0x8000852C end:0x80008534
+	extabindex  start:0x8000ECC8 end:0x8000ECD4
+	.text       start:0x800C2BD8 end:0x800C2CC8
 
 game/fn_800C3438.cpp:
 	.text       start:0x800C3438 end:0x800C343C
