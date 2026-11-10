@@ -1516,6 +1516,9 @@ game/fn_800C0710.cpp:
 game/fn_800C0A70.cpp:
 	.text       start:0x800C0A70 end:0x800C0A94
 
+game/fn_800C0A94.cpp:
+	.text       start:0x800C0A94 end:0x800C0B00
+
 game/fn_800C0B00.cpp:
 	.text       start:0x800C0B00 end:0x800C0B04
 
