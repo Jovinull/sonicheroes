@@ -2391,6 +2391,9 @@ game/fn_8011BB3C.cpp:
 game/fn_8011BB40.cpp:
 	.text       start:0x8011BB40 end:0x8011BB6C
 
+game/fn_8011BB6C.cpp:
+	.text       start:0x8011BB6C end:0x8011BB98
+
 game/fn_8011BD58.cpp:
 	extab       start:0x8000AC70 end:0x8000AC78
 	extabindex  start:0x80010D74 end:0x80010D80
