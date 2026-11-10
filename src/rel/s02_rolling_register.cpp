@@ -27,7 +27,7 @@ typedef struct ObjectEntry {
 // Defined by the module, renamed to these names in its own symbols.txt.
 extern "C" void s02RollingLoad(void);
 extern "C" void s02RollingUnload(void);
-extern "C" void s02RollingCreate(void);
+extern "C" void froggreenCreate(void);
 extern "C" void fn_3_9FC0C(void);
 extern "C" ObjectEntry s02RollingEntry;
 extern "C" ObjectEntry s02RollingColliEntry;
@@ -51,7 +51,7 @@ extern "C" void s02RollingRegister(void)
 	s02RollingEntry.name   = s02RollingDisplayName;
 	s02RollingEntry.load   = s02RollingLoad;
 	s02RollingEntry.unload = s02RollingUnload;
-	s02RollingEntry.create = s02RollingCreate;
+	s02RollingEntry.create = froggreenCreate;
 	s02RollingEntry.reset  = NULL;
 
 	s02RollingEntry.flags = 0x20000;

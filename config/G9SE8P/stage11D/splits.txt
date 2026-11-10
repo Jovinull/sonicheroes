@@ -599,6 +599,9 @@ rel/big_rings_element_ctor.cpp:
 rel/big_rings_disp.cpp:
 	.text       start:0x0001D8D0 end:0x0001D964
 
+rel/big_rings_matches_number.cpp:
+	.text       start:0x0001E334 end:0x0001E388
+
 rel/big_rings_light.cpp:
 	.text       start:0x0001E388 end:0x0001E430
 
@@ -2237,6 +2240,9 @@ rel/s11warp_object_register.cpp:
 
 rel/s11ghost_edit.cpp:
 	.text       start:0x00083D48 end:0x00083DA8
+
+rel/aligator_create.cpp:
+	.text       start:0x00084010 end:0x00084058
 
 rel/s11ghost_object_register.cpp:
 	.text       start:0x00084058 end:0x00084108

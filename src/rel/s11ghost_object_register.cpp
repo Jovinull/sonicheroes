@@ -34,7 +34,7 @@ typedef struct ObjectEntry {
 // Defined by each module, renamed to these names in its own symbols.txt.
 extern "C" void s11ghostObjectLoad(void);
 extern "C" void s11ghostObjectUnload(void);
-extern "C" void s11ghostObjectCreate(void);
+extern "C" void aligatorCreate(void);
 extern "C" void s11ghostObjectReset(void);
 extern "C" ObjectEntry s11ghostObjectEntry;
 extern "C" char s11ghostObjectDisplayName[];
@@ -49,7 +49,7 @@ extern "C" void s11ghostObjectRegister(void)
 	s11ghostObjectEntry.name   = s11ghostObjectDisplayName;
 	s11ghostObjectEntry.load   = s11ghostObjectLoad;
 	s11ghostObjectEntry.unload = s11ghostObjectUnload;
-	s11ghostObjectEntry.create = s11ghostObjectCreate;
+	s11ghostObjectEntry.create = aligatorCreate;
 	s11ghostObjectEntry.reset  = s11ghostObjectReset;
 
 	s11ghostObjectEntry.flags = 0x20000;
