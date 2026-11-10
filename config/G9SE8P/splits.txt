@@ -240,6 +240,9 @@ game/fn_8003CB98.cpp:
 	extabindex  start:0x8000C574 end:0x8000C580
 	.text       start:0x8003CB98 end:0x8003CC18
 
+game/fn_8003E244.cpp:
+	.text       start:0x8003E244 end:0x8003E2E4
+
 game/GetPlayerPositionHistory__12PlayerMasterFiUc.cpp:
 	.text       start:0x8003E394 end:0x8003E3BC
 
@@ -512,6 +515,11 @@ game/Endian.cpp:
 	.text       start:0x8004BECC end:0x8004C160
 	.ctors      start:0x802398D0 end:0x802398D4
 
+game/fn_8004C160.cpp:
+	extab       start:0x800061D8 end:0x800061E0
+	extabindex  start:0x8000CAB4 end:0x8000CAC0
+	.text       start:0x8004C160 end:0x8004C22C
+
 game/fn_8004CC3C.cpp:
 	.text       start:0x8004CC3C end:0x8004CC7C
 
@@ -760,6 +768,11 @@ game/fn_80058E54.cpp:
 	extab       start:0x80006684 end:0x8000668C
 	extabindex  start:0x8000D024 end:0x8000D030
 	.text       start:0x80058E54 end:0x80058ED0
+
+game/fn_80058ED0.cpp:
+	extab       start:0x8000668C end:0x80006694
+	extabindex  start:0x8000D030 end:0x8000D03C
+	.text       start:0x80058ED0 end:0x80058F80
 
 game/fn_80058F80.cpp:
 	extab       start:0x80006694 end:0x8000669C
