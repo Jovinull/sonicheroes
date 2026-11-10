@@ -1297,6 +1297,9 @@ game/c_colli_react.cpp:
 	.data       start:0x80253698 end:0x802537E0
 	.sdata2     start:0x8042DCA0 end:0x8042DCD0
 
+game/fn_800B4138.cpp:
+	.text       start:0x800B4138 end:0x800B41A0
+
 game/fn_800B4448.cpp:
 	.text       start:0x800B4448 end:0x800B44A0
 
@@ -1328,6 +1331,11 @@ game/fn_800B6E64.cpp:
 	extabindex  start:0x8000E74C end:0x8000E758
 	.text       start:0x800B6E64 end:0x800B6F00
 
+game/fn_800B7514.cpp:
+	extab       start:0x80008140 end:0x80008148
+	extabindex  start:0x8000E770 end:0x8000E77C
+	.text       start:0x800B7514 end:0x800B7584
+
 game/fn_800B7820.cpp:
 	extab       start:0x80008150 end:0x80008158
 	extabindex  start:0x8000E788 end:0x8000E794
@@ -1346,6 +1354,11 @@ game/__dt__9EffShadowFv.cpp:
 	extab       start:0x80008180 end:0x80008188
 	extabindex  start:0x8000E7D0 end:0x8000E7DC
 	.text       start:0x800B8384 end:0x800B8424
+
+game/fn_800B852C.cpp:
+	extab       start:0x80008190 end:0x80008198
+	extabindex  start:0x8000E7E8 end:0x8000E7F4
+	.text       start:0x800B852C end:0x800B8594
 
 game/fn_800B8594.cpp:
 	extab       start:0x80008198 end:0x800081A0
