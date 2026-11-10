@@ -1751,6 +1751,9 @@ game/fn_800ECAE0.cpp:
 game/fn_800ECAE8.cpp:
 	.text       start:0x800ECAE8 end:0x800ECAF0
 
+game/fn_800ECAF0.cpp:
+	.text       start:0x800ECAF0 end:0x800ECB48
+
 game/fn_800EE04C.cpp:
 	extab       start:0x80008EF8 end:0x80008F00
 	extabindex  start:0x8000F754 end:0x8000F760
