@@ -992,6 +992,7 @@ config.libs = [
             Object(Matching, "game/fn_80057524.cpp", extra_cflags=["-Cpp_exceptions on"]),
             Object(Matching, "game/fn_8005776C.cpp"),
             Object(Matching, "game/fn_8015C9D4.cpp"),
+            Object(Matching, "game/fn_8015CAC8.cpp"),
             Object(Matching, "game/fn_801B7F48.cpp"),
             Object(Matching, "game/fn_801AE458.cpp"),
             Object(Matching, "game/fn_801AE528.cpp"),
