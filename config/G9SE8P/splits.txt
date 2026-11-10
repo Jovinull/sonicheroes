@@ -3613,6 +3613,9 @@ game/fn_80199C18.cpp:
 game/fn_80199C58.cpp:
 	.text       start:0x80199C58 end:0x80199C98
 
+game/fn_80199C98.cpp:
+	.text       start:0x80199C98 end:0x80199CCC
+
 game/fn_80199E3C.cpp:
 	.text       start:0x80199E3C end:0x80199E40
 
