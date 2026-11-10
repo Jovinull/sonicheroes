@@ -1504,6 +1504,9 @@ game/fn_800C0270.cpp:
 game/fn_800C0288.cpp:
 	.text       start:0x800C0288 end:0x800C02A0
 
+game/fn_800C0314.cpp:
+	.text       start:0x800C0314 end:0x800C0380
+
 game/fn_800C0380.cpp:
 	.text       start:0x800C0380 end:0x800C0384
 
