@@ -1928,6 +1928,11 @@ game/fn_800EF9B8.cpp:
 	extabindex  start:0x8000F7CC end:0x8000F7D8
 	.text       start:0x800EF9B8 end:0x800EFA08
 
+game/fn_800F010C.cpp:
+	extab       start:0x80008F58 end:0x80008F60
+	extabindex  start:0x8000F7E4 end:0x8000F7F0
+	.text       start:0x800F010C end:0x800F0180
+
 game/fn_800F1608.cpp:
 	.text       start:0x800F1608 end:0x800F1618
 
@@ -2601,6 +2606,11 @@ game/enemy/e_mtnpath.cpp:
 
 game/fn_80120060.cpp:
 	.text       start:0x80120060 end:0x80120088
+
+game/fn_801200DC.cpp:
+	extab       start:0x8000AFB4 end:0x8000AFBC
+	extabindex  start:0x80010FB4 end:0x80010FC0
+	.text       start:0x801200DC end:0x80120144
 
 game/fn_801201C8.cpp:
 	extab       start:0x8000AFC4 end:0x8000AFCC
