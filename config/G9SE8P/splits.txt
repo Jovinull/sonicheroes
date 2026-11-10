@@ -704,6 +704,9 @@ game/fn_80056C38.cpp:
 game/fn_80056C50.cpp:
 	.text       start:0x80056C50 end:0x80056C68
 
+game/fn_800574AC.cpp:
+	.text       start:0x800574AC end:0x8005751C
+
 game/fn_8005751C.cpp:
 	.text       start:0x8005751C end:0x80057520
 
