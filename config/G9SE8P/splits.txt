@@ -1534,6 +1534,9 @@ game/fn_800C0E34.cpp:
 game/fn_800C1040.cpp:
 	.text       start:0x800C1040 end:0x800C1044
 
+game/fn_800C1978.cpp:
+	.text       start:0x800C1978 end:0x800C19E8
+
 game/fn_800C19E8.cpp:
 	.text       start:0x800C19E8 end:0x800C19EC
 
