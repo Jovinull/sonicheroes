@@ -284,6 +284,9 @@ game/fn_8004187C.cpp:
 game/fn_800418A8.cpp:
 	.text       start:0x800418A8 end:0x800419BC
 
+game/fn_800419BC.cpp:
+	.text       start:0x800419BC end:0x80041AB0
+
 game/fn_80041C00.cpp:
 	.text       start:0x80041C00 end:0x80041C08
 
