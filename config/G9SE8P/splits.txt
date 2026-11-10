@@ -4721,6 +4721,9 @@ game/fn_80202DB4.cpp:
 game/fn_80202E74.cpp:
 	.text       start:0x80202E74 end:0x80202E7C
 
+game/fn_80202E7C.cpp:
+	.text       start:0x80202E7C end:0x80202E84
+
 game/fn_80202E8C.cpp:
 	.text       start:0x80202E8C end:0x80202EF0
 
