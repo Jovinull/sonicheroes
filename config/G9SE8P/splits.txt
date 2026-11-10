@@ -2603,6 +2603,16 @@ game/fn_80137814.cpp:
 	extabindex  start:0x800118F0 end:0x800118FC
 	.text       start:0x80137814 end:0x80137880
 
+game/fn_80137B00.cpp:
+	extab       start:0x8000B8D0 end:0x8000B8D8
+	extabindex  start:0x80011920 end:0x8001192C
+	.text       start:0x80137B00 end:0x80137B64
+
+game/fn_80137CA4.cpp:
+	extab       start:0x8000B8E0 end:0x8000B8E8
+	extabindex  start:0x80011938 end:0x80011944
+	.text       start:0x80137CA4 end:0x80137D0C
+
 game/fn_80137F40.cpp:
 	.text       start:0x80137F40 end:0x80137F48
 
