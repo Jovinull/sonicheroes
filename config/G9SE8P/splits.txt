@@ -3623,6 +3623,9 @@ game/fn_801A2EF4.cpp:
 game/fn_801A44BC.cpp:
 	.text       start:0x801A44BC end:0x801A4548
 
+game/fn_801A4560.cpp:
+	.text       start:0x801A4560 end:0x801A4574
+
 game/fn_801A4B8C.cpp:
 	.text       start:0x801A4B8C end:0x801A4BBC
 
