@@ -1238,6 +1238,9 @@ game/c_colli_react.cpp:
 	.data       start:0x80253698 end:0x802537E0
 	.sdata2     start:0x8042DCA0 end:0x8042DCD0
 
+game/fn_800B4448.cpp:
+	.text       start:0x800B4448 end:0x800B44A0
+
 game/fn_800B4814.cpp:
 	.text       start:0x800B4814 end:0x800B4864
 
