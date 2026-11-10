@@ -173,6 +173,11 @@ game/fn_80029088.cpp:
 	extabindex  start:0x8000C3B8 end:0x8000C3C4
 	.text       start:0x80029088 end:0x800298AC
 
+game/fn_8003AFFC.cpp:
+	extab       start:0x80005D10 end:0x80005D18
+	extabindex  start:0x8000C4A8 end:0x8000C4B4
+	.text       start:0x8003AFFC end:0x8003B04C
+
 game/ClearInfo__7C_COLLIFv.cpp:
 	.text       start:0x8003BE78 end:0x8003BF04
 
@@ -1617,6 +1622,11 @@ game/fn_800ECAE0.cpp:
 
 game/fn_800ECAE8.cpp:
 	.text       start:0x800ECAE8 end:0x800ECAF0
+
+game/fn_800EE04C.cpp:
+	extab       start:0x80008EF8 end:0x80008F00
+	extabindex  start:0x8000F754 end:0x8000F760
+	.text       start:0x800EE04C end:0x800EE0B4
 
 game/fn_800F1608.cpp:
 	.text       start:0x800F1608 end:0x800F1618
