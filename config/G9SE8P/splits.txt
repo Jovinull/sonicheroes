@@ -2516,6 +2516,11 @@ game/fn_80118A3C.cpp:
 	extabindex  start:0x80010AD4 end:0x80010AE0
 	.text       start:0x80118A3C end:0x80118AE0
 
+game/fn_8011927C.cpp:
+	extab       start:0x8000AA4C end:0x8000AA54
+	extabindex  start:0x80010AF8 end:0x80010B04
+	.text       start:0x8011927C end:0x8011933C
+
 game/fn_80119544.cpp:
 	.text       start:0x80119544 end:0x80119548
 
@@ -2607,6 +2612,11 @@ game/fn_8011BB40.cpp:
 game/fn_8011BB6C.cpp:
 	.text       start:0x8011BB6C end:0x8011BB98
 
+game/fn_8011BB98.cpp:
+	extab       start:0x8000AC60 end:0x8000AC68
+	extabindex  start:0x80010D5C end:0x80010D68
+	.text       start:0x8011BB98 end:0x8011BC20
+
 game/fn_8011BD58.cpp:
 	extab       start:0x8000AC70 end:0x8000AC78
 	extabindex  start:0x80010D74 end:0x80010D80
@@ -2625,6 +2635,9 @@ game/fn_8011BEF8.cpp:
 
 game/fn_8011BEFC.cpp:
 	.text       start:0x8011BEFC end:0x8011BF00
+
+game/fn_8011BF98.cpp:
+	.text       start:0x8011BF98 end:0x8011C01C
 
 game/enemy/e_scoreman.cpp:
 	extab       start:0x8000AC88 end:0x8000ACC8
