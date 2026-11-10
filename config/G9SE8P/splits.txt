@@ -1874,6 +1874,9 @@ game/fn_800E2674.cpp:
 game/fn_800E67CC.cpp:
 	.text       start:0x800E67CC end:0x800E6844
 
+game/fn_800E6FDC.cpp:
+	.text       start:0x800E6FDC end:0x800E7030
+
 game/fn_800EA930.cpp:
 	.text       start:0x800EA930 end:0x800EA94C
 
