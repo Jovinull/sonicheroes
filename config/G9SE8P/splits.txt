@@ -1543,6 +1543,9 @@ game/fn_800C19E8.cpp:
 game/fn_800C1D98.cpp:
 	.text       start:0x800C1D98 end:0x800C1E10
 
+game/fn_800C1E10.cpp:
+	.text       start:0x800C1E10 end:0x800C1E88
+
 game/fn_800C1E88.cpp:
 	.text       start:0x800C1E88 end:0x800C1E8C
 
