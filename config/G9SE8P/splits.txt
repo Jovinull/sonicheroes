@@ -1555,6 +1555,9 @@ game/fn_800C2244.cpp:
 game/fn_800C2804.cpp:
 	.text       start:0x800C2804 end:0x800C287C
 
+game/fn_800C287C.cpp:
+	.text       start:0x800C287C end:0x800C28F4
+
 game/fn_800C28F4.cpp:
 	.text       start:0x800C28F4 end:0x800C2914
 
