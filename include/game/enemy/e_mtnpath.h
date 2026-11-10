@@ -2,6 +2,7 @@
 #define GAME_E_MTNPATH_H
 #include "types.h"
 #include "game/pathctrl.h"
+#include "game/enemy/e_database.h"
 
 // Accessed GameCube contracts. No PS2-specific 16-byte alignment.
 struct RwMatrixTag {
@@ -91,23 +92,6 @@ enum ENEMYMTNMD {
 	ENEMYMTNMD_NEXT2     = 12,
 	ENEMYMTNMD_LOOP2     = 13,
 	ENEMYMTNMD_END       = 14
-};
-enum eEnemyDataBase {
-	ENEMY_DB_COMMON     = 0,
-	ENEMY_DB_ICON       = 1,
-	ENEMY_DB_SEARCHER   = 2,
-	ENEMY_DB_RINOLINER  = 3,
-	ENEMY_DB_TURTLE     = 4,
-	ENEMY_DB_FLYER      = 5,
-	ENEMY_DB_PAWN       = 6,
-	ENEMY_DB_CAPTURE    = 7,
-	ENEMY_DB_WALL       = 8,
-	ENEMY_DB_E2000      = 9,
-	ENEMY_DB_MAGICIAN   = 10,
-	ENEMY_DB_EGGMOBILE  = 11,
-	ENEMY_DB_MTNPATH    = 12,
-	ENEMY_DB_METALSONIC = 13,
-	ENEMY_DB_NUM        = 14
 };
 
 struct ENEMY_MOTION {

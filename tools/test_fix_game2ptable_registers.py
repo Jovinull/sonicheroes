@@ -143,7 +143,7 @@ class RegisterNormalizationTests(unittest.TestCase):
                 fixer.normalize(bad)
 
     def test_cli_failure_does_not_write_object_or_stamp(self):
-        with tempfile.TemporaryDirectory(prefix="game2ptable-register-test-", dir="/tmp") as td:
+        with tempfile.TemporaryDirectory(prefix="game2ptable-register-test-") as td:
             obj, stamp = Path(td) / "sample.o", Path(td) / "success.stamp"
             bad = bytearray(self.blob)
             bad[self.offsets[".text"]] ^= 1

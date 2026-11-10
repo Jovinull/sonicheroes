@@ -43,6 +43,21 @@ owned data, and 800 relocations: 655 text, 128 exception-index, one exception
 payload, and 16 data relocations. Existing section alignment accounts for the
 four-byte tails. No layout normalizer or artificial padding is used.
 
+## Objdiff data metric
+
+In the project-pinned objdiff-cli 3.6.1 report, `matched_data` adds a target
+data/BSS section only when the whole section scores 100%. The current unit has
+1,776 matched of 20,152 total data bytes (8.813%): this is the sum of `extab`
+(528), `extabindex` (768), `.rodata` (16), `.data` (448), and `.sdata` (16).
+`complete_data_percent=100` means unit metadata marks the unit complete; it is
+not a bytewise data-match claim. Direct section dumps show that `.data`,
+`.sdata`, and `.sdata2` have equal compiled/reference prefixes of 443, 12, and
+68 bytes, with only 5, 4, and 4 additional zero bytes in the reference. BSS
+symbol extents differ for `vMove` (16 versus 12 bytes) and `pCurrentMOG` (8
+versus 4); their source types are a 12-byte `RwV3d` and a 4-byte GameCube
+pointer. These object-section sizes do not indicate a linked-image difference:
+the full native build still matches all 18 reference hashes.
+
 ## Explicit register-allocation remainder
 
 Raw compiler output matches 78 of 79 instruction bodies, with no missing or

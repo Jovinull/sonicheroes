@@ -84,7 +84,7 @@ extern "C" {
 int fn_8001234C(AllocVtable* vtable);
 void fn_80012654(u32* totalOut, u32* largestOut);
 void fn_800126C8(void* ptr);
-void fn_80012994(u32 size);
+void* fn_80012994(u32 size);
 }
 
 Cell* fn_80012A94(u32 size, Cell* list);
@@ -404,10 +404,10 @@ void fn_80012740(void* ptr)
 #pragma peephole on
 #pragma opt_propagation off
 
-// Wrapper the vtable does not use directly.
-void fn_80012994(u32 size)
+// Direct-call wrapper; the installed allocator vtable uses fn_800125F0.
+void* fn_80012994(u32 size)
 {
-	fn_800129B4(size);
+	return fn_800129B4(size);
 }
 
 // The size query and expand path on the high list: walks it for the last cell

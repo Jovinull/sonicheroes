@@ -204,7 +204,7 @@ class LayoutTests(unittest.TestCase):
         self.rejected(data, 'crosses moved atom')
 
     def test_replace_failure_preserves_original_and_cleans_temporary(self):
-        with tempfile.TemporaryDirectory(dir='/tmp') as tmp:
+        with tempfile.TemporaryDirectory() as tmp:
             obj, stamp = Path(tmp) / 'synthetic.o', Path(tmp) / 'stamp'
             obj.write_bytes(self.raw)
             with patch.object(fix.os, 'replace', side_effect=OSError('synthetic failure')):
@@ -215,7 +215,7 @@ class LayoutTests(unittest.TestCase):
             self.assertEqual([p.name for p in Path(tmp).iterdir()], ['synthetic.o'])
 
     def test_cli_atomic_write_permissions_and_stamp(self):
-        with tempfile.TemporaryDirectory(dir='/tmp') as tmp:
+        with tempfile.TemporaryDirectory() as tmp:
             obj, stamp = Path(tmp) / 'synthetic.o', Path(tmp) / 'stamp'
             obj.write_bytes(self.raw); obj.chmod(0o640)
             # Windows only keeps the read-only bit, so compare with what was set.
@@ -228,7 +228,7 @@ class LayoutTests(unittest.TestCase):
             self.assertEqual(sorted(p.name for p in Path(tmp).iterdir()), ['stamp', 'synthetic.o'])
 
     def test_cli_reject_does_not_write_or_stamp(self):
-        with tempfile.TemporaryDirectory(dir='/tmp') as tmp:
+        with tempfile.TemporaryDirectory() as tmp:
             obj, stamp = Path(tmp) / 'synthetic.o', Path(tmp) / 'stamp'
             obj.write_bytes(b'bad input')
             with redirect_stderr(StringIO()), self.assertRaises(SystemExit):

@@ -1,5 +1,6 @@
 // Complete C++ enemy/e_powercore.cpp. GC layout and behavior, symbolic metadata names.
 #include "game/enemy/e_powercore.h"
+#include "game/enemy/e_database.h"
 struct RwObject {
 	u8 type, subType, flags, privateFlags;
 	void* parent;
@@ -63,27 +64,6 @@ struct PowerTeamView {
 	s8 numFormationMembers;
 	u8 unknown121[7];
 	PowerOldPlayerView* formation_class_ptr[3];
-};
-// Referenced public database contract, independently recovered in e_database.cpp.
-enum eEnemyDataBase { ENEMY_DB_COMMON = 0 };
-struct EnemyDataBaseEntry {
-	void* addr;
-	s32 filenum;
-};
-class TEnemyDataBase
-{
-public:
-	TEnemyDataBase();
-	static TEnemyDataBase* mpDataBase;
-	static TEnemyDataBase* GetInstance()
-	{
-		if (!mpDataBase)
-			new TEnemyDataBase;
-		return mpDataBase;
-	}
-	RpClump* SearchClump(eEnemyDataBase, u32);
-	RpUVAnimAnimation* SearchUVAnim(eEnemyDataBase, u32);
-	EnemyDataBaseEntry entries[14];
 };
 extern "C" {
 extern PowerActionView lbl_8029C310;

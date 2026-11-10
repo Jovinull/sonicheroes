@@ -1,5 +1,6 @@
 // Complete C++ enemy/e_ringlaser.cpp; GC behavior and symbolic type metadata.
 #include "game/enemy/e_ringlaser.h"
+#include "game/enemy/e_database.h"
 struct RwObject {
 	u8 type, subType, flags, privateFlags;
 	void* parent;
@@ -43,27 +44,6 @@ struct RingActionView {
 struct RingModeView {
 	s8 modeswitchflags[0x28];
 	s32 modeswitchlws[6];
-};
-// Referenced public database contract, independently recovered in e_database.cpp.
-enum eEnemyDataBase { ENEMY_DB_COMMON = 0 };
-struct EnemyDataBaseEntry {
-	void* addr;
-	s32 filenum;
-};
-class TEnemyDataBase
-{
-public:
-	TEnemyDataBase();
-	static TEnemyDataBase* mpDataBase;
-	static TEnemyDataBase* GetInstance()
-	{
-		if (!mpDataBase)
-			new TEnemyDataBase;
-		return mpDataBase;
-	}
-	RpClump* SearchClump(eEnemyDataBase, u32);
-	RpUVAnimAnimation* SearchUVAnim(eEnemyDataBase, u32);
-	EnemyDataBaseEntry entries[14];
 };
 
 extern "C" {

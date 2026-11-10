@@ -12,6 +12,62 @@ from unittest.mock import patch
 from tools import fix_object_registers as fixer
 
 
+# Test-owned contract for the rewrite. Keeping the fixture independent from the
+# production tables means an accidental edit to those tables cannot also change
+# the test's generated "expected" object.
+REFERENCE_TEXT_SIZE = 13772
+REFERENCE_FUNCTION_NAME = "objPointerReadFromClumpAnim__FPc"
+REFERENCE_FUNCTION_OFFSET = 11072
+REFERENCE_FUNCTION_SIZE = 520
+REFERENCE_FIELDS = {
+    36: (21,),
+    40: (21, 11),
+    64: (21, 16),
+    124: (21,),
+    128: (21, 11),
+    152: (21, 16),
+}
+REFERENCE_RELOCATIONS = (
+    (16, 10, "_savegpr_27", 0),
+    (34, 6, "lbl_802FF5E0", 0),
+    (38, 4, "lbl_802FF5E0", 0),
+    (48, 10, "strcmp", 0),
+    (94, 6, "lbl_802FF5E0", 0),
+    (98, 4, "lbl_802FF5E0", 0),
+    (122, 6, "lbl_803039F8", 0),
+    (126, 4, "lbl_803039F8", 0),
+    (136, 10, "strcmp", 0),
+    (186, 6, "lbl_803039F8", 0),
+    (190, 4, "lbl_803039F8", 0),
+    (202, 6, "lbl_802FF5E0", 0),
+    (206, 4, "lbl_802FF5E0", 0),
+    (252, 10, "fn_80012994", 0),
+    (264, 10, "fn_80012994", 0),
+    (280, 10, "fn_800D0624", 0),
+    (292, 10, "Expand2__FPvPv", 0),
+    (308, 10, "fn_801A4C84", 0),
+    (324, 10, "fn_80198000", 0),
+    (344, 10, "fn_80192F38", 0),
+    (360, 10, "fn_80150B88", 0),
+    (384, 10, "fn_80197ED8", 0),
+    (392, 10, "fn_800126C8", 0),
+    (400, 10, "fn_800126C8", 0),
+    (414, 6, "lbl_802FF5E0", 0),
+    (418, 4, "lbl_802FF5E0", 0),
+    (428, 10, "strcpy", 0),
+    (454, 6, "objRpAtomicCallbackSetCompressedGeometry__FP8RpAtomicPv", 0),
+    (458, 4, "objRpAtomicCallbackSetCompressedGeometry__FP8RpAtomicPv", 0),
+    (464, 10, "fn_8014FFBC", 0),
+    (500, 10, "_restgpr_27", 0),
+)
+REFERENCE_PRODUCTION_HASHES = {
+    "INPUT_TEXT_SHA256": "d5518318f36dae59f6e20ec0730fa960e4137d15dfd58530be42edda033e3e9e",
+    "OUTPUT_TEXT_SHA256": "9e1b3ab927525b0a83dd4a038b0477630820e99a2ae167dad85e23996d7ada8d",
+    "INPUT_FUNCTION_SHA256": "3bf0023564b116f55743e88c918e81f6e1e6e2685255e5f1899abc95b26b39d2",
+    "OUTPUT_FUNCTION_SHA256": "e4f1950c7a4ffc5c3bc8170ebb6393af8f46466252ca5b1af5366755ae3cd353",
+}
+
+
 def fixture():
     names = ["", ".text", ".data", ".symtab", ".strtab", ".rela.text", ".shstrtab"]
     name_offsets = {}
@@ -21,25 +77,25 @@ def fixture():
         shstrings += name.encode() + b"\0"
     strings = b"\0"
     symbols = [bytes(16)]
-    symbols.append(struct.pack(">IIIBBH", len(strings), fixer.FUNCTION_OFFSET, fixer.FUNCTION_SIZE, 0x12, 0, 1))
-    strings += fixer.FUNCTION_NAME.encode() + b"\0"
+    symbols.append(struct.pack(">IIIBBH", len(strings), REFERENCE_FUNCTION_OFFSET, REFERENCE_FUNCTION_SIZE, 0x12, 0, 1))
+    strings += REFERENCE_FUNCTION_NAME.encode() + b"\0"
     target_ids = {}
-    for _, _, name, _ in fixer.EXPECTED_RELOCATIONS:
+    for _, _, name, _ in REFERENCE_RELOCATIONS:
         if name not in target_ids:
             target_ids[name] = len(symbols)
             symbols.append(struct.pack(">IIIBBH", len(strings), 0, 0, 0x10, 0, 0))
             strings += name.encode() + b"\0"
     text = bytearray()
-    for i in range(fixer.TEXT_SIZE // 4):
+    for i in range(REFERENCE_TEXT_SIZE // 4):
         text += struct.pack(">I", (14 << 26) | (3 << 21) | (3 << 16) | (i & 0xFFFF))
     # Instructions synthesized from field definitions, not retail word literals.
-    for offset in fixer.FIELDS:
+    for offset in REFERENCE_FIELDS:
         if offset in (0x28, 0x80):
             word = (31 << 26) | (31 << 21) | (3 << 16) | (31 << 11) | (444 << 1)
         else:
             word = (14 << 26) | (31 << 21) | ((31 if offset in (0x40, 0x98) else 3) << 16) | 68
-        struct.pack_into(">I", text, fixer.FUNCTION_OFFSET + offset, word)
-    rels = b"".join(struct.pack(">IIi", fixer.FUNCTION_OFFSET + offset, (target_ids[name] << 8) | kind, addend) for offset, kind, name, addend in fixer.EXPECTED_RELOCATIONS)
+        struct.pack_into(">I", text, REFERENCE_FUNCTION_OFFSET + offset, word)
+    rels = b"".join(struct.pack(">IIi", REFERENCE_FUNCTION_OFFSET + offset, (target_ids[name] << 8) | kind, addend) for offset, kind, name, addend in REFERENCE_RELOCATIONS)
     payloads = [b"", text, b"untouched data!!", b"".join(symbols), strings, rels, shstrings]
     kinds = [0, 1, 1, 2, 3, 4, 3]
     data = bytearray(52)
@@ -60,31 +116,43 @@ def fixture():
 
 class RegisterNormalizationTests(unittest.TestCase):
     def setUp(self):
+        self.production_hashes = {
+            name: getattr(fixer, name) for name in REFERENCE_PRODUCTION_HASHES
+        }
         self.blob, self.offsets = fixture()
-        self.original_text = self.blob[self.offsets[".text"]:self.offsets[".text"] + fixer.TEXT_SIZE]
+        self.original_text = self.blob[self.offsets[".text"]:self.offsets[".text"] + REFERENCE_TEXT_SIZE]
         # Independently compute expected output by subtracting the register
         # index delta in each field. No production-normalize call as oracle.
         expected = bytearray(self.original_text)
-        for offset, shifts in fixer.FIELDS.items():
-            at = fixer.FUNCTION_OFFSET + offset
+        for offset, shifts in REFERENCE_FIELDS.items():
+            at = REFERENCE_FUNCTION_OFFSET + offset
             word = struct.unpack_from(">I", expected, at)[0]
             struct.pack_into(">I", expected, at, word - sum(4 << shift for shift in shifts))
         self.expected_text = bytes(expected)
         self.hashes = {
             "INPUT_TEXT_SHA256": hashlib.sha256(self.original_text).hexdigest(),
             "OUTPUT_TEXT_SHA256": hashlib.sha256(expected).hexdigest(),
-            "INPUT_FUNCTION_SHA256": hashlib.sha256(self.original_text[fixer.FUNCTION_OFFSET:fixer.FUNCTION_OFFSET + fixer.FUNCTION_SIZE]).hexdigest(),
-            "OUTPUT_FUNCTION_SHA256": hashlib.sha256(expected[fixer.FUNCTION_OFFSET:fixer.FUNCTION_OFFSET + fixer.FUNCTION_SIZE]).hexdigest(),
+            "INPUT_FUNCTION_SHA256": hashlib.sha256(self.original_text[REFERENCE_FUNCTION_OFFSET:REFERENCE_FUNCTION_OFFSET + REFERENCE_FUNCTION_SIZE]).hexdigest(),
+            "OUTPUT_FUNCTION_SHA256": hashlib.sha256(expected[REFERENCE_FUNCTION_OFFSET:REFERENCE_FUNCTION_OFFSET + REFERENCE_FUNCTION_SIZE]).hexdigest(),
         }
         self.patcher = patch.multiple(fixer, **self.hashes)
         self.patcher.start()
         self.addCleanup(self.patcher.stop)
 
+    def test_production_rewrite_matches_independent_contract(self):
+        self.assertEqual(fixer.TEXT_SIZE, REFERENCE_TEXT_SIZE)
+        self.assertEqual(fixer.FUNCTION_NAME, REFERENCE_FUNCTION_NAME)
+        self.assertEqual(fixer.FUNCTION_OFFSET, REFERENCE_FUNCTION_OFFSET)
+        self.assertEqual(fixer.FUNCTION_SIZE, REFERENCE_FUNCTION_SIZE)
+        self.assertEqual(fixer.FIELDS, REFERENCE_FIELDS)
+        self.assertEqual(fixer.EXPECTED_RELOCATIONS, REFERENCE_RELOCATIONS)
+        self.assertEqual(self.production_hashes, REFERENCE_PRODUCTION_HASHES)
+
     def test_only_ten_fields_change_and_second_application_is_noop(self):
         out = fixer.normalize(self.blob)
         expected = bytearray(self.blob)
         start = self.offsets[".text"]
-        expected[start:start + fixer.TEXT_SIZE] = self.expected_text
+        expected[start:start + REFERENCE_TEXT_SIZE] = self.expected_text
         self.assertEqual(out, expected)
         self.assertEqual(fixer.normalize(out), out)
         self.assertEqual(sum(a != b for a, b in zip(self.blob, out)), 8)
@@ -124,7 +192,7 @@ class RegisterNormalizationTests(unittest.TestCase):
                 fixer.normalize(bad)
 
     def test_cli_failure_does_not_write_object_or_stamp(self):
-        with tempfile.TemporaryDirectory(prefix="object-register-test-", dir="/tmp") as td:
+        with tempfile.TemporaryDirectory(prefix="object-register-test-") as td:
             obj, stamp = Path(td) / "sample.o", Path(td) / "success.stamp"
             bad = bytearray(self.blob)
             bad[self.offsets[".text"]] ^= 1

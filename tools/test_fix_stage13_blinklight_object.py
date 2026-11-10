@@ -158,7 +158,7 @@ def fixture():
 
 class BlinkLightNormalizationTests(unittest.TestCase):
     def setUp(self):
-        tmp = tempfile.TemporaryDirectory(dir="/tmp", prefix="blinklight-test-")
+        tmp = tempfile.TemporaryDirectory(prefix="blinklight-test-")
         self.addCleanup(tmp.cleanup)
         self.path = Path(tmp.name) / "test.o"
         self.path.write_bytes(fixture())

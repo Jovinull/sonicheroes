@@ -2,26 +2,10 @@
 #define GAME_ENEMY_E_MOTION_H
 #include "types.h"
 #include "game/setObj.h"
+#include "game/enemy/e_database.h"
 struct RpClump;
 struct RpHAnimHierarchy;
 struct RtAnimAnimation;
-enum eEnemyDataBase {
-	ENEMY_DB_COMMON = 0,
-	ENEMY_DB_ICON,
-	ENEMY_DB_SEARCHER,
-	ENEMY_DB_RINOLINER,
-	ENEMY_DB_TURTLE,
-	ENEMY_DB_FLYER,
-	ENEMY_DB_PAWN,
-	ENEMY_DB_CAPTURE,
-	ENEMY_DB_WALL,
-	ENEMY_DB_E2000,
-	ENEMY_DB_MAGICIAN,
-	ENEMY_DB_EGGMOBILE,
-	ENEMY_DB_MTNPATH,
-	ENEMY_DB_METALSONIC,
-	ENEMY_DB_NUM
-};
 enum ENEMYMTNMD {
 	ENEMYMTNMD_INIT,
 	ENEMYMTNMD_SET,

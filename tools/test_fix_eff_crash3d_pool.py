@@ -136,7 +136,7 @@ class PoolNormalizationTests(unittest.TestCase):
         self.guarded_reject(blob, 'pool reference')
 
     def test_cli_success_preserves_permissions_and_stamps(self):
-        with tempfile.TemporaryDirectory(dir='/tmp') as directory:
+        with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'object.o'
             stamp = Path(directory) / 'output.stamp'
             path.write_bytes(self.raw)
@@ -150,7 +150,7 @@ class PoolNormalizationTests(unittest.TestCase):
             self.assertEqual(sorted(p.name for p in Path(directory).iterdir()), ['object.o', 'output.stamp'])
 
     def test_cli_failure_leaves_input_and_no_stamp(self):
-        with tempfile.TemporaryDirectory(dir='/tmp') as directory:
+        with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'object.o'
             stamp = Path(directory) / 'output.stamp'
             path.write_bytes(b'not an ELF object')

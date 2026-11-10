@@ -1,5 +1,6 @@
 // Complete C++ enemy/e_shockwave.cpp, reconstructed from GC and symbolic metadata.
 #include "game/enemy/e_shockwave.h"
+#include "game/enemy/e_database.h"
 struct RwObject {
 	u8 type, subType, flags, privateFlags;
 	void* parent;
@@ -35,27 +36,6 @@ struct RwRGBAReal {
 struct ShockModeView {
 	s8 modeswitchflags[0x28];
 	s32 modeswitchlws[6];
-};
-// Referenced public database contract, independently recovered in e_database.cpp.
-enum eEnemyDataBase { ENEMY_DB_COMMON = 0 };
-struct EnemyDataBaseEntry {
-	void* addr;
-	s32 filenum;
-};
-class TEnemyDataBase
-{
-public:
-	TEnemyDataBase();
-	static TEnemyDataBase* mpDataBase;
-	static TEnemyDataBase* GetInstance()
-	{
-		if (!mpDataBase)
-			new TEnemyDataBase;
-		return mpDataBase;
-	}
-	RpClump* SearchClump(eEnemyDataBase, u32);
-	RpUVAnimAnimation* SearchUVAnim(eEnemyDataBase, u32);
-	EnemyDataBaseEntry entries[14];
 };
 
 extern "C" {

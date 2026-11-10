@@ -246,7 +246,7 @@ class RegisterNormalizationTests(unittest.TestCase):
                 fixer.normalize(bad)
 
     def test_cli_failure_does_not_write_object_or_stamp(self):
-        with tempfile.TemporaryDirectory(prefix="bomb-register-test-", dir="/tmp") as td:
+        with tempfile.TemporaryDirectory(prefix="bomb-register-test-") as td:
             obj, stamp = Path(td) / "sample.o", Path(td) / "success.stamp"
             bad = bytearray(self.blob)
             bad[self.offsets[".text"]] ^= 1
@@ -263,7 +263,7 @@ class RegisterNormalizationTests(unittest.TestCase):
             self.assertEqual(sorted(p.name for p in Path(td).iterdir()), ["sample.o", "success.stamp"])
 
     def test_failed_atomic_replace_preserves_input_and_cleans_temporary(self):
-        with tempfile.TemporaryDirectory(prefix="bomb-register-test-", dir="/tmp") as td:
+        with tempfile.TemporaryDirectory(prefix="bomb-register-test-") as td:
             obj, stamp = Path(td) / "sample.o", Path(td) / "success.stamp"
             obj.write_bytes(self.blob)
             with patch.object(fixer.os, "replace", side_effect=OSError("simulated write failure")):

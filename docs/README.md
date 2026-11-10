@@ -7,6 +7,8 @@ Start with [getting_started.md](getting_started.md). The project's public site
 
 * [Getting started](getting_started.md): build, verify, find work, match in
   objdiff, open a pull request.
+* [Codex engineering baseline](codex-engineering-baseline.md): commit-scoped
+  engineering risks, verification state and semantic audit candidates.
 * [Source language and compiler evidence](language-policy.md): which units are
   C and which are C++, and how that is decided.
 * [Source-language migration audit](language-audit.md): reviewed decisions.
@@ -77,6 +79,8 @@ they are, kept for review. Source files link to the note that covers them.
 * [Memory.cpp native matching evidence](memory-unit-evidence.md)
 * [miscs.cpp compiler constant ordering](miscs-constant-order.md)
 * [Complete object.cpp reconstruction](object-unit-evidence.md)
+* [object.cpp semantic audit](object-semantic-audit.md): grouped review of all
+  79 symbols, source structure, port risks and the remaining register gap.
 * [ONEFILE translation unit evidence](one-unit-evidence.md)
 * [Path-control compiler constant order](pathctrl-constant-order.md)
 * [Path control translation unit evidence](pathctrl-unit-evidence.md)

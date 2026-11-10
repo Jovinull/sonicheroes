@@ -4,7 +4,12 @@ Some translation units carry a `tools/fix_<unit>_object.py` step that edits the
 compiled object before it is linked. This page says what those steps are for,
 what they may and may not do, and what a new one has to ship with.
 
-There are 38 of them today.
+There are currently 60 `fix_*.py` scripts in `tools/`. The
+[`check_post_processors.py`](../tools/check_post_processors.py) source-level
+check validates all 60; it does not compile or diff their object effects. The
+object-shape measurements below describe the 38-step snapshot at commit
+`574f1123053630a08a4150f32b886b43cafc50d8` (2026-10-13), not a fresh
+measurement of today's compiler outputs.
 
 ## What they are for
 
@@ -19,10 +24,10 @@ of those, a post-processor is the honest way to say so.
 That is the whole purpose. A post-processor describes a **known, measured gap
 between our build and retail's**. It is a bookmark, not a conclusion.
 
-## What they do today, measured
+## What the 38-step snapshot did, measured
 
 Diffing each unit's freshly compiled object against the same object after its
-step runs puts every one of the 38 into one of three shapes. All three are
+step runs put every one of the 38 into one of three shapes. All three are
 legitimate; knowing which one you are looking at is what keeps a review honest,
 because two of them touch `.text` and that is not by itself a problem.
 

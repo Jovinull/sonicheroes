@@ -54,7 +54,7 @@ class RemovedSectionSymbolsTest(unittest.TestCase):
         struct.pack_into(">16sHHIIIIIHHHHHH", blob, 0,
                          b"\x7fELF\x01\x02\x01" + bytes(9), 1, 20, 1, 0, 0,
                          shoff, 0, 52, 0, 0, 40, len(sections), 8)
-        with tempfile.TemporaryDirectory(dir="/tmp") as scratch:
+        with tempfile.TemporaryDirectory() as scratch:
             obj, stamp = Path(scratch) / "test.o", Path(scratch) / "test.stamp"
             obj.write_bytes(blob)
             subprocess.run([sys.executable, str(Path(__file__).with_name("fix_fn_8005438C_object.py")),
