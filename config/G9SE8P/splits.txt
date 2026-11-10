@@ -2982,6 +2982,9 @@ game/fn_80136C10.cpp:
 game/fn_80136C24.cpp:
 	.text       start:0x80136C24 end:0x80136C2C
 
+game/fn_80136C2C.cpp:
+	.text       start:0x80136C2C end:0x80136C40
+
 game/dtor_80136EA8.cpp:
 	extab       start:0x8000B80C end:0x8000B814
 	extabindex  start:0x8001186C end:0x80011878
