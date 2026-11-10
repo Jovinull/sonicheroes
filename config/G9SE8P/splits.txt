@@ -1291,6 +1291,9 @@ game/fn_800B7820.cpp:
 game/fn_800B7AD0.cpp:
 	.text       start:0x800B7AD0 end:0x800B7B04
 
+game/fn_800B7B04.cpp:
+	.text       start:0x800B7B04 end:0x800B7B30
+
 game/fn_800B7B30.cpp:
 	.text       start:0x800B7B30 end:0x800B7BDC
 
