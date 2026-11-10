@@ -396,6 +396,9 @@ game/fn_8004469C.cpp:
 game/fn_800446D4.cpp:
 	.text       start:0x800446D4 end:0x8004470C
 
+game/fn_8004470C.cpp:
+	.text       start:0x8004470C end:0x80044760
+
 game/fn_80044760.cpp:
 	.text       start:0x80044760 end:0x80044798
 
