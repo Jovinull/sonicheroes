@@ -3485,6 +3485,9 @@ game/fn_8019229C.cpp:
 game/fn_80193B58.cpp:
 	.text       start:0x80193B58 end:0x80193B60
 
+game/fn_80193F70.cpp:
+	.text       start:0x80193F70 end:0x80193F84
+
 game/RwOsGetFileInterface.cpp:
 	.text       start:0x801940F4 end:0x80194100
 
