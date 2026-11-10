@@ -2919,6 +2919,9 @@ game/GetSpParam.cpp:
 	.bss        start:0x803EA488 end:0x803EA4B8
 	.sdata2     start:0x8042EE88 end:0x8042EEA8
 
+game/fn_80130DF0.cpp:
+	.text       start:0x80130DF0 end:0x80130E70
+
 game/fn_80130F74.cpp:
 	.text       start:0x80130F74 end:0x80130F78
 
