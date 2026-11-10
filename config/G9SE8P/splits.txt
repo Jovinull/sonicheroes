@@ -3534,6 +3534,9 @@ game/fn_8016EA78.cpp:
 game/fn_8016EA84.cpp:
 	.text       start:0x8016EA84 end:0x8016EAB4
 
+game/fn_8016EE28.cpp:
+	.text       start:0x8016EE28 end:0x8016EE58
+
 game/fn_8016EF60.cpp:
 	.text       start:0x8016EF60 end:0x8016EF70
 
