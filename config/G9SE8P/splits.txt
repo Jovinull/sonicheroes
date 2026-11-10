@@ -1723,6 +1723,11 @@ game/fn_800F474C.cpp:
 	extabindex  start:0x8000F988 end:0x8000F994
 	.text       start:0x800F474C end:0x800F47B0
 
+game/fn_800F47B0.cpp:
+	extab       start:0x80009150 end:0x80009158
+	extabindex  start:0x8000F994 end:0x8000F9A0
+	.text       start:0x800F47B0 end:0x800F4880
+
 game/fn_800F4880.cpp:
 	extab       start:0x80009158 end:0x80009160
 	extabindex  start:0x8000F9A0 end:0x8000F9AC
