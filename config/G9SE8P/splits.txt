@@ -4730,6 +4730,9 @@ game/fn_801FD1F4.cpp:
 game/fn_801FD214.cpp:
 	.text       start:0x801FD214 end:0x801FD224
 
+game/fn_801FD3B4.cpp:
+	.text       start:0x801FD3B4 end:0x801FD3D8
+
 game/fn_801FD3D8.cpp:
 	.text       start:0x801FD3D8 end:0x801FD49C
 
