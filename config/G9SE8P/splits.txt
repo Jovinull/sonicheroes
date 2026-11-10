@@ -2501,6 +2501,11 @@ game/fn_8012C938.cpp:
 	extabindex  start:0x8001147C end:0x80011488
 	.text       start:0x8012C938 end:0x8012C9D4
 
+game/fn_8012D3A4.cpp:
+	extab       start:0x8000B51C end:0x8000B524
+	extabindex  start:0x800114E8 end:0x800114F4
+	.text       start:0x8012D3A4 end:0x8012D440
+
 game/rankTable.cpp:
 	.text       start:0x8012D440 end:0x8012D97C
 	.data       start:0x8028A2C0 end:0x8028A89C
