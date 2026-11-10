@@ -2827,6 +2827,9 @@ game/fn_80143A9C.cpp:
 game/fn_80145EB4.cpp:
 	.text       start:0x80145EB4 end:0x80145EF8
 
+game/fn_80145EF8.cpp:
+	.text       start:0x80145EF8 end:0x80145F0C
+
 game/fn_80145F2C.cpp:
 	.text       start:0x80145F2C end:0x80145F94
 
