@@ -1998,6 +1998,9 @@ game/fn_800ECA84.cpp:
 game/fn_800ECA8C.cpp:
 	.text       start:0x800ECA8C end:0x800ECA94
 
+game/fn_800ECA94.cpp:
+	.text       start:0x800ECA94 end:0x800ECAD8
+
 game/fn_800ECAD8.cpp:
 	.text       start:0x800ECAD8 end:0x800ECAE0
 
