@@ -110,10 +110,19 @@ as data; the build logic it drives lives in `tools/`, which is owned.
 The full build uses private original-game inputs. A same-repository pull request
 waits for approval from a reviewer on the protected `private-build` environment
 before its code can receive the container credentials. Code from a fork never
-runs in that container: its required build gate intentionally fails until a
-maintainer reviews the exact commits and tests them from a repository-owned
-integration branch. This security handoff does not require the contributor to
-rebase or keep the fork branch synchronized with `main`.
+runs in that container by itself. A fork pull request shows the required
+`build (G9SE8P)` check as "Expected" (merge blocked), not as a failure, until a
+maintainer reads the exact commits and runs the `Fork PR build` workflow
+(Actions tab) with the pull request number and the reviewed head SHA. That
+workflow vets the changes against an allowlist (`tools/vet_fork_pr.py`: no
+workflows, tools, hooks, assembly or binaries, and `configure.py` may only gain
+plain `Object(...)` lines), builds `main` plus the reviewed commit in the private
+container after the same `private-build` approval, and publishes the check only
+when all artifact hashes match. The pull request is then merged as it is and
+keeps its authorship. A pull request the vetting refuses, or whose head changes
+after review, goes through a repository-owned integration branch by hand. Either
+way the contributor does not need to rebase or keep the fork branch synchronized
+with `main`.
 
 The private GHCR package must not inherit repository access or grant this
 repository automatic Actions access. The workflow authenticates with an

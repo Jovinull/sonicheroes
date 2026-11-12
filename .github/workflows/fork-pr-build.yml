@@ -1,0 +1,184 @@
+name: Fork PR build
+
+# Maintainer-triggered private build of a REVIEWED fork pull request.
+#
+# A fork pull request never runs the private build by itself: that build has the original game
+# files next to it and executes the pull request's Python and C++. Until now a maintainer had to
+# copy the commits to a branch of this repository by hand. This workflow does the same thing with
+# the same human gate, and publishes the required `build (G9SE8P)` check for the exact commit, so
+# the contributor's pull request can be merged as it is and keeps its authorship.
+#
+# How to use it: read the diff, then run "Fork PR build" (Actions tab) from `main` with the pull
+# request number and the head commit SHA you reviewed. Approve the `private-build` environment when
+# GitHub asks; that approval is the last gate and the job summary lists what is being built.
+#
+# Why it is safe enough:
+#   * Only `workflow_dispatch` (needs write access) on `main`; the exact SHA is pinned, and the
+#     workflow refuses if the pull request is closed, not aimed at main, or its head moved.
+#   * `tools/vet_fork_pr.py`, taken from `main` and never from the pull request, refuses anything
+#     outside an allowlist (no workflows, tools, hooks, assembly, binaries, symlinks, and
+#     `configure.py` may only gain plain Object(...) lines). It runs before and inside the build.
+#   * The build is `main` plus the reviewed commit, merged without edits; no cache is restored or
+#     saved, and credentials are not left in the checkout.
+#   * The `build (G9SE8P)` check is created only by the last job, only for the pinned SHA, only
+#     after the 18 artifact hashes match. A refused or failed run never publishes success.
+# A pull request this workflow refuses still goes through a manual integration branch
+# (CONTRIBUTING.md). Residual risk: vetting narrows, but does not remove, the risk of compiling a
+# stranger's source next to the game files, so approve only after reading the diff summary.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: Pull request number
+        required: true
+        type: string
+      sha:
+        description: Exact head commit SHA you reviewed (40 hex characters)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fork-pr-build-${{ inputs.pr }}
+  cancel-in-progress: false
+
+jobs:
+  vet:
+    name: vet fork PR
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+    - name: Checkout the trusted base
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        ref: main
+        fetch-depth: 0
+        persist-credentials: false
+
+    - name: Check the request against the pull request
+      shell: bash
+      env:
+        PR: ${{ inputs.pr }}
+        SHA: ${{ inputs.sha }}
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        set -eu
+        case "$PR" in ''|*[!0-9]*) echo "::error::pr must be a pull request number"; exit 1;; esac
+        printf '%s' "$SHA" | grep -Eq '^[0-9a-f]{40}$' \
+          || { echo "::error::sha must be the full 40-character commit SHA"; exit 1; }
+        state=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR" --jq '[.state, .base.ref, .head.sha] | join(" ")')
+        set -- $state
+        [ "$1" = open ] && [ "$2" = main ] \
+          || { echo "::error::the pull request must be open and target main (got: $state)"; exit 1; }
+        [ "$3" = "$SHA" ] \
+          || { echo "::error::the pull request head is now $3, not the reviewed $SHA; review it again"; exit 1; }
+        git fetch --no-tags origin "refs/pull/$PR/head"
+        [ "$(git rev-parse FETCH_HEAD)" = "$SHA" ] \
+          || { echo "::error::the fetched head differs from the pinned SHA"; exit 1; }
+
+    - name: Vet the changes (script from main)
+      shell: bash
+      env:
+        SHA: ${{ inputs.sha }}
+      run: |
+        set -eu
+        status=0
+        python3 tools/vet_fork_pr.py --base origin/main --head "$SHA" > vet.txt || status=$?
+        { echo '### Changes this build would run'; echo; echo '```'; cat vet.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+        cat vet.txt
+        exit $status
+
+  private_build:
+    name: private build (fork PR)
+    needs: vet
+    if: github.ref == 'refs/heads/main'
+    # The same protected environment as every private build: its approval is the human gate.
+    environment: private-build
+    container:
+      image: ghcr.io/jovinull/sonicheroes-build:main
+      credentials:
+        username: ${{ secrets.GHCR_USERNAME }}
+        password: ${{ secrets.GHCR_TOKEN }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - name: Checkout the trusted base
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        ref: main
+        fetch-depth: 0
+        persist-credentials: false
+
+    - name: Git config
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+    - name: Vet again, then merge exactly the reviewed commit
+      env:
+        PR: ${{ inputs.pr }}
+        SHA: ${{ inputs.sha }}
+      run: |
+        set -eu
+        git fetch --no-tags origin "refs/pull/$PR/head"
+        [ "$(git rev-parse FETCH_HEAD)" = "$SHA" ] \
+          || { echo "::error::the pull request head moved since it was reviewed"; exit 1; }
+        python3 tools/vet_fork_pr.py --base origin/main --head "$SHA"
+        git -c user.name=ci -c user.email=ci@invalid merge --no-ff --no-edit "$SHA"
+
+    - name: Prepare
+      run: cp -a /orig .
+
+    # No cache is restored or saved: a pull request must not be able to seed one that main uses.
+    - name: Build
+      run: |
+        python configure.py --map --version G9SE8P \
+            --binutils /binutils --compilers /compilers
+        ninja build/G9SE8P/config.json
+        python -m unittest tools.test_check_language_policy
+        python tools/check_language_policy.py
+        python -m unittest tools.test_check_post_processors
+        python tools/check_post_processors.py
+        ninja all_source progress build/G9SE8P/report.json
+
+    - name: Verify the artifacts match retail
+      run: build/tools/dtk shasum -c config/G9SE8P/build.sha1
+
+  publish:
+    name: publish build (G9SE8P) for the reviewed commit
+    needs: [vet, private_build]
+    # Only a build that actually ran can publish; vetting refusals and cancelled runs publish nothing.
+    if: >-
+      always() && github.ref == 'refs/heads/main' && needs.vet.result == 'success' &&
+      (needs.private_build.result == 'success' || needs.private_build.result == 'failure')
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+    steps:
+    - name: Publish the required check on the pinned commit
+      env:
+        GH_TOKEN: ${{ github.token }}
+        SHA: ${{ inputs.sha }}
+        PR: ${{ inputs.pr }}
+        RESULT: ${{ needs.private_build.result }}
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      run: |
+        set -eu
+        if [ "$RESULT" = success ]; then
+          conclusion=success
+          title="Verified: all artifact hashes match retail"
+        else
+          conclusion=failure
+          title="The private build of the reviewed commit failed"
+        fi
+        summary="Built by the maintainer-triggered Fork PR build workflow ($RUN_URL): main plus the reviewed commit $SHA of pull request #$PR, merged without edits, vetted against the allowlist."
+        gh api "repos/$GITHUB_REPOSITORY/check-runs" -X POST \
+          -f name='build (G9SE8P)' -f head_sha="$SHA" \
+          -f status=completed -f conclusion="$conclusion" -f details_url="$RUN_URL" \
+          -f "output[title]=$title" -f "output[summary]=$summary"
