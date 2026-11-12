@@ -1273,6 +1273,7 @@ config.libs = [
             Object(Matching, "game/ClearInfo__7C_COLLIFv.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/ADXB_ExecHndl.cpp"),
             Object(Matching, "game/ADXB_EntryData.cpp"),
+            Object(Matching, "game/ADXB_GetStat.cpp"),
             Object(Matching, "game/ADXSJD_GetDefPan.cpp"),
             Object(Matching, "game/ADXSJD_GetDefOutVol.cpp"),
             Object(Matching, "game/RwFreeListCreate.cpp"),
