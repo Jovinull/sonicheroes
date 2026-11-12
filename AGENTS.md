@@ -105,6 +105,9 @@ and keep the documented remainder and exit path current. See
 - Run `python3 .agents/scripts/agent_doctor.py` (add `--verify` to check the 18
   artifact hashes of the current build) before starting and before reporting a
   build as verified. See `.agents/scripts/README.md`.
+- Verification helpers: `.agents/scripts/m.py` (objdiff per function) and `exato.py` (word and
+  relocation exact check of a unit) after building; `alvos.py` to choose work; `dec.py` for an
+  m2c starting point. They support, but do not replace, the full build and the 18 artifact hashes.
 - When iterating on a match (only when matching work was requested), use
   `.agents/scripts/try1.py` to compare a scratch draft with the retail function word by
   word, `perm.py` for register-only diffs, and `extabnew.py` after building a placed unit

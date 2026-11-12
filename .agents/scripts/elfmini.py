@@ -1,4 +1,4 @@
-"""Minimal ELF32 reader shared by the notes/tools scripts.
+"""Minimal ELF32 reader shared by the .agents/scripts helpers.
 
 Reads sections, symbols and RELA/REL relocations for both endiannesses:
 big-endian PowerPC objects (our MWCC output and dtk's retail objects) and the
