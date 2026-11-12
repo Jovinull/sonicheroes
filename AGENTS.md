@@ -1,4 +1,8 @@
-# Codex engineering rules
+# Agent engineering rules
+
+These rules apply to every coding agent working in this repository, including
+Codex and Claude Code (`CLAUDE.md` imports this file, so there is one source of
+truth).
 
 ## Project and objective
 
@@ -55,9 +59,24 @@ and keep the documented remainder and exit path current. See
 
 ## Safety and collaboration
 
-- Start by checking Git status and worktrees. Use a separate Codex worktree and
-  branch; never change another contributor's worktree, branch, index, shared
-  Git settings or hooks to make progress. Do not push or merge unless asked.
+- Start by checking Git status and the current branch, and run
+  `python3 .agents/scripts/agent_doctor.py` (read-only environment check). Work
+  on a dedicated branch of this clone (`decomp/<topic>-YYYYMMDD`, `chore/...`,
+  `fix/...`), never directly on `main`. Do not create Git worktrees.
+- Do not create directories, copies or clones outside the repository directory.
+  Scratch files go to the system temporary directory (or your tool's scratch
+  area) and are deleted afterward; local tooling goes in ignored paths. Ask the
+  repository owner before creating anything outside the repository.
+- Never change another contributor's branch, shared Git settings or hooks to
+  make progress, unless the repository owner explicitly asks for that branch.
+  The pre-commit hook (`git config core.hooksPath .githooks`) must stay
+  enabled; do not bypass it with `--no-verify` or edit it unless asked. Do not
+  push or merge unless asked.
+- Commits: Conventional Commits in English, subject line only (no body), no
+  `Co-Authored-By` or other trailer, one logical unit per commit.
+- Do exactly the requested scope. A setup, review or documentation request does
+  not authorize decompiling, drafting matches or trying source variants; report
+  ideas instead of acting on them.
 - Keep legally obtained original inputs only in ignored local `orig/` paths.
   Never copy or commit disc images, DOL/REL files, assets, extracted assembly,
   complete proprietary symbol dumps, credentials or private reports. Follow
@@ -83,6 +102,9 @@ and keep the documented remainder and exit path current. See
 
 ## Reusable procedures
 
+- Run `python3 .agents/scripts/agent_doctor.py` (add `--verify` to check the 18
+  artifact hashes of the current build) before starting and before reporting a
+  build as verified. See `.agents/scripts/README.md`.
 - Use `.agents/skills/decomp-quality-review/SKILL.md` for translation-unit
   semantic review and matching-preserving experiments.
 - Use `.agents/skills/build-and-regression-verification/SKILL.md` for

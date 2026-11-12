@@ -18,7 +18,7 @@ behavior or to claim a port is ready.
    and any linked unit evidence. Confirm the area is not being changed by
    another contributor. Tracking notes can be stale; do not infer live
    ownership from an old row.
-2. **Set the baseline.** Record the worktree commit and status, toolchain
+2. **Set the baseline.** Record the commit, branch and working-tree status, toolchain
    version, effective CodeWarrior flags, compiler object and objdiff report used.
    Note whether the configured object is `Matching` or `NonMatching` and
    whether a post-processor runs. A public aggregate report cannot prove a
@@ -42,8 +42,8 @@ behavior or to claim a port is ready.
    function may still merit review, but style alone is not a reason to change
    it. If there is no defensible improvement, say so.
 6. **Experiment only when justified.** Preserve the source and object baseline.
-   Try one isolated alternative in the Codex worktree, without changing another
-   contributor's branch. Compare the raw compiler object and, where applicable,
+   Try one isolated alternative on a dedicated branch of this clone, without
+   changing another contributor's branch. Compare the raw compiler object and, where applicable,
    the post-processed object against the same reference. Inspect instructions,
    owned data, symbols, relocations, exception metadata and section layout; do
    not rely on a function percentage alone. Reject or revert an alternative
@@ -89,7 +89,7 @@ than filling the gap by inference.
 
 ## Result format
 
-- Scope, worktree commit and baseline status
+- Scope, commit, branch and baseline status
 - Evidence table with labels and source of each claim
 - Reconstructed contract, types/layout and memory/ABI findings
 - Confirmed issues, hypotheses and unknowns
