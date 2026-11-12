@@ -3545,6 +3545,9 @@ game/fn_8014F120.cpp:
 game/fn_8014F148.cpp:
 	.text       start:0x8014F148 end:0x8014F158
 
+game/fn_8014F158.cpp:
+	.text       start:0x8014F158 end:0x8014F168
+
 game/fn_8014F168.cpp:
 	.text       start:0x8014F168 end:0x8014F1B0
 
