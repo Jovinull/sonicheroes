@@ -12,11 +12,11 @@ available.
 
 ## Establish the baseline
 
-1. Confirm the worktree, commit and changed paths. Check that the comparison
+1. Confirm the branch, commit and changed paths (`python3 .agents/scripts/agent_doctor.py`). Check that the comparison
    report and build inputs correspond to the same commit and `G9SE8P` target.
 2. Check locally whether a legally obtained original is already present under
    ignored `orig/G9SE8P/`. Never copy an image, DOL, REL, assets, extracted
-   assembly or private files into this worktree. If the input is absent, run
+   assembly or private files into this repository. If the input is absent, run
    only the independent public checks below and label the full build unavailable.
 3. Preserve a baseline report/object for any comparison. Distinguish the
    compiler-produced object, post-processed object, linked image and objdiff

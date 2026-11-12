@@ -39,3 +39,8 @@ compile_commands.json
 # Working notes: drafts, audits, anything written to be read rather than built.
 # Kept out of the repository on purpose, so nothing here is load bearing.
 /notes/
+
+# Per-user agent state (Claude Code). Shared instructions live in AGENTS.md / CLAUDE.md /
+# .agents/, which ARE versioned; .claude/skills is a symlink to .agents/skills.
+.claude/settings.local.json
+.claude/worktrees/
