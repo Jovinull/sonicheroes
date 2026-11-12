@@ -193,22 +193,29 @@ jobs:
         fi
 
   build_gate:
-    name: build (G9SE8P)
+    # For a fork pull request this job must neither be named `build (G9SE8P)` nor be skipped: a
+    # skipped job counts as passing for a required check, which would let a fork merge unbuilt.
+    # Under another name it passes, and the required `build (G9SE8P)` check stays "Expected"
+    # (merge blocked) until the maintainer-triggered `Fork PR build` workflow publishes it for the
+    # reviewed commit. Same-repository pull requests and pushes keep the original name and rules.
+    name: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository) && 'fork PR (awaiting maintainer build)' || 'build (G9SE8P)' }}
     if: always()
     needs: private_build
     runs-on: ubuntu-latest
     steps:
-    - name: Reject untrusted private-input build
+    - name: Fork pull request, the build is maintainer-triggered
       if: >-
         github.event_name == 'pull_request' &&
         github.event.pull_request.head.repo.full_name != github.repository
       run: |
-        echo "::error::Fork pull requests cannot run with the private original-game build inputs."
-        echo "::error::A maintainer must review the commits and test them from a repository-owned integration branch."
-        exit 1
+        echo "::notice::This fork pull request is not built automatically: the private build has the original game files and never runs fork code by itself."
+        echo "::notice::A maintainer reviews the exact commit and runs the 'Fork PR build' workflow with this pull request number and head SHA. The required 'build (G9SE8P)' check is then published for that commit."
 
     - name: Require successful private build
-      if: needs.private_build.result != 'success'
+      if: >-
+        needs.private_build.result != 'success' &&
+        !(github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository)
       run: |
         echo "::error::The private G9SE8P build did not complete successfully."
         exit 1

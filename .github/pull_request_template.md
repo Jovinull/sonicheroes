@@ -26,7 +26,8 @@ Evidence and references:
 ## Verification
 
 <!-- Full artifact CI for a fork runs only after a maintainer reviews the
-     commits and tests them from a repository-owned integration branch. -->
+     exact commits and runs the "Fork PR build" workflow for this pull request
+     (CONTRIBUTING.md). The required build check shows as "Expected" until then. -->
 
 - [ ] `python tools/check_language_policy.py`
 - [ ] `python -m unittest tools.test_check_language_policy`
