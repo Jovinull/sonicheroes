@@ -621,6 +621,11 @@ game/fn_8004E690.cpp:
 game/fn_8004EBE0.cpp:
 	.text       start:0x8004EBE0 end:0x8004EC58
 
+game/fn_8004EC58.cpp:
+	extab       start:0x80006298 end:0x800062A0
+	extabindex  start:0x8000CBD4 end:0x8000CBE0
+	.text       start:0x8004EC58 end:0x8004EC9C
+
 game/fn_8004EC9C.cpp:
 	.text       start:0x8004EC9C end:0x8004ECBC
 
@@ -1350,6 +1355,9 @@ game/fn_800B4448.cpp:
 game/fn_800B4814.cpp:
 	.text       start:0x800B4814 end:0x800B4864
 
+game/fn_800B4864.cpp:
+	.text       start:0x800B4864 end:0x800B48B8
+
 game/fn_800B48B8.cpp:
 	extab       start:0x80008040 end:0x80008048
 	extabindex  start:0x8000E644 end:0x8000E650
@@ -1993,6 +2001,9 @@ game/fn_800ECA84.cpp:
 game/fn_800ECA8C.cpp:
 	.text       start:0x800ECA8C end:0x800ECA94
 
+game/fn_800ECA94.cpp:
+	.text       start:0x800ECA94 end:0x800ECAD8
+
 game/fn_800ECAD8.cpp:
 	.text       start:0x800ECAD8 end:0x800ECAE0
 
@@ -2468,6 +2479,9 @@ game/fn_801169A4.cpp:
 	extab       start:0x8000A9AC end:0x8000A9B4
 	extabindex  start:0x80010A5C end:0x80010A68
 	.text       start:0x801169A4 end:0x80116A48
+
+game/fn_80116A48.cpp:
+	.text       start:0x80116A48 end:0x80116A8C
 
 game/fn_80116A8C.cpp:
 	.text       start:0x80116A8C end:0x80116AE4
@@ -3300,6 +3314,9 @@ game/fn_801439D8.cpp:
 game/fn_801439E0.cpp:
 	.text       start:0x801439E0 end:0x80143A4C
 
+game/fn_80143A4C.cpp:
+	.text       start:0x80143A4C end:0x80143A9C
+
 game/fn_80143A9C.cpp:
 	.text       start:0x80143A9C end:0x80143AE0
 
@@ -3368,6 +3385,9 @@ game/fn_801478CC.cpp:
 
 game/fn_80147910.cpp:
 	.text       start:0x80147910 end:0x80147918
+
+game/fn_80147918.cpp:
+	.text       start:0x80147918 end:0x80147928
 
 game/fn_80147928.cpp:
 	.text       start:0x80147928 end:0x80147998
@@ -5578,6 +5598,9 @@ game/ADXSJD_SetMaxDecSmpl.cpp:
 game/ADXSJD_SetInSj.cpp:
 	.text       start:0x8020E230 end:0x8020E258
 
+game/ADXSJD_GetStat.cpp:
+	.text       start:0x8020E258 end:0x8020E264
+
 game/ADXSJD_Destroy.cpp:
 	.text       start:0x8020E264 end:0x8020E2C0
 
@@ -5631,6 +5654,9 @@ game/ADXB_Start.cpp:
 
 game/ADXB_EntryData.cpp:
 	.text       start:0x8021143C end:0x802114AC
+
+game/ADXB_GetStat.cpp:
+	.text       start:0x802114AC end:0x802114B4
 
 game/ADXB_RestoreSnapshot.cpp:
 	.text       start:0x802114B4 end:0x80211500
