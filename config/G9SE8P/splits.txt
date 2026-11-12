@@ -3311,6 +3311,9 @@ game/fn_801439D8.cpp:
 game/fn_801439E0.cpp:
 	.text       start:0x801439E0 end:0x80143A4C
 
+game/fn_80143A4C.cpp:
+	.text       start:0x80143A4C end:0x80143A9C
+
 game/fn_80143A9C.cpp:
 	.text       start:0x80143A9C end:0x80143AE0
 
