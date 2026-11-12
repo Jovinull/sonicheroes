@@ -3722,6 +3722,9 @@ game/fn_801591D8.cpp:
 game/fn_80159754.cpp:
 	.text       start:0x80159754 end:0x80159798
 
+game/fn_80159900.cpp:
+	.text       start:0x80159900 end:0x80159918
+
 game/fn_80159918.cpp:
 	.text       start:0x80159918 end:0x80159920
 
