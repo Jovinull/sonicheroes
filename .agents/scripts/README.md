@@ -14,5 +14,11 @@ own help says so, and they never write original-game data into the repository.
 | `perm.py SRC FUNC [--flags ...]` | Try every order of the function's leading bare local declarations and rank them by word diffs: MWCC assigns saved registers and stack slots in declaration order, so many register-only diffs are a permutation. |
 | `extabnew.py UNIT...` | After building a placed unit, compare retail extab/extabindex/.ctors sizes (from the split block in `splits.txt`) with ours. A unit can be EXACT per function and still fail the DOL hash when these differ. Read its output after the build. |
 
+| `m.py UNIT [FN] [--diff] [--all]` | objdiff for one unit: sections and a per-function table (holes / opcode diffs / register diffs), or the rows of one function. Rebuilds the unit's object and its post-processors first. The percentage is objdiff-cli's own `diff` mode (stricter than the `report` used by CI): say which one you quote. |
+| `exato.py UNIT [FN] [--data] [--no-build]` | The exact check: compares our object and the dtk target object word by word and relocation by relocation (`--data` also compares data sections with relocated fields masked). Exit 0 only when everything is EXACT. `.text` only by default, so it does not replace the full build. |
+| `dec.py UNIT FN...` / `--list` | Runs m2c on a retail function from the dtk assembly under `build/`. Output is a starting point only, never something to commit as is. m2c is not in this repository: set `M2C` (default `~/tools/m2c/m2c.py`) and optionally `M2C_PYTHON`. |
+| `alvos.py modules \| nonmatching \| auto \| prs` | Pick work from `build/G9SE8P/report.json`: uncarved code per module, units still `NonMatching`, and `prs`, which caches the open pull requests' touched ranges (needs `gh`) in `build/agent_cache/` so `auto` flags regions someone is already carving. Check `docs/decomp-work-tracking.md` too. |
+| `_units.py` | Library for the scripts above (repo root, objdiff.json lookup, rebuild with post-processors). |
+
 Run from the repository root, e.g. `python3 .agents/scripts/agent_doctor.py` or
 `python3 .agents/scripts/ps2sym.py class TObjCamera --demangle`.
