@@ -5970,6 +5970,9 @@ game/cri/adx_fcch.c:
 game/ADXF_GetFnameRangeEx.cpp:
 	.text       start:0x8021BE58 end:0x8021C0E8
 
+game/ADXF_ExecServer.cpp:
+	.text       start:0x8021C0E8 end:0x8021C278
+
 game/ADXF_GetPtStat.cpp:
 	.text       start:0x8021D16C end:0x8021D18C
 
