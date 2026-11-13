@@ -5753,6 +5753,9 @@ game/ADXB_ExecOneAiff.cpp:
 game/ADXB_ExecOneAiff8.cpp:
 	.text       start:0x8020F4F8 end:0x8020F830
 
+game/ADXB_DecodeHeaderAiff.cpp:
+	.text       start:0x8020FBE0 end:0x8020FD64
+
 game/ADXB_CheckAiff.cpp:
 	.text       start:0x8020FD64 end:0x8020FDCC
 
