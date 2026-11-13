@@ -5693,6 +5693,9 @@ game/adxsjd_decexec_start.cpp:
 game/adxsjd_get_wr.cpp:
 	.text       start:0x8020DE98 end:0x8020DF90
 
+game/adxsjd_decode_prep.cpp:
+	.text       start:0x8020DF90 end:0x8020E18C
+
 game/ADXSJD_Stop.cpp:
 	.text       start:0x8020E18C end:0x8020E1C4
 
