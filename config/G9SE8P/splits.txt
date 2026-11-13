@@ -5603,6 +5603,15 @@ game/fn_8020C624.cpp:
 game/fn_8020C92C.cpp:
 	.text       start:0x8020C92C end:0x8020C968
 
+game/fn_8020D02C.cpp:
+	.text       start:0x8020D02C end:0x8020D070
+
+game/fn_8020D070.cpp:
+	.text       start:0x8020D070 end:0x8020D120
+
+game/fn_8020D120.cpp:
+	.text       start:0x8020D120 end:0x8020D1FC
+
 game/cri/adx_inis.c:
 	.text       start:0x8020D1FC end:0x8020D4A8
 	.rodata     start:0x8023D648 end:0x8023D680
@@ -5675,11 +5684,26 @@ game/ADXSJD_SetDecPos.cpp:
 game/ADXSJD_GetDecNumSmpl.cpp:
 	.text       start:0x8020D790 end:0x8020D798
 
+game/ADXSJD_ExecHndl.cpp:
+	.text       start:0x8020DA28 end:0x8020DC90
+
+game/adxsjd_decexec_start.cpp:
+	.text       start:0x8020DC90 end:0x8020DE98
+
+game/adxsjd_get_wr.cpp:
+	.text       start:0x8020DE98 end:0x8020DF90
+
+game/adxsjd_decode_prep.cpp:
+	.text       start:0x8020DF90 end:0x8020E18C
+
 game/ADXSJD_Stop.cpp:
 	.text       start:0x8020E18C end:0x8020E1C4
 
 game/ADXSJD_Start.cpp:
 	.text       start:0x8020E1C4 end:0x8020E204
+
+game/ADXSJD_TermSupply.cpp:
+	.text       start:0x8020E204 end:0x8020E208
 
 game/ADXSJD_SetMaxDecSmpl.cpp:
 	.text       start:0x8020E208 end:0x8020E230
@@ -5693,6 +5717,9 @@ game/ADXSJD_GetStat.cpp:
 game/ADXSJD_Destroy.cpp:
 	.text       start:0x8020E264 end:0x8020E2C0
 
+game/ADXSJD_Create.cpp:
+	.text       start:0x8020E2C0 end:0x8020E550
+
 game/ADXSJD_Finish.cpp:
 	.text       start:0x8020E550 end:0x8020E580
 
@@ -5705,20 +5732,41 @@ game/ADXB_ExecOneWav.cpp:
 game/ADXB_CheckWav.cpp:
 	.text       start:0x8020E600 end:0x8020E668
 
+game/ADXB_ExecOneWav16.cpp:
+	.text       start:0x8020EDBC end:0x8020F0E8
+
 game/ADXB_DecodeHeaderWav.cpp:
 	.text       start:0x8020F0E8 end:0x8020F1D4
+
+game/ADXB_ExecOneAhx.cpp:
+	.text       start:0x8020F43C end:0x8020F468
 
 game/ADXB_SetAhxDecSmpl.cpp:
 	.text       start:0x8020F468 end:0x8020F48C
 
+game/ADXB_SetAhxInSj.cpp:
+	.text       start:0x8020F48C end:0x8020F4C4
+
 game/ADXB_ExecOneAiff.cpp:
 	.text       start:0x8020F4C4 end:0x8020F4F8
+
+game/ADXB_ExecOneAiff8.cpp:
+	.text       start:0x8020F4F8 end:0x8020F830
+
+game/ADXB_DecodeHeaderAiff.cpp:
+	.text       start:0x8020FBE0 end:0x8020FD64
 
 game/ADXB_CheckAiff.cpp:
 	.text       start:0x8020FD64 end:0x8020FDCC
 
 game/ADXB_ExecOneAu.cpp:
 	.text       start:0x8021003C end:0x80210080
+
+game/ADXB_ExecOneAu8.cpp:
+	.text       start:0x80210444 end:0x8021077C
+
+game/ADXB_DecodeHeaderAu.cpp:
+	.text       start:0x80210B2C end:0x80210CA4
 
 game/ADXB_CheckAu.cpp:
 	.text       start:0x80210CA4 end:0x80210D0C
@@ -5783,6 +5831,12 @@ game/ADXB_GetTotalNumSmpl.cpp:
 game/ADXB_GetBlkSmpl.cpp:
 	.text       start:0x802115AC end:0x802115B4
 
+game/ADXB_GetOutBps.cpp:
+	.text       start:0x802115B4 end:0x80211620
+
+game/ADXB_GetNumChan.cpp:
+	.text       start:0x80211620 end:0x8021162C
+
 game/ADXB_GetSfreq.cpp:
 	.text       start:0x8021162C end:0x80211634
 
@@ -5801,6 +5855,9 @@ game/ADXB_DecodeHeader.cpp:
 game/ADXB_Destroy.cpp:
 	.text       start:0x80211DD4 end:0x80211E28
 
+game/ADXB_Create.cpp:
+	.text       start:0x80211E28 end:0x80211FF0
+
 game/adxb_DefAddWr.cpp:
 	.text       start:0x80211FF0 end:0x8021200C
 
@@ -5812,6 +5869,9 @@ game/ADXB_Init.cpp:
 
 game/ADXB_CheckSpsd.cpp:
 	.text       start:0x80212084 end:0x802120B8
+
+game/ADXB_ExecOneSpsd.cpp:
+	.text       start:0x802120B8 end:0x80212390
 
 game/ADXB_DecodeHeaderSpsd.cpp:
 	.text       start:0x80212390 end:0x8021247C
@@ -5907,11 +5967,29 @@ game/cri/adx_fini.c:
 game/cri/adx_fcch.c:
 	.text       start:0x8021BE38 end:0x8021BE58
 
+game/ADXF_GetFnameRangeEx.cpp:
+	.text       start:0x8021BE58 end:0x8021C0E8
+
+game/ADXF_ExecServer.cpp:
+	.text       start:0x8021C0E8 end:0x8021C278
+
+game/ADXF_CloseAll.cpp:
+	.text       start:0x8021C53C end:0x8021C598
+
+game/ADXF_Close.cpp:
+	.text       start:0x8021C598 end:0x8021C86C
+
+game/ADXF_Open.cpp:
+	.text       start:0x8021CB08 end:0x8021CD80
+
 game/ADXF_GetPtStat.cpp:
 	.text       start:0x8021D16C end:0x8021D18C
 
 game/adxf_CloseLdptnwHn.cpp:
 	.text       start:0x8021D18C end:0x8021D1E0
+
+game/ADXF_LoadPartitionNw.cpp:
+	.text       start:0x8021D430 end:0x8021D480
 
 game/cri/cri_cvfs.c:
 	.text       start:0x8021D480 end:0x8021E3D4
