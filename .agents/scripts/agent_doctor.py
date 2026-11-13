@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only environment check for coding agents (Codex, Claude Code) and people.
+"""Read-only environment check for coding agents and people.
 
 Run it at the start of a session and before reporting a build as verified:
 
