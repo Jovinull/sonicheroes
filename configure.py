@@ -1336,6 +1336,7 @@ config.libs = [
             Object(Matching, "game/ADXSJD_GetDecNumSmpl.cpp"),
             Object(Matching, "game/ADXSJD_ExecHndl.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/adxsjd_decexec_start.cpp"),
+            Object(Matching, "game/adxsjd_get_wr.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/ADXB_GetDecNumSmpl.cpp"),
             Object(Matching, "game/ADXB_GetDecDtLen.cpp"),
             Object(Matching, "game/ADXB_GetDefOutVol.cpp"),
