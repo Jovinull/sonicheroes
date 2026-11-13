@@ -1267,6 +1267,7 @@ config.libs = [
             Object(Matching, "game/fn_80116B84.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/ADXB_DecodeHeader.cpp"),
             Object(Matching, "game/ADXB_DecodeHeaderWav.cpp"),
+            Object(Matching, "game/ADXB_ExecOneAhx.cpp"),
             Object(Matching, "game/ADXB_DecodeHeaderSpsd.cpp"),
             Object(Matching, "game/CheckCameraFrustumTest__9TObjEnemyFPC5RwV3df.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/SetRange__7C_COLLIFf.cpp"),

@@ -5738,6 +5738,9 @@ game/ADXB_ExecOneWav16.cpp:
 game/ADXB_DecodeHeaderWav.cpp:
 	.text       start:0x8020F0E8 end:0x8020F1D4
 
+game/ADXB_ExecOneAhx.cpp:
+	.text       start:0x8020F43C end:0x8020F468
+
 game/ADXB_SetAhxDecSmpl.cpp:
 	.text       start:0x8020F468 end:0x8020F48C
 
