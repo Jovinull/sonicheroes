@@ -5702,6 +5702,9 @@ game/ADXSJD_SetDecPos.cpp:
 game/ADXSJD_GetDecNumSmpl.cpp:
 	.text       start:0x8020D790 end:0x8020D798
 
+game/ADXSJD_ExecServer.cpp:
+	.text       start:0x8020D798 end:0x8020DA28
+
 game/ADXSJD_ExecHndl.cpp:
 	.text       start:0x8020DA28 end:0x8020DC90
 

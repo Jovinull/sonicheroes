@@ -1353,6 +1353,7 @@ config.libs = [
             Object(Matching, "game/CheckCameraFrustumTestForShadow__9TObjEnemyFPC5RwV3df.cpp"),
             Object(Matching, "game/RpDMorphAnimationGetNumDMorphTargets.cpp"),
             Object(Matching, "game/ADXSJD_GetDecNumSmpl.cpp"),
+            Object(Matching, "game/ADXSJD_ExecServer.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/ADXSJD_ExecHndl.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/adxsjd_decexec_start.cpp"),
             Object(Matching, "game/adxsjd_get_wr.cpp", extra_cflags=["-use_lmw_stmw on"]),
