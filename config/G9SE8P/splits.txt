@@ -5834,6 +5834,9 @@ game/ADXB_GetBlkSmpl.cpp:
 game/ADXB_GetOutBps.cpp:
 	.text       start:0x802115B4 end:0x80211620
 
+game/ADXB_GetNumChan.cpp:
+	.text       start:0x80211620 end:0x8021162C
+
 game/ADXB_GetSfreq.cpp:
 	.text       start:0x8021162C end:0x80211634
 
