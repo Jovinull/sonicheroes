@@ -5813,6 +5813,9 @@ game/ADXB_CheckAu.cpp:
 game/ADXB_ExecHndl.cpp:
 	.text       start:0x80210F14 end:0x80210F90
 
+game/ADXB_ExecOneAdx.cpp:
+	.text       start:0x80210F90 end:0x80211394
+
 game/ADXB_GetDecNumSmpl.cpp:
 	.text       start:0x80211394 end:0x8021139C
 

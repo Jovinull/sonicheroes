@@ -1277,6 +1277,7 @@ config.libs = [
             Object(Matching, "game/__dt__17PARTICLE_MATERIALFv.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/ClearInfo__7C_COLLIFv.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/ADXB_ExecHndl.cpp"),
+            Object(Matching, "game/ADXB_ExecOneAdx.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/ADXB_EntryData.cpp"),
             Object(Matching, "game/ADXB_GetStat.cpp"),
             Object(Matching, "game/ADXSJD_GetDefPan.cpp"),
