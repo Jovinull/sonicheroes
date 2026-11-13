@@ -1436,6 +1436,7 @@ config.libs = [
             Object(Matching, "game/fn_8005751C.cpp"),
             Object(Matching, "game/fn_80057520.cpp"),
             Object(Matching, "game/fn_80057574.cpp"),
+            Object(Matching, "game/__nw__FUl.cpp", extra_cflags=["-Cpp_exceptions on"]),
             Object(Matching, "game/fn_80058E18.cpp"),
             Object(Matching, "game/fn_80058E1C.cpp"),
             Object(Matching, "game/fn_800663C4.cpp"),
