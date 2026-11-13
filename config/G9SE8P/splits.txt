@@ -5855,6 +5855,9 @@ game/ADXB_DecodeHeader.cpp:
 game/ADXB_Destroy.cpp:
 	.text       start:0x80211DD4 end:0x80211E28
 
+game/ADXB_Create.cpp:
+	.text       start:0x80211E28 end:0x80211FF0
+
 game/adxb_DefAddWr.cpp:
 	.text       start:0x80211FF0 end:0x8021200C
 
