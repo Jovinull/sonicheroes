@@ -1,6 +1,6 @@
 # Agent scripts
 
-Small, read-only or local helpers shared by every agent (Codex, Claude Code) and people.
+Small, read-only or local helpers shared by every coding agent and people.
 Standard library only. They must not download, build, push or change Git settings unless their
 own help says so, and they never write original-game data into the repository.
 

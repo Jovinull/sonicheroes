@@ -1,8 +1,7 @@
 # Agent engineering rules
 
-These rules apply to every coding agent working in this repository, including
-Codex and Claude Code (`CLAUDE.md` imports this file, so there is one source of
-truth).
+These rules apply to every coding agent working in this repository (`CLAUDE.md`
+imports this file, so there is one source of truth).
 
 ## Project and objective
 
@@ -122,6 +121,6 @@ and keep the documented remainder and exit path current. See
   `LEGAL.md`, and `docs/decomp-work-tracking.md`; check live ownership because
   tracking entries can age. See `docs/symbols.md`, `docs/splits.md`,
   `docs/language-audit.md`, and unit evidence notes for specialized evidence.
-- Read `docs/codex-engineering-baseline.md` for the commit-scoped quality
+- Read `docs/engineering-baseline.md` for the commit-scoped quality
   snapshot and prioritized audit queue; refresh its measurements when the base
   commit changes.
