@@ -1961,6 +1961,7 @@ config.libs = [
             Object(Matching, "game/fn_8020C92C.cpp"),
             Object(Matching, "game/fn_8020D02C.cpp"),
             Object(Matching, "game/fn_8020D070.cpp"),
+            Object(Matching, "game/fn_8020D120.cpp"),
             Object(Matching, "game/fn_800C8C28.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_801489F8.cpp"),
             Object(Matching, "game/fn_80148AF0.cpp"),
