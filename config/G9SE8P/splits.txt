@@ -1458,6 +1458,11 @@ game/fn_800B8B78.cpp:
 	extabindex  start:0x8000E86C end:0x8000E878
 	.text       start:0x800B8B78 end:0x800B8BA4
 
+game/fn_800B8BA4.cpp:
+	extab       start:0x800081F0 end:0x800081F8
+	extabindex  start:0x8000E878 end:0x8000E884
+	.text       start:0x800B8BA4 end:0x800B8BEC
+
 game/fn_800B8BEC.cpp:
 	extab       start:0x800081F8 end:0x80008200
 	extabindex  start:0x8000E884 end:0x8000E890
