@@ -3130,6 +3130,11 @@ game/dtor_80136EA8.cpp:
 	extabindex  start:0x8001186C end:0x80011878
 	.text       start:0x80136EA8 end:0x80136F14
 
+game/fn_80137150.cpp:
+	extab       start:0x8000B824 end:0x8000B82C
+	extabindex  start:0x80011890 end:0x8001189C
+	.text       start:0x80137150 end:0x8013718C
+
 game/fn_8013718C.cpp:
 	extab       start:0x8000B82C end:0x8000B834
 	extabindex  start:0x8001189C end:0x800118A8
