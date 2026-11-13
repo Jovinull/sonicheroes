@@ -1357,6 +1357,7 @@ config.libs = [
             Object(Matching, "game/ADXB_GetNumLoop.cpp"),
             Object(Matching, "game/ADXB_GetTotalNumSmpl.cpp"),
             Object(Matching, "game/ADXB_GetBlkSmpl.cpp"),
+            Object(Matching, "game/ADXB_GetOutBps.cpp"),
             Object(Matching, "game/ADXB_GetSfreq.cpp"),
             Object(Matching, "game/ADXB_GetFormat.cpp"),
             Object(Matching, "game/ADXB_GetPcmBuf.cpp"),
