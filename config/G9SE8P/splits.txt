@@ -5973,6 +5973,9 @@ game/ADXF_GetFnameRangeEx.cpp:
 game/ADXF_ExecServer.cpp:
 	.text       start:0x8021C0E8 end:0x8021C278
 
+game/ADXF_CloseAll.cpp:
+	.text       start:0x8021C53C end:0x8021C598
+
 game/ADXF_GetPtStat.cpp:
 	.text       start:0x8021D16C end:0x8021D18C
 
