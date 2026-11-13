@@ -5750,6 +5750,9 @@ game/ADXB_SetAhxInSj.cpp:
 game/ADXB_ExecOneAiff.cpp:
 	.text       start:0x8020F4C4 end:0x8020F4F8
 
+game/ADXB_ExecOneAiff8.cpp:
+	.text       start:0x8020F4F8 end:0x8020F830
+
 game/ADXB_CheckAiff.cpp:
 	.text       start:0x8020FD64 end:0x8020FDCC
 
