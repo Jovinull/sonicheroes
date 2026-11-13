@@ -1301,6 +1301,7 @@ config.libs = [
             Object(Matching, "game/ADXB_ExecOneWav.cpp"),
             Object(Matching, "game/ADXB_ExecOneAiff.cpp"),
             Object(Matching, "game/ADXB_ExecOneAiff8.cpp"),
+            Object(Matching, "game/ADXB_ExecOneAiff16.cpp"),
             Object(Matching, "game/ADXB_DecodeHeaderAiff.cpp"),
             Object(Matching, "game/ADXB_ExecOneAu.cpp"),
             Object(Matching, "game/ADXB_ExecOneAu8.cpp"),
