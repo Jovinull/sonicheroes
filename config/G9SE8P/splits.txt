@@ -5744,6 +5744,9 @@ game/ADXB_ExecOneAhx.cpp:
 game/ADXB_SetAhxDecSmpl.cpp:
 	.text       start:0x8020F468 end:0x8020F48C
 
+game/ADXB_SetAhxInSj.cpp:
+	.text       start:0x8020F48C end:0x8020F4C4
+
 game/ADXB_ExecOneAiff.cpp:
 	.text       start:0x8020F4C4 end:0x8020F4F8
 

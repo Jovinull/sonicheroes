@@ -1286,6 +1286,7 @@ config.libs = [
             Object(Matching, "game/ADXB_CheckSpsd.cpp"),
             Object(Matching, "game/ADXF_GetPtStat.cpp"),
             Object(Matching, "game/ADXB_SetAhxDecSmpl.cpp"),
+            Object(Matching, "game/ADXB_SetAhxInSj.cpp"),
             Object(Matching, "game/ADXB_Destroy.cpp"),
             Object(Matching, "game/adxb_DefAddWr.cpp"),
             Object(Matching, "game/adxb_DefGetWr.cpp"),
