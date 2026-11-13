@@ -1316,6 +1316,7 @@ config.libs = [
             Object(Matching, "game/ADXB_TakeSnapshot.cpp"),
             Object(Matching, "game/ADXB_CheckWav.cpp"),
             Object(Matching, "game/ADXB_ExecOneWav4.cpp"),
+            Object(Matching, "game/ADXB_ExecOneWav8.cpp"),
             Object(Matching, "game/ADXB_ExecOneWav16.cpp"),
             Object(Matching, "game/ADXB_CheckAiff.cpp"),
             Object(Matching, "game/ADXB_CheckAu.cpp"),

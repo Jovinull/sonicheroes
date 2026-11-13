@@ -5756,6 +5756,9 @@ game/ADXB_CheckWav.cpp:
 game/ADXB_ExecOneWav4.cpp:
 	.text       start:0x8020E668 end:0x8020EA18
 
+game/ADXB_ExecOneWav8.cpp:
+	.text       start:0x8020EA18 end:0x8020EDBC
+
 game/ADXB_ExecOneWav16.cpp:
 	.text       start:0x8020EDBC end:0x8020F0E8
 
