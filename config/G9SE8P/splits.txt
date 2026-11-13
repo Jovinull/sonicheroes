@@ -5717,6 +5717,9 @@ game/ADXSJD_GetStat.cpp:
 game/ADXSJD_Destroy.cpp:
 	.text       start:0x8020E264 end:0x8020E2C0
 
+game/ADXSJD_Create.cpp:
+	.text       start:0x8020E2C0 end:0x8020E550
+
 game/ADXSJD_Finish.cpp:
 	.text       start:0x8020E550 end:0x8020E580
 

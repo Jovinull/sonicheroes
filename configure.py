@@ -1313,6 +1313,7 @@ config.libs = [
             Object(Matching, "game/ADXSJD_SetInSj.cpp"),
             Object(Matching, "game/ADXSJD_GetStat.cpp"),
             Object(Matching, "game/ADXSJD_Destroy.cpp"),
+            Object(Matching, "game/ADXSJD_Create.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/dtor_801247C0.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/dtor_80123CE0.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/dtor_80136EA8.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
