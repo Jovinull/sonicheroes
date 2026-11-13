@@ -5684,6 +5684,9 @@ game/ADXSJD_SetDecPos.cpp:
 game/ADXSJD_GetDecNumSmpl.cpp:
 	.text       start:0x8020D790 end:0x8020D798
 
+game/ADXSJD_ExecHndl.cpp:
+	.text       start:0x8020DA28 end:0x8020DC90
+
 game/ADXSJD_Stop.cpp:
 	.text       start:0x8020E18C end:0x8020E1C4
 
