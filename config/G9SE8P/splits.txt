@@ -5870,6 +5870,9 @@ game/ADXB_Init.cpp:
 game/ADXB_CheckSpsd.cpp:
 	.text       start:0x80212084 end:0x802120B8
 
+game/ADXB_ExecOneSpsd.cpp:
+	.text       start:0x802120B8 end:0x80212390
+
 game/ADXB_DecodeHeaderSpsd.cpp:
 	.text       start:0x80212390 end:0x8021247C
 

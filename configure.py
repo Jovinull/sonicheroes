@@ -1284,6 +1284,7 @@ config.libs = [
             Object(Matching, "game/RwEngineRegisterPlugin.cpp"),
             Object(Matching, "game/ADXB_Init.cpp"),
             Object(Matching, "game/ADXB_CheckSpsd.cpp"),
+            Object(Matching, "game/ADXB_ExecOneSpsd.cpp"),
             Object(Matching, "game/ADXF_GetPtStat.cpp"),
             Object(Matching, "game/ADXB_SetAhxDecSmpl.cpp"),
             Object(Matching, "game/ADXB_SetAhxInSj.cpp"),
