@@ -5988,6 +5988,9 @@ game/ADXF_GetPtStat.cpp:
 game/adxf_CloseLdptnwHn.cpp:
 	.text       start:0x8021D18C end:0x8021D1E0
 
+game/ADXF_LoadPartitionNw.cpp:
+	.text       start:0x8021D430 end:0x8021D480
+
 game/cri/cri_cvfs.c:
 	.text       start:0x8021D480 end:0x8021E3D4
 	.rodata     start:0x8023F000 end:0x8023FBC0
