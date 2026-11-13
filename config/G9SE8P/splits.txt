@@ -5702,6 +5702,9 @@ game/ADXSJD_Stop.cpp:
 game/ADXSJD_Start.cpp:
 	.text       start:0x8020E1C4 end:0x8020E204
 
+game/ADXSJD_TermSupply.cpp:
+	.text       start:0x8020E204 end:0x8020E208
+
 game/ADXSJD_SetMaxDecSmpl.cpp:
 	.text       start:0x8020E208 end:0x8020E230
 

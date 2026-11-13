@@ -1308,6 +1308,7 @@ config.libs = [
             Object(Matching, "game/ADXSJD_GetSpsdInfo.cpp"),
             Object(Matching, "game/ADXSJD_Stop.cpp"),
             Object(Matching, "game/ADXSJD_Start.cpp"),
+            Object(Matching, "game/ADXSJD_TermSupply.cpp"),
             Object(Matching, "game/ADXSJD_SetMaxDecSmpl.cpp"),
             Object(Matching, "game/ADXSJD_SetInSj.cpp"),
             Object(Matching, "game/ADXSJD_GetStat.cpp"),
