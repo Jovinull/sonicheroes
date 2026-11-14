@@ -3023,6 +3023,11 @@ game/fn_801227A4.cpp:
 	extabindex  start:0x80011074 end:0x80011080
 	.text       start:0x801227A4 end:0x8012282C
 
+game/fn_80122AF4.cpp:
+	extab       start:0x8000B0F4 end:0x8000B10C
+	extabindex  start:0x8001108C end:0x80011098
+	.text       start:0x80122AF4 end:0x80122B74
+
 game/fn_80122B74.cpp:
 	.text       start:0x80122B74 end:0x80122B84
 
