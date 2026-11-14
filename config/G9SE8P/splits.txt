@@ -2943,6 +2943,11 @@ game/enemy/e_powercore.cpp:
 game/fn_8011D770.cpp:
 	.text       start:0x8011D770 end:0x8011D774
 
+game/fn_8011E4A4.cpp:
+	extab       start:0x8000AE40 end:0x8000AE58
+	extabindex  start:0x80010E94 end:0x80010EA0
+	.text       start:0x8011E4A4 end:0x8011E528
+
 game/fn_8011E528.cpp:
 	extab       start:0x8000AE58 end:0x8000AE60
 	extabindex  start:0x80010EA0 end:0x80010EAC
