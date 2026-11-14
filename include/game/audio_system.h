@@ -38,8 +38,8 @@ struct PoolChannel {
 };
 
 struct PoolSlot {
-	int active; // 0x00: bit 31 set while the slot runs (fn_80209A3C clears it)
-	unsigned char pad4[0x4];
+	int active;          // 0x00: bit 31 set while the slot runs (fn_80209A3C clears it)
+	unsigned int flags4; // 0x04: bit 0 set while paused (fn_8020B730)
 	// Two linear ramps advanced by fn_802092A8 and fn_8020917C: value moves from start to target
 	// while remaining counts down from duration in steps of 5; remaining is -1 when idle.
 	float rampAValue; // 0x08
@@ -54,7 +54,9 @@ struct PoolSlot {
 	float rampBStart;     // 0x30
 	float rampBDuration;  // 0x34
 	float rampBRemaining; // 0x38
-	unsigned char pad3C[0xA0 - 0x3C];
+	unsigned char pad3C[0x40 - 0x3C];
+	long long pauseTime; // 0x40: system time when paused
+	unsigned char pad48[0xA0 - 0x48];
 	unsigned int fA0;         // 0xA0: owned handle, released by fn_80209A3C
 	PoolChannel channels[16]; // 0xA4
 	unsigned char pad524[0x1530 - 0x524];
@@ -72,6 +74,13 @@ struct PoolEntry14 {
 	unsigned char pad1[0x14 - 0x1];
 };
 
+// Heap block header: "MF" for a free block, "MB" for the end marker (fn_80205DF4).
+struct PoolHeapBlock {
+	unsigned short tag;  // 0x00
+	unsigned short f2;   // 0x02
+	PoolHeapBlock* next; // 0x04
+};
+
 struct PoolSystem {
 	int f00;  // 0x00: nonzero once the system runs
 	int pad4; // 0x04
@@ -81,12 +90,27 @@ struct PoolSystem {
 	int pad14;
 	long long time;     // 0x18: OSGetTime() of the current update
 	long long prevTime; // 0x20
-	unsigned char pad28[0x54 - 0x28];
+	unsigned char pad28[0x44 - 0x28];
+	int f44; // 0x44: 1 keeps a paused slot's handle (fn_802066AC) instead of releasing it
+	unsigned char pad48[0x54 - 0x48];
 	PoolEntry10C entries10C[0x40]; // 0x54
 	PoolEntry14 entries14[0x40];   // 0x4354
-	unsigned char pad4854[0x505C - 0x4854];
-	unsigned char busy[0x5478 - 0x505C]; // 0x505C: per-channel busy bytes
-	PoolSlot slots[8];                   // 0x5478
+	unsigned char* heap;           // 0x4854: 32-byte aligned heap start (fn_80205DF4)
+	unsigned int heapSize;         // 0x4858
+	unsigned char pad485C[0x505C - 0x485C];
+	unsigned char busy[0x52A8 - 0x505C]; // 0x505C: per-channel busy bytes
+	int arenaFree;                       // 0x52A8: bytes left for fn_80206104
+	int arenaNext;                       // 0x52AC: offset of the next region
+	unsigned char pad52B0[0x52F8 - 0x52B0];
+	struct {
+		int offset;
+		int size;
+	} regions[0x10]; // 0x52F8: reserved by fn_80206104
+	struct {
+		unsigned char* data; // 0x5378: loaded bank image, or null
+		unsigned int pad4;
+	} banks[0x20];
+	PoolSlot slots[8]; // 0x5478
 	unsigned char padFDF8[0xFE04 - 0xFDF8];
 	AXFX_REVERBSTD reverbStd; // 0xFE04: aux effect contexts selected by fn_80209CDC
 	AXFX_REVERBHI reverbHi;   // 0xFF58
