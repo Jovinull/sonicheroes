@@ -69,6 +69,43 @@ struct RwError {
 #define RW_DEVICE_SYSTEM_GET_MODE_INFO 6
 #define RW_DEVICE_SYSTEM_GET_MODE      10
 
+// Plugin callbacks (HYPOTHESIS: RwPluginObjectConstructor/Destructor/Copy): object, offset and
+// size of the plugin's data inside the object.
+typedef void* (*RwPluginObjectConstructor)(void* object, s32 offset, s32 size);
+typedef void* (*RwPluginObjectDestructor)(void* object, s32 offset, s32 size);
+typedef void* (*RwPluginObjectCopy)(void* dst, const void* src, s32 offset, s32 size);
+
+struct RwPluginRegistry;
+
+// One registered plugin (HYPOTHESIS: RwPluginRegEntry); stream and rights callbacks are untyped.
+struct RwPluginRegEntry {
+	s32 offset;
+	s32 size;
+	u32 pluginID;
+	void* readCB;
+	void* writeCB;
+	void* getSizeCB;
+	void* alwaysCB;
+	void* rightsCB;
+	RwPluginObjectConstructor constructCB; // 0x20
+	RwPluginObjectDestructor destructCB;   // 0x24
+	RwPluginObjectCopy copyCB;             // 0x28
+	void* errStrCB;
+	RwPluginRegEntry* nextRegEntry; // 0x30
+	RwPluginRegEntry* prevRegEntry; // 0x34
+	RwPluginRegistry* parentRegistry;
+};
+
+// Plugin registry of one object type (HYPOTHESIS: RwPluginRegistry, 0x18 bytes).
+struct RwPluginRegistry {
+	s32 sizeOfStruct;
+	s32 origSizeOfStruct;
+	s32 maxSizeOfStruct;
+	s32 staticAlloc;
+	RwPluginRegEntry* firstRegEntry; // 0x10
+	RwPluginRegEntry* lastRegEntry;  // 0x14
+};
+
 // Module bookkeeping (HYPOTHESIS: RwModuleInfo): offset of a module's globals inside the engine
 // block and the number of open engine instances.
 struct RwModuleInfo {
@@ -112,11 +149,11 @@ extern RwModuleInfo lbl_8042C950;
 // HYPOTHESIS: _rwerror (variadic; builds an error code) and RwErrorSet.
 s32 fn_8019408C(s32 code, ...);
 RwError* fn_80193FE8(RwError* error);
-// HYPOTHESIS: _rwPluginRegistryInitObject, _rwPluginRegistryDeInitObject and
-// _rwPluginRegistryCopyObject.
-void fn_80198D5C(void* registry, void* object);
-void fn_80198E04(void* registry, void* object);
-void fn_80198E70(void* registry, void* dst, const void* src);
+// HYPOTHESIS: _rwPluginRegistryInitObject (null when a constructor fails),
+// _rwPluginRegistryDeInitObject and _rwPluginRegistryCopyObject; each returns the registry.
+RwPluginRegistry* fn_80198D5C(RwPluginRegistry* registry, void* object);
+RwPluginRegistry* fn_80198E04(RwPluginRegistry* registry, void* object);
+RwPluginRegistry* fn_80198E70(RwPluginRegistry* registry, void* dst, const void* src);
 }
 
 // Last error of the current engine instance (HYPOTHESIS: RWERRORGLOBAL(errError)).

@@ -6,7 +6,7 @@
 extern "C" {
 void fn_8019E588(RwFrame* frame)
 {
-	fn_80198E04(lbl_802905F8, frame);
+	fn_80198E04(&lbl_802905F8, frame);
 	if (frame->object.privateFlags & RW_FRAME_HIERARCHY_SYNC) {
 		RwLLLinkRemove(&frame->inDirtyListLink);
 	}

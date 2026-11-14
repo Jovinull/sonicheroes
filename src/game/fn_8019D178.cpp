@@ -6,13 +6,13 @@
 extern "C" {
 // Camera module bookkeeping (HYPOTHESIS: cameraModule) and plugin registry (cameraTKList).
 extern RwModuleInfo lbl_8042C998;
-extern u8 lbl_802904A0[];
+extern RwPluginRegistry lbl_802904A0;
 // HYPOTHESIS: _rwObjectHasFrameReleaseFrame.
 void fn_801A53E4(void* object);
 
 s32 fn_8019D178(RwCamera* camera)
 {
-	fn_80198E04(lbl_802904A0, camera);
+	fn_80198E04(&lbl_802904A0, camera);
 	fn_801A53E4(camera);
 	lbl_8042C9A4->freeListFree(
 	    *(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C998.globalsOffset), camera);

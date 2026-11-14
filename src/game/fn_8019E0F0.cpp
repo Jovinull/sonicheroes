@@ -54,8 +54,8 @@ RwFrame* fn_8019E0F0(RwFrame* src, RwFrame* root)
 		dst->child           = clone;
 		clone->object.parent = dst;
 	}
-	fn_80198D5C(lbl_802905F8, dst);
-	fn_80198E70(lbl_802905F8, dst, src);
+	fn_80198D5C(&lbl_802905F8, dst);
+	fn_80198E70(&lbl_802905F8, dst, src);
 	return dst;
 }
 }

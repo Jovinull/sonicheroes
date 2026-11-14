@@ -7,7 +7,7 @@ extern "C" {
 s32 fn_8019E480(RwFrame* frame)
 {
 	RwFrame* child;
-	fn_80198E04(lbl_802905F8, frame);
+	fn_80198E04(&lbl_802905F8, frame);
 	if (frame->object.parent != 0) {
 		fn_8019EA2C(frame);
 	}

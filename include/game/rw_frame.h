@@ -10,7 +10,7 @@ extern "C" {
 // Frame module bookkeeping (HYPOTHESIS: frameModule).
 extern RwModuleInfo lbl_8042C9A8;
 // Frame plugin registry (HYPOTHESIS: frameTKList).
-extern u8 lbl_802905F8[];
+extern RwPluginRegistry lbl_802905F8;
 // HYPOTHESIS: _rwSetHierarchyRoot.
 void fn_8019DFDC(RwFrame* frame, RwFrame* root);
 // HYPOTHESIS: RwFrameRemoveChild.

@@ -29,7 +29,7 @@ RwFrame* fn_8019E344(void)
 	frame->child = 0;
 	frame->next  = 0;
 	frame->root  = frame;
-	fn_80198D5C(lbl_802905F8, frame);
+	fn_80198D5C(&lbl_802905F8, frame);
 	return frame;
 }
 }
