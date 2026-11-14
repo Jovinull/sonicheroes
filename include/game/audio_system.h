@@ -139,7 +139,9 @@ struct PoolSystem {
 	PoolBank banks[0x10];     // 0x5378: "gcaxMPBP" chunks loaded by fn_80205F9C
 	PoolBank sequences[0x10]; // 0x53F8: "gcaxMSB " chunks loaded by fn_80205EA4
 	PoolSlot slots[8];        // 0x5478
-	unsigned char padFDF8[0xFE04 - 0xFDF8];
+	unsigned char padFDF8[0xFDFC - 0xFDF8];
+	void* searchKey; // 0xFDFC: object fn_80206804 looks for (set by fn_80206578)
+	unsigned char padFE00[0xFE04 - 0xFE00];
 	AXFX_REVERBSTD reverbStd; // 0xFE04: aux effect contexts selected by fn_80209CDC
 	AXFX_REVERBHI reverbHi;   // 0xFF58
 	AXFX_CHORUS chorus;       // 0x10138
