@@ -4939,6 +4939,9 @@ game/fn_801A4C84.cpp:
 game/fn_801A4C98.cpp:
 	.text       start:0x801A4C98 end:0x801A4CAC
 
+game/fn_801A4CAC.cpp:
+	.text       start:0x801A4CAC end:0x801A4CF0
+
 game/fn_801A4E40.cpp:
 	.text       start:0x801A4E40 end:0x801A4E80
 
