@@ -18,12 +18,20 @@ extern "C" {
 extern FreeLists8040EB50 lbl_8040EB50;
 }
 
-// 0x408-byte buffer of free list 5 and the object that owns one at 0x20 (fields inferred from
-// fn_802037C0 and fn_80203844).
+// 16-byte command stored in a buffer (only the type and the word at 0x4 are interpreted).
+struct BufferCommand8040EB50 {
+	s32 type;  // 0x0
+	s32 value; // 0x4
+	u32 word8; // 0x8
+	u32 wordC; // 0xC
+};
+
+// 0x408-byte buffer of free list 5 holding up to 64 commands, and the object that owns one at
+// 0x20 (fields inferred from fn_802037C0, fn_80203844 and fn_8020366C).
 struct Buffer8040EB50 {
-	u8 data[0x400];
-	u32 used;  // 0x400
-	u32 extra; // 0x404
+	BufferCommand8040EB50 commands[64]; // 0x0
+	u32 word400;                        // 0x400 (role UNKNOWN)
+	s32 count;                          // 0x404: commands in use
 };
 
 struct BufferOwner8040EB50 {

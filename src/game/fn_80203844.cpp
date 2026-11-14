@@ -5,8 +5,8 @@
 
 static inline void BufferDestroy(Buffer8040EB50* buffer)
 {
-	buffer->used  = 0;
-	buffer->extra = 0;
+	buffer->word400 = 0;
+	buffer->count   = 0;
 	lbl_8042C9A4->freeListFree(lbl_8040EB50.lists[FREE_LIST_8040EB50_BUFFER], buffer);
 }
 

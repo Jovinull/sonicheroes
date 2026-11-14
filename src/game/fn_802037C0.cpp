@@ -7,8 +7,8 @@
 
 static inline Buffer8040EB50* BufferInit(Buffer8040EB50* buffer)
 {
-	buffer->used  = 0;
-	buffer->extra = 0;
+	buffer->word400 = 0;
+	buffer->count   = 0;
 	return buffer;
 }
 
