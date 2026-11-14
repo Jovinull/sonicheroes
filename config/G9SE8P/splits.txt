@@ -4435,6 +4435,9 @@ game/fn_80169D58.cpp:
 game/fn_80169EF4.cpp:
 	.text       start:0x80169EF4 end:0x80169F68
 
+game/fn_8016A804.cpp:
+	.text       start:0x8016A804 end:0x8016A8B8
+
 game/fn_8016A8B8.cpp:
 	.text       start:0x8016A8B8 end:0x8016A930
 
