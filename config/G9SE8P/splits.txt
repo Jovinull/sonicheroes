@@ -5471,6 +5471,9 @@ game/fn_802012C4.cpp:
 game/fn_80201318.cpp:
 	.text       start:0x80201318 end:0x80201370
 
+game/fn_80201370.cpp:
+	.text       start:0x80201370 end:0x80201390
+
 game/fn_80201390.cpp:
 	.text       start:0x80201390 end:0x8020139C
 
