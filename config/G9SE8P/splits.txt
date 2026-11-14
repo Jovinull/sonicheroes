@@ -1067,6 +1067,9 @@ game/fn_8007DFA8.cpp:
 game/fn_8008912C.cpp:
 	.text       start:0x8008912C end:0x80089134
 
+game/fn_80089134.cpp:
+	.text       start:0x80089134 end:0x8008915C
+
 game/fn_8008916C.cpp:
 	extab       start:0x80007460 end:0x80007468
 	extabindex  start:0x8000DA68 end:0x8000DA74
