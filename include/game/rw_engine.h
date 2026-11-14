@@ -61,6 +61,8 @@ struct RwError {
 };
 
 #define RW_ID_CORE_PLUGIN 1
+// Error code meaning "no error pending"; codes with the top bit set carry no plugin ID.
+#define RW_ERROR_NONE ((s32)0x80000000)
 
 // Device system requests (HYPOTHESIS: RwCoreDeviceSystemFn order).
 #define RW_DEVICE_SYSTEM_GET_MODE_INFO 6
@@ -104,10 +106,15 @@ struct RwEngineGlobals {
 
 extern "C" {
 extern RwEngineGlobals* lbl_8042C9A4;
+// Error module bookkeeping (HYPOTHESIS: errorModule).
+extern RwModuleInfo lbl_8042C950;
 // HYPOTHESIS: _rwerror (variadic; builds an error code) and RwErrorSet.
 s32 fn_8019408C(s32 code, ...);
 RwError* fn_80193FE8(RwError* error);
 }
+
+// Last error of the current engine instance (HYPOTHESIS: RWERRORGLOBAL(errError)).
+#define RW_LAST_ERROR (*(RwError*)((u8*)lbl_8042C9A4 + lbl_8042C950.globalsOffset))
 
 // Forwards a request to the device system entry point and records core error 0x18 for the request
 // when it fails (HYPOTHESIS: _rwDeviceSystemRequest, inlined). Returns the entry point's status.
