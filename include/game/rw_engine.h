@@ -177,13 +177,16 @@ extern RwPluginRegistry lbl_80290628;
 #define RW_RASTER_FREE_LIST (*(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B8.globalsOffset + 0x60))
 
 // Texture module bookkeeping (HYPOTHESIS: textureModule); its globals start with the list of all
-// texture dictionaries and hold the dictionary free list at +0xC.
+// texture dictionaries and hold the texture free list at +0x8, the dictionary free list at +0xC
+// and the current dictionary at +0x10.
 extern "C" {
 extern RwModuleInfo lbl_8042C9C4;
 }
 #define RW_TEXTURE_GLOBALS          ((u8*)lbl_8042C9A4 + lbl_8042C9C4.globalsOffset)
 #define RW_TEX_DICTIONARY_LIST      (*(RwLinkList*)RW_TEXTURE_GLOBALS)
+#define RW_TEXTURE_FREE_LIST        (*(RwFreeList**)(RW_TEXTURE_GLOBALS + 0x8))
 #define RW_TEX_DICTIONARY_FREE_LIST (*(RwFreeList**)(RW_TEXTURE_GLOBALS + 0xC))
+#define RW_CURRENT_TEX_DICTIONARY   (*(RwTexDictionary**)(RW_TEXTURE_GLOBALS + 0x10))
 
 // Last error of the current engine instance (HYPOTHESIS: RWERRORGLOBAL(errError)).
 #define RW_LAST_ERROR (*(RwError*)((u8*)lbl_8042C9A4 + lbl_8042C950.globalsOffset))
