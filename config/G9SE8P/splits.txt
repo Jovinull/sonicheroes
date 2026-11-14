@@ -4669,6 +4669,9 @@ game/fn_8019E2E8.cpp:
 game/fn_8019E334.cpp:
 	.text       start:0x8019E334 end:0x8019E344
 
+game/fn_8019E344.cpp:
+	.text       start:0x8019E344 end:0x8019E480
+
 game/fn_8019E480.cpp:
 	.text       start:0x8019E480 end:0x8019E52C
 

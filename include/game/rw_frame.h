@@ -13,8 +13,9 @@ struct RwFreeList;
 struct RwEngineGlobals {
 	u8 pad0[0xBC];
 	RwLinkList dirtyFrameList; // 0xBC
-	u8 padC4[0x148 - 0xC4];
-	// HYPOTHESIS: memory-function table entry that releases an entry to a free list.
+	u8 padC4[0x144 - 0xC4];
+	// HYPOTHESIS: memory-function table entries that take and release a free-list entry.
+	void* (*freeListAlloc)(RwFreeList* freeList);            // 0x144
 	void (*freeListFree)(RwFreeList* freeList, void* entry); // 0x148
 };
 
