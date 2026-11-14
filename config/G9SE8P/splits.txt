@@ -2388,6 +2388,11 @@ game/fn_800FA494.cpp:
 	extabindex  start:0x8000FC34 end:0x8000FC40
 	.text       start:0x800FA494 end:0x800FA510
 
+game/fn_800FA510.cpp:
+	extab       start:0x80009574 end:0x800095A0
+	extabindex  start:0x8000FC40 end:0x8000FC4C
+	.text       start:0x800FA510 end:0x800FA630
+
 game/fn_800FAB00.cpp:
 	.text       start:0x800FAB00 end:0x800FAB54
 
