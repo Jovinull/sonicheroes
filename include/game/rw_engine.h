@@ -183,14 +183,28 @@ struct RwEngineGlobals {
 	s32 (*rwfexist)(const char* name);                    // 0xC4
 	void* (*rwfopen)(const char* name, const char* mode); // 0xC8
 	s32 (*rwfclose)(void* file);                          // 0xCC
-	u8 padD0[0xFC - 0xD0];
-	char* (*rwstrncpy)(char* dst, const char* src, u32 size); // 0xFC
-	u8 pad100[0x120 - 0x100];
-	u32 (*rwstrlen)(const char* string); // 0x120
-	u8 pad124[0x134 - 0x124];
-	void* (*rwmalloc)(u32 size);               // 0x134
-	void (*rwfree)(void* block);               // 0x138
-	void* (*rwrealloc)(void* block, u32 size); // 0x13C
+	u8 padD0[0xF0 - 0xD0];
+	// String functions (HYPOTHESIS: RwStringFunctions).
+	s32 (*rwsprintf)(char* buffer, const char* format, ...);         // 0xF0
+	s32 (*rwvsprintf)(char* buffer, const char* format, void* args); // 0xF4
+	char* (*rwstrcpy)(char* dst, const char* src);                   // 0xF8
+	char* (*rwstrncpy)(char* dst, const char* src, u32 size);        // 0xFC
+	char* (*rwstrcat)(char* dst, const char* src);                   // 0x100
+	char* (*rwstrncat)(char* dst, const char* src, u32 size);        // 0x104
+	char* (*rwstrrchr)(const char* string, s32 character);           // 0x108
+	char* (*rwstrchr)(const char* string, s32 character);            // 0x10C
+	char* (*rwstrstr)(const char* string, const char* search);       // 0x110
+	s32 (*rwstrcmp)(const char* lhs, const char* rhs);               // 0x114
+	s32 (*rwstrncmp)(const char* lhs, const char* rhs, u32 size);    // 0x118
+	s32 (*rwstricmp)(const char* lhs, const char* rhs);              // 0x11C
+	u32 (*rwstrlen)(const char* string);                             // 0x120
+	char* (*rwstrupr)(char* string);                                 // 0x124
+	char* (*rwstrlwr)(char* string);                                 // 0x128
+	char* (*rwstrtok)(char* string, const char* delimiters);         // 0x12C
+	s32 (*rwsscanf)(const char* string, const char* format, ...);    // 0x130
+	void* (*rwmalloc)(u32 size);                                     // 0x134
+	void (*rwfree)(void* block);                                     // 0x138
+	void* (*rwrealloc)(void* block, u32 size);                       // 0x13C
 	u8 pad140[0x144 - 0x140];
 	void* (*freeListAlloc)(RwFreeList* freeList);            // 0x144
 	void (*freeListFree)(RwFreeList* freeList, void* entry); // 0x148
