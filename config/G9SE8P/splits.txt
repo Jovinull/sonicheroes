@@ -5710,6 +5710,9 @@ game/fn_801B6B98.cpp:
 game/fn_801B7778.cpp:
 	.text       start:0x801B7778 end:0x801B7814
 
+game/fn_801B7814.cpp:
+	.text       start:0x801B7814 end:0x801B7940
+
 game/fn_801B7F48.cpp:
 	.text       start:0x801B7F48 end:0x801B7FE4
 
