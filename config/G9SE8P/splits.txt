@@ -2403,6 +2403,11 @@ game/fn_800FA750.cpp:
 	extabindex  start:0x8000FC58 end:0x8000FC64
 	.text       start:0x800FA750 end:0x800FA7CC
 
+game/fn_800FA7CC.cpp:
+	extab       start:0x800095E4 end:0x80009624
+	extabindex  start:0x8000FC64 end:0x8000FC70
+	.text       start:0x800FA7CC end:0x800FA95C
+
 game/fn_800FA95C.cpp:
 	extab       start:0x80009624 end:0x80009650
 	extabindex  start:0x8000FC70 end:0x8000FC7C
