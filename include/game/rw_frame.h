@@ -1,34 +1,14 @@
 #ifndef GAME_RW_FRAME_H
 #define GAME_RW_FRAME_H
 
-#include "game/object.h"
+#include "game/rw_engine.h"
 
 // RenderWare frame-hierarchy helpers shared by the frame units around 0x8019E000.
 // Function names in comments are HYPOTHESIS (RenderWare API shape); symbols stay fn_ addresses.
 
-struct RwFreeList;
-
-// Engine globals block (HYPOTHESIS: RwEngineInstance). Only the fields used by the frame units are
-// known; modules keep their own globals at a registered offset inside it.
-struct RwEngineGlobals {
-	u8 pad0[0xBC];
-	RwLinkList dirtyFrameList; // 0xBC
-	u8 padC4[0x144 - 0xC4];
-	// HYPOTHESIS: memory-function table entries that take and release a free-list entry.
-	void* (*freeListAlloc)(RwFreeList* freeList);            // 0x144
-	void (*freeListFree)(RwFreeList* freeList, void* entry); // 0x148
-};
-
-// Frame module bookkeeping (HYPOTHESIS: frameModule): offset of the frame globals inside the
-// engine block and the number of open engine instances.
-struct RwFrameModuleInfo {
-	s32 globalsOffset;
-	s32 numInstances;
-};
-
 extern "C" {
-extern RwEngineGlobals* lbl_8042C9A4;
-extern RwFrameModuleInfo lbl_8042C9A8;
+// Frame module bookkeeping (HYPOTHESIS: frameModule).
+extern RwModuleInfo lbl_8042C9A8;
 // Frame plugin registry (HYPOTHESIS: frameTKList).
 extern u8 lbl_802905F8[];
 // HYPOTHESIS: _rwPluginRegistryInitObject, _rwPluginRegistryDeInitObject and
