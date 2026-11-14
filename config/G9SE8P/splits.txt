@@ -1732,6 +1732,11 @@ game/fn_800C1E10.cpp:
 game/fn_800C1E88.cpp:
 	.text       start:0x800C1E88 end:0x800C1E8C
 
+game/fn_800C2054.cpp:
+	extab       start:0x80008504 end:0x8000850C
+	extabindex  start:0x8000EC8C end:0x8000EC98
+	.text       start:0x800C2054 end:0x800C2244
+
 game/fn_800C2244.cpp:
 	.text       start:0x800C2244 end:0x800C2248
 
