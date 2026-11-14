@@ -41,6 +41,7 @@ enum RwStandardFuncIndex {
 	rwSTANDARDCAMERABEGINUPDATE     = 1,  // 0x4C
 	rwSTANDARDRGBTOPIXEL            = 2,  // 0x50
 	rwSTANDARDPIXELTORGB            = 3,  // 0x54
+	rwSTANDARDRASTERCREATE          = 4,  // 0x58
 	rwSTANDARDRASTERDESTROY         = 5,  // 0x5C
 	rwSTANDARDIMAGEGETRASTER        = 6,  // 0x60
 	rwSTANDARDRASTERSETIMAGE        = 7,  // 0x64
@@ -158,6 +159,14 @@ RwPluginRegistry* fn_80198D5C(RwPluginRegistry* registry, void* object);
 RwPluginRegistry* fn_80198E04(RwPluginRegistry* registry, void* object);
 RwPluginRegistry* fn_80198E70(RwPluginRegistry* registry, void* dst, const void* src);
 }
+
+// Raster module bookkeeping (HYPOTHESIS: rasterModule) and plugin registry (rasterTKList); the
+// raster free list sits at +0x60 in the raster module globals.
+extern "C" {
+extern RwModuleInfo lbl_8042C9B8;
+extern RwPluginRegistry lbl_80290628;
+}
+#define RW_RASTER_FREE_LIST (*(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B8.globalsOffset + 0x60))
 
 // Last error of the current engine instance (HYPOTHESIS: RWERRORGLOBAL(errError)).
 #define RW_LAST_ERROR (*(RwError*)((u8*)lbl_8042C9A4 + lbl_8042C950.globalsOffset))

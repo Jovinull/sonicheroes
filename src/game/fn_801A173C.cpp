@@ -4,16 +4,11 @@
 #include "game/rw_engine.h"
 
 extern "C" {
-// Raster module bookkeeping (HYPOTHESIS: rasterModule) and plugin registry (rasterTKList).
-extern RwModuleInfo lbl_8042C9B8;
-extern RwPluginRegistry lbl_80290628;
-
 s32 fn_801A173C(RwRaster* raster)
 {
 	fn_80198E04(&lbl_80290628, raster);
 	lbl_8042C9A4->stdFunc[rwSTANDARDRASTERDESTROY](0, raster, 0);
-	lbl_8042C9A4->freeListFree(
-	    *(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B8.globalsOffset + 0x60), raster);
+	lbl_8042C9A4->freeListFree(RW_RASTER_FREE_LIST, raster);
 	return 1;
 }
 }
