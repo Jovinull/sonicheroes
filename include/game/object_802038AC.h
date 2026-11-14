@@ -11,9 +11,10 @@ struct Object802038AC {
 	void* part8;    // 0x8
 	void* partC;    // 0xC
 	void* part10;   // 0x10
-	u8 pad14[0x8];  // 0x14, 0x18: set by fn_80202E8C
+	void* part14;   // 0x14: set by fn_80202E8C
+	void* part18;   // 0x18: set by fn_80202E8C
 	void* list;     // 0x1C
-	u8 pad20[0x4];  // 0x20: set by fn_802037C0
+	void* part20;   // 0x20: buffer set by fn_802037C0
 	void* part24;   // 0x24
 	void* callback; // 0x28
 	f32 value2C;    // 0x2C
