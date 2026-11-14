@@ -1717,6 +1717,11 @@ game/fn_800C11A0.cpp:
 	extabindex  start:0x8000EC38 end:0x8000EC44
 	.text       start:0x800C11A0 end:0x800C1380
 
+game/fn_800C179C.cpp:
+	extab       start:0x800084E4 end:0x800084EC
+	extabindex  start:0x8000EC5C end:0x8000EC68
+	.text       start:0x800C179C end:0x800C1978
+
 game/fn_800C1978.cpp:
 	.text       start:0x800C1978 end:0x800C19E8
 
