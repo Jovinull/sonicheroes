@@ -145,6 +145,13 @@ static inline void RwBBoxAddPointInline(RwBBox* bbox, const RwV3d* point)
 
 #define RW_ERROR_NO_MEMORY ((s32)0x80000013)
 
+// Unlinks a node from its doubly linked list (HYPOTHESIS: rwLinkListRemoveLLLink).
+static inline void RwLLLinkRemove(RwLLLink* link)
+{
+	link->prev->next = link->next;
+	link->next->prev = link->prev;
+}
+
 // Growable array (HYPOTHESIS: RwSList).
 struct RwSList {
 	u8* listElements;

@@ -41,13 +41,6 @@ static inline void RwMatrixSetIdentity(RwMatrix* m)
 	RW_MATRIX_SET_IDENTITY(m, lbl_8042F6F8, lbl_8042F6FC);
 }
 
-// Unlinks a node from its doubly linked list (HYPOTHESIS: rwLinkListRemoveLLLink).
-static inline void RwLLLinkRemove(RwLLLink* link)
-{
-	link->prev->next = link->next;
-	link->next->prev = link->prev;
-}
-
 // Links a node at the head of a list (HYPOTHESIS: rwLinkListAddLLLink).
 static inline void RwLinkListAddLLLink(RwLinkList* list, RwLLLink* link)
 {
