@@ -148,7 +148,8 @@ struct PoolSystem {
 	unsigned char pad52A0[0x8];
 	int arenaFree; // 0x52A8: bytes left for fn_80206104
 	int arenaNext; // 0x52AC: offset of the next region
-	unsigned char pad52B0[0x52F8 - 0x52B0];
+	unsigned char pad52B0[0x52B8 - 0x52B0];
+	int regionDefaults[0x10]; // 0x52B8: default region sizes set by fn_802061B4
 	struct {
 		int offset;
 		int size;
@@ -163,9 +164,13 @@ struct PoolSystem {
 	AXFX_REVERBHI reverbHi;   // 0xFF58
 	AXFX_CHORUS chorus;       // 0x10138
 	AXFX_DELAY delay;         // 0x101D4
-	unsigned char pad10[0x13A3B - 0x101D4 - sizeof(AXFX_DELAY)];
+	unsigned char pad10[0x13A38 - 0x101D4 - sizeof(AXFX_DELAY)];
+	unsigned char f13A38; // 0x13A38: cleared by fn_802061B4
+	unsigned char pad13A39[0x2];
 	unsigned char skipped; // 0x13A3B: updates skipped because one was already running
-	unsigned char pad13A3C[0x13F6C - 0x13A3C];
+	unsigned char pad13A3C[0x8];
+	float f13A44; // 0x13A44: set to 1.004184 by fn_802061B4
+	unsigned char pad13A48[0x13F6C - 0x13A48];
 	PoolHandle handles[0x40]; // 0x13F6C
 	unsigned char f1446C;     // 0x1446C: passed to the bank loaders
 };
