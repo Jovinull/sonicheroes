@@ -291,6 +291,9 @@ game/fn_8003CB98.cpp:
 game/fn_8003E244.cpp:
 	.text       start:0x8003E244 end:0x8003E2E4
 
+game/fn_8003E2E4.cpp:
+	.text       start:0x8003E2E4 end:0x8003E394
+
 game/GetPlayerPositionHistory__12PlayerMasterFiUc.cpp:
 	.text       start:0x8003E394 end:0x8003E3BC
 
