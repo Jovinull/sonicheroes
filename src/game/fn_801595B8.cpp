@@ -1,7 +1,8 @@
 // Walks the sector tree of a world depth first with an explicit stack (HYPOTHESIS: RpWorld sector
 // iteration) and, for every leaf sector (negative type) that has no data at 0x80 yet, builds it:
-// fn_80155864 resolves the sector's key at 0x8C and fn_80158B5C attaches the result with the
-// world's entry for the sector index at 0x88. Returns the world, or null when either step fails.
+// fn_80155864 creates an array of 0x14-byte entries for the count at 0x8C and fn_80158B5C fills
+// it with the world's entry for the sector index at 0x88. Returns the world, or null when either
+// step fails.
 // Field names are inferred from this function only.
 // NonMatching: when pushing the right child the retail code loads the left child before the
 // stack store; ours stores first (2 words differ, also under GC/2.0).
@@ -17,7 +18,7 @@ struct Sector801595B8 {
 	u8 pad84[0x4];
 	u16 index; // 0x88
 	u8 pad8A[0x2];
-	u16 key; // 0x8C
+	u16 count; // 0x8C
 };
 
 struct World801595B8 {
@@ -28,7 +29,7 @@ struct World801595B8 {
 };
 
 extern "C" {
-void* fn_80155864(u16 key);
+void* fn_80155864(u32 count);
 World801595B8* fn_80158B5C(
     World801595B8* world, void* resolved, Sector801595B8* sector, void** entry);
 
@@ -42,7 +43,7 @@ World801595B8* fn_801595B8(World801595B8* world)
 		if (sector->type < 0) {
 			void** entry = &world->entries[sector->index];
 			if (!sector->data) {
-				void* resolved = fn_80155864(sector->key);
+				void* resolved = fn_80155864(sector->count);
 				if (resolved) {
 					world = fn_80158B5C(world, resolved, sector, entry);
 					if (!world) {
