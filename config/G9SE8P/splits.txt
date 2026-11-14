@@ -1693,6 +1693,11 @@ game/fn_800C0A94.cpp:
 game/fn_800C0B00.cpp:
 	.text       start:0x800C0B00 end:0x800C0B04
 
+game/fn_800C0C30.cpp:
+	extab       start:0x800084B4 end:0x800084BC
+	extabindex  start:0x8000EC14 end:0x8000EC20
+	.text       start:0x800C0C30 end:0x800C0E10
+
 game/fn_800C0E10.cpp:
 	.text       start:0x800C0E10 end:0x800C0E34
 
