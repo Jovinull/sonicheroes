@@ -4012,6 +4012,9 @@ game/fn_80159900.cpp:
 game/fn_80159918.cpp:
 	.text       start:0x80159918 end:0x80159920
 
+game/fn_80159E18.cpp:
+	.text       start:0x80159E18 end:0x80159E9C
+
 game/fn_80159F3C.cpp:
 	.text       start:0x80159F3C end:0x80159F7C
 
