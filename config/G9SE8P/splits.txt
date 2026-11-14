@@ -2858,6 +2858,9 @@ game/fn_8011BEF8.cpp:
 game/fn_8011BEFC.cpp:
 	.text       start:0x8011BEFC end:0x8011BF00
 
+game/fn_8011BF00.cpp:
+	.text       start:0x8011BF00 end:0x8011BF98
+
 game/fn_8011BF98.cpp:
 	.text       start:0x8011BF98 end:0x8011C01C
 
