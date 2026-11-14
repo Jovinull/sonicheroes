@@ -4696,6 +4696,9 @@ game/RwEngineRegisterPlugin.cpp:
 game/fn_8019D41C.cpp:
 	.text       start:0x8019D41C end:0x8019D448
 
+game/fn_8019D448.cpp:
+	.text       start:0x8019D448 end:0x8019D4D4
+
 game/fn_8019DB0C.cpp:
 	.text       start:0x8019DB0C end:0x8019DB5C
 
