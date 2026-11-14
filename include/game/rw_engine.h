@@ -164,7 +164,8 @@ struct RwModuleInfo {
 // globals at a registered offset inside it.
 struct RwEngineGlobals {
 	RwCamera* curCamera; // 0x0, camera between begin/end update
-	u8 pad4[0x14 - 0x4];
+	void* curWorld;      // 0x4 (HYPOTHESIS: current world)
+	u8 pad8[0x14 - 0x8];
 	// Device system entry point (HYPOTHESIS: RwDevice::fpSystem).
 	s32 (*system)(s32 request, void* out, void* inOut, s32 numIn); // 0x14
 	u8 pad18[0x20 - 0x18];
