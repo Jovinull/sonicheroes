@@ -86,6 +86,20 @@ struct PoolHeapBlock {
 
 typedef void (*PoolRequestCallback)(unsigned int arg);
 
+// Heap copy of a bank chunk.
+struct PoolBank {
+	unsigned char* data; // null when nothing is loaded
+	unsigned int size;
+};
+
+// 0x10-byte chunk header of a bank image ("gcax" + a kind tag); `size` bytes of data follow.
+struct PoolChunk {
+	unsigned int tag0; // "gcax"
+	unsigned int tag1;
+	unsigned int f8;
+	unsigned int size;
+};
+
 struct PoolSystem {
 	int f00;  // 0x00: nonzero once the system runs
 	int pad4; // 0x04
@@ -114,12 +128,10 @@ struct PoolSystem {
 	struct {
 		int offset;
 		int size;
-	} regions[0x10]; // 0x52F8: reserved by fn_80206104
-	struct {
-		unsigned char* data; // 0x5378: loaded bank image, or null
-		unsigned int pad4;
-	} banks[0x20];
-	PoolSlot slots[8]; // 0x5478
+	} regions[0x10];          // 0x52F8: reserved by fn_80206104
+	PoolBank banks[0x10];     // 0x5378: "gcaxMPBP" chunks loaded by fn_80205F9C
+	PoolBank sequences[0x10]; // 0x53F8: "gcaxMSB " chunks loaded by fn_80205EA4
+	PoolSlot slots[8];        // 0x5478
 	unsigned char padFDF8[0xFE04 - 0xFDF8];
 	AXFX_REVERBSTD reverbStd; // 0xFE04: aux effect contexts selected by fn_80209CDC
 	AXFX_REVERBHI reverbHi;   // 0xFF58
