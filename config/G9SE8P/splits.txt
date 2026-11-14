@@ -4606,6 +4606,9 @@ game/fn_80178930.cpp:
 game/fn_801789A8.cpp:
 	.text       start:0x801789A8 end:0x80178A28
 
+game/fn_80178A28.cpp:
+	.text       start:0x80178A28 end:0x80178C00
+
 game/fn_801791D8.cpp:
 	.text       start:0x801791D8 end:0x801792A0
 
