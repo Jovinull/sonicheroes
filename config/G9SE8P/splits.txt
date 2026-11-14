@@ -621,6 +621,9 @@ game/fn_8004DDDC.cpp:
 game/fn_8004E588.cpp:
 	.text       start:0x8004E588 end:0x8004E5AC
 
+game/fn_8004E5AC.cpp:
+	.text       start:0x8004E5AC end:0x8004E608
+
 game/dtor_8004E624.cpp:
 	extab       start:0x80006278 end:0x80006280
 	extabindex  start:0x8000CBA4 end:0x8000CBB0
