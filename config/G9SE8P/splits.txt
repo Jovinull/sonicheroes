@@ -6863,6 +6863,9 @@ game/fn_8020C314.cpp:
 game/fn_8020C624.cpp:
 	.text       start:0x8020C624 end:0x8020C658
 
+game/fn_8020C658.cpp:
+	.text       start:0x8020C658 end:0x8020C700
+
 game/fn_8020C700.cpp:
 	.text       start:0x8020C700 end:0x8020C72C
 
