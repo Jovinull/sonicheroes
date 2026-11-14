@@ -51,8 +51,9 @@ struct PoolSequence {
 
 // Sixteen of these per slot, from slot offset 0xA4 (reset by fn_80209C48).
 struct PoolChannel {
-	int f00; // 0x00
-	unsigned char pad04[0xC];
+	int f00;   // 0x00
+	int index; // 0x04: channel number (fn_80209AA4)
+	unsigned char pad08[0x8];
 	int f10; // 0x10
 	int f14; // 0x14
 	int f18; // 0x18
@@ -73,14 +74,15 @@ struct PoolSlot {
 	unsigned int flags4; // 0x04: bit 0 set while paused (fn_8020B730), bit 1 checked on resume
 	// Two linear ramps advanced by fn_802092A8 and fn_8020917C: value moves from start to target
 	// while remaining counts down from duration in steps of 5; remaining is -1 when idle.
-	float rampAValue; // 0x08
-	unsigned char padC[0x8];
+	float rampAValue;     // 0x08
+	float f0C;            // 0x0C
+	float f10;            // 0x10
 	float rampATarget;    // 0x14
 	float rampAStart;     // 0x18
 	float rampADuration;  // 0x1C
 	float rampARemaining; // 0x20
 	float rampBValue;     // 0x24
-	unsigned char pad28[0x4];
+	float f28;            // 0x28
 	float rampBTarget;    // 0x2C
 	float rampBStart;     // 0x30
 	float rampBDuration;  // 0x34
@@ -199,6 +201,26 @@ extern "C" {
 extern PoolSystem* lbl_8042CF6C;
 extern char lbl_8023D4C8[];
 extern char lbl_8023D4EC[];
+extern const float lbl_804300A0; // .sdata2 literal (float)0x88888888
+}
+
+// Resets channel `ch` of a slot to its defaults with interrupts disabled (fn_80209C48, also
+// inlined by fn_80209AA4). lbl_804300A0 is const so its load may be scheduled early, as in retail.
+static inline void ResetPoolChannel(PoolSlot* s, int ch)
+{
+	BOOL enabled        = OSDisableInterrupts();
+	s->channels[ch].f00 = 0;
+	s->channels[ch].f10 = 100;
+	s->channels[ch].f18 = 0x40;
+	s->channels[ch].f1C = 0x2000;
+	s->channels[ch].f14 = 0x7F;
+	s->channels[ch].f20 = 0;
+	s->channels[ch].f28 = 0;
+	s->channels[ch].f24 = -1;
+	s->channels[ch].f38 = 0x88888888;
+	s->channels[ch].f3C = lbl_804300A0;
+	s->channels[ch].f40 = lbl_804300A0;
+	OSRestoreInterrupts(enabled);
 }
 
 // Index of the first idle ARAM request; with all 0x40 busy it reports lbl_8023D4C8 with the file

@@ -5681,6 +5681,9 @@ game/fn_802099B0.cpp:
 game/fn_80209A3C.cpp:
 	.text       start:0x80209A3C end:0x80209AA4
 
+game/fn_80209AA4.cpp:
+	.text       start:0x80209AA4 end:0x80209C48
+
 game/fn_80209C48.cpp:
 	.text       start:0x80209C48 end:0x80209CDC
 
