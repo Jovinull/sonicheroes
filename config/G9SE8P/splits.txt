@@ -4663,6 +4663,9 @@ game/fn_8019C9DC.cpp:
 game/fn_8019CA40.cpp:
 	.text       start:0x8019CA40 end:0x8019CAA4
 
+game/fn_8019CAA4.cpp:
+	.text       start:0x8019CAA4 end:0x8019CB10
+
 game/fn_8019CB10.cpp:
 	.text       start:0x8019CB10 end:0x8019CB74
 
