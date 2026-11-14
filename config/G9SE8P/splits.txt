@@ -3000,6 +3000,11 @@ game/enemy/e_mtnpath.cpp:
 game/fn_80120060.cpp:
 	.text       start:0x80120060 end:0x80120088
 
+game/fn_80120088.cpp:
+	extab       start:0x8000AF9C end:0x8000AFB4
+	extabindex  start:0x80010FA8 end:0x80010FB4
+	.text       start:0x80120088 end:0x801200DC
+
 game/fn_801200DC.cpp:
 	extab       start:0x8000AFB4 end:0x8000AFBC
 	extabindex  start:0x80010FB4 end:0x80010FC0
