@@ -894,6 +894,9 @@ game/fn_8005FD20.cpp:
 game/fn_8005FD34.cpp:
 	.text       start:0x8005FD34 end:0x8005FD8C
 
+game/fn_8005FD8C.cpp:
+	.text       start:0x8005FD8C end:0x8005FE60
+
 game/fn_8005FE60.cpp:
 	.text       start:0x8005FE60 end:0x8005FE78
 
