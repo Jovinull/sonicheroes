@@ -209,6 +209,33 @@ extern RwModuleInfo lbl_8042C9C4;
 #define RW_TEX_DICTIONARY_FREE_LIST (*(RwFreeList**)(RW_TEXTURE_GLOBALS + 0xC))
 #define RW_CURRENT_TEX_DICTIONARY   (*(RwTexDictionary**)(RW_TEXTURE_GLOBALS + 0x10))
 
+// Float viewed as its bit pattern (HYPOTHESIS: RwSplitBits). The integer view is volatile, so every
+// step of the table square roots goes through memory as in the retail code.
+union RwSplitBits {
+	f32 value;
+	volatile u32 bits;
+};
+
+// Vector module bookkeeping (HYPOTHESIS: vectorModule): its globals start with the square-root
+// table, followed by the reciprocal square-root table.
+extern "C" {
+extern RwModuleInfo lbl_8042C990;
+}
+#define RW_SQRT_TABLE     (*(u32**)((u8*)lbl_8042C9A4 + lbl_8042C990.globalsOffset))
+#define RW_INV_SQRT_TABLE (*(u32**)((u8*)lbl_8042C9A4 + lbl_8042C990.globalsOffset + 4))
+
+// Table-driven square root of split.value, in place (HYPOTHESIS: rwSqrtMacro): rounds the bit
+// pattern, halves the exponent and adds the entry selected by the low exponent bit and the top
+// mantissa bits.
+#define RW_SQRT_SPLIT(split)                                                                       \
+	do {                                                                                           \
+		if ((split).bits != 0) {                                                                   \
+			(split).bits += 0x800;                                                                 \
+			(split).bits = (((split).bits >> 1) & 0x3FC00000)                                      \
+			    + RW_SQRT_TABLE[((split).bits >> 12) & 0xFFF];                                     \
+		}                                                                                          \
+	} while (0)
+
 // Last error of the current engine instance (HYPOTHESIS: RWERRORGLOBAL(errError)).
 #define RW_LAST_ERROR (*(RwError*)((u8*)lbl_8042C9A4 + lbl_8042C950.globalsOffset))
 
