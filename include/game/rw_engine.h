@@ -252,6 +252,10 @@ extern RwModuleInfo lbl_8042C9B0;
 extern RwPluginRegistry lbl_80290610;
 }
 #define RW_IMAGE_FREE_LIST (*(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset))
+// Image search path buffer and its size, after the free list (HYPOTHESIS: imagePath and
+// imagePathSize).
+#define RW_IMAGE_PATH      (*(char**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x4))
+#define RW_IMAGE_PATH_SIZE (*(s32*)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x8))
 
 // Raster module bookkeeping (HYPOTHESIS: rasterModule) and plugin registry (rasterTKList); the
 // raster free list sits at +0x60 in the raster module globals.
