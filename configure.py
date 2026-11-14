@@ -2234,6 +2234,7 @@ config.libs = [
             Object(NonMatching, "game/fn_8020B14C.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/fn_8020AADC.cpp"),
             Object(Matching, "game/fn_8020AEA4.cpp"),
+            Object(Matching, "game/fn_8020AB74.cpp"),
             Object(Matching, "game/material.cpp", extra_cflags=["-bool off", "-inline auto,deferred,level=2", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/plugin/materialcolorchange.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/object.cpp", extra_cflags=["-bool off", "-inline auto,deferred,level=2", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
