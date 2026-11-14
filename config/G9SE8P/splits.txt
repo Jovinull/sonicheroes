@@ -4600,6 +4600,9 @@ game/fn_801B5554.cpp:
 game/fn_801B55F4.cpp:
 	.text       start:0x801B55F4 end:0x801B5628
 
+game/fn_801B56A4.cpp:
+	.text       start:0x801B56A4 end:0x801B56E8
+
 game/fn_801B66E0.cpp:
 	.text       start:0x801B66E0 end:0x801B6738
 
