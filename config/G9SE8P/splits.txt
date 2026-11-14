@@ -3607,6 +3607,9 @@ game/fn_80143A9C.cpp:
 game/fn_80143AE0.cpp:
 	.text       start:0x80143AE0 end:0x80143AE4
 
+game/fn_8014535C.cpp:
+	.text       start:0x8014535C end:0x8014543C
+
 game/fn_80145EB4.cpp:
 	.text       start:0x80145EB4 end:0x80145EF8
 
