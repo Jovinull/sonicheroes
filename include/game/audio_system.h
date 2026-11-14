@@ -84,6 +84,8 @@ struct PoolHeapBlock {
 	unsigned char pad8[0x18];
 };
 
+typedef void (*PoolRequestCallback)(unsigned int arg);
+
 struct PoolSystem {
 	int f00;  // 0x00: nonzero once the system runs
 	int pad4; // 0x04
@@ -96,15 +98,15 @@ struct PoolSystem {
 	unsigned char pad28[0x44 - 0x28];
 	int f44; // 0x44: 1 keeps a paused slot's handle (fn_802066AC) instead of releasing it
 	unsigned char pad48[0x54 - 0x48];
-	PoolEntry10C entries10C[0x40];  // 0x54
-	PoolEntry14 entries14[0x40];    // 0x4354
-	unsigned char* heap;            // 0x4854: 32-byte aligned heap start (fn_80205DF4)
-	unsigned int heapSize;          // 0x4858
-	ARQRequest requests[0x40];      // 0x485C: ARAM transfers posted by fn_80205848
-	unsigned char busy[0x40];       // 0x505C: nonzero while the request is in flight
-	unsigned int arqOwner;          // 0x509C
-	unsigned int requestArgA[0x40]; // 0x50A0
-	unsigned int requestArgB[0x40]; // 0x51A0
+	PoolEntry10C entries10C[0x40];             // 0x54
+	PoolEntry14 entries14[0x40];               // 0x4354
+	unsigned char* heap;                       // 0x4854: 32-byte aligned heap start (fn_80205DF4)
+	unsigned int heapSize;                     // 0x4858
+	ARQRequest requests[0x40];                 // 0x485C: ARAM transfers posted by fn_80205848
+	unsigned char busy[0x40];                  // 0x505C: nonzero while the request is in flight
+	unsigned int arqOwner;                     // 0x509C
+	PoolRequestCallback requestCallback[0x40]; // 0x50A0: called by fn_80205B08 on completion
+	unsigned int requestCallbackArg[0x40];     // 0x51A0
 	unsigned char pad52A0[0x8];
 	int arenaFree; // 0x52A8: bytes left for fn_80206104
 	int arenaNext; // 0x52AC: offset of the next region
@@ -130,7 +132,28 @@ struct PoolSystem {
 	unsigned char f1446C;     // 0x1446C: passed to the bank loaders
 };
 
-extern "C" PoolSystem* lbl_8042CF6C;
+extern "C" {
+#include "dolphin/os.h"
+
+extern PoolSystem* lbl_8042CF6C;
+extern char lbl_8023D4C8[];
+extern char lbl_8023D4EC[];
+}
+
+// Index of the first idle ARAM request; with all 0x40 busy it reports lbl_8023D4C8 with the file
+// name lbl_8023D4EC and line 0xC2, then hangs.
+static inline int FindFreeArqRequest(void)
+{
+	int i;
+	for (i = 0; i < 0x40; i++) {
+		if (lbl_8042CF6C->busy[i] == 0) {
+			return i;
+		}
+	}
+	OSReport(lbl_8023D4C8, lbl_8023D4EC, 0xC2);
+	while (1) {
+	}
+}
 
 // 0 for an active record of the pool, 0x07000103 for null, 0x07000102 otherwise.
 static inline int CheckPoolHandle(PoolSystem* sys, PoolHandle* h)
