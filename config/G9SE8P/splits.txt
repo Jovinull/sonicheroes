@@ -1294,6 +1294,11 @@ game/KillMySelf__9TObjEnemyFv.cpp:
 game/fn_800A31A0.cpp:
 	.text       start:0x800A31A0 end:0x800A31B8
 
+game/fn_800A31B8.cpp:
+	extab       start:0x80007930 end:0x80007938
+	extabindex  start:0x8000DF3C end:0x8000DF48
+	.text       start:0x800A31B8 end:0x800A321C
+
 game/fn_800A3CBC.cpp:
 	.text       start:0x800A3CBC end:0x800A3CE0
 
