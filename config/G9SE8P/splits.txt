@@ -4180,6 +4180,9 @@ game/fn_80159F7C.cpp:
 game/fn_80159FB8.cpp:
 	.text       start:0x80159FB8 end:0x8015A120
 
+game/fn_8015A120.cpp:
+	.text       start:0x8015A120 end:0x8015A224
+
 game/fn_8015A224.cpp:
 	.text       start:0x8015A224 end:0x8015A2B8
 
