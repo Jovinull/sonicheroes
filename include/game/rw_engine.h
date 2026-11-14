@@ -136,14 +136,19 @@ struct RwEngineGlobals {
 	u8 pad38[0x48 - 0x38];
 	RwStandardFunc stdFunc[rwSTANDARDNUMOFSTANDARD]; // 0x48
 	RwLinkList dirtyFrameList;                       // 0xBC
-	u8 padC4[0xFC - 0xC4];
+	// File functions (HYPOTHESIS: RwFileFunctions).
+	s32 (*rwfexist)(const char* name);                    // 0xC4
+	void* (*rwfopen)(const char* name, const char* mode); // 0xC8
+	s32 (*rwfclose)(void* file);                          // 0xCC
+	u8 padD0[0xFC - 0xD0];
 	char* (*rwstrncpy)(char* dst, const char* src, u32 size); // 0xFC
 	u8 pad100[0x120 - 0x100];
 	u32 (*rwstrlen)(const char* string); // 0x120
 	u8 pad124[0x134 - 0x124];
-	void* (*rwmalloc)(u32 size); // 0x134
-	void (*rwfree)(void* block); // 0x138
-	u8 pad13C[0x144 - 0x13C];
+	void* (*rwmalloc)(u32 size);               // 0x134
+	void (*rwfree)(void* block);               // 0x138
+	void* (*rwrealloc)(void* block, u32 size); // 0x13C
+	u8 pad140[0x144 - 0x140];
 	void* (*freeListAlloc)(RwFreeList* freeList);            // 0x144
 	void (*freeListFree)(RwFreeList* freeList, void* entry); // 0x148
 };
