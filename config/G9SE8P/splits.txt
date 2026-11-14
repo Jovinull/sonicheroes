@@ -5062,6 +5062,9 @@ game/RwFreeListCreate.cpp:
 game/fn_801966CC.cpp:
 	.text       start:0x801966CC end:0x801966EC
 
+game/fn_80196BCC.cpp:
+	.text       start:0x80196BCC end:0x80196D00
+
 game/fn_80196E98.cpp:
 	.text       start:0x80196E98 end:0x80196EE8
 
