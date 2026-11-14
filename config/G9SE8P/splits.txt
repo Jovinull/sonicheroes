@@ -2568,6 +2568,11 @@ game/fn_80116C50.cpp:
 game/fn_80116D2C.cpp:
 	.text       start:0x80116D2C end:0x80116D30
 
+game/fn_80116D30.cpp:
+	extab       start:0x8000A9C4 end:0x8000A9CC
+	extabindex  start:0x80010A80 end:0x80010A8C
+	.text       start:0x80116D30 end:0x80116DF8
+
 game/fn_80116DF8.cpp:
 	extab       start:0x8000A9CC end:0x8000A9D4
 	extabindex  start:0x80010A8C end:0x80010A98
