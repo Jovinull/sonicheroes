@@ -120,12 +120,6 @@ struct PoolEntry10C {
 	int f108; // 0x108
 };
 
-// 0x40 of these from system offset 0x4354; fn_80206F04 counts the ones with a nonzero first byte.
-struct PoolEntry14 {
-	unsigned char used; // 0x00
-	unsigned char pad1[0x14 - 0x1];
-};
-
 // 0x20-byte heap block header: "MF" for a free block, "MB" for a used block and the end marker
 // (fn_80205DF4, fn_80205CBC). The memory handed out follows the header.
 struct PoolHeapBlock {
@@ -135,12 +129,16 @@ struct PoolHeapBlock {
 	unsigned char pad8[0x18];
 };
 
-// A sounding note of a slot (the data of a node in PoolSlot::objects), made by fn_80206948.
+// A sounding note (0x40 of them at system offset 0x4354, handed out by fn_80206948); the data of
+// a node in PoolSlot::objects. fn_80206F04 counts the used ones.
 struct PoolObject {
-	unsigned char pad0[0x2];
-	unsigned char channel; // 0x02
-	unsigned char key;     // 0x03
-	unsigned char pad4[0xC - 0x4];
+	unsigned char used;     // 0x00
+	unsigned char count;    // 0x01: voices it needs
+	unsigned char channel;  // 0x02
+	unsigned char key;      // 0x03
+	unsigned char velocity; // 0x04
+	unsigned char pad5[0x3];
+	int priority;          // 0x08
 	PoolSlot* slot;        // 0x0C
 	PoolListNode* entries; // 0x10: its voice entries
 };
@@ -177,10 +175,11 @@ struct PoolSystem {
 	int voicesAcquired; // 0x3C: AX voices taken by fn_80208CE4
 	unsigned char pad40[0x4];
 	int f44; // 0x44: 1 keeps a paused slot's handle (fn_802066AC) instead of releasing it
-	unsigned char pad48[0x50 - 0x48];
+	unsigned char pad48[0x4C - 0x48];
+	int nextNote;                              // 0x4C: rotating search start of fn_80206948
 	int nextEntry;                             // 0x50: rotating search start of fn_80208CE4
 	PoolEntry10C entries10C[0x40];             // 0x54
-	PoolEntry14 entries14[0x40];               // 0x4354
+	PoolObject notes[0x40];                    // 0x4354
 	unsigned char* heap;                       // 0x4854: 32-byte aligned heap start (fn_80205DF4)
 	unsigned int heapSize;                     // 0x4858
 	ARQRequest requests[0x40];                 // 0x485C: ARAM transfers posted by fn_80205848
