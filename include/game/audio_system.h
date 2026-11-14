@@ -1,6 +1,7 @@
 #ifndef GAME_AUDIO_SYSTEM_H
 #define GAME_AUDIO_SYSTEM_H
 
+#include "dolphin/arq.h"
 #include "dolphin/axfx.h"
 
 // The audio system block at lbl_8042CF6C (fn_8020AD88 returns 0x0D000001 while that pointer is
@@ -74,11 +75,13 @@ struct PoolEntry14 {
 	unsigned char pad1[0x14 - 0x1];
 };
 
-// Heap block header: "MF" for a free block, "MB" for the end marker (fn_80205DF4).
+// 0x20-byte heap block header: "MF" for a free block, "MB" for a used block and the end marker
+// (fn_80205DF4, fn_80205CBC). The memory handed out follows the header.
 struct PoolHeapBlock {
 	unsigned short tag;  // 0x00
 	unsigned short f2;   // 0x02
 	PoolHeapBlock* next; // 0x04
+	unsigned char pad8[0x18];
 };
 
 struct PoolSystem {
@@ -93,14 +96,18 @@ struct PoolSystem {
 	unsigned char pad28[0x44 - 0x28];
 	int f44; // 0x44: 1 keeps a paused slot's handle (fn_802066AC) instead of releasing it
 	unsigned char pad48[0x54 - 0x48];
-	PoolEntry10C entries10C[0x40]; // 0x54
-	PoolEntry14 entries14[0x40];   // 0x4354
-	unsigned char* heap;           // 0x4854: 32-byte aligned heap start (fn_80205DF4)
-	unsigned int heapSize;         // 0x4858
-	unsigned char pad485C[0x505C - 0x485C];
-	unsigned char busy[0x52A8 - 0x505C]; // 0x505C: per-channel busy bytes
-	int arenaFree;                       // 0x52A8: bytes left for fn_80206104
-	int arenaNext;                       // 0x52AC: offset of the next region
+	PoolEntry10C entries10C[0x40];  // 0x54
+	PoolEntry14 entries14[0x40];    // 0x4354
+	unsigned char* heap;            // 0x4854: 32-byte aligned heap start (fn_80205DF4)
+	unsigned int heapSize;          // 0x4858
+	ARQRequest requests[0x40];      // 0x485C: ARAM transfers posted by fn_80205848
+	unsigned char busy[0x40];       // 0x505C: nonzero while the request is in flight
+	unsigned int arqOwner;          // 0x509C
+	unsigned int requestArgA[0x40]; // 0x50A0
+	unsigned int requestArgB[0x40]; // 0x51A0
+	unsigned char pad52A0[0x8];
+	int arenaFree; // 0x52A8: bytes left for fn_80206104
+	int arenaNext; // 0x52AC: offset of the next region
 	unsigned char pad52B0[0x52F8 - 0x52B0];
 	struct {
 		int offset;
