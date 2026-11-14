@@ -2098,6 +2098,9 @@ game/fn_800E1194.cpp:
 game/fn_800E1208.cpp:
 	.text       start:0x800E1208 end:0x800E124C
 
+game/fn_800E124C.cpp:
+	.text       start:0x800E124C end:0x800E12FC
+
 game/fn_800E12FC.cpp:
 	.text       start:0x800E12FC end:0x800E1330
 
