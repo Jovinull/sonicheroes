@@ -1,0 +1,55 @@
+// Advances the cached slot index (lbl_802AD060, kind 0x2399) and returns the next entry of the
+// object whose shape (the halfword its pointer at 0x04 points to) is 4 or 5, stopping at an unused
+// entry (byte 1 == -1). See fn_8002128C.
+struct G80020EEC {
+	unsigned int f0;
+	int f4;
+	int f8;
+	int fC;
+};
+
+struct E80020EEC {
+	unsigned char f0;
+	signed char f1;
+	unsigned char pad2[2];
+	unsigned short* shape;
+};
+
+extern "C" {
+extern G80020EEC lbl_802AD060;
+
+E80020EEC* fn_80020EEC(unsigned int a)
+{
+	if (lbl_802AD060.f0 != a) {
+		lbl_802AD060.f0 = a;
+		lbl_802AD060.f4 = -1;
+		lbl_802AD060.fC = -1;
+		lbl_802AD060.f8 = -1;
+	}
+	if (lbl_802AD060.f4 != 0x2399) {
+		lbl_802AD060.f4 = 0x2399;
+		lbl_802AD060.fC = -1;
+		lbl_802AD060.f8 = -1;
+	}
+	int n           = lbl_802AD060.f8 + 1;
+	lbl_802AD060.f8 = n;
+	if (n > 8) {
+		lbl_802AD060.f8 = 8;
+	}
+	int i          = lbl_802AD060.f8;
+	int idx        = i;
+	E80020EEC* p   = (E80020EEC*)(a + i * 8 + 0x14);
+	E80020EEC* end = (E80020EEC*)(a + 0x54);
+	for (; p < end; p++, idx++) {
+		if (p->f1 == -1) {
+			break;
+		}
+		int kind = *p->shape;
+		if (kind == 4 || kind == 5) {
+			lbl_802AD060.f8 = idx;
+			return p;
+		}
+	}
+	return 0;
+}
+}
