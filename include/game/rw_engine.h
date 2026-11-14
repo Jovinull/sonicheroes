@@ -78,6 +78,10 @@ struct RwError {
 typedef void* (*RwPluginObjectConstructor)(void* object, s32 offset, s32 size);
 typedef void* (*RwPluginObjectDestructor)(void* object, s32 offset, s32 size);
 typedef void* (*RwPluginObjectCopy)(void* dst, const void* src, s32 offset, s32 size);
+// Plugin stream-size and rights callbacks (HYPOTHESIS: RwPluginDataChunkGetSizeCallBack and
+// RwPluginDataChunkRightsCallBack).
+typedef s32 (*RwPluginDataChunkGetSize)(const void* object, s32 offset, s32 size);
+typedef s32 (*RwPluginDataChunkRights)(void* object, s32 offset, s32 size, u32 extraData);
 
 struct RwPluginRegistry;
 
@@ -88,9 +92,9 @@ struct RwPluginRegEntry {
 	u32 pluginID;
 	void* readCB;
 	void* writeCB;
-	void* getSizeCB;
+	RwPluginDataChunkGetSize getSizeCB; // 0x14
 	void* alwaysCB;
-	void* rightsCB;
+	RwPluginDataChunkRights rightsCB;      // 0x1C
 	RwPluginObjectConstructor constructCB; // 0x20
 	RwPluginObjectDestructor destructCB;   // 0x24
 	RwPluginObjectCopy copyCB;             // 0x28
