@@ -1,5 +1,5 @@
-// Releases a palette quantizer (HYPOTHESIS: _rwPalQuantTerm): deletes its
-// colour tree, destroys the node free list and frees its two heap blocks.
+// Releases a palette quantizer (HYPOTHESIS: _rwPalQuantTerm): deletes its colour tree, destroys
+// the node free list and frees its two heap blocks.
 #include "game/rw_palquant.h"
 
 extern "C" {
