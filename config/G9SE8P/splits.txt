@@ -4657,6 +4657,9 @@ game/fn_8017CA10.cpp:
 game/fn_8017CA20.cpp:
 	.text       start:0x8017CA20 end:0x8017CA44
 
+game/fn_8017CA44.cpp:
+	.text       start:0x8017CA44 end:0x8017CB58
+
 game/fn_8017CB58.cpp:
 	.text       start:0x8017CB58 end:0x8017CB9C
 
