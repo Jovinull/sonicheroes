@@ -4546,6 +4546,9 @@ game/fn_801942C0.cpp:
 game/fn_801942EC.cpp:
 	.text       start:0x801942EC end:0x80194318
 
+game/fn_80194318.cpp:
+	.text       start:0x80194318 end:0x80194424
+
 game/fn_80194424.cpp:
 	.text       start:0x80194424 end:0x80194430
 
