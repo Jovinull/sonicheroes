@@ -56,15 +56,15 @@ struct PoolChannel {
 	int f00;   // 0x00
 	int index; // 0x04: channel number (fn_80209AA4)
 	int f08;   // 0x08: controllers 0/32 (bank select), see fn_802094A4
-	unsigned char pad0C[0x4];
-	int f10; // 0x10
-	int f14; // 0x14
-	int f18; // 0x18
-	int f1C; // 0x1C
-	int f20; // 0x20
-	int f24; // 0x24
-	int f28; // 0x28
-	int f2C; // 0x2C: passed to fn_802073A0 by fn_80209318
+	int f0C;   // 0x0C: program (MIDI program change, fn_802096B0)
+	int f10;   // 0x10
+	int f14;   // 0x14
+	int f18;   // 0x18
+	int f1C;   // 0x1C
+	int f20;   // 0x20
+	int f24;   // 0x24
+	int f28;   // 0x28
+	int f2C;   // 0x2C: passed to fn_802073A0 by fn_80209318
 	unsigned char pad30[0x8];
 	unsigned int f38; // 0x38
 	float f3C;        // 0x3C
@@ -77,25 +77,28 @@ struct PoolSlot {
 	unsigned int flags4; // 0x04: bit 0 set while paused (fn_8020B730), bit 1 checked on resume
 	// Two linear ramps advanced by fn_802092A8 and fn_8020917C: value moves from start to target
 	// while remaining counts down from duration in steps of 5; remaining is -1 when idle.
-	float rampAValue;         // 0x08
-	float f0C;                // 0x0C
-	float f10;                // 0x10
-	float rampATarget;        // 0x14
-	float rampAStart;         // 0x18
-	float rampADuration;      // 0x1C
-	float rampARemaining;     // 0x20
-	float rampBValue;         // 0x24
-	float f28;                // 0x28
-	float rampBTarget;        // 0x2C
-	float rampBStart;         // 0x30
-	float rampBDuration;      // 0x34
-	float rampBRemaining;     // 0x38
-	float f3C;                // 0x3C: set by fn_802090B8
-	long long pauseTime;      // 0x40: system time when paused
-	PoolSequence seq;         // 0x48: sequence state, reset by fn_8020B8A0
-	PoolListNode* objects;    // 0xA0: the slot's objects (swept by fn_80206578)
-	PoolChannel channels[16]; // 0xA4
-	unsigned char pad524[0x1530 - 0x524];
+	float rampAValue;           // 0x08
+	float f0C;                  // 0x0C
+	float f10;                  // 0x10
+	float rampATarget;          // 0x14
+	float rampAStart;           // 0x18
+	float rampADuration;        // 0x1C
+	float rampARemaining;       // 0x20
+	float rampBValue;           // 0x24
+	float f28;                  // 0x28
+	float rampBTarget;          // 0x2C
+	float rampBStart;           // 0x30
+	float rampBDuration;        // 0x34
+	float rampBRemaining;       // 0x38
+	float f3C;                  // 0x3C: set by fn_802090B8
+	long long pauseTime;        // 0x40: system time when paused
+	PoolSequence seq;           // 0x48: sequence state, reset by fn_8020B8A0
+	PoolListNode* objects;      // 0xA0: the slot's objects (swept by fn_80206578)
+	PoolChannel channels[16];   // 0xA4
+	unsigned int events[0x400]; // 0x524: queued MIDI events (status, data1, data2, extra bytes)
+	int eventRead;              // 0x1524
+	int eventWrite;             // 0x1528
+	int eventCount;             // 0x152C
 };
 
 // 0x40 of these from system offset 0x54, each owning one AX voice (fn_80208CE4 hands them out;
@@ -127,6 +130,16 @@ struct PoolHeapBlock {
 	unsigned short f2;   // 0x02
 	PoolHeapBlock* next; // 0x04
 	unsigned char pad8[0x18];
+};
+
+// A sounding note of a slot (the data of a node in PoolSlot::objects), made by fn_80206948.
+struct PoolObject {
+	unsigned char pad0[0x2];
+	unsigned char channel; // 0x02
+	unsigned char key;     // 0x03
+	unsigned char pad4[0xC - 0x4];
+	PoolSlot* slot;        // 0x0C
+	PoolListNode* entries; // 0x10: its voice entries
 };
 
 typedef void (*PoolRequestCallback)(unsigned int arg);
