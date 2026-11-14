@@ -98,7 +98,7 @@ struct PoolSlot {
 // still waiting for its voice.
 struct PoolEntry10C {
 	int flags; // 0x00
-	unsigned char pad4[0x4];
+	int index; // 0x04: position in the array (fn_80208E28)
 	int f08;   // 0x08
 	int f0C;   // 0x0C
 	float f10; // 0x10
@@ -149,7 +149,8 @@ struct PoolSystem {
 	int pad14;
 	long long time;     // 0x18: OSGetTime() of the current update
 	long long prevTime; // 0x20
-	unsigned char pad28[0x3C - 0x28];
+	unsigned char pad28[0x38 - 0x28];
+	int voiceCount;     // 0x38: AX voices to acquire up front, at most 0x40 (fn_80208E28)
 	int voicesAcquired; // 0x3C: AX voices taken by fn_80208CE4
 	unsigned char pad40[0x4];
 	int f44; // 0x44: 1 keeps a paused slot's handle (fn_802066AC) instead of releasing it
