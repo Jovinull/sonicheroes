@@ -1,7 +1,7 @@
-// Validates a pool slot (see game/handle_pool.h) and passes fn_802099B0 the colour packed from the
+// Validates a pool slot (see game/audio_system.h) and passes fn_802099B0 the colour packed from the
 // three bytes at rgb and the alpha byte a (0xRRGGBBAA). Returns 0, the validation error, or
 // 0x0D000001 when the system is absent.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 extern "C" {
 void fn_802099B0(PoolSlot* s, unsigned int rgba);

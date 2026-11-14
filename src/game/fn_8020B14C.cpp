@@ -1,4 +1,4 @@
-// Loads the entries of the bank image attached to a pool handle (see game/handle_pool.h). The
+// Loads the entries of the bank image attached to a pool handle (see game/audio_system.h). The
 // image starts with the tags "gcaxMLT " and, at 0x10, "gcaxMLTM"; the word at 0x1C is the size of
 // the table of 16-byte entries that follows at 0x20. Entries with word 4 == 0xFFFFFFFF are skipped
 // (without advancing, as in retail); kinds 1 and 4 (bits 24-27 of word 0) go to fn_80205F9C and
@@ -7,7 +7,7 @@
 // NonMatching: 19 word diffs, all saved-register coloring (retail keeps h in r27, e in r28, n in
 // r29, base in r30 and err in r31); instructions, branches and relocations otherwise agree. The
 // retail prologue uses stmw, so the unit is compiled with -use_lmw_stmw on.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 struct BankEntry8020B14C {
 	unsigned int kind;   // 0x00: kind in bits 24-27

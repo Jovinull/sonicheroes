@@ -1,6 +1,6 @@
-// Calls fn_80209C48(slot, 0..15) for every active slot of the pool (see game/handle_pool.h).
+// Calls fn_80209C48(slot, 0..15) for every active slot of the pool (see game/audio_system.h).
 // Returns 0, or 0x0D000001 when the system is absent.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 extern "C" {
 void fn_80209C48(PoolSlot* s, int channel);

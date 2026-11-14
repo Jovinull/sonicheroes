@@ -1,5 +1,5 @@
-#ifndef GAME_HANDLE_POOL_H
-#define GAME_HANDLE_POOL_H
+#ifndef GAME_AUDIO_SYSTEM_H
+#define GAME_AUDIO_SYSTEM_H
 
 #include "dolphin/axfx.h"
 

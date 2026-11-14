@@ -1,7 +1,7 @@
 // Installs aux effect `effect` (0 none, 1 standard reverb, 2 high-quality reverb, 3 chorus,
-// 4 delay; others are ignored) of the audio system (see game/handle_pool.h) on aux bus A (bus 0)
+// 4 delay; others are ignored) of the audio system (see game/audio_system.h) on aux bus A (bus 0)
 // or B (bus 1).
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 #include "dolphin/ax.h"
 
 typedef void (*AuxCallback80209CDC)(void*, void*);

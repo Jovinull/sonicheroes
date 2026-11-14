@@ -1,6 +1,6 @@
-// Validates a pool handle (see game/handle_pool.h), then stores its four parameters and marks it
+// Validates a pool handle (see game/audio_system.h), then stores its four parameters and marks it
 // as having no channel. Returns 0, the validation error, or 0x0D000001 when the system is absent.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 extern "C" {
 int fn_8020B3B4(PoolHandle* h, int a, int b, int c, int d)

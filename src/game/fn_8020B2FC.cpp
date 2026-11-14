@@ -1,7 +1,7 @@
-// Releases a pool handle (see game/handle_pool.h): after validation, an active handle with a
+// Releases a pool handle (see game/audio_system.h): after validation, an active handle with a
 // channel waits until that channel's busy byte is clear, then the handle is marked inactive.
 // The busy byte is read once, so the retail wait spins on the first value it sees.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 extern "C" {
 int fn_8020B2FC(PoolHandle* h)

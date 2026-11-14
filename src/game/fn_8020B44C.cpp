@@ -1,7 +1,7 @@
-// Allocates the first inactive pool handle (see game/handle_pool.h): clears it, marks it active
+// Allocates the first inactive pool handle (see game/audio_system.h): clears it, marks it active
 // and stores it through out. Returns 0, 0x07000101 when all 0x40 are in use, or 0x0D000001 when
 // the system is absent.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 extern "C" {
 void* memset(void* dst, int value, unsigned long size);

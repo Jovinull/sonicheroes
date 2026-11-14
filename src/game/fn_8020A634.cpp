@@ -1,8 +1,8 @@
-// Calls fn_80209A3C for every active pool slot (see game/handle_pool.h), then fn_8020A05C.
+// Calls fn_80209A3C for every active pool slot (see game/audio_system.h), then fn_8020A05C.
 // Returns 0, or 0x0D000001 when the system is absent. The retail loop runs 0x40 times over the
 // 0x1530-byte slots although the pool has eight of them; the records beyond the eighth fail the
 // slot validation, so only the real slots are passed on.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 extern "C" {
 void fn_80209A3C(PoolSlot* s);

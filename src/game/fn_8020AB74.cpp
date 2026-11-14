@@ -1,7 +1,7 @@
-// Validates a pool slot (see game/handle_pool.h) and passes it to fn_8020B8A0 with a (0..0x1F),
+// Validates a pool slot (see game/audio_system.h) and passes it to fn_8020B8A0 with a (0..0x1F),
 // b (0..0x7F) and c. Returns 0, 0x03000001 for an out-of-range a or b, the validation error, or
 // 0x0D000001 when the system is absent.
-#include "game/handle_pool.h"
+#include "game/audio_system.h"
 
 extern "C" {
 void fn_8020B8A0(PoolSlot* s, int a, int b, int c);
