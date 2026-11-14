@@ -24,7 +24,8 @@ struct RwImage {
 #define RW_IMAGE_ALLOCATED       0x1
 #define RW_IMAGE_GAMMA_CORRECTED 0x2
 
-// RwRaster::privateFlags and cFormat bits (HYPOTHESIS: RenderWare names).
+// RwRaster::cFlags, privateFlags and cFormat bits (HYPOTHESIS: RenderWare names).
+#define RW_RASTER_DONT_ALLOCATE        0x80 // cFlags
 #define RW_RASTER_GAMMA_CORRECTED      0x01
 #define RW_RASTER_PALETTE_LOCKED_READ  0x08
 #define RW_RASTER_PALETTE_LOCKED_WRITE 0x10
@@ -46,8 +47,10 @@ enum RwStandardFuncIndex {
 	rwSTANDARDTEXTURESETRASTER      = 8,  // 0x68
 	rwSTANDARDIMAGEFINDRASTERFORMAT = 9,  // 0x6C
 	rwSTANDARDCAMERAENDUPDATE       = 10, // 0x70
+	rwSTANDARDRASTERSUBRASTER       = 12, // 0x78
 	rwSTANDARDRASTERLOCK            = 15, // 0x84
 	rwSTANDARDRASTERUNLOCK          = 16, // 0x88
+	rwSTANDARDRASTERSHOWRASTER      = 20, // 0x98
 	rwSTANDARDCAMERACLEAR           = 21, // 0x9C
 	rwSTANDARDRASTERLOCKPALETTE     = 23, // 0xA4
 	rwSTANDARDRASTERUNLOCKPALETTE   = 24, // 0xA8
