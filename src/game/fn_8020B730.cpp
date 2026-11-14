@@ -6,8 +6,8 @@
 extern "C" {
 #include "dolphin/os.h"
 
-void fn_802066AC(unsigned int* handle);
-void fn_80206834(unsigned int* handle);
+void fn_802066AC(PoolListNode** list);
+void fn_80206834(PoolListNode** list);
 
 void fn_8020B730(PoolSlot* s)
 {
@@ -23,12 +23,12 @@ void fn_8020B730(PoolSlot* s)
 	if (!(s->flags4 & 1)) {
 		s->pauseTime = lbl_8042CF6C->time;
 		s->flags4 |= 1;
-		if (s->fA0 != 0) {
+		if (s->objects != 0) {
 			if (lbl_8042CF6C->f44 == 1) {
-				fn_802066AC(&s->fA0);
+				fn_802066AC(&s->objects);
 			} else {
-				fn_80206834(&s->fA0);
-				s->fA0 = 0;
+				fn_80206834(&s->objects);
+				s->objects = 0;
 			}
 		}
 	}

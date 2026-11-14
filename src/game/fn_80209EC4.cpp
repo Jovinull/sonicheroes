@@ -15,7 +15,7 @@ void fn_802092A8(PoolSlot* s);
 void fn_8020917C(PoolSlot* s);
 void fn_802093D4(PoolSlot* s);
 void fn_80209318(PoolSlot* s);
-void fn_80206578(unsigned int* handle);
+void fn_80206578(PoolListNode** list);
 
 void fn_80209EC4(void)
 {
@@ -47,7 +47,7 @@ void fn_80209EC4(void)
 		fn_8020917C(&lbl_8042CF6C->slots[i]);
 		fn_802093D4(&lbl_8042CF6C->slots[i]);
 		fn_80209318(&lbl_8042CF6C->slots[i]);
-		fn_80206578(&lbl_8042CF6C->slots[i].fA0);
+		fn_80206578(&lbl_8042CF6C->slots[i].objects);
 	}
 	lbl_8042CF6C->f10 = fn_80206F04();
 	lbl_8042CF6C->f0C = fn_80208C38();

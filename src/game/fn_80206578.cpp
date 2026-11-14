@@ -64,7 +64,7 @@ restart:
 		}
 		if (live == 0) {
 			if (o != 0) {
-				objects = (PoolListNode**)&o->slot->fA0;
+				objects = &o->slot->objects;
 				if (*objects != 0) {
 					PoolListNode* found;
 					lbl_8042CF6C->searchKey = o;

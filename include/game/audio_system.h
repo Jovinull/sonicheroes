@@ -19,6 +19,13 @@ struct PoolHandle {
 	int param10; // 0x10
 };
 
+// Singly linked list node of the audio library's list helpers (fn_80206340 and neighbours); a
+// list is a pointer to its first node.
+struct PoolListNode {
+	PoolListNode* next; // 0x00
+	void* data;         // 0x04
+};
+
 // Sixteen of these per slot, from slot offset 0xA4 (reset by fn_80209C48).
 struct PoolChannel {
 	int f00; // 0x00
@@ -58,7 +65,7 @@ struct PoolSlot {
 	unsigned char pad3C[0x40 - 0x3C];
 	long long pauseTime; // 0x40: system time when paused
 	unsigned char pad48[0xA0 - 0x48];
-	unsigned int fA0;         // 0xA0: owned handle, released by fn_80209A3C
+	PoolListNode* objects;    // 0xA0: the slot's objects (swept by fn_80206578)
 	PoolChannel channels[16]; // 0xA4
 	unsigned char pad524[0x1530 - 0x524];
 };
@@ -85,13 +92,6 @@ struct PoolHeapBlock {
 };
 
 typedef void (*PoolRequestCallback)(unsigned int arg);
-
-// Singly linked list node of the audio library's list helpers (fn_80206340 and neighbours); a
-// list is a pointer to its first node.
-struct PoolListNode {
-	PoolListNode* next; // 0x00
-	void* data;         // 0x04
-};
 
 // Heap copy of a bank chunk.
 struct PoolBank {
