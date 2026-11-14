@@ -825,6 +825,12 @@ game/fn_8005B268.cpp:
 game/fn_8005B558.cpp:
 	.text       start:0x8005B558 end:0x8005B5B8
 
+game/fn_8005B864.cpp:
+	extab       start:0x800067A4 end:0x800067AC
+	extabindex  start:0x8000D0F0 end:0x8000D0FC
+	.text       start:0x8005B864 end:0x8005B8A0
+	.ctors      start:0x802398E0 end:0x802398E4
+
 game/fn_8005B8A0.cpp:
 	.text       start:0x8005B8A0 end:0x8005B8B8
 
