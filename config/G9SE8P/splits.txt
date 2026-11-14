@@ -1315,6 +1315,11 @@ game/fn_800A3D48.cpp:
 game/fn_800A3D6C.cpp:
 	.text       start:0x800A3D6C end:0x800A3D94
 
+game/fn_800A3D94.cpp:
+	extab       start:0x80007980 end:0x80007988
+	extabindex  start:0x8000DFB4 end:0x8000DFC0
+	.text       start:0x800A3D94 end:0x800A3E10
+
 game/fn_800A3E10.cpp:
 	extab       start:0x80007988 end:0x80007990
 	extabindex  start:0x8000DFC0 end:0x8000DFCC
