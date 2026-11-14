@@ -71,6 +71,7 @@ struct RwError {
 #define RW_ERROR_NONE ((s32)0x80000000)
 
 // Device system requests (HYPOTHESIS: RwCoreDeviceSystemFn order).
+#define RW_DEVICE_SYSTEM_CLOSE         1
 #define RW_DEVICE_SYSTEM_GET_MODE_INFO 6
 #define RW_DEVICE_SYSTEM_GET_MODE      10
 
@@ -219,7 +220,14 @@ struct RwEngineGlobals {
 	u8 pad140[0x144 - 0x140];
 	void* (*freeListAlloc)(RwFreeList* freeList);            // 0x144
 	void (*freeListFree)(RwFreeList* freeList, void* entry); // 0x148
+	u8 pad14C[0x150 - 0x14C];
+	s32 engineStatus; // 0x150: RW_ENGINE_STATUS_*
+	u8 pad154[0x158 - 0x154];
 };
+
+// Engine status values (HYPOTHESIS: RwEngineStatus); 1 is set when the engine reverts to the
+// static globals block.
+#define RW_ENGINE_STATUS_INITED 1
 
 extern "C" {
 extern RwEngineGlobals* lbl_8042C9A4;
