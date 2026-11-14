@@ -3556,6 +3556,9 @@ game/fn_80149E54.cpp:
 game/fn_8014A32C.cpp:
 	.text       start:0x8014A32C end:0x8014A350
 
+game/fn_8014A350.cpp:
+	.text       start:0x8014A350 end:0x8014A37C
+
 game/fn_8014A37C.cpp:
 	.text       start:0x8014A37C end:0x8014A3A0
 
