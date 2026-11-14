@@ -865,6 +865,9 @@ game/fn_80058F80.cpp:
 game/fn_800593D0.cpp:
 	.text       start:0x800593D0 end:0x80059434
 
+game/RebuildCommunicateIdList__10TObjSetGenFUc.cpp:
+	.text       start:0x80059434 end:0x8005952C
+
 game/fn_8005952C.cpp:
 	.text       start:0x8005952C end:0x8005957C
 
