@@ -3952,6 +3952,9 @@ game/fn_801549E8.cpp:
 game/fn_80154A28.cpp:
 	.text       start:0x80154A28 end:0x80154A64
 
+game/fn_80154E54.cpp:
+	.text       start:0x80154E54 end:0x80154EEC
+
 game/fn_80154EEC.cpp:
 	.text       start:0x80154EEC end:0x80154F00
 
