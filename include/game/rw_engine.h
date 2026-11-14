@@ -9,6 +9,19 @@
 
 struct RwFreeList;
 
+// Driver standard function (HYPOTHESIS: RwStandardFunc): returns nonzero on success.
+typedef s32 (*RwStandardFunc)(void* out, void* inOut, s32 numIn);
+
+// Indices into RwEngineGlobals::stdFunc (HYPOTHESIS: RwStandardFunc enumeration order; the raster
+// lock entries are corroborated by their callers' arguments and flag updates).
+enum RwStandardFuncIndex {
+	rwSTANDARDRASTERLOCK          = 15, // 0x84
+	rwSTANDARDRASTERUNLOCK        = 16, // 0x88
+	rwSTANDARDRASTERLOCKPALETTE   = 23, // 0xA4
+	rwSTANDARDRASTERUNLOCKPALETTE = 24, // 0xA8
+	rwSTANDARDNUMOFSTANDARD       = 29
+};
+
 // Module bookkeeping (HYPOTHESIS: RwModuleInfo): offset of a module's globals inside the engine
 // block and the number of open engine instances.
 struct RwModuleInfo {
@@ -24,8 +37,9 @@ struct RwEngineGlobals {
 	s32 (*im2DRenderPrimitive)(s32 primType, void* vertices, s32 numVertices); // 0x30
 	s32 (*im2DRenderIndexedPrimitive)(
 	    s32 primType, void* vertices, s32 numVertices, u16* indices, s32 numIndices); // 0x34
-	u8 pad38[0xBC - 0x38];
-	RwLinkList dirtyFrameList; // 0xBC
+	u8 pad38[0x48 - 0x38];
+	RwStandardFunc stdFunc[rwSTANDARDNUMOFSTANDARD]; // 0x48
+	RwLinkList dirtyFrameList;                       // 0xBC
 	u8 padC4[0x120 - 0xC4];
 	u32 (*rwstrlen)(const char* string); // 0x120
 	u8 pad124[0x134 - 0x124];
