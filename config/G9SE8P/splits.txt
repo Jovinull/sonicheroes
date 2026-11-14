@@ -1983,6 +1983,9 @@ game/fn_800CB1E8.cpp:
 game/fn_800CB264.cpp:
 	.text       start:0x800CB264 end:0x800CB2F0
 
+game/fn_800CB2F0.cpp:
+	.text       start:0x800CB2F0 end:0x800CB368
+
 game/fn_800CB5BC.cpp:
 	.text       start:0x800CB5BC end:0x800CB5D8
 
