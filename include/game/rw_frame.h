@@ -13,6 +13,8 @@ extern RwModuleInfo lbl_8042C9A8;
 extern RwPluginRegistry lbl_802905F8;
 // HYPOTHESIS: _rwSetHierarchyRoot.
 void fn_8019DFDC(RwFrame* frame, RwFrame* root);
+// HYPOTHESIS: RwFrameUpdateObjects (out-of-line form of RwFrameMarkDirty).
+RwFrame* fn_8019E880(RwFrame* frame);
 // HYPOTHESIS: RwFrameRemoveChild.
 RwFrame* fn_8019EA2C(RwFrame* child);
 }
@@ -44,6 +46,15 @@ static inline void RwLLLinkRemove(RwLLLink* link)
 {
 	link->prev->next = link->next;
 	link->next->prev = link->prev;
+}
+
+// Links a node at the head of a list (HYPOTHESIS: rwLinkListAddLLLink).
+static inline void RwLinkListAddLLLink(RwLinkList* list, RwLLLink* link)
+{
+	link->next            = list->link.next;
+	link->prev            = &list->link;
+	list->link.next->prev = link;
+	list->link.next       = link;
 }
 
 // Puts the frame's root on the engine dirty-frame list the first time the hierarchy is flagged,
