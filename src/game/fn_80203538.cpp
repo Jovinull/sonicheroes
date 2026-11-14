@@ -1,7 +1,7 @@
 // Resolves the context value of a type-12 command for fn_8020366C (HYPOTHESIS): the command's
-// depth (word 0x8) selects the base — for depth n > 0 the parent index (0x34) of the entry
+// depth (word 0x8) selects the base: for depth n > 0 the parent index (0x34) of the entry
 // reached by n parent steps from the context entry (fn_8020407C), the context itself for depth 0
-// and nothing for depth -1 — and the offset (word 0xC) is added either as an entry index whose
+// and nothing for depth -1; the offset (word 0xC) is added either as an entry index whose
 // value (word 0x8 of fn_8020277C's entry) is used, when the command value (0x4) is not negative,
 // or directly. Other depths keep the context. Stores the result and returns the command.
 #include "game/free_lists_8040EB50.h"
