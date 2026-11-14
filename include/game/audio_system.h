@@ -160,14 +160,16 @@ struct PoolChunk {
 
 struct PoolSystem {
 	int f00;  // 0x00: nonzero once the system runs
-	int pad4; // 0x04
+	int size; // 0x04: sizeof(PoolSystem), set by fn_8020A12C
 	int lock; // 0x08: update nesting count, changed with interrupts disabled
 	int f0C;  // 0x0C: result of fn_80208C38
 	int f10;  // 0x10: result of fn_80206F04
 	int pad14;
 	long long time;     // 0x18: OSGetTime() of the current update
 	long long prevTime; // 0x20
-	unsigned char pad28[0x38 - 0x28];
+	unsigned char pad28[0x2C - 0x28];
+	float f2C; // 0x2C: cleared by fn_8020A12C
+	unsigned char pad30[0x38 - 0x30];
 	int voiceCount;     // 0x38: AX voices to acquire up front, at most 0x40 (fn_80208E28)
 	int voicesAcquired; // 0x3C: AX voices taken by fn_80208CE4
 	unsigned char pad40[0x4];
@@ -183,11 +185,13 @@ struct PoolSystem {
 	unsigned int arqOwner;                     // 0x509C
 	PoolRequestCallback requestCallback[0x40]; // 0x50A0: called by fn_80205B08 on completion
 	unsigned int requestCallbackArg[0x40];     // 0x51A0
-	unsigned char pad52A0[0x8];
-	int arenaFree; // 0x52A8: bytes left for fn_80206104
-	int arenaNext; // 0x52AC: offset of the next region
-	unsigned char pad52B0[0x52B8 - 0x52B0];
-	int regionDefaults[0x10]; // 0x52B8: default region sizes set by fn_802061B4
+	unsigned char pad52A0[0x4];
+	unsigned int aramSize;             // 0x52A4: ARAM bytes taken by fn_8020A12C
+	int arenaFree;                     // 0x52A8: bytes left for fn_80206104
+	int arenaNext;                     // 0x52AC: offset of the next region
+	unsigned int aramBase;             // 0x52B0: ARAlloc result
+	unsigned int aramZero;             // 0x52B4: 0x500 zeroed ARAM bytes at the arena start
+	unsigned int regionDefaults[0x10]; // 0x52B8: default region sizes set by fn_802061B4
 	struct {
 		int offset;
 		int size;
@@ -208,9 +212,11 @@ struct PoolSystem {
 	unsigned char skipped; // 0x13A3B: updates skipped because one was already running
 	unsigned char pad13A3C[0x8];
 	float f13A44; // 0x13A44: set to 1.004184 by fn_802061B4
-	unsigned char pad13A48[0x13F6C - 0x13A48];
-	PoolHandle handles[0x40]; // 0x13F6C
-	unsigned char f1446C;     // 0x1446C: passed to the bank loaders
+	unsigned char pad13A48[0x4];
+	unsigned char zeroBuffer[0x520]; // 0x13A4C: 32-byte aligned 0x500 zero bytes sent to ARAM
+	PoolHandle handles[0x40];        // 0x13F6C
+	unsigned char f1446C;            // 0x1446C: passed to the bank loaders
+	unsigned char pad1446D[0x3];
 };
 
 extern "C" {
