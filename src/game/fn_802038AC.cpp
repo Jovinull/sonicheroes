@@ -4,31 +4,8 @@
 // 0x10, fn_80202E8C: 0x14/0x18, fn_802037C0: 0x20), creates the list at 0x1C (fn_8020229C),
 // installs the callback fn_80204EF0 and the default .sdata2 values, then initialises the block
 // at 0x58 (fn_80202C84). Their results are not checked. Returns the object, or null when the
-// free list is exhausted. Field names are inferred from this function only.
-#include "game/free_lists_8040EB50.h"
-
-struct Object802038AC {
-	void* part0;    // 0x0
-	void* part4;    // 0x4
-	void* part8;    // 0x8
-	void* partC;    // 0xC
-	void* part10;   // 0x10
-	u8 pad14[0x8];  // 0x14, 0x18: set by fn_80202E8C
-	void* list;     // 0x1C
-	u8 pad20[0x4];  // 0x20: set by fn_802037C0
-	void* part24;   // 0x24
-	void* callback; // 0x28
-	f32 value2C;    // 0x2C
-	f32 value30;    // 0x30
-	void* part34;   // 0x34
-	u8 pad38[0xC];
-	s32 index;   // 0x44
-	f32 value48; // 0x48
-	f32 value4C; // 0x4C
-	f32 value50; // 0x50
-	f32 value54; // 0x54
-	u8 block[1]; // 0x58: initialised by fn_80202C84 (extent UNKNOWN)
-};
+// free list is exhausted.
+#include "game/object_802038AC.h"
 
 extern "C" {
 extern f32 lbl_8042FF90;
