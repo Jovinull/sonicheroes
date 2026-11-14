@@ -712,6 +712,12 @@ game/fn_8005210C.cpp:
 	extabindex  start:0x8000CD6C end:0x8000CD78
 	.text       start:0x8005210C end:0x80052150
 
+game/fn_80052150.cpp:
+	extab       start:0x8000641C end:0x80006424
+	extabindex  start:0x8000CD78 end:0x8000CD84
+	.text       start:0x80052150 end:0x80052184
+	.ctors      start:0x802398D8 end:0x802398DC
+
 game/light.cpp:
 	extab       start:0x80006424 end:0x8000650C
 	extabindex  start:0x8000CD84 end:0x8000CE98
@@ -818,6 +824,12 @@ game/fn_8005B268.cpp:
 
 game/fn_8005B558.cpp:
 	.text       start:0x8005B558 end:0x8005B5B8
+
+game/fn_8005B864.cpp:
+	extab       start:0x800067A4 end:0x800067AC
+	extabindex  start:0x8000D0F0 end:0x8000D0FC
+	.text       start:0x8005B864 end:0x8005B8A0
+	.ctors      start:0x802398E0 end:0x802398E4
 
 game/fn_8005B8A0.cpp:
 	.text       start:0x8005B8A0 end:0x8005B8B8
