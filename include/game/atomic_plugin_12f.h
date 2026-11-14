@@ -7,7 +7,24 @@
 // Each atomic holds a pointer to heap data at offset lbl_8042CF48. Field names are inferred from
 // the plugin units around 0x801FC3C8 only; the plugin's purpose is UNKNOWN.
 
-struct Atomic12F;
+struct Atomic12FRef;
+
+// Object reached from the atomic at 0x18 and the holder of a reference slot below it (the slot is
+// released with fn_8015498C by the plugin destructor).
+struct Atomic12FHolder {
+	Atomic12FRef** slot; // 0x0
+};
+
+struct Atomic12FObject {
+	u8 pad0[0x20];
+	Atomic12FHolder* holder; // 0x20
+};
+
+// Atomic fields used by the plugin units.
+struct Atomic12F {
+	u8 pad0[0x18];
+	Atomic12FObject* object; // 0x18
+};
 
 struct Atomic12FPluginData {
 	u8 pad0[0x4];
