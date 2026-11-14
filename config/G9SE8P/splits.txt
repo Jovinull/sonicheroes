@@ -4033,6 +4033,9 @@ game/fn_8015A49C.cpp:
 game/fn_8015A51C.cpp:
 	.text       start:0x8015A51C end:0x8015A58C
 
+game/fn_8015A58C.cpp:
+	.text       start:0x8015A58C end:0x8015A610
+
 game/fn_8015A8EC.cpp:
 	.text       start:0x8015A8EC end:0x8015A924
 
