@@ -1172,6 +1172,9 @@ game/fn_8009278C.cpp:
 game/fn_800927D0.cpp:
 	.text       start:0x800927D0 end:0x80092814
 
+game/fn_80092AFC.cpp:
+	.text       start:0x80092AFC end:0x80092C00
+
 game/fn_80092C00.cpp:
 	.text       start:0x80092C00 end:0x80092C64
 
