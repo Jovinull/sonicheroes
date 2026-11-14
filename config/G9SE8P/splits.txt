@@ -4837,6 +4837,9 @@ game/fn_8017CFC0.cpp:
 game/fn_8017DE6C.cpp:
 	.text       start:0x8017DE6C end:0x8017DEF0
 
+game/fn_8017E3B0.cpp:
+	.text       start:0x8017E3B0 end:0x8017E4B4
+
 game/fn_8017E708.cpp:
 	.text       start:0x8017E708 end:0x8017E748
 
