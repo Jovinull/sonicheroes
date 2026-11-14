@@ -4009,6 +4009,9 @@ game/fn_80159F7C.cpp:
 game/fn_8015A224.cpp:
 	.text       start:0x8015A224 end:0x8015A2B8
 
+game/fn_8015A2B8.cpp:
+	.text       start:0x8015A2B8 end:0x8015A304
+
 game/fn_8015A3E4.cpp:
 	.text       start:0x8015A3E4 end:0x8015A440
 

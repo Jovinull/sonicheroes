@@ -165,7 +165,9 @@ struct RwModuleInfo {
 struct RwEngineGlobals {
 	RwCamera* curCamera; // 0x0, camera between begin/end update
 	void* curWorld;      // 0x4 (HYPOTHESIS: current world)
-	u8 pad8[0x14 - 0x8];
+	u16 renderFrame;     // 0x8
+	u16 lightFrame;      // 0xA
+	u8 padC[0x14 - 0xC];
 	// Device system entry point (HYPOTHESIS: RwDevice::fpSystem).
 	s32 (*system)(s32 request, void* out, void* inOut, s32 numIn); // 0x14
 	u8 pad18[0x20 - 0x18];
@@ -215,6 +217,8 @@ extern "C" {
 extern RwEngineGlobals* lbl_8042C9A4;
 // Error module bookkeeping (HYPOTHESIS: errorModule).
 extern RwModuleInfo lbl_8042C950;
+// HYPOTHESIS: RwFreeListDestroy (a real symbol in the retail map).
+void RwFreeListDestroy(RwFreeList* freeList);
 // HYPOTHESIS: _rwerror (variadic; builds an error code) and RwErrorSet.
 s32 fn_8019408C(s32 code, ...);
 RwError* fn_80193FE8(RwError* error);
