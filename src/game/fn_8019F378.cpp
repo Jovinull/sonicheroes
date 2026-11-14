@@ -3,9 +3,6 @@
 #include "game/rw_engine.h"
 
 extern "C" {
-// Image module bookkeeping (HYPOTHESIS: imageModule) and plugin registry (imageTKList).
-extern RwModuleInfo lbl_8042C9B0;
-extern RwPluginRegistry lbl_80290610;
 // HYPOTHESIS: RwImageFreePixels.
 RwImage* fn_8019F510(RwImage* image);
 
@@ -15,8 +12,7 @@ s32 fn_8019F378(RwImage* image)
 		fn_8019F510(image);
 	}
 	fn_80198E04(&lbl_80290610, image);
-	lbl_8042C9A4->freeListFree(
-	    *(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset), image);
+	lbl_8042C9A4->freeListFree(RW_IMAGE_FREE_LIST, image);
 	return 1;
 }
 }

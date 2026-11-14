@@ -17,8 +17,8 @@ struct RwImage {
 	s32 height;
 	s32 depth;
 	s32 stride;
-	u8* cpPixels;  // 0x14
-	void* palette; // 0x18
+	u8* cpPixels;    // 0x14
+	RwRGBA* palette; // 0x18
 };
 
 #define RW_IMAGE_ALLOCATED       0x1
@@ -159,6 +159,14 @@ RwPluginRegistry* fn_80198D5C(RwPluginRegistry* registry, void* object);
 RwPluginRegistry* fn_80198E04(RwPluginRegistry* registry, void* object);
 RwPluginRegistry* fn_80198E70(RwPluginRegistry* registry, void* dst, const void* src);
 }
+
+// Image module bookkeeping (HYPOTHESIS: imageModule) and plugin registry (imageTKList); the image
+// free list is the first field of the image module globals.
+extern "C" {
+extern RwModuleInfo lbl_8042C9B0;
+extern RwPluginRegistry lbl_80290610;
+}
+#define RW_IMAGE_FREE_LIST (*(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset))
 
 // Raster module bookkeeping (HYPOTHESIS: rasterModule) and plugin registry (rasterTKList); the
 // raster free list sits at +0x60 in the raster module globals.
