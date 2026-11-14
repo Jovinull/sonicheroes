@@ -49,11 +49,14 @@ struct PoolSequence {
 	unsigned char pad48[0x58 - 0x48];
 };
 
-// Sixteen of these per slot, from slot offset 0xA4 (reset by fn_80209C48).
+// Sixteen of these per slot, from slot offset 0xA4 (reset by fn_80209C48). fn_802094A4 maps MIDI
+// controllers onto them: 7 -> f10, 10 -> f18, 11 -> f14, 62 -> f20/f24, 63 -> f20, 64 -> bit 0
+// of f00.
 struct PoolChannel {
 	int f00;   // 0x00
 	int index; // 0x04: channel number (fn_80209AA4)
-	unsigned char pad08[0x8];
+	int f08;   // 0x08: controllers 0/32 (bank select), see fn_802094A4
+	unsigned char pad0C[0x4];
 	int f10; // 0x10
 	int f14; // 0x14
 	int f18; // 0x18
