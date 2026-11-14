@@ -5702,6 +5702,9 @@ game/ADXSJD_SetDecPos.cpp:
 game/ADXSJD_GetDecNumSmpl.cpp:
 	.text       start:0x8020D790 end:0x8020D798
 
+game/ADXSJD_ExecServer.cpp:
+	.text       start:0x8020D798 end:0x8020DA28
+
 game/ADXSJD_ExecHndl.cpp:
 	.text       start:0x8020DA28 end:0x8020DC90
 
@@ -5750,6 +5753,12 @@ game/ADXB_ExecOneWav.cpp:
 game/ADXB_CheckWav.cpp:
 	.text       start:0x8020E600 end:0x8020E668
 
+game/ADXB_ExecOneWav4.cpp:
+	.text       start:0x8020E668 end:0x8020EA18
+
+game/ADXB_ExecOneWav8.cpp:
+	.text       start:0x8020EA18 end:0x8020EDBC
+
 game/ADXB_ExecOneWav16.cpp:
 	.text       start:0x8020EDBC end:0x8020F0E8
 
@@ -5771,17 +5780,29 @@ game/ADXB_ExecOneAiff.cpp:
 game/ADXB_ExecOneAiff8.cpp:
 	.text       start:0x8020F4F8 end:0x8020F830
 
+game/ADXB_ExecOneAiff16.cpp:
+	.text       start:0x8020F830 end:0x8020FBE0
+
 game/ADXB_DecodeHeaderAiff.cpp:
 	.text       start:0x8020FBE0 end:0x8020FD64
 
 game/ADXB_CheckAiff.cpp:
 	.text       start:0x8020FD64 end:0x8020FDCC
 
+game/AIFF_GetInfo.cpp:
+	.text       start:0x8020FDCC end:0x8021003C
+
 game/ADXB_ExecOneAu.cpp:
 	.text       start:0x8021003C end:0x80210080
 
+game/ADXB_ExecOneAuUlaw.cpp:
+	.text       start:0x80210080 end:0x80210444
+
 game/ADXB_ExecOneAu8.cpp:
 	.text       start:0x80210444 end:0x8021077C
+
+game/ADXB_ExecOneAu16.cpp:
+	.text       start:0x8021077C end:0x80210B2C
 
 game/ADXB_DecodeHeaderAu.cpp:
 	.text       start:0x80210B2C end:0x80210CA4
@@ -5791,6 +5812,9 @@ game/ADXB_CheckAu.cpp:
 
 game/ADXB_ExecHndl.cpp:
 	.text       start:0x80210F14 end:0x80210F90
+
+game/ADXB_ExecOneAdx.cpp:
+	.text       start:0x80210F90 end:0x80211394
 
 game/ADXB_GetDecNumSmpl.cpp:
 	.text       start:0x80211394 end:0x8021139C
