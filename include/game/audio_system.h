@@ -86,6 +86,13 @@ struct PoolHeapBlock {
 
 typedef void (*PoolRequestCallback)(unsigned int arg);
 
+// Singly linked list node of the audio library's list helpers (fn_80206340 and neighbours); a
+// list is a pointer to its first node.
+struct PoolListNode {
+	PoolListNode* next; // 0x00
+	void* data;         // 0x04
+};
+
 // Heap copy of a bank chunk.
 struct PoolBank {
 	unsigned char* data; // null when nothing is loaded
