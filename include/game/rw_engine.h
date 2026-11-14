@@ -136,7 +136,9 @@ struct RwEngineGlobals {
 	u8 pad38[0x48 - 0x38];
 	RwStandardFunc stdFunc[rwSTANDARDNUMOFSTANDARD]; // 0x48
 	RwLinkList dirtyFrameList;                       // 0xBC
-	u8 padC4[0x120 - 0xC4];
+	u8 padC4[0xFC - 0xC4];
+	char* (*rwstrncpy)(char* dst, const char* src, u32 size); // 0xFC
+	u8 pad100[0x120 - 0x100];
 	u32 (*rwstrlen)(const char* string); // 0x120
 	u8 pad124[0x134 - 0x124];
 	void* (*rwmalloc)(u32 size); // 0x134
