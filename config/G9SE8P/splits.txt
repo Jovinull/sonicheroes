@@ -5630,6 +5630,9 @@ game/fn_80206FB0.cpp:
 game/fn_80207034.cpp:
 	.text       start:0x80207034 end:0x8020709C
 
+game/fn_8020709C.cpp:
+	.text       start:0x8020709C end:0x8020728C
+
 game/fn_8020728C.cpp:
 	.text       start:0x8020728C end:0x802072B4
 
