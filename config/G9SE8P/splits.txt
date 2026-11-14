@@ -3538,6 +3538,9 @@ game/fn_8013D778.cpp:
 game/fn_8013D78C.cpp:
 	.text       start:0x8013D78C end:0x8013D7F8
 
+game/fn_8013D7F8.cpp:
+	.text       start:0x8013D7F8 end:0x8013D904
+
 game/fn_8013E11C.cpp:
 	.text       start:0x8013E11C end:0x8013E1D8
 
