@@ -120,6 +120,29 @@ struct RwBBox {
 	RwV3d inf;
 };
 
+// Grows the bounding box to include the point (HYPOTHESIS: RwBBoxAddPointMacro).
+static inline void RwBBoxAddPointInline(RwBBox* bbox, const RwV3d* point)
+{
+	if (bbox->inf.x > point->x) {
+		bbox->inf.x = point->x;
+	}
+	if (bbox->inf.y > point->y) {
+		bbox->inf.y = point->y;
+	}
+	if (bbox->inf.z > point->z) {
+		bbox->inf.z = point->z;
+	}
+	if (bbox->sup.x < point->x) {
+		bbox->sup.x = point->x;
+	}
+	if (bbox->sup.y < point->y) {
+		bbox->sup.y = point->y;
+	}
+	if (bbox->sup.z < point->z) {
+		bbox->sup.z = point->z;
+	}
+}
+
 #define RW_ERROR_NO_MEMORY ((s32)0x80000013)
 
 // Growable array (HYPOTHESIS: RwSList).
