@@ -114,6 +114,12 @@ struct RwPluginRegistry {
 	RwPluginRegEntry* lastRegEntry;  // 0x14
 };
 
+// Axis-aligned bounding box (HYPOTHESIS: RwBBox): supremum then infimum corner.
+struct RwBBox {
+	RwV3d sup;
+	RwV3d inf;
+};
+
 #define RW_ERROR_NO_MEMORY ((s32)0x80000013)
 
 // Growable array (HYPOTHESIS: RwSList).
