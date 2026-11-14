@@ -168,6 +168,9 @@ game/fn_80020348.cpp:
 game/fn_80020370.cpp:
 	.text       start:0x80020370 end:0x800203B8
 
+game/fn_8002058C.cpp:
+	.text       start:0x8002058C end:0x800206A8
+
 game/fn_800207C4.cpp:
 	.text       start:0x800207C4 end:0x800208CC
 
