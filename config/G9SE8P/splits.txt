@@ -6566,6 +6566,9 @@ game/fn_80206104.cpp:
 game/fn_802061B4.cpp:
 	.text       start:0x802061B4 end:0x802062E0
 
+game/fn_802062E0.cpp:
+	.text       start:0x802062E0 end:0x80206328
+
 game/fn_80206328.cpp:
 	.text       start:0x80206328 end:0x80206340
 
