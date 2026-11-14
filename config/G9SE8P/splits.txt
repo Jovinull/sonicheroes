@@ -620,6 +620,9 @@ game/fn_8004CD98.cpp:
 game/fn_8004CDBC.cpp:
 	.text       start:0x8004CDBC end:0x8004CDD8
 
+game/fn_8004CDD8.cpp:
+	.text       start:0x8004CDD8 end:0x8004CDF8
+
 game/fn_8004D4B8.cpp:
 	.text       start:0x8004D4B8 end:0x8004D4D4
 
