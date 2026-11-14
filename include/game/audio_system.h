@@ -29,7 +29,8 @@ struct PoolChannel {
 	int f20; // 0x20
 	int f24; // 0x24
 	int f28; // 0x28
-	unsigned char pad2C[0xC];
+	int f2C; // 0x2C: passed to fn_802073A0 by fn_80209318
+	unsigned char pad30[0x8];
 	unsigned int f38; // 0x38
 	float f3C;        // 0x3C
 	float f40;        // 0x40
@@ -38,10 +39,37 @@ struct PoolChannel {
 
 struct PoolSlot {
 	int active; // 0x00: bit 31 set while the slot runs (fn_80209A3C clears it)
-	unsigned char pad4[0xA0 - 0x4];
+	unsigned char pad4[0x4];
+	// Two linear ramps advanced by fn_802092A8 and fn_8020917C: value moves from start to target
+	// while remaining counts down from duration in steps of 5; remaining is -1 when idle.
+	float rampAValue; // 0x08
+	unsigned char padC[0x8];
+	float rampATarget;    // 0x14
+	float rampAStart;     // 0x18
+	float rampADuration;  // 0x1C
+	float rampARemaining; // 0x20
+	float rampBValue;     // 0x24
+	unsigned char pad28[0x4];
+	float rampBTarget;    // 0x2C
+	float rampBStart;     // 0x30
+	float rampBDuration;  // 0x34
+	float rampBRemaining; // 0x38
+	unsigned char pad3C[0xA0 - 0x3C];
 	unsigned int fA0;         // 0xA0: owned handle, released by fn_80209A3C
 	PoolChannel channels[16]; // 0xA4
 	unsigned char pad524[0x1530 - 0x524];
+};
+
+// 0x40 of these from system offset 0x54; fn_80208C38 counts the ones with a nonzero first word.
+struct PoolEntry10C {
+	int used; // 0x00
+	unsigned char pad4[0x10C - 0x4];
+};
+
+// 0x40 of these from system offset 0x4354; fn_80206F04 counts the ones with a nonzero first byte.
+struct PoolEntry14 {
+	unsigned char used; // 0x00
+	unsigned char pad1[0x14 - 0x1];
 };
 
 struct PoolSystem {
@@ -53,7 +81,10 @@ struct PoolSystem {
 	int pad14;
 	long long time;     // 0x18: OSGetTime() of the current update
 	long long prevTime; // 0x20
-	unsigned char pad28[0x505C - 0x28];
+	unsigned char pad28[0x54 - 0x28];
+	PoolEntry10C entries10C[0x40]; // 0x54
+	PoolEntry14 entries14[0x40];   // 0x4354
+	unsigned char pad4854[0x505C - 0x4854];
 	unsigned char busy[0x5478 - 0x505C]; // 0x505C: per-channel busy bytes
 	PoolSlot slots[8];                   // 0x5478
 	unsigned char padFDF8[0xFE04 - 0xFDF8];
