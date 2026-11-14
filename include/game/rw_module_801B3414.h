@@ -11,11 +11,10 @@ extern "C" {
 extern RwModuleInfo lbl_8042CA80;
 // Non-zero once the module is open.
 extern s32 lbl_8042CA88;
-// Shared handle created on open (role UNKNOWN). Volatile: the retail open code reads it back from
-// memory right after storing it.
-extern void* volatile lbl_8042CA8C;
+// Shared heap created on open by fn_801B7814 (fn_801B3884 returns it).
+extern void* lbl_8042CA8C;
 
-// HYPOTHESIS: create and destroy of the shared handle.
+// Create (fn_801B7814: heap of at least the given size) and destroy of the shared heap.
 void* fn_801B7814(s32 arg);
 void fn_801B7778(void* handle);
 }

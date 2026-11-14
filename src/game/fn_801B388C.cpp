@@ -45,14 +45,15 @@ struct State801B388C {
 extern "C" {
 extern State801B388C lbl_803EDC28;
 
-void fn_801B73B8(void);
+// Rebuilds the shared heap while its dirty word 0x18 is set (HYPOTHESIS).
+s32 fn_801B73B8(void* heap);
 void fn_801B3368(void* data);
 
 Object801B388C* fn_801B388C(Object801B388C* object, void* arg, s32 refresh)
 {
-	// Word 0x18 of the shared handle gates the refresh (role UNKNOWN).
+	// The shared heap is rebuilt first when its dirty word 0x18 is set.
 	if (refresh && ((s32*)lbl_8042CA8C)[6]) {
-		fn_801B73B8();
+		fn_801B73B8(lbl_8042CA8C);
 	}
 
 	lbl_803EDC28.succeeded      = 1;

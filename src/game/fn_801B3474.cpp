@@ -24,7 +24,8 @@ s32 fn_801B3474(void)
 {
 	if (lbl_8042CA88 == 0) {
 		lbl_8042CA8C = fn_801B7814(lbl_8042BE90);
-		if (!lbl_8042CA8C) {
+		// The retail code reads the heap pointer back from memory after storing it.
+		if (!*(void* volatile*)&lbl_8042CA8C) {
 			return 0;
 		}
 		RW_MODULE_801B3414_FREE_LIST
