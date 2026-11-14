@@ -4255,6 +4255,9 @@ game/fn_8015EA90.cpp:
 game/fn_8015EB18.cpp:
 	.text       start:0x8015EB18 end:0x8015EBA0
 
+game/fn_8015EBA0.cpp:
+	.text       start:0x8015EBA0 end:0x8015EC3C
+
 game/fn_8015EC3C.cpp:
 	.text       start:0x8015EC3C end:0x8015EC6C
 
