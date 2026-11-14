@@ -177,6 +177,9 @@ game/fn_80020E00.cpp:
 game/fn_80020EEC.cpp:
 	.text       start:0x80020EEC end:0x80020FD8
 
+game/fn_80020FD8.cpp:
+	.text       start:0x80020FD8 end:0x800210C4
+
 game/fn_8002128C.cpp:
 	.text       start:0x8002128C end:0x80021344
 
