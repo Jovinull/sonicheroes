@@ -1043,6 +1043,9 @@ game/fn_80072964.cpp:
 	extabindex  start:0x8000D7F8 end:0x8000D804
 	.text       start:0x80072964 end:0x800729DC
 
+game/fn_800732CC.cpp:
+	.text       start:0x800732CC end:0x80073338
+
 game/dtor_8007C02C.cpp:
 	extab       start:0x80006F40 end:0x80006F48
 	extabindex  start:0x8000D8E8 end:0x8000D8F4
