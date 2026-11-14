@@ -10,8 +10,6 @@
 #include "game/rw_engine.h"
 #include "MSL_C/string.h"
 
-#define RW_ERROR_NO_MEMORY ((s32)0x80000013)
-
 extern "C" {
 RwImage* fn_8019F568(RwImage* image, s32 width, s32 height)
 {

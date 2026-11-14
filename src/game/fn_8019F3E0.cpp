@@ -5,8 +5,6 @@
 // image.
 #include "game/rw_engine.h"
 
-#define RW_ERROR_NO_MEMORY ((s32)0x80000013)
-
 extern "C" {
 RwImage* fn_8019F3E0(RwImage* image)
 {

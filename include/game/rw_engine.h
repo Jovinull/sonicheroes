@@ -110,6 +110,16 @@ struct RwPluginRegistry {
 	RwPluginRegEntry* lastRegEntry;  // 0x14
 };
 
+#define RW_ERROR_NO_MEMORY ((s32)0x80000013)
+
+// Growable array (HYPOTHESIS: RwSList).
+struct RwSList {
+	u8* listElements;
+	s32 numElementsFilled;
+	s32 numElementsAlloced;
+	s32 entrySize;
+};
+
 // Module bookkeeping (HYPOTHESIS: RwModuleInfo): offset of a module's globals inside the engine
 // block and the number of open engine instances.
 struct RwModuleInfo {

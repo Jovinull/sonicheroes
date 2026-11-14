@@ -3,18 +3,8 @@
 // 0x80000013, out of memory, with the requested size, and null). Returns the new entry.
 #include "game/rw_engine.h"
 
-#define RW_ERROR_NO_MEMORY ((s32)0x80000013)
-
-// Growable array (HYPOTHESIS: RwSList).
-struct RwSList80194430 {
-	u8* listElements;
-	s32 numElementsFilled;
-	s32 numElementsAlloced;
-	s32 entrySize;
-};
-
 extern "C" {
-void* fn_80194430(RwSList80194430* sList)
+void* fn_80194430(RwSList* sList)
 {
 	if (sList->numElementsFilled >= sList->numElementsAlloced) {
 		u8* elements = (u8*)lbl_8042C9A4->rwrealloc(sList->listElements,
