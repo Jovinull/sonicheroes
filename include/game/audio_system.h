@@ -105,12 +105,15 @@ struct PoolSlot {
 // fn_80208C38 counts the ones with nonzero flags). Bit 31 of flags marks one in use, bit 30 one
 // still waiting for its voice.
 struct PoolEntry10C {
-	int flags; // 0x00
-	int index; // 0x04: position in the array (fn_80208E28)
-	int f08;   // 0x08
-	int f0C;   // 0x0C
-	float f10; // 0x10
-	unsigned char pad14[0x34 - 0x14];
+	int flags;      // 0x00
+	int index;      // 0x04: position in the array (fn_80208E28)
+	int f08;        // 0x08
+	int f0C;        // 0x0C
+	float f10;      // 0x10
+	float baseRate; // 0x14: sample rate ratio scaled by 0x10000 (fn_802073A0)
+	int bendUp;     // 0x18: pitch bend range factors for positive and negative bends
+	int bendDown;   // 0x1C
+	unsigned char pad20[0x34 - 0x20];
 	AXVPB* voice; // 0x34
 	unsigned char pad38[0x104 - 0x38];
 	int f104; // 0x104
