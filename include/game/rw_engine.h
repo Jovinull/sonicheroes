@@ -217,9 +217,9 @@ struct RwEngineGlobals {
 	void* (*rwmalloc)(u32 size);                                     // 0x134
 	void (*rwfree)(void* block);                                     // 0x138
 	void* (*rwrealloc)(void* block, u32 size);                       // 0x13C
-	u8 pad140[0x144 - 0x140];
-	void* (*freeListAlloc)(RwFreeList* freeList);            // 0x144
-	void (*freeListFree)(RwFreeList* freeList, void* entry); // 0x148
+	void* (*rwcalloc)(u32 count, u32 size);                          // 0x140
+	void* (*freeListAlloc)(RwFreeList* freeList);                    // 0x144
+	void (*freeListFree)(RwFreeList* freeList, void* entry);         // 0x148
 	u8 pad14C[0x150 - 0x14C];
 	s32 engineStatus; // 0x150: RW_ENGINE_STATUS_*
 	u8 pad154[0x158 - 0x154];
