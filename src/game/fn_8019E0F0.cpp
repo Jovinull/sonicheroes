@@ -17,10 +17,6 @@ static inline void RwMatrixCopyWords(RwMatrix* dst, const RwMatrix* src)
 }
 
 extern "C" {
-extern u8 lbl_802905F8[];
-// HYPOTHESIS: _rwPluginRegistryInitObject / _rwPluginRegistryCopyObject.
-void fn_80198D5C(void* registry, void* object);
-void fn_80198E70(void* registry, void* dst, const void* src);
 // HYPOTHESIS: RwFrameDestroyHierarchy.
 void fn_8019E85C(RwFrame* frame);
 

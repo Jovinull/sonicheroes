@@ -3,28 +3,11 @@
 // siblings, itself as root, then the frame plugin constructors. Returns null when allocation fails.
 #include "game/rw_frame.h"
 
-#define RW_MATRIX_TYPE_ORTHONORMAL  0x3
-#define RW_MATRIX_INTERNAL_IDENTITY 0x20000
-
-extern "C" {
-extern u8 lbl_802905F8[];
-// .sdata2 constants 1.0f and 0.0f. Declared non-const: the retail code reloads them after the
-// matrix stores, treating them as ordinary memory rather than folded constants.
-extern f32 lbl_8042F6F8;
-extern f32 lbl_8042F6FC;
-// HYPOTHESIS: _rwPluginRegistryInitObject.
-void fn_80198D5C(void* registry, void* object);
-}
-
 // HYPOTHESIS: rwMatrixInitialize followed by RwMatrixSetIdentityMacro.
 static inline void RwMatrixInitIdentity(RwMatrix* m)
 {
-	m->flags   = RW_MATRIX_TYPE_ORTHONORMAL;
-	m->right.x = m->up.y = m->at.z = lbl_8042F6F8;
-	m->right.y = m->right.z = m->up.x = lbl_8042F6FC;
-	m->up.z = m->at.x = m->at.y = lbl_8042F6FC;
-	m->pos.x = m->pos.y = m->pos.z = lbl_8042F6FC;
-	m->flags |= RW_MATRIX_INTERNAL_IDENTITY | RW_MATRIX_TYPE_ORTHONORMAL;
+	m->flags = RW_MATRIX_TYPE_ORTHONORMAL;
+	RwMatrixSetIdentity(m);
 }
 
 extern "C" {

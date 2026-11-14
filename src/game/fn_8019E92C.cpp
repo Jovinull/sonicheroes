@@ -4,8 +4,6 @@
 #include "game/rw_frame.h"
 
 extern "C" {
-RwFrame* fn_8019EA2C(RwFrame* child);
-
 RwFrame* fn_8019E92C(RwFrame* parent, RwFrame* child)
 {
 	if (child->object.parent != 0) {

@@ -4,10 +4,6 @@
 #include "game/rw_frame.h"
 
 extern "C" {
-extern u8 lbl_802905F8[];
-// HYPOTHESIS: _rwPluginRegistryDeInitObject.
-void fn_80198E04(void* registry, void* object);
-
 void fn_8019E588(RwFrame* frame)
 {
 	fn_80198E04(lbl_802905F8, frame);
