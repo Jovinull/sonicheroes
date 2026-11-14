@@ -28,8 +28,10 @@ struct BankHeader8020B14C {
 };
 
 extern "C" {
-int fn_80205F9C(int id, void* data, int a, int b, int c);
-int fn_80205EA4(int id, void* data, int a, int b, int c);
+int fn_80205F9C(
+    int id, unsigned char* image, PoolRequestCallback callback, unsigned int arg, int async);
+int fn_80205EA4(
+    int id, PoolChunk* chunk, PoolRequestCallback callback, unsigned int arg, int notify);
 
 int fn_8020B14C(PoolHandle* h)
 {
@@ -65,12 +67,12 @@ int fn_8020B14C(PoolHandle* h)
 		res = -1;
 		switch ((e->kind >> 24) & 0xF) {
 			case 1:
-				res = fn_80205F9C(
-				    id, base + e->offset, h->paramC, h->param10, lbl_8042CF6C->f1446C);
+				res = fn_80205F9C(id, base + e->offset, (PoolRequestCallback)h->paramC, h->param10,
+				    lbl_8042CF6C->f1446C);
 				break;
 			case 4:
-				res = fn_80205EA4(
-				    id, base + e->offset, h->paramC, h->param10, lbl_8042CF6C->f1446C);
+				res = fn_80205EA4(id, (PoolChunk*)(base + e->offset),
+				    (PoolRequestCallback)h->paramC, h->param10, lbl_8042CF6C->f1446C);
 				break;
 		}
 		if (res < 0) {
