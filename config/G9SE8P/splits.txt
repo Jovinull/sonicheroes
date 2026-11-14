@@ -1483,6 +1483,9 @@ game/fn_800AAF64.cpp:
 game/fn_800AB32C.cpp:
 	.text       start:0x800AB32C end:0x800AB35C
 
+game/fn_800AB35C.cpp:
+	.text       start:0x800AB35C end:0x800AB3D8
+
 game/eff_tornado.cpp:
 	extab       start:0x80007CFC end:0x80007E84
 	extabindex  start:0x8000E38C end:0x8000E488
