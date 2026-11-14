@@ -40,6 +40,7 @@ enum RwStandardFuncIndex {
 	rwSTANDARDCAMERABEGINUPDATE     = 1,  // 0x4C
 	rwSTANDARDRGBTOPIXEL            = 2,  // 0x50
 	rwSTANDARDPIXELTORGB            = 3,  // 0x54
+	rwSTANDARDRASTERDESTROY         = 5,  // 0x5C
 	rwSTANDARDIMAGEGETRASTER        = 6,  // 0x60
 	rwSTANDARDRASTERSETIMAGE        = 7,  // 0x64
 	rwSTANDARDTEXTURESETRASTER      = 8,  // 0x68
@@ -111,10 +112,31 @@ extern RwModuleInfo lbl_8042C950;
 // HYPOTHESIS: _rwerror (variadic; builds an error code) and RwErrorSet.
 s32 fn_8019408C(s32 code, ...);
 RwError* fn_80193FE8(RwError* error);
+// HYPOTHESIS: _rwPluginRegistryInitObject, _rwPluginRegistryDeInitObject and
+// _rwPluginRegistryCopyObject.
+void fn_80198D5C(void* registry, void* object);
+void fn_80198E04(void* registry, void* object);
+void fn_80198E70(void* registry, void* dst, const void* src);
 }
 
 // Last error of the current engine instance (HYPOTHESIS: RWERRORGLOBAL(errError)).
 #define RW_LAST_ERROR (*(RwError*)((u8*)lbl_8042C9A4 + lbl_8042C950.globalsOffset))
+
+#define RW_MATRIX_TYPE_ORTHONORMAL  0x3
+#define RW_MATRIX_INTERNAL_IDENTITY 0x20000
+
+// Loads the identity into the matrix and flags it as identity/orthonormal
+// (HYPOTHESIS: RwMatrixSetIdentityMacro). one and zero name the calling unit's .sdata2 constants
+// 1.0f and 0.0f; each RenderWare unit has its own pair, and the retail code reloads them after the
+// matrix stores, so they are declared non-const and read once per assignment chain.
+#define RW_MATRIX_SET_IDENTITY(m, one, zero)                                                       \
+	do {                                                                                           \
+		(m)->right.x = (m)->up.y = (m)->at.z = (one);                                              \
+		(m)->right.y = (m)->right.z = (m)->up.x = (zero);                                          \
+		(m)->up.z = (m)->at.x = (m)->at.y = (zero);                                                \
+		(m)->pos.x = (m)->pos.y = (m)->pos.z = (zero);                                             \
+		(m)->flags |= RW_MATRIX_INTERNAL_IDENTITY | RW_MATRIX_TYPE_ORTHONORMAL;                    \
+	} while (0)
 
 // Forwards a request to the device system entry point and records core error 0x18 for the request
 // when it fails (HYPOTHESIS: _rwDeviceSystemRequest, inlined). Returns the entry point's status.
