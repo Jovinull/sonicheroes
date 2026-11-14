@@ -6395,6 +6395,9 @@ dolphin/exi/EXIUart.c:
 game/fn_801FC3C8.cpp:
 	.text       start:0x801FC3C8 end:0x801FC3D8
 
+game/fn_801FC3D8.cpp:
+	.text       start:0x801FC3D8 end:0x801FC470
+
 game/fn_801FC470.cpp:
 	.text       start:0x801FC470 end:0x801FC4F0
 
