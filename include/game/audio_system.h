@@ -18,13 +18,42 @@ struct PoolHandle {
 	int param10; // 0x10
 };
 
+// Sixteen of these per slot, from slot offset 0xA4 (reset by fn_80209C48).
+struct PoolChannel {
+	int f00; // 0x00
+	unsigned char pad04[0xC];
+	int f10; // 0x10
+	int f14; // 0x14
+	int f18; // 0x18
+	int f1C; // 0x1C
+	int f20; // 0x20
+	int f24; // 0x24
+	int f28; // 0x28
+	unsigned char pad2C[0xC];
+	unsigned int f38; // 0x38
+	float f3C;        // 0x3C
+	float f40;        // 0x40
+	unsigned char pad44[0x4];
+};
+
 struct PoolSlot {
-	int active; // 0x00
-	unsigned char pad4[0x1530 - 0x4];
+	int active; // 0x00: bit 31 set while the slot runs (fn_80209A3C clears it)
+	unsigned char pad4[0xA0 - 0x4];
+	unsigned int fA0;         // 0xA0: owned handle, released by fn_80209A3C
+	PoolChannel channels[16]; // 0xA4
+	unsigned char pad524[0x1530 - 0x524];
 };
 
 struct PoolSystem {
-	unsigned char pad0[0x505C];
+	int f00;  // 0x00: nonzero once the system runs
+	int pad4; // 0x04
+	int lock; // 0x08: update nesting count, changed with interrupts disabled
+	int f0C;  // 0x0C: result of fn_80208C38
+	int f10;  // 0x10: result of fn_80206F04
+	int pad14;
+	long long time;     // 0x18: OSGetTime() of the current update
+	long long prevTime; // 0x20
+	unsigned char pad28[0x505C - 0x28];
 	unsigned char busy[0x5478 - 0x505C]; // 0x505C: per-channel busy bytes
 	PoolSlot slots[8];                   // 0x5478
 	unsigned char padFDF8[0xFE04 - 0xFDF8];
@@ -32,7 +61,9 @@ struct PoolSystem {
 	AXFX_REVERBHI reverbHi;   // 0xFF58
 	AXFX_CHORUS chorus;       // 0x10138
 	AXFX_DELAY delay;         // 0x101D4
-	unsigned char pad10[0x13F6C - 0x101D4 - sizeof(AXFX_DELAY)];
+	unsigned char pad10[0x13A3B - 0x101D4 - sizeof(AXFX_DELAY)];
+	unsigned char skipped; // 0x13A3B: updates skipped because one was already running
+	unsigned char pad13A3C[0x13F6C - 0x13A3C];
 	PoolHandle handles[0x40]; // 0x13F6C
 	unsigned char f1446C;     // 0x1446C: passed to the bank loaders
 };
