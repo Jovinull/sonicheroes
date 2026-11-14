@@ -6491,6 +6491,9 @@ game/fn_80200AC4.cpp:
 game/fn_80200B6C.cpp:
 	.text       start:0x80200B6C end:0x80200BAC
 
+game/fn_80200BAC.cpp:
+	.text       start:0x80200BAC end:0x80200CB0
+
 game/fn_80200CB0.cpp:
 	.text       start:0x80200CB0 end:0x80200D84
 
