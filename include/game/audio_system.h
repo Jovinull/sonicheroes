@@ -26,6 +26,23 @@ struct PoolListNode {
 	void* data;         // 0x04
 };
 
+// Sequence playback state of a slot (slot offset 0x48), set up by fn_8020B8A0.
+struct PoolSequence {
+	unsigned short f00; // 0x00
+	unsigned char pad02[0x2];
+	unsigned int f04; // 0x04
+	unsigned char pad08[0x18 - 0x8];
+	float f18; // 0x18
+	unsigned char pad1C[0x20 - 0x1C];
+	long long timeA; // 0x20: both advanced by the paused time on resume (fn_8020B5E8)
+	long long timeB; // 0x28
+	unsigned char pad30[0x3C - 0x30];
+	int param;            // 0x3C
+	unsigned char* data;  // 0x40: sequence data after its 0x28-byte header
+	unsigned char* start; // 0x44
+	unsigned char pad48[0x58 - 0x48];
+};
+
 // Sixteen of these per slot, from slot offset 0xA4 (reset by fn_80209C48).
 struct PoolChannel {
 	int f00; // 0x00
@@ -47,7 +64,7 @@ struct PoolChannel {
 
 struct PoolSlot {
 	int active;          // 0x00: bit 31 set while the slot runs (fn_80209A3C clears it)
-	unsigned int flags4; // 0x04: bit 0 set while paused (fn_8020B730)
+	unsigned int flags4; // 0x04: bit 0 set while paused (fn_8020B730), bit 1 checked on resume
 	// Two linear ramps advanced by fn_802092A8 and fn_8020917C: value moves from start to target
 	// while remaining counts down from duration in steps of 5; remaining is -1 when idle.
 	float rampAValue; // 0x08
@@ -63,8 +80,8 @@ struct PoolSlot {
 	float rampBDuration;  // 0x34
 	float rampBRemaining; // 0x38
 	unsigned char pad3C[0x40 - 0x3C];
-	long long pauseTime; // 0x40: system time when paused
-	unsigned char pad48[0xA0 - 0x48];
+	long long pauseTime;      // 0x40: system time when paused
+	PoolSequence seq;         // 0x48: sequence state, reset by fn_8020B8A0
 	PoolListNode* objects;    // 0xA0: the slot's objects (swept by fn_80206578)
 	PoolChannel channels[16]; // 0xA4
 	unsigned char pad524[0x1530 - 0x524];
