@@ -3025,6 +3025,9 @@ game/fn_8012EB74.cpp:
 	extabindex  start:0x80011554 end:0x80011560
 	.text       start:0x8012EB74 end:0x8012EBD4
 
+game/fn_8012EBD4.cpp:
+	.text       start:0x8012EBD4 end:0x8012EC18
+
 game/fn_8012ECA8.cpp:
 	.text       start:0x8012ECA8 end:0x8012ECE0
 
