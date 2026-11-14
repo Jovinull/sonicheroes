@@ -1,7 +1,13 @@
 #ifndef GAME_AUDIO_SYSTEM_H
 #define GAME_AUDIO_SYSTEM_H
 
+// dolphin/os.h has no C++ linkage guard and the other SDK headers include it, so it comes first
+// inside an explicit C block.
+extern "C" {
+#include "dolphin/os.h"
+}
 #include "dolphin/arq.h"
+#include "dolphin/ax.h"
 #include "dolphin/axfx.h"
 
 // The audio system block at lbl_8042CF6C (fn_8020AD88 returns 0x0D000001 while that pointer is
@@ -87,10 +93,20 @@ struct PoolSlot {
 	unsigned char pad524[0x1530 - 0x524];
 };
 
-// 0x40 of these from system offset 0x54; fn_80208C38 counts the ones with a nonzero first word.
+// 0x40 of these from system offset 0x54, each owning one AX voice (fn_80208CE4 hands them out;
+// fn_80208C38 counts the ones with nonzero flags). Bit 31 of flags marks one in use, bit 30 one
+// still waiting for its voice.
 struct PoolEntry10C {
-	int used; // 0x00
-	unsigned char pad4[0x10C - 0x4];
+	int flags; // 0x00
+	unsigned char pad4[0x4];
+	int f08;   // 0x08
+	int f0C;   // 0x0C
+	float f10; // 0x10
+	unsigned char pad14[0x34 - 0x14];
+	AXVPB* voice; // 0x34
+	unsigned char pad38[0x104 - 0x38];
+	int f104; // 0x104
+	int f108; // 0x108
 };
 
 // 0x40 of these from system offset 0x4354; fn_80206F04 counts the ones with a nonzero first byte.
@@ -133,9 +149,12 @@ struct PoolSystem {
 	int pad14;
 	long long time;     // 0x18: OSGetTime() of the current update
 	long long prevTime; // 0x20
-	unsigned char pad28[0x44 - 0x28];
+	unsigned char pad28[0x3C - 0x28];
+	int voicesAcquired; // 0x3C: AX voices taken by fn_80208CE4
+	unsigned char pad40[0x4];
 	int f44; // 0x44: 1 keeps a paused slot's handle (fn_802066AC) instead of releasing it
-	unsigned char pad48[0x54 - 0x48];
+	unsigned char pad48[0x50 - 0x48];
+	int nextEntry;                             // 0x50: rotating search start of fn_80208CE4
 	PoolEntry10C entries10C[0x40];             // 0x54
 	PoolEntry14 entries14[0x40];               // 0x4354
 	unsigned char* heap;                       // 0x4854: 32-byte aligned heap start (fn_80205DF4)
@@ -176,8 +195,6 @@ struct PoolSystem {
 };
 
 extern "C" {
-#include "dolphin/os.h"
-
 extern PoolSystem* lbl_8042CF6C;
 extern char lbl_8023D4C8[];
 extern char lbl_8023D4EC[];
