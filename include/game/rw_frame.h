@@ -39,6 +39,13 @@ void fn_8019DFDC(RwFrame* frame, RwFrame* root);
 #define RW_FRAME_HIERARCHY_SYNC 0x3
 #define RW_FRAME_SUBTREE_SYNC   0xC
 
+// Unlinks a node from its doubly linked list (HYPOTHESIS: rwLinkListRemoveLLLink).
+static inline void RwLLLinkRemove(RwLLLink* link)
+{
+	link->prev->next = link->next;
+	link->next->prev = link->prev;
+}
+
 // Puts the frame's root on the engine dirty-frame list the first time the hierarchy is flagged,
 // then flags the root hierarchy and the frame subtree for resynchronization
 // (HYPOTHESIS: RwFrameUpdateObjects, inlined).

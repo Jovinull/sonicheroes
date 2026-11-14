@@ -16,8 +16,7 @@ RwFrame* fn_8019E92C(RwFrame* parent, RwFrame* child)
 	child->object.parent = parent;
 	fn_8019DFDC(child, parent->root);
 	if (child->object.privateFlags & RW_FRAME_HIERARCHY_SYNC) {
-		child->inDirtyListLink.prev->next = child->inDirtyListLink.next;
-		child->inDirtyListLink.next->prev = child->inDirtyListLink.prev;
+		RwLLLinkRemove(&child->inDirtyListLink);
 		child->object.privateFlags &= ~RW_FRAME_HIERARCHY_SYNC;
 	}
 	RwFrameMarkDirty(child);
