@@ -74,20 +74,20 @@ struct PoolSlot {
 	unsigned int flags4; // 0x04: bit 0 set while paused (fn_8020B730), bit 1 checked on resume
 	// Two linear ramps advanced by fn_802092A8 and fn_8020917C: value moves from start to target
 	// while remaining counts down from duration in steps of 5; remaining is -1 when idle.
-	float rampAValue;     // 0x08
-	float f0C;            // 0x0C
-	float f10;            // 0x10
-	float rampATarget;    // 0x14
-	float rampAStart;     // 0x18
-	float rampADuration;  // 0x1C
-	float rampARemaining; // 0x20
-	float rampBValue;     // 0x24
-	float f28;            // 0x28
-	float rampBTarget;    // 0x2C
-	float rampBStart;     // 0x30
-	float rampBDuration;  // 0x34
-	float rampBRemaining; // 0x38
-	unsigned char pad3C[0x40 - 0x3C];
+	float rampAValue;         // 0x08
+	float f0C;                // 0x0C
+	float f10;                // 0x10
+	float rampATarget;        // 0x14
+	float rampAStart;         // 0x18
+	float rampADuration;      // 0x1C
+	float rampARemaining;     // 0x20
+	float rampBValue;         // 0x24
+	float f28;                // 0x28
+	float rampBTarget;        // 0x2C
+	float rampBStart;         // 0x30
+	float rampBDuration;      // 0x34
+	float rampBRemaining;     // 0x38
+	float f3C;                // 0x3C: set by fn_802090B8
 	long long pauseTime;      // 0x40: system time when paused
 	PoolSequence seq;         // 0x48: sequence state, reset by fn_8020B8A0
 	PoolListNode* objects;    // 0xA0: the slot's objects (swept by fn_80206578)
