@@ -294,6 +294,9 @@ game/fn_8003E244.cpp:
 game/GetPlayerPositionHistory__12PlayerMasterFiUc.cpp:
 	.text       start:0x8003E394 end:0x8003E3BC
 
+game/fn_8003E3BC.cpp:
+	.text       start:0x8003E3BC end:0x8003E424
+
 game/fn_8003EDA8.cpp:
 	extab       start:0x80005DD8 end:0x80005DE0
 	extabindex  start:0x8000C5D4 end:0x8000C5E0
