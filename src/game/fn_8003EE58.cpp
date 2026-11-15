@@ -1,11 +1,11 @@
 #include "types.h"
 
-// Registers a player object in slot idx of the player tables: the object itself (lbl_802AD070),
-// its action state (+0x6F0, lbl_802AD090), its motion block (+0x720, lbl_802AD0B0) and its record
+// Registers a player object in slot idx of the player tables: the object itself (lbl_802AD070), its
+// action state (+0x6F0, lbl_802AD090), its motion block (+0x720, lbl_802AD0B0) and its record
 // (+0x760, lbl_802AD0D0). The record's movement parameters (+0xC8, 0x84 bytes) are copied from the
 // table lbl_80241560 entry of its character (+0x3) one value at a time, except +0x140, taken from
-// the entry of its +0x1; fn_800E12FC(0) then runs on the record and the action's scale (+0x24) becomes
-// lbl_8042D0E8. HYPOTHESIS: the parameter names (speeds, accelerations) are UNKNOWN.
+// the entry of its +0x1; fn_800E12FC(0) then runs on the record and the action's scale (+0x24)
+// becomes lbl_8042D0E8. HYPOTHESIS: the parameter names (speeds, accelerations) are UNKNOWN.
 
 struct Params8003EE58 {
 	s32 kind;       // 0x0
