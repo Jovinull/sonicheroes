@@ -235,6 +235,9 @@ game/fn_8003AFFC.cpp:
 	extabindex  start:0x8000C4A8 end:0x8000C4B4
 	.text       start:0x8003AFFC end:0x8003B04C
 
+game/fn_8003B7C8.cpp:
+	.text       start:0x8003B7C8 end:0x8003B97C
+
 game/ClearInfo__7C_COLLIFv.cpp:
 	.text       start:0x8003BE78 end:0x8003BF04
 
