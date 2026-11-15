@@ -25,8 +25,10 @@ void* fn_802043AC(void* object);
 void fn_801733FC(void* frame, void* matrix);
 void fn_801734F4(void* frame, f32 a, f32 b);
 void fn_8017442C(void* frame);
-void* fn_8012C9D4(void* part, void* data);
-void fn_80204144(void* object, void* (*callback)(void* part, void* data), void* data);
+void* fn_8012C9D4(void* part, void* cursor, void* arg, Param8012CEF0* param);
+void fn_80204144(void* object,
+    void* (*callback)(void* part, void* cursor, void* arg, Param8012CEF0* param),
+    Param8012CEF0* data);
 void fn_802041EC(void* object);
 void fn_802033F4(void* object);
 
