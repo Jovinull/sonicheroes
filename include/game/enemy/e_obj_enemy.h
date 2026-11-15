@@ -101,6 +101,8 @@ public:
 	s32 mode; // 0x19C (see fn_800A31B8)
 	u8 unknown1A0[0x220 - 0x1A0];
 	f32 radius; // 0x220 (HYPOTHESIS: the frustum-test radius in Disp)
+	u8 unknown224[0x230 - 0x224];
+	s32 destroyer; // 0x230 (HYPOTHESIS: index of the player that destroyed the enemy, or -1)
 };
 
 #endif
