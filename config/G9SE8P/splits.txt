@@ -2133,6 +2133,11 @@ game/fn_800C48F0.cpp:
 game/fn_800C4938.cpp:
 	.text       start:0x800C4938 end:0x800C497C
 
+game/dtor_800C497C.cpp:
+	extab       start:0x80008598 end:0x800085A0
+	extabindex  start:0x8000ED4C end:0x8000ED58
+	.text       start:0x800C497C end:0x800C4AFC
+
 game/fn_800C4AFC.cpp:
 	extab       start:0x800085A0 end:0x800085A8
 	extabindex  start:0x8000ED58 end:0x8000ED64
