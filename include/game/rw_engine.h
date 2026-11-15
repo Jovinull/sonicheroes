@@ -154,6 +154,20 @@ static inline void RwLLLinkRemove(RwLLLink* link)
 	link->next->prev = link->prev;
 }
 
+// Block-based allocator (HYPOTHESIS: RenderWare RwFreeList). The 0x10-0x24 fields are used by
+// RwFreeListDestroy; the first four names follow the RenderWare layout (UNKNOWN on GameCube).
+struct RwFreeList {
+	u32 entrySize;        // 0x0
+	u32 entriesPerBlock;  // 0x4
+	u32 heapSize;         // 0x8
+	u32 alignment;        // 0xC
+	RwLinkList blockList; // 0x10: allocated blocks
+	u32 flags;            // 0x18: RW_FREE_LIST_* bits
+	RwLLLink link;        // 0x1C: entry in the engine's list of free lists
+};
+
+#define RW_FREE_LIST_STATIC 0x1 // the RwFreeList header was not allocated by RwFreeListCreate
+
 // Growable array (HYPOTHESIS: RwSList).
 struct RwSList {
 	u8* listElements;
@@ -233,8 +247,8 @@ extern "C" {
 extern RwEngineGlobals* lbl_8042C9A4;
 // Error module bookkeeping (HYPOTHESIS: errorModule).
 extern RwModuleInfo lbl_8042C950;
-// HYPOTHESIS: RwFreeListDestroy (a real symbol in the retail map).
-void RwFreeListDestroy(RwFreeList* freeList);
+// HYPOTHESIS: RwFreeListDestroy (a real symbol in the retail map); always returns 1.
+s32 RwFreeListDestroy(RwFreeList* freeList);
 // HYPOTHESIS: _rwerror (variadic; builds an error code) and RwErrorSet.
 s32 fn_8019408C(s32 code, ...);
 RwError* fn_80193FE8(RwError* error);
