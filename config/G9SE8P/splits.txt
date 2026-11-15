@@ -5006,6 +5006,9 @@ game/fn_8016B7BC.cpp:
 game/fn_8016BD6C.cpp:
 	.text       start:0x8016BD6C end:0x8016BEDC
 
+game/fn_8016C53C.cpp:
+	.text       start:0x8016C53C end:0x8016C6D0
+
 game/fn_8016DE10.cpp:
 	.text       start:0x8016DE10 end:0x8016DEE8
 
