@@ -693,6 +693,9 @@ game/fn_8004DDA8.cpp:
 game/fn_8004DDDC.cpp:
 	.text       start:0x8004DDDC end:0x8004DE10
 
+game/fn_8004DE10.cpp:
+	.text       start:0x8004DE10 end:0x8004DEC0
+
 game/fn_8004E564.cpp:
 	.text       start:0x8004E564 end:0x8004E588
 
