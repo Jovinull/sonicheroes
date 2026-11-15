@@ -5967,10 +5967,7 @@ game/fn_8019E480.cpp:
 	.text       start:0x8019E480 end:0x8019E52C
 
 game/fn_8019E52C.cpp:
-	.text       start:0x8019E52C end:0x8019E588
-
-game/fn_8019E588.cpp:
-	.text       start:0x8019E588 end:0x8019E600
+	.text       start:0x8019E52C end:0x8019E85C
 
 game/fn_8019E85C.cpp:
 	.text       start:0x8019E85C end:0x8019E880

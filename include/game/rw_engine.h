@@ -163,6 +163,12 @@ static inline void RwLLLinkRemove(RwLLLink* link)
 	link->next->prev = link->prev;
 }
 
+// Macro form of the same unlink (HYPOTHESIS: rwLinkListRemoveLLLink is a macro in RenderWare). It
+// stays open-coded where CodeWarrior would stop inlining the function, as in the frame destroy
+// recursion of fn_8019E600.
+#define RW_LL_LINK_REMOVE(link)                                                                    \
+	((link)->prev->next = (link)->next, (link)->next->prev = (link)->prev)
+
 // Block-based allocator (HYPOTHESIS: RenderWare RwFreeList). The 0x10-0x24 fields are used by
 // RwFreeListDestroy; the first four names follow the RenderWare layout (UNKNOWN on GameCube).
 struct RwFreeList {
