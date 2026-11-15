@@ -568,6 +568,7 @@ config.libs = [
         "progress_category": "game",
         "objects": [
             Object(Matching, "game/enemy/e_database.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
+            Object(Matching, "game/fn_800643BC.cpp"),
             Object(Matching, "game/DispEnemySetting__9TObjEnemyFv.cpp"),
             Object(Matching, "game/one.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-inline deferred", "-pooldata off"]),
             Object(Matching, "game/vertical_colli.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
