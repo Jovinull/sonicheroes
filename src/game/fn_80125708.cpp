@@ -1,8 +1,8 @@
 // Starts the save-data check of a memory card menu (HYPOTHESIS; names inferred): only from the idle
 // state and when fn_8012822C reports the card object at 0x28 free, enters state 5, clears the
 // progress counters (0xC0, 0x268, 0xC4, 0xC8) and the global lbl_8042C724, marks all 100 slots as
-// unknown (2; 10 rows of 10) and formats the status text at 0x30 (format lbl_8042B96C with 0x26C and 0xC8).
-// Returns 1 when started, 0 otherwise.
+// unknown (2; 10 rows of 10) and formats the status text at 0x30 (format lbl_8042B96C with 0x26C
+// and 0xC8). Returns 1 when started, 0 otherwise.
 // NonMatching: retail clears the slot rows with a 10-iteration counter loop of ten stores; this
 // source's row loop is unrolled once more and keeps its counter (eleven more instructions). An s16
 // row counter gets closer (three), u8 counters, a row pointer and swapped loops do not.
