@@ -2860,6 +2860,11 @@ game/fn_800DFF34.cpp:
 game/fn_800E01E4.cpp:
 	.text       start:0x800E01E4 end:0x800E021C
 
+game/fn_800E03B4.cpp:
+	extab       start:0x80008D88 end:0x80008D90
+	extabindex  start:0x8000F52C end:0x8000F538
+	.text       start:0x800E03B4 end:0x800E04F4
+
 game/fn_800E0B40.cpp:
 	extab       start:0x80008DB0 end:0x80008DB8
 	extabindex  start:0x8000F568 end:0x8000F574
