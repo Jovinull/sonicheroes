@@ -1289,6 +1289,11 @@ game/fn_800643E8.cpp:
 game/Disp__17PARTICLE_MATERIALFP17PARTICLE_INSTANCE.cpp:
 	.text       start:0x8006441C end:0x80064420
 
+game/fn_80064CA8.cpp:
+	extab       start:0x80006B7C end:0x80006B84
+	extabindex  start:0x8000D5D0 end:0x8000D5DC
+	.text       start:0x80064CA8 end:0x80064DF4
+
 game/fn_80064DF4.cpp:
 	extab       start:0x80006B84 end:0x80006B8C
 	extabindex  start:0x8000D5DC end:0x8000D5E8
