@@ -1218,6 +1218,11 @@ game/fn_80065BF8.cpp:
 	extabindex  start:0x8000D63C end:0x8000D648
 	.text       start:0x80065BF8 end:0x80065CAC
 
+game/fn_80065CAC.cpp:
+	extab       start:0x80006BDC end:0x80006BE4
+	extabindex  start:0x8000D648 end:0x8000D654
+	.text       start:0x80065CAC end:0x80065D6C
+
 game/fn_80065D6C.cpp:
 	extab       start:0x80006BE4 end:0x80006BEC
 	extabindex  start:0x8000D654 end:0x8000D660
