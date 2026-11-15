@@ -235,8 +235,8 @@ struct RwEngineGlobals {
 	void* (*freeListAlloc)(RwFreeList* freeList);                    // 0x144
 	void (*freeListFree)(RwFreeList* freeList, void* entry);         // 0x148
 	u8 pad14C[0x150 - 0x14C];
-	s32 engineStatus; // 0x150: RW_ENGINE_STATUS_*
-	u8 pad154[0x158 - 0x154];
+	s32 engineStatus;     // 0x150: RW_ENGINE_STATUS_*
+	u32 resArenaInitSize; // 0x154: resource arena size used by the resources module open
 };
 
 // Engine status values (HYPOTHESIS: RwEngineStatus); 1 is set when the engine reverts to the
