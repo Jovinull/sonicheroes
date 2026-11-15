@@ -7134,6 +7134,9 @@ game/fn_801FD8A8.cpp:
 game/fn_802008DC.cpp:
 	.text       start:0x802008DC end:0x80200934
 
+game/fn_80200934.cpp:
+	.text       start:0x80200934 end:0x80200AC4
+
 game/fn_80200AC4.cpp:
 	.text       start:0x80200AC4 end:0x80200B6C
 
