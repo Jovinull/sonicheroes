@@ -270,6 +270,13 @@ extern RwPluginRegistry lbl_80290610;
 // imagePathSize).
 #define RW_IMAGE_PATH      (*(char**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x4))
 #define RW_IMAGE_PATH_SIZE (*(s32*)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x8))
+// Scratch buffer and its size, the image format free list and the list of registered image
+// formats (HYPOTHESIS: scratchMem, scratchMemSize, imageFormatFreeList and imageFormats; used by
+// the image module close).
+#define RW_IMAGE_SCRATCH_MEM (*(void**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x210))
+#define RW_IMAGE_SCRATCH_MEM_SIZE (*(s32*)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x214))
+#define RW_IMAGE_FORMAT_FREE_LIST                                                                  \
+	(*(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x218))
 
 // Raster module bookkeeping (HYPOTHESIS: rasterModule) and plugin registry (rasterTKList); the
 // raster free list sits at +0x60 in the raster module globals.
