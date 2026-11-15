@@ -6,10 +6,8 @@
 // +0x30) with the record counter +0x830, frees lbl_8042C284 and +0xA34, clears lbl_8042C298, runs
 // the TObjSetObj and TObject destructors and frees the object when the delete flag is positive.
 // HYPOTHESIS: the field roles are UNKNOWN.
-// NonMatching (9 words, registers only): in the release loop retail keeps the counter in r28, the
-// flag pointer in r29 and the table offset in r27 (a copy of the counter's 0); MWCC rotates them
-// (r27, r28, r29). Tried: counter scope and types (int, long, unsigned), an inline flag test.
-// Same family as fn_8004EF98.
+// The release loop is an inline: its counter and table offset then share the counter's initial 0
+// as in the retail code.
 
 struct Generated8005B358 {
 	unsigned char pad0[0x8];
@@ -54,23 +52,28 @@ void __dt__10TObjSetObjFv(void* setObj, int flags);
 void __dt__7TObjectFv(void*, int);
 void Free__9THeapCtrlFPv(void*, void*);
 
+static inline void ReleaseGenerated()
+{
+	for (int i = 0; i < 0x200; i++) {
+		if (lbl_802FF3A0[i] != 0) {
+			Generated8005B358* g = lbl_8042C280[i];
+			if (g == 0) {
+				break;
+			}
+			if (g->release != 0) {
+				g->release(g);
+			}
+		}
+	}
+}
+
 Obj8005B358* fn_8005B358(Obj8005B358* o, short flags)
 {
 	if (o != 0) {
 		o->vt       = __vt__10TObjSetGen;
 		o->setObjVt = __vt__10TObjSetGen + 0x2C;
 		if (lbl_8042C298 != 0 && lbl_8042C278 != 0) {
-			for (int i = 0; i < 0x200; i++) {
-				if (lbl_802FF3A0[i] != 0) {
-					Generated8005B358* g = lbl_8042C280[i];
-					if (g == 0) {
-						break;
-					}
-					if (g->release != 0) {
-						g->release(g);
-					}
-				}
-			}
+			ReleaseGenerated();
 		}
 		for (o->record = 0; o->record < 0x800; o->record++) {
 			if (lbl_802D63A0[o->record].buffer != 0) {
