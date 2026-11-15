@@ -260,6 +260,11 @@ game/CalcRange__7C_COLLIFv.cpp:
 	extabindex  start:0x8000C310 end:0x8000C31C
 	.text       start:0x80021384 end:0x800215A8
 
+game/fn_800215A8.cpp:
+	extab       start:0x80005C08 end:0x80005C10
+	extabindex  start:0x8000C31C end:0x8000C328
+	.text       start:0x800215A8 end:0x8002171C
+
 game/fn_8002171C.cpp:
 	.text       start:0x8002171C end:0x80021824
 
