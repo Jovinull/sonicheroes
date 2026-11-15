@@ -3168,6 +3168,11 @@ game/fn_8011EF18.cpp:
 game/fn_8011EF24.cpp:
 	.text       start:0x8011EF24 end:0x8011EF2C
 
+game/fn_8011EF2C.cpp:
+	extab       start:0x8000AEB8 end:0x8000AEC0
+	extabindex  start:0x80010EDC end:0x80010EE8
+	.text       start:0x8011EF2C end:0x8011EFB0
+
 game/fn_8011EFB0.cpp:
 	.text       start:0x8011EFB0 end:0x8011EFB8
 
