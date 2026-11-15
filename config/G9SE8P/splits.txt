@@ -1930,6 +1930,11 @@ game/fn_800B7B04.cpp:
 game/fn_800B7B30.cpp:
 	.text       start:0x800B7B30 end:0x800B7BDC
 
+game/fn_800B7BDC.cpp:
+	extab       start:0x80008160 end:0x80008168
+	extabindex  start:0x8000E7A0 end:0x8000E7AC
+	.text       start:0x800B7BDC end:0x800B7C88
+
 game/__dt__9EffShadowFv.cpp:
 	extab       start:0x80008180 end:0x80008188
 	extabindex  start:0x8000E7D0 end:0x8000E7DC
