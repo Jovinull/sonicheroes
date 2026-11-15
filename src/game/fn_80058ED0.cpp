@@ -37,11 +37,11 @@ extern "C" {
 extern unsigned char lbl_802430FC[];
 extern int lbl_8042B208;
 extern float lbl_8042D430;
-void fn_8005B4F0(Obj80058ED0* o);
+void __ct__10TObjSetGenFP7TObject(Obj80058ED0* o); // TObjSetGen::TObjSetGen(TObject*)
 
 Obj80058ED0* fn_80058ED0(Obj80058ED0* o)
 {
-	fn_8005B4F0(o);
+	__ct__10TObjSetGenFP7TObject(o);
 	o->f18  = lbl_802430FC;
 	o->f2C  = lbl_802430FC + 0x2C;
 	o->fA6C = 0;
