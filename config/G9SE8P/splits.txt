@@ -4994,6 +4994,9 @@ game/fn_8016FB84.cpp:
 game/fn_8016FBA0.cpp:
 	.text       start:0x8016FBA0 end:0x8016FC30
 
+game/fn_8016FE54.cpp:
+	.text       start:0x8016FE54 end:0x8016FFA4
+
 game/fn_80170428.cpp:
 	.text       start:0x80170428 end:0x80170490
 
