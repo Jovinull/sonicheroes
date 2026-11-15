@@ -5711,6 +5711,9 @@ game/fn_80197384.cpp:
 game/fn_80197434.cpp:
 	.text       start:0x80197434 end:0x801974E0
 
+game/fn_801974E0.cpp:
+	.text       start:0x801974E0 end:0x80197770
+
 game/fn_80197770.cpp:
 	.text       start:0x80197770 end:0x801978D4
 
