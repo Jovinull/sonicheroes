@@ -252,6 +252,11 @@ game/fn_8003B7C8.cpp:
 game/ClearInfo__7C_COLLIFv.cpp:
 	.text       start:0x8003BE78 end:0x8003BF04
 
+game/Init__7C_COLLIFP8CCL_INFOiUc.cpp:
+	extab       start:0x80005D30 end:0x80005D38
+	extabindex  start:0x8000C4D8 end:0x8000C4E4
+	.text       start:0x8003C200 end:0x8003C52C
+
 game/__dt__7C_COLLIFv.cpp:
 	extab       start:0x80005D38 end:0x80005D40
 	extabindex  start:0x8000C4E4 end:0x8000C4F0
