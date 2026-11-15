@@ -2940,6 +2940,11 @@ game/fn_80115460.cpp:
 game/fn_80115478.cpp:
 	.text       start:0x80115478 end:0x801154BC
 
+game/fn_80116680.cpp:
+	extab       start:0x8000A960 end:0x8000A968
+	extabindex  start:0x80010A2C end:0x80010A38
+	.text       start:0x80116680 end:0x80116764
+
 game/fn_801169A4.cpp:
 	extab       start:0x8000A9AC end:0x8000A9B4
 	extabindex  start:0x80010A5C end:0x80010A68
