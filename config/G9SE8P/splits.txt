@@ -1020,6 +1020,9 @@ game/fn_800643BC.cpp:
 game/fn_800643C0.cpp:
 	.text       start:0x800643C0 end:0x800643E4
 
+game/fn_800643E4.cpp:
+	.text       start:0x800643E4 end:0x800643E8
+
 game/fn_800643E8.cpp:
 	.text       start:0x800643E8 end:0x8006441C
 
