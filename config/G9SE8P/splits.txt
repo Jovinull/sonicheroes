@@ -4805,6 +4805,9 @@ game/fn_8015D47C.cpp:
 game/fn_8015D4B8.cpp:
 	.text       start:0x8015D4B8 end:0x8015D4C4
 
+game/fn_8015D4C4.cpp:
+	.text       start:0x8015D4C4 end:0x8015D5E8
+
 game/fn_8015D5E8.cpp:
 	.text       start:0x8015D5E8 end:0x8015D67C
 
