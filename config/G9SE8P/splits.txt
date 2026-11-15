@@ -1391,6 +1391,9 @@ game/fn_800A2D50.cpp:
 game/fn_800A2E1C.cpp:
 	.text       start:0x800A2E1C end:0x800A2E24
 
+game/DispEnemySetting__9TObjEnemyFv.cpp:
+	.text       start:0x800A3148 end:0x800A314C
+
 game/KillMySelf__9TObjEnemyFv.cpp:
 	extab       start:0x80007928 end:0x80007930
 	extabindex  start:0x8000DF30 end:0x8000DF3C
