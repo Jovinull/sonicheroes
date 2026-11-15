@@ -2288,6 +2288,11 @@ game/fn_800CAF2C.cpp:
 game/fn_800CB11C.cpp:
 	.text       start:0x800CB11C end:0x800CB15C
 
+game/fn_800CB15C.cpp:
+	extab       start:0x80008898 end:0x800088A0
+	extabindex  start:0x8000EECC end:0x8000EED8
+	.text       start:0x800CB15C end:0x800CB1E8
+
 game/fn_800CB1E8.cpp:
 	extab       start:0x800088A0 end:0x800088A8
 	extabindex  start:0x8000EED8 end:0x8000EEE4
