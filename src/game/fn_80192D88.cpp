@@ -1,8 +1,8 @@
 // Reads a chunk header (HYPOTHESIS: _rwStreamReadChunkHeader): reads the 12-byte header, converts
 // it to native byte order, unpacks the library ID into the version and build number, records the
 // header in lbl_80290400 together with its "complex chunk" flag (fn_80192CCC) and copies the
-// requested fields out. A short read raises error 0x8000001A (read error) of plugin 1. Returns 1, or
-// 0 on a short read.
+// requested fields out. A short read raises error 0x8000001A (read error) of plugin 1. Returns 1,
+// or 0 on a short read.
 #include "game/rw_engine.h"
 
 // Last chunk header read (HYPOTHESIS: RwChunkHeaderInfo).

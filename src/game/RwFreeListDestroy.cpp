@@ -1,10 +1,10 @@
 // Unlinks a free list from the engine list, frees every block it owns and releases the header
-// unless it is static (HYPOTHESIS: RenderWare RwFreeListDestroy).
-// NonMatching: retail rematerialises the block-list terminator (freeList + 0x10) in a volatile
-// register before each loop test, while this source keeps it in a saved register (r30/r31), which
-// shifts the register allocation (32 words differ, one extra instruction). Tried a while on the head
-// pointer, explicit head re-reads, inline first/terminator helpers, a pre-computed terminator and
-// compilers GC/1.0 to 2.7.
+// unless it is static (HYPOTHESIS: RenderWare RwFreeListDestroy). NonMatching: retail
+// rematerialises the block-list terminator (freeList + 0x10) in a volatile register before each
+// loop test, while this source keeps it in a saved register (r30/r31), which shifts the register
+// allocation (32 words differ, one extra instruction). Tried a while on the head pointer, explicit
+// head re-reads, inline first/terminator helpers, a pre-computed terminator and compilers GC/1.0 to
+// 2.7.
 
 #include "game/rw_engine.h"
 

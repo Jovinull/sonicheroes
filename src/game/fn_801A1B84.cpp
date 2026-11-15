@@ -1,11 +1,10 @@
 // Opens the raster module (HYPOTHESIS: _rwRasterOpen): records the globals offset, sets up the
 // dummy raster (a zero-sized raster that owns no pixels) as the only entry of the raster context
 // stack and creates the raster free list. Returns the instance, or null when the free list cannot
-// be created.
-// NonMatching: retail stores the offset and then re-reads lbl_8042C9B8 before the memset, while this
-// source reuses the offset register, so every later word shifts by one. Forcing the re-read with a
-// volatile access leaves only a two-register swap (r0/r3) and is not used. Tried compilers 1.2.5n to
-// 2.6.
+// be created. NonMatching: retail stores the offset and then re-reads lbl_8042C9B8 before the
+// memset, while this source reuses the offset register, so every later word shifts by one. Forcing
+// the re-read with a volatile access leaves only a two-register swap (r0/r3) and is not used. Tried
+// compilers 1.2.5n to 2.6.
 #include "game/rw_engine.h"
 
 // Raster module globals (HYPOTHESIS: rwRasterGlobals; the 0x28-0x64 layout is used by this

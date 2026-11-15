@@ -1,6 +1,7 @@
 // Resets the matrix on top of the stack held in lbl_803EC968 (pointer table at +0x234, top index at
-// +0x2B4) to identity, flags it as an orthonormal identity matrix and clears the words at +0x388 and
-// +0x39C; returns 1. HYPOTHESIS: inlined RwMatrixSetIdentity on a RenderWare-style matrix stack.
+// +0x2B4) to identity, flags it as an orthonormal identity matrix and clears the words at +0x388
+// and +0x39C; returns 1. HYPOTHESIS: inlined RwMatrixSetIdentity on a RenderWare-style matrix
+// stack.
 
 struct V3d8016EAB4 {
 	float x;
@@ -31,7 +32,8 @@ struct Glob8016EAB4 {
 
 extern "C" {
 extern Glob8016EAB4 lbl_803EC968;
-// The constants live in .sdata2 but are declared non-const: retail reloads them after each store group.
+// The constants live in .sdata2 but are declared non-const: retail reloads them after each store
+// group.
 extern float lbl_8042F460; // 1.0f
 extern float lbl_8042F464; // 0.0f
 

@@ -2,8 +2,8 @@
 // function): for a top-level raster that owns its pixels and is of type 0, 4 or 5, waits until the
 // GPU has passed the raster's draw-sync token (issuing the pending token lbl_8042BE88 first when it
 // is the raster's, then advancing it modulo 0xE000), unbinds it from the texture slot lbl_8042CA54
-// (fn_801AF31C) when bound there, and frees its pixel block. Types 1 and 2 need nothing; other types
-// record core error 0x8000000D and return 0. Field names are inferred.
+// (fn_801AF31C) when bound there, and frees its pixel block. Types 1 and 2 need nothing; other
+// types record core error 0x8000000D and return 0. Field names are inferred.
 #include "dolphin/gx/GXManage.h"
 #include "game/rw_engine.h"
 

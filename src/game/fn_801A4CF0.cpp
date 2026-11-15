@@ -7,7 +7,8 @@
 typedef RwTexture* (*RwTextureCallBackRead801A4CF0)(const char* name, const char* maskName);
 typedef RwTexture* (*RwTextureCallBackFind801A4CF0)(const char* name, const char* maskName);
 
-// Texture module callbacks (HYPOTHESIS: textureReadCallBack at +0x14, textureFindCallBack at +0x18).
+// Texture module callbacks (HYPOTHESIS: textureReadCallBack at +0x14, textureFindCallBack at
+// +0x18).
 #define RW_TEXTURE_READ_CALLBACK (*(RwTextureCallBackRead801A4CF0*)(RW_TEXTURE_GLOBALS + 0x14))
 #define RW_TEXTURE_FIND_CALLBACK (*(RwTextureCallBackFind801A4CF0*)(RW_TEXTURE_GLOBALS + 0x18))
 
