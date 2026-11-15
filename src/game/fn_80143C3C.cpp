@@ -4,8 +4,8 @@
 // (3 * size each), normal (9 * size) and texture coordinate (2 * size) data of its vertices.
 // Field names are inferred from this function only.
 // The u16-index twin of fn_80143AE4.
-// NonMatching: same joint-block register difference as fn_80143AE4, and the u16 reads through the
-// helper also shift the index registers (75 words differ).
+// NonMatching: same joint-block register difference as fn_80143AE4 (23 words differ). A const
+// index pointer made the u16 reads shift the index registers too (75 words).
 #include "types.h"
 
 struct Triangle80143C3C {
@@ -18,14 +18,14 @@ struct Triangle80143C3C {
 };
 
 // Reads the u16 index at a byte offset.
-static inline u16 Index80143C3C(const u8* indices, s32 offset)
+static inline u16 Index80143C3C(u8* indices, s32 offset)
 {
-	return *(const u16*)(indices + offset);
+	return *(u16*)(indices + offset);
 }
 
 extern "C" {
-void fn_80143C3C(Triangle80143C3C* triangle, const u8* indices, s32 stride, u8* positions,
-    u8* normals, u8* uvs, s32 i)
+void fn_80143C3C(
+    Triangle80143C3C* triangle, u8* indices, s32 stride, u8* positions, u8* normals, u8* uvs, s32 i)
 {
 	u32 a = Index80143C3C(indices, stride * i);
 	u16 b;
