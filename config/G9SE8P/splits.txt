@@ -1529,6 +1529,11 @@ game/CheckCameraFrustumTest__9TObjEnemyFPC5RwV3df.cpp:
 	extabindex  start:0x8000E0C8 end:0x8000E0D4
 	.text       start:0x800A6D60 end:0x800A6DD4
 
+game/TDisp__9TObjEnemyFv.cpp:
+	extab       start:0x80007A40 end:0x80007A48
+	extabindex  start:0x8000E0D4 end:0x8000E0E0
+	.text       start:0x800A6DD4 end:0x800A6EA8
+
 game/Disp__9TObjEnemyFv.cpp:
 	extab       start:0x80007A48 end:0x80007A50
 	extabindex  start:0x8000E0E0 end:0x8000E0EC
