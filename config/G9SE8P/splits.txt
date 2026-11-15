@@ -1999,6 +1999,11 @@ game/c_colli_react.cpp:
 game/fn_800B4138.cpp:
 	.text       start:0x800B4138 end:0x800B41A0
 
+game/fn_800B41A0.cpp:
+	extab       start:0x80008020 end:0x80008028
+	extabindex  start:0x8000E614 end:0x8000E620
+	.text       start:0x800B41A0 end:0x800B429C
+
 game/fn_800B4448.cpp:
 	.text       start:0x800B4448 end:0x800B44A0
 
