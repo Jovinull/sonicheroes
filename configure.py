@@ -2000,6 +2000,7 @@ config.libs = [
             Object(Matching, "game/fn_80145EB4.cpp"),
             Object(Matching, "game/fn_80147F64.cpp"),
             Object(Matching, "game/fn_80090B00.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
+            Object(Matching, "game/fn_80090E00.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_8014DB38.cpp"),
             Object(Matching, "game/fn_8020C92C.cpp"),
             Object(Matching, "game/fn_8020D02C.cpp"),
