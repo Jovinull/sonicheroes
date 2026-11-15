@@ -13,7 +13,7 @@ struct GeometryPlugin105Entry {
 	s16 a;                        // 0x4
 	s16 b;                        // 0x6
 	f32 value;                    // 0x8
-	u8 padC[0x4];                 // 0xC
+	f32 inverseValue;             // 0xC: lbl_8042F2B4 / value, set when read
 	GeometryPlugin105Entry* link; // 0x10
 };
 
