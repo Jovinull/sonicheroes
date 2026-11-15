@@ -3,9 +3,6 @@
 // user is left, releases the slot's handle (+0xC, fn_800D075C), its object's buffer (+0x10 of
 // the object at +0x8, fn_800126C8) and the object itself (fn_8020C2D8), clearing the pointers.
 // HYPOTHESIS: per-character model/texture sharing; the roles are UNKNOWN.
-// NonMatching (20 words, register allocation): the retail code sets up the counter and the slot
-// pointer (r31/r30) before computing the bit and mask (r28/r29). Tried: every declaration order,
-// an explicit slot pointer, the bit computed in the loop.
 #include "types.h"
 
 struct Object8003F308 {
@@ -30,18 +27,17 @@ extern Slot8003F308 lbl_802AD280[0x307];
 void fn_800D075C(void* handle);
 void fn_800126C8(void* buffer);
 void fn_8020C2D8(Object8003F308* object);
+}
 
-void fn_8003F308(Player8003F308* p)
+// The bit is computed in the loop from the character passed by value: hoisted out of the loop,
+// it lands after the loop setup, as in the retail code.
+static inline void ReleaseShared(s32 character)
 {
 	int i;
-	s32 mask;
-	s32 bit;
 
-	bit  = 1 << p->character;
-	mask = ~bit;
 	for (i = 0; i < 0x307; i++) {
-		if (bit & lbl_802AD280[i].users) {
-			lbl_802AD280[i].users &= mask;
+		if ((1 << character) & lbl_802AD280[i].users) {
+			lbl_802AD280[i].users &= ~(1 << character);
 			if (lbl_802AD280[i].users == 0) {
 				fn_800D075C(lbl_802AD280[i].handle);
 				if (lbl_802AD280[i].object->buffer != NULL) {
@@ -54,5 +50,11 @@ void fn_8003F308(Player8003F308* p)
 			}
 		}
 	}
+}
+
+extern "C" {
+void fn_8003F308(Player8003F308* p)
+{
+	ReleaseShared(p->character);
 }
 }
