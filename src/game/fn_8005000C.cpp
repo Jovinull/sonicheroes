@@ -1,4 +1,5 @@
-// Destructor: stores the class vtable at 0x18, clears lbl_8042C248, runs the TObjCamera destructor and frees the object when the delete flag is positive.
+// Destructor: stores the class vtable at 0x18, clears lbl_8042C248, runs the TObjCamera destructor
+// and frees the object when the delete flag is positive.
 
 extern "C" {
 struct Obj8005000C {

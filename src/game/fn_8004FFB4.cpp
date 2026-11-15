@@ -1,4 +1,5 @@
-// Runs the TObjCamera constructor and fills in the object: vtable-like pointer at 0x18, word 0 from lbl_8042B058 and the halfword 0x5C at 0x1E; returns the object.
+// Runs the TObjCamera constructor and fills in the object: vtable-like pointer at 0x18, word 0 from
+// lbl_8042B058 and the halfword 0x5C at 0x1E; returns the object.
 
 extern "C" {
 struct Obj8004FFB4 {

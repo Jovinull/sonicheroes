@@ -1,4 +1,5 @@
-// TObjCamera::~TObjCamera (name CORROBORATED by the PS2 build): installs the vtable lbl_80242884, destroys the TObject base and frees the object when flags > 0; returns the object.
+// TObjCamera::~TObjCamera (name CORROBORATED by the PS2 build): installs the vtable lbl_80242884,
+// destroys the TObject base and frees the object when flags > 0; returns the object.
 
 extern "C" {
 void Free__9THeapCtrlFPv(int, void*);

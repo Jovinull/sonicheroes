@@ -1,8 +1,8 @@
-// Moves an object's animation time (+0x2C) toward its start (+0x3C, direction +0x4C = 1) or its
-// end (+0x40) by lbl_8042DE80 per call (AdjustFloat) while it plays (+0x44); in play mode 1, and
-// while lbl_8042C410 is set, it drives the interpolator lbl_8042C428 like fn_800C0B04 does
-// (fn_80204144 with fn_800C480C), stopping a one-shot animation (+0x48 = 1) that runs back before
-// the first step (its id leaves the table lbl_803042C8), and updates it. HYPOTHESIS: RtAnim helpers.
+// Moves an object's animation time (+0x2C) toward its start (+0x3C, direction +0x4C = 1) or its end
+// (+0x40) by lbl_8042DE80 per call (AdjustFloat) while it plays (+0x44); in play mode 1, and while
+// lbl_8042C410 is set, it drives the interpolator lbl_8042C428 like fn_800C0B04 does (fn_80204144
+// with fn_800C480C), stopping a one-shot animation (+0x48 = 1) that runs back before the first step
+// (its id leaves the table lbl_803042C8), and updates it. HYPOTHESIS: RtAnim helpers.
 #include "types.h"
 
 struct Anim800C0384 {
