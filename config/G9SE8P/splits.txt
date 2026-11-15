@@ -1424,6 +1424,11 @@ game/fn_80064DF4.cpp:
 	extabindex  start:0x8000D5DC end:0x8000D5E8
 	.text       start:0x80064DF4 end:0x80064E38
 
+game/fn_800652C8.cpp:
+	extab       start:0x80006B9C end:0x80006BB4
+	extabindex  start:0x8000D600 end:0x8000D60C
+	.text       start:0x800652C8 end:0x800654F4
+
 game/__dt__17PARTICLE_MATERIALFv.cpp:
 	extab       start:0x80006BB4 end:0x80006BBC
 	extabindex  start:0x8000D60C end:0x8000D618
