@@ -1,9 +1,9 @@
 // Creates a sub-hierarchy of an animation hierarchy (HYPOTHESIS:
-// RpHAnimHierarchyCreateSubHierarchy): counts the nodes of the subtree rooted at startNode by following the push/pop node flags, takes a
-// hierarchy from the HAnim free list, flags it as a sub-hierarchy, creates its sub-interpolator
-// (fn_8020D120), finds the parent node index of the subtree root with a push/pop stack (-1 for
-// the root), and shares the parent's frame, matrix array and node records from startNode on.
-// Returns the sub-hierarchy.
+// RpHAnimHierarchyCreateSubHierarchy): counts the nodes of the subtree rooted at startNode by
+// following the push/pop node flags, takes a hierarchy from the HAnim free list, flags it as a
+// sub-hierarchy, creates its sub-interpolator (fn_8020D120), finds the parent node index of the
+// subtree root with a push/pop stack (-1 for the root), and shares the parent's frame, matrix
+// array and node records from startNode on. Returns the sub-hierarchy.
 #include "game/rw_engine.h"
 
 #define RP_HANIM_POP_PARENT_MATRIX  0x1
