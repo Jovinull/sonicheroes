@@ -2963,6 +2963,11 @@ game/fn_800FD298.cpp:
 	extabindex  start:0x8000FCF4 end:0x8000FD00
 	.text       start:0x800FD298 end:0x800FD2D4
 
+game/fn_800FD2D4.cpp:
+	extab       start:0x80009728 end:0x80009730
+	extabindex  start:0x8000FD00 end:0x8000FD0C
+	.text       start:0x800FD2D4 end:0x800FD3A0
+
 game/fn_800FD3A0.cpp:
 	extab       start:0x80009730 end:0x80009738
 	extabindex  start:0x8000FD0C end:0x8000FD18
