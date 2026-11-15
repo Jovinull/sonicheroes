@@ -3005,6 +3005,11 @@ game/fn_800DFF34.cpp:
 game/fn_800E01E4.cpp:
 	.text       start:0x800E01E4 end:0x800E021C
 
+game/fn_800E021C.cpp:
+	extab       start:0x80008D80 end:0x80008D88
+	extabindex  start:0x8000F520 end:0x8000F52C
+	.text       start:0x800E021C end:0x800E03B4
+
 game/fn_800E03B4.cpp:
 	extab       start:0x80008D88 end:0x80008D90
 	extabindex  start:0x8000F52C end:0x8000F538
