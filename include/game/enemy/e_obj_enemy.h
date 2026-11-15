@@ -40,9 +40,13 @@ public:
 	u16 ExecTime, DispTime, TDispTime, PDispTime, ImmAftSetRasterTime;
 };
 
-// Bytes 0x28..0xB0 of an enemy, between the TObject and TObjSetObj bases. HYPOTHESIS: the
-// non-polymorphic C_COLLI collision block (it has no sub-table in the vtable).
-struct TObjEnemyCollisionArea {
+// Bytes 0x28..0xB0 of an enemy, between the TObject and TObjSetObj bases: the collision block.
+// TObjEnemy::Exec calls ClearInfo__7C_COLLIFv on this+0x28, and the vtable has no sub-table for
+// it (non-polymorphic). Only the size and that member are used here.
+class C_COLLI
+{
+public:
+	void ClearInfo();
 	u8 unknown[0x88];
 };
 
@@ -50,7 +54,7 @@ enum ENEMY_MD { ENEMY_MD_0 };
 
 struct sEnemyCommand;
 
-class TObjEnemy : public TObject, public TObjEnemyCollisionArea, public TObjSetObj
+class TObjEnemy : public TObject, public C_COLLI, public TObjSetObj
 {
 public:
 	// Phase passed to CtrlMode by the InitMode/ExecMode/ExitMode wrappers (0, 1 and 3). The
@@ -75,7 +79,7 @@ public:
 	virtual void DispShadow();                                      // +0x64
 	virtual void DispOpaqOnEdit();                                  // +0x68
 	virtual void Virtual33D94();                                    // +0x6C
-	virtual void KillMySelf();                                      // +0x70
+	virtual s32 KillMySelf();                                       // +0x70
 	virtual s32 CheckCameraFrustumTest(const RwV3d*, f32);          // +0x74
 	virtual s32 CheckCameraFrustumTestForShadow(const RwV3d*, f32); // +0x78
 	virtual void AddScore();                                        // +0x7C
@@ -90,8 +94,10 @@ public:
 	virtual void Virtual33DA4();                                    // +0xA0
 
 	u8 unknownB8[0x140 - 0xB8];
-	RwV3d position; // 0x140 (HYPOTHESIS: copied for the frustum test in Disp)
-	u8 unknown14C[0x19C - 0x14C];
+	RwV3d position; // 0x140 (HYPOTHESIS: copied for the frustum tests in Disp/TDisp)
+	u8 unknown14C[0x191 - 0x14C];
+	s8 timers[8]; // 0x191 (HYPOTHESIS: frame countdowns, decremented to 0 by Exec)
+	u8 unknown199[0x19C - 0x199];
 	s32 mode; // 0x19C (see fn_800A31B8)
 	u8 unknown1A0[0x220 - 0x1A0];
 	f32 radius; // 0x220 (HYPOTHESIS: the frustum-test radius in Disp)
