@@ -2663,6 +2663,11 @@ game/fn_80103470.cpp:
 	extabindex  start:0x8000FFAC end:0x8000FFB8
 	.text       start:0x80103470 end:0x80103490
 
+game/fn_80103BC8.cpp:
+	extab       start:0x80009A40 end:0x80009A48
+	extabindex  start:0x8000FFD0 end:0x8000FFDC
+	.text       start:0x80103BC8 end:0x80103D48
+
 game/fn_80104184.cpp:
 	extab       start:0x80009A50 end:0x80009A58
 	extabindex  start:0x8000FFE8 end:0x8000FFF4
@@ -2672,6 +2677,11 @@ game/fn_801043EC.cpp:
 	extab       start:0x80009A84 end:0x80009A8C
 	extabindex  start:0x80010000 end:0x8001000C
 	.text       start:0x801043EC end:0x80104410
+
+game/fn_80104410.cpp:
+	extab       start:0x80009A8C end:0x80009A94
+	extabindex  start:0x8001000C end:0x80010018
+	.text       start:0x80104410 end:0x801044DC
 
 game/fn_8010A0E8.cpp:
 	.text       start:0x8010A0E8 end:0x8010A110
@@ -2683,6 +2693,11 @@ game/fn_8010A110.cpp:
 
 game/fn_8010A238.cpp:
 	.text       start:0x8010A238 end:0x8010A23C
+
+game/fn_8010A23C.cpp:
+	extab       start:0x8000A09C end:0x8000A0A4
+	extabindex  start:0x8001039C end:0x800103A8
+	.text       start:0x8010A23C end:0x8010A408
 
 game/fn_8010AC88.cpp:
 	extab       start:0x8000A0E4 end:0x8000A0FC
@@ -2745,10 +2760,20 @@ game/fn_8010F5FC.cpp:
 	extabindex  start:0x80010690 end:0x8001069C
 	.text       start:0x8010F5FC end:0x8010F670
 
+game/fn_8010F980.cpp:
+	extab       start:0x8000A58C end:0x8000A594
+	extabindex  start:0x800106A8 end:0x800106B4
+	.text       start:0x8010F980 end:0x8010FB50
+
 game/fn_8010FB50.cpp:
 	extab       start:0x8000A594 end:0x8000A59C
 	extabindex  start:0x800106B4 end:0x800106C0
 	.text       start:0x8010FB50 end:0x8010FBCC
+
+game/fn_8010FBCC.cpp:
+	extab       start:0x8000A59C end:0x8000A5A4
+	extabindex  start:0x800106C0 end:0x800106CC
+	.text       start:0x8010FBCC end:0x8010FC80
 
 game/fn_8010FF68.cpp:
 	.text       start:0x8010FF68 end:0x8010FF6C
@@ -2785,6 +2810,11 @@ game/fn_801112F0.cpp:
 	extabindex  start:0x80010768 end:0x80010774
 	.text       start:0x801112F0 end:0x8011137C
 
+game/fn_8011137C.cpp:
+	extab       start:0x8000A66C end:0x8000A674
+	extabindex  start:0x80010774 end:0x80010780
+	.text       start:0x8011137C end:0x80111558
+
 game/fn_80111558.cpp:
 	extab       start:0x8000A674 end:0x8000A67C
 	extabindex  start:0x80010780 end:0x8001078C
@@ -2794,6 +2824,16 @@ game/fn_80111578.cpp:
 	extab       start:0x8000A67C end:0x8000A684
 	extabindex  start:0x8001078C end:0x80010798
 	.text       start:0x80111578 end:0x801115A0
+
+game/fn_801115A0.cpp:
+	extab       start:0x8000A684 end:0x8000A68C
+	extabindex  start:0x80010798 end:0x800107A4
+	.text       start:0x801115A0 end:0x80111754
+
+game/fn_8011253C.cpp:
+	extab       start:0x8000A6FC end:0x8000A704
+	extabindex  start:0x800107D4 end:0x800107E0
+	.text       start:0x8011253C end:0x801125D0
 
 game/fn_801125D0.cpp:
 	.text       start:0x801125D0 end:0x801125D4
@@ -2825,6 +2865,11 @@ game/fn_80112718.cpp:
 	extab       start:0x8000A724 end:0x8000A72C
 	extabindex  start:0x80010810 end:0x8001081C
 	.text       start:0x80112718 end:0x8011273C
+
+game/fn_8011273C.cpp:
+	extab       start:0x8000A72C end:0x8000A744
+	extabindex  start:0x8001081C end:0x80010828
+	.text       start:0x8011273C end:0x801127FC
 
 game/fn_80112D98.cpp:
 	.text       start:0x80112D98 end:0x80112DAC
@@ -2920,6 +2965,11 @@ game/fn_80115460.cpp:
 game/fn_80115478.cpp:
 	.text       start:0x80115478 end:0x801154BC
 
+game/fn_80116680.cpp:
+	extab       start:0x8000A960 end:0x8000A968
+	extabindex  start:0x80010A2C end:0x80010A38
+	.text       start:0x80116680 end:0x80116764
+
 game/fn_801169A4.cpp:
 	extab       start:0x8000A9AC end:0x8000A9B4
 	extabindex  start:0x80010A5C end:0x80010A68
@@ -2963,6 +3013,11 @@ game/fn_80116DF8.cpp:
 	extabindex  start:0x80010A8C end:0x80010A98
 	.text       start:0x80116DF8 end:0x80116E3C
 
+game/fn_80116F5C.cpp:
+	extab       start:0x8000A9DC end:0x8000A9E4
+	extabindex  start:0x80010AA4 end:0x80010AB0
+	.text       start:0x80116F5C end:0x80117080
+
 game/fn_80117080.cpp:
 	extab       start:0x8000A9E4 end:0x8000A9EC
 	extabindex  start:0x80010AB0 end:0x80010ABC
@@ -2989,6 +3044,11 @@ game/fn_8011927C.cpp:
 	extab       start:0x8000AA4C end:0x8000AA54
 	extabindex  start:0x80010AF8 end:0x80010B04
 	.text       start:0x8011927C end:0x8011933C
+
+game/fn_80119424.cpp:
+	extab       start:0x8000AA5C end:0x8000AA64
+	extabindex  start:0x80010B10 end:0x80010B1C
+	.text       start:0x80119424 end:0x80119544
 
 game/fn_80119544.cpp:
 	.text       start:0x80119544 end:0x80119548
@@ -3041,6 +3101,16 @@ game/enemy/e_utility_rw.cpp:
 	extabindex  start:0x80010CD8 end:0x80010CF0
 	.text       start:0x8011B5A8 end:0x8011B654
 
+game/fn_8011B654.cpp:
+	extab       start:0x8000AC18 end:0x8000AC20
+	extabindex  start:0x80010CF0 end:0x80010CFC
+	.text       start:0x8011B654 end:0x8011B6F0
+
+game/fn_8011B6F0.cpp:
+	extab       start:0x8000AC20 end:0x8000AC28
+	extabindex  start:0x80010CFC end:0x80010D08
+	.text       start:0x8011B6F0 end:0x8011B78C
+
 game/fn_8011B78C.cpp:
 	extab       start:0x8000AC28 end:0x8000AC30
 	extabindex  start:0x80010D08 end:0x80010D14
@@ -3060,6 +3130,11 @@ game/fn_8011B844.cpp:
 	extab       start:0x8000AC40 end:0x8000AC48
 	extabindex  start:0x80010D2C end:0x80010D38
 	.text       start:0x8011B844 end:0x8011B874
+
+game/fn_8011B874.cpp:
+	extab       start:0x8000AC48 end:0x8000AC50
+	extabindex  start:0x80010D38 end:0x80010D44
+	.text       start:0x8011B874 end:0x8011B9AC
 
 game/fn_8011B9AC.cpp:
 	extab       start:0x8000AC50 end:0x8000AC58
@@ -3091,6 +3166,11 @@ game/fn_8011BB98.cpp:
 	extabindex  start:0x80010D5C end:0x80010D68
 	.text       start:0x8011BB98 end:0x8011BC20
 
+game/fn_8011BC20.cpp:
+	extab       start:0x8000AC68 end:0x8000AC70
+	extabindex  start:0x80010D68 end:0x80010D74
+	.text       start:0x8011BC20 end:0x8011BD58
+
 game/fn_8011BD58.cpp:
 	extab       start:0x8000AC70 end:0x8000AC78
 	extabindex  start:0x80010D74 end:0x80010D80
@@ -3115,6 +3195,11 @@ game/fn_8011BF00.cpp:
 
 game/fn_8011BF98.cpp:
 	.text       start:0x8011BF98 end:0x8011C01C
+
+game/fn_8011C01C.cpp:
+	extab       start:0x8000AC80 end:0x8000AC88
+	extabindex  start:0x80010D8C end:0x80010D98
+	.text       start:0x8011C01C end:0x8011C0C4
 
 game/enemy/e_scoreman.cpp:
 	extab       start:0x8000AC88 end:0x8000ACC8
@@ -3157,6 +3242,11 @@ game/fn_8011E5F0.cpp:
 game/fn_8011E5F4.cpp:
 	.text       start:0x8011E5F4 end:0x8011E5F8
 
+game/fn_8011E5F8.cpp:
+	extab       start:0x8000AE60 end:0x8000AE68
+	extabindex  start:0x80010EAC end:0x80010EB8
+	.text       start:0x8011E5F8 end:0x8011E788
+
 game/fn_8011EC08.cpp:
 	extab       start:0x8000AE70 end:0x8000AE78
 	extabindex  start:0x80010EC4 end:0x80010ED0
@@ -3167,6 +3257,11 @@ game/fn_8011EF18.cpp:
 
 game/fn_8011EF24.cpp:
 	.text       start:0x8011EF24 end:0x8011EF2C
+
+game/fn_8011EF2C.cpp:
+	extab       start:0x8000AEB8 end:0x8000AEC0
+	extabindex  start:0x80010EDC end:0x80010EE8
+	.text       start:0x8011EF2C end:0x8011EFB0
 
 game/fn_8011EFB0.cpp:
 	.text       start:0x8011EFB0 end:0x8011EFB8
@@ -3209,6 +3304,11 @@ game/fn_801200DC.cpp:
 	extabindex  start:0x80010FB4 end:0x80010FC0
 	.text       start:0x801200DC end:0x80120144
 
+game/fn_80120144.cpp:
+	extab       start:0x8000AFBC end:0x8000AFC4
+	extabindex  start:0x80010FC0 end:0x80010FCC
+	.text       start:0x80120144 end:0x801201C8
+
 game/fn_801201C8.cpp:
 	extab       start:0x8000AFC4 end:0x8000AFCC
 	extabindex  start:0x80010FCC end:0x80010FD8
@@ -3222,6 +3322,11 @@ game/fn_8012149C.cpp:
 game/fn_8012158C.cpp:
 	.text       start:0x8012158C end:0x80121590
 
+game/fn_80121688.cpp:
+	extab       start:0x8000B004 end:0x8000B00C
+	extabindex  start:0x80010FFC end:0x80011008
+	.text       start:0x80121688 end:0x8012178C
+
 game/fn_8012178C.cpp:
 	extab       start:0x8000B00C end:0x8000B014
 	extabindex  start:0x80011008 end:0x80011014
@@ -3231,6 +3336,11 @@ game/fn_801218B4.cpp:
 	extab       start:0x8000B01C end:0x8000B024
 	extabindex  start:0x80011020 end:0x8001102C
 	.text       start:0x801218B4 end:0x80121928
+
+game/fn_80122658.cpp:
+	extab       start:0x8000B0C8 end:0x8000B0D0
+	extabindex  start:0x80011068 end:0x80011074
+	.text       start:0x80122658 end:0x801227A4
 
 game/fn_801227A4.cpp:
 	extab       start:0x8000B0D0 end:0x8000B0D8
@@ -3244,6 +3354,11 @@ game/fn_80122AF4.cpp:
 
 game/fn_80122B74.cpp:
 	.text       start:0x80122B74 end:0x80122B84
+
+game/fn_80122B84.cpp:
+	extab       start:0x8000B10C end:0x8000B114
+	extabindex  start:0x80011098 end:0x800110A4
+	.text       start:0x80122B84 end:0x80122CA0
 
 game/fn_8012316C.cpp:
 	.text       start:0x8012316C end:0x801231AC
@@ -3291,6 +3406,11 @@ game/fn_8012491C.cpp:
 game/fn_80124924.cpp:
 	.text       start:0x80124924 end:0x80124938
 
+game/fn_80124F48.cpp:
+	extab       start:0x8000B16C end:0x8000B174
+	extabindex  start:0x80011128 end:0x80011134
+	.text       start:0x80124F48 end:0x801250E8
+
 game/fn_80125530.cpp:
 	.text       start:0x80125530 end:0x8012554C
 
@@ -3308,6 +3428,11 @@ game/fn_80125664.cpp:
 	extab       start:0x8000B18C end:0x8000B194
 	extabindex  start:0x80011158 end:0x80011164
 	.text       start:0x80125664 end:0x80125708
+
+game/fn_80125708.cpp:
+	extab       start:0x8000B194 end:0x8000B19C
+	extabindex  start:0x80011164 end:0x80011170
+	.text       start:0x80125708 end:0x801257D0
 
 game/fn_801257D0.cpp:
 	extab       start:0x8000B19C end:0x8000B1A4
@@ -3361,6 +3486,11 @@ game/fn_80126790.cpp:
 	extabindex  start:0x80011218 end:0x80011224
 	.text       start:0x80126790 end:0x801267F4
 
+game/fn_8012695C.cpp:
+	extab       start:0x8000B270 end:0x8000B288
+	extabindex  start:0x80011230 end:0x8001123C
+	.text       start:0x8012695C end:0x801269EC
+
 game/fn_801269EC.cpp:
 	extab       start:0x8000B288 end:0x8000B290
 	extabindex  start:0x8001123C end:0x80011248
@@ -3376,6 +3506,11 @@ game/fn_80126BEC.cpp:
 	extabindex  start:0x80011260 end:0x8001126C
 	.text       start:0x80126BEC end:0x80126C88
 
+game/fn_80126C88.cpp:
+	extab       start:0x8000B2A8 end:0x8000B2B0
+	extabindex  start:0x8001126C end:0x80011278
+	.text       start:0x80126C88 end:0x80126E0C
+
 game/fn_80126E0C.cpp:
 	extab       start:0x8000B2B0 end:0x8000B2B8
 	extabindex  start:0x80011278 end:0x80011284
@@ -3390,6 +3525,11 @@ game/fn_80126FF4.cpp:
 	extab       start:0x8000B2C8 end:0x8000B2D0
 	extabindex  start:0x8001129C end:0x800112A8
 	.text       start:0x80126FF4 end:0x80127078
+
+game/fn_80127078.cpp:
+	extab       start:0x8000B2D0 end:0x8000B2D8
+	extabindex  start:0x800112A8 end:0x800112B4
+	.text       start:0x80127078 end:0x801271AC
 
 game/fn_801273C4.cpp:
 	extab       start:0x8000B2E8 end:0x8000B2F0
@@ -3480,16 +3620,56 @@ game/fn_80128A50.cpp:
 game/fn_80128B80.cpp:
 	.text       start:0x80128B80 end:0x80128BBC
 
+game/fn_80128BBC.cpp:
+	extab       start:0x8000B410 end:0x8000B418
+	extabindex  start:0x80011404 end:0x80011410
+	.text       start:0x80128BBC end:0x80128C98
+
 game/fn_8012C840.cpp:
 	.text       start:0x8012C840 end:0x8012C858
+
+game/fn_8012C858.cpp:
+	extab       start:0x8000B4BC end:0x8000B4C4
+	extabindex  start:0x80011470 end:0x8001147C
+	.text       start:0x8012C858 end:0x8012C938
 
 game/fn_8012C938.cpp:
 	extab       start:0x8000B4C4 end:0x8000B4CC
 	extabindex  start:0x8001147C end:0x80011488
 	.text       start:0x8012C938 end:0x8012C9D4
 
+game/fn_8012C9D4.cpp:
+	extab       start:0x8000B4CC end:0x8000B4D4
+	extabindex  start:0x80011488 end:0x80011494
+	.text       start:0x8012C9D4 end:0x8012CA94
+
+game/fn_8012CA94.cpp:
+	extab       start:0x8000B4D4 end:0x8000B4DC
+	extabindex  start:0x80011494 end:0x800114A0
+	.text       start:0x8012CA94 end:0x8012CB70
+
 game/fn_8012CC0C.cpp:
 	.text       start:0x8012CC0C end:0x8012CC20
+
+game/fn_8012CC20.cpp:
+	extab       start:0x8000B4E4 end:0x8000B4EC
+	extabindex  start:0x800114AC end:0x800114B8
+	.text       start:0x8012CC20 end:0x8012CE00
+
+game/fn_8012CE00.cpp:
+	extab       start:0x8000B4EC end:0x8000B4F4
+	extabindex  start:0x800114B8 end:0x800114C4
+	.text       start:0x8012CE00 end:0x8012CEF0
+
+game/fn_8012CEF0.cpp:
+	extab       start:0x8000B4F4 end:0x8000B4FC
+	extabindex  start:0x800114C4 end:0x800114D0
+	.text       start:0x8012CEF0 end:0x8012CFA4
+
+game/fn_8012CFA4.cpp:
+	extab       start:0x8000B4FC end:0x8000B504
+	extabindex  start:0x800114D0 end:0x800114DC
+	.text       start:0x8012CFA4 end:0x8012D080
 
 game/fn_8012D3A4.cpp:
 	extab       start:0x8000B51C end:0x8000B524
@@ -3528,6 +3708,11 @@ game/fn_8012EB74.cpp:
 game/fn_8012EBD4.cpp:
 	.text       start:0x8012EBD4 end:0x8012EC18
 
+game/fn_8012EC18.cpp:
+	extab       start:0x8000B5B8 end:0x8000B5C0
+	extabindex  start:0x80011560 end:0x8001156C
+	.text       start:0x8012EC18 end:0x8012ECA8
+
 game/fn_8012ECA8.cpp:
 	.text       start:0x8012ECA8 end:0x8012ECE0
 
@@ -3536,16 +3721,30 @@ game/fn_8012ECE0.cpp:
 	extabindex  start:0x8001156C end:0x80011578
 	.text       start:0x8012ECE0 end:0x8012ED38
 
+game/fn_8012ED38.cpp:
+	extab       start:0x8000B5C8 end:0x8000B5D0
+	extabindex  start:0x80011578 end:0x80011584
+	.text       start:0x8012ED38 end:0x8012EF3C
+
+game/fn_8012F03C.cpp:
+	extab       start:0x8000B5D8 end:0x8000B5E0
+	extabindex  start:0x80011590 end:0x8001159C
+	.text       start:0x8012F03C end:0x8012F14C
+
 game/fn_8012F14C.cpp:
 	extab       start:0x8000B5E0 end:0x8000B5E8
 	extabindex  start:0x8001159C end:0x800115A8
 	.text       start:0x8012F14C end:0x8012F1F8
 
-game/fn_80130464.cpp:
-	.text       start:0x80130464 end:0x80130478
+game/fn_8012F728.cpp:
+	extab       start:0x8000B5F8 end:0x8000B600
+	extabindex  start:0x800115C0 end:0x800115CC
+	.text       start:0x8012F728 end:0x8012F858
 
-game/fn_80130478.cpp:
-	.text       start:0x80130478 end:0x80130484
+game/fn_801302B0.cpp:
+	extab       start:0x8000B628 end:0x8000B670
+	extabindex  start:0x80011608 end:0x80011638
+	.text       start:0x801302B0 end:0x801308C8
 
 game/enemy/e_summon.cpp:
 	extab       start:0x8000B670 end:0x8000B698
@@ -3586,11 +3785,20 @@ game/fn_80131088.cpp:
 game/fn_801310C8.cpp:
 	.text       start:0x801310C8 end:0x80131168
 
+game/fn_80131168.cpp:
+	extab       start:0x8000B6C8 end:0x8000B6D0
+	extabindex  start:0x800116A4 end:0x800116B0
+	.text       start:0x80131168 end:0x80131348
+	.sdata2     start:0x8042EEB0 end:0x8042EEC0
+
 game/fn_80131348.cpp:
 	.text       start:0x80131348 end:0x8013139C
 
 game/fn_8013139C.cpp:
 	.text       start:0x8013139C end:0x801313F0
+
+game/fn_8013204C.cpp:
+	.text       start:0x8013204C end:0x801321B4
 
 game/fn_801323C4.cpp:
 	.text       start:0x801323C4 end:0x8013245C
@@ -3600,22 +3808,68 @@ game/fn_80132750.cpp:
 	extabindex  start:0x800116EC end:0x800116F8
 	.text       start:0x80132750 end:0x80132770
 
-game/fn_80132958.cpp:
-	.text       start:0x80132958 end:0x80132980
+game/fn_80132770.cpp:
+	extab       start:0x8000B700 end:0x8000B708
+	extabindex  start:0x800116F8 end:0x80011704
+	.text       start:0x80132770 end:0x80132958
+	.data       start:0x8028AF48 end:0x8028AF58
+	.sdata      start:0x8042BB98 end:0x8042BBB8
 
-game/fn_80132980.cpp:
-	.text       start:0x80132980 end:0x801329AC
+game/fn_80132958.cpp:
+	extab       start:0x8000B708 end:0x8000B710
+	extabindex  start:0x80011704 end:0x80011710
+	.text       start:0x80132958 end:0x80132B7C
+
+game/fn_801333C4.cpp:
+	extab       start:0x8000B728 end:0x8000B730
+	extabindex  start:0x80011734 end:0x80011740
+	.text       start:0x801333C4 end:0x80133570
+
+game/fn_80133948.cpp:
+	extab       start:0x8000B738 end:0x8000B740
+	extabindex  start:0x8001174C end:0x80011758
+	.text       start:0x80133948 end:0x80133B50
 
 game/fn_80133B50.cpp:
 	extab       start:0x8000B740 end:0x8000B748
 	extabindex  start:0x80011758 end:0x80011764
 	.text       start:0x80133B50 end:0x80133BC4
 
+game/fn_8013423C.cpp:
+	extab       start:0x8000B760 end:0x8000B768
+	extabindex  start:0x80011788 end:0x80011794
+	.text       start:0x8013423C end:0x8013442C
+
+game/fn_80134688.cpp:
+	extab       start:0x8000B770 end:0x8000B778
+	extabindex  start:0x800117A0 end:0x800117AC
+	.text       start:0x80134688 end:0x80134728
+
+game/fn_80134800.cpp:
+	extab       start:0x8000B780 end:0x8000B788
+	extabindex  start:0x800117B8 end:0x800117C4
+	.text       start:0x80134800 end:0x801348D0
+
+game/fn_80135418.cpp:
+	extab       start:0x8000B790 end:0x8000B798
+	extabindex  start:0x800117D0 end:0x800117DC
+	.text       start:0x80135418 end:0x801354A4
+
 game/fn_801354A4.cpp:
 	.text       start:0x801354A4 end:0x801354B8
 
+game/fn_801364C8.cpp:
+	extab       start:0x8000B7C8 end:0x8000B7D0
+	extabindex  start:0x80011824 end:0x80011830
+	.text       start:0x801364C8 end:0x80136638
+
 game/fn_80136884.cpp:
 	.text       start:0x80136884 end:0x801368AC
+
+game/fn_801368AC.cpp:
+	extab       start:0x8000B7D8 end:0x8000B7E0
+	extabindex  start:0x8001183C end:0x80011848
+	.text       start:0x801368AC end:0x801369E8
 
 game/fn_801369E8.cpp:
 	.text       start:0x801369E8 end:0x801369EC
@@ -3863,14 +4117,26 @@ game/fn_8013E6F4.cpp:
 game/fn_8013E78C.cpp:
 	.text       start:0x8013E78C end:0x8013E87C
 
+game/fn_8013E87C.cpp:
+	.text       start:0x8013E87C end:0x8013EA38
+
+game/fn_8013EA38.cpp:
+	.text       start:0x8013EA38 end:0x8013EC7C
+
 game/fn_8013EC7C.cpp:
 	.text       start:0x8013EC7C end:0x8013ECE0
 
 game/fn_8013ECE0.cpp:
 	.text       start:0x8013ECE0 end:0x8013ED8C
 
+game/fn_8013ED8C.cpp:
+	.text       start:0x8013ED8C end:0x8013EEE0
+
 game/fn_8013EEE0.cpp:
 	.text       start:0x8013EEE0 end:0x8013EFA0
+
+game/fn_8013EFA0.cpp:
+	.text       start:0x8013EFA0 end:0x8013F12C
 
 game/fn_8013F3A4.cpp:
 	.text       start:0x8013F3A4 end:0x8013F448
@@ -3896,6 +4162,9 @@ game/fn_801427C4.cpp:
 game/fn_80142988.cpp:
 	.text       start:0x80142988 end:0x80142A0C
 
+game/fn_80142C20.cpp:
+	.text       start:0x80142C20 end:0x80142DB8
+
 game/fn_80142DB8.cpp:
 	.text       start:0x80142DB8 end:0x80142E20
 
@@ -3917,6 +4186,9 @@ game/fn_80142E60.cpp:
 game/fn_80143818.cpp:
 	.text       start:0x80143818 end:0x80143858
 
+game/fn_80143858.cpp:
+	.text       start:0x80143858 end:0x801439D8
+
 game/fn_801439D8.cpp:
 	.text       start:0x801439D8 end:0x801439E0
 
@@ -3932,8 +4204,20 @@ game/fn_80143A9C.cpp:
 game/fn_80143AE0.cpp:
 	.text       start:0x80143AE0 end:0x80143AE4
 
+game/fn_80143AE4.cpp:
+	.text       start:0x80143AE4 end:0x80143C3C
+
+game/fn_80143C3C.cpp:
+	.text       start:0x80143C3C end:0x80143D94
+
 game/fn_8014535C.cpp:
 	.text       start:0x8014535C end:0x8014543C
+
+game/fn_8014543C.cpp:
+	.text       start:0x8014543C end:0x801455B0
+
+game/fn_80145CBC.cpp:
+	.text       start:0x80145CBC end:0x80145EB4
 
 game/fn_80145EB4.cpp:
 	.text       start:0x80145EB4 end:0x80145EF8
@@ -3959,8 +4243,14 @@ game/fn_80146014.cpp:
 game/fn_80146020.cpp:
 	.text       start:0x80146020 end:0x801460D0
 
+game/fn_801460D0.cpp:
+	.text       start:0x801460D0 end:0x80146214
+
 game/fn_80146214.cpp:
 	.text       start:0x80146214 end:0x801462B4
+
+game/fn_801462B4.cpp:
+	.text       start:0x801462B4 end:0x801463F8
 
 game/fn_80146778.cpp:
 	.text       start:0x80146778 end:0x801467E4
@@ -3985,6 +4275,9 @@ game/fn_801469A0.cpp:
 
 game/fn_801469AC.cpp:
 	.text       start:0x801469AC end:0x801469B8
+
+game/fn_801469B8.cpp:
+	.text       start:0x801469B8 end:0x80146B08
 
 game/fn_80146B08.cpp:
 	.text       start:0x80146B08 end:0x80146BC8
@@ -4017,16 +4310,10 @@ game/fn_801470F4.cpp:
 	.text       start:0x801470F4 end:0x80147178
 
 game/fn_80147178.cpp:
-	.text       start:0x80147178 end:0x801471C8
+	.text       start:0x80147178 end:0x80147528
 
-game/fn_801471C8.cpp:
-	.text       start:0x801471C8 end:0x801471DC
-
-game/fn_801471DC.cpp:
-	.text       start:0x801471DC end:0x801471F0
-
-game/fn_801471F0.cpp:
-	.text       start:0x801471F0 end:0x80147288
+game/fn_80147528.cpp:
+	.text       start:0x80147528 end:0x8014763C
 
 game/fn_801478CC.cpp:
 	.text       start:0x801478CC end:0x80147910
@@ -4046,6 +4333,9 @@ game/fn_80147998.cpp:
 game/fn_80147A38.cpp:
 	.text       start:0x80147A38 end:0x80147A48
 
+game/fn_80147A48.cpp:
+	.text       start:0x80147A48 end:0x80147B84
+
 game/fn_80147DFC.cpp:
 	.text       start:0x80147DFC end:0x80147E88
 
@@ -4054,6 +4344,9 @@ game/fn_80147E88.cpp:
 
 game/fn_80147F64.cpp:
 	.text       start:0x80147F64 end:0x80147F98
+
+game/fn_80148878.cpp:
+	.text       start:0x80148878 end:0x801489BC
 
 game/fn_801489BC.cpp:
 	.text       start:0x801489BC end:0x801489CC
@@ -4172,6 +4465,9 @@ game/fn_80149E40.cpp:
 game/fn_80149E54.cpp:
 	.text       start:0x80149E54 end:0x80149E74
 
+game/fn_80149E74.cpp:
+	.text       start:0x80149E74 end:0x80149FD8
+
 game/fn_80149FD8.cpp:
 	.text       start:0x80149FD8 end:0x8014A03C
 
@@ -4180,6 +4476,9 @@ game/fn_8014A03C.cpp:
 
 game/fn_8014A0E0.cpp:
 	.text       start:0x8014A0E0 end:0x8014A1E4
+
+game/fn_8014A1E4.cpp:
+	.text       start:0x8014A1E4 end:0x8014A32C
 
 game/fn_8014A32C.cpp:
 	.text       start:0x8014A32C end:0x8014A350
@@ -4192,6 +4491,15 @@ game/fn_8014A37C.cpp:
 
 game/fn_8014A3A0.cpp:
 	.text       start:0x8014A3A0 end:0x8014A45C
+
+game/fn_8014A45C.cpp:
+	.text       start:0x8014A45C end:0x8014A5CC
+
+game/fn_8014A5CC.cpp:
+	.text       start:0x8014A5CC end:0x8014A750
+
+game/fn_8014A750.cpp:
+	.text       start:0x8014A750 end:0x8014A90C
 
 game/fn_8014A90C.cpp:
 	.text       start:0x8014A90C end:0x8014A9F0
@@ -4211,8 +4519,14 @@ game/fn_8014D194.cpp:
 game/fn_8014D208.cpp:
 	.text       start:0x8014D208 end:0x8014D308
 
+game/fn_8014D70C.cpp:
+	.text       start:0x8014D70C end:0x8014D8A4
+
 game/fn_8014D8A4.cpp:
 	.text       start:0x8014D8A4 end:0x8014D92C
+
+game/fn_8014D92C.cpp:
+	.text       start:0x8014D92C end:0x8014DB38
 
 game/fn_8014DB38.cpp:
 	.text       start:0x8014DB38 end:0x8014DB78
@@ -4274,6 +4588,9 @@ game/fn_8014F520.cpp:
 game/fn_8014F524.cpp:
 	.text       start:0x8014F524 end:0x8014F528
 
+game/fn_8014F854.cpp:
+	.text       start:0x8014F854 end:0x8014F9C4
+
 game/fn_8014FC8C.cpp:
 	.text       start:0x8014FC8C end:0x8014FD48
 
@@ -4298,8 +4615,14 @@ game/fn_80150038.cpp:
 game/fn_801500BC.cpp:
 	.text       start:0x801500BC end:0x80150140
 
+game/fn_80150140.cpp:
+	.text       start:0x80150140 end:0x8015028C
+
 game/fn_80150358.cpp:
 	.text       start:0x80150358 end:0x80150410
+
+game/fn_80150410.cpp:
+	.text       start:0x80150410 end:0x80150588
 
 game/fn_801508A0.cpp:
 	.text       start:0x801508A0 end:0x80150958
@@ -4385,6 +4708,9 @@ game/fn_80154160.cpp:
 game/fn_801541BC.cpp:
 	.text       start:0x801541BC end:0x801541FC
 
+game/fn_801541FC.cpp:
+	.text       start:0x801541FC end:0x801543B4
+
 game/fn_801543B4.cpp:
 	.text       start:0x801543B4 end:0x80154414
 
@@ -4442,6 +4768,9 @@ game/fn_8015565C.cpp:
 game/fn_80155688.cpp:
 	.text       start:0x80155688 end:0x801556E0
 
+game/fn_801556E0.cpp:
+	.text       start:0x801556E0 end:0x80155864
+
 game/fn_80155864.cpp:
 	.text       start:0x80155864 end:0x8015597C
 
@@ -4451,14 +4780,26 @@ game/fn_8015597C.cpp:
 game/fn_801559E4.cpp:
 	.text       start:0x801559E4 end:0x80155A50
 
+game/fn_80155A50.cpp:
+	.text       start:0x80155A50 end:0x80155BE4
+
 game/fn_80155BE4.cpp:
 	.text       start:0x80155BE4 end:0x80155C6C
+
+game/fn_80155C6C.cpp:
+	.text       start:0x80155C6C end:0x80155E70
+
+game/fn_80155E70.cpp:
+	.text       start:0x80155E70 end:0x801560C0
 
 game/fn_801560C0.cpp:
 	.text       start:0x801560C0 end:0x80156118
 
 game/fn_80156118.cpp:
 	.text       start:0x80156118 end:0x80156130
+
+game/fn_80156130.cpp:
+	.text       start:0x80156130 end:0x801562CC
 
 game/fn_8015855C.cpp:
 	.text       start:0x8015855C end:0x80158584
@@ -4496,8 +4837,14 @@ game/fn_801589D4.cpp:
 game/fn_80158A00.cpp:
 	.text       start:0x80158A00 end:0x80158A1C
 
+game/fn_80158A1C.cpp:
+	.text       start:0x80158A1C end:0x80158B5C
+
 game/fn_80158DC4.cpp:
 	.text       start:0x80158DC4 end:0x80158EAC
+
+game/fn_80158EAC.cpp:
+	.text       start:0x80158EAC end:0x801590B8
 
 game/fn_801590B8.cpp:
 	.text       start:0x801590B8 end:0x80159120
@@ -4525,6 +4872,9 @@ game/fn_80159698.cpp:
 
 game/fn_80159754.cpp:
 	.text       start:0x80159754 end:0x80159798
+
+game/fn_80159798.cpp:
+	.text       start:0x80159798 end:0x80159900
 
 game/fn_80159900.cpp:
 	.text       start:0x80159900 end:0x80159918
@@ -4730,6 +5080,9 @@ game/fn_8015C394.cpp:
 game/fn_8015C39C.cpp:
 	.text       start:0x8015C39C end:0x8015C3A4
 
+game/fn_8015C3A4.cpp:
+	.text       start:0x8015C3A4 end:0x8015C590
+
 game/fn_8015C590.cpp:
 	.text       start:0x8015C590 end:0x8015C59C
 
@@ -4796,6 +5149,12 @@ game/fn_8015CAC8.cpp:
 game/fn_8015CB68.cpp:
 	.text       start:0x8015CB68 end:0x8015CBBC
 
+game/fn_8015CBBC.cpp:
+	.text       start:0x8015CBBC end:0x8015CD70
+
+game/fn_8015CFDC.cpp:
+	.text       start:0x8015CFDC end:0x8015D148
+
 game/fn_8015D148.cpp:
 	.text       start:0x8015D148 end:0x8015D1F8
 
@@ -4805,14 +5164,23 @@ game/fn_8015D47C.cpp:
 game/fn_8015D4B8.cpp:
 	.text       start:0x8015D4B8 end:0x8015D4C4
 
+game/fn_8015D4C4.cpp:
+	.text       start:0x8015D4C4 end:0x8015D5E8
+
 game/fn_8015D5E8.cpp:
 	.text       start:0x8015D5E8 end:0x8015D67C
+
+game/fn_8015D67C.cpp:
+	.text       start:0x8015D67C end:0x8015D860
 
 game/fn_8015D860.cpp:
 	.text       start:0x8015D860 end:0x8015D898
 
 game/fn_8015D898.cpp:
 	.text       start:0x8015D898 end:0x8015D8A4
+
+game/fn_8015D8A4.cpp:
+	.text       start:0x8015D8A4 end:0x8015DAC4
 
 game/fn_8015DE98.cpp:
 	.text       start:0x8015DE98 end:0x8015DEA8
@@ -4856,6 +5224,9 @@ game/fn_8015EC3C.cpp:
 game/fn_8015EC6C.cpp:
 	.text       start:0x8015EC6C end:0x8015ECF4
 
+game/fn_8015F3FC.cpp:
+	.text       start:0x8015F3FC end:0x8015F5EC
+
 game/fn_80160044.cpp:
 	.text       start:0x80160044 end:0x801600A8
 
@@ -4870,6 +5241,21 @@ game/fn_801649BC.cpp:
 
 game/fn_80164A08.cpp:
 	.text       start:0x80164A08 end:0x80164A38
+
+game/fn_80164E6C.cpp:
+	.text       start:0x80164E6C end:0x801650B4
+
+game/fn_801657CC.cpp:
+	.text       start:0x801657CC end:0x801659DC
+
+game/fn_8016623C.cpp:
+	.text       start:0x8016623C end:0x80166484
+
+game/fn_80166BA4.cpp:
+	.text       start:0x80166BA4 end:0x80166DB4
+
+game/fn_801671B4.cpp:
+	.text       start:0x801671B4 end:0x80167310
 
 game/fn_80168778.cpp:
 	.text       start:0x80168778 end:0x8016878C
@@ -4895,11 +5281,23 @@ game/fn_8016A804.cpp:
 game/fn_8016A8B8.cpp:
 	.text       start:0x8016A8B8 end:0x8016A930
 
+game/fn_8016B63C.cpp:
+	.text       start:0x8016B63C end:0x8016B7BC
+
 game/fn_8016B7BC.cpp:
 	.text       start:0x8016B7BC end:0x8016B7EC
 
+game/fn_8016BD6C.cpp:
+	.text       start:0x8016BD6C end:0x8016BEDC
+
+game/fn_8016C53C.cpp:
+	.text       start:0x8016C53C end:0x8016C6D0
+
 game/fn_8016DE10.cpp:
 	.text       start:0x8016DE10 end:0x8016DEE8
+
+game/fn_8016DEE8.cpp:
+	.text       start:0x8016DEE8 end:0x8016E054
 
 game/fn_8016E054.cpp:
 	.text       start:0x8016E054 end:0x8016E0AC
@@ -4919,11 +5317,17 @@ game/fn_8016E840.cpp:
 game/fn_8016E868.cpp:
 	.text       start:0x8016E868 end:0x8016E924
 
+game/fn_8016E924.cpp:
+	.text       start:0x8016E924 end:0x8016EA78
+
 game/fn_8016EA78.cpp:
 	.text       start:0x8016EA78 end:0x8016EA84
 
 game/fn_8016EA84.cpp:
 	.text       start:0x8016EA84 end:0x8016EAB4
+
+game/fn_8016EAB4.cpp:
+	.text       start:0x8016EAB4 end:0x8016EBC0
 
 game/fn_8016ED64.cpp:
 	.text       start:0x8016ED64 end:0x8016EE28
@@ -4961,11 +5365,20 @@ game/fn_8016FB84.cpp:
 game/fn_8016FBA0.cpp:
 	.text       start:0x8016FBA0 end:0x8016FC30
 
+game/fn_8016FE54.cpp:
+	.text       start:0x8016FE54 end:0x8016FFA4
+
 game/fn_80170428.cpp:
 	.text       start:0x80170428 end:0x80170490
 
+game/fn_80170854.cpp:
+	.text       start:0x80170854 end:0x801709A8
+
 game/fn_80171620.cpp:
 	.text       start:0x80171620 end:0x80171698
+
+game/fn_80171978.cpp:
+	.text       start:0x80171978 end:0x80171B54
 
 game/fn_80171B54.cpp:
 	.text       start:0x80171B54 end:0x80171BA0
@@ -4973,11 +5386,17 @@ game/fn_80171B54.cpp:
 game/fn_80171BA0.cpp:
 	.text       start:0x80171BA0 end:0x80171BFC
 
+game/fn_80171BFC.cpp:
+	.text       start:0x80171BFC end:0x80171D84
+
 game/fn_80171D84.cpp:
 	.text       start:0x80171D84 end:0x80171E0C
 
 game/fn_80171E0C.cpp:
 	.text       start:0x80171E0C end:0x80171EB8
+
+game/fn_80171EB8.cpp:
+	.text       start:0x80171EB8 end:0x8017201C
 
 game/fn_801724B4.cpp:
 	.text       start:0x801724B4 end:0x801724D4
@@ -5078,20 +5497,41 @@ game/fn_80173A90.cpp:
 game/fn_80173D74.cpp:
 	.text       start:0x80173D74 end:0x80173DF0
 
+game/fn_80174308.cpp:
+	.text       start:0x80174308 end:0x80174420
+
 game/fn_80174420.cpp:
 	.text       start:0x80174420 end:0x8017442C
 
 game/fn_80174A34.cpp:
 	.text       start:0x80174A34 end:0x80174B0C
 
+game/fn_80174EFC.cpp:
+	.text       start:0x80174EFC end:0x801750B8
+
+game/fn_801750B8.cpp:
+	.text       start:0x801750B8 end:0x801751D0
+
+game/fn_80175B14.cpp:
+	.text       start:0x80175B14 end:0x80175D78
+
+game/fn_80175EA8.cpp:
+	.text       start:0x80175EA8 end:0x80176088
+
 game/fn_801765B8.cpp:
 	.text       start:0x801765B8 end:0x80176610
+
+game/fn_80177C50.cpp:
+	.text       start:0x80177C50 end:0x80177DC8
 
 game/fn_801781AC.cpp:
 	.text       start:0x801781AC end:0x80178220
 
 game/fn_80178220.cpp:
 	.text       start:0x80178220 end:0x801782D8
+
+game/fn_801784C8.cpp:
+	.text       start:0x801784C8 end:0x80178608
 
 game/fn_8017867C.cpp:
 	.text       start:0x8017867C end:0x80178738
@@ -5240,6 +5680,9 @@ game/fn_8017DE6C.cpp:
 game/fn_8017E3B0.cpp:
 	.text       start:0x8017E3B0 end:0x8017E4B4
 
+game/fn_8017E4B4.cpp:
+	.text       start:0x8017E4B4 end:0x8017E708
+
 game/fn_8017E708.cpp:
 	.text       start:0x8017E708 end:0x8017E748
 
@@ -5275,6 +5718,15 @@ game/fn_801860C8.cpp:
 
 game/fn_80186E14.cpp:
 	.text       start:0x80186E14 end:0x80186FE0
+
+game/fn_8018DD9C.cpp:
+	.text       start:0x8018DD9C end:0x8018E038
+
+game/fn_8018E038.cpp:
+	.text       start:0x8018E038 end:0x8018E31C
+
+game/fn_8018E31C.cpp:
+	.text       start:0x8018E31C end:0x8018E60C
 
 game/fn_8018E60C.cpp:
 	.text       start:0x8018E60C end:0x8018E6C4
@@ -5344,6 +5796,9 @@ game/fn_8019229C.cpp:
 
 game/fn_80192BF8.cpp:
 	.text       start:0x80192BF8 end:0x80192CCC
+
+game/fn_80192D88.cpp:
+	.text       start:0x80192D88 end:0x80192ED8
 
 game/fn_80192ED8.cpp:
 	.text       start:0x80192ED8 end:0x80192F38
@@ -5474,6 +5929,12 @@ game/RwFreeListCreate.cpp:
 game/fn_801966CC.cpp:
 	.text       start:0x801966CC end:0x801966EC
 
+game/RwFreeListDestroy.cpp:
+	.text       start:0x801967A4 end:0x80196878
+
+game/fn_80196A28.cpp:
+	.text       start:0x80196A28 end:0x80196BCC
+
 game/fn_80196BCC.cpp:
 	.text       start:0x80196BCC end:0x80196D00
 
@@ -5483,8 +5944,14 @@ game/fn_80196E98.cpp:
 game/fn_80196EE8.cpp:
 	.text       start:0x80196EE8 end:0x80197000
 
+game/fn_80197000.cpp:
+	.text       start:0x80197000 end:0x801971A4
+
 game/fn_801971A4.cpp:
 	.text       start:0x801971A4 end:0x801971B0
+
+game/fn_801971B0.cpp:
+	.text       start:0x801971B0 end:0x80197300
 
 game/fn_80197300.cpp:
 	.text       start:0x80197300 end:0x80197384
@@ -5495,11 +5962,29 @@ game/fn_80197384.cpp:
 game/fn_80197434.cpp:
 	.text       start:0x80197434 end:0x801974E0
 
+game/fn_801974E0.cpp:
+	.text       start:0x801974E0 end:0x80197770
+
+game/fn_80197770.cpp:
+	.text       start:0x80197770 end:0x801978D4
+
 game/fn_80197958.cpp:
 	.text       start:0x80197958 end:0x801979AC
 
+game/fn_801979AC.cpp:
+	.text       start:0x801979AC end:0x80197B48
+
+game/fn_80197B48.cpp:
+	.text       start:0x80197B48 end:0x80197D70
+
+game/fn_80197D70.cpp:
+	.text       start:0x80197D70 end:0x80197ED8
+
 game/fn_80197ED8.cpp:
 	.text       start:0x80197ED8 end:0x80198000
+
+game/fn_80198000.cpp:
+	.text       start:0x80198000 end:0x801982B0
 
 game/fn_801982B0.cpp:
 	.text       start:0x801982B0 end:0x801982F4
@@ -5510,11 +5995,17 @@ game/fn_801982F4.cpp:
 game/fn_80198330.cpp:
 	.text       start:0x80198330 end:0x8019836C
 
+game/fn_8019836C.cpp:
+	.text       start:0x8019836C end:0x80198530
+
 game/fn_80198530.cpp:
 	.text       start:0x80198530 end:0x801985BC
 
 game/fn_801985BC.cpp:
 	.text       start:0x801985BC end:0x80198640
+
+game/fn_80198640.cpp:
+	.text       start:0x80198640 end:0x8019879C
 
 game/fn_8019879C.cpp:
 	.text       start:0x8019879C end:0x80198860
@@ -5579,6 +6070,9 @@ game/fn_80199934.cpp:
 game/fn_80199984.cpp:
 	.text       start:0x80199984 end:0x8019998C
 
+game/fn_80199A44.cpp:
+	.text       start:0x80199A44 end:0x80199B80
+
 game/fn_80199B80.cpp:
 	.text       start:0x80199B80 end:0x80199C18
 
@@ -5614,6 +6108,9 @@ game/fn_80199F78.cpp:
 
 game/fn_80199FF4.cpp:
 	.text       start:0x80199FF4 end:0x8019A080
+
+game/fn_8019A080.cpp:
+	.text       start:0x8019A080 end:0x8019A1DC
 
 game/fn_8019A1DC.cpp:
 	.text       start:0x8019A1DC end:0x8019A218
@@ -5669,6 +6166,9 @@ game/fn_8019D138.cpp:
 game/fn_8019D178.cpp:
 	.text       start:0x8019D178 end:0x8019D1D8
 
+game/fn_8019D1D8.cpp:
+	.text       start:0x8019D1D8 end:0x8019D358
+
 game/fn_8019D358.cpp:
 	.text       start:0x8019D358 end:0x8019D388
 
@@ -5695,6 +6195,9 @@ game/fn_8019D4D4.cpp:
 
 game/fn_8019D79C.cpp:
 	.text       start:0x8019D79C end:0x8019D86C
+
+game/fn_8019D86C.cpp:
+	.text       start:0x8019D86C end:0x8019DB0C
 
 game/fn_8019DB0C.cpp:
 	.text       start:0x8019DB0C end:0x8019DB5C
@@ -5724,10 +6227,7 @@ game/fn_8019E480.cpp:
 	.text       start:0x8019E480 end:0x8019E52C
 
 game/fn_8019E52C.cpp:
-	.text       start:0x8019E52C end:0x8019E588
-
-game/fn_8019E588.cpp:
-	.text       start:0x8019E588 end:0x8019E600
+	.text       start:0x8019E52C end:0x8019E85C
 
 game/fn_8019E85C.cpp:
 	.text       start:0x8019E85C end:0x8019E880
@@ -5765,6 +6265,9 @@ game/fn_8019EE04.cpp:
 game/fn_8019EEC0.cpp:
 	.text       start:0x8019EEC0 end:0x8019EF00
 
+game/fn_8019F180.cpp:
+	.text       start:0x8019F180 end:0x8019F2D8
+
 game/fn_8019F2D8.cpp:
 	.text       start:0x8019F2D8 end:0x8019F378
 
@@ -5789,14 +6292,23 @@ game/fn_8019FE1C.cpp:
 game/fn_801A0148.cpp:
 	.text       start:0x801A0148 end:0x801A01C0
 
+game/fn_801A01C0.cpp:
+	.text       start:0x801A01C0 end:0x801A0334
+
 game/fn_801A0334.cpp:
 	.text       start:0x801A0334 end:0x801A0434
 
 game/fn_801A0434.cpp:
 	.text       start:0x801A0434 end:0x801A0470
 
+game/fn_801A0470.cpp:
+	.text       start:0x801A0470 end:0x801A0608
+
 game/fn_801A0B8C.cpp:
 	.text       start:0x801A0B8C end:0x801A0BD0
+
+game/fn_801A0BD0.cpp:
+	.text       start:0x801A0BD0 end:0x801A0E2C
 
 game/fn_801A0E2C.cpp:
 	.text       start:0x801A0E2C end:0x801A0F2C
@@ -5843,8 +6355,23 @@ game/fn_801A19D4.cpp:
 game/fn_801A1AC8.cpp:
 	.text       start:0x801A1AC8 end:0x801A1B18
 
+game/fn_801A1B84.cpp:
+	.text       start:0x801A1B84 end:0x801A1CD0
+
+game/fn_801A2980.cpp:
+	.text       start:0x801A2980 end:0x801A2B90
+
+game/fn_801A2B90.cpp:
+	.text       start:0x801A2B90 end:0x801A2DA8
+
+game/fn_801A2DA8.cpp:
+	.text       start:0x801A2DA8 end:0x801A2EF4
+
 game/fn_801A2EF4.cpp:
 	.text       start:0x801A2EF4 end:0x801A2F60
+
+game/fn_801A2F60.cpp:
+	.text       start:0x801A2F60 end:0x801A3178
 
 game/fn_801A3178.cpp:
 	.text       start:0x801A3178 end:0x801A324C
@@ -5918,11 +6445,17 @@ game/fn_801A4C98.cpp:
 game/fn_801A4CAC.cpp:
 	.text       start:0x801A4CAC end:0x801A4CF0
 
+game/fn_801A4CF0.cpp:
+	.text       start:0x801A4CF0 end:0x801A4E40
+
 game/fn_801A4E40.cpp:
 	.text       start:0x801A4E40 end:0x801A4E80
 
 game/fn_801A4E80.cpp:
 	.text       start:0x801A4E80 end:0x801A4EC0
+
+game/fn_801A4EC0.cpp:
+	.text       start:0x801A4EC0 end:0x801A509C
 
 game/fn_801A5370.cpp:
 	.text       start:0x801A5370 end:0x801A53E4
@@ -5939,11 +6472,32 @@ game/fn_801A5448.cpp:
 game/fn_801A5490.cpp:
 	.text       start:0x801A5490 end:0x801A54BC
 
+game/fn_801A5B1C.cpp:
+	.text       start:0x801A5B1C end:0x801A5CD0
+
+game/fn_801A5CD0.cpp:
+	.text       start:0x801A5CD0 end:0x801A5EE0
+
+game/fn_801A63B4.cpp:
+	.text       start:0x801A63B4 end:0x801A65FC
+
+game/fn_801A68E4.cpp:
+	.text       start:0x801A68E4 end:0x801A6B4C
+
 game/fn_801A7098.cpp:
 	.text       start:0x801A7098 end:0x801A7194
 
+game/fn_801A75BC.cpp:
+	.text       start:0x801A75BC end:0x801A77E0
+
 game/fn_801A7B04.cpp:
 	.text       start:0x801A7B04 end:0x801A7B70
+
+game/fn_801A81EC.cpp:
+	.text       start:0x801A81EC end:0x801A83F0
+
+game/fn_801A83F0.cpp:
+	.text       start:0x801A83F0 end:0x801A8564
 
 game/fn_801A91E8.cpp:
 	.text       start:0x801A91E8 end:0x801A9208
@@ -5963,6 +6517,9 @@ game/fn_801A9298.cpp:
 game/fn_801A92BC.cpp:
 	.text       start:0x801A92BC end:0x801A92E0
 
+game/fn_801A92E0.cpp:
+	.text       start:0x801A92E0 end:0x801A94CC
+
 game/fn_801A94CC.cpp:
 	.text       start:0x801A94CC end:0x801A94F0
 
@@ -5980,6 +6537,27 @@ game/fn_801A95B4.cpp:
 
 game/fn_801A95D4.cpp:
 	.text       start:0x801A95D4 end:0x801A95F4
+
+game/fn_801A95F4.cpp:
+	.text       start:0x801A95F4 end:0x801A97FC
+
+game/fn_801AA124.cpp:
+	.text       start:0x801AA124 end:0x801AA258
+
+game/fn_801AA804.cpp:
+	.text       start:0x801AA804 end:0x801AAA98
+
+game/fn_801AAA98.cpp:
+	.text       start:0x801AAA98 end:0x801AAD2C
+
+game/fn_801AAEC4.cpp:
+	.text       start:0x801AAEC4 end:0x801AAFF0
+
+game/fn_801AAFF0.cpp:
+	.text       start:0x801AAFF0 end:0x801AB144
+
+game/fn_801AB834.cpp:
+	.text       start:0x801AB834 end:0x801AB9E0
 
 game/fn_801ABB9C.cpp:
 	.text       start:0x801ABB9C end:0x801ABC80
@@ -6014,17 +6592,29 @@ game/fn_801AD5E8.cpp:
 game/fn_801AD750.cpp:
 	.text       start:0x801AD750 end:0x801AD7C4
 
+game/fn_801AE2A4.cpp:
+	.text       start:0x801AE2A4 end:0x801AE458
+
 game/fn_801AE458.cpp:
 	.text       start:0x801AE458 end:0x801AE528
 
 game/fn_801AE528.cpp:
 	.text       start:0x801AE528 end:0x801AE5F8
 
+game/fn_801AEC10.cpp:
+	.text       start:0x801AEC10 end:0x801AEE38
+
+game/fn_801AF1D8.cpp:
+	.text       start:0x801AF1D8 end:0x801AF31C
+
 game/fn_801AF31C.cpp:
 	.text       start:0x801AF31C end:0x801AF338
 
 game/fn_801AF338.cpp:
 	.text       start:0x801AF338 end:0x801AF368
+
+game/fn_801AF804.cpp:
+	.text       start:0x801AF804 end:0x801AF914
 
 game/fn_801AF914.cpp:
 	.text       start:0x801AF914 end:0x801AF9A0
@@ -6034,6 +6624,9 @@ game/fn_801AF9A0.cpp:
 
 game/fn_801AFFB0.cpp:
 	.text       start:0x801AFFB0 end:0x801B0038
+
+game/fn_801B0990.cpp:
+	.text       start:0x801B0990 end:0x801B0B08
 
 game/fn_801B0B08.cpp:
 	.text       start:0x801B0B08 end:0x801B0B30
@@ -6056,6 +6649,9 @@ game/fn_801B15F0.cpp:
 game/fn_801B15FC.cpp:
 	.text       start:0x801B15FC end:0x801B1684
 
+game/fn_801B1960.cpp:
+	.text       start:0x801B1960 end:0x801B1BF8
+
 game/fn_801B1BF8.cpp:
 	.text       start:0x801B1BF8 end:0x801B1C0C
 
@@ -6076,6 +6672,12 @@ game/fn_801B2894.cpp:
 
 game/fn_801B2A14.cpp:
 	.text       start:0x801B2A14 end:0x801B2A64
+
+game/fn_801B2A64.cpp:
+	.text       start:0x801B2A64 end:0x801B2C00
+
+game/fn_801B2C00.cpp:
+	.text       start:0x801B2C00 end:0x801B2D98
 
 game/fn_801B2D98.cpp:
 	.text       start:0x801B2D98 end:0x801B2EA0
@@ -6115,6 +6717,12 @@ game/fn_801B3984.cpp:
 
 game/fn_801B3A10.cpp:
 	.text       start:0x801B3A10 end:0x801B3ACC
+
+game/fn_801B3C44.cpp:
+	.text       start:0x801B3C44 end:0x801B3E58
+
+game/fn_801B3E58.cpp:
+	.text       start:0x801B3E58 end:0x801B3FFC
 
 game/fn_801B5554.cpp:
 	.text       start:0x801B5554 end:0x801B55F4
@@ -6945,6 +7553,9 @@ game/fn_801FD1F4.cpp:
 game/fn_801FD214.cpp:
 	.text       start:0x801FD214 end:0x801FD224
 
+game/fn_801FD224.cpp:
+	.text       start:0x801FD224 end:0x801FD3B4
+
 game/fn_801FD3B4.cpp:
 	.text       start:0x801FD3B4 end:0x801FD3D8
 
@@ -6954,11 +7565,17 @@ game/fn_801FD3D8.cpp:
 game/fn_801FD49C.cpp:
 	.text       start:0x801FD49C end:0x801FD4E4
 
+game/fn_801FD4E4.cpp:
+	.text       start:0x801FD4E4 end:0x801FD6DC
+
 game/fn_801FD8A8.cpp:
 	.text       start:0x801FD8A8 end:0x801FD8B0
 
 game/fn_802008DC.cpp:
 	.text       start:0x802008DC end:0x80200934
+
+game/fn_80200934.cpp:
+	.text       start:0x80200934 end:0x80200AC4
 
 game/fn_80200AC4.cpp:
 	.text       start:0x80200AC4 end:0x80200B6C
@@ -6971,6 +7588,9 @@ game/fn_80200BAC.cpp:
 
 game/fn_80200CB0.cpp:
 	.text       start:0x80200CB0 end:0x80200D84
+
+game/fn_80200F80.cpp:
+	.text       start:0x80200F80 end:0x802011F8
 
 game/fn_8020128C.cpp:
 	.text       start:0x8020128C end:0x802012B0
@@ -7004,6 +7624,12 @@ game/fn_80201498.cpp:
 
 game/fn_80201ABC.cpp:
 	.text       start:0x80201ABC end:0x80201B10
+
+game/fn_80201B10.cpp:
+	.text       start:0x80201B10 end:0x80201C78
+
+game/fn_80201C78.cpp:
+	.text       start:0x80201C78 end:0x80201E58
 
 game/fn_80202164.cpp:
 	.text       start:0x80202164 end:0x8020219C
@@ -7062,11 +7688,17 @@ game/fn_80202E84.cpp:
 game/fn_80202E8C.cpp:
 	.text       start:0x80202E8C end:0x80202EF0
 
+game/fn_80202EF0.cpp:
+	.text       start:0x80202EF0 end:0x80203068
+
 game/fn_80203068.cpp:
 	.text       start:0x80203068 end:0x80203144
 
 game/fn_80203144.cpp:
 	.text       start:0x80203144 end:0x80203208
+
+game/fn_80203208.cpp:
+	.text       start:0x80203208 end:0x802033F4
 
 game/fn_80203538.cpp:
 	.text       start:0x80203538 end:0x8020366C
@@ -7089,6 +7721,9 @@ game/fn_80203998.cpp:
 game/fn_80203A6C.cpp:
 	.text       start:0x80203A6C end:0x80203B74
 
+game/fn_80203B74.cpp:
+	.text       start:0x80203B74 end:0x80203D78
+
 game/fn_80203D78.cpp:
 	.text       start:0x80203D78 end:0x80203DF0
 
@@ -7097,6 +7732,9 @@ game/fn_80203DF0.cpp:
 
 game/fn_80203E38.cpp:
 	.text       start:0x80203E38 end:0x80203E90
+
+game/fn_80203E90.cpp:
+	.text       start:0x80203E90 end:0x8020407C
 
 game/fn_8020407C.cpp:
 	.text       start:0x8020407C end:0x802040A0
@@ -7113,11 +7751,20 @@ game/fn_80204308.cpp:
 game/fn_802043AC.cpp:
 	.text       start:0x802043AC end:0x802043B4
 
+game/fn_8020472C.cpp:
+	.text       start:0x8020472C end:0x802048CC
+
 game/fn_802048CC.cpp:
 	.text       start:0x802048CC end:0x80204918
 
 game/fn_80204918.cpp:
 	.text       start:0x80204918 end:0x80204920
+
+game/fn_80204DA0.cpp:
+	.text       start:0x80204DA0 end:0x80204EF0
+
+game/fn_80205128.cpp:
+	.text       start:0x80205128 end:0x8020530C
 
 game/fn_8020530C.cpp:
 	.text       start:0x8020530C end:0x80205354
@@ -7427,6 +8074,9 @@ game/fn_8020C658.cpp:
 
 game/fn_8020C700.cpp:
 	.text       start:0x8020C700 end:0x8020C72C
+
+game/fn_8020C72C.cpp:
+	.text       start:0x8020C72C end:0x8020C864
 
 game/fn_8020C864.cpp:
 	.text       start:0x8020C864 end:0x8020C92C
