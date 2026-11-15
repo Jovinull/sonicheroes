@@ -1783,6 +1783,11 @@ game/InitMode__9TObjEnemyF8ENEMY_MD.cpp:
 	extabindex  start:0x8000DF60 end:0x8000DF6C
 	.text       start:0x800A327C end:0x800A32AC
 
+game/fn_800A3684.cpp:
+	extab       start:0x80007960 end:0x80007968
+	extabindex  start:0x8000DF84 end:0x8000DF90
+	.text       start:0x800A3684 end:0x800A37A4
+
 game/fn_800A3CBC.cpp:
 	.text       start:0x800A3CBC end:0x800A3CE0
 
