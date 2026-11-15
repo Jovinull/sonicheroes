@@ -6275,6 +6275,9 @@ game/fn_801A95F4.cpp:
 game/fn_801AA124.cpp:
 	.text       start:0x801AA124 end:0x801AA258
 
+game/fn_801AA804.cpp:
+	.text       start:0x801AA804 end:0x801AAA98
+
 game/fn_801AAEC4.cpp:
 	.text       start:0x801AAEC4 end:0x801AAFF0
 
