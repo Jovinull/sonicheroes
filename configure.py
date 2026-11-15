@@ -2788,7 +2788,7 @@ config.libs = [
             Object(Matching, "game/fn_800A2D50.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/RebuildCommunicateIdList__10TObjSetGenFUc.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_8008F77C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
-            Object(NonMatching, "game/fn_80092AFC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
+            Object(Matching, "game/fn_80092AFC.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_801AD0AC.cpp"),
             Object(NonMatching, "game/fn_80196BCC.cpp"),
             Object(Matching, "game/fn_801B7814.cpp"),
