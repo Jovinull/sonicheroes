@@ -3,9 +3,6 @@
 // +0x25C; the points come from lbl_8024EF18 by kind) into the team's PARAM_SCORE (+0x29, team
 // +0x38) and clears them, clears the 0xC0 bytes from +0x4C and +0x3E, and sets +0x150 to 10.
 // HYPOTHESIS: the end-of-section score settlement; the roles are UNKNOWN.
-// NonMatching (two instructions short): the retail code keeps three copies of the loop's initial 0
-// in saved registers (r29-r31) for the three clearing stores and the slot address in r26; MWCC
-// stores one zero. Tried: an inline setter with three parameters, zero locals, a chained init.
 #include "game/gparam.h"
 
 struct Team8009D1F8 {
@@ -44,11 +41,29 @@ extern "C" {
 extern const s16 lbl_8024EF18[];
 void fn_8009CFC0(Team8009D1F8* team);
 void* memset(void* dst, int c, unsigned long n);
+}
 
-void fn_8009D1F8(Team8009D1F8* team)
+// Banks the eight pending score entries into the team's PARAM_SCORE and clears them. Inlined, the
+// loop keeps a copy of its initial 0 per clearing store, as the retail code does.
+static inline void BankScores(Team8009D1F8* team)
 {
 	int i;
 
+	for (i = 0; i < 8; i++) {
+		if (team->pendingKind[i] != 0) {
+			((PARAM_SCORE*)team->score)
+			    ->addScore(
+			        team->number, team->pendingPlayer[i], lbl_8024EF18[team->pendingKind[i]]);
+			team->pendingKind[i]    = 0;
+			team->pendingUnknown[i] = 0;
+			team->pendingPlayer[i]  = 0;
+		}
+	}
+}
+
+extern "C" {
+void fn_8009D1F8(Team8009D1F8* team)
+{
 	team->unknown1FC = 0;
 	team->unknown1FE = 0;
 	team->unknown200 = 0;
@@ -61,16 +76,7 @@ void fn_8009D1F8(Team8009D1F8* team)
 	team->unknown21E = 0;
 	team->unknown21D = 0;
 	fn_8009CFC0(team);
-	for (i = 0; i < 8; i++) {
-		if (team->pendingKind[i] != 0) {
-			((PARAM_SCORE*)team->score)
-			    ->addScore(
-			        team->number, team->pendingPlayer[i], lbl_8024EF18[team->pendingKind[i]]);
-			team->pendingKind[i]    = 0;
-			team->pendingUnknown[i] = 0;
-			team->pendingPlayer[i]  = 0;
-		}
-	}
+	BankScores(team);
 	memset(team->unknown4C, 0, sizeof(team->unknown4C));
 	team->unknown3E  = 0;
 	team->unknown150 = 10;
