@@ -1412,6 +1412,11 @@ game/fn_800A2D50.cpp:
 game/fn_800A2E1C.cpp:
 	.text       start:0x800A2E1C end:0x800A2E24
 
+game/Explosion__9TObjEnemyFv.cpp:
+	extab       start:0x80007908 end:0x80007920
+	extabindex  start:0x8000DF18 end:0x8000DF24
+	.text       start:0x800A2E24 end:0x800A2F88
+
 game/DestroyMyself__9TObjEnemyFv.cpp:
 	extab       start:0x80007920 end:0x80007928
 	extabindex  start:0x8000DF24 end:0x8000DF30

@@ -95,7 +95,10 @@ public:
 
 	u8 unknownB8[0x140 - 0xB8];
 	RwV3d position; // 0x140 (HYPOTHESIS: copied for the frustum tests in Disp/TDisp)
-	u8 unknown14C[0x191 - 0x14C];
+	sAngle angle;   // 0x14C (HYPOTHESIS: copied with the position for the explosion effects)
+	u8 unknown158[0x188 - 0x158];
+	u32 flags; // 0x188 (bit 0x10: explosion effects on; Explosion sets 0x200; roles UNKNOWN)
+	u8 unknown18C[0x191 - 0x18C];
 	s8 timers[8]; // 0x191 (HYPOTHESIS: frame countdowns, decremented to 0 by Exec)
 	u8 unknown199[0x19C - 0x199];
 	s32 mode; // 0x19C (see fn_800A31B8)
