@@ -7368,6 +7368,9 @@ game/fn_80203DF0.cpp:
 game/fn_80203E38.cpp:
 	.text       start:0x80203E38 end:0x80203E90
 
+game/fn_80203E90.cpp:
+	.text       start:0x80203E90 end:0x8020407C
+
 game/fn_8020407C.cpp:
 	.text       start:0x8020407C end:0x802040A0
 
