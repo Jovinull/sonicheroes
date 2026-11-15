@@ -4199,6 +4199,9 @@ game/fn_80149E40.cpp:
 game/fn_80149E54.cpp:
 	.text       start:0x80149E54 end:0x80149E74
 
+game/fn_80149E74.cpp:
+	.text       start:0x80149E74 end:0x80149FD8
+
 game/fn_80149FD8.cpp:
 	.text       start:0x80149FD8 end:0x8014A03C
 

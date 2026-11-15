@@ -2810,6 +2810,7 @@ config.libs = [
             Object(NonMatching, "game/fn_801671B4.cpp"),
             Object(Matching, "game/fn_80198640.cpp"),
             Object(Matching, "game/fn_8019A080.cpp"),
+            Object(NonMatching, "game/fn_80149E74.cpp"),
             Object(Matching, "game/material.cpp", extra_cflags=["-bool off", "-inline auto,deferred,level=2", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(Matching, "game/plugin/materialcolorchange.cpp", extra_cflags=["-bool off", "-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/object.cpp", extra_cflags=["-bool off", "-inline auto,deferred,level=2", "-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
