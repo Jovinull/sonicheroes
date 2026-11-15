@@ -4174,6 +4174,9 @@ game/fn_8015597C.cpp:
 game/fn_801559E4.cpp:
 	.text       start:0x801559E4 end:0x80155A50
 
+game/fn_80155BE4.cpp:
+	.text       start:0x80155BE4 end:0x80155C6C
+
 game/fn_80156118.cpp:
 	.text       start:0x80156118 end:0x80156130
 
