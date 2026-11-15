@@ -1769,6 +1769,11 @@ game/Exec__9TObjEnemyFv.cpp:
 	extabindex  start:0x8000E0EC end:0x8000E0F8
 	.text       start:0x800A6F38 end:0x800A7088
 
+game/fn_800A7088.cpp:
+	extab       start:0x80007A58 end:0x80007A60
+	extabindex  start:0x8000E0F8 end:0x8000E104
+	.text       start:0x800A7088 end:0x800A714C
+
 game/fn_800A7338.cpp:
 	extab       start:0x80007AB8 end:0x80007AC0
 	extabindex  start:0x8000E110 end:0x8000E11C
