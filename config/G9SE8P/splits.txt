@@ -2290,6 +2290,9 @@ game/fn_800DE740.cpp:
 game/fn_800DFF14.cpp:
 	.text       start:0x800DFF14 end:0x800DFF34
 
+game/fn_800DFF34.cpp:
+	.text       start:0x800DFF34 end:0x800DFFA0
+
 game/fn_800E01E4.cpp:
 	.text       start:0x800E01E4 end:0x800E021C
 
