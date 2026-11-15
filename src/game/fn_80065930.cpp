@@ -1,8 +1,8 @@
-// Second PARTICLE_MATERIAL constructor (HYPOTHESIS): the same setup as
-// PARTICLE_MATERIAL(Pt_FLAGS, SPRITE_INFO*) (see __ct__17PARTICLE_MATERIALF8Pt_FLAGSP11SPRITE_INFO.cpp)
-// for a model material: flag 0x20000 instead of 0x10000, and the texture word read from +0x2C of
-// the source record. Its parameter type and mangled name are UNKNOWN (no PS2 counterpart), so it
-// is written as a function taking the material; it returns it, as a constructor does.
+// Second PARTICLE_MATERIAL constructor (HYPOTHESIS): the same setup as PARTICLE_MATERIAL(Pt_FLAGS,
+// SPRITE_INFO*) (see __ct__17PARTICLE_MATERIALF8Pt_FLAGSP11SPRITE_INFO.cpp) for a model material:
+// flag 0x20000 instead of 0x10000, and the texture word read from +0x2C of the source record. Its
+// parameter type and mangled name are UNKNOWN (no PS2 counterpart), so it is written as a function
+// taking the material; it returns it, as a constructor does.
 #include "types.h"
 
 enum Pt_FLAGS {

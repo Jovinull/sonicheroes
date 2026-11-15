@@ -1,6 +1,6 @@
-// Virtual method (vtable lbl_80241244 +0x68) of a TObject-derived class whose name is UNKNOWN: calls
-// the virtual at +0x44 and then sets the word at +0x2C to -1. HYPOTHESIS: a state
-// reset that also clears a cached index; the roles are UNKNOWN.
+// Virtual method (vtable lbl_80241244 +0x68) of a TObject-derived class whose name is UNKNOWN:
+// calls the virtual at +0x44 and then sets the word at +0x2C to -1. HYPOTHESIS: a state reset that
+// also clears a cached index; the roles are UNKNOWN.
 #include "types.h"
 
 // Minimal local view of the vtable up to the slots used: TObject's nine virtuals, then the class's

@@ -1,10 +1,9 @@
 // C_COLLI::CalcRange (symbol name from the retail map): computes the bounding range of the
 // collision object (+0xC) from its shapes (the 0x30-byte list at +0x10, count at +0xA): for each,
-// the distance of its centre (+0x8) plus its extent by kind (+0x1): kind 0 the size x, kind 8 x + y,
-// kinds 1-3 and 10-11 the length of (x, y), others the length of (x, y, z). The range is the
+// the distance of its centre (+0x8) plus its extent by kind (+0x1): kind 0 the size x, kind 8 x +
+// y, kinds 1-3 and 10-11 the length of (x, y), others the length of (x, y, z). The range is the
 // largest of these, scaled by 1.01; when the largest is under 0.1 the range becomes 25. The
-// shape-kind meanings
-// (sphere, capsule, ...) are UNKNOWN.
+// shape-kind meanings (sphere, capsule, ...) are UNKNOWN.
 #include "types.h"
 
 struct Vec80021384 {

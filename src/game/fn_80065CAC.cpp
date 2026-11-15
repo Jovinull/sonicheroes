@@ -1,8 +1,9 @@
-// Draws the particle materials of the particle core (TObjPtclCore, its list at +0x28) without flag 2 and with any of flags 0x1C,
-// through their DispManager virtual, between fn_80194234(0xE, 0) and fn_80194234(0xE, 1) (HYPOTHESIS:
-// a render-state toggle). While the debug byte +0x20 of lbl_8042C180 is set, only materials with
-// flag 0x10000000 are drawn. Nothing is drawn without the core singleton lbl_8042C2E0. HYPOTHESIS:
-// one of TObjPtclCore's Disp/TDisp passes; its name is UNKNOWN.
+// Draws the particle materials of the particle core (TObjPtclCore, its list at +0x28) without flag
+// 2 and with any of flags 0x1C, through their DispManager virtual, between fn_80194234(0xE, 0) and
+// fn_80194234(0xE, 1) (HYPOTHESIS: a render-state toggle). While the debug byte +0x20 of
+// lbl_8042C180 is set, only materials with flag 0x10000000 are drawn. Nothing is drawn without the
+// core singleton lbl_8042C2E0. HYPOTHESIS: one of TObjPtclCore's Disp/TDisp passes; its name is
+// UNKNOWN.
 #include "types.h"
 
 // Local view of PARTICLE_MATERIAL: flags at +0x4, list link at +0x48, vtable pointer at +0x54.

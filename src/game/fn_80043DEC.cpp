@@ -1,7 +1,8 @@
-// Starts action 0x27 for a player unless it is locked in state 0x3F with flag 0x1000 (+0x6F6/+0x6F4):
-// clears flags 0x4C00 of +0x770, sets the action (+0x6F0), runs fn_800E12FC on the records at
-// +0x720 and +0x760 and clears flags 0x2500 of +0x6F6; then sets flag 0x200 of +0x770 and returns 1.
-// Returns 0 when locked. HYPOTHESIS: a forced landing/fall action; the names are UNKNOWN.
+// Starts action 0x27 for a player unless it is locked in state 0x3F with flag 0x1000
+// (+0x6F6/+0x6F4): clears flags 0x4C00 of +0x770, sets the action (+0x6F0), runs fn_800E12FC on the
+// records at +0x720 and +0x760 and clears flags 0x2500 of +0x6F6; then sets flag 0x200 of +0x770
+// and returns 1. Returns 0 when locked. HYPOTHESIS: a forced landing/fall action; the names are
+// UNKNOWN.
 #include "types.h"
 
 struct Info80043DEC {

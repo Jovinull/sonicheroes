@@ -2,7 +2,8 @@
 // +0x11D0, valid up to the count at +0x8C) for handler kind `kind`: stores the kind, clears the two
 // following words and the 0x100-byte work area, and installs the kind's handler from the table
 // lbl_80239B74 (8-byte entries, handler second). Returns 0 when the index is past the count, else
-// 1. The first argument is unused; the roles are UNKNOWN (see fn_80051944, which calls the handler).
+// 1. The first argument is unused; the roles are UNKNOWN (see fn_80051944, which calls the
+// handler).
 #include "types.h"
 
 struct Record8004DEC0 {

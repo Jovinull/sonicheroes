@@ -1,7 +1,7 @@
 // Chooses a player's next motion (+0x8AE) from its team's mode (+0x140 of the team record at
-// +0x9B8). Modes 2/3: follow the leader (copy its motion +0x8B0 below 0x5A while it is in action
-// 2 or 0x1C; with flag 0x8000 of +0x780, pick motion 8..4 from the leader's speed +0x7C0 against
-// the thresholds +0x85C/+0x854/+0x850/+0x84C; motion 0x40 when the player at slot +0x3B is in motion
+// +0x9B8). Modes 2/3: follow the leader (copy its motion +0x8B0 below 0x5A while it is in action 2
+// or 0x1C; with flag 0x8000 of +0x780, pick motion 8..4 from the leader's speed +0x7C0 against the
+// thresholds +0x85C/+0x854/+0x850/+0x84C; motion 0x40 when the player at slot +0x3B is in motion
 // 0x43, unless that is this player; else map the leader's motion 0xD/0x19/0x41-0x42/0x4E, default
 // 0x40). Modes 7-9: motion 0x3C. Modes 5/6, in action 0x29: motion 0x3F, and in team phase 2/3
 // (+0x34) copy the leader's +0x8C0 when both are in motion 0x3F. The motion changes clear flags
