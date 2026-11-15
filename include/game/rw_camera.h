@@ -16,16 +16,20 @@ struct RwCameraView {
 
 struct RwCameraLayout {
 	RwObjectHasFrame object;
-	s32 projectionType; // 0x14
-	u8 pad18[0x68 - 0x18];
-	RwCameraView viewWindow;      // 0x68
-	RwCameraView recipViewWindow; // 0x70
-	u8 pad78[0x80 - 0x78];
-	f32 nearPlane; // 0x80
-	f32 farPlane;  // 0x84
-	f32 fogPlane;  // 0x88
-	f32 zScale;    // 0x8C
-	f32 zShift;    // 0x90
+	s32 projectionType;                                     // 0x14
+	RwCameraLayout* (*beginUpdate)(RwCameraLayout* camera); // 0x18
+	RwCameraLayout* (*endUpdate)(RwCameraLayout* camera);   // 0x1C
+	RwMatrix viewMatrix;                                    // 0x20
+	void* frameBuffer;                                      // 0x60: RwRaster
+	void* zBuffer;                                          // 0x64: RwRaster
+	RwCameraView viewWindow;                                // 0x68
+	RwCameraView recipViewWindow;                           // 0x70
+	RwCameraView viewOffset;                                // 0x78
+	f32 nearPlane;                                          // 0x80
+	f32 farPlane;                                           // 0x84
+	f32 fogPlane;                                           // 0x88
+	f32 zScale;                                             // 0x8C
+	f32 zShift;                                             // 0x90
 };
 
 extern "C" {
