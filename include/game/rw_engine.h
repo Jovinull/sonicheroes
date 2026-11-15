@@ -210,10 +210,17 @@ struct RwEngineGlobals {
 	RwStandardFunc stdFunc[rwSTANDARDNUMOFSTANDARD]; // 0x48
 	RwLinkList dirtyFrameList;                       // 0xBC
 	// File functions (HYPOTHESIS: RwFileFunctions).
-	s32 (*rwfexist)(const char* name);                    // 0xC4
-	void* (*rwfopen)(const char* name, const char* mode); // 0xC8
-	s32 (*rwfclose)(void* file);                          // 0xCC
-	u8 padD0[0xF0 - 0xD0];
+	s32 (*rwfexist)(const char* name);                                    // 0xC4
+	void* (*rwfopen)(const char* name, const char* mode);                 // 0xC8
+	s32 (*rwfclose)(void* file);                                          // 0xCC
+	u32 (*rwfread)(void* buffer, u32 size, u32 count, void* file);        // 0xD0
+	u32 (*rwfwrite)(const void* buffer, u32 size, u32 count, void* file); // 0xD4
+	char* (*rwfgets)(char* buffer, s32 maxLength, void* file);            // 0xD8
+	s32 (*rwfputs)(const char* buffer, void* file);                       // 0xDC
+	s32 (*rwfeof)(void* file);                                            // 0xE0
+	s32 (*rwfseek)(void* file, s32 offset, s32 origin);                   // 0xE4
+	s32 (*rwfflush)(void* file);                                          // 0xE8
+	s32 (*rwftell)(void* file);                                           // 0xEC
 	// String functions (HYPOTHESIS: RwStringFunctions).
 	s32 (*rwsprintf)(char* buffer, const char* format, ...);         // 0xF0
 	s32 (*rwvsprintf)(char* buffer, const char* format, void* args); // 0xF4
