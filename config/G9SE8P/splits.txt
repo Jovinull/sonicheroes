@@ -2967,6 +2967,11 @@ game/fn_800F4EF0.cpp:
 	extabindex  start:0x8000F9D0 end:0x8000F9DC
 	.text       start:0x800F4EF0 end:0x800F4FDC
 
+game/fn_800F4FDC.cpp:
+	extab       start:0x800091C8 end:0x800091D0
+	extabindex  start:0x8000F9DC end:0x8000F9E8
+	.text       start:0x800F4FDC end:0x800F50D8
+
 game/fn_800F50D8.cpp:
 	extab       start:0x800091D0 end:0x800091D8
 	extabindex  start:0x8000F9E8 end:0x8000F9F4
