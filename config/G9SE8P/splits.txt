@@ -3000,6 +3000,11 @@ game/fn_800F9A04.cpp:
 	extabindex  start:0x8000FBE0 end:0x8000FBEC
 	.text       start:0x800F9A04 end:0x800F9A8C
 
+game/fn_800F9A8C.cpp:
+	extab       start:0x800094C0 end:0x800094C8
+	extabindex  start:0x8000FBEC end:0x8000FBF8
+	.text       start:0x800F9A8C end:0x800F9B78
+
 game/fn_800F9D40.cpp:
 	extab       start:0x800094D0 end:0x800094D8
 	extabindex  start:0x8000FC04 end:0x8000FC10
