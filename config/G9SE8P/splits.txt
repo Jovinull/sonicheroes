@@ -3170,6 +3170,11 @@ game/fn_800DA09C.cpp:
 	extabindex  start:0x8000F40C end:0x8000F418
 	.text       start:0x800DA09C end:0x800DA0C0
 
+game/fn_800DAD94.cpp:
+	extab       start:0x80008CE0 end:0x80008CE8
+	extabindex  start:0x8000F430 end:0x8000F43C
+	.text       start:0x800DAD94 end:0x800DAFD0
+
 game/fn_800DAFD0.cpp:
 	extab       start:0x80008CE8 end:0x80008CF0
 	extabindex  start:0x8000F43C end:0x8000F448
