@@ -1,8 +1,8 @@
 // Returns the table file name for id `id` (the counterpart of fn_800FD3A0, with the second name
 // of each entry): the name at +0xC of its entry in the 48-entry table lbl_8025A4E8 when it has
-// one; otherwise (or when the id is not in the table) the name built in the buffer lbl_803E71D0 from the format lbl_8025A7E8 ("se_s%02d") and the index fn_800194A8 returns for
-// lbl_8029C310, followed by the suffix lbl_8025A7F4 ("_tbl.bin"), or null when that index is
-// negative. HYPOTHESIS: the per-stage sound-effect table file names.
+// one; otherwise (or when the id is not in the table) the name built in the buffer lbl_803E71D0
+// from the format lbl_8025A7E8 ("se_s%02d") and the index fn_800194A8 returns for lbl_8029C310,
+// followed by the suffix lbl_8025A7F4 ("_tbl.bin"), or null when that index is negative. HYPOTHESIS: the per-stage sound-effect table file names.
 #include "types.h"
 
 struct Entry800FD2D4 {
