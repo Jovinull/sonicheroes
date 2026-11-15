@@ -2169,6 +2169,11 @@ game/easySelect.cpp:
 	.sbss       start:0x8042C348 end:0x8042C34C
 	.sdata2     start:0x8042DB48 end:0x8042DB70
 
+game/fn_800A9D20.cpp:
+	extab       start:0x80007C4C end:0x80007C54
+	extabindex  start:0x8000E2F0 end:0x8000E2FC
+	.text       start:0x800A9D20 end:0x800A9ED4
+
 game/fn_800AA924.cpp:
 	extab       start:0x80007C8C end:0x80007C94
 	extabindex  start:0x8000E320 end:0x8000E32C
