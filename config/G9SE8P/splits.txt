@@ -4061,6 +4061,9 @@ game/fn_80147E88.cpp:
 game/fn_80147F64.cpp:
 	.text       start:0x80147F64 end:0x80147F98
 
+game/fn_80148878.cpp:
+	.text       start:0x80148878 end:0x801489BC
+
 game/fn_801489BC.cpp:
 	.text       start:0x801489BC end:0x801489CC
 
