@@ -2651,6 +2651,11 @@ game/effect/eff_footprints.cpp:
 game/fn_80110C18.cpp:
 	.text       start:0x80110C18 end:0x80110C38
 
+game/fn_80110C38.cpp:
+	extab       start:0x8000A634 end:0x8000A64C
+	extabindex  start:0x80010738 end:0x80010744
+	.text       start:0x80110C38 end:0x80110C7C
+
 game/fn_80110C7C.cpp:
 	extab       start:0x8000A64C end:0x8000A654
 	extabindex  start:0x80010744 end:0x80010750
