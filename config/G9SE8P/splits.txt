@@ -140,6 +140,11 @@ game/fn_8001EDE0.cpp:
 	extabindex  start:0x8000C220 end:0x8000C22C
 	.text       start:0x8001EDE0 end:0x8001EE20
 
+game/fn_8001EE20.cpp:
+	extab       start:0x80005B58 end:0x80005B60
+	extabindex  start:0x8000C22C end:0x8000C238
+	.text       start:0x8001EE20 end:0x8001EE60
+
 game/fn_8001EEA0.cpp:
 	.text       start:0x8001EEA0 end:0x8001EEA8
 
