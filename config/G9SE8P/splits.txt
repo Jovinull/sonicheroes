@@ -3222,6 +3222,11 @@ game/fn_8011E5F0.cpp:
 game/fn_8011E5F4.cpp:
 	.text       start:0x8011E5F4 end:0x8011E5F8
 
+game/fn_8011E5F8.cpp:
+	extab       start:0x8000AE60 end:0x8000AE68
+	extabindex  start:0x80010EAC end:0x80010EB8
+	.text       start:0x8011E5F8 end:0x8011E788
+
 game/fn_8011EC08.cpp:
 	extab       start:0x8000AE70 end:0x8000AE78
 	extabindex  start:0x80010EC4 end:0x80010ED0
