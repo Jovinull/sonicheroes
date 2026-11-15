@@ -3,13 +3,10 @@
 // the camera's frame buffer +0x2C and z buffer +0x40, cleared in the camera at +0x60/+0x64),
 // detaches and destroys the camera's frame (fn_801A5370, fn_8019E480) and the camera itself (+0x28,
 // fn_8019D178), and deletes the object. HYPOTHESIS: RwRasterDestroy, RwCameraSetFrame,
-// RwFrameDestroy and RwCameraDestroy; the field names are UNKNOWN. NonMatching (register allocation
-// only; same instructions otherwise): the retail loop keeps the two NULL stores in two saved
-// registers copied from the counter's initial 0 (mr r30/r31, r29), which makes the prologue save
-// r27..r31 with _savegpr_27; MWCC shares one zero (li r31, 0) and saves four registers. Tried: an
-// inline per store, a plain loop body, a setter taking the value, u32/long/int counters, distinct
-// element types, array base locals, opt_common_subs and opt_loop_invariants off. Same family as
-// fn_80090F9C.
+// RwFrameDestroy and RwCameraDestroy; the field names are UNKNOWN.
+// NonMatching (3 words, registers only): with the raster loop as an inline the loop now matches
+// (its counter and the two NULLs it stores share the counter's initial 0); retail then keeps the
+// camera frame in r30 where MWCC uses r28. Declaration positions and a frame inline did not help.
 #include "game/enemy/e_obj_enemy.h"
 
 struct Camera8004EF98 {
@@ -48,6 +45,14 @@ static inline void DestroyRaster(void*& raster)
 	}
 }
 
+static inline void DestroyRasters(Screen8004EF98* screen)
+{
+	for (s32 i = 0; i < 4; i++) {
+		DestroyRaster(screen->rasters30[i]);
+		DestroyRaster(screen->rasters44[i]);
+	}
+}
+
 extern "C" void fn_8004EF98(void)
 {
 	if (lbl_8042C238 != NULL) {
@@ -60,10 +65,7 @@ extern "C" void fn_8004EF98(void)
 	}
 	Screen8004EF98* screen = lbl_8042C1F8;
 	if (screen != NULL) {
-		for (s32 i = 0; i < 4; i++) {
-			DestroyRaster(screen->rasters30[i]);
-			DestroyRaster(screen->rasters44[i]);
-		}
+		DestroyRasters(screen);
 		fn_801A173C(screen->frameBuffer);
 		screen->camera->frameBuffer = NULL;
 		screen->frameBuffer         = NULL;
