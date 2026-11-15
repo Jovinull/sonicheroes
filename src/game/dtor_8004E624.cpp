@@ -1,4 +1,4 @@
-// Destructor: installs the vtable lbl_80242884, destroys the TObject base and frees the object when flags > 0; returns the object.
+// TObjCamera::~TObjCamera (name CORROBORATED by the PS2 build): installs the vtable lbl_80242884, destroys the TObject base and frees the object when flags > 0; returns the object.
 
 extern "C" {
 void Free__9THeapCtrlFPv(int, void*);
@@ -10,7 +10,7 @@ struct Obj8004E624 {
 	void* vt;
 };
 
-void* dtor_8004E624(Obj8004E624* o, short flags)
+void* __dt__10TObjCameraFv(Obj8004E624* o, short flags)
 {
 	if (o != 0) {
 		o->vt = lbl_80242884;
