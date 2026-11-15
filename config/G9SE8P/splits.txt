@@ -5591,6 +5591,9 @@ game/fn_801966CC.cpp:
 game/RwFreeListDestroy.cpp:
 	.text       start:0x801967A4 end:0x80196878
 
+game/fn_80196A28.cpp:
+	.text       start:0x80196A28 end:0x80196BCC
+
 game/fn_80196BCC.cpp:
 	.text       start:0x80196BCC end:0x80196D00
 
