@@ -1,0 +1,64 @@
+// Releases the models of a menu scene, the twin of fn_8012CA94 (HYPOTHESIS; names inferred): for
+// each of its 0x68-byte model entries, destroys the object at 0xC (fn_80203998), clears the second
+// word of every 0xC-byte part record and resets the entry's time to lbl_8042EDC8; then destroys the
+// scene's texture dictionary at 0xC (fn_801A46D0). Built with the game-unit flags (-opt
+// noschedule,nopeephole).
+#include "types.h"
+
+struct Part8012CFA4 {
+	s32 value0;   // 0x0
+	void* object; // 0x4
+	s32 value8;   // 0x8
+};
+
+struct Model8012CFA4 {
+	u8 pad0[0xC];
+	void* object;        // 0xC
+	f32 time;            // 0x10
+	s32 numParts;        // 0x14
+	Part8012CFA4* parts; // 0x18
+	u8 pad1C[0x68 - 0x1C];
+};
+
+struct Scene8012CFA4 {
+	u8 pad0[0x4];
+	Model8012CFA4* models;              // 0x4
+	s32 numModels;                      // 0x8
+	struct RwTexDictionary* dictionary; // 0xC
+};
+
+extern "C" {
+extern const f32 lbl_8042EDC8;
+// HYPOTHESIS: the object destructor of the 0x802038AC module and RwTexDictionaryDestroy.
+void fn_80203998(void* object);
+void fn_801A46D0(struct RwTexDictionary* dictionary);
+
+void fn_8012CFA4(Scene8012CFA4* scene)
+{
+	if (scene != 0) {
+		s32 count;
+		Model8012CFA4* model;
+
+		count = scene->numModels;
+		model = scene->models;
+		while (count != 0) {
+			s32 i;
+			if (model->object != 0) {
+				fn_80203998(model->object);
+				model->object = 0;
+			}
+			for (i = 0; i != model->numParts; i++) {
+				model->parts[i].object = 0;
+			}
+			model->object = 0;
+			model->time   = lbl_8042EDC8;
+			count--;
+			model++;
+		}
+		if (scene->dictionary != 0) {
+			fn_801A46D0(scene->dictionary);
+			scene->dictionary = 0;
+		}
+	}
+}
+}
