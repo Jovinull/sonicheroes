@@ -4841,6 +4841,9 @@ game/fn_8015CAC8.cpp:
 game/fn_8015CB68.cpp:
 	.text       start:0x8015CB68 end:0x8015CBBC
 
+game/fn_8015CFDC.cpp:
+	.text       start:0x8015CFDC end:0x8015D148
+
 game/fn_8015D148.cpp:
 	.text       start:0x8015D148 end:0x8015D1F8
 
