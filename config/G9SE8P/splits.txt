@@ -6377,6 +6377,9 @@ game/fn_801B15F0.cpp:
 game/fn_801B15FC.cpp:
 	.text       start:0x801B15FC end:0x801B1684
 
+game/fn_801B1960.cpp:
+	.text       start:0x801B1960 end:0x801B1BF8
+
 game/fn_801B1BF8.cpp:
 	.text       start:0x801B1BF8 end:0x801B1C0C
 
