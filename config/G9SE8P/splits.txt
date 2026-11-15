@@ -5732,6 +5732,9 @@ game/fn_80197D70.cpp:
 game/fn_80197ED8.cpp:
 	.text       start:0x80197ED8 end:0x80198000
 
+game/fn_80198000.cpp:
+	.text       start:0x80198000 end:0x801982B0
+
 game/fn_801982B0.cpp:
 	.text       start:0x801982B0 end:0x801982F4
 
