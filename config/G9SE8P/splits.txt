@@ -3789,10 +3789,9 @@ game/fn_80132750.cpp:
 	.text       start:0x80132750 end:0x80132770
 
 game/fn_80132958.cpp:
-	.text       start:0x80132958 end:0x80132980
-
-game/fn_80132980.cpp:
-	.text       start:0x80132980 end:0x801329AC
+	extab       start:0x8000B708 end:0x8000B710
+	extabindex  start:0x80011704 end:0x80011710
+	.text       start:0x80132958 end:0x80132B7C
 
 game/fn_801333C4.cpp:
 	extab       start:0x8000B728 end:0x8000B730
