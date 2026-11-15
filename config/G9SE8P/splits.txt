@@ -990,6 +990,11 @@ game/fn_80051F68.cpp:
 	extabindex  start:0x8000CD54 end:0x8000CD60
 	.text       start:0x80051F68 end:0x80051FF0
 
+game/fn_80051FF0.cpp:
+	extab       start:0x8000640C end:0x80006414
+	extabindex  start:0x8000CD60 end:0x8000CD6C
+	.text       start:0x80051FF0 end:0x8005210C
+
 game/fn_8005210C.cpp:
 	extab       start:0x80006414 end:0x8000641C
 	extabindex  start:0x8000CD6C end:0x8000CD78
