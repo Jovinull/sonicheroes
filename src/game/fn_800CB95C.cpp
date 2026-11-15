@@ -6,9 +6,8 @@
 // the two effect streams of lbl_8042B634 (their ids set to -1). A stopped stream is unpaused, its
 // name table's entries are reset (ADXT_ResetEntry) and its state and flag 0x1 (+0x2B) cleared.
 // HYPOTHESIS: the state names are UNKNOWN.
-// NonMatching (51 words, saved-register numbering only; same instructions): retail keeps the first
-// and second streams in r31/r30 and the name tables in r28/r29, the effect loop in r29/r28/r27;
-// MWCC numbers them differently. Declaration orders (perm.py) and a pointer walk did not help.
+// NonMatching (12 words, registers only): with the second-stream part and the effect loop as
+// inlines only the name-table pointers differ (retail r28/r29, MWCC others); see fn_800CA52C.
 
 struct StreamNames800CB95C {
 	s8 unknown0; // 0x0
@@ -69,7 +68,7 @@ static inline void StopEffect(Effect800CB95C* effect)
 	effect->flags &= ~1;
 }
 
-extern "C" void fn_800CB95C(void)
+static inline void StopSecond()
 {
 	Stream800CB95C* first  = lbl_8042B624[0];
 	Stream800CB95C* second = lbl_8042B624[1];
@@ -88,12 +87,22 @@ extern "C" void fn_800CB95C(void)
 			}
 		}
 	}
-	if (lbl_8042B624[0] != NULL) {
-		StopStream(lbl_8042B624[0]);
-	}
+}
+
+static inline void StopEffects()
+{
 	for (s32 i = 0; i < 2; i++) {
 		if (lbl_8042B634[i] != NULL) {
 			StopEffect(lbl_8042B634[i]);
 		}
 	}
+}
+
+extern "C" void fn_800CB95C(void)
+{
+	StopSecond();
+	if (lbl_8042B624[0] != NULL) {
+		StopStream(lbl_8042B624[0]);
+	}
+	StopEffects();
 }
