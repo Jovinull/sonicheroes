@@ -6,10 +6,9 @@
 // images of lbl_80304248, destroys the texture dictionary lbl_8042C3E8 (fn_801A46D0) and releases
 // the three clumps of lbl_80253CC0 (fn_80147178, fn_80147288). HYPOTHESIS: RwTextureDestroy,
 // RwTexDictionaryDestroy and RpClumpDestroy-like calls; the names are UNKNOWN.
-// NonMatching (22 words, registers only): retail gives the first loop's counter r31 (its NULL a
-// copy of it) and the later loops' counter r27, and sets up the array bases before the zero copies
-// of the third loop; with one shared u8 counter MWCC uses r26 throughout, and separate counters
-// lose the zero copies. Same family as fn_8004EF98.
+// NonMatching (8 words, registers only): with each loop as an inline the zero copies now match;
+// retail still gives the raster loop's counter r27 (MWCC r30) and sets up the array bases before
+// the zero copies of the texture loop. Sharing one counter between those two loops is worse.
 
 class TObject800BF5D8
 {
@@ -44,27 +43,29 @@ void fn_80147178(void* clump);
 void fn_80147288(void* clump);
 }
 
-extern "C" void fn_800BF5D8(void)
+static inline void DeleteObjects()
 {
-	u8 i;
-
-	for (i = 0; i < 8; i++) {
+	for (u8 i = 0; i < 8; i++) {
 		if (lbl_80304268[i] != NULL) {
 			delete lbl_80304268[i];
 			lbl_80304268[i] = NULL;
 		}
 	}
-	if (lbl_8042C3EC != NULL) {
-		lbl_8042C9A4->rwfree(lbl_8042C3EC);
-		lbl_8042C3EC = NULL;
-	}
-	for (i = 0; i < 8; i++) {
+}
+
+static inline void ReleaseRasters()
+{
+	for (u8 i = 0; i < 8; i++) {
 		if (lbl_80304228[i] != NULL && lbl_80304228[i]->raster != NULL) {
 			fn_801A4C84(lbl_80304228[i]->raster);
 			fn_801A4B8C(lbl_80304228[i]);
 		}
 	}
-	for (i = 0; i < 8; i++) {
+}
+
+static inline void DestroyTextures()
+{
+	for (u8 i = 0; i < 8; i++) {
 		if (lbl_80304228[i] != NULL) {
 			fn_801A491C(lbl_80304228[i]);
 			lbl_80304228[i] = NULL;
@@ -74,15 +75,31 @@ extern "C" void fn_800BF5D8(void)
 			lbl_80304248[i] = NULL;
 		}
 	}
-	if (lbl_8042C3E8 != NULL) {
-		fn_801A46D0(lbl_8042C3E8);
-		lbl_8042C3E8 = NULL;
-	}
-	for (i = 0; i < 3; i++) {
+}
+
+static inline void DestroyClumps()
+{
+	for (u8 i = 0; i < 3; i++) {
 		if (lbl_80253CC0[i] != NULL) {
 			fn_80147178(lbl_80253CC0[i]);
 			fn_80147288(lbl_80253CC0[i]);
 			lbl_80253CC0[i] = NULL;
 		}
 	}
+}
+
+extern "C" void fn_800BF5D8(void)
+{
+	DeleteObjects();
+	if (lbl_8042C3EC != NULL) {
+		lbl_8042C9A4->rwfree(lbl_8042C3EC);
+		lbl_8042C3EC = NULL;
+	}
+	ReleaseRasters();
+	DestroyTextures();
+	if (lbl_8042C3E8 != NULL) {
+		fn_801A46D0(lbl_8042C3E8);
+		lbl_8042C3E8 = NULL;
+	}
+	DestroyClumps();
 }
