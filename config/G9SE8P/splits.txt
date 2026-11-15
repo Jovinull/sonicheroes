@@ -5006,6 +5006,9 @@ game/fn_8016FE54.cpp:
 game/fn_80170428.cpp:
 	.text       start:0x80170428 end:0x80170490
 
+game/fn_80170854.cpp:
+	.text       start:0x80170854 end:0x801709A8
+
 game/fn_80171620.cpp:
 	.text       start:0x80171620 end:0x80171698
 
