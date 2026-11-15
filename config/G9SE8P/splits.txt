@@ -3063,6 +3063,11 @@ game/fn_800FAA34.cpp:
 game/fn_800FAB00.cpp:
 	.text       start:0x800FAB00 end:0x800FAB54
 
+game/fn_800FCBFC.cpp:
+	extab       start:0x800096B4 end:0x800096BC
+	extabindex  start:0x8000FCDC end:0x8000FCE8
+	.text       start:0x800FCBFC end:0x800FCCE8
+
 game/fn_800FD298.cpp:
 	extab       start:0x80009720 end:0x80009728
 	extabindex  start:0x8000FCF4 end:0x8000FD00
