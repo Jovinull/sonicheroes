@@ -3499,6 +3499,9 @@ game/RpDMorphAnimationGetNumDMorphTargets.cpp:
 game/RpDMorphAnimationGetNumFrames.cpp:
 	.text       start:0x8013BE08 end:0x8013BE18
 
+game/RpDMorphAnimationFrameGetDuration.cpp:
+	.text       start:0x8013C228 end:0x8013C248
+
 game/fn_8013C248.cpp:
 	.text       start:0x8013C248 end:0x8013C258
 

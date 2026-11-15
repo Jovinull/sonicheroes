@@ -1343,6 +1343,7 @@ config.libs = [
             Object(Matching, "game/fn_80137150.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/__dt__9EffShadowFv.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/RpDMorphAnimationGetNumFrames.cpp"),
+            Object(Matching, "game/RpDMorphAnimationFrameGetDuration.cpp"),
             Object(Matching, "game/KillMySelf__9TObjEnemyFv.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/ADXSJD_RestoreSnapshot.cpp"),
             Object(Matching, "game/ADXSJD_TakeSnapshot.cpp"),
