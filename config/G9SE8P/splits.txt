@@ -3717,20 +3717,9 @@ game/fn_8012F728.cpp:
 	.text       start:0x8012F728 end:0x8012F858
 
 game/fn_801302B0.cpp:
-	extab       start:0x8000B628 end:0x8000B630
-	extabindex  start:0x80011608 end:0x80011614
-	.text       start:0x801302B0 end:0x80130464
-
-game/fn_80130464.cpp:
-	.text       start:0x80130464 end:0x80130478
-
-game/fn_80130478.cpp:
-	.text       start:0x80130478 end:0x80130484
-
-game/fn_80130484.cpp:
-	extab       start:0x8000B630 end:0x8000B670
-	extabindex  start:0x80011614 end:0x80011638
-	.text       start:0x80130484 end:0x801308C8
+	extab       start:0x8000B628 end:0x8000B670
+	extabindex  start:0x80011608 end:0x80011638
+	.text       start:0x801302B0 end:0x801308C8
 
 game/enemy/e_summon.cpp:
 	extab       start:0x8000B670 end:0x8000B698
