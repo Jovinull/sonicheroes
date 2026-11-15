@@ -2,10 +2,6 @@
 // quantizer's box assignment). The node covers the cube at origin with side 1 << depth; nodes
 // outside the box are skipped, a depth-0 node fully inside it takes the index, and any other node
 // recurses into its 16 children (one bit of each RGBA offset per child index).
-// NonMatching: retail interleaves each child-origin byte (load, shift, add, store) with the next
-// bit extraction, while this source's schedule extracts all four bits first (23 words, same
-// instructions). A shift local, an outer origin buffer, an unsigned index and an RwRGBA origin
-// do not change it.
 #include "game/rw_palquant.h"
 
 // Colour box: inclusive low corner and exclusive high corner, RGBA.
@@ -16,7 +12,7 @@ struct RwPalQuantBox801A5B1C {
 
 extern "C" {
 void fn_801A5B1C(
-    RwPalQuantNode* node, const u8* origin, s32 depth, const RwPalQuantBox801A5B1C* box, u8 index)
+    RwPalQuantNode* node, u8* origin, s32 depth, const RwPalQuantBox801A5B1C* box, u8 index)
 {
 	s32 size;
 	s32 d0, d1, d2, d3;

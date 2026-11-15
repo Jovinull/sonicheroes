@@ -2845,7 +2845,7 @@ config.libs = [
             Object(NonMatching, "game/fn_80197000.cpp"),
             Object(NonMatching, "game/fn_801B3E58.cpp"),
             Object(Matching, "game/fn_801AB834.cpp"),
-            Object(NonMatching, "game/fn_801A5B1C.cpp"),
+            Object(Matching, "game/fn_801A5B1C.cpp"),
             Object(NonMatching, "game/fn_8015CBBC.cpp"),
             Object(Matching, "game/fn_801B2C00.cpp"),
             Object(NonMatching, "game/fn_8014D70C.cpp"),
