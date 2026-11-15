@@ -1,6 +1,6 @@
 // Updates the bounding sphere of a morphing atomic (HYPOTHESIS: the RpAtomic sphere sync for
 // morph targets): between two distinct valid morph targets the sphere is interpolated by
-// position * recipTime; otherwise the sphere of the atomic->startMorphTarget target (or of target 0 when the atomic->startMorphTarget is
+// position * recipTime; otherwise the sphere of the start target (or of target 0 when the start is
 // out of range) is copied. Clears the interpolator's dirty-sphere flag and marks the world bounds
 // dirty.
 // NonMatching: C++ copies the all-float RwSphere with lwz/stw for the centre and lfs/stfs for the
