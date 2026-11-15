@@ -3322,6 +3322,11 @@ game/fn_800E1928.cpp:
 	extabindex  start:0x8000F5F8 end:0x8000F604
 	.text       start:0x800E1928 end:0x800E1A48
 
+game/fn_800E1CE8.cpp:
+	extab       start:0x80008E20 end:0x80008E28
+	extabindex  start:0x8000F610 end:0x8000F61C
+	.text       start:0x800E1CE8 end:0x800E1F28
+
 game/fn_800E1F28.cpp:
 	extab       start:0x80008E28 end:0x80008E30
 	extabindex  start:0x8000F61C end:0x8000F628
