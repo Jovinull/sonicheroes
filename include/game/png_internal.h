@@ -43,7 +43,9 @@ struct PngStruct {
 	u16* hist;         // 0x168
 	u8 pad16C[0x184 - 0x16C];
 	u32 freeMe; // 0x184: free_me
-	u8 pad188[0x1B0 - 0x188];
+	u8 pad188[0x18C - 0x188];
+	s32 (*readUserChunkFn)(PngStruct* png, void* chunk); // 0x18C: read_user_chunk_fn
+	u8 pad190[0x1B0 - 0x190];
 	void* freeFn; // 0x1B0: free_fn
 };
 
@@ -62,6 +64,7 @@ struct PngStruct {
 #define PNG_FLAG_CRC_ANCILLARY_MASK   0x300
 #define PNG_FLAG_CRC_CRITICAL_USE     0x400
 #define PNG_FLAG_CRC_CRITICAL_IGNORE  0x800
+#define PNG_FLAG_KEEP_UNKNOWN_CHUNKS  0x8000
 
 extern "C" {
 // Message pool of the chunk reader ("CRC error" at offset 0 in libpng).
