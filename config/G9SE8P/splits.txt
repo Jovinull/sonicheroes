@@ -3869,6 +3869,9 @@ game/fn_8013EC7C.cpp:
 game/fn_8013ECE0.cpp:
 	.text       start:0x8013ECE0 end:0x8013ED8C
 
+game/fn_8013ED8C.cpp:
+	.text       start:0x8013ED8C end:0x8013EEE0
+
 game/fn_8013EEE0.cpp:
 	.text       start:0x8013EEE0 end:0x8013EFA0
 
