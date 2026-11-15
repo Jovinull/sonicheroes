@@ -84,6 +84,15 @@ typedef void* (*RwPluginObjectCopy)(void* dst, const void* src, s32 offset, s32 
 // RwPluginDataChunkRightsCallBack).
 typedef s32 (*RwPluginDataChunkGetSize)(const void* object, s32 offset, s32 size);
 typedef s32 (*RwPluginDataChunkRights)(void* object, s32 offset, s32 size, u32 extraData);
+// Plugin stream-read and always callbacks (HYPOTHESIS: RwPluginDataChunkReadCallBack and
+// RwPluginDataChunkAlwaysCallBack): each returns its first argument, or null on failure.
+typedef void* (*RwPluginDataChunkRead)(
+    void* stream, s32 length, void* object, s32 offset, s32 size);
+typedef s32 (*RwPluginDataChunkAlways)(void* object, s32 offset, s32 size);
+// Plugin stream-write callback (HYPOTHESIS: RwPluginDataChunkWriteCallBack): returns the stream,
+// or null on failure.
+typedef void* (*RwPluginDataChunkWrite)(
+    void* stream, s32 length, const void* object, s32 offset, s32 size);
 
 struct RwPluginRegistry;
 
@@ -92,10 +101,10 @@ struct RwPluginRegEntry {
 	s32 offset;
 	s32 size;
 	u32 pluginID;
-	void* readCB;
-	void* writeCB;
-	RwPluginDataChunkGetSize getSizeCB; // 0x14
-	void* alwaysCB;
+	RwPluginDataChunkRead readCB;          // 0xC
+	RwPluginDataChunkWrite writeCB;        // 0x10
+	RwPluginDataChunkGetSize getSizeCB;    // 0x14
+	RwPluginDataChunkAlways alwaysCB;      // 0x18
 	RwPluginDataChunkRights rightsCB;      // 0x1C
 	RwPluginObjectConstructor constructCB; // 0x20
 	RwPluginObjectDestructor destructCB;   // 0x24
@@ -154,6 +163,26 @@ static inline void RwLLLinkRemove(RwLLLink* link)
 	link->next->prev = link->prev;
 }
 
+// Macro form of the same unlink (HYPOTHESIS: rwLinkListRemoveLLLink is a macro in RenderWare). It
+// stays open-coded where CodeWarrior would stop inlining the function, as in the frame destroy
+// recursion of fn_8019E600.
+#define RW_LL_LINK_REMOVE(link)                                                                    \
+	((link)->prev->next = (link)->next, (link)->next->prev = (link)->prev)
+
+// Block-based allocator (HYPOTHESIS: RenderWare RwFreeList). The 0x10-0x24 fields are used by
+// RwFreeListDestroy; the first four names follow the RenderWare layout (UNKNOWN on GameCube).
+struct RwFreeList {
+	u32 entrySize;        // 0x0
+	u32 entriesPerBlock;  // 0x4
+	u32 heapSize;         // 0x8
+	u32 alignment;        // 0xC
+	RwLinkList blockList; // 0x10: allocated blocks
+	u32 flags;            // 0x18: RW_FREE_LIST_* bits
+	RwLLLink link;        // 0x1C: entry in the engine's list of free lists
+};
+
+#define RW_FREE_LIST_STATIC 0x1 // the RwFreeList header was not allocated by RwFreeListCreate
+
 // Growable array (HYPOTHESIS: RwSList).
 struct RwSList {
 	u8* listElements;
@@ -192,10 +221,17 @@ struct RwEngineGlobals {
 	RwStandardFunc stdFunc[rwSTANDARDNUMOFSTANDARD]; // 0x48
 	RwLinkList dirtyFrameList;                       // 0xBC
 	// File functions (HYPOTHESIS: RwFileFunctions).
-	s32 (*rwfexist)(const char* name);                    // 0xC4
-	void* (*rwfopen)(const char* name, const char* mode); // 0xC8
-	s32 (*rwfclose)(void* file);                          // 0xCC
-	u8 padD0[0xF0 - 0xD0];
+	s32 (*rwfexist)(const char* name);                                    // 0xC4
+	void* (*rwfopen)(const char* name, const char* mode);                 // 0xC8
+	s32 (*rwfclose)(void* file);                                          // 0xCC
+	u32 (*rwfread)(void* buffer, u32 size, u32 count, void* file);        // 0xD0
+	u32 (*rwfwrite)(const void* buffer, u32 size, u32 count, void* file); // 0xD4
+	char* (*rwfgets)(char* buffer, s32 maxLength, void* file);            // 0xD8
+	s32 (*rwfputs)(const char* buffer, void* file);                       // 0xDC
+	s32 (*rwfeof)(void* file);                                            // 0xE0
+	s32 (*rwfseek)(void* file, s32 offset, s32 origin);                   // 0xE4
+	s32 (*rwfflush)(void* file);                                          // 0xE8
+	s32 (*rwftell)(void* file);                                           // 0xEC
 	// String functions (HYPOTHESIS: RwStringFunctions).
 	s32 (*rwsprintf)(char* buffer, const char* format, ...);         // 0xF0
 	s32 (*rwvsprintf)(char* buffer, const char* format, void* args); // 0xF4
@@ -221,8 +257,8 @@ struct RwEngineGlobals {
 	void* (*freeListAlloc)(RwFreeList* freeList);                    // 0x144
 	void (*freeListFree)(RwFreeList* freeList, void* entry);         // 0x148
 	u8 pad14C[0x150 - 0x14C];
-	s32 engineStatus; // 0x150: RW_ENGINE_STATUS_*
-	u8 pad154[0x158 - 0x154];
+	s32 engineStatus;     // 0x150: RW_ENGINE_STATUS_*
+	u32 resArenaInitSize; // 0x154: resource arena size used by the resources module open
 };
 
 // Engine status values (HYPOTHESIS: RwEngineStatus); 1 is set when the engine reverts to the
@@ -233,8 +269,8 @@ extern "C" {
 extern RwEngineGlobals* lbl_8042C9A4;
 // Error module bookkeeping (HYPOTHESIS: errorModule).
 extern RwModuleInfo lbl_8042C950;
-// HYPOTHESIS: RwFreeListDestroy (a real symbol in the retail map).
-void RwFreeListDestroy(RwFreeList* freeList);
+// HYPOTHESIS: RwFreeListDestroy (a real symbol in the retail map); always returns 1.
+s32 RwFreeListDestroy(RwFreeList* freeList);
 // HYPOTHESIS: _rwerror (variadic; builds an error code) and RwErrorSet.
 s32 fn_8019408C(s32 code, ...);
 RwError* fn_80193FE8(RwError* error);
@@ -256,6 +292,13 @@ extern RwPluginRegistry lbl_80290610;
 // imagePathSize).
 #define RW_IMAGE_PATH      (*(char**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x4))
 #define RW_IMAGE_PATH_SIZE (*(s32*)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x8))
+// Scratch buffer and its size, the image format free list and the list of registered image
+// formats (HYPOTHESIS: scratchMem, scratchMemSize, imageFormatFreeList and imageFormats; used by
+// the image module close).
+#define RW_IMAGE_SCRATCH_MEM (*(void**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x210))
+#define RW_IMAGE_SCRATCH_MEM_SIZE (*(s32*)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x214))
+#define RW_IMAGE_FORMAT_FREE_LIST                                                                  \
+	(*(RwFreeList**)((u8*)lbl_8042C9A4 + lbl_8042C9B0.globalsOffset + 0x218))
 
 // Raster module bookkeeping (HYPOTHESIS: rasterModule) and plugin registry (rasterTKList); the
 // raster free list sits at +0x60 in the raster module globals.

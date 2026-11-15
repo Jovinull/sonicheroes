@@ -4,9 +4,8 @@
 // leader is unavailable (no reference value, too far below it or flagged 0x8002); the walk stops
 // at the leader again. Records the previous leader at 0x3C and the result as leader. The limit
 // depends on the mode word 0x34 (.sdata2 lbl_8042D964/lbl_8042D968). Field names are inferred
-// from this function only.
-// NonMatching: in the walk the raw and sign-extended copies of the member index swap r5/r6
-// (7 words differ).
+// from this function only. The walk reads the cursor back from the team record after each step
+// (a local copy of the index swaps registers); fn_800929E0 is the downward counterpart.
 #include "types.h"
 
 struct Member80092AFC {
@@ -43,7 +42,6 @@ void fn_80092AFC(Team80092AFC* team)
 {
 	f32 limit;
 	Member80092AFC* leader;
-	s8 next;
 	s32 leaderUnavailable;
 	f32 reference;
 
@@ -65,14 +63,13 @@ void fn_80092AFC(Team80092AFC* team)
 	do {
 		s8 incremented = ++team->current;
 		team->current  = incremented % team->count;
-		next           = team->current;
-		if (team->members[next]->state != 0x12 && (next != 1 || leaderUnavailable)
-		    && !team->enabled[next]) {
+		if (team->members[team->current]->state != 0x12 && (team->current != 1 || leaderUnavailable)
+		    && !team->enabled[team->current]) {
 			break;
 		}
-	} while (next != team->leader);
+	} while (team->current != team->leader);
 
-	team->previous = next;
+	team->previous = team->current;
 	team->leader   = team->current;
 }
 }
