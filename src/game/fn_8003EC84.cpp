@@ -4,9 +4,10 @@
 // slot's position and angle (lbl_802AD090[number]) into the next entry of the history rings
 // lbl_8042C1B0/lbl_8042C1B4 (read back by fn_8003E2E4). It then clears +0x776 and lbl_8042C1B8.
 // Field roles are HYPOTHESIS/UNKNOWN.
-// NonMatching (one instruction short, 23 words shifted): the retail code zero-extends the player
-// number again (clrlwi) before the `<< 8` of the ring index although it was loaded with lbz.
-// Tried: (u8) casts, s32/int/u32 locals, an inline index helper with u8 parameters.
+// The ring push is PlayerMaster::KeepPlayerPosition (CORROBORATED, PS2 metadata: SetupInput calls
+// it), inlined here. Its player-number parameter is an int narrowed back to a byte for the ring
+// index, which is where the retail code's second zero-extension (clrlwi) before the `<< 8` comes
+// from; a u8 parameter gives the right instructions with swapped registers.
 #include "types.h"
 
 struct Vec8003EC84 {
@@ -58,12 +59,18 @@ extern Vec8003EC84* lbl_8042C1B0;
 extern Angle8003EC84* lbl_8042C1B4;
 extern s32 lbl_8042C1B8;
 
+static inline void KeepPlayerPosition(s32 number)
+{
+	Slot8003EC84* slot = lbl_802AD090[number];
+	u8 entry           = ++lbl_8042C1A8[number];
+	s32 index          = entry + ((u8)number << 8);
+
+	lbl_8042C1B0[index] = slot->position;
+	lbl_8042C1B4[index] = slot->angle;
+}
+
 void fn_8003EC84(Player8003EC84* p)
 {
-	Slot8003EC84* slot;
-	u8 number;
-	u8 entry;
-
 	p->flags &= ~0x1238;
 	p->unknown6F4 = 0;
 	p->unknown794 = p->unknown7A8.x = p->unknown7A8.y = p->unknown7A8.z = p->unknown7B4.x
@@ -82,12 +89,8 @@ void fn_8003EC84(Player8003EC84* p)
 	if (p->timer9E8 > 0) {
 		p->timer9E8--;
 	}
-	number                              = p->number;
-	slot                                = lbl_802AD090[number];
-	entry                               = ++lbl_8042C1A8[number];
-	lbl_8042C1B0[entry + (number << 8)] = slot->position;
-	lbl_8042C1B4[entry + (number << 8)] = slot->angle;
-	p->unknown776                       = 0;
-	lbl_8042C1B8                        = 0;
+	KeepPlayerPosition((u8)p->number);
+	p->unknown776 = 0;
+	lbl_8042C1B8  = 0;
 }
 }
