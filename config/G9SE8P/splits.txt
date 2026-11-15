@@ -683,6 +683,11 @@ game/fn_80044E10.cpp:
 game/fn_80044EC4.cpp:
 	.text       start:0x80044EC4 end:0x80044F10
 
+game/fn_80044FA4.cpp:
+	extab       start:0x80006040 end:0x80006048
+	extabindex  start:0x8000C898 end:0x8000C8A4
+	.text       start:0x80044FA4 end:0x80045148
+
 game/fn_80045148.cpp:
 	extab       start:0x80006048 end:0x80006050
 	extabindex  start:0x8000C8A4 end:0x8000C8B0
