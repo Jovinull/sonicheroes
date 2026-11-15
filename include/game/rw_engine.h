@@ -84,6 +84,11 @@ typedef void* (*RwPluginObjectCopy)(void* dst, const void* src, s32 offset, s32 
 // RwPluginDataChunkRightsCallBack).
 typedef s32 (*RwPluginDataChunkGetSize)(const void* object, s32 offset, s32 size);
 typedef s32 (*RwPluginDataChunkRights)(void* object, s32 offset, s32 size, u32 extraData);
+// Plugin stream-read and always callbacks (HYPOTHESIS: RwPluginDataChunkReadCallBack and
+// RwPluginDataChunkAlwaysCallBack): each returns its first argument, or null on failure.
+typedef void* (*RwPluginDataChunkRead)(
+    void* stream, s32 length, void* object, s32 offset, s32 size);
+typedef s32 (*RwPluginDataChunkAlways)(void* object, s32 offset, s32 size);
 // Plugin stream-write callback (HYPOTHESIS: RwPluginDataChunkWriteCallBack): returns the stream,
 // or null on failure.
 typedef void* (*RwPluginDataChunkWrite)(
@@ -96,10 +101,10 @@ struct RwPluginRegEntry {
 	s32 offset;
 	s32 size;
 	u32 pluginID;
-	void* readCB;
-	RwPluginDataChunkWrite writeCB;     // 0x10
-	RwPluginDataChunkGetSize getSizeCB; // 0x14
-	void* alwaysCB;
+	RwPluginDataChunkRead readCB;          // 0xC
+	RwPluginDataChunkWrite writeCB;        // 0x10
+	RwPluginDataChunkGetSize getSizeCB;    // 0x14
+	RwPluginDataChunkAlways alwaysCB;      // 0x18
 	RwPluginDataChunkRights rightsCB;      // 0x1C
 	RwPluginObjectConstructor constructCB; // 0x20
 	RwPluginObjectDestructor destructCB;   // 0x24
