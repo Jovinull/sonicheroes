@@ -684,6 +684,9 @@ rel/fn_16_519FC.cpp:
 rel/fn_16_51BF4.cpp:
 	.text       start:0x00051BF4 end:0x00051C2C
 
+rel/fn_16_51CA4.cpp:
+	.text       start:0x00051CA4 end:0x00051CDC
+
 rel/e_end_spboss.cpp:
 	.text       start:0x00058E44 end:0x000591C0
 	.ctors      start:0x000000DC end:0x000000E0
