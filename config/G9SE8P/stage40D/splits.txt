@@ -328,6 +328,9 @@ rel/fn_16_27ABC.cpp:
 rel/fn_16_29254.cpp:
 	.text       start:0x00029254 end:0x000292A4
 
+rel/fn_16_296EC.cpp:
+	.text       start:0x000296EC end:0x00029788
+
 rel/ef_sparkle.cpp:
 	.text       start:0x0002DD2C end:0x0002E9F0
 	.ctors      start:0x00000084 end:0x00000088
