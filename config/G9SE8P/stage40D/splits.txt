@@ -30,6 +30,9 @@ rel/fn_16_9EC.cpp:
 rel/fn_16_D10.cpp:
 	.text       start:0x00000D10 end:0x00000D4C
 
+rel/fn_16_DC8.cpp:
+	.text       start:0x00000DC8 end:0x00000E0C
+
 rel/stg40_spring_edit.cpp:
 	.text       start:0x00001750 end:0x000017E0
 
