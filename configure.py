@@ -3688,6 +3688,7 @@ config.libs = [
                 ],
             ),
             Object(Matching, "rel/fn_16_DC8.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
+            Object(Matching, "rel/fn_16_F20.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(
                 Matching,
                 "rel/fn_16_32F60.cpp",
