@@ -3878,6 +3878,7 @@ config.libs = [
             Object(Matching, "rel/fn_16_10434.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(Matching, "rel/fn_16_10B84.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(Matching, "rel/fn_16_10C60.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
+            Object(Matching, "rel/fn_16_11080.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(
                 Matching,
                 "rel/sp_dashpanel.cpp",

@@ -159,6 +159,9 @@ rel/fn_16_10B84.cpp:
 rel/fn_16_10C60.cpp:
 	.text       start:0x00010C60 end:0x00010CAC
 
+rel/fn_16_11080.cpp:
+	.text       start:0x00011080 end:0x000110D0
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
