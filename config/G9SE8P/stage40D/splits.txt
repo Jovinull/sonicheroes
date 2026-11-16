@@ -368,6 +368,9 @@ rel/fn_16_2F1FC.cpp:
 rel/fn_16_2F3A8.cpp:
 	.text       start:0x0002F3A8 end:0x0002F470
 
+rel/fn_16_2FE04.cpp:
+	.text       start:0x0002FE04 end:0x0002FE44
+
 rel/o_system1.cpp:
 	.text       start:0x00031228 end:0x00031460
 	.ctors      start:0x0000008C end:0x00000090
