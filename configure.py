@@ -3772,6 +3772,7 @@ config.libs = [
                     "-pool off",
                 ],
             ),
+            Object(Matching, "rel/fn_16_273B0.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(Matching, "rel/ef_rain_strings.cpp"),
             Object(
                 Matching,
