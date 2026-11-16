@@ -45,6 +45,9 @@ rel/fn_16_170C.cpp:
 rel/stg40_spring_edit.cpp:
 	.text       start:0x00001750 end:0x000017E0
 
+rel/fn_16_1874.cpp:
+	.text       start:0x00001874 end:0x000018C4
+
 rel/stg40_dashpanel_edit.cpp:
 	.text       start:0x00006F08 end:0x00006F98
 
