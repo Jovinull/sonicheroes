@@ -294,6 +294,9 @@ rel/fn_16_21584.cpp:
 rel/fn_16_227A0.cpp:
 	.text       start:0x000227A0 end:0x000227F0
 
+rel/fn_16_2307C.cpp:
+	.text       start:0x0002307C end:0x000230CC
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
