@@ -435,6 +435,9 @@ rel/fn_16_367DC.cpp:
 rel/fn_16_3B354.cpp:
 	.text       start:0x0003B354 end:0x0003B398
 
+rel/fn_16_3C5A8.cpp:
+	.text       start:0x0003C5A8 end:0x0003C5FC
+
 rel/bobsleigh_set_player_position.cpp:
 	.text       start:0x0003D944 end:0x0003DB1C
 
