@@ -147,6 +147,9 @@ rel/fn_16_F86C.cpp:
 rel/fn_16_FC14.cpp:
 	.text       start:0x0000FC14 end:0x0000FC50
 
+rel/fn_16_10348.cpp:
+	.text       start:0x00010348 end:0x00010394
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
