@@ -408,6 +408,9 @@ rel/fn_16_32F60.cpp:
 	.text       start:0x00032F60 end:0x00032FE4
 	.ctors      start:0x0000009C end:0x000000A0
 
+rel/fn_16_3300C.cpp:
+	.text       start:0x0003300C end:0x000330C0
+
 rel/bobsleigh_set_player_position.cpp:
 	.text       start:0x0003D944 end:0x0003DB1C
 
