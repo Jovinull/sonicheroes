@@ -204,6 +204,9 @@ rel/fn_16_17914.cpp:
 rel/fn_16_17974.cpp:
 	.text       start:0x00017974 end:0x000179D8
 
+rel/fn_16_18048.cpp:
+	.text       start:0x00018048 end:0x00018098
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
