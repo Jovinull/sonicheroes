@@ -543,6 +543,9 @@ rel/fn_16_4A4F0.cpp:
 rel/fn_16_4A5D0.cpp:
 	.text       start:0x0004A5D0 end:0x0004A63C
 
+rel/fn_16_4A63C.cpp:
+	.text       start:0x0004A63C end:0x0004A684
+
 rel/e_end_spboss.cpp:
 	.text       start:0x00058E44 end:0x000591C0
 	.ctors      start:0x000000DC end:0x000000E0
