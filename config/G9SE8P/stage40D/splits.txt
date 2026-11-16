@@ -285,6 +285,9 @@ rel/fn_16_20C34.cpp:
 rel/fn_16_20C78.cpp:
 	.text       start:0x00020C78 end:0x00020CB0
 
+rel/fn_16_21478.cpp:
+	.text       start:0x00021478 end:0x000214CC
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
