@@ -340,6 +340,9 @@ rel/fn_16_2A6CC.cpp:
 rel/fn_16_2A730.cpp:
 	.text       start:0x0002A730 end:0x0002A768
 
+rel/fn_16_2AFD4.cpp:
+	.text       start:0x0002AFD4 end:0x0002B03C
+
 rel/ef_sparkle.cpp:
 	.text       start:0x0002DD2C end:0x0002E9F0
 	.ctors      start:0x00000084 end:0x00000088
