@@ -362,6 +362,9 @@ rel/ef_sparkle.cpp:
 	.data       start:0x00003CD0 end:0x00003D38
 	.bss        start:0x00000A20 end:0x00000A38
 
+rel/fn_16_2F1FC.cpp:
+	.text       start:0x0002F1FC end:0x0002F25C
+
 rel/o_system1.cpp:
 	.text       start:0x00031228 end:0x00031460
 	.ctors      start:0x0000008C end:0x00000090
