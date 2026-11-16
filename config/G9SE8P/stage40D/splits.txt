@@ -108,6 +108,9 @@ rel/fn_16_8D60.cpp:
 rel/fn_16_9DB8.cpp:
 	.text       start:0x00009DB8 end:0x00009DFC
 
+rel/fn_16_9FC4.cpp:
+	.text       start:0x00009FC4 end:0x00009FF4
+
 rel/stg40_dashring_edit.cpp:
 	.text       start:0x0000BBF4 end:0x0000BC84
 
