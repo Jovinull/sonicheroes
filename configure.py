@@ -14420,6 +14420,7 @@ config.libs = [
                 extra_cflags=["-opt noschedule,nopeephole"],
             ),
             Object(Matching, "rel/fn_16_3F3D4.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
+            Object(Matching, "rel/fn_16_3F79C.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(
                 Matching,
                 "rel/cannon_set_collision_parameter.cpp",
