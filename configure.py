@@ -1577,6 +1577,7 @@ config.libs = [
             Object(Matching, "game/ADXF_GetPtStat.cpp"),
             Object(Matching, "game/ADXF_Close.cpp"),
             Object(Matching, "game/ADXF_Open.cpp"),
+            Object(Matching, "game/ADXF_GetPtStatEx.cpp", extra_cflags=["-sdata 0", "-sdata2 0", "-str reuse,readonly", "-use_lmw_stmw on"]),
             Object(Matching, "game/ADXF_GetFnameRangeEx.cpp", extra_cflags=["-use_lmw_stmw on"]),
             Object(Matching, "game/ADXF_ExecServer.cpp"),
             Object(Matching, "game/ADXF_CloseAll.cpp"),
