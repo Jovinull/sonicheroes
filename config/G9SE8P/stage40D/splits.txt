@@ -567,6 +567,9 @@ rel/fn_16_4B190.cpp:
 rel/fn_16_4B1D0.cpp:
 	.text       start:0x0004B1D0 end:0x0004B224
 
+rel/fn_16_4CAC0.cpp:
+	.text       start:0x0004CAC0 end:0x0004CAF4
+
 rel/e_end_spboss.cpp:
 	.text       start:0x00058E44 end:0x000591C0
 	.ctors      start:0x000000DC end:0x000000E0
