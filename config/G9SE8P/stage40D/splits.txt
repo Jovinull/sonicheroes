@@ -534,6 +534,9 @@ rel/fn_16_48698.cpp:
 rel/fn_16_49AF0.cpp:
 	.text       start:0x00049AF0 end:0x00049B40
 
+rel/fn_16_49BD8.cpp:
+	.text       start:0x00049BD8 end:0x00049C38
+
 rel/e_end_spboss.cpp:
 	.text       start:0x00058E44 end:0x000591C0
 	.ctors      start:0x000000DC end:0x000000E0
