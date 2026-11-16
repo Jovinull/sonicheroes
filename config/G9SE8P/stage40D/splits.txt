@@ -90,6 +90,9 @@ rel/fn_16_6460.cpp:
 rel/stg40_dashpanel_edit.cpp:
 	.text       start:0x00006F08 end:0x00006F98
 
+rel/fn_16_70CC.cpp:
+	.text       start:0x000070CC end:0x0000711C
+
 rel/stg40_dashring_edit.cpp:
 	.text       start:0x0000BBF4 end:0x0000BC84
 

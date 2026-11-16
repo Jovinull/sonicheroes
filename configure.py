@@ -3847,6 +3847,7 @@ config.libs = [
                     "-bool off",
                 ],
             ),
+            Object(Matching, "rel/fn_16_70CC.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(
                 Matching,
                 "rel/stg40_dashring_edit.cpp",
