@@ -177,6 +177,9 @@ rel/fn_16_13F1C.cpp:
 rel/fn_16_14D44.cpp:
 	.text       start:0x00014D44 end:0x00014D94
 
+rel/fn_16_16700.cpp:
+	.text       start:0x00016700 end:0x00016750
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
