@@ -39,6 +39,9 @@ rel/fn_16_F20.cpp:
 rel/fn_16_1180.cpp:
 	.text       start:0x00001180 end:0x000011DC
 
+rel/fn_16_170C.cpp:
+	.text       start:0x0000170C end:0x00001748
+
 rel/stg40_spring_edit.cpp:
 	.text       start:0x00001750 end:0x000017E0
 
