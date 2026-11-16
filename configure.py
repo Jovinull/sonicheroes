@@ -3721,6 +3721,7 @@ config.libs = [
                     "-pool off",
                 ],
             ),
+            Object(Matching, "rel/fn_16_32F10.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(
                 Matching,
                 "rel/ef_sparkle.cpp",
