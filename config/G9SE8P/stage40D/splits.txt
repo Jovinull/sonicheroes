@@ -450,6 +450,9 @@ rel/fn_16_3F3D4.cpp:
 rel/fn_16_3F79C.cpp:
 	.text       start:0x0003F79C end:0x0003F804
 
+rel/fn_16_405A4.cpp:
+	.text       start:0x000405A4 end:0x000405F4
+
 rel/fn_16_469A0.cpp:
 	.text       start:0x000469A0 end:0x000469BC
 
