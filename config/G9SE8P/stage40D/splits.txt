@@ -138,6 +138,9 @@ rel/fn_16_E0A8.cpp:
 rel/fn_16_E3D4.cpp:
 	.text       start:0x0000E3D4 end:0x0000E424
 
+rel/fn_16_E610.cpp:
+	.text       start:0x0000E610 end:0x0000E650
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
