@@ -78,6 +78,9 @@ rel/fn_16_47DC.cpp:
 rel/fn_16_48C4.cpp:
 	.text       start:0x000048C4 end:0x000048F8
 
+rel/fn_16_5288.cpp:
+	.text       start:0x00005288 end:0x000052D8
+
 rel/stg40_dashpanel_edit.cpp:
 	.text       start:0x00006F08 end:0x00006F98
 
