@@ -456,6 +456,9 @@ rel/fn_16_405A4.cpp:
 rel/fn_16_40C8C.cpp:
 	.text       start:0x00040C8C end:0x00040D10
 
+rel/fn_16_40FC0.cpp:
+	.text       start:0x00040FC0 end:0x00041080
+
 rel/fn_16_469A0.cpp:
 	.text       start:0x000469A0 end:0x000469BC
 
