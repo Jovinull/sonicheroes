@@ -374,6 +374,9 @@ rel/fn_16_2FE04.cpp:
 rel/fn_16_30138.cpp:
 	.text       start:0x00030138 end:0x00030200
 
+rel/fn_16_31038.cpp:
+	.text       start:0x00031038 end:0x00031088
+
 rel/o_system1.cpp:
 	.text       start:0x00031228 end:0x00031460
 	.ctors      start:0x0000008C end:0x00000090
