@@ -1612,6 +1612,7 @@ config.libs = [
             Object(Matching, "game/ADXB_CheckAiff.cpp"),
             Object(Matching, "game/AIFF_GetInfo.cpp", extra_cflags=["-use_lmw_stmw on", "-opt nopropagation"]),
             Object(Matching, "game/ADXB_CheckAu.cpp"),
+            Object(Matching, "game/AU_GetInfo.cpp"),
             Object(Matching, "game/ADXSJD_Init.cpp"),
             Object(Matching, "game/ADXSJD_Finish.cpp"),
             Object(Matching, "game/RwOsGetFileInterface.cpp"),
