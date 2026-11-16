@@ -483,6 +483,9 @@ rel/fn_16_432FC.cpp:
 rel/fn_16_43CB0.cpp:
 	.text       start:0x00043CB0 end:0x00043D00
 
+rel/fn_16_43E14.cpp:
+	.text       start:0x00043E14 end:0x00043E68
+
 rel/fn_16_469A0.cpp:
 	.text       start:0x000469A0 end:0x000469BC
 
