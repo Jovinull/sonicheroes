@@ -3865,6 +3865,7 @@ config.libs = [
                     "-bool off",
                 ],
             ),
+            Object(Matching, "rel/fn_16_BE88.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(
                 Matching,
                 "rel/sp_dashpanel.cpp",
