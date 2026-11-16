@@ -60,6 +60,9 @@ rel/fn_16_3234.cpp:
 rel/fn_16_331C.cpp:
 	.text       start:0x0000331C end:0x000033DC
 
+rel/fn_16_33F0.cpp:
+	.text       start:0x000033F0 end:0x000034B0
+
 rel/stg40_dashpanel_edit.cpp:
 	.text       start:0x00006F08 end:0x00006F98
 
