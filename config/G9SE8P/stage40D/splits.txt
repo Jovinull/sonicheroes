@@ -255,6 +255,9 @@ rel/fn_16_1E1F4.cpp:
 rel/fn_16_1E250.cpp:
 	.text       start:0x0001E250 end:0x0001E2A0
 
+rel/fn_16_1E900.cpp:
+	.text       start:0x0001E900 end:0x0001E954
+
 rel/ef_rain.cpp:
 	.text       start:0x000264CC end:0x00026884
 	.ctors      start:0x0000006C end:0x00000070
