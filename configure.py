@@ -3676,6 +3676,7 @@ config.libs = [
                     "-pool off",
                 ],
             ),
+            Object(Matching, "rel/fn_16_9EC.cpp", extra_cflags=["-O0", "-inline noauto", "-opt noschedule,nopropagation,nopeephole", "-pool off"]),
             Object(
                 Matching,
                 "rel/fn_16_D10.cpp",
