@@ -2,7 +2,7 @@
 // written out as the functions MWCC makes of them. The destructor takes the
 // particle out of its cloud's chain before the particle base's destructor
 // (fn_80062384) and frees it when asked to. The constructor builds the
-// particle base (fn_80062A48) for the kind; without a particle instance it is
+// particle base (PARTICLE_TASK's constructor) for the kind; without a particle instance it is
 // killed at once, else it takes the kind's most alpha (kinds 0x32-0x35), clears
 // its colour block, its life and its cloud, and joins the cloud's chain. The
 // class is shared through s13_cloud_ptcl.inc.
@@ -21,7 +21,9 @@ extern "C" u8 __vt__16TObjS13CloudPtcl[];
 extern "C" const u8 s13CloudPtclAlphas[4];
 
 extern "C" void fn_80062384(TObjS13CloudPtcl* self, s16 flag);
-extern "C" void fn_80062A48(TObjS13CloudPtcl* self, u32 kind, RwV3d* pos, sAngle* ang);
+// PARTICLE_TASK::PARTICLE_TASK(unsigned int, RwV3d*, sAngle*), called as a plain function.
+extern "C" void __ct__13PARTICLE_TASKFUiP5RwV3dP6sAngle(
+    TObjS13CloudPtcl* self, u32 kind, RwV3d* pos, sAngle* ang);
 extern "C" void fn_80064390(void* block, s32 size);
 
 extern "C" TObjS13CloudPtcl* __dt__16TObjS13CloudPtclFv(TObjS13CloudPtcl* self, s16 flag)
@@ -43,7 +45,7 @@ extern "C" TObjS13CloudPtcl* __ct__16TObjS13CloudPtclFP12TObjS13CloudUisP5RwV3dP
 {
 	s8 index;
 
-	fn_80062A48(self, kind, pos, ang);
+	__ct__13PARTICLE_TASKFUiP5RwV3dP6sAngle(self, kind, pos, ang);
 	self->vtable  = __vt__16TObjS13CloudPtcl;
 	self->vtable2 = __vt__16TObjS13CloudPtcl + 0x2C;
 	self->name    = CL_TObjS13CloudPtcl;
