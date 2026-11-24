@@ -454,6 +454,11 @@ game/dtor_8003FFB8.cpp:
 	extabindex  start:0x8000C664 end:0x8000C670
 	.text       start:0x8003FFB8 end:0x80040058
 
+game/__ct__13TObjOldPlayerFP7TObject.cpp:
+	extab       start:0x80005E74 end:0x80005EB8
+	extabindex  start:0x8000C670 end:0x8000C67C
+	.text       start:0x80040058 end:0x8004014C
+
 game/fn_8004014C.cpp:
 	extab       start:0x80005EB8 end:0x80005EC0
 	extabindex  start:0x8000C67C end:0x8000C688
