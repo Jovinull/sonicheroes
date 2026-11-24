@@ -1,12 +1,14 @@
 // Runs one step of the memory card load in a card menu (HYPOTHESIS; names inferred). Step 0 starts
 // reading the save into the buffer (fn_80127FC4). Step 1 waits for the card (fn_8012822C); on a
-// read error stores the card result (fn_80128224) as the menu result, otherwise decodes the
-// buffer (fn_80126460) and checks it (fn_80126374): a bad save gives result 8, a save of another
-// game record (word 0x10 against the live save lbl_803E774C, fn_80116D2C) gives 0xB, and a good
-// one is copied into the live save and applied (fn_80116C50) with result 0. Every finished step
-// clears the progress and reformats the status text, the 0xB case twice, as retail does.
+// read error stores the card result (fn_80128224) as the menu result, otherwise decrypts the
+// buffer (nMemoryCardUtil::Crypt) and checks its digest (nMemoryCardUtil::CheckMD5): a bad save
+// gives result 8, a save of another game record (word 0x10 against the live save lbl_803E774C,
+// fn_80116D2C) gives 0xB, and a good one is copied into the live save and applied (fn_80116C50)
+// with result 0. Every finished step clears the progress and reformats the status text, the 0xB
+// case twice, as retail does.
 #include "types.h"
 #include "MSL_C/string.h"
+#include "game/memorycard_crypt.h"
 
 #define SAVE_DATA_SIZE 0x708
 
@@ -43,8 +45,6 @@ int sprintf(char* buffer, const char* format, ...);
 void fn_80127FC4(void* card, char* text, s32 a, s32 b);
 s32 fn_8012822C(void* card);
 s32 fn_80128224(void* card);
-void fn_80126460(SaveData80124F48* buffer, s32 mode);
-s32 fn_80126374(SaveData80124F48* buffer);
 SaveData80124F48* fn_80116D2C(void* save);
 void fn_80116C50(void* save);
 
@@ -69,8 +69,8 @@ void fn_80124F48(CardMenu80124F48* menu, s32 step)
 				switch (fn_80128224(menu->card)) {
 					case 0: {
 						SaveData80124F48* buffer = menu->buffer;
-						fn_80126460(buffer, 0);
-						if (fn_80126374(buffer) == 0) {
+						nMemoryCardUtil::Crypt((SAVEDATA*)buffer, 0);
+						if (nMemoryCardUtil::CheckMD5((SAVEDATA*)buffer) == 0) {
 							menu->result = 8;
 						} else if (fn_80116D2C(lbl_803E774C)->id != buffer->id) {
 							menu->result = 0xB;
