@@ -2390,6 +2390,10 @@ game/fn_800A9D20.cpp:
 	extabindex  start:0x8000E2F0 end:0x8000E2FC
 	.text       start:0x800A9D20 end:0x800A9ED4
 
+game/fn_800AA2C0.cpp:
+	.text       start:0x800AA2C0 end:0x800AA2F4
+	.ctors      start:0x802398E8 end:0x802398EC
+
 game/fn_800AA924.cpp:
 	extab       start:0x80007C8C end:0x80007C94
 	extabindex  start:0x8000E320 end:0x8000E32C
