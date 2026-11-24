@@ -1,23 +1,13 @@
-// Initializes an MD5 context: zeroes the 64-bit bit count and loads the four
-// standard chaining constants.
+#include "game/memorycard_crypt.h"
 
-extern "C" {
-struct Md5Ctx8012316C {
-	unsigned lo;
-	unsigned hi;
-	unsigned a;
-	unsigned b;
-	unsigned c;
-	unsigned d;
-};
+// TMD5::Begin(): zeroes the 64-bit bit count and loads the four standard MD5 chaining constants.
 
-void fn_8012316C(Md5Ctx8012316C* c)
+void TMD5::Begin()
 {
-	c->lo = 0;
-	c->hi = 0;
-	c->a  = 0x67452301;
-	c->b  = 0xEFCDAB89;
-	c->c  = 0x98BADCFE;
-	c->d  = 0x10325476;
-}
+	mCount[0] = 0;
+	mCount[1] = 0;
+	mState[0] = 0x67452301;
+	mState[1] = 0xEFCDAB89;
+	mState[2] = 0x98BADCFE;
+	mState[3] = 0x10325476;
 }

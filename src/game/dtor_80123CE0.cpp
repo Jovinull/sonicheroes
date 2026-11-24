@@ -1,19 +1,11 @@
-// Destructor: clears the three blocks (0..8, 8..0x18, 0x18..0x58) and frees the object when flags > 0; returns the object.
+#include "game/memorycard_crypt.h"
+#include "MSL_C/string.h"
 
-extern "C" {
-void __dl__FPv(void*);
-void* memset(void*, int, unsigned);
+// TMD5::~TMD5(): clears the bit count, the chaining values and the input buffer.
 
-void* dtor_80123CE0(unsigned char* o, short flags)
+TMD5::~TMD5()
 {
-	if (o != 0) {
-		memset(o, 0, 8);
-		memset(o + 8, 0, 0x10);
-		memset(o + 0x18, 0, 0x40);
-		if (flags > 0) {
-			__dl__FPv(o);
-		}
-	}
-	return o;
-}
+	memset(mCount, 0, sizeof(mCount));
+	memset(mState, 0, sizeof(mState));
+	memset(mBuffer, 0, sizeof(mBuffer));
 }
