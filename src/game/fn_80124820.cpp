@@ -1,11 +1,9 @@
-// Zeroes 0x300 bytes at the given address and returns it.
+#include "game/memorycard_crypt.h"
+#include "MSL_C/string.h"
 
-extern "C" {
-void* memset(void*, int, unsigned);
+// TDes::TDes(): clears the whole cipher state.
 
-void* fn_80124820(void* a)
+TDes::TDes()
 {
-	memset(a, 0, 0x300);
-	return a;
-}
+	memset(mWork, 0, sizeof(mWork));
 }

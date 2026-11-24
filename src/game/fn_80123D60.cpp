@@ -1,5 +1,5 @@
-// Empty function (blr).
+#include "game/memorycard_crypt.h"
 
-extern "C" {
-void fn_80123D60(void) { }
-}
+// TMD5::TMD5(): nothing to initialize; Begin sets up the context.
+
+TMD5::TMD5() { }
