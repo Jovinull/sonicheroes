@@ -4256,6 +4256,11 @@ game/fn_8011273C.cpp:
 game/fn_80112D98.cpp:
 	.text       start:0x80112D98 end:0x80112DAC
 
+game/fn_80112DAC.cpp:
+	extab       start:0x8000A754 end:0x8000A77C
+	extabindex  start:0x80010840 end:0x8001084C
+	.text       start:0x80112DAC end:0x80112F10
+
 game/fn_80112F10.cpp:
 	extab       start:0x8000A77C end:0x8000A784
 	extabindex  start:0x8001084C end:0x80010858
