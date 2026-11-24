@@ -1,6 +1,6 @@
 // Runs fn_80137D0C for a team (lbl_80303DC8[team]) with the kind of its player (0x114, byte 0x761)
 // and its byte 0x110. When the task root lbl_8042C2A0 exists it does so through a new task
-// (vtable lbl_8028C388, class name lbl_8042BC68, display priority 0x30) whose inlined constructor
+// (vtable lbl_8028C388, class name lbl_8042BC68, 0x30 bytes) whose inlined constructor
 // stores the team and the argument and makes the call, and returns -1; otherwise it calls
 // fn_80137D0C directly and returns its result. A team without an entry returns -1. The class and
 // the roles are UNKNOWN.
@@ -34,8 +34,10 @@ public:
 	static void* operator new(unsigned long size) { return lbl_8042C148->Malloc(size); }
 	static void operator delete(void* p);
 
-	void* vtable; // 0x18
-	u16 ExecTime, DispTime, TDispTime, PDispTime, ImmAftSetRasterTime;
+	void* vtable;     // 0x18
+	u16 unknown1C;    // 0x1C
+	u16 objectSize;   // 0x1E: set by every TObject constructor to sizeof the object
+	u16 unknown20[4]; // 0x20
 };
 
 struct Player801379EC {
@@ -66,7 +68,7 @@ public:
 	{
 		vtable     = lbl_8028C388;
 		ClassName  = lbl_8042BC68;
-		DispTime   = 0x30;
+		objectSize = sizeof(*this);
 		f28        = 0;
 		this->a    = a;
 		this->team = team;

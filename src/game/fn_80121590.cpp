@@ -1,6 +1,6 @@
 // Creates the singleton task lbl_8042C700 under lbl_8042C100 when the word 0x4 of lbl_80289AE8
 // is set and no instance exists yet. The class (vtable lbl_80289BA8, class name lbl_8042B928,
-// display priority 0x30, 0x30 bytes) and its role are UNKNOWN; the constructor is inlined. The
+// 0x30 bytes) and its role are UNKNOWN; the constructor is inlined. The
 // pointer is stored even when the allocation fails, as retail does.
 #include "types.h"
 
@@ -32,8 +32,10 @@ public:
 	static void* operator new(unsigned long size) { return lbl_8042C148->Malloc(size); }
 	static void operator delete(void* p);
 
-	void* vtable; // 0x18
-	u16 ExecTime, DispTime, TDispTime, PDispTime, ImmAftSetRasterTime;
+	void* vtable;     // 0x18
+	u16 unknown1C;    // 0x1C
+	u16 objectSize;   // 0x1E: set by every TObject constructor to sizeof the object
+	u16 unknown20[4]; // 0x20
 };
 
 struct Settings80121590 {
@@ -56,9 +58,9 @@ public:
 	Obj80121590(TObject* parent)
 	    : TObject(parent)
 	{
-		vtable    = lbl_80289BA8;
-		ClassName = lbl_8042B928;
-		DispTime  = 0x30;
+		vtable     = lbl_80289BA8;
+		ClassName  = lbl_8042B928;
+		objectSize = sizeof(*this);
 	}
 
 	u8 pad28[0x30 - 0x28];
