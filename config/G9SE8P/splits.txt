@@ -1230,6 +1230,11 @@ game/fn_80057524.cpp:
 game/fn_80057574.cpp:
 	.text       start:0x80057574 end:0x80057578
 
+game/__dla__FPv.cpp:
+	extab       start:0x800065EC end:0x80006614
+	extabindex  start:0x8000CFA0 end:0x8000CFAC
+	.text       start:0x80057578 end:0x800575C8
+
 game/__nw__FUl.cpp:
 	extab       start:0x80006644 end:0x8000664C
 	extabindex  start:0x8000CFC4 end:0x8000CFD0
