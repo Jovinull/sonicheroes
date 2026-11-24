@@ -3235,6 +3235,7 @@ config.libs = [
             Object(Matching, "game/fn_80124F48.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_801333C4.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole", "-fp_contract off", "-pooldata off"]),
             Object(NonMatching, "game/fn_801115A0.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
+            Object(Matching, "game/fn_80111B8C.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_801302B0.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(NonMatching, "game/fn_8012ED38.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
             Object(Matching, "game/fn_80131168.cpp", extra_cflags=["-Cpp_exceptions on", "-opt noschedule,nopeephole"]),
