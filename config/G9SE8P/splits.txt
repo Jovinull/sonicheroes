@@ -2017,6 +2017,11 @@ game/fn_8009E7B0.cpp:
 	extabindex  start:0x8000DE10 end:0x8000DE1C
 	.text       start:0x8009E7B0 end:0x8009E89C
 
+game/fn_8009EAA4.cpp:
+	extab       start:0x8000784C end:0x80007864
+	extabindex  start:0x8000DE34 end:0x8000DE40
+	.text       start:0x8009EAA4 end:0x8009EB7C
+
 game/fn_8009FB78.cpp:
 	extab       start:0x80007874 end:0x8000787C
 	extabindex  start:0x8000DE58 end:0x8000DE64
