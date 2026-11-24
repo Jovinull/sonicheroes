@@ -5278,6 +5278,11 @@ game/fn_80135418.cpp:
 game/fn_801354A4.cpp:
 	.text       start:0x801354A4 end:0x801354B8
 
+game/fn_80136198.cpp:
+	extab       start:0x8000B7B8 end:0x8000B7C0
+	extabindex  start:0x8001180C end:0x80011818
+	.text       start:0x80136198 end:0x80136258
+
 game/fn_801364C8.cpp:
 	extab       start:0x8000B7C8 end:0x8000B7D0
 	extabindex  start:0x80011824 end:0x80011830
