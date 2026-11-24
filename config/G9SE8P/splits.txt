@@ -1240,6 +1240,11 @@ game/__nwa__FUl.cpp:
 	extabindex  start:0x8000CFAC end:0x8000CFB8
 	.text       start:0x800575C8 end:0x800575F4
 
+game/__dl__FPv.cpp:
+	extab       start:0x8000661C end:0x80006644
+	extabindex  start:0x8000CFB8 end:0x8000CFC4
+	.text       start:0x800575F4 end:0x80057644
+
 game/__nw__FUl.cpp:
 	extab       start:0x80006644 end:0x8000664C
 	extabindex  start:0x8000CFC4 end:0x8000CFD0
