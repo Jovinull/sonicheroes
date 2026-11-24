@@ -4663,6 +4663,11 @@ game/fn_80122B84.cpp:
 	extabindex  start:0x80011098 end:0x800110A4
 	.text       start:0x80122B84 end:0x80122CA0
 
+game/Update__4TMD5FPCvUi.cpp:
+	extab       start:0x8000B11C end:0x8000B124
+	extabindex  start:0x800110B0 end:0x800110BC
+	.text       start:0x80122FC0 end:0x8012316C
+
 game/fn_8012316C.cpp:
 	.text       start:0x8012316C end:0x801231AC
 
