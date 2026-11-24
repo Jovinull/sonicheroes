@@ -5071,6 +5071,12 @@ game/fn_801279C8.cpp:
 	.text       start:0x801279C8 end:0x80127A78
 	.data       start:0x80289F08 end:0x80289F44
 
+game/fn_80127A78.cpp:
+	extab       start:0x8000B340 end:0x8000B348
+	extabindex  start:0x80011350 end:0x8001135C
+	.text       start:0x80127A78 end:0x80127EA8
+	.data       start:0x80289F44 end:0x80289F80
+
 game/fn_80127EA8.cpp:
 	extab       start:0x8000B348 end:0x8000B350
 	extabindex  start:0x8001135C end:0x80011368
