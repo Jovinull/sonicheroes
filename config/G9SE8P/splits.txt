@@ -1250,6 +1250,12 @@ game/__nw__FUl.cpp:
 	extabindex  start:0x8000CFC4 end:0x8000CFD0
 	.text       start:0x80057644 end:0x80057670
 
+game/fn_80057670.cpp:
+	extab       start:0x8000664C end:0x80006654
+	extabindex  start:0x8000CFD0 end:0x8000CFDC
+	.text       start:0x80057670 end:0x800576C4
+	.ctors      start:0x802398DC end:0x802398E0
+
 game/fn_800576C4.cpp:
 	extab       start:0x80006654 end:0x8000665C
 	extabindex  start:0x8000CFDC end:0x8000CFE8
