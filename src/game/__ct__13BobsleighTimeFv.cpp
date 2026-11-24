@@ -1,8 +1,8 @@
-// BobsleighTime::BobsleighTime() (CORROBORATED by the PS2 build, see fn_80116764.cpp): the bobsleigh
-// time display. Builds the TObject under lbl_8042C118, clears its state words, then opens the
-// language archive lbl_80288EAC[language] and loads, through a 0x4B000-byte work buffer, the
-// texture dictionary (entry 2, made current) and the 2D animation (Rt2dMaestro, entry 4, prepared
-// with fn_800A8EC4 / fn_800A8CB8) into lbl_8042C694 / lbl_8042C698, which the destructor
+// BobsleighTime::BobsleighTime() (CORROBORATED by the PS2 build, see fn_80116764.cpp): the
+// bobsleigh time display. Builds the TObject under lbl_8042C118, clears its state words, then
+// opens the language archive lbl_80288EAC[language] and loads, through a 0x4B000-byte work buffer,
+// the texture dictionary (entry 2, made current) and the 2D animation (Rt2dMaestro, entry 4,
+// prepared with fn_800A8EC4 / fn_800A8CB8) into lbl_8042C694 / lbl_8042C698, which the destructor
 // releases. The field names are inferred.
 #include "game/one.h"
 
