@@ -5284,6 +5284,11 @@ game/GetSpParam.cpp:
 game/fn_80130DF0.cpp:
 	.text       start:0x80130DF0 end:0x80130E70
 
+game/fn_80130E70.cpp:
+	extab       start:0x8000B6A8 end:0x8000B6B0
+	extabindex  start:0x80011674 end:0x80011680
+	.text       start:0x80130E70 end:0x80130F74
+
 game/fn_80130F74.cpp:
 	.text       start:0x80130F74 end:0x80130F78
 
