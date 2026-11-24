@@ -4250,6 +4250,11 @@ game/SeqFlagCtrl.cpp:
 game/fn_801144E0.cpp:
 	.text       start:0x801144E0 end:0x801144E4
 
+game/fn_80114B90.cpp:
+	extab       start:0x8000A8E8 end:0x8000A8F0
+	extabindex  start:0x800109CC end:0x800109D8
+	.text       start:0x80114B90 end:0x80114C5C
+
 game/fn_80115058.cpp:
 	.text       start:0x80115058 end:0x80115070
 
