@@ -9583,6 +9583,9 @@ game/ADXB_DecodeHeaderAu.cpp:
 game/ADXB_CheckAu.cpp:
 	.text       start:0x80210CA4 end:0x80210D0C
 
+game/AU_GetInfo.cpp:
+	.text       start:0x80210D0C end:0x80210F14
+
 game/ADXB_ExecHndl.cpp:
 	.text       start:0x80210F14 end:0x80210F90
 
@@ -9796,6 +9799,9 @@ game/ADXF_Close.cpp:
 
 game/ADXF_Open.cpp:
 	.text       start:0x8021CB08 end:0x8021CD80
+
+game/ADXF_GetPtStatEx.cpp:
+	.text       start:0x8021CD80 end:0x8021D16C
 
 game/ADXF_GetPtStat.cpp:
 	.text       start:0x8021D16C end:0x8021D18C
