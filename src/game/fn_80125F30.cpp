@@ -1,8 +1,11 @@
 #include "game/rw_engine.h"
 
-// Destructor of the memory card menu object (HYPOTHESIS; the class name is UNKNOWN): installs the
-// class vtable lbl_80289DF4, frees the two RenderWare buffers at 0xB0 and 0xB4, destroys and frees
-// the object at 0x2C (fn_80126790) and the card controller at 0x28 (fn_8012823C), clears the
+// TMemoryCardCtrl::~TMemoryCardCtrl() (CORROBORATED by the PS2 build: its TMemoryCardCtrl members
+// Get_Exist, the eight Req_* requests, Disp, Exec, the destructor, the constructor, Create,
+// Finalize and Initialize line up with the GameCube functions from 0x80125530 to 0x80126374, and
+// __vt__15TMemoryCardCtrl has the same 0x2C size), written out as the function MWCC makes of it:
+// installs the class vtable, frees the two RenderWare buffers at 0xB0 and 0xB4, destroys and frees
+// the save layout at 0x2C (fn_80126790) and the card controller at 0x28 (fn_8012823C), clears the
 // global lbl_8042C724, runs the TObject destructor and frees the object on the game heap when the
 // delete flag is positive. Returns the object.
 
@@ -23,16 +26,16 @@ struct Menu80125F30 {
 
 extern "C" {
 extern THeapCtrl* lbl_8042C148;
-extern u8 lbl_80289DF4[];
+extern u8 __vt__15TMemoryCardCtrl[];
 extern s32 lbl_8042C724;
 void* fn_80126790(void* object, s16 flags);
 void* fn_8012823C(void* card, s16 flags);
 void __dt__7TObjectFv(void* object, s16 flags);
 
-Menu80125F30* fn_80125F30(Menu80125F30* menu, s16 flags)
+Menu80125F30* __dt__15TMemoryCardCtrlFv(Menu80125F30* menu, s16 flags)
 {
 	if (menu != NULL) {
-		menu->vtable = lbl_80289DF4;
+		menu->vtable = __vt__15TMemoryCardCtrl;
 		if (menu->bufferB0 != NULL) {
 			lbl_8042C9A4->rwfree(menu->bufferB0);
 		}
