@@ -4,10 +4,11 @@
 // as long as the other object belongs to the same group: both ids (+0x78) are mapped as by
 // fn_800419BC (ids 7..10 are their own group, the others go through the slot table lbl_80241C98
 // and the group byte +0x25C of lbl_802AD0D0, 0 when unknown). Stops at the first hit of another
-// group or when there is no more hit. HYPOTHESIS: the group is a team or character kind.
-// NonMatching (one instruction shorter, registers): retail ends the body with beq to the loop
-// test and b out (MWCC emits one bne out), and holds the two ids in r5/r6 (MWCC: r4/r5). Tried:
-// continue/else/return exits, a bool helper, group locals, direct field arguments.
+// group or when there is no more hit, and returns that other object (NULL when there is none).
+// HYPOTHESIS: the group is a team or character kind; PS2 metadata names a function of this shape
+// IsHitOtherTeamPlayer (HYPOTHESIS). The group test returns 1/0 from an inlined helper, and the
+// group lookup assigns its result before one return: that gives retail's beq/b loop exit and its
+// r5/r6 ids.
 
 struct Object80041638 {
 	u8 pad0[0x78];
@@ -59,17 +60,22 @@ static inline s32 Group(s32 id)
 	index = FindIndex(id);
 	slot  = lbl_802AD0D0[index];
 	if (index == -1 || slot == NULL) {
-		return 0;
+		id = 0;
+	} else {
+		id = lbl_80241CD8[slot->group];
 	}
-	return lbl_80241CD8[slot->group];
+	return id;
 }
 
-static inline bool SameGroup(Object80041638* first, Object80041638* second)
+static inline s32 OtherGroup(Object80041638* first, Object80041638* second)
 {
 	s32 a = first->id;
 	s32 b = second->id;
 
-	return Group(a) == Group(b);
+	if (Group(a) != Group(b)) {
+		return 1;
+	}
+	return 0;
 }
 
 static inline Object80041638* NextHit(Object80041638* object)
@@ -79,13 +85,14 @@ static inline Object80041638* NextHit(Object80041638* object)
 	return hit != NULL ? hit->object : NULL;
 }
 
-extern "C" void fn_80041638(Object80041638* object)
+extern "C" Object80041638* fn_80041638(Object80041638* object)
 {
 	Object80041638* other;
 
 	while ((other = NextHit(object)) != NULL) {
-		if (!SameGroup(object, other)) {
-			break;
+		if (OtherGroup(object, other)) {
+			return other;
 		}
 	}
+	return other;
 }
