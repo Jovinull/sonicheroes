@@ -1,7 +1,9 @@
 #include "types.h"
 
-// Deletes the four task objects of the table lbl_80288E0C (virtual destructor) and clears each
-// slot. What the table holds is UNKNOWN.
+// DestroyBobsleigh() (CORROBORATED by the PS2 build, where DestroyBobsleigh__Fv follows the
+// BobsleighTime constructor as here): deletes the four task objects of the table lbl_80288E0C
+// (virtual destructor) and clears each slot. What the table holds is UNKNOWN (HYPOTHESIS: the
+// bobsleighs).
 
 class TObject;
 
@@ -22,10 +24,9 @@ public:
 	virtual ~TObject();
 };
 
-extern "C" {
-extern TObject* lbl_80288E0C[4];
+extern "C" TObject* lbl_80288E0C[4];
 
-void fn_80116928(void)
+void DestroyBobsleigh(void)
 {
 	for (int i = 0; i < 4; i++) {
 		if (lbl_80288E0C[i] != NULL) {
@@ -33,5 +34,4 @@ void fn_80116928(void)
 			lbl_80288E0C[i] = NULL;
 		}
 	}
-}
 }
