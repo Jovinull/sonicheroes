@@ -5057,6 +5057,11 @@ game/fn_80128BBC.cpp:
 	extabindex  start:0x80011404 end:0x80011410
 	.text       start:0x80128BBC end:0x80128C98
 
+game/fn_8012BFCC.cpp:
+	extab       start:0x8000B440 end:0x8000B448
+	extabindex  start:0x8001144C end:0x80011458
+	.text       start:0x8012BFCC end:0x8012C128
+
 game/fn_8012C840.cpp:
 	.text       start:0x8012C840 end:0x8012C858
 
