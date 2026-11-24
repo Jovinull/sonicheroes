@@ -1831,6 +1831,12 @@ game/fn_80091FAC.cpp:
 	.text       start:0x80091FAC end:0x80091FF0
 	.data       start:0x8024F120 end:0x8024F154
 
+game/fn_80091FF0.cpp:
+	extab       start:0x800075FC end:0x80007604
+	extabindex  start:0x8000DC48 end:0x8000DC54
+	.text       start:0x80091FF0 end:0x800920E4
+	.data       start:0x8024F154 end:0x8024F27C
+
 game/fn_800924E4.cpp:
 	.text       start:0x800924E4 end:0x8009250C
 
