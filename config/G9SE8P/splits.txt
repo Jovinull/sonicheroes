@@ -4014,6 +4014,11 @@ game/fn_8010A23C.cpp:
 	extabindex  start:0x8001039C end:0x800103A8
 	.text       start:0x8010A23C end:0x8010A408
 
+game/fn_8010A8DC.cpp:
+	extab       start:0x8000A0AC end:0x8000A0B4
+	extabindex  start:0x800103B4 end:0x800103C0
+	.text       start:0x8010A8DC end:0x8010AA24
+
 game/fn_8010AC88.cpp:
 	extab       start:0x8000A0E4 end:0x8000A0FC
 	extabindex  start:0x800103CC end:0x800103D8
